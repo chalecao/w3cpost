@@ -1,0 +1,169 @@
+---
+title: JavaScript数组去重简单的方法
+
+
+date: 2018-11-16T01:06:15+00:00
+url: /javascriptnodejs/2533.html
+featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee17ed04427.png
+fifu_image_url:
+  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee17ed04427.png
+fifu_image_alt:
+  - JavaScript数组去重简单的方法
+views:
+  - 1001
+like:
+  - 1
+
+
+---
+<p id="mjITLyf">
+  <img loading="lazy" class="alignnone wp-image-2535 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee17ed04427.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee17ed04427.png?x-oss-process=image/format,webp" alt="" width="447" height="266" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee17ed04427.png?x-oss-process=image/format,webp 878w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee17ed04427.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_178/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee17ed04427.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_457/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee17ed04427.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_476/format,webp 800w" sizes="(max-width: 447px) 100vw, 447px" />
+</p>
+
+**方法一：**
+
+双层循环，外层循环元素，内层循环时比较值
+
+如果有相同的值则跳过，不相同则push进数组
+
+<div class="jb51code">
+  <pre class="pure-highlightjs">Array.prototype.distinct = function(){
+ var arr = this,
+  result = [],
+  i,
+  j,
+  len = arr.length;
+ for(i = 0; i &lt; len; i++){
+  for(j = i + 1; j &lt; len; j++){
+   if(arr[i] === arr[j]){
+    j = ++i;
+   }
+  }
+  result.push(arr[i]);
+ }
+ return result;
+}
+var arra = [1,2,3,4,4,1,1,2,1,1,1];
+arra.distinct();    //返回[3,4,2,1]</pre>
+</div>
+
+**方法二：利用splice直接在原数组进行操作**
+
+双层循环，外层循环元素，内层循环时比较值
+
+值相同时，则删去这个值
+
+注意点:删除元素之后，需要将数组的长度也减1.
+
+<pre class="EnlighterJSRAW" data-enlighter-theme="git" data-enlighter-linenumbers="true">Array.prototype.distinct = function (){
+ var arr = this,
+  i,
+  j,
+  len = arr.length;
+ for(i = 0; i &lt; len; i++){
+  for(j = i + 1; j &lt; len; j++){
+   if(arr[i] == arr[j]){
+    arr.splice(j,1);
+    len--;
+    j--;
+   }
+  }
+ }
+ return arr;
+};
+var a = [1,2,3,4,5,6,5,3,2,4,56,4,1,2,1,1,1,1,1,1,];
+var b = a.distinct();
+console.log(b.toString()); //1,2,3,4,5,6,56</pre>
+
+优点：简单易懂
+
+缺点：占用内存高，速度慢
+
+**方法三：利用对象的属性不能相同的特点进行去重**
+
+<pre class="EnlighterJSRAW" data-enlighter-language="null">Array.prototype.distinct = function (){
+ var arr = this,
+  i,
+  obj = {},
+  result = [],
+  len = arr.length;
+ for(i = 0; i&lt; arr.length; i++){
+  if(!obj[arr[i]]){ //如果能查找到，证明数组元素重复了
+   obj[arr[i]] = 1;
+   result.push(arr[i]);
+  }
+ }
+ return result;
+};
+var a = [1,2,3,4,5,6,5,3,2,4,56,4,1,2,1,1,1,1,1,1,];
+var b = a.distinct();
+console.log(b.toString()); //1,2,3,4,5,6,56</pre>
+
+**方法四：数组递归去重**
+
+运用递归的思想
+
+先排序，然后从最后开始比较，遇到相同，则删除
+
+<div class="jb51code">
+  <pre class="pure-highlightjs">Array.prototype.distinct = function (){
+ var arr = this,
+  len = arr.length;
+ arr.sort(function(a,b){  //对数组进行排序才能方便比较
+  return a - b;
+ })
+ function loop(index){
+  if(index &gt;= 1){
+   if(arr[index] === arr[index-1]){
+    arr.splice(index,1);
+   }
+   loop(index - 1); //递归loop函数进行去重
+  }
+ }
+ loop(len-1);
+ return arr;
+};
+var a = [1,2,3,4,5,6,5,3,2,4,56,4,1,2,1,1,1,1,1,1,56,45,56];
+var b = a.distinct();
+console.log(b.toString());  //1,2,3,4,5,6,45,56</pre>
+</div>
+
+**方法五：利用indexOf以及forEach**
+
+<div class="jb51code">
+  <pre class="pure-highlightjs">Array.prototype.distinct = function (){
+ var arr = this,
+  result = [],
+  len = arr.length;
+ arr.forEach(function(v, i ,arr){  //这里利用map，filter方法也可以实现
+  var bool = arr.indexOf(v,i+1);  //从传入参数的下一个索引值开始寻找是否存在重复
+  if(bool === -1){
+   result.push(v);
+  }
+ })
+ return result;
+};
+var a = [1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,3,2,3,3,2,2,1,23,1,23,2,3,2,3,2,3];
+var b = a.distinct();
+console.log(b.toString()); //1,23,2,3</pre>
+</div>
+
+**方法六：利用ES6的set**
+
+Set数据结构，它类似于数组，其成员的值都是唯一的。
+
+利用Array.from将Set结构转换成数组
+
+<div class="jb51code">
+  <pre class="pure-highlightjs">function dedupe(array){
+ return Array.from(new Set(array));
+}
+dedupe([1,1,2,3]) //[1,2,3]</pre>
+</div>
+
+拓展运算符(&#8230;)内部使用for&#8230;of循环
+
+<pre class="pure-highlightjs"><code class="">let arr = [1,2,3,3];
+let resultarr = [...new Set(arr)]; 
+console.log(resultarr); //[1,2,3]
+</code></pre>

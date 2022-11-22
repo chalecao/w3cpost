@@ -1,0 +1,416 @@
+---
+title: 数据仓库data warehouse数据湖data lake
+
+
+date: 2022-04-14T16:10:52+00:00
+url: /用户增长/7115.html
+classic-editor-remember:
+  - classic-editor
+views:
+  - 159
+
+
+---
+**前言**
+
+随着<a href="https://cloud.tencent.com/solution/bigdata?from=10680" target="_blank" rel="noopener" data-text-link="109_1513820" data-from="10680">大数据</a>技术的不断更新和迭代，数据管理工具得到了飞速的发展，相关概念如雨后春笋一般应运而生，如从最初决策支持系统(DSS)到商业智能(BI)、数据仓库、<a href="https://cloud.tencent.com/solution/datalake_storage?from=10680" target="_blank" rel="noopener" data-text-link="165_1513820" data-from="10680">数据湖</a>、数据中台等，这些概念特别容易混淆，本文对这些名词术语及内涵进行系统的解析，便于读者对数据平台相关的概念有全面的认识。
+
+**一**
+
+**数据仓库**
+
+**数据仓库平台逐步从BI报表为主到分析为主、到预测为主、再到操作智能为目标。**<figure> 
+
+<div class="image-block">
+  <p id="SbKntII">
+    <img loading="lazy" width="554" height="280" class="alignnone size-full wp-image-7116 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625845f404555.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625845f404555.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625845f404555.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625845f404555.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_152/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
+  </p>
+</div></figure> 
+
+图1.数据仓库发展阶段划分
+
+**商务智能（BI，Business Intelligence）**是一种以提供决策分析性的运营数据为目的而建立的信息系统。是属于在线分析处理：On Line Analytical Processing(OLAP)，将预先计算完成的汇总数据，储存于魔方数据库(Cube) 之中，针对复杂的分析查询，提供快速的响应。在前10年，BI报表项目比较多，是数据仓库项目的前期预热项目（主要分析为主的阶段，是数据仓库的初级阶段），制作一些可视化报表展现给管理者。
+
+<ul class="ul-level-0">
+  <li>
+    它利用信息科技，将分散于企业内、外部各种数据加以整合并转换成知识，并依据某些特定的主题需求，进行决策分析和运算；
+  </li>
+  <li>
+    用户则通过报表、图表、多维度分析的方式，寻找解决业务问题所需要的方案；
+  </li>
+  <li>
+    这些结果将呈报给决策者，以支持策略性的决策和定义组织绩效，或者融入智能知识库自动向客户推送。
+  </li>
+</ul>
+
+**1.1**
+
+**数据仓库基本定义**
+
+**数据仓库(Data Warehouse)**是一个面向主题的（Subject Oriented）、集成的（Integrated）、相对稳定的（Non-Volatile）、反映历史变化的（Time Variant）数据集合，用于支持管理决策和信息的全局共享。其主要功能是将组织透过资讯系统之联机事务处理(OLTP)经年累月所累积的大量资料，透过数据仓库理论所特有的资料储存架构，作一有系统的分析整理，以利各种分析方法如联机分析处理(OLAP)、数据挖掘(Data Mining)之进行，并进而支持如决策支持系统(DSS)、主管资讯系统(EIS)之创建，帮助决策者能快速有效的自大量资料中，分析出有价值的资讯，以利决策拟定及快速回应外在环境变动，帮助建构商业智能(BI)。[1]：引自全球数据仓库之父 W.H.Inmon。
+
+<ul class="ul-level-0">
+  <li>
+    <strong>所谓主题：</strong>是指用户使用数据仓库进行决策时所关心的重点方面，如：收入、客户、销售渠道等；所谓面向主题，是指数据仓库内的信息是按主题进行组织的，而不是像业务支撑系统那样是按照业务功能进行组织的。
+  </li>
+  <li>
+    <strong>所谓集成：</strong>是指数据仓库中的信息不是从各个业务系统中简单抽取出来的，而是经过一系列加工、整理和汇总的过程，因此数据仓库中的信息是关于整个企业的一致的全局信息。
+  </li>
+  <li>
+    <strong>所谓随时间变化：</strong>是指数据仓库内的信息并不只是反映企业当前的状态，而是记录了从过去某一时点到当前各个阶段的信息。通过这些信息，可以对企业的发展历程和未来趋势做出定量分析和预测。
+  </li>
+</ul><figure> 
+
+<div class="image-block">
+  <p id="fAlcUsF">
+    <img loading="lazy" width="554" height="270" class="alignnone size-full wp-image-7117 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846a73a5f9.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846a73a5f9.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846a73a5f9.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846a73a5f9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_146/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
+  </p>
+</div></figure> 
+
+图2.数据仓库逻辑架构
+
+**1.2**
+
+**数据仓库系统作用和定位**
+
+数据仓库系统的作用能实现跨业务条线、跨系统的数据整合，为管理分析和业务决策提供统一的数据支持。数据仓库能够从根本上帮助你把公司的运营数据转化成为高价值的可以获取的信息（或知识），并且在恰当的时候通过恰当的方式把恰当的信息传递给恰当的人。<figure> 
+
+<div class="image-block">
+  <p id="LwLPGsU">
+    <img loading="lazy" width="554" height="242" class="alignnone size-full wp-image-7118 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846c782e8f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846c782e8f.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846c782e8f.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846c782e8f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_131/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
+  </p>
+</div></figure> 
+
+图3.数据仓库的作用
+
+<ul class="ul-level-0">
+  <li>
+    是面向企业中、高级管理进行业务分析和绩效考核的数据整合、分析和展现的工具；
+  </li>
+  <li>
+    是主要<strong>用于历史性、综合性和深层次数据分析</strong>；
+  </li>
+  <li>
+    数据来源是ERP（例:SAP）系统或其他业务系统；
+  </li>
+  <li>
+    能够提供灵活、直观、简洁和易于操作的多维查询分析;
+  </li>
+  <li>
+    不是日常交易操作系统，不能直接产生交易数据；
+  </li>
+</ul>
+
+**数据仓库针对实时数据处理，非结构化数据处理能力较弱，以及在业务在预警预测方面应用相对有限。**
+
+**1.3**
+
+**数据仓库能提供什么**<figure> 
+
+<div class="image-block">
+  <p id="WsYaKFv">
+    <img loading="lazy" width="554" height="245" class="alignnone size-full wp-image-7119 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846d6c9099.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846d6c9099.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846d6c9099.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846d6c9099.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_133/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
+  </p>
+</div></figure> 
+
+图4.数据仓库提供价值
+
+**1.4**
+
+**数据仓库系统构成**
+
+数据仓库系统除了包含分析产品本身之外，还包含数据集成、数据存储、数据计算、门户展现、平台管理等其它一系列的产品。<figure> 
+
+<div class="image-block">
+  <p id="GlLzKgg">
+    <img loading="lazy" width="554" height="374" class="alignnone size-full wp-image-7120 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846e6806a2.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846e6806a2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846e6806a2.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846e6806a2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_203/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
+  </p>
+</div></figure> 
+
+图5.数据仓库产品构成<figure> 
+
+<div class="image-block">
+  <p id="BKHjAtO">
+    <img loading="lazy" width="554" height="382" class="alignnone size-full wp-image-7121 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846f305344.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846f305344.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846f305344.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846f305344.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_207/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
+  </p>
+</div></figure> 
+
+图6.数据仓库产品构成
+
+**二**
+
+**数据湖**
+
+**数据湖(Data Lake)**是Pentaho的CTO James Dixon提出来的(Pentaho作为一家BI公司在理念上是挺先进的)，是一种数据存储理念——即在系统或存储库中以自然格式存储数据的方法。
+
+**2.1**
+
+**维基百科对数据湖的定义**
+
+**数据湖（**Data Lake）**是一个存储企业的各种各样原始数据的大型仓库，其中的数据可供存取、处理、分析及传输。**数据湖是以其自然格式存储的数据的系统或存储库，通常是对象blob或文件。数据湖通常是企业所有数据的单一存储，包括源系统数据的原始副本，以及用于报告、可视化、分析和机器学习等任务的转换数据。数据湖可以包括来自关系数据库（行和列）的结构化数据，半结构化数据（CSV，日志，XML，JSON），非结构化数据（电子邮件，文档，PDF）和二进制数据（图像，音频，视频）。来源：维基百科。
+
+目前，Hadoop是最常用的部署数据湖的技术，所以很多人会觉得数据湖就是Hadoop集群。数据湖是一个概念，而Hadoop是用于实现这个概念的技术。<figure> 
+
+<div class="image-block">
+  <p id="GxXTVsP">
+    <img loading="lazy" width="554" height="219" class="alignnone size-full wp-image-7122 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625847030ceb2.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625847030ceb2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625847030ceb2.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625847030ceb2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_119/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
+  </p>
+</div></figure> 
+
+图7.数据湖的处理架构<figure> 
+
+<div class="image-block">
+  <p id="CUHwLXy">
+    <img loading="lazy" width="536" height="341" class="alignnone size-full wp-image-7123 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258470bcf4c3.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258470bcf4c3.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258470bcf4c3.png?x-oss-process=image/format,webp 536w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258470bcf4c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_191/format,webp 300w" sizes="(max-width: 536px) 100vw, 536px" />
+  </p>
+</div></figure> 
+
+图8.数据湖示意图
+
+**2.2**
+
+**数据湖能给企业带来多种能力**
+
+数据湖能给企业带来多种能力，例如，能实现数据的集中式管理，在此之上，企业能挖掘出很多之前所不具备的能力。另外，数据湖结合先进的数据科学与机器学习技术，能帮助企业构建更多优化后的运营模型，也能为企业提供其他能力，如预测分析、推荐模型等，这些模型能刺激企业能力的后续增长。数据湖能从以下方面帮助到企业：
+
+<ul class="ul-level-0">
+  <li>
+    实现数据治理（data governance）。
+  </li>
+  <li>
+    通过应用机器学习与人工智能技术实现商业智能。
+  </li>
+  <li>
+    预测分析，如领域特定的推荐引擎。
+  </li>
+  <li>
+    信息追踪与一致性保障。
+  </li>
+  <li>
+    根据对历史的分析生成新的数据维度。
+  </li>
+  <li>
+    有一个集中式的能存储所有企业数据的数据中心，有利于实现一个针对数据传输优化的数据服务。
+  </li>
+  <li>
+    帮助组织或企业做出更多灵活的关于企业增长的决策。
+  </li>
+</ul>
+
+**2.3**
+
+**数据仓库与数据湖差异**
+
+<ul class="ul-level-0">
+  <li>
+    在储存方面上，数据湖中数据为非结构化的，所有数据都保持原始形式。存储所有数据，并且仅在分析时再进行转换。数据仓库就是数据通常从事务系统中提取。
+  </li>
+  <li>
+    在将数据加载到数据仓库之前，会对数据进行清理与转换。在数据抓取中数据湖就是捕获半结构化和非结构化数据。而数据仓库则是捕获结构化数据并将其按模式组织。
+  </li>
+  <li>
+    数据湖的目的就是数据湖非常适合深入分析的非结构化数据。数据科学家可能会用具有预测建模和统计分析等功能的高级分析工具。而数据仓库就是数据仓库非常适用于月度报告等操作用途，因为它具有高度结构化。
+  </li>
+  <li>
+    在架构中数据湖通常，在存储数据之后定义架构。使用较少的初始工作并提供更大的灵活性。在数据仓库中存储数据之前定义架构。
+  </li>
+</ul>
+
+表1.数据仓库、数据湖和数据湖的区别如下：
+
+<div class="table-wrapper">
+  <table>
+    <tr>
+      <th>
+        <div class="table-header">
+          <p>
+            数据仓库
+          </p>
+        </div>
+      </th>
+      
+      <th>
+        <div class="table-header">
+          <p>
+            数据湖
+          </p>
+        </div>
+      </th>
+    </tr>
+    
+    <tr>
+      <td>
+        <div class="table-cell">
+          <p>
+            主要处理历史的、结构化的数据，而且这些数据必须与数据仓库事先定义的模型吻合。
+          </p>
+        </div>
+      </td>
+      
+      <td>
+        <div class="table-cell">
+          <p>
+            能处理所有类型的数据，如结构化数据，非结构化数据，半结构化数据等，数据的类型依赖于数据源系统的原始数据格式。
+          </p>
+        </div>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        <div class="table-cell">
+          <p>
+            处理结构化数据，将它们或者转化为多维数据，或者转换为报表，以满足后续的高级报表及数据分析需求。
+          </p>
+        </div>
+      </td>
+      
+      <td>
+        <div class="table-cell">
+          <p>
+            拥有足够强的计算能力用于处理和分析所有类型的数据，分析后的数据会被存储起来供用户使用。
+          </p>
+        </div>
+      </td>
+    </tr>
+    
+    <tr>
+      <td>
+        <div class="table-cell">
+          <p>
+            数据仓库通常用于存储和维护长期数据，因此数据可以按需访问。
+          </p>
+        </div>
+      </td>
+      
+      <td>
+        <div class="table-cell">
+          <p>
+            数据湖通常包含更多的相关的信息，这些信息有很高概率会被访问，并且能够为企业挖掘新的运营需求。
+          </p>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+**三**
+
+**数据中台**
+
+**3.1**
+
+**产生的背景**
+
+企业在过去信息化的历程中形成了大量生产经营及专业业务应用成果，同时也累积了大量的企业数据资产。限于传统的数据仓库技术手段，数据管理和分析能力成为信息化工作中的短板。企业信息系统众多，系统管理独立，数据存储分散，横向的数据共享和分析应用仅由具体业务驱动，难以对全局数据开展价值挖掘，从规模上和效果上都无法真正体现集团庞大数据资产的价值。市场竞争和产业链日益全球化，企业不只满足于内部数据的分析，更要通过互联网、微信、APP等新技术手段结合外部市场数据进行整体分析。
+
+**（1）传统的数据仓库不能满足数据分析需求**。
+
+企业在数据分析应用方面呈现**“五大转变”**（从统计分析向预测分析转变、从单领域分析向跨领域转变、从被动分析向主动分析转变、从非实时向实时分析转变、从结构化数据向多元化转变），并且对统一的数据中台平台诉求强烈，对数据中台的运算能力、核心算法、及数据全面性提出了更高的要求。
+
+**（2）数据中台的处理架构发生了变化。**
+
+一是以Hadoop、Spark等分布式技术和组件为核心的“计算&存储混搭”的数据处理架构，能够支持批量和实时的数据加载以及灵活的业务需求。二是数据的预处理流程正在从传统的ETL结构向ELT转变。传统的数据仓库集成处理架构是ETL结构，这是构建数据仓库的重要一环，即用户从数据源抽取出所需的数据，经过数据清洗，将数据加载到数据仓库中去。而大数据背景下的架构体系是ELT结构，其根据上层的应用需求，随时从数据中台中抽取想要的原始数据进行建模分析。
+
+**3.2**
+
+**数据中台建设是数字化转型的关键支撑**
+
+数据中台成为热点，“中台”这个概念，是相对于前台和后台而生，是前台和后台的链接点，将业务共同的工具和技术予以沉淀。数据中台是指**数据采集交换、共享融合、组织处理、建模分析、管理治理和服务应用于一体的综合性数据能力平台**，在大数据生态中处于承上启下的功能，提供面向数据应用支撑的底座能力。
+
+广义上来给数据中台一个企业级的定义：“聚合和治理跨域数据，将数据抽象封装成服务，提供给前台以业务价值的逻辑概念”。<figure> 
+
+<div class="image-block">
+  <p id="QElYYlo">
+    <img loading="lazy" width="554" height="394" class="alignnone size-full wp-image-7124 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258472721b62.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258472721b62.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258472721b62.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258472721b62.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_213/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
+  </p>
+</div></figure> 
+
+图9.数据中台建设是数字化转型的关键支撑
+
+中台战略核心是数据服务的共享。中台战略并不是搭建一个数据平台，但是中台的大部分服务都是围绕数据而生，数据中台是围绕向上层应用提供数据服务构建的，中台战略让数据在数据平台和业务系统之间形成了一个良性的闭环，也就是实现应用与数据之间解藕，并实现紧密交互。
+
+<ul class="ul-level-0">
+  <li>
+    <strong>敏捷前台</strong>：一线作战单元，强调敏捷交互及稳定交付的组织能力建设。
+  </li>
+  <li>
+    <strong>业务中台：</strong>能力固化与赋能，固化通用能力，赋能前线部队，提升配置效率，加快前线响应，产品化业务化，开辟全新生态。
+  </li>
+  <li>
+    <strong>数据中台：</strong>资产整合与共享，整合多维数据，统一资产管理，连通数据孤岛，共享数据资源，深入挖掘数据，盘活资产价值。
+  </li>
+  <li>
+    <strong>稳定后台：</strong>以共享中心建设为核心，为前中台提供专业的内部服务支撑。
+  </li>
+</ul>
+
+**3.3**
+
+**数据中台定义及处理架构**
+
+**数据中台**是指通过企业内外部多源异构的**数据采集、治理、建模、分析，应用，使数据对内优化管理提高业务，对外可以数据合作价值释放，成为企业数据资产管理中枢**。数据中台建立后，会形成数据API，为企业和客户提供高效各种数据服务。
+
+<p id="Jntqzlu">
+  <img loading="lazy" width="554" height="354" class="alignnone size-full wp-image-7125 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625847332984a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625847332984a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625847332984a.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625847332984a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_192/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
+</p>
+
+图10.数据中台架构图
+
+数据中台整体技术架构上采用云计算架构模式，将数据资源、计算资源、存储资源充分云化，并通过多租户技术进行资源打包整合，并进行开放，为用户提供“一站式”数据服务。
+
+利用大数据技术，对海量数据进行统一采集、计算、存储，并使用统一的数据规范进行管理，将企业内部所有数据统一处理形成标准化数据，挖掘出对企业最有价值的数据，构建企业数据资产库，提供一致的、高可用大 数据服务。
+
+数据中台不是一套软件，也不是一个信息系统，而是一系列数据组件的集合，企业基于自身的信息化建设基础、数据基础以及业务特点对数据中台的能力进行定义，基于能力定义利用数据组件搭建自己的数据中台。
+
+**3.4**
+
+**数据中台带来价值**
+
+数据中台对一个企业的数字化转型和可持续发展起着至关重要的作用。数据中台为解耦而生，企业建设数据中台的最大意义就是应用与数据解藕。这样企业就可以不受限制地按需构建满足业务需求的数据应用。
+
+<ul class="ul-level-0">
+  <li>
+    构建了开放、灵活、可扩展的企业级统一数据管理和分析平台， 将企业内、外部数据随需关联，打破了数据的系统界限。
+  </li>
+  <li>
+    利用大数据智能分析、<a href="https://cloud.tencent.com/product/yuntu?from=10680" target="_blank" rel="noopener" data-text-link="41_1513820" data-from="10680">数据可视化</a>等技术，实现了数据共享、日常报表自动生成、快速和智能分析，满足集团总部和各分子公司各级数据分析应用需求。
+  </li>
+  <li>
+    深度挖掘数据价值，助力企业数字化转型落地。实现了数据的目录、模型、标准、认责、安全、可视化、共享等管理，实现数据集中存储、处理、分类与管理，建立大数据分析工具库、算法服务库，实现报表生成自动化、数据分析敏捷化、数据挖掘可视化，实现数据质量评估、落地管理流程。
+  </li>
+</ul>
+
+**四**
+
+**传统数据仓库与数据中台的差异点**<figure> 
+
+<div class="image-block">
+  <p id="lxwOPny">
+    <img loading="lazy" width="554" height="183" class="alignnone size-full wp-image-7126 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258473fad5eb.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258473fad5eb.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258473fad5eb.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258473fad5eb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_99/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
+  </p>
+</div></figure> 
+
+图11.数据中台与传统数据仓库比较<figure> 
+
+<div class="image-block">
+  <p id="TCjrpVq">
+    <img loading="lazy" width="554" height="267" class="alignnone size-full wp-image-7127 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258474bc925b.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258474bc925b.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258474bc925b.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258474bc925b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_145/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
+  </p>
+</div></figure> 
+
+表2.技术路线对比表
+
+作为工业企业，一般采用混搭架构<figure> 
+
+<div class="image-block">
+  <img loading="lazy" width="532" height="94" class="alignnone size-full wp-image-7128 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62584756aaf4f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62584756aaf4f.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62584756aaf4f.png?x-oss-process=image/format,webp 532w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62584756aaf4f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_53/format,webp 300w" sizes="(max-width: 532px) 100vw, 532px" />
+</div></figure> 
+
+表3.技术路线选型比较表
+
+**结论**
+
+本文对数据仓库、数据湖、数据中台等内涵作了详细说明，便于读者更好的理解和掌握数据领域相关概念。
+
+最后总结一点：**数据中台更好的支撑数据预测分析、跨领域分析、主动分析、实时分析、多元化结构化数据分析，数据中台建设是我们企业数据服务和共享奠定重要的基础，可以加速从数据到价值的过程，打造相应业务能力**。(鸣谢:蔡春久先生给予专业指导)

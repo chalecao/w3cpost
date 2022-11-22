@@ -1,0 +1,137 @@
+---
+title: PMF模型
+
+
+date: 2022-03-26T14:45:29+00:00
+url: /用户增长/6980.html
+classic-editor-remember:
+  - classic-editor
+views:
+  - 152
+
+
+---
+# 产品是什么
+
+1.能够供给市场  
+2.被人们使用和消费  
+3.满足人们的某种需求
+
+# PMF模型
+
+PMF(product market fit)  
+产品和市场达到最佳的契合点，所提供的产品正好满足用户的需求，令客户满意。
+
+<p id="mLDrugZ">
+  <img loading="lazy" class="alignnone  wp-image-6981 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png?x-oss-process=image/format,webp" alt="" width="699" height="392" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png?x-oss-process=image/format,webp 965w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_168/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_448/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_431/format,webp 768w" sizes="(max-width: 699px) 100vw, 699px" />
+</p>
+
+1.Target Customer 目标用户：明确目标用户  
+2.Underserved Needs 目标用户未被满足的需求：需求分为已有需求，潜在需求，未来需求。分析用户属于哪种需求  
+3.Value Proposition 产品的价值定位：明确产品的价值定位，确定产品未用户提供的核心价值。  
+4.Feature Set 产品的功能点：根据需求梳理产品功能点，确定MVP  
+5.UX 用户体验：制作产品模型，目标用户验证MVP,获取用户体验
+
+总结：  
+1.产品的关键点在于满足需求，这是产品生存之本  
+2.无我，很多产品的失败在于只想着自己会什么，有什么，能做什么，而不是权力考虑用户要什么，市场要什么  
+3.扩展，我们在找工作的时候也要考虑，公司要什么，而不是自己有什么
+
+多数失败的公司，不是因为没有产品，而是因为产品卖不出去。卖不出去的原因很多，通常会总结为销售不给力，宣传不给力，很少会把原因归结到产品本身。相反，几乎每个公司都觉得自己的产品很好，而且还在努力改进，希望做出更好的产品。
+
+# 产品是不是越好越好？ {#toc-1}
+
+大约 15 年前，在一次面试过程中，面试官问我怎么理解产品、运营以及渠道之间的关系。我哇哩哇啦说了一大堆后，面试官说：“你说的意思都对，但可以更简洁一些，从对结果的影响来说，产品占 10%，运营占 20%，渠道占 70%，对不对？”
+
+当时我脑海里立即回荡起四个字：醍醐灌顶！
+
+这是我第一次实际体会到理论对实际工作的指导意义，之前做产品、做运营，虽然都有过不错的业绩，但都是凭着个人的喜好、习惯和经验去做的。如果有理论指导，就知道自己的工作重心在哪，应该怎样去分配精力和资源，应该会有更好的业绩。那个瞬间，是我的一次开悟。
+
+  * 一方面，产品没运营重要，运营没渠道重要；
+  * 但另一方面，产品是基础，如果产品是 1，那运营就是 1 后面的 0，运营越成功，1 后面的 0 就越多。但如果 1 这个基础不好，没有 1，后面的 0 就没有意义，即使 1 变成了 0.5，那整体上也要打 5 折，这就是产品的重要性。
+
+在 IT 行业，我们听到的各种成功故事中，都会把产品放到非常重要的位置。从乔布斯到雷布斯，从周布斯到罗布斯，无不把自己包装成产品大神，而每个大神的产品理念中，都会说要把产品做好，做到极致。
+
+但真的是这样吗？产品好就能成功吗？什么样才算好产品？产品是不是越好越好？
+
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/ItdFyg2j5wiWehzjq8PN.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/ItdFyg2j5wiWehzjq8PN.jpg?x-oss-process=image/format,webp" alt="" width="532" height="299" data-action="zoom" /> 
+
+# PMF：第一个小目标 {#toc-2}
+
+产品好不好，并不能孤立的评价，还要看是否投放到了正确的市场上。增长黑客理论体系中，有个很重要的概念是 PMF（ Product / Market Fit，产品市场匹配）。产品卖不出去，是因为没有和市场匹配上，只有达到 PMF 状态，公司才有可能成功。
+
+PMF 的提法来自硅谷大神马克·安德森（ Marc Andreessen ），他给 PMF 的原始定义是：Product / market fit means being in a good market with a product that can satisfy that market。
+
+核心要点可以解读为两个方面：
+
+  1. 要在一个好的市场里；
+  2. 满足市场需求。
+
+这两个方面都很重要，相辅相成，缺一不可。
+
+理解了 PMF，很容易就能理解不仅要把产品做好，更要做对。所谓的“对”，就是恰好与市场匹配，也就是 PMF 状态。在产品导入市场的过程中，追求尽快达到 PMF 状态，应该是第一个小目标。
+
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/38zADLFXaf1S2ayicvqn.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/38zADLFXaf1S2ayicvqn.jpg?x-oss-process=image/format,webp" alt="" width="567" height="319" data-action="zoom" /> 
+
+# 好市场胜过好产品 {#toc-3}
+
+要达到 PMF 状态，选择好的市场是首要的。选市场就是看趋势，“好风凭借力，送我上青云”，任何时候都不要与“势”作对。势之所趋，事半功倍；势之所去，事倍功半。
+
+越是肥厚的市场，蕴藏的机会越多，对创业者的要求也就越低，成功的机率越高。就象顺水行舟，水的力量甚至会远大于你自身的努力，你稍微用点力，甚至不用力，也能跑得很快。
+
+很多创业公司，可能自身的能力和资源都不是很强，但选对了爆发性增长的市场，最终还是取得了成功。
+
+而在贫瘠的市场里，不管你的产品再好，不管你有多努力，都难以获得大的成功。就如同挣扎在烂泥塘里，不管你是否清白，不管你多么努力，都难免一身污泥，泥足深陷。
+
+即使在贫瘠的市场里获得垄断地位，但小河沟里毕竟长不出大鱼，也会很快到达不可逾越的天花板。看到过不少选错了市场的产品，虽然团队很强，产品本身做得也不错，但就是发展不起来，举步维艰。
+
+我身边有两个朋友都在创业做针对成人的音乐培训，相对于儿童音乐培训来说，这就是个贫瘠的市场，不管你产品多么优秀，都很难获得成功。
+
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/ygjEDX6PRG9KjeKUituV.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/ygjEDX6PRG9KjeKUituV.jpg?x-oss-process=image/format,webp" alt="" width="534" height="300" data-action="zoom" /> 
+
+选对了市场，接下来就是产品的层面——产品要满足市场的需求。注意把握这个度，重点在于“满足”，not the best , but the fittest，产品不一定要是最好的，但一定要是最对的。最对的，就是 PMF 状态，产品与市场刚好匹配，而不是低于、超出或者跑偏了市场需求。
+
+# 低于市场需求 {#toc-4}
+
+市场机会再好，如果不能推出好的产品，可能就会坐失良机，眼睁睁看着被更好的竞品抢走市场。即使在市场早期，还没有竞品，只要你提升的不够快，很快就会有更能满足市场需求的竞品出现。
+
+总之，低于市场需求，肯定是没有机会的。
+
+# 超出市场需求 {#toc-5}
+
+相对来说，更常见的误区是产品超出了市场需求。构想产品时，总想做出“最好”的产品，沉浸在创造产品的快感中，而忽略了市场的接受度，觉得只要做出最好的产品，一定会获得市场的认可。
+
+领先市场太多，很难等待市场跟上，市场不见得会按照你预想的轨道前进。等待市场跟上的过程中，你可能会被耗死，也可能会因新技术、新产品的出现而变成明日黄花。就像《等待戈多》里的流浪汉一样，一直在充满希望地等待戈多，戈多却一直没来。
+
+曾经轰轰烈烈的铱星计划是个典型的例子，但并非只有巨头才会犯这样的错误，在初创公司也同样屡见不鲜。譬如：在幼教行业，很多人做家长教育，觉得只有提升家长自身的素质，才能有效提升对孩子的教育。
+
+道理没错，但问题是高素质的家长不需要你来提升，低素质的家长认识不到自己需要提升，也不愿意为提升而买单。在这样的情况下，抱怨家长们认知不够是没用的，一味地提升课程质量也是没用的，而是要根据这些家长的情况来重新规划产品，用适合他们认知的形式，把价值传递过去。
+
+# 跑偏市场需求 {#toc-6}
+
+还有一种情况是跑偏，这比超出市场需求更可怕。超出了市场需求，还有可能等到市场成长起来，而跑偏了市场，南辕北辙，则完全是白费力气。很多产品是先有了某项技术、能力或资源之后，硬要产品化的产物。“
+
+手里有一把锤子，看什么都是钉子”，看什么都想锤一下，觉得满世界的问题都可以用一把锤子来解决。拥有某项技术、能力或资源，本来是优势，但如果拘泥于此，优势就变成了桎梏。
+
+曾经遇到过一个技术型创业者，在前公司掌握了手机浏览器的“核心”技术，离职后就想创业做浏览器，声称在技术上会更先进，访问速度、安全性都要高于目前市场上的主流产品。
+
+他确实有一些核心技术，我也相信他能做出一个更好的手机浏览器。但问题是，手机浏览器并非移动互联网的主战场，而且市场格局已定，很难有大的机会。我遇到他时，他已经默默无闻地做了两年多，还在寻找能“赏识”他的人。
+
+不要觉得这是个极端故事，其实很多创业公司都在做类似的事情。因为专注于自己的事情，就容易产生认知偏差，觉得世界上只有自己做的事情是对的。努力很重要，向正确的方向努力，更重要。
+
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/MfnHQySuR2XtFdG327Qp.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/MfnHQySuR2XtFdG327Qp.jpg?x-oss-process=image/format,webp" alt="" width="525" height="295" data-action="zoom" /> 
+
+# PMF 与 MVP {#toc-7}
+
+需要注意的是，PMF 与 MVP 是不一样的。MVP（Minimal Viable Product）是最小化可行产品，是在推出产品的过程中，不要一步到位，先推出最基本的功能，然后再根据市场的反应去迭代。可以这样理解，PMF 是需要达到的一种状态，而 MVP 是使产品达到 PMF 的有效途径。
+
+# 小结：产品要做好，更要做对 {#toc-8}
+
+我们总是花 90% 的时间埋头苦干，却只花 10% 的时间来思考干什么。不成功的企业，总觉得自己的产品没问题，自己的短板是宣传。如果没有从根源上解决产品问题，销售部门有啥卖啥，宣传部门有啥吆喝啥，整体的营销效果一定不会好。
+
+其实 PMF 也并非新鲜概念，60 年前诞生的营销 4P 理论，就把营销行为分成了产品、价格、渠道、促销四个部分，其中已经包含了产品与渠道的契合。PFM 概念的提出，让产品与市场的关系更加清晰，没有单独存在的产品，产品的目标就是匹配市场。
+
+成功的产品，一定是达到了 PMF 状态的结果，PMF 是产品导入市场的目标。不管是先分析市场需求再设计产品，还是先有了产品创意再寻找市场，都应按照 PMF 的两个基本原则去思考：
+
+  * 要在一个好的市场里；
+  * 满足市场需求。

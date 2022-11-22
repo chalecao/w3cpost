@@ -1,0 +1,129 @@
+---
+title: 关于 CSS 选择器性能
+
+
+date: 2017-08-29T10:36:45+00:00
+excerpt: |
+  CSS选择器对性能的影响源于浏览器匹配选择器和文档元素时所消耗的时间，所以优化选择器的原则是应尽量避免使用消耗更多匹配时间的选择器。而在这之前我们需要了解CSS选择器匹配的机制， 如子选择器规则：
+  1#header &gt; a &#123;font-weight:blod;&#125;
+url: /html5css3/817.html
+views:
+  - 1580
+  - 1580
+fifu_image_url:
+  - https://www.fed123.com/wp-content/uploads/2017/08/css1-2.jpg
+  - https://www.fed123.com/wp-content/uploads/2017/08/css1-2.jpg
+fifu_image_alt:
+  - 关于 CSS 选择器性能
+  - 关于 CSS 选择器性能
+
+
+---
+<img class="aligncenter" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/css1-2.jpg" alt="关于 CSS 选择器性能" />
+
+# CSS选择器性能损耗
+
+CSS选择器对性能的影响源于浏览器匹配选择器和文档元素时所消耗的时间，所以优化选择器的原则是应尽量避免使用消耗更多匹配时间的选择器。而在这之前我们需要了解CSS选择器匹配的机制， 如子选择器规则：
+
+    <code>#header > a {font-weight:blod;}</code>
+
+我们中的大多数人都是从左到右的阅读习惯，会习惯性的设定浏览器也是从左到右的方式进行匹配规则，推测这条规则的开销并不高。
+
+我们会假设浏览器以这样的方式工作：寻找 id 为 header 的元素，然后将样式规则应用到直系子元素中的 a 元素上。我们知道文档中只有一个 id 为 header 的元素，并且它只有几个 a 元素的子节点，所以这个CSS选择器应该相当高效。
+
+事实上，却恰恰相反，CSS选择器是从右到左进行规则匹配。了解这个机制后，例子中看似高效的选择器在实际中的匹配开销是很高的，浏览器必须遍历页面中所有的 a 元素并且确定其父元素的 id 是否为 header 。
+
+如果把例子的子选择器改为后代选择器则会开销更多，在遍历页面中所有 a 元素后还需向其上级遍历直到根节点。
+
+    <code>#header a {font-weight:blod;}</code>
+
+理解了CSS选择器从右到左匹配的机制后，明白只要当前选择符的左边还有其他选择符，样式系统就会继续向左移动，直到找到和规则匹配的选择符，或者因为不匹配而退出。我们把最右边选择符称之为关键选择器。
+
+# 优化css选择器
+
+Google 资深web开发工程师 Steve Souders 对 CSS 选择器的执行效率从高到低做了一个排序：
+
+1.id选择器（#myid）  
+2.类选择器（.myclassname）  
+3.标签选择器（div,h1,p）  
+4.相邻选择器（h1+p）  
+5.子选择器（ul < li）  
+6.后代选择器（li a）  
+7.通配符选择器（*）  
+8.属性选择器（a[rel=”external”]）  
+9.伪类选择器（a:hover, li:nth-child）  
+根据以上「选择器匹配」与「选择器执行效率」原则，我们可以通过避免不恰当的使用，提升 CSS 选择器性能。  
+1、避免使用通用选择器
+
+    <code>.content * {color: red;}</code>
+
+浏览器匹配文档中所有的元素后分别向上逐级匹配 class 为 content 的元素，直到文档的根节点。因此其匹配开销是非常大的，所以应避免使用关键选择器是通配选择器的情况。
+
+2、避免使用标签或 class 选择器限制 id 选择器
+
+    <code>BAD
+    button#backButton {…}
+    BAD
+    .menu-left#newMenuIcon {…}
+    GOOD
+    #backButton {…}
+    GOOD
+    #newMenuIcon {…}
+    </code>
+
+3、避免使用标签限制 class 选择器
+
+    <code>BAD
+    treecell.indented {…}
+    GOOD
+    .treecell-indented {…}
+    BEST
+    .hierarchy-deep {…}
+    </code>
+
+4、避免使用多层标签选择器。使用 class 选择器替换，减少css查找
+
+    <code>BAD
+    treeitem[mailfolder="true"] > treerow > treecell {…}
+    GOOD
+    .treecell-mailfolder {…}
+    </code>
+
+5、避免使用子选择器
+
+    <code>BAD
+    treehead treerow treecell {…}
+    BETTER, BUT STILL BAD
+    treehead > treerow > treecell {…}
+    GOOD
+    .treecell-header {…}
+    </code>
+
+6、使用继承
+
+    <code>BAD
+    #bookmarkMenuItem > .menu-left { list-style-image: url(blah) }
+    GOOD
+    #bookmarkMenuItem { list-style-image: url(blah) }
+    </code>
+
+# 思考
+
+作为一名前端工程师，应该具有「提升 CSS 选择器性能」的意识，但实际应用中，是否需要完全贯彻这些原则呢？这是一个探索「追求高性能」与「可维护性」两者平衡的问题。
+
+对于「淘宝」，每个页面的 DOM 元素超过1000个以上的网站来说，通过限制 CSS 选择器，改善性能是具有实际意义的。但对于普通网站，我更倾向于保证「语义化」和「可维护性」的前提下，提升 CSS 选择器性能。
+
+# 参考
+
+「1」Efficiently Rendering CSS  
+「2」Writing efficient CSS  
+「3」Performance Impact of CSS Selectors  
+「4」CSS Test Creator  
+「5」高性能CSS  
+「6」如何撰寫有效率的CSS選擇器
+
+### 谢谢！
+
+欢迎关注FED123公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。
+
+<audio style="display: none;" controls="controls"></audio>
