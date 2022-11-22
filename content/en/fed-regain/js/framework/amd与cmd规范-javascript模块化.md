@@ -2,14 +2,6 @@
 title: AMD与CMD规范-javascript模块化
 
 
-date: 2017-08-29T15:43:28+00:00
-excerpt: 模块化是指在解决某一个复杂问题或者一系列的杂糅问题时，依照一种分类的思维把问题进行系统性的分解以之处理。模块化是一种处理复杂系统分解为代码结构更合理，可维护性更高的可管理的模块的方式。可以想象一个巨大的系统代码，被整合优化分割成逻辑性很强的模块时，对于软件是一种何等意义的存在。对于软件行业来说：解耦软件系统的复杂性，使得不管多么大的系统，也可以将管理，开发，维护变得“有理可循”。
-url: /javascriptnodejs/775.html
-views:
-  - 1783
-  - 1783
-
-
 ---
   
 
@@ -18,9 +10,9 @@ views:
 
 模块化是指在解决某一个复杂问题或者一系列的杂糅问题时，依照一种分类的思维把问题进行系统性的分解以之处理。模块化是一种处理复杂系统分解为代码结构更合理，可维护性更高的可管理的模块的方式。可以想象一个巨大的系统代码，被整合优化分割成逻辑性很强的模块时，对于软件是一种何等意义的存在。对于软件行业来说：解耦软件系统的复杂性，使得不管多么大的系统，也可以将管理，开发，维护变得“有理可循”。
 
-<a></a> 
+<a></a>
 
-![AMD与CMD规范-javascript模块化][2] 
+![AMD与CMD规范-javascript模块化][2]
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2015/02/28/2015_amd_cmd/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2015/02/28/2015_amd_cmd/</a>
 
@@ -41,10 +33,6 @@ AMD，Asynchronous Module Definition，用白话文讲就是 异步模块定义�
 
 AMD规范定义了一个自由变量或者说是全局变量 define 的函数。
 
-
-
-
-
 AMD规范 <a href="https://github.com/amdjs/amdjs-api/wiki/AMD" target="_blank" rel="external">https://github.com/amdjs/amdjs-api/wiki/AMD</a>  
 第一个参数 id，可选 为字符串类型，表示了模块标识，为可选参数。若不存在则模块标识应该默认定义为在加载器中被请求脚本的标识。如果存在，那么模块标识必须为顶层的或者一个绝对的标识。  
 第二个参数，dependencies ，可选，是一个当前模块依赖的，已被模块定义的模块标识的数组字面量。  
@@ -55,33 +43,17 @@ AMD规范 <a href="https://github.com/amdjs/amdjs-api/wiki/AMD" target="_blank" 
 
 创建模块标识为 alpha 的模块，依赖于 require， export，和标识为 beta 的模块 ,示例代码如下：
 
-
-
-
-
 #### [][6]实例2
 
 一个返回对象字面量的异步模块,代码如下：
-
-
-
-
 
 #### [][7]实例3
 
 无依赖模块可以直接使用对象字面量来定义，代码如下：
 
-
-
-
-
-####实例4
+#### 实例4
 
 类似与 CommonJS 方式定义，代码：
-
-
-
-
 
 ### [][8]AMD中的require模块
 
@@ -93,10 +65,6 @@ require API 介绍 <a href="https://github.com/amdjs/amdjs-api/wiki/require" tar
 
 局部的 require 需要在AMD模式中的 define 工厂函数中传入 require。
 
-
-
-
-
 局部的 require 需要其他特定的 API 来实现。  
 全局的 require 函数是唯一全局作用域下的变量，像 define一样。  
 全局的 require 并不是规范要求的，但是如果实现全局的 require函数，那么其需要具有与局部 require 函数 一样的以下的限定：
@@ -104,9 +72,6 @@ require API 介绍 <a href="https://github.com/amdjs/amdjs-api/wiki/require" tar
   1. 模块标识视为绝对的，而不是相对的对应另一个模块标识。
   2. 只有在异步情况下，require的回调方式才被用来作为交互操作使用。因为他不可能在同步的情况下通过 require(String) 从顶层加载模块。  
     依赖相关的API会开始模块加载。如果需要有互操作的多个加载器，那么全局的 reqiure 应该被加载顶层模块来代替。代码实例如下：  
-    
-    
-    
 
 amdjs 的API <a href="https://github.com/amdjs/amdjs-api/wiki" target="_blank" rel="external">https://github.com/amdjs/amdjs-api/wiki</a>
 
@@ -119,10 +84,6 @@ RequireJS 是一个前端的模块化管理的工具库，遵循AMD规范，它�
 
 RequireJS 的基本思想为：通过一个函数来将所有所需要的或者说所依赖的模块实现装载进来，然后返回一个新的函数（模块），我们所有的关于新模块的业务代码都在这个函数内部操作，其内部也可无限制的使用已经加载进来的以来的模块。
 
-
-
-
-
 那么scripts下的main.js则是指定的主代码脚本文件，所有的依赖模块代码文件都将从该文件开始异步加载进入执行。
 
 defined用于定义模块，RequireJS要求每个模块均放在独立的文件之中。按照是否有依赖其他模块的情况分为独立模块和非独立模块。
@@ -131,138 +92,62 @@ defined用于定义模块，RequireJS要求每个模块均放在独立的文件�
 
 独立模块，不依赖其他模块。直接定义：
 
-
-
-
-
 也等价于:
-
-
-
-
 
 #### [][12]非独立模块
 
 非独立模块，对其他模块有依赖。
 
-
-
-
-
 或者：
-
-
-
-
 
 简单看了一下RequireJS的实现方式，其 require 实现只不过是将 function 字符串然后提取 require 之后的模块名，将其放入依赖关系之中。  
 在require进行调用模块时，其参数与define类似。
 
-
-
-
-
 在加载 foo 与 bar 两个模块之后执行回调函数实现具体过程。当然还可以如之前的例子中的，在define定义模块内部进行require调用模块
-
-
-
-
 
 define 和 require 这两个定义模块，调用模块的方法合称为AMD模式，定义模块清晰，不会污染全局变量，清楚的显示依赖关系。AMD模式可以用于浏览器环境并且允许非同步加载模块，也可以按需动态加载模块。
 
-###CMD规范
+### CMD规范
 
 在CMD中，一个模块就是一个文件，格式为：
-
-
-
-
 
 全局函数define，用来定义模块。  
 1.参数 factory 可以是一个函数，也可以为对象或者字符串。  
 2.当 factory 为对象、字符串时，表示模块的接口就是该对象、字符串。
 
-####实例1
+#### 实例1
 
 定义JSON数据模块：
 
-
-
-
-
-####实例2
+#### 实例2
 
 通过字符串定义模板模块：
 
-
-
-
-
-####实例3
+#### 实例3
 
 factory 为函数的时候，表示模块的构造方法，执行构造方法便可以得到模块向外提供的接口。
 
-
-
-
-
 在CMD中，还有一种定义方法，
 
-
-
-
-
 define也可以接受两个以上的参数，字符串id为模块标识，数组deps为模块依赖：
-
-
-
-
 
 注意，这个用法与 AMD 规范用法不同。  
 require 是 factory 的第一个参数。有下面几种方法：
 
 require( id );接受模块标识作为唯一的参数，用来获取其他模块提供的接口：
 
-
-
-
-
 require.async( id, callback? );require是同步往下执行的，需要的异步加载模块可以使用 require.async 来进行加载：
-
-
-
-
 
 require.resolve( id ),可以使用模块内部的路径机制来返回模块路径，不会加载模块。  
 exports 是 factory 的第二个参数，用来向外提供模块接口。例如：
 
-
-
-
-
 当然也可以使用 return 直接向外提供接口。如下面：
-
-
-
-
 
 也可以简化为直接对象字面量的形式，如下：
 
-
-
-
-
 需要注意， 与nodeJS中一样需要注意的是，一下方式是错误的：
 
-
-
-
-
 需要这么做
-
-
-
-
 
 传入的对象引用可以添加属性，一旦赋值一个新的对象，那么值钱传递进来的对象引用就会失效了。开始之初，exports 是作为 module.exports 的一个引用存在，一切行为只有在这个引用上 factory 才得以正常运行，赋值新的对象后就会断开引用，exports就只是一个新的对象引用，对于factory来说毫无意义，就会出错。
 
@@ -284,10 +169,6 @@ sea.js 核心特征：
 兼容 Chrome 3+，Firefox 2+，Safari 3.2+，Opera 10+，IE 5.5+。  
 seajs.use ，用来在页面中加载一个或者多个模块
 
-
-
-
-
 其define 与 require 使用方式基本就是CMD规范中的示例。
 
 ### [][14]AMD与CMD区别
@@ -308,9 +189,6 @@ CMD 是 SeaJS 在推广过程中对模块定义的规范化产出。
 
   1. 对于依赖的模块，AMD 是提前执行，CMD 是延迟执行。不过 RequireJS 从 2.0 开始，也改成可以延迟执行（根据写法不同，处理方式不同）。CMD 推崇 as lazy as possible.
   2. CMD 推崇依赖就近，AMD 推崇依赖前置。看代码：  
-    
-    
-    
 
 虽然 AMD 也支持 CMD 的写法，同时还支持将 require 作为依赖项传递，但 RequireJS 的作者默认是最喜欢上面的写法，也是官方文档里默认的模块定义写法。
 

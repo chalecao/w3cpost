@@ -2,17 +2,6 @@
 title: OffscreenCanvas – 概念说明及使用解析
 
 
-date: 2019-06-11T02:03:59+00:00
-url: /javascriptnodejs/4470.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/v2-49c2efd0bf09a73ea403715c1bc4df21_hd.jpg
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/v2-49c2efd0bf09a73ea403715c1bc4df21_hd.jpg
-fifu_image_alt:
-  - 自动草稿
-views:
-  - 2481
-like:
-  - 3
 
 
 ---
@@ -51,7 +40,7 @@ OffscreenCanvas 目前主要用于两种不同的使用场景：
 
 ## Transfer 模式<figure data-size="normal">
 
-<img class="content_image lazy" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/v2-49c2efd0bf09a73ea403715c1bc4df21_hd.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/v2-49c2efd0bf09a73ea403715c1bc4df21_hd.jpg?x-oss-process=image/format,webp" data-caption="" data-size="normal" data-actualsrc="https://pic2.zhimg.com/v2-49c2efd0bf09a73ea403715c1bc4df21_b.jpg" /> </figure> 
+<img class="content_image lazy" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/v2-49c2efd0bf09a73ea403715c1bc4df21_hd.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/v2-49c2efd0bf09a73ea403715c1bc4df21_hd.jpg?x-oss-process=image/format,webp" data-caption="" data-size="normal" data-actualsrc="https://pic2.zhimg.com/v2-49c2efd0bf09a73ea403715c1bc4df21_b.jpg" /> </figure>
 
 > Transfer Demo，使用 Transfer 模式
 

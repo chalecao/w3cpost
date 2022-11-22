@@ -1,31 +1,6 @@
 ---
 title: JavaScript函数式编程
 
-
-date: 2017-12-21T06:36:42+00:00
-url: /javascriptnodejs/1489.html
-ampforwp_custom_content_editor:
-  - 
-  - 
-ampforwp_custom_content_editor_checkbox:
-  - 
-  - 
-ampforwp-amp-on-off:
-  - default
-  - default
-toc_depth:
-  - 1
-  - 1
-views:
-  - 1318
-  - 1318
-wl_pageviews:
-  - 26
-  - 26
-like:
-  - 1
-
-
 ---
 <span style="color: #808080;">转载，原文：https://zhuanlan.zhihu.com/p/21714695</span>
 
@@ -62,7 +37,7 @@ JavaScript 作为一种典型的多范式编程语言，这两年随着React的�
 </code>&lt;/code></pre>
 </div>
 
-在函数式编程中，我们想要的是 **slice **这样的纯函数，而不是 **splice**这种每次调用后都会把数据弄得一团乱的函数。
+在函数式编程中，我们想要的是 **slice**这样的纯函数，而不是 **splice**这种每次调用后都会把数据弄得一团乱的函数。
 
 为什么函数式编程会排斥不纯的函数呢？下面再看一个例子：
 
@@ -76,9 +51,9 @@ JavaScript 作为一种典型的多范式编程语言，这两年随着React的�
 </code>&lt;/code></pre>
 </div>
 
-在不纯的版本中，**checkage **这个函数的行为不仅取决于输入的参数 age，还取决于一个外部的变量 **min**，换句话说，这个函数的行为需要由外部的系统环境决定。对于大型系统来说，这种对于外部状态的依赖是造成系统复杂性大大提高的主要原因。
+在不纯的版本中，**checkage**这个函数的行为不仅取决于输入的参数 age，还取决于一个外部的变量 **min**，换句话说，这个函数的行为需要由外部的系统环境决定。对于大型系统来说，这种对于外部状态的依赖是造成系统复杂性大大提高的主要原因。
 
-可以注意到，纯的 **checkage **把关键数字 18 硬编码在函数内部，扩展性比较差，我们可以在后面的**柯里化**中看到如何用优雅的函数式解决这种问题。
+可以注意到，纯的 **checkage**把关键数字 18 硬编码在函数内部，扩展性比较差，我们可以在后面的**柯里化**中看到如何用优雅的函数式解决这种问题。
 
 纯函数不仅可以有效降低系统的复杂度，还有很多很棒的特性，比如可缓存性：
 
@@ -124,7 +99,7 @@ JavaScript 作为一种典型的多范式编程语言，这两年随着React的�
 
 对于加法这种极其简单的函数来说，柯里化并没有什么大用处。
 
-还记得上面那个 **checkage **的函数吗？我们可以这样柯里化它：
+还记得上面那个 **checkage**的函数吗？我们可以这样柯里化它：
 
 <div class="highlight">
   <pre><code>&lt;code class="language-text">var checkage = min =&gt; (age =&gt; age &gt; min);
@@ -293,11 +268,11 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
 如果你熟悉 jQuery 的话，应该还记得，**$(&#8230;)** 返回的对象并不是一个原生的 DOM 对象，而是对于原生对象的一种封装：
 
 <div class="highlight">
-  <pre><code>&lt;code class="language-js">&lt;span class="kd">var&lt;/span> &lt;span class="nx">foo&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">$&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'#foo'&lt;/span>&lt;span class="p">);&lt;/span> 
-&lt;span class="nx">foo&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getElementById&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'foo'&lt;/span>&lt;span class="p">);&lt;/span> 
+  <pre><code>&lt;code class="language-js">&lt;span class="kd">var&lt;/span> &lt;span class="nx">foo&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">$&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'#foo'&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="nx">foo&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getElementById&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'foo'&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;span class="c1">//=&gt; false&lt;/span>
 
-&lt;span class="nx">foo&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getElementById&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'foo'&lt;/span>&lt;span class="p">);&lt;/span> 
+&lt;span class="nx">foo&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getElementById&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'foo'&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;span class="c1">//=&gt; true&lt;/span>
 </code>&lt;/code></pre>
 </div>
@@ -509,7 +484,7 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
 <div class="highlight">
   <pre><code>&lt;code class="language-js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">readLocalStorage&lt;/span>&lt;span class="p">(){&lt;/span>
     &lt;span class="k">return&lt;/span> &lt;span class="kd">function&lt;/span>&lt;span class="p">(){&lt;/span>
-        &lt;span class="k">return&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">localStorage&lt;/span>&lt;span class="p">;&lt;/span>   
+        &lt;span class="k">return&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">localStorage&lt;/span>&lt;span class="p">;&lt;/span>
     &lt;span class="p">}&lt;/span>
 &lt;span class="p">}&lt;/span>
 </code>&lt;/code></pre>
@@ -562,12 +537,11 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">last&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">arr&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">arr&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">];&lt;/span>
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">filter&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">filter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">));&lt;/span>
 &lt;span class="c1">//注意这里的 x 既可以是数组，也可以是 functor&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">map&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">x&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">x&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">));&lt;/span> 
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">map&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">x&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">x&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">));&lt;/span>
 &lt;span class="c1">// 判断&lt;/span>
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">eq&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">x&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">y&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nx">y&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;span class="c1">// 结合&lt;/span>
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">compose&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">flowRight&lt;/span>&lt;span class="p">;&lt;/span>
-
 
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">toPairs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">compose&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'='&lt;/span>&lt;span class="p">)),&lt;/span> &lt;span class="nx">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'&'&lt;/span>&lt;span class="p">));&lt;/span>
 &lt;span class="c1">// toPairs('a=1&b=2')&lt;/span>

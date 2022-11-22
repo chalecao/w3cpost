@@ -1,17 +1,6 @@
 ---
 title: ES6 … 拆箱与装箱实现深克隆
 
-
-date: 2018-03-15T07:14:41+00:00
-url: /javascriptnodejs/1691.html
-views:
-  - 2536
-  - 2536
-like:
-  - 1
-  - 1
-
-
 ---
 你用过 &#8230; 吗？ 没用过的话，你太low了。
 
@@ -62,10 +51,10 @@ aa = {11:22,33:44}
 
 <pre class="pure-highlightjs"><code class="">let ee = [11,22,33]
 let ff=[55,66,77]
-let gg = [...ee, ...ff] 
-gg[0]=22 
-------out---- 
-gg: [22, 22, 33, 55, 66, 77] 
+let gg = [...ee, ...ff]
+gg[0]=22
+------out----
+gg: [22, 22, 33, 55, 66, 77]
 ee: [11, 22, 33]
 </code></pre>
 

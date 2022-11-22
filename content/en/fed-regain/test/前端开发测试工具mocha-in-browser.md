@@ -1,29 +1,5 @@
 ---
 title: 前端开发测试工具mocha-in-browser
-
-
-date: 2017-10-23T05:28:22+00:00
-url: /javascriptnodejs/1469.html
-ampforwp_custom_content_editor:
-  - 
-  - 
-ampforwp_custom_content_editor_checkbox:
-  - 
-  - 
-ampforwp-amp-on-off:
-  - default
-  - default
-toc_depth:
-  - 1
-  - 1
-views:
-  - 1680
-  - 1680
-like:
-  - 1
-  - 1
-
-
 ---
 <img loading="lazy" class="alignnone size-full wp-image-634" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/autoTest3.png" alt="" width="287" height="207" />
 
@@ -31,7 +7,7 @@ like:
 
 mocha in browser which can auto load test cases from user config file and can also provide useful test util methods。
 
-GIT:[ https://github.com/chalecao/mocha-in-browser][1]
+GIT:[https://github.com/chalecao/mocha-in-browser][1]
 
 ## <a id="user-content-usage" class="anchor" href="https://github.com/chalecao/mocha-in-browser#usage" aria-hidden="true"></a>usage
 
@@ -48,9 +24,9 @@ mocha-in-browser 是问了方便你更好的编写mocha测试代码，如果在�
     },
     ....
      "devDependencies": {
-    	 "mocha": "^4.0.1",
+      "mocha": "^4.0.1",
          "mocha-in-browser": "^1.0.0",
-    	 ....
+      ....
     
     </code>
 
@@ -66,7 +42,7 @@ mocha-in-browser 是问了方便你更好的编写mocha测试代码，如果在�
     let specBase = require('mocha-in-browser/lib/base.spec')
     class mainSpec extends specBase {
        constructor(config) {
-       	//构造函数，传入单元/UI测试用例，和一些配置
+        //构造函数，传入单元/UI测试用例，和一些配置
            super({
                configPath: "./test/inject.conf.js",
                addr: "https://pages.tmall.com/wow/chaoshi/act/city-pavilion",

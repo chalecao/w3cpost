@@ -2,14 +2,6 @@
 title: 基于Nodejs创建https服务
 
 
-date: 2017-08-29T13:53:20+00:00
-excerpt: 关于https协议和相关加密算法，请参考我的另一篇：HTTPS详解SSL/TLS。很多情况下，为了保证服务器的安全，比如我在服务端搭建了一个rest服务，这时候如果采用http的协议，很不安全，大部分的做法是http+web json token，但是对于token的处理也是比较棘手的。如果是对外提供开放接口，比如像百度、腾讯这些第三方开放平台接口，比如登录授权这些，可以采用http+OAuth2.0解决。对于自己做得服务器来说，如果涉及到支付交易这些，后台采用HTTPS+session的做法比较好。
-url: /javascriptnodejs/768.html
-views:
-  - 2042
-  - 2042
-
-
 ---
   
 
@@ -18,7 +10,7 @@ views:
 
 关于https协议和相关加密算法，请参考我的另一篇：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/30/2014_https/" target="_blank" rel="external">HTTPS详解SSL/TLS</a>。很多情况下，为了保证服务器的安全，比如我在服务端搭建了一个rest服务，这时候如果采用http的协议，很不安全，大部分的做法是http+web json token，但是对于token的处理也是比较棘手的。如果是对外提供开放接口，比如像百度、腾讯这些第三方开放平台接口，比如登录授权这些，可以采用http+OAuth2.0解决。对于自己做得服务器来说，如果涉及到支付交易这些，后台采用HTTPS+session的做法比较好。  
 <a></a>  
-![基于Nodejs创建https服务][2] 
+![基于Nodejs创建https服务][2]
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/10/18/2014_https_node/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/10/18/2014_https_node/</a>
 
@@ -45,33 +37,13 @@ Nodejs的HTTPS使用文档：<a href="https://nodejs.org/api/https.html" target=
 
 搭建https服务器首先要安装openssl，用于生成证书。如果你已经安装了git客户端msysgit，这个其中包括了openssl程序。
 
-
-
-
-
 #### [][5]使用openssl生成证书文件
-
-
-
-
 
 新生成了3个文件：certificate.pem, certrequest.csr, privatekey.pem
 
-
-
-
-
 ### [][6]修改app.js
 
-
-
-
-
 #### [][7]启动服务器：
-
-
-
-
 
 HTTPS访问时会出出现下面的提示：  
 ![基于Nodejs创建https服务][8]  
@@ -85,7 +57,7 @@ HTTPS访问时会出出现下面的提示：
 ![基于Nodejs创建https服务][10]  
 抓取HTTPS请求：<a href="https://192.168.1.20/users?a=112" target="_blank" rel="external">https://192.168.1.20/users?a=112</a> ，结果如下：
 
-![基于Nodejs创建https服务][11] 
+![基于Nodejs创建https服务][11]
 
 在HTTP下面，URL请求的参数是被暴露的。在HTTPS下面，URL的请求参数是被加密的。因此，希望需要填写个人信息，及在线支付的网站，都把HTTPS服务器搭建起来。防止私密数据，在网络传输过程中被获取。
 
@@ -93,15 +65,7 @@ HTTPS访问时会出出现下面的提示：
 
 还有一种搭建https服务器的简便方法，就是使用http-server插件，先安装http-server：
 
-
-
-
-
 然后制作公私钥文件（cert.csr，cert.pem，key.pem）,将这三个文件拷贝到要部署的项目根目录，然后再要开启https服务的项目根目录执行：
-
-
-
-
 
 即可。
 

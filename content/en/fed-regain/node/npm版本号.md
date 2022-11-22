@@ -2,11 +2,6 @@
 title: npm版本号
 
 
-date: 2020-03-01T15:19:10+00:00
-url: /javascriptnodejs/5645.html
-views:
-  - 840
-
 
 ---
 npm版本号参考：https://www.npmjs.cn/misc/semver/
@@ -23,11 +18,11 @@ A `version range` is a set of `comparators` which specify versions that sati
 
 A `comparator` is composed of an `operator` and a `version`. The set of primitive `operators` is:
 
-  * `<` Less than
-  * `<=` Less than or equal to
-  * `>` Greater than
-  * `>=` Greater than or equal to
-  * `=` Equal. If no operator is specified, then equality is assumed, so this operator is optional, but MAY be included.
+* `<` Less than
+* `<=` Less than or equal to
+* `>` Greater than
+* `>=` Greater than or equal to
+* `=` Equal. If no operator is specified, then equality is assumed, so this operator is optional, but MAY be included.
 
 For example, the comparator `>=1.2.7` would match the versions `1.2.7`, `1.2.8`, `2.5.3`, and `1.3.9`, but not the versions `1.2.6` or `1.1.0`.
 
@@ -97,42 +92,42 @@ Advanced ranges may be combined in the same way as primitive comparators using w
 
 Specifies an inclusive set.
 
-  * `1.2.3 - 2.3.4` := `>=1.2.3 <=2.3.4`
+* `1.2.3 - 2.3.4` := `>=1.2.3 <=2.3.4`
 
 If a partial version is provided as the first version in the inclusive range, then the missing pieces are replaced with zeroes.
 
-  * `1.2 - 2.3.4` := `>=1.2.0 <=2.3.4`
+* `1.2 - 2.3.4` := `>=1.2.0 <=2.3.4`
 
 If a partial version is provided as the second version in the inclusive range, then all versions that start with the supplied parts of the tuple are accepted, but nothing that would be greater than the provided tuple parts.
 
-  * `1.2.3 - 2.3` := `>=1.2.3 <2.4.0`
-  * `1.2.3 - 2` := `>=1.2.3 <3.0.0`
+* `1.2.3 - 2.3` := `>=1.2.3 <2.4.0`
+* `1.2.3 - 2` := `>=1.2.3 <3.0.0`
 
 #### <a id="x-ranges-12x-1x-12-" class="anchor" href="https://www.npmjs.cn/misc/semver/#x-ranges-12x-1x-12-" aria-hidden="true"></a>X-Ranges `1.2.x` `1.X` `1.2.*` `*`
 
 Any of `X`, `x`, or `*` may be used to &#8220;stand in&#8221; for one of the numeric values in the `[major, minor, patch]` tuple.
 
-  * `*` := `>=0.0.0` (Any version satisfies)
-  * `1.x` := `>=1.0.0 <2.0.0` (Matching major version)
-  * `1.2.x` := `>=1.2.0 <1.3.0` (Matching major and minor versions)
+* `*` := `>=0.0.0` (Any version satisfies)
+* `1.x` := `>=1.0.0 <2.0.0` (Matching major version)
+* `1.2.x` := `>=1.2.0 <1.3.0` (Matching major and minor versions)
 
 A partial version range is treated as an X-Range, so the special character is in fact optional.
 
-  * `""` (empty string) := `*` := `>=0.0.0`
-  * `1` := `1.x.x` := `>=1.0.0 <2.0.0`
-  * `1.2` := `1.2.x` := `>=1.2.0 <1.3.0`
+* `""` (empty string) := `*` := `>=0.0.0`
+* `1` := `1.x.x` := `>=1.0.0 <2.0.0`
+* `1.2` := `1.2.x` := `>=1.2.0 <1.3.0`
 
 #### <a id="tilde-ranges-123-12-1" class="anchor" href="https://www.npmjs.cn/misc/semver/#tilde-ranges-123-12-1" aria-hidden="true"></a>Tilde Ranges `~1.2.3` `~1.2` `~1`
 
 Allows patch-level changes if a minor version is specified on the comparator. Allows minor-level changes if not.
 
-  * `~1.2.3` := `>=1.2.3 <1.(2+1).0` := `>=1.2.3 <1.3.0`
-  * `~1.2` := `>=1.2.0 <1.(2+1).0` := `>=1.2.0 <1.3.0` (Same as `1.2.x`)
-  * `~1` := `>=1.0.0 <(1+1).0.0` := `>=1.0.0 <2.0.0` (Same as `1.x`)
-  * `~0.2.3` := `>=0.2.3 <0.(2+1).0` := `>=0.2.3 <0.3.0`
-  * `~0.2` := `>=0.2.0 <0.(2+1).0` := `>=0.2.0 <0.3.0` (Same as `0.2.x`)
-  * `~0` := `>=0.0.0 <(0+1).0.0` := `>=0.0.0 <1.0.0` (Same as `0.x`)
-  * `~1.2.3-beta.2` := `>=1.2.3-beta.2 <1.3.0` Note that prereleases in the `1.2.3` version will be allowed, if they are greater than or equal to `beta.2`. So, `1.2.3-beta.4` would be allowed, but `1.2.4-beta.2` would not, because it is a prerelease of a different `[major, minor, patch]` tuple.
+* `~1.2.3` := `>=1.2.3 <1.(2+1).0` := `>=1.2.3 <1.3.0`
+* `~1.2` := `>=1.2.0 <1.(2+1).0` := `>=1.2.0 <1.3.0` (Same as `1.2.x`)
+* `~1` := `>=1.0.0 <(1+1).0.0` := `>=1.0.0 <2.0.0` (Same as `1.x`)
+* `~0.2.3` := `>=0.2.3 <0.(2+1).0` := `>=0.2.3 <0.3.0`
+* `~0.2` := `>=0.2.0 <0.(2+1).0` := `>=0.2.0 <0.3.0` (Same as `0.2.x`)
+* `~0` := `>=0.0.0 <(0+1).0.0` := `>=0.0.0 <1.0.0` (Same as `0.x`)
+* `~1.2.3-beta.2` := `>=1.2.3-beta.2 <1.3.0` Note that prereleases in the `1.2.3` version will be allowed, if they are greater than or equal to `beta.2`. So, `1.2.3-beta.4` would be allowed, but `1.2.4-beta.2` would not, because it is a prerelease of a different `[major, minor, patch]` tuple.
 
 #### <a id="caret-ranges-123-025-004" class="anchor" href="https://www.npmjs.cn/misc/semver/#caret-ranges-123-025-004" aria-hidden="true"></a>Caret Ranges `^1.2.3` `^0.2.5` `^0.0.4`
 
@@ -142,19 +137,19 @@ Many authors treat a `0.x` version as if the `x` were the major &#8220;break
 
 Caret ranges are ideal when an author may make breaking changes between `0.2.4` and `0.3.0` releases, which is a common practice. However, it presumes that there will _not_ be breaking changes between `0.2.4` and `0.2.5`. It allows for changes that are presumed to be additive (but non-breaking), according to commonly observed practices.
 
-  * `^1.2.3` := `>=1.2.3 <2.0.0`
-  * `^0.2.3` := `>=0.2.3 <0.3.0`
-  * `^0.0.3` := `>=0.0.3 <0.0.4`
-  * `^1.2.3-beta.2` := `>=1.2.3-beta.2 <2.0.0` Note that prereleases in the `1.2.3` version will be allowed, if they are greater than or equal to `beta.2`. So, `1.2.3-beta.4` would be allowed, but `1.2.4-beta.2` would not, because it is a prerelease of a different `[major, minor, patch]` tuple.
-  * `^0.0.3-beta` := `>=0.0.3-beta <0.0.4` Note that prereleases in the `0.0.3` version _only_ will be allowed, if they are greater than or equal to `beta`. So, `0.0.3-pr.2` would be allowed.
+* `^1.2.3` := `>=1.2.3 <2.0.0`
+* `^0.2.3` := `>=0.2.3 <0.3.0`
+* `^0.0.3` := `>=0.0.3 <0.0.4`
+* `^1.2.3-beta.2` := `>=1.2.3-beta.2 <2.0.0` Note that prereleases in the `1.2.3` version will be allowed, if they are greater than or equal to `beta.2`. So, `1.2.3-beta.4` would be allowed, but `1.2.4-beta.2` would not, because it is a prerelease of a different `[major, minor, patch]` tuple.
+* `^0.0.3-beta` := `>=0.0.3-beta <0.0.4` Note that prereleases in the `0.0.3` version _only_ will be allowed, if they are greater than or equal to `beta`. So, `0.0.3-pr.2` would be allowed.
 
-When parsing caret ranges, a missing `patch` value desugars to the number ``, but will allow flexibility within that value, even if the major and minor versions are both ``.
+When parsing caret ranges, a missing `patch` value desugars to the number ``, but will allow flexibility within that value, even if the major and minor versions are both``.
 
-  * `^1.2.x` := `>=1.2.0 <2.0.0`
-  * `^0.0.x` := `>=0.0.0 <0.1.0`
-  * `^0.0` := `>=0.0.0 <0.1.0`
+* `^1.2.x` := `>=1.2.0 <2.0.0`
+* `^0.0.x` := `>=0.0.0 <0.1.0`
+* `^0.0` := `>=0.0.0 <0.1.0`
 
 A missing `minor` and `patch` values will desugar to zero, but also allow flexibility within those values, even if the major version is zero.
 
-  * `^1.x` := `>=1.0.0 <2.0.0`
-  * `^0.x` := `>=0.0.0 <1.0.0`
+* `^1.x` := `>=1.0.0 <2.0.0`
+* `^0.x` := `>=0.0.0 <1.0.0`

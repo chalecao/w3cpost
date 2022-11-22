@@ -2,17 +2,6 @@
 title: SVG的视窗与宽高比控制
 
 
-date: 2017-08-29T23:46:25+00:00
-excerpt: SVG元素不像HTML元素一样由CSS盒模型管理。这使得我们可以更加灵活定位和变换这些元素-也许一眼看上去不太直观。然而，一旦你理解了SVG坐标系和变换，操纵SVG会非常简单并且很有意义。本篇文章中我们将讨论控制SVG坐标系的最重要的三个属性：viewport， viewBox， 和 preserveAspectRatio。
-url: /html5css3/850.html
-views:
-  - 2329
-  - 2329
-like:
-  - 1
-  - 1
-
-
 ---
   
 
@@ -21,7 +10,7 @@ like:
 
 SVG元素不像HTML元素一样由CSS盒模型管理。这使得我们可以更加灵活定位和变换这些元素-也许一眼看上去不太直观。然而，一旦你理解了SVG坐标系和变换，操纵SVG会非常简单并且很有意义。本篇文章中我们将讨论控制SVG坐标系的最重要的三个属性：viewport， viewBox， 和 preserveAspectRatio。  
 <a></a>  
-![SVG的视窗与宽高比控制][2] 
+![SVG的视窗与宽高比控制][2]
 
 <a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2015/11/05/2015_svg_learn/" target="_blank" rel="external">SVG系列教程</a>
 
@@ -35,10 +24,6 @@ SVG的视窗类似访问当前页面的浏览器视窗。网页可以是任何�
 
 整个SVG画布可见还是部分可见取决于这个canvas的尺寸以及preserveAspectRatio属性值。你现在不需要担心这些；我们之后会讨论更多的细节。  
 你可以在最外层svg元素上使用width和height属性声明视窗尺寸。
-
-
-
-
 
 在SVG中，值可以带单位也不可以不带。一个不带单位的值可以在用户空间中通过用户单位声明。如果值通过用户单位声明，那么这个值的数值被认为和px单位的数值一样。这意味着上述例子将被渲染为800px*600px的视窗。
 
@@ -74,19 +59,11 @@ SVG的视窗类似访问当前页面的浏览器视窗。网页可以是任何�
 
 viewBox属性接收四个参数值，包括：min-x, min-y, width 和 height。
 
-
-
-
-
 min-x 和 min-y 值决定viewBox的左上角，width和height决定视窗的宽高。这里要注意视窗的宽高不一定和父svg元素的宽高一样。width和height值为负数是不合法的。值为0的话会禁止元素的渲染。
 
 注意视窗的宽度也可以在CSS中设置为任何值。例如：设置width:100%会让SVG视窗在文档中自适应。无论viewBox的值是多少，它会映射为外层SVG元素计算出的宽度值。
 
 设置viewBox的例子如下：
-
-
-
-
 
 如果你之前在其他地方看到过viewBox，你也许会看到一些解释说你可以用viewBox属性通过缩放或者变化使SVG图形变换。这是真的。我将深入探究并且告诉你甚至可以使用viewBox来切割SVG图形。
 
@@ -95,10 +72,6 @@ min-x 和 min-y 值决定viewBox的左上角，width和height决定视窗的宽�
 #### [][8]与viewport宽高比相同的viewBox
 
 我们从一个简单的例子开始。这个例子中的viewBox的尺寸是视窗尺寸的一半。在这个例子中我们不改变viewBox的原点，所以min-x和min-y都设置成0。viewBox的宽高是viewport宽高的一半。这意味着我们保持宽高比。
-
-
-
-
 
 所以，viewBox=”0 0 400 300”到底有什么用呢？
 
@@ -115,10 +88,6 @@ min-x 和 min-y 值决定viewBox的左上角，width和height决定视窗的宽�
 
 现在让我们试着改变min-x和min-y的值。都设置为100。你可以设置成任何你想要的值。宽高比还是和视窗的宽高比一样。
 
-
-
-
-
 ![SVG的视窗与宽高比控制][11]  
 ![SVG的视窗与宽高比控制][12]  
 再一次，用户坐标系被映射到视窗坐标系-200用户单位映射为800视窗单位因此每个用户单位等于四个视窗单位。结果像你看到的那样是放大的效果。
@@ -130,10 +99,6 @@ min-x 和 min-y 值决定viewBox的左上角，width和height决定视窗的宽�
 这是一个很棒的说明我们之前已经提到的内容的方法：图形被裁切然后被缩放以适应视窗。这个说明随后增加了一个注释：“在一些情况下用户代理在缩放变换之外需要增加一个移动变换。例如，在最外层的svg元素上，如果viewBox属性对min-x和min-y声明非0值得那么就需要移动变换。”
 
 为了更好演示移动变换，让我们试着给<min-x>和<min-y>添加-100。移动效果类似transform=”translate(100 100)”；这意味着图形会在切割和缩放后移动到右下方。回顾倒数第二个裁切尺寸为400*300的例子，添加新的无效min-x和min-y值，新的代码如下：
-
-
-
-
 
 </min-y></min-x>
 
@@ -147,16 +112,12 @@ min-x 和 min-y 值决定viewBox的左上角，width和height决定视窗的宽�
 
 在这个例子中，我们将viewBox的尺寸设为viewport的1.5倍。
 
-
-
-
-
 现在用户坐标系会被放大到1200*900。它会被映射到视窗坐标系，用户坐标系中的每一个单位水平方向上等于视窗坐标系中的viewport-width / viewBox-width，竖直方向上等于viewport-height / viewBox-height。这意味着，在这种情况下，每一个用户坐标系中的x-units等于viewport坐标系中的0.66个x-units，每个用户y-unit映射成0.66的viewport y-units。
 
 当然，理解这些最好的方法是把结果视觉化。viewBox被缩放到适应下图所示的viewport。因为图形在画布里基于新的用户坐标系绘制的，而不是视窗坐标系，它看起来比视窗小。  
 ![SVG的视窗与宽高比控制][14]  
 到目前为止，我们所有的例子的宽高比都和视窗一致。但是如果viewBox中声明的宽高比和视窗中的不一样会发生什么呢？例如，试想我们把视窗的尺寸设为1000*500。宽高比不再和视窗的一样。在例子中使用viewBox=”0 0 1000 500”的结果如下图：  
-![SVG的视窗与宽高比控制][15] 
+![SVG的视窗与宽高比控制][15]
 
 用户坐标系。因此图形在视窗中定位：
 
@@ -179,10 +140,6 @@ preserveAspectRatio属性让你可以在保持宽高比的情况下强制统一v
 
 preserveAspectRatio的官方语法是：
 
-
-
-
-
 它在任何建立新viewport的元素上都有效（我们会在这个系列的下一部分讨论这个问题）。
 
 defer声明是可选的，并且只有当你在image上添加preserveAspectRatio才被用到。用在任何其他元素上时它都会被忽略。images本身不在这篇文章的讨论范围，我们暂时跳过defer这个选项。
@@ -191,19 +148,11 @@ align参数声明是否强制统一放缩，如果是，对齐方法会在viewBo
 
 如果align值设为none，例如：
 
-
-
-
-
 图形不在保持宽高比而会缩放来适应视窗，像我们在上面两个例子中看到的那样。
 
 其他所有preserveAspectRatio值都在保持viewBox的宽高比的情况下强制拉伸，并且指定在视窗内如何对齐viewBox。我们会简短介绍align的值。
 
 最后一个属性，meetOrSlice也是可选的，默认值为meet。这个属性声明整个viewBox在视窗中是否可见。如果是，它和align参数通过一个或多个空格分隔。例如：
-
-
-
-
 
 这些值第一眼看起来也许很陌生。为了让它们更易于理解和熟悉，你可以把meetOrSlice的值类比于background-size的contain和cover值;它们非常类似。meet类似于contain，slice类似于cover。下面是每个值的定义和含义：
 
@@ -228,7 +177,7 @@ align参数声明是否强制统一放缩，如果是，对齐方法会在viewBo
 所以，meetOrSlice被用来声明viewBox是否会被完全包含在视窗中，或者它是否应该尽可能缩放来覆盖整个视窗，甚至意味着部分的viewBox会被“slice”。
 
 例如，如果我们声明viewBox的尺寸为200*300，并且使用了meet和slice值，保持align值为浏览器默认，每个值的结果会看起来如下：  
-![SVG的视窗与宽高比控制][22] 
+![SVG的视窗与宽高比控制][22]
 
 align参数使用9个值中的一个或者为none。任何除none之外的值都用来保持宽高比缩放图片，并且还用来在视窗中对齐viewBox。
 
@@ -239,7 +188,7 @@ align参数使用9个值中的一个或者为none。任何除none之外的值都
 还记得viewBox的min-x和min-y值吗？我们将使用它们来定义viewBox中的”min-x”和”min-y”轴。另外，我们将定义两个轴“max-x”和”max-y“，各自通过min-x + width 和 min-y + height来定位。最后，我们定义两个轴”mid-x”和”mid-y”，根据min-x + (width/2) 和 min-y + (height/2)来定位。
 
 这样做是不是让事情更复杂了呢？如果是这样，让我们看一下下面的图片来看一下每个轴代表了什么。在这张图片中，min-x和 min-y值都设置为0。viewBox被设置为viewBox = “0 0 300 300”。  
-![SVG的视窗与宽高比控制][23] 
+![SVG的视窗与宽高比控制][23]
 
 上面图片中的灰色虚线代表视窗的mid-x和mid-y轴。我们将对它们赋一些值来对齐viewBox的mid-x和mid-y轴。对于视窗，min-x的值等于0，min-y值也等于0，max-x值等于viewBox的宽度，max-y的值等于高度，mid-x和mid-y代表了宽度和高度的中间值。
 
@@ -274,42 +223,42 @@ align参数使用9个值中的一个或者为none。任何除none之外的值都
 视窗X轴的最大值对齐元素的viewBox的min-y+height。  
 把这个类比为backrgound-position: 0% 100%;。
 
-####xMidYMin
+#### xMidYMin
 
 强制统一缩放。  
 视窗X轴的中间值对齐元素的viewBox的X轴中间值。  
 视窗Y轴的中间值对齐元素的viewBox的 min-y。  
 把这个类比为backrgound-position: 50% 0%;。
 
-####xMidYMid (默认值)
+#### xMidYMid (默认值)
 
 强制统一缩放。  
 视窗X轴的中间值对齐元素的viewBox的X轴中间值。  
 视窗Y轴的中间值对齐元素的viewBox的Y轴中间值。  
 把这个类比为backrgound-position: 50% 50%;。
 
-####xMidYMax
+#### xMidYMax
 
 强制统一缩放。  
 视窗X轴的中间值对齐元素的viewBox的X轴中间值。  
 视窗Y轴的最大值对齐元素的viewBox的min-y+height。  
 把这个类比为backrgound-position: 50% 100%;。
 
-####xMaxYMin
+#### xMaxYMin
 
 强制统一缩放。  
 视窗X轴的最大值对齐元素的viewBox的 min-x+width。  
 视窗Y轴的最小值对齐元素的viewBox的min-y。  
 把这个类比为backrgound-position: 100% 0%;。
 
-####xMaxYMid
+#### xMaxYMid
 
 强制统一缩放。  
 视窗X轴的最大值对齐元素的viewBox的 min-x+width。  
 视窗Y轴的中间值对齐元素的viewBox的Y轴中间值。  
 把这个类比为backrgound-position: 100% 50%;。
 
-####xMaxYMax
+#### xMaxYMax
 
 强制统一缩放。  
 视窗X轴的最大值对齐元素的viewBox的 min-x+width。  
@@ -319,12 +268,13 @@ align参数使用9个值中的一个或者为none。任何除none之外的值都
 
 有时候，取决于viewBox的尺寸，一些值可能会导致相似的结果，例如在早先viewBox=”0 0 200 300”的例子中，一些对齐完全用了不同的align值。这时候就要设置meetOrSlice的值为meet来保证viewBox包含在viewport内。
 
-###互动演示  
+### 互动演示  
+
 要理解viewport, viewBox, 以及不同的preserveAspectRatio值是如何工作的最好方法是可视化的演示。
 
 出于这个目的，我创建了一个简单的互动演示，你可以改变这些属性的值来查看新值导致的结果。
 
-![SVG的视窗与宽高比控制][28] 
+![SVG的视窗与宽高比控制][28]
 
 <a href="https://sarasoueidan.com/demos/interactive-svg-coordinate-system/index.html" target="_blank" rel="external">传送门:https://sarasoueidan.com/demos/interactive-svg-coordinate-system/index.html</a>
 

@@ -1,30 +1,21 @@
 ---
 title: 关于node如何做接口限流
 
-
-date: 2019-11-04T04:09:17+00:00
-url: /javascriptnodejs/5252.html
-views:
-  - 1503
-like:
-  - 2
-
-
 ---
 在业务安全性方面，我们常常会用到接口限流，主要是为了防止系统压力过大、保证每个用户请求的资源保持均匀以及屏蔽恶意请求。
 
 几个常见的场景如下：
 
-  * 恶意注册
-  * 爬虫的过度抓取
-  * 秒杀场景
+* 恶意注册
+* 爬虫的过度抓取
+* 秒杀场景
 
 目前实现API接口限流的方式有几种常见的，简单来说原理很简单，无非是在一个固定的时间段内，限制API的请求速率，一般来说是根据IP，如果是登录用户的话，还可以用用户的ID。
 
 ### Token Bucket与Leaky Bucket
 
-  * Token Bucket：定时的往每个bucket内放入token，然后每个请求都会减去token，假如没有token的话就采取限流措施，能够限制平均请求频率；
-  * Leaky Bucket：做个缓冲队列，所有请求进入bucket排队，超过bucket size则丢弃，能够应付流量暴涨，请求集中；
+* Token Bucket：定时的往每个bucket内放入token，然后每个请求都会减去token，假如没有token的话就采取限流措施，能够限制平均请求频率；
+* Leaky Bucket：做个缓冲队列，所有请求进入bucket排队，超过bucket size则丢弃，能够应付流量暴涨，请求集中；
 
 两个算法，都有优缺点，都有适合的场景，比如Leaky Bucket很适合秒杀，因为需要应对所有用户的请求，用在正常业务中，容易卡着正常业务；而Token Bucket的话，更适合用在我们正常业务中的场景，限制接口的请求频率。
 
@@ -38,8 +29,8 @@ like:
 
 目前查到的Node.js实现的项目中，只有两个实现了滑动窗口限流：
 
-  * [redback/RateLimit][2]
-  * [ratelimit.js][3]
+* [redback/RateLimit][2]
+* [ratelimit.js][3]
 
 只是实现略复杂，效率可能比不上上面的，简单来说是把duration切分成多个block，然后单独计数，时间每经过一个block的长度，就向前滑动一个block，然后每次请求都会计算那个duration直接的block内的请求数量。只是，如果还是单个duration的话，并不能解决集中效应。
 
@@ -47,13 +38,13 @@ like:
 
 ##### redback/RateLimit:
 
-  * 优点：实现简单优雅，代码容易看懂，由于没用lua脚本（需要支持script相关命令），很多云服务商提供的redis可以用了；
-  * 缺点：功能不够丰富，代码很久没更新了，只支持node_redis；
+* 优点：实现简单优雅，代码容易看懂，由于没用lua脚本（需要支持script相关命令），很多云服务商提供的redis可以用了；
+* 缺点：功能不够丰富，代码很久没更新了，只支持node_redis；
 
 ##### ratelimit.js：
 
-  * 优点：使用lua脚本实现了具体逻辑，减少通讯时间，效率高，支持多个duration，并且还有白黑名单功能，支持ioredis以及node_redis；
-  * 缺点：可能还是因为lua脚本，如果不熟悉的话，看起来比较吃力；
+* 优点：使用lua脚本实现了具体逻辑，减少通讯时间，效率高，支持多个duration，并且还有白黑名单功能，支持ioredis以及node_redis；
+* 缺点：可能还是因为lua脚本，如果不熟悉的话，看起来比较吃力；
 
 ### 限制了后怎么做
 
@@ -79,10 +70,10 @@ express以及koa框架下，如果是在反向代理服务器nginx或者haproxy�
 
 ### Reference
 
-  * <a href="https://en.wikipedia.org/wiki/Leaky_bucket" rel="nofollow">https://en.wikipedia.org/wiki/Leaky_bucket</a>
-  * <a href="https://en.wikipedia.org/wiki/Token_bucket" rel="nofollow">https://en.wikipedia.org/wiki/Token_bucket</a>
-  * <a href="http://www.dr-josiah.com/2014/11/introduction-to-rate-limiting-with.html" rel="nofollow">http://www.dr-josiah.com/2014/11/introduction-to-rate-limiting-with.html</a>
-  * <a href="http://www.dr-josiah.com/2014/11/introduction-to-rate-limiting-with_26.html" rel="nofollow">http://www.dr-josiah.com/2014/11/introduction-to-rate-limiting-with_26.html</a>
+* <a href="https://en.wikipedia.org/wiki/Leaky_bucket" rel="nofollow">https://en.wikipedia.org/wiki/Leaky_bucket</a>
+* <a href="https://en.wikipedia.org/wiki/Token_bucket" rel="nofollow">https://en.wikipedia.org/wiki/Token_bucket</a>
+* <a href="http://www.dr-josiah.com/2014/11/introduction-to-rate-limiting-with.html" rel="nofollow">http://www.dr-josiah.com/2014/11/introduction-to-rate-limiting-with.html</a>
+* <a href="http://www.dr-josiah.com/2014/11/introduction-to-rate-limiting-with_26.html" rel="nofollow">http://www.dr-josiah.com/2014/11/introduction-to-rate-limiting-with_26.html</a>
 
  [1]: https://github.com/tj/node-ratelimiter
  [2]: https://github.com/chriso/redback/blob/master/lib/advanced_structures/RateLimit.js

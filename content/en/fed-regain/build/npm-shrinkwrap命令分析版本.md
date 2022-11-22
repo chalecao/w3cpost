@@ -2,15 +2,9 @@
 title: npm shrinkwrap命令分析版本
 
 
-date: 2020-02-18T09:30:18+00:00
-url: /javascriptnodejs/5616.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e4bae8b5b55e.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e4bae8b5b55e.png
-fifu_image_alt:
-  - shrinkwrap命令
-views:
-  - 909
+
+
+
 
 
 ---
@@ -19,7 +13,7 @@ views:
     <p>
       npm采用语义化的版本号 semver 进行控制，让开发过程中依赖的获取和升级变得非常容易，但不严格的版本号控制，也带来了不确定性~~
     </p>
-    
+
     <ul>
       <li>
         npm 建议使用semver版本，部分包不遵循semver；
@@ -62,7 +56,7 @@ $ &lt;span class="token function">npm&lt;/span> outdated -g -depth&lt;span class
         <th>
           Package
         </th>
-        
+
         <th>
           Current
         </th>
@@ -179,7 +173,7 @@ $ &lt;span class="token function">npm&lt;/span> outdated -g -depth&lt;span class
         <th>
           符号
         </th>
-        
+
         <th>
           当运行 <code>npm update</code> 时，情况说明
         </th>
@@ -269,7 +263,7 @@ $ &lt;span class="token function">npm&lt;/span> outdated -g -depth&lt;span class
     <p>
       增加、更新、删除包的步骤如下：
     </p>
-    
+
     <p>
       <strong>第一步：</strong> 安装指定版本包 <code>npm install/uninstall package_name@version --save</code> ；
     </p>

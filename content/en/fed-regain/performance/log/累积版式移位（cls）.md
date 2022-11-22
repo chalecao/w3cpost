@@ -1,29 +1,6 @@
 ---
 title: 累积版式移位（CLS）
-
-
-date: 2020-10-03T11:43:10+00:00
-url: /fed-regain/5903.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png
-classic-editor-remember:
-  - classic-editor
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png
-fifu_image_alt:
-  - 累积版式移位（CLS）
-enclosure:
-  - |
-    |
-        https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/layout-instability2.webm
-        206710
-        video/webm
-        
-views:
-  - 1479
-like:
-  - 2
-
-
+ 
 ---
 <div class="w-aside w-aside--note">
   <blockquote>
@@ -53,7 +30,7 @@ like:
 
 CLS会测量在页面的整个生命周期中发生的每个 _意外的版式移位_的所有单独_版式移位分数_的总和。
 
-甲_布局移_发生的任何时间的可见元素改变其从一个所再现的帧到下一个位置。（有关如何计算各个[版式移位得分的][1]详细信息，请参见下文。）<picture><source srcset="../vitals/cls_8x2.svg" media="(min-width: 640px)" /></picture> 
+甲_布局移_发生的任何时间的可见元素改变其从一个所再现的帧到下一个位置。（有关如何计算各个[版式移位得分的][1]详细信息，请参见下文。）<picture><source srcset="../vitals/cls_8x2.svg" media="(min-width: 640px)" /></picture>
 
 <p id="KySgUDR">
   <img loading="lazy" class="alignnone wp-image-5906 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/format,webp" alt="" width="725" height="182" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/format,webp 1716w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_75/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_200/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_192/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_385/format,webp 1536w" sizes="(max-width: 725px) 100vw, 725px" />
@@ -77,7 +54,7 @@ CLS会测量在页面的整个生命周期中发生的每个 _意外的版式�
 
 ### 如何计算CLS分数 {#layout-shift-score}
 
-要计算_布局平移分数_，浏览器将查看视口大小以及两个渲染帧之间视口中_不稳定元素_的移动。布局偏移分数是该运动的两个度量的乘积：_影响比例（impact fraction）_ 和 _ 位移比例_（均在下面定义）。
+要计算_布局平移分数_，浏览器将查看视口大小以及两个渲染帧之间视口中_不稳定元素_的移动。布局偏移分数是该运动的两个度量的乘积：_影响比例（impact fraction）_ 和 _位移比例_（均在下面定义）。
 
 <pre class="language-text"><code class="language-text">layout shift score = impact fraction * distance fraction</code></pre>
 
@@ -124,7 +101,7 @@ CLS会测量在页面的整个生命周期中发生的每个 _意外的版式�
 
 最后一个示例说明了多个_不稳定元素_：
 
-![具有多个稳定元素和不稳定元素的布局转移示例][4] 
+![具有多个稳定元素和不稳定元素的布局转移示例][4]
 
 上面的第一帧中，对动物的API请求有四个结果，按字母顺序排序。在第二帧中，更多结果将添加到排序列表中。
 
@@ -154,22 +131,22 @@ CLS会测量在页面的整个生命周期中发生的每个 _意外的版式�
 
 CSS[`transform`][6] 属性使您可以为元素设置动画，而不会触发布局转换：
 
-  * 而不是更改`height`和`width`属性，请使用`transform: scale()`。
-  * 左右移动的元件，避免改变`top`，`right`，`bottom`，或 `left`属性，并使用`transform: translate()`来代替。
+* 而不是更改`height`和`width`属性，请使用`transform: scale()`。
+* 左右移动的元件，避免改变`top`，`right`，`bottom`，或 `left`属性，并使用`transform: translate()`来代替。
 
 ## 如何衡量CLS <a class="w-headline-link" href="https://web.dev/cls/#how-to-measure-cls" aria-hidden="true">＃</a> {#how-to-measure-cls}
 
 ### 现场的工具<a class="w-headline-link" href="https://web.dev/cls/#field-tools" aria-hidden="true">＃</a> {#field-tools}
 
-  * [Chrome用户体验报告][7]
-  * [PageSpeed见解][8]
-  * [Search Console（核心网络生命力报告）][9]
+* [Chrome用户体验报告][7]
+* [PageSpeed见解][8]
+* [Search Console（核心网络生命力报告）][9]
 
 ### 实验室工具<a class="w-headline-link" href="https://web.dev/cls/#lab-tools" aria-hidden="true">＃</a> {#lab-tools}
 
-  * [Chrome DevTools][10]
-  * [灯塔][11]
-  * [WebPageTest][12]
+* [Chrome DevTools][10]
+* [灯塔][11]
+* [WebPageTest][12]
 
 ### 在JavaScript中测量CLS <a class="w-headline-link" href="https://web.dev/cls/#measure-cls-in-javascript" aria-hidden="true">＃</a> {#measure-cls-in-javascript}
 
@@ -191,16 +168,16 @@ observer</span><span class="pun">.</span><span class="pln">observe</span><span c
 
 对于大多数网站，您可以遵循一些指导原则来避免所有意外的布局变化：
 
-  * **请务必在图片和视频元素上包含size属性，否则请使用[CSS长宽比框之][14]类的东西保留所需的空间。**这种方法可确保在加载图像时浏览器可以在文档中分配正确的空间量。请注意，您还可以使用[unsize-media功能部件策略][15] 在支持功能部件策略的浏览器中强制执行此行为。
-  * **除非响应用户交互，否则切勿在现有内容上方插入内容。**这样可以确保可以预期发生任何版式移位。
-  * **与将动画触发布局更改的属性动画相比，更喜欢使用转换动画。**对过渡进行动画处理，以提供状态与状态之间的上下文和连续性。
+* **请务必在图片和视频元素上包含size属性，否则请使用[CSS长宽比框之][14]类的东西保留所需的空间。**这种方法可确保在加载图像时浏览器可以在文档中分配正确的空间量。请注意，您还可以使用[unsize-media功能部件策略][15] 在支持功能部件策略的浏览器中强制执行此行为。
+* **除非响应用户交互，否则切勿在现有内容上方插入内容。**这样可以确保可以预期发生任何版式移位。
+* **与将动画触发布局更改的属性动画相比，更喜欢使用转换动画。**对过渡进行动画处理，以提供状态与状态之间的上下文和连续性。
 
 有关如何改善CLS的深入探讨，请参见[优化CLS][16]。
 
 ## 关联课程
 
-  * [打造企业级私有前端监控体系][13]
-  * [高性能极致用户体验前端开发实战][17]
+* [打造企业级私有前端监控体系][13]
+* [高性能极致用户体验前端开发实战][17]
 
  [1]: https://web.dev/cls/#layout-shift-score
  [2]: https://github.com/WICG/layout-instability

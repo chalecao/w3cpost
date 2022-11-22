@@ -2,11 +2,6 @@
 title: 关于ajax请求头设置
 
 
-date: 2020-02-18T08:16:42+00:00
-url: /javascriptnodejs/5614.html
-views:
-  - 841
-
 
 ---
 今天同事说想改下host请求头，之前好像记得不能修改这个header，找了一下资源，记一下。下面这些请求头设置是不会生效的。

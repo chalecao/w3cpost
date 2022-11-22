@@ -2,28 +2,23 @@
 title: Vue3响应式原理整理
 
 
-date: 2021-04-04T16:38:37+00:00
-url: /javascriptnodejs/6577.html
-views:
-  - 694
-
 
 ---
 整理了一些资源，现在开始学习应该还不算晚[狗头]
 
-  * <a href="https://github.com/vuejs/vue-next" rel="nofollow">vue-next仓库</a>
-  * <a href="https://v3.vuejs.org/" rel="nofollow">20200723 Vue3 官方发布的beta文档</a>
-  * <a href="https://github.com/vuejs/vue/projects/6" rel="nofollow">Vue3 Roadmap & FAQ</a>
-  * <a href="https://github.com/vuejs/vue-next/pulls?q=is%3Apr+is%3Amerged" rel="nofollow">Vue3仓库已经合并的780多个PR</a>
-  * <a href="https://www.vuemastery.com/courses/vue3-deep-dive-with-evan-you/vue3-overview" rel="nofollow">尤大在Vue Mastery的Vue3课：Vue 3 Deep Dive with Evan You</a>
-  * <a href="https://www.bilibili.com/video/BV1qC4y18721" rel="nofollow">202007 尤大在前端会客厅节目关于Vue3的访谈</a>
-  * <a href="https://increment.com/frontend/making-vue-3/" rel="nofollow">202005 The process: Making Vue 3</a>
-  * <a href="https://www.bilibili.com/video/BV1Tg4y1z7FH" rel="nofollow">202004 尤大 &#8211; 聊聊 Vue.js 3.0 Beta 官方直播</a>
-  * <a href="https://www.bilibili.com/video/BV1Et41197L4" rel="nofollow">2018 VueConf 杭州 尤大关于Vue3的演讲视频</a>
+* <a href="https://github.com/vuejs/vue-next" rel="nofollow">vue-next仓库</a>
+* <a href="https://v3.vuejs.org/" rel="nofollow">20200723 Vue3 官方发布的beta文档</a>
+* <a href="https://github.com/vuejs/vue/projects/6" rel="nofollow">Vue3 Roadmap & FAQ</a>
+* <a href="https://github.com/vuejs/vue-next/pulls?q=is%3Apr+is%3Amerged" rel="nofollow">Vue3仓库已经合并的780多个PR</a>
+* <a href="https://www.vuemastery.com/courses/vue3-deep-dive-with-evan-you/vue3-overview" rel="nofollow">尤大在Vue Mastery的Vue3课：Vue 3 Deep Dive with Evan You</a>
+* <a href="https://www.bilibili.com/video/BV1qC4y18721" rel="nofollow">202007 尤大在前端会客厅节目关于Vue3的访谈</a>
+* <a href="https://increment.com/frontend/making-vue-3/" rel="nofollow">202005 The process: Making Vue 3</a>
+* <a href="https://www.bilibili.com/video/BV1Tg4y1z7FH" rel="nofollow">202004 尤大 &#8211; 聊聊 Vue.js 3.0 Beta 官方直播</a>
+* <a href="https://www.bilibili.com/video/BV1Et41197L4" rel="nofollow">2018 VueConf 杭州 尤大关于Vue3的演讲视频</a>
 
 ## vue2 响应式原理回顾 {#item-1}
 
-  * 对象响应化：遍历每个key，通过 `Object.defineProperty` API定义getter，setter
+* 对象响应化：遍历每个key，通过 `Object.defineProperty` API定义getter，setter
 
 <pre class="hljs javascript"><code class="jsx">&lt;span class="hljs-comment">// 伪代码&lt;/span>
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">observe&lt;/span>()&lt;/span>{
@@ -59,7 +54,7 @@ views:
   })
 }</code></pre>
 
-  * 数组响应化：覆盖数组的原型方法，增加通知变更的逻辑
+* 数组响应化：覆盖数组的原型方法，增加通知变更的逻辑
 
 <pre class="hljs javascript"><code class="jsx">&lt;span class="hljs-comment">// 伪代码&lt;/span>
 &lt;span class="hljs-keyword">const&lt;/span> originalProto = &lt;span class="hljs-built_in">Array&lt;/span>.prototype
@@ -73,11 +68,11 @@ views:
 
 ## vue2响应式痛点 {#item-2}
 
-  * 递归，消耗大
-  * 新增/删除属性，需要额外实现单独的API
-  * 数组，需要额外实现
-  * Map Set Class等数据类型，无法响应式
-  * 修改语法有限制
+* 递归，消耗大
+* 新增/删除属性，需要额外实现单独的API
+* 数组，需要额外实现
+* Map Set Class等数据类型，无法响应式
+* 修改语法有限制
 
 ## vue3响应式方案 {#item-3}
 
@@ -113,14 +108,14 @@ Proxy可以在目标对象上加一层拦截/代理，外界对目标对象的�
 
 &nbsp;
 
-  * 通过 **`effect`** 声明依赖响应式数据的函数cb ( 例如视图渲染函数render函数)，并执行cb函数，执行过程中，会触发响应式数据 `getter`
-  * 在响应式数据 `getter`中进行 `track`依赖收集：建立 **数据&cb** 的映射关系存储于 `targetMap`
-  * 当变更响应式数据时，触发 `trigger` **，**根据 `targetMap` 找到关联的cb执行
-  * 映射关系 `targetMap` 结构：
+* 通过 **`effect`** 声明依赖响应式数据的函数cb ( 例如视图渲染函数render函数)，并执行cb函数，执行过程中，会触发响应式数据 `getter`
+* 在响应式数据 `getter`中进行 `track`依赖收集：建立 **数据&cb** 的映射关系存储于 `targetMap`
+* 当变更响应式数据时，触发 `trigger` **，**根据 `targetMap` 找到关联的cb执行
+* 映射关系 `targetMap` 结构：
 
-<pre class="hljs coffeescript"><code class="jsx">targetMap: &lt;span class="hljs-built_in">WeakMap&lt;/span>{ 
-    target:&lt;span class="hljs-built_in">Map&lt;/span>{ 
-        key: &lt;span class="hljs-built_in">Set&lt;/span>[cb1,cb2...] 
+<pre class="hljs coffeescript"><code class="jsx">targetMap: &lt;span class="hljs-built_in">WeakMap&lt;/span>{
+    target:&lt;span class="hljs-built_in">Map&lt;/span>{
+        key: &lt;span class="hljs-built_in">Set&lt;/span>[cb1,cb2...]
     }
 }</code></pre>
 
@@ -130,21 +125,21 @@ Proxy可以在目标对象上加一层拦截/代理，外界对目标对象的�
 
 <pre class="hljs awk"><code class="jsx">&lt;span class="hljs-regexp">//&lt;/span> mini-vue3.js
 
-&lt;span class="hljs-regexp">/* 建立响应式数据 */&lt;/span>
+&lt;span class="hljs-regexp">/*建立响应式数据*/&lt;/span>
 &lt;span class="hljs-keyword">function&lt;/span> reactice(obj){}
 
-&lt;span class="hljs-regexp">/* 声明响应函数cb(依赖响应式数据) */&lt;/span>
+&lt;span class="hljs-regexp">/*声明响应函数cb(依赖响应式数据)*/&lt;/span>
 &lt;span class="hljs-keyword">function&lt;/span> effect(cb){}
 
-&lt;span class="hljs-regexp">/* 依赖收集：建立 数据&cb 映射关系 */&lt;/span>
+&lt;span class="hljs-regexp">/*依赖收集：建立 数据&cb 映射关系*/&lt;/span>
 &lt;span class="hljs-keyword">function&lt;/span> track(target,key){}
 
-&lt;span class="hljs-regexp">/* 触发更新：根据映射关系，执行cb */&lt;/span>
+&lt;span class="hljs-regexp">/*触发更新：根据映射关系，执行cb*/&lt;/span>
 &lt;span class="hljs-keyword">function&lt;/span> trigger(target,key){}</code></pre>
 
 ### reactive {#item-5-1}
 
-<pre class="hljs processing"><code class="jsx">&lt;span class="hljs-comment">/* 建立响应式数据 */&lt;/span>
+<pre class="hljs processing"><code class="jsx">&lt;span class="hljs-comment">/*建立响应式数据*/&lt;/span>
 function reactive(obj){
   &lt;span class="hljs-comment">// Proxy:http://es6.ruanyifeng.com/#docs/proxy&lt;/span>
   &lt;span class="hljs-comment">// Proxy相当于在对象外层加拦截&lt;/span>
@@ -182,7 +177,7 @@ function reactive(obj){
 
 ### effect {#item-5-2}
 
-<pre class="hljs actionscript"><code class="jsx">&lt;span class="hljs-comment">/* 声明响应函数cb */&lt;/span>
+<pre class="hljs actionscript"><code class="jsx">&lt;span class="hljs-comment">/*声明响应函数cb*/&lt;/span>
 &lt;span class="hljs-keyword">const&lt;/span> effectStack = []
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">effect&lt;/span>&lt;span class="hljs-params">(cb)&lt;/span>&lt;/span>{
 
@@ -207,7 +202,7 @@ function reactive(obj){
 
 ### track {#item-5-3}
 
-<pre class="hljs csharp"><code class="jsx">&lt;span class="hljs-comment">/* 依赖收集：建立 数据&cb 映射关系 */&lt;/span>
+<pre class="hljs csharp"><code class="jsx">&lt;span class="hljs-comment">/*依赖收集：建立 数据&cb 映射关系*/&lt;/span>
 &lt;span class="hljs-keyword">const&lt;/span> targetMap = &lt;span class="hljs-keyword">new&lt;/span> WeakMap()
 &lt;span class="hljs-function">function &lt;span class="hljs-title">track&lt;/span>(&lt;span class="hljs-params">target,key&lt;/span>)&lt;/span>{
   &lt;span class="hljs-comment">// 存入映射关系&lt;/span>
@@ -229,7 +224,7 @@ function reactive(obj){
 
 ### trigger {#item-5-4}
 
-<pre class="hljs processing"><code class="jsx">&lt;span class="hljs-comment">/* 触发更新：根据映射关系，执行cb */&lt;/span>
+<pre class="hljs processing"><code class="jsx">&lt;span class="hljs-comment">/*触发更新：根据映射关系，执行cb*/&lt;/span>
 function trigger(target, &lt;span class="hljs-built_in">key&lt;/span>){
   &lt;span class="hljs-keyword">const&lt;/span> depsMap = targetMap.&lt;span class="hljs-built_in">get&lt;/span>(target)
   &lt;span class="hljs-keyword">if&lt;/span>(depsMap){

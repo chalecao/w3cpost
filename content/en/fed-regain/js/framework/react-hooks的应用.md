@@ -2,17 +2,6 @@
 title: react hooks的应用
 
 
-date: 2019-07-20T14:17:52+00:00
-url: /javascriptnodejs/4820.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d332270c7320.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d332270c7320.png
-fifu_image_alt:
-  - react hooks的应用
-views:
-  - 870
-like:
-  - 3
 
 
 ---
@@ -66,8 +55,8 @@ useState 这个方法可以为我们的函数组件带来 local state，它接�
 <pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">const&lt;/span> [count, setCount] = useState(&lt;span class="hljs-number">0&lt;/span>);
 
 &lt;span class="hljs-comment">// 等价于&lt;/span>
-&lt;span class="hljs-keyword">var&lt;/span> &lt;span class="hljs-keyword">const&lt;/span> = useState(&lt;span class="hljs-number">0&lt;/span>)[&lt;span class="hljs-number">0&lt;/span>]; &lt;span class="hljs-comment">// 该state&lt;/span>
-&lt;span class="hljs-keyword">var&lt;/span> setConst = useState(&lt;span class="hljs-number">0&lt;/span>)[&lt;span class="hljs-number">1&lt;/span>]; &lt;span class="hljs-comment">// 修改该state的方法&lt;/span></code></pre>
+&lt;span class="hljs-keyword">var&lt;/span> &lt;span class="hljs-keyword">const&lt;/span> = useState[&lt;span class="hljs-number">0&lt;/span>](&lt;span class="hljs-number">0&lt;/span>); &lt;span class="hljs-comment">// 该state&lt;/span>
+&lt;span class="hljs-keyword">var&lt;/span> setConst = useState[&lt;span class="hljs-number">0&lt;/span>](&lt;span class="hljs-number">1&lt;/span>); &lt;span class="hljs-comment">// 修改该state的方法&lt;/span></code></pre>
 
 ### useEffect {#articleHeader3}
 
@@ -127,13 +116,13 @@ useEffect 中还可以通过让函数返回一个函数来进行一些清理操�
 
 过去对于类似问题的解决方案主要有两个：
 
-  * <a href="https://reactjs.org/docs/render-props.html" target="_blank" rel="nofollow noopener noreferrer">Render Props</a> 通过props接受一个返回react element的函数，来动态决定自己要渲染的结果；
+* <a href="https://reactjs.org/docs/render-props.html" target="_blank" rel="nofollow noopener noreferrer">Render Props</a> 通过props接受一个返回react element的函数，来动态决定自己要渲染的结果；
 
 <pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">DataProvider&lt;/span> &lt;span class="hljs-attr">render&lt;/span>=&lt;span class="hljs-string">{data&lt;/span> =&gt;&lt;/span> (
   &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">h1&lt;/span>&gt;&lt;/span>Hello {data.target}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">h1&lt;/span>&gt;&lt;/span>
 )}/&gt;</code></pre>
 
-  * 还有就是<a href="https://reactjs.org/docs/higher-order-components.html" target="_blank" rel="nofollow noopener noreferrer">Higher-Order Components</a> 以一种类似 **工厂模式** 的方式去生产出具有相同或类似逻辑的组件。
+* 还有就是<a href="https://reactjs.org/docs/higher-order-components.html" target="_blank" rel="nofollow noopener noreferrer">Higher-Order Components</a> 以一种类似 **工厂模式** 的方式去生产出具有相同或类似逻辑的组件。
 
 <pre class="javascript hljs"><code class="js">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">getComponent&lt;/span>(&lt;span class="hljs-params">WrappedComponent&lt;/span>) &lt;/span>{
 
@@ -244,13 +233,13 @@ custom Hooks 并不是一个api，而是一个规则。具体实现就是通过�
 
 hooks让我们的函数组件的功能得到了扩充，拥有了和类组件相似的功能，甚至避免了类组件存在的各种问题，那么就会出现各种的疑问，比如
 
-  * Hooks 引进后， 函数组件 和 类组件 该如何选择？官方关于类似的问题的答复是：
+* Hooks 引进后， 函数组件 和 类组件 该如何选择？官方关于类似的问题的答复是：
 
 > Our goal is for Hooks to cover all use cases for classes as soon as possible. There are no Hook equivalents to the uncommon getSnapshotBeforeUpdate and componentDidCatch lifecycles yet, but we plan to add them soon.It is a very early time for Hooks, so some integrations like DevTools support or Flow/TypeScript typings may not be ready yet. Some third-party libraries might also not be compatible with Hooks at the moment.
 
 官方的目标是尽可能快的让 Hooks 去覆盖所有的类组件案例，但是现在 Hooks 还处于一个非常早的阶段，各种调试工具、第三方库等都还没有做好对 Hooks 的支持，而且目前也没有可以取代类组件中 getSnapshotBeforeUpdate 和 componentDidCatch 生命做起的 Hooks，不过很快会加上他们。总的来时就是鼓励大家在以后使用 Hooks，对于已存在的类组件不必大规模的去重写，Hooks及Hooks的生态会继续完善，请期待。
 
-  * Hooks 是否可以代替 render-props 和 higher-order components ？前面我们也提到，hooks可以解决后者带来的各种问题，那么 hooks 是否可以代替后者呢？官方的回答：
+* Hooks 是否可以代替 render-props 和 higher-order components ？前面我们也提到，hooks可以解决后者带来的各种问题，那么 hooks 是否可以代替后者呢？官方的回答：
 
 > Often, render props and higher-order components render only a single child. We think Hooks are a simpler way to serve this use case. There is still a place for both patterns (for example, a virtual scroller component might have a renderItem prop, or a visual container component might have its own DOM structure). But in most cases, Hooks will be sufficient and can help reduce nesting in your tree.
 

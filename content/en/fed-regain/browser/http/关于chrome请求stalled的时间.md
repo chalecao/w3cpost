@@ -2,15 +2,9 @@
 title: 关于chrome请求stalled的时间
 
 
-date: 2020-03-28T15:59:29+00:00
-url: /pwa/5720.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7f73a85ff73.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7f73a85ff73.png
-fifu_image_alt:
-  - 关于chrome请求stalled的时间
-views:
-  - 1099
+
+
+
 
 
 ---
@@ -28,7 +22,7 @@ views:
 
 也即是从TCP连接建立完成，到真正可以传输数据之间的时间差。先让我们要分析TCP连接为什么要等待这么久才能用？我用Wireshark抓包发现(如下图)，TCP连接过程中有多次重传，直到达到最大重传次数后连接被客户端重置。<figure>
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-error.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-error.png?x-oss-process=image/format,webp" alt="wireshark-error" /> </figure> 
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-error.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-error.png?x-oss-process=image/format,webp" alt="wireshark-error" /> </figure>
 
 为什么会发生重传呢？
 
@@ -36,7 +30,7 @@ views:
 
 TCP三次握手后，发送端发送数据后，一段时间内（不同的操作系统时间段不同）接收不到服务端ACK包，就会以 某一时间间隔(时间间隔一般为指数型增长)重新发送，从重传开始到接收端正确响应的时间就是stalled阶段。而重传超过一定的次数（windows系统是5次），发送端就认为本次TCP连接已经down掉了，需要重新建立连接。 对比以下，没有重传的http请求过程。如下图：<figure>
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-normal.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-normal.jpg?x-oss-process=image/format,webp" alt="wireshark-normal" /> </figure> 
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-normal.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-normal.jpg?x-oss-process=image/format,webp" alt="wireshark-normal" /> </figure>
 
 总结一下：stalled阶段时TCP连接的检测过程，如果检测成功就会继续使用该TCP连接发送数据，如果检测失败就会重新建立TCP连接。所以出现stalled阶段过长，往往是丢包所致，这也意味着网络或服务端有问题。
 
@@ -44,8 +38,8 @@ TCP三次握手后，发送端发送数据后，一段时间内（不同的操�
 
 上面提到，Stackoverflow上找到<a href="http://stackoverflow.com/questions/14821725/ajax-request-over-https-hangs-for-40-seconds-in-chrome-only" target="_blank" rel="noopener noreferrer">一个问题</a>，跟现在需要解决一有些类似点：
 
-  * 偶发，并不是必然出现的。这里我们的问题也是偶发，很难复现，需要反复刷。
-  * 也是请求被<code class="highlighter-rouge">Pending</code>了很久，从请求的时间线来看，体现在<code class="highlighter-rouge">Stalled</code>上。
+* 偶发，并不是必然出现的。这里我们的问题也是偶发，很难复现，需要反复刷。
+* 也是请求被<code class="highlighter-rouge">Pending</code>了很久，从请求的时间线来看，体现在<code class="highlighter-rouge">Stalled</code>上。
 
 该提问到没有给出什么建设性的意见，但它后面的追加编辑却给出了答案。过程是查看Chrome的网络日志，在事件里面发现有一个超时错误：
 
@@ -100,7 +94,7 @@ TCP三次握手后，发送端发送数据后，一段时间内（不同的操�
 <div class="language-text highlighter-rouge">
   <div class="highlight">
     <pre class="highlight"><code>HTTP/1.1 200 OK
-Date: Wed, 31 Dec 2014 11:47:21 GMT
+
 Content-Type: application/json; charset=UTF-8
 Transfer-Encoding: chunked
 Connection: keep-alive
@@ -123,20 +117,20 @@ Server: Apache
 
 可喜的是，在细细口味了上面缓存机制引入的过程后，真是耐人寻味。这里不妨八卦一下。相信你也注意到了，上面提到，该<a href="https://code.google.com/p/chromium/issues/detail?id=46104" target="_blank" rel="noopener noreferrer">缓存问题</a>的提出是在2010年，确切地说是<code class="highlighter-rouge">Jun 8, 2010</code>。是的，2010年6月8日由<a href="mailto:eroman@chromium.org" target="_blank" rel="noopener noreferrer">eroman</a> 同学提出。但最后针对该问题进行修复的代码<a href="https://src.chromium.org/viewvc/chrome?revision=279326&view=revision" target="_blank" rel="noopener noreferrer">提交</a>却是在今年6月份，2014年6月24日，提交时间摆在那里我会乱说？
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/cache-fix-commit.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/cache-fix-commit.jpg?x-oss-process=image/format,webp" alt="" /> 
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/cache-fix-commit.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/cache-fix-commit.jpg?x-oss-process=image/format,webp" alt="" />
 
 于是好奇为什么会拖了这么久，遂跟了一下该问题下面的回复看看发生了什么。简直惊呆了。
 
-  * 同月14号，有了首次对这个问题的回复，那是将该问题指派给了<a href="mailto:rvargas@chromium.org" target="_blank" rel="noopener noreferrer">rvargas</a>同学。
-  * 一个月过去了，也就是7月15号，<a href="mailto:rvargas@chromium.org" target="_blank" rel="noopener noreferrer">rvargas</a>同学指出了与该问题关联的另外一个issue「<a href="https://code.google.com/p/chromium/issues/detail?id=6697" target="_blank" rel="noopener noreferrer">issue 6697</a>」
-  * 接下来是8月5日，<a href="mailto:rvargas@chromium.org" target="_blank" rel="noopener noreferrer">rvargas</a>同学为该问题贴上了标签<code class="highlighter-rouge">-Mstone-7 Mstone-8 </code>，表明将会在里程碑7或者8里面进行修复。但在后面的10月7日，这个日程又被推到了<code class="highlighter-rouge">-Mstone-8 Mstone-9 </code>。
-  * 再接下来11月5日，有人表示以目前的速度及bug数量，还没有时间来修复它，重点在处理优先级为<code class="highlighter-rouge">p1</code>的问题上。于是此问题又成功被顺延了，来到<code class="highlighter-rouge">-mstone-9 Mstone-10 </code>，同时优级降为<code class="highlighter-rouge">p2</code>。Chromium人手也不够啊，看来。
-  * 时间来到12月9日，因为优先级为<code class="highlighter-rouge">p2</code>的issue如果没有被标为开始状态的话又自动推到下一个里程碑了，于是顺利来到 <code class="highlighter-rouge">-Mstone-10 MovedFrom-10 Mstone-11 </code>。次年2月来到<code class="highlighter-rouge">-Mstone-11 Mstone-12 </code>。完成了一次跨年！
+* 同月14号，有了首次对这个问题的回复，那是将该问题指派给了<a href="mailto:rvargas@chromium.org" target="_blank" rel="noopener noreferrer">rvargas</a>同学。
+* 一个月过去了，也就是7月15号，<a href="mailto:rvargas@chromium.org" target="_blank" rel="noopener noreferrer">rvargas</a>同学指出了与该问题关联的另外一个issue「<a href="https://code.google.com/p/chromium/issues/detail?id=6697" target="_blank" rel="noopener noreferrer">issue 6697</a>」
+* 接下来是8月5日，<a href="mailto:rvargas@chromium.org" target="_blank" rel="noopener noreferrer">rvargas</a>同学为该问题贴上了标签<code class="highlighter-rouge">-Mstone-7 Mstone-8 </code>，表明将会在里程碑7或者8里面进行修复。但在后面的10月7日，这个日程又被推到了<code class="highlighter-rouge">-Mstone-8 Mstone-9 </code>。
+* 再接下来11月5日，有人表示以目前的速度及bug数量，还没有时间来修复它，重点在处理优先级为<code class="highlighter-rouge">p1</code>的问题上。于是此问题又成功被顺延了，来到<code class="highlighter-rouge">-mstone-9 Mstone-10 </code>，同时优级降为<code class="highlighter-rouge">p2</code>。Chromium人手也不够啊，看来。
+* 时间来到12月9日，因为优先级为<code class="highlighter-rouge">p2</code>的issue如果没有被标为开始状态的话又自动推到下一个里程碑了，于是顺利来到 <code class="highlighter-rouge">-Mstone-10 MovedFrom-10 Mstone-11 </code>。次年2月来到<code class="highlighter-rouge">-Mstone-11 Mstone-12 </code>。完成了一次跨年！
 
 …………
 
-  * 上面省略N步。如此反复，最后一次被推到了<code class="highlighter-rouge">-Mstone-16 </code>，那是在2011年10月12日。
-  * 时间一晃来到2013年，这一年很平静，前面的几个月都没有人对此问题进行回复。直到11月27日，有人看不下去了，评论道：
+* 上面省略N步。如此反复，最后一次被推到了<code class="highlighter-rouge">-Mstone-16 </code>，那是在2011年10月12日。
+* 时间一晃来到2013年，这一年很平静，前面的几个月都没有人对此问题进行回复。直到11月27日，有人看不下去了，评论道：
 
 > This bug has been pushed to the next mstone forever…and is blocking more bugs (e.g https://code.google.com/p/chromium/issues/detail?id=31014)and use-cases same video in 2 tags on one page, and adaptive bit rate html5 video streaming whenever that will kick in. Any chance this will be prioritized?
 
@@ -172,10 +166,10 @@ Chrome Dev Tools 网络面板截图： <img src="https://haomou.oss-cn-beijing.
 
 ### 日志还原 {#日志还原}
 
-  * <a href="https://gist.githubusercontent.com/wayou/39772215d075c80d643a/raw/9c91463f22016d20c90de19e77ae3e4f302e0769/gistfile1.txt" target="_blank" rel="noopener noreferrer">下载该日志文件</a>
-  * 在Chrome新开一个标签输入<code class="highlighter-rouge">chrome://net-internals/#events</code>
-  * 切换到<code class="highlighter-rouge">Import</code>，选择刚才下载的JSON文件进行导入
-  * 切换到<code class="highlighter-rouge">Events</code>，定位到<code class="highlighter-rouge">http://qa.tieba.baidu.com/release/getReleaseHistory?projectId=fum1.0.593</code> 这个请求
+* <a href="https://gist.githubusercontent.com/wayou/39772215d075c80d643a/raw/9c91463f22016d20c90de19e77ae3e4f302e0769/gistfile1.txt" target="_blank" rel="noopener noreferrer">下载该日志文件</a>
+* 在Chrome新开一个标签输入<code class="highlighter-rouge">chrome://net-internals/#events</code>
+* 切换到<code class="highlighter-rouge">Import</code>，选择刚才下载的JSON文件进行导入
+* 切换到<code class="highlighter-rouge">Events</code>，定位到<code class="highlighter-rouge">http://qa.tieba.baidu.com/release/getReleaseHistory?projectId=fum1.0.593</code> 这个请求
 
 此刻右边出现的便是该问题请求的详细日志。
 
@@ -266,7 +260,7 @@ t=42629 [st=42628]     +HTTP_TRANSACTION_READ_HEADERS  [dt=112]
 t=42629 [st=42628]        HTTP_STREAM_PARSER_READ_HEADERS  [dt=112]
 t=42741 [st=42740]        HTTP_TRANSACTION_READ_RESPONSE_HEADERS
                           --&gt; HTTP/1.1 200 OK
-                              Date: Fri, 02 Jan 2015 09:51:48 GMT
+                              
                               Content-Type: application/json; charset=UTF-8
                               Transfer-Encoding: chunked
                               Connection: keep-alive
@@ -345,7 +339,7 @@ t=1565 [st=  9]     +HTTP_TRANSACTION_READ_HEADERS  [dt=161]
 t=1565 [st=  9]        HTTP_STREAM_PARSER_READ_HEADERS  [dt=160]
 t=1725 [st=169]        HTTP_TRANSACTION_READ_RESPONSE_HEADERS
                        --&gt; HTTP/1.1 200 OK
-                           Date: Sat, 03 Jan 2015 12:23:54 GMT
+                           
                            Content-Type: application/json; charset=UTF-8
                            Transfer-Encoding: chunked
                            Connection: keep-alive
@@ -374,21 +368,21 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 针对上面正常的请求，我们主要关注两部分，如下面的截图：
 
-  * 发送请求头 \` +HTTP\_TRANSACTION\_SEND_REQUEST [dt=1]\`
-  * 读取响应头 \` +HTTP\_TRANSACTION\_READ_HEADERS [dt=161]\`
+* 发送请求头 \` +HTTP\_TRANSACTION\_SEND_REQUEST [dt=1]\`
+* 读取响应头 \` +HTTP\_TRANSACTION\_READ_HEADERS [dt=161]\`
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/normal-section.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/normal-section.jpg?x-oss-process=image/format,webp" alt="" /> 
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/normal-section.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/normal-section.jpg?x-oss-process=image/format,webp" alt="" />
 
 这是正常的情况下，没有什么问题。并且日志里可以清晰地看到发送的请求头是什么，然后解析出来的响应头是什么。这跟在网络面板看到的是一致的。
 
 再回到出问题的请求日志上来，同样我们只关注这两部分。如下面的截图：
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/3retry.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/3retry.jpg?x-oss-process=image/format,webp" alt="" /> 
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/3retry.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/3retry.jpg?x-oss-process=image/format,webp" alt="" />
 
 与正常相比，最后一次发送请求和读取响应头无异常，时间就多在了前面还有再次发送和请求的过程，细看时间都花在了以下两个事件中：
 
-  * <code class="highlighter-rouge">HTTP_STREAM_PARSER_READ_HEADERS [dt=21301]</code>
-  * <code class="highlighter-rouge">HTTP_STREAM_PARSER_READ_HEADERS [dt=21304]</code>
+* <code class="highlighter-rouge">HTTP_STREAM_PARSER_READ_HEADERS [dt=21301]</code>
+* <code class="highlighter-rouge">HTTP_STREAM_PARSER_READ_HEADERS [dt=21304]</code>
 
 该事件的名称已经自我解读，意思是解析读取的响应头。但问题是紧接着下面报错了，
 
@@ -427,7 +421,7 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 经过观察<code class="highlighter-rouge">src/net/base/net_errors_win.cc</code> 其路径和代码得知其中多为系统级别的错误，似乎跟我们的问题不是很关联，忽略该文件。
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/source.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/source.jpg?x-oss-process=image/format,webp" alt="" /> 
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/source.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/source.jpg?x-oss-process=image/format,webp" alt="" />
 
 <code class="highlighter-rouge">http_stream_parser.cc</code>文件中，<code class="highlighter-rouge">ERR_CONNECTION_RESET</code>仅出现一次。这给我们定位带来了极大的便利。
 
@@ -455,7 +449,7 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 现在我们点击上面的<code class="highlighter-rouge">ShouldTryReadingOnUploadError</code>方法，代码下方出现调用了该方法的地方，一共有两处。
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/call.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/call.jpg?x-oss-process=image/format,webp" alt="" /> 
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/call.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/call.jpg?x-oss-process=image/format,webp" alt="" />
 
 分别点击进行查看。
 
@@ -560,8 +554,8 @@ A收到B的肯定应答，到此A与B经历了三次通信或者说是握手，�
 
 报文重置发生主要有以下情况：
 
-  * 服务器没有监听被请求的端口，无法建立连接
-  * 服务器此刻无法比如没有充裕的资源用来连接连接
+* 服务器没有监听被请求的端口，无法建立连接
+* 服务器此刻无法比如没有充裕的资源用来连接连接
 
 #### TCP Reset due to no response {#tcp-reset-due-to-no-response}
 
@@ -585,20 +579,20 @@ A收到B的肯定应答，到此A与B经历了三次通信或者说是握手，�
 
 > The real problem here is something is taking 21 seconds to send us the RST messages, despite the fact that a roundtrip to the server you’re talking to only takes about 100 milliseconds.
 
-  * 「之前有过很多成功的连接」，确实，因为出现加载缓慢的情况是偶发的，这之前有过很多正常的不卡的请求存在过。这里没有异议。
-  * 「他们都以未知的原因被断掉了」，因为不是正常地断开连接，所以客户端也就是浏览器不知道当前与服务器的TCP连接已经断开，傻傻地保留着与服务器连接的socket，注意，此时已经发生信息的不对等了，这是问题的根源。至于什么原因，给出了可能的原因：路由器认为连接超时将其断掉，同时不排除ISP（互联网服务提供商）的原因，服务器暂时的停运抽风等。不管怎样，客户端浏览器没有收到连接断开的信息。
-  * 在上面的基础上，我们去发起一次新的请求。此时浏览器希望重用之前的连接以节省资源，用之前的一个socket去发起连接。21秒后收到服务器返回的重置信息（意思是服务器告诉浏览器：我和你之间没有连接），没关系，上面提到，我们有很多可以重用的连接，于是浏览器重新从可用的连接里面又选择了一个去进行连接，不幸的是，同样的情况再次发生，21秒后收到服务器的重置信息。这体现在日志上就是第二次重试失败。到第三次，因为前面浏览器认为可以重用的连接现在都被正确地标为断开了，没有新的可用，于是这次浏览器发起了全新的请求，成功了！
+* 「之前有过很多成功的连接」，确实，因为出现加载缓慢的情况是偶发的，这之前有过很多正常的不卡的请求存在过。这里没有异议。
+* 「他们都以未知的原因被断掉了」，因为不是正常地断开连接，所以客户端也就是浏览器不知道当前与服务器的TCP连接已经断开，傻傻地保留着与服务器连接的socket，注意，此时已经发生信息的不对等了，这是问题的根源。至于什么原因，给出了可能的原因：路由器认为连接超时将其断掉，同时不排除ISP（互联网服务提供商）的原因，服务器暂时的停运抽风等。不管怎样，客户端浏览器没有收到连接断开的信息。
+* 在上面的基础上，我们去发起一次新的请求。此时浏览器希望重用之前的连接以节省资源，用之前的一个socket去发起连接。21秒后收到服务器返回的重置信息（意思是服务器告诉浏览器：我和你之间没有连接），没关系，上面提到，我们有很多可以重用的连接，于是浏览器重新从可用的连接里面又选择了一个去进行连接，不幸的是，同样的情况再次发生，21秒后收到服务器的重置信息。这体现在日志上就是第二次重试失败。到第三次，因为前面浏览器认为可以重用的连接现在都被正确地标为断开了，没有新的可用，于是这次浏览器发起了全新的请求，成功了！
 
 总结出来，两个问题：
 
-  * 为什么之前成功的连接不正常的断开了？服务器配置或者网络原因？
-  * 是什么让浏览器21秒后才收到重置信息？服务器作出反应过慢还是网络原因？
+* 为什么之前成功的连接不正常的断开了？服务器配置或者网络原因？
+* 是什么让浏览器21秒后才收到重置信息？服务器作出反应过慢还是网络原因？
 
 ## Chrome Dev Tool 中时间线各阶段代表的意义 {#chrome-dev-tool-中时间线各阶段代表的意义}
 
 另附注一下Chrome Dev Tool 中请求的时间线各阶段代表的意义。 以下内容扒自<a href="https://developer.chrome.com/devtools/docs/network#resource-network-timing" target="_blank" rel="noopener noreferrer">Chrome 开发者文档页</a>，然后我将它本地化了一下下。
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timing.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timing.png?x-oss-process=image/format,webp" alt="" /> 
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timing.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timing.png?x-oss-process=image/format,webp" alt="" />
 
 ### Stalled/Blocking {#stalledblocking}
 
@@ -640,39 +634,39 @@ A收到B的肯定应答，到此A与B经历了三次通信或者说是握手，�
 
 具体来说，能够得到的结论有以下几点：
 
-  * 请求成功构造，失败情况下也可以看到正常的请求头被打印出来了的
-  * 可以肯定的是在与服务器建立连接时被Shut down了，参考上面关于连接重置的部分会更有意义一些
-  * 参考上面「进一步解读日志文件」部分，来自Chromium开发者的回复中对日志文件的解读更加合理些，浏览器与服务器的连接不正常断开是导致问题的根源，以至于影响了后面对连接的重用
-  * 21秒的等待仍然是个未知数，不知道有何不可抗拒的外力促使浏览器21秒后才收到服务器的重置信息。此处浏览器与服务器的失联原因有待查证
+* 请求成功构造，失败情况下也可以看到正常的请求头被打印出来了的
+* 可以肯定的是在与服务器建立连接时被Shut down了，参考上面关于连接重置的部分会更有意义一些
+* 参考上面「进一步解读日志文件」部分，来自Chromium开发者的回复中对日志文件的解读更加合理些，浏览器与服务器的连接不正常断开是导致问题的根源，以至于影响了后面对连接的重用
+* 21秒的等待仍然是个未知数，不知道有何不可抗拒的外力促使浏览器21秒后才收到服务器的重置信息。此处浏览器与服务器的失联原因有待查证
 
 最后寄希望于RD同学跟进，协助排查服务器连接及后端代码的部分。FE同学会保持持续关注。
 
 ## 参考及引用 {#参考及引用}
 
-#1 <a href="http://stackoverflow.com/questions/27513994/chrome-stalls-when-making-multiple-requests-to-same-resource" target="_blank" rel="noopener noreferrer">Chrome stalls when making multiple requests to same resource?</a>
+# 1 <a href="http://stackoverflow.com/questions/27513994/chrome-stalls-when-making-multiple-requests-to-same-resource" target="_blank" rel="noopener noreferrer">Chrome stalls when making multiple requests to same resource?</a>
 
-#2 <a href="http://stackoverflow.com/questions/5585918/what-does-pending-mean-for-request-in-chrome-developer-window" target="_blank" rel="noopener noreferrer">What does “pending” mean for request in Chrome Developer Window?</a>
+# 2 <a href="http://stackoverflow.com/questions/5585918/what-does-pending-mean-for-request-in-chrome-developer-window" target="_blank" rel="noopener noreferrer">What does “pending” mean for request in Chrome Developer Window?</a>
 
-#3 <a href="https://developer.chrome.com/devtools/docs/network#resource-network-timing" target="_blank" rel="noopener noreferrer">Evaluating network performance / Resource network timing</a>
+# 3 <a href="https://developer.chrome.com/devtools/docs/network#resource-network-timing" target="_blank" rel="noopener noreferrer">Evaluating network performance / Resource network timing</a>
 
-#4 <a href="https://www.google.com/search?q=Provisional+headers+are+shown&gws_rd=ssl" target="_blank" rel="noopener noreferrer">Provisional headers are shown</a>
+# 4 <a href="https://www.google.com/search?q=Provisional+headers+are+shown&gws_rd=ssl" target="_blank" rel="noopener noreferrer">Provisional headers are shown</a>
 
-#5 <a href="http://stackoverflow.com/questions/21177387/caution-provisional-headers-are-shown-in-chrome-debugger" target="_blank" rel="noopener noreferrer">“CAUTION: provisional headers are shown” in Chrome debugger</a>
+# 5 <a href="http://stackoverflow.com/questions/21177387/caution-provisional-headers-are-shown-in-chrome-debugger" target="_blank" rel="noopener noreferrer">“CAUTION: provisional headers are shown” in Chrome debugger</a>
 
-#6 <a href="http://segmentfault.com/q/1010000000364871" target="_blank" rel="noopener noreferrer">Chrome 里的请求报错 “CAUTION: Provisional headers are shown” 是什么意思?</a>
+# 6 <a href="http://segmentfault.com/q/1010000000364871" target="_blank" rel="noopener noreferrer">Chrome 里的请求报错 “CAUTION: Provisional headers are shown” 是什么意思?</a>
 
-#7 <a href="https://codereview.chromium.org/345643003" target="_blank" rel="noopener noreferrer">Issue 345643003: Http cache: Implement a timeout for the cache lock</a>
+# 7 <a href="https://codereview.chromium.org/345643003" target="_blank" rel="noopener noreferrer">Issue 345643003: Http cache: Implement a timeout for the cache lock</a>
 
-#8 <a href="https://code.google.com/p/chromium/issues/detail?id=46104" target="_blank" rel="noopener noreferrer">Issue 46104: Pages can get blocked in “Waiting for Cache” for a very long time</a>
+# 8 <a href="https://code.google.com/p/chromium/issues/detail?id=46104" target="_blank" rel="noopener noreferrer">Issue 46104: Pages can get blocked in “Waiting for Cache” for a very long time</a>
 
-#9 <a href="http://dev.chromium.org/for-testers/providing-network-details" target="_blank" rel="noopener noreferrer">Providing Network Details for bug reports</a>
+# 9 <a href="http://dev.chromium.org/for-testers/providing-network-details" target="_blank" rel="noopener noreferrer">Providing Network Details for bug reports</a>
 
-#10 <a href="http://div.io/topic/609?page=1#2050" target="_blank" rel="noopener noreferrer">从FE的角度上再看输入url后都发生了什么</a>
+# 10 <a href="http://div.io/topic/609?page=1#2050" target="_blank" rel="noopener noreferrer">从FE的角度上再看输入url后都发生了什么</a>
 
-#11 <a href="https://code.google.com/p/chromium/codesearch#chromium/src/net/http/http_stream_parser.cc&q=ERR_CONNECTION_RESET&sq=package:chromium&dr=C&l=77" target="_blank" rel="noopener noreferrer">ERR_CONNECTION_RESET 的Chromium 源码</a>
+# 11 <a href="https://code.google.com/p/chromium/codesearch#chromium/src/net/http/http_stream_parser.cc&q=ERR_CONNECTION_RESET&sq=package:chromium&dr=C&l=77" target="_blank" rel="noopener noreferrer">ERR_CONNECTION_RESET 的Chromium 源码</a>
 
-#12 <a href="http://www.chromium.org/developers/design-documents/network-stack#TOC-HttpStreamFactory" target="_blank" rel="noopener noreferrer">Chromium Network Stack</a>
+# 12 <a href="http://www.chromium.org/developers/design-documents/network-stack#TOC-HttpStreamFactory" target="_blank" rel="noopener noreferrer">Chromium Network Stack</a>
 
-#13 <a href="http://blogs.technet.com/b/networking/archive/2009/08/12/where-do-resets-come-from-no-the-stork-does-not-bring-them.aspx" target="_blank" rel="noopener noreferrer">Where do resets come from? (No, the stork does not bring them.)</a>
+# 13 <a href="http://blogs.technet.com/b/networking/archive/2009/08/12/where-do-resets-come-from-no-the-stork-does-not-bring-them.aspx" target="_blank" rel="noopener noreferrer">Where do resets come from? (No, the stork does not bring them.)</a>
 
-#14 <a href="https://code.google.com/p/chromium/issues/detail?id=447463#c1" target="_blank" rel="noopener noreferrer">Issue 447463: Chrome-network: Long delay before RST message on stale sockets results in slow page loads)</a>
+# 14 <a href="https://code.google.com/p/chromium/issues/detail?id=447463#c1" target="_blank" rel="noopener noreferrer">Issue 447463: Chrome-network: Long delay before RST message on stale sockets results in slow page loads)</a>

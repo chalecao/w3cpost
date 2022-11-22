@@ -2,19 +2,6 @@
 title: mysql的join用法和单表自身join
 
 
-date: 2018-11-16T01:13:43+00:00
-url: /pwa/2537.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee193b1780c.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee193b1780c.png
-fifu_image_alt:
-  - mysql的join用法和单表自身join
-views:
-  - 1715
-like:
-  - 1
-onesignal_meta_box_present:
-  - 1
 
 
 ---
@@ -75,10 +62,10 @@ SELECT * FROM t_blog;
   要理解各种JOIN首先要理解笛卡尔积。笛卡尔积就是将A表的每一条记录与B表的每一条记录强行拼在一起。所以，如果A表有n条记录，B表有m条记录，笛卡尔积产生的结果就会产生n*m条记录。下面的例子，t_blog有10条记录，t_type有5条记录，所有他们俩的笛卡尔积有50条记录。有五种产生笛卡尔积的方式如下。
 </p>
 
-<pre class="EnlighterJSRAW" data-enlighter-language="sql" data-enlighter-theme="godzilla">SELECT * FROM t_blog CROSS JOIN t_type;
-    SELECT * FROM t_blog INNER JOIN t_type;
-    SELECT * FROM t_blog,t_type;
-    SELECT * FROM t_blog NATURE JOIN t_type;
+<pre class="EnlighterJSRAW" data-enlighter-language="sql" data-enlighter-theme="godzilla">SELECT *FROM t_blog CROSS JOIN t_type;
+SELECT* FROM t_blog INNER JOIN t_type;
+    SELECT *FROM t_blog,t_type;
+SELECT* FROM t_blog NATURE JOIN t_type;
     select * from t_blog NATURA join t_type;
     +----+-------+--------+----+------------+
     | id | title | typeId | id | name       |
@@ -144,10 +131,10 @@ SELECT * FROM t_blog;
 </p>
 
 <div class="cnblogs_code">
-  <pre><code>    SELECT * FROM t_blog INNER JOIN t_type ON t_blog.typeId=t_type.id;
-    SELECT * FROM t_blog,t_type WHERE t_blog.typeId=t_type.id;
-    SELECT * FROM t_blog STRAIGHT_JOIN t_type ON t_blog.typeId=t_type.id; --注意STRIGHT_JOIN有个下划线
-    SELECT * FROM t_blog JOIN t_type ON t_blog.typeId=t_type.id;
+  <pre><code>    SELECT *FROM t_blog INNER JOIN t_type ON t_blog.typeId=t_type.id;
+SELECT* FROM t_blog,t_type WHERE t_blog.typeId=t_type.id;
+    SELECT *FROM t_blog STRAIGHT_JOIN t_type ON t_blog.typeId=t_type.id; --注意STRIGHT_JOIN有个下划线
+SELECT* FROM t_blog JOIN t_type ON t_blog.typeId=t_type.id;
     +----+-------+--------+----+------+
     | id | title | typeId | id | name |
     +----+-------+--------+----+------+
@@ -224,9 +211,9 @@ SELECT * FROM t_blog;
 </p>
 
 <div class="cnblogs_code">
-  <pre><code>    SELECT * FROM t_blog LEFT JOIN t_type ON t_blog.typeId=t_type.id
+  <pre><code>    SELECT *FROM t_blog LEFT JOIN t_type ON t_blog.typeId=t_type.id
     UNION
-    SELECT * FROM t_blog RIGHT JOIN t_type ON t_blog.typeId=t_type.id;
+SELECT* FROM t_blog RIGHT JOIN t_type ON t_blog.typeId=t_type.id;
     +------+-------+--------+------+------------+
     | id   | title | typeId | id   | name       |
     +------+-------+--------+------+------------+
@@ -285,7 +272,7 @@ SELECT * FROM t_blog;
 </h2>
 
 <p data-anchor-id="hi26">
-  自然连接就是USING子句的简化版，它找出两个表中相同的列作为连接条件进行连接。有<strong>左自然连接</strong>，<strong>右自然连接</strong>和<strong>普通自然连接</strong>之分。在t_blog和t_type示例中，两个表相同的列是id，所以会拿id作为连接条件。<br /> 另外千万分清下面三条语句的区别 。<br /> 自然连接:SELECT * FROM t_blog NATURAL JOIN t_type;<br /> 笛卡尔积:SELECT * FROM t_blog NATURA JOIN t_type;<br /> 笛卡尔积:SELECT * FROM t_blog NATURE JOIN t_type;
+  自然连接就是USING子句的简化版，它找出两个表中相同的列作为连接条件进行连接。有<strong>左自然连接</strong>，<strong>右自然连接</strong>和<strong>普通自然连接</strong>之分。在t_blog和t_type示例中，两个表相同的列是id，所以会拿id作为连接条件。<br /> 另外千万分清下面三条语句的区别 。<br /> 自然连接:SELECT *FROM t_blog NATURAL JOIN t_type;<br /> 笛卡尔积:SELECT* FROM t_blog NATURA JOIN t_type;<br /> 笛卡尔积:SELECT * FROM t_blog NATURE JOIN t_type;
 </p>
 
 <div class="cnblogs_code">
@@ -350,7 +337,7 @@ SELECT * FROM t_blog;
   </p>
   
   <div id="cnblogs_code_open_17522636-4378-4994-8fac-9798b92eb527" class="cnblogs_code_hide">
-    <pre><code>    SELECT * FROM t_blog LEFT JOIN t_type ON t_blog.typeId=t_type.id
+    <pre><code>    SELECT *FROM t_blog LEFT JOIN t_type ON t_blog.typeId=t_type.id
     WHERE t_type.id IS NULL;
     +----+-------+--------+------+------+
     | id | title | typeId | id   | name |
@@ -359,17 +346,17 @@ SELECT * FROM t_blog;
     |  9 | iii   |   NULL | NULL | NULL |
     | 10 | jjj   |   NULL | NULL | NULL |
     +----+-------+--------+------+------+
-    SELECT * FROM t_blog RIGHT JOIN t_type ON t_blog.typeId=t_type.id
+SELECT* FROM t_blog RIGHT JOIN t_type ON t_blog.typeId=t_type.id
     WHERE t_blog.id IS NULL;
     +------+-------+--------+----+------------+
     | id   | title | typeId | id | name       |
     +------+-------+--------+----+------------+
     | NULL | NULL  |   NULL |  5 | Javascript |
     +------+-------+--------+----+------------+
-    SELECT * FROM t_blog LEFT JOIN t_type ON t_blog.typeId=t_type.id
+    SELECT *FROM t_blog LEFT JOIN t_type ON t_blog.typeId=t_type.id
     WHERE t_type.id IS NULL
     UNION
-    SELECT * FROM t_blog RIGHT JOIN t_type ON t_blog.typeId=t_type.id
+SELECT* FROM t_blog RIGHT JOIN t_type ON t_blog.typeId=t_type.id
     WHERE t_blog.id IS NULL;
     +------+-------+--------+------+------------+
     | id   | title | typeId | id   | name       |
@@ -379,7 +366,7 @@ SELECT * FROM t_blog;
     |   10 | jjj   |   NULL | NULL | NULL       |
     | NULL | NULL  |   NULL |    5 | Javascript |
     +------+-------+--------+------+------------+</code></pre>
-    
+
     <h2 class="cnblogs_code_toolbar">
       单表自身join
     </h2>
@@ -387,14 +374,14 @@ SELECT * FROM t_blog;
     <div>
       <pre class="EnlighterJSRAW" data-enlighter-language="sql">SELECT a.*
 FROM t_blog a
-LEFT JOIN t_blog b 
+LEFT JOIN t_blog b
     ON a.name = b.name
 WHERE
 b.typeId = 2
 AND a.typeId =1
 ORDER BY a.typeId desc
 ;</pre>
-      
+
       <p>
         注意On和Where的使用。ON用于选择表连接之间的条件，where则用于筛选左表和右表的数据。
       </p>

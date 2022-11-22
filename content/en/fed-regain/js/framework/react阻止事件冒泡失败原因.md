@@ -2,11 +2,6 @@
 title: react阻止事件冒泡失败原因
 
 
-date: 2020-05-22T07:37:30+00:00
-url: /javascriptnodejs/5806.html
-views:
-  - 1037
-
 
 ---
 ## JS 中事件的监听与处理
@@ -215,14 +210,14 @@ React 有自身的一套事件系统，叫作 <a href="https://reactjs.org/docs
 
 现在来尝试理解一下输出结果：
 
-  * 事件最开始从原生 DOM 按钮一路冒泡到 body，body 的事件处理器执行，输出 `body`。注意此时流程还没进入 React。为什么？因为 React 监听的是 document 上的事件。
-  * 继续往上事件冒泡到 document。 
-      * 事件到达 document 之后，发现 document 上面一共绑定了三个事件处理器，分别是代码中通过 `document.addEventListener` 在 `ReactDOM.render` 前后调用的，以及一个隐藏的事件处理器，是 <a href="https://github.com/facebook/react/blob/e8857918422b5ce8505ba5ce4a2d153e509c17a1/packages/react-dom/src/events/ReactBrowserEventEmitter.js#L105-L173" target="_blank" rel="noopener noreferrer">ReactDOM 绑定的</a>，也就是前面提到的 React 用来代理事件的那个处理器。
-      * 同一元素上如果对同一类型的事件绑定了多个处理器，会按照绑定的顺序来执行。
-      * 所以 `ReactDOM.render` 之前的那个处理器先执行，输出 `document:before react mount`。
-      * 然后是 React 的事件处理器。此时，流程才真正进入 React，走进我们的组件。组件里面就好理解了，从 button 冒泡到 container，依次输出。
-      * 最后 `ReactDOM.render` 之后的那个处理器先执行，输出 `document:after react mount`。
-  * 事件完成了在 document 上的冒泡，往上到了 window，执行相应的处理器并输出 `window`。
+* 事件最开始从原生 DOM 按钮一路冒泡到 body，body 的事件处理器执行，输出 `body`。注意此时流程还没进入 React。为什么？因为 React 监听的是 document 上的事件。
+* 继续往上事件冒泡到 document。
+  * 事件到达 document 之后，发现 document 上面一共绑定了三个事件处理器，分别是代码中通过 `document.addEventListener` 在 `ReactDOM.render` 前后调用的，以及一个隐藏的事件处理器，是 <a href="https://github.com/facebook/react/blob/e8857918422b5ce8505ba5ce4a2d153e509c17a1/packages/react-dom/src/events/ReactBrowserEventEmitter.js#L105-L173" target="_blank" rel="noopener noreferrer">ReactDOM 绑定的</a>，也就是前面提到的 React 用来代理事件的那个处理器。
+  * 同一元素上如果对同一类型的事件绑定了多个处理器，会按照绑定的顺序来执行。
+  * 所以 `ReactDOM.render` 之前的那个处理器先执行，输出 `document:before react mount`。
+  * 然后是 React 的事件处理器。此时，流程才真正进入 React，走进我们的组件。组件里面就好理解了，从 button 冒泡到 container，依次输出。
+  * 最后 `ReactDOM.render` 之后的那个处理器先执行，输出 `document:after react mount`。
+* 事件完成了在 document 上的冒泡，往上到了 window，执行相应的处理器并输出 `window`。
 
 理解 **React 是通过监听 document 冒泡阶段来代理组件中的事件**，这点很重要。同时，区分原生 DOM 与 React 组件，也很重要。并且，React 组件上的事件处理器接收到的 `event` 对象也有别于原生的事件对象，不是同一个东西。但这个对象上有个 `nativeEvent` 属性，可获取到原生的事件对象，后面会用到和讨论它。
 
@@ -247,7 +242,7 @@ React 有自身的一套事件系统，叫作 <a href="https://reactjs.org/docs
 
 所以，虽然都是监听 document 上的点击事件，但 `ReactDOM.render()` 之前的这个处理器要先于 React，所以 React 对 document 的监听不会触发。
 
-### 解答前面按钮未能阻止冒泡的问题<details> <summary>如果你已经忘了，这是相应的代码及输出。</summary> </details> 
+### 解答前面按钮未能阻止冒泡的问题<details> <summary>如果你已经忘了，这是相应的代码及输出。</summary> </details>
 
 到这里，已经可以解答为什么 React 组件中 button 的事件处理器中调用 `event.stopPropagation()` 没有阻止 document 的点击事件执行的问题了。因为 button 事件处理器的执行前提是事件达到 document 被 React 接收到，然后 React 将事件派发到 button 组件。既然在按钮的事件处理器执行之前，事件已经达到 document 了，那当然就无法在按钮的事件处理器进行阻止了。
 
@@ -346,7 +341,7 @@ React 有自身的一套事件系统，叫作 <a href="https://reactjs.org/docs
 
 ## 相关资源
 
-  * <a href="https://github.com/facebook/react/issues/4335" target="_blank" rel="noopener noreferrer" data-hovercard-type="issue" data-hovercard-url="/facebook/react/issues/4335/hovercard">e.stopPropagation() seems to not be working as expect. #4335</a>
-  * <a href="https://stackoverflow.com/questions/24415631/reactjs-syntheticevent-stoppropagation-only-works-with-react-events" target="_blank" rel="nofollow noopener noreferrer">ReactJS SyntheticEvent stopPropagation() only works with React events?</a>
-  * <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/stopImmediatePropagation" target="_blank" rel="nofollow noopener noreferrer">Event.stopImmediatePropagation()</a>
-  * <a href="https://reactjs.org/docs/events.html#supported-events" target="_blank" rel="nofollow noopener noreferrer">SyntheticEvent</a>
+* <a href="https://github.com/facebook/react/issues/4335" target="_blank" rel="noopener noreferrer" data-hovercard-type="issue" data-hovercard-url="/facebook/react/issues/4335/hovercard">e.stopPropagation() seems to not be working as expect. #4335</a>
+* <a href="https://stackoverflow.com/questions/24415631/reactjs-syntheticevent-stoppropagation-only-works-with-react-events" target="_blank" rel="nofollow noopener noreferrer">ReactJS SyntheticEvent stopPropagation() only works with React events?</a>
+* <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/stopImmediatePropagation" target="_blank" rel="nofollow noopener noreferrer">Event.stopImmediatePropagation()</a>
+* <a href="https://reactjs.org/docs/events.html#supported-events" target="_blank" rel="nofollow noopener noreferrer">SyntheticEvent</a>

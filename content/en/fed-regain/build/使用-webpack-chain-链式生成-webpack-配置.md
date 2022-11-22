@@ -2,15 +2,9 @@
 title: 使用 Webpack-chain 链式生成 webpack 配置
 
 
-date: 2020-02-18T05:41:00+00:00
-url: /javascriptnodejs/5611.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e57854e37505.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e57854e37505.png
-fifu_image_alt:
-  - 使用 Webpack-chain 链式生成 webpack 配置
-views:
-  - 1074
+
+
+
 
 
 ---
@@ -266,7 +260,7 @@ views:
     <p>
       &nbsp;
     </p>
-    
+
     <pre class="line-numbers language-tsx"><code class=" language-tsx">&lt;span class="token function">createCSSRule&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'css'&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token regex">/\.css$/&lt;/span>&lt;span class="token punctuation">)&lt;/span>
 &lt;span class="token function">createCSSRule&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'postcss'&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token regex">/\.p(ost)?css$/&lt;/span>&lt;span class="token punctuation">)&lt;/span>
 &lt;span class="token function">createCSSRule&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'scss'&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token regex">/\.scss$/&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token string">'sass-loader'&lt;/span>&lt;span class="token punctuation">,&lt;/span> siteConfig&lt;span class="token punctuation">.&lt;/span>scss&lt;span class="token punctuation">)&lt;/span>

@@ -1,22 +1,6 @@
 ---
 title: HTML解析过程
 
-
-date: 2020-11-14T13:44:51+00:00
-url: /html5css3/6162.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafa2ce34c2f.png
-classic-editor-remember:
-  - classic-editor
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafa2ce34c2f.png
-fifu_image_alt:
-  - HTML解析过程
-views:
-  - 791
-like:
-  - 2
-
-
 ---
 欢迎学习前端知识体系课程，本系列属于：[前端增长教程][1]
 
@@ -42,7 +26,7 @@ like:
 在线视频课程：<a href="https://study.163.com/course/courseMain.htm?share=2&shareId=400000000351011&courseId=1209400904&_trace_c_p_k2_=d5106aa1758748cea6e733c4b1f29bbe" target="_blank" rel="noopener noreferrer">网易云课堂课程</a>      <a href="https://segmentfault.com/ls/1650000019681091" target="_blank" rel="noopener noreferrer">思否课堂</a>
 
 <div class="e-secret">
-  </p> 
+  </p>
   
   <h1>
     构建DOM

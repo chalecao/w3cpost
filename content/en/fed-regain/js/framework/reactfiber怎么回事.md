@@ -2,11 +2,6 @@
 title: react fiber怎么回事
 
 
-date: 2021-04-27T13:01:25+00:00
-url: /javascriptnodejs/6640.html
-views:
-  - 698
-
 
 ---
 ### 一、前言 {#item-1}
@@ -44,9 +39,9 @@ views:
 
 React 框架内部的运作可以分为 3 层：
 
-  * Virtual DOM 层，描述页面长什么样。
-  * Reconciler 层，负责调用组件生命周期方法，进行 Diff 运算等。
-  * Renderer 层，根据不同的平台，渲染出相应的页面，比较常见的是 ReactDOM 和 ReactNative。
+* Virtual DOM 层，描述页面长什么样。
+* Reconciler 层，负责调用组件生命周期方法，进行 Diff 运算等。
+* Renderer 层，根据不同的平台，渲染出相应的页面，比较常见的是 ReactDOM 和 ReactNative。
 
 这次改动最大的当属 Reconciler 层了，React 团队也给它起了个新的名字，叫`Fiber Reconciler`。这就引入另一个关键词：Fiber。
 
@@ -73,12 +68,12 @@ Fiber 其实指的是一种数据结构，它可以用一个纯 JS 对象来表�
 
 为了达到这种效果，就需要有一个调度器 (Scheduler) 来进行任务分配。任务的优先级有六种：
 
-  * synchronous，与之前的Stack Reconciler操作一样，同步执行
-  * task，在next tick之前执行
-  * animation，下一帧之前执行
-  * high，在不久的将来立即执行
-  * low，稍微延迟执行也没关系
-  * offscreen，下一次render时或scroll时才执行
+* synchronous，与之前的Stack Reconciler操作一样，同步执行
+* task，在next tick之前执行
+* animation，下一帧之前执行
+* high，在不久的将来立即执行
+* low，稍微延迟执行也没关系
+* offscreen，下一次render时或scroll时才执行
 
 优先级高的任务（如键盘输入）可以打断优先级低的任务（如Diff）的执行，从而更快的生效。
 
@@ -88,8 +83,8 @@ Fiber Reconciler 在执行过程中，会分为 2 个阶段。
   <img loading="lazy" width="732" height="474" class="alignnone size-full wp-image-6645 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b06c5dd4.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b06c5dd4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b06c5dd4.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b06c5dd4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_194/format,webp 300w" sizes="(max-width: 732px) 100vw, 732px" />
 </p>
 
-  * 阶段一，生成 Fiber 树，得出需要更新的节点信息。这一步是一个渐进的过程，可以被打断。
-  * 阶段二，将需要更新的节点一次过批量更新，这个过程不能被打断。
+* 阶段一，生成 Fiber 树，得出需要更新的节点信息。这一步是一个渐进的过程，可以被打断。
+* 阶段二，将需要更新的节点一次过批量更新，这个过程不能被打断。
 
 阶段一可被打断的特性，让优先级更高的任务先执行，从框架层面大大降低了页面掉帧的概率。
 

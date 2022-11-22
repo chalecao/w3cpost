@@ -2,17 +2,6 @@
 title: WebStorge使用
 
 
-date: 2017-08-29T20:01:06+00:00
-excerpt: 互联网的未来，是移动互联网；移动互联网网页的未来是WEB App。对于Web APP或者许多的富客户端网页来说，Web Storage是很重要的一部分。对于提升用户体验和网页页面优化有很重要的价值。使用者需要对网页或app的数据结构分层整合，区分出可以用于web storage和不能storage的数据，对于需要存储的数据，再格式化成key/value形式。
-url: /html5css3/841.html
-views:
-  - 1810
-  - 1810
-wl_pageviews:
-  - 1
-  - 1
-
-
 ---
   
 
@@ -21,7 +10,7 @@ wl_pageviews:
 
 互联网的未来，是移动互联网；移动互联网网页的未来是WEB App。对于Web APP或者许多的富客户端网页来说，Web Storage是很重要的一部分。对于提升用户体验和网页页面优化有很重要的价值。使用者需要对网页或app的数据结构分层整合，区分出可以用于web storage和不能storage的数据，对于需要存储的数据，再格式化成key/value形式。  
 <a></a>  
-![WebStorge使用][2] 
+![WebStorge使用][2]
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/09/22/2014_Html5_storage/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/09/22/2014_Html5_storage/</a>
 
@@ -44,10 +33,6 @@ sessionStorage用于本地存储一个会话（session）中的数据，这些�
 而localStorage用于持久化的本地存储，除非主动删除数据，否则数据是永远不会过期的。  
 下面是 DOM Storage 的接口定义：
 
-
-
-
-
 length：返回当前存储在 Storage 对象中的键值对数量。  
 key(index)：返回列表中第 n 个键的名字。Index 从 0 开始。  
 getItem(key)：返回指定键对应的值。  
@@ -66,63 +51,31 @@ setItem存储value
 用法：.setItem( key, value)  
 代码示例：
 
-
-
-
-
 getItem获取value  
 用途：获取指定key本地存储的值  
 用法：.getItem(key)  
 代码示例：
-
-
-
-
 
 removeItem删除key  
 用途：删除指定key本地存储的值  
 用法：.removeItem(key)  
 代码示例：
 
-
-
-
-
 clear清除所有的key/value  
 用途：清除所有的key/value  
 用法：.clear()  
 代码示例：
 
-
-
-
-
 其他操作方法：点操作和[]  
 web Storage不但可以用自身的setItem,getItem等方便存取，也可以像普通对象一样用点(.)操作符，及[]的方式进行数据存储，像如下的代码：
-
-
-
-
 
 localStorage和sessionStorage的key和length属性实现遍历  
 sessionStorage和localStorage提供的key()和length可以方便的实现存储的数据遍历，例如下面的代码：
 
-
-
-
-
 storage事件  
 storage还提供了storage事件，当键值改变或者clear的时候，就可以触发storage事件，如下面的代码就添加了一个storage事件改变的监听：
 
-
-
-
-
 storage事件对象的具体属性如下表：
-
-
-
-
 
 ### [][6]空间大小
 

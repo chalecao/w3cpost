@@ -2,15 +2,9 @@
 title: Pecha kucha提升效率
 
 
-date: 2020-01-21T05:03:44+00:00
-url: /pwa/5540.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e268596e83c8.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e268596e83c8.png
-fifu_image_alt:
-  - 自动草稿
-views:
-  - 801
+
+
+
 
 
 ---
@@ -59,7 +53,7 @@ Pecha kucha是一种演讲形式，该演讲规定使用20张演示文稿，并�
         <img loading="lazy" width="800" height="450" class="alignnone size-full wp-image-5542 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26855a69b62.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26855a69b62.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26855a69b62.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26855a69b62.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_169/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26855a69b62.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_432/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
       </p>
     </div>
-    
+
     <p>
       —
     </p>

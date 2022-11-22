@@ -1,23 +1,6 @@
 ---
 title: js模拟红白机jsnes任天堂游戏机
 
-
-date: 2017-08-28T10:04:04+00:00
-excerpt: |
-  研究了一下网页运行红白机，其实这个很早就有老外写了这个模拟器，用js代码写的模拟红白机的硬件，然后加载nes格式的游戏，但是支持的知识较早的nes游戏rom，貌似后来开发的都不支持。
-  奉上我做的网页版：FC游戏机：https://game.haomou.net/，也可以关注我的微信公众号，见左边。可以直接在手机上玩。
-url: /javascriptnodejs/662.html
-views:
-  - 3676
-  - 3676
-fifu_image_url:
-  - https://www.fed123.com/wp-content/uploads/2017/08/1-1F603141504352.jpg
-  - https://www.fed123.com/wp-content/uploads/2017/08/1-1F603141504352.jpg
-fifu_image_alt:
-  - js模拟红白机jsnes
-  - js模拟红白机jsnes
-
-
 ---
 研究了一下网页运行红白机，其实这个很早就有老外写了这个模拟器，用js代码写的模拟红白机的硬件，然后加载nes格式的游戏，但是支持的知识较早的nes游戏rom，貌似后来开发的都不支持。  
 奉上我做的网页版：<a href="https://chalecao.github.io/game/index.html" target="_blank" rel="external noopener">FC游戏机</a>
@@ -26,7 +9,7 @@ fifu_image_alt:
 
 游戏机GIT代码： <a href="https://github.com/chalecao/game.git" target="_blank" rel="external noopener">https://github.com/chalecao/game.git</a> （欢迎给我点星星哦，欢迎fork）
 
-![js模拟红白机jsnes][1] 
+![js模拟红白机jsnes][1]
 
 ### fc硬件
 
@@ -50,7 +33,7 @@ Nintendo Entertainment System声音处理器： 矩形声波处理器两个，�
 
 抽空优化优化，大家可以玩玩我做的网页版的，也欢迎打赏哈！
 
-<img loading="lazy" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/qrcoderead-1.jpg" alt="js模拟红白机jsnes" width="150" height="150" /> 
+<img loading="lazy" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/qrcoderead-1.jpg" alt="js模拟红白机jsnes" width="150" height="150" />
 
 ### 谢谢！
 

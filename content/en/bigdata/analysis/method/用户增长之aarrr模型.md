@@ -2,14 +2,6 @@
 title: 用户增长之AARRR模型
 
 
-date: 2021-05-09T02:42:37+00:00
-url: /用户增长/6675.html
-views:
-  - 350
-classic-editor-remember:
-  - classic-editor
-
-
 ---
 从来没有人预测到2020年初可能会爆发一场毁灭性的大流行，冠状病毒流行像是一只“黑天鹅”，整个社会乱了节奏。停工停产停课停交通，封城封村，这是新中国成立后第一次封城。任性的黑天鹅挥挥翅膀，大批中小企业“阵亡”。
 
@@ -25,12 +17,12 @@ classic-editor-remember:
 
 很多人听说过AARRR增长模型，该模型的特点是构成增长闭环。
 
-<img class="article_img" title="鸟哥笔记,用户运营,卡卡的产品札记,促活,激活,增长,拉新,拉新,留存" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/10929971935f572366936194.27546600.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/10929971935f572366936194.27546600.jpeg?x-oss-process=image/format,webp" alt="鸟哥笔记,用户运营,卡卡的产品札记,促活,激活,增长,拉新,拉新,留存" /> 
+<img class="article_img" title="鸟哥笔记,用户运营,卡卡的产品札记,促活,激活,增长,拉新,拉新,留存" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/10929971935f572366936194.27546600.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/10929971935f572366936194.27546600.jpeg?x-oss-process=image/format,webp" alt="鸟哥笔记,用户运营,卡卡的产品札记,促活,激活,增长,拉新,拉新,留存" />
 
 **在获客成本极高的今天，通过推广获得用户只是终末节点，很难有竞争优势，唯有用户成为新的传播起点进行裂变，才能得到更大的增长力量。**
 
 <div class="e-secret">
-  </p> 
+  </p>
   
   <h2>
     <strong>三、增长方法</strong>
@@ -140,7 +132,7 @@ classic-editor-remember:
     怎样才能让产品数据达到魔法数字？早期创业公司为了实现效益最大化以及成本最小化，都会到竞争对手挖墙脚薅羊毛。当时Airbnb也瞄准了最大的竞争对手 Craigslist，它使用技术营销（增长黑客）手段为Airbnb带来了可观收入。当时采用的技术营销手段一共3个流程：
   </p><section> <section> <section> <section> <section> <section> <section>
   
-  <strong>增长方式：</strong></section> </section> </section> </section> </section> </section> <section> <section> <section> <section> <section> <section>①从现有平台挖掘新用户②用户在Airbnb上发布的信息，用黑客的方式复制一份到竞争对手 Craigslist网站上③利用第三方邮件系统。当系统检测到Craigslist的招租信息时，模拟成客户给房主留言，并通过Craigslist自动的邮件系统回复信息。</section> </section> </section> </section> </section> </section> </section> 
+  <strong>增长方式：</strong></section> </section> </section> </section> </section> </section> <section> <section> <section> <section> <section> <section>①从现有平台挖掘新用户②用户在Airbnb上发布的信息，用黑客的方式复制一份到竞争对手 Craigslist网站上③利用第三方邮件系统。当系统检测到Craigslist的招租信息时，模拟成客户给房主留言，并通过Craigslist自动的邮件系统回复信息。</section> </section> </section> </section> </section> </section> </section>
   
   <p>
     Airbn的增长黑客方式让人不可思议。获得用户增长的Airbnb继续通过优化房屋图片（这是Airbnb产品的Aha moment）、房东保障金计划等策略，完成了高比例的激活和留存，最终获得高额利润。增长引擎启动，用户的分享推荐让Airbnb成为今天口碑极佳的民宿短租公寓平台。

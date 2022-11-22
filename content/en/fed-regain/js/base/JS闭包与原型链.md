@@ -2,23 +2,12 @@
 title: JS闭包与原型链
 
 
-date: 2017-08-29T15:55:35+00:00
-excerpt: 突然想看一看javascript中的闭包与原型链的知识。这个记得不太清楚了，所以特地复习一下，看了网上许多博客，都讲解的不清楚。所以特地总结一下。
-url: /javascriptnodejs/630.html
-views:
-  - 1763
-  - 1763
-wl_pageviews:
-  - 1
-  - 1
-
-
 ---
 ## 前言
 
 突然想看一看javascript中的闭包与原型链的知识。这个记得不太清楚了，所以特地复习一下，看了网上许多博客，都讲解的不清楚。所以特地总结一下。
 
-<img loading="lazy" class="alignnone size-medium wp-image-743" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/read-1-300x167.png" alt="" width="300" height="167" /> 
+<img loading="lazy" class="alignnone size-medium wp-image-743" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/read-1-300x167.png" alt="" width="300" height="167" />
 
 转载请注明出处：<//fed123.oss-ap-southeast-2.aliyuncs.com/2017/08/29/jsbibaoyuyuanxinglian/>
 
@@ -98,7 +87,7 @@ alert("member: " + num);//alert出原型所有成员个数。
 
 <pre class="pure-highlightjs"><code class="">function A(x){
 　　this.x=x;
-} 
+}
 function B(x,y){
 　　this.tmpObj=A;
 　　this.tmpObj(x);
@@ -150,15 +139,15 @@ alert(B.prototype.constructor)出来后就是”function A(x){…}” 。同样�
 
 <pre class="pure-highlightjs"><code class="">var decimalDigits = 2,
 tax = 5;
- 
+
 function add(x, y) {
 return x + y;
 }
- 
+
 function subtract(x, y) {
 return x - y;
 }
- 
+
 //alert(add(1, 3));
 </code>&lt;/code></pre>
 
@@ -176,7 +165,7 @@ this.tax = tax;
 add: function (x, y) {
 return x + y;
 },
- 
+
 subtract: function (x, y) {
 return x - y;
 }
@@ -190,13 +179,13 @@ return x - y;
 
 #### 原型使用方式2
 
-当我们把一堆方法写到Calculator中，但是有些方法我们不想对外公开，即实现public/private，那么我们只能返回公开的方法:<figure> 
+当我们把一堆方法写到Calculator中，但是有些方法我们不想对外公开，即实现public/private，那么我们只能返回公开的方法:<figure>
 
 <table>
   <tr>
     <td>
         1
-      
+
         2
       
         3
@@ -262,17 +251,17 @@ return x - y;
         }();
     </td>
   </tr>
-</table></figure> 
+</table></figure>
 
 这里用利用函数自执行在加载文件同时，执行上面的JS代码，那么我们就可以访问对外公开的方法和属性。访问方法：(new Calculaotr()).A(1,2); 错误的访问方法：(new Calculaotr()).add(1,2);
 
-我们可能会遇到这样的情况，类A的一个属性是B类型，在JS中，可以通过以下方式实现:<figure> 
+我们可能会遇到这样的情况，类A的一个属性是B类型，在JS中，可以通过以下方式实现:<figure>
 
 <table>
   <tr>
     <td>
         1
-      
+
         2
       
         3
@@ -334,19 +323,19 @@ return x - y;
         Calculator.prototype = new BaseCalculator();
     </td>
   </tr>
-</table></figure> 
+</table></figure>
 
 这里我们可以看到Calculator的原型是指向到BaseCalculator的一个实例上，目的是让Calculator集成它的add(x,y)和subtract(x,y)这2个function，
 
 还有一点要说的是，由于它的原型是BaseCalculator的一个实例，所以不管你创建多少个Calculator对象实例，他们的原型指向的都是同一个实例。
 
-如果我们不想让Calculator对象访问BaseCalculator的decimalDigits属性，可以这样:<figure> 
+如果我们不想让Calculator对象访问BaseCalculator的decimalDigits属性，可以这样:<figure>
 
 <table>
   <tr>
     <td>
         1
-      
+
         2
       
         3
@@ -408,19 +397,19 @@ return x - y;
         Calculator.prototype =new prototype;
     </td>
   </tr>
-</table></figure> 
+</table></figure>
 
 通过以上两种原型使用方式，结合C#中的继承，不难想到JS中如何重写原型。
 
 重写原型:
 
-在项目中，引入外部JS库，但是有些方法并不是我们想要的，此时我们通过重写原型，就可以达到我们想要的结果:<figure> 
+在项目中，引入外部JS库，但是有些方法并不是我们想要的，此时我们通过重写原型，就可以达到我们想要的结果:<figure>
 
 <table>
   <tr>
     <td>
         1
-      
+
         2
       
         3
@@ -438,15 +427,15 @@ return x - y;
         }
     </td>
   </tr>
-</table></figure> 
+</table></figure>
 
-### 原型链应用<figure> 
+### 原型链应用<figure>
 
 <table>
   <tr>
     <td>
         1
-      
+
         2
       
         3
@@ -552,17 +541,17 @@ return x - y;
         {toString: &#8230; /* etc. */};
     </td>
   </tr>
-</table></figure> 
+</table></figure>
 
 上面的例子中，test 对象从 Bar.prototype 和 Foo.prototype 继承下来；因此，它能访问 Foo 的原型方法 method。同时，它也能够访问那个定义在原型上的 Foo 实例属性 value。需要注意的是 new Bar() 不会创造出一个新的 Foo 实例，而是重复使用它原型上的那个实例；因此，所有的 Bar 实例都会共享相同的 value 属性。
 
-当查找一个对象的属性时，会遍历原型链，一直往顶层Object找，如果没有找到，则返回undefined.<figure> 
+当查找一个对象的属性时，会遍历原型链，一直往顶层Object找，如果没有找到，则返回undefined.<figure>
 
 <table>
   <tr>
     <td>
         1
-      
+
         2
       
         3
@@ -632,17 +621,17 @@ return x - y;
         alert(f.subtract(1, 2)); //结果是-1
     </td>
   </tr>
-</table></figure> 
+</table></figure>
 
 以上add函数返回的是3，而不是13则说明，属性查找时，优先查找自己的属性。然后在往上一级找，最后找Object，这样看来，在遍历时用for in效率就是个问题。
 
-还有一点，我们可以赋值任何类型的对象到原型上，但是不能赋值原子类型的值，比如如下代码是无效的：<figure> 
+还有一点，我们可以赋值任何类型的对象到原型上，但是不能赋值原子类型的值，比如如下代码是无效的：<figure>
 
 <table>
   <tr>
     <td>
         1
-      
+
         2
     </td>
     
@@ -652,33 +641,33 @@ return x - y;
         Foo.prototype = 1; // 无效
     </td>
   </tr>
-</table></figure> 
+</table></figure>
 
 hasOwnProperty是判断一个对象是否包含自定义属性而不是原型链上的属性，是JS中唯一一个查找属性，但不查找原型链的函数。
 
-但是JS不会保护hasOwnProperty函数，如果刚好某个对象中也有hasOwnProperty函数，则我们可以通过以下方式正确获得想要的结果:<figure> 
+但是JS不会保护hasOwnProperty函数，如果刚好某个对象中也有hasOwnProperty函数，则我们可以通过以下方式正确获得想要的结果:<figure>
 
 <table>
   <tr>
     <td>
         1
     </td>
-    
+
     <td>
         alert({}.hasOwnProperty.call(c, &#8216;tax&#8217;));//返回true
     </td>
   </tr>
-</table></figure> 
+</table></figure>
 
 这里的c是Calculator的一个对象,tax是我们要找的属性。
 
-当我面在for in loop 语句中查找属性时，用hasOwnProperty函数，提高效率:<figure> 
+当我面在for in loop 语句中查找属性时，用hasOwnProperty函数，提高效率:<figure>
 
 <table>
   <tr>
     <td>
         1
-      
+
         2
       
         3
@@ -708,7 +697,7 @@ hasOwnProperty是判断一个对象是否包含自定义属性而不是原型链
         }//此时只会输出moo属性
     </td>
   </tr>
-</table></figure> 
+</table></figure>
 
 ### 谢谢！
 

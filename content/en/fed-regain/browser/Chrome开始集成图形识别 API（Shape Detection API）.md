@@ -1,17 +1,6 @@
 ---
 title: Chrome开始集成图形识别 API（Shape Detection API）
 
-
-date: 2018-02-24T05:40:25+00:00
-url: /aistack/1564.html
-views:
-  - 1417
-  - 1417
-like:
-  - 1
-  - 1
-
-
 ---
 最近，Chrome团队尝试在Chrome中集成了一套与图形识别相关的API，使得图形识别这种以前只在原生应用中存在，或者在浏览器上，要借助其他难用的外部库才能实现的功能，现在只要少量代码即可实现。这些API包括**人脸识别**，**条形码/二维码识别**和**文本识别**，基本上覆盖了当前互联网应用的大部分场景。
 
@@ -23,7 +12,7 @@ like:
   <tr>
     <td valign="top" width="132">
     </td>
-    
+
     <td valign="top" width="132">
       <a title="Android" href="https://www.linuxidc.com/topicnews.aspx?tid=11" target="_blank" rel="noopener">Android</a>
     </td>
@@ -41,7 +30,7 @@ like:
     <td valign="top" width="132">
       条形码
     </td>
-    
+
     <td valign="top" width="132">
       <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary">vision.barcode</a>
     </td>
@@ -59,7 +48,7 @@ like:
     <td valign="top" width="132">
       人脸
     </td>
-    
+
     <td valign="top" width="132">
       <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/face/package-summary">vision.face</a>
     </td>
@@ -77,7 +66,7 @@ like:
     <td valign="top" width="132">
       文本
     </td>
-    
+
     <td valign="top" width="132">
       <a href="https://developers.google.com/android/reference/com/google/android/gms/vision/text/package-summary">vision.text</a>
     </td>
@@ -96,9 +85,9 @@ like:
 
 激活后，在Console控制台输入以下JavaScript代码，就能验证你的浏览器是否支持相应的API了：
 
-  * `window.FaceDetector`
-  * `window.BarcodeDetector`
-  * `window.TextDetector`
+* `window.FaceDetector`
+* `window.BarcodeDetector`
+* `window.TextDetector`
 
 如果支持，就会返回如`function FaceDetector() { [native code] }`的信息。
 
@@ -106,12 +95,12 @@ like:
 
 从现在公布的信息来看，以下这些场景可能得以轻松实现：
 
-  1. 人脸识别： 
+  1. 人脸识别：
       * 自动框选你家庭聚会照片里的亲戚朋友们，然后你就可以给每个人都贴标签了，不用自己逐个框选。
       * 在社交网站上注册的时候，你上传了一张照片，浏览器可以帮你裁剪好最佳尺寸。
-  2. 条形码识别： 
+  2. 条形码识别：
       * 识别网页中的条形码/二维码，并作相应的动作，比如链接跳转，支付等等。
-  3. 文本识别： 
+  3. 文本识别：
       * OCR
       * 配合语音接口，朗读图片中的文字
 
@@ -121,8 +110,8 @@ like:
 
 图形识别虽然是刚需，但自去年底公布消息以来，可能是由于这些API尚处于实验阶段，尚待打磨，在开发社区内还未形成大范围的讨论，目前能收集到的主要是以下资料供开发者参考。
 
-  * [API: Accelerated Shape Detection in Images][5] &#8211; by [Miguel Casas-Sanchez (Google Inc.)][6] | [中文版][7] by [谈浩][8]
-  * [Face detection using Shape Detection API &#8211; by Paul Kinlan][9]
+* [API: Accelerated Shape Detection in Images][5] &#8211; by [Miguel Casas-Sanchez (Google Inc.)][6] | [中文版][7] by [谈浩][8]
+* [Face detection using Shape Detection API &#8211; by Paul Kinlan][9]
 
 不过正因为进化迅速，这套图形识别API从去年的M57版本发展至今，已经发生了不小的变化，也许在不久的将来，就会合并到稳定版中，真正为广大开发者所用，构建更多有趣的应用。
 

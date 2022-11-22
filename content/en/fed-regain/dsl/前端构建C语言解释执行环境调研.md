@@ -2,14 +2,6 @@
 title: 前端构建C语言解释执行环境调研
 
 
-date: 2017-08-28T05:20:12+00:00
-excerpt: 有没想过在浏览器中直接运行其他语言？有没有想过写完c语言，能够立即在浏览器上编译运行。其实也没什么卵用了。只不过是的确可以基于js语言来构造其他语言的解析器。
-url: /pwa/639.html
-views:
-  - 2036
-  - 2036
-
-
 ---
 ## 关于编译器
 
@@ -38,11 +30,11 @@ views:
 论文中采用PEG（ parsing expression grammar）解析表达式语法编写c语言解析器，在调研中发现还有类似的解决方案chevrotain，主要基于LL(K)词法分析。  
 参考：peg方案 &#8211; <a href="https://pegjs.org/" target="_blank" rel="external noopener">https://pegjs.org/</a> ， LL(K)方案 &#8211; <a href="https://github.com/SAP/chevrotain" target="_blank" rel="external noopener">https://github.com/SAP/chevrotain</a>
 
-![前端构建C语言解释执行环境调研][1] 
+![前端构建C语言解释执行环境调研][1]
 
 2） 编译c语言为JS，然后执行（后端编译，前端执行）  
 参考：<a href="https://www.oschina.net/translate/asmjs-javascript-compile-target" target="_blank" rel="external noopener">https://www.oschina.net/translate/asmjs-javascript-compile-target</a>  
-![前端构建C语言解释执行环境调研][2] 
+![前端构建C语言解释执行环境调研][2]
 
 3）服务端编译执行c语言程序，返回执行结果，前端展示
 

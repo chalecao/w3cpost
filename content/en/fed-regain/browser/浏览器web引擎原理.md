@@ -1,15 +1,6 @@
 ---
 title: 浏览器JS引擎工作原理
 
-
-date: 2020-11-21T16:28:05+00:00
-url: /javascriptnodejs/6394.html
-classic-editor-remember:
-  - classic-editor
-views:
-  - 595
-
-
 ---
 本文主要介绍浏览器引擎基本知识，介绍javascript虚拟机如何解析执行JS脚本，以及期间可以做的优化工作。
 

@@ -1,21 +1,8 @@
 ---
 title: 阿里巴巴流计算引擎Blink
 
-
-date: 2018-12-28T02:19:00+00:00
-url: /aistack/3405.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d29cbb553.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d29cbb553.png
-onesignal_meta_box_present:
-  - 1
-fifu_image_alt:
-  - 阿里巴巴流计算引擎Blink
-views:
-  - 1449
-
-
 ---
+
 阿里巴巴是世界上最大的电子商务零售商。 我们在 2015 年的年销售额总计 3940 亿美元，超过 eBay 和亚马逊之和。阿里巴巴搜索（个性化搜索和推荐平台）是客户的关键入口，并承载了大部分在线收入，因此搜索基础架构团队需要不断探索新技术来改进产品。
 
 在电子商务网站应用场景中，什么能造就一个强大的搜索引擎？答案就是尽可能的为每个用户提供实时相关和准确的结果。同样一个不容忽视的问题就是阿里巴巴的规模，当前很难找到能够适合我们的技术。
@@ -42,8 +29,8 @@ Apache Flink? 就是一种这样的技术，阿里巴巴正在使用基于 Flink
 
 这 3 个阶段实际上是在经典的“lambda 架构”中的 2 个不同的 pipeline 上运行：全量构建 pipeline 和增量构建 pipeline。
 
-  * 在全量构建 pipeline 中，我们需要处理所有数据源，这通常是一个批处理作业。
-  * 在增量构建 pipeline 中，我们需要处理在批处理作业完成后发生的更新。例如，卖家可能修改商品价格或商品描述以及库存量的变化。这些信息需要尽可能快的反馈在搜索结果中。增量构建 pipeline 通常是一个流式作业。
+* 在全量构建 pipeline 中，我们需要处理所有数据源，这通常是一个批处理作业。
+* 在增量构建 pipeline 中，我们需要处理在批处理作业完成后发生的更新。例如，卖家可能修改商品价格或商品描述以及库存量的变化。这些信息需要尽可能快的反馈在搜索结果中。增量构建 pipeline 通常是一个流式作业。
 
 ## 搜索算法实时 A/B 测试
 
@@ -71,10 +58,10 @@ Apache Flink? 就是一种这样的技术，阿里巴巴正在使用基于 Flink
 
 选择 Flink 应用到搜索基础架构中，我们在四个方面做过评估。 Flink 在四个方面都满足我们的要求。
 
-  * **敏捷：** 我们期望能够为整个（2 个 pipeline）搜索基础架构流程维护一套代码，因此需要一个高级的 API 来满足我们的业务逻辑。
-  * **一致性：** 卖方或商品数据库发生的变化必须反馈在最终搜索结果中，因此搜索基础架构团队需要至少处理一次（at-least-once）的语义（对于公司中的一些其他 Flink 用例，要求正好一次（exactly-once）语义）。
-  * **低延迟：** 当商品库存量发生变化时，必须尽快在搜索结果中得到体现。例如我们不想给售罄的商品给出很高的搜索排名。
-  * **成本：** 阿里巴巴需要处理大量数据，以我们的集群规模，效率提高可以显著的降低成本。因此我们需要一个高性能、高吞吐量的框架。
+* **敏捷：** 我们期望能够为整个（2 个 pipeline）搜索基础架构流程维护一套代码，因此需要一个高级的 API 来满足我们的业务逻辑。
+* **一致性：** 卖方或商品数据库发生的变化必须反馈在最终搜索结果中，因此搜索基础架构团队需要至少处理一次（at-least-once）的语义（对于公司中的一些其他 Flink 用例，要求正好一次（exactly-once）语义）。
+* **低延迟：** 当商品库存量发生变化时，必须尽快在搜索结果中得到体现。例如我们不想给售罄的商品给出很高的搜索排名。
+* **成本：** 阿里巴巴需要处理大量数据，以我们的集群规模，效率提高可以显著的降低成本。因此我们需要一个高性能、高吞吐量的框架。
 
 一般来说，有两种方法来将批处理和流式处理统一起来。一种方法是将批处理作为基本出发点，在批处理框架上支持流式处理。这可能不符合真正意义上低延迟，因为用微批量处理（micro-batching）模拟流式处理需要一些固定的开销。因此，当试图减少延迟时，开销的比例也会相应增加。在我们的规模上，为每个微批量处理器调度 1000 个任务，需要重新建立连接并重新加载状态。因此在某种程度上，微批处理方法代价太高将变得没有意义。
 
@@ -86,8 +73,8 @@ Blink 是 Flink 的一个分支版本，我们做了一定的改进以满足阿�
 
 Blink 的改进主要包括两个方面：
 
-  * Table API 更完整，因此我们可以使用相同的 SQL 进行批处理和流式处理。
-  * 更强大的 YARN 模式，但仍然 100％兼容 Flink 的 API 和更广泛的生态系统。
+* Table API 更完整，因此我们可以使用相同的 SQL 进行批处理和流式处理。
+* 更强大的 YARN 模式，但仍然 100％兼容 Flink 的 API 和更广泛的生态系统。
 
 ## Table API
 
@@ -125,7 +112,7 @@ Blink 中每个作业都有自己的 JobMaster，以根据作业需要请求和�
 
 在 Flink 中，Checkpoint 操作分为两个阶段：在本地获取状态快照，然后将状态快照保存到 HDFS（或另一个存储系统），并且每个快照的整个状态存储在 HDFS 中。我们的状态数据太大了，这种方法是不可行的，所以 Blink 只存储修改的状态在 HDFS 中，这能够大大提高 Checkpoint 的效率。这种修改使我们能够在生产环境中使用很大的状态数据。
 
-<img loading="lazy" width="447" height="268" class="alignnone size-full wp-image-3581 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2f765a23.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2f765a23.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2f765a23.png?x-oss-process=image/format,webp 447w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2f765a23.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_180/format,webp 300w" sizes="(max-width: 447px) 100vw, 447px" /> 
+<img loading="lazy" width="447" height="268" class="alignnone size-full wp-image-3581 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2f765a23.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2f765a23.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2f765a23.png?x-oss-process=image/format,webp 447w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2f765a23.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_180/format,webp 300w" sizes="(max-width: 447px) 100vw, 447px" />
 
 ## 异步 I/O
 

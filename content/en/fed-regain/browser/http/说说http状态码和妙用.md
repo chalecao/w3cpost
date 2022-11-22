@@ -2,17 +2,6 @@
 title: 说说http状态码和妙用
 
 
-date: 2019-06-07T05:42:35+00:00
-url: /html5css3/4447.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf9f88b1376f.jpeg
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf9f88b1376f.jpeg
-fifu_image_alt:
-  - 说说http状态码和妙用
-views:
-  - 871
-like:
-  - 3
 
 
 ---

@@ -2,17 +2,6 @@
 title: websocket建立连接
 
 
-date: 2019-07-19T14:30:17+00:00
-url: /javascriptnodejs/4809.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e5216e90c.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e5216e90c.png
-fifu_image_alt:
-  - websocket建立连接
-views:
-  - 1384
-like:
-  - 3
 
 
 ---
@@ -82,12 +71,12 @@ Sec-WebSocket-Accept: server-random-string
 
 很显然，要支持WebSocket通信，浏览器得支持这个协议，这样才能发出`ws://xxx`的请求。目前，支持WebSocket的主流浏览器如下：
 
-  * Chrome
-  * Firefox
-  * IE >= 10
-  * Sarafi >= 6
-  * Android >= 4.4
-  * iOS >= 8
+* Chrome
+* Firefox
+* IE >= 10
+* Sarafi >= 6
+* Android >= 4.4
+* iOS >= 8
 
 ### 服务器
 

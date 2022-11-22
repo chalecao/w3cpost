@@ -2,19 +2,7 @@
 title: 大话JavaScript 引擎扫盲篇
 
 
-date: 2019-01-15T01:52:05+00:00
-url: /javascriptnodejs/3443.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c89ca151.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c89ca151.png
-onesignal_meta_box_present:
-  - 1
-fifu_image_alt:
-  - 大话JavaScript 引擎扫盲篇
-views:
-  - 1043
-like:
-  - 1
+
 
 
 ---
@@ -48,7 +36,7 @@ JavaScript 虚拟机是一种进程虚拟机，专门设计来解释和执行的
 
 * * *
 
-# 
+#
 
 # **什么是 JavaScript 引擎**
 
@@ -108,7 +96,7 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
     <th>
       Browser, Headless Browser, or Runtime
     </th>
-    
+
     <th>
       JavaScript Engine
     </th>
@@ -118,7 +106,7 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
     <td>
       Mozilla
     </td>
-    
+
     <td>
       Spidermonkey
     </td>
@@ -128,7 +116,7 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
     <td>
       Chrome
     </td>
-    
+
     <td>
       V8
     </td>
@@ -138,7 +126,7 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
     <td>
       Safari
     </td>
-    
+
     <td>
       JavaScriptCore
     </td>
@@ -148,7 +136,7 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
     <td>
       IE and Edge
     </td>
-    
+
     <td>
       Chakra
     </td>
@@ -158,7 +146,7 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
     <td>
       PhantomJS
     </td>
-    
+
     <td>
       JavaScriptCore
     </td>
@@ -168,7 +156,7 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
     <td>
       HTMLUnit
     </td>
-    
+
     <td>
       Rhino
     </td>
@@ -178,7 +166,7 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
     <td>
       TrifleJS
     </td>
-    
+
     <td>
       V8
     </td>
@@ -188,7 +176,7 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
     <td>
       Node.js
     </td>
-    
+
     <td>
       V8
     </td>
@@ -198,7 +186,7 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
     <td>
       Io.js<em>*</em>
     </td>
-    
+
     <td>
       V8
     </td>

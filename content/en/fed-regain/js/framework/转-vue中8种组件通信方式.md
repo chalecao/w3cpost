@@ -2,28 +2,16 @@
 title: '转: vue中8种组件通信方式'
 
 
-date: 2019-08-14T14:54:01+00:00
-url: /javascriptnodejs/4952.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d54205637882.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d54205637882.png
-fifu_image_alt:
-  - 自动草稿
-like:
-  - 3
-views:
-  - 780
-
 
 ---
 <div>
   <p>
     vue是数据驱动视图更新的框架, 所以对于vue来说组件间的数据通信非常重要，那么组件之间如何进行数据通信的呢？ 首先我们需要知道在vue中组件之间存在什么样的关系, 才更容易理解他们的通信方式, 就好像过年回家，坐着一屋子的陌生人，相互之间怎么称呼，这时就需要先知道自己和他们之间是什么样的关系。 vue组件中关系说明:
-  </p><figure> 
+  </p><figure>
   
   <p id="fGchZMH">
     <img loading="lazy" width="462" height="402" class="alignnone size-full wp-image-4954 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d54205637882.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d54205637882.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d54205637882.png?x-oss-process=image/format,webp 462w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d54205637882.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_261/format,webp 300w" sizes="(max-width: 462px) 100vw, 462px" />
-  </p><figcaption></figcaption></figure> 
+  </p><figcaption></figcaption></figure>
   
   <p>
     如上图所示, A与B、A与C、B与D、C与E组件之间是父子关系； B与C之间是兄弟关系；A与D、A与E之间是隔代关系； D与E是堂兄关系（非直系亲属） 针对以上关系我们归类为：
@@ -160,7 +148,7 @@ views:
   
   <h3 class="heading" data-id="heading-3">
     二、 <code>$children</code> / <code>$parent</code>
-  </h3><figure><figcaption></figcaption></figure> 
+  </h3><figure><figcaption></figcaption></figure>
   
   <p>
     上面这张图片是<code>vue</code>官方的解释，通过<code>$parent</code>和<code>$children</code>就可以访问组件的实例，拿到实例代表什么？代表可以访问此组件的所有方法和<code>data</code>。接下来就是怎么实现拿到指定组件的实例。
@@ -268,7 +256,7 @@ views:
 
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
   &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-	&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">comB&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">comB&lt;/span>&gt;&lt;/span>
+ &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">comB&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">comB&lt;/span>&gt;&lt;/span>
   &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
 &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
 
@@ -433,7 +421,7 @@ views:
 
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
   &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> @&lt;span class="hljs-attr">click&lt;/span>=&lt;span class="hljs-string">"additionHandle"&lt;/span>&gt;&lt;/span>+加法器&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>    
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> @&lt;span class="hljs-attr">click&lt;/span>=&lt;span class="hljs-string">"additionHandle"&lt;/span>&gt;&lt;/span>+加法器&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
   &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
 &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
 
@@ -771,7 +759,7 @@ Vue.use(Vuex)
     &lt;span class="hljs-attr">age&lt;/span>: &lt;span class="hljs-built_in">String&lt;/span>
   },
   created() {
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-keyword">this&lt;/span>.$attrs); 
+    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-keyword">this&lt;/span>.$attrs);
     &lt;span class="hljs-comment">// { "gender": "女", "height": "158", "title": "程序员成长指北" }&lt;/span>
   }
 };

@@ -2,12 +2,6 @@
 title: 函数式编程处理IF块
 
 
-date: 2018-06-25T17:13:54+00:00
-url: /javascriptnodejs/1896.html
-views:
-  - 1392
-  - 1392
-
 
 ---
 曾几何时，经常有人问我，“如果让你用函数式编程来实现X，该怎么做?”我比较喜欢这类的问题。我尽最大能力思考这类有趣的问题。本篇文章，我用一种更加函数式的方式来实现优雅处理IF函数块的问题。下面的代码有一个if块，但是没有else。
@@ -105,7 +99,7 @@ const someAction = value =&gt; dispatch =&gt;
 
 我们也可以使用MayBe Type，如果有值，返回Just type，否者就是Nothing type。我们使用<a class="markup--anchor markup--p-anchor" href="https://sanctuary.js.org/" target="_blank" rel="noopener" data-href="https://sanctuary.js.org/">Sanctuary</a> 类库。
 
-<pre class="pure-highlightjs"><code class="">/* Examples of Sanctuary's Maybe */
+<pre class="pure-highlightjs"><code class="">/*Examples of Sanctuary's Maybe*/
 
 toMaybe(null) //=&gt; Nothing
 toMaybe(undefined) //=&gt; Nothing

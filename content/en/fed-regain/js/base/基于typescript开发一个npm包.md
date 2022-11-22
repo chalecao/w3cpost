@@ -2,10 +2,6 @@
 title: 基于typescript开发一个npm包
 
 
-date: 2020-03-07T15:17:38+00:00
-url: /javascriptnodejs/5654.html
-views:
-  - 955
 baidu_record:
   - 1
 

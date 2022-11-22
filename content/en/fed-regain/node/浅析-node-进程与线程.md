@@ -1,15 +1,6 @@
 ---
 title: 浅析 Node 进程与线程
 
-
-date: 2020-11-17T16:47:51+00:00
-url: /javascriptnodejs/6368.html
-classic-editor-remember:
-  - classic-editor
-views:
-  - 475
-
-
 ---
 <div>
   <h2 class="heading" data-id="heading-1">
@@ -89,11 +80,11 @@ V8::Initialize();
   
   <p>
     下图为 Node 的进程结构图：
-  </p><figure> 
+  </p><figure>
   
   <p id="HJMNHzz">
     <img loading="lazy" class="alignnone wp-image-6365 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3fe3030b0e.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3fe3030b0e.png?x-oss-process=image/format,webp" alt="" width="721" height="423" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3fe3030b0e.png?x-oss-process=image/format,webp 1209w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3fe3030b0e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_176/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3fe3030b0e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_469/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3fe3030b0e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_450/format,webp 768w" sizes="(max-width: 721px) 100vw, 721px" />
-  </p><figcaption></figcaption></figure> 
+  </p><figcaption></figcaption></figure>
   
   <p>
     为了验证上述分析，我们运行示例二的代码，加入文件 I/O 操作：
@@ -141,11 +132,11 @@ console.log(process.pid);
   
   <p>
     相关流程可参照下图：
-  </p><figure> 
+  </p><figure>
   
   <p id="qzisZXa">
     <img loading="lazy" class="alignnone wp-image-6366 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3fe4f4dc48.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3fe4f4dc48.png?x-oss-process=image/format,webp" alt="" width="763" height="285" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3fe4f4dc48.png?x-oss-process=image/format,webp 1920w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3fe4f4dc48.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_112/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3fe4f4dc48.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_299/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3fe4f4dc48.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_287/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3fe4f4dc48.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_574/format,webp 1536w" sizes="(max-width: 763px) 100vw, 763px" />
-  </p><figcaption></figcaption></figure> 
+  </p><figcaption></figcaption></figure>
   
   <h2 class="heading" data-id="heading-5">
     子进程
@@ -289,7 +280,7 @@ if (cluster.isMaster) { // 主控节点逻辑
       worker.kill();
     });
   }
-    
+
   // 监听子进程退出的消息，直到子进程全部退出
   cluster.on('exit', worker =&gt; {
     console.log('worker ' + worker.process.pid + ' killed!');
@@ -401,7 +392,7 @@ Fibonacci(&lt;span class="hljs-number">43&lt;/span>) is &lt;span class="hljs-num
   <pre><code class="hljs js copyable" lang="js">&lt;span class="hljs-keyword">const&lt;/span> {
   isMainThread, parentPort, threadId, MessageChannel, Worker
 } = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'worker_threads'&lt;/span>);
- 
+
 &lt;span class="hljs-keyword">if&lt;/span> (isMainThread) {
   &lt;span class="hljs-keyword">const&lt;/span> worker1 = &lt;span class="hljs-keyword">new&lt;/span> Worker(__filename);
   &lt;span class="hljs-keyword">const&lt;/span> worker2 = &lt;span class="hljs-keyword">new&lt;/span> Worker(__filename);

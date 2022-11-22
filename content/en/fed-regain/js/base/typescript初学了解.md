@@ -1,15 +1,6 @@
 ---
 title: TypeScript初学了解
 
-
-date: 2019-08-29T10:55:48+00:00
-url: /javascriptnodejs/4988.html
-views:
-  - 969
-like:
-  - 2
-
-
 ---
 <div>
   <h2 class="heading" data-id="heading-0">
@@ -110,8 +101,8 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
     什么意思呢？意味着TypeScript的类型并不根据定义的名字绑定，只要是形似的类型，不管名称相不相同，都可以作为兼容类型（这很像所谓的duck typing），也就是说，下面的代码在TypeScript中是完全合法的：
   </p>
   
-  <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">class&lt;/span> Foo { method(input: &lt;span class="hljs-built_in">string&lt;/span>) { &lt;span class="hljs-comment">/* ... */&lt;/span> } }
-&lt;span class="hljs-keyword">class&lt;/span> Bar { method(input: &lt;span class="hljs-built_in">string&lt;/span>) { &lt;span class="hljs-comment">/* ... */&lt;/span> } }
+  <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">class&lt;/span> Foo { method(input: &lt;span class="hljs-built_in">string&lt;/span>) { &lt;span class="hljs-comment">/*...*/&lt;/span> } }
+&lt;span class="hljs-keyword">class&lt;/span> Bar { method(input: &lt;span class="hljs-built_in">string&lt;/span>) { &lt;span class="hljs-comment">/*...*/&lt;/span> } }
 &lt;span class="hljs-keyword">let&lt;/span> test: Foo = &lt;span class="hljs-keyword">new&lt;/span> Bar(); &lt;span class="hljs-comment">// no Error!&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
@@ -186,7 +177,7 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
       <th>
         可访问性
       </th>
-      
+
       <th>
         public
       </th>
@@ -1182,14 +1173,14 @@ Flag |=  EnvFlags.QQ | EnvFlags.Weixin; &lt;span class="hljs-comment">// 加入Q
     不过使用一般化的<code>export</code>更让我们容易获得智能提示：
   </p>
   
-  <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">import&lt;/span> &lt;span class="hljs-comment">/* here */&lt;/span> &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'something'&lt;/span>;
+  <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">import&lt;/span> &lt;span class="hljs-comment">/*here*/&lt;/span> &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'something'&lt;/span>;
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
     在这种情况下，一般编辑器是不会给出智能提示的。 而这种：
   </p>
   
-  <pre><code class="hljs bash copyable" lang="bash">import { /* here */ } from &lt;span class="hljs-string">'something'&lt;/span>;
+  <pre><code class="hljs bash copyable" lang="bash">import { /*here*/ } from &lt;span class="hljs-string">'something'&lt;/span>;
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
@@ -1245,7 +1236,7 @@ Highcharts.default.chart(&lt;span class="hljs-string">'container'&lt;/span>, { .
     <h1 class="heading" data-id="heading-0">
       原始数据类型
     </h1>
-    
+
     <p>
       JavaScript 的类型分为两种：原始数据类型和对象类型。
     </p>
@@ -1277,8 +1268,8 @@ Highcharts.default.chart(&lt;span class="hljs-string">'container'&lt;/span>, { .
 // 事实上 `new Boolean()` 返回的是一个 `Boolean` 对象
 &lt;span class="hljs-built_in">let&lt;/span> createdByNewBoolean: Boolean = new Boolean(1);
 
-//(直接调用 `Boolean` 也可以返回一个 `boolean` 类型) 
-&lt;span class="hljs-built_in">let&lt;/span> createdByBoolean: boolean = Boolean(1); 
+//(直接调用 `Boolean` 也可以返回一个 `boolean` 类型)
+&lt;span class="hljs-built_in">let&lt;/span> createdByBoolean: boolean = Boolean(1);
 
 &#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;数值&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;
 // 数值
@@ -1307,7 +1298,7 @@ Highcharts.default.chart(&lt;span class="hljs-string">'container'&lt;/span>, { .
 &lt;span class="hljs-built_in">let&lt;/span> u: undefined = undefined;
 &lt;span class="hljs-built_in">let&lt;/span> n: null = null;
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h2 class="heading" data-id="heading-2">
       错误的写法
     </h2>
@@ -1339,7 +1330,7 @@ Highcharts.default.chart(&lt;span class="hljs-string">'container'&lt;/span>, { .
 &lt;span class="hljs-built_in">let&lt;/span> u: undefined = 888;&#x274c;
 &lt;span class="hljs-built_in">let&lt;/span> n: null = 999;&#x274c;
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h1 class="heading" data-id="heading-3">
       任意值
     </h1>
@@ -1359,7 +1350,7 @@ Highcharts.default.chart(&lt;span class="hljs-string">'container'&lt;/span>, { .
 &lt;span class="hljs-keyword">let&lt;/span> any;
 any =&lt;span class="hljs-literal">true&lt;/span>;
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h2 class="heading" data-id="heading-5">
       错误的写法
     </h2>
@@ -1379,7 +1370,7 @@ any =&lt;span class="hljs-literal">true&lt;/span>;
     <pre><code class="hljs js copyable" lang="js">&lt;span class="hljs-comment">// 如果没有明确的指定类型，那么 TypeScript 会依照类型推论（Type Inference）的规则推断出一个类型。&lt;/span>
 &lt;span class="hljs-keyword">let&lt;/span> myFavoriteNumber = &lt;span class="hljs-string">'seven'&lt;/span>;  等价于  &lt;span class="hljs-keyword">let&lt;/span> myFavoriteNumber :string= &lt;span class="hljs-string">'seven'&lt;/span>;
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h2 class="heading" data-id="heading-8">
       错误的写法
     </h2>
@@ -1388,7 +1379,7 @@ any =&lt;span class="hljs-literal">true&lt;/span>;
 &lt;span class="hljs-keyword">let&lt;/span> myFavoriteNumber = &lt;span class="hljs-string">'seven'&lt;/span>;
 myFavoriteNumber = &lt;span class="hljs-number">7&lt;/span>;&#x274c;
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h1 class="heading" data-id="heading-9">
       联合类型
     </h1>
@@ -1408,7 +1399,7 @@ myFavoriteNumber = &lt;span class="hljs-number">7&lt;/span>;
     &lt;span class="hljs-keyword">return&lt;/span> something.toString();
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h2 class="heading" data-id="heading-11">
       错误的写法
     </h2>
@@ -1418,7 +1409,7 @@ myFavoriteNumber = &lt;span class="hljs-number">7&lt;/span>;
     &lt;span class="hljs-keyword">return&lt;/span> something.length;
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h1 class="heading" data-id="heading-12">
       对象的类型——接口
     </h1>
@@ -1438,13 +1429,12 @@ interface Person {
     &lt;span class="hljs-attr">age&lt;/span>: &lt;span class="hljs-number">25&lt;/span>
 };
 
-
 IUserInfo{
   &lt;span class="hljs-attr">age&lt;/span> : any;&lt;span class="hljs-comment">//定义一个任何变量的 age.&lt;/span>
   userName :string;&lt;span class="hljs-comment">//定义一个 username.&lt;/span>
 }
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">getUserInfo&lt;/span>(&lt;span class="hljs-params">user : IUserInfo&lt;/span>):&lt;span class="hljs-title">string&lt;/span>&lt;/span>{
-    &lt;span class="hljs-keyword">return&lt;/span> user.age+&lt;span class="hljs-string">"======"&lt;/span>+user.userName; 	
+    &lt;span class="hljs-keyword">return&lt;/span> user.age+&lt;span class="hljs-string">"======"&lt;/span>+user.userName;  
 }
   &#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;可选属性&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;
 
@@ -1484,7 +1474,7 @@ interface Person {
     &lt;span class="hljs-attr">gender&lt;/span>: &lt;span class="hljs-string">'male'&lt;/span>
 };
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h2 class="heading" data-id="heading-14">
       错误的写法
     </h2>
@@ -1518,7 +1508,7 @@ interface Person {
 
 tom.id = &lt;span class="hljs-number">89757&lt;/span>; &lt;span class="hljs-comment">// 不能被二次赋值&#x274c;&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h1 class="heading" data-id="heading-15">
       数组的类型
     </h1>
@@ -1545,7 +1535,7 @@ interface NumberArray {
 }
 
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h2 class="heading" data-id="heading-17">
       错误的做法
     </h2>
@@ -1557,13 +1547,12 @@ interface NumberArray {
 &lt;span class="hljs-keyword">let&lt;/span> fibonacci: number[] = [&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>, &lt;span class="hljs-number">5&lt;/span>];
 fibonacci.push(&lt;span class="hljs-string">'8'&lt;/span>);&#x274c;
 
-
 &lt;span class="hljs-comment">// 类数组（Array-like Object）不是数组类型，比如 arguments&lt;/span>
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">sum&lt;/span>() &lt;/span>{&#x274c;
     &lt;span class="hljs-keyword">let&lt;/span> args: number[] = &lt;span class="hljs-built_in">arguments&lt;/span>;
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h1 class="heading" data-id="heading-18">
       函数的类型
     </h1>
@@ -1606,7 +1595,6 @@ mySearch = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function
 &lt;span class="hljs-keyword">let&lt;/span> tomcat = buildName(&lt;span class="hljs-string">'Tom'&lt;/span>, &lt;span class="hljs-string">'Cat'&lt;/span>);
 &lt;span class="hljs-keyword">let&lt;/span> tom = buildName(&lt;span class="hljs-string">'Tom'&lt;/span>);
 
-
 &#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;参数默认值&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">buildName&lt;/span>(&lt;span class="hljs-params">firstName: string, lastName: string = &lt;span class="hljs-string">'Cat'&lt;/span>&lt;/span>) &lt;/span>{
     &lt;span class="hljs-keyword">return&lt;/span> firstName + &lt;span class="hljs-string">' '&lt;/span> + lastName;
@@ -1623,9 +1611,8 @@ mySearch = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function
 &lt;span class="hljs-keyword">let&lt;/span> a = [];
 push(a, &lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>);
 
-
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h2 class="heading" data-id="heading-20">
       错误的做法
     </h2>
@@ -1654,7 +1641,7 @@ sum(&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;
 &lt;span class="hljs-keyword">let&lt;/span> tomcat = buildName(&lt;span class="hljs-string">'Tom'&lt;/span>, &lt;span class="hljs-string">'Cat'&lt;/span>);
 &lt;span class="hljs-keyword">let&lt;/span> tom = buildName(&lt;span class="hljs-literal">undefined&lt;/span>, &lt;span class="hljs-string">'Tom'&lt;/span>);
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h1 class="heading" data-id="heading-21">
       断言
     </h1>
@@ -1672,7 +1659,7 @@ sum(&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;
     }
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h2 class="heading" data-id="heading-23">
       错误的做法
     </h2>
@@ -1682,7 +1669,7 @@ sum(&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;
     &lt;span class="hljs-keyword">return&lt;/span> something.length;
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h1 class="heading" data-id="heading-24">
       类型别名
     </h1>
@@ -1703,7 +1690,7 @@ type NameOrResolver = Name | NameResolver;
     }
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h1 class="heading" data-id="heading-26">
       枚举
     </h1>
@@ -1712,7 +1699,7 @@ type NameOrResolver = Name | NameResolver;
       正确的做法
     </h2>
     
-    <pre><code class="hljs js copyable" lang="js">&lt;span class="hljs-comment">// 枚举（Enum）类型用于取值被限定在一定范围内的场景，比如一周只能有七天	&lt;/span>
+    <pre><code class="hljs js copyable" lang="js">&lt;span class="hljs-comment">// 枚举（Enum）类型用于取值被限定在一定范围内的场景，比如一周只能有七天 &lt;/span>
 &lt;span class="hljs-comment">// 枚举就是枚举值到枚举名进行反向映射&lt;/span>
 
 enum Days {Sun, Mon, Tue, Wed, Thu, Fri, Sat};
@@ -1723,7 +1710,7 @@ enum Days {Sun = &lt;span class="hljs-number">7&lt;/span>, Mon = &lt;span class=
 &lt;span class="hljs-built_in">console&lt;/span>.log(Days[&lt;span class="hljs-string">"Sun"&lt;/span>]); &lt;span class="hljs-comment">// 7&lt;/span>
 
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h1 class="heading" data-id="heading-28">
       类
     </h1>
@@ -1794,7 +1781,7 @@ abstract class Animal {
 }
 // 子类必须实现抽象类的抽象方法
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h2 class="heading" data-id="heading-30">
       public private 和 protected
     </h2>
@@ -1858,7 +1845,7 @@ getData&lt;string&gt;(&lt;span class="hljs-number">1243&lt;/span>);  &lt;span cl
   </div>
 </div>
 
-# 
+#
 
 参考  
 https://juejin.im/post/5d53a8895188257fad671cbc

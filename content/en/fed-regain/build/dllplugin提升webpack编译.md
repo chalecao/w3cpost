@@ -2,17 +2,6 @@
 title: DllPlugin提升webpack编译
 
 
-date: 2019-05-09T02:46:53+00:00
-url: /javascriptnodejs/4364.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://user-gold-cdn.xitu.io/2018/7/8/1647a0f717afb1d1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1
-fifu_image_url:
-  - https://user-gold-cdn.xitu.io/2018/7/8/1647a0f717afb1d1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1
-fifu_image_alt:
-  - DllPlugin提升webpack编译
-views:
-  - 965
-like:
-  - 2
 
 
 ---
@@ -36,7 +25,7 @@ like:
   2.1 使用DllPlugin前的构建速度
 </h2><figure>
 
-<img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/7/8/1647a0f717afb1d1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/7/8/1647a0f717afb1d1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="1202" data-height="530" /> <figcaption></figcaption></figure> 
+<img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/7/8/1647a0f717afb1d1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/7/8/1647a0f717afb1d1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="1202" data-height="530" /> <figcaption></figcaption></figure>
 
 入口文件`main.js`引入了一个`jQuery`文件，图示打包耗时2.3s。
 
@@ -44,7 +33,7 @@ like:
   2.2 使用DllPlugin后的构建速度
 </h2><figure>
 
-<img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/7/8/1647a11b6678823a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/7/8/1647a11b6678823a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="1280" data-height="414" /> <figcaption></figcaption></figure> 
+<img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/7/8/1647a11b6678823a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/7/8/1647a11b6678823a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="1280" data-height="414" /> <figcaption></figcaption></figure>
 
 使用插件后，打包耗时0.6s，单次对比，<span style="color: red;">缩减时长达到73%！</span>
 
@@ -64,7 +53,7 @@ like:
 
 DllPlugin作用示意图：<figure>
 
-<img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/7/8/1647a4d653c38364?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/7/8/1647a4d653c38364?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="1280" data-height="660" /> <figcaption></figcaption></figure> 
+<img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/7/8/1647a4d653c38364?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/7/8/1647a4d653c38364?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="1280" data-height="660" /> <figcaption></figcaption></figure>
 
 <h2 class="heading" data-id="heading-6">
   3.1 配置webpack.dll.config.js打包静态公共资源
@@ -82,15 +71,15 @@ DllPlugin作用示意图：<figure>
         &lt;span class="hljs-comment">// 定义程序中打包公共文件的入口文件vendor.js&lt;/span>
         vendor: [path.resolve(src, &lt;span class="hljs-string">'js'&lt;/span>, &lt;span class="hljs-string">'vendor.js'&lt;/span>)],
     },
-    
+
     &lt;span class="hljs-attr">plugins&lt;/span>: [
         &lt;span class="hljs-keyword">new&lt;/span> webpack.DllPlugin({
             &lt;span class="hljs-comment">// manifest缓存文件的请求上下文（默认为webpack执行环境上下文）&lt;/span>
             context: process.cwd(),
-            
+
             &lt;span class="hljs-comment">// manifest.json文件的输出位置&lt;/span>
             path: path.join(src, &lt;span class="hljs-string">'js'&lt;/span>, &lt;span class="hljs-string">'dll'&lt;/span>, &lt;span class="hljs-string">'[name]-manifest.json'&lt;/span>),
-            
+
             &lt;span class="hljs-comment">// 定义打包的公共vendor文件对外暴露的函数名&lt;/span>
             name: &lt;span class="hljs-string">'[name]_[hash]'&lt;/span>
         })
@@ -139,8 +128,8 @@ cross-env NODE_ENV=production webpack --config webpack.dll.config.js --colors --
         &lt;span class="hljs-comment">// dllPlugin关联配置&lt;/span>
         &lt;span class="hljs-keyword">new&lt;/span> webpack.DllReferencePlugin({
             &lt;span class="hljs-comment">// 跟dll.config里面DllPlugin的context一致&lt;/span>
-            context: process.cwd(), 
-            
+            context: process.cwd(),
+
             &lt;span class="hljs-comment">// dll过程生成的manifest文件&lt;/span>
             manifest: &lt;span class="hljs-built_in">require&lt;/span>(path.join(src, &lt;span class="hljs-string">'js'&lt;/span>, &lt;span class="hljs-string">"dll"&lt;/span>, &lt;span class="hljs-string">"vendor-manifest.json"&lt;/span>))
         })

@@ -2,17 +2,6 @@
 title: yarn快速上手使用
 
 
-date: 2019-08-30T01:10:09+00:00
-url: /javascriptnodejs/4990.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d6877a8423b7.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d6877a8423b7.png
-fifu_image_alt:
-  - yarn快速上手使用
-views:
-  - 1076
-like:
-  - 3
 
 
 ---
@@ -26,9 +15,9 @@ Yarn 是一个 JS 包依赖管理器。官网：<https://yarnpkg.com/>
 
 特点：
 
-  * 快速。每个包都会被缓存，故只会下载一次。并行操作提速安装过程。
-  * 安全。使用检验和对每个已安装的包进行完全性检验，之后才会运行。
-  * 可靠。相同的依赖，无论安装次序，在所有的机器上都按同样方式安装。
+* 快速。每个包都会被缓存，故只会下载一次。并行操作提速安装过程。
+* 安全。使用检验和对每个已安装的包进行完全性检验，之后才会运行。
+* 可靠。相同的依赖，无论安装次序，在所有的机器上都按同样方式安装。
 
 # 安装 {#安装}
 
@@ -233,8 +222,8 @@ Yarn 会在项目的根目录下创建一个 <code class="highlighter-rouge">ya
 
 必须将以下 2 个文件加入代码库中。
 
-  * <code class="highlighter-rouge">package.json</code>： 包含当前的所有依赖信息。
-  * <code class="highlighter-rouge">yarn.lock</code>： 保存了每个已安装的依赖包的信息。
+* <code class="highlighter-rouge">package.json</code>： 包含当前的所有依赖信息。
+* <code class="highlighter-rouge">yarn.lock</code>： 保存了每个已安装的依赖包的信息。
 
 # 从 npm 迁移到 Yarn {#从-npm-迁移到-yarn}
 
@@ -245,10 +234,10 @@ Yarn 和 Npm 基本上是兼容的，Yarn 可以使用 npm 创建的 <code clas
     <h2>
       初始化一个项目
     </h2>
-    
+
     <pre class="hljs shell"><code class="shell">yarn init
 </code></pre>
-    
+
     <p>
       功能跟npm init 几乎一样
     </p>
@@ -260,14 +249,14 @@ Yarn 和 Npm 基本上是兼容的，Yarn 可以使用 npm 创建的 <code clas
     <pre class="hljs shell"><code class="shell">yarn init --yes
 yarn init -y
 </code></pre>
-    
+
     <p>
       与npm也雷同
     </p>
     
     <pre class="hljs shell"><code class="shell">npm init -f
 </code></pre>
-    
+
     <p>
       添加依赖
     </p>
@@ -276,7 +265,7 @@ yarn init -y
 yarn add [package]@[version]
 yarn add [package]@[tag]
 </code></pre>
-    
+
     <p>
       正如npm以下命令一样
     </p>
@@ -285,7 +274,7 @@ yarn add [package]@[tag]
 npm install [package]@[version]
 npm install [package]@[tag]
 </code></pre>
-    
+
     <table>
       <tr>
         <th>
@@ -402,7 +391,7 @@ npm install [package]@[tag]
     
     <pre class="hljs shell"><code class="shell">yarn install [package] --peer
 </code></pre>
-    
+
     <p>
       还可以安装平行依赖呢
     </p>
@@ -413,7 +402,7 @@ npm install [package]@[tag]
     
     <pre class="hljs shell"><code class="shell">yarn install --force
 </code></pre>
-    
+
     <p>
       yarn 是从npm下载模块的，完全兼容已经在用npm的项目，可以无缝切换。<br /> yarn 安装过后会在项目根目录下生成并自动管理yarn.lock文件，把这个文件加入到git版本控制中，这个文件记录了依赖安装的版本和结构信息，通过同步给别人，别人再用yarn安装，可以确保你们生成的目录结构和包版本信息完全一致。
     </p>
@@ -422,8 +411,8 @@ npm install [package]@[tag]
 
 # 参考 {#参考}
 
-  * https://yarnpkg.com/
-  * https://yarnpkg.com/en/docs/install
-  * https://yarnpkg.com/en/docs/yarn-workflow
-  * https://yarnpkg.com/en/docs/migrating-from-npm
-  * https://yarnpkg.com/en/docs/configuration
+* https://yarnpkg.com/
+* https://yarnpkg.com/en/docs/install
+* https://yarnpkg.com/en/docs/yarn-workflow
+* https://yarnpkg.com/en/docs/migrating-from-npm
+* https://yarnpkg.com/en/docs/configuration

@@ -1,31 +1,6 @@
 ---
 title: nginx反向代理配置
 
-
-date: 2017-12-19T02:05:26+00:00
-url: /pwa/1488.html
-ampforwp_custom_content_editor:
-  - 
-  - 
-ampforwp_custom_content_editor_checkbox:
-  - 
-  - 
-ampforwp-amp-on-off:
-  - default
-  - default
-toc_depth:
-  - 1
-  - 1
-views:
-  - 1577
-  - 1577
-wl_pageviews:
-  - 5
-  - 5
-classic-editor-remember:
-  - classic-editor
-
-
 ---
 ## location
 
@@ -33,66 +8,64 @@ classic-editor-remember:
     # 精确匹配 / ，主机名后面不能带任何字符串
     [ configuration A ]
 }
- 
+
 location / {
     # 因为所有的地址都以 / 开头，所以这条规则将匹配到所有请求
     # 但是正则和最长字符串会优先匹配
     [ configuration B ]
 }
- 
+
 location /documents/ {
     # 匹配任何以 /documents/ 开头的地址，匹配符合以后，还要继续往下搜索
     # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条
     [ configuration C ]
 }
- 
+
 location ~ /documents/Abc {
     # 匹配任何以 /documents/Abc 开头的地址，匹配符合以后，还要继续往下搜索
     # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条
     [ configuration CC ]
 }
- 
+
 location ^~ /images/ {
 # 匹配任何以 /images/ 开头的地址，匹配符合以后，停止往下搜索正则，采用这一条。
     [ configuration D ]
 }
- 
+
 location ~* \.(gif|jpg|jpeg)$ {
     # 匹配所有以 gif,jpg或jpeg 结尾的请求
     # 然而，所有请求 /images/ 下的图片会被 config D 处理，因为 ^~ 到达不了这一条正则
     [ configuration E ]
 }
- 
+
 location /images/ {
     # 字符匹配到 /images/，继续往下，会发现 ^~ 存在
     [ configuration F ]
 }
- 
+
 location /images/abc {
     # 最长字符匹配到 /images/abc，继续往下，会发现 ^~ 存在
     # F与G的放置顺序是没有关系的
     [ configuration G ]
 }
- 
+
 location ~ /images/abc/ {
     # 只有去掉 config D 才有效：先最长匹配 config G 开头的地址，继续往下搜索，匹配到这一条正则，采用
     [ configuration H ]
 }
- 
-location ~* /js/.*/\.js
+
+location ~*/js/.*/\.js
 </code></pre>
 
-  * 已`=`开头表示精确匹配  
+* 已`=`开头表示精确匹配  
     如 A 中只匹配根目录结尾的请求，后面不能带任何字符串。
-  * `^~` 开头表示uri以某个常规字符串开头，不是正则匹配
-  * ~ 开头表示区分大小写的正则匹配;
-  * ~* 开头表示不区分大小写的正则匹配
-  * / 通用匹配, 如果没有其它匹配,任何请求都会匹配到
+* `^~` 开头表示uri以某个常规字符串开头，不是正则匹配
+* ~ 开头表示区分大小写的正则匹配;
+* ~* 开头表示不区分大小写的正则匹配
+* / 通用匹配, 如果没有其它匹配,任何请求都会匹配到
 
 顺序 no优先级：  
 (location =) > (location 完整路径) > (location ^~ 路径) > (location ~,~* 正则顺序) > (location 部分起始路径) > (/)
-
- 
 
 ## **rewrite**
 
@@ -104,21 +77,21 @@ Context: server, location, if</code></pre>
   </div>
 </div>
 
-  * 如果正则表达式（_regex_）匹配到了请求的URI（request URI），这个URI会被后面的_replacement_替换
-  * _rewrite_的定向会根据他们在配置文件中出现的顺序依次执行
-  * 通过使用_flag_可以终止定向后进一步的处理
-  * 如果replacement以“https://”, “https://”, or “$scheme”开头，处理将会终止，请求结果会以重定向的形式返回给客户端（client）
-  * <div>
+* 如果正则表达式（_regex_）匹配到了请求的URI（request URI），这个URI会被后面的_replacement_替换
+* _rewrite_的定向会根据他们在配置文件中出现的顺序依次执行
+* 通过使用_flag_可以终止定向后进一步的处理
+* 如果replacement以“https://”, “https://”, or “$scheme”开头，处理将会终止，请求结果会以重定向的形式返回给客户端（client）
+* <div>
       <p>
         如果<em>replacement</em>字符串里有新的request参数，那么之前的参数会附加到其后面，如果要避免这种情况，那就在<em>replacement</em>字符串后面加上“？”，eg：
       </p>
-      
+
       <div class="cnblogs_code">
         <pre><code> rewrite ^/users/(.*)$ /show?user=$1? last;=</code></pre>
       </div>
     </div>
 
-  * 如果正则表达式（_regex_）里包含“}” or “;”字符，需要用单引号或者双引号把正则表达式引起来
+* 如果正则表达式（_regex_）里包含“}” or “;”字符，需要用单引号或者双引号把正则表达式引起来
 
   可选的<em>flag</em>参数如下：
 
@@ -265,35 +238,35 @@ Context: server, location, if</code></pre>
   <pre class="pure-highlightjs"><code class="">if ($http_user_agent ~ MSIE) {
     rewrite ^(.*)$ /msie/$1 break;
 } //如果UA包含"MSIE"，rewrite请求到/msid/目录下
- 
+
 if ($http_cookie ~* "id=([^;]+)(?:;|$)") {
     set $id $1;
 } //如果cookie匹配正则，设置变量$id等于正则引用部分
- 
+
 if ($request_method = POST) {
     return 405;
 } //如果提交方法为POST，则返回状态405（Method not allowed）。return不能返回301,302
- 
+
 if ($slow) {
     limit_rate 10k;
 } //限速，$slow可以通过 set 指令设置
- 
+
 if (!-f $request_filename){
     break;
     proxy_pass https://127.0.0.1;
 } //如果请求的文件名不存在，则反向代理到localhost 。这里的break也是停止rewrite检查
- 
+
 if ($args ~ post=140){
     rewrite ^ https://example.com/ permanent;
 } //如果query string中包含"post=140"，永久重定向到example.com
- 
+
 location ~* \.(gif|jpg|png|swf|flv)$ {
 valid_referers none blocked www.jefflei.com www.leizhenfang.com;
 if ($invalid_referer) {
     return 404;
 } //防盗链
 }
-</code></pre><figure class="highlight stata"></figure> 
+</code></pre><figure class="highlight stata"></figure>
   
   <p>
     <strong>全局变量</strong><br /> 下面是可以用作if判断的全局变量
@@ -392,7 +365,7 @@ Context:    location, if in location, limit_except</code></pre>
         <pre><code> proxy_pass https://localhost:8000/uri/;</code></pre>
       </div>
     </li>
-    
+
     <li>
        如果一个域名可以解析到多个地址，那么这些地址会被轮流使用，此外，还可以把一个地址指定为 server group（如：nginx的upstream）, eg: <div class="cnblogs_code">
         <div class="cnblogs_code_toolbar">
@@ -406,13 +379,13 @@ Context:    location, if in location, limit_except</code></pre>
     server backup1.example.com:8080   backup;
     server backup2.example.com:8080   backup;
 }
- 
+
 server {
     location / {
         proxy_pass https://backend;
     }
 }</code></pre>
-        
+
         <div class="cnblogs_code_toolbar">
         </div>
       </div>
@@ -439,18 +412,18 @@ server {
 }
 请求https://127.0.0.1/name/test.html 会被代理到https://example.com/remote/test.html
 
-location /name/ { 
-    proxy_pass https://127.0.0.1/remote; 
-} 
+location /name/ {
+    proxy_pass https://127.0.0.1/remote;
+}
 请求https://127.0.0.1/name/test.html 会被代理到https://example.com/remotetest.html
 
 location /name/ {
-     proxy_pass https://127.0.0.1/; 
-} 
+     proxy_pass https://127.0.0.1/;
+}
 请求https://127.0.0.1/name/test.html 会被代理到https://example.com/test.html</code></pre>
       </div>
     </li>
-    
+
     <li>
       如果proxy_pass的URL定向里不包括URI，那么请求中的URI会保持原样传送给后端server，eg： <div class="cnblogs_code">
         <pre><code>location /name/ {
@@ -460,7 +433,7 @@ location /name/ {
 请求https://127.0.0.1/name/test.html 会被代理到https://127.0.0.1/name/test.html</code></pre>
       </div>
     </li>
-    
+
     <li>
        一些情况下，不能确定替换的URI <ol>
         <li>
@@ -473,7 +446,7 @@ location /name/ {
     proxy_pass https://127.0.0.1;
 }</code></pre>
           </div>
-          
+
           <p>
              </li> </ol> </li> </ol> 
             

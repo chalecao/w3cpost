@@ -1,15 +1,6 @@
 ---
 title: 打包中的Scope Hoisting功能
 
-
-date: 2020-01-20T06:21:31+00:00
-url: /javascriptnodejs/5538.html
-views:
-  - 913
-like:
-  - 2
-
-
 ---
 不久前，Webpack 正式发布了它的第三个版本，这个版本提供了一个新的功能：Scope Hoisting，又译作“作用域提升”。只需在配置文件中添加一个新的插件，就可以让 Webpack 打包出来的代码文件更小、运行的更快：
 
@@ -43,12 +34,12 @@ like:
   <pre><code class="language-js">&lt;span class="c1">// bundle.js
 &lt;/span>&lt;span class="c1">// 最前面的一段代码实现了模块的加载、执行和缓存的逻辑，这里直接略过
 &lt;/span>&lt;span class="p">[&lt;/span>
-  &lt;span class="cm">/* 0 */&lt;/span>
+  &lt;span class="cm">/*0*/&lt;/span>
   &lt;span class="kd">function&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">module&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">exports&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
     &lt;span class="kd">var&lt;/span> &lt;span class="nx">module_a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
     &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">module_a&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">'default'&lt;/span>&lt;span class="p">])&lt;/span>
   &lt;span class="p">},&lt;/span>
-  &lt;span class="cm">/* 1 */&lt;/span>
+  &lt;span class="cm">/*1*/&lt;/span>
   &lt;span class="kd">function&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">module&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">exports&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
     &lt;span class="nx">exports&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">'default'&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">'module A'&lt;/span>
   &lt;span class="p">}&lt;/span>
@@ -119,9 +110,9 @@ like:
 
 其他可能的原因还有：
 
-  * 使用了 <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//webpack.js.org/plugins/provide-plugin/" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">ProvidePlugin</a>
-  * 使用了 _eval()_ 函数
-  * 你的项目有多个 entry
+* 使用了 <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//webpack.js.org/plugins/provide-plugin/" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">ProvidePlugin</a>
+* 使用了 _eval()_ 函数
+* 你的项目有多个 entry
 
 运行 Webpack 时加上 _&#8211;display-optimization-bailout_ 参数可以得知为什么你的项目无法使用 Scope Hoisting：
 
@@ -135,15 +126,15 @@ like:
 
 <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//webpack.js.org/guides/tree-shaking/" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">Tree Shaking</a> 与 Scope Hoisting 最初都是由 <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//rollupjs.org/" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">Rollup</a> 实现的。尽管 Webpack 现在也实现了这两个功能，但是 Rollup 比 Webpack 更适合打包 JavaScript 框架（库），因为：
 
-  * Rollup 的配置比 Webpack 简单得多。
-  * Rollup 不用支持 Code Spliting，所以打包出来的代码开头没有 Webpack 那段模块的加载、执行和缓存的代码。
-  * Rollup 本身就支持 Scope Hoisting，在使用一些插件之后也能把 CommonJS 的模块打包进来。
+* Rollup 的配置比 Webpack 简单得多。
+* Rollup 不用支持 Code Spliting，所以打包出来的代码开头没有 Webpack 那段模块的加载、执行和缓存的代码。
+* Rollup 本身就支持 Scope Hoisting，在使用一些插件之后也能把 CommonJS 的模块打包进来。
 
 最后，希望这篇文章能对你有所帮助。
 
 ## 参考文章
 
-  * <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//medium.com/webpack/webpack-3-official-release-15fd2dd8f07b" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">webpack 3: Official Release!!</a>
-  * <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//medium.com/webpack/webpack-freelancing-log-book-week-5-7-4764be3266f5" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">webpack freelancing log book (week 5–7)</a>
-  * <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//medium.com/webpack/webpack-and-rollup-the-same-but-different-a41ad427058c" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">Webpack and Rollup: the same but different</a>
-  * <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//stackoverflow.com/questions/43219030/what-is-flat-bundling-and-why-is-rollup-better-at-this-than-webpack/43255948%2343255948" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">What is flat bundling and why is Rollup better at this than Webpack?</a>
+* <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//medium.com/webpack/webpack-3-official-release-15fd2dd8f07b" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">webpack 3: Official Release!!</a>
+* <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//medium.com/webpack/webpack-freelancing-log-book-week-5-7-4764be3266f5" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">webpack freelancing log book (week 5–7)</a>
+* <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//medium.com/webpack/webpack-and-rollup-the-same-but-different-a41ad427058c" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">Webpack and Rollup: the same but different</a>
+* <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//stackoverflow.com/questions/43219030/what-is-flat-bundling-and-why-is-rollup-better-at-this-than-webpack/43255948%2343255948" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">What is flat bundling and why is Rollup better at this than Webpack?</a>

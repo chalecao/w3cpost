@@ -2,19 +2,7 @@
 title: React基于webpack做code splitting方法
 
 
-date: 2019-03-09T09:09:34+00:00
-url: /javascriptnodejs/3847.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor.jpg
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor.jpg
-onesignal_meta_box_present:
-  - 1
-fifu_image_alt:
-  - React基于webpack做code splitting方法
-views:
-  - 1374
-like:
-  - 4
+
 
 
 ---
@@ -55,8 +43,8 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
 
 #### 定义多个entry入口 {#5}
 
-  * `main`为主入口模块文件
-  * `vendor`为公共基础库模块，名字可随意设定。称为initial chunk
+* `main`为主入口模块文件
+* `vendor`为公共基础库模块，名字可随意设定。称为initial chunk
 
 <pre><code class="js hljs javascript">&lt;span class="hljs-keyword">var&lt;/span> path = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'path'&lt;/span>);
 
@@ -77,7 +65,7 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
 
 可以看到最终打包为两个js文件 `main.js` 、`vendor.js`，但如果检查者两个文件会发现`moment`模块代码被重复打包到两个文件中，而这肯定不是我们想要的，这时候就需要 webpack的plugin发挥作用了。
 
-<img class="aligncenter" title="vendo" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor.jpg?x-oss-process=image/format,webp" alt="vendo" /> 
+<img class="aligncenter" title="vendo" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor.jpg?x-oss-process=image/format,webp" alt="vendo" />
 
 <h4 id="6" data-spm-anchor-id="a2c4e.11153940.blogcont71200.i0.3fc97c7461PC2D">
   使用CommonsChunkPlugin
@@ -105,21 +93,21 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
 
 执行webpack打包命令，我们发现`moment`只被打包进`vendor.js`中。
 
-<img class="aligncenter" title="vendo" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor2.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor2.jpg?x-oss-process=image/format,webp" alt="vendo" /> 
+<img class="aligncenter" title="vendo" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor2.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor2.jpg?x-oss-process=image/format,webp" alt="vendo" />
 
 #### webpack运行时模块（manifest） {#7}
 
-  * 在前面的`步骤2`当中webpack在浏览器中加载js模块的运行时代码块也打包进了`vendor.js`，如果为打包的js文件添加`chunkhash`，则每次修改 `index.js`后再次编译打包，由于运行时代码需要重新编译生成，导致`vendor.js`重新打包并生成新的`chunkhash`。
+* 在前面的`步骤2`当中webpack在浏览器中加载js模块的运行时代码块也打包进了`vendor.js`，如果为打包的js文件添加`chunkhash`，则每次修改 `index.js`后再次编译打包，由于运行时代码需要重新编译生成，导致`vendor.js`重新打包并生成新的`chunkhash`。
 
 **webpack运行时代码块部分：**
 
-<img loading="lazy" class="aligncenter" title="webpackjsonp" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/webpackjsonp.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/webpackjsonp.jpg?x-oss-process=image/format,webp" alt="webpackjsonp" width="830" height="539" /> 
+<img loading="lazy" class="aligncenter" title="webpackjsonp" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/webpackjsonp.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/webpackjsonp.jpg?x-oss-process=image/format,webp" alt="webpackjsonp" width="830" height="539" />
 
-  * 实际项目中我们希望修改业务功能后打包时只重新打包业务模块，而不打包第三方公共基础库。这里我们可以将webpack的`运行时代码`提取到独立的`manifest`文件中，这样每次修改业务代码只重新打包生成业务代码模块`main.js`和运行时代码模块`manifest.js`，就实现了业务模块和公共基础库模块的分离。
+* 实际项目中我们希望修改业务功能后打包时只重新打包业务模块，而不打包第三方公共基础库。这里我们可以将webpack的`运行时代码`提取到独立的`manifest`文件中，这样每次修改业务代码只重新打包生成业务代码模块`main.js`和运行时代码模块`manifest.js`，就实现了业务模块和公共基础库模块的分离。
 
-<img class="aligncenter" title="manifest1" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/manifest1.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/manifest1.jpg?x-oss-process=image/format,webp" alt="manifest1" /> 
+<img class="aligncenter" title="manifest1" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/manifest1.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/manifest1.jpg?x-oss-process=image/format,webp" alt="manifest1" />
 
-  * `names`字段支持以数组格式来指定`基础库模块名称`和`运行时代码模块名称`。
+* `names`字段支持以数组格式来指定`基础库模块名称`和`运行时代码模块名称`。
 
 <pre><code class="js hljs javascript">&lt;span class="hljs-built_in">module&lt;/span>.exports = {
    entry: {
@@ -140,8 +128,8 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
 
 ### 2、CSS代码分割 {#8}
 
-  * 实际项目开发当中经常使用webpack的`css-loader`来将css样式导入到js模块中，再使用`style-loader`将css样式以`<style>`标签的形式插入到页面当中，但这种方法的缺点就是无法单独加载并缓存css样式文件，页面展现必须依赖于包含css样式的js模块，从而造成页面闪烁的不佳体验。
-  * 因此有必要将js模块当中import的css模块提取出来，这时候就需要用到`extract-text-webpack-plugin`。
+* 实际项目开发当中经常使用webpack的`css-loader`来将css样式导入到js模块中，再使用`style-loader`将css样式以`<style>`标签的形式插入到页面当中，但这种方法的缺点就是无法单独加载并缓存css样式文件，页面展现必须依赖于包含css样式的js模块，从而造成页面闪烁的不佳体验。
+* 因此有必要将js模块当中import的css模块提取出来，这时候就需要用到`extract-text-webpack-plugin`。
 
 > 注意webpack2.x需要使用相应版本的plugin。
 
@@ -169,26 +157,26 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
        }]
    },
    plugins: [
-       &lt;span class="hljs-keyword">new&lt;/span> ExtractTextPlugin({ 
-           filename: &lt;span class="hljs-string">'bundle.css'&lt;/span>, 
-           disable: &lt;span class="hljs-literal">false&lt;/span>, 
-           allChunks: &lt;span class="hljs-literal">true&lt;/span> 
+       &lt;span class="hljs-keyword">new&lt;/span> ExtractTextPlugin({
+           filename: &lt;span class="hljs-string">'bundle.css'&lt;/span>,
+           disable: &lt;span class="hljs-literal">false&lt;/span>,
+           allChunks: &lt;span class="hljs-literal">true&lt;/span>
        })
    ]
 ......</code></pre>
 
-<img title="extract" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/extract.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/extract.jpg?x-oss-process=image/format,webp" alt="extract" /> 
+<img title="extract" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/extract.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/extract.jpg?x-oss-process=image/format,webp" alt="extract" />
 
 ## 二、按需加载代码分割 {#9}
 
-  * 前面介绍的`静态资源分离打包`需要开发者在webpack配置文件中明确分割点来提取独立的公共模块，这种方式适合提取`第三方公共基础库`（vue、react、moment等）以及webpack 的`运行时代码模块`。
-  * 除此之外webpack还提供了按需加载的代码分割功能，常用于在web应用路由或者用户行为事件逻辑中动态按需加载特定的功能模块`chunk`，这就是我们本文中后面要重点介绍的。
+* 前面介绍的`静态资源分离打包`需要开发者在webpack配置文件中明确分割点来提取独立的公共模块，这种方式适合提取`第三方公共基础库`（vue、react、moment等）以及webpack 的`运行时代码模块`。
+* 除此之外webpack还提供了按需加载的代码分割功能，常用于在web应用路由或者用户行为事件逻辑中动态按需加载特定的功能模块`chunk`，这就是我们本文中后面要重点介绍的。
 
 ### Code splitting with require.ensure {#10}
 
 [webpack1][3]提供了CommonJS风格的 `require.ensure()`实现模块`chunk`的异步加载，通过`require.ensure()`在js代码中建立分割点，编译打包时webpack会将此分割点所指定的代码模块都打包为一个代码模块chunk，然后通过`jsonp`的方式来按需加载打包后的模块`chunk`。
 
-  * require.ensure()语法
+* require.ensure()语法
 
 <pre><code class="js hljs javascript">&lt;span class="hljs-comment">// 空参数&lt;/span>
 &lt;span class="hljs-built_in">require&lt;/span>.ensure([], &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">require&lt;/span>)&lt;/span>{
@@ -209,7 +197,7 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
 
 webpack将`import()`看做一个分割点并将其请求的module打包为一个独立的`chunk`。`import()`以模块名称作为参数名并且返回一个`Promise`对象。
 
-  * import() 语法
+* import() 语法
 
 <pre><code class="js hljs javascript">&lt;span class="hljs-keyword">import&lt;/span>(&lt;span class="hljs-string">"./module"&lt;/span>).then(&lt;span class="hljs-built_in">module&lt;/span> =&gt; {
     &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-built_in">module&lt;/span>.default;
@@ -217,11 +205,12 @@ webpack将`import()`看做一个分割点并将其请求的module打包为一个
     &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">"Chunk loading failed"&lt;/span>);
 });</code></pre>
 
-  * import()使用须知 
-      * [import()][5]目前还是处于TC39 proposal阶段。
-      * 在Babel中使用`import()`方法，需要安装 [dynamic-import][6]插件并选择使用`babel-preset-stage-3`处理解析错误。
-  * 动态表达式 [Dynamic expressions][7]`import()`中的传参可支持部分表达式的写法了，如果之前有接触过CommonJS中`require()`表达式写法，应该不会对此感到陌生。它的操作其实和 CommonJS 类似，给所有可能的文件创建一个环境，当你传递那部分代码的模块还不确定的时候，webpack 会自动生成所有可能的模块，然后根据需求加载。这个特性在前端路由的时候很有用，可以实现按需加载资源。`import() `会针对每一个读取到的module创建独立的`chunk`。 
+* import()使用须知
+  * [import()][5]目前还是处于TC39 proposal阶段。
+  * 在Babel中使用`import()`方法，需要安装 [dynamic-import][6]插件并选择使用`babel-preset-stage-3`处理解析错误。
+* 动态表达式 [Dynamic expressions][7]`import()`中的传参可支持部分表达式的写法了，如果之前有接触过CommonJS中`require()`表达式写法，应该不会对此感到陌生。它的操作其实和 CommonJS 类似，给所有可能的文件创建一个环境，当你传递那部分代码的模块还不确定的时候，webpack 会自动生成所有可能的模块，然后根据需求加载。这个特性在前端路由的时候很有用，可以实现按需加载资源。`import()`会针对每一个读取到的module创建独立的`chunk`。
     <pre><code class="js hljs javascript">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">route&lt;/span>(&lt;span class="hljs-params">path, query&lt;/span>) &lt;/span>{
+
   &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-keyword">import&lt;/span>(&lt;span class="hljs-string">`./routes/&lt;span class="hljs-subst">${path}&lt;/span>/route`&lt;/span>)
     .then(route =&gt; &lt;span class="hljs-keyword">new&lt;/span> route.Route(query));
 }</code></pre>
@@ -230,20 +219,20 @@ webpack将`import()`看做一个分割点并将其请求的module打包为一个
 
 [bundle-loader][8] 是webpack官方提供的`loader`，其作用就是对`require.ensure`的抽象封装为一个`wrapper`函数来动态加载模块代码，从而避免`require.ensure`将分割点所有模块代码打包为一个`chunk`体积过大的问题。
 
-  * 使用语法：
+* 使用语法：
 
 <pre><code class="js hljs javascript">&lt;span class="hljs-comment">// 在require bundle时，浏览器会立即加载&lt;/span>
 &lt;span class="hljs-keyword">var&lt;/span> waitForChunk = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"bundle!./file.js"&lt;/span>);
- 
+
 &lt;span class="hljs-comment">// 使用lazy模式，浏览器并不立即加载，只在调用wrapper函数才加载&lt;/span>
 &lt;span class="hljs-keyword">var&lt;/span> waitForChunk = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"bundle?lazy!./file.js"&lt;/span>);
- 
+
 &lt;span class="hljs-comment">// 等待加载，在回调中使用&lt;/span>
 waitForChunk(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">file&lt;/span>) &lt;/span>{
     &lt;span class="hljs-keyword">var&lt;/span> file = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"./file.js"&lt;/span>);
 });</code></pre>
 
-  * wrapper函数：
+* wrapper函数：
 
 **默认普通模式wrapper：**
 
@@ -273,7 +262,7 @@ waitForChunk(&lt;span class="hljs-function">&lt;span class="hljs-keyword">functi
 
 > 使用`bundle-loader`在代码中require文件的时候只是引入了`wrapper`函数，而且因为每个文件都会产生一个分离点，导致产生了多个打包文件，而打包文件的载入只有在条件命中的情况下才产生,也就可以按需加载。
 
-  * 支持自定义Chunk名称：
+* 支持自定义Chunk名称：
 
 <pre><code class="js hljs javascript">&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"bundle-loader?lazy&name=my-chunk!./file.js"&lt;/span>);</code></pre>
 
@@ -283,7 +272,7 @@ waitForChunk(&lt;span class="hljs-function">&lt;span class="hljs-keyword">functi
 
 `promise-loader`支持使用第三方Promise基础库（如：[bluebird][10]）或者使用`global`参数来指定使用运行环境已经存在的Promise库。
 
-  * 使用语法：
+* 使用语法：
 
 <pre><code class="js hljs javascript">&lt;span class="hljs-comment">// 使用Bluebird promise库&lt;/span>
 &lt;span class="hljs-keyword">var&lt;/span> load = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"promise?bluebird!./file.js"&lt;/span>);
@@ -296,14 +285,14 @@ load().then(&lt;span class="hljs-function">&lt;span class="hljs-keyword">functio
 });
 </code></pre>
 
-  * wrapper函数：
+* wrapper函数：
 
 <pre><code class="js hljs javascript">&lt;span class="hljs-keyword">var&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span> = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'bluebird'&lt;/span>);
 
 &lt;span class="hljs-built_in">module&lt;/span>.exports = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">namespace&lt;/span>) &lt;/span>{
   &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">resolve&lt;/span>) &lt;/span>{
     &lt;span class="hljs-built_in">require&lt;/span>.ensure([], &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">require&lt;/span>) &lt;/span>{
-      resolve(&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'./file.js'&lt;/span>)[namespace]));
+      resolve[&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'./file.js'&lt;/span>](namespace)));
     });
   });
 }</code></pre>
@@ -312,7 +301,7 @@ load().then(&lt;span class="hljs-function">&lt;span class="hljs-keyword">functio
 
 [es6-promise-loader][11]相比 `promise-loader`区别就在于使用原生的`ES6 Promise`对象。
 
-  * 使用语法：
+* 使用语法：
 
 <pre><code class="js hljs javascript">&lt;span class="hljs-keyword">var&lt;/span> load = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"es6-promise!./file.js"&lt;/span>);
 
@@ -320,12 +309,12 @@ load(namespace).then(&lt;span class="hljs-function">&lt;span class="hljs-keyword
     &lt;span class="hljs-built_in">console&lt;/span>.log(file);
 });</code></pre>
 
-  * wrapper函数：
+* wrapper函数：
 
 <pre><code class="js hljs javascript">&lt;span class="hljs-built_in">module&lt;/span>.exports = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">namespace&lt;/span>) &lt;/span>{
   &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">resolve&lt;/span>) &lt;/span>{
     &lt;span class="hljs-built_in">require&lt;/span>.ensure([], &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">require&lt;/span>) &lt;/span>{
-      resolve(&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'./file.js'&lt;/span>)[namespace]));
+      resolve[&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'./file.js'&lt;/span>](namespace)));
     });
   });
 }</code></pre>
@@ -336,12 +325,12 @@ load(namespace).then(&lt;span class="hljs-function">&lt;span class="hljs-keyword
 
 `react-router`的 标签有一个叫做[getComponent][12]的异步的方法去获取组件。他是一个function接受两个参数，分别是location和callback。当react-router执行回调函数 callback(null, ourComponent)时，路由只渲染指定组件ourComponent
 
-  * getComponent异步方法
+* getComponent异步方法
 
 **使用语法：**
 
 <pre><code class="js hljs javascript">&lt;Router history={history}&gt;
-    &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Route&lt;/span> 
+    &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Route&lt;/span>
         &lt;span class="hljs-attr">path&lt;/span>=&lt;span class="hljs-string">"/"&lt;/span>
         &lt;span class="hljs-attr">getComponent&lt;/span>=&lt;span class="hljs-string">{(nextState,&lt;/span> &lt;span class="hljs-attr">callback&lt;/span>) =&gt;&lt;/span> {
             callback(null, HomePage)
@@ -357,7 +346,7 @@ load(namespace).then(&lt;span class="hljs-function">&lt;span class="hljs-keyword
 
 这些组件会在需要的时候异步加载。这些组件仍然会在同一个文件中，并且你的应用看起来不会有任何不同。
 
-  * require.ensure
+* require.ensure
 
 webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，再配合`react-router`的`getComponent`方法就可以实现React组件的按需加载，具体可参照以下文章：
 
@@ -370,7 +359,7 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
 
 ### LazilyLoad懒加载组件 {#18}
 
-  * LazilyLoad使用：
+* LazilyLoad使用：
 
 **webpack2.x** `import`方法异步加载ES2015模块文件，返回一个Promise对象。
 
@@ -410,7 +399,7 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
         );
     }</code></pre>
 
-  * `importLazy`方法是为了兼容Babel/ES2015模块，返回模块的`default`属性。
+* `importLazy`方法是为了兼容Babel/ES2015模块，返回模块的`default`属性。
 
 <pre><code class="js hljs javascript">&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">const&lt;/span> importLazy = (promise) =&gt; (
     promise.then((result) =&gt; result.default || result)
@@ -479,7 +468,7 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
 
 除了工厂函数方式扩展实现高阶组件，还可通过 ES草案中的 Decorator(<https://medium.com/google-developers/exploring-es7-decorators-76ecb65fb841)> 语法来实现。Decorator 可以通过返回特定的 descriptor 来”修饰” 类属性，也可以直接”修饰”一个类。即传入一个已有的类，通过 Decorator 函数”修饰”成了一个新的类。
 
-  * 使用方法：
+* 使用方法：
 
 <pre><code class="js hljs javascript">&lt;span class="hljs-comment">// ES Decorators函数实现高阶组件封装&lt;/span>
 &lt;span class="hljs-comment">// 参考 http://technologyadvice.github.io/es7-decorators-babel6/&lt;/span>
@@ -549,11 +538,11 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
 
 ### 基于webpack 1.x实现react组件的懒加载示例 {#26}
 
-  * [示例代码][17]
-  * [在线demo][18]
-  * 按需加载请求
+* [示例代码][17]
+* [在线demo][18]
+* 按需加载请求
 
-<img loading="lazy" class="aligncenter" title="lazyloaded" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/lazyloaded.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/lazyloaded.png?x-oss-process=image/format,webp" alt="lazyloaded" width="742" height="236" /> 
+<img loading="lazy" class="aligncenter" title="lazyloaded" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/lazyloaded.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/lazyloaded.png?x-oss-process=image/format,webp" alt="lazyloaded" width="742" height="236" />
 
 &nbsp;
 
@@ -562,7 +551,7 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
     <h1>
       react-router4代码分割
     </h1>
-    
+
     <blockquote>
       <p>
         react-router4官方文档： <a href="https://link.jianshu.com?t=https://reacttraining.com/react-router/web/guides/code-splitting" target="_blank" rel="nofollow noopener noreferrer">https://reacttraining.com/react-router/web/guides/code-splitting</a>
@@ -631,7 +620,7 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
 
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> Bundle
 </code></pre>
-    
+
     <p>
       在被传入的load方法被调用的时候，相应的js文件才会被请求和加载
     </p>
@@ -671,7 +660,7 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
 
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> CodeSplit
 </code></pre>
-    
+
     <p>
       这样，代码分割就完成了。
     </p>
@@ -688,7 +677,7 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
 
 Line &lt;span class="hljs-number">42&lt;/span>:  Unexpected &lt;span class="hljs-string">'!'&lt;/span> &lt;span class="hljs-keyword">in&lt;/span> &lt;span class="hljs-string">'bundle-loader?lazy!./cp2'&lt;/span>. Do &lt;span class="hljs-keyword">not&lt;/span> use &lt;span class="hljs-keyword">import&lt;/span> syntax to configure webpack loaders  &lt;span class="hljs-keyword">import&lt;/span>/no-webpack-loader-syntax
 </code></pre>
-    
+
     <p>
       这是因为create-react-app不支持webpack-loader，具体的可以看看这个issue
     </p>
@@ -747,7 +736,7 @@ Line &lt;span class="hljs-number">42&lt;/span>:  Unexpected &lt;span class="hljs
 
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> Bundle
 </code></pre>
-    
+
     <p>
       然后在入口文件的路由里面这么用
     </p>
@@ -781,10 +770,9 @@ Line &lt;span class="hljs-number">42&lt;/span>:  Unexpected &lt;span class="hljs
   )
 }
 
-
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> CodeSplit
 </code></pre>
-    
+
     <p>
       OK,一个大致的代码分割功能差不多就完成了
     </p>
@@ -803,13 +791,15 @@ Line &lt;span class="hljs-number">42&lt;/span>:  Unexpected &lt;span class="hljs
     
     <pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-comment">// async-component.js&lt;/span>
 &lt;span class="hljs-comment">/**
- * 用于react router4 code splitting
+
+* 用于react router4 code splitting
  */&lt;/span>
 &lt;span class="hljs-keyword">import&lt;/span> React, {Component} &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react'&lt;/span>
 
 &lt;span class="hljs-comment">/**
- * @param {Function} loadComponent e.g: () =&gt; import('./component')
- * @param {ReactNode} placeholder  未加载前的占位
+
+* @param {Function} loadComponent e.g: () =&gt; import('./component')
+* @param {ReactNode} placeholder  未加载前的占位
  */&lt;/span>
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> (loadComponent, placeholder = &lt;span class="hljs-literal">null&lt;/span>) =&gt; {
   &lt;span class="hljs-class">&lt;span class="hljs-keyword">class&lt;/span> &lt;span class="hljs-title">AsyncComponent&lt;/span> &lt;span class="hljs-keyword">extends&lt;/span> &lt;span class="hljs-title">Component&lt;/span> &lt;/span>{
@@ -849,16 +839,17 @@ Line &lt;span class="hljs-number">42&lt;/span>:  Unexpected &lt;span class="hljs
   &lt;span class="hljs-keyword">return&lt;/span> AsyncComponent
 }
 </code></pre>
-    
+
     <p>
       整体思路和之前的代码是一致的<br /> 然后调用的时候只需这么写
     </p>
-    
+
     <p>
       Demo组件，就是一个简单的无状态组件
     </p>
-    
+
     <pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-comment">// demo.jsx&lt;/span>
+
 &lt;span class="hljs-keyword">import&lt;/span> React &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react'&lt;/span>
 
 &lt;span class="hljs-keyword">const&lt;/span> Demo = &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
@@ -869,7 +860,7 @@ Line &lt;span class="hljs-number">42&lt;/span>:  Unexpected &lt;span class="hljs
 
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> Demo
 </code></pre>
-    
+
     <p>
       调用示例
     </p>
@@ -895,7 +886,7 @@ render() {
   )
 }
 </code></pre>
-    
+
     <p>
       参数也可以通过asyncComponent函数进行传递，不过需要更改下async-component.js的代码，因为比较简单，所以这里就不展示了
     </p>
@@ -904,14 +895,15 @@ render() {
 
 # 参考资料 {#27}
 
-  * [基于Webpack 2的React组件懒加载][13]
-  * [Lazy Loading &#8211; React][19]
-  * [es6-promise-loader][11]
-  * [promise-loader][9]
-  * [bundle-loader][8]
-  * [es6-modules-overview][20]
-  * [Implicit Code Splitting and Chunk Loading with React Router and Webpack][21]
-  * [Code Splitting &#8211; Using require.ensure][3]
+* [基于Webpack 2的React组件懒加载][13]
+* [Lazy Loading &#8211; React][19]
+* [es6-promise-loader][11]
+* [promise-loader][9]
+* [bundle-loader][8]
+* [es6-modules-overview][20]
+* [Implicit Code Splitting and Chunk Loading with React Router and Webpack][21]
+* [Code Splitting &#8211; Using require.ensure][3]
+
 <li data-spm-anchor-id="a2c4e.11153940.blogcont71200.i2.3fc97c7461PC2D">
   <a href="https://webpack.js.org/guides/migrating/#code-splitting-with-es2015">Code Splitting with ES2015</a>
 </li>

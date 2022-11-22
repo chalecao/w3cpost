@@ -1,28 +1,10 @@
 ---
 title: HTML元素嵌套约束
-
-
-date: 2018-09-08T14:48:55+00:00
-url: /html5css3/2214.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/u402172834950723224fm26gp0.jpg?x-oss-process=image/resize,m_fill,w_300,h_173
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/u402172834950723224fm26gp0.jpg?x-oss-process=image/resize,m_fill,w_300,h_173
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/u402172834950723224fm26gp0.jpg?x-oss-process=image/resize,m_fill,w_300,h_173
-views:
-  - 1715
-  - 1715
-fifu_image_alt:
-  - HTML元素嵌套约束
-classic-editor-remember:
-  - classic-editor
-like:
-  - 2
-
-
+  
 ---
 欢迎学习前端知识体系课程，本系列属于：[前端增长教程][1]
 
-<img loading="lazy" class="alignnone size-medium wp-image-2216" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/u402172834950723224fm26gp0.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/u402172834950723224fm26gp0.jpg?x-oss-process=image/resize,m_fill,w_300,h_173/format,webp" alt="" width="300" height="173" /> 
+<img loading="lazy" class="alignnone size-medium wp-image-2216" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/u402172834950723224fm26gp0.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/u402172834950723224fm26gp0.jpg?x-oss-process=image/resize,m_fill,w_300,h_173/format,webp" alt="" width="300" height="173" />
 
 **块级元素特点：**
 
@@ -76,9 +58,9 @@ like:
 * tt &#8211; 电传文本  
 * u &#8211; 下划线  
 * var &#8211; 定义变量**  
-** 
+**
 
-## ** ****块元素(block element)**
+## ******块元素(block element)**
 
 * address &#8211; 地址  
 * blockquote &#8211; 块引用  
@@ -108,6 +90,7 @@ like:
 可变元素
 
 可变元素为根据上下文语境决定该元素为块元素或者内联元素。  
+
 * applet &#8211; <a class="replace_word" title="Java 知识库" href="https://lib.csdn.net/base/java" target="_blank" rel="noopener noreferrer">Java </a>applet  
 * button &#8211; 按钮  
 * del &#8211; 删除文本  
@@ -152,7 +135,7 @@ display:inline; /*转换为行内*/</strong></pre>
     <p>
       <strong>语义嵌套约束：</strong>
     </p>
-    
+
     <p>
       每个元素基本都有自己的嵌套规则（即父元素可以是什么，子元素可以是什么），除了严格嵌套约束之外的一些规则就是语义嵌套约束，对于语义嵌套约束，如果不遵守，页面可能正常，但也可能解析错误，这和下面要讲的容错机制有关。
     </p>
@@ -196,7 +179,7 @@ display:inline; /*转换为行内*/</strong></pre>
     <h2>
       相关知识
     </h2>
-    
+
     <p>
       在<code>https://www.w3.org/TR/html4/loose.dtd</code>里，我们可以找到这样的定义：
     </p>

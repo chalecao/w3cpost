@@ -1,32 +1,5 @@
 ---
 title: Node.js 代码规范约定
-
-
-date: 2017-10-13T01:27:01+00:00
-url: /javascriptnodejs/1439.html
-ampforwp_custom_content_editor:
-  - 
-  - 
-ampforwp_custom_content_editor_checkbox:
-  - 
-  - 
-ampforwp-amp-on-off:
-  - default
-  - default
-toc_depth:
-  - 1
-  - 1
-views:
-  - 1638
-  - 1638
-like:
-  - 2
-  - 2
-wl_pageviews:
-  - 1
-  - 1
-
-
 ---
 # Node.js 代码规范 {.typo-title}
 
@@ -215,8 +188,8 @@ wl_pageviews:
     <em>Wrong:</em>
   </p>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> admin_user = db.query(&lt;span class="hljs-string">'SELECT * FROM users ...'&lt;/span>);
-&lt;span class="hljs-keyword">var&lt;/span> a = db.query(&lt;span class="hljs-string">'SELECT * FROM users ...'&lt;/span>);
+  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> admin_user = db.query(&lt;span class="hljs-string">'SELECT *FROM users ...'&lt;/span>);
+&lt;span class="hljs-keyword">var&lt;/span> a = db.query(&lt;span class="hljs-string">'SELECT* FROM users ...'&lt;/span>);
 </code>&lt;/code></pre>
   
   <h3 id="类名采用大驼峰">

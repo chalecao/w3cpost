@@ -2,19 +2,7 @@
 title: HTTP协商缓存VS强缓存原理
 
 
-date: 2019-03-03T06:40:04+00:00
-url: /pwa/3779.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/408483-20160525182843100-1556227104.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/408483-20160525182843100-1556227104.png
-onesignal_meta_box_present:
-  - 1
-fifu_image_alt:
-  - http协商缓存VS强缓存
-views:
-  - 1745
-like:
-  - 6
+
 
 
 ---
@@ -27,7 +15,7 @@ like:
     <p>
        本文主要讲解浏览器端的缓存，缓存的作用是不言而喻的，能够极大的改善网页性能，提高用户体验。
     </p>
-    
+
     <h2>
       1、浏览器缓存
     </h2>

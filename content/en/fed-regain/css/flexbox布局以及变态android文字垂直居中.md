@@ -1,32 +1,10 @@
 ---
 title: 学习和使用flexbox布局以及变态android文字垂直居中
 
-
-date: 2017-09-04T09:31:16+00:00
-url: /html5css3/1413.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/2017/09/bg2015071002.png
-ws_info:
-  - 'a:4:{s:8:"ws_title";s:0:"";s:7:"ws_desc";s:0:"";s:6:"ws_url";s:0:"";s:6:"ws_img";s:0:"";}'
-  - 'a:4:{s:8:"ws_title";s:0:"";s:7:"ws_desc";s:0:"";s:6:"ws_url";s:0:"";s:6:"ws_img";s:0:"";}'
-toc_depth:
-  - 2
-  - 2
-views:
-  - 2318
-  - 2318
-like:
-  - 5
-  - 5
-fifu_image_url:
-  - //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/09/bg2015071002.png
-fifu_image_alt:
-  - 学习和使用flexbox布局
-
-
 ---
 是时候好好学习flex布局了，之前的开发经验主要集中在web pc端开发，现在主要集中在H5页面的开发，既然H5基本都支持flex布局，为什么不熟练使用呢？这里借用下阮老师的图，我也自己谢谢学到的flex布局的知识，作为补充。
 
-<img loading="lazy" class="aligncenter" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/09/bg2015071002.png" alt="flex布局-haomou.net" width="274" height="144" /> 
+<img loading="lazy" class="aligncenter" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/09/bg2015071002.png" alt="flex布局-haomou.net" width="274" height="144" />
 
 # 知识运用：
 
@@ -48,7 +26,7 @@ fifu_image_alt:
 
 最终找到两种解决办法, 代码如下
 
-  * 方法一
+* 方法一
 
 <pre><code class="hljs css">&lt;span class="hljs-selector-tag">span&lt;/span> {
     &lt;span class="hljs-attribute">width&lt;/span>: &lt;span class="hljs-number">1rem&lt;/span>;
@@ -56,14 +34,14 @@ fifu_image_alt:
     &lt;span class="hljs-attribute">font-size&lt;/span>: &lt;span class="hljs-number">0.12rem&lt;/span>;
     &lt;span class="hljs-attribute">color&lt;/span>: green;
     &lt;span class="hljs-attribute">background&lt;/span>: lightblue;
-    
+
     &lt;span class="hljs-attribute">display&lt;/span>: flex;
     &lt;span class="hljs-attribute">justify-content&lt;/span>: center;
     &lt;span class="hljs-attribute">align-items&lt;/span>: center;
-    &lt;span class="hljs-attribute">flex-direction&lt;/span>: column; 
+    &lt;span class="hljs-attribute">flex-direction&lt;/span>: column;
 }</code></pre>
 
-  * 方法二 (仅限于字数固定情况)
+* 方法二 (仅限于字数固定情况)
 
 <pre><code class="hljs css">&lt;span class="hljs-selector-tag">span&lt;/span> {
     &lt;span class="hljs-attribute">font-size&lt;/span>: &lt;span class="hljs-number">0.12rem&lt;/span>;
@@ -185,4 +163,5 @@ fifu_image_alt:
   1. Flex 布局教程：语法篇：<https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html>
   2. <p id="page-title" class="asset-name entry-title">
       Flex 布局教程：实例篇：<a href="https://www.ruanyifeng.com/blog/2015/07/flex-examples.html">https://www.ruanyifeng.com/blog/2015/07/flex-examples.html</a>
+
     </p>

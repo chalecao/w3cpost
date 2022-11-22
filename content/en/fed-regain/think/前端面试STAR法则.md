@@ -1,25 +1,7 @@
 ---
 title: 前端面试STAR法则
 
-
-date: 2018-09-05T01:36:49+00:00
-url: /pwa/2159.html
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/下载.jpeg
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/下载.jpeg
-views:
-  - 2276
-  - 2276
-onesignal_meta_box_present:
-  - 1
-fifu_image_alt:
-  - 前端面试STAR法则
-like:
-  - 4
-
-
 ---
-<img loading="lazy" class="alignnone size-full wp-image-2161" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/下载.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/下载.jpeg?x-oss-process=image/format,webp" alt="" width="282" height="179" />
 
 ## 前端面试
 

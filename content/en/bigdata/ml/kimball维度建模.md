@@ -2,13 +2,6 @@
 title: KimBall维度建模
 
 
-date: 2022-07-29T12:28:49+00:00
-url: /大数据/7175.html
-classic-editor-remember:
-  - classic-editor
-views:
-  - 161
-
 
 ---
 <p data-first-child="" data-pid="JgcQJcED">

@@ -2,17 +2,6 @@
 title: 详解Object.create(null)和new区别
 
 
-date: 2019-06-25T12:58:11+00:00
-url: /javascriptnodejs/4531.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c765506eb.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c765506eb.png
-fifu_image_alt:
-  - 详解Object.create(null)和new区别
-views:
-  - 2411
-like:
-  - 17
 
 
 ---
@@ -29,15 +18,15 @@ like:
 <pre class="hljs bash"><code class="hljs bash copyable" lang="bash">Object.create(proto,[propertiesObject])
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
 
-  * proto:新创建对象的原型对象
-  * propertiesObject:可选。要添加到新对象的**可枚举**（新添加的属性是其自身的属性，而不是其原型链上的属性）的属性。
+* proto:新创建对象的原型对象
+* propertiesObject:可选。要添加到新对象的**可枚举**（新添加的属性是其自身的属性，而不是其原型链上的属性）的属性。
 
 举个例子(恶改了一下MDN的官方例子，看懂的点赞)：
 
 <pre class="hljs bash"><code class="hljs bash copyable" lang="bash">const car = {
   isSportsCar: &lt;span class="hljs-literal">false&lt;/span>,
   introduction: &lt;span class="hljs-function">&lt;span class="hljs-title">function&lt;/span>&lt;/span> () {
-    console.log(`Hi girl, this is a &lt;span class="hljs-variable">${this.name}&lt;/span>. 
+    console.log(`Hi girl, this is a &lt;span class="hljs-variable">${this.name}&lt;/span>.
     Do you like to have a drink with me ? &lt;span class="hljs-variable">${this.isSportsCar}&lt;/span>`);
   }
 };
@@ -199,7 +188,7 @@ console.log(o3.a);</pre>
   <img loading="lazy" class="alignnone  wp-image-4545 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12ce75ac749.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12ce75ac749.png?x-oss-process=image/format,webp" alt="" width="396" height="512" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12ce75ac749.png?x-oss-process=image/format,webp 678w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12ce75ac749.png?x-oss-process=image/quality,q_50/resize,m_fill,w_232,h_300/format,webp 232w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12ce75ac749.png?x-oss-process=image/quality,q_50/resize,m_fill,w_464,h_600/format,webp 464w" sizes="(max-width: 396px) 100vw, 396px" />
 </p>
 
-  * o1的原型指向的是Object，实例上有属性a。 相当于代码：
+* o1的原型指向的是Object，实例上有属性a。 相当于代码：
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">class BB{constructor(){this.a=1}}
 console.log(new BB())</pre>
@@ -212,11 +201,11 @@ o1和这种class 创建出来的对象没有区别的。
 
 &nbsp;
 
-  * o3的原型指向了Base这个对象，o1属性上没有a，会查找原型，查到原型上有a
+* o3的原型指向了Base这个对象，o1属性上没有a，会查找原型，查到原型上有a
 
 &nbsp;
 
-  * o2指向的原型是Function，为什么呢？
+* o2指向的原型是Function，为什么呢？
 
 一种理解是可以把function看成class，就如上面的例子用的BB。我们知道function和class可以看成原生类型Function的对象，因为可以用new Function()来创建函数
 

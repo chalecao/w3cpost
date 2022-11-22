@@ -1,20 +1,5 @@
 ---
 title: 怎么使用 SVG 作为一个图像占位符
-
-
-date: 2020-10-29T05:26:54+00:00
-url: /javascriptnodejs/6048.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/t016f3f1bf633008650.png
-classic-editor-remember:
-  - classic-editor
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/t016f3f1bf633008650.png
-fifu_image_alt:
-  - 怎么使用 SVG 作为一个图像占位符
-views:
-  - 513
-
-
 ---
 ## 怎么使用 SVG 作为一个图像占位符 {.detail-title.uk-margin-medium-top}
 

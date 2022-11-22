@@ -1,15 +1,6 @@
 ---
 title: 构建JavaScript 沙箱
 
-
-date: 2019-05-26T02:40:21+00:00
-url: /javascriptnodejs/4393.html
-views:
-  - 1072
-like:
-  - 3
-
-
 ---
 在 Node.js 中有一个模块叫做 VM，它提供了几个 API，允许代码在 V8 虚拟机上下文中运行，如：
 
@@ -41,8 +32,8 @@ Function 构造函数会创建一个新的函数对象，它可以作为 eval �
 
 返回的 fn 是一个定义好的函数，最后一个参数为函数体。它和 eval 不太一样：
 
-  * fn 是一段编译好的代码，可以直接执行，而 eval 需要编译一次
-  * fn 没有对所在闭包的作用域访问权限，不过它依然能够访问全局作用域
+* fn 是一段编译好的代码，可以直接执行，而 eval 需要编译一次
+* fn 没有对所在闭包的作用域访问权限，不过它依然能够访问全局作用域
 
 如何阻止它访问全局作用域呢？
 
@@ -136,7 +127,7 @@ with(A.prototype) {
       get(target, key, receiver) {
         // 加固，防止逃逸
         if (key === Symbol.unscopables) {
-          return undefined; 
+          return undefined;
         }
         Reflect.get(target, key, receiver);
       }
@@ -151,8 +142,8 @@ with(A.prototype) {
 
 不过，这里还存在两个逻辑漏洞：
 
-  * code 中可以提前关闭 sandbox 的 with 语境，如 &#8216;} alert(this); {&#8216;；
-  * code 中可以使用 eval 和 new Function 直接逃逸
+* code 中可以提前关闭 sandbox 的 with 语境，如 &#8216;} alert(this); {&#8216;；
+* code 中可以使用 eval 和 new Function 直接逃逸
 
 对于第一个问题，我们可以通过堆栈深度检测：
 
@@ -190,5 +181,5 @@ with(A.prototype) {
 
 ### 更多阅读
 
-  * <a class=" wrap external" href="https://link.zhihu.com/?target=http%3A//www.html5rocks.com/en/tutorials/security/sandboxed-iframes/" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">Play safely in sandboxed IFrames</a>
-  * <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//blog.risingstack.com/writing-a-javascript-framework-sandboxed-code-evaluation/" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">Writing a JavaScript framework &#8211; Sandboxed code evaluation</a>
+* <a class=" wrap external" href="https://link.zhihu.com/?target=http%3A//www.html5rocks.com/en/tutorials/security/sandboxed-iframes/" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">Play safely in sandboxed IFrames</a>
+* <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//blog.risingstack.com/writing-a-javascript-framework-sandboxed-code-evaluation/" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">Writing a JavaScript framework &#8211; Sandboxed code evaluation</a>

@@ -2,23 +2,15 @@
 title: JS和CSS使用的一些小技巧和问题
 
 
-date: 2018-10-12T10:47:45+00:00
-url: /html5css3/1798.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/bf565c2227fc8deb089a0a3eba20cddd.png
-fifu_image_url:
+
   - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/bf565c2227fc8deb089a0a3eba20cddd.png
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/bf565c2227fc8deb089a0a3eba20cddd.png
-views:
+
   - 1511
-  - 1511
-like:
+
   - 2
-  - 2
-fifu_image_alt:
+
   - JS和CSS使用的一些小技巧和问题
-  - JS和CSS使用的一些小技巧和问题
-onesignal_meta_box_present:
-  - 1
+
 
 
 ---
@@ -26,7 +18,7 @@ onesignal_meta_box_present:
 
 ## 定制间隔线
 
-<img loading="lazy" class="" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2018/04/ad4b1849662ef8338664c9fee791477c.png" width="391" height="32" /> 
+<img loading="lazy" class="" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2018/04/ad4b1849662ef8338664c9fee791477c.png" width="391" height="32" />
 
 需要上面这样一条虚线，怎么搞？
 
@@ -48,7 +40,6 @@ onesignal_meta_box_present:
 
 PS: 看过一篇文章，一位大牛用css渐变写了超级玛丽：[链接][1]  
 
-
 ## append与appendChild
 
 这里说的append是dom的方法，目前处于草案，虽然有很多浏览器支持，但是在开发h5页面时，偶尔还是会有报错，有些极个别浏览器拿不支持。mdn：<https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append>
@@ -66,7 +57,7 @@ appendChild这个api是DOM level2的，现在基本所有浏览器都支持的�
 
 <pre class="pure-highlightjs"><code class="">postToIframe: function(iframeName, actionUrl, dataKey, data) {
                 var _form = document.createElement("form")
-                  , _input = document.createElement("input");
+,_input = document.createElement("input");
                 _form.setAttribute("id", "hideForm"),
                 _form.setAttribute("method", "POST"),
                 _form.setAttribute("action", actionUrl),
@@ -76,9 +67,9 @@ appendChild这个api是DOM level2的，现在基本所有浏览器都支持的�
                 _input.value = encodeURIComponent(JSON.stringify(data));
                 var o = document.getElementById("hideForm");
                 o && document.body.removeChild(o),
-                document.body.appendChild(_form), 
+                document.body.appendChild(_form),
                 _form.appendChild(r),
-                _form.submit() 
+                _form.submit()
 }
 </code></pre>
 
@@ -147,7 +138,7 @@ function removeClass(sel, cls) {
     //2. throw Error, go next then reject
     throw new Error("2")
 }).then(res=&gt;{
-    console.log(res) 
+    console.log(res)
 },err=&gt;{
     console.log(err)
 })
@@ -158,11 +149,11 @@ function removeClass(sel, cls) {
 ## js 正则表达式判断非法字符 常用正则表达式
 
     <code>
-    var pat=new RegExp("[^a-zA-Z0-9\_\u4e00-\u9fa5]","i"); 	  
-    var strTest = $("#testId").val();	  
-    if(pat.test(strTest)==true) 	  { 	      
-        showMess("项目名称中含有非法字符"); 	      
-        return false; 	  
+    var pat=new RegExp("[^a-zA-Z0-9\_\u4e00-\u9fa5]","i");    
+    var strTest = $("#testId").val();   
+    if(pat.test(strTest)==true)    {        
+        showMess("项目名称中含有非法字符");        
+        return false;    
     }
     </code>
 
@@ -194,7 +185,7 @@ function removeClass(sel, cls) {
 验证电话号码：^(\d3,4\d3,4|\d{3,4}-)?\d{7,8}$：&#8211;正确格式为：XXXX-XXXXXXX，XXXX-XXXXXXXX，XXX-XXXXXXX，XXX-XXXXXXXX，XXXXXXX，XXXXXXXX。  
 验证身份证号（15位或18位数字）：^\d{15}|\d{}18$  
 验证一年的12个月：^(0?[1-9]|1[0-2])$ 正确格式为：“01”-“09”和“1”“12”  
-验证一个月的31天：^((0?[1-9])|((1|2)[0-9])|30|31)$ 正确格式为：01、09和1、31。  
+验证一个月的31天：^((0?[1-9])|[(1|2](0-9))|30|31)$ 正确格式为：01、09和1、31。  
 整数：^-?\d+$  
 非负浮点数（正浮点数 + 0）：^\d+(\.\d+)?$  
 正浮点数 ^((\[0-9]+\.[0-9]\*[1-9\]\[0-9\]\*)|(\[0-9]\*[1-9\]\[0-9\]\*\.\[0-9]+)|([0-9]\*[1-9\]\[0-9\]\*))$  
@@ -253,8 +244,6 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 
    <a title="The Element method querySelectorAll() returns a static (not live) NodeList representing a list of the document's elements that match the specified group of selectors." href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll"><code>document.querySelectorAll()</code></a> 返回的是执行时获取到的节点信息，是静态引用（节点发生变化，无感知，可以理解成内存中存在的引用），比如节点发生增删，之前返回的节点列表不会变化，所以循环要判空。
 
-
-
 ## babel 打包 展开写法的JS代码的问题
 
   [&#8230;document.querySelectorAll(&#8220;a&#8221;)]  经过babel-env 转义后成为 [].concat(document.querySelectorAll(&#8220;a&#8221;)),
@@ -263,13 +252,9 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 
   关于preset，参考：https://babeljs.io/docs/en/env
 
-
-
   preset: env 打包后；<span class="x x-first">[].</span><span class="pl-c1 x">concat</span><span class="x x-last">(</span>document.querySelectorAll(&#8220;a&#8221;))
 
   preset: es2015打包后：<span class="x x-first">[].</span><span class="pl-c1 x">concat</span><span class="x x-last">(</span><span class="pl-smi">babelHelpers</span>.<span class="pl-en">toConsumableArray</span>(document.querySelectorAll(&#8220;a&#8221;))
-
-
 
 <div>
   <pre><code>&lt;span class="pl-s">&lt;span class="pl-pds">"&lt;/span>use strict&lt;span class="pl-pds">"&lt;/span>&lt;/span>;

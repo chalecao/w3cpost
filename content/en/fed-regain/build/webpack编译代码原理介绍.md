@@ -1,15 +1,6 @@
 ---
 title: webpack编译代码原理介绍
 
-
-date: 2019-06-07T09:48:12+00:00
-url: /javascriptnodejs/4453.html
-views:
-  - 889
-like:
-  - 3
-
-
 ---
 <div class="article fmt article__content" data-id="1190000017890529" data-license="cc">
   <h2 id="articleHeader1">
@@ -186,7 +177,7 @@ like:
       <th>
         事件
       </th>
-      
+
       <th>
         描述
       </th>
@@ -272,7 +263,7 @@ like:
       <th>
         事件
       </th>
-      
+
       <th>
         解释
       </th>
@@ -366,7 +357,7 @@ like:
       <th>
         事件
       </th>
-      
+
       <th>
         解释
       </th>
@@ -434,7 +425,7 @@ like:
       <th>
         事件
       </th>
-      
+
       <th>
         解释
       </th>
@@ -805,11 +796,11 @@ show(&lt;span class="hljs-string">'Webpack'&lt;/span>);</code></pre>
   __webpack_require__.o = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">object, property&lt;/span>) &lt;/span>{ &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-built_in">Object&lt;/span>.prototype.hasOwnProperty.call(object, property); };
   __webpack_require__.p = &lt;span class="hljs-string">""&lt;/span>;
   &lt;span class="hljs-comment">// 4. 执行reruire函数引入第一个模块(main.js对应的模块)&lt;/span>
-  &lt;span class="hljs-keyword">return&lt;/span> __webpack_require__(__webpack_require__.s = &lt;span class="hljs-number">0&lt;/span>);
+&lt;span class="hljs-keyword">return&lt;/span>__webpack_require__(__webpack_require__.s = &lt;span class="hljs-number">0&lt;/span>);
 })
 ([ &lt;span class="hljs-comment">// 0. 传入参数，参数是个数组&lt;/span>
 
-  &lt;span class="hljs-comment">/* 第0个参数 main.js对应的文件*/&lt;/span>
+  &lt;span class="hljs-comment">/*第0个参数 main.js对应的文件*/&lt;/span>
   (&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">module, exports, __webpack_require__&lt;/span>) &lt;/span>{
 
     &lt;span class="hljs-comment">// 通过 CommonJS 规范导入 show 函数&lt;/span>
@@ -818,7 +809,7 @@ show(&lt;span class="hljs-string">'Webpack'&lt;/span>);</code></pre>
     show(&lt;span class="hljs-string">'Webpack'&lt;/span>);
 
   }),
-  &lt;span class="hljs-comment">/* 第1个参数 show.js对应的文件 */&lt;/span>
+  &lt;span class="hljs-comment">/*第1个参数 show.js对应的文件*/&lt;/span>
   (&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">module, exports&lt;/span>) &lt;/span>{
 
     &lt;span class="hljs-comment">// 操作 DOM 元素，把 content 显示到网页上&lt;/span>
@@ -868,26 +859,24 @@ show(&lt;span class="hljs-string">'Webpack'&lt;/span>);</code></pre>
   </ol>
   
   <pre class="javascript hljs"><code class="js">([&lt;span class="hljs-comment">//自执行函数和上面相同，参数不同&lt;/span>
-&lt;span class="hljs-comment">/* 0 */&lt;/span>
+&lt;span class="hljs-comment">/*0*/&lt;/span>
 (&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">module, __webpack_exports__, __webpack_require__&lt;/span>) &lt;/span>{
 &lt;span class="hljs-meta">
 "use strict"&lt;/span>;
 &lt;span class="hljs-built_in">Object&lt;/span>.defineProperty(__webpack_exports__, &lt;span class="hljs-string">"__esModule"&lt;/span>, { &lt;span class="hljs-attr">value&lt;/span>: &lt;span class="hljs-literal">true&lt;/span> });
-&lt;span class="hljs-comment">/* harmony import */&lt;/span> &lt;span class="hljs-keyword">var&lt;/span> __WEBPACK_IMPORTED_MODULE_0__show__ = __webpack_require__(&lt;span class="hljs-number">1&lt;/span>);
+&lt;span class="hljs-comment">/* harmony import */&lt;/span> &lt;span class="hljs-keyword">var&lt;/span>__WEBPACK_IMPORTED_MODULE_0__show__ = __webpack_require__(&lt;span class="hljs-number">1&lt;/span>);
 
 &lt;span class="hljs-built_in">Object&lt;/span>(__WEBPACK_IMPORTED_MODULE_0__show__[&lt;span class="hljs-string">"a"&lt;/span> &lt;span class="hljs-comment">/* default */&lt;/span>])(&lt;span class="hljs-string">'Webpack'&lt;/span>);
 
-
 }),
-&lt;span class="hljs-comment">/* 1 */&lt;/span>
+&lt;span class="hljs-comment">/*1*/&lt;/span>
 (&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">module, __webpack_exports__, __webpack_require__&lt;/span>) &lt;/span>{
 &lt;span class="hljs-meta">
 "use strict"&lt;/span>;
-&lt;span class="hljs-comment">/* harmony export (immutable) */&lt;/span> __webpack_exports__[&lt;span class="hljs-string">"a"&lt;/span>] = show;
+&lt;span class="hljs-comment">/*harmony export (immutable)*/&lt;/span> __webpack_exports__[&lt;span class="hljs-string">"a"&lt;/span>] = show;
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">show&lt;/span>(&lt;span class="hljs-params">content&lt;/span>) &lt;/span>{
   &lt;span class="hljs-built_in">window&lt;/span>.document.getElementById(&lt;span class="hljs-string">'app'&lt;/span>).innerText = &lt;span class="hljs-string">'Hello,'&lt;/span> + content;
 }
-
 
 })
 ]);</code></pre>
@@ -926,13 +915,13 @@ show(&lt;span class="hljs-string">'Webpack'&lt;/span>);</code></pre>
   </p>
   
   <pre class="javascript hljs"><code class="js">webpackJsonp(&lt;span class="hljs-comment">/*在其他文件中存放的模块的ID*/&lt;/span>[&lt;span class="hljs-number">0&lt;/span>],[&lt;span class="hljs-comment">//本文件所包含的模块&lt;/span>
-&lt;span class="hljs-comment">/* 0 */&lt;/span>,
-&lt;span class="hljs-comment">/* 1 show.js对应的模块 */&lt;/span>
+&lt;span class="hljs-comment">/*0*/&lt;/span>,
+&lt;span class="hljs-comment">/*1 show.js对应的模块*/&lt;/span>
 (&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">module, __webpack_exports__, __webpack_require__&lt;/span>) &lt;/span>{
 &lt;span class="hljs-meta">
   "use strict"&lt;/span>;
   &lt;span class="hljs-built_in">Object&lt;/span>.defineProperty(__webpack_exports__, &lt;span class="hljs-string">"__esModule"&lt;/span>, { &lt;span class="hljs-attr">value&lt;/span>: &lt;span class="hljs-literal">true&lt;/span> });
-  &lt;span class="hljs-comment">/* harmony export (immutable) */&lt;/span> 
+  &lt;span class="hljs-comment">/* harmony export (immutable) */&lt;/span>
   __webpack_exports__[&lt;span class="hljs-string">"default"&lt;/span>] = show;
 
   &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">show&lt;/span>(&lt;span class="hljs-params">content&lt;/span>) &lt;/span>{
@@ -1018,9 +1007,9 @@ show(&lt;span class="hljs-string">'Webpack'&lt;/span>);</code></pre>
     &lt;span class="hljs-comment">// This file contains only the entry chunk.&lt;/span>
   &lt;span class="hljs-comment">// The chunk loading function for additional chunks&lt;/span>
   &lt;span class="hljs-comment">/**
-   * 用于加载被分割出去的需要异步加载的chunk对应的文件
+   *用于加载被分割出去的需要异步加载的chunk对应的文件
    * @param chunkId 需要异步加载的chunk对应的id
-   * @returns {Promise}
+   *@returns {Promise}
    */&lt;/span>
     __webpack_require__.e = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">requireEnsure&lt;/span>(&lt;span class="hljs-params">chunkId&lt;/span>) &lt;/span>{
       &lt;span class="hljs-keyword">var&lt;/span> installedChunkData = installedChunks[chunkId];
@@ -1037,7 +1026,7 @@ show(&lt;span class="hljs-string">'Webpack'&lt;/span>);</code></pre>
       });
       installedChunkData[&lt;span class="hljs-number">2&lt;/span>] = promise;
       &lt;span class="hljs-comment">// start chunk loading&lt;/span>
-      &lt;span class="hljs-keyword">var&lt;/span> head = &lt;span class="hljs-built_in">document&lt;/span>.getElementsByTagName(&lt;span class="hljs-string">'head'&lt;/span>)[&lt;span class="hljs-number">0&lt;/span>];
+      &lt;span class="hljs-keyword">var&lt;/span> head = &lt;span class="hljs-built_in">document&lt;/span>.getElementsByTagName[&lt;span class="hljs-string">'head'&lt;/span>](&lt;span class="hljs-number">0&lt;/span>);
       &lt;span class="hljs-keyword">var&lt;/span> script = &lt;span class="hljs-built_in">document&lt;/span>.createElement(&lt;span class="hljs-string">'script'&lt;/span>);
       script.type = &lt;span class="hljs-string">"text/javascript"&lt;/span>;
       script.charset = &lt;span class="hljs-string">'utf-8'&lt;/span>;
@@ -1088,22 +1077,21 @@ show(&lt;span class="hljs-string">'Webpack'&lt;/span>);</code></pre>
     };
     &lt;span class="hljs-comment">// Object.prototype.hasOwnProperty.call&lt;/span>
     __webpack_require__.o = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">object, property&lt;/span>) &lt;/span>{ &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-built_in">Object&lt;/span>.prototype.hasOwnProperty.call(object, property); };
-    &lt;span class="hljs-comment">// __webpack_public_path__&lt;/span>
+&lt;span class="hljs-comment">//__webpack_public_path__&lt;/span>
     __webpack_require__.p = &lt;span class="hljs-string">""&lt;/span>;
     &lt;span class="hljs-comment">// on error function for async loading&lt;/span>
     __webpack_require__.oe = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">err&lt;/span>) &lt;/span>{ &lt;span class="hljs-built_in">console&lt;/span>.error(err); &lt;span class="hljs-keyword">throw&lt;/span> err; };
     &lt;span class="hljs-comment">// Load entry module and return exports&lt;/span>
-    &lt;span class="hljs-keyword">return&lt;/span> __webpack_require__(__webpack_require__.s = &lt;span class="hljs-number">0&lt;/span>);
+&lt;span class="hljs-keyword">return&lt;/span>__webpack_require__(__webpack_require__.s = &lt;span class="hljs-number">0&lt;/span>);
 })
 &lt;span class="hljs-comment">/************************************************************************/&lt;/span>
 ([&lt;span class="hljs-comment">//存放没有经过异步加载的，随着执行入口文件加载的模块&lt;/span>
 &lt;span class="hljs-comment">/* 0 */&lt;/span>
-&lt;span class="hljs-comment">/***/&lt;/span> (&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">module, exports, __webpack_require__&lt;/span>) &lt;/span>{
+&lt;span class="hljs-comment">/***/&lt;/span> (&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">module, exports,__webpack_require__&lt;/span>) &lt;/span>{
 
-__webpack_require__.e&lt;span class="hljs-comment">/* import() */&lt;/span>(&lt;span class="hljs-number">0&lt;/span>).then(__webpack_require__.bind(&lt;span class="hljs-literal">null&lt;/span>, &lt;span class="hljs-number">1&lt;/span>)).then(&lt;span class="hljs-function">&lt;span class="hljs-params">show&lt;/span>=&gt;&lt;/span>{
+__webpack_require__.e&lt;span class="hljs-comment">/*import()*/&lt;/span>(&lt;span class="hljs-number">0&lt;/span>).then(__webpack_require__.bind(&lt;span class="hljs-literal">null&lt;/span>, &lt;span class="hljs-number">1&lt;/span>)).then(&lt;span class="hljs-function">&lt;span class="hljs-params">show&lt;/span>=&gt;&lt;/span>{
     show(&lt;span class="hljs-string">'Webpack'&lt;/span>)
 })
-
 
 &lt;span class="hljs-comment">/***/&lt;/span> })
 ]);</code></pre>

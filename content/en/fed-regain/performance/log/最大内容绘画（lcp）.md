@@ -1,20 +1,6 @@
 ---
 title: 最大内容绘画（LCP）
 
-
-date: 2020-10-03T11:24:47+00:00
-url: /fed-regain/5891.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png
-classic-editor-remember:
-  - classic-editor
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png
-fifu_image_alt:
-  - 最大内容绘画（LCP）
-views:
-  - 1237
-
-
 ---
 <div class="w-aside w-aside--note">
   <blockquote>
@@ -34,7 +20,7 @@ views:
 
 ## 什么是LCP？<a class="w-headline-link" href="https://web.dev/lcp/#what-is-lcp" aria-hidden="true">＃</a> {#what-is-lcp}
 
-“最大内容绘画（LCP）”度量标准报告视口内可见的最大[图像或文本块][7]的渲染时间 。<picture><source srcset="../vitals/lcp_8x2.svg" media="(min-width: 640px)" /></picture> 
+“最大内容绘画（LCP）”度量标准报告视口内可见的最大[图像或文本块][7]的渲染时间 。<picture><source srcset="../vitals/lcp_8x2.svg" media="(min-width: 640px)" /></picture>
 
 <p id="hJSigfy">
   <img loading="lazy" class="alignnone wp-image-5894 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/format,webp" alt="" width="645" height="176" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/format,webp 1782w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_82/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_218/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_209/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_419/format,webp 1536w" sizes="(max-width: 645px) 100vw, 645px" />
@@ -53,6 +39,7 @@ views:
 ### 考虑哪些要素？<a class="w-headline-link" href="https://web.dev/lcp/#what-elements-are-considered" aria-hidden="true">＃</a> {#what-elements-are-considered}
 
 根据“[LCP API”中][8]当前指定的内容，“[LCP”][8]考虑的元素类型为：  
+
 1. img 元素  
 2. svg元素内嵌的image元素  
 3. video 元素（使用海报图像）  
@@ -157,15 +144,15 @@ LCP可以[在实验室][15] 或[现场][16]进行测量，并且可以在以下
 
 ### 现场的工具<a class="w-headline-link" href="https://web.dev/lcp/#field-tools" aria-hidden="true">＃</a> {#field-tools}
 
-  * [Chrome用户体验报告][17]
-  * [PageSpeed见解][18]
-  * [Search Console（核心网络生命力报告）][19]
+* [Chrome用户体验报告][17]
+* [PageSpeed见解][18]
+* [Search Console（核心网络生命力报告）][19]
 
 ### 实验室工具<a class="w-headline-link" href="https://web.dev/lcp/#lab-tools" aria-hidden="true">＃</a> {#lab-tools}
 
-  * [Chrome DevTools][20]
-  * [灯塔][21]
-  * [WebPageTest][22]
+* [Chrome DevTools][20]
+* [灯塔][21]
+* [WebPageTest][22]
 
 ### 在JavaScript中测量LCP <a class="w-headline-link" href="https://web.dev/lcp/#measure-lcp-in-javascript" aria-hidden="true">＃</a> {#measure-lcp-in-javascript}
 
@@ -191,24 +178,24 @@ observer.observe({ entryTypes: [entryType] });</pre>
 
 LCP主要受以下四个因素影响：
 
-  * 服务器响应时间慢
-  * 渲染阻止的JavaScript和CSS
-  * 资源加载时间
-  * 客户端渲染
+* 服务器响应时间慢
+* 渲染阻止的JavaScript和CSS
+* 资源加载时间
+* 客户端渲染
 
 有关如何改善LCP的深入探讨，请参见[优化LCP][26]。有关还可改善LCP的各个性能技术的其他指导，请参阅：
 
-  * [使用PRPL模式应用即时加载][27]
-  * [优化关键渲染路径][28]
-  * [优化您的CSS][29]
-  * [优化图像][30]
-  * [优化网络字体][31]
-  * [优化您的JavaScript][32]（适用于客户端呈现的网站）
+* [使用PRPL模式应用即时加载][27]
+* [优化关键渲染路径][28]
+* [优化您的CSS][29]
+* [优化图像][30]
+* [优化网络字体][31]
+* [优化您的JavaScript][32]（适用于客户端呈现的网站）
 
 ## 关联课程
 
-  * [打造企业级私有前端监控体系][23]
-  * [高性能极致用户体验前端开发实战][33]
+* [打造企业级私有前端监控体系][23]
+* [高性能极致用户体验前端开发实战][33]
 
  [1]: https://developer.mozilla.org/en-US/docs/Web/Events/load
  [2]: https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded

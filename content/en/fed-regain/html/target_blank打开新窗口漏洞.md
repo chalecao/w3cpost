@@ -1,15 +1,6 @@
 ---
 title: target=”_blank”打开新窗口漏洞
 
-
-date: 2020-07-31T05:45:05+00:00
-url: /javascriptnodejs/5836.html
-views:
-  - 912
-like:
-  - 1
-
-
 ---
 # Target=”_blank”有史以来最低估的漏洞 {.bige20}
 

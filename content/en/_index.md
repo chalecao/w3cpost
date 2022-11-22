@@ -1,8 +1,8 @@
 ---
-title : "Modern Documentation Theme"
-description: "Doks is a Hugo theme for building secure, fast, and SEO-ready documentation websites, which you can easily update and customize."
-lead: "Doks is a Hugo theme for building secure, fast, and SEO-ready documentation websites, which you can easily update and customize."
-date: 2020-10-06T08:47:36+00:00
+title : "攻城狮学习成长社区"
+description: "万维刀客是互联网学习成长家园，分享知识"
+lead: "技术是第一生产力，格局要放大，要保持自身技术能力的进化，能推进生产力变革，生产关系变革，朝着效能最高的方向演进。"
+
 lastmod: 2020-10-06T08:47:36+00:00
 draft: false
 images: []

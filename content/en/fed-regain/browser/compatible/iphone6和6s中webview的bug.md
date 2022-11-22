@@ -2,23 +2,6 @@
 title: iphone6和6s中webview的bug
 
 
-date: 2017-08-29T05:51:47+00:00
-excerpt: |
-  好久没有更新博客了，还是来说说最近做的事情吧。先从一个bug说起，由于在app中无论是ios还是android，展示和控制富文本都不是一件容易的事情，所以由于业务需求，我们会采用嵌套webview的形式来完成相应的功能。webview适配的方案有很多，但是其中也隐藏了许多的bug。
-  
-  
-  常用的适配方案（rem方案）：
-  1.基于media query设置html和body的基准。（缺点比较繁琐，不好适配所有机型）
-  2.基于JS动态设置html和body的基准，动态设置viewport，基于设备像素比设置高清方案。
-  3.阿里的flexible方案 https://github.com/amfe/article/issues/17
-url: /pwa/1261.html
-views:
-  - 1686
-  - 1686
-like:
-  - 1
-
-
 ---
   
 

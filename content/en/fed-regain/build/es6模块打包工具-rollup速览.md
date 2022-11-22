@@ -2,19 +2,7 @@
 title: ES6模块打包工具—Rollup速览
 
 
-date: 2019-03-09T08:52:44+00:00
-url: /javascriptnodejs/3841.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c837ef525b36.png
-onesignal_meta_box_present:
-  - 1
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c837ef525b36.png
-fifu_image_alt:
-  - ES6模块打包工具—Rollup速览
-views:
-  - 1098
-like:
-  - 4
+
 
 
 ---
@@ -34,19 +22,19 @@ like:
 
 > 优点
 
-  * 编译运行出来的代码内容格式可读性好。
-  * 几乎没什么多余代码，除了必要的cjs, umd头外，bundle代码基本和源码没什么差异，没有奇怪的`__webpack_require__`, `Object.defineProperty`
-  * 相比Webpack，Rollup拥有无可比拟的性能优势，这是由依赖处理方式决定的，编译时依赖处理（Rollup）自然比运行时依赖处理（Webpack）性能更好,而且没什么多余代码，如上文提到的，webpack bundle不仅体积大，非业务代码（`__webpack_require__`, `Object.defineProperty`）执行耗时也不容小视。Rollup没有生成这些额外的东西，执行耗时主要在于`Compile Script` 和 `Evaluate Script` 上，其余部分可以忽略不计
-  * 支持ES6模块和IIFE格式。
-  * 对于**ES6模块**依赖库，Rollup会静态分析代码中的 import，并将排除任何未实际使用的代码。(Tree-shaking)
+* 编译运行出来的代码内容格式可读性好。
+* 几乎没什么多余代码，除了必要的cjs, umd头外，bundle代码基本和源码没什么差异，没有奇怪的`__webpack_require__`, `Object.defineProperty`
+* 相比Webpack，Rollup拥有无可比拟的性能优势，这是由依赖处理方式决定的，编译时依赖处理（Rollup）自然比运行时依赖处理（Webpack）性能更好,而且没什么多余代码，如上文提到的，webpack bundle不仅体积大，非业务代码（`__webpack_require__`, `Object.defineProperty`）执行耗时也不容小视。Rollup没有生成这些额外的东西，执行耗时主要在于`Compile Script` 和 `Evaluate Script` 上，其余部分可以忽略不计
+* 支持ES6模块和IIFE格式。
+* 对于**ES6模块**依赖库，Rollup会静态分析代码中的 import，并将排除任何未实际使用的代码。(Tree-shaking)
 
 > 缺点
 
-  * 插件生态相对较弱，一些常见需求无法满足
+* 插件生态相对较弱，一些常见需求无法满足
 
 比如打包多个依赖库，把公共依赖项提出来（Webpack的CommonsChunkPlugin）还有HMR(模块热替换)
 
-  * 文档相对较少，遇到问题无法快速解决
+* 文档相对较少，遇到问题无法快速解决
 
 ### 安装 {#articleHeader1}
 
@@ -262,7 +250,6 @@ Rollup 不知道怎么处理依赖于从 npm 安装到你的 `node_modules` �
     &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'the answer is '&lt;/span> + answer);
 }
 
-
 &lt;span class="hljs-comment">// rollup.config.js&lt;/span>
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
     &lt;span class="hljs-attr">input&lt;/span>: &lt;span class="hljs-string">'src/example4/main.js'&lt;/span>,
@@ -464,11 +451,11 @@ _扩展：_ 如果用到 `lodsh` ，可以使用 <a href="https://github.com
 
 _说明_
 
-  * `babel-plugin-external-helpers` 这个模块是在 `.babelrc` 文件中体现，目的是让babel转义出来的帮助性代码只在该文件的头部出现一次，而不会再每个引入的模块中加入，如果不想把这些帮助性的代码打包进你的文件，需要在rollup的配置文件中加入 `externalHelpers: true`，这样就会引用一个全局的`babelHelpers` 对象
+* `babel-plugin-external-helpers` 这个模块是在 `.babelrc` 文件中体现，目的是让babel转义出来的帮助性代码只在该文件的头部出现一次，而不会再每个引入的模块中加入，如果不想把这些帮助性的代码打包进你的文件，需要在rollup的配置文件中加入 `externalHelpers: true`，这样就会引用一个全局的`babelHelpers` 对象
 
 ## 推荐资料 {#articleHeader13}
 
-  * <a href="http://www.rollupjs.com/" target="_blank" rel="nofollow noopener noreferrer">rollup.js 中文文档</a>
-  * <a href="https://github.com/rollup/rollup/wiki/Plugins" target="_blank" rel="nofollow noopener noreferrer">Rollup 插件列表</a>
+* <a href="http://www.rollupjs.com/" target="_blank" rel="nofollow noopener noreferrer">rollup.js 中文文档</a>
+* <a href="https://github.com/rollup/rollup/wiki/Plugins" target="_blank" rel="nofollow noopener noreferrer">Rollup 插件列表</a>
 
  [1]: https://segmentfault.com/a/1190000012464333?_ea=3022967

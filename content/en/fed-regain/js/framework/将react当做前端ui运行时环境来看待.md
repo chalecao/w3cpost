@@ -2,17 +2,6 @@
 title: 将React当做前端UI运行时环境来看待
 
 
-date: 2019-10-23T07:10:42+00:00
-url: /fed-regain/5037.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5daffcce2aa51.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5daffcce2aa51.png
-fifu_image_alt:
-  - 将React当做前端UI运行时环境来看待
-views:
-  - 1017
-like:
-  - 3
 
 
 ---
@@ -52,8 +41,8 @@ React 程序通常会输出**一棵会随时间变化的树。** 它有可能�
 
 当专业的工具可以施加特定的约束且能从中获益时，它比一般的工具要好。React 就是这样的典范，并且它坚持两个原则：
 
-  * **稳定性。** 宿主树是相对稳定的，大多数情况的更新并不会从根本上改变其整体结构。如果应用程序每秒都会将其所有可交互的元素重新排列为完全不同的组合，那将会变得难以使用。那个按钮去哪了？为什么我的屏幕在跳舞？
-  * **通用性。** 宿主树可以被拆分为外观和行为一致的 UI 模式（例如按钮、列表和头像）而不是随机的形状。
+* **稳定性。** 宿主树是相对稳定的，大多数情况的更新并不会从根本上改变其整体结构。如果应用程序每秒都会将其所有可交互的元素重新排列为完全不同的组合，那将会变得难以使用。那个按钮去哪了？为什么我的屏幕在跳舞？
+* **通用性。** 宿主树可以被拆分为外观和行为一致的 UI 模式（例如按钮、列表和头像）而不是随机的形状。
 
 **这些原则恰好适用于大多数 UI 。** 然而，当输出没有稳定的“模式”时 React 并不适用。例如，React 也许可以帮助你编写一个 Twitter 客户端，但对于一个 <a href="https://www.youtube.com/watch?v=Uzx9ArZ7MUU" target="_blank" rel="nofollow noopener noreferrer">3D 管道屏幕保护程序</a> 并不会起太大作用。
 
@@ -271,9 +260,9 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 在这个例子中，<code class="language-text">&lt;input&gt;</code> 宿主实例会被重新创建。React 会遍历整个元素树，并将其与先前的版本进行比较：
 
-  * <code class="language-text">dialog → dialog</code> ：能重用宿主实例吗？**能 — 因为类型是匹配的。** 
-      * <code class="language-text">input → p</code> ：能重用宿主实例吗？**不能，类型改变了！** 需要删除已有的 <code class="language-text">input</code> 然后重新创建一个 <code class="language-text">p</code> 宿主实例。
-      * <code class="language-text">(nothing) → input</code> ：需要重新创建一个 <code class="language-text">input</code> 宿主实例。
+* <code class="language-text">dialog → dialog</code> ：能重用宿主实例吗？**能 — 因为类型是匹配的。**
+  * <code class="language-text">input → p</code> ：能重用宿主实例吗？**不能，类型改变了！** 需要删除已有的 <code class="language-text">input</code> 然后重新创建一个 <code class="language-text">p</code> 宿主实例。
+  * <code class="language-text">(nothing) → input</code> ：需要重新创建一个 <code class="language-text">input</code> 宿主实例。
 
 因此，React 会像这样执行更新：
 
@@ -330,9 +319,9 @@ dialogNode&lt;span class="token punctuation">.&lt;/span>&lt;span class="token fu
 
 如果 <code class="language-text">showMessage</code> 从 <code class="language-text">false</code> 改变为 <code class="language-text">true</code> ，React 会遍历整个元素树，并与之前的版本进行比较：
 
-  * <code class="language-text">dialog → dialog</code> ：能够重用宿主实例吗？**能 — 因为类型匹配。** 
-      * <code class="language-text">(null) → p</code> ：需要插入一个新的 <code class="language-text">p</code> 宿主实例。
-      * <code class="language-text">input → input</code> ：能够重用宿主实例吗？**能 — 因为类型匹配。**
+* <code class="language-text">dialog → dialog</code> ：能够重用宿主实例吗？**能 — 因为类型匹配。**
+  * <code class="language-text">(null) → p</code> ：需要插入一个新的 <code class="language-text">p</code> 宿主实例。
+  * <code class="language-text">input → input</code> ：能够重用宿主实例吗？**能 — 因为类型匹配。**
 
 之后 React 大致会像这样执行代码：
 
@@ -515,16 +504,16 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 
 这个步骤会递归式地执行下去，更详细的描述在<a href="https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html" target="_blank" rel="nofollow noopener noreferrer">这里</a> 。总的来说，它会像这样执行：
 
-  * **你：** <code class="language-text">ReactDOM.render(&lt;App /&gt;, domContainer)</code>
-  * **React：** <code class="language-text">App</code> ，你想要渲染什么？ 
-      * <code class="language-text">App</code> ：我要渲染包含 <code class="language-text">&lt;Content&gt;</code> 的 <code class="language-text">&lt;Layout&gt;</code> 。
-  * **React：** <code class="language-text">&lt;Layout&gt;</code> ，你要渲染什么？ 
-      * <code class="language-text">Layout</code> ：我要在 <code class="language-text">&lt;div&gt;</code> 中渲染我的子元素。我的子元素是 <code class="language-text">&lt;Content&gt;</code> 所以我猜它应该渲染到 <code class="language-text">&lt;div&gt;</code> 中去。
-  * **React：** <code class="language-text">&lt;Content&gt;</code> ，你要渲染什么？ 
-      * <code class="language-text">&lt;Content&gt;</code> ：我要在 <code class="language-text">&lt;article&gt;</code> 中渲染一些文本和 <code class="language-text">&lt;Footer&gt;</code> 。
-  * **React：** <code class="language-text">&lt;Footer&gt;</code> ，你要渲染什么？ 
-      * <code class="language-text">&lt;Footer&gt;</code> ：我要渲染含有文本的 <code class="language-text">&lt;footer&gt;</code> 。
-  * **React：** 好的，让我们开始吧：
+* **你：** <code class="language-text">ReactDOM.render(&lt;App /&gt;, domContainer)</code>
+* **React：** <code class="language-text">App</code> ，你想要渲染什么？
+  * <code class="language-text">App</code> ：我要渲染包含 <code class="language-text">&lt;Content&gt;</code> 的 <code class="language-text">&lt;Layout&gt;</code> 。
+* **React：** <code class="language-text">&lt;Layout&gt;</code> ，你要渲染什么？
+  * <code class="language-text">Layout</code> ：我要在 <code class="language-text">&lt;div&gt;</code> 中渲染我的子元素。我的子元素是 <code class="language-text">&lt;Content&gt;</code> 所以我猜它应该渲染到 <code class="language-text">&lt;div&gt;</code> 中去。
+* **React：** <code class="language-text">&lt;Content&gt;</code> ，你要渲染什么？
+  * <code class="language-text">&lt;Content&gt;</code> ：我要在 <code class="language-text">&lt;article&gt;</code> 中渲染一些文本和 <code class="language-text">&lt;Footer&gt;</code> 。
+* **React：** <code class="language-text">&lt;Footer&gt;</code> ，你要渲染什么？
+  * <code class="language-text">&lt;Footer&gt;</code> ：我要渲染含有文本的 <code class="language-text">&lt;footer&gt;</code> 。
+* **React：** 好的，让我们开始吧：
 
 <div class="gatsby-highlight" data-language="jsx">
   <pre class="language-jsx"><code class="language-jsx">&lt;span class="token comment">// 最终的 DOM 结构&lt;/span>
@@ -564,10 +553,10 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 这是一个关于<a href="https://en.wikipedia.org/wiki/Inversion_of_control" target="_blank" rel="nofollow noopener noreferrer">控制反转</a>的经典案例。通过让 React 调用我们的组件，我们会获得一些有趣的属性：
 
-  * **组件不仅仅只是函数。** React 能够用在树中与组件本身紧密相连的局部状态等特性来增强组件功能。优秀的运行时提供了与当前问题相匹配的基本抽象。就像我们已经提到过的，React 专门针对于那些渲染 UI 树并且能够响应交互的应用。如果你直接调用了组件，你就只能自己来构建这些特性了。
-  * **组件类型参与协调。** 通过 React 来调用你的组件，能让它了解更多关于元素树的结构。例如，当你从渲染 <code class="language-text">&lt;Feed&gt;</code> 页面转到 <code class="language-text">Profile</code> 页面，React 不会尝试重用其中的宿主实例 — 就像你用 <code class="language-text">&lt;p&gt;</code> 替换掉 <code class="language-text">&lt;button&gt;</code> 一样。所有的状态都会丢失 — 对于渲染完全不同的视图时，通常来说这是一件好事。你不会想要在 <code class="language-text">&lt;PasswordForm&gt;</code> 和 <code class="language-text">&lt;MessengerChat&gt;</code> 之间保留输入框的状态尽管 <code class="language-text">&lt;input&gt;</code> 的位置意外地“排列”在它们之间。
-  * **React 能够推迟协调。** 如果让 React 控制调用你的组件，它能做很多有趣的事情。例如，它可以让浏览器在组件调用之间做一些工作，这样重渲染大体量的组件树时就<a href="https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html" target="_blank" rel="nofollow noopener noreferrer">不会阻塞主线程</a>。想要手动编排这个过程而不依赖 React 的话将会十分困难。
-  * **更好的可调试性。** 如果组件是库中所重视的一等公民，我们就可以构建<a href="https://github.com/facebook/react-devtools" target="_blank" rel="nofollow noopener noreferrer">丰富的开发者工具</a>，用于开发中的自省。
+* **组件不仅仅只是函数。** React 能够用在树中与组件本身紧密相连的局部状态等特性来增强组件功能。优秀的运行时提供了与当前问题相匹配的基本抽象。就像我们已经提到过的，React 专门针对于那些渲染 UI 树并且能够响应交互的应用。如果你直接调用了组件，你就只能自己来构建这些特性了。
+* **组件类型参与协调。** 通过 React 来调用你的组件，能让它了解更多关于元素树的结构。例如，当你从渲染 <code class="language-text">&lt;Feed&gt;</code> 页面转到 <code class="language-text">Profile</code> 页面，React 不会尝试重用其中的宿主实例 — 就像你用 <code class="language-text">&lt;p&gt;</code> 替换掉 <code class="language-text">&lt;button&gt;</code> 一样。所有的状态都会丢失 — 对于渲染完全不同的视图时，通常来说这是一件好事。你不会想要在 <code class="language-text">&lt;PasswordForm&gt;</code> 和 <code class="language-text">&lt;MessengerChat&gt;</code> 之间保留输入框的状态尽管 <code class="language-text">&lt;input&gt;</code> 的位置意外地“排列”在它们之间。
+* **React 能够推迟协调。** 如果让 React 控制调用你的组件，它能做很多有趣的事情。例如，它可以让浏览器在组件调用之间做一些工作，这样重渲染大体量的组件树时就<a href="https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html" target="_blank" rel="nofollow noopener noreferrer">不会阻塞主线程</a>。想要手动编排这个过程而不依赖 React 的话将会十分困难。
+* **更好的可调试性。** 如果组件是库中所重视的一等公民，我们就可以构建<a href="https://github.com/facebook/react-devtools" target="_blank" rel="nofollow noopener noreferrer">丰富的开发者工具</a>，用于开发中的自省。
 
 让 React 调用你的组件函数还有最后一个好处就是惰性求值。让我们看看它是什么意思。
 

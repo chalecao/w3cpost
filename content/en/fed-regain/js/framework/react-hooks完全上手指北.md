@@ -1,31 +1,19 @@
 ---
 title: React Hooks完全上手指北
 
-
-date: 2019-08-06T13:48:10+00:00
-url: /fed-regain/4892.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png
-fifu_image_alt:
-  - 自动草稿
-like:
-  - 3
-views:
-  - 1421
-
-
 ---
+
+
 ## Why Hooks? {#KwUmS}
 
 ### Class Component设计理论 {#VruRj}
 
 React以一种全新的编程范式定义了前端开发约束，它为视图开发带来了一种全新的心智模型：
 
-  * React认为，UI视图是数据的一种视觉映射，即`UI = F(DATA)`，这里的`F`需要负责**对输入数据进行加工、并对数据的变更做出响应**
-  * 公式里的`F`在React里抽象成组件，React是**以组件为粒度编排应用**的，组件是代码复用的最小单元
-  * 在设计上，React采用`props`属性来接收外部的数据，使用`state`属性来管理组件自身产生的数据（状态），而为了实现（运行时）对数据变更做出响应需要，React**采用基于类（Class）的组件设计**！
-  * 除此之外，React认为**组件是有生命周期**的，因此开创性地将生命周期的概念引入到了组件设计，从组件的create到destory提供了一系列的API供开发者使用
+* React认为，UI视图是数据的一种视觉映射，即`UI = F(DATA)`，这里的`F`需要负责**对输入数据进行加工、并对数据的变更做出响应**
+* 公式里的`F`在React里抽象成组件，React是**以组件为粒度编排应用**的，组件是代码复用的最小单元
+* 在设计上，React采用`props`属性来接收外部的数据，使用`state`属性来管理组件自身产生的数据（状态），而为了实现（运行时）对数据变更做出响应需要，React**采用基于类（Class）的组件设计**！
+* 除此之外，React认为**组件是有生命周期**的，因此开创性地将生命周期的概念引入到了组件设计，从组件的create到destory提供了一系列的API供开发者使用
 
 这就是React组件设计的理论基础，我们最熟悉的React组件一般长这样：
 
@@ -49,7 +37,7 @@ React以一种全新的编程范式定义了前端开发约束，它为视图开
   <span class="cm-variable">componentWillUnmount</span>() {
     <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'Will mouned!'</span>);
   }
-    
+
   <span class="cm-comment">// lifecycle API</span>
   <span class="cm-variable">componentDidMount</span>() {
     <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'Did mouned!'</span>);
@@ -75,20 +63,20 @@ React以一种全新的编程范式定义了前端开发约束，它为视图开
 
 组件并不是单纯的信息孤岛，组件之间是可能会产生联系的，一方面是数据的共享，另一个是功能的复用：
 
-  * 对于组件之间的数据共享问题，React官方采用单向数据流（Flux）来解决
-  * 对于（有状态）组件的复用，React团队给出过许多的方案，早期使用CreateClass + Mixins，在使用Class Component取代CreateClass之后又设计了`render-props`和`Higher-Order Components`，直到再后来的Function Class + Hooks设计，React团队对于组件复用的探索一直没有停止
+* 对于组件之间的数据共享问题，React官方采用单向数据流（Flux）来解决
+* 对于（有状态）组件的复用，React团队给出过许多的方案，早期使用CreateClass + Mixins，在使用Class Component取代CreateClass之后又设计了`render-props`和`Higher-Order Components`，直到再后来的Function Class + Hooks设计，React团队对于组件复用的探索一直没有停止
 
 HOC使用的问题：
 
-  * 嵌套地狱，每一次HOC调用都会产生一个组件实例
-  * 可以使用类装饰器缓解组件嵌套带来的可维护性问题，但装饰器本质上还是HOC
-  * 包裹太多层级之后，可能会带来props属性的覆盖问题
+* 嵌套地狱，每一次HOC调用都会产生一个组件实例
+* 可以使用类装饰器缓解组件嵌套带来的可维护性问题，但装饰器本质上还是HOC
+* 包裹太多层级之后，可能会带来props属性的覆盖问题
 
 renderProps的问题：
 
-  * 数据流向更直观
-  * 渲染的不是React组件，因此没有`props`属性，即不能像HOC那样访问`this.props.children`
-  * 引入了callback hell问题
+* 数据流向更直观
+* 渲染的不是React组件，因此没有`props`属性，即不能像HOC那样访问`this.props.children`
+* 引入了callback hell问题
 
 <p id="lXbCDOH">
   <img loading="lazy" class="alignnone  wp-image-4899 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/format,webp" alt="" width="405" height="638" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/format,webp 996w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/quality,q_50/resize,m_fill,w_190,h_300/format,webp 190w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_1211/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/quality,q_50/resize,m_fill,w_381,h_600/format,webp 381w" sizes="(max-width: 405px) 100vw, 405px" />
@@ -260,17 +248,17 @@ Function Component编译结果：
   </div>
 </div>
 
-  * Javascript实现的类本身比较鸡肋，没有类似Java/C++多继承的概念，类的逻辑复用是个问题
-  * Class Component在React内部是当做Javascript `Function类`来处理的
-  * Function Component编译后就是一个普通的function，function对js引擎是友好的
+* Javascript实现的类本身比较鸡肋，没有类似Java/C++多继承的概念，类的逻辑复用是个问题
+* Class Component在React内部是当做Javascript `Function类`来处理的
+* Function Component编译后就是一个普通的function，function对js引擎是友好的
 
 > &#x1f914;问题：React是如何识别纯函数组件和类组件的？
 
 ### Function Component缺失的功能 {#aW9FM}
 
-  * 不是所有组件都需要处理生命周期，为了简化Class Component的书写，Function Component被设计了出来
-  * Function Component是纯函数，利于组件复用和测试
-  * Function Component的问题是只是单纯地接收props、绑定事件、返回jsx，本身是**无状态的组件，依赖props传入的handle来响应数据（状态）的变更，所以Function Component不能脱离Class Comnent来存在！**
+* 不是所有组件都需要处理生命周期，为了简化Class Component的书写，Function Component被设计了出来
+* Function Component是纯函数，利于组件复用和测试
+* Function Component的问题是只是单纯地接收props、绑定事件、返回jsx，本身是**无状态的组件，依赖props传入的handle来响应数据（状态）的变更，所以Function Component不能脱离Class Comnent来存在！**
 
 <div id="LTBtF" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22function%20Child(props)%20%7B%5Cn%20%20const%20handleClick%20%3D%20()%20%3D%3E%20%7B%5Cn%20%20%5Ctthis.props.setCounts(this.props.counts)%3B%5Cn%20%20%7D%3B%5Cn%20%20%5Cn%20%20%2F%2F%20UI%E7%9A%84%E5%8F%98%E6%9B%B4%E5%8F%AA%E8%83%BD%E9%80%9A%E8%BF%87Parent%20Component%E6%9B%B4%E6%96%B0props%E6%9D%A5%E5%81%9A%E5%88%B0%EF%BC%81!%5Cn%5Ctreturn%20(%5Cn%20%20%5Ct%3C%3E%5Cn%20%20%20%20%5Ct%3Cdiv%3E%7Bthis.props.counts%7D%3C%2Fdiv%3E%5Cn%20%20%20%20%5Ct%3Cbutton%20onClick%3D%7BhandleClick%7D%3Eincrease%20counts%3C%2Fbutton%3E%5Cn%20%20%20%20%3C%2F%3E%5Cn%20%20)%3B%5Cn%7D%5Cn%5Cnclass%20Parent%20extends%20Component()%20%7B%5Cn%20%20%2F%2F%20%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E8%BF%98%E6%98%AF%E5%BE%97%E4%BE%9D%E8%B5%96Class%20Component%5Cn%20%20counts%20%3D%200%5Cn%20%20%5Cn%5Ctrender%20()%20%7B%5Cn%20%20%20%20const%20counts%20%3D%20this.state.counts%3B%5Cn%20%20%5Ctreturn%20(%5Cn%20%20%20%20%5Ct%3C%3E%5Cn%20%20%20%20%20%20%20%20%3Cdiv%3Esth...%3C%2Fdiv%3E%5Cn%20%20%20%20%20%20%20%20%3CChild%20counts%3D%7Bcounts%7D%20setCounts%3D%7B(x)%20%3D%3E%20this.setState(%7Bcounts%3A%20counts%2B%2B%7D)%7D%20%2F%3E%5Cn%20%20%20%20%20%20%3C%2F%3E%5Cn%20%20%20%20)%3B%5Cn%20%20%7D%5Cn%7D%22%2C%22id%22%3A%22LTBtF%22%7D">
   <div class="lake-codeblock-content">
@@ -330,7 +318,7 @@ case：Popup组件依赖视窗宽度适配自身显示宽度、相册组件依�
     <span class="cm-keyword">const</span> <span class="cm-def">onSize</span> <span class="cm-operator">=</span> <span class="cm-def">e</span> <span class="cm-operator">=&gt;</span> {
       <span class="cm-variable-2">setSize</span>({ <span class="cm-property">width</span>: <span class="cm-variable-2">html</span>.<span class="cm-property">clientWidth</span>, <span class="cm-property">height</span>: <span class="cm-variable-2">html</span>.<span class="cm-property">clientHeight</span> });
     };
-    
+
     <span class="cm-variable">window</span>.<span class="cm-property">addEventListener</span>(<span class="cm-string">'resize'</span>, <span class="cm-variable-2">onSize</span>);
     
     <span class="cm-keyword">return</span> () <span class="cm-operator">=&gt;</span> {
@@ -415,8 +403,8 @@ case：表单验证
   <img loading="lazy" width="593" height="162" class="alignnone size-full wp-image-4898 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984cee4ca2.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984cee4ca2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984cee4ca2.png?x-oss-process=image/format,webp 593w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984cee4ca2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_82/format,webp 300w" sizes="(max-width: 593px) 100vw, 593px" />
 </p>
 
-  * 是Hook：使用了Hook API的函数组件，返回的setter可以改变组件的状态
-  * 又不像Hook：和一般意义上的Hook（钩子）不一样，这里的Hook可以多次调用且产生不同的效果，且Hook随Fiber一起生灭
+* 是Hook：使用了Hook API的函数组件，返回的setter可以改变组件的状态
+* 又不像Hook：和一般意义上的Hook（钩子）不一样，这里的Hook可以多次调用且产生不同的效果，且Hook随Fiber一起生灭
 
 #### 1、为什么只能在Function Component里调用Hook API？ {#H2zTM}
 
@@ -530,8 +518,8 @@ Hook链表结构：
   <img loading="lazy" class="alignnone  wp-image-4897 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984c5c3155.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984c5c3155.png?x-oss-process=image/format,webp" alt="" width="561" height="356" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984c5c3155.png?x-oss-process=image/format,webp 746w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984c5c3155.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_190/format,webp 300w" sizes="(max-width: 561px) 100vw, 561px" />
 </p>
 
-  * Hook API调用会产生一个对应的Hook实例（并追加到Hooks链），但是返回给组件的是state和对应的setter，re-render时框架并不知道这个setter对应哪个Hooks实例（除非用HashMap来存储Hooks，但这就要求调用的时候把相应的key传给React，会增加Hooks使用的复杂度）
-  * re-render时会按顺序执行整个Hooks链，如果re-render时sth不满足，则会执行`useState(5)`分支，相反useState(4)则不会执行到，导致`useState(5)`返回的值其实是4，因为**首次render之后，只能通过useState返回的dispatch修改对应Hook的memoizedState**，因此必须要**保证Hooks的顺序不变**，所以不能在分支调用Hook API。
+* Hook API调用会产生一个对应的Hook实例（并追加到Hooks链），但是返回给组件的是state和对应的setter，re-render时框架并不知道这个setter对应哪个Hooks实例（除非用HashMap来存储Hooks，但这就要求调用的时候把相应的key传给React，会增加Hooks使用的复杂度）
+* re-render时会按顺序执行整个Hooks链，如果re-render时sth不满足，则会执行`useState(5)`分支，相反useState(4)则不会执行到，导致`useState(5)`返回的值其实是4，因为**首次render之后，只能通过useState返回的dispatch修改对应Hook的memoizedState**，因此必须要**保证Hooks的顺序不变**，所以不能在分支调用Hook API。
 
 #### 3、Hooks如何更新数据？ {#C1qQc}
 
@@ -584,12 +572,12 @@ useState() mount阶段：
   </div>
 </div>
 
-  * `dispatchAction`函数是更新state的关键，它会生成一个`update`挂载到hook队列上面，并提交一个React更新调度，后续的工作和类组件一致。
-  * 理论上可以同时调用多次dispatch，但只有最后一次会生效（queue的last指针指向最后一次update的state）
-  * 注意`useState`更新数据和`setState`不同的是，前者会对state做merge，我们只需把更改的部分传进去，但是`useState`则是直接覆盖！
+* `dispatchAction`函数是更新state的关键，它会生成一个`update`挂载到hook队列上面，并提交一个React更新调度，后续的工作和类组件一致。
+* 理论上可以同时调用多次dispatch，但只有最后一次会生效（queue的last指针指向最后一次update的state）
+* 注意`useState`更新数据和`setState`不同的是，前者会对state做merge，我们只需把更改的部分传进去，但是`useState`则是直接覆盖！
 
 > schedule阶段介于reconcile和commit阶段之间，schedule的起点方法是scheduleWork。 ReactDOM.render, setState，forceUpdate, React Hooks的dispatchAction都要经过scheduleWork。
-> 
+>
 > Ref：<a href="https://zhuanlan.zhihu.com/p/54042084" target="_blank" rel="noopener noreferrer">https://zhuanlan.zhihu.com/p/54042084</a>
 
 update阶段useState()更新状态：
@@ -626,8 +614,8 @@ update阶段useState()更新状态：
   </div>
 </div>
 
-  * 在update阶段，传入的initialState是没有用到的
-  * React会执行hook上面的整个update队列以获取最新的state
+* 在update阶段，传入的initialState是没有用到的
+* React会执行hook上面的整个update队列以获取最新的state
 
 #### 4、更新过程示意 {#bHgiv}
 
@@ -656,8 +644,8 @@ update阶段useState()更新状态：
   <img loading="lazy" class="alignnone  wp-image-4896 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/format,webp" alt="" width="616" height="328" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/format,webp 949w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_160/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_409/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_426/format,webp 800w" sizes="(max-width: 616px) 100vw, 616px" />
 </p>
 
-  * setState返回的setter执行会导致re-render
-  * 框架内部会对多次setter操作进行合并（循环执行传入的setter，目的是保证useState拿到最新的状态）
+* setState返回的setter执行会导致re-render
+* 框架内部会对多次setter操作进行合并（循环执行传入的setter，目的是保证useState拿到最新的状态）
 
 ### useEffect {#Be9qd}
 
@@ -753,9 +741,9 @@ update阶段useState()更新状态：
   </div>
 </div>
 
-  * 组件re-render时，函数组件是重新执行整个函数，其中也包括所有“注册”过的hooks，默认情况下useEffect callback也会被重新执行！
-  * useEffect可以接受第二个参数`deps`，用于在re-render时判断是否重新执行callback，所以deps必须要按照实际依赖传入，不能少传也不要多传！
-  * deps数组项必须是mutable的，比如你不能传
+* 组件re-render时，函数组件是重新执行整个函数，其中也包括所有“注册”过的hooks，默认情况下useEffect callback也会被重新执行！
+* useEffect可以接受第二个参数`deps`，用于在re-render时判断是否重新执行callback，所以deps必须要按照实际依赖传入，不能少传也不要多传！
+* deps数组项必须是mutable的，比如你不能传
 
 #### 3、清理副作用 {#2Kcn1}
 
@@ -770,7 +758,7 @@ Hook接受useEffect传入的callback返回一个函数，在Fiber的清理阶段
       <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'print log after 1s!'</span>);
     }, <span class="cm-number">1000</span>);
     <span class="cm-variable">window</span>.<span class="cm-property">addEventListener</span>(<span class="cm-string">'load'</span>, <span class="cm-variable">loadHandle</span>);
-    
+
     <span class="cm-keyword">return</span> () <span class="cm-operator">=&gt;</span> <span class="cm-variable">window</span>.<span class="cm-property">removeEventListener</span>(<span class="cm-string">'load'</span>, <span class="cm-variable">loadHandle</span>); <span class="cm-comment">// 执行清理</span>
   }, []);
 }
@@ -859,7 +847,7 @@ reducer提供了一种可以在组件外重新编排state的能力，而useReduc
 <span class="cm-keyword">class</span> <span class="cm-def">Parent</span> <span class="cm-keyword">extends</span> <span class="cm-variable">Component</span> {
   <span class="cm-property">render</span>() {
     <span class="cm-keyword">const</span> <span class="cm-def">someFn</span> <span class="cm-operator">=</span> () <span class="cm-operator">=&gt;</span> {}; <span class="cm-comment">// re-render时，someFn函数会重新实例化</span>
-    
+
     <span class="cm-keyword">return</span> (
       <span class="cm-operator">&lt;</span><span class="cm-operator">&gt;</span>
         <span class="cm-operator">&lt;</span><span class="cm-variable">Child</span> <span class="cm-variable-2">someFn</span><span class="cm-operator">=</span>{<span class="cm-variable-2">someFn</span>} <span class="cm-string-2">/&gt;</span>
@@ -910,9 +898,9 @@ Function Component（查看<a href="https://codesandbox.io/s/memoization-lbgob" 
 
 解决方案：
 
-  * 将函数移到组件外部（缺点是无法读取组件的状态了）
-  * 条件允许的话，把函数体移到`useEffect`内部
-  * 如果函数的调用不止是`useEffect`内部（如需要传递给子组件），可以使用`useCallback` API包裹函数，`useCallback`的本质是对函数进行依赖分析，依赖变更时才重新执行
+* 将函数移到组件外部（缺点是无法读取组件的状态了）
+* 条件允许的话，把函数体移到`useEffect`内部
+* 如果函数的调用不止是`useEffect`内部（如需要传递给子组件），可以使用`useCallback` API包裹函数，`useCallback`的本质是对函数进行依赖分析，依赖变更时才重新执行
 
 #### useMemo & memo {#dkJGO}
 
@@ -933,14 +921,12 @@ useMemo用于缓存一些耗时的计算结果，只有当依赖参数改变时�
   <span class="cm-keyword">const</span> <span class="cm-def">start</span> <span class="cm-operator">=</span> <span class="cm-variable-2">props</span>.<span class="cm-property">start</span>;
   <span class="cm-keyword">const</span> <span class="cm-def">list</span> <span class="cm-operator">=</span> <span class="cm-variable-2">props</span>.<span class="cm-property">list</span>;
   <span class="cm-keyword">const</span> <span class="cm-def">fibValue</span> <span class="cm-operator">=</span> <span class="cm-variable">useMemo</span>(() <span class="cm-operator">=&gt;</span> <span class="cm-variable">fibonacci</span>(<span class="cm-variable-2">start</span>), [<span class="cm-variable-2">start</span>]); <span class="cm-comment">// 缓存耗时操作</span>
-  <span class="cm-keyword">const</span> <span class="cm-def">MemoList</span> <span class="cm-operator">=</span> <span class="cm-variable">useMemo</span>(() <span class="cm-operator">=&gt;</span> <span class="cm-operator">&lt;</span><span class="cm-variable">List</span> <span class="cm-variable-2">list</span><span class="cm-operator">=</span>{<span class="cm-variable-2">list</span>} <span class="cm-string-2">/&gt;, 
+  <span class="cm-keyword">const</span> <span class="cm-def">MemoList</span> <span class="cm-operator">=</span> <span class="cm-variable">useMemo</span>(() <span class="cm-operator">=&gt;</span> <span class="cm-operator">&lt;</span><span class="cm-variable">List</span> <span class="cm-variable-2">list</span><span class="cm-operator">=</span>{<span class="cm-variable-2">list</span>} <span class="cm-string-2">/&gt;,
 
 <ul>
   
 </ul>
 );</span>
-
-  
 
 <span class="cm-keyword">return</span> (
     <span class="cm-operator">&lt;</span><span class="cm-operator">&gt;</span>
@@ -981,9 +967,9 @@ useMemo用于缓存一些耗时的计算结果，只有当依赖参数改变时�
 
 对于组件之间的状态共享，在类组件里边官方提供了Context相关的API：
 
-  * 使用`React.createContext` API创建Context，由于支持在组件外部调用，因此可以实现状态共享
-  * 使用`Context.Provider` API在上层组件挂载状态
-  * 使用`Context.Consumer` API为具体的组件提供状态
+* 使用`React.createContext` API创建Context，由于支持在组件外部调用，因此可以实现状态共享
+* 使用`Context.Provider` API在上层组件挂载状态
+* 使用`Context.Consumer` API为具体的组件提供状态
 
 <p id="flZGnES">
   <img loading="lazy" class="alignnone  wp-image-4894 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/format,webp" alt="" width="531" height="807" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/format,webp 1036w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/quality,q_50/resize,m_fill,w_197,h_300/format,webp 197w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_1167/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/quality,q_50/resize,m_fill,w_395,h_600/format,webp 395w" sizes="(max-width: 531px) 100vw, 531px" />
@@ -1115,7 +1101,7 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
 
 ### 模拟一些常用的生命周期 {#ozcuL}
 
-  * componentDidMount：当deps为空时，re-render时不再执行callback
+* componentDidMount：当deps为空时，re-render时不再执行callback
 
 <div id="HZwjv" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20mount%E7%BB%93%E6%9D%9F%5CncomponentDidMount%20%3D%20function%20useDidMount(effect)%20%3D%3E%20%7B%5Cn%5CtuseEffect(effect%2C%20%5B%5D)%3B%5Cn%7D%3B%22%2C%22id%22%3A%22HZwjv%22%7D">
   <div class="lake-codeblock-content">
@@ -1128,7 +1114,7 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
   </div>
 </div>
 
-  * componentDidUpdate
+* componentDidUpdate
 
 <div id="stebl" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20render%E7%BB%93%E6%9D%9F%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%89%A7%E8%A1%8CDOM%E6%93%8D%E4%BD%9C%5CncomponentDidUpdate%20%3D%20function%20useDomDidMount(effect)%20%3D%3E%20%7B%5Cn%5CtuseLayoutEffect(effect%2C%20%5B%5D)%3B%5Cn%7D%3B%22%2C%22id%22%3A%22stebl%22%7D">
   <div class="lake-codeblock-content">
@@ -1141,7 +1127,7 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
   </div>
 </div>
 
-  * <span class="lake-fontsize-11" style="font-size: 11px;">componentWillUnMount</span>
+* <span class="lake-fontsize-11" style="font-size: 11px;">componentWillUnMount</span>
 
 <div id="QM8xf" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22componentWillUnMount%20%3D%20function%20useWillUnMount(effect)%20%3D%3E%20%7B%5Cn%5CtuseEffect(()%20%3D%3E%20effect%2C%20%5B%5D)%3B%5Cn%7D%3B%22%2C%22id%22%3A%22QM8xf%22%7D">
   <div class="lake-codeblock-content">
@@ -1153,7 +1139,7 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
   </div>
 </div>
 
-  * shouldComponentUpdate（或React.PureComponent）
+* shouldComponentUpdate（或React.PureComponent）
 
 <div id="bITaw" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20%E4%BD%BF%E7%94%A8React.memo%E5%8C%85%E8%A3%B9%E7%BB%84%E4%BB%B6%5Cnconst%20MyComponent%20%3D%20React.memo(()%20%3D%3E%20%7B%5Cn%5Ctreturn%20%3CChild%20prop%3D%7Bprop%7D%20%2F%3E%5Cn%7D%2C%20%5Bprop%5D)%3B%5Cn%20%20%5Cn%2F%2F%20or%5Cnfunction%20A(%7B%20a%2C%20b%20%7D)%20%7B%5Cn%20%20const%20B%20%3D%20useMemo(()%20%3D%3E%20%3CB1%20a%3D%7Ba%7D%20%2F%3E%2C%20%5Ba%5D)%3B%5Cn%20%20const%20C%20%3D%20useMemo(()%20%3D%3E%20%3CC1%20b%3D%7Bb%7D%20%2F%3E%2C%20%5Bb%5D)%3B%5Cn%20%20return%20(%5Cn%20%20%20%20%3C%3E%5Cn%20%20%20%20%20%20%7BB%7D%5Cn%20%20%20%20%20%20%7BC%7D%5Cn%20%20%20%20%3C%2F%3E%5Cn%20%20)%3B%5Cn%7D%22%2C%22id%22%3A%22bITaw%22%7D">
   <div class="lake-codeblock-content">
@@ -1186,7 +1172,7 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
 
 2、状态共享方案
 
-  * useReducer+useContext组合：
+* useReducer+useContext组合：
 
 <li style="list-style-type: none;">
   <ul>
@@ -1199,8 +1185,8 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
   </ul>
 </li>
 
-  * react-redux@7.x
-  * 其他方案
+* react-redux@7.x
+* 其他方案
 
 3、Hooks模糊了生命周期的概念，但也带来了更高门槛的学习心智，目前为止业界还没有出现大型应用使用Hooks的最佳实践
 
@@ -1208,14 +1194,14 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
 
 ## Ref {#koFbs}
 
-  * <a href="https://overreacted.io/a-complete-guide-to-useeffect/" target="_blank" rel="noopener noreferrer">A Complete Guide to useEffect</a> （翻译：<a href="https://overreacted.io/zh-hans/a-complete-guide-to-useeffect" target="_blank" rel="noopener noreferrer">https://overreacted.io/zh-hans/a-complete-guide-to-useeffect</a>）
-  * <a href="https://github.com/dt-fe/weekly/blob/v2/104.%E7%B2%BE%E8%AF%BB%E3%80%8AFunction%20Component%20%E5%85%A5%E9%97%A8%E3%80%8B.md" target="_blank" rel="noopener noreferrer">精读《Function Component 入门》</a>
-  * <a href="https://github.com/dt-fe/weekly/blob/master/96.%E7%B2%BE%E8%AF%BB%E3%80%8AuseEffect%20%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97%E3%80%8B.md" target="_blank" rel="noopener noreferrer">精读《useEffect 完全指南》</a>
-  * <a href="https://medium.com/@sdolidze/the-iceberg-of-react-hooks-af0b588f43fb" target="_blank" rel="noopener noreferrer">https://medium.com/@sdolidze/the-iceberg-of-react-hooks-af0b588f43fb</a>
-  * <a href="https://medium.com/@sdolidze/react-hooks-memoization-99a9a91c8853" target="_blank" rel="noopener noreferrer">https://medium.com/@sdolidze/react-hooks-memoization-99a9a91c8853</a>
-  * <a href="https://nikgrozev.com/2019/04/07/reacts-usecallback-and-usememo-hooks-by-example/" target="_blank" rel="noopener noreferrer">https://nikgrozev.com/2019/04/07/reacts-usecallback-and-usememo-hooks-by-example/</a>
-  * <a href="https://itnext.io/react-hooks-usestate-and-usereducer-are-equivalent-in-theoretical-expressiveness-a7d1c109770" target="_blank" rel="noopener noreferrer">https://itnext.io/react-hooks-usestate-and-usereducer-are-equivalent-in-theoretical-expressiveness-a7d1c109770</a>
-  * <a href="https://medium.com/javascript-in-plain-english/state-management-with-react-hooks-no-redux-or-context-api-8b3035ceecf8" target="_blank" rel="noopener noreferrer">https://medium.com/javascript-in-plain-english/state-management-with-react-hooks-no-redux-or-context-api-8b3035ceecf8</a>
-  * <a href="https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e" target="_blank" rel="noopener noreferrer">https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e</a>
-  * <a href="https://github.com/brickspert/blog/issues/26" target="_blank" rel="noopener noreferrer">https://github.com/brickspert/blog/issues/26</a>
-  * <a href="https://zhuanlan.zhihu.com/p/66166173" target="_blank" rel="noopener noreferrer">https://zhuanlan.zhihu.com/p/66166173</a>
+* <a href="https://overreacted.io/a-complete-guide-to-useeffect/" target="_blank" rel="noopener noreferrer">A Complete Guide to useEffect</a> （翻译：<a href="https://overreacted.io/zh-hans/a-complete-guide-to-useeffect" target="_blank" rel="noopener noreferrer">https://overreacted.io/zh-hans/a-complete-guide-to-useeffect</a>）
+* <a href="https://github.com/dt-fe/weekly/blob/v2/104.%E7%B2%BE%E8%AF%BB%E3%80%8AFunction%20Component%20%E5%85%A5%E9%97%A8%E3%80%8B.md" target="_blank" rel="noopener noreferrer">精读《Function Component 入门》</a>
+* <a href="https://github.com/dt-fe/weekly/blob/master/96.%E7%B2%BE%E8%AF%BB%E3%80%8AuseEffect%20%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97%E3%80%8B.md" target="_blank" rel="noopener noreferrer">精读《useEffect 完全指南》</a>
+* <a href="https://medium.com/@sdolidze/the-iceberg-of-react-hooks-af0b588f43fb" target="_blank" rel="noopener noreferrer">https://medium.com/@sdolidze/the-iceberg-of-react-hooks-af0b588f43fb</a>
+* <a href="https://medium.com/@sdolidze/react-hooks-memoization-99a9a91c8853" target="_blank" rel="noopener noreferrer">https://medium.com/@sdolidze/react-hooks-memoization-99a9a91c8853</a>
+* <a href="https://nikgrozev.com/2019/04/07/reacts-usecallback-and-usememo-hooks-by-example/" target="_blank" rel="noopener noreferrer">https://nikgrozev.com/2019/04/07/reacts-usecallback-and-usememo-hooks-by-example/</a>
+* <a href="https://itnext.io/react-hooks-usestate-and-usereducer-are-equivalent-in-theoretical-expressiveness-a7d1c109770" target="_blank" rel="noopener noreferrer">https://itnext.io/react-hooks-usestate-and-usereducer-are-equivalent-in-theoretical-expressiveness-a7d1c109770</a>
+* <a href="https://medium.com/javascript-in-plain-english/state-management-with-react-hooks-no-redux-or-context-api-8b3035ceecf8" target="_blank" rel="noopener noreferrer">https://medium.com/javascript-in-plain-english/state-management-with-react-hooks-no-redux-or-context-api-8b3035ceecf8</a>
+* <a href="https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e" target="_blank" rel="noopener noreferrer">https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e</a>
+* <a href="https://github.com/brickspert/blog/issues/26" target="_blank" rel="noopener noreferrer">https://github.com/brickspert/blog/issues/26</a>
+* <a href="https://zhuanlan.zhihu.com/p/66166173" target="_blank" rel="noopener noreferrer">https://zhuanlan.zhihu.com/p/66166173</a>

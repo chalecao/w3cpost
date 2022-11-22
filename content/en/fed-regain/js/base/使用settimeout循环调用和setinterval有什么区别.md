@@ -2,11 +2,6 @@
 title: 使用setTimeout循环调用和setInterval有什么区别
 
 
-date: 2020-12-23T04:18:22+00:00
-url: /javascriptnodejs/6549.html
-views:
-  - 829
-
 
 ---
 ## [<span>有关setTimeout（）和setInterval（）的注意事项</span>][1] {#Things_to_keep_in_mind_about_setTimeout_and_setInterval}

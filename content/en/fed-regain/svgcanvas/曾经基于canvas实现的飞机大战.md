@@ -2,22 +2,8 @@
 title: 曾经基于canvas实现的飞机大战
 
 
-date: 2018-04-07T05:50:33+00:00
-url: /pwa/1765.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516961970.gif?x-oss-process=image/resize,m_fill,w_221,h_300
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516961970.gif?x-oss-process=image/resize,m_fill,w_221,h_300
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516961970.gif?x-oss-process=image/resize,m_fill,w_221,h_300
-views:
-  - 1872
-  - 1872
-fifu_image_alt:
-  - 曾经基于canvas实现的飞机大战
-like:
-  - 1
-
-
 ---
+
 <div class="detailcontennt">
   <p>
     首先看几张效果图：
@@ -57,7 +43,7 @@ like:
   
   <div class="cnblogs_code">
     <pre><code>&lt;span style="color: #008080;"> 1&lt;/span> &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 所以图片的链接，包括背景图、各种飞机和飞机爆炸图、子弹图等&lt;/span>
-&lt;span style="color: #008080;"> 2&lt;/span> &lt;span style="color: #0000ff;">var&lt;/span> imgName = [‘background.png‘, ‘game_pause_nor.png‘, ‘m1.png‘, ‘start.png‘&lt;span style="color: #000000;">, 
+&lt;span style="color: #008080;"> 2&lt;/span> &lt;span style="color: #0000ff;">var&lt;/span> imgName = [‘background.png‘, ‘game_pause_nor.png‘, ‘m1.png‘, ‘start.png‘&lt;span style="color: #000000;">,
 &lt;/span>&lt;span style="color: #008080;"> 3&lt;/span>     &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 敌机1&lt;/span>
 &lt;span style="color: #008080;"> 4&lt;/span>     [‘enemy1.png‘, ‘enemy1_down1.png‘, ‘enemy1_down2.png‘, ‘enemy1_down3.png‘, ‘enemy1_down4.png‘&lt;span style="color: #000000;">],
 &lt;/span>&lt;span style="color: #008080;"> 5&lt;/span>     &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 敌机2&lt;/span>
@@ -102,7 +88,7 @@ like:
 &lt;/span>&lt;span style="color: #008080;">44&lt;/span>     &lt;span style="color: #0000ff;">for&lt;/span> (&lt;span style="color: #0000ff;">var&lt;/span> i = 0; i &lt; imgName[8].length; i++&lt;span style="color: #000000;">) {
 &lt;/span>&lt;span style="color: #008080;">45&lt;/span>         heroImg[i] = nImg(imgName[8&lt;span style="color: #000000;">][i]);
 &lt;/span>&lt;span style="color: #008080;">46&lt;/span> &lt;span style="color: #000000;">    }
-&lt;/span>&lt;span style="color: #008080;">47&lt;/span> 
+&lt;/span>&lt;span style="color: #008080;">47&lt;/span>
 &lt;span style="color: #008080;">48&lt;/span>     &lt;span style="color: #0000ff;">function&lt;/span>&lt;span style="color: #000000;"> nImg(src) {
 &lt;/span>&lt;span style="color: #008080;">49&lt;/span>         &lt;span style="color: #0000ff;">var&lt;/span> img = &lt;span style="color: #0000ff;">new&lt;/span>&lt;span style="color: #000000;"> Image();
 &lt;/span>&lt;span style="color: #008080;">50&lt;/span>         img.src = ‘img/‘ +&lt;span style="color: #000000;"> src;
@@ -161,7 +147,7 @@ like:
   <div class="cnblogs_code">
     <pre><code>&lt;span style="color: #008080;"> 1&lt;/span> &lt;span style="color: #008000;">/*&lt;/span>&lt;span style="color: #008000;">********构造hero***********&lt;/span>&lt;span style="color: #008000;">*/&lt;/span>
 &lt;span style="color: #008080;"> 2&lt;/span> &lt;span style="color: #0000ff;">var&lt;/span> hero = &lt;span style="color: #0000ff;">null&lt;/span>&lt;span style="color: #000000;">;
-&lt;/span>&lt;span style="color: #008080;"> 3&lt;/span> 
+&lt;/span>&lt;span style="color: #008080;"> 3&lt;/span>
 &lt;span style="color: #008080;"> 4&lt;/span> &lt;span style="color: #0000ff;">function&lt;/span>&lt;span style="color: #000000;"> Hero() {
 &lt;/span>&lt;span style="color: #008080;"> 5&lt;/span>     &lt;span style="color: #0000ff;">this&lt;/span>.x = (width - heroImg[0].width) / 2;  &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> hero的坐标&lt;/span>
 &lt;span style="color: #008080;"> 6&lt;/span>     &lt;span style="color: #0000ff;">this&lt;/span>.y = height - heroImg[0&lt;span style="color: #000000;">].height;
@@ -180,7 +166,7 @@ like:
 &lt;/span>&lt;span style="color: #008080;">19&lt;/span> &lt;span style="color: #000000;">        }
 &lt;/span>&lt;span style="color: #008080;">20&lt;/span>         &lt;span style="color: #0000ff;">this&lt;/span>.hCount++&lt;span style="color: #000000;">;
 &lt;/span>&lt;span style="color: #008080;">21&lt;/span>         &lt;span style="color: #0000ff;">if&lt;/span> (&lt;span style="color: #0000ff;">this&lt;/span>.hCount % 3 == 0) { &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 同时生成三颗子弹&lt;/span>
-&lt;span style="color: #008080;">22&lt;/span>             &lt;span style="color: #0000ff;">this&lt;/span>.n == 32 && (&lt;span style="color: #0000ff;">this&lt;/span>.n = 0&lt;span style="color: #000000;">); 
+&lt;span style="color: #008080;">22&lt;/span>             &lt;span style="color: #0000ff;">this&lt;/span>.n == 32 && (&lt;span style="color: #0000ff;">this&lt;/span>.n = 0&lt;span style="color: #000000;">);
 &lt;/span>&lt;span style="color: #008080;">23&lt;/span>             hullet.push(&lt;span style="color: #0000ff;">new&lt;/span> Hullet(&lt;span style="color: #0000ff;">this&lt;/span>&lt;span style="color: #000000;">.n));
 &lt;/span>&lt;span style="color: #008080;">24&lt;/span>             &lt;span style="color: #0000ff;">this&lt;/span>.n == 0 && (&lt;span style="color: #0000ff;">this&lt;/span>.n = -32&lt;span style="color: #000000;">);;
 &lt;/span>&lt;span style="color: #008080;">25&lt;/span>             hullet.push(&lt;span style="color: #0000ff;">new&lt;/span> Hullet(&lt;span style="color: #0000ff;">this&lt;/span>&lt;span style="color: #000000;">.n));
@@ -194,7 +180,7 @@ like:
 &lt;/span>&lt;span style="color: #008080;">33&lt;/span>             &lt;span style="color: #0000ff;">this&lt;/span>.eCount = 0&lt;span style="color: #000000;">;
 &lt;/span>&lt;span style="color: #008080;">34&lt;/span> &lt;span style="color: #000000;">        }
 &lt;/span>&lt;span style="color: #008080;">35&lt;/span> &lt;span style="color: #000000;">    }
-&lt;/span>&lt;span style="color: #008080;">36&lt;/span> 
+&lt;/span>&lt;span style="color: #008080;">36&lt;/span>
 &lt;span style="color: #008080;">37&lt;/span>     &lt;span style="color: #0000ff;">function&lt;/span>&lt;span style="color: #000000;"> move(e) {
 &lt;/span>&lt;span style="color: #008080;">38&lt;/span>         &lt;span style="color: #0000ff;">if&lt;/span> (curPhase == PHASE_PLAY || curPhase ==&lt;span style="color: #000000;"> PHASE_PAUSE) {
 &lt;/span>&lt;span style="color: #008080;">39&lt;/span>             curPhase =&lt;span style="color: #000000;"> PHASE_PLAY;
@@ -238,11 +224,11 @@ like:
   <div class="cnblogs_code">
     <pre><code>&lt;span style="color: #008080;"> 1&lt;/span> &lt;span style="color: #008000;">/*&lt;/span>&lt;span style="color: #008000;">*********构造子弹**********&lt;/span>&lt;span style="color: #008000;">*/&lt;/span>
 &lt;span style="color: #008080;"> 2&lt;/span> &lt;span style="color: #0000ff;">var&lt;/span> hullet = []; &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 存储画布中所以子弹的数组&lt;/span>
-&lt;span style="color: #008080;"> 3&lt;/span> 
+&lt;span style="color: #008080;"> 3&lt;/span>
 &lt;span style="color: #008080;"> 4&lt;/span> &lt;span style="color: #0000ff;">function&lt;/span>&lt;span style="color: #000000;"> Hullet(n) {
 &lt;/span>&lt;span style="color: #008080;"> 5&lt;/span>     &lt;span style="color: #0000ff;">this&lt;/span>.n = n;  &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 用于确定是左中右哪一颗子弹&lt;/span>
 &lt;span style="color: #008080;"> 6&lt;/span>     &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 子弹的坐标&lt;/span>
-&lt;span style="color: #008080;"> 7&lt;/span>     &lt;span style="color: #0000ff;">this&lt;/span>.mx = hero.x + (heroImg[0].width - m.width) / 2 + &lt;span style="color: #0000ff;">this&lt;/span>&lt;span style="color: #000000;">.n; 
+&lt;span style="color: #008080;"> 7&lt;/span>     &lt;span style="color: #0000ff;">this&lt;/span>.mx = hero.x + (heroImg[0].width - m.width) / 2 + &lt;span style="color: #0000ff;">this&lt;/span>&lt;span style="color: #000000;">.n;
 &lt;/span>&lt;span style="color: #008080;"> 8&lt;/span>     &lt;span style="color: #0000ff;">this&lt;/span>.my = &lt;span style="color: #0000ff;">this&lt;/span>.n == 0 ? hero.y - m.height : hero.y +&lt;span style="color: #000000;"> m.height;
 &lt;/span>&lt;span style="color: #008080;"> 9&lt;/span>     &lt;span style="color: #0000ff;">this&lt;/span>.width = m.width;  &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 子弹的宽和高&lt;/span>
 &lt;span style="color: #008080;">10&lt;/span>     &lt;span style="color: #0000ff;">this&lt;/span>.height =&lt;span style="color: #000000;"> m.height;
@@ -277,14 +263,14 @@ like:
   <div class="cnblogs_code">
     <pre><code>&lt;span style="color: #008080;"> 1&lt;/span> &lt;span style="color: #008000;">/*&lt;/span>&lt;span style="color: #008000;">**********构造敌机*******&lt;/span>&lt;span style="color: #008000;">*/&lt;/span>
 &lt;span style="color: #008080;"> 2&lt;/span> &lt;span style="color: #0000ff;">var&lt;/span> liveEnemy = []; &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 用于存储画布上的所有敌机&lt;/span>
-&lt;span style="color: #008080;"> 3&lt;/span> 
+&lt;span style="color: #008080;"> 3&lt;/span>
 &lt;span style="color: #008080;"> 4&lt;/span> &lt;span style="color: #0000ff;">function&lt;/span>&lt;span style="color: #000000;"> Enemy() {
 &lt;/span>&lt;span style="color: #008080;"> 5&lt;/span>     &lt;span style="color: #0000ff;">this&lt;/span>.n = Math.random() * 20&lt;span style="color: #000000;">;
 &lt;/span>&lt;span style="color: #008080;"> 6&lt;/span>     &lt;span style="color: #0000ff;">this&lt;/span>.enemy = &lt;span style="color: #0000ff;">null&lt;/span>; &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 保存敌机图片的数组&lt;/span>
 &lt;span style="color: #008080;"> 7&lt;/span>     &lt;span style="color: #0000ff;">this&lt;/span>.speed = 0; &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 敌机的速度&lt;/span>
 &lt;span style="color: #008080;"> 8&lt;/span>     &lt;span style="color: #0000ff;">this&lt;/span>.lifes = 2; &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 敌机的生命值&lt;/span>
 &lt;span style="color: #008080;"> 9&lt;/span>     &lt;span style="color: #0000ff;">if&lt;/span> (&lt;span style="color: #0000ff;">this&lt;/span>.n &lt; 1) { &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 不同大小的敌机随机出现&lt;/span>
-&lt;span style="color: #008080;">10&lt;/span>         &lt;span style="color: #0000ff;">this&lt;/span>.enemy = enemy3[0&lt;span style="color: #000000;">]; 
+&lt;span style="color: #008080;">10&lt;/span>         &lt;span style="color: #0000ff;">this&lt;/span>.enemy = enemy3[0&lt;span style="color: #000000;">];
 &lt;/span>&lt;span style="color: #008080;">11&lt;/span>         &lt;span style="color: #0000ff;">this&lt;/span>.speed = 2&lt;span style="color: #000000;">;
 &lt;/span>&lt;span style="color: #008080;">12&lt;/span>         &lt;span style="color: #0000ff;">this&lt;/span>.lifes = 50&lt;span style="color: #000000;">;
 &lt;/span>&lt;span style="color: #008080;">13&lt;/span>     } &lt;span style="color: #0000ff;">else&lt;/span> &lt;span style="color: #0000ff;">if&lt;/span> (&lt;span style="color: #0000ff;">this&lt;/span>.n &lt; 6&lt;span style="color: #000000;">) {

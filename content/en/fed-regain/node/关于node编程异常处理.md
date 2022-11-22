@@ -2,17 +2,6 @@
 title: 关于node编程异常处理
 
 
-date: 2019-10-21T07:24:49+00:00
-url: /javascriptnodejs/5032.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://github.com/unitech/pm2/raw/master/pres/pm2-list.png
-fifu_image_url:
-  - https://github.com/unitech/pm2/raw/master/pres/pm2-list.png
-fifu_image_alt:
-  - 关于node编程异常处理
-views:
-  - 909
-like:
-  - 4
 
 
 ---
@@ -39,7 +28,7 @@ like:
             <div class="line number1 index0 alt2">
               <code class="javascript plain">1</code>
             </div>
-            
+
             <div class="line number2 index1 alt1">
               <code class="javascript keyword">try</code> <code class="javascript plain">{</code>
             </div>
@@ -132,7 +121,7 @@ like:
             <div class="line number1 index0 alt2">
               <code class="javascript plain">1</code>
             </div>
-            
+
             <div class="line number2 index1 alt1">
               <code class="javascript plain">process.on(</code><code class="javascript string">'uncaughtException'</code><code class="javascript plain">, </code><code class="javascript keyword">function</code><code class="javascript plain">(err) {</code>
             </div>
@@ -200,7 +189,7 @@ like:
             <div class="line number1 index0 alt2">
               <code class="javascript plain">1</code>
             </div>
-            
+
             <div class="line number2 index1 alt1">
               <code class="javascript plain">process.on(</code><code class="javascript string">'uncaughtException'</code><code class="javascript plain">, </code><code class="javascript keyword">function</code><code class="javascript plain">(err) {</code>
             </div>
@@ -245,7 +234,7 @@ like:
             <div class="line number1 index0 alt2">
               <code class="javascript plain">1</code>
             </div>
-            
+
             <div class="line number2 index1 alt1">
               <code class="javascript keyword">var</code> <code class="javascript plain">d = domain.create();</code>
             </div>
@@ -312,9 +301,9 @@ like:
 运行代码我们会发现，异常会被domain捕获到，uncaughtException不会被触发。虽然我们对domain模块寄予厚望，不过目前domain模块的评级为“Unstable”，因为存在不少性能以及稳定性问题。  
 关于domain的详细介绍，可以看看以下几篇文章：
 
-  * <a href="http://cnodejs.org/topic/516b64596d38277306407936" target="_blank" rel="noopener noreferrer">Node.js 异步异常的处理与domain模块解析</a>
-  * <a href="http://www.alloyteam.com/2013/12/node-js-series-exception-caught/" target="_blank" rel="noopener noreferrer">Node.js异常捕获额一些实践</a>
-  * <a href="http://www.atatech.org/articles/16061" target="_blank" rel="noopener noreferrer">Node.js之异常处理</a>
+* <a href="http://cnodejs.org/topic/516b64596d38277306407936" target="_blank" rel="noopener noreferrer">Node.js 异步异常的处理与domain模块解析</a>
+* <a href="http://www.alloyteam.com/2013/12/node-js-series-exception-caught/" target="_blank" rel="noopener noreferrer">Node.js异常捕获额一些实践</a>
+* <a href="http://www.atatech.org/articles/16061" target="_blank" rel="noopener noreferrer">Node.js之异常处理</a>
 
 ## 二 阻止异常发生 {#二_阻止异常发生}
 
@@ -322,7 +311,7 @@ like:
 
 ### 2.1 良好的异常处理习惯 {#2-1_良好的异常处理习惯}
 
-  * 异步API编写规范：由于异步调用中回调函数里的异常无法被外部捕获，所以我们将API内部发生的异常作为第一个参数传递给回调函数，包括NodeJS官方的API是遵循这个规范的。
+* 异步API编写规范：由于异步调用中回调函数里的异常无法被外部捕获，所以我们将API内部发生的异常作为第一个参数传递给回调函数，包括NodeJS官方的API是遵循这个规范的。
 
 <div>
   <div id="highlighter_681911" class="syntaxhighlighter nogutter  javascript">
@@ -333,7 +322,7 @@ like:
             <div class="line number1 index0 alt2">
               <code class="javascript plain">1</code>
             </div>
-            
+
             <div class="line number2 index1 alt1">
               <code class="javascript plain">fs.readFile(</code><code class="javascript string">'/t.txt'</code><code class="javascript plain">, </code><code class="javascript keyword">function</code> <code class="javascript plain">(err, data) {</code>
             </div>
@@ -413,7 +402,7 @@ like:
   </div>
 </div>
 
-  * 严格校验用户的输入
+* 严格校验用户的输入
 
 <div>
   <div id="highlighter_886108" class="syntaxhighlighter nogutter  javascript">
@@ -424,7 +413,7 @@ like:
             <div class="line number1 index0 alt2">
               <code class="javascript plain">1</code>
             </div>
-            
+
             <div class="line number2 index1 alt1">
               <code class="javascript keyword">function</code> <code class="javascript plain">doSth(cb){</code>
             </div>
@@ -451,7 +440,7 @@ like:
   </div>
 </div>
 
-  * 使用try/catch处理可能出现异常的代码
+* 使用try/catch处理可能出现异常的代码
 
 <div>
   <div id="highlighter_527376" class="syntaxhighlighter nogutter  javascript">
@@ -462,7 +451,7 @@ like:
             <div class="line number1 index0 alt2">
               <code class="javascript plain">1</code>
             </div>
-            
+
             <div class="line number2 index1 alt1">
               <code class="javascript keyword">var</code> <code class="javascript plain">obj;</code>
             </div>
@@ -493,7 +482,7 @@ like:
   </div>
 </div>
 
-  * 不要直接在controller中抛异常，应该用500等状态更友好的返回错误
+* 不要直接在controller中抛异常，应该用500等状态更友好的返回错误
 
 <div>
   <div id="highlighter_578135" class="syntaxhighlighter nogutter  javascript">
@@ -504,7 +493,7 @@ like:
             <div class="line number1 index0 alt2">
               <code class="javascript plain">1</code>
             </div>
-            
+
             <div class="line number2 index1 alt1">
               <code class="javascript comments">// 不推荐的做法</code>
             </div>
@@ -568,8 +557,8 @@ like:
 
 至于如何在NodeJS中写单元测试，可以看看两位大神的分享：
 
-  * 苏千:<a href="http://fengmk2.cnpmjs.org/ppt/unittest-and-bdd-in-nodejs-with-mocha.html#slide-0" target="_blank" rel="noopener noreferrer">UnitTest in Nodejs 实战Nodejs单元测试</a>
-  * 朴灵:<a href="http://html5ify.com/unittesting/slides/index.html#/" target="_blank" rel="noopener noreferrer">NODE.JS UNIT TESTING</a>
+* 苏千:<a href="http://fengmk2.cnpmjs.org/ppt/unittest-and-bdd-in-nodejs-with-mocha.html#slide-0" target="_blank" rel="noopener noreferrer">UnitTest in Nodejs 实战Nodejs单元测试</a>
+* 朴灵:<a href="http://html5ify.com/unittesting/slides/index.html#/" target="_blank" rel="noopener noreferrer">NODE.JS UNIT TESTING</a>
 
 ### 2.3 记录日志 {#2-3_记录日志}
 
@@ -594,7 +583,7 @@ cluster模块用于创建共享端口的多进程模式,这种模式使多个进
             <div class="line number1 index0 alt2">
               <code class="javascript plain">1</code>
             </div>
-            
+
             <div class="line number2 index1 alt1">
               <code class="javascript keyword">var</code> <code class="javascript plain">cluster = require(</code><code class="javascript string">'cluster'</code><code class="javascript plain">);</code>
             </div>
@@ -690,8 +679,8 @@ cluster模块用于创建共享端口的多进程模式,这种模式使多个进
 
 数据产品中使用graceful + recluster两个模块实现多进程和服务器稳定性的工作，分享一下使用方法：
 
-  * <a href="https://www.npmjs.org/package/graceful" target="_blank" rel="noopener noreferrer">graceful</a> : 当uncaughtException触发后，延迟一段时间退出进程
-  * <a href="https://www.npmjs.org/package/recluster" target="_blank" rel="noopener noreferrer">recluster</a> : 实现多进程，并且当有进程退出实现自动重启。
+* <a href="https://www.npmjs.org/package/graceful" target="_blank" rel="noopener noreferrer">graceful</a> : 当uncaughtException触发后，延迟一段时间退出进程
+* <a href="https://www.npmjs.org/package/recluster" target="_blank" rel="noopener noreferrer">recluster</a> : 实现多进程，并且当有进程退出实现自动重启。
 
 **app.js**
 
@@ -704,7 +693,7 @@ cluster模块用于创建共享端口的多进程模式,这种模式使多个进
             <div class="line number1 index0 alt2">
               <code class="javascript plain">1</code>
             </div>
-            
+
             <div class="line number2 index1 alt1">
               <code class="javascript keyword">var</code> <code class="javascript plain">app = require(</code><code class="javascript string">'../app'</code><code class="javascript plain">);</code>
             </div>
@@ -776,7 +765,7 @@ cluster模块用于创建共享端口的多进程模式,这种模式使多个进
             <div class="line number1 index0 alt2">
               <code class="javascript keyword">var</code> <code class="javascript plain">recluster = require(</code><code class="javascript string">'recluster'</code><code class="javascript plain">),</code>
             </div>
-            
+
             <div class="line number2 index1 alt1">
               <code class="javascript spaces">    </code><code class="javascript plain">path = require(</code><code class="javascript string">'path'</code><code class="javascript plain">);</code>
             </div>
@@ -876,7 +865,7 @@ pm2使用非常简单：
             <div class="line number1 index0 alt2">
               <code class="javascript plain">$ npm install pm2@latest -g</code>
             </div>
-            
+
             <div class="line number2 index1 alt1">
             </div>
             
@@ -897,7 +886,7 @@ pm2使用非常简单：
   </div>
 </div>
 
-![pm2][1] 
+![pm2][1]
 
 如果你想更多的了解pm2，可以直接看pm2的文档:<a href="https://github.com/Unitech/pm2" target="_blank" rel="noopener noreferrer">https://github.com/Unitech/pm2</a>
 

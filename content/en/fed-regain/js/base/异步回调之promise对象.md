@@ -1,23 +1,6 @@
 ---
 title: 异步回调之Promise对象
 
-
-date: 2017-08-29T14:52:14+00:00
-excerpt: |
-  你可能知道，Javascript语言的执行环境是”单线程”（single thread）。
-  所谓”单线程”，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。
-url: /javascriptnodejs/773.html
-views:
-  - 2170
-  - 2170
-onesignal_meta_box_present:
-  - 1
-fifu_image_url:
-  - //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/promise1.jpg
-fifu_image_alt:
-  - 异步回调之Promise对象
-
-
 ---
 # 异步思想
 
@@ -26,7 +9,7 @@ fifu_image_alt:
 
 这种模式的好处是实现起来比较简单，执行环境相对单纯；坏处是只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。常见的浏览器无响应（假死），往往就是因为某一段Javascript代码长时间运行（比如死循环），导致整个页面卡在这个地方，其他任务无法执行。
 
-<img loading="lazy" class="aligncenter" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/promise1.jpg" alt="异步回调之Promise对象" width="492" height="330" /> 
+<img loading="lazy" class="aligncenter" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/promise1.jpg" alt="异步回调之Promise对象" width="492" height="330" />
 
 ### 异步问题
 
@@ -44,7 +27,7 @@ fifu_image_alt:
 <pre class="hljs javascript"><code class="javascript">
 f1();
 f2();
- 
+
 </code></pre>
 
 如果f1是一个很耗时的任务，可以考虑改写f1，把f2写成f1的回调函数。
@@ -56,14 +39,14 @@ function f1(callback){
 　　　　　　callback();
 　　　　}, 1000);
 　　}
- 
+
 </code></pre>
 
 执行代码就变成下面这样：
 
 <pre class="hljs javascript"><code class="javascript">
 f1(f2);
- 
+
 </code></pre>
 
 采用这种方式，我们把同步操作变成了异步操作，f1不会堵塞程序运行，相当于先执行程序的主要逻辑，将耗时的操作推迟执行。  
@@ -76,7 +59,7 @@ f1(f2);
 
 <pre class="hljs javascript"><code class="javascript">
 f1.on('done', f2);
- 
+
 </code></pre>
 
 上面这行代码的意思是，当f1发生done事件，就执行f2。然后，对f1进行改写：
@@ -88,7 +71,7 @@ function f1(){
 　　　　　　f1.trigger('done');
 　　　　}, 1000);
 　　}
- 
+
 </code></pre>
 
 f1.trigger(‘done’)表示，执行完成后，立即触发done事件，从而开始执行f2。  
@@ -103,7 +86,7 @@ f1.trigger(‘done’)表示，执行完成后，立即触发done事件，从而
 
 <pre class="hljs javascript"><code class="javascript">
 jQuery.subscribe("done", f2);
- 
+
 </code></pre>
 
 然后，f1进行如下改写：
@@ -115,7 +98,7 @@ jQuery.subscribe("done", f2);
 　　　　　　jQuery.publish("done");
 　　　　}, 1000);
 　　}
- 
+
 </code></pre>
 
 jQuery.publish(“done”)的意思是，f1执行完成后，向”信号中心”jQuery发布”done”信号，从而引发f2的执行。  
@@ -123,7 +106,7 @@ jQuery.publish(“done”)的意思是，f1执行完成后，向”信号中心�
 
 <pre class="hljs javascript"><code class="javascript">
 　jQuery.unsubscribe("done", f2);
- 
+
 </code></pre>
 
 这种方法的性质与”事件监听”类似，但是明显优于后者。因为我们可以通过查看”消息中心”，了解存在多少信号、每个信号有多少订阅者，从而监控程序的运行。
@@ -135,7 +118,7 @@ Promises对象是CommonJS工作组提出的一种规范，目的是为异步编�
 
 <pre class="hljs javascript"><code class="javascript">
 f1().then(f2);
- 
+
 </code></pre>
 
 f1要进行如下改写（这里使用的是jQuery的实现）：
@@ -149,7 +132,7 @@ function f1(){
 　　　　}, 500);
 　　　　return dfd.promise;
 　　}
- 
+
 </code></pre>
 
 这样写的优点在于，回调函数变成了链式写法，程序的流程可以看得很清楚，而且有一整套的配套方法，可以实现许多强大的功能。  
@@ -157,14 +140,14 @@ function f1(){
 
 <pre class="hljs javascript"><code class="javascript">
 f1().then(f2).then(f3);
- 
+
 </code></pre>
 
 再比如，指定发生错误时的回调函数：
 
 <pre class="hljs javascript"><code class="javascript">
 f1().then(f2).fail(f3);
- 
+
 </code></pre>
 
 而且，它还有一个前面三种方法都没有的好处：如果一个任务已经完成，再添加回调函数，该回调函数会立即执行。所以，你不用担心是否错过了某个事件或信号。这种方法的缺点就是编写和理解，都相对比较难。下面我们详细介绍promise对象。
@@ -190,7 +173,7 @@ alert("Hello World!");
 });
 });
 })(jQuery);
- 
+
 </code></pre>
 
 这就是所谓的「回调金字塔」,解决这个方法最简单的方法，就是把匿名函数取个名字，单独提取出来定义。但是当遇到多变的业务场景时，具名函数的方法也不太管用，于是便有了各种高级的碾平异步回调的解决方案，Promise 就是其中一种。
@@ -208,7 +191,7 @@ callback(param)
 }, 2000 + (Math.random() - 0.5) * 1000);
 }
 wait(console.log.bind(console), 'test');
- 
+
 </code></pre>
 
 你可以想象多层嵌套的时候大概是什么样子：
@@ -227,7 +210,7 @@ wait(console.log.bind(console), '剥开我的心');
 });
 });
 });
- 
+
 </code></pre>
 
 那么，在 Promise 的世界里是什么样的呢？这就不得不先枯燥地解释一些东西了。首先，什么叫做一个「promise」？一个 promise 可以是一个对象或者函数，它包含一个 then 接口并且符合相应的规范。使用一个 promise 的方法就是这样：
@@ -238,7 +221,7 @@ promise.then(function(response) {
 }, function(error) {
 // onRejected 时执行
 });
- 
+
 </code></pre>
 
 于是问题又来了，什么叫做 fulfilled 和 rejected 呢？一个 promise 会有三种状态，大致可以理解为执行成功（fulfilled）、执行失败（rejected）和正在执行中（pending）。Promise 包含一个状态机，它内部的状态转换，只允许从 pending 到 fulfilled 或者 rejected 一次，不允许更多了。如果用大家喜闻乐见的薛定谔的猫来解释，就是打开盒子的时候，我们的猫要么死了，要么没死，要么不确定死没死，死的的猫无法复活，活猫也一定不会死:D
@@ -266,7 +249,7 @@ return waitPromise('一层地');
 console.log(response);
 return waitPromise('剥开我的心');
 }).then(console.log.bind(console));
- 
+
 </code></pre>
 
 从上面的例子中，我们可以看出几点：
@@ -293,7 +276,7 @@ Q
 Bluebird
 when
 rsvp.js
- 
+
 </code></pre>
 
 例如，Q 支持进度查询功能，执行时间较长的异步操作（例如文件上传）可以即时获取进度信息：
@@ -457,7 +440,7 @@ waitPromise('如果你愿意').then(function(response) {
   console.log(response);
   return waitPromise('一层');
 }).then(console.log.bind(console));
- 
+
 </code></pre>
 
 可以看到我们可以成功输出两行文字。你能根据上面的实现，看出这次调用事实上一共产生了多少个 promise 对象吗？

@@ -1,22 +1,6 @@
 ---
 title: 关于hit test
 
-
-date: 2020-11-09T13:12:54+00:00
-url: /html5css3/6080.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png
-classic-editor-remember:
-  - classic-editor
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png
-fifu_image_alt:
-  - 关于hit test
-views:
-  - 1093
-like:
-  - 2
-
-
 ---
 <p id="iLmlKlS">
   <img loading="lazy" class="alignnone wp-image-6084 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/format,webp" alt="" width="675" height="259" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/format,webp 1156w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_115/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_306/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_294/format,webp 768w" sizes="(max-width: 675px) 100vw, 675px" />
@@ -49,47 +33,47 @@ hit test就是用来追踪当前点击位置的响应元素，从根节点html>b
 >   <h3 dir="ltr">
 >     Tracking hit test rects in blink
 >   </h3>
->   
+>
 >   <p>
 >     <span style="font-family: arial, sans-serif; font-size: medium;">In blink, we hook into the creation of Touch event handlers and track EventTargets with handlers in </span><span style="font-family: arial, sans-serif; font-size: medium;">EventHandlerRegistry. During paint, HitTestDisplayItems are emitted for all objects with blocking event handlers. As an optimization, a cache of the HitTestDisplay item data is stored on PaintChunk for all display items in the chunk. Then, after compositing, all hit test rects for a cc::Layer are projected into the cc::Layer&#8217;s coordinate space using </span><span style="font-family: arial, sans-serif; font-size: medium;">PaintArtifactCompositor::UpdateTouchActionRects. This approach of painting hit test data is described in more detail in <a href="https://docs.google.com/document/d/1ksiqEPkDeDuI_l5HvWlq1MfzFyDxSnsNB8YXIaXa3sE/view#">PaintTouchActionRects</a>.</span>
 >   </p>
->   
+>
 >   <h3 dir="ltr">
 >     <a name="TOC-Hit-testing-in-the-compositor"></a>Hit testing in the compositor
 >   </h3>
 > </div>
-> 
+>
 > <div>
 >   <span style="font-family: arial, sans-serif; font-size: medium;">The hit testing is currently done just for the touchStart events since the point at which these event hit determines where the next train of events will be sent until we receive another touchStart (due to a different gesture starting or due to another finger being pressed on screen). On the compositor, (as of the fix for <a href="https://www.chromium.org/developers/design-documents/goog_353685820">bug </a></span><span style="font-family: arial, sans-serif; font-size: medium;"><a href="https://code.google.com/p/chromium/issues/detail?id=351723">351723</a>) </span>we do a ray cast at the point of the touch and consult the touchEventHandlerRegion for each layer until we hit a layer we know is opaque to hit testing. If there is a hit, the compositor forwards this touch event to the renderer and then it is sent to blink to be processed as usual. If there is no touchEventHandlerRegion that was hit, the compositor sends an ACK with NO_CONSUMER_EXISTS.
 > </div>
-> 
+>
 > <div>
 >
 > </div>
-> 
+>
 > <div>
 >   <div>
 >     <h3 dir="ltr">
 >       Browser side processing
 >     </h3>
 >   </div>
->   
+>
 >   <div>
 >     <span style="font-family: arial, sans-serif; font-size: medium;">As far as the browser side is concerned, only the ACKs it receives for the outgoing touch events matter in determining the current state. Currently there are four states that the ACK can be at. INPUT_EVENT_STATE_ACK_UNKNOWN is the initial default state that the touch_event_queue is at and might not be used on different platforms(ex: Android). When a touchStart event comes the touch event queue on the browser side always sends this touch event through IPC to the compositor. Then the touch event queue waits for the ACK for that touchStart to make a decision about the rest of the touch events in queue.</span>
 >   </div>
->   
+>
 >   <div>
 >     <span style="font-family: arial, sans-serif; font-size: medium;"> </span>
 >   </div>
->   
+>
 >   <div>
 >     <span style="font-family: arial, sans-serif; font-size: medium;">If it receives </span>NO_CONSUMER_EXISTS, it stops sending touch events to the compositor until the next touchStart arrives and sends them directly to the platform specific gesture detector. This is mostly the case for regular browsing helps the gesture detector take over after a single touch event gets ACKed back from the compositor making it possible for the gesture to be generated fast enough to not cause any visible lag.
 >   </div>
->   
+>
 >   <div>
 >
 >   </div>
->   
+>
 >   <div>
 >     If it receives either NOT_CONSUMED or CONSUMED, this means there was a hit in the touchEventHandlerRegion and we should continue sending the touchMoves and touchEnd following this event to the compositor (which will send them to the renderer without doing any hit testing). If the ACK was CONSUMED, then the touchEventHandler had called preventDefault and neither this particular touch event nor the rest of the touch events until the next touchStart should be sent to the gesture detector. If the ACK was NOT_CONSUMED, this might mean either the touchEventHandlerRegion was too conservative and when the touchStart was hit tested in blink it didn&#8217;t hit any touchEventHandlers or the touchEventHandler didn&#8217;t preventDefault or process that particular touch event. In this case the touch_event_queue still forwards this event to the gesture_detector.
 >   </div>
@@ -115,8 +99,6 @@ hit test就是用来追踪当前点击位置的响应元素，从根节点html>b
 
   1. 元素嵌套太深，每层次元素都绑定事件处理的话，会以此触发，建议用事件代理。
   2. 元素定位界限不清，元素重叠，hit test可能会挨个找每个图层每个元素。
-
- 
 
 ## 参考
 

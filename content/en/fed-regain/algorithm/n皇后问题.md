@@ -1,24 +1,7 @@
 ---
 title: n皇后问题
 
-
-date: 2019-07-17T13:02:44+00:00
-url: /algorithm/4781.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2f1c4b07117.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2f1c4b07117.png
-fifu_image_alt:
-  - n皇后问题
-views:
-  - 1659
-like:
-  - 1
-
-
 ---
-<p id="YYVacly">
-  <img loading="lazy" class="alignnone  wp-image-4783 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2f1c4b07117.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2f1c4b07117.png?x-oss-process=image/format,webp" alt="" width="357" height="370" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2f1c4b07117.png?x-oss-process=image/format,webp 610w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2f1c4b07117.png?x-oss-process=image/quality,q_50/resize,m_fill,w_290,h_300/format,webp 290w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2f1c4b07117.png?x-oss-process=image/quality,q_50/resize,m_fill,w_579,h_600/format,webp 579w" sizes="(max-width: 357px) 100vw, 357px" />
-</p>
 
 问题：
 
@@ -63,7 +46,7 @@ function place(res, k) {
     }
     return true;
 }
- 
+
 var start = Date.now();
 var result = nQueens(30);
 var end = Date.now();

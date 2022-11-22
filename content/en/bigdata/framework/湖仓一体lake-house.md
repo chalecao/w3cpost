@@ -2,21 +2,13 @@
 title: 湖仓一体lake house
 
 
-date: 2022-04-14T15:45:52+00:00
-url: /用户增长/7086.html
-classic-editor-remember:
-  - classic-editor
-views:
-  - 111
-
-
 ---
 <h1 id="slide-0" data-lake-id="52992b125b35ab4c9851b8dcd9fde318">
   <span data-spm-anchor-id="a2c6h.12873639.article-detail.i1.2d5c46c7a1qn94">前言</span>
 </h1>
 
 <p data-lake-id="c78ae48977b3740e6dcceee3828efae4">
-  <span data-spm-anchor-id="a2c6h.12873639.article-detail.i0.2d5c46c7a1qn94">本文翻译自大数据技术公司 Databricks 针对数据湖 Delta Lake 系列技术文章。众所周知，Databricks 主导着开源大数据社区 Apache Spark、Delta Lake 以及 ML Flow 等众多热门技术，而 Delta Lake 作为数据湖核心存储引擎方案给企业带来诸多的优势。</p> 
+  <span data-spm-anchor-id="a2c6h.12873639.article-detail.i0.2d5c46c7a1qn94">本文翻译自大数据技术公司 Databricks 针对数据湖 Delta Lake 系列技术文章。众所周知，Databricks 主导着开源大数据社区 Apache Spark、Delta Lake 以及 ML Flow 等众多热门技术，而 Delta Lake 作为数据湖核心存储引擎方案给企业带来诸多的优势。</p>
   
   <p>
     此外，阿里云和 Apache Spark 及 Delta Lake 的原厂 Databricks 引擎团队合作，推出了基于阿里云的企业版全托管 Spark 产品——Databricks 数据洞察，该产品原生集成企业版 Delta Engine 引擎，无需额外配置，提供高性能计算能力。有兴趣的同学可以搜索` Databricks 数据洞察`或`阿里云 Databricks `进入官网，或者直接访问 </span><a href="https://www.aliyun.com/product/bigdata/spark" target="_blank" rel="noopener noreferrer">https://www.aliyun.com/product/bigdata/spark</a> 了解详情。

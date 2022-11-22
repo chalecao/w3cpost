@@ -1,41 +1,20 @@
 ---
 title: vue与angular与react
 
-
-date: 2017-08-28T06:12:28+00:00
-excerpt: 前两天花时间研究了一下angualr模板实现与vue2.0与react等框架的模板实现原理，这里总结一下。
-url: /javascriptnodejs/642.html
-views:
-  - 1679
-  - 1679
-ampforwp_custom_content_editor:
-  - 
-  - 
-ampforwp_custom_content_editor_checkbox:
-  - 
-  - 
-ampforwp-amp-on-off:
-  - default
-  - default
-toc_depth:
-  - 1
-  - 1
-
-
 ---
 前两天花时间研究了一下angualr模板实现与vue2.0与react等框架的模板实现原理，这里总结一下。
 
-![vue与angular与react][1] 
+![vue与angular与react][1]
 
 ### 模板是什么
 
-其实说起来模板有很多种，最早使用的就是用innerHTML塞一段数据，然后中间的变动的值都采用特殊变量替代，比如下面:<figure> 
+其实说起来模板有很多种，最早使用的就是用innerHTML塞一段数据，然后中间的变动的值都采用特殊变量替代，比如下面:<figure>
 
 <table>
   <tr>
     <td>
         1
-      
+
         2
     </td>
     
@@ -45,7 +24,7 @@ toc_depth:
         var bb = aa.replace(//_/_name/_/_/g,&#8221;张三&#8221;).replace(//_/_time/_/_/g,&#8221;李四&#8221;)
     </td>
   </tr>
-</table></figure> 
+</table></figure>
 
 看起来比较粗糙，用起来也不是那么好用。这种如果需要在模板中绑定事件，每次都需要重新处理，需要在innerHTML之后，再处理事件问题。  
 其实我还用过其他的模板引擎，比如jquery的tmpl，像FTL这种模板，还有像smarty这种php模板，还有JSP、ASP这种。不过JSP和ASP这种网页严格的说并不是模板了，而是直接将业务逻辑混合在页面中了。  
@@ -58,15 +37,15 @@ toc_depth:
 ### 字符串模板
 
 String-based 模板技术 (基于字符串的parse和compile过程)  
-![vue与angular与react][2] 
+![vue与angular与react][2]
 
 抽象语法树（Abstract Syntax Tree）也称为AST语法树，指的是源代码语法所对应的树状结构。也就是说，对于一种具体编程语言下的源代码，通过构建语法树的形式将源代码中的语句映射到树中的每一个节点上。  
-![vue与angular与react][3] 
+![vue与angular与react][3]
 
 关于字符串模板解析的原理其实和编程语言的编译原理类似，首先都是需要做词法分析，分析出那些是关键词，然后做对应的语法分析，根据定义好的不同语法产生式来匹配最佳的语法，最后就是语义分析，分析出最适合的语义结果，最后输出结果。可以参考我的另一篇：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2017/04/10/2017_js4c/" target="_blank" rel="external noopener">前端构建C语言解释执行环境调研</a>
 
 实现一个简单的字符串循环模版：  
-![vue与angular与react][4] 
+![vue与angular与react][4]
 
 上面的例子很好的说明了String-based 模板技术的原理。它产生html结构，直接通过innerHTML插入到DOM中。
 
@@ -80,13 +59,13 @@ doT.js: 超级快
 ### 基于Dom的模板（基于Dom的link或compile过程）
 
 ![vue与angular与react][5]  
-要理解这个，其实也不难。比如使用jQuery的同学经常在做一个数据提取的时候，会首先通过innerHTML把数据获取过来，然后在把这个字符串解析为DOM树，当然并不会直接挂到网页的DOM节点上，而是在内存中。比如：<figure> 
+要理解这个，其实也不难。比如使用jQuery的同学经常在做一个数据提取的时候，会首先通过innerHTML把数据获取过来，然后在把这个字符串解析为DOM树，当然并不会直接挂到网页的DOM节点上，而是在内存中。比如：<figure>
 
 <table>
   <tr>
     <td>
         1
-      
+
         2
       
         3
@@ -104,7 +83,7 @@ doT.js: 超级快
         var cc = bb.html();
     </td>
   </tr>
-</table></figure> 
+</table></figure>
 
 String-based 和 Dom-based的模板技术都或多或少的依赖与innerHTML, 它们的区别是一个是主要是为了Rendering 一个是为了 Parsing 提取信息。所以为什么不结合它们两者来完全移除对innerHTML的依赖呢？parse和compile的过程分别类似于String-based 模板技术 和 Dom-based模板技术。
 
@@ -118,7 +97,7 @@ String-based 和 Dom-based的模板技术都或多或少的依赖与innerHTML, �
 首先我们使用一个内建DSL来解析模板字符串并输出AST。
 
 1）词法分析器又称为扫描器，词法分析是指将文本代码流解析为一个个记号，分析得到的记号以供后续的词法分析使用。 这个模块在Regular顶级模块执行过程中调用Parse模块进行语法分析前会调用Lexer词法分析模块对字符串模板进行词法分析。词法分析的主要流程如下图所示：  
-![vue与angular与react][7] 
+![vue与angular与react][7]
 
 词法分析主要分为两部分进行，分别是Tag类型元素字符串，还有一类是JST字符串。通过全局中全局中保存一个state状态，当前解析完成后，会判断一个字符串的开头是否以“<”字符开始，如果是则进入Tag词法解析流程，如果不是则进入JST模板词法解析流程。 最后通过词法分析，将得到一个很长的数组，这个数组中装着一个个上面的词法对象，这将为之后的语法分析做下铺垫。
 
@@ -131,7 +110,7 @@ String-based 和 Dom-based的模板技术都或多或少的依赖与innerHTML, �
 例如，在regularjs中，下面这段简单的模板字符串  
 ![vue与angular与react][9]  
 会被解析为以下这段数据结构  
-![vue与angular与react][10] 
+![vue与angular与react][10]
 
 #### Compiler
 
@@ -145,7 +124,7 @@ String-based 和 Dom-based的模板技术都或多或少的依赖与innerHTML, �
 </code>&lt;/code></pre>
 
 一旦regularjs的引擎遇到这段模板与代表的语法元素节点，会进入如下函数处理  
-![vue与angular与react][11] 
+![vue与angular与react][11]
 
 正如我们所见， 归功于$watch函数，一旦表达式发生改变，文本节点也会随之改变，这一切其实与angularjs并无两样(事实上regularjs同样也是基于脏检查)
 
@@ -174,7 +153,7 @@ bar: {
     get: function() { return 10 },
     set: function(value) { console.log("Setting `o.bar` to", value) }
 }})
- 
+
 // 显式
 Object.defineProperty(obj, "key", {
     enumerable: false,
@@ -198,12 +177,11 @@ Object.defineProperty(obj, "key", {
 &lt;div id='aa-attr' style="background: #a9ea00;width:100px;height:100px;" ao-css-width="w" ao-click='click' &gt;&lt;/div&gt;
 &lt;p id='aa-text'&gt;{{ w }}&lt;/p&gt;
 &lt;/div&gt;
- 
- 
+
 &lt;script&gt;
- 
+
 var vm = {}
- 
+
 var bindings = {
 w: function(value) {
     if (value) {
@@ -213,7 +191,7 @@ w: function(value) {
     }
 }
 }
- 
+
 var access = function(newValue){
     if (newValue) { //set
         bindings['w'](newValue);
@@ -221,18 +199,18 @@ var access = function(newValue){
         return bindings['w']();
     }
 }
- 
+
 Object.defineProperty(vm, 'w', {
     get : access,
     set : access,
     enumerable : true,
     configurable : true
 })
- 
+
 vm.w = 300 //设置element.style.width == 300
- 
+
 alert(vm.w)
- 
+
 &lt;/script&gt;
 </code>&lt;/code></pre>
 

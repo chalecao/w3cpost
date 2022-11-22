@@ -1,15 +1,6 @@
 ---
 title: CSS交互
 
-
-date: 2020-11-17T16:56:04+00:00
-url: /html5css3/6370.html
-classic-editor-remember:
-  - classic-editor
-views:
-  - 562
-
-
 ---
 # Pointer Events {.p1}
 

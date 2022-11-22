@@ -2,17 +2,6 @@
 title: 什么时候会发送options请求
 
 
-date: 2019-07-19T06:40:43+00:00
-url: /javascriptnodejs/4798.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31660550b6a.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31660550b6a.png
-fifu_image_alt:
-  - 什么时候会发送options请求
-views:
-  - 1923
-like:
-  - 2
 
 
 ---
@@ -46,16 +35,16 @@ JAVA代码片段 就Content-Type为application/json为例：对比两张图片�
 
 预检请求 正式请求 很明显，请求头中预检请求不会携带cookie，正式请求会携带cookie和参数。跟普通请求一样，响应头也会增加同样字段。
 
-一旦服务器通过了“预检”请求，以后每次浏览器正常的CORS请求，就都跟简单请求一样。<h1 class="article-title" data-v-4f8894a8="">什么时候会发送options请求</h1> 
+一旦服务器通过了“预检”请求，以后每次浏览器正常的CORS请求，就都跟简单请求一样。<h1 class="article-title" data-v-4f8894a8="">什么时候会发送options请求</h1>
 
 <div>
   <p>
     最近写的项目，应用里所有的ajax请求都发送了2遍。由于新项目，基础模块是新搭的，所以出现一些奇葩问题也是意料之中，啊终于第一次在chrome的devTools遇见了活的options请求。
-  </p><figure> 
+  </p><figure>
   
   <p id="EwWoZcF">
     <img loading="lazy" width="877" height="551" class="alignnone size-full wp-image-4803 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31660550b6a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31660550b6a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31660550b6a.png?x-oss-process=image/format,webp 877w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31660550b6a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_188/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31660550b6a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_483/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31660550b6a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_503/format,webp 800w" sizes="(max-width: 877px) 100vw, 877px" />
-  </p><figcaption></figcaption></figure> 
+  </p><figcaption></figcaption></figure>
   
   <h4 class="heading" data-id="heading-1">
     1.1 第1次请求
@@ -74,7 +63,7 @@ JAVA代码片段 就Content-Type为application/json为例：对比两张图片�
       <th>
         Request Header
       </th>
-      
+
       <th>
         作用
       </th>
@@ -103,11 +92,11 @@ JAVA代码片段 就Content-Type为application/json为例：对比两张图片�
   
   <p>
     服务器基于从预检请求头部获得的信息来判断，是否接受接下来的实际请求。
-  </p><figure> 
+  </p><figure>
   
   <p id="HSMBron">
     <img loading="lazy" width="597" height="222" class="alignnone size-full wp-image-4804 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d316613af3f8.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d316613af3f8.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d316613af3f8.png?x-oss-process=image/format,webp 597w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d316613af3f8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_112/format,webp 300w" sizes="(max-width: 597px) 100vw, 597px" />
-  </p><figcaption></figcaption></figure> 
+  </p><figcaption></figcaption></figure>
   
   <h4 class="heading" data-id="heading-3">
     （2）预检响应头response header的关键字段：
@@ -118,7 +107,7 @@ JAVA代码片段 就Content-Type为application/json为例：对比两张图片�
       <th>
         response header
       </th>
-      
+
       <th>
         作用
       </th>
@@ -167,11 +156,11 @@ JAVA代码片段 就Content-Type为application/json为例：对比两张图片�
   
   <p>
     此次OPTIONS请求返回了响应头的内容，但没有返回响应实体response body内容。
-  </p><figure> 
+  </p><figure>
   
   <p id="AqoROVq">
     <img loading="lazy" width="980" height="402" class="alignnone size-full wp-image-4805 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31661fdb4ed.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31661fdb4ed.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31661fdb4ed.png?x-oss-process=image/format,webp 980w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31661fdb4ed.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_123/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31661fdb4ed.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_315/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31661fdb4ed.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_328/format,webp 800w" sizes="(max-width: 980px) 100vw, 980px" />
-  </p><figcaption></figcaption></figure> 
+  </p><figcaption></figcaption></figure>
   
   <h4 class="heading" data-id="heading-4">
     1.2 第2次请求
@@ -179,11 +168,11 @@ JAVA代码片段 就Content-Type为application/json为例：对比两张图片�
   
   <p>
     这是本来要发送的请求，如图所示是普通的post请求。其中<strong>Content-Type</strong>的<em>application/json</em>是此次和后端约定的请求内容格式，这个也是后面讲到为什么会发送options请求的原因之一。
-  </p><figure> 
+  </p><figure>
   
   <p id="Gxhcdaw">
     <img loading="lazy" width="866" height="562" class="alignnone size-full wp-image-4807 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31662c447a7.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31662c447a7.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31662c447a7.png?x-oss-process=image/format,webp 866w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31662c447a7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_195/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31662c447a7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_498/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31662c447a7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_519/format,webp 800w" sizes="(max-width: 866px) 100vw, 866px" />
-  </p><figcaption></figcaption></figure> 
+  </p><figcaption></figcaption></figure>
   
   <h3 class="heading" data-id="heading-5">
     2 关于OPTIONS请求
@@ -220,7 +209,7 @@ JAVA代码片段 就Content-Type为application/json为例：对比两张图片�
       <th>
         CORS预检请求触发条件
       </th>
-      
+
       <th>
         本次请求是否触发该条件
       </th>

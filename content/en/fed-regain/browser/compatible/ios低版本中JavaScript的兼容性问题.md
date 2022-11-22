@@ -1,17 +1,6 @@
 ---
 title: ios低版本中JavaScript的兼容性问题
 
-
-date: 2018-05-08T09:02:53+00:00
-url: /javascriptnodejs/1860.html
-views:
-  - 3157
-  - 3157
-like:
-  - 2
-  - 2
-
-
 ---
 ## forEach遇到NodeList
 

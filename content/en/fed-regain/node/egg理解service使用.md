@@ -1,20 +1,6 @@
 ---
 title: egg理解service使用
 
-
-date: 2020-11-12T06:03:41+00:00
-url: /javascriptnodejs/6114.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png
-classic-editor-remember:
-  - classic-editor
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png
-fifu_image_alt:
-  - egg理解service使用
-views:
-  - 484
-
-
 ---
 这篇文章我们首先来看看官网对Egg的整个框架的约定如下，及约定对应的目录是做什么的，来有个简单的理解，注意：我也是按照官网的来理解的。
 
@@ -73,7 +59,7 @@ application.js —— this指向：app对象, 调用：this.app
     <p>
       context.js —— this指向：ctx对象，调用：this.ctx
     </p>
-    
+
     <p>
       request.js —— this指向：ctx.request对象，调用：this.ctx.request
     </p>
@@ -151,7 +137,7 @@ class IndexController extends Controller {
 module.exports = IndexController;</pre>
 </div>
 
-**app/controller/** 用于解析用户的输入，处理后返回响应的结果。** 如上 home.js 和 index.js 使用是Es6的类来编写代码，它都继承了 egg中的Controller，其中index.js 定义了 dataList 对象数据，然后使用ctx.render把数据渲染到 模板里面去。  
+**app/controller/** 用于解析用户的输入，处理后返回响应的结果。**如上 home.js 和 index.js 使用是Es6的类来编写代码，它都继承了 egg中的Controller，其中index.js 定义了 dataList 对象数据，然后使用ctx.render把数据渲染到 模板里面去。
 这里的模板就是 app/view/index/list.tpl的，在上面的目录中，我们可以看到 view和controller是同级目录的，在egg内部会直接找到view这个目录的，然后对模板 index/list.tpl这个目录进行解析。这就是 app/controller/** 的作用，它用于解析用户输入，然后把结果会渲染到模板里面去，处理模板后就会返回响应的结果。
 
 **app/public/** 目录的的作用是 用于放置静态资源**。比如css和js，然后在 app/view/** 中的模板文件引入该资源文件即可  
@@ -161,15 +147,13 @@ module.exports = IndexController;</pre>
 
 <pre><!-- app/view/index/list.tpl -->
 
-  
-    
 </pre>
 
 <ul class="view-list">
   <li style="list-style-type: none;">
     <ul class="view-list">
-      {% for item in list %}</p> 
-      
+      {% for item in list %}</p>
+
       <li class="item">
         <a href="{{ item.url }}">{{ item.title }}</a>
       </li>
@@ -178,8 +162,6 @@ module.exports = IndexController;</pre>
 </ul>
 
 {% endfor %}
-
- 
 
 <pre></pre>
 
@@ -217,7 +199,7 @@ exports.view = {
 
 比如上面叫 export.view 是对 view下的模板文件配置默认的模板引擎。其中mapping含义应该是映射的含义吧，应该是把模板引擎映射到有关 .tpl后缀的文件中。
 
-这就是之前那篇文章的所有的简单的理解目录结构。那么我们知道之前那篇文章是数据是写死在 app/controller/** 中的，但是在我们项目实际应用中，我们的数据不应该是写死的，那就可能请求ajax接口，然后把接口的数据返回回来，我们再把对应的数据渲染出来。  
+这就是之前那篇文章的所有的简单的理解目录结构。那么我们知道之前那篇文章是数据是写死在 app/controller/**中的，但是在我们项目实际应用中，我们的数据不应该是写死的，那就可能请求ajax接口，然后把接口的数据返回回来，我们再把对应的数据渲染出来。
 从上面我们了解到 app/controller/\*\* 用于解析用户的输入，处理后返回响应的结果。所以对于ajax接口请求具体的业务逻辑，我们复杂的业务逻辑不应该放在该目录下，该目录下只是做一些简单的用户输入，那么复杂的业务逻辑，我们这边就应该放到 app/service/\*\* 目录下。因此我们需要把具体的业务逻辑代码写到 app/service/** 中。
 
 现在我们需要在 app/ 下新建一个 service目录，在该目录下新建一个 index.js 来处理具体的业务逻辑代码。
@@ -310,7 +292,7 @@ exports.index = {
   <img loading="lazy" width="1940" height="1374" class="alignnone size-full wp-image-6120 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/format,webp 1940w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_212/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_567/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_544/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_1088/format,webp 1536w" sizes="(max-width: 1940px) 100vw, 1940px" />
 </p>
 
-![][1] 
+![][1]
 
 因为接口是node服务器端渲染的，所以在浏览器中是看不到请求的。
 
@@ -330,6 +312,7 @@ exports.index = {
 **this.ctx.db** 发起数据库调用等。db可能是其他插件提取挂载到app上的模块。
 
 **注意：**  
+
 1. 一个Service文件只能包含一个类，这个类需要通过 module.exports 的方式返回。  
 2. Service需要通过Class的方式定义，父类必须是 egg.Service.  
 3. Service不是单列，是请求级别的对象，框架在每次请求中首次访问 ctx.service.xx 时延迟实例化，所以我们建议在Service中  

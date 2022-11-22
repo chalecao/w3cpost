@@ -2,21 +2,13 @@
 title: script标签的defer与async
 
 
-date: 2018-03-13T07:13:08+00:00
-url: /javascriptnodejs/1683.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/03/2151798436-59da4801c6772_articlex.png
-views:
+
   - 1582
-  - 1582
-like:
+
   - 2
-  - 2
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/03/2151798436-59da4801c6772_articlex.png
-onesignal_meta_box_present:
-  - 1
-fifu_image_alt:
-  - script标签的defer与async
+
+
+
 
 
 ---
@@ -27,7 +19,7 @@ fifu_image_alt:
   3. `<script defer src="myscript.js"></script>`有 `defer`，加载后续文档元素的过程将和 `script.js` 的加载并行进行（异步），但是 `script.js` 的执行要在所有元素解析完成之后，`DOMContentLoaded` 事件触发之前完成。
   4. defer和async用一个就好了，混用没有意义。
 
-<img loading="lazy" class="alignnone wp-image-1684 size-full" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/03/2151798436-59da4801c6772_articlex.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/03/2151798436-59da4801c6772_articlex.png?x-oss-process=image/format,webp" alt="" width="787" height="800" /> 
+<img loading="lazy" class="alignnone wp-image-1684 size-full" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/03/2151798436-59da4801c6772_articlex.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/03/2151798436-59da4801c6772_articlex.png?x-oss-process=image/format,webp" alt="" width="787" height="800" />
 
 ## 什么时候用到
 

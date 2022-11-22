@@ -2,17 +2,6 @@
 title: react hook的初步研究前言renderWithHooks的整个过程
 
 
-date: 2019-09-01T00:55:47+00:00
-url: /javascriptnodejs/4994.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://ask.qcloudimg.com/http-save/yehe-3635362/fshq09ka2l.png?imageView2/2/w/1620
-fifu_image_url:
-  - https://ask.qcloudimg.com/http-save/yehe-3635362/fshq09ka2l.png?imageView2/2/w/1620
-fifu_image_alt:
-  - react hook的初步研究前言renderWithHooks的整个过程
-views:
-  - 865
-like:
-  - 2
 
 
 ---
@@ -48,7 +37,7 @@ like:
           </p>
         </div>
       </th>
-      
+
       <th>
         <div class="table-header">
           <p>
@@ -177,7 +166,7 @@ like:
           </p>
         </div>
       </th>
-      
+
       <th>
         <div class="table-header">
           <p>
@@ -321,7 +310,7 @@ like:
           </p>
         </div>
       </th>
-      
+
       <th>
         <div class="table-header">
           <p>
@@ -455,9 +444,9 @@ like:
 
 <pre class="prism-token token  language-javascript"><span class="token keyword">return</span> <span class="token punctuation">(</span>
         <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
-            <span class="token punctuation">{</span><span class="token comment">/* setn指的是setAge_function，点了会改变_age。这里的n展示的是_age */</span><span class="token punctuation">}</span>
+            <span class="token punctuation">{</span><span class="token comment">/*setn指的是setAge_function，点了会改变_age。这里的n展示的是_age*/</span><span class="token punctuation">}</span>
             这是n<span class="token punctuation">:</span><span class="token punctuation">{</span>n<span class="token punctuation">}</span><span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">setn</span><span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>n<span class="token operator">++</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
-            <span class="token punctuation">{</span><span class="token comment">/* setAge指的是setn_function，点了会改变_n。这里的age展示的是_n  */</span><span class="token punctuation">}</span>
+            <span class="token punctuation">{</span><span class="token comment">/*setAge指的是setn_function，点了会改变_n。这里的age展示的是_n*/</span><span class="token punctuation">}</span>
             年龄：<span class="token punctuation">{</span>age<span class="token punctuation">}</span><span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">setAge</span><span class="token punctuation">(</span>age <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>age<span class="token operator">+</span><span class="token number">2</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
             变性：<span class="token punctuation">{</span>man <span class="token operator">?</span> <span class="token string">'man'</span> <span class="token punctuation">:</span> <span class="token string">'gay'</span><span class="token punctuation">}</span><span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">setSex</span><span class="token punctuation">(</span><span class="token operator">!</span>man<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">&gt;</span>change<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
         <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
@@ -478,7 +467,7 @@ like:
           </p>
         </div>
       </th>
-      
+
       <th>
         <div class="table-header">
           <p>
@@ -681,11 +670,11 @@ ReactCurrentDispatcher$1.current会是HooksDispatcherOnMountInDEV和HooksDispatc
 
 # updateWorkInProgressHook如何进行
 
-一个hook对象是这样的：<figure> 
+一个hook对象是这样的：<figure>
 
 <div class="image-block">
   <img class="" src="https://ask.qcloudimg.com/http-save/yehe-3635362/fshq09ka2l.png?imageView2/2/w/1620" />
-</div></figure> 
+</div></figure>
 
 每一次hook都是用updateWorkInProgressHook获取的。也是这个函数的实现，让我们看起来react内部是用一个数组维护了hook
 
@@ -865,7 +854,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token keyword">function</span> <span class="token function">mountComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'模拟首次mount'</span><span class="token punctuation">)</span>
   cursor <span class="token operator">=</span> <span class="token number"></span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token operator">&lt;</span>HookIsHere <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">;</span> 
+  <span class="token keyword">return</span> <span class="token operator">&lt;</span>HookIsHere <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 
 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token punctuation">;</span>

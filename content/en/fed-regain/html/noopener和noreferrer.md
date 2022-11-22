@@ -1,15 +1,6 @@
 ---
 title: noopener和noreferrer
 
-
-date: 2019-03-25T08:35:06+00:00
-url: /html5css3/4060.html
-views:
-  - 1228
-like:
-  - 2
-
-
 ---
 <div>
   <p>

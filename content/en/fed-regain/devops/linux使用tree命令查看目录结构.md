@@ -2,15 +2,9 @@
 title: linux使用tree命令查看目录结构
 
 
-date: 2020-03-20T08:22:29+00:00
-url: /pwa/5712.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7b33af6d27e.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7b33af6d27e.png
-fifu_image_alt:
-  - linux使用tree命令查看目录结构
-views:
-  - 790
+
+
+
 
 
 ---

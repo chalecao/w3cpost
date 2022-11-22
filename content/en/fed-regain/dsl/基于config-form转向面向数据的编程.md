@@ -1,24 +1,9 @@
 ---
 title: 基于config-form转向面向数据的编程
 
-
-date: 2019-12-27T01:53:48+00:00
-url: /javascriptnodejs/5503.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png
-xzh_tui_back:
-  - 成功
-views:
-  - 923
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png
-fifu_image_alt:
-  - 基于config-form转向面向数据的编程
-like:
-  - 1
-
-
 ---
-本文接上篇：[基于config-component转向面向数据的编程][1] 继续分析如何转向面向数据的编程
+
+本文接上篇继续分析如何转向面向数据的编程
 
 <p id="MXBKKlE">
   <img loading="lazy" class="alignnone  wp-image-5505 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png?x-oss-process=image/format,webp" alt="" width="394" height="328" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png?x-oss-process=image/format,webp 798w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_250/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_639/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_721,h_600/format,webp 721w" sizes="(max-width: 394px) 100vw, 394px" />
@@ -95,7 +80,7 @@ config-component中提供了config-form组件，主要用于解决中后台的fo
       '任务时间 &gt;= 1天',
       value =&gt; {
         return value && value[1].hour(23).minute(59).second(59).milliseconds(0)
-          .valueOf() - value[0].milliseconds(0).valueOf() &gt;= (24 * 60 * 60 * 1000 - 1000)
+          .valueOf() - value[0].milliseconds(0).valueOf() &gt;= (24 *60* 60 * 1000 - 1000)
       },
     ),
     activityDes: yup.string().required('请填写任务概要').max(24, '最长24个字符'),
@@ -110,10 +95,10 @@ const formConfig = {
       outerTaskId: taskSelected.id,
       taskLabel: taskSelected.taskName,
       joinWay: joinTypeList[0].value,
-      sendingStrategy: Object.keys(sendingStrategyMap)[0],
+      sendingStrategy: Object.keys[sendingStrategyMap](0),
       awardGetWay: awardGetWayList[0].value,
-      collectPeriodContent: Object.keys(collectPeriodContentMap)[0],
-      splitPeriodContent: Object.keys(splitPeriodContentMap)[0],
+      collectPeriodContent: Object.keys[collectPeriodContentMap](0),
+      splitPeriodContent: Object.keys[splitPeriodContentMap](0),
       filtFlag: filtFlagList[0].value,
       ...(detail ? {
         ...detail,

@@ -1,39 +1,23 @@
 ---
 title: css基线与行高关系
 
-
-date: 2018-04-09T11:39:36+00:00
-url: /html5css3/1769.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/a1c91c7506a6365eaa353b2f8cc65365.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/a1c91c7506a6365eaa353b2f8cc65365.png
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/a1c91c7506a6365eaa353b2f8cc65365.png
-views:
-  - 2366
-  - 2366
-fifu_image_alt:
-  - css基线与行高关系
-like:
-  - 2
-
-
 ---
 ## 一、**基本概念**
 
 1、基线、底线、顶线、中线  
-<img loading="lazy" class="alignnone wp-image-2094 size-full" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/a1c91c7506a6365eaa353b2f8cc65365.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/a1c91c7506a6365eaa353b2f8cc65365.png?x-oss-process=image/format,webp" alt="" width="750" height="145" /> 
+<img loading="lazy" class="alignnone wp-image-2094 size-full" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/a1c91c7506a6365eaa353b2f8cc65365.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/a1c91c7506a6365eaa353b2f8cc65365.png?x-oss-process=image/format,webp" alt="" width="750" height="145" />
 
 注意：基线（base line）并不是汉字文字的下端沿，而是英文字母“x”的下端沿。
 
 2、内容区
 
-![][1] 
+![][1]
 
 内容区是指底线和顶线包裹的区域（行内元素display:inline;可以通过background-color属性显示出来），实际中不一定看得到，但确实存在。内容区的大小依据font-size的值和字数进行变化。
 
 3、行距、行高
 
-![][2] 
+![][2]
 
 行高（line-height）：包括内容区与以内容区为基础对称拓展的空白区域，我们称之为行高。一般情况下，也可以认为是相邻文本行基线间的距离。
 
@@ -41,12 +25,12 @@ like:
 
 4、行内框
 
-![][3] 
+![][3]
 
 行内框是一个浏览器渲染模型中的概念，无法显示出来，但是它又确实存在，它的高度就是行高指定的高度。
 
 5、行框  
-![][3] 
+![][3]
 
 行框（line box），同行内框类似的概念，行框是指本行的一个虚拟的矩形框，也是浏览器渲染模式中的一个概念。行框高度等于本行内所有元素中行内框最大的值（以行高值最大的行内框为基准，其他行内框采用自己的对齐方式向基准对齐，最终计算行框的高度）
 
@@ -57,7 +41,7 @@ like:
 ## 二、**vertical-align：设置元素的垂直对齐方式。**
 
 上一节我们讲解了行高与单行纯文字的垂直居中（line-height），而如果行内含有图片和文字，在浏览器渲染出来后，读者可以发现文字和图片在垂直方向并不是沿中线居中，而是沿基线对齐。这是因为，元素默认的垂直对齐方式为基线对齐（vertical-align：baseline）。  
-![][5] 
+![][5]
 
 CSS语法：vertical-align  
 语法：  
@@ -81,31 +65,31 @@ text-bottom： 文本的底端对齐；
 
 属性值详解  
 在上面一节中，介绍了文本的基线、顶线、中线和底线，还有内容区、行内框和行框，而本节的垂直对齐和这几个概念密切相关。  
-![][6] 
+![][6]
 
 1、基线对齐（vertical-align：baseline）  
 基线对齐（vertical-align：baseline）使元素的基线同基准元素（取行高最高的作为基准）的基线对齐  
-![][7] 
+![][7]
 
 2、顶端对齐（vertical-align：top）  
 顶端对齐（vertical-align : top）是将元素的行内框的顶端与行框的顶端对齐
 
-![][8] 
+![][8]
 
 3、文本顶端对齐（vertical-align : text-top）  
 文本顶端对齐（vertical-align : text-top）是将元素行内框的顶端同文本行的顶线对齐  
-![][9] 
+![][9]
 
 4、底端对齐（vertical-align : bottom）  
 底端对齐（vertical-align : bottom）与顶端对齐（vertical-align : top）相反  
-![][10] 
+![][10]
 
 5、文本底端对齐（vertical-align : text-bottom）  
-![][11] 
+![][11]
 
 6、中间对齐（vertical-align : middle）  
 中间对齐（vertical-align : middle）通常使用在图片上，将图片的垂直方向的中线与文本行的中线对齐。（对于文字的处理有些偏差，具体依据还没有研究出来，有研究的同学可以联系我哦~~）  
-![][12] 
+![][12]
 
 中线的定义为：中线位于基线的上方，与基线的距离为小写字母x高度的一半（即0.5ex），而ex同font-size相关，大部分浏览器认为1ex = 0.5em（em同样也是相对单位，不是绝对单位），因此会将基线以上四分之一em处作为中线来对齐。
 
@@ -127,28 +111,28 @@ text-bottom： 文本的底端对齐；
 
 <pre class="prettyprint"><code class="hljs xml has-numbering">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-title">style&lt;/span> &lt;span class="hljs-attribute">type&lt;/span>=&lt;span class="hljs-value">"text/css"&lt;/span>&gt;&lt;/span>&lt;span class="css">
   &lt;span class="hljs-tag">p&lt;/span> &lt;span class="hljs-rules">{
-     &lt;span class="hljs-rule">&lt;span class="hljs-attribute">vertical-align&lt;/span>:&lt;span class="hljs-value">baseline&lt;/span>&lt;/span>;    
+     &lt;span class="hljs-rule">&lt;span class="hljs-attribute">vertical-align&lt;/span>:&lt;span class="hljs-value">baseline&lt;/span>&lt;/span>;
      &lt;span class="hljs-rule">&lt;span class="hljs-attribute">font-size&lt;/span>:&lt;span class="hljs-value">&lt;span class="hljs-number">20&lt;/span>px&lt;/span>&lt;/span>;  
-     &lt;span class="hljs-rule">&lt;span class="hljs-attribute">line-height&lt;/span>:&lt;span class="hljs-value">&lt;span class="hljs-number">60&lt;/span>px&lt;/span>&lt;/span>; 
-     &lt;span class="hljs-rule">&lt;span class="hljs-attribute">background-color&lt;/span>:&lt;span class="hljs-value">yellow&lt;/span>&lt;/span>; 
+     &lt;span class="hljs-rule">&lt;span class="hljs-attribute">line-height&lt;/span>:&lt;span class="hljs-value">&lt;span class="hljs-number">60&lt;/span>px&lt;/span>&lt;/span>;
+     &lt;span class="hljs-rule">&lt;span class="hljs-attribute">background-color&lt;/span>:&lt;span class="hljs-value">yellow&lt;/span>&lt;/span>;
   &lt;span class="hljs-rule">}&lt;/span>&lt;/span>
   &lt;span class="hljs-tag">span&lt;/span> &lt;span class="hljs-rules">{
-     &lt;span class="hljs-rule">&lt;span class="hljs-attribute">background-color&lt;/span>:&lt;span class="hljs-value"> red&lt;/span>&lt;/span>; 
+     &lt;span class="hljs-rule">&lt;span class="hljs-attribute">background-color&lt;/span>:&lt;span class="hljs-value"> red&lt;/span>&lt;/span>;
   &lt;span class="hljs-rule">}&lt;/span>&lt;/span>
-  &lt;span class="hljs-tag">u&lt;/span> &lt;span class="hljs-rules">{ 
-     &lt;span class="hljs-rule">&lt;span class="hljs-attribute">background-color&lt;/span>:&lt;span class="hljs-value"> blue&lt;/span>&lt;/span>; 
+  &lt;span class="hljs-tag">u&lt;/span> &lt;span class="hljs-rules">{
+     &lt;span class="hljs-rule">&lt;span class="hljs-attribute">background-color&lt;/span>:&lt;span class="hljs-value"> blue&lt;/span>&lt;/span>;
   &lt;span class="hljs-rule">}&lt;/span>&lt;/span>
-  &lt;span class="hljs-tag">del&lt;/span> &lt;span class="hljs-rules">{ 
-     &lt;span class="hljs-rule">&lt;span class="hljs-attribute">background-color&lt;/span>:&lt;span class="hljs-value"> pink&lt;/span>&lt;/span>; 
+  &lt;span class="hljs-tag">del&lt;/span> &lt;span class="hljs-rules">{
+     &lt;span class="hljs-rule">&lt;span class="hljs-attribute">background-color&lt;/span>:&lt;span class="hljs-value"> pink&lt;/span>&lt;/span>;
   &lt;span class="hljs-rule">}&lt;/span>&lt;/span>
 &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-title">style&lt;/span>&gt;&lt;/span>
 
 //HTML代码
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-title">p&lt;/span>&gt;&lt;/span> 
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-title">span&lt;/span>&gt;&lt;/span>Ajax测试&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-title">span&lt;/span>&gt;&lt;/span> 
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-title">u&lt;/span>&gt;&lt;/span>Ajax测试&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-title">u&lt;/span>&gt;&lt;/span> 
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-title">del&lt;/span>&gt;&lt;/span>Ajax测试&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-title">del&lt;/span>&gt;&lt;/span> 
-    Ajax测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试 
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-title">p&lt;/span>&gt;&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-title">span&lt;/span>&gt;&lt;/span>Ajax测试&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-title">span&lt;/span>&gt;&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-title">u&lt;/span>&gt;&lt;/span>Ajax测试&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-title">u&lt;/span>&gt;&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-title">del&lt;/span>&gt;&lt;/span>Ajax测试&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-title">del&lt;/span>&gt;&lt;/span>
+    Ajax测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
 &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-title">p&lt;/span>&gt;&lt;/span>
 </code></pre>
 
@@ -156,6 +140,7 @@ text-bottom： 文本的底端对齐；
 20170125165759621.jpeg![][15]
 
 其他说明：  
+
 1. SPAN、U、DEL标签的 offsetWidth = SUM（ 字符 \* font-size \* 修正系数）（这里，中文的修正系数为1，数字的修正系数0.6，英文字符修正系数差异很大，比如ijl很小，wmk等比较大，大写英文同样修正系数不统一）。  
 2. SPAN、U、DEL标签的 offsetHeight。  
 推论：inline元素的背景渲染区域即内容区域大小，直接受到font-size的影响。  
@@ -184,7 +169,7 @@ g）关于middle，感觉是根据一条基准线进行对称拓展，但基准�
 # 全角字符与半角字符
 
 <pre class="best-text mb-10">A 什么是全角和半角？
-（1）全角--指一个字符占用两个标准字符位置。 
+（1）全角--指一个字符占用两个标准字符位置。
 汉字字符和规定了全角的英文字符及国标GB2312-80中的图形符号和特殊字符都是全角字符。一般的系统命令是不用全角字符的，只是在作文字处理时才会使用全角字符。
 
 （2）半角--指一字符占用一个标准的字符位置。
@@ -203,7 +188,7 @@ C 全角和半角的区别
 
 在汉字输入法出现的时候，输入的字母数字默认为半角，但是标点则是默认为全角，可以通过鼠标点击输入法工具条上的相应按钮来改变。
 
-D 关于“全角”和“半角”： 
+D 关于“全角”和“半角”：
 全角：是指中GB2312-80（《信息交换用汉字编码字符集·基本集》）中的各种符号。
 半角：是指英文件ASCII码中的各种符号。</pre>
 

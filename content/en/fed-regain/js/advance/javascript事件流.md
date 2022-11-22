@@ -2,19 +2,7 @@
 title: JavaScript事件流
 
 
-date: 2019-03-01T02:47:31+00:00
-url: /javascriptnodejs/3692.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c85a9850.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c85a9850.png
-onesignal_meta_box_present:
-  - 1
-fifu_image_alt:
-  - JavaScript事件流
-views:
-  - 1011
-like:
-  - 8
+
 
 
 ---
@@ -121,11 +109,11 @@ DOM2级事件规定的事件流包括三个阶段：
 
 > 前面我们已经说到了，事件处理程序就是响应某个事件的函数，简单地来说，就是函数。我们又把事件处理程序称为事件侦听器。事件处理程序是以&#8221;on&#8221;开头的，比如点击事件的处理程序是&#8221;onclick&#8221;,事件处理程序大概有以下5种。
 
-  * 1.HTML事件处理程序
-  * 2.DOM0级事件处理程序
-  * 3.DOM2级事件处理程序
-  * 4.IE事件处理程序
-  * 5.跨浏览器的事件处理程序
+* 1.HTML事件处理程序
+* 2.DOM0级事件处理程序
+* 3.DOM2级事件处理程序
+* 4.IE事件处理程序
+* 5.跨浏览器的事件处理程序
 
 ## 3.1 HTML事件处理程序 {#articleHeader5}
 
@@ -150,7 +138,7 @@ DOM2级事件规定的事件流包括三个阶段：
 之所以有DOM0级事件处理程序，和我们之前提到的IE以及Netscape对应事件传播方向不同处理而产生的事件处理程序。
 
 <pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>&gt;&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
- 
+
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
   &lt;span class="hljs-keyword">var&lt;/span> btn=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"btn"&lt;/span>);
   btn.onclick=&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>()&lt;/span>{
@@ -166,7 +154,7 @@ DOM2级事件规定的事件流包括三个阶段：
 如果我们尝试给事件添加两个事件，如：
 
 <pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>&gt;&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
- 
+
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
   &lt;span class="hljs-keyword">var&lt;/span> btn=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"btn"&lt;/span>);
   btn.onclick=&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>()&lt;/span>{
@@ -193,7 +181,7 @@ removeEventListener() &#8212;删除事件侦听器
 第三个参数是一个boolean值，默认false表示使用冒泡机制，true表示捕获机制。
 
 <pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>&gt;&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
- 
+
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
   &lt;span class="hljs-keyword">var&lt;/span> btn=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"btn"&lt;/span>);
   btn.addEventListener(&lt;span class="hljs-string">'click'&lt;/span>,hello，&lt;span class="hljs-literal">false&lt;/span>);
@@ -209,7 +197,7 @@ removeEventListener() &#8212;删除事件侦听器
 这时候两个事件处理程序都能够成功触发，说明可以绑定多个事件处理程序，但是注意，如果定义了一摸一样时监听方法，是会发生覆盖的，即同样的事件和事件流机制下相同方法只会触发一次，比如：
 
 <pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>&gt;&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
- 
+
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
   &lt;span class="hljs-keyword">var&lt;/span> btn=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"btn"&lt;/span>);
   btn.addEventListener(&lt;span class="hljs-string">'click'&lt;/span>,hello，&lt;span class="hljs-literal">false&lt;/span>);
@@ -222,7 +210,7 @@ removeEventListener() &#8212;删除事件侦听器
 removeEventListener()的方法几乎和添加时用法一摸一样：
 
 <pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>&gt;&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
- 
+
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
   &lt;span class="hljs-keyword">var&lt;/span> btn=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"btn"&lt;/span>);
   btn.addEventListener(&lt;span class="hljs-string">'click'&lt;/span>,hello，&lt;span class="hljs-literal">false&lt;/span>);
@@ -250,7 +238,7 @@ IE事件处理程序中有类似与DOM2级事件处理程序的两个方法：
 removeEventListener()的方法几乎和添加时用法一摸一样：
 
 <pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>&gt;&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
- 
+
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
   &lt;span class="hljs-keyword">var&lt;/span> btn=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"btn"&lt;/span>);
   btn.attachEvent(&lt;span class="hljs-string">'onclick'&lt;/span>,hello);
@@ -298,7 +286,7 @@ removeHandler()&#8211;这个方法就是移除使用addHandler添加的事件。
 使用：
 
 <pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>&gt;&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
- 
+
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
   &lt;span class="hljs-keyword">var&lt;/span> btn=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"btn"&lt;/span>);
   EventUtil.addHandler(btn,&lt;span class="hljs-string">'click'&lt;/span>,hello);
@@ -327,7 +315,7 @@ removeHandler()&#8211;这个方法就是移除使用addHandler添加的事件。
 下面是一个例子：
 
 <pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>&gt;&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
- 
+
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
         &lt;span class="hljs-keyword">var&lt;/span> btn=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"btn"&lt;/span>);
         btn.ddEventListener(&lt;span class="hljs-string">'click'&lt;/span>, doCurrent, &lt;span class="hljs-literal">true&lt;/span>);
@@ -344,7 +332,7 @@ removeHandler()&#8211;这个方法就是移除使用addHandler添加的事件。
         }
 &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span></code></pre>
 
-在这个例子里，我们用到了**currentTarget**、**eventPhase **属性。
+在这个例子里，我们用到了**currentTarget**、**eventPhase**属性。
 
 ## 4.2 方法 {#articleHeader12}
 
@@ -449,7 +437,6 @@ stopPropagation()也是，所以需要设置cancelBubble，cancelBubble是IE事�
             }
         }
         doclick();
-
 
         btnAdd.onclick = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> () &lt;/span>{
             num++;

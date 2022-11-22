@@ -1,15 +1,6 @@
 ---
 title: Too many Pausable Objects
 
-
-date: 2019-10-09T12:42:58+00:00
-url: /javascriptnodejs/5027.html
-views:
-  - 2465
-like:
-  - 6
-
-
 ---
 业务前端监控JS报错偶尔会看到这个错误
 

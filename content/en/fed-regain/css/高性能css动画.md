@@ -2,19 +2,6 @@
 title: 高性能CSS动画
 
 
-date: 2018-11-27T12:17:23+00:00
-url: /html5css3/2920.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32fe4f280.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32fe4f280.png
-fifu_image_alt:
-  - 高性能CSS动画
-views:
-  - 1644
-like:
-  - 1
-onesignal_meta_box_present:
-  - 1
 
 
 ---
@@ -84,12 +71,12 @@ Paint的工作就是把文档中用户可见的那一部分展现给用户。Pai
 
 下面这些因素都会导致新图层的创建：
 
-  * 进行3D或者透视变换的CSS属性
-  * 使用硬件加速视频解码的`<video>`元素
-  * 具有3D（WebGL）上下文或者硬件加速的2D上下文的`<canvas>`元素
-  * 组合型插件（即Flash）
-  * 具有有CSS透明度动画或者使用动画式Webkit变换的元素
-  * 具有硬件加速的CSS滤镜的元素
+* 进行3D或者透视变换的CSS属性
+* 使用硬件加速视频解码的`<video>`元素
+* 具有3D（WebGL）上下文或者硬件加速的2D上下文的`<canvas>`元素
+* 组合型插件（即Flash）
+* 具有有CSS透明度动画或者使用动画式Webkit变换的元素
+* 具有硬件加速的CSS滤镜的元素
 
 有关于Composite方面的深入剖析，可以阅读《<a href="https://taobaofed.org/blog/2016/04/25/performance-composite/" target="_blank" rel="noopener noreferrer">无线性能优化：Composite</a>》一文。
 
@@ -105,11 +92,11 @@ Paint的工作就是把文档中用户可见的那一部分展现给用户。Pai
   <img loading="lazy" class="alignnone wp-image-2924 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/format,webp" alt="" width="562" height="86" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/format,webp 1093w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_46/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_117/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_122/format,webp 800w" sizes="(max-width: 562px) 100vw, 562px" />
 </p>
 
-  * **JavaScript**。一般来说，我们会使用 JavaScript 来实现一些视觉变化的效果。比如用 jQuery 的 `animate` 函数做一个动画、对一个数据集进行排序或者往页面里添加一些 DOM 元素等。当然，除了 JavaScript，还有其他一些常用方法也可以实现视觉变化效果，比如：CSS Animations、Transitions 和 Web Animation API。
-  * **样式计算**。此过程是根据匹配选择器（例如 `.headline` 或 `.nav > .nav__item`）计算出哪些元素应用哪些 CSS 规则的过程。从中知道规则之后，将应用规则并计算每个元素的最终样式。
-  * **布局**。在知道对一个元素应用哪些规则之后，浏览器即可开始计算它要占据的空间大小及其在屏幕的位置。网页的布局模式意味着一个元素可能影响其他元素，例如 `<body>` 元素的宽度一般会影响其子元素的宽度以及树中各处的节点，因此对于浏览器来说，布局过程是经常发生的。
-  * **绘制**。绘制是填充像素的过程。它涉及绘出文本、颜色、图像、边框和阴影，基本上包括元素的每个可视部分。绘制一般是在多个表面（通常称为层）上完成的。
-  * **合成**。由于页面的各部分可能被绘制到多层，由此它们需要按正确顺序绘制到屏幕上，以便正确渲染页面。对于与另一元素重叠的元素来说，这点特别重要，因为一个错误可能使一个元素错误地出现在另一个元素的上层。
+* **JavaScript**。一般来说，我们会使用 JavaScript 来实现一些视觉变化的效果。比如用 jQuery 的 `animate` 函数做一个动画、对一个数据集进行排序或者往页面里添加一些 DOM 元素等。当然，除了 JavaScript，还有其他一些常用方法也可以实现视觉变化效果，比如：CSS Animations、Transitions 和 Web Animation API。
+* **样式计算**。此过程是根据匹配选择器（例如 `.headline` 或 `.nav > .nav__item`）计算出哪些元素应用哪些 CSS 规则的过程。从中知道规则之后，将应用规则并计算每个元素的最终样式。
+* **布局**。在知道对一个元素应用哪些规则之后，浏览器即可开始计算它要占据的空间大小及其在屏幕的位置。网页的布局模式意味着一个元素可能影响其他元素，例如 `<body>` 元素的宽度一般会影响其子元素的宽度以及树中各处的节点，因此对于浏览器来说，布局过程是经常发生的。
+* **绘制**。绘制是填充像素的过程。它涉及绘出文本、颜色、图像、边框和阴影，基本上包括元素的每个可视部分。绘制一般是在多个表面（通常称为层）上完成的。
+* **合成**。由于页面的各部分可能被绘制到多层，由此它们需要按正确顺序绘制到屏幕上，以便正确渲染页面。对于与另一元素重叠的元素来说，这点特别重要，因为一个错误可能使一个元素错误地出现在另一个元素的上层。
 
 管道的每个部分都有机会产生卡顿，因此务必准确了解您的代码触发管道的哪些部分。
 
@@ -121,7 +108,7 @@ Paint的工作就是把文档中用户可见的那一部分展现给用户。Pai
 
 ## 1. JS / CSS > 样式 > 布局 > 绘制 > 合成 {#1_js_css}
 
-<img loading="lazy" class="alignnone wp-image-2924 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/format,webp" alt="" width="582" height="89" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/format,webp 1093w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_46/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_117/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_122/format,webp 800w" sizes="(max-width: 582px) 100vw, 582px" /> 
+<img loading="lazy" class="alignnone wp-image-2924 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/format,webp" alt="" width="582" height="89" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/format,webp 1093w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_46/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_117/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_122/format,webp 800w" sizes="(max-width: 582px) 100vw, 582px" />
 
 如果您修改元素的“layout”属性，也就是改变了元素的几何属性（例如宽度、高度、左侧或顶部位置等），那么浏览器将必须检查所有其他元素，然后“自动重排”页面。任何受影响的部分都需要重新绘制，而且最终绘制的元素需进行合成。
 
@@ -165,16 +152,16 @@ Reflow（重排）指的是计算页面布局（Layout）。某个节点Reflow�
 
 在Web页面中，很多状况下会导致回流：
 
-  * 调整窗口大小
-  * 改变字体
-  * 增加或者移除样式表
-  * 内容变化
-  * 激活CSS伪类
-  * 操作CSS属性
-  * JavaScript操作DOM
-  * 计算`offsetWidth`和`offsetHeight`
-  * 设置`style`属性的值
-  * CSS3 Animation或Transition
+* 调整窗口大小
+* 改变字体
+* 增加或者移除样式表
+* 内容变化
+* 激活CSS伪类
+* 操作CSS属性
+* JavaScript操作DOM
+* 计算`offsetWidth`和`offsetHeight`
+* 设置`style`属性的值
+* CSS3 Animation或Transition
 
 ## Repaint（重绘）
 
@@ -186,12 +173,12 @@ Repaint（重绘）或者Redraw遍历所有节点，检测节点的可见性、�
 
 既然如此，那么什么情况之下会触发浏览器的Repaint和Reflow呢？
 
-  * 页面首次加载
-  * DOM元素添加、修改(内容)和删除(Reflow + Repaint)
-  * 仅修改DOM元素的颜色(只有Repaint，因为不需要调整布局)
-  * 应用新的样式或修改任何影响元素外观的属性
-  * Resize浏览器窗口和滚动页面
-  * 读取元素的某些属性(`offsetLeft`、`offsetTop`、`offsetHeight`、`offsetWidth`、`getComputedStyle()`等)
+* 页面首次加载
+* DOM元素添加、修改(内容)和删除(Reflow + Repaint)
+* 仅修改DOM元素的颜色(只有Repaint，因为不需要调整布局)
+* 应用新的样式或修改任何影响元素外观的属性
+* Resize浏览器窗口和滚动页面
+* 读取元素的某些属性(`offsetLeft`、`offsetTop`、`offsetHeight`、`offsetWidth`、`getComputedStyle()`等)
 
 可以说Reflow和Repaint都很容易触发，而它们的触发对性能的影响都非常大，但非常不幸的是，我们无法完全避免，只能尽量不去触发浏览器的Reflow和Repaint。
 
@@ -215,8 +202,8 @@ Repaint（重绘）或者Redraw遍历所有节点，检测节点的可见性、�
 
 <a href="https://csstriggers.com/" target="_blank" rel="noopener noreferrer">CSS Triggers</a>网站中可以得知哪些属性会触发重排、哪些属性会触发重绘以及哪些属性会触合成。但并不是CSS中所有的属性都可以用于CSS Animation和Transition中的。在W3C官方规范中明确定了哪些CSS属性可以用于<a href="https://www.w3.org/TR/css3-transitions/#animatable-css" target="_blank" rel="noopener noreferrer">Animation</a>和<a href="https://www.w3.org/TR/css3-transitions/#transition-property-property" target="_blank" rel="noopener noreferrer">Transition</a>中。<a href="https://rodneyrehm.de/" target="_blank" rel="noopener noreferrer">@Rodney Rehm</a>还对这些<a href="https://thewebevolved.com/support/animation/properties/" target="_blank" rel="noopener noreferrer">属性做过一个兼容测试</a>。如果你想深入的了解这方面的知识，建议您阅读下面两篇文章：
 
-  * <a href="https://oli.jp/2010/css-animatable-properties/" target="_blank" rel="noopener noreferrer">CSS animatable properties</a>
-  * <a href="https://www.smashingmagazine.com/2013/04/css3-transitions-thank-god-specification/" target="_blank" rel="noopener noreferrer">Thank God We Have A Specification!</a>
+* <a href="https://oli.jp/2010/css-animatable-properties/" target="_blank" rel="noopener noreferrer">CSS animatable properties</a>
+* <a href="https://www.smashingmagazine.com/2013/04/css3-transitions-thank-god-specification/" target="_blank" rel="noopener noreferrer">Thank God We Have A Specification!</a>
 
 如此一来，我们知道可用于CSS Animation或者Transition的CSS属性之后，再配合<a href="https://csstriggers.com/" target="_blank" rel="noopener noreferrer">CSS Triggers</a>网站，可以轻易掌握哪些CSS属性会触发重排、重绘和合成等。**虽然无法避免，但我们可以尽量控制**。
 
@@ -232,17 +219,17 @@ Repaint（重绘）或者Redraw遍历所有节点，检测节点的可见性、�
 
 为什么开启硬件加速动画就会变得流畅，那是因为每个页面元素都有一个独立的Render进程。Render进程中包含了主线程和合成线程，主线程负责：
 
-  * JavaScript的执行
-  * CSS样式计算
-  * 计算Layout
-  * 将页面元素绘制成位图(Paint)
-  * 发送位图给合成线程
+* JavaScript的执行
+* CSS样式计算
+* 计算Layout
+* 将页面元素绘制成位图(Paint)
+* 发送位图给合成线程
 
 合成线程则主要负责：
 
-  * 将位图发送给GPU
-  * 计算页面的可见部分和即将可见部分(滚动)
-  * 通知GPU绘制位图到屏幕上(Draw)
+* 将位图发送给GPU
+* 计算页面的可见部分和即将可见部分(滚动)
+* 通知GPU绘制位图到屏幕上(Draw)
 
 我们可以得到一个大概的浏览器线程模型：
 
@@ -258,24 +245,24 @@ GPU对于动画图形的渲染处理比CPU要快。
 
 RenderLayer 树，满足以下任意一点的就会生成独立一个 RenderLayer。
 
-  * 页面的根节点的RenderObject
-  * 有明确的CSS定位属性（`relative`，`absolute`或者`transform`）
-  * 是透明的
-  * 有CSS overflow、CSS alpha遮罩（alpha mash）或者CSS reflection
-  * 有CSS 滤镜（fliter）
-  * 3D环境或者2D加速环境的canvas元素对应的RenderObject
-  * video元素对应的RenderObject
+* 页面的根节点的RenderObject
+* 有明确的CSS定位属性（`relative`，`absolute`或者`transform`）
+* 是透明的
+* 有CSS overflow、CSS alpha遮罩（alpha mash）或者CSS reflection
+* 有CSS 滤镜（fliter）
+* 3D环境或者2D加速环境的canvas元素对应的RenderObject
+* video元素对应的RenderObject
 
 每个RenderLayer 有多个 GraphicsLayer 存在
 
-  * 有3D或者perspective transform的CSS属性的层
-  * 使用加速视频解码的video元素的层
-  * 3D或者加速2D环境下的canvas元素的层
-  * 插件，比如flash（Layer is used for a composited plugin）
-  * 对`opacity`和`transform`应用了CSS动画的层
-  * 使用了加速CSS滤镜（filters）的层
-  * 有合成层后代的层
-  * 同合成层重叠，且在该合成层上面（z-index）渲染的层
+* 有3D或者perspective transform的CSS属性的层
+* 使用加速视频解码的video元素的层
+* 3D或者加速2D环境下的canvas元素的层
+* 插件，比如flash（Layer is used for a composited plugin）
+* 对`opacity`和`transform`应用了CSS动画的层
+* 使用了加速CSS滤镜（filters）的层
+* 有合成层后代的层
+* 同合成层重叠，且在该合成层上面（z-index）渲染的层
 
 每个GraphicsLayer 生成一个 GraphicsContext, 就是一个位图，传送给GPU，由GPU合成放出。
 
@@ -295,16 +282,16 @@ RenderLayer 树，满足以下任意一点的就会生成独立一个 RenderLaye
 
 页面滚动时，需要避免不必要的渲染及长时间渲染。其中不必要的渲染包括：
 
-  * `position:fixed;`。`fixed`定位在滚动时会不停的进行渲染，特别是页面顶部有一个`fixed`，页面底部有个类似返回顶部的`fixed`，则在滚动时会对整个页面进行渲染，效率非常低。可以通过`transform: translateZ(0)`或者`transform: translate3d(0,0,0)`来解决
-  * `overflow:scroll`。前面说了，而在滚动也会触发Repaint和Reflow。在调试过程中注意到一个有趣的现象，有时打开了页面并不会导致crash，但快速滑动的时候却会。由于crash是页面本身内存占比过高，只要优化了页面的内存占用，滑动自然也不会是很大的问题。无论你在什么时候滑动页面，页面滚动都是一个不断重新组合重新绘制的过程。所以**减少渲染区域在滚动里就显得非常重要**。
-  * CSS伪类触发。有些CSS伪类在页面滚动时会不小心触发到。比如`:hover`效果有`box-shadow`、`border-radius`等比较耗时的CSS属性时，建议页面滚动时，先取消`:hover`效果，滚动停止后再加上`:hover`效果。这个可以通过在外层添加类名进行控制。但添加类名、删除类名也会改变元素时，浏览器就会要重新做一次计算和布局。所以千万要小心这种无意触发重新布局的操作，有的时候可能不是动画，但去付出的代价要比做一个动画更加昂贵。也就是说`classname`变化了，就一定会出现一次rendering计算，如果一定需要这么做，那可以使用 `classlist` 的方法。
-  * `touch`事件的监听
+* `position:fixed;`。`fixed`定位在滚动时会不停的进行渲染，特别是页面顶部有一个`fixed`，页面底部有个类似返回顶部的`fixed`，则在滚动时会对整个页面进行渲染，效率非常低。可以通过`transform: translateZ(0)`或者`transform: translate3d(0,0,0)`来解决
+* `overflow:scroll`。前面说了，而在滚动也会触发Repaint和Reflow。在调试过程中注意到一个有趣的现象，有时打开了页面并不会导致crash，但快速滑动的时候却会。由于crash是页面本身内存占比过高，只要优化了页面的内存占用，滑动自然也不会是很大的问题。无论你在什么时候滑动页面，页面滚动都是一个不断重新组合重新绘制的过程。所以**减少渲染区域在滚动里就显得非常重要**。
+* CSS伪类触发。有些CSS伪类在页面滚动时会不小心触发到。比如`:hover`效果有`box-shadow`、`border-radius`等比较耗时的CSS属性时，建议页面滚动时，先取消`:hover`效果，滚动停止后再加上`:hover`效果。这个可以通过在外层添加类名进行控制。但添加类名、删除类名也会改变元素时，浏览器就会要重新做一次计算和布局。所以千万要小心这种无意触发重新布局的操作，有的时候可能不是动画，但去付出的代价要比做一个动画更加昂贵。也就是说`classname`变化了，就一定会出现一次rendering计算，如果一定需要这么做，那可以使用 `classlist` 的方法。
+* `touch`事件的监听
 
 长时间渲染包括：
 
-  * 复杂的CSS
-  * Image Decodes：特别是图片的Image Decodes及Image Resize这两个过程在移动端是非常耗时的
-  * Large Empty Layers: 大的空图层
+* 复杂的CSS
+* Image Decodes：特别是图片的Image Decodes及Image Resize这两个过程在移动端是非常耗时的
+* Large Empty Layers: 大的空图层
 
 在CSS中除了开启3D加速能明显的让动画变得流畅之外，在CSS中提供了一个新的CSS特性:`will-change`。其主要作用就是**提前告诉浏览器我这里将会进行一些变动，请分配资源(告诉浏览器要分配资源给我)**。
 
@@ -312,10 +299,10 @@ RenderLayer 树，满足以下任意一点的就会生成独立一个 RenderLaye
 
 话说回来，`will-change`并不是万能的，不是说使用了`will-change`就对动画的性能有提高，而是要正确使用，才会有所改为。在使用`will-change`时应该注意：
 
-  * 不要将 `will-change` 应用到太多元素上：浏览器已经尽力尝试去优化一切可以优化的东西了。有一些更强力的优化，如果与 `will-change` 结合在一起的话，有可能会消耗很多机器资源，如果过度使用的话，可能导致页面响应缓慢或者消耗非常多的资源。
-  * 有节制地使用：通常，当元素恢复到初始状态时，浏览器会丢弃掉之前做的优化工作。但是如果直接在样式表中显式声明了 `will-change` 属性，则表示目标元素可能会经常变化，浏览器会将优化工作保存得比之前更久。所以最佳实践是当元素变化之前和之后通过脚本来切换 `will-change` 的值。
-  * 不要过早应用 `will-change` 优化：如果你的页面在性能方面没什么问题，则不要添加 `will-change` 属性来榨取一丁点的速度。 `will-change` 的设计初衷是作为最后的优化手段，用来尝试解决现有的性能问题。它不应该被用来预防性能问题。过度使用 `will-change` 会导致大量的内存占用，并会导致更复杂的渲染过程，因为浏览器会试图准备可能存在的变化过程。这会导致更严重的性能问题。
-  * 给它足够的工作时间：这个属性是用来让页面开发者告知浏览器哪些属性可能会变化的。然后浏览器可以选择在变化发生前提前去做一些优化工作。所以给浏览器一点时间去真正做这些优化工作是非常重要的。使用时需要尝试去找到一些方法提前一定时间获知元素可能发生的变化，然后为它加上 `will-change` 属性。
+* 不要将 `will-change` 应用到太多元素上：浏览器已经尽力尝试去优化一切可以优化的东西了。有一些更强力的优化，如果与 `will-change` 结合在一起的话，有可能会消耗很多机器资源，如果过度使用的话，可能导致页面响应缓慢或者消耗非常多的资源。
+* 有节制地使用：通常，当元素恢复到初始状态时，浏览器会丢弃掉之前做的优化工作。但是如果直接在样式表中显式声明了 `will-change` 属性，则表示目标元素可能会经常变化，浏览器会将优化工作保存得比之前更久。所以最佳实践是当元素变化之前和之后通过脚本来切换 `will-change` 的值。
+* 不要过早应用 `will-change` 优化：如果你的页面在性能方面没什么问题，则不要添加 `will-change` 属性来榨取一丁点的速度。 `will-change` 的设计初衷是作为最后的优化手段，用来尝试解决现有的性能问题。它不应该被用来预防性能问题。过度使用 `will-change` 会导致大量的内存占用，并会导致更复杂的渲染过程，因为浏览器会试图准备可能存在的变化过程。这会导致更严重的性能问题。
+* 给它足够的工作时间：这个属性是用来让页面开发者告知浏览器哪些属性可能会变化的。然后浏览器可以选择在变化发生前提前去做一些优化工作。所以给浏览器一点时间去真正做这些优化工作是非常重要的。使用时需要尝试去找到一些方法提前一定时间获知元素可能发生的变化，然后为它加上 `will-change` 属性。
 
 在使用`will-change`一定要注意方式方法，比如常见的错误方法是直接在`:hover`是使用，并没有告诉浏览器分配资源：
 
@@ -331,11 +318,11 @@ RenderLayer 树，满足以下任意一点的就会生成独立一个 RenderLaye
 <pre class="css"><code class="css">&lt;span class="class">.element&lt;/span> &lt;span class="rules">{
     &lt;span class="rule">&lt;span class="attribute">transition&lt;/span>:&lt;span class="value"> opacity .&lt;span class="number">3&lt;/span>s linear;&lt;/span>&lt;/span>
 &lt;span class="rule">}&lt;/span>&lt;/span>
-&lt;span class="comment">/* declare changes on the element when the mouse enters / hovers its ancestor */&lt;/span>
+&lt;span class="comment">/*declare changes on the element when the mouse enters / hovers its ancestor*/&lt;/span>
 &lt;span class="class">.ancestor&lt;/span>&lt;span class="pseudo">:hover&lt;/span> &lt;span class="class">.element&lt;/span> &lt;span class="rules">{
     &lt;span class="rule">&lt;span class="attribute">will-change&lt;/span>:&lt;span class="value"> opacity;&lt;/span>&lt;/span>
 &lt;span class="rule">}&lt;/span>&lt;/span>
-&lt;span class="comment">/* apply change when element is hovered */&lt;/span>
+&lt;span class="comment">/*apply change when element is hovered*/&lt;/span>
 &lt;span class="class">.element&lt;/span>&lt;span class="pseudo">:hover&lt;/span> &lt;span class="rules">{
     &lt;span class="rule">&lt;span class="attribute">opacity&lt;/span>:&lt;span class="value"> .&lt;span class="number">5&lt;/span>;&lt;/span>&lt;/span>
 &lt;span class="rule">}&lt;/span>&lt;/span>
@@ -364,7 +351,7 @@ el.addEventListener(&lt;span class="string">'animationEnd'&lt;/span>, removeHint
 <blockquote cite="https://drafts.csswg.org/css-containment-3/#contain-property">
   <p>
     开发人员可以用这个 contain 属性声明一个元素和它的子元素是——尽可能的——和页面上的其它元素保持独立。
-  </p><footer>— 
+  </p><footer>—
   
   <a href="https://drafts.csswg.org/css-containment-3/#contain-property">来自 W3C 规范</a></footer>
 </blockquote>
@@ -373,13 +360,13 @@ el.addEventListener(&lt;span class="string">'animationEnd'&lt;/span>, removeHint
 
 这个 contain 属性可以有7种不同的值。
 
-  * **none** 无
-  * **layout** 开启布局限制
-  * **style** 开启样式限制
-  * **paint** 开启渲染限制
-  * **size** 开启size限制
-  * **content** 开启除了size外的所有限制
-  * **strict**开启 layout, style 和 paint 三种限制组合
+* **none** 无
+* **layout** 开启布局限制
+* **style** 开启样式限制
+* **paint** 开启渲染限制
+* **size** 开启size限制
+* **content** 开启除了size外的所有限制
+* **strict**开启 layout, style 和 paint 三种限制组合
 
 我们已经知道了，使用这个 contain 属性可以将一个元素标志为和页面上其它元素是相对独立的元素。为了说明这个属性的作用，下面举几个使用例子：
 

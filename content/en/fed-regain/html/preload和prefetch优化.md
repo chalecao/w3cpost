@@ -2,17 +2,6 @@
 title: preload和prefetch优化
 
 
-date: 2020-03-18T09:47:16+00:00
-url: /html5css3/5695.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231743142786e6136714b31526a535a466d58585830504658612d323633302d3838322e706e67.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231743142786e6136714b31526a535a466d58585830504658612d323633302d3838322e706e67.png
-fifu_image_alt:
-  - preload和prefetch优化
-views:
-  - 1163
-like:
-  - 1
 
 
 ---
@@ -45,7 +34,6 @@ preload 顾名思义就是一种预加载的方式，它通过声明向浏览器
 当浏览器解析到这行代码就会去加载 href 中对应的资源但不执行，待到真正使用到的时候再执行，另一种方式方式就是在 HTTP 响应头中加上 preload 字段：
 
     Link: <https://example.com/other/styles.css>; rel=preload; as=style
-    
 
 这种方式比通过 Link 方式加载资源方式更快，请求在返回还没到解析页面的时候就已经开始预加载资源了。
 
@@ -82,7 +70,7 @@ Link: &lt;<span class="pl-ent">https:</span>//<span class="pl-e">example.com</sp
     <p>
       现在有了 preload，一切变得可能
     </p>
-    
+
     <div class="_2Uzcx_">
       <pre class="line-numbers language-javascript"><code class="javascript language-javascript">&lt;span class="token keyword">var&lt;/span> link &lt;span class="token operator">=&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createElement&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"link"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 link&lt;span class="token punctuation">.&lt;/span>href &lt;span class="token operator">=&lt;/span> &lt;span class="token string">"myscript.js"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
@@ -92,7 +80,7 @@ link.setAttribute('crossorigin','anonymous');&lt;/span>
 document&lt;span class="token punctuation">.&lt;/span>head&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">appendChild&lt;/span>&lt;span class="token punctuation">(&lt;/span>link&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       上面这段代码可以让你预先加载脚本，下面这段代码可以让脚本执行
     </p>
@@ -147,11 +135,11 @@ preload 是告诉浏览器页面必定需要的资源，浏览器一定会加载
 
 一个资源的加载的优先级被分为五个级别，分别是：
 
-  * Highest 最高
-  * High 高
-  * Medium 中等
-  * Low 低
-  * Lowest 最低
+* Highest 最高
+* High 高
+* Medium 中等
+* Low 低
+* Lowest 最低
 
 从图中可以看出：(以 Blink 为例)
 
@@ -161,9 +149,9 @@ preload 是告诉浏览器页面必定需要的资源，浏览器一定会加载
 
 而 script 脚本资源就比较特殊，优先级不一，脚本根据它们在文件中的位置是否异步、延迟或阻塞获得不同的优先级：
 
-  * 网络在第一个图片资源之前阻塞的脚本在网络优先级中是 High
-  * 网络在第一个图片资源之后阻塞的脚本在网络优先级中是 Medium
-  * 异步/延迟/插入的脚本（无论在什么位置）在网络优先级中是 Low
+* 网络在第一个图片资源之前阻塞的脚本在网络优先级中是 High
+* 网络在第一个图片资源之后阻塞的脚本在网络优先级中是 Medium
+* 异步/延迟/插入的脚本（无论在什么位置）在网络优先级中是 Low
 
 自己网站资源优先级也可以通过 Chrome 控制台 Network 一栏进行查看.
 
@@ -207,7 +195,7 @@ preload 是告诉浏览器页面必定需要的资源，浏览器一定会加载
 
 它相比于 preload 方式而言：
 
-  * 仅限于 HTML 解析，对于 JS 异步加载资源的逻辑就无无能为力了
+* 仅限于 HTML 解析，对于 JS 异步加载资源的逻辑就无无能为力了
 
 ### preload 的 onload 事件
 
@@ -216,12 +204,12 @@ preload 是告诉浏览器页面必定需要的资源，浏览器一定会加载
     <p>
       先看代码<button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button>
     </p>
-    
+
     <div class="_2Uzcx_">
       <pre class="line-numbers language-javascript"><code class="javascript language-javascript">&lt;span class="token operator">&lt;&lt;/span>link rel&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"preload"&lt;/span> &lt;span class="token keyword">as&lt;/span>&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"style"&lt;/span> href&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"asyncstyle.css"&lt;/span> onload&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"this.rel='stylesheet'"&lt;/span>&lt;span class="token operator">&gt;&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       preload 的 onload 事件可以在资源加载完成后修改 rel 属性，从而实现非常酷的异步资源加载。
     </p>
@@ -247,7 +235,7 @@ preload 是告诉浏览器页面必定需要的资源，浏览器一定会加载
       onload&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"var script = document.createElement('script'); script.src = this.href; document.body.appendChild(script);"&lt;/span>&lt;span class="token operator">&gt;&lt;/span>
 </code></pre>
     </div>
-    
+
     <h2>
       响应式加载
     </h2>
@@ -281,7 +269,7 @@ preload 是告诉浏览器页面必定需要的资源，浏览器一定会加载
 &lt;span class="token operator">&lt;&lt;/span>link rel&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"preload"&lt;/span> &lt;span class="token keyword">as&lt;/span>&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"script"&lt;/span> href&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"map.js"&lt;/span> media&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"(min-width: 601px)"&lt;/span>&lt;span class="token operator">&gt;&lt;/span>
 </code></pre>
     </div>
-    
+
     <h2>
       HTTP 头
     </h2>
@@ -299,7 +287,7 @@ preload 是告诉浏览器页面必定需要的资源，浏览器一定会加载
 Link&lt;span class="token punctuation">:&lt;/span> &lt;span class="token operator">&lt;&lt;/span>thing_to_load&lt;span class="token punctuation">.&lt;/span>woff2&lt;span class="token operator">&gt;&lt;/span>&lt;span class="token punctuation">;&lt;/span>rel&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"preload"&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;span class="token keyword">as&lt;/span>&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"font"&lt;/span>&lt;span class="token punctuation">;&lt;/span>crossorigin
 </code></pre>
     </div>
-    
+
     <p>
       这一方式在有些场景尤其有用，比如，当负责优化的人员与页面开发人员不是同一人时（也就是说优化人员可能无法或者不想修改页面代码），还有一个杰出的例子是外部优化引擎（External optimization engine），该引擎对内容进行扫描并优化。
     </p>
@@ -346,7 +334,7 @@ Link&lt;span class="token punctuation">:&lt;/span> &lt;span class="token operato
 &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       讨论地址：<a href="https://link.jianshu.com?t=https://github.com/w3c/preload/issues/7" target="_blank" rel="nofollow noopener noreferrer">https://github.com/w3c/preload/issues/7</a>
     </p>
@@ -366,9 +354,9 @@ preload/prefetch 是个好东西，能让浏览器提前加载需要的资源，
 
 ## 参考链接
 
-  * <a href="https://mp.weixin.qq.com/s?__biz=MzUxMTcwOTM4Mg==&mid=2247484163&idx=1&sn=16b9c907971683dd61cee251adcde79b&chksm=f96edaaace1953bcaf65a1adcf30b6d3dd66cf7b648ae59c4bf807d3f8bf460d5cd638e54ca1&token=946370022&lang=zh_CN#rd" rel="nofollow">有一种优化，叫Preload</a>
-  * [Preload，Prefetch 和它们在 Chrome 之中的优先级][1]
-  * <a href="https://juejin.im/post/5a7fb09bf265da4e8e785c38#heading-8" rel="nofollow">用 preload 预加载页面资源</a>
-  * <a href="https://www.zcfy.cc/article/http-2-push-vs-http-preload-dexecure-4722.html?t=new" rel="nofollow">HTTP/2 PUSH(推送)与HTTP Preload(预加载)大比拼</a>
+* <a href="https://mp.weixin.qq.com/s?__biz=MzUxMTcwOTM4Mg==&mid=2247484163&idx=1&sn=16b9c907971683dd61cee251adcde79b&chksm=f96edaaace1953bcaf65a1adcf30b6d3dd66cf7b648ae59c4bf807d3f8bf460d5cd638e54ca1&token=946370022&lang=zh_CN#rd" rel="nofollow">有一种优化，叫Preload</a>
+* [Preload，Prefetch 和它们在 Chrome 之中的优先级][1]
+* <a href="https://juejin.im/post/5a7fb09bf265da4e8e785c38#heading-8" rel="nofollow">用 preload 预加载页面资源</a>
+* <a href="https://www.zcfy.cc/article/http-2-push-vs-http-preload-dexecure-4722.html?t=new" rel="nofollow">HTTP/2 PUSH(推送)与HTTP Preload(预加载)大比拼</a>
 
  [1]: https://github.com/xitu/gold-miner/blob/master/TODO/preload-prefetch-and-priorities-in-chrome.md

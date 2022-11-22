@@ -1,24 +1,12 @@
 ---
 title: JavaScript跨域请求的方方面面
 
-
-date: 2017-08-29T00:09:00+00:00
-excerpt: JavaScript出于安全方面的考虑，不允许跨域调用其他页面的对象。但在安全限制的同时也给注入iframe或是ajax应用上带来了不少麻烦。这里把涉及到跨域的一些问题简单地整理一下。首先什么是跨域，简单地理解就是因为JavaScript同源策略的限制，a.com 域名下的js无法操作b.com或是c.a.com域名下的对象。
-url: /javascriptnodejs/738.html
-views:
-  - 2437
-  - 2437
-fifu_image_url:
-  - https://www.fed123.com/wp-content/uploads/2017/08/crossdomain.png
-  - https://www.fed123.com/wp-content/uploads/2017/08/crossdomain.png
-
-
 ---
 ## 什么是跨域
 
 JavaScript出于安全方面的考虑，不允许跨域调用其他页面的对象。但在安全限制的同时也给注入iframe或是ajax应用上带来了不少麻烦。这里把涉及到跨域的一些问题简单地整理一下。首先什么是跨域，简单地理解就是因为JavaScript同源策略的限制，a.com 域名下的js无法操作b.com或是c.a.com域名下的对象。
 
-![JavaScript跨域请求的方方面面][1] 
+![JavaScript跨域请求的方方面面][1]
 
 更详细的跨域说明可以看下表：
 
@@ -88,6 +76,7 @@ JavaScript出于安全方面的考虑，不允许跨域调用其他页面的对�
 
 虽然浏览器默认禁止了跨域访问，但并不禁止在页面中引用其他域的JS文件，并可以自由执行引入的JS文件中的function（包括操作cookie、Dom等等）。根据这一点，可以方便地通过创建script节点的方法来实现完全跨域的通信。具体的做法可以参考YUI的<a href="https://developer.yahoo.com/yui/get/" target="_blank" rel="external noopener">Get Utility</a>。  
 这里判断script节点加载完毕还是蛮有意思的：ie只能通过script的readystatechange属性，其它浏览器是script的load事件。以下是部分判断script加载完毕的方法。
+
 ```
         js.onload = js.onreadystatechange = function() {
       
@@ -107,6 +96,7 @@ JavaScript出于安全方面的考虑，不允许跨域调用其他页面的对�
 这个办法比较绕，但是可以解决完全跨域情况下的脚步置换问题。原理是利用location.hash来进行传值。在url： https://a.com#helloword  中的‘#helloworld’就是location.hash，改变hash并不会导致页面刷新，所以可以利用hash值来进行数据传递，当然数据容量是有限的。假设域名a.com下的文件cs1.html要和cnblogs.com域名下的cs2.html传递信息，cs1.html首先创建自动创建一个隐藏的iframe，iframe的src指向cnblogs.com域名下的cs2.html页面，这时的hash值可以做参数传递用。cs2.html响应请求后再将通过修改cs1.html的hash值来传递数据（由于两个页面不在同一个域下IE、Chrome不允许修改parent.location.hash的值，所以要借助于a.com域名下的一个代理iframe；Firefox可以修改）。同时在cs1.html上加一个定时器，隔一段时间来判断location.hash的值有没有变化，一点有变化则获取获取hash值。代码如下：
 
 先是a.com下的文件cs1.html文件：
+
 ```
         function startRequest(){
       
@@ -226,8 +216,6 @@ ifr.contentWindow.postMessage('I was there!', targetOrigin);
 };
 </code>&lt;/code></pre>
 </div>
-
-
 
   b.com/index.html中的代码：
 

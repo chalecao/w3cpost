@@ -2,25 +2,14 @@
 title: 移动前端系列——websocket实时互动小游戏
 
 
-date: 2019-08-10T12:09:02+00:00
-url: /javascriptnodejs/4932.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3621554e.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3621554e.png
-fifu_image_alt:
-  - 自动草稿
-views:
-  - 835
-like:
-  - 3
 
 
 ---
 原本是想在写这文章之前，给大家来个二维码，让大家来感受一下我那个狂拽酷炫叼炸天的实时互动小游戏，无奈一直没有找到一台足以hold住其气场的服务器。所以，此处可能需要大家跟随我的描述，脑补一下那高端大气上档次的画面及低调奢华有内涵交互设计：
 
-  * 登录界面（此处省略4.33W字）
-  * 房间列表页（此处省略3.75W字）
-  * 游戏界面（此处省略5.83W字）
+* 登录界面（此处省略4.33W字）
+* 房间列表页（此处省略3.75W字）
+* 游戏界面（此处省略5.83W字）
 
 真不是我故意这样的，实在是人类的语言已无法将其形容，过份的修饰描述只怕是有损其光辉闪耀的形象。此时的我，更是怀着对其满满的敬意，忐忑第敲打着键盘，为大家介绍其狂拽酷炫叼炸天是怎样形成的。  
 从文章的标题上，我们不难看出，这个游戏是基于websocket。那么我就先从websocket的作用以及其优点这两个方面，给大家简单介绍一下websocket：
@@ -30,11 +19,11 @@ like:
 其实websocket的作用，个人感觉可以简单地用一句话来概括：**构建实时的Web应用**  
 比如：
 
-  * 聊天室/在线客服
-  * 在线游戏
-  * 股票走势
-  * 多屏互动
-  * &#8230;
+* 聊天室/在线客服
+* 在线游戏
+* 股票走势
+* 多屏互动
+* &#8230;
 
 在日常的使用web的过程中，这种功能非常常见，比如：新浪微博的WebIM、WebQQ、大智慧网页版等等，我们在处理日常的一些专题中，适当地加入一些多屏互动，也能很好地增加用户的参与度，增强一些现场的互动，如：斗战诛天营救悟空、神秘站等
 
@@ -44,10 +33,10 @@ like:
 
 在websocket出来之前，如果我们想实现上述类型的功能，我们通常采用的是以下几种方式：
 
-  * 轮询
-  * 长轮询
-  * 长连接
-  * Flash
+* 轮询
+* 长轮询
+* 长连接
+* Flash
 
 我就先通过比较以上几种方式的优缺点，让大家更为清楚地了解websocket牛B之处
 
@@ -200,12 +189,12 @@ PS：所传递参数中的地址需要服务器上配置的一致
 当然，我这里的介绍包括了事件及方法  
 常用的事件和方法，总共为一下6个
 
-  * onopen 和服务器连接成功
-  * onmessage 接收服务器的消息
-  * onclose 断开和服务器的链接
-  * onerror 错误处理
-  * send 向服务器发送消息
-  * close 断开和服务器的链接
+* onopen 和服务器连接成功
+* onmessage 接收服务器的消息
+* onclose 断开和服务器的链接
+* onerror 错误处理
+* send 向服务器发送消息
+* close 断开和服务器的链接
 
 用法大致如下
 
@@ -268,14 +257,14 @@ Handler函数自己YY一下吧，
 有的童鞋可能会奇怪，在自己的代码目录中并没有socket.io.js这个文件，设置在网站根目录下socket.io这个目录都没有，其原因是这个请求被rewrite了，所以~~仅仅使用的话..你可以不用在意这个细节，如果你只是想去看看这个文件的代码，可以直接去访问那个路径即可。  
 对于socket.io，我们只需要掌握两个功能函数，即可以完成基本的websocket功能了。这两个函数分别为:
 
-  * on 事件监听
-  * emit 触发事件
+* on 事件监听
+* emit 触发事件
 
 常用的事件
 
-  * connect 建立连接
-  * disconnect 断开连接
-  * error 出错
+* connect 建立连接
+* disconnect 断开连接
+* error 出错
 
 # 实时联机小游戏 {#articleHeader11}
 
@@ -402,12 +391,12 @@ io.sockets.&lt;span class="hljs-keyword">in&lt;/span>(roomID).emit(&lt;span clas
 
 socket.io提供的消息发送方式，不仅仅为以上三种方式，其包含有如下几种：
 
-  * socket.emit() //发送消息给当前请求的socket
-  * io.sockets.emit() //发送消息给所有连接socket
-  * socket.broadcase.emit() //发送消息给当前请求之外的所有的socket
-  * io.sockets.in(foo).emit() //向指定的分组发送消息
-  * socket.broadcase.to(foo).emit() //向指定的分组发送消息，除当前请求的socket
-  * io.sockets.socket(socketid).emit() //通过socketid向特定有效的socket发送消息
+* socket.emit() //发送消息给当前请求的socket
+* io.sockets.emit() //发送消息给所有连接socket
+* socket.broadcase.emit() //发送消息给当前请求之外的所有的socket
+* io.sockets.in(foo).emit() //向指定的分组发送消息
+* socket.broadcase.to(foo).emit() //向指定的分组发送消息，除当前请求的socket
+* io.sockets.socket(socketid).emit() //通过socketid向特定有效的socket发送消息
 
 好了，到此为止，这个实时对战小游戏的功能基本上介绍完毕了。  
 当然了，websocket就目前而言，在真正使用的时候还是多少考虑下一些实际的问题，至少天朝带宽什么的可能并不是特别的理想，网络延迟之类的还是比较严重。不过，随着4G的出现及今后互联网的发展，兴许这以后就真不是什么问题了呢。

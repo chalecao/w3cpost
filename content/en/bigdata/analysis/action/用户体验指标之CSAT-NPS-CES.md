@@ -1,0 +1,79 @@
+---
+title: 用户体验指标之CSAT-NPS-CES
+
+---
+自客户体验的概念问世以来，得到了越来越广泛的应用。通常来说，客户体验就是客户与企业及其产品和服务的所有互动的整体质量，其中包括但不仅限于客户服务、产品交付、产品使用、广告、品牌、销售流程、定价。好的体验带来的客户的忠诚，甚至有“忠实客户的价值是新客户价值的10倍”这样的说法，足以见得改善客户体验的重要性。而在这之前，你得先知道，在客户心中他们是如何看待客户体验这件事。
+
+在我们每个人的生活中，关于客户体验的调研并不罕见，包括中国移动、中国联通等呼叫中心完成问题解答后的满意度调查，银行柜台业务办理后的满意度评分，航班上的满意度调查问卷，甚至于淘宝购物后店主的呼唤“亲，给个好评吧”，这些环节大多是在做客户满意度调查，少部分涵盖了对客户推荐度的调查，但都属于企业在对客户进行客户体验的评估。
+
+除了上面提到的客户满意度CSAT（Customer Satisfaction）和净推荐值NPS（Net Promoter Score），还有一个相对比较新兴的研究方向，就是客户费力度CES（Customer Effort Score），但都属于用来跟踪和评估客户体验工作的有效性的指标，接下来我们就这三个核心指标，聊聊他们是如何使用的，以及他们之间的区别。
+
+## **客户满意度（CSAT）**
+
+这应该是最经典的衡量指标了，随着市场竞争的愈加激烈，各行各业对客户满意度都愈加重视，在我们在生活中的方方面面都可以看到关于客户满意度方面的调研。
+
+CSAT要求用户评价对特定事件/体验的满意度，大都使用的是五点量表，包括五个选择：非常满意、满意、一般、不满意、非常不满意。<figure>
+
+<p id="MIvHBFx">
+  <img loading="lazy" width="640" height="108" class="alignnone size-full wp-image-6801 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f265cc1.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f265cc1.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f265cc1.png?x-oss-process=image/format,webp 640w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f265cc1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_51/format,webp 300w" sizes="(max-width: 640px) 100vw, 640px" />
+</p></figure>
+
+通过计算选择4分和5分的用户所占比例得出最终的CSAT值。CSAT的好处是**简单且扩展性强**，例如在客户打开的某个登录页面或是在拨打一次客户电话之后，我们都可以设定一个CSAT题项进行测量。但在这个过程中，一定要注意问题设计的便利性、复杂程度等，通常不要超过3分钟，并且最好能够通过送积分或者抽奖的方式对参与的客户表示感谢。
+
+在分析结果时必须要考虑到“深层原因”。设想一下，如果一个客户对产品或者服务的这个环节满意或不满意，大概会是哪些因素造成的？这些因素之间的关系或权重分别是什么？以此可以得到我们需要关心的具体细节。
+
+当然，CSAT这个衡量指标也存在以下几个问题：
+
+首先，人们很容易在中等范围内回答问题，如果无法引导客户真正参与评分，样本结果很可能无法给企业带来真实的反馈，这些反馈对进一步提升完全没有作用。
+
+其次，即使在客户满意度很高的情况下，你依然有可能遭遇到客户拒绝续签。这是因为满意度并不直接与客户忠诚度相关联。试想，虽然你的客户得到了很好的客户服务，但是他们可能仍旧会因为需要联系客服这一事实感到不开心。
+
+## **净推荐值（NPS）**
+
+净推荐值最早是由贝恩咨询企业客户忠诚度业务的创始人佛瑞德·赖克霍徳（Fred Reichheld）在2003提出，它通过测量用户的推荐意愿，从而了解用户的忠诚度。
+
+做净推荐值的调研比较简单，只需要一个问题：“您是否会愿意将XXX（企业或者产品）推荐给您的朋友或者同事吗？”然后根据愿意推荐的程度让客户在0～10之间打分并根据得分情况来判断三种客户：
+
+推荐者Promoters（得分在9～10之间）：是具有狂热忠诚度的人，他们会继续购买并引荐给其他人
+
+被动者Passives（得分在7～8之间）：总体满意但并不狂热，将会考虑其他竞争对手的产品
+
+贬损者Detractors（得分在 0～6之间）：使用并不满意或者对你的企业没有忠诚度<figure>
+
+<p id="THTxQtL">
+  <img loading="lazy" width="640" height="274" class="alignnone size-full wp-image-6802 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f9d55ab.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f9d55ab.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f9d55ab.png?x-oss-process=image/format,webp 640w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f9d55ab.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_128/format,webp 300w" sizes="(max-width: 640px) 100vw, 640px" />
+</p></figure>
+
+净推荐值(NPS)=(推荐者数/总样本数)×100%－(贬损者数/总样本数)×100%
+
+NPS询问的是意愿而不是情感，对用户来说更容易回答，且相比于CSAT，这个指标更为直观，不仅直接反应了客户对企业的忠诚度和购买意愿，而且在一定程度上可以看到企业当前和未来一段时间的发展趋势和持续盈利能力。
+
+如果调研发现净推荐值的得分值在50%以上可以被认为客户对你的感知较好，而如果净推荐值的得分值在70～80%之间则证明企业拥有一批高忠诚度的好客户。
+
+与此同时，我们需要注意，因为这个调查反映的是客户的推荐意愿，但客户可能会因为各种原因而给出不够准确的答案或者就算打了高分的客户也可能没有动力去付诸实践。他不能够完全取代客户满意度调查，你也很难直接操控提升NPS，最好是作为客户满意度的一部分来进行调研，如果你提高了客户的满意度（CSAT），将会反过来提高你的NPS得分。
+
+## **客户费力度（CES）**
+
+回想你最后一次和客服部门打交道的情景，假设在一次在线购物后，你发现购买的产品存在缺陷，你需要先给企业打电话，紧接着要把存在缺陷的产品给他们寄回去。对于大多企业，客服部门都有完善的售后处理流程与客服话术，以提升客户满意度，然而即使你对这一客服经历很满意，你却很有可能不会再与这家公司打交道，因为每当回想起他们的产品时你总是会禁不住回想起上一次那一段不顺畅的售后经历。
+
+与其费尽心思为客户提供“满意”的客服经历，我们不如想想其他办法，让问题的解决能够简单快速。许多公司都已经意识到：“简单快速”意味着减少客户流失，企业必须能够让客户“不费力/无须努力”、“简单快速”地与他们打交道。
+
+客户费力度这个概念在2010年在《哈佛商业评论》中被提出，按字面意思理解，“客户费粒度”是让用户评价使用某产品/服务来解决问题的困难程度。第一版的“客户费力度”的问题是：为了得到你想要的服务，你费了多大劲儿？评分从“1（非常低）”到“5（非常高）”，最好在用户刚刚做完操作时询问，否则用户可能忘记自己完成操作的实际体验，下图是现在比较通用的2.0版本：
+
+提出的问题是：企业让我的问题处理过程变得简单。
+
+客户的选项包括：强烈不同意，不同意，有点不同意，中立，有点同意，同意，强烈同意
+
+<p id="BpBCQZs">
+  <img loading="lazy" width="640" height="104" class="alignnone size-full wp-image-6803 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a68702f1533.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a68702f1533.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a68702f1533.png?x-oss-process=image/format,webp 640w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a68702f1533.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_49/format,webp 300w" sizes="(max-width: 640px) 100vw, 640px" />
+</p>
+
+根据Oracle的一项研究，82％的人把他们的购买经历描述为“花费太多的努力”，CES背后的理论就是，应该想办法减少客户为了解决问题而付出的努力。CES可以帮助你找出可优化的方向，更容易理解在哪里进行改善，较低的费力度也与客户续签直接相关，从而增加客户的生命周期价值。
+
+一般情况下，首先利用“客户满意度”来衡量客户对产品或服务的体验反馈，当这套标准的价值到达临界点时，就应该尝试CES客户费力度，作为满意度的扩充，更充分的评估客户体验情况。
+
+最后，对于客户体验的评估是一个长期的、变化的、复杂的过程，使用哪些指标本身并不能直接代表评估手段的先进与否，更重要的是我们衡量的指标是否可以涵盖客户体验的所有环节。
+
+更重要的是，得出结果后一定要继续洞察，对各项指标的结果的原因进行深入探讨和挖掘，找到提升的方法。比如客户费力度这个指标，通常这时客户已经碰到了问题，如不会使用产品或者使用中出现了错误等等，我们需要往前追溯，找到是否有某个环节中可以帮助在该问题上减少客户费力度。
+
+实际上，在SaaS以及更多订阅模式中，“客户体验”逐渐被“客户成功”替代。这三个指标，主要是CSAT和NPS，也被客户成功用于衡量客户健康度，作为客户流失风险的指示剂。

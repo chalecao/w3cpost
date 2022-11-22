@@ -2,14 +2,6 @@
 title: nodejs子进程之child_process
 
 
-date: 2018-06-27T20:20:16+00:00
-excerpt: 在node中，child_process这个模块非常重要。掌握了它，等于在node的世界开启了一扇新的大门。熟悉shell脚本的同学，可以用它来完成很多有意思的事情，比如文件压缩、增量部署等，感兴趣的同学，看文本文后可以尝试下。
-url: /javascriptnodejs/637.html
-views:
-  - 1207
-  - 1207
-
-
 ---
 在node中，child_process这个模块非常重要。掌握了它，等于在node的世界开启了一扇新的大门。熟悉shell脚本的同学，可以用它来完成很多有意思的事情，比如文件压缩、增量部署等，感兴趣的同学，看文本文后可以尝试下。
 
@@ -34,9 +26,9 @@ ls.on(&lt;span class="hljs-string">'close'&lt;/span>, (code) =&gt; {
 
 注意事项：
 
-  * 下面列出来的都是异步创建子进程的方式，每一种方式都有对应的同步版本。
-  * `.exec()`、`.execFile()`、`.fork()`底层都是通过`.spawn()`实现的。
-  * `.exec()`、`execFile()`额外提供了回调，当子进程停止的时候执行。
+* 下面列出来的都是异步创建子进程的方式，每一种方式都有对应的同步版本。
+* `.exec()`、`.execFile()`、`.fork()`底层都是通过`.spawn()`实现的。
+* `.exec()`、`execFile()`额外提供了回调，当子进程停止的时候执行。
 
 > child_process.spawn(command\[, args\]\[, options\])  
 > child_process.exec(command\[, options\]\[, callback\])  
@@ -78,15 +70,15 @@ exec(&lt;span class="hljs-string">'ls hello.txt'&lt;/span>, &lt;span class="hljs
 
 #### 参数说明： {#参数说明}
 
-  * `cwd`：当前工作路径。
-  * `env`：环境变量。
-  * `encoding`：编码，默认是`utf8`。
-  * `shell`：用来执行命令的shell，unix上默认是`/bin/sh`，windows上默认是`cmd.exe`。
-  * `timeout`：默认是0。
-  * `killSignal`：默认是`SIGTERM`。
-  * `uid`：执行进程的uid。
-  * `gid`：执行进程的gid。
-  * `maxBuffer`： 标准输出、错误输出最大允许的数据量（单位为字节），如果超出的话，子进程就会被杀死。默认是200*1024（就是200k啦）
+* `cwd`：当前工作路径。
+* `env`：环境变量。
+* `encoding`：编码，默认是`utf8`。
+* `shell`：用来执行命令的shell，unix上默认是`/bin/sh`，windows上默认是`cmd.exe`。
+* `timeout`：默认是0。
+* `killSignal`：默认是`SIGTERM`。
+* `uid`：执行进程的uid。
+* `gid`：执行进程的gid。
+* `maxBuffer`： 标准输出、错误输出最大允许的数据量（单位为字节），如果超出的话，子进程就会被杀死。默认是200*1024（就是200k啦）
 
 备注：
 
@@ -171,10 +163,10 @@ execFile(&lt;span class="hljs-string">'ls -al .'&lt;/span>, {&lt;span class="hlj
 
 参数说明：（重复的参数说明就不在这里列举）
 
-  * `execPath`： 用来创建子进程的可执行文件，默认是`/usr/local/bin/node`。也就是说，你可通过`execPath`来指定具体的node可执行文件路径。（比如多个node版本）
-  * `execArgv`： 传给可执行文件的字符串参数列表。默认是`process.execArgv`，跟父进程保持一致。
-  * `silent`： 默认是`false`，即子进程的`stdio`从父进程继承。如果是`true`，则直接`pipe`向子进程的`child.stdin`、`child.stdout`等。
-  * `stdio`： 如果声明了`stdio`，则会覆盖`silent`选项的设置。
+* `execPath`： 用来创建子进程的可执行文件，默认是`/usr/local/bin/node`。也就是说，你可通过`execPath`来指定具体的node可执行文件路径。（比如多个node版本）
+* `execArgv`： 传给可执行文件的字符串参数列表。默认是`process.execArgv`，跟父进程保持一致。
+* `silent`： 默认是`false`，即子进程的`stdio`从父进程继承。如果是`true`，则直接`pipe`向子进程的`child.stdin`、`child.stdout`等。
+* `stdio`： 如果声明了`stdio`，则会覆盖`silent`选项的设置。
 
 例子1：silent
 
@@ -278,10 +270,10 @@ child &lt;span class="hljs-keyword">exec&lt;/span>Argv: --harmony</code></pre>
 
 options参数说明：
 
-  * `argv0`：[String] 这货比较诡异，在uninx、windows上表现不一样。有需要再深究。
-  * `stdio`：[Array] | [String] 子进程的stdio。参考[这里][2]
-  * `detached`：[Boolean] 让子进程独立于父进程之外运行。同样在不同平台上表现有差异，具体参考[这里][3]
-  * `shell`：[Boolean] | [String] 如果是`true`，在shell里运行程序。默认是`false`。（很有用，比如 可以通过 /bin/sh -c xxx 来实现 .exec() 这样的效果）
+* `argv0`：[String] 这货比较诡异，在uninx、windows上表现不一样。有需要再深究。
+* `stdio`：[Array] | [String] 子进程的stdio。参考[这里][2]
+* `detached`：[Boolean] 让子进程独立于父进程之外运行。同样在不同平台上表现有差异，具体参考[这里][3]
+* `shell`：[Boolean] | [String] 如果是`true`，在shell里运行程序。默认是`false`。（很有用，比如 可以通过 /bin/sh -c xxx 来实现 .exec() 这样的效果）
 
 例子1：基础例子
 
@@ -291,7 +283,6 @@ options参数说明：
 ls.stdout.on(&lt;span class="hljs-string">'data'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">data&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
     &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'data from child: '&lt;/span> + data);
 });
-
 
 ls.stderr.on(&lt;span class="hljs-string">'data'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">data&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
     &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'error from child: '&lt;/span> + data);
@@ -328,8 +319,8 @@ ls.on(&lt;span class="hljs-string">'close'&lt;/span>, &lt;span class="hljs-funct
 
 例子4：错误处理，包含两种场景，这两种场景有不同的处理方式。
 
-  * 场景1：命令本身不存在，创建子进程报错。
-  * 场景2：命令存在，但运行过程报错。
+* 场景1：命令本身不存在，创建子进程报错。
+* 场景2：命令存在，但运行过程报错。
 
 <pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">var&lt;/span> spawn = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>).spawn;
 &lt;span class="hljs-keyword">var&lt;/span> child = spawn(&lt;span class="hljs-string">'bad_command'&lt;/span>);
@@ -436,9 +427,9 @@ grep.on(&lt;span class="hljs-string">'close'&lt;/span>, &lt;span class="hljs-fun
 
 node同样提供同步的版本，比如：
 
-  * spawnSync()
-  * execSync()
-  * execFileSync()
+* spawnSync()
+* execSync()
+* execFileSync()
 
 ## 关于`options.detached` {#关于options.detached}
 
@@ -510,8 +501,8 @@ child.unref();</code></pre>
 
 ## Class: ChildProcess {#class-childprocess}
 
-  * 通过`child_process.spawn()`等创建，一般不直接用构造函数创建。
-  * 继承了`EventEmitters`，所以有`.on()`等方法。
+* 通过`child_process.spawn()`等创建，一般不直接用构造函数创建。
+* 继承了`EventEmitters`，所以有`.on()`等方法。
 
 ## 各种事件 {#各种事件}
 
@@ -535,9 +526,9 @@ SIGTERM：terminate，程序结束信号，该信号可以被阻塞和处理，�
 
 当发生下列事情时，error就会被触发。当error触发时，exit可能触发，也可能不触发。（内心是崩溃的）
 
-  * 无法创建子进程。
-  * 进程无法kill。（TODO 举例子）
-  * 向子进程发送消息失败。（TODO 举例子）
+* 无法创建子进程。
+* 进程无法kill。（TODO 举例子）
+* 向子进程发送消息失败。（TODO 举例子）
 
 ### message {#message}
 
@@ -617,7 +608,7 @@ process.send({ &lt;span class="hljs-attr">foo&lt;/span>: &lt;span class="hljs-st
 
 运行`node p.js`，打印出来的内容如下
 
-<pre class="powershell"><code class="hljs hljs css">➜  &lt;span class="hljs-tag">ch&lt;/span> &lt;span class="hljs-tag">node&lt;/span> &lt;span class="hljs-tag">p&lt;/span>&lt;span class="hljs-class">.js&lt;/span>       
+<pre class="powershell"><code class="hljs hljs css">➜  &lt;span class="hljs-tag">ch&lt;/span> &lt;span class="hljs-tag">node&lt;/span> &lt;span class="hljs-tag">p&lt;/span>&lt;span class="hljs-class">.js&lt;/span>
 &lt;span class="hljs-number">1&lt;/span>
 &lt;span class="hljs-number">2&lt;/span>
 &lt;span class="hljs-number">3&lt;/span>
@@ -642,7 +633,6 @@ fork(&lt;span class="hljs-string">'./c2.js'&lt;/span>);
 setTimeout(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
     &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'p: 3 in %s'&lt;/span>, t);
 }, t);
-
 
 &lt;span class="hljs-comment">// c2.js&lt;/span>
 &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'c: 1'&lt;/span>);</code></pre>

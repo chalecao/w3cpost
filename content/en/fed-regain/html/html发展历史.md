@@ -2,29 +2,12 @@
 title: HTML发展历史
 
 
-date: 2017-08-29T09:46:24+00:00
-excerpt: HTML是Web统一语言，这些容纳在尖括号里的简单标签，构成了如今的Web，1991年，Tim Berners-Lee编写了一份叫做“HTML标签”的文档，里面包含了大约20个用来标记网页的HTML标签。他直接借用SGML的标记格式，也就是后来我们看到的HTML标记的格式。
-url: /html5css3/814.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/2017/08/html.jpg
-views:
-  - 2171
-  - 2171
-like:
-  - 3
-classic-editor-remember:
-  - classic-editor
-fifu_image_url:
-  - //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/html.jpg
-fifu_image_alt:
-  - HTML发展历史
-
-
 ---
 欢迎学习前端知识体系课程，本系列属于：[前端增长教程][1]
 
 HTML是Web统一语言，这些容纳在尖括号里的简单标签，构成了如今的Web，1991年，Tim Berners-Lee编写了一份叫做“HTML标签”的文档，里面包含了大约20个用来标记网页的HTML标签。他直接借用SGML的标记格式，也就是后来我们看到的HTML标记的格式。
 
-![HTML发展历史][2] 
+![HTML发展历史][2]
 
 ### 从IETF到W3C：HTML 4之路
 

@@ -1,24 +1,6 @@
 ---
 title: 基于ES6标签模板实现事件绑定与数据监听
-
-
-date: 2018-09-05T02:18:29+00:00
-url: /javascriptnodejs/2163.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/20120423141555_836.png?x-oss-process=image/resize,m_fill,w_300,h_249
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/20120423141555_836.png?x-oss-process=image/resize,m_fill,w_300,h_249
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/20120423141555_836.png?x-oss-process=image/resize,m_fill,w_300,h_249
-views:
-  - 2191
-  - 2191
-fifu_image_alt:
-  - 基于ES6标签模板实现事件绑定与数据监听
-like:
-  - 1
-
-
 ---
-<img loading="lazy" class="alignnone size-medium wp-image-2165" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/20120423141555_836.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/20120423141555_836.png?x-oss-process=image/resize,m_fill,w_300,h_249/format,webp" alt="" width="300" height="249" />
 
 ##  ES6 字符与标签模板
 
@@ -70,7 +52,7 @@ document.body.appendChild(content)
   <pre><code>&lt;code>
 /**
  * if es6 tpl mix an element, append element later
- * @param {*} arg 
+ * @param {*} arg
  */
 function handleElement(arg) {
     let id = uuid()
@@ -84,8 +66,8 @@ function handleElement(arg) {
     }
 }
 /**
- * if es6 tpl mix an event, add event to the element
- * @param {*} arg 
+ *if es6 tpl mix an event, add event to the element
+ * @param {*} arg
  */
 function handleEvent(arg) {
     let id = uuid()
@@ -106,7 +88,7 @@ function handleEvent(arg) {
 }
 /**
  *  
- * @param {*} template 
+ * @param {*} template
  */
 export function nodeTpl(template) {
     var s = template[0];
@@ -124,7 +106,7 @@ export function nodeTpl(template) {
                 return argItem
             }
         }).join("");
-       
+
         s += ss
         s += template[i];
     }
@@ -176,8 +158,8 @@ defineProperty是比较官方的做法，在定义对象属性的时候可以对
         }
         <span class="pl-c">// 取出所有属性遍历</span>
         <span class="pl-c1">Object</span>.<span class="pl-c1">keys</span>(data).<span class="pl-c1">forEach</span>(<span class="pl-k">function</span>(<span class="pl-smi">key</span>) {
-    	    <span class="pl-en">defineReactive</span>(data, key, data[key]);
-    	});
+         <span class="pl-en">defineReactive</span>(data, key, data[key]);
+     });
     };
     
     <span class="pl-k">function</span> <span class="pl-en">defineReactive</span>(<span class="pl-smi">data</span>, <span class="pl-smi">key</span>, <span class="pl-smi">val</span>) {

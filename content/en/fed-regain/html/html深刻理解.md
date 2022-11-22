@@ -1,22 +1,6 @@
 ---
 title: HTML深刻理解
 
-
-date: 2020-11-14T07:21:44+00:00
-url: /html5css3/6133.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png
-classic-editor-remember:
-  - classic-editor
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png
-fifu_image_alt:
-  - HTML深刻理解
-views:
-  - 511
-like:
-  - 1
-
-
 ---
 欢迎学习前端知识体系课程，本系列属于：[前端增长教程][1]
 
@@ -30,7 +14,7 @@ HTML是同学们学习前端的基础，是构建网页的最基本元素。基�
 
 # 进阶知识
 
-<img loading="lazy" width="2192" height="1290" class="alignnone size-full wp-image-6136 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png?x-oss-process=image/format,webp 2192w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_177/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_471/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_452/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_904/format,webp 1536w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_2048,h_1205/format,webp 2048w" sizes="(max-width: 2192px) 100vw, 2192px" /> 
+<img loading="lazy" width="2192" height="1290" class="alignnone size-full wp-image-6136 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png?x-oss-process=image/format,webp 2192w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_177/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_471/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_452/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_904/format,webp 1536w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf84c3ef7c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_2048,h_1205/format,webp 2048w" sizes="(max-width: 2192px) 100vw, 2192px" />
 
 进阶知识点很多，可以从各个角度来切入学习，这里主要结合浏览器介绍HTML解析渲染的流程，和可能引起浏览器阻塞的场景。大家在实际工作中遇到最多的也是这些问题，<span style="color: #800000;">只有先了解清楚原理，搭建起底层牢固的知识体系，才能在上层准确分析问题，创造性解决问题</span>。本课程设计的内容很多，汇总成体系化的课程<a href="https://www.f2e123.com/fed-regain" target="_blank" rel="noopener noreferrer">前端增长教程</a>，大家可以自行学习。也可以学习相关网易云课堂视频课程<a href="https://study.163.com/course/courseMain.htm?courseId=1209400904&share=2&shareId=400000000351011" target="_blank" rel="noopener noreferrer">前端高级进阶知识点</a>或者思否课程<a href="https://ke.sifou.com/course/1650000019681091" target="_blank" rel="noopener noreferrer">前端增长</a>，本课程所述知识点是作者在实际工作中总结所得，和大家一起分享，如有不足之处欢迎和我联系（左下角扫描微信公众号二维码，欢迎关注）。
 

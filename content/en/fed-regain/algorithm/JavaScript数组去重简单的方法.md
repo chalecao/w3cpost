@@ -2,23 +2,7 @@
 title: JavaScript数组去重简单的方法
 
 
-date: 2018-11-16T01:06:15+00:00
-url: /javascriptnodejs/2533.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee17ed04427.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee17ed04427.png
-fifu_image_alt:
-  - JavaScript数组去重简单的方法
-views:
-  - 1001
-like:
-  - 1
-
-
 ---
-<p id="mjITLyf">
-  <img loading="lazy" class="alignnone wp-image-2535 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee17ed04427.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee17ed04427.png?x-oss-process=image/format,webp" alt="" width="447" height="266" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee17ed04427.png?x-oss-process=image/format,webp 878w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee17ed04427.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_178/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee17ed04427.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_457/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bee17ed04427.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_476/format,webp 800w" sizes="(max-width: 447px) 100vw, 447px" />
-</p>
 
 **方法一：**
 
@@ -164,6 +148,6 @@ dedupe([1,1,2,3]) //[1,2,3]</pre>
 拓展运算符(&#8230;)内部使用for&#8230;of循环
 
 <pre class="pure-highlightjs"><code class="">let arr = [1,2,3,3];
-let resultarr = [...new Set(arr)]; 
+let resultarr = [...new Set(arr)];
 console.log(resultarr); //[1,2,3]
 </code></pre>

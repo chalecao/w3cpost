@@ -1,28 +1,12 @@
 ---
 title: SVG嵌套视窗综合实例
 
-
-date: 2017-08-29T06:41:12+00:00
-excerpt: 在SVG绘制的任何一个时刻，你可以通过嵌套svg或者使用例如symbol的元素来建立新的viewport和用户坐标系。在这篇文章中，我们将看一下我们如何这样做，以及这样做如何帮助我们控制SVG元素并让它们变得更加灵活（或流动）。
-url: /html5css3/803.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/2017/08/svg-1.jpg
-views:
-  - 1548
-  - 1548
-fifu_image_url:
-  - //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/svg-1.jpg
-onesignal_meta_box_present:
-  - 1
-fifu_image_alt:
-  - SVG嵌套视窗综合实例
-
-
 ---
 ### SVG新视窗
 
 在SVG绘制的任何一个时刻，你可以通过嵌套svg或者使用例如symbol的元素来建立新的viewport和用户坐标系。在这篇文章中，我们将看一下我们如何这样做，以及这样做如何帮助我们控制SVG元素并让它们变得更加灵活（或流动）。
 
-![SVG嵌套视窗综合实例][1] 
+![SVG嵌套视窗综合实例][1]
 
 <a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2015/11/05/2015_svg_learn/" target="_blank" rel="external noopener noreferrer">SVG系列教程</a>
 

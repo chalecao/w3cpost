@@ -1,21 +1,6 @@
 ---
 title: 搭建本地python和TensorFlow环境
-
-
-date: 2018-11-21T01:43:52+00:00
-url: /aistack/2725.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf4b44ddeb2c.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf4b44ddeb2c.png
-fifu_image_alt:
-  - 搭建本地python和TensorFlow环境
-views:
-  - 2548
-like:
-  - 2
-onesignal_meta_box_present:
-  - 1
-
+weight: 6
 
 ---
 <img loading="lazy" class="alignnone wp-image-2727 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf4b44ddeb2c.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf4b44ddeb2c.png?x-oss-process=image/format,webp" alt="" width="477" height="318" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf4b44ddeb2c.png?x-oss-process=image/format,webp 621w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf4b44ddeb2c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_200/format,webp 300w" sizes="(max-width: 477px) 100vw, 477px" />
@@ -61,8 +46,8 @@ $virtualenv --system-site-packages ~/tensorflow
 
 # 进入目录激活沙箱.
 $ cd ~/tensorflow
-$ source bin/activate 
-(tensorflow) $ 
+$ source bin/activate
+(tensorflow) $
 </code></pre>
 
 一般情况是，我们希望创建一个独立的Python运行环境，命名为`venv`：
@@ -107,7 +92,7 @@ done.
 
 退出当前的`venv`环境，使用`deactivate`命令：
 
-<pre><code class="ruby">(venv)&lt;span class="constant">Mac&lt;/span>&lt;span class="symbol">:myproject&lt;/span> michael&lt;span class="variable">$ &lt;/span>deactivate 
+<pre><code class="ruby">(venv)&lt;span class="constant">Mac&lt;/span>&lt;span class="symbol">:myproject&lt;/span> michael&lt;span class="variable">$ &lt;/span>deactivate
 &lt;span class="constant">Mac&lt;/span>&lt;span class="symbol">:myproject&lt;/span> michael&lt;span class="variable">$ &lt;/span>
 </code></pre>
 
@@ -137,7 +122,7 @@ CPU版本在跑程序可能有警告提示：
 
 ## 安装jupyter
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">pip install jupyter 
+<pre class="EnlighterJSRAW" data-enlighter-language="null">pip install jupyter
 </pre>
 
 如果提示没有权限，就加上&#8211;user，会安装软件到用户目录，而不是系统目录。安装安置后需要把path路径配置下：
@@ -206,7 +191,7 @@ sys.setdefaultencoding("utf-8")</pre>
 
 可以执行：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">pip show virtualenv                  
+<pre class="EnlighterJSRAW" data-enlighter-language="null">pip show virtualenv
 DEPRECATION: Python 2.7 reached the end of its life on January 1st, 2020. Please upgrade your Python as Python 2.7 is no longer maintained. A future version of pip will drop support for Python 2.7. More details about Python 2 support in pip, can be found at https://pip.pypa.io/en/latest/development/release-process/#python-2-support
 Name: virtualenv
 Version: 20.0.11
@@ -217,7 +202,7 @@ Author-email: gaborjbernat@gmail.com
 License: MIT
 Location: /Users/chalecao/Library/Python/2.7/lib/python/site-packages
 Requires: importlib-resources, distlib, filelock, pathlib2, appdirs, six, contextlib2, importlib-metadata
-Required-by: 
+Required-by:
 </pre>
 
 然后执行下面：

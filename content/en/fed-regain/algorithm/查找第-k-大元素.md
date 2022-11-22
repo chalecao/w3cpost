@@ -1,15 +1,6 @@
 ---
 title: 查找第 k 大元素
 
-
-date: 2019-04-11T15:49:10+00:00
-url: /algorithm/4243.html
-views:
-  - 1309
-like:
-  - 3
-
-
 ---
 # 题目-查找第k大元素
 
@@ -51,11 +42,11 @@ let you think， think makes you happy!
   let [arr, k] = param;
   let bucket = [];
   arr.forEach((v,i)=&gt;{
-    if(!bucket[i%k]) bucket[i%k]= 0		
+    if(!bucket[i%k]) bucket[i%k]= 0  
     if(bucket[i%k] &lt; v) bucket[i%k] = v
   })
   for(let i=0; i&lt;k; i++){
-  	if(bucket[0] &gt; bucket[i]) bucket[0] = bucket[i]
+   if(bucket[0] &gt; bucket[i]) bucket[0] = bucket[i]
   }
   return bucket[0]
 }

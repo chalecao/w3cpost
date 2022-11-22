@@ -2,17 +2,6 @@
 title: HTTPS访问localhost的http资源
 
 
-date: 2020-04-29T09:50:04+00:00
-url: /pwa/5779.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94b2a2b253.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94b2a2b253.png
-fifu_image_alt:
-  - HTTPS访问localhost的http资源
-views:
-  - 1297
-like:
-  - 2
 
 
 ---
@@ -149,15 +138,15 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
   
   <p>
     尽管许多浏览器向用户报告混合内容警告，但出现警告时为时已晚：不安全的请求已被执行，且页面的安全性被破坏。遗憾的是，这种情况在网络中很普遍，正因如此，浏览器不能简单地阻止所有混合请求，否则将会限制许多网站的功能。
-  </p><figure><figcaption> 
+  </p><figure><figcaption>
   
   <p id="otLCzBK">
     <img loading="lazy" width="1170" height="164" class="alignnone size-full wp-image-5790 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94f5bf2465.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94f5bf2465.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94f5bf2465.png?x-oss-process=image/format,webp 1170w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94f5bf2465.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_42/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94f5bf2465.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_108/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94f5bf2465.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_112/format,webp 800w" sizes="(max-width: 1170px) 100vw, 1170px" />
   </p>
   
   <p>
-    修正应用中的混合内容问题是开发者的责任。</figcaption></figure> 
-    
+    修正应用中的混合内容问题是开发者的责任。</figcaption></figure>
+
     <h3 id="%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%A4%BA%E4%BE%8B" tabindex="0" data-text="一个简单的示例">
       一个简单的示例
     </h3>
@@ -203,7 +192,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
 <span class="tag">&lt;script&gt;</span>
 <span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">b</span><span class="pun">,</span><span class="pln">o</span><span class="pun">,</span><span class="pln">i</span><span class="pun">,</span><span class="pln">l</span><span class="pun">,</span><span class="pln">e</span><span class="pun">,</span><span class="pln">r</span><span class="pun">){</span><span class="pln">b</span><span class="pun">.</span><span class="typ">GoogleAnalyticsObject</span><span class="pun">=</span><span class="pln">l</span><span class="pun">;</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]||(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]=</span>
 <span class="kwd">function</span><span class="pun">(){(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">=</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">||[]).</span><span class="pln">push</span><span class="pun">(</span><span class="pln">arguments</span><span class="pun">)});</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">l</span><span class="pun">=+</span><span class="kwd">new</span> <span class="typ">Date</span><span class="pun">;</span><span class="pln">
-  e</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">r</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">getElementsByTagName</span><span class="pun">(</span><span class="pln">i</span><span class="pun">)[</span><span class="lit"></span><span class="pun">];</span><span class="pln">
+  e</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">r</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">getElementsByTagName</span><span class="pun">[</span><span class="pln">i</span><span class="pun">](</span><span class="lit"></span><span class="pun">);</span><span class="pln">
   e</span><span class="pun">.</span><span class="pln">src</span><span class="pun">=</span><span class="str">'https://www.google-analytics.com/analytics.js'</span><span class="pun">;</span><span class="pln">
   r</span><span class="pun">.</span><span class="pln">parentNode</span><span class="pun">.</span><span class="pln">insertBefore</span><span class="pun">(</span><span class="pln">e</span><span class="pun">,</span><span class="pln">r</span><span class="pun">)}(</span><span class="pln">window</span><span class="pun">,</span><span class="pln">document</span><span class="pun">,</span><span class="str">'script'</span><span class="pun">,</span><span class="str">'ga'</span><span class="pun">));</span><span class="pln">
   ga</span><span class="pun">(</span><span class="str">'create'</span><span class="pun">,</span><span class="str">'UA-52746336-1'</span><span class="pun">);</span><span class="pln">ga</span><span class="pun">(</span><span class="str">'send'</span><span class="pun">,</span><span class="str">'pageview'</span><span class="pun">);</span>
@@ -219,7 +208,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
 <span class="tag">&lt;/html&gt;</span>
 
 </pre>
-    
+
     <div class="devsite-code-buttons-container">
     </div>
     
@@ -299,7 +288,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
 <span class="tag">&lt;script&gt;</span>
 <span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">b</span><span class="pun">,</span><span class="pln">o</span><span class="pun">,</span><span class="pln">i</span><span class="pun">,</span><span class="pln">l</span><span class="pun">,</span><span class="pln">e</span><span class="pun">,</span><span class="pln">r</span><span class="pun">){</span><span class="pln">b</span><span class="pun">.</span><span class="typ">GoogleAnalyticsObject</span><span class="pun">=</span><span class="pln">l</span><span class="pun">;</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]||(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]=</span>
 <span class="kwd">function</span><span class="pun">(){(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">=</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">||[]).</span><span class="pln">push</span><span class="pun">(</span><span class="pln">arguments</span><span class="pun">)});</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">l</span><span class="pun">=+</span><span class="kwd">new</span> <span class="typ">Date</span><span class="pun">;</span><span class="pln">
-  e</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">r</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">getElementsByTagName</span><span class="pun">(</span><span class="pln">i</span><span class="pun">)[</span><span class="lit"></span><span class="pun">];</span><span class="pln">
+  e</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">r</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">getElementsByTagName</span><span class="pun">[</span><span class="pln">i</span><span class="pun">](</span><span class="lit"></span><span class="pun">);</span><span class="pln">
   e</span><span class="pun">.</span><span class="pln">src</span><span class="pun">=</span><span class="str">'//www.google-analytics.com/analytics.js'</span><span class="pun">;</span><span class="pln">
   r</span><span class="pun">.</span><span class="pln">parentNode</span><span class="pun">.</span><span class="pln">insertBefore</span><span class="pun">(</span><span class="pln">e</span><span class="pun">,</span><span class="pln">r</span><span class="pun">)}(</span><span class="pln">window</span><span class="pun">,</span><span class="pln">document</span><span class="pun">,</span><span class="str">'script'</span><span class="pun">,</span><span class="str">'ga'</span><span class="pun">));</span><span class="pln">
   ga</span><span class="pun">(</span><span class="str">'create'</span><span class="pun">,</span><span class="str">'UA-52746336-1'</span><span class="pun">);</span><span class="pln">ga</span><span class="pun">(</span><span class="str">'send'</span><span class="pun">,</span><span class="str">'pageview'</span><span class="pun">);</span>
@@ -315,7 +304,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
 <span class="tag">&lt;/html&gt;</span>
 
 </pre>
-      
+
       <div class="devsite-code-buttons-container">
       </div>
       
@@ -422,7 +411,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
 <span class="tag">&lt;script&gt;</span>
 <span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">b</span><span class="pun">,</span><span class="pln">o</span><span class="pun">,</span><span class="pln">i</span><span class="pun">,</span><span class="pln">l</span><span class="pun">,</span><span class="pln">e</span><span class="pun">,</span><span class="pln">r</span><span class="pun">){</span><span class="pln">b</span><span class="pun">.</span><span class="typ">GoogleAnalyticsObject</span><span class="pun">=</span><span class="pln">l</span><span class="pun">;</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]||(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]=</span>
 <span class="kwd">function</span><span class="pun">(){(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">=</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">||[]).</span><span class="pln">push</span><span class="pun">(</span><span class="pln">arguments</span><span class="pun">)});</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">l</span><span class="pun">=+</span><span class="kwd">new</span> <span class="typ">Date</span><span class="pun">;</span><span class="pln">
-  e</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">r</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">getElementsByTagName</span><span class="pun">(</span><span class="pln">i</span><span class="pun">)[</span><span class="lit"></span><span class="pun">];</span><span class="pln">
+  e</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">r</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">getElementsByTagName</span><span class="pun">[</span><span class="pln">i</span><span class="pun">](</span><span class="lit"></span><span class="pun">);</span><span class="pln">
   e</span><span class="pun">.</span><span class="pln">src</span><span class="pun">=</span><span class="str">'//www.google-analytics.com/analytics.js'</span><span class="pun">;</span><span class="pln">
   r</span><span class="pun">.</span><span class="pln">parentNode</span><span class="pun">.</span><span class="pln">insertBefore</span><span class="pun">(</span><span class="pln">e</span><span class="pun">,</span><span class="pln">r</span><span class="pun">)}(</span><span class="pln">window</span><span class="pun">,</span><span class="pln">document</span><span class="pun">,</span><span class="str">'script'</span><span class="pun">,</span><span class="str">'ga'</span><span class="pun">));</span><span class="pln">
   ga</span><span class="pun">(</span><span class="str">'create'</span><span class="pun">,</span><span class="str">'UA-52746336-1'</span><span class="pun">);</span><span class="pln">ga</span><span class="pun">(</span><span class="str">'send'</span><span class="pun">,</span><span class="str">'pageview'</span><span class="pun">);</span>
@@ -438,7 +427,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
 <span class="tag">&lt;/html&gt;</span>
 
 </pre>
-        
+
         <div class="devsite-code-buttons-container">
         </div>
         
@@ -536,7 +525,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
 <span class="tag">&lt;script&gt;</span>
 <span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">b</span><span class="pun">,</span><span class="pln">o</span><span class="pun">,</span><span class="pln">i</span><span class="pun">,</span><span class="pln">l</span><span class="pun">,</span><span class="pln">e</span><span class="pun">,</span><span class="pln">r</span><span class="pun">){</span><span class="pln">b</span><span class="pun">.</span><span class="typ">GoogleAnalyticsObject</span><span class="pun">=</span><span class="pln">l</span><span class="pun">;</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]||(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]=</span>
 <span class="kwd">function</span><span class="pun">(){(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">=</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">||[]).</span><span class="pln">push</span><span class="pun">(</span><span class="pln">arguments</span><span class="pun">)});</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">l</span><span class="pun">=+</span><span class="kwd">new</span> <span class="typ">Date</span><span class="pun">;</span><span class="pln">
-  e</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">r</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">getElementsByTagName</span><span class="pun">(</span><span class="pln">i</span><span class="pun">)[</span><span class="lit"></span><span class="pun">];</span><span class="pln">
+  e</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">r</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">getElementsByTagName</span><span class="pun">[</span><span class="pln">i</span><span class="pun">](</span><span class="lit"></span><span class="pun">);</span><span class="pln">
   e</span><span class="pun">.</span><span class="pln">src</span><span class="pun">=</span><span class="str">'//www.google-analytics.com/analytics.js'</span><span class="pun">;</span><span class="pln">
   r</span><span class="pun">.</span><span class="pln">parentNode</span><span class="pun">.</span><span class="pln">insertBefore</span><span class="pun">(</span><span class="pln">e</span><span class="pun">,</span><span class="pln">r</span><span class="pun">)}(</span><span class="pln">window</span><span class="pun">,</span><span class="pln">document</span><span class="pun">,</span><span class="str">'script'</span><span class="pun">,</span><span class="str">'ga'</span><span class="pun">));</span><span class="pln">
   ga</span><span class="pun">(</span><span class="str">'create'</span><span class="pun">,</span><span class="str">'UA-52746336-1'</span><span class="pun">);</span><span class="pln">ga</span><span class="pun">(</span><span class="str">'send'</span><span class="pun">,</span><span class="str">'pageview'</span><span class="pun">);</span>
@@ -552,7 +541,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
 <span class="tag">&lt;/html&gt;</span>
 
 </pre>
-        
+
         <div class="devsite-code-buttons-container">
         </div>
         
@@ -607,8 +596,8 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
 
 <span class="tag">&lt;style&gt;</span>
 <span class="pun">.</span><span class="pln">insecure-background </span><span class="pun">{</span>
-<span class="com">/* An insecure resources loaded from a style property on a secure page, this can
-           happen in many places including, @font-face, cursor, background-image, and so on. */</span>
+<span class="com">/*An insecure resources loaded from a style property on a secure page, this can
+happen in many places including, @font-face, cursor, background-image, and so on.*/</span>
 <span class="kwd">background</span><span class="pun">:</span> <span class="kwd">url</span><span class="pun">(</span><span class="str">'http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/puppy-thumb.jpg'</span><span class="pun">)</span><span class="pln"> no-repeat</span><span class="pun">;</span>
 <span class="pun">}</span>
 <span class="tag">&lt;/style&gt;</span>
@@ -674,7 +663,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
 <span class="tag">&lt;script&gt;</span>
 <span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">b</span><span class="pun">,</span><span class="pln">o</span><span class="pun">,</span><span class="pln">i</span><span class="pun">,</span><span class="pln">l</span><span class="pun">,</span><span class="pln">e</span><span class="pun">,</span><span class="pln">r</span><span class="pun">){</span><span class="pln">b</span><span class="pun">.</span><span class="typ">GoogleAnalyticsObject</span><span class="pun">=</span><span class="pln">l</span><span class="pun">;</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]||(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]=</span>
 <span class="kwd">function</span><span class="pun">(){(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">=</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">||[]).</span><span class="pln">push</span><span class="pun">(</span><span class="pln">arguments</span><span class="pun">)});</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">l</span><span class="pun">=+</span><span class="kwd">new</span> <span class="typ">Date</span><span class="pun">;</span><span class="pln">
-  e</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">r</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">getElementsByTagName</span><span class="pun">(</span><span class="pln">i</span><span class="pun">)[</span><span class="lit"></span><span class="pun">];</span><span class="pln">
+  e</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">r</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">getElementsByTagName</span><span class="pun">[</span><span class="pln">i</span><span class="pun">](</span><span class="lit"></span><span class="pun">);</span><span class="pln">
   e</span><span class="pun">.</span><span class="pln">src</span><span class="pun">=</span><span class="str">'//www.google-analytics.com/analytics.js'</span><span class="pun">;</span><span class="pln">
   r</span><span class="pun">.</span><span class="pln">parentNode</span><span class="pun">.</span><span class="pln">insertBefore</span><span class="pun">(</span><span class="pln">e</span><span class="pun">,</span><span class="pln">r</span><span class="pun">)}(</span><span class="pln">window</span><span class="pun">,</span><span class="pln">document</span><span class="pun">,</span><span class="str">'script'</span><span class="pun">,</span><span class="str">'ga'</span><span class="pun">));</span><span class="pln">
   ga</span><span class="pun">(</span><span class="str">'create'</span><span class="pun">,</span><span class="str">'UA-52746336-1'</span><span class="pun">);</span><span class="pln">ga</span><span class="pun">(</span><span class="str">'send'</span><span class="pun">,</span><span class="str">'pageview'</span><span class="pun">);</span>
@@ -690,7 +679,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
 <span class="tag">&lt;/html&gt;</span>
 
 </pre>
-        
+
         <div class="devsite-code-buttons-container">
         </div>
         

@@ -2,17 +2,12 @@
 title: hooks使用指南
 
 
-date: 2020-02-28T11:19:40+00:00
-url: /javascriptnodejs/5622.html
-views:
-  - 1019
-
 
 ---
 <div>
   <div>
-    <article class="_2rhmJa">本文是阅读<a href="https://overreacted.io/a-complete-guide-to-useeffect/" target="_blank" rel="noopener noreferrer">A Complete Guide to useEffect</a>之后的个人总结，建议拜读原文</p> 
-    
+    <article class="_2rhmJa">本文是阅读<a href="https://overreacted.io/a-complete-guide-to-useeffect/" target="_blank" rel="noopener noreferrer">A Complete Guide to useEffect</a>之后的个人总结，建议拜读原文</p>
+
     <h2>
       理解hooks工作机制
     </h2>
@@ -52,7 +47,7 @@ views:
     &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       再看这样一段代码：
     </p>
@@ -81,7 +76,7 @@ views:
     &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       把上述代码改成class component的形式：
     </p>
@@ -121,7 +116,7 @@ views:
     &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       对于class component里面的表现，我们可以通过闭包来改变，之所以如此是因为class component里面的state随着render是发生变化的，而useEffect里面即使使用props.count也不会有问题，因为useEffect里面的所有东西都是每次render独立的
     </p>
@@ -138,7 +133,7 @@ views:
     &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
     </div>
-    
+
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
       
@@ -152,7 +147,7 @@ views:
     &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       可以发现，尽管useEffect里面的函数延迟执行了，但是打出的count依然是当时render里面的count，这也说明了其实每次render都是独立的，里面有独立的state、effects、function
     </p>
@@ -185,7 +180,7 @@ views:
     &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       下面这段话是精髓：
     </p>
@@ -217,7 +212,7 @@ views:
     &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       如果props从{id: 10}变化为{id: 20}那么react是怎么样来渲染组件、怎么样做清除工作的呢？
     </p>
@@ -234,7 +229,7 @@ views:
     React runs the effect for&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token property">id&lt;/span>&lt;span class="token punctuation">:&lt;/span> 20&lt;span class="token punctuation">}&lt;/span>.
 </code></pre>
     </div>
-    
+
     <p>
       但实际上react并不是这样工作的，而是像下面这样，因为react总是在浏览器paint之后再去做effects相关的事情，无论是useEffect还是他返回的函数，而且清理函数也和其他函数一样能够capture当前的props和state，尽管在他执行时已经是新的组件render好了
     </p>
@@ -248,7 +243,7 @@ views:
     React runs the effect for&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token property">id&lt;/span>&lt;span class="token punctuation">:&lt;/span> 20&lt;span class="token punctuation">}&lt;/span>.
 </code></pre>
     </div>
-    
+
     <p>
       清理函数就像闭包一样直接把他所属的render的props和state消费，然后在需要执行的时候使用这些值
     </p>
@@ -289,7 +284,7 @@ views:
     &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
     </div>
-    
+
     <h2>
       忘记lifecycle的观念，拥抱synchronization
     </h2>
@@ -318,7 +313,7 @@ views:
     &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">[&lt;/span>name&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">// Our deps&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       上面这段代码相当于告诉react，我这个effect的依赖项是name这个变量，只有当name发生变化的时候才去执行里面的函数
     </p>
@@ -362,7 +357,7 @@ views:
     &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
     </div>
-    
+
     <h3>
       关于dependency数组
     </h3>
@@ -393,7 +388,7 @@ views:
     &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       如果写成下面这样的形式的话：
     </p>
@@ -413,7 +408,7 @@ views:
 
 </code></pre>
     </div>
-    
+
     <p>
       所以通过设置dependency数组来欺骗react达到自己不可告人的目的的话，很容易出现bug，而且还不容易发现，所以还是老老实实的不要骗人
     </p>
@@ -438,7 +433,7 @@ views:
     &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">[&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
     </div>
-    
+
     <h2>
       其他hooks
     </h2>
@@ -457,7 +452,7 @@ views:
       <pre class="line-numbers  language-csharp"><code class="  language-csharp">    &lt;span class="token keyword">const&lt;/span> &lt;span class="token keyword">value&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useContext&lt;/span>&lt;span class="token punctuation">(&lt;/span>myContext&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       当最近的一个myContext.Provider更新的时候，这个hook就会导致当前组件发生更新
     </p>
@@ -495,7 +490,7 @@ views:
     &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       使用dispatch以后，判断是否重新render是通过Object.is来判断的，每次render之后返回的dispatch其实都是不变的，所以之前定时器的例子最好的解决方案就是利用useReducer来实现：
     </p>
@@ -545,10 +540,9 @@ views:
         &lt;span class="token punctuation">}&lt;/span>
     &lt;span class="token punctuation">}&lt;/span>
 
-
 </code></pre>
     </div>
-    
+
     <h3>
       useCallback
     </h3>
@@ -565,7 +559,7 @@ views:
     &lt;span class="token comment">// 返回的memoizedCallback只有当a、b发生变化时才会变化，可以把这样一个memoizedCallback作为dependency数组的内容给useEffect&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       我们来看一个useEffect的dependency数组含有函数的情况：
     </p>
@@ -606,7 +600,7 @@ views:
 
 </code></pre>
     </div>
-    
+
     <h3>
       useMemo
     </h3>
@@ -617,7 +611,7 @@ views:
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">const&lt;/span> memoizedValue &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useMemo&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token function">computeExpensiveValue&lt;/span>&lt;span class="token punctuation">(&lt;/span>a&lt;span class="token punctuation">,&lt;/span> b&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">[&lt;/span>a&lt;span class="token punctuation">,&lt;/span> b&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
     </div>
-    
+
     <h3>
       useRef
     </h3>
@@ -628,7 +622,7 @@ views:
       <pre class="line-numbers  language-cpp"><code class="  language-cpp">    &lt;span class="token keyword">const&lt;/span> refContainer &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useRef&lt;/span>&lt;span class="token punctuation">(&lt;/span>initialValue&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       注意：useRef返回相当于一个{current: &#8230;}的plain object，但是和正常这样每轮render之后直接显式创建的区别在于，每轮render之后的useRef返回的plain object都是同一个，只是里面的current发生变化
     </p>
@@ -671,7 +665,7 @@ views:
     &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       第一次改进，把函数直接写进dependency数组里面：
     </p>
@@ -699,7 +693,7 @@ views:
     &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       上面这种写法的问题就是useEffect里面的函数调用过于频繁，再次利用useCallback进行改造：
     </p>
@@ -724,7 +718,7 @@ views:
     &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
     </div>
-    
+
     <p>
       useCallback本质上是添加了一层依赖检查。它以另一种方式解决了问题 &#8211; 我们使函数本身只在需要的时候才改变，而不是去掉对函数的依赖
     </p>

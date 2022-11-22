@@ -1,22 +1,6 @@
 ---
 title: “总阻塞时间”（TBT）
 
-
-date: 2020-10-04T02:24:51+00:00
-url: /fed-regain/5915.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png
-classic-editor-remember:
-  - classic-editor
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png
-fifu_image_alt:
-  - “总阻塞时间”（TBT）
-views:
-  - 1442
-like:
-  - 2
-
-
 ---
 <div class="w-aside w-aside--note">
   <p>
@@ -52,7 +36,7 @@ like:
   <tr>
     <th>
     </th>
-    
+
     <th>
       任务持续时间
     </th>
@@ -66,7 +50,7 @@ like:
     <td>
       任务一
     </td>
-    
+
     <td>
       250毫秒
     </td>
@@ -80,7 +64,7 @@ like:
     <td>
       任务二
     </td>
-    
+
     <td>
       90毫秒
     </td>
@@ -94,7 +78,7 @@ like:
     <td>
       任务三
     </td>
-    
+
     <td>
       35毫秒
     </td>
@@ -108,7 +92,7 @@ like:
     <td>
       任务四
     </td>
-    
+
     <td>
       30毫秒
     </td>
@@ -122,7 +106,7 @@ like:
     <td>
       任务五
     </td>
-    
+
     <td>
       155毫秒
     </td>
@@ -136,7 +120,7 @@ like:
     <td colspan="2">
       <strong>总封锁时间</strong>
     </td>
-    
+
     <td>
       <strong>345毫秒</strong>
     </td>
@@ -159,9 +143,9 @@ TBT是应该[在实验室中][4]测量的指标。衡量TBT的最佳方法是在
 
 ### 实验室工具<a class="w-headline-link" href="https://web.dev/tbt/#lab-tools" aria-hidden="true">＃</a> {#lab-tools}
 
-  * [Chrome DevTools][7]
-  * [灯塔][8]
-  * [WebPageTest][9]
+* [Chrome DevTools][7]
+* [灯塔][8]
+* [WebPageTest][9]
 
 <div class="w-aside w-aside--note">
   <p>
@@ -181,15 +165,15 @@ TBT是应该[在实验室中][4]测量的指标。衡量TBT的最佳方法是在
 
 要总体了解如何提高TBT（针对任何站点），请参考以下性能指南：
 
-  * [减少第三方代码的影响][12]
-  * [减少JavaScript执行时间][13]
-  * [减少主线程工作][14]
-  * [保持较低的请求数量和较小的传输量][15]
+* [减少第三方代码的影响][12]
+* [减少JavaScript执行时间][13]
+* [减少主线程工作][14]
+* [保持较低的请求数量和较小的传输量][15]
 
 ## 关联课程
 
-  * [打造企业级私有前端监控体系][6]
-  * [高性能极致用户体验前端开发实战][16]
+* [打造企业级私有前端监控体系][6]
+* [高性能极致用户体验前端开发实战][16]
 
  [1]: https://web.dev/fcp/
  [2]: https://web.dev/tti/

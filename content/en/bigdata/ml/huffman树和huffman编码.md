@@ -2,14 +2,6 @@
 title: Huffman树和Huffman编码
 
 
-date: 2022-04-08T15:23:58+00:00
-url: /algorithm/7037.html
-classic-editor-remember:
-  - classic-editor
-views:
-  - 147
-
-
 ---
 Huffman树是一种特殊结构的二叉树，由Huffman树设计的二进制前缀编码，也称为Huffman编码在通信领域有着广泛的应用。在word2vec模型中，在构建层次Softmax的过程中，也使用到了Huffman树的知识。
 
@@ -17,13 +9,13 @@ Huffman树是一种特殊结构的二叉树，由Huffman树设计的二进制前
 
 # 一、Huffman树的基本概念 {#%E4%B8%80%E3%80%81Huffman%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5}
 
-在二叉树中有一些基本的概念，对于如下所示的二叉树：<figure> 
+在二叉树中有一些基本的概念，对于如下所示的二叉树：<figure>
 
 <div class="image-block">
   <p id="qIJEsvO">
     <img loading="lazy" width="268" height="270" class="alignnone size-full wp-image-7038 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625052f4b3807.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625052f4b3807.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625052f4b3807.png?x-oss-process=image/format,webp 268w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625052f4b3807.png?x-oss-process=image/quality,q_50/resize,m_fill,w_150,h_150/format,webp 150w" sizes="(max-width: 268px) 100vw, 268px" />
   </p>
-</div></figure> 
+</div></figure>
 
 <ul class="ul-level-0">
   <li>
@@ -31,13 +23,13 @@ Huffman树是一种特殊结构的二叉树，由Huffman树设计的二进制前
   </li>
 </ul>
 
-路径是指在一棵树中，从一个节点到另一个节点之间的分支构成的通路，如从节点8到节点1的路径如下图所示：<figure> 
+路径是指在一棵树中，从一个节点到另一个节点之间的分支构成的通路，如从节点8到节点1的路径如下图所示：<figure>
 
 <div class="image-block">
   <p id="BvhUeLa">
     <img loading="lazy" width="294" height="254" class="alignnone size-full wp-image-7039 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625053013b892.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625053013b892.png?x-oss-process=image/format,webp" alt="" />
   </p>
-</div></figure> 
+</div></figure>
 
 <ul class="ul-level-0">
   <li>
@@ -75,21 +67,21 @@ Huffman树是一种特殊结构的二叉树，由Huffman树设计的二进制前
 
 > 给定nn权值作为nn个叶子节点，构造一棵二叉树，若这棵二叉树的带权路径长度达到最小，则称这样的二叉树为最优二叉树，也称为Huffman树。
 
-由以上的定义可以知道，Huffman树是<span style="color: #ff0000;"><strong>带权路径长度最小的二叉树 ( 考点 ，应用点)</strong></span>，对于上面的二叉树，其构造完成的Huffman树为：<figure> 
+由以上的定义可以知道，Huffman树是<span style="color: #ff0000;"><strong>带权路径长度最小的二叉树 ( 考点 ，应用点)</strong></span>，对于上面的二叉树，其构造完成的Huffman树为：<figure>
 
 <div class="image-block">
   <p id="EsOiftm">
     <img loading="lazy" width="422" height="288" class="alignnone size-full wp-image-7040 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62505328ec640.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62505328ec640.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62505328ec640.png?x-oss-process=image/format,webp 422w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62505328ec640.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_205/format,webp 300w" sizes="(max-width: 422px) 100vw, 422px" />
   </p>
-</div></figure> 
+</div></figure>
 
 # 二、Huffman树的构建 {#%E4%BA%8C%E3%80%81Huffman%E6%A0%91%E7%9A%84%E6%9E%84%E5%BB%BA}
 
-由上述的Huffman树可知：节点的权越小，其离树的根节点越远。那么应该如何构建Huffman树呢？以上述报文为例，首先需要统计出每个字符出现的次数作为节点的权:<figure> 
+由上述的Huffman树可知：节点的权越小，其离树的根节点越远。那么应该如何构建Huffman树呢？以上述报文为例，首先需要统计出每个字符出现的次数作为节点的权:<figure>
 
 <div class="image-block">
   <img loading="lazy" width="75" height="91" class="alignnone size-full wp-image-7041 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6250535503a52.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6250535503a52.png?x-oss-process=image/format,webp" alt="" />
-</div></figure> 
+</div></figure>
 
 接下来构建Huffman树：
 
@@ -110,7 +102,7 @@ Huffman树是一种特殊结构的二叉树，由Huffman树设计的二进制前
   </li>
 </ul>
 
-按照上述的步骤，该报文的Huffman树的生成过程为：<figure> 
+按照上述的步骤，该报文的Huffman树的生成过程为：<figure>
 
 <div class="image-block">
   <p id="mKjJFea">
@@ -120,7 +112,7 @@ Huffman树是一种特殊结构的二叉树，由Huffman树设计的二进制前
   <p id="jnGfIrO">
     <img loading="lazy" width="478" height="305" class="alignnone size-full wp-image-7043 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62505369525c4.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62505369525c4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62505369525c4.png?x-oss-process=image/format,webp 478w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62505369525c4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_191/format,webp 300w" sizes="(max-width: 478px) 100vw, 478px" />
   </p>
-</div></figure> 
+</div></figure>
 
 对于树中节点的结构为：
 
@@ -274,13 +266,13 @@ struct huffman_node&lt;span class="token punctuation">{&lt;/span>
   </li>
 </ul>
 
-因此，上述的编码形式如下图所示：<figure> 
+因此，上述的编码形式如下图所示：<figure>
 
 <div class="image-block">
   <p id="akwDzXn">
     <img loading="lazy" width="380" height="300" class="alignnone size-full wp-image-7044 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6250537bceda4.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6250537bceda4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6250537bceda4.png?x-oss-process=image/format,webp 380w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6250537bceda4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_237/format,webp 300w" sizes="(max-width: 380px) 100vw, 380px" />
   </p>
-</div></figure> 
+</div></figure>
 
 从上图中，E节点的编码为：00，同理，D节点的编码为1001
 
@@ -315,7 +307,6 @@ Huffman编码的实现过程为：
                         &lt;span class="token operator">*&lt;/span>ptr &lt;span class="token operator">=&lt;/span> &lt;span class="token string">'1'&lt;/span>&lt;span class="token punctuation">;&lt;/span>
                 &lt;span class="token punctuation">}&lt;/span>
         &lt;span class="token punctuation">}&lt;/span>
-
 
         &lt;span class="token keyword">return&lt;/span> &lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token punctuation">}&lt;/span></code></pre>

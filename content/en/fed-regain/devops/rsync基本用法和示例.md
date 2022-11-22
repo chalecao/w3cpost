@@ -2,11 +2,6 @@
 title: rsync基本用法和示例
 
 
-date: 2020-03-28T15:53:23+00:00
-url: /pwa/5718.html
-views:
-  - 617
-
 
 ---
 rsync官方网站: <a href="https://www.samba.org/ftp/rsync/rsync.html" rel="nofollow">https://www.samba.org/ftp/rsync/rsync.html</a>
@@ -42,11 +37,11 @@ rsync的目的是实现本地主机和远程主机上的文件同步(包括本�
 以下是rsync的语法：
 
 <pre>Local:  rsync [OPTION...] SRC... [DEST]
- 
+
 Access via remote shell:
   Pull: rsync [OPTION...] [USER@]HOST:SRC... [DEST]
   Push: rsync [OPTION...] SRC... [USER@]HOST:DEST
- 
+
 Access via rsync daemon:
   Pull: rsync [OPTION...] [USER@]HOST::SRC... [DEST]
         rsync [OPTION...] rsync://[USER@]HOST[:PORT]/SRC... [DEST]
@@ -68,11 +63,11 @@ Access via rsync daemon:
 以下是对rsync语法的简单说明，由于rsync支持一百多个选项，所以此处只介绍几个常用选项。完整的选项说明以及rsync的使用方法见我翻译的&#8221;<a href="http://www.cnblogs.com/f-ck-need-u/p/7221713.html" rel="nofollow">man rsync</a>&#8220;。
 
 <pre>Local:  rsync [OPTION...] SRC... [DEST]
- 
+
 Access via remote shell:
   Pull: rsync [OPTION...] [USER@]HOST:SRC... [DEST]
   Push: rsync [OPTION...] SRC... [USER@]HOST:DEST
- 
+
 Access via rsync daemon:
   Pull: rsync [OPTION...] [USER@]HOST::SRC... [DEST]
         rsync [OPTION...] rsync://[USER@]HOST[:PORT]/SRC... [DEST]
@@ -250,17 +245,17 @@ root@172.16.10.5's password:</pre>
 ├── fstab
 ├── profile
 └── rc.local
- 
+
 1 directory, 9 files</pre>
 
 使用&#8221;&#8211;existing&#8221;选项使得只更新目标端已存在的文件。
 
-<pre>[root@xuexi ~]# rsync -r -v --existing /tmp/a/ /tmp/b           
+<pre>[root@xuexi ~]# rsync -r -v --existing /tmp/a/ /tmp/b
 sending incremental file list
 fstab
 profile
 rc.local
- 
+
 sent 2972 bytes  received 70 bytes  6084.00 bytes/sec
 total size is 204755  speedup is 67.31</pre>
 
@@ -273,7 +268,7 @@ sending incremental file list
 bashrc
 c/
 c/find
- 
+
 sent 202271 bytes  received 54 bytes  404650.00 bytes/sec
 total size is 204755  speedup is 1.01</pre>
 
@@ -291,7 +286,7 @@ deleting a.log
 2.txt
 3.txt
 4.txt
- 
+
 sent 118 bytes  received 33 bytes  302.00 bytes/sec
 total size is 0  speedup is 0.00 (DRY RUN)
 
@@ -301,7 +296,7 @@ total size is 0  speedup is 0.00 (DRY RUN)
 
 <pre>sending incremental file list
 deleting a.log
- 
+
 sent 106 bytes  received 21 bytes  254.00 bytes/sec
 total size is 0  speedup is 0.00 (DRY RUN)</pre>
 
@@ -313,7 +308,7 @@ total size is 0  speedup is 0.00 (DRY RUN)</pre>
 
 总之，显示在&#8221;rsync -v&#8221;被传输列表中的文件都会被移除。如下：
 
-<pre>[root@xuexi ~]# rsync -r -v --remove-source-files /tmp/a/anaconda /tmp/a/audit /tmp       
+<pre>[root@xuexi ~]# rsync -r -v --remove-source-files /tmp/a/anaconda /tmp/a/audit /tmp
 sending incremental file list
 </pre>
 
@@ -336,7 +331,7 @@ anaconda/
 anaconda/syslog
 audit/
 audit/audit.log
- 
+
 sent 3365629 bytes  received 58 bytes  6731374.00 bytes/sec
 total size is 3365016  speedup is 1.00</pre>
 
@@ -439,7 +434,7 @@ sending incremental file list
 <pre>cron.d/0hourly
 cron.d/raid-check
 cron.d/sysstat
- 
+
 sent 704 bytes  received 70 bytes  1548.00 bytes/sec
 total size is 471  speedup is 0.61</pre>
 
@@ -459,7 +454,7 @@ sending incremental file list
 
 <pre>anaconda/syslog
 audit/audit.log
- 
+
 sent 3406190 bytes  received 52 bytes  6812484.00 bytes/sec
 total size is 3405579  speedup is 1.00</pre>
 
@@ -507,7 +502,7 @@ drwxr-xr-x      237568 2017/07/05 20:49:33 linux/kernel/v3.x
 -rw-r--r--    96726195 2012/01/04 03:00:31 linux/kernel/v3.x/linux-3.0.15.tar.gz
 -rw-r--r--         836 2012/01/04 03:00:31 linux/kernel/v3.x/linux-3.0.15.tar.sign
 -rw-r--r--    63812604 2012/01/04 03:00:31 linux/kernel/v3.x/linux-3.0.15.tar.xz
- 
+
 sent 59 bytes  received 80.19K bytes  12.35K bytes/sec
 total size is 237.34M  speedup is 2957.66</pre>
 
@@ -547,11 +542,11 @@ Push: rsync [OPTION...] SRC... [USER@]HOST::DEST
 
 <pre>[root@xuexi ~]# cat /etc/rsyncd.conf
 # /etc/rsyncd: configuration file for rsync daemon mode
- 
+
 # See rsyncd.conf man page for more options.
- 
+
 # configuration example:
- 
+
 # uid = nobody
 # gid = nobody
 # use chroot = yes
@@ -561,8 +556,8 @@ Push: rsync [OPTION...] SRC... [USER@]HOST::DEST
 # transfer logging = yes
 # timeout = 900
 # ignore nonreadable = yes
-# dont compress   = *.gz *.tgz *.zip *.z *.Z *.rpm *.deb *.bz2
- 
+# dont compress   = *.gz*.tgz *.zip*.z *.Z*.rpm *.deb*.bz2
+
 # [ftp1]
 #        path = /home/ftp
 #        comment = ftp export area</pre>
@@ -582,9 +577,9 @@ motd file = /var/rsyncd/rsync.motd   # 客户端连接过来显示的消息
 pid file = /var/run/rsyncd.pid       # 指定rsync daemon的pid文件
 lock file = /var/run/rsync.lock      # 指定锁文件
 log file = /var/log/rsyncd.log       # 指定rsync的日志文件，而不把日志发送给syslog
-dont compress = *.gz *.tgz *.zip *.z *.Z *.rpm *.deb *.bz2  # 指定哪些文件不用进行压缩传输
- 
-###########下面指定模块，并设定模块配置参数，可以创建多个模块###########
+dont compress = *.gz*.tgz *.zip*.z *.Z*.rpm *.deb*.bz2  # 指定哪些文件不用进行压缩传输
+
+########### 下面指定模块，并设定模块配置参数，可以创建多个模块 ###########
 [longshuai]        # 模块ID
 path = /longshuai/ # 指定该模块的路径，该参数必须指定。启动rsync服务前该目录必须存在。rsync请求访问模块本质就是访问该路径。
 ignore errors      # 忽略某些IO错误信息
@@ -639,7 +634,7 @@ comment = anyone can access</pre>
 [Unit]
 Description=fast remote file copy program daemon
 ConditionPathExists=/etc/rsyncd.conf
- 
+
 [Service]
 EnvironmentFile=/etc/sysconfig/rsyncd
 </pre>
@@ -686,11 +681,11 @@ WantedBy=multi-user.target</pre>
 以下是语法格式：为了简洁，没有指定src还是dest，且以ssh这个远程shell为例。
 
 > rsync [options] &#8211;rsh=ssh auth_user@host::module
-> 
+>
 > rsync [options] &#8211;rsh=&#8221;ssh -l ssh\_user&#8221; auth\_user@host::module
-> 
+>
 > rsync [options] -e &#8220;ssh -l ssh\_user&#8221; auth\_user@host::module
-> 
+>
 > rsync [options] -e &#8220;ssh -l ssh\_user&#8221; rsync://auth\_user@host/module
 
 涉及了两个用户ssh\_user和auth\_user，由于使用的是远程shell通信方式，所以client要和server端建立ssh连接，ssh\_user就是ssh连接server的用户。auth\_user则是模块中的身份认证用户。如果不指定&#8221;ssh\_user&#8221;，则默认将使用auth\_user，但很多时候auth\_user都只是一个虚拟用户，这样就建立不了ssh连接导致失败，所以建议明确指定ssh\_user和auth_user。
@@ -706,17 +701,17 @@ secrets file=/tmp/lisi_passwd</pre>
 
 <pre>[root@xuexi ~]# netstat -tnl
 Active Internet connections (only servers)
-Proto Recv-Q Send-Q Local Address           Foreign Address         State     
-tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN    
-tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN    
-tcp6       0      0 :::22                   :::*                    LISTEN    
+Proto Recv-Q Send-Q Local Address           Foreign Address         State
+tcp        0      0 0.0.0.0:22              0.0.0.0:*LISTEN
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN
+tcp6       0      0 :::22                   :::*LISTEN
 tcp6       0      0 ::1:25                  :::*                    LISTEN</pre>
 
 在客户端上使用以下命令：
 
 <pre>[root@xuexi ~]# rsync --list-only -e "ssh -l root" lisi@172.16.10.6::tmpdir
 root@172.16.10.6's password:
- 
+
 Password:</pre>
 
 可以看到要求输入两次密码，第一次密码是root@XXX的密码，即建立ssh连接使用的密码，只有建立了ssh连接，才能在server上启动临时rsync daemon。第二次输入的密码Password是&#8221;auth users=lisi&#8221;对应的密码。

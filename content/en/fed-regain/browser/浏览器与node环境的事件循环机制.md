@@ -1,21 +1,8 @@
 ---
 title: 浏览器与node环境的事件循环机制
 
-
-date: 2019-07-15T03:41:06+00:00
-url: /javascriptnodejs/4734.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf608e577f.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf608e577f.png
-fifu_image_alt:
-  - 浏览器与node环境的事件循环机制
-views:
-  - 1009
-like:
-  - 3
-
-
 ---
+
 我们都知道，javascript从诞生之日起就是一门单线程的非阻塞的脚本语言。这是由其最初的用途来决定的：与浏览器交互。
 
 单线程意味着，javascript代码在执行的任何时候，都只有一个主线程来处理所有的任务。
@@ -70,13 +57,13 @@ js引擎遇到一个异步事件后并不会一直等待其返回结果，而是
 
 以下事件属于宏任务：
 
-  * `setInterval()`
-  * `setTimeout()`
+* `setInterval()`
+* `setTimeout()`
 
 以下事件属于微任务
 
-  * `new Promise()`
-  * `new MutaionObserver()`
+* `new Promise()`
+* `new MutaionObserver()`
 
 前面我们介绍过，在一个事件循环中，异步事件返回结果后会被放到一个任务队列中。然而，根据这个异步事件的类型，这个事件实际上会被对应的宏任务队列或者微任务队列中去。并且在当前执行栈为空的时候，主线程会 查看微任务队列是否有事件存在。如果不存在，那么再去宏任务队列中取出一个事件并把对应的回到加入当前执行栈；如果存在，则会依次执行队列中事件对应的回调，直到微任务队列为空，然后去宏任务队列中取出最前面的一个事件，把对应的回调加入当前执行栈&#8230;如此反复，进入循环。
 
@@ -130,12 +117,12 @@ _注：模型中的每一个方块代表事件循环的一个阶段_
 
 这些阶段大致的功能如下：
 
-  * timers: 这个阶段执行定时器队列中的回调如 `setTimeout()` 和 `setInterval()`。
-  * I/O callbacks: 这个阶段执行几乎所有的回调。但是不包括close事件，定时器和`setImmediate()`的回调。
-  * idle, prepare: 这个阶段仅在内部使用，可以不必理会。
-  * poll: 等待新的I/O事件，node在一些特殊情况下会阻塞在这里。
-  * check: `setImmediate()`的回调会在这个阶段执行。
-  * close callbacks: 例如`socket.on('close', ...)`这种close事件的回调。
+* timers: 这个阶段执行定时器队列中的回调如 `setTimeout()` 和 `setInterval()`。
+* I/O callbacks: 这个阶段执行几乎所有的回调。但是不包括close事件，定时器和`setImmediate()`的回调。
+* idle, prepare: 这个阶段仅在内部使用，可以不必理会。
+* poll: 等待新的I/O事件，node在一些特殊情况下会阻塞在这里。
+* check: `setImmediate()`的回调会在这个阶段执行。
+* close callbacks: 例如`socket.on('close', ...)`这种close事件的回调。
 
 下面我们来按照代码第一次进入libuv引擎后的顺序来详细解说这些阶段：
 

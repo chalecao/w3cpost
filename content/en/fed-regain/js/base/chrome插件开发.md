@@ -1,23 +1,6 @@
 ---
 title: chrome插件开发
 
-
-date: 2018-02-22T02:07:00+00:00
-excerpt: chrome扩展程序开发经验的资源，一些开发技巧总结
-url: /pwa/1561.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/2014/09/20140926053553_82156.png
-views:
-  - 1838
-  - 1838
-like:
-  - 1
-  - 1
-fifu_image_url:
-  - https://www.hlqf.net/wp-content/uploads/2014/09/20140926053553_82156.png
-fifu_image_alt:
-  - chrome插件开发
-
-
 ---
 ## 一些资源
 
@@ -77,7 +60,7 @@ chrome.browserAction.onClicked.addListener(function (tab) {
 
 同时，这个ID也是chrome区别相同或不同插件的唯一指标。也就是说，即使是同样的插件名、一行不差的代码，如果拥有不同的ID，chrome也会认为他们是不一样的。
 
-![][1] 
+![][1]
 
 但是，聪明如你会发现，在通过chrome导入插件的源码文件夹进行开发时，此处的ID和你最终打包成crx再安装的ID竟然不！一！样！因此可能造成一个困扰：如果我在开发时，因为各种各样的原因，要写死插件ID在代码或者配置中，此时如果写的是开发状态下的ID，到了打包发布后，两边ID对应不上，相关的功能也就不能实现了。（譬如在做<a href="https://developer.chrome.com/extensions/autoupdate" target="_blank" rel="noopener noreferrer">Autoupdate</a>时）
 
@@ -87,7 +70,7 @@ Ok，依据下面几步，你将能够快速地完成这一目的。
 
 1. 在chrome插件管理中，点击“打包扩展程序”，将你的源码文件夹选中，然后生成一个pem密钥文件，这个文件一旦生成之后就要保存好，chrome是依据这个文件来生成ID的。 如果不甚文件丢失，你只能更换应用ID了。
 
-![][2] 
+![][2]
 
 2. 通过第一步的打包，你会得到一个crx文件，将此文件拖到chrome插件管理界面进行安装。
 
@@ -103,21 +86,17 @@ Ok，依据下面几步，你将能够快速地完成这一目的。
 Google Chrome: C:\Documents and Settings\%USERNAME%\Local Settings\Application Data\Google\Chrome\User Data\Default
 Chromium: C:\Documents and Settings\%USERNAME%\Local Settings\Application Data\Chromium\User Data\Default
 
-
 Windows 8 or 7 or Vista
 Google Chrome: C:\Users\%USERNAME%\AppData\Local\Google\Chrome\User Data\Default
 Chromium: C:\Users\%USERNAME%\AppData\Local\Chromium\User Data\Default
-
 
 Mac OS X
 Google Chrome: ~/Library/Application Support/Google/Chrome/Default
 Chromium: ~/Library/Application Support/Chromium/Default
 
-
 Linux
 Google Chrome: ~/.config/google-chrome/Default
 Chromium: ~/.config/chromium/Default
-
 
 Chrome OS
 /home/chronos/</pre>

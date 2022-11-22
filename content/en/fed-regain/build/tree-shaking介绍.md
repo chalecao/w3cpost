@@ -1,24 +1,9 @@
 ---
 title: tree shaking介绍
 
-
-date: 2019-06-07T11:48:37+00:00
-url: /javascriptnodejs/4459.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/160bfdcf2a31ce4a.gif
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/160bfdcf2a31ce4a.gif
-fifu_image_alt:
-  - tree shaking介绍
-like:
-  - 3
-views:
-  - 1336
-
-
 ---
-<h1 class="article-title" data-v-3f6f7ca1="">Tree-Shaking性能优化实践 &#8211; 原理篇</h1> <div class="article-content" data-v-3f6f7ca1="" data-id="5a4dc9a66fb9a044ff31e06c"> 
 
-
+<h1 class="article-title" data-v-3f6f7ca1="">Tree-Shaking性能优化实践 &#8211; 原理篇</h1> <div class="article-content" data-v-3f6f7ca1="" data-id="5a4dc9a66fb9a044ff31e06c">
 
 <div>
   <h2 data-id="heading-0">
@@ -111,7 +96,7 @@ views:
     <p id="LvIxJtB">
       <img loading="lazy" width="720" height="405" class="alignnone size-full wp-image-4906 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aee3a2e038.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aee3a2e038.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aee3a2e038.png?x-oss-process=image/format,webp 720w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aee3a2e038.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_169/format,webp 300w" sizes="(max-width: 720px) 100vw, 720px" />
     </p>
-    
+
     <div>
       图4
     </div>
@@ -147,7 +132,7 @@ views:
     <p id="RzymgnQ">
       <img loading="lazy" width="720" height="438" class="alignnone size-full wp-image-4907 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aee4d55202.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aee4d55202.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aee4d55202.png?x-oss-process=image/format,webp 720w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aee4d55202.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_183/format,webp 300w" sizes="(max-width: 720px) 100vw, 720px" />
     </p>
-    
+
     <div>
       图5
     </div>
@@ -169,7 +154,7 @@ views:
     <p id="mfrmpyr">
       <img loading="lazy" width="720" height="463" class="alignnone size-full wp-image-4924 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4af09d0815f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4af09d0815f.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4af09d0815f.png?x-oss-process=image/format,webp 720w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4af09d0815f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_193/format,webp 300w" sizes="(max-width: 720px) 100vw, 720px" />
     </p>
-    
+
     <div>
       图6
     </div>
@@ -314,7 +299,7 @@ views:
     <p id="UonUqMQ">
       <img loading="lazy" width="720" height="446" class="alignnone size-full wp-image-4914 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aef1c2f776.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aef1c2f776.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aef1c2f776.png?x-oss-process=image/format,webp 720w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aef1c2f776.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_186/format,webp 300w" sizes="(max-width: 720px) 100vw, 720px" />
     </p>
-    
+
     <div>
       main.js
     </div>
@@ -324,7 +309,7 @@ views:
     <p id="dUcnjRv">
       <img loading="lazy" width="720" height="507" class="alignnone size-full wp-image-4915 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aef2f66ddc.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aef2f66ddc.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aef2f66ddc.png?x-oss-process=image/format,webp 720w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aef2f66ddc.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_211/format,webp 300w" sizes="(max-width: 720px) 100vw, 720px" />
     </p>
-    
+
     <div>
       menu.js
     </div>
@@ -368,7 +353,7 @@ views:
     <p id="OZbDRUz">
       <img loading="lazy" class="alignnone wp-image-4918 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aef6cb621b.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aef6cb621b.png?x-oss-process=image/format,webp" alt="" width="178" height="182" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aef6cb621b.png?x-oss-process=image/format,webp 521w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aef6cb621b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_293,h_300/format,webp 293w" sizes="(max-width: 178px) 100vw, 178px" />
     </p>
-    
+
     <div>
       what happend？
     </div>
@@ -386,7 +371,7 @@ views:
     <p id="gLjTEmp">
       <img loading="lazy" width="720" height="482" class="alignnone size-full wp-image-4919 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aef81e7fd2.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aef81e7fd2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aef81e7fd2.png?x-oss-process=image/format,webp 720w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4aef81e7fd2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_201/format,webp 300w" sizes="(max-width: 720px) 100vw, 720px" />
     </p>
-    
+
     <p>
       &nbsp;
     </p>

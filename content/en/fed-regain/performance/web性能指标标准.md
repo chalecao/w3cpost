@@ -1,19 +1,6 @@
 ---
 title: web性能指标标准
 
-
-date: 2020-11-14T08:44:55+00:00
-url: /javascriptnodejs/6167.html
-classic-editor-remember:
-  - classic-editor
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png
-views:
-  - 618
-fifu_image_alt:
-  - web性能指标标准
-
-
 ---
 很多人关注的、包括网上发布的一些文章大多都是关于性能优化手段，也有关于性能指标的以及如何做性能监控的，这些很多都基于 Web 性能标准以及浏览器对 Web 性能标准的实现。
 
@@ -27,10 +14,10 @@ fifu_image_alt:
 
 本篇文章将与大家一起，系统的学习这些 Web 性能标准。我将 Web 性能标准大体分为两类：**性能度量**相关和**优化策略**相关。在介绍每种标准时，我将按这样的顺序介绍：
 
-  * 标准的用处
-  * 标准的版本
-  * 标准包含的内容
-  * 与其他标准的关系
+* 标准的用处
+* 标准的版本
+* 标准包含的内容
+* 与其他标准的关系
 
 ## 性能度量 {#0}
 
@@ -40,13 +27,13 @@ fifu_image_alt:
 
 在 HTML 规范中定义了 [Window][4] 对象，我们可以通过 window 来获取一个 Window 对象， 在 window 上挂载了很多我们熟悉的 API， 例如:
 
-  * window.document
-  * window.history
-  * window.localStorage
-  * window.location
-  * window.navigator
-  * window.postMessage
-  * &#8230;
+* window.document
+* window.history
+* window.localStorage
+* window.location
+* window.navigator
+* window.postMessage
+* &#8230;
 
 这些 API 都由不同的 W3C 标准定义，而 Web 性能标准则是在 window 上添加了 performance 属性，通过 window.performance 返回一个 Performance 对象。
 
@@ -58,25 +45,25 @@ fifu_image_alt:
 
 此标准有两个版本 Level 1 和  Level 2，Level 2 已经是正式发布的标准，所以 Level 1 已经过时了，官方不建议再使用，我们只需要知道 Level 2 定义了哪些规范就好。
 
-  * <del><a href="https://www.w3.org/TR/2012/REC-hr-time-20121217/#sec-high-resolution-time">High Resolution Time Level 1 </a></del> （已过时）
-  * [High Resolution Time Level 2][5]  （REC）&#x2714;︎
+* <del><a href="https://www.w3.org/TR/2012/REC-hr-time-20121217/#sec-high-resolution-time">High Resolution Time Level 1 </a></del> （已过时）
+* [High Resolution Time Level 2][5]  （REC）&#x2714;︎
 
 Level 2 包含了这些内容：
 
-  * **1、定义了测量性能数据的初始时间（Time Origin）**
+* **1、定义了测量性能数据的初始时间（Time Origin）**
 
 我们获取到的性能数据都是时间戳，需要一个初始时间来计算时间差，即某一阶段的耗时。
 
-  * **2、定义了高精度时间戳 DOMHighResTimeStamp**
+* **2、定义了高精度时间戳 DOMHighResTimeStamp**
 
 **  
 用于存储以毫秒为单位的时间值，Web 性能规范定义的 API 获取到的时间都为高精度的时间戳。  
-** 
+**
 
-  * **3、定义了 Performance 对象，以及 Performance 对象的几个属性和方法。**
-  * now()
-  * timeOrigin
-  * toJSON()
+* **3、定义了 Performance 对象，以及 Performance 对象的几个属性和方法。**
+* now()
+* timeOrigin
+* toJSON()
 
 所有的性能数据都是通过 window.performance 返回的 Performance 对象获得的，下面的 Time 相关的性能标准所定义的属性和方法都是在 window.performance 和 Performance 对象中。
 
@@ -90,15 +77,15 @@ Level 2 包含了这些内容：
 
 此标准目前有两个版本 Level 1 和 Level 2。Level 1 目前是 REC 状态，Level 2 规范还在草案阶段，当 Level 2 规范正式发布时， Level 1 也将被废弃。
 
-  * [Performance Timeline][8]   （REC）
-  * [Performance Timeline Level 2][9]  （WD） &#x2714;︎
+* [Performance Timeline][8]   （REC）
+* [Performance Timeline Level 2][9]  （WD） &#x2714;︎
 
 Level 2 规范包含了这些内容：
 
-  * **1、给 **[**Performance**][10]** 对象添加了三个方法：** 
-      * getEntries()
-      * getEntriesByType()
-      * getEntriesByName()
+* **1、给**[**Performance**][10]**对象添加了三个方法：**
+  * getEntries()
+  * getEntriesByType()
+  * getEntriesByName()
 
 我们可以在浏览器控制台输入这段代码，看看 Entry 是什么。
 
@@ -106,7 +93,7 @@ Level 2 规范包含了这些内容：
   <div class="copytoclipboard-wrapper" style="position: relative;">
     <pre class=" language-json"><code class=" language-json">window.performance.getEntries(&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -115,14 +102,14 @@ Level 2 规范包含了这些内容：
 
 返回的是一个数组，数组中包含这几种对象，每种对象都继承自 PerformanceEntry 对象，即都包含 PerformanceEntry 的两个字段： name 和 entryType。
 
-  * PerformanceResourceTiming
-  * PerformanceNavigationTiming
-  * PerformancePaintTiming
-  * PerformanceMark
-  * PerformanceMeasure
-  * PerformanceEventTiming
-  * PerformanceServerTiming
-  * &#8230;
+* PerformanceResourceTiming
+* PerformanceNavigationTiming
+* PerformancePaintTiming
+* PerformanceMark
+* PerformanceMeasure
+* PerformanceEventTiming
+* PerformanceServerTiming
+* &#8230;
 
 这些对象包含 Web 应用程序整个生命周期的各种性能数据度量。
 
@@ -135,7 +122,7 @@ Level 2 规范包含了这些内容：
     <pre class=" language-javascript"><code class=" language-javascript">performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByType&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'paint'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByName&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'https://www.google.com/images/nav_logo299.webp'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -150,7 +137,7 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
       <th>
         <strong>Interface</strong>
       </th>
-      
+
       <th>
         <strong>EntryType</strong>
       </th>
@@ -292,7 +279,7 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
   </table>
 </div>
 
-Entry Type 表示** **PerformanceEntry 对象的类型，W3C 性能工作组制定了一个 Entry Type 名称的注册规范：[Timing Entry Names Registry][11]， 该规范目前在 Working Draft 阶段。
+Entry Type 表示****PerformanceEntry 对象的类型，W3C 性能工作组制定了一个 Entry Type 名称的注册规范：[Timing Entry Names Registry][11]， 该规范目前在 Working Draft 阶段。
 
 目前已经注册的 Type 有这些：
 
@@ -300,11 +287,11 @@ Entry Type 表示** **PerformanceEntry 对象的类型，W3C 性能工作组制
   <img loading="lazy" width="2574" height="776" class="alignnone size-full wp-image-6170 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/format,webp 2574w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_90/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_241/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_232/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_463/format,webp 1536w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_2048,h_617/format,webp 2048w" sizes="(max-width: 2574px) 100vw, 2574px" />
 </p>
 
-  * **2、定义了 **[**PerformanceEntry**][12]** 对象**
+* **2、定义了**[**PerformanceEntry**][12]**对象**
 
 PerformanceEntry 对象具有 name、entryType、startTime、duration、 toJSON() 这些属性，是 PerformanceResourceTiming、PerformanceNavigationTiming 等对象的公共属性，所以将被后面介绍的其他规范定义的对象（如 PerformanceResourceTiming、PerformanceNavigationTiming 等）继承。
 
-  * **3、定义了 **[**PerformanceObserver**][13] **对象**
+* **3、定义了**[**PerformanceObserver**][13] **对象**
 
 用于观察性能时间线，以便在记录新的性能指标时发出通知, 这在采集性能数据时经常用到。例如下面的例子，观察 resource 类型的性能数据并打印。
 
@@ -344,7 +331,7 @@ resourceObserver.observe(&lt;span class="token punctuation">{&lt;/span>type&lt;s
 &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -359,10 +346,10 @@ resourceObserver.observe(&lt;span class="token punctuation">{&lt;/span>type&lt;s
 
 此规范有两个版本 Level 1 和  Level 2， Level 1 在 2017 年就成为了候选推荐版本，到今天也没有正式发布。Level 2 当前还在工作草案阶段，在 2020.02.18 还在更新，但并没有在文档中说明与 Level 1 的关系。
 
-  * [Resource Timing Level 1][14]   （CR）
-  * [Resource Timing Level 2][15]  （WD）&#x2714;︎
+* [Resource Timing Level 1][14]   （CR）
+* [Resource Timing Level 2][15]  （WD）&#x2714;︎
 
-从两个版本的内容看，内容差别不大，但 Level 2 新增了[ IANA Considerations][16] 用于将 Timing-Allow-Origin 设置为临时消息头，并更新了资源时序处理模型。
+从两个版本的内容看，内容差别不大，但 Level 2 新增了[IANA Considerations][16] 用于将 Timing-Allow-Origin 设置为临时消息头，并更新了资源时序处理模型。
 
 &nbsp;
 
@@ -375,14 +362,14 @@ resourceObserver.observe(&lt;span class="token punctuation">{&lt;/span>type&lt;s
 
 Level 2 规范包含了这些内容：
 
-  * **1、定义了 **[**PerformanceResourceTiming**][17]** 对象**
+* **1、定义了**[**PerformanceResourceTiming**][17]**对象**
 
 此对象描述了资源请求的性能时间线。
 
-  * **2、给 Performance 对象添加了如下方法** 
-      * clearResourceTimings()
-      * setResourceTimingBufferSize()
-  * **3、定义了 **[**Timing-Allow-Origin**][18]** 响应头**
+* **2、给 Performance 对象添加了如下方法**
+  * clearResourceTimings()
+  * setResourceTimingBufferSize()
+* **3、定义了**[**Timing-Allow-Origin**][18]**响应头**
 
 对于跨域请求的资源，获取到的 PerformanceResourceTiming 对象中的属性值（时间），由于[跨域限制][19]，浏览器不会将资源的性能数据提供给用户，这些时间值都会被设置为 0 。
 
@@ -394,7 +381,7 @@ Level 2 规范包含了这些内容：
   <div class="copytoclipboard-wrapper" style="position: relative;">
     <pre class=" language-javascript"><code class=" language-javascript">performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByType&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'resource'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -407,7 +394,7 @@ Level 2 规范包含了这些内容：
   <div class="copytoclipboard-wrapper" style="position: relative;">
     <pre class=" language-javascript"><code class=" language-javascript">performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByName&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'https://www.google.com/images/nav_logo299.webp'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -422,18 +409,18 @@ Level 2 规范包含了这些内容：
 
 此标准目前有两个版本，Level 1 已经是 2012 年的版本了， Level 2 最新更新在 2020 年 1 月，将来 Level 2 会替代 Level 1 版本。
 
-  * [Navigation Timing Level 1][6]  （REC）
-  * [Navigation Timing Level 2][20]  （WD）&#x2714;︎
+* [Navigation Timing Level 1][6]  （REC）
+* [Navigation Timing Level 2][20]  （WD）&#x2714;︎
 
 目前很多浏览器已经实现了 Level 2，建议使用 Level 2 规范定义的 API。因为 Level 1 和 Level 2 的差别比较大，但  Level 1 定义的 API 仍有很多人在用，所以下面都详细介绍下。
 
-**Navigation Timing Level 1** 
+**Navigation Timing Level 1**
 
 前面提到了 High Resolution Time API 定义了 Performance 对象，可通过 window.performance 获取。而 Navigation Timing Level 1 则是在此基础上增加了两个属性：timing 和 navigation。
 
 规范包含了以下内容：
 
-  * **1、定义了 PerformanceTiming 对象**
+* **1、定义了 PerformanceTiming 对象**
 
 用来衡量页面性能，我们可以通过通过 window.performance.timing 获取页面的性能数据，返回的对象中每个字段的含义可以在 [PerformanceTiming | MDN][21] 上查阅。
 
@@ -442,13 +429,13 @@ Level 2 规范包含了这些内容：
 <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf959bc391d4.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf959bc391d4.png?x-oss-process=image/format,webp" /> [  
 https://www.w3.org/TR/navigation-timing/timing-overview.png][22]
 
-  * **2、定义了 PerformanceNavigation 对象**
+* **2、定义了 PerformanceNavigation 对象**
 
 用来描述加载相关的操作，通过 window.performance.navigation 获得，返回的 PerformanceNavigation 对象存储了两个属性，它们表示触发页面加载的原因。这些原因可能是页面重定向、前进后退按钮或者普通的 URL 加载
 
 返回的对象中每个字段的含义可以在 [PerformanceNavigation | MDN][23] 上查阅。
 
-  * **3、定义了 window.performance 属性**
+* **3、定义了 window.performance 属性**
 
 为 Window 对象添加了 performance 属性：timing 和 navigation
 
@@ -458,19 +445,19 @@ https://www.w3.org/TR/navigation-timing/timing-overview.png][22]
 
 Level 2 新增了以下这些内容，我们可以先不用理解这段英文讲的什么，在阅读完这一小节后就能理解 Level 2 做了哪些更新了。
 
->   * the definition of Performance interface was moved to [[PERFORMANCE-TIMELINE-2][24]];
->   * builds on top of [[RESOURCE-TIMING-2][25]];
->   * support for [[PERFORMANCE-TIMELINE-2][24]];
->   * support for [[HR-TIME-2][26]];
->   * support for [prerender][27] navigations [[RESOURCE-HINTS][28]];
->   * exposes [number of redirects][29] since the last non-redirect navigation;
->   * exposes [next hop network protocol][30];
->   * exposes [transfer][31], [encoded body][32] and [decoded body][33] size information;
->   * [secureConnectionStart][34] attribute is now mandatory.
+> * the definition of Performance interface was moved to [[PERFORMANCE-TIMELINE-2][24]];
+> * builds on top of [[RESOURCE-TIMING-2][25]];
+> * support for [[PERFORMANCE-TIMELINE-2][24]];
+> * support for [[HR-TIME-2][26]];
+> * support for [prerender][27] navigations [[RESOURCE-HINTS][28]];
+> * exposes [number of redirects][29] since the last non-redirect navigation;
+> * exposes [next hop network protocol][30];
+> * exposes [transfer][31], [encoded body][32] and [decoded body][33] size information;
+> * [secureConnectionStart][34] attribute is now mandatory.
 
 Level 2 规范主要包含以下内容：
 
-  * **1、定义了 [PerformanceNavigationTiming][35] 对象**
+* **1、定义了 [PerformanceNavigationTiming][35] 对象**
 
 此对象用于度量文档的性能，我们可以通过以下方式获取文档的性能数据，所有时间值都是以 [Origin Time][36] 为起点测量的。
 
@@ -478,7 +465,7 @@ Level 2 规范主要包含以下内容：
   <div class="copytoclipboard-wrapper" style="position: relative;">
     <pre class=" language-javascript"><code class=" language-javascript">window&lt;span class="token punctuation">.&lt;/span>performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByType&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"navigation"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -502,7 +489,7 @@ Level 2 规范主要包含以下内容：
 
 console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>protos&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -542,7 +529,7 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
         &lt;span class="token string">"requestStart"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
         &lt;span class="token string">"responseStart"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
         &lt;span class="token string">"responseEnd"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"transferSize"&lt;/span>&lt;span class="token punctuation">,&lt;/span> 
+        &lt;span class="token string">"transferSize"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
         &lt;span class="token string">"encodedBodySize"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
         &lt;span class="token string">"decodedBodySize"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
         &lt;span class="token string">"serverTiming"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
@@ -557,7 +544,7 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
     &lt;span class="token punctuation">]&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -580,7 +567,7 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 &lt;span class="token string">"redirectCount"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
 &lt;span class="token string">"toJSON"&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -591,9 +578,9 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 
 而 Navigation Timing Level 1 中的通过 window.performance.timing 获取的 PerformanceTiming 对象所包含的描述文档性能的数据则是由以下对象共同描述的：
 
-  * [Navigation Timing Level 2][20] 定义的 PerformanceNavigationTiming 对象
-  * [Resource Timing Level 2][15] 定义的 PerformanceResourceTiming 对象
-  * [Performance Timeline Level 2][9] 定义的 PerformanceEntry 对象
+* [Navigation Timing Level 2][20] 定义的 PerformanceNavigationTiming 对象
+* [Resource Timing Level 2][15] 定义的 PerformanceResourceTiming 对象
+* [Performance Timeline Level 2][9] 定义的 PerformanceEntry 对象
 
 > 我们可以通过 [Resource Timing Level 2][15] 标准中定义的 API window.performance.getEntriesByType(&#8220;resource&#8221;) 获取特定资源所需的时间长度。
 
@@ -656,11 +643,11 @@ exposes [transfer][31], [encoded body][32] and [decoded body][33] size informati
 
 此规范只有一个版本，这是第一个也是最新的版本，目前还在 Working Draft 阶段。
 
-  * [Paint Timing][41] （WD）&#x2714;︎
+* [Paint Timing][41] （WD）&#x2714;︎
 
 此规范包含以下内容：
 
-  * **1、定义了 PerformancePaintTiming 对象**
+* **1、定义了 PerformancePaintTiming 对象**
 
 用于描述在页面加载期间的一些关键时间点的性能度量，我们可以在控制台通过以下语句查看：
 
@@ -668,7 +655,7 @@ exposes [transfer][31], [encoded body][32] and [decoded body][33] size informati
   <div class="copytoclipboard-wrapper" style="position: relative;">
     <pre class=" language-javascript"><code class=" language-javascript">performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByType&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'paint'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -677,7 +664,7 @@ exposes [transfer][31], [encoded body][32] and [decoded body][33] size informati
 
 结果返回一个每一项都为 PerformancePaintTiming 类型的数组，一项为 first-paint ，另一项为 first-contentful-paint。
 
-  * **2、提出了一些关键时间点的定义，例如  First Paint 、First Contentful Paint**
+* **2、提出了一些关键时间点的定义，例如  First Paint 、First Contentful Paint**
 
 First Paint，是从导航到浏览器将第一个像素呈现到屏幕的时间，这不包括默认的背景绘制，但包括非默认的背景绘制。这是开发人员关心页面加载的第一个关键时刻——当浏览器开始呈现页面时。
 
@@ -689,19 +676,19 @@ First Paint，是从导航到浏览器将第一个像素呈现到屏幕的时间
 
 此规范定义了一个可以让 Web 开发者测量性能的 API 。目前有两个版本， Level 2 已正式发布，Level 3 还在草案阶段，将来也会替代 Level 2。
 
-  * [User Timing Level 2][42] （REC）
-  * [User Timing Level 3][43] (WD) &#x2714;︎
+* [User Timing Level 2][42] （REC）
+* [User Timing Level 3][43] (WD) &#x2714;︎
 
 Level 3 在 Level 2 的基础上做了改动，下面介绍 Level 3 规范包含的内容。
 
-  * **1、给 **[**Performance**][44] **对象添加了几个方法**
+* **1、给**[**Performance**][44] **对象添加了几个方法**
 
 &nbsp;
 
-  * mark()
-  * clearMarks()
-  * measure()
-  * clearMeasures()
+* mark()
+* clearMarks()
+* measure()
+* clearMeasures()
 
 使用方法如下，通过 mark() 方法可以在指定位置添加一个时间戳，记录执行到此位置时的时间。Mark 就是标记的意思，并且会给这个标记一个名称。
 
@@ -722,7 +709,7 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
   &lt;span class="token string">"mySetTimeout-end"&lt;/span>
 &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -746,18 +733,18 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
     end&lt;span class="token punctuation">:&lt;/span> performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">now&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">,&lt;/span>
  &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
   </div>
 </div>
 
-  * **2、定义了 PerformanceMark 对象**
+* **2、定义了 PerformanceMark 对象**
 
 描述 mark() 方法返回的数据, 可以通过 performance.getEntriesByType(&#8216;mark&#8217;) 获得，字段的具体含义可以在这里查看：[Performance.mark() | MDN][45]， 其中 detail 字段是在 Level 3 规范中定义的。
 
-  * **3、定义了 PerformanceMeasure 对象**
+* **3、定义了 PerformanceMeasure 对象**
 
 描述 measure() 方法返回的数据，performance.getEntriesByType(&#8216;measure&#8217;)，字段的具体含义可以在[Performance.measure() | MDN][46] 查看，其中 detail 字段是在 Level 3 规范中定义的。
 
@@ -771,11 +758,11 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
 
 此规范只有一个版本，目前在 Working Draft 阶段。
 
-  * [Server Timing][47] （WD）&#x2714;︎
+* [Server Timing][47] （WD）&#x2714;︎
 
 此规范包含以下内容：
 
-  * **1、定义了与服务端的通信协议：Server-Timing 响应头**
+* **1、定义了与服务端的通信协议：Server-Timing 响应头**
 
 响应头信息如下, 可以在 <https://www.w3.org/TR/server-timing/#examples> 查看响应头的具体含义
 
@@ -792,18 +779,18 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
 &lt; (... snip response body ...)
 &lt; Server-Timing: total;dur=123.4
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
   </div>
 </div>
 
-  * **2、定义了描述服务端性能度量的接口 PerformanceServerTiming 对象**
+* **2、定义了描述服务端性能度量的接口 PerformanceServerTiming 对象**
 
 浏览器会通过 [Server Timing Header 的解析算法][48] 将解析后的每一个性能度量用 PerformanceServerTiming 对象来表示。
 
-  * **3、给 **[**PerformanceResourceTiming**][49]** 对象添加了 serverTiming 属性**
+* **3、给**[**PerformanceResourceTiming**][49]**对象添加了 serverTiming 属性**
 
 每个 PerformanceServerTiming 描述服务端的一个性能度量信息，这些度量服务端性能的所有PerformanceServerTiming 对象放在一个数组中，挂在  PerformanceResourceTiming 对象的 serverTiming 属性上，我们可以通过以下语句获取：
 
@@ -812,7 +799,7 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
     <pre class=" language-javascript"><code class=" language-javascript">performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByType&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'navigation'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByType&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'resource'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -832,15 +819,15 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
 
 此规范目前只有一个版本，在 Working Draft 阶段。
 
-  * [Long Tasks API 1][50] （WD） &#x2714;︎
+* [Long Tasks API 1][50] （WD） &#x2714;︎
 
 此规范包含以下内容：
 
-  * **1、定义了 PerformanceLongTaskTiming 对象**
+* **1、定义了 PerformanceLongTaskTiming 对象**
 
 用于描述 Long Task 信息，对象中各字段的含义可在 [Long Tasks API | MDN][51] 查阅。
 
-  * **2、定义了什么是 Long Task**
+* **2、定义了什么是 Long Task**
 
 Long Task 是指超过 50ms 的事件循环任务。
 
@@ -863,7 +850,7 @@ observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 &lt;span class="token comment" spellcheck="true">// Long script execution after this will result in queueing&lt;/span>
 &lt;span class="token comment" spellcheck="true">// and receiving "longtask" entries in the observer.&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -884,11 +871,11 @@ observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 此规范目前只有一个版本，还在工作草案阶段。
 
-  * [Resource Hints][54]  Working Draft
+* [Resource Hints][54]  Working Draft
 
 下面介绍此规范定义的 4 个资源提示：
 
-  * **1、资源提示: dns-prefetch(Resource Hints: dns-prefetch)**
+* **1、资源提示: dns-prefetch(Resource Hints: dns-prefetch)**
 
 给浏览器提示，在后台执行 DNS 查找以提高性能。
 
@@ -896,14 +883,14 @@ observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
   <div class="copytoclipboard-wrapper" style="position: relative;">
     <pre class=" language-html"><code class=" language-html">&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>link&lt;/span> &lt;span class="token attr-name">rel&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>dns-prefetch&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">href&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>//example.com&lt;span class="token punctuation">"&lt;/span>&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
   </div>
 </div>
 
-  * **2、资源提示:预连接(Resource Hints: preconnect)**
+* **2、资源提示:预连接(Resource Hints: preconnect)**
 
 给浏览器提示在后台开始连接握手(DNS，TCP，TLS)以提高性能。
 
@@ -912,14 +899,14 @@ observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
     <pre class=" language-html"><code class=" language-html">&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>link&lt;/span> &lt;span class="token attr-name">rel&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>preconnect&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">href&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>//example.com&lt;span class="token punctuation">"&lt;/span>&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
 &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>link&lt;/span> &lt;span class="token attr-name">rel&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>preconnect&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">href&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>//cdn.example.com&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">crossorigin&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
   </div>
 </div>
 
-  * 3、**资源提示:预取(Resource Hints: prefetch)**
+* 3、**资源提示:预取(Resource Hints: prefetch)**
 
 `<link rel=prefetch />` 告诉浏览器获取下一次导航可能需要的资源。大多数情况下，这意味着将以极低的优先级来获取资源（因为浏览器知道当前页面中需要的所有内容比我们认为在下一页中需要的资源更重要）。这意味着 prefetch 的主要用处是加快下一个导航的速度，而不是当前的导航。
 
@@ -928,7 +915,7 @@ observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
     <pre class=" language-html"><code class=" language-html">&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>link&lt;/span> &lt;span class="token attr-name">rel&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>prefetch&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">href&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>//example.com/next-page.html&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">as&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>document&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">crossorigin&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>use-credentials&lt;span class="token punctuation">"&lt;/span>&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
 &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>link&lt;/span> &lt;span class="token attr-name">rel&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>prefetch&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">href&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>/library.js&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">as&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>script&lt;span class="token punctuation">"&lt;/span>&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -937,10 +924,10 @@ observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 prefetch 有 3 条规则：
 
-  * 用户代理在获取资源后不会做预处理，也不会在当前页面使用这个资源。
-  * as 属性是一个可选属性，符合 [[PRELOAD][55]] 中的定义。
-  * crossorigin CORS 设置属性是一个可选属性，指示指定资源的 CORS 策略。
-  * **4、资源提示:预渲染(Resource Hints: prerender)**
+* 用户代理在获取资源后不会做预处理，也不会在当前页面使用这个资源。
+* as 属性是一个可选属性，符合 [[PRELOAD][55]] 中的定义。
+* crossorigin CORS 设置属性是一个可选属性，指示指定资源的 CORS 策略。
+* **4、资源提示:预渲染(Resource Hints: prerender)**
 
 给浏览器提供提示，以便在后台呈现指定的页面，如果用户导航到页面，则会加快页面加载速度。用于获取下一个可能的 HTML 导航，并通过获取必要的子资源并执行它们来预处理 HTML 响应（即预呈现页面）。
 
@@ -948,7 +935,7 @@ prefetch 有 3 条规则：
   <div class="copytoclipboard-wrapper" style="position: relative;">
     <pre class=" language-html"><code class=" language-html">&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>link&lt;/span> &lt;span class="token attr-name">rel&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>prerender&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">href&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>//example.com/next-page.html&lt;span class="token punctuation">"&lt;/span>&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -965,7 +952,7 @@ prefetch 有 3 条规则：
 
 此规范定义了可与 link 元素一起使用的 preload 资源提示，可以告诉用户代理预读取资源而不必执行它们，允许将资源加载与执行分离，细粒度控制资源何时和如何加载。
 
-  * [Preload][55]  Candidate Recommendation
+* [Preload][55]  Candidate Recommendation
 
 例如，应用程序可以使用 preload 关键字启动 CSS 资源的早期、高优先级和非呈现阻塞获取，然后应用程序可以在适当的时间应用这些获取：
 
@@ -987,7 +974,7 @@ document&lt;span class="token punctuation">.&lt;/span>head&lt;span class="token 
 Using HTTP Header
 Link: &lt;https://example.com/other/styles.css&gt;; rel=preload; as=style
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -1014,19 +1001,19 @@ prefetch 和 preload 都可以声明一个资源及其获取属性，但在用�
 
 此规范目前有两个版本，Level 2 在 Proposed Recommendation 阶段将会替代  Second Edition 这个版本。
 
-  * [Page Visibility (Second Edition)][60] （REC）
-  * [Page Visibility Level 2][61] （PR） &#x2714;︎
+* [Page Visibility (Second Edition)][60] （REC）
+* [Page Visibility Level 2][61] （PR） &#x2714;︎
 
 Level 2 规范包含以下内容：
 
-  * **1、定义了页面状态的枚举：VisibilityState**
+* **1、定义了页面状态的枚举：VisibilityState**
 
 这个枚举对象我们是用不到的，而是浏览器用的。
 
-  * **2、给 **[**Document**][62]** 对象添加了三个属性** 
-      * hidden
-      * visibilityState
-      * onvisibilitychange 事件
+* **2、给**[**Document**][62]**对象添加了三个属性**
+  * hidden
+  * visibilityState
+  * onvisibilitychange 事件
 
 我们可以通过 document.hidden 和 document.visibilityState 访问页面可见状态。
 
@@ -1054,7 +1041,7 @@ Level 2 规范包含以下内容：
 
 document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">addEventListener&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'visibilitychange'&lt;/span>&lt;span class="token punctuation">,&lt;/span> handleVisibilityChange&lt;span class="token punctuation">,&lt;/span> &lt;span class="token boolean">false&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -1067,19 +1054,19 @@ document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 此规范定义了后台任务协同调度 API，提供了由用户代理决定在空闲时间自动执行队列任务的能力，在 [Background Tasks API | MDN][64] 中有详细介绍。
 
-  * [Cooperative Scheduling of Background Tasks][65]  （PR） &#x2714;︎
+* [Cooperative Scheduling of Background Tasks][65]  （PR） &#x2714;︎
 
 规范名称为 Cooperative Scheduling of Background Tasks， 而不是 requestIdleCallback。
 
 此规范包含以下内容：
 
-  * **1、给 **[**Window**][66]** 接口增加了新的方法** 
-      *  requestIdleCallback()
-      *  cancelIdleCallback()
+* **1、给**[**Window**][66]**接口增加了新的方法**
+  * requestIdleCallback()
+  * cancelIdleCallback()
 
 我们可以使用 requestIdleCallback() 在浏览器空闲时运行高耗时、低优先级的任务。
 
-  * **2、定义了 IdleDeadline 对象**
+* **2、定义了 IdleDeadline 对象**
 
 可以通过规范中的这个示例来解释，requestIdleCallback 方法接收一个函数（需要在空闲时间执行的任务）refinePi， 该函数的参数 deadline 就是 IdleDeadline 类型，这个对象提供一个 [timeRemaining()][67] 函数，用于获取任务可利用的空闲时间。
 
@@ -1100,7 +1087,7 @@ document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
   requestId &lt;span class="token operator">=&lt;/span> window&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">requestIdleCallback&lt;/span>&lt;span class="token punctuation">(&lt;/span>refinePi&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>
@@ -1109,11 +1096,11 @@ document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 空闲回调应尽可能不超支分配到的时间，关于如何充分利用空闲回调，这里有几点建议，不过更建议您去 [Background Tasks API | MDN][64] 查看详细内容。
 
-  * 对非高优先级的任务使用空闲回调。
-  * 空闲回调应尽可能不超支分配到的时间。
-  * 避免在空闲回调中改变 DOM。
-  * 避免运行时间无法预测的任务。
-  * 在你需要的时候要用 timeout，但记得只在需要的时候才用。
+* 对非高优先级的任务使用空闲回调。
+* 空闲回调应尽可能不超支分配到的时间。
+* 避免在空闲回调中改变 DOM。
+* 避免运行时间无法预测的任务。
+* 在你需要的时候要用 timeout，但记得只在需要的时候才用。
 
 欢迎学习前端知识体系课程，本系列属于：[前端增长教程][1]
 
@@ -1123,11 +1110,11 @@ document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 我们经常需要尝试在卸载（unload）文档之前向 Web 服务上报性能数据。过早的发送数据可能导致错过收集数据的机会。但对于开发者来说保证在文档卸载期间发送数据一直是一个困难，因为用户代理通常会**忽略**在 unload 事件处理器中产生的**异步 XMLHttpRequest**。
 
-为了解决这个问题，通常要在 unload 或者 beforeunload 事件处理器中发起一个同步 XMLHttpRequest** **来发送数据。同步的 XMLHttpRequest 迫使用户代理延迟卸载文档，使得下一个导航出现的更晚，而下一个页面对于这种较差的载入表现无能为力。
+为了解决这个问题，通常要在 unload 或者 beforeunload 事件处理器中发起一个同步 XMLHttpRequest****来发送数据。同步的 XMLHttpRequest 迫使用户代理延迟卸载文档，使得下一个导航出现的更晚，而下一个页面对于这种较差的载入表现无能为力。
 
 此规范给 navigator 添加了一种方法，使用 navigator.sendBeacon() 方法会使用户代理在有机会时异步地向服务器发送数据，同时不会延迟页面的卸载或影响下一导航的载入性能。
 
-  * [Beacon][68] （CR）
+* [Beacon][68] （CR）
 
 用法如下：
 
@@ -1139,7 +1126,7 @@ document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
     navigator&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">sendBeacon&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"/log"&lt;/span>&lt;span class="token punctuation">,&lt;/span> analyticsData&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
-    
+
     <p>
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
     </p>

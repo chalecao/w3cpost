@@ -2,14 +2,6 @@
 title: iframe的方方面面
 
 
-date: 2017-08-29T08:42:45+00:00
-excerpt: iframe 提供了一个简单的方式把一个网站的内容嵌入到另一个网站中。但我们需要慎重的使用iframe。iframe的创建比其它包括scripts和css的 DOM 元素的创建慢了 1-2 个数量级。使用 iframe 的页面一般不会包含太多 iframe，所以创建 DOM 节点所花费的时间不会占很大的比重。但带来一些其它的问题：onload 事件以及连接池(connection pool)。
-url: /html5css3/813.html
-views:
-  - 2253
-  - 2253
-
-
 ---
   
 
@@ -18,16 +10,12 @@ views:
 
 iframe 提供了一个简单的方式把一个网站的内容嵌入到另一个网站中。但我们需要慎重的使用iframe。iframe的创建比其它包括scripts和css的 DOM 元素的创建慢了 1-2 个数量级。使用 iframe 的页面一般不会包含太多 iframe，所以创建 DOM 节点所花费的时间不会占很大的比重。但带来一些其它的问题：onload 事件以及连接池(connection pool)。  
 <a></a>  
-![iframe的方方面面][2] 
+![iframe的方方面面][2]
 
 ### [][3]iframe用法
 
 关于详细的用法，可以参考<a href="https://www.w3school.com.cn/tags/tag_iframe.asp" target="_blank" rel="external">w3school iframe</a>  
 下面给出一个常用的无边框的iframe的例子：
-
-
-
-
 
 ### [][4]Iframes阻塞页面加载
 
@@ -35,7 +23,7 @@ iframe 提供了一个简单的方式把一个网站的内容嵌入到另一个�
 
 window 的 onload 事件需要在所有 iframe 加载完毕后(包含里面的元素)才会触发。在 Safari 和 Chrome 里，通过 JavaScript 动态设置 iframe 的 SRC 可以避免这种阻塞情况。
 
-###唯一的连接池
+### 唯一的连接池
 
 浏览器只能开少量的连接到web服务器。比较老的浏览器，包含 Internet Explorer 6 & 7 和 Firefox 2，只能对一个域名(hostname)同时打开两个连接。这个数量的限制在新版本的浏览器中有所提高。Safari 3+ 和 Opera 9+ 可同时对一个域名打开 4 个连接，Chrome 1+, IE 8 以及 Firefox 3 可以同时打开 6 个。你可以通过这篇文章查看具体的数据表：Roundup on Parallel Connections.
 
@@ -51,23 +39,11 @@ iframe原本的用法在现在看来是不合时宜的，但是它的其他功�
 3.历史记录管理，解决ajax化网站响应浏览器前进后退按钮的方案，在html5的history api不可用时作为一种替代。  
 4.纯前端的utf8和gbk编码互转。比如在utf8页面需要生成一个gbk的encodeURIComponent字符串，可以通过页面加载一个gbk的iframe，然后主页面与子页面通信的方式实现转换，这样就不用在页面上插入一个非常巨大的编码映射表文件了，其中子页面内容：
 
-
-
-
-
 把这个iframe部署到父页面的同源服务上，就能在父页面直接调用iframe中的encoding接口了。  
 5.用iframe实现无刷新文件上传，在FormData不可用时作为替代方案。  
 6.在移动端用于从网页调起客户端应用（此方法在iphone上并不安全，慎用！具体风险看这里 <a href="https://drops.wooyun.org/papers/5309" target="_blank" rel="external">iOS URL Scheme 劫持</a> ）。比如想在网页中调起支付宝，我们可以创建一个iframe，src为：
 
-
-
-
-
 浏览器接收到这个url请求发现未知协议，会交给系统处理，系统就能调起支付宝客户端了。我们还能趁机检查一下用户是否安装客户端：给iframe设置一个3-5秒的css3的transition过渡动画，然后监听动画完成事件，如果用户安装了客户端，那么系统会调起，并将浏览器转入后台运行，进入后台的浏览器一般不会再执行css动画，这样，我们就能通过判断css动画执行的时长是否超过预设来判断用户是否安装某个客户端了：
-
-
-
-
 
   1. 创建一个全新的独立的宿主环境。经大神提醒，iframe还可以用于创建新的宿主环境，用于隔离或者访问原始接口及对象，比如有些前端安全的防范会覆盖一些原生的方法防止恶意调用，那我们就能通过创建一个iframe，然后从iframe中取回原始对象和方法来破解这种防范。类似的还有 @贺师俊 曾经提到的javascript裸对象创建中的一种方法：如何创建一个JavaScript裸对象 ，一般所见即所得编辑器也是由iframe创建的， @Dion 的回答有提到
   2. IE6下用于遮罩select。经 @yaniv 提醒想起来的。曾经在ie6时代，想搞一个模态窗口，如果窗口叠加在select元素上面，是遮不住select的，为了解决这个问题，可以通过在模态窗口元素下面垫一个iframe来实现遮罩，好坑爹的ie6，还我青春韶华~~
@@ -78,15 +54,7 @@ iframe原本的用法在现在看来是不合时宜的，但是它的其他功�
 
 方法一：常见的比如使用js，判断顶层窗口跳转：
 
-
-
-
-
 一般这样够用了，但是有一次发现失效了，看了一下人家网站就是顶层窗口中的代码，发现这段代码：
-
-
-
-
 
 轻轻松松被破解了，悲剧。
 
@@ -94,43 +62,19 @@ iframe原本的用法在现在看来是不合时宜的，但是它的其他功�
 
 方法二：meta 标签：基本没什么效果，所以也放弃了：
 
-
-
-
-
 方法三：使用HTTP 响应头信息中的 X-Frame-Options属性
 
 使用 X-Frame-Options 有三个可选的值：
 
-
-
-
-
 绝大部分浏览器支持：
-
-
-
-
 
 具体的设置方法：
 
 Apache配置：
 
-
-
-
-
 nginx配置：
 
-
-
-
-
 IIS配置：
-
-
-
-
 
 具体可以查看：  
 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/X-Frame-Options?redirectlocale=en-US&redirectslug=The_X-FRAME-OPTIONS_response_header" target="_blank" rel="external">https://developer.mozilla.org/zh-CN/docs/Web/HTTP/X-Frame-Options?redirectlocale=en-US&redirectslug=The_X-FRAME-OPTIONS_response_header</a>

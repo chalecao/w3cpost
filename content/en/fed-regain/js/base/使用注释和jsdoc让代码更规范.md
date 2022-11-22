@@ -2,17 +2,6 @@
 title: 使用注释和JSDOC让代码更规范
 
 
-date: 2019-06-21T01:10:59+00:00
-url: /javascriptnodejs/4518.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ed723a45.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ed723a45.png
-fifu_image_alt:
-  - 使用注释和JSDOC让代码更规范
-views:
-  - 2243
-like:
-  - 6
 
 
 ---
@@ -59,9 +48,9 @@ like:
 JSDoc 提供了很多种标记，用于各种场景。  
 但并不是所有的都是常用的（而且使用了 vscode 以后，很多需要手动指定的标记，编辑器都能够代替你完成），常用的无外乎以下几个：
 
-  * @type 标识变量类型
-  * @param 标识函数参数类型及描述
-  * @return 标识函数返回值类型及描述
+* @type 标识变量类型
+* @param 标识函数参数类型及描述
+* @return 标识函数返回值类型及描述
 
 > 完整的列表可以在这里找到 <a href="http://usejsdoc.org/index.html#block-tags" target="_blank" rel="nofollow noopener noreferrer">Block tags</a>
 
@@ -80,10 +69,10 @@ JSDoc 在写法上有着特定的要求，比如说行内也必须要是这样�
 
 首先，在 JSDoc 中是支持所有的基本类型的，包括数字、字符串、布尔值之类的。
 
-<pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">/** @type {number} */&lt;/span>
-&lt;span class="hljs-comment">/** @type {string} */&lt;/span>
-&lt;span class="hljs-comment">/** @type {boolean} */&lt;/span>
-&lt;span class="hljs-comment">/** @type {RegExp} */&lt;/span>
+<pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">/**@type {number} */&lt;/span>
+&lt;span class="hljs-comment">/** @type {string}*/&lt;/span>
+&lt;span class="hljs-comment">/**@type {boolean} */&lt;/span>
+&lt;span class="hljs-comment">/** @type {RegExp}*/&lt;/span>
 
 &lt;span class="hljs-comment">// 或者是一个函数&lt;/span>
 &lt;span class="hljs-comment">/** @type {function} */&lt;/span>
@@ -199,7 +188,7 @@ JSDoc 在写法上有着特定的要求，比如说行内也必须要是这样�
  * @typedef   {Object} UserInfo
  * @property  {number} uid  用户UID
  * @property  {string} name 昵称
- * 
+ *
  * @typedef   {Object} Order
  * @property  {number} orderId 订单ID
  * @property  {number} price   订单价格
@@ -230,8 +219,8 @@ JSDoc 在写法上有着特定的要求，比如说行内也必须要是这样�
 
 &lt;span class="hljs-comment">/**
  * 发送通知
- * @param {UserInfo} userInfo 
- * @param {Order}    orders 
+ * @param {UserInfo} userInfo
+ * @param {Order}    orders
  */&lt;/span>
 &lt;span class="hljs-keyword">async&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">notify&lt;/span> (&lt;span class="hljs-params">userInfo, orders&lt;/span>) &lt;/span>{ }</code></pre>
 
@@ -243,7 +232,7 @@ JSDoc 在写法上有着特定的要求，比如说行内也必须要是这样�
 
 ### 参考资料 {#articleHeader6}
 
-  * <a href="http://usejsdoc.org/tags-returns.html" target="_blank" rel="nofollow noopener noreferrer">jsdoc | @return</a>
-  * <a href="http://usejsdoc.org/tags-param.html" target="_blank" rel="nofollow noopener noreferrer">jsdoc | @param</a>
-  * <a href="http://usejsdoc.org/tags-typedef.html" target="_blank" rel="nofollow noopener noreferrer">jsdoc | @typedef</a>
-  * <a href="http://usejsdoc.org/tags-property.html" target="_blank" rel="nofollow noopener noreferrer">jsdoc | @property</a>
+* <a href="http://usejsdoc.org/tags-returns.html" target="_blank" rel="nofollow noopener noreferrer">jsdoc | @return</a>
+* <a href="http://usejsdoc.org/tags-param.html" target="_blank" rel="nofollow noopener noreferrer">jsdoc | @param</a>
+* <a href="http://usejsdoc.org/tags-typedef.html" target="_blank" rel="nofollow noopener noreferrer">jsdoc | @typedef</a>
+* <a href="http://usejsdoc.org/tags-property.html" target="_blank" rel="nofollow noopener noreferrer">jsdoc | @property</a>

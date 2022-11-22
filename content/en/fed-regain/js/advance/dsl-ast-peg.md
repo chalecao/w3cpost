@@ -1,25 +1,6 @@
 ---
 title: 程序语言进阶之DSL与AST实战解析
 
-
-date: 2019-11-04T21:40:38+00:00
-url: /fed-regain/1867.html
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/10/TB1nP2ONpXXXXb_XpXXXXXXXXXX-1958-812.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_332
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/10/TB1nP2ONpXXXXb_XpXXXXXXXXXX-1958-812.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_332
-views:
-  - 8474
-  - 8474
-like:
-  - 7
-  - 7
-fifu_image_alt:
-  - 程序语言进阶之DSL与AST实战解析
-  - 程序语言进阶之DSL与AST实战解析
-onesignal_meta_box_present:
-  - 1
-
-
 ---
 <img loading="lazy" class="aligncenter wp-image-3308" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/10/TB1nP2ONpXXXXb_XpXXXXXXXXXX-1958-812.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/10/TB1nP2ONpXXXXb_XpXXXXXXXXXX-1958-812.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_332/format,webp" alt="" width="578" height="240" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/10/TB1nP2ONpXXXXb_XpXXXXXXXXXX-1958-812.png?x-oss-process=image/format,webp 1958w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/10/TB1nP2ONpXXXXb_XpXXXXXXXXXX-1958-812.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_124/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/10/TB1nP2ONpXXXXb_XpXXXXXXXXXX-1958-812.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_318/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/10/TB1nP2ONpXXXXb_XpXXXXXXXXXX-1958-812.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_332/format,webp 800w" sizes="(max-width: 578px) 100vw, 578px" />
 
@@ -57,23 +38,23 @@ onesignal_meta_box_present:
 
 1. 介绍DSL与AST类比编译原理<figure class="wp-block-image">
 
-<img loading="lazy" class="wp-image-1873 aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/05/1111.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/05/1111.jpg?x-oss-process=image/resize,m_fill,w_1024,h_826/format,webp" alt="" width="474" height="382" /> </figure> 
+<img loading="lazy" class="wp-image-1873 aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/05/1111.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/05/1111.jpg?x-oss-process=image/resize,m_fill,w_1024,h_826/format,webp" alt="" width="474" height="382" /> </figure>
 
 比如C语言或者c++编写的代码都是首先经过编译器编译成汇编语言，然后经过汇编器链接一些类库，最后生成可执行程序exe。这其中编译器部分就是根据c语言或者c++语言的DSL定义，分析代码生成AST语法树，然后生成汇编代码。
 
 2. 类比NLP介绍DSL与AST<figure class="wp-block-image">
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/blog/2222.jpg" alt="" width="480" height="338" /> </figure> 
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/blog/2222.jpg" alt="" width="480" height="338" /> </figure>
 
 NLP自然语言处理是最近几年也比较火，常用的莫过于语音识别，将人么的语音输入识别为计算机相应的指令。比如google推出的google assistant和siri，语音首先会被识别转换为一句文本，然后通过文字DSL词法分析拆分成有意义的词语。然后根据不同语言的语法做语法分析，最后生成一个语法树。最后根据推断规则转换成语音指令。
 
 3. DSL与AST定义讲解<figure class="wp-block-image">
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/blog/3333.jpg" alt="" width="471" height="361" /> </figure> 
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/blog/3333.jpg" alt="" width="471" height="361" /> </figure>
 
 4. 在线演示解析Javascript为AST<figure class="wp-block-image">
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/blog/4444.jpg" alt="" width="477" height="337" /> </figure> 
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/blog/4444.jpg" alt="" width="477" height="337" /> </figure>
 
 通过<https://astexplorer.net/>这个在线工具，我们可以更直观的查看我们代码生成的AST。
 
@@ -81,15 +62,15 @@ NLP自然语言处理是最近几年也比较火，常用的莫过于语音识�
 
 1. DSL与AST原理与项目应用<figure class="wp-block-image">
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/blog/5555.jpg" alt="" width="542" height="340" /> </figure> <figure class="wp-block-image"><img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/blog/66666.jpg" alt="" width="539" height="305" /></figure> 
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/blog/5555.jpg" alt="" width="542" height="340" /> </figure> <figure class="wp-block-image"><img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/blog/66666.jpg" alt="" width="539" height="305" /></figure>
 
 2. DSL的词法解析与语法解析<figure class="wp-block-image">
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/blog/77777.jpg" alt="" width="538" height="224" /> </figure> <figure class="wp-block-image"><img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/blog/8888.jpg" alt="" width="532" height="389" /></figure> 
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/blog/77777.jpg" alt="" width="538" height="224" /> </figure> <figure class="wp-block-image"><img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/blog/8888.jpg" alt="" width="532" height="389" /></figure>
 
 ## 第3章：手写CSS解析器<figure class="wp-block-image">
 
-<img loading="lazy" class="alignnone wp-image-2130 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/05/Jietu20180809-141659-e1537194640664.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/05/Jietu20180809-141659-e1537194640664.jpg?x-oss-process=image/format,webp" alt="" width="543" height="294" /> </figure> <figure class="wp-block-image">这里我们依照CSS的语法定义实现了一个简易的css解析器。具体实现方法和步骤可以参考视频教程内容。这里不做详细介绍。</figure> 
+<img loading="lazy" class="alignnone wp-image-2130 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/05/Jietu20180809-141659-e1537194640664.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/05/Jietu20180809-141659-e1537194640664.jpg?x-oss-process=image/format,webp" alt="" width="543" height="294" /> </figure> <figure class="wp-block-image">这里我们依照CSS的语法定义实现了一个简易的css解析器。具体实现方法和步骤可以参考视频教程内容。这里不做详细介绍。</figure>
 
 词法的分析提取和语法嵌套和识别主要还是依赖于正则表达式，其实这里最后识别产出的是一个解析树（parsed tree），也就是具体的语法树（CST， concrete syntax tree）。
 
@@ -112,7 +93,6 @@ NLP自然语言处理是最近几年也比较火，常用的莫过于语音识�
     < letter >    ::= "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z"
     < digit >     ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
     < character > ::= < letter > | < digit >
-    
 
 说明：符号**<** letter **>**可以在英文字母的任何字母中转换，尽管在我们的例子中只有小写字母是有效的。类似的过程发生在**< digit >**，它可以指示任何替代数字。第一个问题是你必须单独列出所有的选择；像使用正则表达式一样，不能使用字符类。这很烦人，但通常是可以管理的，除非你必须列出所有的Unicode字符。BNF还有许多其他限制：在语法中使用空字符串或格式使用的符号（即:: =）使得复杂，它有一个详细的语法（即你必须在< and >之间包含终端）等等。 为了解决这些限制，Niklaus Wirth创建了**Extended Backus-Naur Form(EBNF)**，其中包含了他自己的Wirth语法表示法的一些概念。EBNF是最常用的当代解析工具，尽管工具可能偏离标准符号。EBNF有一个更清洁的符号，并采用更多的运算符来处理连接或可选的元素。
 
@@ -120,7 +100,6 @@ NLP自然语言处理是最近几年也比较火，常用的莫过于语音识�
     digit     = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
     character = letter | digit ;
     text      = character , { character } ;
-    
 
 解析表达语法（PEG）是<a href="https://pdos.csail.mit.edu/papers/parsing:popl04.pdf" target="_blank" rel="noopener noreferrer">Brian Ford在2004年发表的一篇论文</a>。从技术上讲，它来源于一种称为自顶向下解析语言（Top-Down Parsing Language，TDPL）的旧式正式语法。然而，描述它的一个简单的方法是在现实世界中的EBNF。上面的例子用peg来写，如下：
 
@@ -128,7 +107,6 @@ NLP自然语言处理是最近几年也比较火，常用的莫过于语音识�
     digit     ← [0-9]
     character ← letter / digit
     text      ← character+
-    
 
 PS：还记得上面说的二义文法吗，PEG没有这个问题。PEG和CFG之间最重要的区别可能是PEG的选择顺序是有意义的，而CFG则不是。如果有许多可能的有效方法来解析输入，则CFG将不明确，因此将返回错误。通常错误的意思是，一些采用CFG的解析器可以处理模糊的语法；例如，向开发者提供所有可能的有效结果，并让他们把它整理出来。相反，由于第一个适用的选择将被选择，PEG完全消除了歧义。因此，PEG永远不会含糊不清。 在下面的例子中，doge永远不会被匹配。由于dog先来，它每次都会被挑选。
 
@@ -163,11 +141,9 @@ peg.js是基于javascript实现的peg语法格式分析器，我们可以很方�
         }
         a = 5;
     }
-    
 
 那么我们编写规则，先用最简单的方式，后面在考虑优化。
 
-    
     Expression
       = "function" _ funName:name _ "(" param:name ")" _ "{" 
       _ otherBefore:name _ 
@@ -182,7 +158,6 @@ peg.js是基于javascript实现的peg语法格式分析器，我们可以很方�
     
     _ "whitespace"
       = [ \t\n\r]*
-    
 
 输出的结果是：
 
@@ -215,13 +190,11 @@ peg.js是基于javascript实现的peg语法格式分析器，我们可以很方�
     
     _ "whitespace"
       = [ \t\n\r]*
-    
 
 这里一共有5条规则，可以看成是5条产生式。 我们分析一下最后一条，其他的类似：
 
     _ "whitespace"
     = [ \t\n\r]*
-    
 
 这一条规则是定义了空格、tab、回车、换行的表达式，用 _ 表示，`"whitespace"`这个看作是注释，方便理解这条产生式的含义，等号左边是非终结符号，等号右边是非终结符和终结符的合集。<strong style="color: #000000;">在线视频课程地址</strong>：[DSL与AST实战][3]
 
@@ -241,14 +214,13 @@ peg.js是基于javascript实现的peg语法格式分析器，我们可以很方�
     <span class="nx">   div</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">text</span><span class="p">;</span> 
     <span class="nb">   document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">div</span><span class="p">);</span> 
     <span class="p">}</span>
-    
 
 兼容性要求：具体使用方法参考：[ECMAScript modules in browsers][8]
 
-  * Safari 10.1.
-  * Chrome 61.
-  * Firefox 60.
-  * Edge 16.
+* Safari 10.1.
+* Chrome 61.
+* Firefox 60.
+* Edge 16.
 
 大家可以自己写代码试一下。我们分析下原理，module script中的import 代码会通过http来加载指定的模块。我们可以实现这些功能。 <span style="color: #ff0000;">step1：<span style="color: #000000;">解析export module script脚本</span></span> 首先我们解析export指令的js脚本，用于解析模块导出的js函数。
 
@@ -262,7 +234,6 @@ peg.js是基于javascript实现的peg语法格式分析器，我们可以很方�
       div.textContent = text;
       document.body.appendChild(div);
     }
-    
 
 比如上面的例子，我们需要输出函数和函数对应的内容。编写peg文法规则如下：
 
@@ -303,7 +274,6 @@ peg.js是基于javascript实现的peg语法格式分析器，我们可以很方�
     import {addTextToBody} from "https://cdn.rawgit.com/jakearchibald/a298d5af601982c338186cd355e624a8/raw/aaa2cbee9a5810d14b01ae965e52ecb9b2965a44/utils.js"
     
     addTextToBody("fed123.com")
-    
 
 编写peg文法表达式如下：
 
@@ -322,7 +292,6 @@ peg.js是基于javascript实现的peg语法格式分析器，我们可以很方�
     
     _ "whitespace"
       = [ \t\n\r]*
-    
 
 输出的结果：
 
@@ -398,7 +367,6 @@ peg.js是基于javascript实现的peg语法格式分析器，我们可以很方�
     
     _ "whitespace"
       = [ \t\n\r]*
-    
 
 PS：当然本例中的脚本都是实验版本，实际应用要考虑到更多的兼容情况。<strong style="color: #000000;">在线视频课程地址</strong>：[DSL与AST实战][3] <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <audio style="display: none;" controls="controls" data-mce-fragment="1"></audio> <span style="color: #008000;"></span>
 

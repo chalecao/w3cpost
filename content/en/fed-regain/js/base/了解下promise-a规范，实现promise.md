@@ -2,17 +2,6 @@
 title: 了解下Promise A+规范，实现Promise
 
 
-date: 2019-10-29T09:02:48+00:00
-url: /javascriptnodejs/5126.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff5529e93.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff5529e93.png
-fifu_image_alt:
-  - 自动草稿
-views:
-  - 1233
-like:
-  - 2
 
 
 ---
@@ -46,11 +35,11 @@ console.log('end')
     <p>
       运行结果如下：
     </p>
-  </blockquote><figure> 
+  </blockquote><figure>
   
   <p id="MoHvJRp">
     <img loading="lazy" width="185" height="85" class="alignnone size-full wp-image-5128 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff5529e93.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff5529e93.png?x-oss-process=image/format,webp" alt="" />
-  </p><figcaption></figcaption></figure> 
+  </p><figcaption></figcaption></figure>
   
   <blockquote>
     <p>
@@ -91,7 +80,7 @@ console.log('end')
   
   <pre><code class="copyable">// 因为会立即执行这个执行器函数
 function MyPromise(executor){
-  executor(resolve, reject) 
+  executor(resolve, reject)
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
@@ -100,7 +89,7 @@ function MyPromise(executor){
   </p>
   
   <pre><code class="copyable">MyPromise.prototype.then = function(onFulfilled, onRejected){
-    
+
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
@@ -117,7 +106,7 @@ function MyPromise(executor){
   function reject(reason){
     self.status = 'rejected' //失败状态
   }
-  executor(resolve, reject) 
+  executor(resolve, reject)
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
@@ -219,11 +208,11 @@ console.log('end')
     <p>
       运行结果如下：
     </p>
-  </blockquote><figure> 
+  </blockquote><figure>
   
   <p id="Nfcrvjm">
     <img loading="lazy" width="187" height="89" class="alignnone size-full wp-image-5129 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff677627f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff677627f.png?x-oss-process=image/format,webp" alt="" />
-  </p><figcaption></figcaption></figure> 
+  </p><figcaption></figcaption></figure>
   
   <blockquote>
     <p>
@@ -262,11 +251,11 @@ console.log('end')
     <p>
       运行结果如下
     </p>
-  </blockquote><figure> 
+  </blockquote><figure>
   
   <p id="zjwzKeb">
     <img loading="lazy" width="194" height="88" class="alignnone size-full wp-image-5130 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff768e672.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff768e672.png?x-oss-process=image/format,webp" alt="" />
-  </p><figcaption></figcaption></figure> 
+  </p><figcaption></figcaption></figure>
   
   <blockquote>
     <p>
@@ -303,11 +292,11 @@ console.log('end')
     <p>
       运行结果如下
     </p>
-  </blockquote><figure> 
+  </blockquote><figure>
   
   <p id="dACnRXM">
     <img loading="lazy" width="188" height="113" class="alignnone size-full wp-image-5131 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff86c3aba.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff86c3aba.png?x-oss-process=image/format,webp" alt="" />
-  </p><figcaption></figcaption></figure> 
+  </p><figcaption></figcaption></figure>
   
   <blockquote>
     <p>
@@ -454,11 +443,11 @@ console.log('end')
     <p>
       运行结果如下,显示打印start和end，两秒后一起打印的两个 success：data1
     </p>
-  </blockquote><figure> 
+  </blockquote><figure>
   
   <p id="yUjwvTQ">
     <img loading="lazy" width="184" height="113" class="alignnone size-full wp-image-5132 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff96a5c9d.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff96a5c9d.png?x-oss-process=image/format,webp" alt="" />
-  </p><figcaption></figcaption></figure> 
+  </p><figcaption></figcaption></figure>
   
   <blockquote>
     <p>
@@ -476,7 +465,7 @@ console.log('end')
     <h2>
       另一种实现
     </h2>
-    
+
     <h3>
       什么是Promise?
     </h3>
@@ -518,7 +507,7 @@ console.log('end')
     &lt;span class="token builtin">console&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>data&lt;span class="token punctuation">)&lt;/span>
 &lt;span class="token punctuation">)&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
-    
+
     <p>
       2.如果说 当我们需要发送多个异步请求 并且每个请求之间需要相互依赖 那这时 我们只能 以嵌套方式来解决 形成 &#8220;回调地狱&#8221;
     </p>
@@ -530,7 +519,7 @@ console.log('end')
     &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
-    
+
     <blockquote>
       <p>
         这样一来，在处理越多的异步逻辑时，就需要越深的回调嵌套，这种编码模式的问题主要有以下几个：
@@ -570,14 +559,14 @@ console.log('end')
 
 &lt;span class="token comment">// 请求data1&lt;/span>
 &lt;span class="token function">request&lt;/span>&lt;span class="token punctuation">(&lt;/span>url&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">then&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">data1&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> &lt;span class="token function">request&lt;/span>&lt;span class="token punctuation">(&lt;/span>data1&lt;span class="token punctuation">.&lt;/span>url&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>   
+    &lt;span class="token keyword">return&lt;/span> &lt;span class="token function">request&lt;/span>&lt;span class="token punctuation">(&lt;/span>data1&lt;span class="token punctuation">.&lt;/span>url&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">then&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">data2&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
     &lt;span class="token keyword">return&lt;/span> &lt;span class="token function">request&lt;/span>&lt;span class="token punctuation">(&lt;/span>data2&lt;span class="token punctuation">.&lt;/span>url&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">then&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">data3&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
     &lt;span class="token builtin">console&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>data3&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token keyword">catch&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">err&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token keyword">throw&lt;/span> &lt;span class="token keyword">new&lt;/span> &lt;span class="token class-name">Error&lt;/span>&lt;span class="token punctuation">(&lt;/span>err&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
-    
+
     <p>
       2.相信大家在 vue/react 都是用axios fetch 请求数据 也都支持 Promise API
     </p>
@@ -587,7 +576,7 @@ axios&lt;span class="token punctuation">.&lt;/span>&lt;span class="token functio
    console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>data&lt;span class="token punctuation">)&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
-    
+
     <blockquote>
       <p>
         Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。
@@ -608,7 +597,7 @@ axios&lt;span class="token punctuation">.&lt;/span>&lt;span class="token functio
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
-    
+
     <h4>
       2.promise相当于一个状态机
     </h4>
@@ -651,7 +640,7 @@ axios&lt;span class="token punctuation">.&lt;/span>&lt;span class="token functio
 &lt;span class="token comment">// onRejected 是用来接收promise失败的原因&lt;/span>
 promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">then&lt;/span>&lt;span class="token punctuation">(&lt;/span>onFulfilled&lt;span class="token punctuation">,&lt;/span> onRejected&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
-    
+
     <blockquote>
       <p>
         then方法是异步执行的
@@ -668,10 +657,10 @@ promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">then&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">result&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span> &lt;span class="token comment">// onFulfilled&lt;/span>
     &lt;span class="token builtin">console&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>result&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">// 'fulfilled' &lt;/span>
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token parameter">reason&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span> &lt;span class="token comment">// onRejected 不会被调用&lt;/span>
-    
+
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
-    
+
     <p>
       3.reject(失败) onRejected会被调用
     </p>
@@ -685,7 +674,7 @@ promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
     &lt;span class="token builtin">console&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>rejected&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">// 'rejected'&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
-    
+
     <p>
       4.promise.catch
     </p>
@@ -702,13 +691,13 @@ promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 
 &lt;span class="token comment">// 注意&lt;/span>
 &lt;span class="token comment">// onRejected 不能捕获当前onFulfilled中的异常&lt;/span>
-promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">then&lt;/span>&lt;span class="token punctuation">(&lt;/span>onFulfilled&lt;span class="token punctuation">,&lt;/span> onRrejected&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> 
+promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">then&lt;/span>&lt;span class="token punctuation">(&lt;/span>onFulfilled&lt;span class="token punctuation">,&lt;/span> onRrejected&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 
 &lt;span class="token comment">// 可以写成：&lt;/span>
 promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">then&lt;/span>&lt;span class="token punctuation">(&lt;/span>onFulfilled&lt;span class="token punctuation">)&lt;/span>
-       &lt;span class="token punctuation">.&lt;/span>&lt;span class="token keyword">catch&lt;/span>&lt;span class="token punctuation">(&lt;/span>onRrejected&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>   
+       &lt;span class="token punctuation">.&lt;/span>&lt;span class="token keyword">catch&lt;/span>&lt;span class="token punctuation">(&lt;/span>onRrejected&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
-    
+
     <h4>
       4.promise chain
     </h4>
@@ -735,7 +724,7 @@ promise
     &lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">then&lt;/span>&lt;span class="token punctuation">(&lt;/span>taskB&lt;span class="token punctuation">)&lt;/span>
     &lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">catch&lt;/span>&lt;span class="token punctuation">(&lt;/span>onRejected&lt;span class="token punctuation">)&lt;/span> &lt;span class="token comment">// 捕获前面then方法中的异常&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
-    
+
     <h4>
       5.Promise的静态方法
     </h4>
@@ -754,7 +743,7 @@ Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
    &lt;span class="token function">resolve&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'hello'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
-    
+
     <p>
       2.Promise.reject 返回一个rejected状态的promise对象
     </p>
@@ -764,7 +753,7 @@ Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
    &lt;span class="token function">reject&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">24&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
-    
+
     <p>
       3.Promise.all 接收一个promise对象数组为参数
     </p>
@@ -787,13 +776,13 @@ Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
     &lt;span class="token function">reject&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">3&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 
-&lt;span class="token builtin">Promise&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">all&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">[&lt;/span>p1&lt;span class="token punctuation">,&lt;/span> p2&lt;span class="token punctuation">,&lt;/span> p3&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">then&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">data&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span> 
+&lt;span class="token builtin">Promise&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">all&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">[&lt;/span>p1&lt;span class="token punctuation">,&lt;/span> p2&lt;span class="token punctuation">,&lt;/span> p3&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">then&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">data&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
     &lt;span class="token builtin">console&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>data&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">// [1, 2, 3] 结果顺序和promise实例数组顺序是一致的&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token parameter">err&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
     &lt;span class="token builtin">console&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>err&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
-    
+
     <p>
       4.Promise.race 接收一个promise对象数组为参数
     </p>
@@ -821,15 +810,16 @@ Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
     console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>values&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">// 10&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
-    
+
     <h3>
       4. Promise 代码实现
     </h3>
     
     <pre class="line-numbers language-jsx"><code class=" language-jsx">&lt;span class="token comment">/**
- * Promise 实现 遵循promise/A+规范
- * Promise/A+规范译文:
- * https://malcolmyu.github.io/2015/06/12/Promises-A-Plus/#note-4
+
+* Promise 实现 遵循promise/A+规范
+* Promise/A+规范译文:
+* https://malcolmyu.github.io/2015/06/12/Promises-A-Plus/#note-4
  */&lt;/span>
 
 &lt;span class="token comment">// promise 三个状态&lt;/span>
@@ -889,18 +879,20 @@ Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 &lt;span class="token punctuation">}&lt;/span>
 
 &lt;span class="token comment">/**
- * resolve中的值几种情况：
- * 1.普通值
- * 2.promise对象
- * 3.thenable对象/函数
+
+* resolve中的值几种情况：
+* 1.普通值
+* 2.promise对象
+* 3.thenable对象/函数
  */&lt;/span>
 
 &lt;span class="token comment">/**
- * 对resolve 进行改造增强 针对resolve中不同值情况 进行处理
- * @param  {promise} promise2 promise1.then方法返回的新的promise对象
- * @param  {[type]} x         promise1中onFulfilled的返回值
- * @param  {[type]} resolve   promise2的resolve方法
- * @param  {[type]} reject    promise2的reject方法
+
+* 对resolve 进行改造增强 针对resolve中不同值情况 进行处理
+* @param  {promise} promise2 promise1.then方法返回的新的promise对象
+* @param  {[type]} x         promise1中onFulfilled的返回值
+* @param  {[type]} resolve   promise2的resolve方法
+* @param  {[type]} reject    promise2的reject方法
  */&lt;/span>
 &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">resolvePromise&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">promise2&lt;span class="token punctuation">,&lt;/span> x&lt;span class="token punctuation">,&lt;/span> resolve&lt;span class="token punctuation">,&lt;/span> reject&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
     &lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>promise2 &lt;span class="token operator">===&lt;/span> x&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>  &lt;span class="token comment">// 如果从onFulfilled中返回的x 就是promise2 就会导致循环引用报错&lt;/span>
@@ -947,10 +939,11 @@ Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 &lt;span class="token punctuation">}&lt;/span>
 
 &lt;span class="token comment">/**
- * [注册fulfilled状态/rejected状态对应的回调函数]
- * @param  {function} onFulfilled fulfilled状态时 执行的函数
- * @param  {function} onRejected  rejected状态时 执行的函数
- * @return {function} newPromsie  返回一个新的promise对象
+
+* [注册fulfilled状态/rejected状态对应的回调函数]
+* @param  {function} onFulfilled fulfilled状态时 执行的函数
+* @param  {function} onRejected  rejected状态时 执行的函数
+* @return {function} newPromsie  返回一个新的promise对象
  */&lt;/span>
 &lt;span class="token class-name">Promise&lt;/span>&lt;span class="token punctuation">.&lt;/span>prototype&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function-variable function">then&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">function&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">onFulfilled&lt;span class="token punctuation">,&lt;/span> onRejected&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
     &lt;span class="token keyword">const&lt;/span> that &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">;&lt;/span>
@@ -1033,10 +1026,11 @@ Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 
 &lt;span class="token comment">/**
- * Promise.all Promise进行并行处理
- * 参数: promise对象组成的数组作为参数
- * 返回值: 返回一个Promise实例
- * 当这个数组里的所有promise对象全部变为resolve状态的时候，才会resolve。
+
+* Promise.all Promise进行并行处理
+* 参数: promise对象组成的数组作为参数
+* 返回值: 返回一个Promise实例
+* 当这个数组里的所有promise对象全部变为resolve状态的时候，才会resolve。
  */&lt;/span>
 Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function-variable function">all&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">function&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">promises&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
     &lt;span class="token keyword">return&lt;/span> &lt;span class="token keyword">new&lt;/span> &lt;span class="token class-name">Promise&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">resolve&lt;span class="token punctuation">,&lt;/span> reject&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -1062,10 +1056,11 @@ Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 &lt;span class="token punctuation">}&lt;/span>
 
 &lt;span class="token comment">/**
- * Promise.race
- * 参数: 接收 promise对象组成的数组作为参数
- * 返回值: 返回一个Promise实例
- * 只要有一个promise对象进入 FulFilled 或者 Rejected 状态的话，就会继续进行后面的处理(取决于哪一个更快)
+
+* Promise.race
+* 参数: 接收 promise对象组成的数组作为参数
+* 返回值: 返回一个Promise实例
+* 只要有一个promise对象进入 FulFilled 或者 Rejected 状态的话，就会继续进行后面的处理(取决于哪一个更快)
  */&lt;/span>
 Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function-variable function">race&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">function&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">promises&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
     &lt;span class="token keyword">return&lt;/span> &lt;span class="token keyword">new&lt;/span> &lt;span class="token class-name">Promise&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">resolve&lt;span class="token punctuation">,&lt;/span> reject&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -1093,11 +1088,13 @@ Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 &lt;span class="token punctuation">}&lt;/span>
 
 &lt;span class="token comment">/**
- * 基于Promise实现Deferred的
- * Deferred和Promise的关系
- * - Deferred 拥有 Promise
- * - Deferred 具备对 Promise的状态进行操作的特权方法（resolve reject）
- *
+
+* 基于Promise实现Deferred的
+* Deferred和Promise的关系
+    * - Deferred 拥有 Promise
+    * - Deferred 具备对 Promise的状态进行操作的特权方法（resolve reject）
+
+*
  *参考jQuery.Deferred
  *url: http://api.jquery.com/category/deferred-object/
  */&lt;/span>
@@ -1111,9 +1108,10 @@ Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 &lt;span class="token punctuation">}&lt;/span>
 
 &lt;span class="token comment">/**
- * Promise/A+规范测试
- * npm i -g promises-aplus-tests
- * promises-aplus-tests Promise.js
+
+* Promise/A+规范测试
+* npm i -g promises-aplus-tests
+* promises-aplus-tests Promise.js
  */&lt;/span>
 
 &lt;span class="token keyword">try&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -1121,9 +1119,8 @@ Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 &lt;span class="token punctuation">}&lt;/span> &lt;span class="token keyword">catch&lt;/span> &lt;span class="token punctuation">(&lt;/span>e&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>
 
-
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
-    
+
     <h3>
       Promise测试
     </h3>

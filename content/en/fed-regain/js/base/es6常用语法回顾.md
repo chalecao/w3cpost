@@ -1,15 +1,6 @@
 ---
 title: ES6常用语法回顾
 
-
-date: 2019-10-28T08:44:23+00:00
-url: /javascriptnodejs/5065.html
-views:
-  - 904
-like:
-  - 2
-
-
 ---
 ES6为一些已有的功能提供了非破坏性更新，这类更新中的大部分我们可以理解为语法糖，称之为语法糖，意味着，这类新语法能做的事情其实用ES5也可以做，只是会稍微复杂一些。本章我们将着重讨论这些语法糖，看完之后，可能你会对一些你很熟悉的ES6新语法有不一样的理解。
 
@@ -189,10 +180,10 @@ ES6 为我们提供了一种写匿名函数的新方法，即箭头函数。箭�
 
 尽管箭头函数看起来类似于传统的匿名函数，他们却具有根本性的不同：
 
-  * 箭头函数不能被直接命名，不过允许它们赋值给一个变量；
-  * 箭头函数不能用做构造函数，你不能对箭头函数使用`new`关键字；
-  * 箭头函数也没有`prototype`属性；
-  * 箭头函数绑定了词法作用域，不会修改`this`的指向。
+* 箭头函数不能被直接命名，不过允许它们赋值给一个变量；
+* 箭头函数不能用做构造函数，你不能对箭头函数使用`new`关键字；
+* 箭头函数也没有`prototype`属性；
+* 箭头函数绑定了词法作用域，不会修改`this`的指向。
 
 最后一点是箭头函数最大的特点，我们来仔细看看。
 
@@ -312,7 +303,7 @@ puzzle(&lt;span class="hljs-string">'a'&lt;/span>, &lt;span class="hljs-string">
 解决方案是把返回的对象字面量包裹在小括号中，以助于浏览器正确解析：
 
 <pre class="javascript hljs"><code class="js">[&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>].map(&lt;span class="hljs-function">&lt;span class="hljs-params">value&lt;/span> =&gt;&lt;/span> ({ &lt;span class="hljs-attr">number&lt;/span>: value, &lt;span class="hljs-attr">verified&lt;/span>: &lt;span class="hljs-literal">true&lt;/span> }))
-&lt;span class="hljs-comment">/* &lt;- [
+&lt;span class="hljs-comment">/*&lt;- [
   { number: 1, verified: true },
   { number: 2, verified: true },
   { number: 3, verified: true }]
@@ -969,8 +960,8 @@ isItTwo(&lt;span class="hljs-string">'two'&lt;/span>)
 
 由于这里使用的是`var`，考虑到变量提升的存在，我们在外部依旧可以读取到深层中的`deep`变量，这里并不会报错。不过在以下情况下，我们可能希望这里会报错：
 
-  * 访问内部变量会打破我们代码中的某种封装原则；
-  * 父块中已有有一个一个同名变量，但是内部也需要用同名变量；
+* 访问内部变量会打破我们代码中的某种封装原则；
+* 父块中已有有一个一个同名变量，但是内部也需要用同名变量；
 
 使用`let`就可以解决这个问题，`let` 创建的变量在块作用域内有效，在ES6提出`let`以前，想要创建深层作用域的唯一办法就是再新建一个函数。使用`let`，你只需添加另外一对`{}`：
 
@@ -1157,6 +1148,6 @@ todo.check()
 
 ## 有用的链接 {#articleHeader27}
 
-  * <a href="https://github.com/zhangwang1990/PracticeModernJavaScript/blob/master/docs/ECMAScript%20%E5%92%8C%20JavaScript%E7%9A%84%E6%9C%AA%E6%9D%A5.md" target="_blank" rel="nofollow noopener noreferrer">第一章 ECMAScript简史 和 JavaScript的未来</a>
-  * <a href="https://github.com/zhangwang1990/PracticeModernJavaScript/blob/master/docs/%E7%AC%AC2%E7%AB%A0.%20ES6%20%E6%A6%82%E8%A6%81.md" target="_blank" rel="nofollow noopener noreferrer">第二章 ES6 概要</a>
-  * <a href="https://github.com/zhangwang1990/PracticeModernJavaScript/blob/master/docs/%E7%AC%AC3%E7%AB%A0.%20Classes%2CSymbols%2CObjects%20%E5%92%8C%20Decorators.md" target="_blank" rel="nofollow noopener noreferrer">第三章 Classs,Symbols,Objects拓展 和 Decorators</a>
+* <a href="https://github.com/zhangwang1990/PracticeModernJavaScript/blob/master/docs/ECMAScript%20%E5%92%8C%20JavaScript%E7%9A%84%E6%9C%AA%E6%9D%A5.md" target="_blank" rel="nofollow noopener noreferrer">第一章 ECMAScript简史 和 JavaScript的未来</a>
+* <a href="https://github.com/zhangwang1990/PracticeModernJavaScript/blob/master/docs/%E7%AC%AC2%E7%AB%A0.%20ES6%20%E6%A6%82%E8%A6%81.md" target="_blank" rel="nofollow noopener noreferrer">第二章 ES6 概要</a>
+* <a href="https://github.com/zhangwang1990/PracticeModernJavaScript/blob/master/docs/%E7%AC%AC3%E7%AB%A0.%20Classes%2CSymbols%2CObjects%20%E5%92%8C%20Decorators.md" target="_blank" rel="nofollow noopener noreferrer">第三章 Classs,Symbols,Objects拓展 和 Decorators</a>

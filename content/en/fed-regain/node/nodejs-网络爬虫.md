@@ -2,14 +2,6 @@
 title: NodeJS 网络爬虫
 
 
-date: 2017-08-29T07:56:23+00:00
-excerpt: 以前做网络爬虫都是用java开发，基于http client模拟请求，获取数据，然后基于正则表达式来提取需要的数据。这两天突然看见可以用NodeJS来做网络爬虫，而且最大的好处是，获取到的内容可以使用jQuery等库来解析操作dom，这个无疑对于数据提取是比较方便的。这里做个demo项目，作为以后应用的种子项目。
-url: /javascriptnodejs/752.html
-views:
-  - 1941
-  - 1941
-
-
 ---
   
 
@@ -18,7 +10,7 @@ views:
 
 以前做网络爬虫都是用java开发，基于http client模拟请求，获取数据，然后基于正则表达式来提取需要的数据。这两天突然看见可以用NodeJS来做网络爬虫，而且最大的好处是，获取到的内容可以使用jQuery等库来解析操作dom，这个无疑对于数据提取是比较方便的。这里做个demo项目，作为以后应用的种子项目。  
 <a></a>  
-![NodeJS 网络爬虫][2] 
+![NodeJS 网络爬虫][2]
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/07/29/2014_nodejs_2/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/07/29/2014_nodejs_2/</a>
 
@@ -35,15 +27,7 @@ views:
 
 执行如下命令安装，同时更新package.json
 
-
-
-
-
 这个安装的时候可能会报如下错误：
-
-
-
-
 
 这是由于缺少安装依赖环境。这里不只是jsdom，很多其他的插件包，很多也是需要这个依赖环境的。这个依赖环境其实就是一个编译环境，因为有些插件包是一源码形式发布的，安装时候需要对代码进行编译。所以这里需要安装：
 
@@ -56,46 +40,22 @@ views:
 
 依次安装并更新package.json：
 
-
-
-
-
 ### [][6]爬虫实例
 
 假设我们现在要去官网爬取彩票的开奖数据，以百度乐彩(<a href="https://baidu.lecai.com/lottery/draw/?agentId=5571" target="_blank" rel="external">https://baidu.lecai.com/lottery/draw/?agentId=5571</a> )网站为例,我们要抓取双色球的开奖数据。  
 ![NodeJS 网络爬虫][7]  
 首先在项目目录下增加myUtil.js，代码如下：
 
-
-
-
-
 然后修改 routes/index.js文件，代码如下：
-
-
-
-
 
 这里我们已经把获取到的网页内容的content输出到了本地，启动应用，打开浏览器：<a href="https://127.0.0.1:3000" target="_blank" rel="external">https://127.0.0.1:3000</a> 可以看见本地显示的和原网页的一模一样。然后我们就可以提取需要的内容。  
 首先通过使用浏览器调试开发工具（按F12），来查找我们需要的数据所在的位置。如下：  
 ![NodeJS 网络爬虫][8]  
 然后我们通过使用css选择器来选中这块内容，通过jquery来处理。修改routes/index.js
 
-
-
-
-
 需要注意的是这里面，如果用css选择器，选中双色球的数据列表的选择器为_.ballbg:first-child_，但是使用jQuery的语法_$(‘.ballbg:first-child’)_选取不到第一个列表数据，因为这里面有个区别，jQuery里面有自己的选择器，选取第一个元素是_:first_，于是正确的jQuey选择器语句是_$(‘.ballbg:first’)_，执行结果：
 
-
-
-
-
 然后就是提取其中的数据。
-
-
-
-
 
 ### [][9]谢谢！
 

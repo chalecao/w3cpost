@@ -2,17 +2,6 @@
 title: 用webpack4和一些插件提升代码编译速度
 
 
-date: 2019-05-13T08:26:06+00:00
-url: /javascriptnodejs/4377.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-logo.gif
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-logo.gif
-fifu_image_alt:
-  - 用webpack4和一些插件提升代码编译速度
-views:
-  - 1251
-like:
-  - 3
 
 
 ---
@@ -56,12 +45,12 @@ webpack4 在大幅度提升编译效率同时，引入了多种新特性：
   1. 受 Parcel 启发，支持 0 配置启动项目，不再强制需要 webpack.config.js 配置文件，默认入口 `./src/` 目录，默认entry `./src/index.js` ，默认输出 `./dist` 目录，默认输出文件 `./dist/main.js`。
   2. 开箱即用 WebAssembly，webpack4提供了wasm的支持，现在可以引入和导出任何一个 Webassembly 的模块，也可以写一个loader来引入C++、C和Rust。（注：WebAssembly 模块只能在异步chunks中使用）
   3. 提供mode属性，设置为 `development` 将获得最好的开发体验，设置为 `production` 将专注项目编译部署，比如说开启 Scope hoisting 和 Tree-shaking 功能。
-  4. 全新的插件系统，提供了针对插件和钩子的新API，变化如下： 
+  4. 全新的插件系统，提供了针对插件和钩子的新API，变化如下：
       * 所有的 hook 由 hooks 对象统一管理，它将所有的hook作为可扩展的类属性
       * 添加插件时，你需要提供一个名字
       * 开发插件时，你可以选择插件的类型（sync/callback/promise之一）
       * 通过 this.hooks = { myHook: new SyncHook(…) } 来注册hook
-    
+
     更多插件的工作原理，可以参考：<a href="https://medium.com/webpack/the-new-plugin-system-week-22-23-c24e3b22e95" target="_blank" rel="external noopener">新插件系统如何工作</a>。</li> </ol> 
     
     ### **快上车，升级前的准备** {#快上车，升级前的准备}
@@ -81,12 +70,12 @@ webpack4 在大幅度提升编译效率同时，引入了多种新特性：
     &lt;span class="hljs-string">"dev"&lt;/span>: &lt;span class="hljs-string">"webpack-dev-server --mode development --inline --progress --config build/webpack.dev.config.js"&lt;/span>,
     &lt;span class="hljs-string">"build"&lt;/span>: &lt;span class="hljs-string">"webpack --mode production --progress --config build/webpack.prod.config.js"&lt;/span>
 }</code></pre>
-    
+
       * 在配置文件中加入mode属性 
         <pre><code class="js hljs javascript has-numbering">&lt;span class="hljs-built_in">module&lt;/span>.exports = {
   mode: &lt;span class="hljs-string">'production'&lt;/span> &lt;span class="hljs-comment">// 或 development&lt;/span>
 };</code></pre>
-    
+
     升级至webpack4后，一些默认插件由 optimization 配置替代了，如下：
     
       * CommonsChunkPlugin废弃，由 optimization.splitChunks 和 optimization.runtimeChunk 替代，前者拆分代码，后者提取runtime代码。原来的CommonsChunkPlugin产出模块时，会包含重复的代码，并且无法优化异步模块，minchunks的配置也较复杂，splitChunks解决了这个问题；另外，将 optimization.runtimeChunk 设置为true（或{name: “manifest”}），便能将入口模块中的runtime部分提取出来。
@@ -120,7 +109,7 @@ webpack4 在大幅度提升编译效率同时，引入了多种新特性：
         }
     }
 }</code></pre>
-    
+
     splitChunks是拆包优化的重点，如果你的项目中包含 element-ui 等第三方组件（组件较大），建议单独拆包，如下所示。
     
     <pre><code class="js hljs javascript has-numbering">splitChunks: {
@@ -134,7 +123,7 @@ webpack4 在大幅度提升编译效率同时，引入了多种新特性：
     }
 }
 </code></pre>
-    
+
     其更多用法，请参考以上注释或官方文档 <a href="https://webpack.js.org/plugins/split-chunks-plugin/" target="_blank" rel="external noopener">SplitChunksPlugin</a>。
     
     ### **升级避坑指南** {#升级避坑指南}
@@ -152,7 +141,7 @@ plugins: [
   &lt;span class="hljs-keyword">new&lt;/span> VueLoaderPlugin()
 ]
 </code></pre>
-    
+
     升级到 webpack4 后，mini-css-extract-plugin 替代 extract-text-webpack-plugin 成为css打包首选，相比之前，它有如下优势：
     
       1. 异步加载
@@ -171,7 +160,7 @@ plugins: [
     ]
 }
 </code></pre>
-    
+
     发布到生产环境之前，css是需要优化压缩的，使用 optimize-css-assets-webpack-plugin 插件即可，如下。
     
     <pre><code class="js hljs javascript has-numbering">&lt;span class="hljs-keyword">const&lt;/span> OptimizeCssAssetsPlugin = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'optimize-css-assets-webpack-plugin'&lt;/span>);
@@ -188,7 +177,7 @@ plugins: [
     })
 ]
 </code></pre>
-    
+
     ### **持续加速** {#持续加速}
     
     文章开始，我曾提到，优化才刚刚开始。是的，随着项目越来越复杂，webpack也随之变慢，一定有办法可以进一步压榨性能。
@@ -228,7 +217,7 @@ resolve: {
         },
     ]
 }</code></pre>
-    
+
       2. 想要进一步提升编译速度，就要知道瓶颈在哪？通过测试，发现有两个阶段较慢：① babel 等 loaders 解析阶段；② js 压缩阶段。loader 解析稍后会讨论，而 js 压缩是发布编译的最后阶段，通常webpack需要卡好一会，这是因为压缩 JS 需要先将代码解析成 AST 语法树，然后需要根据复杂的规则去分析和处理 AST，最后将 AST 还原成 JS，这个过程涉及到大量计算，因此比较耗时。如下图，编译就看似卡住。 
         <a class="fancy-ctn fancybox" title="ParallelUglify" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-ParallelUglify.png" rel="fancy-group"><img title="ParallelUglify" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-ParallelUglify.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-ParallelUglify.png?x-oss-process=image/format,webp" /></a>
         
@@ -257,7 +246,7 @@ optimization: {
     ]
 }
 </code></pre>
-        
+
         当然，我分别测试了五组数据，如下是截图：
         
         <a class="fancy-ctn fancybox" title="ParallelUglifyPlugin插件启用后编译速度分析" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-0-happyPack-0-dll-1-parallel.34.png" rel="fancy-group"><img title="ParallelUglifyPlugin插件启用后编译速度分析" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-0-happyPack-0-dll-1-parallel.34.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-0-happyPack-0-dll-1-parallel.34.png?x-oss-process=image/format,webp" /></a>
@@ -283,7 +272,7 @@ optimization: {
     verbose: process.env.HAPPY_VERBOSE === &lt;span class="hljs-string">'1'&lt;/span> &lt;span class="hljs-comment">// make happy more verbose with HAPPY_VERBOSE=1&lt;/span>
 });
 </code></pre>
-            
+
             那么，对于前面 `loader: "happypack/loader?id=happy-babel"` 这句，便需要在 plugins 中创建一个 `happy-babel` 的插件实例。
             
             <pre><code class="js hljs javascript has-numbering">plugins: [
@@ -296,7 +285,7 @@ optimization: {
     }])
 ]
 </code></pre>
-            
+
             如下，happyPack开启了3个进程（默认为CPU数-1），运行过程感受下。
             
             <a class="fancy-ctn fancybox" title="happyPack" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-happyPack.gif" rel="fancy-group"><img title="happyPack" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-happyPack.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-happyPack.gif?x-oss-process=image/format,webp" /></a>
@@ -317,7 +306,7 @@ optimization: {
     })
 ]
 </code></pre>
-            
+
             基于 webpack4，搭载 webpack-parallel-uglify-plugin 和 happyPack 插件，测试截图如下：
             
             <a class="fancy-ctn fancybox" title="搭载两款插件后编译速度分析" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-0-dll-1-parallel.w4.png" rel="fancy-group"><img title="搭载两款插件后编译速度分析" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-0-dll-1-parallel.w4.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-0-dll-1-parallel.w4.png?x-oss-process=image/format,webp" /></a>
@@ -361,14 +350,14 @@ optimization: {
     ],
 };
 </code></pre>
-                
+
                 接着， 需要在 package.json 中新增 dll 命令。
                 
                 <pre><code class="json hljs has-numbering">&lt;span class="hljs-string">"scripts"&lt;/span>: {
     &lt;span class="hljs-attr">"dll"&lt;/span>: &lt;span class="hljs-string">"webpack --mode production --config build/webpack.dll.config.js"&lt;/span>
 }
 </code></pre>
-                
+
                 运行 `npm run dll` 后，会生成 `./src/assets/dll/vue.dll-[hash].js` 公共js 和 `./build/vue.dll.manifest.json` 资源说明文件，至此 dll 准备工作完成，接下来在 wepack 中引用即可。
                 
                 <pre><code class="js hljs javascript has-numbering">externals: {
@@ -387,7 +376,7 @@ plugins: [
     ] : [])
 ]
 </code></pre>
-                
+
                 dll 公共js轻易不会变化，假如在将来真的发生了更新，那么新的dll文件名便需要加上新的hash，从而避免浏览器缓存老的文件，造成执行出错。由于 hash 的不确定性，我们在 html 入口文件中没办法指定一个固定链接的 script 脚本，刚好，add-asset-html-webpack-plugin 插件可以帮我们自动引入 dll 文件。
                 
                 <pre><code class="js hljs javascript has-numbering">&lt;span class="hljs-keyword">const&lt;/span> autoAddDllRes = () =&gt; {
@@ -406,7 +395,7 @@ plugins: [
     ...(config.common.needDll ? [autoAddDllRes()] : [])
 ]
 </code></pre>
-                
+
                 搭载 dll 插件后，webpack4 编译速度进一步提升，如下截图：
                 
                 <a class="fancy-ctn fancybox" title="搭载三款插件后编译速度分析" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-1-dll-1-parallel.w4.png" rel="fancy-group"><img title="搭载三款插件后编译速度分析" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-1-dll-1-parallel.w4.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-1-dll-1-parallel.w4.png?x-oss-process=image/format,webp" /></a>

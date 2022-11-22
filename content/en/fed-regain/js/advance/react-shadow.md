@@ -2,17 +2,11 @@
 title: react shadow
 
 
-date: 2019-10-29T08:39:48+00:00
-draft: true
-private: true
-url: /fed-regain/5108.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png
-fifu_image_alt:
-  - react shadow
-views:
-  - 2
+
+
+
+
+
 
 
 ---
@@ -36,10 +30,10 @@ Shadow DOM 允许在文档（Document）渲染时插入一棵「子 DOM  树�
 
 有几个需要了解和 Shadow DOM 相关的技术概念：
 
-  * Shadow host： 一个常规 DOM 节点，Shadow DOM 会被附加到这个节点上。
-  * Shadow tree：Shadow DOM 内部的 DOM 树。
-  * Shadow boundary：Shadow DOM 结束的地方，也是常规 DOM 开始的地方。
-  * Shadow root:  Shadow tree 的根节点。
+* Shadow host： 一个常规 DOM 节点，Shadow DOM 会被附加到这个节点上。
+* Shadow tree：Shadow DOM 内部的 DOM 树。
+* Shadow boundary：Shadow DOM 结束的地方，也是常规 DOM 开始的地方。
+* Shadow root:  Shadow tree 的根节点。
 
 <a name="h5uzE"></a>
 
@@ -57,9 +51,9 @@ Shadow DOM 最大的用处应该是隔离外部环境用于封装组件。估计
 
 Web Components 允许开发者创建可重用的自定义元素，它们可以一起使用来创建封装功能的自定义元素，并可以像浏览器原生的元素一样在任何地方重用，而不必担心样式和 DOM 的冲突问题，主要由三项主要技术组成：
 
-  * **Custom Elements**（自定义元素）：一组 JavaScript API，允许您定义 Custom Elements 及其行为，然后可以在您的用户界面中按照需要使用它们。
-  * **HTML Templates**（ HTML 模板）： `template` 和 `slot` 元素使您可以编写不在呈现页面中显示的标记模板。然后它们可以作为自定义元素结构的基础被多次重用。
-  * **Shadow DOM**（影子 DOM）：一组 JavaScript API 用于将「影子 DOM 树」附加到元素上，与主文档 DOM 树隔离，并能控制其关联的功能。通过这种方式，可以保持元素的私有，并能不用担心「样式」与文档的其他部分发生冲突。
+* **Custom Elements**（自定义元素）：一组 JavaScript API，允许您定义 Custom Elements 及其行为，然后可以在您的用户界面中按照需要使用它们。
+* **HTML Templates**（ HTML 模板）： `template` 和 `slot` 元素使您可以编写不在呈现页面中显示的标记模板。然后它们可以作为自定义元素结构的基础被多次重用。
+* **Shadow DOM**（影子 DOM）：一组 JavaScript API 用于将「影子 DOM 树」附加到元素上，与主文档 DOM 树隔离，并能控制其关联的功能。通过这种方式，可以保持元素的私有，并能不用担心「样式」与文档的其他部分发生冲突。
 
 在 Web Components 中的一个重要特性是「封装」，可以将「HTML 标签结构、CSS 样式、行为」隐藏起来，并从页面上的其他代码中分离开来，这样不同的功能不会混在一起，代码看起来也会更加干净整洁，其中 Shadow DOM 便是 DOM 和 CSS 封装所依赖的关键特性。
 
@@ -110,9 +104,9 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
   
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
-      <pre class=" language-javascript"><code class=" language-javascript">&lt;span class="token keyword">const&lt;/span> shadowroot &lt;span class="token operator">=&lt;/span> element&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">attachShadow&lt;/span>&lt;span class="token punctuation">(&lt;/span>shadowRootInit&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> 
+      <pre class=" language-javascript"><code class=" language-javascript">&lt;span class="token keyword">const&lt;/span> shadowroot &lt;span class="token operator">=&lt;/span> element&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">attachShadow&lt;/span>&lt;span class="token punctuation">(&lt;/span>shadowRootInit&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
-      
+
       <p>
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
       </p>
@@ -142,7 +136,7 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
   &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>body&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
 &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>html&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
 </code></pre>
-      
+
       <p>
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
       </p>
@@ -188,10 +182,10 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
   
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
-      <pre class=" language-javascript"><code class=" language-javascript">document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createElement&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'img'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">attachShadow&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span>mode&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'open'&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>    
+      <pre class=" language-javascript"><code class=" language-javascript">document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createElement&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'img'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">attachShadow&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span>mode&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'open'&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token comment" spellcheck="true">// =&gt; DOMException&lt;/span>
 </code></pre>
-      
+
       <p>
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
       </p>
@@ -222,7 +216,7 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
 &lt;span class="token code keyword">                |      p         |     section    |      span      |&lt;/span>
 &lt;span class="token code keyword">                +----------------+----------------+----------------+&lt;/span>
 </code></pre>
-      
+
       <p>
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
       </p>
@@ -278,7 +272,7 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
 
 ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App &lt;span class="token operator">/&lt;/span>&lt;span class="token operator">&gt;&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"root"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
-      
+
       <p>
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
       </p>
@@ -359,7 +353,7 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App &lt;span class="token operator">/&lt;/span>&lt;span class="token operator">&gt;&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"root"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
-      
+
       <p>
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
       </p>
@@ -433,7 +427,7 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App &lt;span class="token operator">/&lt;/span>&lt;span class="token operator">&gt;&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"root"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
-      
+
       <p>
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
       </p>
@@ -516,7 +510,7 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App &lt;span class="token operator">/&lt;/span>&lt;span class="token operator">&gt;&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"root"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
-      
+
       <p>
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
       </p>
@@ -563,7 +557,7 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
     <div class="copytoclipboard-wrapper" style="position: relative;">
       <pre class=" language-bash"><code class=" language-bash">&lt;span class="token function">npm&lt;/span> i shadow-view --save
 </code></pre>
-      
+
       <p>
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
       </p>
@@ -586,8 +580,8 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">App&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
   &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-    &lt;span class="token operator">&lt;&lt;/span>ShadowView 
-       styleContent&lt;span class="token operator">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token template-string">&lt;span class="token string">`*{color:red;}`&lt;/span>&lt;/span>&lt;span class="token punctuation">}&lt;/span> 
+    &lt;span class="token operator">&lt;&lt;/span>ShadowView
+       styleContent&lt;span class="token operator">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token template-string">&lt;span class="token string">`*{color:red;}`&lt;/span>&lt;/span>&lt;span class="token punctuation">}&lt;/span>
        styleSheets&lt;span class="token operator">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token punctuation">[&lt;/span>
           &lt;span class="token string">'your_style1_url.css'&lt;/span>&lt;span class="token punctuation">,&lt;/span>
           &lt;span class="token string">'your_style2_url.css'&lt;/span>
@@ -601,7 +595,7 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App&lt;span class="token operator">/&lt;/span>&lt;span class="token operator">&gt;&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'root'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
-      
+
       <p>
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
       </p>
@@ -622,7 +616,7 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
         <th>
           <strong>属性名</strong>
         </th>
-        
+
         <th>
           <strong>类型</strong>
         </th>

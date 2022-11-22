@@ -2,19 +2,6 @@
 title: Content-Security-Policy使用方法
 
 
-date: 2018-11-22T13:35:13+00:00
-url: /aistack/2838.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6b08415258.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6b08415258.png
-fifu_image_alt:
-  - Content-Security-Policy使用方法
-views:
-  - 1485
-like:
-  - 1
-onesignal_meta_box_present:
-  - 1
 
 
 ---
@@ -23,7 +10,7 @@ onesignal_meta_box_present:
     <p id="qlNdjPr">
       <img loading="lazy" width="500" height="371" class="alignnone size-full wp-image-2840 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6b08415258.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6b08415258.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6b08415258.png?x-oss-process=image/format,webp 500w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6b08415258.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_223/format,webp 300w" sizes="(max-width: 500px) 100vw, 500px" />
     </p>
-    
+
     <p>
       首先我们要知道web浏览器为了安全都有会<strong>同源限制</strong>，什么是同源限制？就是来自 <a href="https://link.jianshu.com?t=https://mybank.com" target="_blank" rel="nofollow noopener noreferrer">https://mybank.com</a> 的代码应仅能访问 <a href="https://link.jianshu.com?t=https://mybank.com" target="_blank" rel="nofollow noopener noreferrer">https://mybank.com</a> 的数据，而绝不被允许访问 <a href="https://link.jianshu.com?t=https://evil.example.com" target="_blank" rel="nofollow noopener noreferrer">https://evil.example.com</a>。同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据，比如cookie/locaStoragy/IndexDB就遵守同源限制。XMLHettpRequest也是存在同源限制，相信只要开发过web的同学在ajax获取数据时都遇到过这个问题。
     </p>
@@ -65,14 +52,14 @@ onesignal_meta_box_present:
     
     <pre class="hljs java"><code class="java">Content-Security-Policy: script-src &lt;span class="hljs-string">'self'&lt;/span> https:&lt;span class="hljs-comment">//apis.google.com&lt;/span>
 </code></pre>
-    
+
     <p>
       你还可以通过元标记的方式使用：
     </p>
     
     <pre class="hljs xml"><code class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">meta&lt;/span> &lt;span class="hljs-attr">http-equiv&lt;/span>=&lt;span class="hljs-string">"Content-Security-Policy"&lt;/span> &lt;span class="hljs-attr">content&lt;/span>=&lt;span class="hljs-string">"default-src https://cdn.example.net; child-src 'none'; object-src 'none'"&lt;/span>&gt;&lt;/span>
 </code></pre>
-    
+
     <h3>
       指令
     </h3>
@@ -121,14 +108,14 @@ onesignal_meta_box_present:
   &lt;span class="hljs-comment">//Some inline code I cant remove yet, but need to asap.&lt;/span>
 &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
 </code></pre>
-    
+
     <p>
       然后我们在CSP的白名单中加上
     </p>
     
     <pre class="hljs bash"><code class="bash">Content-Security-Policy: script-src &lt;span class="hljs-string">'nonce-EDNnf03nceIOfn39fn3e9h3sdfa'&lt;/span>
 </code></pre>
-    
+
     <p>
       这样你这段内联js就可以生效了
     </p>

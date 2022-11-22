@@ -1,22 +1,6 @@
 ---
 title: LCP、TBT与CLS指标
 
-
-date: 2020-03-07T16:30:15+00:00
-url: /html5css3/5658.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/2020020918594233.png.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/2020020918594233.png.png
-fifu_image_alt:
-  - 自动草稿
-views:
-  - 2040
-like:
-  - 3
-classic-editor-remember:
-  - classic-editor
-
-
 ---
 <div id="article_content" class="article_content clearfix">
   <div id="content_views" class="markdown_views prism-atom-one-dark">
@@ -25,7 +9,7 @@ classic-editor-remember:
         <code style="font-size: 18px; font-weight: bold;">FP (First Paint) 首次绘制</code>
       </p>
     </div>
-    
+
     <p>
       <code>FP (First Paint) 首次绘制</code>: 标记浏览器渲染任何在视觉上不同于导航前屏幕内容之内容的时间点.
     </p>
@@ -178,7 +162,7 @@ classic-editor-remember:
 Example &lt;span class="token number">2&lt;/span>：Speed Index &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">80&lt;/span>&lt;span class="token operator">%&lt;/span> &lt;span class="token operator">*&lt;/span> &lt;span class="token number">8&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">+&lt;/span> （&lt;span class="token number">20&lt;/span>&lt;span class="token operator">%&lt;/span> &lt;span class="token operator">*&lt;/span> &lt;span class="token number">10&lt;/span>）&lt;span class="token operator">=&lt;/span> &lt;span class="token number">8.4&lt;/span></code></pre>
       </div>
     </div>
-    
+
     <p data-spm-anchor-id="ata.13261165.0.i1.3fef7c9bZFOkLn">
       这个平均时间可以用来比较首屏内容完整呈现给用户的性能体验，但它计算的不是首屏内容完整呈现这一时刻，不能算是一个用时间来度量的指标。
     </p>

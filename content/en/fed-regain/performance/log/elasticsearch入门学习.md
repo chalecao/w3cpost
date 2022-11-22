@@ -1,30 +1,16 @@
 ---
 title: Elasticsearch入门学习
 
-
-date: 2020-10-28T07:16:12+00:00
-url: /pwa/5954.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160516143-599068508.png
-classic-editor-remember:
-  - classic-editor
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160516143-599068508.png
-fifu_image_alt:
-  - Elasticsearch入门学习
-views:
-  - 584
-
-
 ---
 Elasticsearch 是一个分布式的 RESTful 风格的搜索和数据分析引擎。
 
-  * 查询 ： Elasticsearch 允许执行和合并多种类型的搜索 — 结构化、非结构化、地理位置、度量指标 — 搜索方式随心而变。
-  * 分析 ： 找到与查询最匹配的十个文档是一回事。但是如果面对的是十亿行日志，又该如何解读呢？Elasticsearch 聚合让您能够从大处着眼，探索数据的趋势和模式。
-  * 速度 ： Elasticsearch 很快。真的，真的很快。
-  * 可扩展性 ： 可以在笔记本电脑上运行。 也可以在承载了 PB 级数据的成百上千台服务器上运行。
-  * 弹性 ： Elasticsearch 运行在一个分布式的环境中，从设计之初就考虑到了这一点。
-  * 灵活性 ： 具备多个案例场景。数字、文本、地理位置、结构化、非结构化。所有的数据类型都欢迎。
-  * HADOOP & SPARK ： Elasticsearch + Hadoop
+* 查询 ： Elasticsearch 允许执行和合并多种类型的搜索 — 结构化、非结构化、地理位置、度量指标 — 搜索方式随心而变。
+* 分析 ： 找到与查询最匹配的十个文档是一回事。但是如果面对的是十亿行日志，又该如何解读呢？Elasticsearch 聚合让您能够从大处着眼，探索数据的趋势和模式。
+* 速度 ： Elasticsearch 很快。真的，真的很快。
+* 可扩展性 ： 可以在笔记本电脑上运行。 也可以在承载了 PB 级数据的成百上千台服务器上运行。
+* 弹性 ： Elasticsearch 运行在一个分布式的环境中，从设计之初就考虑到了这一点。
+* 灵活性 ： 具备多个案例场景。数字、文本、地理位置、结构化、非结构化。所有的数据类型都欢迎。
+* HADOOP & SPARK ： Elasticsearch + Hadoop
 
 # 准备开始
 
@@ -73,15 +59,15 @@ Elasticsearch是一个近乎实时的搜索平台。这意味着从索引文档�
 
 分片之所以重要，主要有两个原因：
 
-  * 它允许你水平地分割/扩展内容卷
-  * 它允许你跨分片（可能在多个节点上）分布和并行操作，从而提高性能和吞吐量
+* 它允许你水平地分割/扩展内容卷
+* 它允许你跨分片（可能在多个节点上）分布和并行操作，从而提高性能和吞吐量
 
 在一个网络/云环境中随时都有可能出现故障，强烈推荐你有一个容灾机制。Elasticsearch允许你将一个或者多个索引分片复制到其它地方，这被称之为副本。
 
 复制之所以重要，有两个主要原因：
 
-  * 它提供了在一个shard/node失败是的高可用性。出于这个原因，很重要的一个点是一个副本从来不会被分配到与它复制的原始分片相同节点上。也就是说，副本是放到另外的节点上的。
-  * 它允许扩展搜索量/吞吐量，因为搜索可以在所有副本上并行执行。
+* 它提供了在一个shard/node失败是的高可用性。出于这个原因，很重要的一个点是一个副本从来不会被分配到与它复制的原始分片相同节点上。也就是说，副本是放到另外的节点上的。
+* 它允许扩展搜索量/吞吐量，因为搜索可以在所有副本上并行执行。
 
 总而言之，每个索引都可以分割成多个分片。索引也可以被复制零(意味着没有副本)或更多次。一旦被复制，每个索引都将具有主分片(被复制的原始分片)和副本分片(主分片的副本)。在创建索引时，可以为每个索引定义分片和副本的数量。创建索引后，您可以随时动态地更改副本的数量，但不能更改事后分片的数量。
 
@@ -98,7 +84,7 @@ cd elasticsearch-6.3.2/bin
 注意：不能以root用户运行elasticsearch</pre>
 </div>
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160516143-599068508.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160516143-599068508.png?x-oss-process=image/format,webp" alt="" /> 
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160516143-599068508.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160516143-599068508.png?x-oss-process=image/format,webp" alt="" />
 
 > By default, Elasticsearch uses port 9200 to provide access to its REST API. This port is configurable if necessary.
 
@@ -108,9 +94,9 @@ cd elasticsearch-6.3.2/bin
   <pre>curl http://localhost:9200/</pre>
 </div>
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160629822-884023316.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160629822-884023316.png?x-oss-process=image/format,webp" alt="" /> 
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160629822-884023316.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160629822-884023316.png?x-oss-process=image/format,webp" alt="" />
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160656888-444370749.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160656888-444370749.png?x-oss-process=image/format,webp" alt="" /> 
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160656888-444370749.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160656888-444370749.png?x-oss-process=image/format,webp" alt="" />
 
 # The REST API
 
@@ -133,9 +119,9 @@ cd elasticsearch-6.3.2/bin
 
 无论何时我们请求集群健康时，我们会得到green, yellow, 或者 red 这三种状态。
 
-  * Green ： everything is good（一切都很好）（所有功能正常）
-  * Yellow ： 所有数据都是可用的，但有些副本还没有分配（所有功能正常）
-  * Red ： 有些数据不可用（部分功能正常）
+* Green ： everything is good（一切都很好）（所有功能正常）
+* Yellow ： 所有数据都是可用的，但有些副本还没有分配（所有功能正常）
+* Red ： 有些数据不可用（部分功能正常）
 
 从上面的响应中我们可以看到，集群&#8221;elasticsearch&#8221;总共有1个节点，0个分片因为还没有数据。
 
@@ -598,7 +584,7 @@ curl -X DELETE "localhost:9200/customer"</pre>
   <pre>curl -X GET "localhost:9200/customer/_doc/1?pretty"</pre>
 </div>
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807181025087-851548359.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807181025087-851548359.png?x-oss-process=image/format,webp" alt="" /> 
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807181025087-851548359.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807181025087-851548359.png?x-oss-process=image/format,webp" alt="" />
 
 # 检索数据
 
@@ -770,8 +756,8 @@ yellow open   bank     59jD3B4FR8iifWWjrdMzUg   5   1       1000            0   
           2
         ]
       },
- 	......
- 	]
+  ......
+  ]
  }</pre>
   
   <div class="cnblogs_code_toolbar">
@@ -781,14 +767,14 @@ yellow open   bank     59jD3B4FR8iifWWjrdMzUg   5   1       1000            0   
 
 可以看到，响应由下列几部分组成：
 
-  * took ： Elasticsearch执行搜索的时间（以毫秒为单位）
-  * timed_out ： 告诉我们检索是否超时
-  * _shards ： 告诉我们检索了多少分片，以及成功/失败的分片数各是多少
-  * hits ： 检索的结果
-  * hits.total ： 符合检索条件的文档总数
-  * hits.hits ： 实际的检索结果数组（默认为前10个文档）
-  * hits.sort ： 排序的key（如果按分值排序的话则不显示）
-  * hits.\_score 和 max\_score 现在我们先忽略这些字段
+* took ： Elasticsearch执行搜索的时间（以毫秒为单位）
+* timed_out ： 告诉我们检索是否超时
+* _shards ： 告诉我们检索了多少分片，以及成功/失败的分片数各是多少
+* hits ： 检索的结果
+* hits.total ： 符合检索条件的文档总数
+* hits.hits ： 实际的检索结果数组（默认为前10个文档）
+* hits.sort ： 排序的key（如果按分值排序的话则不显示）
+* hits.\_score 和 max\_score 现在我们先忽略这些字段
 
 下面是一个和上面相同，但是用请求体的例子：
 
@@ -1275,11 +1261,7 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
   </div>
 </div>
 
- 
-
 先写到这里吧！！！
-
- 
 
 ## 参考
 

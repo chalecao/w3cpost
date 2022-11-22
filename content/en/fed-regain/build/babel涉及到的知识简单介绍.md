@@ -2,17 +2,6 @@
 title: babel涉及到的知识简单介绍
 
 
-date: 2019-10-28T07:56:01+00:00
-url: /javascriptnodejs/5056.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db69e6c30b59.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db69e6c30b59.png
-fifu_image_alt:
-  - babel配置简单介绍
-views:
-  - 747
-like:
-  - 2
 
 
 ---
@@ -203,7 +192,7 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
 &lt;span class="hljs-comment">// some code &lt;/span>
 &lt;span class="hljs-comment">// async 语法已经被 transform-async-to-generator 转化，再利用 helper 函数包装，消费 generator。&lt;/span>
 &lt;span class="hljs-keyword">const&lt;/span> func = &lt;span class="hljs-function">(&lt;span class="hljs-params">(&lt;/span>) =&gt;&lt;/span> {
-  &lt;span class="hljs-keyword">var&lt;/span> _ref = _asyncToGenerator(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>* () &lt;/span>{
+  &lt;span class="hljs-keyword">var&lt;/span> _ref =_asyncToGenerator(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>* () &lt;/span>{
     &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'begin'&lt;/span>);
     &lt;span class="hljs-keyword">yield&lt;/span> &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">resolve&lt;/span>) &lt;/span>{
       setTimeout(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> () &lt;/span>{
@@ -230,7 +219,7 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
         <div class="widget-codetool--inner">
         </div>
       </div>
-      
+
       <pre class="hljs groovy"><code style="word-break: break-word; white-space: initial;"> node_modules&lt;span class="hljs-regexp">/.bin/&lt;/span>babel-external-helpers &gt; helpers.js</code></pre>
       
       <p>
@@ -255,7 +244,7 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
   &lt;span class="hljs-attr">"plugins"&lt;/span>: [&lt;span class="hljs-string">"external-helpers"&lt;/span>]
 }</code></pre>
         </li>
-        
+
         <li>
           入口文件引入 helpers.js <div class="widget-codetool" style="display: none;">
             <div class="widget-codetool--inner">
@@ -299,7 +288,7 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
 });
 
 &lt;span class="hljs-built_in">console&lt;/span>.log(elements);</code></pre>
-        
+
         <p>
           执行 test.js，会报错，不认识这个语法。
         </p>
@@ -334,7 +323,7 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
         <pre class="hljs json"><code>{
   &lt;span class="hljs-attr">"presets"&lt;/span>: [&lt;span class="hljs-string">"react"&lt;/span>]
 }</code></pre>
-        
+
         <p>
           执行正常。
         </p>
@@ -402,7 +391,7 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
         <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">// register.js 引入 babel-register，并配置。然后引入要执行代码的入口文件&lt;/span>
 &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'babel-register'&lt;/span>)({ &lt;span class="hljs-attr">presets&lt;/span>: [&lt;span class="hljs-string">'react'&lt;/span>] });
 &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'./test'&lt;/span>)</code></pre>
-        
+
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
@@ -416,7 +405,7 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
   )
 });
 &lt;span class="hljs-built_in">console&lt;/span>.log(elements);</code></pre>
-        
+
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
@@ -424,7 +413,7 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
         
         <pre class="hljs objectivec"><code>&lt;span class="hljs-comment">// 执行&lt;/span>
 $ node &lt;span class="hljs-keyword">register&lt;/span>.js</code></pre>
-        
+
         <p>
           它的特点就是实时编译，不需要输出文件，执行的时候再去编译。所以它很适用于开发。总结一下就是，多用在 node 跑程序，做实时编译用的，通常会结合其他插件作编译器使用，比如 mocha 做测试的时候。
         </p>
@@ -464,7 +453,7 @@ $ node &lt;span class="hljs-keyword">register&lt;/span>.js</code></pre>
         <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">// 比如，只不过需要单个引用&lt;/span>
 &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'core-js/array/reduce'&lt;/span>);
 &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'core-js/object/values'&lt;/span>);</code></pre>
-        
+
         <h4>
           regenerator
         </h4>
@@ -499,8 +488,8 @@ $ node &lt;span class="hljs-keyword">register&lt;/span>.js</code></pre>
         
         <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-keyword">var&lt;/span> _asyncToGenerator2 = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'babel-runtime/helpers/asyncToGenerator'&lt;/span>);
 
-&lt;span class="hljs-keyword">var&lt;/span> _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);</code></pre>
-        
+&lt;span class="hljs-keyword">var&lt;/span> _asyncToGenerator3 =_interopRequireDefault(_asyncToGenerator2);</code></pre>
+
         <h4>
           文件结构：
         </h4>
@@ -557,7 +546,7 @@ $ node &lt;span class="hljs-keyword">register&lt;/span>.js</code></pre>
 &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'babel-core/register'&lt;/span>)({});
 &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'babel-polyfill'&lt;/span>);
 &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'./async'&lt;/span>);</code></pre>
-        
+
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
@@ -574,7 +563,7 @@ $ node &lt;span class="hljs-keyword">register&lt;/span>.js</code></pre>
   &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'done'&lt;/span>);
 }
 a();</code></pre>
-        
+
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
@@ -633,7 +622,7 @@ a();</code></pre>
         <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">// 编译前&lt;/span>
 &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-built_in">Object&lt;/span>.values({ &lt;span class="hljs-number">1&lt;/span>: &lt;span class="hljs-number">2&lt;/span> }));
 </code></pre>
-        
+
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
@@ -651,12 +640,12 @@ a();</code></pre>
 
 &lt;span class="hljs-keyword">var&lt;/span> _values = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'babel-runtime/core-js/object/values'&lt;/span>);
 
-&lt;span class="hljs-keyword">var&lt;/span> _values2 = _interopRequireDefault(_values);
+&lt;span class="hljs-keyword">var&lt;/span> _values2 =_interopRequireDefault(_values);
 
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">_interopRequireDefault&lt;/span>(&lt;span class="hljs-params">obj&lt;/span>) &lt;/span>{ &lt;span class="hljs-keyword">return&lt;/span> obj && obj.__esModule ? obj : { &lt;span class="hljs-attr">default&lt;/span>: obj }; }
 
 onsole.log((&lt;span class="hljs-number">0&lt;/span>, _values2.default)({ &lt;span class="hljs-number">1&lt;/span>: &lt;span class="hljs-number">2&lt;/span> }));</code></pre>
-        
+
         <p>
           另外，它还有几个配置
         </p>
@@ -677,7 +666,7 @@ onsole.log((&lt;span class="hljs-number">0&lt;/span>, _values2.default)({ &lt;sp
     }]
   ]
 }</code></pre>
-        
+
         <p>
           如果你只需要用 regenerator，不需要 core-js 里面的 polyfill 那你就可以在 options 中把 polyfill 设为 false。helpers 设为 false，就相当于没有启用 <code>babel-plugin-external-helpers</code> 的效果，比如翻译 async 的时候，用到了 asyncToGenerator 函数，每个文件还会重新定义一下。moduleName 的话，就是用到的库，你可以把 babel-runtime 换成其他类似的。
         </p>
@@ -756,7 +745,7 @@ onsole.log((&lt;span class="hljs-number">0&lt;/span>, _values2.default)({ &lt;sp
         
         <pre class="javascript hljs"><code class="javascript">{ &lt;span class="hljs-string">"presets"&lt;/span>: [&lt;span class="hljs-string">"latest"&lt;/span>] } === { &lt;span class="hljs-string">"presets"&lt;/span>: [&lt;span class="hljs-string">"env"&lt;/span>] }
 </code></pre>
-        
+
         <h3 id="articleHeader14">
           babel-preset-env
         </h3>
@@ -802,7 +791,7 @@ onsole.log((&lt;span class="hljs-number">0&lt;/span>, _values2.default)({ &lt;sp
     &lt;span class="hljs-string">"transform-react-jsx"&lt;/span> &lt;span class="hljs-comment">//如果是需要支持 jsx 这个东西要单独装一下。&lt;/span>
   ]
 }</code></pre>
-        
+
         <p>
           主要介绍 debug 和 很好用的 useBuiltIns 吧。
         </p>
@@ -847,7 +836,7 @@ Using polyfills:
   es6.typed.uint8-clamped-array {&lt;span class="hljs-string">"android"&lt;/span>:&lt;span class="hljs-string">"4.4.3"&lt;/span>,&lt;span class="hljs-string">"ie"&lt;/span>:&lt;span class="hljs-string">"10"&lt;/span>,&lt;span class="hljs-string">"safari"&lt;/span>:&lt;span class="hljs-string">"7"&lt;/span>,&lt;span class="hljs-string">"node"&lt;/span>:&lt;span class="hljs-string">"4.8.4"&lt;/span>}
   es6.typed.int16-array {&lt;span class="hljs-string">"android"&lt;/span>:&lt;span class="hljs-string">"4.4.3"&lt;/span>,&lt;span class="hljs-string">"ie"&lt;/span>:&lt;span class="hljs-string">"10"&lt;/span>,&lt;span class="hljs-string">"safari"&lt;/span>:&lt;span class="hljs-string">"7"&lt;/span>,&lt;span class="hljs-string">"node"&lt;/span>:&lt;span class="hljs-string">"4.8.4"&lt;/span>}
   ...</code></pre>
-        
+
         <h4>
           useBuiltIns
         </h4>
@@ -892,7 +881,7 @@ a();
 
 &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-built_in">Array&lt;/span>.isArray([]));
 </code></pre>
-        
+
         <p>
           <strong>step2:</strong> 然后通过设置不同的参数，打包，获取 build.js，并执行。得到下表
         </p>
@@ -1025,7 +1014,7 @@ a();
     }]
   ]
 }</code></pre>
-        
+
         <ul>
           <li>
             写到 package.json
@@ -1042,7 +1031,7 @@ a();
     &lt;span class="hljs-string">"env"&lt;/span>
   ],
 }</code></pre>
-        
+
         <ul>
           <li>
             babel cli
@@ -1082,7 +1071,7 @@ a();
       }
     ]
   }</code></pre>
-        
+
         <h3 id="articleHeader18">
           mocha
         </h3>
@@ -1105,7 +1094,7 @@ a();
 
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> add;
 </code></pre>
-        
+
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
@@ -1121,7 +1110,7 @@ describe(&lt;span class="hljs-string">'es6 两数相加'&lt;/span>, () =&gt; {
   })
 });
 </code></pre>
-        
+
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>

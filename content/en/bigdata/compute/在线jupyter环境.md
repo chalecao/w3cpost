@@ -1,22 +1,6 @@
 ---
 title: 在线jupyter环境
-
-
-date: 2018-12-07T02:18:55+00:00
-url: /aistack/3224.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png
-onesignal_meta_box_present:
-  - 1
-views:
-  - 1340
-fifu_image_alt:
-  - 在线jupyter环境
-like:
-  - 1
-
-
+weight: 7
 ---
 <p id="brEeGYC">
   <img loading="lazy" class="alignnone wp-image-3226 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png?x-oss-process=image/format,webp" alt="" width="537" height="302" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_169/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_432/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_450/format,webp 800w" sizes="(max-width: 537px) 100vw, 537px" />
@@ -34,11 +18,11 @@ juputer，想起来丘比特。哈哈
 
 我踏遍千山万水，找了很多的在线jupyter，最好用的还是这两个：
 
-  * [Colaboratory][2]
+* [Colaboratory][2]
 
 如果能翻墙建议使用google的 [Colaboratory][2]，可以开启GPU加速，也可以链接本地的jupyter服务端口。和github是通的，可以把写的例子保存到git仓库中。可以看下我的这个示例： [Colaboratory使用][3] 。
 
-  * [百度AI studio][4]
+* [百度AI studio][4]
 
 不能翻墙的就推荐百度的[AI studio][4]，用起来还是很不错的。我这有个 [示例项目][5]
 

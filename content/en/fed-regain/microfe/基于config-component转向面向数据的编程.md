@@ -2,17 +2,10 @@
 title: 基于config-component转向面向数据的编程
 
 
-date: 2019-09-06T15:16:45+00:00
-url: /javascriptnodejs/5000.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d7277e93dee3.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d7277e93dee3.png
-fifu_image_alt:
-  - 自动草稿
-views:
-  - 1016
-like:
-  - 4
+
+
+
+
 xzh_tui_back:
   - 成功
 is_original:
@@ -67,8 +60,8 @@ github： <a href="https://github.com/chalecao/config-component" target="_blank
 
 config-component默认提供了2中类型组件，
 
-  * ConfigComponent, 通用类型组件，配置页面逻辑，用于前台页面
-  * ConfigForm， 专用于配置化表单，可以用中后台页面
+* ConfigComponent, 通用类型组件，配置页面逻辑，用于前台页面
+* ConfigForm， 专用于配置化表单，可以用中后台页面
 
 For common component:
 
@@ -95,11 +88,11 @@ For form component:
 params:
 
 > &#x2139;&#xfe0f;schema: the core data you care, ConfigComponent will verify you core data with schema，you can specify alt props in item, when error occurs, will show alt as default value&#x2139;&#xfe0f;initialValues: init value in you comp
-> 
+>
 > &#x2139;&#xfe0f;uiConfig: define your ui interface with json config, support event hooks, see example in playground file.
-> 
+>
 > &#x2139;&#xfe0f;onSubmit: used only in form when submit data.
-> 
+>
 > &#x2139;&#xfe0f;componentSet: support <a href="https://ant.design/" target="_blank" rel="nofollow noopener noreferrer">Ant Design</a> or <a href="https://fusion.design/" target="_blank" rel="nofollow noopener noreferrer">Fusion</a> or you selfdefine Components.
 
 * * *
@@ -107,8 +100,8 @@ params:
 代码示例：
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">import React, { useContext } from 'react'
-import * as yup from 'yup'
-import * as AntdComponents from 'antd'
+import *as yup from 'yup'
+import* as AntdComponents from 'antd'
 import moment from 'moment'
 import {ConfigForm} from 'config-component'
 import 'antd/dist/antd.css'

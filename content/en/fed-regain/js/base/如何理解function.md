@@ -1,28 +1,12 @@
 ---
 title: 如何理解function
 
-
-date: 2017-08-28T12:44:53+00:00
-excerpt: Function作为Javascript的核心技术之一,清晰的理解function的机制和用法,对我们进行javascript开发非常重要。你有想过function是什么吗？ECMAScript 的函数实际上是功能完整的对象。其中function是javascript中定义函数的关键字，由function定义的函数是一个由代码集合而成的对象，属于引用类型。而Function则是javascript中的引用类型中的一种，类似Number和String和Object和Boolean。Function类可以表示开发者定义的任何函数。
-url: /javascriptnodejs/696.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/2017/08/function.jpg
-views:
-  - 1877
-  - 1877
-onesignal_meta_box_present:
-  - 1
-fifu_image_url:
-  - //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/function.jpg
-fifu_image_alt:
-  - 如何理解function
-
-
 ---
 # 想过function吗？
 
 Function作为Javascript的核心技术之一,清晰的理解function的机制和用法,对我们进行javascript开发非常重要。你有想过function是什么吗？ECMAScript 的函数实际上是功能完整的对象。其中function是javascript中定义函数的关键字，由function定义的函数是一个由代码集合而成的对象，属于引用类型。而Function则是javascript中的引用类型中的一种，类似Number和String和Object和Boolean。Function类可以表示开发者定义的任何函数。
 
-<img class="aligncenter" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/function.jpg" alt="如何理解function" /> 
+<img class="aligncenter" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/function.jpg" alt="如何理解function" />
 
 本节属于：[前端工程师自学面试找工作必备知识][1]
 
@@ -674,9 +658,9 @@ Function 和 function，理解了吗？
 
 ### 举个例子
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">setTimeout('alert(1)',1e3) 
+<pre class="EnlighterJSRAW" data-enlighter-language="null">setTimeout('alert(1)',1e3)
 // 上面这个写法会自动转成下面这个
-setTimeout(new Function('alert(1)'),1e3) 
+setTimeout(new Function('alert(1)'),1e3)
 </pre>
 
 &nbsp;

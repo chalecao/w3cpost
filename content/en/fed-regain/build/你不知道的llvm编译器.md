@@ -2,17 +2,6 @@
 title: 你不知道的LLVM编译器
 
 
-date: 2019-05-29T14:40:26+00:00
-url: /javascriptnodejs/4401.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/15973646652884a59fc863a794571114.jpg
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/15973646652884a59fc863a794571114.jpg
-fifu_image_alt:
-  - 你不知道的llvm
-views:
-  - 1741
-like:
-  - 4
 
 
 ---
@@ -78,24 +67,24 @@ LLVM 的通常使用方式，是编码在开发人员顺手的开发语言中。
 
 其中，广为采用的 C 和 C++。不少 LLVM 开发人员二者必取其一，理由是：
 
-  * LLVM 本事就是使用 C++ 编写的。
-  * LLVM 的 API 以 C/C++ 化身（incarnation）提供。
-  * 很多语言开发倾向于以 C/C++ 为基础。
+* LLVM 本事就是使用 C++ 编写的。
+* LLVM 的 API 以 C/C++ 化身（incarnation）提供。
+* 很多语言开发倾向于以 C/C++ 为基础。
 
 当然，选择并不局限于这两种语言。不少语言支持原生地调用 C 软件库。因此在理论上讲，可以使用任何一种此类语言做 LLVM 开发。当然，如果语言本身就提供包装了 LLVM API 的软件库，这样最好。幸运的是，很多语言和运行时都具有这样的软件库，其中包括 C#/.NET/Mono、Rust、Haskell、OCAML、Node.js、Go 和 Python。
 
 需要给出警告的是，部分语言对 LLVM 的绑定尚不完备。以 Python 为例。尽管 Python 提供了多种选择，但每种选择的完备性和实用性各有千秋：
 
-  * LLVM 项目本身就维护了一组到 LLVM C API 的绑定，但是目前为止已停止进一步的维护。
-  * llvmpy 在 2015 年后就停止维护了。这对于任何一个软件项目都不是一个好消息。考虑到每次 LLVM 修订版本中的更改数量，对于 LLVM 而言尤为如此。
-  * llvmlite 是 Numba 开发团队开发的。当前已成为在 Python 中使用 LLVM 的一个有力竞争者。但是 llvmlite 局限于针对 Numba 的需要，因此提供的功能只是 LLVM 用户所需功能的一个子集。
-  * llvmcpy 意在为 C 软件库提供最新的、可自动更新的 Python 绑定，支持使用 Python 的原生风格访问。llvmcpy 依然处于开发的早期阶段，但是已经可以使用 LLVM API 完成一些基本工作。
+* LLVM 项目本身就维护了一组到 LLVM C API 的绑定，但是目前为止已停止进一步的维护。
+* llvmpy 在 2015 年后就停止维护了。这对于任何一个软件项目都不是一个好消息。考虑到每次 LLVM 修订版本中的更改数量，对于 LLVM 而言尤为如此。
+* llvmlite 是 Numba 开发团队开发的。当前已成为在 Python 中使用 LLVM 的一个有力竞争者。但是 llvmlite 局限于针对 Numba 的需要，因此提供的功能只是 LLVM 用户所需功能的一个子集。
+* llvmcpy 意在为 C 软件库提供最新的、可自动更新的 Python 绑定，支持使用 Python 的原生风格访问。llvmcpy 依然处于开发的早期阶段，但是已经可以使用 LLVM API 完成一些基本工作。
 
 如果有兴趣了解如何使用 LLVM 软件库构建一种语言，可以阅读由 LLVM 创始人撰写的教程。该教程使用 C++ 和 OCAML，一步步引导读者去创建一个名为“Kaleidoscope”的简单语言。进而移植到其它语言中：
 
-  * Haskell：参考原始教程可直接移植。
-  * Python: 一种方式是严格遵守教程，另一种方式做了大量重写，并提供了交互式命令行。两种方式都使用 llvmlite 作为到 LLVM 的绑定。
-  * Rust 和 Swift：看上去，我们不可避免地要实现将教程语言移植到这两种由 LLVM 本身创建的语言上。
+* Haskell：参考原始教程可直接移植。
+* Python: 一种方式是严格遵守教程，另一种方式做了大量重写，并提供了交互式命令行。两种方式都使用 llvmlite 作为到 LLVM 的绑定。
+* Rust 和 Swift：看上去，我们不可避免地要实现将教程语言移植到这两种由 LLVM 本身创建的语言上。
 
 该教程还有其它一些国家语言的翻译版本，例如使用原始 C++ 和 Python 的中文教程。
 
@@ -117,6 +106,6 @@ LLVM 也不直接解决大部分针对特定语言的软件文化。例如，如
 
 相关链接：
 
-  * <a href="http://ellcc.org/" target="_blank" rel="noopener noreferrer">http://ellcc.org/</a>
-  * <a href="http://ellcc.org/demo/index.cgi" target="_blank" rel="noopener noreferrer">http://ellcc.org/demo/index.cgi</a>
-  * <a href="https://llvm.org/docs/GarbageCollection.html" target="_blank" rel="noopener noreferrer">https://llvm.org/docs/GarbageCollection.html</a>
+* <a href="http://ellcc.org/" target="_blank" rel="noopener noreferrer">http://ellcc.org/</a>
+* <a href="http://ellcc.org/demo/index.cgi" target="_blank" rel="noopener noreferrer">http://ellcc.org/demo/index.cgi</a>
+* <a href="https://llvm.org/docs/GarbageCollection.html" target="_blank" rel="noopener noreferrer">https://llvm.org/docs/GarbageCollection.html</a>

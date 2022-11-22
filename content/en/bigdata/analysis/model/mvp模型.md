@@ -2,14 +2,6 @@
 title: MVP模型
 
 
-date: 2022-03-26T14:54:18+00:00
-url: /用户增长/6989.html
-classic-editor-remember:
-  - classic-editor
-views:
-  - 133
-
-
 ---
 ## 什么是 MVP {#toc-1}
 
@@ -17,12 +9,12 @@ MVP （最小化可实行产品，Minimum Viable Product）是 Eric Ries 在《�
 
 简单来说，就是在做一个新产品的时候，不要一下子做一个「尽善尽美」的产品，而是先花费最小的代价做一个「可用」的产品原型，去验证这个产品是否有价值、是否可行，再通过迭代来完善细节。
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/qkgJYw3fZ5CHCuTZcQMg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/qkgJYw3fZ5CHCuTZcQMg.jpg?x-oss-process=image/format,webp" alt="" width="597" height="422" data-action="zoom" /> 
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/qkgJYw3fZ5CHCuTZcQMg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/qkgJYw3fZ5CHCuTZcQMg.jpg?x-oss-process=image/format,webp" alt="" width="597" height="422" data-action="zoom" />
 
 这是一张在网上流传很广泛的用来介绍 MVP 的图：
 
 > 假如你的产品愿景是一种高级出行工具，比如小轿车。传统的产品设计思路是一步一步，从车轮、车轱辘、外壳、动力装置、内部装饰一个流程一个流程做起，最后得到一个完善的产品。而MVP的思路，我们可能会先做一个小滑板车或者自行车，看看用户对出行工具的认可程度。如果用户认可我们的产品概念，我们可以接下去生产更加高级、完善的摩托车、甚至小轿车。
-> 
+>
 > 传统产品迭代思路成本高、速度慢、风险大，花高成本做出来的产品用户可能不认可；MVP 策略的优点在于试错成本低、速度快、风险低，能满足产品快速迭代的需求。
 
 ## 为什么要做 MVP {#toc-2}
@@ -76,7 +68,7 @@ MVP 的作用就是让你用最小的代价，最快的速度，最早的时间�
 
 在完成 MVP 产品开发之后，我们需要尽快将其推向市场，让市场来验证你的项目，同时接收用户的反馈。因为只有从市场上你才能发现你的产品缺少了哪些功能或者多了哪些无关紧要甚至是累赘的功能。收集用户反馈之后，你可以用 MVP 的思想去改进、迭代、收集反馈，再次改进、迭代、收集反馈，形成一个循环，周而复始。
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/86SMIS8gekgVtajlav1x.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/86SMIS8gekgVtajlav1x.jpg?x-oss-process=image/format,webp" alt="" width="700" height="325" data-action="zoom" /> 
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/86SMIS8gekgVtajlav1x.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/86SMIS8gekgVtajlav1x.jpg?x-oss-process=image/format,webp" alt="" width="700" height="325" data-action="zoom" />
 
 ## 总结一些使用 MVP 思想时的一些感悟： {#toc-4}
 

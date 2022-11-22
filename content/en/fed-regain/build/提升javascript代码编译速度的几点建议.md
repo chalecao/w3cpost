@@ -2,19 +2,7 @@
 title: 提升javascript代码编译速度的几点建议
 
 
-date: 2019-01-15T02:14:01+00:00
-url: /javascriptnodejs/3447.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png
-onesignal_meta_box_present:
-  - 1
-fifu_image_alt:
-  - 提升javascript代码编译速度的几点建议
-views:
-  - 1637
-like:
-  - 3
+
 
 
 ---
@@ -214,11 +202,11 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
   提升网络应用速度的建议：
 </p>
 
-  * 检查依赖。减少不必要的依赖。
-  * 分割代码为更小的块而不是一整块。如 webpack 的 code-spliting 功能。
-  * 尽可能延迟加载 JavaScript 代码。可以只加载当前路由所要求的代码片段。比如只在点击某个元素的时候引入 某段代码模块。
-  * 使用开发者工具和 DeviceTiming 来检测性能瓶颈。
-  * 使用像 Optimize.js 的工具来帮助解析器选择立即解析或者懒解析以加快解析速度。
+* 检查依赖。减少不必要的依赖。
+* 分割代码为更小的块而不是一整块。如 webpack 的 code-spliting 功能。
+* 尽可能延迟加载 JavaScript 代码。可以只加载当前路由所要求的代码片段。比如只在点击某个元素的时候引入 某段代码模块。
+* 使用开发者工具和 DeviceTiming 来检测性能瓶颈。
+* 使用像 Optimize.js 的工具来帮助解析器选择立即解析或者懒解析以加快解析速度。
 
 ## 拓展 {#articleHeader6}
 
@@ -226,7 +214,7 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 <pre class="hljs typescript"><code>&lt;span class="hljs-built_in">window&lt;/span>.addEventListener(&lt;span class="hljs-string">'pageshow'&lt;/span>, &lt;span class="hljs-function">(&lt;span class="hljs-params">event&lt;/span>) =&gt;&lt;/span> {
   &lt;span class="hljs-comment">// 检查前进/后退缓存，是否从缓存加载页面&lt;/span>
-  &lt;span class="hljs-keyword">if&lt;/span> (event.persisted || &lt;span class="hljs-built_in">window&lt;/span>.performance && 
+  &lt;span class="hljs-keyword">if&lt;/span> (event.persisted || &lt;span class="hljs-built_in">window&lt;/span>.performance &&
     &lt;span class="hljs-built_in">window&lt;/span>.performance.navigation.type === &lt;span class="hljs-number">2&lt;/span>) {
     &lt;span class="hljs-comment">// 进行相应的逻辑处理&lt;/span>
   }

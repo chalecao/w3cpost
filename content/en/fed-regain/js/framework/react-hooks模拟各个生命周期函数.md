@@ -1,15 +1,6 @@
 ---
 title: react hooks模拟各个生命周期函数
 
-
-date: 2020-04-15T11:58:04+00:00
-url: /javascriptnodejs/5750.html
-views:
-  - 1702
-like:
-  - 3
-
-
 ---
 # 前言 {#-}
 
@@ -95,7 +86,7 @@ ok，现在假的this要原形毕露了:
 所以，真没有什么黑魔法，就是读前一个值然后+1展示而已。好了，回到正题，函数组件的更新就是`useState`，那强制更新呢？如何实现一个`forceUpdate`？其实也很简单，dispatcher（`useState`返回值第二个元素）传入一个函数，类似于class组件的`setState`传入一个函数一样，可以拿到当前的state值：
 
 <pre class="hljs jsx"><code class="hljs jsx">&lt;span class="hljs-keyword">const&lt;/span> useForceUpdate = () =&gt; {
-  &lt;span class="hljs-keyword">const&lt;/span> forceUpdate = useState(&lt;span class="hljs-number">0&lt;/span>)[&lt;span class="hljs-number">1&lt;/span>];
+  &lt;span class="hljs-keyword">const&lt;/span> forceUpdate = useState[&lt;span class="hljs-number">0&lt;/span>](&lt;span class="hljs-number">1&lt;/span>);
   &lt;span class="hljs-keyword">return&lt;/span> () =&gt; forceUpdate(x =&gt; x + &lt;span class="hljs-number">1&lt;/span>);
 }
 
@@ -129,8 +120,8 @@ ok，现在假的this要原形毕露了:
   return (
     &lt;span class="hljs-variable">&lt;div&gt;&lt;/span>
       a: {_this.&lt;span class="hljs-keyword">state&lt;/span>.a} / b : {_this.&lt;span class="hljs-keyword">state&lt;/span>.b}
-      &lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State({ a: _this.&lt;span class="hljs-keyword">state&lt;/span>.a + &lt;span class="hljs-number">1&lt;/span> }) }}&gt;a传&lt;span class="hljs-keyword">state&lt;/span>&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
-      &lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State(({ b }) =&gt; ({ b: b + &lt;span class="hljs-number">2&lt;/span> })) }}&gt;b传函数&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
+&lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> {_this.&lt;span class="hljs-built_in">set&lt;/span>State({ a: _this.&lt;span class="hljs-keyword">state&lt;/span>.a + &lt;span class="hljs-number">1&lt;/span> }) }}&gt;a传&lt;span class="hljs-keyword">state&lt;/span>&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
+&lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> {_this.&lt;span class="hljs-built_in">set&lt;/span>State(({ b }) =&gt; ({ b: b + &lt;span class="hljs-number">2&lt;/span> })) }}&gt;b传函数&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
     &lt;span class="hljs-variable">&lt;/div&gt;&lt;/span>
   );
 }
@@ -181,8 +172,8 @@ ok，现在假的this要原形毕露了:
   return (
     &lt;span class="hljs-variable">&lt;div&gt;&lt;/span>
       a: {_this.&lt;span class="hljs-keyword">state&lt;/span>.a} / b : {_this.&lt;span class="hljs-keyword">state&lt;/span>.b}
-      &lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State({ a: _this.&lt;span class="hljs-keyword">state&lt;/span>.a + &lt;span class="hljs-number">1&lt;/span> }) }}&gt;a传&lt;span class="hljs-keyword">state&lt;/span>&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
-      &lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State(({ b }) =&gt; ({ b: b + &lt;span class="hljs-number">2&lt;/span> })) }}&gt;b传函数&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
+&lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> {_this.&lt;span class="hljs-built_in">set&lt;/span>State({ a: _this.&lt;span class="hljs-keyword">state&lt;/span>.a + &lt;span class="hljs-number">1&lt;/span> }) }}&gt;a传&lt;span class="hljs-keyword">state&lt;/span>&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
+&lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> {_this.&lt;span class="hljs-built_in">set&lt;/span>State(({ b }) =&gt; ({ b: b + &lt;span class="hljs-number">2&lt;/span> })) }}&gt;b传函数&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
     &lt;span class="hljs-variable">&lt;/div&gt;&lt;/span>
   )
 }
@@ -250,7 +241,7 @@ ok，现在假的this要原形毕露了:
       &lt;span class="hljs-variable">&lt;div&gt;&lt;/span>
         props: {props.p}/
         a: {_this.&lt;span class="hljs-keyword">state&lt;/span>.a} / b : {_this.&lt;span class="hljs-keyword">state&lt;/span>.b}
-        &lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State({ a: _this.&lt;span class="hljs-keyword">state&lt;/span>.a + &lt;span class="hljs-number">1&lt;/span> }) }}&gt;a传&lt;span class="hljs-keyword">state&lt;/span>&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
+        &lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State({ a:_this.&lt;span class="hljs-keyword">state&lt;/span>.a + &lt;span class="hljs-number">1&lt;/span> }) }}&gt;a传&lt;span class="hljs-keyword">state&lt;/span>&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
         &lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State(({ b }) =&gt; ({ b: b + &lt;span class="hljs-number">2&lt;/span> })) }}&gt;b传函数&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
       &lt;span class="hljs-variable">&lt;/div&gt;&lt;/span>
     );
@@ -295,7 +286,7 @@ ok，现在假的this要原形毕露了:
       &lt;span class="hljs-variable">&lt;div&gt;&lt;/span>
         props: {props.p}/
         a: {_this.&lt;span class="hljs-keyword">state&lt;/span>.a} / b : {_this.&lt;span class="hljs-keyword">state&lt;/span>.b}
-        &lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State({ a: _this.&lt;span class="hljs-keyword">state&lt;/span>.a + &lt;span class="hljs-number">1&lt;/span> }) }}&gt;a传&lt;span class="hljs-keyword">state&lt;/span>&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
+        &lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State({ a:_this.&lt;span class="hljs-keyword">state&lt;/span>.a + &lt;span class="hljs-number">1&lt;/span> }) }}&gt;a传&lt;span class="hljs-keyword">state&lt;/span>&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
         &lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State(({ b }) =&gt; ({ b: b + &lt;span class="hljs-number">2&lt;/span> })) }}&gt;b传函数&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
       &lt;span class="hljs-variable">&lt;/div&gt;&lt;/span>
     )

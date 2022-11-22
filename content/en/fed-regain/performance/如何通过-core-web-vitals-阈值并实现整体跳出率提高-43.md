@@ -2,11 +2,6 @@
 title: 如何通过 Core Web Vitals 阈值并实现整体跳出率降低 43%
 
 
-date: 2022-01-08T13:49:42+00:00
-url: /javascriptnodejs/6872.html
-views:
-  - 203
-
 
 ---
 ## 衡量影响[#][1]{.w-headline-link} {#measuring-the-impact}
@@ -15,17 +10,17 @@ views:
 
 **总体而言，CLS**从 0.25**提高**到 0.09 **，提高**了 250%。**总体而言，LCP**从 4.5 秒提高到 2.5 秒**，提高**了 80%。
 
-此外，从 2020 年 10 月到 2021 年 7 月，“差”范围内的 LCP 值降低了 33%：<figure> 
+此外，从 2020 年 10 月到 2021 年 7 月，“差”范围内的 LCP 值降低了 33%：<figure>
 
 <p id="cDGwSth">
   <img loading="lazy" class="alignnone wp-image-6873 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9961d2bee3.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9961d2bee3.png?x-oss-process=image/format,webp" alt="" width="682" height="407" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9961d2bee3.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9961d2bee3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_179/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9961d2bee3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_477/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9961d2bee3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_458/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9961d2bee3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_916/format,webp 1536w" sizes="(max-width: 682px) 100vw, 682px" />
-</p></figure> 
+</p></figure>
 
-此外，在同一时间范围内，“差”范围内的 CLS 值降低了 65%，而“良好”范围内的 CLS 值增加了 20%：<figure> 
+此外，在同一时间范围内，“差”范围内的 CLS 值降低了 65%，而“良好”范围内的 CLS 值增加了 20%：<figure>
 
 <p id="TdEwoWJ">
   <img loading="lazy" class="alignnone wp-image-6874 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9962b046c5.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9962b046c5.png?x-oss-process=image/format,webp" alt="" width="618" height="358" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9962b046c5.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9962b046c5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_174/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9962b046c5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_463/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9962b046c5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_444/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9962b046c5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_889/format,webp 1536w" sizes="(max-width: 618px) 100vw, 618px" />
-</p></figure> 
+</p></figure>
 
 结果是，之前未达到 CWV 阈值的《经济时报》现在在其整个来源都通过了 CWV 阈值，并且**总体跳出率降低了 43%**。
 
@@ -47,9 +42,9 @@ views:
 
 <a href="http://github.com/google/brotli/" rel="noopener">Brotli</a>是 Google 开发的 Gzip 和 Deflate 的替代压缩算法。我们替换了字体和资产，并将服务器压缩从 Gzip 更改为 Brotli，以实现更小的占用空间：
 
-  * Javascript 文件比 Gzip 小 15%。
-  * HTML 文件比 Gzip 小 18%。
-  * CSS 和字体文件比 Gzip 小 17%。
+* Javascript 文件比 Gzip 小 15%。
+* HTML 文件比 Gzip 小 18%。
+* CSS 和字体文件比 Gzip 小 17%。
 
 ### 预连接到第三方域[#][9]{.w-headline-link} {#preconnect-to-third-party-domains}
 
@@ -67,13 +62,13 @@ views:
 
 ### 总结 LCP 目标和成就[#][14]{.w-headline-link} {#summarizing-lcp-goals-and-achievements}
 
-在开始优化项目之前，该团队将他们的 LCP 分数基准为**4.5 秒**（对于 75% 的用户，基于 CrUX 报告字段数据）。优化项目后，缩短为**2.5 秒**。<figure class="w-caption"><figcaption> 
+在开始优化项目之前，该团队将他们的 LCP 分数基准为**4.5 秒**（对于 75% 的用户，基于 CrUX 报告字段数据）。优化项目后，缩短为**2.5 秒**。<figure class="w-caption"><figcaption>
 
 <p id="XTUFfCa">
   <img loading="lazy" class="alignnone wp-image-6875 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9964090523.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9964090523.png?x-oss-process=image/format,webp" alt="" width="529" height="394" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9964090523.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9964090523.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_224/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9964090523.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_596/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9964090523.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_572/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9964090523.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_1144/format,webp 1536w" sizes="(max-width: 529px) 100vw, 529px" />
 </p>
 
-资料来源：经济时报整体LCP的CrUX报告</figcaption></figure> 
+资料来源：经济时报整体LCP的CrUX报告</figcaption></figure>
 
 ## 什么是 CLS，我们如何改进它？[#][15]{.w-headline-link} {#what-is-cls-and-how-did-we-improve-it}
 
@@ -89,11 +84,11 @@ views:
 
 ### 使用占位符[#][16]{.w-headline-link} {#use-placeholders}
 
-我们为已知尺寸的广告单元和媒体元素使用了样式化的占位符，以避免在广告库加载和呈现页面广告时发生布局变化。这可以确保通过为广告保留空间来消除布局变化。<figure> 
+我们为已知尺寸的广告单元和媒体元素使用了样式化的占位符，以避免在广告库加载和呈现页面广告时发生布局变化。这可以确保通过为广告保留空间来消除布局变化。<figure>
 
 <p id="jQrnkJo">
   <img loading="lazy" class="alignnone wp-image-6876 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9964d48d14.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9964d48d14.png?x-oss-process=image/format,webp" alt="" width="493" height="399" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9964d48d14.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9964d48d14.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_243/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9964d48d14.png?x-oss-process=image/quality,q_50/resize,m_fill,w_742,h_600/format,webp 742w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9964d48d14.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_621/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9964d48d14.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_1242/format,webp 1536w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9964d48d14.png?x-oss-process=image/quality,q_50/resize,m_fill,w_320,h_260/format,webp 320w" sizes="(max-width: 493px) 100vw, 493px" />
-</p></figure> 
+</p></figure>
 
 ### 定义的容器尺寸[#][17]{.w-headline-link} {#defined-container-dimensions}
 
@@ -101,11 +96,11 @@ views:
 
 ### 总结 CLS 的目标和成就[#][18]{.w-headline-link} {#summarizing-cls-goals-and-achievements}
 
-在开始优化项目之前，该团队将他们的 CLS 分数基准为**0.25**。我们能够将其显着降低**90%**至**0.09**。<figure> 
+在开始优化项目之前，该团队将他们的 CLS 分数基准为**0.25**。我们能够将其显着降低**90%**至**0.09**。<figure>
 
 <p id="KwXqpzS">
   <img loading="lazy" class="alignnone wp-image-6877 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9965bc8feb.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9965bc8feb.png?x-oss-process=image/format,webp" alt="" width="534" height="123" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9965bc8feb.png?x-oss-process=image/format,webp 1388w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9965bc8feb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_69/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9965bc8feb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_184/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9965bc8feb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_177/format,webp 768w" sizes="(max-width: 534px) 100vw, 534px" />
-</p></figure> 
+</p></figure>
 
 ## 什么是首次输入延迟 (FID)，我们如何改进它？[#][19]{.w-headline-link} {#what-is-first-input-delay-(fid)-and-how-did-we-improve-it}
 
@@ -113,11 +108,11 @@ views:
 
 ### 分解较长的 JavaScript 任务[#][21]{.w-headline-link} {#break-up-long-javascript-tasks}
 
-长任务是 50 毫秒或更长的任务。长任务占用浏览器的主线程并阻止它响应用户输入。我们尽可能根据用户请求将长时间运行的任务分解为更小的任务，这有​​助于减少 Javascript 的臃肿。<figure> 
+长任务是 50 毫秒或更长的任务。长任务占用浏览器的主线程并阻止它响应用户输入。我们尽可能根据用户请求将长时间运行的任务分解为更小的任务，这有​​助于减少 Javascript 的臃肿。<figure>
 
 <p id="nQComhL">
   <img loading="lazy" class="alignnone wp-image-6878 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d99663d5997.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d99663d5997.png?x-oss-process=image/format,webp" alt="" width="481" height="302" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d99663d5997.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d99663d5997.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_188/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d99663d5997.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_502/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d99663d5997.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_481/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d99663d5997.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_963/format,webp 1536w" sizes="(max-width: 481px) 100vw, 481px" />
-</p></figure> 
+</p></figure>
 
 ### 推迟未使用的 JavaScript [#][22]{.w-headline-link} {#defer-unused-javascript}
 
@@ -133,11 +128,11 @@ views:
 
 ### 总结 FID 目标和成就[#][25]{.w-headline-link} {#summarizing-fid-goals-and-achievements}
 
-通过常规实验，我们能够将 FID 从 200 ms 减少到今天的 50 ms 以下。<figure> 
+通过常规实验，我们能够将 FID 从 200 ms 减少到今天的 50 ms 以下。<figure>
 
 <p id="QBldNzI">
   <img loading="lazy" class="alignnone wp-image-6879 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9966dade44.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9966dade44.png?x-oss-process=image/format,webp" alt="" width="458" height="121" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9966dade44.png?x-oss-process=image/format,webp 1440w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9966dade44.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_79/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9966dade44.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_211/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/01/img_61d9966dade44.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_203/format,webp 768w" sizes="(max-width: 458px) 100vw, 458px" />
-</p></figure> 
+</p></figure>
 
 ## 防止回归[#][26]{.w-headline-link} {#preventing-regressions}
 

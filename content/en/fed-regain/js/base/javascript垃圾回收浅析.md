@@ -2,20 +2,6 @@
 title: Javascript垃圾回收浅析
 
 
-date: 2019-08-21T02:06:29+00:00
-url: /javascriptnodejs/4982.html
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca70d12dde.png
-fifu_image_alt:
-  - 自动草稿
-like:
-  - 5
-views:
-  - 948
-classic-editor-remember:
-  - classic-editor
-
-
 ---
 # 一. 枚举Javascript引擎分配内存的场景：
 

@@ -2,21 +2,10 @@
 title: PM2启动eggjs
 
 
-date: 2020-06-11T11:57:01+00:00
-url: /pwa/5809.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c755e0e2.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c755e0e2.png
-fifu_image_alt:
-  - PM2启动eggjs
-views:
-  - 1521
-like:
-  - 1
 
 
 ---
-<h1 data-v-50ff96fb="">egg</h1> 
+<h1 data-v-50ff96fb="">egg</h1>
 
 在egg项目的根目录定义启动文件：
 
@@ -33,7 +22,7 @@ egg.startCluster({
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">pm2 start server.js --name test</pre>
 
-&nbsp;<h1 class="article-title" data-v-50ff96fb="">PM2简易使用手册</h1> <div class="article-content" data-v-50ff96fb="" data-id="5be4077c5188253e8c6dac27"> 
+&nbsp;<h1 class="article-title" data-v-50ff96fb="">PM2简易使用手册</h1> <div class="article-content" data-v-50ff96fb="" data-id="5be4077c5188253e8c6dac27">
 
 <h2 class="heading" data-id="heading-0">
   PM2 使用手册
@@ -47,9 +36,9 @@ egg.startCluster({
 
 对于线上项目，如果直接通过 node app 来启动，如果报错了可能直接停止导致整个服务崩溃，一般监控 node 有几种方案。
 
-  * supervisor: 一般用作开发环境的使用。
-  * forever: 管理多个站点，一般每个站点的访问量不大的情况，不需要监控。
-  * PM2: 网站的访问量比较大，需要完整的监控页面。
+* supervisor: 一般用作开发环境的使用。
+* forever: 管理多个站点，一般每个站点的访问量不大的情况，不需要监控。
+* PM2: 网站的访问量比较大，需要完整的监控页面。
 
 > 公司原来的项目采用的是 forever 的形式，不过如果 node 出现问题的时候，没有办法获取到有效的监控数据进行错误排查，因此新开发的系统准备采用 pm2 的形式进行前端以及 node 层的监控。
 
@@ -57,14 +46,14 @@ egg.startCluster({
   PM2 的主要特性
 </h3>
 
-  * 内建负载均衡（使用 Node cluster 集群模块）
-  * 后台运行
-  * 0 秒停机重载，我理解大概意思是维护升级的时候不需要停机.
-  * 具有 Ubuntu 和 CentOS 的启动脚本
-  * 停止不稳定的进程（避免无限循环）
-  * 控制台检测
-  * 提供 HTTP API
-  * 远程控制和实时的接口 API ( Nodejs 模块,允许和 PM2 进程管理器交互 )
+* 内建负载均衡（使用 Node cluster 集群模块）
+* 后台运行
+* 0 秒停机重载，我理解大概意思是维护升级的时候不需要停机.
+* 具有 Ubuntu 和 CentOS 的启动脚本
+* 停止不稳定的进程（避免无限循环）
+* 控制台检测
+* 提供 HTTP API
+* 远程控制和实时的接口 API ( Nodejs 模块,允许和 PM2 进程管理器交互 )
 
 <h3 class="heading" data-id="heading-3">
   安装
@@ -78,7 +67,7 @@ npm install -g pm2
   用法
 </h3>
 
-  * 基本启动命令
+* 基本启动命令
 
 > pm2 start
 
@@ -86,83 +75,83 @@ npm install -g pm2
 $ pm2 start ./build/server.js
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
 
-  * 通过配置文件进行启动稍后详细讲解
+* 通过配置文件进行启动稍后详细讲解
 
-启动之后，控制台会看到如下消息：<figure> 
+启动之后，控制台会看到如下消息：<figure>
 
 <p id="ZbMFOil">
   <img loading="lazy" width="1280" height="206" class="alignnone size-full wp-image-5813 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c755e0e2.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c755e0e2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c755e0e2.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c755e0e2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_48/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c755e0e2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_124/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c755e0e2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_129/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
-</p><figcaption></figcaption></figure> 
+</p><figcaption></figcaption></figure>
 
 > 如上图所示，可以看到项目`kafazhe`成功启动,id 是 0，并且状态时 online.
 
-  * 查看详细状态信息
+* 查看详细状态信息
 
 > pm2 show (appname|id)
 
 <pre><code class="hljs bash copyable" lang="bash">$ pm2 show kaifazhe
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure> 
+&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure>
 
 <p id="qexvtCT">
   <img loading="lazy" width="1280" height="960" class="alignnone size-full wp-image-5814 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c7c19fd9.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c7c19fd9.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c7c19fd9.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c7c19fd9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_225/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c7c19fd9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_576/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c7c19fd9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_600/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
-</p><figcaption></figcaption></figure> 
+</p><figcaption></figcaption></figure>
 
 > 如上图所示，可以查看到 kaifazhe 进程的详细信息
 
-  * 查看所有启动的进程列表
+* 查看所有启动的进程列表
 
 > pm2 list
 
 <pre><code class="hljs bash copyable" lang="bash">$ pm2 list
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure> 
+&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure>
 
 <p id="GNgcwCc">
   <img loading="lazy" width="1280" height="206" class="alignnone size-full wp-image-5815 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c861628a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c861628a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c861628a.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c861628a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_48/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c861628a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_124/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c861628a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_129/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
-</p><figcaption></figcaption></figure> 
+</p><figcaption></figcaption></figure>
 
-  * 监控每个 node 进程的 cpu 和内存使用情况  
+* 监控每个 node 进程的 cpu 和内存使用情况  
     > pm2 monit
 
 <pre><code class="hljs bash copyable" lang="bash">$ pm2 monit
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure> 
+&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure>
 
 <p id="vBHqHJA">
   <img loading="lazy" width="1280" height="737" class="alignnone size-full wp-image-5817 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c9ee8362.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c9ee8362.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c9ee8362.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c9ee8362.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_173/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c9ee8362.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_442/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c9ee8362.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_461/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
-</p><figcaption></figcaption></figure> 
+</p><figcaption></figcaption></figure>
 
 > 可以使用 pm2 monit 功能监控所有 node 进程的运行情况，包括各种响应，错误信息。
 
-  * 显示所有进程的日志信息
+* 显示所有进程的日志信息
 
 > pm2 logs
 
 <pre><code class="hljs bash copyable" lang="bash">$ pm2 logs
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure> 
+&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure>
 
 <p id="ArSOYTy">
   <img loading="lazy" width="1280" height="738" class="alignnone size-full wp-image-5818 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21ca69abea.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21ca69abea.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21ca69abea.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21ca69abea.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_173/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21ca69abea.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_443/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21ca69abea.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_461/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
-</p><figcaption></figcaption></figure> 
+</p><figcaption></figcaption></figure>
 
-  * 监控运行这些进程的机器的状态
+* 监控运行这些进程的机器的状态
 
 > pm2 web
 
 <pre><code class="hljs bash copyable" lang="bash">$ pm2 web
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure> 
+&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure>
 
 <p id="vqyjOiy">
   <img loading="lazy" width="1280" height="229" class="alignnone size-full wp-image-5820 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21cb714659.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21cb714659.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21cb714659.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21cb714659.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_54/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21cb714659.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_137/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21cb714659.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_143/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
-</p><figcaption></figcaption></figure> <figure> 
+</p><figcaption></figcaption></figure> <figure>
 
 <p id="BEYcqkL">
   <img loading="lazy" width="700" height="1199" class="alignnone size-full wp-image-5819 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21cae5a8e4.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21cae5a8e4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21cae5a8e4.png?x-oss-process=image/format,webp 700w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21cae5a8e4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_175,h_300/format,webp 175w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21cae5a8e4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_350,h_600/format,webp 350w" sizes="(max-width: 700px) 100vw, 700px" />
 </p><figcaption></figcaption></figure> <figure>
 
-<img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b95194d9f80?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b95194d9f80?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="774" data-height="1054" /> <figcaption></figcaption></figure> 
+<img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b95194d9f80?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b95194d9f80?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="774" data-height="1054" /> <figcaption></figcaption></figure>
 
 > 我只能说，这也太 NB 了吧，不仅可以监控这些进程，还能监控运行这些进程的机器的状态，逆天了。然后它会自动起一个服务在指定端口，如图在 9615 启动了一个服务，我们可以访问。虽然我看不太懂，但是对于测试运维同学来说，应该挺有用的吧。
 
-  * 停止 指定/所有 进程
+* 停止 指定/所有 进程
 
 > pm2 stop (id|all)
 
@@ -172,11 +161,11 @@ $ pm2 stop 0
 $ pm2 stop all
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure>
 
-<img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b95514f5929?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b95514f5929?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="1280" data-height="628" /> <figcaption></figcaption></figure> 
+<img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b95514f5929?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b95514f5929?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="1280" data-height="628" /> <figcaption></figcaption></figure>
 
 > 如图，我们运行了两个服务状态都是 online，使用 stop 0 之后，kaifazhe 的服务变成了 stopped，然后使用 stop all，所有进程状态全变成了 stopped。
 
-  * 重启 指定/所有 进程
+* 重启 指定/所有 进程
 
 > pm2 restart (id|all)
 
@@ -186,7 +175,7 @@ $ pm2 restart 0
 $ pm2 restart all
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
 
-  * 杀死 指定/所有 进程
+* 杀死 指定/所有 进程
 
 > pm2 delete (id|all)
 
@@ -194,11 +183,11 @@ $ pm2 restart all
 $ pm2 delete 0
 // 杀死所有进程
 $ pm2 delete all
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure> 
+&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure>
 
 <p id="QZdAjnA">
   <img loading="lazy" width="1280" height="653" class="alignnone size-full wp-image-5826 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_153/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_392/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_408/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
-</p><figcaption></figcaption></figure> 
+</p><figcaption></figcaption></figure>
 
 > 从上图我们可以看出，restart 0 之后，0 进程从 stopped 状态变成了 online，然后我们使用 delete 0,进程 0 就消失不见了，我们再 delete all,可以看到现在没有任何进程在运行。
 
@@ -279,11 +268,11 @@ pm2 start app.js -i max
   pm2日志
 </h3>
 
-上面配置文件可以看出来，我们可以配置logs，包括普通的out和错误的error日志。其实也不需要我们做什么，我们只需要在config里面配置好就行，他就会自动往里面写日志：<figure> 
+上面配置文件可以看出来，我们可以配置logs，包括普通的out和错误的error日志。其实也不需要我们做什么，我们只需要在config里面配置好就行，他就会自动往里面写日志：<figure>
 
 <p id="qPSMkki">
   <img loading="lazy" width="1280" height="683" class="alignnone size-full wp-image-5825 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d9e9c57.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d9e9c57.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d9e9c57.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d9e9c57.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_160/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d9e9c57.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_410/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d9e9c57.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_427/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
-</p><figcaption></figcaption></figure> 
+</p><figcaption></figcaption></figure>
 
 很简单的功能，就包含了日志，真是美妙到不行，但是，真的那么美妙吗？哈哈，好像不是？我们的日志全部输出到了`err.log`和`out.log`内，日积月累，OMG不敢想象，排查问题肯定很费劲，所以就有了下面的日志分割～
 
@@ -300,15 +289,15 @@ pm2为我们提供了插件系统，而日期分割功能就正好用到了插�
 <pre><code class="hljs bash copyable" lang="bash">pm2 install pm2-logrotate // 看好了，是pm2 install而不是npm install
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
 
-你装完之后它就自动启动，然后你还可以配置各种参数<figure> 
+你装完之后它就自动启动，然后你还可以配置各种参数<figure>
 
 <p id="RABWoGB">
   <img loading="lazy" width="1028" height="496" class="alignnone size-full wp-image-5824 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d24bcd4.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d24bcd4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d24bcd4.png?x-oss-process=image/format,webp 1028w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d24bcd4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_145/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d24bcd4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_371/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d24bcd4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_386/format,webp 800w" sizes="(max-width: 1028px) 100vw, 1028px" />
-</p><figcaption></figcaption></figure> <figure> 
+</p><figcaption></figcaption></figure> <figure>
 
 <p id="DuzovnZ">
   <img loading="lazy" width="872" height="364" class="alignnone size-full wp-image-5823 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220a2746c4.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220a2746c4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220a2746c4.png?x-oss-process=image/format,webp 872w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220a2746c4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_125/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220a2746c4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_321/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220a2746c4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_334/format,webp 800w" sizes="(max-width: 872px) 100vw, 872px" />
-</p><figcaption></figcaption></figure> 
+</p><figcaption></figcaption></figure>
 
 然后就完成了日志按日期分割～
 
@@ -342,15 +331,15 @@ pm2为我们提供了插件系统，而日期分割功能就正好用到了插�
       &lt;span class="hljs-string">"host"&lt;/span>: &lt;span class="hljs-string">"localhost"&lt;/span>,
       &lt;span class="hljs-string">"address"&lt;/span>: &lt;span class="hljs-string">"0.0.0.0"&lt;/span>,
       &lt;span class="hljs-string">"port"&lt;/span>: 6688
-  }                         
+  }
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
 
-这样你就可以在浏览器查看可视化的监控状态了～<figure> 
+这样你就可以在浏览器查看可视化的监控状态了～<figure>
 
 <p id="TZrysSf">
   <img loading="lazy" width="924" height="956" class="alignnone size-full wp-image-5822 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee22099bca7a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee22099bca7a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee22099bca7a.png?x-oss-process=image/format,webp 924w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee22099bca7a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_290,h_300/format,webp 290w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee22099bca7a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_795/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee22099bca7a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_580,h_600/format,webp 580w" sizes="(max-width: 924px) 100vw, 924px" />
-</p><figcaption></figcaption></figure> 
+</p><figcaption></figcaption></figure>
 
 > 说明一下，图片是我从网上找的，为什么没在本地启动呢，原因是`pm2-web`依赖`node-inspector`,而`node-inspector`对于高版本node无法安装，很多人提了issue，但是感觉开发者也处于放弃了的状态。我也不打算在本地安装低版本node，所以感兴趣的大家可以安装个低版本的试试～
 

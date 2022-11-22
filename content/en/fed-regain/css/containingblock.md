@@ -2,17 +2,6 @@
 title: 什么是containing block？
 
 
-date: 2019-06-07T11:55:15+00:00
-url: /html5css3/4464.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cfa527f183fa.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cfa527f183fa.png
-fifu_image_alt:
-  - 什么是containing block？
-views:
-  - 1759
-like:
-  - 3
 
 
 ---
@@ -84,12 +73,12 @@ inner的宽度是多少呢？毫无疑问，是**160px**。那稍微加一点戏
 
 所以规范提到了**无特殊情况下**，而特殊情况是：
 
-  * 如果position是**absolute**，包含块就是它最近的position值不是static的元素的**padding area**。
-  * 如果position是**fixed**，包含块就是视图，就是整个view可视范围视窗。
-  * 如果position是**absolute**或**fixed**，包含块是最近的满足下列条件的元素的**padding area**： 
-      * transform或perspective值不是none
-      * filter值不是none
-      * will change值包含transform、perspective、或filter（只有Firefox有效）
+* 如果position是**absolute**，包含块就是它最近的position值不是static的元素的**padding area**。
+* 如果position是**fixed**，包含块就是视图，就是整个view可视范围视窗。
+* 如果position是**absolute**或**fixed**，包含块是最近的满足下列条件的元素的**padding area**：
+  * transform或perspective值不是none
+  * filter值不是none
+  * will change值包含transform、perspective、或filter（只有Firefox有效）
 
 <h3 class="heading" data-id="heading-4">
   position: fixed
@@ -119,7 +108,7 @@ chrome率先实现了一个实验特性`contain`。它允许开发者声明当�
 
 MDN文档中没提到，那是Chrome意外实现了一个彩蛋吗？<figure>
 
-<img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/6/2/163c050b9943b679?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/6/2/163c050b9943b679?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="198" data-height="131" /> <figcaption></figcaption></figure> 
+<img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/6/2/163c050b9943b679?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/6/2/163c050b9943b679?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="198" data-height="131" /> <figcaption></figcaption></figure>
 
 确认了规范以后证实，Chrome并不是xjb实现的~
 

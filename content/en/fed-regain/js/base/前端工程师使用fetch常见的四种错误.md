@@ -2,11 +2,6 @@
 title: 前端工程师使用fetch常见的四种错误
 
 
-date: 2020-02-15T08:48:08+00:00
-url: /javascriptnodejs/5607.html
-views:
-  - 778
-
 
 ---
 查看<a href="https://link.juejin.im/?target=https%3A%2F%2Fmedium.com%2Fcameron-nokes%2F4-common-mistakes-front-end-developers-make-when-using-fetch-1f974f9d1aa1" rel="nofollow noopener noreferrer">原文</a>
@@ -32,7 +27,7 @@ Fetch是基于promise的，因此比较容易想到，如果服务器返回<a hr
 <pre class="EnlighterJSRAW" data-enlighter-language="null">fetch('https://jsonplaceholder.typicode.com/404')
 .then(res =&gt; console.log('response: ', res)) .catch(console.error)</pre>
 
-我想对大部分开发者来说，http返回的错误对web应用程序处理一个rejected的promise是非常有用的。为此(fetch对http错误的处理方式)，我们仅仅需要对验证` ok`  属性的值 ，如果  `ok`
+我想对大部分开发者来说，http返回的错误对web应用程序处理一个rejected的promise是非常有用的。为此(fetch对http错误的处理方式)，我们仅仅需要对验证`ok`  属性的值 ，如果  `ok`
 
 的值为`false` ，则 reject
 
@@ -61,18 +56,13 @@ $http, axios和其它http工具在默认情况下会为您设置此头，因此�
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">fetch('https://cameronnokes.com/slack-ron-swanson-quote-bot/ron', {
 
-
 method: 'POST',
-
 
 body: JSON.stringify({text: 'bacon'}),
 
-
 headers: {'Content-Type': 'application/json'}})
 
-
 .then(res =&gt; res.json())
-
 
 .then(console.log)</pre>
 
@@ -96,11 +86,11 @@ Fetch很棒，但是要负责任地去享受
 
 伴随<a href="https://link.juejin.im/?target=https%3A%2F%2Fdeveloper.mozilla.org%2Fzh-CN%2Fdocs%2FWeb%2FAPI%2FFetch_API%2FUsing_Fetch" rel="nofollow noopener noreferrer">fetch</a>的问世及发展，目前在生产环境使用fetch的企业越来越多。开源社区上有关fetch polyfilll已经多款供选，又因其基于Promise，以下可以完美的解决其兼容性问题(特别是IE)，仅参考：
 
-  * `由于 IE8 是 ES3，需要引入 ES5````` 的 `polyfill`: `es5-shim`, `es5-sham`
-  * 引入 `Promise` 的 `polyfill`: `es6-promise`
-  * 引入 `fetch` 探测库：`fetch-detector`
-  * 引入 `fetch` 的 `polyfill`: `fetch-ie8`
-  * 可选：如果你还使用了 `jsonp`，引入 `fetch-jsonp`
-  * 可选：开启 `Babel` 的 `runtime` 模式，现在就使用 `async`/`await`
+* `由于 IE8 是 ES3，需要引入 ES5````` 的`polyfill`:`es5-shim`,`es5-sham`
+* 引入 `Promise` 的 `polyfill`: `es6-promise`
+* 引入 `fetch` 探测库：`fetch-detector`
+* 引入 `fetch` 的 `polyfill`: `fetch-ie8`
+* 可选：如果你还使用了 `jsonp`，引入 `fetch-jsonp`
+* 可选：开启 `Babel` 的 `runtime` 模式，现在就使用 `async`/`await`
 
 <span style="color: #4e5980; font-family: Menlo, Monaco, Consolas, Courier New, monospace;">fetch </span>的好处无需多语，但fetch也存在一些问题，例如不支持timeout，不支持 progress，特别是fetch在跨域问题上与传统跨域的处理方式的区别，社区中都对应的解决方案，此文不一一列举。正如原谅作者所言：负责任地去享受

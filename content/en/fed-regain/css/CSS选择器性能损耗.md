@@ -1,27 +1,8 @@
 ---
-title: 关于 CSS 选择器性能
-
-
-date: 2017-08-29T10:36:45+00:00
-excerpt: |
-  CSS选择器对性能的影响源于浏览器匹配选择器和文档元素时所消耗的时间，所以优化选择器的原则是应尽量避免使用消耗更多匹配时间的选择器。而在这之前我们需要了解CSS选择器匹配的机制， 如子选择器规则：
-  1#header &gt; a &#123;font-weight:blod;&#125;
-url: /html5css3/817.html
-views:
-  - 1580
-  - 1580
-fifu_image_url:
-  - https://www.fed123.com/wp-content/uploads/2017/08/css1-2.jpg
-  - https://www.fed123.com/wp-content/uploads/2017/08/css1-2.jpg
-fifu_image_alt:
-  - 关于 CSS 选择器性能
-  - 关于 CSS 选择器性能
+title: CSS选择器性能损耗
 
 
 ---
-<img class="aligncenter" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/css1-2.jpg" alt="关于 CSS 选择器性能" />
-
-# CSS选择器性能损耗
 
 CSS选择器对性能的影响源于浏览器匹配选择器和文档元素时所消耗的时间，所以优化选择器的原则是应尽量避免使用消耗更多匹配时间的选择器。而在这之前我们需要了解CSS选择器匹配的机制， 如子选择器规则：
 
@@ -123,7 +104,3 @@ Google 资深web开发工程师 Steve Souders 对 CSS 选择器的执行效率�
 「6」如何撰寫有效率的CSS選擇器
 
 ### 谢谢！
-
-欢迎关注FED123公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。
-
-<audio style="display: none;" controls="controls"></audio>

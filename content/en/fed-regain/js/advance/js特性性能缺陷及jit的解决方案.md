@@ -2,17 +2,10 @@
 title: JS特性性能缺陷及JIT的解决方案
 
 
-date: 2019-08-21T01:47:18+00:00
-url: /javascriptnodejs/4971.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca1639e3d4.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca1639e3d4.png
-fifu_image_alt:
-  - 自动草稿
-like:
-  - 2
-views:
-  - 1260
+
+
+
+
 xzh_tui_back:
   - 成功
 
@@ -57,7 +50,7 @@ Javascript是个无类型的语言，这导致了 x = y +ｚ这种表达式，�
 只有（5）是真正有效的操作，其他都是为（5）做准备/收尾的，效率之低可见。javascript的untyped特性很好用，但也为此付出了很大的性能代价。
 
 <div class="e-secret">
-  </p> 
+  </p>
   
   <p>
     二. 对象属性

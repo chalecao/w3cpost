@@ -2,19 +2,12 @@
 title: canvas图片处理与动画
 
 
-date: 2018-03-05T01:11:39+00:00
-url: /javascriptnodejs/1611.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;//upload-images.jianshu.io/upload_images/1993435-f492dacd327ab426.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/482
-views:
+
   - 1466
-  - 1466
-like:
+
   - 2
-  - 2
-fifu_image_url:
-  - //upload-images.jianshu.io/upload_images/1993435-f492dacd327ab426.gif?imageMogr2/auto-orient/strip%7CimageView2/2/w/482
-fifu_image_alt:
-  - canvas图片处理与动画
+
+
 
 
 ---
@@ -53,7 +46,6 @@ fifu_image_alt:
             print('not ')  
         }  
     }  
-  
   
     function draw(context) {  
         context.fillStyle = 'red';  
@@ -114,9 +106,7 @@ fifu_image_alt:
     }  
     console.log = print;  
   
-  
 &lt;/script&gt;  
-  
   
 &lt;/html&gt;  
 </code></pre>
@@ -132,7 +122,7 @@ fifu_image_alt:
     <p>
       动画本质上是图像按照事先设定好的顺序在一定的时间内的<strong>图像序列变化运动</strong>。<br /> 这种图像序列的变化运动给我们最为直观的感受就是图像仿佛真实的在运动一般，由此产生动画效果。<br /> 然后，事实并非如此，真相往往难以用肉眼观察得到，除非你是上帝~~~<br /> 动画的特性在于：
     </p>
-    
+
     <ul>
       <li>
         每一张图像的内容是事先设定好的，内容是不变的，变化的是图像序列按照规定的顺序在变动；
@@ -155,7 +145,7 @@ fifu_image_alt:
     </p>
     
     <pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-comment">//demo.html&lt;/span>
-&lt;canvas id=&lt;span class="hljs-string">'canvas'&lt;/span> width=&lt;span class="hljs-string">'500'&lt;/span> height=&lt;span class="hljs-string">'500'&lt;/span>&gt;&lt;span class="xml">&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">canvas&lt;/span>&gt;&lt;/span>&lt;/span> 
+&lt;canvas id=&lt;span class="hljs-string">'canvas'&lt;/span> width=&lt;span class="hljs-string">'500'&lt;/span> height=&lt;span class="hljs-string">'500'&lt;/span>&gt;&lt;span class="xml">&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">canvas&lt;/span>&gt;&lt;/span>&lt;/span>
 [注]
 设置canvas的宽高要在元素或在其API，canvas.width || canvas.height，在CSS上设置为得到意想不到的结果，不信试试看哈···
 
@@ -179,7 +169,7 @@ context.fill() || context.stroke();&lt;span class="hljs-comment">//最后画出�
 context.save();&lt;span class="hljs-comment">//保存save以上context对象设置的属性值&lt;/span>
 context.restore();&lt;span class="hljs-comment">//恢复到先前保存在context对象上的所有属性值&lt;/span>
 </code></pre>
-    
+
     <p>
       这里在介绍一下实现动画效果的非常重要的API：
     </p>
@@ -190,7 +180,7 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
 然后，根据递归的思想，实现callback的反复调用，最终实现动画效果；
 不明白，上代码
 </code></pre>
-    
+
     <pre class="hljs javascript"><code class="javascript">(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">drawFrame&lt;/span>()&lt;/span>{
     &lt;span class="hljs-built_in">window&lt;/span>.requestAnimationFrame(drawFrame);
     
@@ -201,7 +191,7 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
 接下来执行你所编写的改变图像内容（图像的位置、宽高、颜色等等）的脚本，执行回调；
 循环反复，形成动画效果
 </code></pre>
-    
+
     <p>
       由此也可知道：
     </p>
@@ -210,13 +200,12 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
 
 事实上，当部分浏览器不兼容这个API时，我们也可以写成以下形式：
 
-
 &lt;span class="hljs-keyword">if&lt;/span>(!&lt;span class="hljs-built_in">window&lt;/span>.requestAnimationFrame){
     &lt;span class="hljs-built_in">window&lt;/span>.requestAnimationFrame = (
-      &lt;span class="hljs-built_in">window&lt;/span>.webkitRequestAnimationFrame || 
+      &lt;span class="hljs-built_in">window&lt;/span>.webkitRequestAnimationFrame ||
       &lt;span class="hljs-built_in">window&lt;/span>.mozRequestAnimationFrame ||
       &lt;span class="hljs-built_in">window&lt;/span>.msRquestAniamtionFrame ||
-      &lt;span class="hljs-built_in">window&lt;/span>.oRequestAnimationFrame || 
+      &lt;span class="hljs-built_in">window&lt;/span>.oRequestAnimationFrame ||
       &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">callback&lt;/span>)&lt;/span>{
           &lt;span class="hljs-keyword">return&lt;/span> setTimeout(callback,&lt;span class="hljs-built_in">Math&lt;/span>.floor(&lt;span class="hljs-number">1000&lt;/span>/&lt;span class="hljs-number">60&lt;/span>))
     }
@@ -224,7 +213,7 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
 }
 
 </code></pre>
-    
+
     <p>
       Okay，有了这么几个基本的canvasAPI就足以应对接下来的知识点了，如有不懂或深入了解，详见<a href="https://link.jianshu.com?t=https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial" target="_blank" rel="nofollow noopener noreferrer">Canvas教程-MDN</a>。
     </p>
@@ -299,7 +288,7 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
 
     &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
 </code></pre>
-    
+
     <p>
       这段代码涉及部分封装的函数，这里就不讲<br /> 这里主要讲解一下思路，如果我们需要圆在x轴上移动，那么一个思路是改变圆的圆心，使圆心在x轴上不断变化，最终形成动画的效果；<br /> 上面的ball.x = xpeed就是每执行一次RAF(window.requestAnimationFrame)，圆心就向右移动1像素；
     </p>
@@ -334,7 +323,7 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
     <pre class="hljs undefined"><code>1.物体的匀速运动无非是改变其在坐标轴的值，但是**每次的改变量是不变的**，也就是单位时间内的移动距离是不变的，这样才符合匀速；
 2.通过向量的合成原理，我们可以在canvas画布上实现任意方向的匀速运动
 </code></pre>
-    
+
     <hr />
     
     <ul>
@@ -367,7 +356,6 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">'../js/ball.js'&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
     &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
 
-   
         &lt;span class="hljs-keyword">var&lt;/span> canvas = &lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">'canvas'&lt;/span>);
         &lt;span class="hljs-keyword">var&lt;/span> context = canvas.getContext(&lt;span class="hljs-string">'2d'&lt;/span>);
 
@@ -396,7 +384,7 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
 
     &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
 </code></pre>
-    
+
     <p>
       看完上面的代码有没有感到很神奇，同样一段代码，只需要添加<code>var vx = 0.5</code>和<code>xspeed+=vx</code>就可以使物体实现加速运动；<br /> 看完demo后，你有没有发现，当速度达到一定程度的时候，物体给人的感觉好像是静止一样；
     </p>
@@ -475,7 +463,7 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
 
     &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
 </code></pre>
-    
+
     <p>
       &nbsp;
     </p>
@@ -550,12 +538,11 @@ xspeed += ax&lt;span class="hljs-comment">//每16ms，xspeed增加0.05；&lt;/sp
 &lt;span class="hljs-keyword">var&lt;/span> angle = &lt;span class="hljs-number">0&lt;/span>;&lt;span class="hljs-comment">//定义每次变化的角度&lt;/span>
 &lt;span class="hljs-keyword">var&lt;/span> swing = &lt;span class="hljs-number">100&lt;/span>;&lt;span class="hljs-comment">//定义振幅；&lt;/span>
 
-
 ball.x +=&lt;span class="hljs-number">2&lt;/span>;
 ball.y  = canvas.height/&lt;span class="hljs-number">2&lt;/span> + &lt;span class="hljs-built_in">Math&lt;/span>.sin(angle)*swing;
 angle += &lt;span class="hljs-number">0.1&lt;/span>;
 </code></pre>
-    
+
     <p>
       完整代码如下：
     </p>
@@ -591,7 +578,7 @@ angle += &lt;span class="hljs-number">0.1&lt;/span>;
 
     &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
 </code></pre>
-    
+
     <p>
       &nbsp;
     </p>
@@ -626,7 +613,7 @@ angle += &lt;span class="hljs-number">0.1&lt;/span>;
     
     <pre class="hljs cpp"><code class="cpp">x*x+y*y = r*r&lt;span class="hljs-comment">//这是一原点为圆心，半径为r的圆；&lt;/span>
 </code></pre>
-    
+
     <p>
       或许有童鞋会问候我尼玛，你刚才不是告诉我实现物体运动，只要按照RAF改变物体坐标轴的值就行了吗，你给我上面这么一个等式，那我怎么样去给ball.x和ball.y赋值；
     </p>
@@ -660,7 +647,7 @@ y = rsinθ
 
 也就是说给我一个圆的半径和每次旋转的角度，我就可以用x和y的方式描绘圆的路径
 </code></pre>
-    
+
     <p>
       二话不说上代码：
     </p>
@@ -695,7 +682,7 @@ y = rsinθ
 
     &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
 </code></pre>
-    
+
     <p>
       &nbsp;
     </p>
@@ -709,7 +696,7 @@ y = rsinθ
 x = a*&lt;span class="hljs-built_in">cos&lt;/span>θ
 y = b*&lt;span class="hljs-built_in">sin&lt;/span>θ
 </code></pre>
-    
+
     <p>
       有了这两个坐标，图形的椭圆路径还不出来吗，相信你已经跃跃欲试了，我这里就直接给demo啦。
     </p>
@@ -745,7 +732,7 @@ x = canvas.width/&lt;span class="hljs-number">2&lt;/span> + scopeX*&lt;span clas
 y = canvas.height/&lt;span class="hljs-number">2&lt;/span> + scopeY*&lt;span class="hljs-built_in">Math&lt;/span>.sin(angle)
 angle += &lt;span class="hljs-number">0.1&lt;/span>;
 </code></pre>
-    
+
     <h4>
       转动的方向
     </h4>
@@ -815,7 +802,7 @@ Arrow.prototype.draw = &lt;span class="hljs-function">&lt;span class="hljs-keywo
     context.restore();
 };
 </code></pre>
-    
+
     <p>
       小羊在转动的方向这一部分要使用一个canvas的新API——context.rotate(angle)来控制物体的转动；
     </p>
@@ -849,7 +836,7 @@ Arrow.prototype.draw = &lt;span class="hljs-function">&lt;span class="hljs-keywo
 
   }
 </code></pre>
-    
+
     <p>
       &nbsp;
     </p>
@@ -887,7 +874,7 @@ Arrow.prototype.draw = &lt;span class="hljs-function">&lt;span class="hljs-keywo
     
     <pre class="hljs cpp"><code class="cpp">object.rotation = Math.&lt;span class="hljs-built_in">atan2&lt;/span>(dy,dx);
 </code></pre>
-    
+
     <p>
       这个三角函数作用是给它两个x和y轴的距离分量，就可以测算出鼠标与x轴的夹角来；<br /> 有同学会问：问什么可以这样？这个暂时无法回答，这个问题深究下去就不属于本笔记范围之内了，知道有这么一个方法就okay啦；
     </p>
@@ -919,7 +906,7 @@ Arrow.prototype.draw = &lt;span class="hljs-function">&lt;span class="hljs-keywo
 
   }
 </code></pre>
-    
+
     <p>
       &nbsp;
     </p>
@@ -985,7 +972,7 @@ Arrow.prototype.draw = &lt;span class="hljs-function">&lt;span class="hljs-keywo
         })();
     &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
 </code></pre>
-    
+
     <p>
       canvas元素绘制动画时运用到的一些常用的解析几何原理和相关的物理知识，例如匀速运动、变速运动、圆周运动、波形运动、脉冲运动，这些运动过程中可涉及到的概念又包括向量的分解（力的分解）、重力、摩擦力、加速度、三角函数等等······
     </p>

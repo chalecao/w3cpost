@@ -2,28 +2,16 @@
 title: 关于NPM的方方面面
 
 
-date: 2019-01-10T04:23:22+00:00
-url: /javascriptnodejs/3435.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7b7a5241b33.jpeg
-onesignal_meta_box_present:
-  - 1
-views:
-  - 1165
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7b7a5241b33.jpeg
-fifu_image_alt:
-  - 关于NPM的方方面面
-like:
-  - 1
 
 
 ---
+
 <div>
   <div>
     <p>
       <img loading="lazy" width="500" height="300" class="alignnone size-full wp-image-3790 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7b7a5241b33.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7b7a5241b33.jpeg?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7b7a5241b33.jpeg?x-oss-process=image/format,webp 500w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7b7a5241b33.jpeg?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_180/format,webp 300w" sizes="(max-width: 500px) 100vw, 500px" />nodejs 社区乃至 Web 前端工程化领域发展到今天，作为 node 自带的包管理工具的 npm 已经成为每个前端开发者必备的工具。但是现实状况是，我们很多人对这个nodejs基础设施的使用和了解还停留在: 会用 <code>npm install</code> 这里（一言不合就删除整个 node_modules 目录然后重新 install 这种事你没做过吗？）
     </p>
-    
+
     <p>
       当然 npm 能成为现在世界上最大规模的<strong>包管理系统</strong>，很大程度上确实归功于它足够<strong>用户友好</strong>，你看即使我只会执行 install 也不必太担心出什么大岔子. 但是 npm 的功能远不止于 install 一下那么简单，这篇文章帮你扒一扒那些你可能不知道的 npm 原理、特性、技巧，以及（我认为的）最佳实践。
     </p>
@@ -80,7 +68,7 @@ like:
   &lt;span class="hljs-attr">main&lt;/span>: &lt;span class="hljs-string">'index.js'&lt;/span>,
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       此时在 ~/hello 目录下执行 <code>npm init</code> 将会得到这样的 package.json:
     </p>
@@ -97,7 +85,7 @@ like:
   &lt;span class="hljs-attr">"main"&lt;/span>: &lt;span class="hljs-string">"index.js"&lt;/span>
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       除了生成 package.json, 因为 .npm-init.js 是一个常规的模块，意味着我们可以执行随便什么 node 脚本可以执行的任务。例如通过 fs 创建 README, .eslintrc 等项目必需文件，实现项目脚手架的作用。
     </p>
@@ -254,7 +242,7 @@ like:
     
     <pre><code class="hljs js copyable" lang="js">&lt;span class="hljs-keyword">const&lt;/span> config = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'../../../../config.js'&lt;/span>);
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       除了看上去很丑以外，这样的路径引用也不利于代码的重构。并且身为程序员的自我修养告诉我们，这样重复的代码多了也就意味着是时候把这个模块分离出来供应用内其他模块共享了。例如这个例子里的 config.js 非常适合封装为 package 放到 node_modules 目录下，共享给同应用内其他模块。
     </p>
@@ -276,7 +264,7 @@ like:
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
       </li>
-      
+
       <li>
         在应用层 package.json 文件中新增依赖项，然后执行 <code>npm install</code>; 或直接执行第 3 步 <pre><code class="hljs json copyable" lang="json">{
     &lt;span class="hljs-attr">"dependencies"&lt;/span>: {
@@ -285,7 +273,7 @@ like:
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
       </li>
-      
+
       <li>
         （等价于第 2 步）直接在应用目录执行 <code>npm install file:./config</code>此时，查看 <code>node_modules</code> 目录我们会发现多出来一个名为 <code>config</code>，指向上层 <code>config/</code> 文件夹的软链接。这是因为 npm 识别 <code>file:</code> 协议的url，得知这个包需要直接从文件系统中获取，会自动创建软链接到 node_modules 中，完成“安装”过程。相比手动软链，我们既不需要关心 windows 和 linux 命令差异，又可以显式地将依赖信息固化到 dependencies 字段中，开发团队其他成员可以执行 <code>npm install</code> 后直接使用。
       </li>
@@ -309,7 +297,7 @@ like:
     
     <pre><code class="hljs bash copyable" lang="bash">&lt;protocol&gt;://[&lt;user&gt;[:&lt;password&gt;]@]&lt;hostname&gt;[:&lt;port&gt;][:][/]&lt;path&gt;[&lt;span class="hljs-comment">#&lt;commit-ish&gt; | #semver:&lt;semver&gt;]&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       git 路径后可以使用 # 指定特定的 git branch/commit/tag, 也可以 #semver: 指定特定的 semver range.
     </p>
@@ -323,7 +311,7 @@ git+ssh://git@github.com:npm/npm&lt;span class="hljs-comment">#semver:^5.0&lt;/s
 git+https://isaacs@github.com/npm/npm.git
 git://github.com/npm/npm.git&lt;span class="hljs-comment">#v1.0.27&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       <strong>场景3: 开源 package 问题修复</strong>
     </p>
@@ -372,7 +360,7 @@ git://github.com/npm/npm.git&lt;span class="hljs-comment">#v1.0.27&lt;/span>
 ├── nconf/
 └── webpack/
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       进入更深一层 nconf 或 webpack 目录，将看到这两个包各自的 node_modules 中，已经由 npm 递归地安装好自身的依赖包。包括 <code>./node_modules/webpack/node_modules/webpack-core</code> , <code>./node_modules/conf/node_modules/async</code> 等等。而每一个包都有自己的依赖包，每个包自己的依赖都安装在了自己的 node_modules 中。依赖关系层层递进，构成了一整个依赖树，这个依赖树与文件系统中的文件结构树刚好层层对应。
     </p>
@@ -401,7 +389,7 @@ git://github.com/npm/npm.git&lt;span class="hljs-comment">#v1.0.27&lt;/span>
     ├── &lt;span class="hljs-built_in">source&lt;/span>-list-map@0.1.8
     └── &lt;span class="hljs-built_in">source&lt;/span>-map@0.4.4
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       这样的目录结构优点在于层级结构明显，便于进行傻瓜式的管理:
     </p>
@@ -454,7 +442,7 @@ git://github.com/npm/npm.git&lt;span class="hljs-comment">#v1.0.27&lt;/span>
    |async@1.5.2|             |async@1.5.2|
    +-----------+             +-----------+
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h3 class="heading" data-id="heading-8">
       3.2 npm 3 &#8211; 扁平结构
     </h3>
@@ -474,7 +462,7 @@ git://github.com/npm/npm.git&lt;span class="hljs-comment">#v1.0.27&lt;/span>
 |                 |    |             |   |                 |
 +-----------------+    +-------------+   +-----------------+
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       虽然这样一来 webpack/node_modules 和 nconf/node_modules 中都不再有 async 文件夹，但得益于 node 的模块加载机制，他们都可以在上一级 node_modules 目录中找到 async 库。所以 webpack 和 nconf 的库代码中 <code>require('async')</code> 语句的执行都不会有任何问题。
     </p>
@@ -498,7 +486,7 @@ git://github.com/npm/npm.git&lt;span class="hljs-comment">#v1.0.27&lt;/span>
 +-- C
 +-- D
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       这里之所以 D 也安装到了与 B C 同一级目录，是因为 npm 会默认会在无冲突的前提下，尽可能将包安装到较高的层级。
     </p>
@@ -515,7 +503,7 @@ git://github.com/npm/npm.git&lt;span class="hljs-comment">#v1.0.27&lt;/span>
    `-- D@2
 +-- D@1
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       这里是因为，对于 npm 来说同名但不同版本的包是两个独立的包，而同层不能有两个同名子目录，所以其中的 D@2 放到了 C 的子目录而另一个 D@1 被放到了再上一层目录。
     </p>
@@ -526,7 +514,7 @@ git://github.com/npm/npm.git&lt;span class="hljs-comment">#v1.0.27&lt;/span>
     
     <pre><code class="hljs bash copyable" lang="bash">npm ls --depth 1
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <blockquote>
       <p>
         PS: 与本地依赖包不同，如果我们通过 <code>npm install --global</code> 全局安装包到全局目录时，得到的目录依然是“传统的”目录结构。而如果使用 npm 3 想要得到“传统”形式的本地 node_modules 目录，使用 <code>npm install --global-style</code> 命令即可。
@@ -600,7 +588,7 @@ git://github.com/npm/npm.git&lt;span class="hljs-comment">#v1.0.27&lt;/span>
     }
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       看懂 package-lock 文件并不难，其结构是同样类型的几个字段嵌套起来的，主要是 <code>version</code>, <code>resolved</code>, <code>integrity</code>, <code>requires</code>, <code>dependencies</code> 这几个字段而已。
     </p>
@@ -639,7 +627,7 @@ git://github.com/npm/npm.git&lt;span class="hljs-comment">#v1.0.27&lt;/span>
     
     <pre><code class="hljs bash copyable" lang="bash">npm config &lt;span class="hljs-built_in">set&lt;/span> package-lock &lt;span class="hljs-literal">false&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h2 class="heading" data-id="heading-10">
       4. 依赖包版本管理
     </h2>
@@ -1355,7 +1343,7 @@ git://github.com/npm/npm.git&lt;span class="hljs-comment">#v1.0.27&lt;/span>
     }
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       我们就可以通过 <code>npm run echo</code> 命令来执行这段脚本，像在 shell 中执行该命令 <code>echo HELLO WORLD</code> 一样，看到终端输出 <code>HELLO WORLD</code>.
     </p>
@@ -1415,7 +1403,7 @@ git://github.com/npm/npm.git&lt;span class="hljs-comment">#v1.0.27&lt;/span>
     }
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       bin 字段的配置格式为: <code>&lt;command&gt;: &lt;file&gt;</code>, 即 <code>命令名: 可执行文件</code>. npm 执行 install 时，会分析每个依赖包的 package.json 中的 <code>bin</code> 字段，并将其包含的条目安装到 <code>./node_modules/.bin</code> 目录中，文件名为 <code>&lt;command&gt;</code>。而如果是全局模式安装，则会在 npm 全局安装路径的 bin 目录下创建指向 <code>&lt;file&gt;</code> 名为 <code>&lt;command&gt;</code> 的软链。因此，<code>./node_modules/.bin/webpack</code> 文件在通过命令行调用时，实际上就是在执行 <code>node ./node_modules/.bin/webpack.js</code> 命令。
     </p>
@@ -1464,21 +1452,23 @@ git://github.com/npm/npm.git&lt;span class="hljs-comment">#v1.0.27&lt;/span>
     
     <pre><code class="hljs bash copyable" lang="bash">npx cowsay hello
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       npx 将会从 npm 源下载 <code>cowsay</code> 这个包（但并不安装）并执行：
     </p>
     
     <pre><code class="hljs bash copyable" lang="bash"> _______ 
+
 &lt; hello &gt;
- ------- 
+ -------
+
         \   ^__^
          \  (oo)\_______
             (__)\       )\/\
                 ||----w |
                 ||     ||
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       这种用途非常适合 1. 在本地简单测试或调试 npm 源上这些二进制包的功能；2. 调用 create-react-app 或 yeoman 这类往往每个项目只需要使用一次的脚手架工具
     </p>
@@ -1489,7 +1479,7 @@ git://github.com/npm/npm.git&lt;span class="hljs-comment">#v1.0.27&lt;/span>
     
     <pre><code class="hljs bash copyable" lang="bash">npx workin-hard
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h4 class="heading" data-id="heading-19">
       场景b) 一键执行 GitHub Gist
     </h4>
@@ -1508,7 +1498,7 @@ git://github.com/npm/npm.git&lt;span class="hljs-comment">#v1.0.27&lt;/span>
     
     <pre><code class="hljs bash copyable" lang="bash">npx https://gist.github.com/zkat/4bc19503fe9e9309e2bfaa2c58074d32
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       可得到一个来自 GitHubGist 的 hello world 问候。
     </p>
@@ -1528,7 +1518,7 @@ git://github.com/npm/npm.git&lt;span class="hljs-comment">#v1.0.27&lt;/span>
     <pre><code class="hljs bash copyable" lang="bash">npx node@4 &lt;span class="hljs-_">-e&lt;/span> &lt;span class="hljs-string">"console.log(process.version)"&lt;/span>
 npx node@6 &lt;span class="hljs-_">-e&lt;/span> &lt;span class="hljs-string">"console.log(process.version)"&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       将分别输出 <code>v4.8.7</code> 和 <code>v6.13.0</code>.
     </p>
@@ -1607,7 +1597,7 @@ npx node@6 &lt;span class="hljs-_">-e&lt;/span> &lt;span class="hljs-string">"co
 https-proxy = https://proxy.example.com/
 registry = https://registry.example.com/
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       因为项目级 .npmrc 文件的作用域只在本项目下，所以在非本目录下，这些配置并不生效。对于使用笔记本工作的开发者，可以很好地隔离公司的工作项目、在家学习研究项目两种不同的环境。
     </p>
@@ -1636,7 +1626,7 @@ registry = https://registry.example.com/
     &lt;span class="hljs-attr">"engines"&lt;/span>: { &lt;span class="hljs-attr">"node"&lt;/span>: &lt;span class="hljs-string">"&gt;=7.6.0"&lt;/span>}
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       <strong>强约束</strong>(可选)：在 npm 中以上字段内容仅作为建议字段使用，若要在私有项目中添加强约束，需要自己写脚本钩子，读取并解析 engines 字段的 semver range 并与运行时环境做对比校验并适当提醒。
     </p>

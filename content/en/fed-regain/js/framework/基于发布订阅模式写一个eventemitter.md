@@ -1,15 +1,6 @@
 ---
 title: 基于发布订阅模式写一个eventEmitter
 
-
-date: 2019-07-09T09:31:43+00:00
-url: /javascriptnodejs/4681.html
-views:
-  - 1890
-like:
-  - 8
-
-
 ---
 <div>
   <p>

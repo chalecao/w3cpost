@@ -1,24 +1,10 @@
 ---
 title: 了解Filebeat和使用配置
 
-
-date: 2020-10-28T07:15:11+00:00
-url: /pwa/5940.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808165830156-991327199.png
-classic-editor-remember:
-  - classic-editor
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808165830156-991327199.png
-fifu_image_alt:
-  - 了解Filebeat和使用配置
-views:
-  - 687
-
-
 ---
 ## 认识Beats
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808165830156-991327199.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808165830156-991327199.png?x-oss-process=image/format,webp" alt="" /> 
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808165830156-991327199.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808165830156-991327199.png?x-oss-process=image/format,webp" alt="" />
 
 Beats是用于单用途数据托运人的平台。它们以轻量级代理的形式安装，并将来自成百上千台机器的数据发送到Logstash或Elasticsearch。
 
@@ -28,17 +14,17 @@ Beats对于收集数据非常有用。它们位于你的服务器上，将数据
 
 为了捕捉（捕获）数据，Elastic提供了各种Beats：
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808170412526-1782553229.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808170412526-1782553229.png?x-oss-process=image/format,webp" alt="" /> 
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808170412526-1782553229.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808170412526-1782553229.png?x-oss-process=image/format,webp" alt="" />
 
 Beats可以直接（或者通过Logstash）将数据发送到Elasticsearch，在那里你可以进一步处理和增强数据，然后在Kibana中将其可视化。
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808170444229-5723261.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808170444229-5723261.png?x-oss-process=image/format,webp" alt="" /> 
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808170444229-5723261.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808170444229-5723261.png?x-oss-process=image/format,webp" alt="" />
 
 ## Filebeat
 
 ### 第1步：安装Filebeat
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808171725468-641427623.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808171725468-641427623.png?x-oss-process=image/format,webp" alt="" /> 
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808171725468-641427623.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808171725468-641427623.png?x-oss-process=image/format,webp" alt="" />
 
 ### 第2步：配置Filebeat
 
@@ -66,7 +52,7 @@ Beats可以直接（或者通过Logstash）将数据发送到Elasticsearch，在
 
 假设配置的输入路径是/var/log/\*/\*.log，假设目录结构是这样的：
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808182426196-188738357.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808182426196-188738357.png?x-oss-process=image/format,webp" alt="" /> 
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808182426196-188738357.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808182426196-188738357.png?x-oss-process=image/format,webp" alt="" />
 
 那么只会抓取到2.log和3.log，而不会抓到1.log和4.log。因为/var/log/aaa/ccc/1.log和/var/log/4.log不会被抓到。
 
@@ -96,7 +82,7 @@ Beats可以直接（或者通过Logstash）将数据发送到Elasticsearch，在
   <pre>output.elasticsearch:
       hosts: ["myEShost:9200"]
       username: "filebeat_internal"
-      password: "{pwd}" 
+      password: "{pwd}"
 setup.kibana:
       host: "mykibanahost:5601"
       username: "my_kibana_user"  
@@ -128,12 +114,13 @@ Filebeat包已经安装了推荐的索引模板。如果你接受filebeat.yml中
 
 默认情况下，如果Elasticsearch输出是启用的，那么Filebeat会自动加载推荐的模板文件 ——— fields.yml。
 
-  * 加载不同的模板
-  * <div class="cnblogs_code">
+* 加载不同的模板
+* <div class="cnblogs_code">
       <pre>setup.template.name: "your_template_name"
+
 setup.template.fields: "path/to/fields.yml"</pre>
     </div>
-    
+
     覆盖一个已存在的模板</li> 
     
       * <div class="cnblogs_code">
@@ -154,8 +141,8 @@ output.elasticsearch.index: "customname-%{[beat.version]}-%{+yyyy.MM.dd}"
 setup.template.name: "customname"
 setup.template.pattern: "customname-*"
 setup.dashboards.index: "customname-*"</pre>
-                </div></ul> 
-            
+                </div></ul>
+
             **手动加载模板**
             
             <div class="cnblogs_code">
@@ -192,24 +179,27 @@ setup.dashboards.index: "customname-*"</pre>
               <pre>#=========================== Filebeat inputs ==============
 filebeat.inputs:
 
-- type: log
+* type: log
 
   enabled: true
 
   paths:
-    - /var/log/*.log
+  * /var/log/*.log
 
-#============================== Dashboards ===============
+# ============================== Dashboards ===============
+
 setup.dashboards.enabled: false
 
-#============================== Kibana ==================
-setup.kibana:
-	host: "192.168.101.5:5601"
+# ============================== Kibana ==================
 
-#-------------------------- Elasticsearch output ---------
+setup.kibana:
+ host: "192.168.101.5:5601"
+
+# -------------------------- Elasticsearch output ---------
+
 output.elasticsearch:
-  	hosts: ["localhost:9200"]</pre>
-              
+   hosts: ["localhost:9200"]</pre>
+
               <div class="cnblogs_code_toolbar">
                 <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
               </div>
@@ -232,9 +222,9 @@ output.elasticsearch:
             ./filebeat -e -c filebeat.yml -d &#8220;publish&#8221;
             
             **浏览器访问  ****http://192.168.101.5:5601**
-            
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808211646599-1450436874.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808211646599-1450436874.png?x-oss-process=image/format,webp" alt="" /> 
-            
+
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808211646599-1450436874.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808211646599-1450436874.png?x-oss-process=image/format,webp" alt="" />
+
             ** 查看索引**
             
             请求：
@@ -252,7 +242,7 @@ green  open   .kibana                   DzGTSDo9SHSHcNH6rxYHHA   1   0        15
 yellow open   filebeat-6.3.2-2018.08.08 otgYPvsgR3Ot-2GDcw_Upg   3   1        255            0     63.7kb         63.7kb
 yellow open   customer                  DoM-O7QmRk-6f3Iuls7X6Q   5   1          1            0      4.5kb          4.5kb</pre>
             </div>
-            
+
             ## 其它相关
             
             [Elasticsearch入门学习][1]

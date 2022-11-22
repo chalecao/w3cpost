@@ -2,14 +2,6 @@
 title: ubuntu中su与sudo的区别
 
 
-date: 2017-08-28T07:15:44+00:00
-excerpt: 经常发现sudo 加一个命令执行，会报错command not found，比如配置了maven之后，明明配置了换进变量，但是还是用sudo mvn就不行？究其原因是sudo默认只是提供最小化的root执行环境。并不包含当前配置的环境变量。
-url: /aistack/928.html
-views:
-  - 1325
-  - 1325
-
-
 ---
   
 
@@ -18,7 +10,7 @@ views:
 
 经常发现sudo 加一个命令执行，会报错command not found，比如配置了maven之后，明明配置了换进变量，但是还是用sudo mvn就不行？究其原因是sudo默认只是提供最小化的root执行环境。并不包含当前配置的环境变量。  
 <a></a>  
-![ubuntu中su与sudo的区别][2] 
+![ubuntu中su与sudo的区别][2]
 
 ### [][3]su命令临时切换用户身份
 
@@ -44,10 +36,6 @@ su 的确为管理带来方便，通过切换到root下，能完成所有系统�
 
 比如我们想用beinan普通用户通过more /etc/shadow文件的内容时，可能会出现下面的情况；
 
-
-
-
-
 　　这时我们可以用sudo more /etc/shadow 来读取文件的内容；就就需要在/etc/soduers中给beinan授权
 
 　　于是我们就可以先su 到root用户下通过visudo 来改/etc/sudoers ；（比如我们是以beinan用户登录系统的）  
@@ -58,10 +46,6 @@ su 的确为管理带来方便，通过切换到root下，能完成所有系统�
 这里可以配置很多，具体可以搜一下baidu。这里说一下常用的：  
 1.使用sudo时候保留某个环境变量  
 如下，比如保留JAVA_HOME
-
-
-
-
 
 注意上面的secure_path是sudo默认采用的path环境。
 

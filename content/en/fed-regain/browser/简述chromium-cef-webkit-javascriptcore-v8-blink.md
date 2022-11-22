@@ -2,17 +2,6 @@
 title: 简述Chromium, CEF, Webkit, JavaScriptCore, V8, Blink
 
 
-date: 2019-06-11T02:24:26+00:00
-url: /javascriptnodejs/4481.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff11f4314f6.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff11f4314f6.png
-fifu_image_alt:
-  - 简述Chromium, CEF, Webkit, JavaScriptCore, V8, Blink
-views:
-  - 1445
-like:
-  - 3
 
 
 ---
@@ -87,7 +76,7 @@ like:
       Webkit<br /> (refer: W<a href="https://link.juejin.im?target=https%3A%2F%2Fbook.douban.com%2Fsubject%2F25910556%2F" target="_blank" rel="nofollow noopener noreferrer">ebkit技术内幕</a>)<br /> 苹果公司基于KDE（Linux桌面系统）的KHTML开源，包括Webcore和JavaScriptCore两个引擎。苹果比较了Gecko和KHTML之后，选择后者的原因，是KHTML拥有清晰的源码结构和极快的渲染速度。2008年，谷歌公司发布的chrome浏览器，采用的chromium内核是基于Webkit而来应用：safari, mail, app store等应用webkit布局：当webkit创建RenderObject对象之后，每个对象是不知道自己的位置、大小等信息的，webkit根据盒模型来计算他们的位置、大小等信息的过程称为布局计算/排版。布局计算分类：第一类是对整个RenderObject树进行的计算；第二类是对RenderObject树中某个子树的计算，常见于文本元素或者overflow：auto块的计算。布局计算：布局计算是一个递归的过程，这是因为一个节点的大小通常需要先计算它的子节点的位置、大小等信息。补充：</p> <p>
         为什么说transform实现动画较直接设置几何属性性能较好？
       </p>
-      
+
       <p>
         1.webkit渲染过程：style -> Layout(reflow发生在这) -> Paint（repaint发生在这） -> Composite，transform是位于’Composite（渲染层合并）‘，而width、left、margin等则是位于‘Layout（布局）’层，这必定导致reflow。
       </p>

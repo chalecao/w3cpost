@@ -2,11 +2,6 @@
 title: typescript大法
 
 
-date: 2020-03-03T04:02:26+00:00
-url: /javascriptnodejs/5649.html
-views:
-  - 834
-
 
 ---
 介绍下`tsconfig`
@@ -83,14 +78,14 @@ views:
 
 关于这些（或者更多）编译选项，稍后将会讨论。
 
-  * noEmit，注意这个，配置了之后编译会没有文件输出，这个应用场景是只想用tsc做类型check，而不想输出文件
+* noEmit，注意这个，配置了之后编译会没有文件输出，这个应用场景是只想用tsc做类型check，而不想输出文件
 
 ### <a class="header-anchor" href="https://jkchao.github.io/typescript-book-chinese/project/compilationContext.html#typescript-%E7%BC%96%E8%AF%91" aria-hidden="true">#</a>TypeScript 编译 {#typescript-编译}
 
 好的 IDE 支持对 TypeScript 的即时编译。但是，如果你想在使用 `tsconfig.json` 时从命令行手动运行 TypeScript 编译器，你可以通过以下方式：
 
-  * 运行 tsc，它会在当前目录或者是父级目录寻找 `tsconfig.json` 文件。
-  * 运行 `tsc -p ./path-to-project-directory` 。当然，这个路径可以是绝对路径，也可以是相对于当前目录的相对路径。
+* 运行 tsc，它会在当前目录或者是父级目录寻找 `tsconfig.json` 文件。
+* 运行 `tsc -p ./path-to-project-directory` 。当然，这个路径可以是绝对路径，也可以是相对于当前目录的相对路径。
 
 你甚至可以使用 `tsc -w` 来启用 TypeScript 编译器的观测模式，在检测到文件改动之后，它将重新编译。
 

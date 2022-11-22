@@ -2,52 +2,43 @@
 title: 构建DOM和CSSOM
 
 
-date: 2019-06-27T07:34:54+00:00
-url: /javascriptnodejs/4553.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://github.com/palmerye/pictureBed/raw/master/blog/bV6yUI.png?fromMac
-fifu_image_url:
-  - https://github.com/palmerye/pictureBed/raw/master/blog/bV6yUI.png?fromMac
-fifu_image_alt:
-  - 构建DOM和CSSOM
-views:
-  - 1738
-like:
-  - 5
 
 
 ---
-  1. ## 什么是DOM {#什么是DOM}
-    
+1. ## 什么是DOM {#什么是DOM}
+
     > Document Object Model 文档对象模型
-    
+
     什么是DOM？可能很多人第一反应就是div、p、span等html标签（至少我是），但要知道，DOM是Model，是Object Model，对象模型，是为HTML（and XML）提供的API。HTML(Hyper Text Markup Language)是一种标记语言，HTML在DOM的模型标准中被视为对象，DOM只提供编程接口，却无法实际操作HTML里面的内容。但在浏览器端，前端们可以用脚本语言（JavaScript）通过DOM去操作HTML内容。
-    
+
     那么问题来了，只有JavaScript才能调用DOM这个API吗？
-    
+
     答案是**NO**。
-    
+
     Python也可以访问DOM。所以DOM不是提供给Javascript的API，也不是Javascript里的API。
-    
+
     **PS: 实质上还存在<a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/constructing-the-object-model" target="_blank" rel="noopener noreferrer">CSSOM</a>：CSS Object Model，浏览器将CSS代码解析成树形的数据结构，与DOM是两个独立的数据结构**。
-    
-    ## 浏览器渲染过程 {#浏览器渲染过程}
-    
+
+## 浏览器渲染过程 {#浏览器渲染过程}
+
     > 讨论DOM操作成本，肯定要先了解该成本的来源，那么就离不开浏览器渲染。
-    
+
     这里暂只讨论浏览器拿到HTML之后开始解析、渲染。（怎么拿到HTML资源的可能后续另开篇总结吧，什么握握握手啊挥挥挥挥手啊，万恶的flag…）
-    
+
       1. 解析HTML，构建DOM树（这里遇到外链，此时会发起请求）
       2. 解析CSS，生成CSS规则树
       3. 合并DOM树和CSS规则，生成render树
       4. 布局render树（Layout/reflow），负责各元素尺寸、位置的计算
       5. 绘制render树（paint），绘制页面像素信息
       6. 浏览器会将各层的信息发送给GPU，GPU将各层合成（composite），显示在屏幕上
-    ### 1.构建DOM树 {#1-构建DOM树}<figure class="highlight plain"> 
-    
+
+### 1.构建DOM树 {#1-构建DOM树}<figure class="highlight plain">
+
     <table>
       <tr>
         <td class="gutter">
           <pre><span class="line">1</span>
+
 <span class="line">2</span>
 <span class="line">3</span>
 <span class="line">4</span>
@@ -59,7 +50,7 @@ like:
 <span class="line">10</span>
 <span class="line">11</span></pre>
         </td>
-        
+
         <td class="code">
           <pre><span class="line">&lt;html&gt;</span>
 <span class="line">  &lt;head&gt;</span>
@@ -74,8 +65,8 @@ like:
 <span class="line">&lt;/html&gt;</span></pre>
         </td>
       </tr>
-    </table></figure> 
-    
+    </table></figure>
+
     > 无论是DOM还是CSSOM，都是要经过`Bytes → characters → tokens → nodes → object model`这个过程。
     
     > DOM树构建过程：当前节点的所有子节点都构建好后才会去构建当前节点的下一个兄弟节点。
@@ -174,7 +165,7 @@ like:
 <span class="line">10</span>
 <span class="line">11</span></pre>
         </td>
-        
+
         <td class="code">
           <pre><span class="line">&lt;html&gt;</span>
 <span class="line">  &lt;head&gt;</span>
@@ -189,8 +180,8 @@ like:
 <span class="line">&lt;/html&gt;</span></pre>
         </td>
       </tr>
-    </table></figure> 
-    
+    </table></figure>
+
     <a class="fancybox" href="https://github.com/palmerye/pictureBed/raw/master/blog/517718454-5aaa988a999bb_articlex.png?fromMac" rel="group"><img src="https://github.com/palmerye/pictureBed/raw/master/blog/517718454-5aaa988a999bb_articlex.png?fromMac" alt="" /></a>
     
       * 浏览器拿到HTML后，从上到下顺序解析文档

@@ -2,19 +2,6 @@
 title: 大数据之流计算之Flink介绍
 
 
-date: 2018-12-21T02:20:36+00:00
-url: /aistack/3360.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c068efc6.png
-onesignal_meta_box_present:
-  - 1
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c068efc6.png
-fifu_image_alt:
-  - 大数据之流计算之Flink介绍
-views:
-  - 1329
-
-
 ---
 # 大数据计算引擎的发展 {#2大数据计算引擎的发展outline.ibm-h2}
 
@@ -172,12 +159,12 @@ Flink 和其他大多开源的框架一样，提供了很多有用的 Rest API�
 
 1.查询 Flink 集群的基本信息: /overview。示例命令行格式以及返回结果如下：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">$ curl https://localhost:8081/overview{"taskmanagers":1,"slots-total":16,
+<pre class="EnlighterJSRAW" data-enlighter-language="null">$ c
 "slots-available":16,"jobs-running":0,"jobs-finished":0,"jobs-cancelled":0,"jobs-failed":0}</pre>
 
 2.查询当前 Flink 集群中的 Job 信息：/jobs。示例命令行格式以及返回结果如下：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">$ curl https://localhost:8081/jobs{"jobs-running":[],"jobs-finished":
+<pre class="EnlighterJSRAW" data-enlighter-language="null">$ c
 ["f91d4dd4fdf99313d849c9c4d29f8977"],"jobs-cancelled":[],"jobs-failed":[]}</pre>
 
 3.查询一个指定的 Job 信息: /jobs/jobid。这个查询的结果会返回特别多的详细的内容，这是我在浏览器中进行的测试，如下图：
@@ -208,9 +195,9 @@ Flink 是一个比 Spark 起步晚的项目，但是并不代表 Flink 的前途
 
 # 相关主题 {#artrelatedtopics.ibm-h4}
 
-  * [Apache Flink][1]
-  * [Apache Tachyon][2]
-  * [Apache Hadoop][3]
+* [Apache Flink][1]
+* [Apache Tachyon][2]
+* [Apache Hadoop][3]
 
  [1]: https://flink.apache.org/
  [2]: https://tachyon-project.org/

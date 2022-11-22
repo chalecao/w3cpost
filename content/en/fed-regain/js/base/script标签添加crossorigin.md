@@ -1,24 +1,5 @@
 ---
 title: script标签添加crossorigin
-
-
-date: 2018-11-21T06:15:03+00:00
-url: /javascriptnodejs/2775.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c0167d35f0b0.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c0167d35f0b0.png
-fifu_image_alt:
-  - script标签添加crossorigin
-views:
-  - 1984
-toc_depth:
-  - 2
-like:
-  - 1
-onesignal_meta_box_present:
-  - 1
-
-
 ---
 最近 <a href="https://getbootstrap.com/" target="_blank" rel="noopener noreferrer">Bootstrap 4</a> 已经正式发布了，可能已经有爱尝鲜的小伙伴在 alpha 阶段就尝试过 BS4。不过今天要说的不是 BS4，而是官网里引入 BS4 框架依赖的 jQuery 的代码：
 
@@ -59,7 +40,7 @@ onesignal_meta_box_present:
 &lt;script src="https://某个银行2/会员信息网址"&gt;
 ...
 </code></pre>
-          
+
           <p>
             注意 src 里面提到地址，都是 HTML 页面的地址，当成 JS 来执行，肯定是会报错的。
           </p>

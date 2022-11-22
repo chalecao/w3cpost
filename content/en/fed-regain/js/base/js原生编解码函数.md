@@ -2,14 +2,6 @@
 title: JS原生编解码函数
 
 
-date: 2017-08-28T23:03:40+00:00
-excerpt: 当你在百度输入一个关键字搜索的时候，你会发现搜索的url是被转义处理了。这里为什么要转义呢？一方面为了避免XSS，一方面可以做到通用处理，对特殊符号进行转义处理，避免引起未知的错误。JavaScript中有三个可以对字符串编码的函数，分别是： escape,encodeURI,encodeURIComponent，相应3个解码函数：unescape,decodeURI,decodeURIComponent 。
-url: /javascriptnodejs/736.html
-views:
-  - 1847
-  - 1847
-
-
 ---
   
 
@@ -18,7 +10,7 @@ views:
 
 当你在百度输入一个关键字搜索的时候，你会发现搜索的url是被转义处理了。这里为什么要转义呢？一方面为了避免XSS，一方面可以做到通用处理，对特殊符号进行转义处理，避免引起未知的错误。JavaScript中有三个可以对字符串编码的函数，分别是： escape,encodeURI,encodeURIComponent，相应3个解码函数：unescape,decodeURI,decodeURIComponent 。  
 <a></a>  
-![JS原生编解码函数][2] 
+![JS原生编解码函数][2]
 
 ### [][3]escape()函数
 
@@ -32,10 +24,6 @@ string 必需。要被转义或编码的字符串。
 已编码的 string 的副本。其中某些字符被替换成了十六进制的转义序列。  
 说明  
 该方法不会对 ASCII 字母和数字进行编码，也不会对下面这些 ASCII 标点符号进行编码：
-
-
-
-
 
 其他所有的字符都会被转义序列替换。  
 这个方法在EMCA Script 3中是弃用的方法。
@@ -57,15 +45,7 @@ URIstring 的副本，其中的某些字符将被十六进制的转义序列进�
 说明  
 该方法不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII 标点符号进行编码：
 
-
-
-
-
 该方法的目的是对 URI 进行完整的编码，因此对以下在 URI 中具有特殊含义的 ASCII 标点符号，encodeURI() 函数是不会进行转义的：
-
-
-
-
 
 ### [][5]encodeURIComponent() 函数
 
@@ -84,15 +64,7 @@ URIstring 的副本，其中的某些字符将被十六进制的转义序列进�
 说明  
 该方法不会对 ASCII 字母和数字进行编码，也不会对这些 ASCII 标点符号进行编码：
 
-
-
-
-
 其他字符（比如 ：
-
-
-
-
 
 这些用于分隔 URI 组件的标点符号），都是由一个或多个十六进制的转义序列替换的。
 
@@ -106,23 +78,11 @@ URIstring 的副本，其中的某些字符将被十六进制的转义序列进�
 ### [][7]示例
 
   1. escape()
-    
-    
-    
-    
 
   2. encodeURI()
-    
-    
-    
-    
 
 对整个URL进行编码，而URL的特定标识符不会被转码。  
 3.encodeURIComponent()
-
-
-
-
 
 对URL中的参数进行编码，因为参数也是一个URL，如果不编码会影响整个URL的跳转。
 

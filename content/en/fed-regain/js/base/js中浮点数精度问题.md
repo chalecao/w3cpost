@@ -2,17 +2,6 @@
 title: JS中浮点数精度问题
 
 
-date: 2019-07-25T01:43:16+00:00
-url: /javascriptnodejs/4832.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442317747647a584d6e44384b4a6a793158645858615a735658612d313238302d3334362e706e67.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442317747647a584d6e44384b4a6a793158645858615a735658612d313238302d3334362e706e67.png
-fifu_image_alt:
-  - JS中浮点数精度问题
-views:
-  - 1841
-like:
-  - 8
 
 
 ---
@@ -23,7 +12,7 @@ like:
     <h2 class="heading" data-id="heading-1">
       浮点数运算后的精度问题
     </h2>
-    
+
     <p>
       在计算商品价格加减乘除时，偶尔## 会出现精度问题，一些常见的例子如下：
     </p>
@@ -36,17 +25,17 @@ like:
 &lt;span class="hljs-comment">// 减法 =====================&lt;/span>
 &lt;span class="hljs-number">1.5&lt;/span> - &lt;span class="hljs-number">1.2&lt;/span> = &lt;span class="hljs-number">0.30000000000000004&lt;/span>
 &lt;span class="hljs-number">0.3&lt;/span> - &lt;span class="hljs-number">0.2&lt;/span> = &lt;span class="hljs-number">0.09999999999999998&lt;/span>
- 
+
 &lt;span class="hljs-comment">// 乘法 =====================&lt;/span>
-&lt;span class="hljs-number">19.9&lt;/span> * &lt;span class="hljs-number">100&lt;/span> = &lt;span class="hljs-number">1989.9999999999998&lt;/span>
-&lt;span class="hljs-number">0.8&lt;/span> * &lt;span class="hljs-number">3&lt;/span> = &lt;span class="hljs-number">2.4000000000000004&lt;/span>
+&lt;span class="hljs-number">19.9&lt;/span> *&lt;span class="hljs-number">100&lt;/span> = &lt;span class="hljs-number">1989.9999999999998&lt;/span>
+&lt;span class="hljs-number">0.8&lt;/span>* &lt;span class="hljs-number">3&lt;/span> = &lt;span class="hljs-number">2.4000000000000004&lt;/span>
 &lt;span class="hljs-number">35.41&lt;/span> * &lt;span class="hljs-number">100&lt;/span> = &lt;span class="hljs-number">3540.9999999999995&lt;/span>
 
 &lt;span class="hljs-comment">// 除法 =====================&lt;/span>
 &lt;span class="hljs-number">0.3&lt;/span> / &lt;span class="hljs-number">0.1&lt;/span> = &lt;span class="hljs-number">2.9999999999999996&lt;/span>
 &lt;span class="hljs-number">0.69&lt;/span> / &lt;span class="hljs-number">10&lt;/span> = &lt;span class="hljs-number">0.06899999999999999&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <h2 class="heading" data-id="heading-2">
       toFixed奇葩问题
     </h2>
@@ -66,7 +55,7 @@ like:
 &lt;span class="hljs-number">1.333335&lt;/span>.toFixed(&lt;span class="hljs-number">5&lt;/span>)  &lt;span class="hljs-comment">// 1.33333 错误&lt;/span>
 &lt;span class="hljs-number">1.3333335&lt;/span>.toFixed(&lt;span class="hljs-number">6&lt;/span>) &lt;span class="hljs-comment">// 1.333333 错误&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-    
+
     <p>
       使用IETester在IE下面测试的结果却是正确的。
     </p>
@@ -87,9 +76,9 @@ like:
 
 64位比特又可分为三个部分：
 
-  * 符号位S：第 1 位是正负数符号位（sign），0代表正数，1代表负数
-  * 指数位E：中间的 11 位存储指数（exponent），用来表示次方数
-  * 尾数位M：最后的 52 位是尾数（mantissa），超出的部分自动进一舍零
+* 符号位S：第 1 位是正负数符号位（sign），0代表正数，1代表负数
+* 指数位E：中间的 11 位存储指数（exponent），用来表示次方数
+* 尾数位M：最后的 52 位是尾数（mantissa），超出的部分自动进一舍零
 
 ￼<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f37323637613538623239383932633362373233653364366333663733393035612e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f37323637613538623239383932633362373233653364366333663733393035612e706e67.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f37323637613538623239383932633362373233653364366333663733393035612e706e67.png?x-oss-process=image/format,webp" alt="64 bit allocation" data-canonical-src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/7267a58b29892c3b723e3d6c3f73905a.png" /></a>
 
@@ -155,9 +144,9 @@ like:
 
 那么对于 `(2^53, 2^63)` 之间的数会出现什么情况呢？
 
-  * `(2^53, 2^54)` 之间的数会两个选一个，只能精确表示偶数
-  * `(2^54, 2^55)` 之间的数会四个选一个，只能精确表示4个倍数
-  * &#8230; 依次跳过更多2的倍数
+* `(2^53, 2^54)` 之间的数会两个选一个，只能精确表示偶数
+* `(2^54, 2^55)` 之间的数会四个选一个，只能精确表示4个倍数
+* &#8230; 依次跳过更多2的倍数
 
 下面这张图能很好的表示 JavaScript 中浮点数和实数（Real Number）之间的对应关系。我们常用的 `(-2^53, 2^53)` 只是最中间非常小的一部分，越往两边越稀疏越不精确。  
 <a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f65656539613263613238646433643865366630663563383939353661623433612e6a7067.jpg" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f65656539613263613238646433643865366630663563383939353661623433612e6a7067.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f65656539613263613238646433643865366630663563383939353661623433612e6a7067.jpg?x-oss-process=image/format,webp" alt="fig1.jpg" data-canonical-src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/eee9a2ca28dd3d8e6f0f5c89956ab43a.jpg" /></a>
@@ -173,8 +162,8 @@ like:
 
 不同点就需要注意一下：
 
-  * `toPrecision` 是处理精度，精度是从左至右第一个不为0的数开始数起。
-  * `toFixed` 是小数点后指定位数取整，从小数点开始数起。
+* `toPrecision` 是处理精度，精度是从左至右第一个不为0的数开始数起。
+* `toFixed` 是小数点后指定位数取整，从小数点开始数起。
 
 两者都能对多余数字做凑整处理，也有些人用 `toFixed` 来做四舍五入，但一定要知道它是有 Bug 的。
 
@@ -193,7 +182,6 @@ like:
 当你拿到 `1.4000000000000001` 这样的数据要展示时，建议使用 `toPrecision` 凑整并 `parseFloat` 转成数字后再显示，如下：
 
     parseFloat(1.4000000000000001.toPrecision(12)) === 1.4  // True
-    
 
 封装成方法就是：
 
@@ -214,8 +202,8 @@ like:
 <span class="pl-c"> * 精确加法</span>
 <span class="pl-c"> */</span>
 <span class="pl-k">function</span> <span class="pl-en">add</span>(<span class="pl-smi">num1</span>, <span class="pl-smi">num2</span>) {
-  <span class="pl-k">const</span> <span class="pl-c1">num1Digits</span> <span class="pl-k">=</span> (<span class="pl-smi">num1</span>.<span class="pl-c1">toString</span>().<span class="pl-c1">split</span>(<span class="pl-s"><span class="pl-pds">'</span>.<span class="pl-pds">'</span></span>)[<span class="pl-c1">1</span>] <span class="pl-k">||</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>).<span class="pl-c1">length</span>;
-  <span class="pl-k">const</span> <span class="pl-c1">num2Digits</span> <span class="pl-k">=</span> (<span class="pl-smi">num2</span>.<span class="pl-c1">toString</span>().<span class="pl-c1">split</span>(<span class="pl-s"><span class="pl-pds">'</span>.<span class="pl-pds">'</span></span>)[<span class="pl-c1">1</span>] <span class="pl-k">||</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>).<span class="pl-c1">length</span>;
+  <span class="pl-k">const</span> <span class="pl-c1">num1Digits</span> <span class="pl-k">=</span> (<span class="pl-smi">num1</span>.<span class="pl-c1">toString</span>().<span class="pl-c1">split</span>[<span class="pl-s"><span class="pl-pds">'</span>.<span class="pl-pds">'</span></span>](<span class="pl-c1">1</span>) <span class="pl-k">||</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>).<span class="pl-c1">length</span>;
+  <span class="pl-k">const</span> <span class="pl-c1">num2Digits</span> <span class="pl-k">=</span> (<span class="pl-smi">num2</span>.<span class="pl-c1">toString</span>().<span class="pl-c1">split</span>[<span class="pl-s"><span class="pl-pds">'</span>.<span class="pl-pds">'</span></span>](<span class="pl-c1">1</span>) <span class="pl-k">||</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>).<span class="pl-c1">length</span>;
   <span class="pl-k">const</span> <span class="pl-c1">baseNum</span> <span class="pl-k">=</span> <span class="pl-c1">Math</span>.<span class="pl-c1">pow</span>(<span class="pl-c1">10</span>, <span class="pl-c1">Math</span>.<span class="pl-c1">max</span>(num1Digits, num2Digits));
   <span class="pl-k">return</span> (num1 <span class="pl-k">*</span> baseNum <span class="pl-k">+</span> num2 <span class="pl-k">*</span> baseNum) <span class="pl-k">/</span> baseNum;
 }</pre>
@@ -230,11 +218,11 @@ like:
 
 ## 参考
 
-  * <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format" rel="nofollow">Double-precision floating-point format</a>
-  * <a href="http://floating-point-gui.de/" rel="nofollow">What Every Programmer Should Know About Floating-Point Arithmetic</a>
-  * <a href="https://www.youtube.com/watch?v=pQs_wx8eoQ8" rel="nofollow">Why Computers are Bad at Algebra | Infinite Series</a>
-  * <a href="http://jasss.soc.surrey.ac.uk/9/4/4.html" rel="nofollow">Is Your Model Susceptible to Floating-Point Errors?</a>
-  * <a href="https://zhuanlan.zhihu.com/ne-fe" rel="nofollow">https://zhuanlan.zhihu.com/ne-fe</a>
+* <a href="https://en.wikipedia.org/wiki/Double-precision_floating-point_format" rel="nofollow">Double-precision floating-point format</a>
+* <a href="http://floating-point-gui.de/" rel="nofollow">What Every Programmer Should Know About Floating-Point Arithmetic</a>
+* <a href="https://www.youtube.com/watch?v=pQs_wx8eoQ8" rel="nofollow">Why Computers are Bad at Algebra | Infinite Series</a>
+* <a href="http://jasss.soc.surrey.ac.uk/9/4/4.html" rel="nofollow">Is Your Model Susceptible to Floating-Point Errors?</a>
+* <a href="https://zhuanlan.zhihu.com/ne-fe" rel="nofollow">https://zhuanlan.zhihu.com/ne-fe</a>
 
  [1]: https://github.com/MikeMcl/bignumber.js/
  [2]: https://github.com/tc39/proposal-bigint

@@ -2,19 +2,7 @@
 title: jsonp而不是AJAX？
 
 
-date: 2018-12-26T16:17:18+00:00
-url: /javascriptnodejs/3391.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c23a8258ff8f.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c23a8258ff8f.png
-onesignal_meta_box_present:
-  - 1
-fifu_image_alt:
-  - jsonp而不是AJAX？
-views:
-  - 1778
-like:
-  - 2
+
 
 
 ---
@@ -26,8 +14,8 @@ like:
 
 对于在PC端：
 
-  * 同步插件脚本加载完才能发起请求
-  * 在主进程的编译与执行前，会被插件脚本抢占。
+* 同步插件脚本加载完才能发起请求
+* 在主进程的编译与执行前，会被插件脚本抢占。
 
 对于在H5移动端：执行到逻辑，立即发出请求，标记为低优先级。
 
@@ -52,8 +40,7 @@ like:
     因为主线程被阻碍了，后面的解析工作没有办法继续往下进行，
     当遇到这种情况，WebKit会启动另外一个线程去遍历后面的HTML，
     收集需要的资源URL，然后发送请求，这样就可以避免阻塞。 
-    	———— 《WebKit技术内幕》
-    
+     ———— 《WebKit技术内幕》
 
 通过上面这个浏览器加载分析图可以很清楚的看到，浏览器解析HTML时，遇到同步的script标签，这时候会阻塞主线程，浏览器会请求script标签资源并执行，然后才会继续HTML解析。为了提升网络性能，在主渲染进程阻塞开始加载同步script标签资源时，浏览器会遍历后面的html找到其他的同步script标签的资源，同时发出请求，这样等当前的script加载完执行性完，接着往下解析html，遇到下一个同步script标签的时候，其实内容已经拿到了，或者快拿到了，这样就充分利用率网络并行请求，提升了页面加载速度。
 
@@ -68,7 +55,6 @@ like:
     <script src="parallelData4.js"></script>
     <script src="parallelData5.js"></script>
     <script src="parallelData6.js"></script>
-    
 
 <a href="https://camo.githubusercontent.com/462da8de160da18911118c7018651c1e1a253a1d/687474703a2f2f6f636b637a35657a662e626b742e636c6f7564646e2e636f6d2f32303137303630393134393639343233393935313336362e706e67" target="_blank" rel="noopener noreferrer"><img src="https://camo.githubusercontent.com/462da8de160da18911118c7018651c1e1a253a1d/687474703a2f2f6f636b637a35657a662e626b742e636c6f7564646e2e636f6d2f32303137303630393134393639343233393935313336362e706e67" alt="" data-canonical-src="https://ockcz5ezf.bkt.clouddn.com/20170609149694239951366.png" /></a>
 

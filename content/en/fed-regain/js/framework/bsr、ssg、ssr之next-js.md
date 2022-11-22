@@ -1,15 +1,6 @@
 ---
 title: BSR、SSG、SSR之next.js
 
-
-date: 2022-04-08T15:31:51+00:00
-url: /javascriptnodejs/7047.html
-classic-editor-remember:
-  - classic-editor
-views:
-  - 103
-
-
 ---
 <p data-first-child="" data-pid="h71I4k-V">
   Next.js 是一个轻量级的 React 服务端渲染框架
@@ -210,7 +201,7 @@ views:
 &lt;span class="c1">// props 中有下面导出的数据 posts
 &lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="nx">PostsIndex&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">NextPage&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="nx">Props&lt;/span>&lt;span class="o">&gt;&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">props&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&gt;&lt;/span> &lt;span class="p">{&lt;/span>
   &lt;span class="kr">const&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nx">posts&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">props&lt;/span>&lt;span class="p">;&lt;/span>
-	&lt;span class="c1">// 前后端控制台都能打印 -&gt; 同构
+ &lt;span class="c1">// 前后端控制台都能打印 -&gt; 同构
 &lt;/span>  &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">posts&lt;/span>&lt;span class="p">);&lt;/span>
   &lt;span class="k">return&lt;/span> &lt;span class="p">(&lt;/span>
     &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">div&lt;/span>&lt;span class="o">&gt;&lt;/span>
@@ -247,11 +238,11 @@ views:
 
 <p data-pid="4eheMQWz">
   发现玄机
-</p><figure data-size="normal"> 
+</p><figure data-size="normal">
 
 <p id="bLRNqhE">
   <img loading="lazy" class="alignnone  wp-image-7048 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62505510aec0a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62505510aec0a.png?x-oss-process=image/format,webp" alt="" width="486" height="507" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62505510aec0a.png?x-oss-process=image/format,webp 720w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62505510aec0a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_288,h_300/format,webp 288w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62505510aec0a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_575,h_600/format,webp 575w" sizes="(max-width: 486px) 100vw, 486px" />
-</p></figure> 
+</p></figure>
 
 <p data-pid="U7n0fTV3">
   我们可以看到玄机就藏在 id 为 <i><code>_NEXT_DATA__</code></i> 的 script 标签中，里面储存了传给前端的 props 数据
@@ -313,11 +304,11 @@ yarn start</code></pre>
 
 <p data-pid="KibS1Wqx">
   build 完成后，我们查看.next 文件里面，发现 posts.html、posts.js、posts.json
-</p><figure data-size="normal"> 
+</p><figure data-size="normal">
 
 <p id="dDHwTRl">
   <img loading="lazy" class="alignnone  wp-image-7050 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6250553123c1d.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6250553123c1d.png?x-oss-process=image/format,webp" alt="" width="460" height="450" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6250553123c1d.png?x-oss-process=image/format,webp 611w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6250553123c1d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_294/format,webp 300w" sizes="(max-width: 460px) 100vw, 460px" />
-</p></figure> 
+</p></figure>
 
 <li data-pid="ia2fh9OR">
   posts.html 含有静态内容，用于用户直接访问
@@ -477,11 +468,11 @@ yarn start</code></pre>
   可以生成用户相关的内容
 </p>
 
-## 三种渲染模式如何选择<figure data-size="normal"> 
+## 三种渲染模式如何选择<figure data-size="normal">
 
 <p id="eqtmsQw">
   <img loading="lazy" width="1091" height="279" class="alignnone size-full wp-image-7051 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625055475d331.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625055475d331.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625055475d331.png?x-oss-process=image/format,webp 1091w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625055475d331.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_77/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625055475d331.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_205/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625055475d331.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_196/format,webp 768w" sizes="(max-width: 1091px) 100vw, 1091px" />
-</p></figure> 
+</p></figure>
 
 <li data-pid="LPXnujuF">
   有动态内容吗？没有什么也不用做，自动渲染为 HTML

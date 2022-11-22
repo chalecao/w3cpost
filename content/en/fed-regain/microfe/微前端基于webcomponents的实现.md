@@ -2,17 +2,6 @@
 title: 微前端基于webcomponents的实现
 
 
-date: 2019-03-15T15:50:55+00:00
-url: /javascriptnodejs/4018.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://micro-frontends.org/ressources/diagrams/organisational/monolith-frontback-microservices.png
-fifu_image_url:
-  - https://micro-frontends.org/ressources/diagrams/organisational/monolith-frontback-microservices.png
-fifu_image_alt:
-  - 微前端基于webcomponents的实现
-views:
-  - 2336
-like:
-  - 6
 
 
 ---
@@ -36,19 +25,19 @@ Micro Frontends背后的想法是将网站或Web应用程序视为**独立团队
 
 如果您将项目放在**此频谱**的**左侧**，则**在Web服务器级别**进行**集成**是一个不错的选择。使用此模型，服务器从构成用户请求的页面的所有组件中收集和**连接HTML字符串**。通过从服务器重新加载页面或通过ajax替换部分页面来完成更新。[Gustaf Nilsson Kotte][9]撰写了[一篇][10]关于这一主题的[综合文章][10]。
 
-当您的用户界面必须提供**即时反馈时**，即使在不可靠的连接上，纯服务器渲染的站点也不再足够。要实现[Optimistic UI][11]或[Skeleton Screens等技术，][12]您还需要能够**在设备上****更新** UI 。Google的术语[Progressive Web Apps][13]恰当地描述了成为网络的良好公民（渐进增强）的**平衡行为**，同时还提供类似应用程序的性能。这种应用程序位于**site-app-continuum中间的**某个**位置**。这里仅基于服务器的解决方案已不再适用。我们要搬家了**集成到浏览器中**，这是本文的重点。
+当您的用户界面必须提供**即时反馈时**，即使在不可靠的连接上，纯服务器渲染的站点也不再足够。要实现[Optimistic UI][11]或[Skeleton Screens等技术，][12]您还需要能够**在设备上****更新**UI 。Google的术语[Progressive Web Apps][13]恰当地描述了成为网络的良好公民（渐进增强）的**平衡行为**，同时还提供类似应用程序的性能。这种应用程序位于**site-app-continuum中间的**某个**位置**。这里仅基于服务器的解决方案已不再适用。我们要搬家了**集成到浏览器中**，这是本文的重点。
 
 ## Micro Frontends背后的核心理念 {#core-ideas-behind-micro-frontends}
 
-  * **技术不可知**  
+* **技术不可知**  
     每个团队都应该能够选择并升级他们的筹码，而无需与其他团队协调。[自定义元素][14]是隐藏实现细节的好方法，同时为其他人提供中性界面。
-  * **隔离团队代码**  
+* **隔离团队代码**  
     即使所有团队使用相同的框架，也不要共享运行时。构建自包含的独立应用程序。不要依赖共享的状态或全局变量。
-  * **建立团队前缀**  
+* **建立团队前缀**  
     同意在无法实现隔离的命名约定。命名空间CSS，事件，本地存储和Cookie，以避免冲突并澄清所有权。
-  * **支持自定义API上的本机浏览器功能**  
+* **支持自定义API上的本机浏览器功能**  
     使用[浏览器事件进行通信，][15]而不是构建全局PubSub系统。如果您真的需要构建跨团队API，请尽量保持简单。
-  * **构建弹性站点**  
+* **构建弹性站点**  
     即使JavaScript失败或尚未执行，您的功能也应该很有用。使用[通用渲染][16]和渐进增强来提高感知性能。
 
 * * *
@@ -107,7 +96,7 @@ window.customElements.define('blue-buy', BlueBuy);
 
 现在，每次浏览器遇到新<code class="highlighter-rouge">blue-buy</code>标记时，都会调用构造函数。<code class="highlighter-rouge">this</code>是对自定义元素的根DOM节点的引用。所有属性和一个标准的DOM元素的方法等<code class="highlighter-rouge">innerHTML</code>或<code class="highlighter-rouge">getAttribute()</code>可被使用。
 
-![行动中的自定义元素][26] 
+![行动中的自定义元素][26]
 
 在命名元素时，规范定义的唯一要求是名称必须**包含短划线（ &#8211; ）**以保持与即将推出的新HTML标记的兼容性。在即将到来的示例中，使用命名约定<code class="highlighter-rouge">[team_color]-[feature]</code>。团队命名空间可以防止冲突，这样，只需查看DOM，就可以明显看出功能的所有权。
 
@@ -137,7 +126,7 @@ container.innerHTML = '&lt;blue-buy sku="t_fendt"&gt;&lt;/blue-buy&gt;';
 
 如果Team Product使用了一个具有DOM差异的模板引擎，比如React，这将由算法自动完成。
 
-![自定义元素属性更改][27] 
+![自定义元素属性更改][27]
 
 为了支持这一点，Custom Element可以实现<code class="highlighter-rouge">attributeChangedCallback</code>并指定<code class="highlighter-rouge">observedAttributes</code>应该触发此回调的列表。
 
@@ -243,8 +232,8 @@ window.customElements.define('blue-buy', BlueBuy);
     <pre class="highlight"><code>// page.js
 const $ = document.getElementsByTagName;
 
-$('blue-buy')[0].addEventListener('blue:basket:changed', function() {
-  $('blue-basket')[0].refresh();
+$['blue-buy'](0).addEventListener('blue:basket:changed', function() {
+  $['blue-basket'](0).refresh();
 });
 </code></pre>
   </div>
@@ -371,7 +360,7 @@ SSI / ESI方法的缺点是，**最慢的片段决定**了整个页面**的响�
 
 _重要说明：自定义元素[不能自动关闭][46]，因此写入<code class="highlighter-rouge">&lt;green-recos sku="t_porsche" /&gt;</code>无法正常工作。_
 
-![回流][47] 
+![回流][47]
 
 渲染仅在浏览器中进行。但是，正如在动画中可以看到的，这种变化现在引入了页面的**大量回流**。推荐区域最初为空白。团队绿色JavaScript已加载并执行。用于获取个性化推荐的API调用。呈现推荐标记并请求相关图像。片段现在需要更多空间并推动页面布局。
 
@@ -379,7 +368,7 @@ _重要说明：自定义元素[不能自动关闭][46]，因此写入<code clas
 
 更好的方法是使用称为[Skeleton Screens][48]的技术。红队留下<code class="highlighter-rouge">green-recos</code>SSI包含在标记中。另外，team green更改其片段的**服务器端呈现方法**，以便生成内容的**原理图版本**。该**骷髅标记**可以重用的实际内容的布局样式的部分。这样它就可以**保留所需的空间**，实际内容的填充不会导致跳跃。
 
-![骨架屏幕][49] 
+![骨架屏幕][49]
 
 骨架屏幕**对于客户端渲染**也**非常有用**。当您的自定义元素由于用户操作而插入DOM时，它可以**立即呈现骨架，**直到它需要从服务器获取的数据到达。
 

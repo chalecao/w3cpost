@@ -1,36 +1,6 @@
 ---
 title: 使用 Service Workers提升体验
 
-
-date: 2017-10-12T11:56:43+00:00
-url: /javascriptnodejs/1436.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8201d8b1172.png
-ampforwp_custom_content_editor:
-  - 
-  - 
-ampforwp_custom_content_editor_checkbox:
-  - 
-  - 
-ampforwp-amp-on-off:
-  - default
-  - default
-toc_depth:
-  - 1
-  - 1
-views:
-  - 2814
-  - 2814
-wl_pageviews:
-  - 2
-  - 2
-onesignal_meta_box_present:
-  - 1
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8201d8b1172.png
-fifu_image_alt:
-  - 使用 Service Workers提升体验
-
-
 ---
 <p id="PVCcxct">
   <img loading="lazy" width="573" height="167" class="alignnone size-full wp-image-3813 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8201d8b1172.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8201d8b1172.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8201d8b1172.png?x-oss-process=image/format,webp 573w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8201d8b1172.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_87/format,webp 300w" sizes="(max-width: 573px) 100vw, 573px" />
@@ -91,7 +61,7 @@ Service worker 最终要去解决这些问题。虽然 Service Worker 的语法�
     <p>
       <b>1. 如果服务器支持 CORS, 则在客户端设置相应的 `Access-Control-Allow-Origin` 即可得到数据。</b>
     </p>
-    
+
     <div class="highlight">
       <pre><code>&lt;code class="language-text">let myHeaders = new Headers({
     'Access-Control-Allow-Origin': '*',
@@ -102,11 +72,11 @@ fetch(url, {
     headers: myHeaders,
     mode: 'cors'
 }) .then((res) =&gt; {
-    // TODO 
-}) 
+    // TODO
+})
 </code>&lt;/code></pre>
     </div>
-    
+
     <p>
       服务端是否支持可以问下后端同事，如果是自己承担后端编码，则可以直接自己设置，比如如果是 PHPer, header 一下响应头即可。
     </p>
@@ -115,7 +85,7 @@ fetch(url, {
       <pre><code>&lt;code class="language-text">header("Access-Control-Allow-Origin: *"); 
 </code>&lt;/code></pre>
     </div>
-    
+
     <p>
       <b>2. 如果服务器不支持 CORS， 则不用使用 Fetch Api 了。</b>
     </p>
@@ -175,20 +145,20 @@ self.addEventListener('fetch', function (event) {
             if (response) {
                 return response;
             }
-          
+
             // 匹配失败则继续请求
             var request = event.request.clone(); // 把原始请求拷过来
 
             //默认情况下，从不支持 CORS 的第三方网址中获取资源将会失败。
             // 您可以向请求中添加 no-CORS 选项来克服此问题，不过这可能会导致“不透明”的响应，这意味着您无法辨别响应是否成功。
-            if (request.mode !== 'navigate' && request.url.indexOf(request.referrer) === -1) 						{
+            if (request.mode !== 'navigate' && request.url.indexOf(request.referrer) === -1)       {
                 request = new Request(request, { mode: 'no-cors' })
             }
 
             return fetch(request).then(function (httpRes) {
                                 //拿到了http请求返回的数据，进行一些操作
-              
-              	//请求失败了则直接返回、对于post请求也直接返回，sw不能缓存post请求
+
+               //请求失败了则直接返回、对于post请求也直接返回，sw不能缓存post请求
                 if (!httpRes  || ( httpRes.status !== 200 && httpRes.status !== 304 && httpRes.type !== 'opaque') || request.method === 'POST') {
                     return httpRes;
                 }
@@ -225,10 +195,10 @@ self.addEventListener('fetch', function (event) {
     由于这次是为了进行资源缓存，所以只使用了GenerateSW这部分。
   </p>
   
-  <pre><code class="hljs js copyable" lang="js">		&lt;span class="hljs-comment">//在webpack配置文件里&lt;/span>
-		&lt;span class="hljs-keyword">var&lt;/span> WorkboxPlugin = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'workbox-webpack-plugin'&lt;/span>);
-		
-		&lt;span class="hljs-keyword">new&lt;/span> WorkboxPlugin.GenerateSW({
+  <pre><code class="hljs js copyable" lang="js">  &lt;span class="hljs-comment">//在webpack配置文件里&lt;/span>
+  &lt;span class="hljs-keyword">var&lt;/span> WorkboxPlugin = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'workbox-webpack-plugin'&lt;/span>);
+  
+  &lt;span class="hljs-keyword">new&lt;/span> WorkboxPlugin.GenerateSW({
             &lt;span class="hljs-attr">cacheId&lt;/span>: &lt;span class="hljs-string">'seed-cache'&lt;/span>,
 
             &lt;span class="hljs-attr">importWorkboxFrom&lt;/span>: &lt;span class="hljs-string">'disabled'&lt;/span>, &lt;span class="hljs-comment">// 可填`cdn`,`local`,`disabled`,&lt;/span>
@@ -237,12 +207,12 @@ self.addEventListener('fetch', function (event) {
             &lt;span class="hljs-attr">skipWaiting&lt;/span>: &lt;span class="hljs-literal">true&lt;/span>, &lt;span class="hljs-comment">//跳过waiting状态&lt;/span>
             clientsClaim: &lt;span class="hljs-literal">true&lt;/span>, &lt;span class="hljs-comment">//通知让新的sw立即在页面上取得控制权&lt;/span>
             cleanupOutdatedCaches: &lt;span class="hljs-literal">true&lt;/span>,&lt;span class="hljs-comment">//删除过时、老版本的缓存&lt;/span>
-            
+
             &lt;span class="hljs-comment">//最终生成的service worker地址，这个地址和webpack的output地址有关&lt;/span>
-            swDest: &lt;span class="hljs-string">'../workboxServiceWorker.js'&lt;/span>, 
+            swDest: &lt;span class="hljs-string">'../workboxServiceWorker.js'&lt;/span>,
             &lt;span class="hljs-attr">include&lt;/span>: [
-                
-            ], 
+
+            ],
             &lt;span class="hljs-comment">//缓存规则，可用正则匹配请求，进行缓存&lt;/span>
             &lt;span class="hljs-comment">//这里将js、css、还有图片资源分开缓存，可以区分缓存时间(虽然这里没做区分。。)&lt;/span>
             &lt;span class="hljs-comment">//由于种子农场此站点较长时间不更新，所以缓存时间可以稍微长一些&lt;/span>
@@ -254,7 +224,7 @@ self.addEventListener('fetch', function (event) {
                         &lt;span class="hljs-attr">cacheName&lt;/span>: &lt;span class="hljs-string">'seed-js'&lt;/span>,
                         &lt;span class="hljs-attr">expiration&lt;/span>: {
                             &lt;span class="hljs-attr">maxEntries&lt;/span>: &lt;span class="hljs-number">20&lt;/span>,  &lt;span class="hljs-comment">//最多缓存20个，超过的按照LRU原则删除&lt;/span>
-                            maxAgeSeconds: &lt;span class="hljs-number">30&lt;/span> * &lt;span class="hljs-number">24&lt;/span> * &lt;span class="hljs-number">60&lt;/span> * &lt;span class="hljs-number">60&lt;/span>, &lt;span class="hljs-comment">// 30 days&lt;/span>
+                            maxAgeSeconds: &lt;span class="hljs-number">30&lt;/span> *&lt;span class="hljs-number">24&lt;/span>* &lt;span class="hljs-number">60&lt;/span> *&lt;span class="hljs-number">60&lt;/span>, &lt;span class="hljs-comment">// 30 days&lt;/span>
                         },
                     },
                 },
@@ -265,7 +235,7 @@ self.addEventListener('fetch', function (event) {
                         &lt;span class="hljs-attr">cacheName&lt;/span>: &lt;span class="hljs-string">'seed-css'&lt;/span>,
                         &lt;span class="hljs-attr">expiration&lt;/span>: {
                             &lt;span class="hljs-attr">maxEntries&lt;/span>: &lt;span class="hljs-number">30&lt;/span>,  &lt;span class="hljs-comment">//最多缓存30个，超过的按照LRU原则删除&lt;/span>
-                            maxAgeSeconds: &lt;span class="hljs-number">30&lt;/span> * &lt;span class="hljs-number">24&lt;/span> * &lt;span class="hljs-number">60&lt;/span> * &lt;span class="hljs-number">60&lt;/span>, &lt;span class="hljs-comment">// 30 days&lt;/span>
+maxAgeSeconds: &lt;span class="hljs-number">30&lt;/span>* &lt;span class="hljs-number">24&lt;/span> *&lt;span class="hljs-number">60&lt;/span>* &lt;span class="hljs-number">60&lt;/span>, &lt;span class="hljs-comment">// 30 days&lt;/span>
                         },
                     },
                 },
@@ -276,7 +246,7 @@ self.addEventListener('fetch', function (event) {
                         &lt;span class="hljs-attr">cacheName&lt;/span>: &lt;span class="hljs-string">'seed-image'&lt;/span>,
                         &lt;span class="hljs-attr">expiration&lt;/span>: {
                             &lt;span class="hljs-attr">maxEntries&lt;/span>: &lt;span class="hljs-number">30&lt;/span>,  &lt;span class="hljs-comment">//最多缓存30个，超过的按照LRU原则删除&lt;/span>
-                            maxAgeSeconds: &lt;span class="hljs-number">30&lt;/span> * &lt;span class="hljs-number">24&lt;/span> * &lt;span class="hljs-number">60&lt;/span> * &lt;span class="hljs-number">60&lt;/span>, &lt;span class="hljs-comment">// 30 days&lt;/span>
+                            maxAgeSeconds: &lt;span class="hljs-number">30&lt;/span> *&lt;span class="hljs-number">24&lt;/span>* &lt;span class="hljs-number">60&lt;/span> * &lt;span class="hljs-number">60&lt;/span>, &lt;span class="hljs-comment">// 30 days&lt;/span>
                         },
                     },
                 }
@@ -294,7 +264,7 @@ self.addEventListener('fetch', function (event) {
     <p>
       importWorkboxFrom：workbox框架文件的地址，可选cdn、local、disabled
     </p>
-    
+
     <ul>
       <li>
         cdn：引入google的官方cdn，当然在国内会被强。。pass
@@ -338,7 +308,7 @@ self.addEventListener('fetch', function (event) {
     <p>
       一般站点的 CSS，JS 都在 CDN 上，SW 并没有办法判断从 CDN 上请求下来的资源是否正确（HTTP 200），如果缓存了失败的结果，就不好了。这种情况下使用stale-while-Revalidate策略，既保证了页面速度，即便失败，用户刷新一下就更新了。
     </p>
-    
+
     <p>
       而由于种子项目的js和css资源都在站点下面，所以这里就直接使用了cache-first策略。
     </p>
@@ -346,11 +316,11 @@ self.addEventListener('fetch', function (event) {
   
   <p>
     在webpack中配置好之后，执行webpack打包，就能看到在指定目录下由workbox-webpack-plugin生成的service worker配置文件了。
-  </p><figure> 
+  </p><figure>
   
   <p id="vKeoTyH">
     <img loading="lazy" width="1280" height="694" class="alignnone size-full wp-image-5586 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26960b5167a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26960b5167a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26960b5167a.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26960b5167a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_163/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26960b5167a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_416/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26960b5167a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_434/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
-  </p><figcaption></figcaption></figure> 
+  </p><figcaption></figcaption></figure>
   
   <p>
     接入之后，打开网站，在电脑端的chrome调试工具上可以看到缓存的资源
@@ -370,10 +340,10 @@ self.addEventListener('fetch', function (event) {
     </li>
   </ul>
   
-  <pre><code class="hljs js copyable" lang="js">	&lt;span class="hljs-keyword">if&lt;/span> (&lt;span class="hljs-string">'serviceWorker'&lt;/span> &lt;span class="hljs-keyword">in&lt;/span> navigator) {
+  <pre><code class="hljs js copyable" lang="js"> &lt;span class="hljs-keyword">if&lt;/span> (&lt;span class="hljs-string">'serviceWorker'&lt;/span> &lt;span class="hljs-keyword">in&lt;/span> navigator) {
        navigator.serviceWorker.getRegistrations()
            .then(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">registrations&lt;/span>) &lt;/span>{
-				&lt;span class="hljs-keyword">for&lt;/span>(&lt;span class="hljs-keyword">let&lt;/span> registration &lt;span class="hljs-keyword">of&lt;/span> registrations) {
+    &lt;span class="hljs-keyword">for&lt;/span>(&lt;span class="hljs-keyword">let&lt;/span> registration &lt;span class="hljs-keyword">of&lt;/span> registrations) {
                      &lt;span class="hljs-comment">//安装在网页的service worker不止一个，找到我们的那个并删除&lt;/span>
                     &lt;span class="hljs-keyword">if&lt;/span>(registration && registration.scope === &lt;span class="hljs-string">'https://seed.futunn.com/'&lt;/span>){
                         registration.unregister();
@@ -399,7 +369,7 @@ self.addEventListener('fetch', function (event) {
         <img loading="lazy" width="1280" height="568" class="alignnone size-full wp-image-5589 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26962b1b2f1.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26962b1b2f1.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26962b1b2f1.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26962b1b2f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_133/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26962b1b2f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_341/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26962b1b2f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_355/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
       </p><figcaption></figcaption></figure>
     </li>
-    
+
     <li>
       比起浏览器的默认缓存功能，service woker的缓存功能赋予我们更强大地、更完善地控制缓存的能力。
     </li>
@@ -411,7 +381,7 @@ self.addEventListener('fetch', function (event) {
 
 ## 参考文献：
 
-  1.  [mdn 使用  Service  Workers][4]: https://developer.mozilla.org/zh-CN/docs/Web/API/Service\_Worker\_API/Using\_Service\_Workers
+  1. [mdn 使用  Service  Workers][4]: https://developer.mozilla.org/zh-CN/docs/Web/API/Service\_Worker\_API/Using\_Service\_Workers
   2. [fetch][5] : https://fetch.spec.whatwg.org/#http-new-header-syntax
   3. [深入了解 Service Worker][6]：https://zhuanlan.zhihu.com/p/27264234
 

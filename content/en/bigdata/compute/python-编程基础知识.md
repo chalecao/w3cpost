@@ -1,20 +1,6 @@
 ---
-title: Python 编程基础知识
-
-
-date: 2018-11-22T01:37:40+00:00
-url: /aistack/2830.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png
-views:
-  - 1249
-onesignal_meta_box_present:
-  - 1
-fifu_image_alt:
-  - Python 编程基础知识
-
-
+title: python-编程基础知识
+weight: 8
 ---
 <p id="KgAqhzQ">
   <img loading="lazy" width="339" height="149" class="alignnone size-full wp-image-2834 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png?x-oss-process=image/format,webp 339w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_132/format,webp 300w" sizes="(max-width: 339px) 100vw, 339px" />
@@ -26,20 +12,20 @@ fifu_image_alt:
 
 [Python 教程][1]中介绍了以下 Python 基础知识：
 
-  * [定义和调用函数][2]：使用位置和[关键字][3]参数
-  * [字典][4]、[列表][5]、[集合][6]（创建、访问和迭代）
-  * [`for` 循环][7]：包含多个迭代器变量的 `for` 循环（例如 `for a, b in [(1,2), (3,4)]`）
-  * [`if/else` 条件块][8]和[条件表达式][9]
-  * [字符串格式][10]（例如 `'%.2f' % 3.14`）
-  * 变量、赋值、[基本数据类型][11]（`int`、`float`、`bool`、`str`）
-  * [`pass` 语句][12]
+* [定义和调用函数][2]：使用位置和[关键字][3]参数
+* [字典][4]、[列表][5]、[集合][6]（创建、访问和迭代）
+* [`for` 循环][7]：包含多个迭代器变量的 `for` 循环（例如 `for a, b in [(1,2), (3,4)]`）
+* [`if/else` 条件块][8]和[条件表达式][9]
+* [字符串格式][10]（例如 `'%.2f' % 3.14`）
+* 变量、赋值、[基本数据类型][11]（`int`、`float`、`bool`、`str`）
+* [`pass` 语句][12]
 
 ### 中级 Python
 
 [Python 教程][1]还介绍了以下更高级的 Python 功能：
 
-  * [列表推导式][13]
-  * [Lambda 函数][14]  [lambda介绍][15]
+* [列表推导式][13]
+* [Lambda 函数][14]  [lambda介绍][15]
 
 ## 第三方 Python 库 {#-python-}
 
@@ -47,36 +33,36 @@ fifu_image_alt:
 
 #### [Matplotlib][16]（适合数据可视化）
 
-  * [`pyplot`][17] 模块
-  * [`cm`][18] 模块
-  * [`gridspec`][19] 模块
+* [`pyplot`][17] 模块
+* [`cm`][18] 模块
+* [`gridspec`][19] 模块
 
 #### [Seaborn][20]（适合热图）
 
-  * [`heatmap`][21] 函数
+* [`heatmap`][21] 函数
 
 #### [Pandas][22]（适合数据处理）
 
-  * [`DataFrame`][23] 类
+* [`DataFrame`][23] 类
 
 #### [NumPy][24]（适合低阶数学运算）
 
-  * [`linspace`][25] 函数
-  * [`random`][26] 函数
-  * [`array`][27] 函数
-  * [`arange`][28] 函数
+* [`linspace`][25] 函数
+* [`random`][26] 函数
+* [`array`][27] 函数
+* [`arange`][28] 函数
 
 #### [scikit-learn][29]（适合评估指标）
 
-  * [metrics][30] 模块
+* [metrics][30] 模块
 
 ## Bash 终端/云端控制台 {#bash-}
 
 要在本地计算机上或云端控制台中运行编程练习，您应该能熟练使用命令行：
 
-  * [Bash 参考手册][31]
-  * [Bash 快速参考表][32]
-  * [了解 Shell][33]
+* [Bash 参考手册][31]
+* [Bash 快速参考表][32]
+* [了解 Shell][33]
 
 ## 示例
 
@@ -93,13 +79,13 @@ print list(tel)
 print sorted(tel)
 print ('after reverse {0} '.format(sorted(tel,reverse=True)))
 print tel.items()
-print sorted(tel.items(), key=lambda d: d[1]) 
+print sorted(tel.items(), key=lambda d: d[1])
 print 'guido' in tel
 print 'guido' not in tel
 list1 = [3,5,-4,-1,0,-2,-6]
 print sorted(list1, key=lambda x: abs(x))
 for a, b in [(1,2), (3,4)]:
-    print 'a: %d' % a 
+    print 'a: %d' % a
     print('a: {0} and b: {1}'.format(a, b))
     list1.append(a)
 print list1

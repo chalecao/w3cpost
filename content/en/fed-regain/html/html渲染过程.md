@@ -1,20 +1,5 @@
 ---
-title: 浏览器渲染原理
-
-
-date: 2020-11-14T13:47:12+00:00
-url: /html5css3/6194.html
-classic-editor-remember:
-  - classic-editor
-views:
-  - 594
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafe3c1d061c.png
-fifu_image_alt:
-  - HTML渲染过程
-like:
-  - 1
-
+title: html渲染过程
 
 ---
 欢迎学习前端知识体系课程，本系列属于：[前端增长教程][1]
@@ -30,7 +15,7 @@ like:
 </p>
 
 <div class="e-secret">
-  </p> 
+  </p>
   
   <h1>
     进程/线程架构
@@ -259,7 +244,7 @@ like:
     <p>
       <strong>RenderObject 生成 RenderLayer 的条件，来自 <a href="http://www.chromium.org/developers/design-documents/gpu-accelerated-compositing-in-chrome" target="_blank" rel="noopener noreferrer">GPU Accelerated Compositing in Chrome</a></strong>
     </p>
-    
+
     <ul>
       <li>
         It&#8217;s the root object for the page
@@ -293,7 +278,7 @@ like:
     <p>
       <strong>软件渲染模式下，浏览器绘制 RenderLayer 和 RenderObject 的顺序，来自 <a href="http://www.chromium.org/developers/design-documents/gpu-accelerated-compositing-in-chrome" target="_blank" rel="noopener noreferrer">GPU Accelerated Compositing in Chrome</a></strong>
     </p>
-    
+
     <p>
       In the software path, the page is rendered by sequentially painting all the RenderLayers, from back to front. The RenderLayer hierarchy is traversed recursively starting from the root and the bulk of the work is done in RenderLayer::paintLayer() which performs the following basic steps (the list of steps is simplified here for clarity):
     </p>
@@ -353,7 +338,7 @@ like:
     <p>
       <strong>RenderLayer 生成 GraphicsLayer 的条件，来自 <a href="http://www.chromium.org/developers/design-documents/gpu-accelerated-compositing-in-chrome" target="_blank" rel="noopener noreferrer">GPU Accelerated Compositing in Chrome</a></strong>
     </p>
-    
+
     <ol>
       <li>
         Layer has 3D or perspective transform CSS properties, 3d加速单独生成合成图层

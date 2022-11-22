@@ -1,26 +1,6 @@
 ---
 title: Web前端安全之XSS攻击
 
-
-date: 2018-10-30T06:34:19+00:00
-excerpt: XSS又称CSS，全称Cross SiteScript，跨站脚本攻击，是Web程序中常见的漏洞，XSS属于被动式且用于客户端的攻击方式，所以容易被忽略其危害性。其原理是攻击者向有XSS漏洞的网站中输入(传入)恶意的HTML代码，当其它用户浏览该网站时，这段HTML代码会自动执行，从而达到攻击的目的。如，盗取用户Cookie、破坏页面结构、重定向到其它网站等。
-url: /javascriptnodejs/1059.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/2017/08/xss-1.jpg
-views:
-  - 3429
-  - 3429
-ws_info:
-  - 'a:4:{s:8:"ws_title";s:0:"";s:7:"ws_desc";s:0:"";s:6:"ws_url";s:0:"";s:6:"ws_img";s:0:"";}'
-  - 'a:4:{s:8:"ws_title";s:0:"";s:7:"ws_desc";s:0:"";s:6:"ws_url";s:0:"";s:6:"ws_img";s:0:"";}'
-toc_depth:
-  - 1
-  - 1
-fifu_image_url:
-  - //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/xss-1.jpg
-fifu_image_alt:
-  - Web前端安全之XSS攻击
-
-
 ---
 <img class="aligncenter" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/xss-1.jpg" alt="Web前端安全之XSS攻击" />
 
@@ -115,10 +95,10 @@ XSS 攻击是页面被注入了恶意的代码，为了更形象的介绍，我�
 
 **通过这个事件，小明学习到了如下知识：**
 
-  * 通常页面中包含的用户输入内容都在固定的容器或者属性内，以文本的形式展示。
-  * 攻击者利用这些页面的用户输入片段，拼接特殊格式的字符串，突破原有位置的限制，形成了代码片段。
-  * 攻击者通过在目标网站上注入脚本，使之在用户的浏览器上运行，从而引发潜在风险。
-  * 通过 HTML 转义，可以防止 XSS 攻击。[事情当然没有这么简单啦！请继续往下看]。
+* 通常页面中包含的用户输入内容都在固定的容器或者属性内，以文本的形式展示。
+* 攻击者利用这些页面的用户输入片段，拼接特殊格式的字符串，突破原有位置的限制，形成了代码片段。
+* 攻击者通过在目标网站上注入脚本，使之在用户的浏览器上运行，从而引发潜在风险。
+* 通过 HTML 转义，可以防止 XSS 攻击。[事情当然没有这么简单啦！请继续往下看]。
 
 #### 注意特殊的 HTML 属性、JavaScript API {#注意特殊的-html-属性-javascript-api}
 
@@ -203,8 +183,8 @@ valid = isValid(getParameter(&lt;span class="hljs-string">"redirect_to"&lt;/span
 
 通过这个事件，小明学习到了如下知识：
 
-  * 做了 HTML 转义，并不等于高枕无忧。
-  * 对于链接跳转，如 `<a href="xxx"` 或 `location.href="xxx"`，要检验其内容，禁止以 `javascript:` 开头的链接，和其他非法的 scheme。
+* 做了 HTML 转义，并不等于高枕无忧。
+* 对于链接跳转，如 `<a href="xxx"` 或 `location.href="xxx"`，要检验其内容，禁止以 `javascript:` 开头的链接，和其他非法的 scheme。
 
 #### 根据上下文采用不同的转义规则 {#根据上下文采用不同的转义规则}
 
@@ -219,8 +199,8 @@ valid = isValid(getParameter(&lt;span class="hljs-string">"redirect_to"&lt;/span
 
 但安全组又发现有漏洞，原来这样内联 JSON 也是不安全的：
 
-  * 当 JSON 中包含 `U+2028` 或 `U+2029` 这两个字符时，不能作为 JavaScript 的字面量使用，否则会抛出语法错误。
-  * 当 JSON 中包含字符串 `</script>` 时，当前的 script 标签将会被闭合，后面的字符串内容浏览器会按照 HTML 进行解析；通过增加下一个 `<script>` 标签等方法就可以完成注入。
+* 当 JSON 中包含 `U+2028` 或 `U+2029` 这两个字符时，不能作为 JavaScript 的字面量使用，否则会抛出语法错误。
+* 当 JSON 中包含字符串 `</script>` 时，当前的 script 标签将会被闭合，后面的字符串内容浏览器会按照 HTML 进行解析；通过增加下一个 `<script>` 标签等方法就可以完成注入。
 
 于是我们又要实现一个 `escapeEmbedJSON()` 函数，对内联 JSON 进行转义。
 
@@ -236,20 +216,20 @@ valid = isValid(getParameter(&lt;span class="hljs-string">"redirect_to"&lt;/span
 
 **通过这个事件，小明学习到了如下知识：**
 
-  * HTML 转义是非常复杂的，在不同的情况下要采用不同的转义规则。如果采用了错误的转义规则，很有可能会埋下 XSS 隐患。
-  * 应当尽量避免自己写转义库，而应当采用成熟的、业界通用的转义库。
+* HTML 转义是非常复杂的，在不同的情况下要采用不同的转义规则。如果采用了错误的转义规则，很有可能会埋下 XSS 隐患。
+* 应当尽量避免自己写转义库，而应当采用成熟的、业界通用的转义库。
 
 ### 漏洞总结 {#漏洞总结}
 
 小明的例子讲完了，下面我们来系统的看下 XSS 有哪些注入的方法：
 
-  * 在 HTML 中内嵌的文本中，恶意内容以 script 标签形成注入。
-  * 在内联的 JavaScript 中，拼接的数据突破了原本的限制（字符串，变量，方法名等）。
-  * 在标签属性中，恶意内容包含引号，从而突破属性值的限制，注入其他属性或者标签。
-  * 在标签的 href、src 等属性中，包含 `javascript:` 等可执行代码。
-  * 在 onload、onerror、onclick 等事件中，注入不受控制代码。
-  * 在 style 属性和标签中，包含类似 `background-image:url("javascript:...");` 的代码（新版本浏览器已经可以防范）。
-  * 在 style 属性和标签中，包含类似 `expression(...)` 的 CSS 表达式代码（新版本浏览器已经可以防范）。
+* 在 HTML 中内嵌的文本中，恶意内容以 script 标签形成注入。
+* 在内联的 JavaScript 中，拼接的数据突破了原本的限制（字符串，变量，方法名等）。
+* 在标签属性中，恶意内容包含引号，从而突破属性值的限制，注入其他属性或者标签。
+* 在标签的 href、src 等属性中，包含 `javascript:` 等可执行代码。
+* 在 onload、onerror、onclick 等事件中，注入不受控制代码。
+* 在 style 属性和标签中，包含类似 `background-image:url("javascript:...");` 的代码（新版本浏览器已经可以防范）。
+* 在 style 属性和标签中，包含类似 `expression(...)` 的 CSS 表达式代码（新版本浏览器已经可以防范）。
 
 总之，如果开发者没有将用户输入的文本进行合适的过滤，就贸然插入到 HTML 中，这很容易造成注入漏洞。攻击者可以利用漏洞，构造出恶意的代码指令，进而利用恶意代码危害数据安全。
 
@@ -273,12 +253,12 @@ XSS 的本质是：恶意代码未经过滤，与网站正常的代码混在一�
 
 不仅仅是业务上的“用户的 UGC 内容”可以进行注入，包括 URL 上的参数等都可以是攻击的来源。在处理输入时，以下内容都不可信：
 
-  * 来自用户的 UGC 信息
-  * 来自第三方的链接
-  * URL 参数
-  * POST 参数
-  * Referer （可能来自不可信的来源）
-  * Cookie （可能来自其他子域注入）
+* 来自用户的 UGC 信息
+* 来自第三方的链接
+* URL 参数
+* POST 参数
+* Referer （可能来自不可信的来源）
+* Cookie （可能来自其他子域注入）
 
 ### XSS 分类 {#xss-分类}
 
@@ -286,8 +266,8 @@ XSS 的本质是：恶意代码未经过滤，与网站正常的代码混在一�
 
 |类型|存储区_|插入点_| |-|-| |存储型 XSS|后端数据库|HTML| |反射型 XSS|URL|HTML| |DOM 型 XSS|后端数据库/前端存储/URL|前端 JavaScript|
 
-  * 存储区：恶意代码存放的位置。
-  * 插入点：由谁取得恶意代码，并插入到网页上。
+* 存储区：恶意代码存放的位置。
+* 插入点：由谁取得恶意代码，并插入到网页上。
 
 #### 存储型 XSS {#存储型-xss}
 
@@ -352,11 +332,12 @@ DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行
 这里的“并不确定内容要输出到哪里”有两层含义：
 
   1. 用户的输入内容可能同时提供给前端和客户端，而一旦经过了 `escapeHTML()`，客户端显示的内容就变成了乱码( `5 &lt; 7` )。
-  2. 在前端中，不同的位置所需的编码也不同。 
+  2. 在前端中，不同的位置所需的编码也不同。
       * 当 `5 &lt; 7` 作为 HTML 拼接页面时，可以正常显示：
+
     <pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">title&lt;/span>=&lt;span class="hljs-string">"comment"&lt;/span>&gt;&lt;/span>5 &lt; 7&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
 </code></pre>
-    
+
       * 当 `5 &lt; 7` 通过 Ajax 返回，然后赋值给 JavaScript 的变量时，前端得到的字符串就是转义后的字符。这个内容不能直接用于 Vue 等模板的展示，也不能直接用于内容长度计算。不能用于标题、alert 等。
 
 所以，输入侧过滤能够在某些情况下解决特定的 XSS 问题，但会引入很大的不确定性和乱码问题。在防范 XSS 攻击时应避免此类方法。
@@ -365,8 +346,8 @@ DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行
 
 既然输入过滤并非完全可靠，我们就要通过“防止浏览器执行恶意代码”来防范 XSS。这部分分为两类：
 
-  * 防止 HTML 中出现注入。
-  * 防止 JavaScript 执行时，执行恶意代码。
+* 防止 HTML 中出现注入。
+* 防止 JavaScript 执行时，执行恶意代码。
 
 ### 预防存储型和反射型 XSS 攻击 {#预防存储型和反射型-xss-攻击}
 
@@ -374,8 +355,8 @@ DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行
 
 预防这两种漏洞，有两种常见做法：
 
-  * 改成纯前端渲染，把代码和数据分隔开。
-  * 对 HTML 做充分转义。
+* 改成纯前端渲染，把代码和数据分隔开。
+* 对 HTML 做充分转义。
 
 #### 纯前端渲染 {#纯前端渲染}
 
@@ -492,11 +473,11 @@ location.href = &lt;span class="hljs-string">'UNTRUSTED'&lt;/span>
 
 严格的 CSP 在 XSS 的防范中可以起到以下的作用：
 
-  * 禁止加载外域代码，防止复杂的攻击逻辑。
-  * 禁止外域提交，网站被攻击后，用户的数据不会泄露到外域。
-  * 禁止内联脚本执行（规则较严格，目前发现 GitHub 使用）。
-  * 禁止未授权的脚本执行（新特性，Google Map 移动版在使用）。
-  * 合理使用上报可以及时发现 XSS，利于尽快修复问题。
+* 禁止加载外域代码，防止复杂的攻击逻辑。
+* 禁止外域提交，网站被攻击后，用户的数据不会泄露到外域。
+* 禁止内联脚本执行（规则较严格，目前发现 GitHub 使用）。
+* 禁止未授权的脚本执行（新特性，Google Map 移动版在使用）。
+* 合理使用上报可以及时发现 XSS，利于尽快修复问题。
 
 关于 CSP 的详情，请关注前端安全系列后续的文章。
 
@@ -506,8 +487,8 @@ location.href = &lt;span class="hljs-string">'UNTRUSTED'&lt;/span>
 
 ### 其他安全措施 {#其他安全措施}
 
-  * HTTP-only Cookie: 禁止 JavaScript 读取某些敏感 Cookie，攻击者完成 XSS 注入后也无法窃取此 Cookie。
-  * 验证码：防止脚本冒充用户提交危险操作。
+* HTTP-only Cookie: 禁止 JavaScript 读取某些敏感 Cookie，攻击者完成 XSS 注入后也无法窃取此 Cookie。
+* 验证码：防止脚本冒充用户提交危险操作。
 
 ## XSS 的检测 {#xss-的检测}
 
@@ -540,7 +521,7 @@ location.href = &lt;span class="hljs-string">'UNTRUSTED'&lt;/span>
 
 <blockquote class="with-icon">
   <p>
-    <i class="fa fa-quote-left post-blockquote-icon"></i><i class="fa fa-quote-left post-blockquote-icon"></i>不正确。因为： * 防范存储型和反射型 XSS 是后端 RD 的责任。而 DOM 型 XSS 攻击不发生在后端，是前端 RD 的责任。防范 XSS 是需要后端 RD 和前端 RD 共同参与的系统工程。 * 转义应该在输出 HTML 时进行，而不是在提交用户输入时。
+    <i class="fa fa-quote-left post-blockquote-icon"></i><i class="fa fa-quote-left post-blockquote-icon"></i>不正确。因为： *防范存储型和反射型 XSS 是后端 RD 的责任。而 DOM 型 XSS 攻击不发生在后端，是前端 RD 的责任。防范 XSS 是需要后端 RD 和前端 RD 共同参与的系统工程。* 转义应该在输出 HTML 时进行，而不是在提交用户输入时。
   </p>
 </blockquote>
 
@@ -556,12 +537,12 @@ location.href = &lt;span class="hljs-string">'UNTRUSTED'&lt;/span>
 
 虽然很难通过技术手段完全避免 XSS，但我们可以总结以下原则减少漏洞的产生：
 
-  * **利用模板引擎** 开启模板引擎自带的 HTML 转义功能。例如： 在 ejs 中，尽量使用 `<%= data %>` 而不是 `<%- data %>`； 在 doT.js 中，尽量使用 `{{! data }` 而不是 `{{= data }`； 在 FreeMarker 中，确保引擎版本高于 2.3.24，并且选择正确的 `freemarker.core.OutputFormat`。
-  * **避免内联事件** 尽量不要使用 `onLoad="onload('{{data}}')"`、`onClick="go('{{action}}')"` 这种拼接内联事件的写法。在 JavaScript 中通过 `.addEventlistener()` 事件绑定会更安全。
-  * **避免拼接 HTML** 前端采用拼接 HTML 的方法比较危险，如果框架允许，使用 `createElement`、`setAttribute` 之类的方法实现。或者采用比较成熟的渲染框架，如 Vue/React 等。
-  * **时刻保持警惕** 在插入位置为 DOM 属性、链接等位置时，要打起精神，严加防范。
-  * **增加攻击难度，降低攻击后果** 通过 CSP、输入长度配置、接口安全措施等方法，增加攻击的难度，降低攻击的后果。
-  * **主动检测和发现** 可使用 XSS 攻击字符串和自动扫描工具寻找潜在的 XSS 漏洞。
+* **利用模板引擎** 开启模板引擎自带的 HTML 转义功能。例如： 在 ejs 中，尽量使用 `<%= data %>` 而不是 `<%- data %>`； 在 doT.js 中，尽量使用 `{{! data }` 而不是 `{{= data }`； 在 FreeMarker 中，确保引擎版本高于 2.3.24，并且选择正确的 `freemarker.core.OutputFormat`。
+* **避免内联事件** 尽量不要使用 `onLoad="onload('{{data}}')"`、`onClick="go('{{action}}')"` 这种拼接内联事件的写法。在 JavaScript 中通过 `.addEventlistener()` 事件绑定会更安全。
+* **避免拼接 HTML** 前端采用拼接 HTML 的方法比较危险，如果框架允许，使用 `createElement`、`setAttribute` 之类的方法实现。或者采用比较成熟的渲染框架，如 Vue/React 等。
+* **时刻保持警惕** 在插入位置为 DOM 属性、链接等位置时，要打起精神，严加防范。
+* **增加攻击难度，降低攻击后果** 通过 CSP、输入长度配置、接口安全措施等方法，增加攻击的难度，降低攻击的后果。
+* **主动检测和发现** 可使用 XSS 攻击字符串和自动扫描工具寻找潜在的 XSS 漏洞。
 
 ## XSS 攻击案例 {#xss-攻击案例}
 
@@ -638,8 +619,8 @@ getTop().location.href=&lt;span class="hljs-string">"/cgi-bin/loginpage?autologi
 
 目前已经支持 Automatic Context-Aware Escaping 的模板引擎有：
 
-  * [go html/template<i class="fa fa-link" aria-hidden="true"></i>][7]
-  * [Google Closure Templates<i class="fa fa-link" aria-hidden="true"></i>][8]
+* [go html/template<i class="fa fa-link" aria-hidden="true"></i>][7]
+* [Google Closure Templates<i class="fa fa-link" aria-hidden="true"></i>][8]
 
 ## 课后作业：XSS 攻击小游戏 {#课后作业-xss-攻击小游戏}
 
@@ -651,13 +632,13 @@ getTop().location.href=&lt;span class="hljs-string">"/cgi-bin/loginpage?autologi
 
 ## 参考文献 {#参考文献}
 
-  * Wikipedia. [Cross-site scripting<i class="fa fa-link" aria-hidden="true"></i>][12], Wikipedia.
-  * OWASP. [XSS (Cross Site Scripting) Prevention Cheat Sheet<i class="fa fa-link" aria-hidden="true"></i>][13], OWASP.
-  * OWASP. [Use the OWASP Java Encoder<i class="fa fa-link" aria-hidden="true"></i>][14]-Use-the-OWASP-Java-Encoder), GitHub.
-  * Ahmed Elsobky. [Unleashing an Ultimate XSS Polyglot<i class="fa fa-link" aria-hidden="true"></i>][2], GitHub.
-  * Jad S. Boutros. [Reducing XSS by way of Automatic Context-Aware Escaping in Template Systems<i class="fa fa-link" aria-hidden="true"></i>][6], Google Security Blog.
-  * Vue.js. [v-html &#8211; Vue API docs<i class="fa fa-link" aria-hidden="true"></i>][15], Vue.js.
-  * React. [dangerouslySetInnerHTML &#8211; DOM Elements<i class="fa fa-link" aria-hidden="true"></i>][16], React.
+* Wikipedia. [Cross-site scripting<i class="fa fa-link" aria-hidden="true"></i>][12], Wikipedia.
+* OWASP. [XSS (Cross Site Scripting) Prevention Cheat Sheet<i class="fa fa-link" aria-hidden="true"></i>][13], OWASP.
+* OWASP. [Use the OWASP Java Encoder<i class="fa fa-link" aria-hidden="true"></i>][14]-Use-the-OWASP-Java-Encoder), GitHub.
+* Ahmed Elsobky. [Unleashing an Ultimate XSS Polyglot<i class="fa fa-link" aria-hidden="true"></i>][2], GitHub.
+* Jad S. Boutros. [Reducing XSS by way of Automatic Context-Aware Escaping in Template Systems<i class="fa fa-link" aria-hidden="true"></i>][6], Google Security Blog.
+* Vue.js. [v-html &#8211; Vue API docs<i class="fa fa-link" aria-hidden="true"></i>][15], Vue.js.
+* React. [dangerouslySetInnerHTML &#8211; DOM Elements<i class="fa fa-link" aria-hidden="true"></i>][16], React.
 
 ## xss资源
 

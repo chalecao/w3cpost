@@ -2,14 +2,6 @@
 title: fabric.js之強大的SVG处理工具类库
 
 
-date: 2017-08-28T22:04:40+00:00
-excerpt: 使用 Fabric.js 你可以创建和填充画布上的对象，从简单的几何图形到成百上千路径组成的复杂图形。你可以通过鼠标轻松的移动、缩放和旋转这些对象，修改它们的属性（颜色、透明度，层叠顺序）等等。
-url: /javascriptnodejs/734.html
-views:
-  - 2815
-  - 2815
-
-
 ---
   
 
@@ -18,7 +10,7 @@ views:
 
 使用 Fabric.js 你可以创建和填充画布上的对象，从简单的几何图形到成百上千路径组成的复杂图形。你可以通过鼠标轻松的移动、缩放和旋转这些对象，修改它们的属性（颜色、透明度，层叠顺序）等等。  
 <a></a>  
-![fabric.js之強大的SVG处理工具类库][2] 
+![fabric.js之強大的SVG处理工具类库][2]
 
 <a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2015/11/05/2015_svg_learn/" target="_blank" rel="external">SVG系列教程</a>
 
@@ -31,17 +23,9 @@ views:
 
 #### [][4]基本类型
 
-
-
-
-
 #### [][5]操作对象
 
 属性 get(‘width’)和 set({ }):
-
-
-
-
 
 状态变化时的动作：通过event来实现动画。
 
@@ -62,25 +46,13 @@ fabric.Image 有 setElement和getElement
 1.初始化 canvas，加载 object model  
 2.使用 selection 和selectable属性
 
-
-
-
-
 3.创建一不含交互的canvas（轻量级）
-
-
-
-
 
 #### [][9]Images
 
 有img的html标签时：使用 fabric.Image,有 url 时： fabric.Image.fromUrl, 回调函数中的参数就是fabric.Image。  
 Path和PathGroup可以制作任意向量图。  
 path 包括一系列的命令，如 “move”, “line”, “curve”, or “arc”, 类似于 svg 的<path></path> ,可使用 fabric.Path手动创建，步骤：
-
-
-
-
 
 也可使用 fabric内置的 SVG Parser创建（真创建复杂图形，这种方法比较多），步骤：  
 1.使用 fabric.loadSVGFromString loadSVGFromURL加载整个SVG  
@@ -113,21 +85,15 @@ newfabric.Color(‘#123123’);
 
 newfabric.Color(‘rgb(100,0,100)’);
 
-####Gradients  
+#### Gradients  
+
 使用Object 中的setGradientFil函数，如
-
-
-
-
 
 其中 x1,y1定义开始点，x2,y2定义结束点，colorStops 可以有多个，从 0 to 1 (e.g. 0, 0.1, 0.3,0.5, 0.75, 1)，如彩虹七色
 
-####Text（艺术字）  
+#### Text（艺术字）  
+
 扩展：
-
-
-
-
 
     <code>其中第二个参数可选，可以为left, top, fill, opacity,fontFamily ,fontSize  fontWeight textShadow, fontStyle  strokeStyle strokeWidth textBackgroundColor lineHeight   textAlign. 
     </code>
@@ -135,10 +101,6 @@ newfabric.Color(‘rgb(100,0,100)’);
 #### [][13]Events
 
 提供从低端的mouse到高端的object 事件，如：
-
-
-
-
 
 使用 on 监听事件，off 移除监听器
 
@@ -149,46 +111,27 @@ newfabric.Color(‘rgb(100,0,100)’);
 
 对多个物体统一移动和修改（scale rotate等）
 
-
-
-
-
 group中item默认布局在group中央，通过给每个item设置left和top属性可修改
 
 其他函数： getObjects() 获得group中所有对象， item 取得单个对象 等
 
 创建已经在 canvas中加载的对象的group
 
-
-
-
-
 #### [][15]Serialization
 
 用于传递数据到其他客户端和服务器。以text方式
-
-
-
-
 
 其中 toObject 转化为object格式，toJSON转换为json 字符串
 
     <code>实例： 
     </code>
 
-
-
-
-
 对于自定义类，只要定义 toObject函数，当使用 canvas.toObject()时就可以递归调用，类似于java的toString。
-
-
-
-
 
 SVG是canvas的另一种文本格式，好处是生成的文本可以被外部的SVG程序解析，
 
-####Free drawing  
+#### Free drawing  
+
 支持在canvas上任意画，步骤：
 
 1.canvas.isDrawingMode(true)后将鼠标的移动认为是pen和brush。

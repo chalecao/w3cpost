@@ -2,16 +2,10 @@
 title: 基于rem方案实现自适应布局
 
 
-date: 2018-04-03T02:17:16+00:00
-url: /html5css3/1739.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891322.jpeg?x-oss-process=image/resize,m_fill,w_169,h_300
-views:
+
   - 1353
-  - 1353
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891322.jpeg?x-oss-process=image/resize,m_fill,w_169,h_300
-fifu_image_alt:
-  - 基于rem方案实现自适应布局
+
+
 
 
 ---
@@ -35,11 +29,11 @@ rem（font size of the root element）是指相对于根元素的字体大�
 
 1.携程：
 
-<img loading="lazy" class="alignnone size-medium wp-image-1747" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891322.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891322.jpeg?x-oss-process=image/resize,m_fill,w_169,h_300/format,webp" alt="" width="169" height="300" /> 
+<img loading="lazy" class="alignnone size-medium wp-image-1747" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891322.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891322.jpeg?x-oss-process=image/resize,m_fill,w_169,h_300/format,webp" alt="" width="169" height="300" />
 
 2.兰亭
 
-<img loading="lazy" class="alignnone size-medium wp-image-1748" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891825.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891825.jpeg?x-oss-process=image/resize,m_fill,w_170,h_300/format,webp" alt="" width="170" height="300" /> 
+<img loading="lazy" class="alignnone size-medium wp-image-1748" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891825.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891825.jpeg?x-oss-process=image/resize,m_fill,w_170,h_300/format,webp" alt="" width="170" height="300" />
 
 上面的网站都是采用的流式布局的技术实现的，他们在页面布局的时候都是通过百分比来定义宽度，但是高度大都是用px来固定住，所以在大屏幕的手机下显示效果会变成有些页面元素宽度被拉的很长，但是高度还是和原来一样，实际显示非常的不协调，这就是流式布局的最致命的缺点，往往只有几个尺寸的手机下看到的效果是令人满意的，其实很多视觉设计师应该无法接受这种效果，因为他们的设计图在大屏幕手机下看到的效果相当于是被横向拉长来一样。
 
@@ -78,12 +72,12 @@ rem（font size of the root element）是指相对于根元素的字体大�
     color: #fff;
     border-radius: .5rem;
     text-decoration: none;
-    text-align: center;    
+    text-align: center;
 }</pre>
 
 Demo 上面代码结果按钮大小如下图：
 
-<img loading="lazy" class="alignnone size-full wp-image-1749" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418899506.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418899506.jpeg?x-oss-process=image/format,webp" alt="" width="187" height="141" /> 
+<img loading="lazy" class="alignnone size-full wp-image-1749" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418899506.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418899506.jpeg?x-oss-process=image/format,webp" alt="" width="187" height="141" />
 
 我把html设置成10px是为了方便我们计算，为什么6rem等于60px。如果这个时候我们的.btn的样式不变，我们再改变html的font-size的值，看看按钮发生上面变化:
 
@@ -95,7 +89,7 @@ Demo
 
 按钮大小结果如下：
 
-<img loading="lazy" class="alignnone size-full wp-image-1750" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418898055.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418898055.jpeg?x-oss-process=image/format,webp" alt="" width="265" height="202" /> 
+<img loading="lazy" class="alignnone size-full wp-image-1750" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418898055.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418898055.jpeg?x-oss-process=image/format,webp" alt="" width="265" height="202" />
 
 上面的width，height变成了上面结果的两倍，我们只改变了html的font-size，但.btn样式的width,height的rem设置的属性不变的情况下就改变了按钮在web中的大小。
 
@@ -125,7 +119,7 @@ Demo
 
 首先假设我上面的页面设计稿给我时候是按照640的标准尺寸给我的前提下，（当然这个尺寸肯定不一定是640，可以是320，或者480，又或是375）来看一组表格。
 
-<img loading="lazy" class="alignnone size-medium wp-image-1751" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418903956.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418903956.jpeg?x-oss-process=image/resize,m_fill,w_300,h_174/format,webp" alt="" width="300" height="174" /> 
+<img loading="lazy" class="alignnone size-medium wp-image-1751" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418903956.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418903956.jpeg?x-oss-process=image/resize,m_fill,w_300,h_174/format,webp" alt="" width="300" height="174" />
 
 上面的表格蓝色一列是Demo3中页面的尺寸，页面是以640的宽度去切的，怎么计算不同宽度下font-site的值，大家看表格上面的数值变化应该能明白。举个例子：384/640 = 0.6，384是640的0.6倍，所以384页面宽度下的font-size也等于它的0.6倍，这时384的font-size就等于12px。在不同设备的宽度计算方式以此类推。
 
@@ -147,17 +141,17 @@ html {
 }
 @media only screen and (min-width: 481px){
     html {
-        font-size: 30px !important; 
+        font-size: 30px !important;
     }
 }
 @media only screen and (min-width: 569px){
     html {
-        font-size: 35px !important; 
+        font-size: 35px !important;
     }
 }
 @media only screen and (min-width: 641px){
     html {
-        font-size: 40px !important; 
+        font-size: 40px !important;
     }
 }</pre>
 
@@ -171,7 +165,7 @@ html {
 
 ### <a name="t8"></a>最后我们再来看一看他的兼容性： {#t8}
 
-<img loading="lazy" class="alignnone size-medium wp-image-1752" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418894538.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418894538.png?x-oss-process=image/resize,m_fill,w_295,h_300/format,webp" alt="" width="295" height="300" /> 
+<img loading="lazy" class="alignnone size-medium wp-image-1752" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418894538.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418894538.png?x-oss-process=image/resize,m_fill,w_295,h_300/format,webp" alt="" width="295" height="300" />
 
 ### <a name="t9"></a>在线工具 {#t9}
 
@@ -185,50 +179,50 @@ html {
 //maxWidth:制作稿的最大宽度值，需要根据实际设置
 //这段js的最后面有两个参数记得要设置，一个为设计稿实际宽度，一个为制作稿最大宽度，例如设计稿为750，最大宽度为750，则为(750,750)
 ;(function(designWidth, maxWidth) {
-	var doc = document,
-	win = window,
-	docEl = doc.documentElement,
-	remStyle = document.createElement("style"),
-	tid;
+ var doc = document,
+ win = window,
+ docEl = doc.documentElement,
+ remStyle = document.createElement("style"),
+ tid;
 
-	function refreshRem() {
-		var width = docEl.getBoundingClientRect().width;
-		maxWidth = maxWidth || 540;
-		width&gt;maxWidth && (width=maxWidth);
-		var rem = width * 100 / designWidth;
-		remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
-	}
+ function refreshRem() {
+  var width = docEl.getBoundingClientRect().width;
+  maxWidth = maxWidth || 540;
+  width&gt;maxWidth && (width=maxWidth);
+  var rem = width * 100 / designWidth;
+  remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
+ }
 
-	if (docEl.firstElementChild) {
-		docEl.firstElementChild.appendChild(remStyle);
-	} else {
-		var wrap = doc.createElement("div");
-		wrap.appendChild(remStyle);
-		doc.write(wrap.innerHTML);
-		wrap = null;
-	}
-	//要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
-	refreshRem();
+ if (docEl.firstElementChild) {
+  docEl.firstElementChild.appendChild(remStyle);
+ } else {
+  var wrap = doc.createElement("div");
+  wrap.appendChild(remStyle);
+  doc.write(wrap.innerHTML);
+  wrap = null;
+ }
+ //要等 wiewport 设置好后才能执行 refreshRem，不然 refreshRem 会执行2次；
+ refreshRem();
 
-	win.addEventListener("resize", function() {
-		clearTimeout(tid); //防止执行两次
-		tid = setTimeout(refreshRem, 300);
-	}, false);
+ win.addEventListener("resize", function() {
+  clearTimeout(tid); //防止执行两次
+  tid = setTimeout(refreshRem, 300);
+ }, false);
 
-	win.addEventListener("pageshow", function(e) {
-		if (e.persisted) { // 浏览器后退的时候重新计算
-			clearTimeout(tid);
-			tid = setTimeout(refreshRem, 300);
-		}
-	}, false);
+ win.addEventListener("pageshow", function(e) {
+  if (e.persisted) { // 浏览器后退的时候重新计算
+   clearTimeout(tid);
+   tid = setTimeout(refreshRem, 300);
+  }
+ }, false);
 
-	if (doc.readyState === "complete") {
-		doc.body.style.fontSize = "16px";
-	} else {
-		doc.addEventListener("DOMContentLoaded", function(e) {
-			doc.body.style.fontSize = "16px";
-		}, false);
-	}
+ if (doc.readyState === "complete") {
+  doc.body.style.fontSize = "16px";
+ } else {
+  doc.addEventListener("DOMContentLoaded", function(e) {
+   doc.body.style.fontSize = "16px";
+  }, false);
+ }
 })(750, 750);
 </code></pre>
 

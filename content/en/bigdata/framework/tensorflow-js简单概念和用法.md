@@ -1,15 +1,6 @@
 ---
 title: TensorFlow.js简单概念和用法
 
-
-date: 2019-09-05T09:55:26+00:00
-url: /aistack/4997.html
-views:
-  - 1279
-like:
-  - 3
-
-
 ---
 ## 简介
 
@@ -33,7 +24,7 @@ TensorFlow.js 中数据的核心表现形式是 **<a class=" wrap external" hre
 &lt;/span>&lt;span class="k">const&lt;/span> &lt;span class="nx">b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">tf&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">tensor&lt;/span>&lt;span class="p">([[&lt;/span>&lt;span class="mf">1.0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mf">2.0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mf">3.0&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mf">10.0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mf">20.0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mf">30.0&lt;/span>&lt;span class="p">]]);&lt;/span>
 &lt;span class="nx">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">print&lt;/span>&lt;span class="p">();&lt;/span>
 &lt;span class="c1">// 输出: [[1 , 2 , 3 ],
-&lt;/span>&lt;span class="c1">//       [10, 20, 30]] 
+&lt;/span>&lt;span class="c1">//       [10, 20, 30]]
 &lt;/span></code></pre>
 </div>
 
@@ -139,7 +130,7 @@ TensorFlow.js 的 API 是支持链式调用的，所以你可以在 ops 的结�
 
 &lt;span class="c1">// 定义函数
 &lt;/span>&lt;span class="kd">function&lt;/span> &lt;span class="nx">predict&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">input&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="c1">// y = a * x ^ 2 + b * x + c
+  &lt;span class="c1">// y = a *x ^ 2 + b* x + c
 &lt;/span>  &lt;span class="c1">// 下一节中会有更多关于 tf.tidy 的内容
 &lt;/span>  &lt;span class="k">return&lt;/span> &lt;span class="nx">tf&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">tidy&lt;/span>&lt;span class="p">(()&lt;/span> &lt;span class="p">=&gt;&lt;/span> &lt;span class="p">{&lt;/span>
     &lt;span class="k">const&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">tf&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">scalar&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">input&lt;/span>&lt;span class="p">);&lt;/span>
@@ -226,5 +217,5 @@ TensorFlow.js 提供了两个有助于解决这个问题的函数：`dispose` �
 
 ## 两条重要提示
 
-  * 传递给 `tf.tidy` 的函数应该是同步的，并且不应该返回 Promise。我们建议将更新 UI 或者网络请求等异步代码放在 `tf.tidy` 函数外。
-  * `tf.tidy` 不会清理变量。变量通常存活于机器学习模型的整个生命周期中，因此TensorFlow.js 不会去清理它们，即使它们创建于 `tf.tidy` 之中。但是，您可以通过手动调用 `dispose` 去清除它们。
+* 传递给 `tf.tidy` 的函数应该是同步的，并且不应该返回 Promise。我们建议将更新 UI 或者网络请求等异步代码放在 `tf.tidy` 函数外。
+* `tf.tidy` 不会清理变量。变量通常存活于机器学习模型的整个生命周期中，因此TensorFlow.js 不会去清理它们，即使它们创建于 `tf.tidy` 之中。但是，您可以通过手动调用 `dispose` 去清除它们。

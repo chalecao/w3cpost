@@ -1,24 +1,13 @@
 ---
 title: 管理history之pushState、replaceState
 
-
-date: 2017-08-28T01:07:49+00:00
-excerpt: |
-  DOM中的window对象通过window.history方法提供了对浏览器历史记录的读取，让你可以在用户的访问记录中前进和后退。
-  从HTML5开始，我们可以开始操作这个历史记录堆栈。
-url: /javascriptnodejs/631.html
-views:
-  - 1791
-  - 1791
-
-
 ---
 DOM中的window对象通过window.history方法提供了对浏览器历史记录的读取，让你可以在用户的访问记录中前进和后退。  
 从HTML5开始，我们可以开始操作这个历史记录堆栈。
 
-<a></a> 
+<a></a>
 
-![管理history之pushState、replaceState][1] 
+![管理history之pushState、replaceState][1]
 
 ### [][2]History
 
@@ -44,10 +33,6 @@ HTML5引入了histtory.pushState()和history.replaceState()这两个方法，他
 pushState 用于向 history 添加当前页面的记录，而 replaceState 和 pushState 的用法完全一样，唯一的区别就是它用于修改当前页面在 history 中的记录。
 
 假设<a href="https://mozilla.org/foo.html页面执行了一下JS" target="_blank" rel="external">https://mozilla.org/foo.html页面执行了一下JS</a>
-
-
-
-
 
 这种方法将会使url地址栏显示<a href="https://mozilla.org/bar.html，但浏览器不会加载bar.html页面，即使这个页面存在也不会加载。" target="_blank" rel="external">https://mozilla.org/bar.html，但浏览器不会加载bar.html页面，即使这个页面存在也不会加载。</a>
 

@@ -1,15 +1,6 @@
 ---
 title: MPP架构
 
-
-date: 2022-04-14T15:57:46+00:00
-url: /用户增长/7113.html
-classic-editor-remember:
-  - classic-editor
-views:
-  - 149
-
-
 ---
 <p data-type="paragraph">
   <span data-name="user" data-type="color"><strong data-type="strong">面试官：说下你知道的 MPP 架构的计算引擎？</strong></span>

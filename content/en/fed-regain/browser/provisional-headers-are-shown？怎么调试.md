@@ -1,26 +1,7 @@
 ---
 title: Provisional headers are shown？怎么调试
 
-
-date: 2019-08-09T03:58:55+00:00
-url: /javascriptnodejs/4926.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef73160d1.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef73160d1.png
-fifu_image_alt:
-  - 自动草稿
-like:
-  - 3
-views:
-  - 2345
-
-
 ---
-<div class="post-text">
-  <p id="svbORFI">
-    <img loading="lazy" class="alignnone wp-image-4929 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef73160d1.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef73160d1.png?x-oss-process=image/format,webp" alt="" width="477" height="215" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef73160d1.png?x-oss-process=image/format,webp 1494w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef73160d1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_135/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef73160d1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_346/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef73160d1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_361/format,webp 800w" sizes="(max-width: 477px) 100vw, 477px" />
-  </p>
-  
   <p>
     老外给了一个方法：
   </p>

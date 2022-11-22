@@ -2,19 +2,6 @@
 title: Javascript内存管理
 
 
-date: 2019-05-13T01:50:33+00:00
-url: /javascriptnodejs/4371.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/img_5ce3754d80c99.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/img_5ce3754d80c99.png
-fifu_image_alt:
-  - Javascript内存管理
-views:
-  - 1190
-like:
-  - 4
-baidu_record:
-  - 1
 
 
 ---
@@ -69,11 +56,11 @@ arr = null; // [1,2,3,4]这时没有被引用, 会被自动回收</code></pre>
   o2.p = o1; // o2 引用 o1. 这里会形成一个循环引用
 }
 f();</code></pre>
-</div><figure> 
+</div><figure>
 
 <p id="SeVdGVH">
   <img loading="lazy" width="386" height="209" class="alignnone size-full wp-image-4745 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c247564a50.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c247564a50.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c247564a50.png?x-oss-process=image/format,webp 386w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c247564a50.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_162/format,webp 300w" sizes="(max-width: 386px) 100vw, 386px" />
-</p></figure> 
+</p></figure>
 
 实际例子:
 
@@ -94,11 +81,11 @@ window.onload = function(){
 
 这个算法假定设置一个叫做根 **_root_** 的对象（在Javascript里，根是全局对象）. 定期的, 垃圾回收器将从根开始, 找所有从根开始引用的对象, 然后找这些对象引用的对象, 从根开始,垃圾回收器将找到所有可以获得的对象和所有不能获得的对象.
 
-从2012年起, 所有现代浏览器都使用了标记-清除内存回收算法. 所有对JavaScript垃圾回收算法的改进都是基于标记-清除算法的改进.<figure> 
+从2012年起, 所有现代浏览器都使用了标记-清除内存回收算法. 所有对JavaScript垃圾回收算法的改进都是基于标记-清除算法的改进.<figure>
 
 <p id="WbRhjUa">
   <img loading="lazy" width="600" height="317" class="alignnone size-full wp-image-4747 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c24bf79f37.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c24bf79f37.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c24bf79f37.png?x-oss-process=image/format,webp 600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c24bf79f37.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_159/format,webp 300w" sizes="(max-width: 600px) 100vw, 600px" />
-</p></figure> 
+</p></figure>
 
 2.2.5 自动 GC 的问题
 
@@ -191,7 +178,7 @@ function doStuff() {
 }
 function removeImage() {
     document.body.removeChild(document.getElementById('image'));
-    // 这个时候我们对于 #image 仍然有一个引用, Image 元素, 仍然无法被内存回收. 
+    // 这个时候我们对于 #image 仍然有一个引用, Image 元素, 仍然无法被内存回收.
 }</code></pre>
 </div>
 

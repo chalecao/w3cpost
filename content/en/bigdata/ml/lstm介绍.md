@@ -1,20 +1,6 @@
 ---
 title: LSTM介绍
 
-
-date: 2019-06-28T09:56:00+00:00
-url: /aistack/4564.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png
-fifu_image_alt:
-  - LSTM介绍
-views:
-  - 1537
-like:
-  - 3
-
-
 ---
 之前一直在做CNN的一些研究，最近刚刚回到实验室，定下来了自己的小组，然后开始了一些LSTM的学习。
 
@@ -40,7 +26,7 @@ like:
 
 **LSTM是RNN的一种变种，属于反馈神经网络的范畴。**
 
-** **
+****
 
 # 3.模型的特点与适用性
 
@@ -121,7 +107,7 @@ LSTM网络随后被证明比传统的RNNs更加有效，尤其当每一个时间
           <strong>Task</strong>
         </p>
       </td>
-      
+
       <td valign="bottom">
         <p align="center">
           classification

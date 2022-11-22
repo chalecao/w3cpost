@@ -1,23 +1,8 @@
 ---
 title: 浏览器线程理解与microtask与macrotask
 
-
-date: 2018-12-17T16:25:25+00:00
-url: /javascriptnodejs/3331.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png
-onesignal_meta_box_present:
-  - 1
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png
-fifu_image_alt:
-  - 浏览器线程理解与microtask与macrotask
-views:
-  - 2215
-like:
-  - 1
-
-
 ---
+
 # 大纲
 
 <ul class="list-paddingleft-2">
@@ -154,9 +139,9 @@ like:
 
 > 感兴趣的可以自行尝试下，如果再多打开一个Tab页，进程正常会+1以上（不过，某些版本的ie却是单进程的）
 
-**注意：**在这里浏览器应该也有自己的优化机制，有时候打开多个tab页后，可以在Chrome任务管理器中看到，有些进程被合并了（所以每一个Tab标签对应一个进程并不一定是绝对的）<section class=""></section> <section class=""></section> <section class=""></section> <section class=""></section> 
+**注意：**在这里浏览器应该也有自己的优化机制，有时候打开多个tab页后，可以在Chrome任务管理器中看到，有些进程被合并了（所以每一个Tab标签对应一个进程并不一定是绝对的）<section class=""></section> <section class=""></section> <section class=""></section> <section class=""></section>
 
-# 浏览器都包含哪些进程？<section class=""></section> <section class=""></section> 
+# 浏览器都包含哪些进程？<section class=""></section> <section class=""></section>
 
 知道了浏览器是多进程后，再来看看它到底包含哪些进程：（为了简化理解，仅列举主要进程）
 
@@ -191,7 +176,7 @@ GPU进程：最多一个，用于3D绘制等
 
 4. 强化记忆：在浏览器中打开一个网页相当于新起了一个进程（进程内有自己的多线程）
 
-当然，浏览器有时会将多个进程合并（譬如打开多个空白标签页后，会发现多个空白标签页被合并成了一个进程），如图<figure class=""></figure> 
+当然，浏览器有时会将多个进程合并（譬如打开多个空白标签页后，会发现多个空白标签页被合并成了一个进程），如图<figure class=""></figure>
 
 <p id="rncgcAs">
   <img loading="lazy" class="alignnone wp-image-3336 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/format,webp" alt="" width="489" height="238" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_146/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_374/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_389/format,webp 800w" sizes="(max-width: 489px) 100vw, 489px" />
@@ -454,7 +439,7 @@ MDN的官方解释是：
 
 所有详细步骤都已经略去，渲染完毕后就是`load`事件了，之后就是自己的JS逻辑处理了。既然略去了一些详细的步骤，那么就提一些可能需要注意的细节把。
 
-这里重绘参考来源中的一张图：<figure class=""></figure> 
+这里重绘参考来源中的一张图：<figure class=""></figure>
 
 <p id="iVUNvLj">
   <img loading="lazy" class="alignnone wp-image-3339 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/format,webp" alt="" width="629" height="246" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_117/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_300/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_313/format,webp 800w" sizes="(max-width: 629px) 100vw, 629px" />
@@ -619,7 +604,7 @@ webkit CSS3中，如果这个元素添加了硬件加速，并且index层级比�
 
 ##### 事件循环机制进一步补充
 
-这里就直接引用一张图片来协助理解：（参考自Philip Roberts的演讲《Help, I’m stuck in an event-loop》）<figure class=""></figure> 
+这里就直接引用一张图片来协助理解：（参考自Philip Roberts的演讲《Help, I’m stuck in an event-loop》）<figure class=""></figure>
 
 <p id="SEbWtWV">
   <img loading="lazy" class="alignnone wp-image-3342 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/format,webp" alt="" width="471" height="384" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/format,webp 636w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_244/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_320,h_260/format,webp 320w" sizes="(max-width: 471px) 100vw, 471px" />
@@ -857,12 +842,12 @@ MessageChannel属于宏任务，优先级是：`setImmediate->MessageChannel->se
 同时，也应该注意到了JS根本就没有想象的那么简单，前端的知识也是无穷无尽，层出不穷的概念、N多易忘的知识点、各式各样的框架、  
 底层原理方面也是可以无限的往下深挖，然后你就会发现，你知道的太少了。。。
 
-另外，本文也打算先告一段落，其它的，如JS词法解析，可执行上下文以及VO等概念就不继续在本文中写了，后续可以考虑另开新的文章。<section class=""></section> <section class=""></section> <section class=""></section> <section class=""></section> 
+另外，本文也打算先告一段落，其它的，如JS词法解析，可执行上下文以及VO等概念就不继续在本文中写了，后续可以考虑另开新的文章。<section class=""></section> <section class=""></section> <section class=""></section> <section class=""></section>
 
 # 参考资料
 
-  * https://blog.csdn.net/sjn0503/article/details/76087631
-  * https://segmentfault.com/a/1190000004322358<section class=""></section> <section class=""></section> 
+* https://blog.csdn.net/sjn0503/article/details/76087631
+* https://segmentfault.com/a/1190000004322358<section class=""></section> <section class=""></section>
 
 <ul class="list-paddingleft-2">
   <li>

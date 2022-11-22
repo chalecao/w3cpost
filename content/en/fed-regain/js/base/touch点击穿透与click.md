@@ -2,19 +2,6 @@
 title: touch点击穿透与click与300ms延迟
 
 
-date: 2018-11-30T16:10:55+00:00
-url: /javascriptnodejs/3098.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01603162c2e.png
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01603162c2e.png
-fifu_image_alt:
-  - touch点击穿透与click
-views:
-  - 1840
-like:
-  - 1
-onesignal_meta_box_present:
-  - 1
 
 
 ---
@@ -107,9 +94,9 @@ $(&lt;span class="hljs-string">'#underLayer'&lt;/span>).on(&lt;span class="hljs-
 
 点击穿透现象有3种：
 
-  * 点击穿透问题：点击蒙层（mask）上的关闭按钮，蒙层消失后发现触发了按钮下面元素的click事件蒙层的关闭按钮绑定的是touch事件，而按钮下面元素绑定的是click事件，touch事件触发之后，蒙层消失了，300ms后这个点的click事件fire，event的target自然就是按钮下面的元素，因为按钮跟蒙层一起消失了
-  * 跨页面点击穿透问题：如果按钮下面恰好是一个有href属性的a标签，那么页面就会发生跳转因为 _a标签跳转默认是click事件触发_ ，所以原理和上面的完全相同
-  * 另一种跨页面点击穿透问题：这次没有mask了，直接点击页内按钮跳转至新页，然后发现新页面中对应位置元素的click事件被触发了和蒙层的道理一样，js控制页面跳转的逻辑如果是绑定在touch事件上的，而且新页面中对应位置的元素绑定的是click事件，而且页面在300ms内完成了跳转，三个条件同时满足，就出现这种情况了
+* 点击穿透问题：点击蒙层（mask）上的关闭按钮，蒙层消失后发现触发了按钮下面元素的click事件蒙层的关闭按钮绑定的是touch事件，而按钮下面元素绑定的是click事件，touch事件触发之后，蒙层消失了，300ms后这个点的click事件fire，event的target自然就是按钮下面的元素，因为按钮跟蒙层一起消失了
+* 跨页面点击穿透问题：如果按钮下面恰好是一个有href属性的a标签，那么页面就会发生跳转因为 _a标签跳转默认是click事件触发_ ，所以原理和上面的完全相同
+* 另一种跨页面点击穿透问题：这次没有mask了，直接点击页内按钮跳转至新页，然后发现新页面中对应位置元素的click事件被触发了和蒙层的道理一样，js控制页面跳转的逻辑如果是绑定在touch事件上的，而且新页面中对应位置的元素绑定的是click事件，而且页面在300ms内完成了跳转，三个条件同时满足，就出现这种情况了
 
 非要细分的话还有第四种，不过概率很低，就是新页面中对应位置元素恰好是a标签，然后就发生连续跳转了。。。诸如此类的，都是点击穿透问题
 
@@ -184,11 +171,11 @@ _下下策_ ，因为会带来300ms延迟，页面内任何一个自定义交�
 
 ## 参考资料 {#articleHeader10}
 
-  * <a href="https://www.cnblogs.com/yexiaochai/p/3377900.html" target="_blank" rel="nofollow noopener noreferrer">手持设备点击响应速度，鼠标事件与touch事件的那些事</a>
-  * <a href="https://liudong.me/web/touch-defect.html" target="_blank" rel="nofollow noopener noreferrer">点击穿透</a>
-  * <a href="https://github.com/ftlabs/fastclick" target="_blank" rel="nofollow noopener noreferrer">fastclick</a>
-  * <a href="https://www.cnblogs.com/yexiaochai/p/3442220.html" target="_blank" rel="nofollow noopener noreferrer">彻底解决tap“点透”，提升移动端点击响应速度</a>
-  * [300ms延迟的来龙去脉][2]
+* <a href="https://www.cnblogs.com/yexiaochai/p/3377900.html" target="_blank" rel="nofollow noopener noreferrer">手持设备点击响应速度，鼠标事件与touch事件的那些事</a>
+* <a href="https://liudong.me/web/touch-defect.html" target="_blank" rel="nofollow noopener noreferrer">点击穿透</a>
+* <a href="https://github.com/ftlabs/fastclick" target="_blank" rel="nofollow noopener noreferrer">fastclick</a>
+* <a href="https://www.cnblogs.com/yexiaochai/p/3442220.html" target="_blank" rel="nofollow noopener noreferrer">彻底解决tap“点透”，提升移动端点击响应速度</a>
+* [300ms延迟的来龙去脉][2]
 
 <audio style="display: none;" controls="controls"></audio>
 

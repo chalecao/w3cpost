@@ -1,15 +1,6 @@
 ---
 title: vue3中的响应式原理
 
-
-date: 2021-04-04T16:36:49+00:00
-url: /javascriptnodejs/6570.html
-views:
-  - 494
-like:
-  - 1
-
-
 ---
 随着 Vue 3.0 Pre Alpha 版本的公布，我们得以一窥其源码的实现。
 

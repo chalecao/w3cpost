@@ -2,11 +2,7 @@
 title: 网络库libevent、libev、libuv对比
 
 
-date: 2021-04-10T12:28:27+00:00
-url: /javascriptnodejs/6587.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6a2480f8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_320,h_260
-views:
-  - 655
+
 
 
 ---
@@ -23,7 +19,7 @@ libuv :开发node的过程中需要一个跨平台的事件库，他们首选了
 
 在github上的影响力：
 
-![][1] 
+![][1]
 
 <p id="NfSTzEd">
   <img loading="lazy" width="320" height="292" class="alignnone size-full wp-image-6603 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6a2480f8.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6a2480f8.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6a2480f8.png?x-oss-process=image/format,webp 320w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6a2480f8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_274/format,webp 300w" sizes="(max-width: 320px) 100vw, 320px" />
@@ -73,7 +69,7 @@ event\_base和loop都不是线程安全的，一个event\_base或loop实例只�
 
 ## 参考：
 
-  * http://zheolong.github.io/blog/libevent-libev-libuv/
-  * https://cpp.libhunt.com/
+* http://zheolong.github.io/blog/libevent-libev-libuv/
+* https://cpp.libhunt.com/
 
  [1]: https://img-blog.csdn.net/20170505163959722?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvbGlqaW5xaTE5ODc=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center

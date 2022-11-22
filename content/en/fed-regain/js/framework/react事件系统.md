@@ -2,19 +2,6 @@
 title: react事件系统
 
 
-date: 2020-11-01T14:24:00+00:00
-url: /javascriptnodejs/6063.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec519895fe.png
-classic-editor-remember:
-  - classic-editor
-fifu_image_url:
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec519895fe.png
-fifu_image_alt:
-  - react事件系统
-views:
-  - 476
-
-
 ---
 ## 一 前言 {#item-1}
 
@@ -51,8 +38,8 @@ React 架构下也可以使用原生事件。React 提供了完备的生命周�
 
 书中讲到(这里不做过多介绍)：
 
-  * 不要将合成事件与原生事件混用
-  * 通过e.target判断来避免
+* 不要将合成事件与原生事件混用
+* 通过e.target判断来避免
 
 重点是下面这段话，这也是我们今天要着重解决的问题：
 
@@ -93,12 +80,12 @@ React 合成事件与原生事件执行顺序图：
 （2）阻止合成事件与最外层document上的事件间的冒泡，用e.nativeEvent.stopImmediatePropagation();  
 （3）阻止合成事件与除最外层document上的原生事件上的冒泡，通过判断e.target来避免，代码如下：
 
-<pre class="hljs typescript"><code>componentDidMount() { 
-&lt;span class="hljs-built_in">document&lt;/span>.body.addEventListener(&lt;span class="hljs-string">'click'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-params">e&lt;/span> =>&lt;/span> {   
+<pre class="hljs typescript"><code>componentDidMount() {
+&lt;span class="hljs-built_in">document&lt;/span>.body.addEventListener(&lt;span class="hljs-string">'click'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-params">e&lt;/span> =>&lt;/span> {
  &lt;span class="hljs-keyword">if&lt;/span> (e.target && e.target.matches(&lt;span class="hljs-string">'div.code'&lt;/span>)) {  
-      &lt;span class="hljs-keyword">return&lt;/span>;    
-  }    
-  &lt;span class="hljs-keyword">this&lt;/span>.setState({   active: &lt;span class="hljs-literal">false&lt;/span>,    });   }); 
+      &lt;span class="hljs-keyword">return&lt;/span>;
+  }
+  &lt;span class="hljs-keyword">this&lt;/span>.setState({   active: &lt;span class="hljs-literal">false&lt;/span>,    });   });
  }
 </code></pre>
 
@@ -133,14 +120,14 @@ React 合成事件与原生事件执行顺序图：
 &lt;span class="hljs-comment">// contentDocumentHandle：要将事件绑定到的 DOM 节点&lt;/span>
 listenTo: &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-params">(registrationName, contentDocumentHandle)&lt;/span> &lt;/span>{
     &lt;span class="hljs-comment">// document&lt;/span>
-    &lt;span class="hljs-keyword">var&lt;/span> mountAt = contentDocumentHandle;      
+    &lt;span class="hljs-keyword">var&lt;/span> mountAt = contentDocumentHandle;
     &lt;span class="hljs-comment">// React 事件和绑定在根节点的 topEvent 的转化关系，如：onClick -> topClick&lt;/span>
     &lt;span class="hljs-keyword">var&lt;/span> dependencies = EventPluginRegistry.registrationNameDependencies[registrationName];
-    
+
     &lt;span class="hljs-keyword">for&lt;/span> (&lt;span class="hljs-keyword">var&lt;/span> i = &lt;span class="hljs-number">0&lt;/span>; i &lt; dependencies.length; i++){
         &lt;span class="hljs-comment">// 内部有大量判断浏览器兼容等的步骤，提取一下核心代码&lt;/span>
         &lt;span class="hljs-keyword">var&lt;/span> dependency = dependencies[i];
-        
+
         &lt;span class="hljs-comment">// topEvent 和原生 DOM 事件的转化关系&lt;/span>
         &lt;span class="hljs-keyword">if&lt;/span> (topEventMapping.hasOwnProperty(dependency)) {
             &lt;span class="hljs-comment">// 三个参数为 topEvent、原生 DOM Event、Document&lt;/span>
@@ -194,13 +181,13 @@ putListener: &lt;span class="hljs-function">&lt;span class="hljs-keyword">functi
 
 7-3.事件执行
 
-  * 每次触发事件都会执行根节点上 addEventListener 注册的回调，也就是 ReactEventListener.dispatchEvent 方法，事件分发入口函数。该函数的主要业务逻辑如下： 
-      * 找到事件触发的 DOM 和 React Component
-      * 从该 React Component，调用 findParent 方法，遍历得到所有父组件，存在数组中。
-      * 从该组件直到最后一个父组件，根据之前事件存储，用 React 事件名 + 组件 key，找到对应绑定回调方法，执行，详细过程为： 
-          * 根据 DOM 事件构造 React 合成事件。
-          * 将合成事件放入队列。
-          * 批处理队列中的事件（包含之前未处理完的，先入先处理）
+* 每次触发事件都会执行根节点上 addEventListener 注册的回调，也就是 ReactEventListener.dispatchEvent 方法，事件分发入口函数。该函数的主要业务逻辑如下：
+  * 找到事件触发的 DOM 和 React Component
+  * 从该 React Component，调用 findParent 方法，遍历得到所有父组件，存在数组中。
+  * 从该组件直到最后一个父组件，根据之前事件存储，用 React 事件名 + 组件 key，找到对应绑定回调方法，执行，详细过程为：
+    * 根据 DOM 事件构造 React 合成事件。
+    * 将合成事件放入队列。
+    * 批处理队列中的事件（包含之前未处理完的，先入先处理）
 
 React合成事件的冒泡并不是真的冒泡，而是节点的遍历。
 

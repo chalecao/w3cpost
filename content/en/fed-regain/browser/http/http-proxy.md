@@ -1,36 +1,11 @@
 ---
 title: 基于正向代理解决方案实现的万能代理接口代理转发服务
 
-
-date: 2019-09-14T00:09:07+00:00
-excerpt: 今天把项目中的反向代理脚本程序抽成了一个插件，通过配置文件配置代理的http请求，这样使用起来比较方便，每位开发成员都可以用自己配置的代理调试代码。
-url: /pwa/657.html
-featured_image: https://haomou.oss-cn-beijing.aliyuncs.com/upload/2017/09/server-proxy-per-navigazione-anonima.png
-views:
-  - 4022
-  - 4022
-ws_info:
-  - 'a:4:{s:8:"ws_title";s:0:"";s:7:"ws_desc";s:0:"";s:6:"ws_url";s:0:"";s:6:"ws_img";s:0:"";}'
-  - 'a:4:{s:8:"ws_title";s:0:"";s:7:"ws_desc";s:0:"";s:6:"ws_url";s:0:"";s:6:"ws_img";s:0:"";}'
-toc_depth:
-  - 2
-  - 2
-like:
-  - 4
-  - 4
-wl_pageviews:
-  - 2
-  - 2
-fifu_image_url:
-  - //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/09/server-proxy-per-navigazione-anonima.png
-fifu_image_alt:
-  - 基于node开发的http请求代理程序proxy-ajax
-
-
 ---
+
 今天把项目中的反向代理脚本程序抽成了一个插件，通过配置文件配置代理的http请求，这样使用起来比较方便，每位开发成员都可以用自己配置的代理调试代码。也可以用来直接做http代理，你甚至都不用Charles或者fiddler，直接开启proxy-ajax，然后手机上设置代理就可以了。
 
-<img loading="lazy" class="alignnone size-full wp-image-1416" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/09/server-proxy-per-navigazione-anonima.png" width="500" height="300" /> 
+<img loading="lazy" class="alignnone size-full wp-image-1416" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/09/server-proxy-per-navigazione-anonima.png" width="500" height="300" />
 
 使用方法：
 
@@ -38,15 +13,14 @@ fifu_image_alt:
 
 fedp init  // 会提示你在那种场景使用，自动生成配置文件
 
-
 fedp -c config.js // 会提示你在那种场景使用，自定义配置文件</pre>
 
 github： <https://github.com/chalecao/fedp>     请帮我点亮小星星，感谢star
 
 使用很简单，修改配置文件就好了。访问地址是：127.0.0.1:8889/访问路径
 
-  * 根据配置会自动代理静态资源，包括css，图片，可以代理到本地或者远程
-  * 自定义接口，根据匹配关键字，返回指定的数据结构
+* 根据配置会自动代理静态资源，包括css，图片，可以代理到本地或者远程
+* 自定义接口，根据匹配关键字，返回指定的数据结构
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">/**
  * fedp配置文件
@@ -150,28 +124,28 @@ module.exports = {
 <pre class="pure-highlightjs"><code class="">var http = require('http');
 var net = require('net');
 var url = require('url');
- 
+
 function request(cReq, cRes) {
     var u = url.parse(cReq.url);
- 
+
     var options = {
-        hostname : u.hostname, 
+        hostname : u.hostname,
         port     : u.port || 80,
-        path     : u.path,       
+        path     : u.path,
         method     : cReq.method,
         headers     : cReq.headers
     };
- 
+
     var pReq = http.request(options, function(pRes) {
         cRes.writeHead(pRes.statusCode, pRes.headers);
         pRes.pipe(cRes);
     }).on('error', function(e) {
         cRes.end();
     });
- 
+
     cReq.pipe(pReq);
 }
- 
+
 http.createServer().on('request', request).listen(8888, '0.0.0.0');
 </code></pre>
 
@@ -180,20 +154,20 @@ http.createServer().on('request', request).listen(8888, '0.0.0.0');
 <pre class="pure-highlightjs"><code class="">var http = require('http');
 var net = require('net');
 var url = require('url');
- 
+
 function connect(cReq, cSock) {
     var u = url.parse('https://' + cReq.url);
- 
+
     var pSock = net.connect(u.port, u.hostname, function() {
         cSock.write('HTTP/1.1 200 Connection Establishedrnrn');
         pSock.pipe(cSock);
     }).on('error', function(e) {
         cSock.end();
     });
- 
+
     cSock.pipe(pSock);
 }
- 
+
 http.createServer().on('connect', connect).listen(8888, '0.0.0.0');
 </code></pre>
 
@@ -276,12 +250,12 @@ http.createServer().on('connect', connect).listen(8888, '0.0.0.0');
 这里顺带介绍一下这个知识点，跨域请求常用的方案是CORS，经常会遇到跨域请求带cookie的情况，默认ajax跨域请求是不带cookie的。如果需要带cookie，需要这样写：
 
 <pre class="pure-highlightjs"><code class="">原生ajax请求方式：
- 
+
 var xhr = new XMLHttpRequest();
 xhr.open("POST", "https://xxxx.com/demo/b/index.php", true);
 xhr.withCredentials = true; //支持跨域发送cookies
 xhr.send();
- 
+
 jquery为例：
 $.ajax({
     type: "POST",
@@ -298,13 +272,13 @@ $.ajax({
 })
 </code></pre>
 
-服务端CORS配置：<figure> 
+服务端CORS配置：<figure>
 
 <table>
   <tr>
     <td>
         1
-      
+
         2
     </td>
     
@@ -314,7 +288,7 @@ $.ajax({
         header(&#8220;Access-Control-Allow-Origin: https://www.xxx.com&#8221;); //允许跨域请求的域名
     </td>
   </tr>
-</table></figure> 
+</table></figure>
 
 ## 使用姿势
 

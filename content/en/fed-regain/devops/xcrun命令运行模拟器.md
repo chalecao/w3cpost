@@ -1,15 +1,6 @@
 ---
 title: xcrun命令运行模拟器
 
-
-date: 2019-05-28T06:46:37+00:00
-url: /pwa/4397.html
-views:
-  - 1726
-like:
-  - 3
-
-
 ---
 <div>
   <h1>

@@ -2,14 +2,6 @@
 title: 数据仓库data warehouse数据湖data lake
 
 
-date: 2022-04-14T16:10:52+00:00
-url: /用户增长/7115.html
-classic-editor-remember:
-  - classic-editor
-views:
-  - 159
-
-
 ---
 **前言**
 
@@ -19,13 +11,13 @@ views:
 
 **数据仓库**
 
-**数据仓库平台逐步从BI报表为主到分析为主、到预测为主、再到操作智能为目标。**<figure> 
+**数据仓库平台逐步从BI报表为主到分析为主、到预测为主、再到操作智能为目标。**<figure>
 
 <div class="image-block">
   <p id="SbKntII">
     <img loading="lazy" width="554" height="280" class="alignnone size-full wp-image-7116 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625845f404555.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625845f404555.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625845f404555.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625845f404555.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_152/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
   </p>
-</div></figure> 
+</div></figure>
 
 图1.数据仓库发展阶段划分
 
@@ -59,13 +51,13 @@ views:
   <li>
     <strong>所谓随时间变化：</strong>是指数据仓库内的信息并不只是反映企业当前的状态，而是记录了从过去某一时点到当前各个阶段的信息。通过这些信息，可以对企业的发展历程和未来趋势做出定量分析和预测。
   </li>
-</ul><figure> 
+</ul><figure>
 
 <div class="image-block">
   <p id="fAlcUsF">
     <img loading="lazy" width="554" height="270" class="alignnone size-full wp-image-7117 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846a73a5f9.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846a73a5f9.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846a73a5f9.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846a73a5f9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_146/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
   </p>
-</div></figure> 
+</div></figure>
 
 图2.数据仓库逻辑架构
 
@@ -73,13 +65,13 @@ views:
 
 **数据仓库系统作用和定位**
 
-数据仓库系统的作用能实现跨业务条线、跨系统的数据整合，为管理分析和业务决策提供统一的数据支持。数据仓库能够从根本上帮助你把公司的运营数据转化成为高价值的可以获取的信息（或知识），并且在恰当的时候通过恰当的方式把恰当的信息传递给恰当的人。<figure> 
+数据仓库系统的作用能实现跨业务条线、跨系统的数据整合，为管理分析和业务决策提供统一的数据支持。数据仓库能够从根本上帮助你把公司的运营数据转化成为高价值的可以获取的信息（或知识），并且在恰当的时候通过恰当的方式把恰当的信息传递给恰当的人。<figure>
 
 <div class="image-block">
   <p id="LwLPGsU">
     <img loading="lazy" width="554" height="242" class="alignnone size-full wp-image-7118 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846c782e8f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846c782e8f.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846c782e8f.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846c782e8f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_131/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
   </p>
-</div></figure> 
+</div></figure>
 
 图3.数据仓库的作用
 
@@ -105,13 +97,13 @@ views:
 
 **1.3**
 
-**数据仓库能提供什么**<figure> 
+**数据仓库能提供什么**<figure>
 
 <div class="image-block">
   <p id="WsYaKFv">
     <img loading="lazy" width="554" height="245" class="alignnone size-full wp-image-7119 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846d6c9099.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846d6c9099.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846d6c9099.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846d6c9099.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_133/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
   </p>
-</div></figure> 
+</div></figure>
 
 图4.数据仓库提供价值
 
@@ -119,21 +111,21 @@ views:
 
 **数据仓库系统构成**
 
-数据仓库系统除了包含分析产品本身之外，还包含数据集成、数据存储、数据计算、门户展现、平台管理等其它一系列的产品。<figure> 
+数据仓库系统除了包含分析产品本身之外，还包含数据集成、数据存储、数据计算、门户展现、平台管理等其它一系列的产品。<figure>
 
 <div class="image-block">
   <p id="GlLzKgg">
     <img loading="lazy" width="554" height="374" class="alignnone size-full wp-image-7120 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846e6806a2.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846e6806a2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846e6806a2.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846e6806a2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_203/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
   </p>
-</div></figure> 
+</div></figure>
 
-图5.数据仓库产品构成<figure> 
+图5.数据仓库产品构成<figure>
 
 <div class="image-block">
   <p id="BKHjAtO">
     <img loading="lazy" width="554" height="382" class="alignnone size-full wp-image-7121 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846f305344.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846f305344.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846f305344.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625846f305344.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_207/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
   </p>
-</div></figure> 
+</div></figure>
 
 图6.数据仓库产品构成
 
@@ -149,21 +141,21 @@ views:
 
 **数据湖（**Data Lake）**是一个存储企业的各种各样原始数据的大型仓库，其中的数据可供存取、处理、分析及传输。**数据湖是以其自然格式存储的数据的系统或存储库，通常是对象blob或文件。数据湖通常是企业所有数据的单一存储，包括源系统数据的原始副本，以及用于报告、可视化、分析和机器学习等任务的转换数据。数据湖可以包括来自关系数据库（行和列）的结构化数据，半结构化数据（CSV，日志，XML，JSON），非结构化数据（电子邮件，文档，PDF）和二进制数据（图像，音频，视频）。来源：维基百科。
 
-目前，Hadoop是最常用的部署数据湖的技术，所以很多人会觉得数据湖就是Hadoop集群。数据湖是一个概念，而Hadoop是用于实现这个概念的技术。<figure> 
+目前，Hadoop是最常用的部署数据湖的技术，所以很多人会觉得数据湖就是Hadoop集群。数据湖是一个概念，而Hadoop是用于实现这个概念的技术。<figure>
 
 <div class="image-block">
   <p id="GxXTVsP">
     <img loading="lazy" width="554" height="219" class="alignnone size-full wp-image-7122 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625847030ceb2.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625847030ceb2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625847030ceb2.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625847030ceb2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_119/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
   </p>
-</div></figure> 
+</div></figure>
 
-图7.数据湖的处理架构<figure> 
+图7.数据湖的处理架构<figure>
 
 <div class="image-block">
   <p id="CUHwLXy">
     <img loading="lazy" width="536" height="341" class="alignnone size-full wp-image-7123 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258470bcf4c3.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258470bcf4c3.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258470bcf4c3.png?x-oss-process=image/format,webp 536w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258470bcf4c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_191/format,webp 300w" sizes="(max-width: 536px) 100vw, 536px" />
   </p>
-</div></figure> 
+</div></figure>
 
 图8.数据湖示意图
 
@@ -228,7 +220,7 @@ views:
           </p>
         </div>
       </th>
-      
+
       <th>
         <div class="table-header">
           <p>
@@ -318,13 +310,13 @@ views:
 
 数据中台成为热点，“中台”这个概念，是相对于前台和后台而生，是前台和后台的链接点，将业务共同的工具和技术予以沉淀。数据中台是指**数据采集交换、共享融合、组织处理、建模分析、管理治理和服务应用于一体的综合性数据能力平台**，在大数据生态中处于承上启下的功能，提供面向数据应用支撑的底座能力。
 
-广义上来给数据中台一个企业级的定义：“聚合和治理跨域数据，将数据抽象封装成服务，提供给前台以业务价值的逻辑概念”。<figure> 
+广义上来给数据中台一个企业级的定义：“聚合和治理跨域数据，将数据抽象封装成服务，提供给前台以业务价值的逻辑概念”。<figure>
 
 <div class="image-block">
   <p id="QElYYlo">
     <img loading="lazy" width="554" height="394" class="alignnone size-full wp-image-7124 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258472721b62.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258472721b62.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258472721b62.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258472721b62.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_213/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
   </p>
-</div></figure> 
+</div></figure>
 
 图9.数据中台建设是数字化转型的关键支撑
 
@@ -383,29 +375,29 @@ views:
 
 **四**
 
-**传统数据仓库与数据中台的差异点**<figure> 
+**传统数据仓库与数据中台的差异点**<figure>
 
 <div class="image-block">
   <p id="lxwOPny">
     <img loading="lazy" width="554" height="183" class="alignnone size-full wp-image-7126 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258473fad5eb.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258473fad5eb.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258473fad5eb.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258473fad5eb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_99/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
   </p>
-</div></figure> 
+</div></figure>
 
-图11.数据中台与传统数据仓库比较<figure> 
+图11.数据中台与传统数据仓库比较<figure>
 
 <div class="image-block">
   <p id="TCjrpVq">
     <img loading="lazy" width="554" height="267" class="alignnone size-full wp-image-7127 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258474bc925b.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258474bc925b.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258474bc925b.png?x-oss-process=image/format,webp 554w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258474bc925b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_145/format,webp 300w" sizes="(max-width: 554px) 100vw, 554px" />
   </p>
-</div></figure> 
+</div></figure>
 
 表2.技术路线对比表
 
-作为工业企业，一般采用混搭架构<figure> 
+作为工业企业，一般采用混搭架构<figure>
 
 <div class="image-block">
   <img loading="lazy" width="532" height="94" class="alignnone size-full wp-image-7128 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62584756aaf4f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62584756aaf4f.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62584756aaf4f.png?x-oss-process=image/format,webp 532w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62584756aaf4f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_53/format,webp 300w" sizes="(max-width: 532px) 100vw, 532px" />
-</div></figure> 
+</div></figure>
 
 表3.技术路线选型比较表
 

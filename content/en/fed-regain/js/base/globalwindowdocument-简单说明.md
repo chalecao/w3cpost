@@ -1,15 +1,6 @@
 ---
 title: Global\window\document 简单说明
 
-
-date: 2019-11-08T06:20:39+00:00
-url: /javascriptnodejs/5354.html
-views:
-  - 1040
-like:
-  - 2
-
-
 ---
 1、Global Object （全局对象, global对象）  
 ①JavaScript 中有一个特殊的对象，称为全局对象（Global Object），它及其所有属性都可以在程序的任何地方访问，即全局变量。  
