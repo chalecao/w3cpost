@@ -16,7 +16,6 @@ cd $dist_path
 # 如果是发布到自定义域名
 rm -fr CNAME
 echo 'www.w3cdoc.com' > CNAME
-echo 'w3cdoc.com' > CNAME
 
 git init
 git add -A
