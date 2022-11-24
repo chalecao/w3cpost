@@ -62,3 +62,13 @@ p.meta {
 .page-link:hover {
   text-decoration: none;
 }
+
+.hr-mid-border-content::after{
+  content: attr(data-content);
+  position: absolute;
+  padding: 4px 1ch;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #d0d0d5;
+  background: #fff;
+}
