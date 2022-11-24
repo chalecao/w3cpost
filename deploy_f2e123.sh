@@ -16,7 +16,6 @@ cd $dist_path
 rm -fr .git
 # 如果是发布到自定义域名
 rm -fr CNAME
-echo 'f2e123.com' > CNAME
 echo 'www.f2e123.com' >> CNAME
 
 git init
