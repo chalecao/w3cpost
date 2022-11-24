@@ -1,4 +1,4 @@
-baseurl = "https://www.w3cdoc.com/"
+baseurl = "/"
 canonifyURLs = false
 disableAliases = true
 disableHugoGeneratorInject = true
