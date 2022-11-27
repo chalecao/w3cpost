@@ -1,5 +1,5 @@
 {{ define "main" }}
-<section class="section container-fluid mt-n3 pb-3">
+<section class="section container-fluid mt-n3 pb-3 mb-1">
   <div class="row justify-content-center">
     <div class="col-lg-12 text-center">
       <h1 class="mt-0">{{ .Title }}</h1>
@@ -7,12 +7,15 @@
     <div class="col-lg-9 col-xl-8 text-center">
       <p class="lead">{{ .Params.lead | safeHTML }}</p>
       <a class="btn btn-primary btn-lg px-4 mb-2" href="" role="button">{{ i18n "get-started" }}</a>
-      <p class="meta">----以下由「万维刀客」精心挑选 ----</p>
+      <!-- <p class="meta">----以下由「万维刀客」精心挑选 ----</p> -->
     </div>
   </div>
 </section>
+<br/>
+<div class="d-flex justify-content-start">
+  <div class="bg-dots"></div>
+</div>
 {{ end }}
-
 {{ define "sidebar-prefooter" }}
 {{ if eq $.Site.Language.LanguageName "English" }}
 <section class="section section-sm">
@@ -25,19 +28,18 @@
         <p>谷歌的最新研究成果，极具权威性和学术性，经常关注</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://www.kdnuggets.com/" target="_blank"
-            rel="noopener noreferrer">Kdnuggets</a></h2>
+        <h2 class="h4"><a href="https://www.kdnuggets.com/" target="_blank" rel="noopener noreferrer">Kdnuggets</a></h2>
         <p>建议多关住网站左下角的“Most Popular”和“Most Shared”里的文章，两周更新</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://dzone.com/" target="_blank"
-            rel="noopener noreferrer">DZONE</a></h2>
+        <h2 class="h4"><a href="https://dzone.com/" target="_blank" rel="noopener noreferrer">DZONE</a></h2>
         <p>不论是AI、云计算、数据安全还是计算机性能、IoT和网站设计，更新速度很快</p>
       </div>
     </div>
     <div class="row justify-content-center text-center">
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://www.codementor.io/community/topic/data-science" target="_blank" rel="noopener noreferrer">Codementor</a>
+        <h2 class="h4"><a href="https://www.codementor.io/community/topic/data-science" target="_blank"
+            rel="noopener noreferrer">Codementor</a>
         </h2>
         <p>基本都是技术性文章，文章大都附有代码，因此比较干货，每月更新</p>
       </div>
@@ -47,127 +49,114 @@
         <p>建数据可视化案例，较多见的就是Tableau的case，每月更新</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4"><a href="http://blog.echen.me/" target="_blank"
-            rel="noopener noreferrer">Edwin Chen’s Blog</a></h2>
+        <h2 class="h4"><a href="http://blog.echen.me/" target="_blank" rel="noopener noreferrer">Edwin Chen’s Blog</a>
+        </h2>
         <p>讨论的是非常前沿的话题，因此称之为“篇篇热门”并不为过，长期关注</p>
       </div>
     </div>
-   
+
     <hr class="hr-mid-border-content" data-content="可视化">
     <div class="row justify-content-center text-center">
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://github.com/antvis/g" target="_blank" 
-          rel="noopener noreferrer">AntV G</a>
+        <h2 class="h4"><a href="https://github.com/antvis/g" target="_blank" rel="noopener noreferrer">AntV G</a>
         </h2>
         <p>灵活的可视化渲染引擎，是 AntV 几个产品共同的底层 2D 渲染引擎</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://github.com/antvis/g2" target="_blank"
-            rel="noopener noreferrer">AntV G2</a></h2>
+        <h2 class="h4"><a href="https://github.com/antvis/g2" target="_blank" rel="noopener noreferrer">AntV G2</a></h2>
         <p>简洁的渐进式可视化语法，用于报表搭建、数据探索以及可视化叙事</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://github.com/antvis/g2plot" target="_blank"
-            rel="noopener noreferrer">G2Plot</a></h2>
+        <h2 class="h4"><a href="https://github.com/antvis/g2plot" target="_blank" rel="noopener noreferrer">G2Plot</a>
+        </h2>
         <p>开箱即用、易于配置、具有良好视觉和交互体验的通用图表库</p>
       </div>
     </div>
     <div class="row justify-content-center text-center">
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://github.com/antvis/s2" target="_blank" 
-          rel="noopener noreferrer">S2</a>
+        <h2 class="h4"><a href="https://github.com/antvis/s2" target="_blank" rel="noopener noreferrer">S2</a>
         </h2>
         <p>开箱即用的多维可视分析表格</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://github.com/antvis/f2" target="_blank" 
-          rel="noopener noreferrer">F2</a>
+        <h2 class="h4"><a href="https://github.com/antvis/f2" target="_blank" rel="noopener noreferrer">F2</a>
         </h2>
         <p>快速、灵活的移动可视化引擎</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://github.com/antvis/f6" target="_blank" 
-          rel="noopener noreferrer">F6</a>
+        <h2 class="h4"><a href="https://github.com/antvis/f6" target="_blank" rel="noopener noreferrer">F6</a>
         </h2>
         <p>一个简单、易用、完备的移动端图可视化引擎</p>
       </div>
     </div>
     <div class="row justify-content-center text-center">
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://github.com/antvis/F2Native" target="_blank" 
-          rel="noopener noreferrer">F2Native</a>
+        <h2 class="h4"><a href="https://github.com/antvis/F2Native" target="_blank"
+            rel="noopener noreferrer">F2Native</a>
         </h2>
         <p>专注于客户端，开箱即用、高性能的可视化解决方案</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://github.com/antvis/g6" target="_blank" 
-          rel="noopener noreferrer">G6</a>
+        <h2 class="h4"><a href="https://github.com/antvis/g6" target="_blank" rel="noopener noreferrer">G6</a>
         </h2>
         <p>强分析、高性能、易扩展的图可视分析引擎</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://github.com/antvis/graphin" target="_blank" 
-          rel="noopener noreferrer">Graphin</a>
+        <h2 class="h4"><a href="https://github.com/antvis/graphin" target="_blank" rel="noopener noreferrer">Graphin</a>
         </h2>
         <p>基于 G6 封装的 React 组件库，专注在关系可视分析领域，简单高效，开箱即用</p>
       </div>
     </div>
     <div class="row justify-content-center text-center">
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://github.com/antvis/X6" target="_blank" 
-          rel="noopener noreferrer">X6</a>
+        <h2 class="h4"><a href="https://github.com/antvis/X6" target="_blank" rel="noopener noreferrer">X6</a>
         </h2>
         <p>基于 HTML 和 SVG 的图编辑引擎，提供低成本的定制能力和开箱即用的内置扩展</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://github.com/antvis/XFlow" target="_blank" 
-          rel="noopener noreferrer">XFlow</a>
+        <h2 class="h4"><a href="https://github.com/antvis/XFlow" target="_blank" rel="noopener noreferrer">XFlow</a>
         </h2>
         <p>基于 X6 图编辑引擎、面向 React 技术栈用户的专业图编辑应用级解决方案</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://graphinsight.antgroup.com/" target="_blank" 
-          rel="noopener noreferrer">GraphInsight</a>
+        <h2 class="h4"><a href="https://graphinsight.antgroup.com/" target="_blank"
+            rel="noopener noreferrer">GraphInsight</a>
         </h2>
         <p>是一个低代码图应用研发工具，也是一个在线图可视分析平台</p>
       </div>
     </div>
     <div class="row justify-content-center text-center">
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://github.com/antvis/AVA" target="_blank" 
-          rel="noopener noreferrer">AVA</a>
+        <h2 class="h4"><a href="https://github.com/antvis/AVA" target="_blank" rel="noopener noreferrer">AVA</a>
         </h2>
         <p>智能可视分析框架</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://github.com/ant-design/ant-design-charts" target="_blank" 
-          rel="noopener noreferrer">Ant Design Charts</a>
+        <h2 class="h4"><a href="https://github.com/ant-design/ant-design-charts" target="_blank"
+            rel="noopener noreferrer">Ant Design Charts</a>
         </h2>
         <p>集 AntV 各技术栈的 React 版图表类库，包含统计图表、关系图表以及地理可视化 图表</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://chartcube.alipay.com" target="_blank" 
-          rel="noopener noreferrer">ChartCube</a>
+        <h2 class="h4"><a href="https://chartcube.alipay.com" target="_blank" rel="noopener noreferrer">ChartCube</a>
         </h2>
         <p>ChartCube 是一个可以快速完成图表制作的在线工具，只需要三步就可以创建出高品质的图表</p>
       </div>
     </div>
     <div class="row justify-content-center text-center">
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://locationinsight.antv.antgroup.com/" target="_blank" 
-          rel="noopener noreferrer">LocationInsight</a>
+        <h2 class="h4"><a href="https://locationinsight.antv.antgroup.com/" target="_blank"
+            rel="noopener noreferrer">LocationInsight</a>
         </h2>
         <p>LocationInsight 是下一代地理空间数据可视分析平台</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://github.com/antvis/l7" target="_blank" 
-          rel="noopener noreferrer">L7</a>
+        <h2 class="h4"><a href="https://github.com/antvis/l7" target="_blank" rel="noopener noreferrer">L7</a>
         </h2>
         <p>基于 WebGL 的大规模地理空间数据可视化引擎</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://threejs.org/" target="_blank" 
-          rel="noopener noreferrer">threejs</a>
+        <h2 class="h4"><a href="https://threejs.org/" target="_blank" rel="noopener noreferrer">threejs</a>
         </h2>
         <p>three.js是JavaScript编写的WebGL第三方库,提供了非常多的3D显示功能</p>
       </div>
@@ -192,18 +181,15 @@
     </div>
     <div class="row justify-content-center text-center">
       <div class="col-lg-5">
-        <h2 class="h4"><a href="http://www.ruanyifeng.com" target="_blank"
-          rel="noopener noreferrer">阮一峰</a></h2>
+        <h2 class="h4"><a href="http://www.ruanyifeng.com" target="_blank" rel="noopener noreferrer">阮一峰</a></h2>
         <p>上一辈大佬</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://www.zhangxinxu.com" target="_blank"
-          rel="noopener noreferrer">张鑫旭</a></h2>
+        <h2 class="h4"><a href="https://www.zhangxinxu.com" target="_blank" rel="noopener noreferrer">张鑫旭</a></h2>
         <p>上一辈大佬</p>
       </div>
       <div class="col-lg-5">
-        <h2 class="h4"><a href="https://www.liaoxuefeng.com" target="_blank"
-          rel="noopener noreferrer">廖雪峰</a></h2>
+        <h2 class="h4"><a href="https://www.liaoxuefeng.com" target="_blank" rel="noopener noreferrer">廖雪峰</a></h2>
         <p>上一辈大佬</p>
       </div>
     </div>
@@ -217,6 +203,34 @@
   <div class="row justify-content-center text-center">
     <div class="col-lg-9">
       {{- .Content -}}
+    </div>
+  </div>
+</section>
+<section class="section section-featured mt-0 bg-light py-5">
+  <div class="container">
+    <h2 class="h3 mt-0 text-center">要有梦想，万一实现了呢？</h2>
+    <div class="row justify-content-center mt-3 g-3">
+      <div class="col-sm-8 col-md-6 col-xl-4">
+        <div class="card h-80 mt-0 mb-0">
+          <div class="card-body">
+            <h3 class="h5 card-title my-2"><a class="card-link stretched-link text-dark text-decoration-none"
+                target="_blank"
+                href="https://study.163.com/provider/400000000351011/course.htm?share=2&shareId=400000000351011">云课堂前端课程</a>
+            </h3>
+            <img src="/images/vendor/163.png" width="80%" />
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8 col-md-6 col-xl-4">
+        <div class="card h-80 mt-0 mb-0">
+          <div class="card-body">
+            <h3 class="h5 card-title my-2"><a class="card-link stretched-link text-dark text-decoration-none"
+                target="_blank" href="https://study.163.com/provider/400000000351011/course.htm?share=2&shareId=400000000351011">思否前端课程</a>
+            </h3>
+            <img src="/images/vendor/segment.png" width="80%" />
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

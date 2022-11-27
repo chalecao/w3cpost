@@ -16,45 +16,38 @@ preload 顾名思义就是一种预加载的方式，它通过声明向浏览器
 
 它可以通过 Link 标签进行创建：
 
-<div class="highlight highlight-text-html-basic">
-  <pre><span class="pl-c">&lt;!-- 使用 link 标签静态标记需要预加载的资源 --&gt;</span>
-&lt;<span class="pl-ent">link</span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">"</span>preload<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>/path/to/style.css<span class="pl-pds">"</span></span> <span class="pl-e">as</span>=<span class="pl-s"><span class="pl-pds">"</span>style<span class="pl-pds">"</span></span>&gt;
+```
+<link rel="preload" href="/path/to/style.css" as="style">
 
-<span class="pl-c">&lt;!-- 或使用脚本动态创建一个 link 标签后插入到 head 头部 --&gt;</span>
-&lt;<span class="pl-ent">script</span>&gt;
-<span class="pl-s1"><span class="pl-k">const</span> <span class="pl-c1">link</span> <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">createElement</span>(<span class="pl-s"><span class="pl-pds">'</span>link<span class="pl-pds">'</span></span>);</span>
-<span class="pl-s1"><span class="pl-smi">link</span>.<span class="pl-c1">rel</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>preload<span class="pl-pds">'</span></span>;</span>
-<span class="pl-s1"><span class="pl-smi">link</span>.<span class="pl-smi">as</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>style<span class="pl-pds">'</span></span>;</span>
-<span class="pl-s1"><span class="pl-smi">link</span>.<span class="pl-c1">href</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>/path/to/style.css<span class="pl-pds">'</span></span>;</span>
-<span class="pl-s1"><span class="pl-c1">document</span>.<span class="pl-smi">head</span>.<span class="pl-c1">appendChild</span>(link);</span>
-&lt;/<span class="pl-ent">script</span>&gt;</pre>
-</div>
+<script>
+const link = document.createElement(’link’);
+link.rel = ’preload’;
+link.as = ’style’;
+link.href = ’/path/to/style.css’;
+document.head.appendChild(link);
+</script>
+```
 
 当浏览器解析到这行代码就会去加载 href 中对应的资源但不执行，待到真正使用到的时候再执行，另一种方式方式就是在 HTTP 响应头中加上 preload 字段：
-
-    Link: <https://example.com/other/styles.css>; rel=preload; as=style
+```
+Link: <https://example.com/other/styles.css>; rel=preload; as=style
+```
 
 这种方式比通过 Link 方式加载资源方式更快，请求在返回还没到解析页面的时候就已经开始预加载资源了。
 
 讲完 preload 的用法再来看下它的浏览器兼容性，根据 caniuse.com 上的介绍：IE 和 Firefox 都是不支持的，兼容性覆盖面达到 73%。
 
-<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231743142786e6136714b31526a535a466d58585830504658612d323633302d3838322e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231743142786e6136714b31526a535a466d58585830504658612d323633302d3838322e706e67.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231743142786e6136714b31526a535a466d58585830504658612d323633302d3838322e706e67.png?x-oss-process=image/format,webp" alt="" data-canonical-src="https://img.alicdn.com/tfs/TB1t1Bxna6qK1RjSZFmXXX0PFXa-2630-882.png" /></a>
-
 ### prefetch 预判加载
 
 prefetch 跟 preload 不同，它的作用是告诉浏览器未来可能会使用到的某个资源，浏览器就会在闲时去加载对应的资源，若能预测到用户的行为，比如懒加载，点击到其它页面等则相当于提前预加载了需要的资源。它的用法跟 preload 是一样的：
 
-<div class="highlight highlight-text-html-basic">
-  <pre><span class="pl-c">&lt;!-- link 模式 --&gt;</span>
-&lt;<span class="pl-ent">link</span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">"</span>prefetch<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>/path/to/style.css<span class="pl-pds">"</span></span> <span class="pl-e">as</span>=<span class="pl-s"><span class="pl-pds">"</span>style<span class="pl-pds">"</span></span>&gt;
+```
+<link rel="prefetch" href="/path/to/style.css" as="style">
 
-<span class="pl-c">&lt;!-- HTTP 响应头模式 --&gt;</span>
-Link: &lt;<span class="pl-ent">https:</span>//<span class="pl-e">example.com</span>/<span class="pl-e">other</span>/<span class="pl-e">styles.css</span>&gt;; rel=prefetch; as=style</pre>
-</div>
+Link: https://example.com/other/styles.css; rel=prefetch; as=style
+```
 
 讲完用法再讲浏览器兼容性，prefetch 比 preload 的兼容性更好，覆盖面可以达到将近 80%。
-
-<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231457964446e6b766f4b31526a535a464458585859337058612d323533382d3930322e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231457964446e6b766f4b31526a535a464458585859337058612d323533382d3930322e706e67.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231457964446e6b766f4b31526a535a464458585859337058612d323533382d3930322e706e67.png?x-oss-process=image/format,webp" alt="" data-canonical-src="https://img.alicdn.com/tfs/TB1EydDnkvoK1RjSZFDXXXY3pXa-2538-902.png" /></a>
 
 ## 更多细节点
 
@@ -64,33 +57,25 @@ Link: &lt;<span class="pl-ent">https:</span>//<span class="pl-e">example.com</sp
 
 **对于 preload 来说，一旦页面关闭了，它就会立即停止 preload 获取资源，而对于 prefetch 资源，即使页面关闭，prefetch 发起的请求仍会进行不会中断。**
 
-<div>
-  <div>
-    <p>
-      现在有了 preload，一切变得可能
-    </p>
+现在有了 preload，一切变得可能
 
-    <div class="_2Uzcx_">
-      <pre class="line-numbers language-javascript"><code class="javascript language-javascript">&lt;span class="token keyword">var&lt;/span> link &lt;span class="token operator">=&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createElement&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"link"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-link&lt;span class="token punctuation">.&lt;/span>href &lt;span class="token operator">=&lt;/span> &lt;span class="token string">"myscript.js"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-link&lt;span class="token punctuation">.&lt;/span>rel &lt;span class="token operator">=&lt;/span> &lt;span class="token string">"preload"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-link&lt;span class="token punctuation">.&lt;/span>as &lt;span class="token operator">=&lt;/span> &lt;span class="token string">"script"&lt;/span>&lt;span class="token punctuation">;
-link.setAttribute('crossorigin','anonymous');&lt;/span>
-document&lt;span class="token punctuation">.&lt;/span>head&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">appendChild&lt;/span>&lt;span class="token punctuation">(&lt;/span>link&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-</code></pre>
-    </div>
+```
+var link = document.createElement("link");
+link.href = "myscript.js";
+link.rel = "preload";
+link.as = "script";
+link.setAttribute('crossorigin','anonymous');
+document.head.appendChild(link);
+```
 
-    <p>
-      上面这段代码可以让你预先加载脚本，下面这段代码可以让脚本执行
-    </p>
+上面这段代码可以让你预先加载脚本，下面这段代码可以让脚本执行
+
     
-    <div class="_2Uzcx_">
-      <pre class="line-numbers language-javascript"><code class="javascript language-javascript">&lt;span class="token keyword">var&lt;/span> script &lt;span class="token operator">=&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createElement&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"script"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-script&lt;span class="token punctuation">.&lt;/span>src &lt;span class="token operator">=&lt;/span> &lt;span class="token string">"myscript.js"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-document&lt;span class="token punctuation">.&lt;/span>body&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">appendChild&lt;/span>&lt;span class="token punctuation">(&lt;/span>script&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span></code></pre>
-    </div>
-  </div>
-</div>
+```
+var script = document.createElement("script");
+script.src = "myscript.js";
+document.body.appendChild(script);
+```
 
 ### 什么情况会导致二次获取？
 
@@ -108,29 +93,27 @@ preload 是告诉浏览器页面必定需要的资源，浏览器一定会加载
 
 没有用到的 preload 资源在 Chrome 的 console 里会在 onload 事件 3s 后发生警告。
 
-<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f54423149384f416e6b766f4b31526a535a467758586369434658612d313030302d3238352e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f54423149384f416e6b766f4b31526a535a467758586369434658612d313030302d3238352e706e67.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f54423149384f416e6b766f4b31526a535a467758586369434658612d313030302d3238352e706e67.png?x-oss-process=image/format,webp" alt="" data-canonical-src="https://img.alicdn.com/tfs/TB1I8OAnkvoK1RjSZFwXXciCFXa-1000-285.png" /></a>
-
 原因是你可能为了改善性能使用 preload 来缓存一定的资源，但是如果没有用到，你就做了无用功。在手机上，这相当于浪费了用户的流量，所以明确你要 preload 对象。
 
 ### 如何检测 preload 支持情况？
 
 用下面的代码段可以检测 `<link rel=”preload”>` 是否被支持：
 
-<div class="highlight highlight-source-js">
-  <pre><span class="pl-k">const</span> <span class="pl-c1">preloadSupported</span> <span class="pl-k">=</span> () <span class="pl-k">=&gt;</span> {
-    <span class="pl-k">const</span> <span class="pl-c1">link</span> <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">createElement</span>(<span class="pl-s"><span class="pl-pds">'</span>link<span class="pl-pds">'</span></span>);
-    <span class="pl-k">const</span> <span class="pl-c1">relList</span> <span class="pl-k">=</span> <span class="pl-smi">link</span>.<span class="pl-smi">relList</span>;
-    <span class="pl-k">if</span> (<span class="pl-k">!</span>relList <span class="pl-k">||</span> <span class="pl-k">!</span><span class="pl-smi">relList</span>.<span class="pl-smi">supports</span>)
-        <span class="pl-k">return</span> <span class="pl-c1">false</span>;
-    <span class="pl-k">return</span> <span class="pl-smi">relList</span>.<span class="pl-c1">supports</span>(<span class="pl-s"><span class="pl-pds">'</span>preload<span class="pl-pds">'</span></span>);
-};</pre>
-</div>
+```
+const preloadSupported = () => {
+    const link = document.createElement('link');
+    const relList = link.relList;
+    if (!relList || !relList.supports)
+        return false;
+    return relList.supports('preload');
+};
+```
 
 ## 不同资源浏览器优先级
 
 在 Chrome 46 以后的版本中，不同的资源在浏览器渲染的不同阶段进行加载的优先级如下图所示：
 
-<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442314c7457776e6972704b31526a535a466858585853645858612d313030302d313034302e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442314c7457776e6972704b31526a535a466858585853645858612d313030302d313034302e706e67.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442314c7457776e6972704b31526a535a466858585853645858612d313030302d313034302e706e67.png?x-oss-process=image/format,webp" alt="" data-canonical-src="https://img.alicdn.com/tfs/TB1LtWwnirpK1RjSZFhXXXSdXXa-1000-1040.png" /></a>
+![](/images/posts/68747470733a2f2f69.png)
 
 一个资源的加载的优先级被分为五个级别，分别是：
 
@@ -162,8 +145,6 @@ preload 是告诉浏览器页面必定需要的资源，浏览器一定会加载
 
 ### async/defer：
 
-<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442315743562e6e587a714b31526a535a536758586370415658612d3638392d3131322e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442315743562e6e587a714b31526a535a536758586370415658612d3638392d3131322e706e67.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442315743562e6e587a714b31526a535a536758586370415658612d3638392d3131322e706e67.png?x-oss-process=image/format,webp" alt="" data-canonical-src="https://img.alicdn.com/tfs/TB1WCV.nXzqK1RjSZSgXXcpAVXa-689-112.png" /></a>
-
 使用 async/defer 属性在加载脚本的时候不阻塞 HTML 的解析，defer 加载脚本执行会在所有元素解析完成，DOMContentLoaded 事件触发之前完成执行。它的用途其实跟 preload 十分相似。你可以使用 defer 加载脚本在 head 末尾，这比将脚本放在 body 底部效果来的更好。
 
   1. 它相比于 preload 加载的优势在于浏览器兼容性好，从 caniuse 上看基本上所有浏览器都支持，覆盖率达到 93%，
@@ -178,11 +159,7 @@ preload 是告诉浏览器页面必定需要的资源，浏览器一定会加载
 
 若使用 HTTP/2 PUSH，当服务端获取到 HTML 文件后，知道以后客户端会需要字体文件，它就立即主动地推送这个文件给客户端，如下图：
 
-<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231305065616e5859714b31526a535a4c6558586258707058612d3539312d3431332e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231305065616e5859714b31526a535a4c6558586258707058612d3539312d3431332e706e67.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231305065616e5859714b31526a535a4c6558586258707058612d3539312d3431332e706e67.png?x-oss-process=image/format,webp" alt="" data-canonical-src="https://img.alicdn.com/tfs/TB10PeanXYqK1RjSZLeXXbXppXa-591-413.png" /></a>
-
 而对于 preload，服务端就不会主动地推送字体文件，在浏览器获取到页面之后发现 preload 字体才会去获取，如下图：
-
-<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231477565636e6d7a714b31526a535a464c5858636e325858612d3539312d3431332e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231477565636e6d7a714b31526a535a464c5858636e325858612d3539312d3431332e706e67.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231477565636e6d7a714b31526a535a464c5858636e325858612d3539312d3431332e706e67.png?x-oss-process=image/format,webp" alt="" data-canonical-src="https://img.alicdn.com/tfs/TB1GuecnmzqK1RjSZFLXXcn2XXa-591-413.png" /></a>
 
 对于 Server Push 来说，如果服务端渲染 HTML 时间过长的话则很有效，因为这时候浏览器除了干等着，做不了其它操作，但是不好的地方是服务器需要支持 HTTP/2 协议并且服务端压力也会相应增大。对于更多 Server Push 和 preload 的对比可以参考这篇文章：<a href="https://www.zcfy.cc/article/http-2-push-vs-http-preload-dexecure-4722.html?t=new" rel="nofollow">HTTP/2 PUSH(推送)与HTTP Preload(预加载)大比拼</a>
 
@@ -198,147 +175,105 @@ preload 是告诉浏览器页面必定需要的资源，浏览器一定会加载
 
 ### preload 的 onload 事件
 
-<div>
-  <div>
-    <p>
-      先看代码<button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button>
-    </p>
+先看代码
+```
+<link rel="preload" as="style" href="asyncstyle.css" onload="this.rel='stylesheet'">
+```
 
-    <div class="_2Uzcx_">
-      <pre class="line-numbers language-javascript"><code class="javascript language-javascript">&lt;span class="token operator">&lt;&lt;/span>link rel&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"preload"&lt;/span> &lt;span class="token keyword">as&lt;/span>&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"style"&lt;/span> href&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"asyncstyle.css"&lt;/span> onload&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"this.rel='stylesheet'"&lt;/span>&lt;span class="token operator">&gt;&lt;/span>
-</code></pre>
-    </div>
+preload 的 onload 事件可以在资源加载完成后修改 rel 属性，从而实现非常酷的异步资源加载。
+    
+脚本也可以采用这种方法实现异步加载
 
-    <p>
-      preload 的 onload 事件可以在资源加载完成后修改 rel 属性，从而实现非常酷的异步资源加载。
-    </p>
-    
-    <p>
-      脚本也可以采用这种方法实现异步加载
-    </p>
-    
-    <p>
-      难道我们不是已经有了<code>&lt;script async&gt;</code>? <code>&lt;scirpt async&gt;</code>虽好，但却会阻塞 window 的 onload 事件。某些情况下，你可能希望这样，但总有一些情况你不希望阻塞 window 的 onload 。
-    </p>
-    
-    <p>
-      举个例子，你想尽可能快的加载一段统计页面访问量的代码，但又不愿意这段代码的加载给页面渲染造成延迟从而影响用户体验，关键是，你不想延迟 window 的 onload 事件。
-    </p>
-    
-    <p>
-      有了preload， 分分钟搞定。<button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button>
-    </p>
-    
-    <div class="_2Uzcx_">
-      <pre class="line-numbers language-javascript"><code class="javascript language-javascript">&lt;span class="token operator">&lt;&lt;/span>link rel&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"preload"&lt;/span> &lt;span class="token keyword">as&lt;/span>&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"script"&lt;/span> href&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"async_script.js"&lt;/span>
-      onload&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"var script = document.createElement('script'); script.src = this.href; document.body.appendChild(script);"&lt;/span>&lt;span class="token operator">&gt;&lt;/span>
-</code></pre>
-    </div>
+难道我们不是已经有了async, async虽好，但却会阻塞 window 的 onload 事件。某些情况下，你可能希望这样，但总有一些情况你不希望阻塞 window 的 onload 。
 
-    <h2>
-      响应式加载
-    </h2>
-    
-    <p>
-      preload 是一个link，根据规范有一个media 属性（现在 Chrome 还不支持，不过快了），该属性使得选择性加载成为可能。
-    </p>
-    
-    <p>
-      有什么用处呢？假设你的站点同时支持桌面和移动端的访问，在使用桌面浏览器访问时，你希望呈现一张可交互的大地图，而在移动端，一张较小的静态地图就足够了。
-    </p>
-    
-    <p>
-      你肯定不想同时加载两个资源，现在常见的做法是通过 JS 判断当前浏览器类型动态地加载资源，但这样一来，浏览器的预加载器就无法及时发现他们，可能耽误加载时机，影响用户体验和 SpeedIndex 评分。
-    </p>
-    
-    <p>
-      怎样才能让浏览器尽可能早的发现这些资源呢？还是 Preload!
-    </p>
-    
-    <p>
-      通过 Preload，我们可以提前加载资源，利用 media 属性，浏览器只会加载需要的资源。
-    </p>
-    
-    <div class="_2Uzcx_">
-      <p>
-        &nbsp;
-      </p>
-      
-      <pre class="line-numbers language-javascript"><code class="Javascript language-javascript">&lt;span class="token operator">&lt;&lt;/span>link rel&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"preload"&lt;/span> &lt;span class="token keyword">as&lt;/span>&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"image"&lt;/span> href&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"map.png"&lt;/span> media&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"(max-width: 600px)"&lt;/span>&lt;span class="token operator">&gt;&lt;/span>
-&lt;span class="token operator">&lt;&lt;/span>link rel&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"preload"&lt;/span> &lt;span class="token keyword">as&lt;/span>&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"script"&lt;/span> href&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"map.js"&lt;/span> media&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"(min-width: 601px)"&lt;/span>&lt;span class="token operator">&gt;&lt;/span>
-</code></pre>
-    </div>
+举个例子，你想尽可能快的加载一段统计页面访问量的代码，但又不愿意这段代码的加载给页面渲染造成延迟从而影响用户体验，关键是，你不想延迟 window 的 onload 事件。
 
-    <h2>
-      HTTP 头
-    </h2>
-    
-    <p>
-      Preload 还有一个特性是其可以通过 HTTP 头信息被呈现。也就是说上文中大多数的基于标记语言的声明可以通过 HTTP 响应头实现。（唯一的例外是有 onload 事件的例子，我们不可能在 HTTP 头信息中定义事件处理函数。）
-    </p>
-    
-    <div class="_2Uzcx_">
-      <p>
-        &nbsp;
-      </p>
-      
-      <pre class="line-numbers language-javascript"><code class="javascript language-javascript">Link&lt;span class="token punctuation">:&lt;/span> &lt;span class="token operator">&lt;&lt;/span>thing_to_load&lt;span class="token punctuation">.&lt;/span>js&lt;span class="token operator">&gt;&lt;/span>&lt;span class="token punctuation">;&lt;/span>rel&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"preload"&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;span class="token keyword">as&lt;/span>&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"script"&lt;/span>
-Link&lt;span class="token punctuation">:&lt;/span> &lt;span class="token operator">&lt;&lt;/span>thing_to_load&lt;span class="token punctuation">.&lt;/span>woff2&lt;span class="token operator">&gt;&lt;/span>&lt;span class="token punctuation">;&lt;/span>rel&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"preload"&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;span class="token keyword">as&lt;/span>&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"font"&lt;/span>&lt;span class="token punctuation">;&lt;/span>crossorigin
-</code></pre>
-    </div>
+有了preload， 分分钟搞定。
 
-    <p>
-      这一方式在有些场景尤其有用，比如，当负责优化的人员与页面开发人员不是同一人时（也就是说优化人员可能无法或者不想修改页面代码），还有一个杰出的例子是外部优化引擎（External optimization engine），该引擎对内容进行扫描并优化。
-    </p>
-    
-    <h2>
-      特征检查 （Feature Detection）
-    </h2>
-    
-    <p>
-      前面所有的列子都基于一种假设——浏览器一定程度上支持 preload，至少实现了脚本和样式加载等基本功能。但如果这个假设不成立了。一切都将是然并卵。
-    </p>
-    
-    <p>
-      为了判断浏览器是否支持 preload，我们修改了 DOM 的规范从而能够获知 rel 支持那些值（是否支持 rel=‘preload’）。
-    </p>
-    
-    <p>
-      至于如何进行检查，原文中没有，但 Github有一段代码可供参考。
-    </p>
-    
-    <div class="_2Uzcx_">
-      <p>
-        &nbsp;
-      </p>
-      
-      <pre class="line-numbers language-javascript"><code class="javascript language-javascript">&lt;span class="token keyword">var&lt;/span> &lt;span class="token function-variable function">DOMTokenListSupports&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">function&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">tokenList&lt;span class="token punctuation">,&lt;/span> token&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">!&lt;/span>tokenList &lt;span class="token operator">||&lt;/span> &lt;span class="token operator">!&lt;/span>tokenList&lt;span class="token punctuation">.&lt;/span>supports&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">return&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token keyword">try&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> tokenList&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">supports&lt;/span>&lt;span class="token punctuation">(&lt;/span>token&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span> &lt;span class="token keyword">catch&lt;/span> &lt;span class="token punctuation">(&lt;/span>e&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>e &lt;span class="token keyword">instanceof&lt;/span> &lt;span class="token class-name">TypeError&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-      console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"The DOMTokenList doesn't have a supported tokens list"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span> &lt;span class="token keyword">else&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-      console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">error&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"That shouldn't have happened"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+```
+<link rel="preload" as="script" href="async_script.js"
+  onload="
+  var script = document.createElement('script'); 
+  script.src = this.href; 
+  document.body.appendChild(script);"
+>
+```
 
-&lt;span class="token keyword">var&lt;/span> linkSupportsPreload &lt;span class="token operator">=&lt;/span> &lt;span class="token function">DOMTokenListSupports&lt;/span>&lt;span class="token punctuation">(&lt;/span>document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createElement&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"link"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>relList&lt;span class="token punctuation">,&lt;/span> &lt;span class="token string">"preload"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">!&lt;/span>linkSupportsPreload&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token comment">// Dynamically load the things that relied on preload.&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
-</code></pre>
-    </div>
+## 响应式加载
+    
+<p>
+  preload 是一个link，根据规范有一个media 属性（现在 Chrome 还不支持，不过快了），该属性使得选择性加载成为可能。
+</p>
 
-    <p>
-      讨论地址：<a href="https://link.jianshu.com?t=https://github.com/w3c/preload/issues/7" target="_blank" rel="nofollow noopener noreferrer">https://github.com/w3c/preload/issues/7</a>
-    </p>
-  </div>
-</div>
+<p>
+  有什么用处呢？假设你的站点同时支持桌面和移动端的访问，在使用桌面浏览器访问时，你希望呈现一张可交互的大地图，而在移动端，一张较小的静态地图就足够了。
+</p>
+
+<p>
+  你肯定不想同时加载两个资源，现在常见的做法是通过 JS 判断当前浏览器类型动态地加载资源，但这样一来，浏览器的预加载器就无法及时发现他们，可能耽误加载时机，影响用户体验和 SpeedIndex 评分。
+</p>
+
+<p>
+  怎样才能让浏览器尽可能早的发现这些资源呢？还是 Preload!
+</p>
+
+<p>
+  通过 Preload，我们可以提前加载资源，利用 media 属性，浏览器只会加载需要的资源。
+</p>
+    
+
+```
+<link rel="preload" as="image" href="map.png" media="(max-width: 600px)">
+<link rel="preload" as="script" href="map.js" media="(min-width: 601px)">
+```
+
+## HTTP 头
+
+Preload 还有一个特性是其可以通过 HTTP 头信息被呈现。也就是说上文中大多数的基于标记语言的声明可以通过 HTTP 响应头实现。（唯一的例外是有 onload 事件的例子，我们不可能在 HTTP 头信息中定义事件处理函数。）
+```
+Link: <thing_to_load.js>;rel="preload";as="script"
+Link: <thing_to_load.woff2>;rel="preload";as="font";crossorigin
+```
+
+<p>
+  这一方式在有些场景尤其有用，比如，当负责优化的人员与页面开发人员不是同一人时（也就是说优化人员可能无法或者不想修改页面代码），还有一个杰出的例子是外部优化引擎（External optimization engine），该引擎对内容进行扫描并优化。
+</p>
+    
+<h2>
+  特征检查 （Feature Detection）
+</h2>
+
+<p>
+  前面所有的列子都基于一种假设——浏览器一定程度上支持 preload，至少实现了脚本和样式加载等基本功能。但如果这个假设不成立了。一切都将是然并卵。
+</p>
+
+<p>
+  为了判断浏览器是否支持 preload，我们修改了 DOM 的规范从而能够获知 rel 支持那些值（是否支持 rel=‘preload’）。
+</p>
+
+至于如何进行检查，原文中没有，但 Github有一段代码可供参考。
+
+```
+var DOMTokenListSupports = function(tokenList, token) {
+  if (!tokenList || !tokenList.supports) {
+    return;
+  }
+  try {
+    return tokenList.supports(token);
+  } catch (e) {
+    if (e instanceof TypeError) {
+      console.log("The DOMTokenList doesn't have a supported tokens list");
+    } else {
+      console.error("That shouldn't have happened");
+    }
+  }
+};
+
+var linkSupportsPreload = DOMTokenListSupports(document.createElement("link").relList, "preload");
+if (!linkSupportsPreload) {
+  // Dynamically load the things that relied on preload.
+}
+```
 
 ## 使用案例
 
@@ -354,8 +289,5 @@ preload/prefetch 是个好东西，能让浏览器提前加载需要的资源，
 ## 参考链接
 
 * <a href="https://mp.weixin.qq.com/s?__biz=MzUxMTcwOTM4Mg==&mid=2247484163&idx=1&sn=16b9c907971683dd61cee251adcde79b&chksm=f96edaaace1953bcaf65a1adcf30b6d3dd66cf7b648ae59c4bf807d3f8bf460d5cd638e54ca1&token=946370022&lang=zh_CN#rd" rel="nofollow">有一种优化，叫Preload</a>
-* [Preload，Prefetch 和它们在 Chrome 之中的优先级][1]
 * <a href="https://juejin.im/post/5a7fb09bf265da4e8e785c38#heading-8" rel="nofollow">用 preload 预加载页面资源</a>
 * <a href="https://www.zcfy.cc/article/http-2-push-vs-http-preload-dexecure-4722.html?t=new" rel="nofollow">HTTP/2 PUSH(推送)与HTTP Preload(预加载)大比拼</a>
-
- [1]: https://github.com/xitu/gold-miner/blob/master/TODO/preload-prefetch-and-priorities-in-chrome.md

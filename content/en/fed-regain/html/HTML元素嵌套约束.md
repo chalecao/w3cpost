@@ -2,9 +2,6 @@
 title: HTML元素嵌套约束
 weight: 2
 ---
-欢迎学习前端知识体系课程，本系列属于：[前端增长教程][1]
-
-<img loading="lazy" class="alignnone size-medium wp-image-2216" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/u402172834950723224fm26gp0.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/u402172834950723224fm26gp0.jpg?x-oss-process=image/resize,m_fill,w_300,h_173/format,webp" alt="" width="300" height="173" />
 
 **块级元素特点：**
 

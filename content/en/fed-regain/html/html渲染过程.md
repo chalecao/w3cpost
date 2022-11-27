@@ -10,9 +10,7 @@ weight: 4
   2. Layer Compositor 主要运行在 Renderer 进程的 Compositor 线程；
   3. Display Compositor 主要运行在 Browser 进程的 UI 线程；
 
-<p id="JyxGQCM">
-  <img loading="lazy" class="alignnone wp-image-6417 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fbba9102cf74.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fbba9102cf74.png?x-oss-process=image/format,webp" alt="" width="568" height="527" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fbba9102cf74.png?x-oss-process=image/format,webp 700w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fbba9102cf74.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_278/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fbba9102cf74.png?x-oss-process=image/quality,q_50/resize,m_fill,w_647,h_600/format,webp 647w" sizes="(max-width: 568px) 100vw, 568px" />
-</p>
+![](/images/posts/img_5fbba9102cf74.webp)
 
 <div class="e-secret">
   </p>
@@ -59,9 +57,7 @@ weight: 4
     由于Blink运行在渲染进程中的沙盒中，当Blink需要访问文件或播放视频或者访问用户信息（cookie、password等）时必须与浏览器进程通信。这种不同进程间的通信方式被Mojo实现。随着Chromium不断向服务化架构演进，Blink可以通过Mojo来降低消息传递过程中对发送方和接收方对于具体实现的依赖（服务可能在多个进程中，也可能在同一个进程中，消息传递方式不同）
   </p>
   
-  <p id="upKGWXl">
-    <img loading="lazy" class="alignnone wp-image-6204 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafedeb516cd.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafedeb516cd.png?x-oss-process=image/format,webp" alt="" width="452" height="215" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafedeb516cd.png?x-oss-process=image/format,webp 1053w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafedeb516cd.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_143/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafedeb516cd.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_382/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafedeb516cd.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_367/format,webp 768w" sizes="(max-width: 452px) 100vw, 452px" />
-  </p>
+![](/images/posts/img_5fafedeb516cd.webp)
   
   <h2>
     <strong>Main thread or WebKit/Blink thread</strong>
@@ -112,9 +108,7 @@ weight: 4
     对于线程间通信，会使用PostTask提供的api。除了真的因为性能的原因，使用共享内存的方式实现通信并不被推荐，这也是Blink不使用线程锁（MutexLocks）的原因。
   </p>
   
-  <p id="FtjSGyt">
-    <img loading="lazy" class="alignnone wp-image-6203 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafed21016b8.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafed21016b8.png?x-oss-process=image/format,webp" alt="" width="315" height="232" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafed21016b8.png?x-oss-process=image/format,webp 803w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafed21016b8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_222/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafed21016b8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_591/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafed21016b8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_567/format,webp 768w" sizes="(max-width: 315px) 100vw, 315px" />
-  </p>
+![](/images/posts/img_5fafed21016b8.webp)
   
   <h3>
     blink与v8
@@ -180,29 +174,17 @@ weight: 4
     浏览器 UI 线程，如果跟 GPU 线程不是同一个线程，则只负责外壳的绘制，如果跟 GPU 线程是同一个线程，则同时负责绘制外壳的UI界面，和网页的合成输出，到窗口帧缓存；
   </p>
   
-  <p>
-    精心打造全新课程，欢迎吐槽！反馈宝贵意见！
-  </p>
-  
-  <p>
-    在线视频课程：<a href="https://study.163.com/course/courseMain.htm?share=2&shareId=400000000351011&courseId=1209400904&_trace_c_p_k2_=d5106aa1758748cea6e733c4b1f29bbe" target="_blank" rel="noopener noreferrer">网易云课堂课程</a>      <a href="https://segmentfault.com/ls/1650000019681091" target="_blank" rel="noopener noreferrer">思否课堂</a>
-  </p>
-  
   <h1>
     渲染流水线
   </h1>
   
-  <p>
-    <img loading="lazy" class="alignnone wp-image-6275 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faff3e35521d.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faff3e35521d.png?x-oss-process=image/format,webp" alt="" width="577" height="219" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faff3e35521d.png?x-oss-process=image/format,webp 1302w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faff3e35521d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_114/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faff3e35521d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_304/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faff3e35521d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_291/format,webp 768w" sizes="(max-width: 577px) 100vw, 577px" />
-  </p>
+![](/images/posts/img_5faff3e35521d.webp)
   
   <p>
     所有的渲染流水线都会有帧的概念，帧这个概念抽象描述了渲染流水线下级模块往上级模块输出的绘制内容相关数据的封装。我们可以看到 Blink 输出 Main Frame 给 Layer Compositor，Layer Compositor 输出 Compositor Frame 给 Display Compositor，Display Compositor 输出 GL Frame 给 Window。我们觉得一个动画是否流畅，最终取决于 GL Frame 的帧率（也就是目标窗口的绘制更新频率），而觉得一个触屏操作是否响应即时，取决于从 Blink 处理事件到 Window 更新的整个过程的耗时（理论上应该还要加上事件从 Browser 发送给 Compositor，再发送给 Blink 的这个过程的耗时）。
   </p>
   
-  <p id="WlcLgWk">
-    <img loading="lazy" class="alignnone wp-image-6200 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafe3c1d061c.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafe3c1d061c.png?x-oss-process=image/format,webp" alt="" width="415" height="308" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafe3c1d061c.png?x-oss-process=image/format,webp 1392w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafe3c1d061c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_222/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafe3c1d061c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_593/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fafe3c1d061c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_569/format,webp 768w" sizes="(max-width: 415px) 100vw, 415px" />
-  </p>
+![](/images/posts/img_5fafe3c1d061c.webp)
   
   <p>
     上图显示了 Chrome 一个高度简化后的渲染流水线示意图：
@@ -224,87 +206,42 @@ weight: 4
     渲染过程
   </h2>
   
-  <p id="evEtWbF">
-    <img loading="lazy" class="alignnone wp-image-6278 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffa26a68dd.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffa26a68dd.png?x-oss-process=image/format,webp" alt="" width="722" height="333" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffa26a68dd.png?x-oss-process=image/format,webp 2084w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffa26a68dd.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_138/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffa26a68dd.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_369/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffa26a68dd.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_354/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffa26a68dd.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_708/format,webp 1536w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffa26a68dd.png?x-oss-process=image/quality,q_50/resize,m_fill,w_2048,h_943/format,webp 2048w" sizes="(max-width: 722px) 100vw, 722px" />
-  </p>
+![](/images/posts/img_5faffa26a68dd.webp)
   
   <p>
     上一节我们说 Render 树是衔接浏览器排版引擎和渲染引擎之间的桥梁，它是排版引擎的输出，渲染引擎的输入。不过浏览器渲染引擎并不是直接使用 Render 树进行绘制，为了方便处理 Positioning（定位），Clipping（裁剪），Overflow-scroll（页內滚动），CSS Transform/Opacity/Animation/Filter，Mask or Reflection，Z-indexing（Z排序）等，浏览器需要生成另外一棵树 &#8211; Layer 树。
   </p>
   
-  <p id="kNpduGo">
-    <img loading="lazy" class="alignnone wp-image-6279 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffa4345505.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffa4345505.png?x-oss-process=image/format,webp" alt="" width="710" height="474" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffa4345505.png?x-oss-process=image/format,webp 1660w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffa4345505.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_200/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffa4345505.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_534/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffa4345505.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_513/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffa4345505.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_1025/format,webp 1536w" sizes="(max-width: 710px) 100vw, 710px" />
-  </p>
+![](/images/posts/img_5faffa4345505.webp)
   
   <p>
     渲染引擎会为一些特定的 RenderObject 生成对应的 RenderLayer，而这些特定的 RenderObject 跟对应的 RenderLayer 就是直属的关系，相应的，它们的子节点如果没有对应的 RenderLayer，就从属于父节点的 RenderLayer。最终，每一个 RenderObject 都会直接或者间接地从属于一个 RenderLayer。
   </p>
   
-  <blockquote>
-    <p>
-      <strong>RenderObject 生成 RenderLayer 的条件，来自 <a href="http://www.chromium.org/developers/design-documents/gpu-accelerated-compositing-in-chrome" target="_blank" rel="noopener noreferrer">GPU Accelerated Compositing in Chrome</a></strong>
-    </p>
+  <p>
+    <strong>RenderObject 生成 RenderLayer 的条件，来自 <a href="http://www.chromium.org/developers/design-documents/gpu-accelerated-compositing-in-chrome" target="_blank" rel="noopener noreferrer">GPU Accelerated Compositing in Chrome</a></strong>
+  </p>
 
-    <ul>
-      <li>
-        It&#8217;s the root object for the page
-      </li>
-      <li>
-        It has explicit CSS position properties (relative, absolute or a transform)
-      </li>
-      <li>
-        It is transparent
-      </li>
-      <li>
-        Has overflow, an alpha mask or reflection
-      </li>
-      <li>
-        Has a CSS filter
-      </li>
-      <li>
-        Corresponds to canvas element that has a 3D (WebGL) context or an accelerated 2D context
-      </li>
-      <li>
-        Corresponds to a video element
-      </li>
-    </ul>
-  </blockquote>
+> It’s the root object for the page, It has explicit CSS position properties (relative, absolute or a transform),It is transparent Has overflow, an alpha mask or reflection, Has a CSS filter, Corresponds to canvas element that has a 3D (WebGL) context or an accelerated 2D context, Corresponds to a video element
   
   <p>
     浏览器渲染引擎遍历 Layer 树，访问每一个 RenderLayer，再遍历从属于这个 RenderLayer 的 RenderObject，将每一个 RenderObject 绘制出来。读者可以认为，Layer 树决定了网页绘制的层次顺序，而从属于 RenderLayer 的 RenderObject 决定了这个 Layer 的内容，所有的 RenderLayer 和 RenderObject 一起就决定了网页在屏幕上最终呈现出来的内容。
   </p>
   
-  <blockquote>
-    <p>
-      <strong>软件渲染模式下，浏览器绘制 RenderLayer 和 RenderObject 的顺序，来自 <a href="http://www.chromium.org/developers/design-documents/gpu-accelerated-compositing-in-chrome" target="_blank" rel="noopener noreferrer">GPU Accelerated Compositing in Chrome</a></strong>
-    </p>
+  <p>
+    <strong>软件渲染模式下，浏览器绘制 RenderLayer 和 RenderObject 的顺序，来自 <a href="http://www.chromium.org/developers/design-documents/gpu-accelerated-compositing-in-chrome" target="_blank" rel="noopener noreferrer">GPU Accelerated Compositing in Chrome</a></strong>
+  </p>
 
-    <p>
-      In the software path, the page is rendered by sequentially painting all the RenderLayers, from back to front. The RenderLayer hierarchy is traversed recursively starting from the root and the bulk of the work is done in RenderLayer::paintLayer() which performs the following basic steps (the list of steps is simplified here for clarity):
-    </p>
-    
-    <ol>
-      <li>
-        Determines whether the layer intersects the damage rect for an early out.
-      </li>
-      <li>
-        Recursively paints the layers below this one by calling paintLayer() for the layers in the negZOrderList.
-      </li>
-      <li>
-        Asks RenderObjects associated with this RenderLayer to paint themselves.
-      </li>
-      <li>
-        This is done by recursing down the RenderObject tree starting with the RenderObject which created the layer. Traversal stops whenever a RenderObject associated with a different RenderLayer is found.
-      </li>
-      <li>
-        Recursively paints the layers above this one by calling paintLayer() for the layers in the posZOrderList.
-      </li>
-    </ol>
+> In the software path, the page is rendered by sequentially painting all the RenderLayers, from back to front. The RenderLayer hierarchy is traversed recursively starting from the root and the bulk of the work is done in RenderLayer::paintLayer() which performs the following basic steps (the list of steps is simplified here for clarity):
+- Determines whether the layer intersects the damage rect for an early out.
+- Recursively paints the layers below this one by calling paintLayer() for the layers in the negZOrderList.
+- Asks RenderObjects associated with this RenderLayer to paint themselves.
+- This is done by recursing down the RenderObject tree starting with the RenderObject which created the layer. Traversal stops whenever a RenderObject associated with a different RenderLayer is found.
+- Recursively paints the layers above this one by calling paintLayer() for the layers in the posZOrderList.
     
     <p>
       In this mode RenderObjects paint themselves into the destination bitmap by issuing draw calls into a single shared GraphicsContext (implemented in Chrome via Skia).
     </p>
-  </blockquote>
   
   <h2>
     图层合成
@@ -374,20 +311,10 @@ weight: 4
     合成加速的渲染架构下，Layer 的内容变化，只需要更新所属的 GraphicsLayer 的缓存即可，而缓存的更新，也只需要绘制直接或者间接属于这个 GraphicsLayer 的 RenderLayer 而不是所有的 RenderLayer。特别是一些特定的 CSS 样式属性的变化，实际上并不引起内容的变化，只需要改变一些 GraphicsLayer 的合成参数，然后重新合成即可，而合成相对绘制而言是很快的，这些特定的 CSS 样式属性我们一般称之为是被加速的，不同的浏览器支持的状况不太一样，但基本上<strong>CSS Transform & Opacity</strong> 在所有支持合成加速的浏览器上都是被加速的。被加速的CSS 样式属性的动画，就比较容易达到60帧/每秒的流畅效果了。另外像 Fixed 元素，Overflow-scroll，在合成加速的渲染架构下，因为不需要重新生成缓存，所以渲染的效率也同样是非常高。
   </p>
   
-  <p id="kVoOYkt">
-    <img loading="lazy" class="alignnone wp-image-6280 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffed28f681.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffed28f681.png?x-oss-process=image/format,webp" alt="" width="387" height="304" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffed28f681.png?x-oss-process=image/format,webp 636w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faffed28f681.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_236/format,webp 300w" sizes="(max-width: 387px) 100vw, 387px" />
-  </p>
+![](/images/posts/img_5faffed28f681.webp)
   
   <p>
     不过并不是拥有独立缓存的 RenderLayer 越多越好，太多拥有独立缓存的 Layer 会带来一些严重的副作用 &#8211; 首先它大大增加了内存的开销，这点在移动设备上的影响更大，甚至导致浏览器在一些内存较少的移动设备上无法很好地支持图层合成加速；其次，它加大了合成的时间开销，导致合成性能的下降，而合成性能跟网页滚动/缩放操作的流畅度又息息相关，最终导致网页滚动/缩放的流畅度下降，让用户觉得浏览器/网页卡顿。
-  </p>
-  
-  <p>
-    精心打造全新课程，欢迎吐槽！反馈宝贵意见！
-  </p>
-  
-  <p>
-    在线视频课程：<a href="https://study.163.com/course/courseMain.htm?share=2&shareId=400000000351011&courseId=1209400904&_trace_c_p_k2_=d5106aa1758748cea6e733c4b1f29bbe" target="_blank" rel="noopener noreferrer">网易云课堂课程</a>      <a href="https://segmentfault.com/ls/1650000019681091" target="_blank" rel="noopener noreferrer">思否课堂</a>
   </p>
   
   <h1>
@@ -395,23 +322,6 @@ weight: 4
   </h1>
   
   <p>
-    <a href="https://blog.csdn.net/rogeryi/article/details/23686609">how render work</a>
-  </p>
-  
-  <p>
-    <a href="https://www.f2e123.com/javascriptnodejs/4474.html">浏览器渲染流水线解析与网页动画性能优化</a>
-  </p>
-  
-  <p>
-    <a href="https://www.f2e123.com/javascriptnodejs/6205.html">Chrome浏览器引擎 Blink & V8</a>
-  </p>
-  
-  <p>
+    <a href="https://blog.csdn.net/rogeryi/article/details/23686609">how render work</a><br />
     <a href="http://www.html5rocks.com/en/tutorials/internals/howbrowserswork/" target="_blank" rel="noopener noreferrer">How Browsers Work: Behind the scenes of modern web browsers</a><br /> <a href="https://docs.google.com/presentation/d/1ZRIQbUKw9Tf077odCh66OrrwRIVNLvI_nhLm2Gi__F0/pub#slide=id.p" target="_blank" rel="noopener noreferrer">How WebKit Work</a><br /> <a href="http://www.paulirish.com/2013/webkit-for-developers/" target="_blank" rel="noopener noreferrer">WebKit for Developers</a><br /> <a href="http://www.chromium.org/developers/design-documents/gpu-accelerated-compositing-in-chrome" target="_blank" rel="noopener noreferrer">GPU Accelerated Compositing in Chrome</a><br /> <a href="https://www.sencha.com/blog/understanding-hardware-acceleration-on-mobile-browsers/" target="_blank" rel="noopener noreferrer">Understanding Hardware Acceleration on Mobile Browsers</a><br /> <a href="http://www.slideshare.net/rogeryi/web-page-renderingandacceleratedcompositing" target="_blank" rel="noopener noreferrer">Web Page Rendering and Accelerated Compositing</a>
   </p>
-  
-  <p>
-    </div>
-  </p>
-
- [1]: https://www.f2e123.com/fed-regain

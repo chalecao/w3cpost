@@ -580,3 +580,7 @@ $navbar-dark-active-color:          $link-color-dark;
   background: $body-overlay-dark;
   border: 1px solid $body-overlay-dark;
 }
+
+[data-dark-mode] .hr-mid-border-content::after{
+  background: #000;
+}
