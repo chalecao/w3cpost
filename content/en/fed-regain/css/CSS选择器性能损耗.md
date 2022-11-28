@@ -1,12 +1,13 @@
 ---
 title: CSS选择器性能损耗
-
+weight: 4
 
 ---
 
 CSS选择器对性能的影响源于浏览器匹配选择器和文档元素时所消耗的时间，所以优化选择器的原则是应尽量避免使用消耗更多匹配时间的选择器。而在这之前我们需要了解CSS选择器匹配的机制， 如子选择器规则：
-
-    <code>#header > a {font-weight:blod;}</code>
+```
+#header > a {font-weight:blod;}
+```
 
 我们中的大多数人都是从左到右的阅读习惯，会习惯性的设定浏览器也是从左到右的方式进行匹配规则，推测这条规则的开销并不高。
 
@@ -15,8 +16,9 @@ CSS选择器对性能的影响源于浏览器匹配选择器和文档元素时�
 事实上，却恰恰相反，CSS选择器是从右到左进行规则匹配。了解这个机制后，例子中看似高效的选择器在实际中的匹配开销是很高的，浏览器必须遍历页面中所有的 a 元素并且确定其父元素的 id 是否为 header 。
 
 如果把例子的子选择器改为后代选择器则会开销更多，在遍历页面中所有 a 元素后还需向其上级遍历直到根节点。
-
-    <code>#header a {font-weight:blod;}</code>
+```
+#header a {font-weight:blod;}
+```
 
 理解了CSS选择器从右到左匹配的机制后，明白只要当前选择符的左边还有其他选择符，样式系统就会继续向左移动，直到找到和规则匹配的选择符，或者因为不匹配而退出。我们把最右边选择符称之为关键选择器。
 
@@ -36,57 +38,63 @@ Google 资深web开发工程师 Steve Souders 对 CSS 选择器的执行效率�
 根据以上「选择器匹配」与「选择器执行效率」原则，我们可以通过避免不恰当的使用，提升 CSS 选择器性能。  
 1、避免使用通用选择器
 
-    <code>.content * {color: red;}</code>
+ ```
+ .content * {color: red;}
+ ```
 
 浏览器匹配文档中所有的元素后分别向上逐级匹配 class 为 content 的元素，直到文档的根节点。因此其匹配开销是非常大的，所以应避免使用关键选择器是通配选择器的情况。
 
 2、避免使用标签或 class 选择器限制 id 选择器
-
-    <code>BAD
-    button#backButton {…}
-    BAD
-    .menu-left#newMenuIcon {…}
-    GOOD
-    #backButton {…}
-    GOOD
-    #newMenuIcon {…}
-    </code>
+```
+BAD
+button#backButton {…}
+BAD
+.menu-left#newMenuIcon {…}
+GOOD
+#backButton {…}
+GOOD
+#newMenuIcon {…}
+```
 
 3、避免使用标签限制 class 选择器
 
-    <code>BAD
-    treecell.indented {…}
-    GOOD
-    .treecell-indented {…}
-    BEST
-    .hierarchy-deep {…}
-    </code>
+```
+BAD
+treecell.indented {…}
+GOOD
+.treecell-indented {…}
+BEST
+.hierarchy-deep {…}
+```
 
 4、避免使用多层标签选择器。使用 class 选择器替换，减少css查找
 
-    <code>BAD
-    treeitem[mailfolder="true"] > treerow > treecell {…}
-    GOOD
-    .treecell-mailfolder {…}
-    </code>
+```
+BAD
+treeitem[mailfolder="true"] > treerow > treecell {…}
+GOOD
+.treecell-mailfolder {…}
+```
 
 5、避免使用子选择器
 
-    <code>BAD
-    treehead treerow treecell {…}
-    BETTER, BUT STILL BAD
-    treehead > treerow > treecell {…}
-    GOOD
-    .treecell-header {…}
-    </code>
+```
+BAD
+treehead treerow treecell {…}
+BETTER, BUT STILL BAD
+treehead > treerow > treecell {…}
+GOOD
+.treecell-header {…}
+```
 
 6、使用继承
 
-    <code>BAD
-    #bookmarkMenuItem > .menu-left { list-style-image: url(blah) }
-    GOOD
-    #bookmarkMenuItem { list-style-image: url(blah) }
-    </code>
+```
+BAD
+#bookmarkMenuItem > .menu-left { list-style-image: url(blah) }
+GOOD
+#bookmarkMenuItem { list-style-image: url(blah) }
+```
 
 # 思考
 
@@ -103,4 +111,3 @@ Google 资深web开发工程师 Steve Souders 对 CSS 选择器的执行效率�
 「5」高性能CSS  
 「6」如何撰寫有效率的CSS選擇器
 
-### 谢谢！

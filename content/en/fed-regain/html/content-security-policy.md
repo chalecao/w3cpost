@@ -4,15 +4,10 @@ weight: 6
 
 ---
 ![](/images/posts/img_5bf6b08415258.webp)
-<div>
-  <div>
-    <p>
-      首先我们要知道web浏览器为了安全都有会<strong>同源限制</strong>，什么是同源限制？就是来自 <a href="https://link.jianshu.com?t=https://mybank.com" target="_blank" rel="nofollow noopener noreferrer">https://mybank.com</a> 的代码应仅能访问 <a href="https://link.jianshu.com?t=https://mybank.com" target="_blank" rel="nofollow noopener noreferrer">https://mybank.com</a> 的数据，而绝不被允许访问 <a href="https://link.jianshu.com?t=https://evil.example.com" target="_blank" rel="nofollow noopener noreferrer">https://evil.example.com</a>。同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据，比如cookie/locaStoragy/IndexDB就遵守同源限制。XMLHettpRequest也是存在同源限制，相信只要开发过web的同学在ajax获取数据时都遇到过这个问题。
-    </p>
-    
-    <p>
-      同源限制可以一定程度上限制我们的用户信息不会被盗取，但是却没法防止我们的页面被插入不法分子的资源（js，img，css等），毕竟页面上带src的元素资源是不受同源限制的。这些页面上的牛皮鲜让人很讨厌，影响是极其恶劣的：会让我们的js监控误报、会影响用户体验、甚至隐私泄露，所以我们需要对src资源也作出一定的限制，这就得Content-Security-Policy来了
-    </p>
+
+首先我们要知道web浏览器为了安全都有会<strong>同源限制</strong>，什么是同源限制？就是来自 <a href="https://link.jianshu.com?t=https://mybank.com" target="_blank" rel="nofollow noopener noreferrer">https://mybank.com</a> 的代码应仅能访问 <a href="https://link.jianshu.com?t=https://mybank.com" target="_blank" rel="nofollow noopener noreferrer">https://mybank.com</a> 的数据，而绝不被允许访问 <a href="https://link.jianshu.com?t=https://evil.example.com" target="_blank" rel="nofollow noopener noreferrer">https://evil.example.com</a>。同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据，比如cookie/locaStoragy/IndexDB就遵守同源限制。XMLHettpRequest也是存在同源限制，相信只要开发过web的同学在ajax获取数据时都遇到过这个问题。
+
+同源限制可以一定程度上限制我们的用户信息不会被盗取，但是却没法防止我们的页面被插入不法分子的资源（js，img，css等），毕竟页面上带src的元素资源是不受同源限制的。这些页面上的牛皮鲜让人很讨厌，影响是极其恶劣的：会让我们的js监控误报、会影响用户体验、甚至隐私泄露，所以我们需要对src资源也作出一定的限制，这就得Content-Security-Policy来了
     
 ## Content-Security-Policy
     

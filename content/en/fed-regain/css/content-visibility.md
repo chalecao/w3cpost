@@ -1,13 +1,12 @@
 ---
 title: content-visibility
-
+weight: 10
 ---
 该 [`content-visibility`][1] 属性在Chromium 85中启动，可能是影响页面加载性能的最具影响力的新CSS属性之一。`content-visibility`使用户代理可以跳过元素的渲染工作，包括布局和绘画，直到需要它为止。因为跳过了渲染，所以如果大部分内容不在屏幕上，则利用该`content-visibility`属性可使初始用户加载更快。它还允许与屏幕上的内容进行更快的交互。漂亮整齐。<figure class="w-figure">
 
-<img class="w-screenshot" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/09/demo.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/09/demo.jpg?x-oss-process=image/format,webp" alt="带有代表网络结果的数字的演示" /> <figcaption class="w-figcaption">在我们的文章演示中，应用于`content-visibility: auto`分块的内容区域可以使初始负载的渲染性能提高**7倍**。请继续阅读以了解更多信息。  
-精心打造全新课程，欢迎吐槽！反馈宝贵意见！</p>
+![](/images/posts/csscontentdemo.jpeg)
 
-在线视频课程：<a href="https://study.163.com/course/courseMain.htm?share=2&shareId=400000000351011&courseId=1209400904&_trace_c_p_k2_=d5106aa1758748cea6e733c4b1f29bbe" target="_blank" rel="noopener noreferrer">网易云课堂课程</a>      <a href="https://segmentfault.com/ls/1650000019681091" target="_blank" rel="noopener noreferrer">思否课堂</a></figcaption></figure>
+在我们的文章演示中，应用于`content-visibility: auto`分块的内容区域可以使初始负载的渲染性能提高**7倍**。请继续阅读以了解更多信息。  
 
 ## 浏览器支持<a class="w-headline-link" href="https://web.dev/content-visibility/#support" aria-hidden="true">＃</a> {#support}
 
@@ -26,7 +25,7 @@ CSS Containment的主要目标是通过提供**DOM子树**与页面其余部分�
 * `style`：样式包含可确保不仅对后代具有影响的属性不会逃脱元素（例如，计数器）。如果我们想要的只是在其他元素上计算样式，这使我们有可能跳过后代的样式计算。
 * `paint`：包含油漆可以确保容纳盒的后代不会显示在其边界之外。没有任何内容可以使元素明显溢出，并且如果元素在屏幕外或以其他方式不可见，则其后代也将不可见。如果元素不在屏幕上，这使我们有可能跳过绘画后代。
 
-## 使用<a class="w-headline-link" href="https://web.dev/content-visibility/#skipping-rendering-work-with-content-visibility" aria-hidden="true">＃</a>跳过渲染工作`content-visibility` {#skipping-rendering-work-with-content-visibility}
+## 使用content-visibility跳过渲染工作
 
 可能很难弄清楚要使用哪个包含值，因为只有在指定了适当的设置后，浏览器优化才能开始。您可以使用这些值来查看[最合适][5]的值，或者可以使用另一个CSS属性`content-visibility`来自动应用所需的包含。`content-visibility`确保开发人员以最小的努力获得最大的浏览器性能提升。
 
@@ -36,11 +35,9 @@ content-visibility属性可以接受多个值，但是`auto`可以立即提高�
 
 当元素接近视口时，浏览器不再添加`size` 围堵并开始绘制和命中测试元素的内容。这使得渲染工作能够及时完成以被用户看到。
 
-## 例如：旅游博客<a class="w-headline-link" href="https://web.dev/content-visibility/#example" aria-hidden="true">＃</a> {#example}<figure class="w-figure"><figcaption>
+## 例如：旅游博客
 
-<p id="JLFFKOa">
-  <img loading="lazy" width="1746" height="1098" class="alignnone size-full wp-image-5887 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/09/img_5f6b4692bbe81.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/09/img_5f6b4692bbe81.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/09/img_5f6b4692bbe81.png?x-oss-process=image/format,webp 1746w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/09/img_5f6b4692bbe81.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_189/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/09/img_5f6b4692bbe81.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_503/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/09/img_5f6b4692bbe81.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_483/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/09/img_5f6b4692bbe81.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_966/format,webp 1536w" sizes="(max-width: 1746px) 100vw, 1746px" />
-</p>
+![](/images/posts/img_5f6b4692bbe81.webp)
 
 在此示例中，我们将旅行博客的基线设置在右侧，并应用于`content-visibility: auto`左侧的大块区域。结果显示，在初始页面加载时，渲染时间从**232ms**变为**30ms**。</figcaption></figure>
 
@@ -52,7 +49,7 @@ content-visibility属性可以接受多个值，但是`auto`可以立即提高�
 
 在步骤2中，浏览器处理所有内容以查找可能已更改的内容。它会更新任何新元素的样式和布局，以及由于新更新而可能发生移动的元素。这是渲染工作。这需要时间。<figure class="w-figure">
 
-<img class="w-screenshot" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/09/travelblog.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/09/travelblog.jpg?x-oss-process=image/format,webp" alt="旅游博客的屏幕截图。" /> <figcaption class="w-figcaption">一个旅游博客的例子。参见[Codepen上的演示][8]</figcaption></figure>
+![](/images/posts/csscontentdemo.jpeg)
 
 现在考虑一下，如果您`content-visibility: auto`在博客中放置每个单独的故事，将会发生什么。一般循环是相同的：浏览器下载并呈现页面的大块。但是，不同之处在于它在步骤2中所做的工作量。
 
@@ -60,24 +57,20 @@ content-visibility属性可以接受多个值，但是`auto`可以立即提高�
 
 加载该页面的性能好象它包含完整的屏幕上的故事以及每个非屏幕上的故事的空白框。效果要好得多，可以_将_加载的渲染成本_降低50％或更多_。在我们的示例中，我们看到渲染时间从**232ms**提升到了 **30ms**。性能提升了**7倍**。
 
-为了获得这些好处，您需要做什么工作？首先，我们将内容分成几部分：<figure class="w-figure">
-
-<img class="w-screenshot" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/09/travelblog-chunked.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/09/travelblog-chunked.jpg?x-oss-process=image/format,webp" alt="带CSS类的将内容分块为部分的带注释的屏幕快照。" /> <figcaption class="w-figcaption">`story`应用 了类将内容分块为小节的示例，以接收`content-visibility: auto`。参见[Codepen上的演示][9]</figcaption></figure>
+为了获得这些好处，您需要做什么工作？首先，我们将内容分成几部分：
+- story应用 了类将内容分块为小节的示例，以接收content-visibility: auto。参见[Codepen](https://codepen.io/vmpstr/pen/xxZoyMb)上的演示
 
 然后，我们将以下样式规则应用于这些部分：
+```
+.story {
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px; /*Explained in the next section.*/
+}
+```
 
-<pre class="language-css"><code class="language-css">&lt;span class="token selector">.story&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token property">content-visibility&lt;/span>&lt;span class="token punctuation">:&lt;/span> auto&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token property">contain-intrinsic-size&lt;/span>&lt;span class="token punctuation">:&lt;/span> 1000px&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">/*Explained in the next section.*/&lt;/span>
-&lt;span class="token punctuation">}&lt;/span></code></pre>
+请注意，随着内容移入和移出可见性，它将根据需要开始和停止呈现。但是，这并不意味着浏览器将不得不一次又一次地渲染和重新渲染相同的内容，因为在可能的情况下会保存渲染工作。
 
-<div class="w-aside w-aside--note">
-  <p>
-    请注意，随着内容移入和移出可见性，它将根据需要开始和停止呈现。但是，这并不意味着浏览器将不得不一次又一次地渲染和重新渲染相同的内容，因为在可能的情况下会保存渲染工作。
-  </p>
-</div>
-
-### 用<a class="w-headline-link" href="https://web.dev/content-visibility/#specifying-the-natural-size-of-an-element-with-contain-intrinsic-size" aria-hidden="true">＃</a>指定元素的自然大小`contain-intrinsic-size` {#specifying-the-natural-size-of-an-element-with-contain-intrinsic-size}
+### 用contain-intrinsic-size指定元素的自然大小
 
 为了实现的潜在好处`content-visibility`，浏览器需要应用大小限制，以确保内容的呈现结果不会以任何方式影响元素的大小。这意味着该元素将布局为好像是空的。如果元素没有在常规块布局中指定的高度，则其高度为0。
 
@@ -87,7 +80,7 @@ content-visibility属性可以接受多个值，但是`auto`可以立即提高�
 
 这意味着它将进行布局，就好像它有一个“内在大小”尺寸的子项一样，从而确保未调整大小的div仍然占据空间。 `contain-intrinsic-size`充当占位符大小来代替呈现的内容。
 
-## 用<a class="w-headline-link" href="https://web.dev/content-visibility/#hiding-content-with-content-visibility:-hidden" aria-hidden="true">＃</a>隐藏内容`content-visibility: hidden` {#hiding-content-with-content-visibility:-hidden}
+## 用content-visibility: hidden隐藏内容
 
 如果要利用缓存的呈现状态的优点，使内容不呈现在屏幕上而又不呈现它怎么办？输入： `content-visibility: hidden`。
 
@@ -104,11 +97,7 @@ content-visibility属性可以接受多个值，但是`auto`可以立即提高�
 
 `content-visibility: hidden`在实现高级虚拟滚动条和测量布局时，一些很好的用例。
 
-精心打造全新课程，欢迎吐槽！反馈宝贵意见！
-
-在线视频课程：<a href="https://study.163.com/course/courseMain.htm?share=2&shareId=400000000351011&courseId=1209400904&_trace_c_p_k2_=d5106aa1758748cea6e733c4b1f29bbe" target="_blank" rel="noopener noreferrer">网易云课堂课程</a>      <a href="https://segmentfault.com/ls/1650000019681091" target="_blank" rel="noopener noreferrer">思否课堂</a>
-
-## 结论<a class="w-headline-link" href="https://web.dev/content-visibility/#conclusion" aria-hidden="true">＃</a> {#conclusion}
+## 结论
 
 `content-visibility`CSS包含规范意味着您的CSS文件将获得一些令人兴奋的性能提升。有关这些属性的更多信息，请签出：
 

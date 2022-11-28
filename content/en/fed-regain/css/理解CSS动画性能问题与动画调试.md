@@ -1,6 +1,6 @@
 ---
 title: 理解CSS动画性能问题与动画调试
-
+weight: 16
 ---
 你可能已经在一些项目中使用过CSS Animations 或者CSS Transitions（如果没有，可以到CSS-Trick上查阅相关的资料：<a href="http://css-tricks.com/almanac/properties/a/animation/" target="_blank" rel="nofollow noopener noreferrer">animations</a>&<a href="http://css-tricks.com/almanac/properties/t/transition/" target="_blank" rel="nofollow noopener noreferrer">transitions</a>）你所做的一些动画可能是平滑的，但其中有一部分可能会很不连贯。你想知道为什么吗？
 

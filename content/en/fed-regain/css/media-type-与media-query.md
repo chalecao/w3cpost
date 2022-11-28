@@ -1,6 +1,6 @@
 ---
 title: media type 与media query
-
+weight: 7
 ---
 **CSS link、@import共同点：**都是为了加载CSS文件。
 

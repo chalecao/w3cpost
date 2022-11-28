@@ -2,7 +2,6 @@
 title: HTML解析过程
 weight: 3
 ---
-欢迎学习前端知识体系课程，本系列属于：[前端增长教程][1]
 
 # 浏览器开始
 这个过程可以结合[NavigationTiming](https://www.w3.org/TR/navigation-timing/#sec-navigation-info-interface) 来理解。具体流程如下图：

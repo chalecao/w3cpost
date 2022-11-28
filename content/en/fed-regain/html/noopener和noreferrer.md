@@ -75,16 +75,22 @@ B页面(test.html)中添加如下的js代码来试图篡改A页面：
 
 如何解决？在Html链接中加入
 
-<pre id="3da3">rel="noopener"</pre>
+```
+rel="noopener"
+```
 
 注意，FireFox不支持noopener, 加入下面比较完整：
 
-<pre id="4f17">rel="noopener noreferrer"</pre>
+```
+rel="noopener noreferrer"
+```
 
 记住，每次你通过**window.open()**打开新窗口时也要注意漏洞泄漏，通常需要复位opener属性：
 
-<pre id="23ab">var newWnd = window.open();
-newWnd.opener = null;</pre>
+```
+var newWnd = window.open();
+newWnd.opener = null;
+```
 
 <h2>
     参考
