@@ -4,6 +4,9 @@
 - id: on-this-page
   translation: "On this page"
 
+- id: book-menu
+  translation: "Book Menu"
+
 - id: search-text
   translation: "Search docs..."
 

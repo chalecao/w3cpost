@@ -34,19 +34,45 @@
 #   weight = 10
 
 [[main]]
+  name = "初级入门"
+  weight = 1
+  identifier = "primary"
+
+[[main]]
+  name = "Git入门"
+  url = "/git/basic/introduction/"
+  weight = 9
+  parent = "primary"
+
+[[main]]
+  name = "JS入门"
+  url = "/js/basic/javascript介绍/"
+  weight = 8
+  parent = "primary"
+
+
+[[main]]
+  name = "进阶学习"
+  weight = 10
+  identifier = "advanced"
+
+[[main]]
   name = "前端增长"
   url = "/fed-regain/html/html发展历史/"
   weight = 10
+  parent = "advanced"
 
 [[main]]
   name = "3D图形"
   url = "/webgl/base/基础教程/"
   weight = 15
+  parent = "advanced"
 
 [[main]]
   name = "数据分析"
   url = "/bigdata/compute/机器学习基础了解/"
   weight = 15
+  parent = "advanced"
 
 # [[main]]
 #   name = "Tutorial"
@@ -57,12 +83,6 @@
   name = "博客"
   url = "/blog/"
   weight = 20
-
-# [[main]]
-#   name = "Get Started"
-#   weight = 30
-#   identifier = "get-started"
-#   url = "/docs/prologue/introduction/"
 
 # [[main]]
 #   name = "Quick Start"
