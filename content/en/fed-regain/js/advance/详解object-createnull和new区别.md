@@ -61,7 +61,7 @@ porsche.introduction();
   Object.create()、{…}的区别
 </h3>
 
-先看看我们经常使用的`{}`创建的对象是什么样子的：
+先看看[我们](https://www.w3cdoc.com)经常使用的`{}`创建的对象是什么样子的：
 
 <pre class="hljs bash"><code class="hljs bash copyable" lang="bash">var o = {a：1};
 console.log(o)
@@ -85,9 +85,9 @@ console.log(o)
 
 在chrome控制台打印如下：<img loading="lazy" width="213" height="57" class="alignnone size-full wp-image-4540 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7779e97a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7779e97a.png?x-oss-process=image/format,webp" alt="" />
 
-可以看到，新创建的对象除了自身属性a之外，原型链上没有任何属性，也就是没有继承Object的任何东西，此时如果我们调用`o.toString()`会报`Uncaught TypeError`的错误。
+可以看到，新创建的对象除了自身属性a之外，原型链上没有任何属性，也就是没有继承Object的任何东西，此时如果[我们](https://www.w3cdoc.com)调用`o.toString()`会报`Uncaught TypeError`的错误。
 
-大家可能会注意到，第一个参数使用了null。也就是说将null设置成了新创建对象的原型，自然就不会有原型链上的属性。我们再把上面的例子改一改：
+[大家](https://www.w3cdoc.com)可能会注意到，第一个参数使用了null。也就是说将null设置成了新创建对象的原型，自然就不会有原型链上的属性。[我们](https://www.w3cdoc.com)再把上面的例子改一改：
 
 <pre class="hljs bash"><code class="hljs bash copyable" lang="bash">var o = Object.create({},{
     a:{
@@ -101,9 +101,9 @@ console.log(o)
 
 将`null`改为`{}`，结果是怎样的？在chrome控制台打印如下：<img loading="lazy" width="395" height="293" class="alignnone size-full wp-image-4541 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7884db9f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7884db9f.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7884db9f.png?x-oss-process=image/format,webp 395w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7884db9f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_223/format,webp 300w" sizes="(max-width: 395px) 100vw, 395px" />
 
-我们看到，这样创建的对象和使用`{}`创建对象已经很相近了，但是还是有一点区别：多了一层`proto`嵌套。
+[我们](https://www.w3cdoc.com)看到，这样创建的对象和使用`{}`创建对象已经很相近了，但是还是有一点区别：多了一层`proto`嵌套。
 
-我们最后再来改一下：
+[我们](https://www.w3cdoc.com)最后再来改一下：
 
 <pre class="hljs bash"><code class="hljs bash copyable" lang="bash">var o = Object.create(Object.prototype,{
     a:{
@@ -117,7 +117,7 @@ console.log(o)
 
 chrome控制台打印如下：<img loading="lazy" width="377" height="276" class="alignnone size-full wp-image-4542 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c79ea4239.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c79ea4239.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c79ea4239.png?x-oss-process=image/format,webp 377w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c79ea4239.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_220/format,webp 300w" sizes="(max-width: 377px) 100vw, 377px" />
 
-这次就和使用`{}`创建的对象一模一样了。至此，我相信大家已经对两者的区别十分清楚了。
+这次就和使用`{}`创建的对象一模一样了。至此，我相信[大家](https://www.w3cdoc.com)已经对两者的区别十分清楚了。
 
 <h3 data-id="heading-2">
   Object.create(null)的使用场景
@@ -127,11 +127,11 @@ chrome控制台打印如下：<img loading="lazy" width="377" height="276" class
 
 其实都不是，这并不是作者不经思考随便用的，也不是javascript编程中的最佳实践，而是需要因地制宜，具体问题具体分析。
 
-我们进一步比较一下`Object.create(null)`和`{}`创建控对象的区别：
+[我们](https://www.w3cdoc.com)进一步比较一下`Object.create(null)`和`{}`创建控对象的区别：
 
 在chrome打印如下：<img loading="lazy" width="375" height="423" class="alignnone size-full wp-image-4543 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7e34e9e7.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7e34e9e7.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7e34e9e7.png?x-oss-process=image/format,webp 375w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7e34e9e7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_266,h_300/format,webp 266w" sizes="(max-width: 375px) 100vw, 375px" />
 
-从上图可以看到，使用`create`创建的对象，没有任何属性，显示`No properties`，我们可以把它当作一个非常**纯净**的map来使用，我们可以自己定义`hasOwnProperty`、`toString`方法，不管是有意还是不小心，我们完全不必担心会将原型链上的同名方法覆盖掉。举个例子：
+从上图可以看到，使用`create`创建的对象，没有任何属性，显示`No properties`，[我们](https://www.w3cdoc.com)可以把它当作一个非常**纯净**的map来使用，[我们](https://www.w3cdoc.com)可以自己定义`hasOwnProperty`、`toString`方法，不管是有意还是不小心，[我们](https://www.w3cdoc.com)完全不必担心会将原型链上的同名方法覆盖掉。举个例子：
 
 <pre class="hljs bash"><code class="hljs bash copyable" lang="bash">//Demo1:
 var a= {...省略很多属性和方法...};
@@ -149,7 +149,7 @@ var a=Object.create(null)
 &lt;span class="hljs-keyword">if&lt;/span>(a.toString){}
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
 
-另一个使用`create(null)`的理由是，在我们使用`for..in`循环的时候会遍历对象原型链上的属性，使用`create(null)`就不必再对属性进行检查了，当然，我们也可以直接使用`Object.keys[]`。
+另一个使用`create(null)`的理由是，在[我们](https://www.w3cdoc.com)使用`for..in`循环的时候会遍历对象原型链上的属性，使用`create(null)`就不必再对属性进行检查了，当然，[我们](https://www.w3cdoc.com)也可以直接使用`Object.keys[]`。
 
 <h3 data-id="heading-3">
   总结：
@@ -168,7 +168,7 @@ var a=Object.create(null)
 var o1 = new Base();
 var o2 = Object.create(Base);</pre>
 
-那这样到底有什么不一样呢？ 我们改一下看看结果
+那这样到底有什么不一样呢？ [我们](https://www.w3cdoc.com)改一下看看结果
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">var Base = function () {
     this.a = 2
@@ -207,7 +207,7 @@ o1和这种class 创建出来的对象没有区别的。
 
 * o2指向的原型是Function，为什么呢？
 
-一种理解是可以把function看成class，就如上面的例子用的BB。我们知道function和class可以看成原生类型Function的对象，因为可以用new Function()来创建函数
+一种理解是可以把function看成class，就如上面的例子用的BB。[我们](https://www.w3cdoc.com)知道function和class可以看成原生类型Function的对象，因为可以用new Function()来创建函数
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">var sum = new Function('a', 'b', 'return a + b');
 

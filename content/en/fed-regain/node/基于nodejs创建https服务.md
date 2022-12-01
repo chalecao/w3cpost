@@ -16,7 +16,7 @@ title: 基于Nodejs创建https服务
 
 ### [][3]HTTP和HTTPS介绍
 
-HTTP: 超文本传输协议 (HTTP-Hypertext transfer protocol) 是一种详细规定了浏览器和万维网服务器之间互相通信的规则，通过因特网传送万维网文档的数据传送协议。
+HTTP: 超文本传输协议 (HTTP-Hypertext transfer protocol) 是一种详细规定了[浏览器](https://www.w3cdoc.com)和万维网服务器之间互相通信的规则，通过因特网传送万维网文档的数据传送协议。
 
 HTTPS:（全称：Hypertext Transfer Protocol over Secure Socket Layer），是以安全为目标的HTTP通道，简单讲是HTTP的安全版。即HTTP下加入SSL层，HTTPS的安全基础是SSL，因此加密的详细内容就需要SSL。 它是一个URI scheme（抽象标识符体系），句法类同http:体系。用于安全的HTTP数据传输。https:URL表明它使用了HTTP，但HTTPS存在不同于HTTP的默认端口及一个加密/身份验证层（在HTTP与TCP之间）。这个系统的最初研发由网景公司进行，提供了身份验证与加密通讯方法，现在它被广泛用于万维网上安全敏感的通讯，例如交易支付方面。
 
@@ -29,7 +29,7 @@ HTTPS和HTTP的区别
 
 HTTP和HTTPS的介绍，摘自<a href="https://baike.baidu.com/view/14121.htm" target="_blank" rel="external">https://baike.baidu.com/view/14121.htm</a>
 
-在Nodejs中，我们可以通过内置的https库，来实现HTTPS服务器。
+在Nodejs中，[我们](https://www.w3cdoc.com)可以通过内置的https库，来实现HTTPS服务器。
 
 Nodejs的HTTPS使用文档：<a href="https://nodejs.org/api/https.html" target="_blank" rel="external">https://nodejs.org/api/https.html</a>
 
@@ -47,11 +47,11 @@ Nodejs的HTTPS使用文档：<a href="https://nodejs.org/api/https.html" target=
 
 HTTPS访问时会出出现下面的提示：  
 ![基于Nodejs创建https服务][8]  
-这个是因为我们自己生成的证书并不是认证过的，无法确定是合法有效的。
+这个是因为[我们](https://www.w3cdoc.com)自己生成的证书并不是认证过的，无法确定是合法有效的。
 
 ### [][9]抓取请求，验证加密
 
-为了验证数据在传输过程中是加密的，我们用wireshark抓取网络包。  
+为了验证数据在传输过程中是加密的，[我们](https://www.w3cdoc.com)用wireshark抓取网络包。  
 抓取HTTP请求：<a href="https://192.168.1.20/users?a=111" target="_blank" rel="external">https://192.168.1.20/users?a=111</a> ，结果如下：
 
 ![基于Nodejs创建https服务][10]  
@@ -73,7 +73,7 @@ HTTPS访问时会出出现下面的提示：
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/10/18/2014_https_node/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/10/18/2014_https_node/</a>
 
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/2014/10/18/2014_https_node/#为什么用https服务 "为什么用https服务"
  [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/httpsNode.png

@@ -300,22 +300,22 @@ console.log('end')
   
   <blockquote>
     <p>
-      那么针对这种异步的情况和实例p多次调用then方法，我们上述MyPromise该如何修改呢？
+      那么针对这种异步的情况和实例p多次调用then方法，[我们](https://www.w3cdoc.com)上述MyPromise该如何修改呢？
     </p>
   </blockquote>
   
   <ol>
     <li>
-      对于异步情况，我们先来看上面的例子，当代码执行到了p.then() 的时候，执行器方法中的resolve(&#8216;data1&#8217;)被setTimeout放到了异步任务队列中，
+      对于异步情况，[我们](https://www.w3cdoc.com)先来看上面的例子，当代码执行到了p.then() 的时候，执行器方法中的resolve(&#8216;data1&#8217;)被setTimeout放到了异步任务队列中，
     </li>
     <li>
-      换句话说，也就是，此时实例p的状态还是默认状态，没有改变，那么我们此时并不知道要去执行then中的第一个参数（成功回调）还是第二个参数（失败回调）。
+      换句话说，也就是，此时实例p的状态还是默认状态，没有改变，那么[我们](https://www.w3cdoc.com)此时并不知道要去执行then中的第一个参数（成功回调）还是第二个参数（失败回调）。
     </li>
     <li>
       在不知道哪个回调会被执行的情况下，就需要先把这两个回调函数保存起来，等到时机成熟，确定调用哪个函数的时候，再拿出来调用。
     </li>
     <li>
-      其实就是发布订阅的一个变种，我们在执行一次p.then(),就会then中的参数，也就是把成功回调和失败回调都保存起来（订阅），执行器执行了resolve方法或者reject方法时，我们去执行刚保存起来的函数（发布）。
+      其实就是发布订阅的一个变种，[我们](https://www.w3cdoc.com)在执行一次p.then(),就会then中的参数，也就是把成功回调和失败回调都保存起来（订阅），执行器执行了resolve方法或者reject方法时，[我们](https://www.w3cdoc.com)去执行刚保存起来的函数（发布）。
     </li>
   </ol>
   
@@ -349,7 +349,7 @@ MyPromise.prototype.then = function(onFulfilled, onRejected){
   
   <blockquote>
     <p>
-      小结 这样修改后，我们执行器方法中，有异步函数的情况时，p.then执行就会把对应的两个参数保存起来了。那么在什么时候调用呢？答，肯定是在执行器中的resolve执行时候或者reject执行时候。
+      小结 这样修改后，[我们](https://www.w3cdoc.com)执行器方法中，有异步函数的情况时，p.then执行就会把对应的两个参数保存起来了。那么在什么时候调用呢？答，肯定是在执行器中的resolve执行时候或者reject执行时候。
     </p>
   </blockquote>
   
@@ -410,7 +410,7 @@ MyPromise.prototype.then = function(onFulfilled, onRejected){
   
   <blockquote>
     <p>
-      我们来测试一下这个升级版的MyPrimise吧
+      [我们](https://www.w3cdoc.com)来测试一下这个升级版的MyPrimise吧
     </p>
   </blockquote>
   
@@ -500,7 +500,7 @@ console.log('end')
     </h4>
     
     <p>
-      1.对于回调函数 我们用Jquery的ajax获取数据时 都是以回调函数方式获取的数据
+      1.对于回调函数 [我们](https://www.w3cdoc.com)用Jquery的ajax获取数据时 都是以回调函数方式获取的数据
     </p>
     
     <pre class="line-numbers language-tsx"><code class=" language-tsx">$&lt;span class="token punctuation">.&lt;/span>&lt;span class="token keyword">get&lt;/span>&lt;span class="token punctuation">(&lt;/span>url&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">data&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -509,7 +509,7 @@ console.log('end')
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
 
     <p>
-      2.如果说 当我们需要发送多个异步请求 并且每个请求之间需要相互依赖 那这时 我们只能 以嵌套方式来解决 形成 &#8220;回调地狱&#8221;
+      2.如果说 当[我们](https://www.w3cdoc.com)需要发送多个异步请求 并且每个请求之间需要相互依赖 那这时 [我们](https://www.w3cdoc.com)只能 以嵌套方式来解决 形成 &#8220;回调地狱&#8221;
     </p>
     
     <pre class="line-numbers language-tsx"><code class=" language-tsx">$&lt;span class="token punctuation">.&lt;/span>&lt;span class="token keyword">get&lt;/span>&lt;span class="token punctuation">(&lt;/span>url&lt;span class="token punctuation">,&lt;/span> &lt;span class="token parameter">data1&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -546,7 +546,7 @@ console.log('end')
     </h4>
     
     <p>
-      1.而我们Promise 可以更直观的方式 来解决 &#8220;回调地狱&#8221;
+      1.而[我们](https://www.w3cdoc.com)Promise 可以更直观的方式 来解决 &#8220;回调地狱&#8221;
     </p>
     
     <pre class="line-numbers language-tsx"><code class=" language-tsx">&lt;span class="token keyword">const&lt;/span> &lt;span class="token function-variable function">request&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token parameter">url&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span> 
@@ -568,7 +568,7 @@ console.log('end')
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
 
     <p>
-      2.相信大家在 vue/react 都是用axios fetch 请求数据 也都支持 Promise API
+      2.相信[大家](https://www.w3cdoc.com)在 vue/react 都是用axios fetch 请求数据 也都支持 Promise API
     </p>
     
     <pre class="line-numbers language-jsx"><code class=" language-jsx">&lt;span class="token keyword">import&lt;/span> axios &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">'axios'&lt;/span>&lt;span class="token punctuation">;&lt;/span>
@@ -579,7 +579,7 @@ axios&lt;span class="token punctuation">.&lt;/span>&lt;span class="token functio
 
     <blockquote>
       <p>
-        Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。
+        Axios 是一个基于 promise 的 HTTP 库，可以用在[浏览器](https://www.w3cdoc.com)和 node.js 中。
       </p>
     </blockquote>
     
@@ -968,7 +968,7 @@ Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
     &lt;span class="token comment">// p1.then((value) =&gt; { // 此时p1.status 由pedding状态 =&gt; fulfilled状态&lt;/span>
     &lt;span class="token comment">//     console.log(value); // resolve&lt;/span>
     &lt;span class="token comment">//     // console.log(p1.status); // fulfilled&lt;/span>
-    &lt;span class="token comment">//     p1.then(value =&gt; { // 再次p1.then 这时已经为fulfilled状态 走的是fulfilled状态判断里的逻辑 所以我们也要确保判断里面onFuilled异步执行&lt;/span>
+    &lt;span class="token comment">//     p1.then(value =&gt; { // 再次p1.then 这时已经为fulfilled状态 走的是fulfilled状态判断里的逻辑 所以[我们](https://www.w3cdoc.com)也要确保判断里面onFuilled异步执行&lt;/span>
     &lt;span class="token comment">//         console.log(value); // 'resolve'&lt;/span>
     &lt;span class="token comment">//     });&lt;/span>
     &lt;span class="token comment">//     console.log('当前执行栈中同步代码');&lt;/span>

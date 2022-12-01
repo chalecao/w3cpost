@@ -7,7 +7,7 @@ title: chrome插件开发
 chrome extensions 中的通信交互：<https://www.cnblogs.com/experiments-of-ORLAN/p/3736511.html>
 
 <p class="postTitle">
-  Chrome浏览器扩展开发系列之十三：消息传递Message：<a href="https://www.cnblogs.com/champagne/p/4848520.html">https://www.cnblogs.com/champagne/p/4848520.html</a>
+  Chrome[浏览器](https://www.w3cdoc.com)扩展开发系列之十三：消息传递Message：<a href="https://www.cnblogs.com/champagne/p/4848520.html">https://www.cnblogs.com/champagne/p/4848520.html</a>
 </p>
 
 Where to read console messages from background.js in a Chrome extension?：
@@ -21,7 +21,7 @@ Chrome扩展开发常见问题汇总：<https://www.cnblogs.com/slmk/archive/201
 </p>
 
 <p class="postTitle">
-  Chrome浏览器扩展开发系列之十二：Content Scripts：<a href="https://www.cnblogs.com/champagne/p/4844682.html">https://www.cnblogs.com/champagne/p/4844682.html</a>
+  Chrome[浏览器](https://www.w3cdoc.com)扩展开发系列之十二：Content Scripts：<a href="https://www.cnblogs.com/champagne/p/4844682.html">https://www.cnblogs.com/champagne/p/4844682.html</a>
 </p>
 
 <p class="postTitle">
@@ -56,7 +56,7 @@ chrome.browserAction.onClicked.addListener(function (tab) {
 
 2. 是的chrome安装ID不变的技巧，但是如果发布到chrome 插件商店就不行了，有限制
 
-众所周知，在chrome插件开发中，插件的ID是chrome自动生成的全球唯一标记串。有了这个ID，我们在chrome store发布插件时，google就会为我们的插件创建一个唯一的url，用户可通过这个url下载或安装插件。
+众所周知，在chrome插件开发中，插件的ID是chrome自动生成的全球唯一标记串。有了这个ID，[我们](https://www.w3cdoc.com)在chrome store发布插件时，google就会为[我们](https://www.w3cdoc.com)的插件创建一个唯一的url，用户可通过这个url下载或安装插件。
 
 同时，这个ID也是chrome区别相同或不同插件的唯一指标。也就是说，即使是同样的插件名、一行不差的代码，如果拥有不同的ID，chrome也会认为他们是不一样的。
 

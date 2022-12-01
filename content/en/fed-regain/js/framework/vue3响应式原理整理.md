@@ -11,7 +11,7 @@ title: Vue3响应式原理整理
 * <a href="https://github.com/vuejs/vue/projects/6" rel="nofollow">Vue3 Roadmap & FAQ</a>
 * <a href="https://github.com/vuejs/vue-next/pulls?q=is%3Apr+is%3Amerged" rel="nofollow">Vue3仓库已经合并的780多个PR</a>
 * <a href="https://www.vuemastery.com/courses/vue3-deep-dive-with-evan-you/vue3-overview" rel="nofollow">尤大在Vue Mastery的Vue3课：Vue 3 Deep Dive with Evan You</a>
-* <a href="https://www.bilibili.com/video/BV1qC4y18721" rel="nofollow">202007 尤大在前端会客厅节目关于Vue3的访谈</a>
+* <a href="https://www.bilibili.com/video/BV1qC4y18721" rel="nofollow">202007 尤大在[前端](https://www.w3cdoc.com)会客厅节目关于Vue3的访谈</a>
 * <a href="https://increment.com/frontend/making-vue-3/" rel="nofollow">202005 The process: Making Vue 3</a>
 * <a href="https://www.bilibili.com/video/BV1Tg4y1z7FH" rel="nofollow">202004 尤大 &#8211; 聊聊 Vue.js 3.0 Beta 官方直播</a>
 * <a href="https://www.bilibili.com/video/BV1Et41197L4" rel="nofollow">2018 VueConf 杭州 尤大关于Vue3的演讲视频</a>

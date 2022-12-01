@@ -29,7 +29,7 @@ Service worker 最终要去解决这些问题。虽然 Service Worker 的语法�
 <pre class="pure-highlightjs"><code class="">"Content-Type", "application/x-javascript; charset=utf-8"
 </code></pre>
 
-那么浏览器就会按照js来解析，但是不影响注册SW。示例：
+那么[浏览器](https://www.w3cdoc.com)就会按照js来解析，但是不影响注册SW。示例：
 
 <pre class="pure-highlightjs"><code class="">&lt;script&gt;
     if ('serviceWorker' in navigator) {
@@ -336,7 +336,7 @@ maxAgeSeconds: &lt;span class="hljs-number">30&lt;/span>* &lt;span class="hljs-n
   
   <ul>
     <li>
-      前文也有介绍，service worker一旦被install，就永远存在；<code>如果有一天想要去除跑在浏览器背后的这个service worker线程，要手动去卸载</code>。所以在接入之前，我得先知道如何卸载service worker，留好后手：
+      前文也有介绍，service worker一旦被install，就永远存在；<code>如果有一天想要去除跑在[浏览器](https://www.w3cdoc.com)背后的这个service worker线程，要手动去卸载</code>。所以在接入之前，我得先知道如何卸载service worker，留好后手：
     </li>
   </ul>
   
@@ -344,7 +344,7 @@ maxAgeSeconds: &lt;span class="hljs-number">30&lt;/span>* &lt;span class="hljs-n
        navigator.serviceWorker.getRegistrations()
            .then(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">registrations&lt;/span>) &lt;/span>{
     &lt;span class="hljs-keyword">for&lt;/span>(&lt;span class="hljs-keyword">let&lt;/span> registration &lt;span class="hljs-keyword">of&lt;/span> registrations) {
-                     &lt;span class="hljs-comment">//安装在网页的service worker不止一个，找到我们的那个并删除&lt;/span>
+                     &lt;span class="hljs-comment">//安装在网页的service worker不止一个，找到[我们](https://www.w3cdoc.com)的那个并删除&lt;/span>
                     &lt;span class="hljs-keyword">if&lt;/span>(registration && registration.scope === &lt;span class="hljs-string">'https://seed.futunn.com/'&lt;/span>){
                         registration.unregister();
                     }
@@ -371,10 +371,10 @@ maxAgeSeconds: &lt;span class="hljs-number">30&lt;/span>* &lt;span class="hljs-n
     </li>
 
     <li>
-      比起浏览器的默认缓存功能，service woker的缓存功能赋予我们更强大地、更完善地控制缓存的能力。
+      比起[浏览器](https://www.w3cdoc.com)的默认缓存功能，service woker的缓存功能赋予[我们](https://www.w3cdoc.com)更强大地、更完善地控制缓存的能力。
     </li>
     <li>
-      这个东西其中一个不足在于，还没有很多浏览器支持service worker这个东西，苹果系统是从11.3才开始支持，所以直到现在，富途nn的app的webview、微信ios版的webview都还不支持service worker这个特性；在安卓上的支持更为广泛一些，所以这次在种子的优化上，安卓客户可以更好地感受到这个成效。
+      这个东西其中一个不足在于，还没有很多[浏览器](https://www.w3cdoc.com)支持service worker这个东西，苹果系统是从11.3才开始支持，所以直到现在，富途nn的app的webview、微信ios版的webview都还不支持service worker这个特性；在安卓上的支持更为广泛一些，所以这次在种子的优化上，安卓客户可以更好地感受到这个成效。
     </li>
   </ul>
 </div>

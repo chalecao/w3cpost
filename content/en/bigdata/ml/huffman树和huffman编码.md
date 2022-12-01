@@ -215,7 +215,7 @@ struct huffman_node&lt;span class="token punctuation">{&lt;/span>
   </div>
 </div>
 
-当构建好Huffman树后，我们分别利用先序遍历和中序遍历去遍历Huffman树，先序遍历的代码为：
+当构建好Huffman树后，[我们](https://www.w3cdoc.com)分别利用先序遍历和中序遍历去遍历Huffman树，先序遍历的代码为：
 
 <div class="code-toolbar">
   <pre class="prism-token token language-javascript line-numbers" tabindex="0" data-prismjs-copy="复制" data-prismjs-copy-success="复制成功" data-prismjs-copy-error="复制失败" data-prismjs-copy-timeout="3000"><code class="language-javascript">&lt;span class="token keyword">void&lt;/span> &lt;span class="token function">print_huffman_pre&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">huffman_node &lt;span class="token operator">*&lt;/span>node&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">{&lt;/span>
@@ -255,7 +255,7 @@ struct huffman_node&lt;span class="token punctuation">{&lt;/span>
 
 # 三、由Huffman树生成Huffman编码 {#%E4%B8%89%E3%80%81%E7%94%B1Huffman%E6%A0%91%E7%94%9F%E6%88%90Huffman%E7%BC%96%E7%A0%81}
 
-有了上述的Huffman树的结构，现在我们需要利用Huffman树对每一个字符编码，该编码又称为Huffman编码，Huffman编码是一种前缀编码，即一个字符的编码不是另一个字符编码的前缀。在这里约定：
+有了上述的Huffman树的结构，现在[我们](https://www.w3cdoc.com)需要利用Huffman树对每一个字符编码，该编码又称为Huffman编码，Huffman编码是一种前缀编码，即一个字符的编码不是另一个字符编码的前缀。在这里约定：
 
 <ul class="ul-level-0">
   <li>

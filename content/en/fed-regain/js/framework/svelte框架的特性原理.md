@@ -4,23 +4,23 @@ title: Svelte框架的特性原理
 
 ---
 <p data-first-child="" data-pid="vNhjQ2p1">
-  在这篇文章中，我们将会介绍 Svelte 框架的特性、优缺点和底层原理。
+  在这篇文章中，[我们](https://www.w3cdoc.com)将会介绍 Svelte 框架的特性、优缺点和底层原理。
 </p>
 
 <blockquote data-pid="Xw3Q096T">
   <p>
-    本文尽量不会涉及 Svelte 的语法，大家可以放心食用。因为 Svelte 的语法极其简单，而且官方教程学习曲线平缓<b><a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//www.sveltejs.cn/%25EF%25BC%258C" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">https://www.sveltejs.cn/，</a></b>相信大家很快就会上手语法的，这里就不做官网搬运工了。
+    本文尽量不会涉及 Svelte 的语法，[大家](https://www.w3cdoc.com)可以放心食用。因为 Svelte 的语法极其简单，而且官方教程学习曲线平缓<b><a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//www.sveltejs.cn/%25EF%25BC%258C" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">https://www.sveltejs.cn/，</a></b>相信[大家](https://www.w3cdoc.com)很快就会上手语法的，这里就不做官网搬运工了。
   </p>
 </blockquote>
 
 <p data-pid="vXSrHZVp">
-  前端领域是发展迅速，各种轮子层出不穷的行业。最近这些年，随着三大框架<code>React</code>、<code>Vue</code>、<code>Angular</code>版本逐渐稳定，前端技术栈的迭代似乎缓慢下来，React 16版本推出了 Fiber， Vue 3.0 也已经在襁褓之中。如果我们把目光拉伸到未来十年的视角，前端行业会出现哪些框架有可能会挑战<code>React</code>或者<code>Vue</code>呢？ 我们认为，崭露头角的 Svelte 应该是其中的选项之一。
+  [前端](https://www.w3cdoc.com)领域是发展迅速，各种轮子层出不穷的行业。最近这些年，随着三大框架<code>React</code>、<code>Vue</code>、<code>Angular</code>版本逐渐稳定，[前端](https://www.w3cdoc.com)技术栈的迭代似乎缓慢下来，React 16版本推出了 Fiber， Vue 3.0 也已经在襁褓之中。如果[我们](https://www.w3cdoc.com)把目光拉伸到未来十年的视角，[前端](https://www.w3cdoc.com)行业会出现哪些框架有可能会挑战<code>React</code>或者<code>Vue</code>呢？ [我们](https://www.w3cdoc.com)认为，崭露头角的 Svelte 应该是其中的选项之一。
 </p>
 
 ## **Svelte 简介**
 
 <p data-pid="Neid3_JQ">
-  <code>Svelte</code>叫法是<code>[Svelte]</code>, 本意是苗条纤瘦的，是一个新兴热门的前端框架。
+  <code>Svelte</code>叫法是<code>[Svelte]</code>, 本意是苗条纤瘦的，是一个新兴热门的[前端](https://www.w3cdoc.com)框架。
 </p><figure data-size="normal">
 
 <img class="content_image lazy" src="https://pic4.zhimg.com/80/v2-00a685814106e662c97cd6e46bb934df_720w.jpg" width="317" data-caption="" data-size="normal" data-rawwidth="317" data-rawheight="67" data-actualsrc="https://pic4.zhimg.com/v2-00a685814106e662c97cd6e46bb934df_b.jpg" data-lazy-status="ok" /> </figure>
@@ -54,7 +54,7 @@ title: Svelte框架的特性原理
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic4.zhimg.com/80/v2-35986caacbf12fd7ae0133b787edcd27_720w.jpg" width="2000" data-caption="" data-size="normal" data-rawwidth="2000" data-rawheight="1104" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-35986caacbf12fd7ae0133b787edcd27_r.jpg" data-actualsrc="https://pic4.zhimg.com/v2-35986caacbf12fd7ae0133b787edcd27_b.jpg" data-lazy-status="ok" /> </figure>
 
 <p data-pid="Mj7S6Pko">
-  2020年，Svelte 的市场占有率从第6名跃升到第4名，仅次于 React、Angular、Vue 老牌前端框架。
+  2020年，Svelte 的市场占有率从第6名跃升到第4名，仅次于 React、Angular、Vue 老牌[前端](https://www.w3cdoc.com)框架。
 </p>
 
 ## **svelte作者——Rich Harris**<figure data-size="normal">
@@ -62,7 +62,7 @@ title: Svelte框架的特性原理
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic3.zhimg.com/80/v2-b65bc6283e0395f348d5dd39c923c5d2_720w.jpg" width="1272" data-caption="" data-size="normal" data-rawwidth="1272" data-rawheight="568" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-b65bc6283e0395f348d5dd39c923c5d2_r.jpg" data-actualsrc="https://pic3.zhimg.com/v2-b65bc6283e0395f348d5dd39c923c5d2_b.jpg" data-lazy-status="ok" /> </figure>
 
 <p data-pid="_gNZBl0Z">
-  <code>Svelte</code>作者是前端轮子哥 Rich Harris，同时也是 Rollup 的作者。Rich Harris 作者本人在介绍 Svelte 时，有一个非常精彩的演讲《Rethinking reactivity》，油管连接<b><a class=" external" href="https://link.zhihu.com/?target=https%3A//www.youtube.com/watch%3Fv%3DAdNJ3fydeao%26t%3D1900s" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043"><span class="invisible">https://www.</span><span class="visible">youtube.com/watch?</span><span class="invisible">v=AdNJ3fydeao&t=1900s</span></a></b>，感兴趣的同学不要错过。
+  <code>Svelte</code>作者是[前端](https://www.w3cdoc.com)轮子哥 Rich Harris，同时也是 Rollup 的作者。Rich Harris 作者本人在介绍 Svelte 时，有一个非常精彩的演讲《Rethinking reactivity》，油管连接<b><a class=" external" href="https://link.zhihu.com/?target=https%3A//www.youtube.com/watch%3Fv%3DAdNJ3fydeao%26t%3D1900s" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043"><span class="invisible">https://www.</span><span class="visible">youtube.com/watch?</span><span class="invisible">v=AdNJ3fydeao&t=1900s</span></a></b>，感兴趣的同学不要错过。
 </p>
 
 <p data-pid="xm6dMVTb">
@@ -72,7 +72,7 @@ title: Svelte框架的特性原理
 ## **Svelte 优势有哪些**
 
 <p data-pid="35g2ZzWl">
-  我们先来看一下 Svelte 和React，Vue 相比，有哪些优势。
+  [我们](https://www.w3cdoc.com)先来看一下 Svelte 和React，Vue 相比，有哪些优势。
 </p>
 
 ## **No Runtime —— 无运行时代码**
@@ -88,7 +88,7 @@ title: Svelte框架的特性原理
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic2.zhimg.com/80/v2-bbcac6e31a65001047b00e1c8183530d_720w.jpg" width="754" data-caption="" data-size="normal" data-rawwidth="754" data-rawheight="1216" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-bbcac6e31a65001047b00e1c8183530d_r.jpg" data-actualsrc="https://pic2.zhimg.com/v2-bbcac6e31a65001047b00e1c8183530d_b.jpg" data-lazy-status="ok" /> </figure>
 
 <p data-pid="Sr9BKlgF">
-  常用的框架中，最小的<code>Vue</code>都有<code>58k</code>，<code>React</code>更有<code>97.5k</code>。 我们使用React开发一个小型组件，即使里面的逻辑代码很少，但是打包出来的bundle size轻轻松松都要100k起步。对于大型后台管理系统来说，100k 不算什么，但是对于特别注重用户端加载性能的场景来说，一个组件100k 多，还是太大了。
+  常用的框架中，最小的<code>Vue</code>都有<code>58k</code>，<code>React</code>更有<code>97.5k</code>。 [我们](https://www.w3cdoc.com)使用React开发一个小型组件，即使里面的逻辑代码很少，但是打包出来的bundle size轻轻松松都要100k起步。对于大型后台管理系统来说，100k 不算什么，但是对于特别注重用户端加载性能的场景来说，一个组件100k 多，还是太大了。
 </p>
 
 <p data-pid="Eo0yhLC7">
@@ -146,7 +146,7 @@ title: Svelte框架的特性原理
 </p>
 
 <p data-pid="fcXH6Z90">
-  在<code>React</code>中，我们要么使用<code>useState</code>钩子，要么使用<code>setState</code>设置状态。而在<code>Svelte</code>中，可以直接使用赋值操作符更新状态。
+  在<code>React</code>中，[我们](https://www.w3cdoc.com)要么使用<code>useState</code>钩子，要么使用<code>setState</code>设置状态。而在<code>Svelte</code>中，可以直接使用赋值操作符更新状态。
 </p>
 
 <p data-pid="ZBY41fPB">
@@ -168,7 +168,7 @@ title: Svelte框架的特性原理
 ## **Hight-Performance ——高性能**
 
 <p data-pid="6IgVVTCQ">
-  在<code>Virtual Dom</code>已经是前端框架标配的今天， Svelte 声称自己是没有<code>Virtual Dom</code>加持的， 怎么还能保证高性能呢？
+  在<code>Virtual Dom</code>已经是[前端](https://www.w3cdoc.com)框架标配的今天， Svelte 声称自己是没有<code>Virtual Dom</code>加持的， 怎么还能保证高性能呢？
 </p>
 
 <p data-pid="5Qc_l81m">
@@ -178,37 +178,37 @@ title: Svelte框架的特性原理
 ### **性能测评**
 
 <p data-pid="igo-TN6E">
-  Jacek Schae 在<b><a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//www.freecodecamp.org/news/a-realworld-comparison-of-front-end-frameworks-with-benchmarks-2019-update-4be0d3c78075/" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">《A RealWorld Comparison of Front-End Frameworks with Benchmarks》</a></b>中用主流的前端框架来编写 RealWorld 应用，使用 Chrome 的<b><a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//developers.google.com/web/tools/lighthouse/" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">Lighthouse Audit</a></b>测试性能，得出数据是<b>Svelte 略逊于Vue, 但好于 React。</b>
+  Jacek Schae 在<b><a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//www.freecodecamp.org/news/a-realworld-comparison-of-front-end-frameworks-with-benchmarks-2019-update-4be0d3c78075/" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">《A RealWorld Comparison of Front-End Frameworks with Benchmarks》</a></b>中用主流的[前端](https://www.w3cdoc.com)框架来编写 RealWorld 应用，使用 Chrome 的<b><a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//developers.google.com/web/tools/lighthouse/" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">Lighthouse Audit</a></b>测试性能，得出数据是<b>Svelte 略逊于Vue, 但好于 React。</b>
 </p><figure data-size="normal">
 
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic1.zhimg.com/80/v2-59f3e43db970d89aba23e45ed652bd94_720w.jpg" width="1408" data-caption="" data-size="normal" data-rawwidth="1408" data-rawheight="790" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-59f3e43db970d89aba23e45ed652bd94_r.jpg" data-actualsrc="https://pic1.zhimg.com/v2-59f3e43db970d89aba23e45ed652bd94_b.jpg" data-lazy-status="ok" /> </figure>
 
 <p data-pid="ytHUhDP3">
-  是不是很惊奇？ 另外一个前端框架性能对比的项目也给出了同样的答案。<b><a class=" external" href="https://link.zhihu.com/?target=https%3A//github.com/krausest/js-framework-benchmark" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043"><span class="invisible">https://</span><span class="visible">github.com/krausest/js-</span><span class="invisible">framework-benchmark</span></a></b>
+  是不是很惊奇？ 另外一个[前端](https://www.w3cdoc.com)框架性能对比的项目也给出了同样的答案。<b><a class=" external" href="https://link.zhihu.com/?target=https%3A//github.com/krausest/js-framework-benchmark" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043"><span class="invisible">https://</span><span class="visible">github.com/krausest/js-</span><span class="invisible">framework-benchmark</span></a></b>
 </p><figure data-size="normal">
 
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic1.zhimg.com/80/v2-6660221a88aef9ea247c4c6325ef02e4_720w.jpg" width="892" data-caption="" data-size="normal" data-rawwidth="892" data-rawheight="860" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-6660221a88aef9ea247c4c6325ef02e4_r.jpg" data-actualsrc="https://pic1.zhimg.com/v2-6660221a88aef9ea247c4c6325ef02e4_b.jpg" data-lazy-status="ok" /> </figure>
 
 <p data-pid="S8ckUrPM">
-  为什么 Svelte 性能还不错，至少没有我们预期的那么糟糕？我们接下来会在原理那一小结来介绍。
+  为什么 Svelte 性能还不错，至少没有[我们](https://www.w3cdoc.com)预期的那么糟糕？[我们](https://www.w3cdoc.com)接下来会在原理那一小结来介绍。
 </p>
 
 ## **Svelte 劣势**
 
 <p data-pid="Lqnx8Qst">
-  说完了 Svelte 的优势，我们也要考虑到 Svelte 的劣势。
+  说完了 Svelte 的优势，[我们](https://www.w3cdoc.com)也要考虑到 Svelte 的劣势。
 </p>
 
 ### **和Vue， React框架的对比**
 
 <p data-pid="zTKMqM5_">
-  在构建大型前端项目时，我们在选择框架的时候就需要考虑更多的事情。Svelte 目前尚处在起步阶段，对于大型项目必要的<b>单元测试</b>并没有完整的方案。目前在大型应用中使用 Svelte , 需要谨慎评。
+  在构建大型[前端](https://www.w3cdoc.com)项目时，[我们](https://www.w3cdoc.com)在选择框架的时候就需要考虑更多的事情。Svelte 目前尚处在起步阶段，对于大型项目必要的<b>单元测试</b>并没有完整的方案。目前在大型应用中使用 Svelte , 需要谨慎评。
 </p><figure data-size="normal">
 
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic3.zhimg.com/80/v2-f95c84a9ecd1d925129357a7ec9df76a_720w.jpg" width="1328" data-caption="" data-size="normal" data-rawwidth="1328" data-rawheight="698" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-f95c84a9ecd1d925129357a7ec9df76a_r.jpg" data-actualsrc="https://pic3.zhimg.com/v2-f95c84a9ecd1d925129357a7ec9df76a_b.jpg" data-lazy-status="ok" /> </figure>
 
 <p data-pid="ukFZPqgJ">
-  我们在用 Svelte 开发公司级别中大型项目时，也发现了其他的一些主要注意的点
+  [我们](https://www.w3cdoc.com)在用 Svelte 开发公司级别中大型项目时，也发现了其他的一些主要注意的点
 </p>
 
 <li data-pid="w20f3fSh">
@@ -230,17 +230,17 @@ title: Svelte框架的特性原理
 </li>
 
 <p data-pid="ha-6sc5Q">
-  还需要注意的一点是，React / Vue等框架自带的<code>runtime</code>虽然会增加首屏加载的<code>bundle.js</code>，可是当项目变得越来越大的时候，框架的<code>runtime</code>在<code>bundle.js</code>里面占据的比例也会越来越小，这个时候我们就得考虑一下是不是存在一个Svelte生成的代码大于React和Vue生成的代码的阈值了。
+  还需要注意的一点是，React / Vue等框架自带的<code>runtime</code>虽然会增加首屏加载的<code>bundle.js</code>，可是当项目变得越来越大的时候，框架的<code>runtime</code>在<code>bundle.js</code>里面占据的比例也会越来越小，这个时候[我们](https://www.w3cdoc.com)就得考虑一下是不是存在一个Svelte生成的代码大于React和Vue生成的代码的阈值了。
 </p>
 
 ## **原理篇**
 
 <p data-pid="jACezrQs">
-  Svelte 原理相对于 React 和 Vue 来说，相对比较简单，大家可以放心的往下看。
+  Svelte 原理相对于 React 和 Vue 来说，相对比较简单，[大家](https://www.w3cdoc.com)可以放心的往下看。
 </p>
 
 <p data-pid="wwql_pBz">
-  首先，我们从一个问题出发：
+  首先，[我们](https://www.w3cdoc.com)从一个问题出发：
 </p>
 
 ### **Virtual Dom 真的高效吗**
@@ -254,7 +254,7 @@ title: Svelte框架的特性原理
 </p>
 
 <p data-pid="G_ZbRQ_V">
-  人们觉得 Virtual DOM高效的一个理由，就是它不会直接操作原生的DOM节点。<b>在浏览器当中，JavaScript的运算在现代的引擎中非常快，但DOM本身是非常缓慢的东西</b>。当你调用原生DOM API的时候，浏览器需要在JavaScript引擎的语境下去接触原生的DOM的实现，这个过程有相当的性能损耗。
+  人们觉得 Virtual DOM高效的一个理由，就是它不会直接操作原生的DOM节点。<b>在[浏览器](https://www.w3cdoc.com)当中，JavaScript的运算在现代的引擎中非常快，但DOM本身是非常缓慢的东西</b>。当你调用原生DOM API的时候，[浏览器](https://www.w3cdoc.com)需要在JavaScript引擎的语境下去接触原生的DOM的实现，这个过程有相当的性能损耗。
 </p>
 
 <p data-pid="1jOAQZBH">
@@ -288,7 +288,7 @@ title: Svelte框架的特性原理
 ### **Template 带来的优势**
 
 <p data-pid="jKMlgBE1">
-  关于 JSX 与 Templates ，可以看成是两种不同的前端框架渲染机制，有兴趣的同学可以翻一下尤雨溪的演讲《在框架设计中寻求平衡》。<b><a class=" external" href="https://link.zhihu.com/?target=https%3A//www.bilibili.com/video/av80042358/" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043"><span class="invisible">https://www.</span><span class="visible">bilibili.com/video/av80</span><span class="invisible">042358/</span></a></b>
+  关于 JSX 与 Templates ，可以看成是两种不同的[前端](https://www.w3cdoc.com)框架渲染机制，有兴趣的同学可以翻一下尤雨溪的演讲《在框架设计中寻求平衡》。<b><a class=" external" href="https://link.zhihu.com/?target=https%3A//www.bilibili.com/video/av80042358/" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043"><span class="invisible">https://www.</span><span class="visible">bilibili.com/video/av80</span><span class="invisible">042358/</span></a></b>
 </p>
 
 <p data-pid="Ysdk1fMZ">
@@ -336,17 +336,17 @@ title: Svelte框架的特性原理
 </p>
 
 <p data-pid="yuwt7UkQ">
-  右侧 p 函数是编译生成的最终的产物，是原生的js可以直接运行在浏览器里，会在有脏数据时被调用。p 函数唯一做的事情就是，当 name 发生变更的时候，调用原生方法把 t1 这个原生DOM节点更新。 这里的 set_data 可不是 React 的 setState 或者小程序的 setData ，这里的set_data 就是封装的原生的 javascript 操作DOM 节点的方法。
+  右侧 p 函数是编译生成的最终的产物，是原生的js可以直接运行在[浏览器](https://www.w3cdoc.com)里，会在有脏数据时被调用。p 函数唯一做的事情就是，当 name 发生变更的时候，调用原生方法把 t1 这个原生DOM节点更新。 这里的 set_data 可不是 React 的 setState 或者小程序的 setData ，这里的set_data 就是封装的原生的 javascript 操作DOM 节点的方法。
 </p><figure data-size="normal">
 
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic3.zhimg.com/80/v2-129e5aac3495601794a43d3b7d301e4e_720w.jpg" width="1198" data-caption="" data-size="normal" data-rawwidth="1198" data-rawheight="392" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-129e5aac3495601794a43d3b7d301e4e_r.jpg" data-actualsrc="https://pic3.zhimg.com/v2-129e5aac3495601794a43d3b7d301e4e_b.jpg" data-lazy-status="ok" /> </figure>
 
 <p data-pid="GxeN6jUj">
-  如果我们仔细观察上面的代码，发现问题的关键在于 if 语句的判断条件——<code>changed.name</code>， 表示有哪些变量被更新了，这些被更新的变量被称为脏数据。
+  如果[我们](https://www.w3cdoc.com)仔细观察上面的代码，发现问题的关键在于 if 语句的判断条件——<code>changed.name</code>， 表示有哪些变量被更新了，这些被更新的变量被称为脏数据。
 </p>
 
 <p data-pid="ntJZdlH3">
-  任何一个现代前端框架，都需要记住哪些<b>数据更新</b>了，根据更新后的数据渲染出最新的DOM
+  任何一个现代[前端](https://www.w3cdoc.com)框架，都需要记住哪些<b>数据更新</b>了，根据更新后的数据渲染出最新的DOM
 </p>
 
 ## **Svelte 记录脏数据的方式： 位掩码（bitMask）**
@@ -400,15 +400,15 @@ title: Svelte框架的特性原理
 ## **一探究竟`component.$.dirty`**
 
 <p data-pid="-hoZbGOr">
-  上文中，我们说到<code>component.$.dirty</code>是数组，具体这个数组长什么样呢？
+  上文中，[我们](https://www.w3cdoc.com)说到<code>component.$.dirty</code>是数组，具体这个数组长什么样呢？
 </p>
 
 <p data-pid="VG35ySDs">
-  我们模拟一个 Svelte 组件，这个 Svelte 组件会修改33个数据。
+  [我们](https://www.w3cdoc.com)模拟一个 Svelte 组件，这个 Svelte 组件会修改33个数据。
 </p>
 
 <p data-pid="sfrtQlXr">
-  <b>我们打印出每一次<code>make_dirty</code>之后的<code>component.$.dirty</code>， 为了方便演示，转化为二进制打印出来，如下面所示：</b>
+  <b>[我们](https://www.w3cdoc.com)打印出每一次<code>make_dirty</code>之后的<code>component.$.dirty</code>， 为了方便演示，转化为二进制打印出来，如下面所示：</b>
 </p><figure data-size="normal">
 
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic2.zhimg.com/80/v2-f4294b841b122f3acac671205ae365f1_720w.jpg" width="710" data-caption="" data-size="normal" data-rawwidth="710" data-rawheight="724" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-f4294b841b122f3acac671205ae365f1_r.jpg" data-actualsrc="https://pic2.zhimg.com/v2-f4294b841b122f3acac671205ae365f1_b.jpg" data-lazy-status="ok" /> </figure>
@@ -432,13 +432,13 @@ title: Svelte框架的特性原理
 </p>
 
 <p data-pid="TUECF35l">
-  这样，我们就可以通过<code>component.$.dirty</code>这个数组，清楚的知道有哪些数据发生了变化。那么具体应该更新哪些DOM 节点呢？
+  这样，[我们](https://www.w3cdoc.com)就可以通过<code>component.$.dirty</code>这个数组，清楚的知道有哪些数据发生了变化。那么具体应该更新哪些DOM 节点呢？
 </p>
 
 ## **数据和DOM节点之间的对应关系**
 
 <p data-pid="o39XLuBa">
-  我们都知道， React 和 Vue 是通过 Virtual Dom 进行 diff 来算出来更新哪些 DOM 节点效率最高。Svelte 是在编译时候，就记录了数据 和 DOM 节点之间的对应关系，并且保存在 p 函数中。
+  [我们](https://www.w3cdoc.com)都知道， React 和 Vue 是通过 Virtual Dom 进行 diff 来算出来更新哪些 DOM 节点效率最高。Svelte 是在编译时候，就记录了数据 和 DOM 节点之间的对应关系，并且保存在 p 函数中。
 </p><figure data-size="normal">
 
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic2.zhimg.com/80/v2-be89c8374e80df2655494420c794e229_720w.jpg" width="1460" data-caption="" data-size="normal" data-rawwidth="1460" data-rawheight="652" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-be89c8374e80df2655494420c794e229_r.jpg" data-actualsrc="https://pic2.zhimg.com/v2-be89c8374e80df2655494420c794e229_b.jpg" data-lazy-status="ok" /> </figure>
@@ -458,13 +458,13 @@ title: Svelte框架的特性原理
 </div>
 
 <p data-pid="73IQL5Fg">
-  为了更加直观的理解，我们模拟更新一下33个数据的组件，编译得到的<code>p 函数</code>打印出来，如：
+  为了更加直观的理解，[我们](https://www.w3cdoc.com)模拟更新一下33个数据的组件，编译得到的<code>p 函数</code>打印出来，如：
 </p><figure data-size="normal">
 
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic4.zhimg.com/80/v2-8f73cfb2b4913276ad5394a181986aeb_720w.jpg" width="960" data-caption="" data-size="normal" data-rawwidth="960" data-rawheight="1074" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-8f73cfb2b4913276ad5394a181986aeb_r.jpg" data-actualsrc="https://pic4.zhimg.com/v2-8f73cfb2b4913276ad5394a181986aeb_b.jpg" data-lazy-status="ok" /> </figure>
 
 <p data-pid="QGQZhDZA">
-  我们会发现，里面就是一大堆<code>if</code>判断，但是<code>if</code>判断条件比较有意思，我们从上面摘取一行仔细观察一下：
+  [我们](https://www.w3cdoc.com)会发现，里面就是一大堆<code>if</code>判断，但是<code>if</code>判断条件比较有意思，[我们](https://www.w3cdoc.com)从上面摘取一行仔细观察一下：
 </p><figure data-size="normal">
 
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic3.zhimg.com/80/v2-4b4c614699c06957b6cf01ea4991da96_720w.jpg" width="1208" data-caption="" data-size="normal" data-rawwidth="1208" data-rawheight="636" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-4b4c614699c06957b6cf01ea4991da96_r.jpg" data-actualsrc="https://pic3.zhimg.com/v2-4b4c614699c06957b6cf01ea4991da96_b.jpg" data-lazy-status="ok" /> </figure>
@@ -474,7 +474,7 @@ title: Svelte框架的特性原理
 </p>
 
 <p data-pid="heXp6cdz">
-  <b>这里的<code>if</code>判断条件是：拿<code>compoenent.$.dirty[0]</code>(<code>00000000000000000000000000000100</code>)和<code>4</code>（4 转变为二进制是<code>0000 0100</code>）做<code>按位并</code>操作。那么我们可以思考一下了，这个<code>按位并</code>操作什么时候会返回<code>1</code>呢？</b>
+  <b>这里的<code>if</code>判断条件是：拿<code>compoenent.$.dirty[0]</code>(<code>00000000000000000000000000000100</code>)和<code>4</code>（4 转变为二进制是<code>0000 0100</code>）做<code>按位并</code>操作。那么[我们](https://www.w3cdoc.com)可以思考一下了，这个<code>按位并</code>操作什么时候会返回<code>1</code>呢？</b>
 </p>
 
 <p data-pid="FlWatJVG">
@@ -482,11 +482,11 @@ title: Svelte框架的特性原理
 </p>
 
 <p data-pid="_c-607Em">
-  当我们分析到这里，已经看出了一些眉目，让我们站在更高的一个层次去看待这 30多行代码：<b>它们其实是保存了这33个变量 和 真实DOM 节点之间的对应关系，哪些变量脏了，Svelte 会走入不同的<code>if</code>体内直接更新对应的DOM节点，而不需要复杂 Virtual DOM DIFF 算出更新哪些DOM节点</b>；
+  当[我们](https://www.w3cdoc.com)分析到这里，已经看出了一些眉目，让[我们](https://www.w3cdoc.com)站在更高的一个层次去看待这 30多行代码：<b>它们其实是保存了这33个变量 和 真实DOM 节点之间的对应关系，哪些变量脏了，Svelte 会走入不同的<code>if</code>体内直接更新对应的DOM节点，而不需要复杂 Virtual DOM DIFF 算出更新哪些DOM节点</b>；
 </p>
 
 <p data-pid="B_ypgQdy">
-  <b>这 30多行代码，是Svelte 编译了我们写的Svelte 组件之后的产物，在Svelte 编译时，就已经分析好了，数据 和 DOM 节点之间的对应关系，在数据发生变化时，可以非常高效的来更新DOM节点。</b>
+  <b>这 30多行代码，是Svelte 编译了[我们](https://www.w3cdoc.com)写的Svelte 组件之后的产物，在Svelte 编译时，就已经分析好了，数据 和 DOM 节点之间的对应关系，在数据发生变化时，可以非常高效的来更新DOM节点。</b>
 </p>
 
 <p data-pid="hic8bQya">
@@ -496,7 +496,7 @@ title: Svelte框架的特性原理
 ## **整体流程**
 
 <p data-pid="gjOIXvG9">
-  上面就是Svelte 最核心更新DOM机制，下面我们串起来整个的流程。
+  上面就是Svelte 最核心更新DOM机制，下面[我们](https://www.w3cdoc.com)串起来整个的流程。
 </p>
 
 <p data-pid="gpzqgopS">
@@ -506,19 +506,19 @@ title: Svelte框架的特性原理
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic1.zhimg.com/80/v2-68c7d2b9d78a77ea31d20fbd28d94840_720w.jpg" width="854" data-caption="" data-size="normal" data-rawwidth="854" data-rawheight="768" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-68c7d2b9d78a77ea31d20fbd28d94840_r.jpg" data-actualsrc="https://pic1.zhimg.com/v2-68c7d2b9d78a77ea31d20fbd28d94840_b.jpg" data-lazy-status="ok" /> </figure>
 
 <p data-pid="ia9u_R5e">
-  上面代码背后的整体流程如下图所示，我们一步一步来看：
+  上面代码背后的整体流程如下图所示，[我们](https://www.w3cdoc.com)一步一步来看：
 </p><figure data-size="normal">
 
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic1.zhimg.com/80/v2-cac9bc811261caf14db1adf45590e408_720w.jpg" width="1342" data-caption="" data-size="normal" data-rawwidth="1342" data-rawheight="676" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-cac9bc811261caf14db1adf45590e408_r.jpg" data-actualsrc="https://pic1.zhimg.com/v2-cac9bc811261caf14db1adf45590e408_b.jpg" data-lazy-status="ok" /> </figure>
 
 <p data-pid="ks-sTFMe">
-  第一步，Svelte 会编译我们的代码，下图中左边是我们的源码，右边是 Svelte 编译生成的。Svelte 在编译过程中发现，『咦，这里有一行代码 name 被重新赋值了，我要插入一条<code>make_dirty</code>的调用』，于是当我们改写 name 变量的时候，就会调用<code>make_dirty</code>方法把 name 记为脏数据。
+  第一步，Svelte 会编译[我们](https://www.w3cdoc.com)的代码，下图中左边是[我们](https://www.w3cdoc.com)的源码，右边是 Svelte 编译生成的。Svelte 在编译过程中发现，『咦，这里有一行代码 name 被重新赋值了，我要插入一条<code>make_dirty</code>的调用』，于是当[我们](https://www.w3cdoc.com)改写 name 变量的时候，就会调用<code>make_dirty</code>方法把 name 记为脏数据。
 </p><figure data-size="normal">
 
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic1.zhimg.com/80/v2-63e5041713ae22daf97e3caacd25b180_720w.jpg" width="1432" data-caption="" data-size="normal" data-rawwidth="1432" data-rawheight="712" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-63e5041713ae22daf97e3caacd25b180_r.jpg" data-actualsrc="https://pic1.zhimg.com/v2-63e5041713ae22daf97e3caacd25b180_b.jpg" data-lazy-status="ok" /> </figure>
 
 <p data-pid="plhq6f0n">
-  第二步，我们来看<code>make_diry</code>方法究竟做了什么事情：
+  第二步，[我们](https://www.w3cdoc.com)来看<code>make_diry</code>方法究竟做了什么事情：
 </p>
 
 <li data-pid="5_avixhy">
@@ -550,7 +550,7 @@ title: Svelte框架的特性原理
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic2.zhimg.com/80/v2-1f7df2f9d8e6202d1bfff8ae183ae7dd_720w.jpg" width="962" data-caption="" data-size="normal" data-rawwidth="962" data-rawheight="710" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-1f7df2f9d8e6202d1bfff8ae183ae7dd_r.jpg" data-actualsrc="https://pic2.zhimg.com/v2-1f7df2f9d8e6202d1bfff8ae183ae7dd_b.jpg" data-lazy-status="ok" /> </figure>
 
 <p data-pid="r3DFy3J3">
-  <code>update</code>方法除了执行一些生命周期的方法外，最核心的一行代码是调用<code>p</code>方法，<code>p</code>方法我们已经在上文中介绍过很熟悉了。
+  <code>update</code>方法除了执行一些生命周期的方法外，最核心的一行代码是调用<code>p</code>方法，<code>p</code>方法[我们](https://www.w3cdoc.com)已经在上文中介绍过很熟悉了。
 </p><figure data-size="normal">
 
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic1.zhimg.com/80/v2-a9932b159eb075ecb0aff88be45ede08_720w.jpg" width="1058" data-caption="" data-size="normal" data-rawwidth="1058" data-rawheight="714" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-a9932b159eb075ecb0aff88be45ede08_r.jpg" data-actualsrc="https://pic1.zhimg.com/v2-a9932b159eb075ecb0aff88be45ede08_b.jpg" data-lazy-status="ok" /> </figure>
@@ -562,7 +562,7 @@ title: Svelte框架的特性原理
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic3.zhimg.com/80/v2-e13ff8f6d1bf2b990904246f838d5fde_720w.jpg" width="1302" data-caption="" data-size="normal" data-rawwidth="1302" data-rawheight="762" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-e13ff8f6d1bf2b990904246f838d5fde_r.jpg" data-actualsrc="https://pic3.zhimg.com/v2-e13ff8f6d1bf2b990904246f838d5fde_b.jpg" data-lazy-status="ok" /> </figure>
 
 <p data-pid="tqavuX8T">
-  至此，我们的页面的DOM节点就已经更新好了。
+  至此，[我们](https://www.w3cdoc.com)的页面的DOM节点就已经更新好了。
 </p>
 
 <blockquote data-pid="64tDoLhd">
@@ -582,9 +582,9 @@ title: Svelte框架的特性原理
 ## **总结**
 
 <p data-pid="GhFBlM__">
-  一个前端框架，不管是<code>vue</code>还是<code>react</code>更新了数据之后，需要考虑更新哪个dom节点，也就是，需要知道，脏数据和待更新的真实dom之间的映射。vue, react 是通过 virtualDom 来 diff 计算出更新哪些dom节点更划算，而<code>svelte</code>dom 是把数据和真实dom之间的映射关系，在编译的时候就通过AST等算出来，保存在<code>p</code>函数中。
+  一个[前端](https://www.w3cdoc.com)框架，不管是<code>vue</code>还是<code>react</code>更新了数据之后，需要考虑更新哪个dom节点，也就是，需要知道，脏数据和待更新的真实dom之间的映射。vue, react 是通过 virtualDom 来 diff 计算出更新哪些dom节点更划算，而<code>svelte</code>dom 是把数据和真实dom之间的映射关系，在编译的时候就通过AST等算出来，保存在<code>p</code>函数中。
 </p>
 
 <p data-pid="sgbQ2kFm">
-  Svelte 作为新兴的前端框架，采用了和 React， Vue 不同的设计思路，其独特的特性在某些场景下还是很值得尝试的。
+  Svelte 作为新兴的[前端](https://www.w3cdoc.com)框架，采用了和 React， Vue 不同的设计思路，其独特的特性在某些场景下还是很值得尝试的。
 </p>

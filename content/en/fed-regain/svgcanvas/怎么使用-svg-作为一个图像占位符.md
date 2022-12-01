@@ -17,7 +17,7 @@ title: 怎么使用 SVG 作为一个图像占位符
   </p>
   
   <p>
-    在这篇文章中我们将涉及如下的主题：
+    在这篇文章中[我们](https://www.w3cdoc.com)将涉及如下的主题：
   </p>
   
   <ul>
@@ -50,10 +50,10 @@ title: 怎么使用 SVG 作为一个图像占位符
   
   <ul>
     <li>
-      在图像区域保持空白：在一个响应式设计的环境中，这种方式防止了内容的跳跃。从用户体验的角度来看，那些布局的改变是非常差的作法。但是，它是为了性能的考虑，否则，每次为了获取图像尺寸，浏览器就要被迫进行布局重新计算，以便为它留下空间。
+      在图像区域保持空白：在一个响应式设计的环境中，这种方式防止了内容的跳跃。从用户体验的角度来看，那些布局的改变是非常差的作法。但是，它是为了性能的考虑，否则，每次为了获取图像尺寸，[浏览器](https://www.w3cdoc.com)就要被迫进行布局重新计算，以便为它留下空间。
     </li>
     <li>
-      占位符：在图像那里显示一个用户配置的图像。我们可以在背景上显示一个轮廓。它一直显示直到实际的图像被加载完成，它也被用于当请求失败或者当用户根本没有设置头像图像的情况下。这些图像一般都是矢量图，并且由于尺寸非常小，可以作为内联图片。
+      占位符：在图像那里显示一个用户配置的图像。[我们](https://www.w3cdoc.com)可以在背景上显示一个轮廓。它一直显示直到实际的图像被加载完成，它也被用于当请求失败或者当用户根本没有设置头像图像的情况下。这些图像一般都是矢量图，并且由于尺寸非常小，可以作为内联图片。
     </li>
     <li>
       单一颜色：从图像中获取颜色，并将其作为占位符的背景颜色。这可能是图像的主要颜色、最具活力的颜色 … 这个想法是基于你正在加载的图像，并且它将有助于在没有图像和图像加载完成之间进行平滑过渡。
@@ -88,7 +88,7 @@ title: 怎么使用 SVG 作为一个图像占位符
   </h3>
   
   <p>
-    我们知道 SVG 是完美的矢量图像。而在大多数情况下我们是希望加载一个位图，所以，问题是怎么去矢量化一个图像。其中一些方法是使用边缘、形状和轮廓。
+    [我们](https://www.w3cdoc.com)知道 SVG 是完美的矢量图像。而在大多数情况下[我们](https://www.w3cdoc.com)是希望加载一个位图，所以，问题是怎么去矢量化一个图像。其中一些方法是使用边缘、形状和轮廓。
   </p>
   
   <h4>
@@ -113,7 +113,7 @@ title: 怎么使用 SVG 作为一个图像占位符
   
   <blockquote>
     <p>
-      在以前，很少使用和支持 SVG。一段时间以后，我们开始用它去作为一个某些图标的传统位图的替代品……
+      在以前，很少使用和支持 SVG。一段时间以后，[我们](https://www.w3cdoc.com)开始用它去作为一个某些图标的传统位图的替代品……
     </p>
   </blockquote>
   
@@ -122,7 +122,7 @@ title: 怎么使用 SVG 作为一个图像占位符
   </h4>
   
   <p>
-    SVG 也可以用于根据图像绘制区域而不是边缘/边界。用这种方法，我们可以矢量化一个位图来创建一个占位符。
+    SVG 也可以用于根据图像绘制区域而不是边缘/边界。用这种方法，[我们](https://www.w3cdoc.com)可以矢量化一个位图来创建一个占位符。
   </p>
   
   <p>
@@ -176,7 +176,7 @@ title: 怎么使用 SVG 作为一个图像占位符
   </p>
   
   <p>
-    当在图像中使用 10 个形状时，我们基本构画出了原始图像。在图像占位符这种使用场景里，我们可以使用这种 SVG 作为潜在的占位符。实际上，使用 10 个形状的 SVG 代码已经很小了，大约是 1030 字节，当通过 SVGO 传输时，它将下降到约 640 字节。
+    当在图像中使用 10 个形状时，[我们](https://www.w3cdoc.com)基本构画出了原始图像。在图像占位符这种使用场景里，[我们](https://www.w3cdoc.com)可以使用这种 SVG 作为潜在的占位符。实际上，使用 10 个形状的 SVG 代码已经很小了，大约是 1030 字节，当通过 SVGO 传输时，它将下降到约 640 字节。
   </p>
   
   <pre><code class="hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">svg&lt;/span> &lt;span class="hljs-attr">xmlns&lt;/span>=&lt;span class="hljs-string">”http://www.w3.org/2000/svg&lt;/span>" &lt;span class="hljs-attr">width&lt;/span>=&lt;span class="hljs-string">”1024&lt;/span>" &lt;span class="hljs-attr">height&lt;/span>=&lt;span class="hljs-string">”1024&lt;/span>">&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">path&lt;/span> &lt;span class="hljs-attr">fill&lt;/span>=&lt;span class="hljs-string">”#817c70&lt;/span>" &lt;span class="hljs-attr">d&lt;/span>=&lt;span class="hljs-string">”M0&lt;/span> &lt;span class="hljs-attr">0h1024v1024H0z&lt;/span>”/>&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">g&lt;/span> &lt;span class="hljs-attr">fill-opacity&lt;/span>=&lt;span class="hljs-string">”.502&lt;/span>">&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">path&lt;/span> &lt;span class="hljs-attr">fill&lt;/span>=&lt;span class="hljs-string">”#03020f”&lt;/span> &lt;span class="hljs-attr">d&lt;/span>=&lt;span class="hljs-string">”M178&lt;/span> &lt;span class="hljs-attr">994l580&lt;/span> &lt;span class="hljs-attr">92L402&lt;/span>–&lt;span class="hljs-attr">62&lt;/span>"/>&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">path&lt;/span> &lt;span class="hljs-attr">fill&lt;/span>=&lt;span class="hljs-string">”#f2e2ba”&lt;/span> &lt;span class="hljs-attr">d&lt;/span>=&lt;span class="hljs-string">”M638&lt;/span> &lt;span class="hljs-attr">894L614&lt;/span> &lt;span class="hljs-attr">6l472&lt;/span> &lt;span class="hljs-attr">440&lt;/span>"/>&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">path&lt;/span> &lt;span class="hljs-attr">fill&lt;/span>=&lt;span class="hljs-string">”#fff8be”&lt;/span> &lt;span class="hljs-attr">d&lt;/span>=&lt;span class="hljs-string">”M-62&lt;/span> &lt;span class="hljs-attr">854h300L138&lt;/span>–&lt;span class="hljs-attr">62&lt;/span>"/>&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">path&lt;/span> &lt;span class="hljs-attr">fill&lt;/span>=&lt;span class="hljs-string">”#76c2d9&lt;/span>" &lt;span class="hljs-attr">d&lt;/span>=&lt;span class="hljs-string">”M410–62L154&lt;/span> &lt;span class="hljs-attr">530&lt;/span>–&lt;span class="hljs-attr">62&lt;/span> &lt;span class="hljs-attr">38&lt;/span>"/>&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">path&lt;/span> &lt;span class="hljs-attr">fill&lt;/span>=&lt;span class="hljs-string">”#62b4cf”&lt;/span> &lt;span class="hljs-attr">d&lt;/span>=&lt;span class="hljs-string">”M1086–2L498–30l484&lt;/span> &lt;span class="hljs-attr">508&lt;/span>"/>&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">path&lt;/span> &lt;span class="hljs-attr">fill&lt;/span>=&lt;span class="hljs-string">”#010412&lt;/span>" &lt;span class="hljs-attr">d&lt;/span>=&lt;span class="hljs-string">”M430–2l196&lt;/span> &lt;span class="hljs-attr">52&lt;/span>–&lt;span class="hljs-attr">76&lt;/span> &lt;span class="hljs-attr">356&lt;/span>"/>&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">path&lt;/span> &lt;span class="hljs-attr">fill&lt;/span>=&lt;span class="hljs-string">”#eb7d3f”&lt;/span> &lt;span class="hljs-attr">d&lt;/span>=&lt;span class="hljs-string">”M598&lt;/span> &lt;span class="hljs-attr">594l488&lt;/span>–&lt;span class="hljs-attr">32&lt;/span>–&lt;span class="hljs-attr">308&lt;/span> &lt;span class="hljs-attr">520&lt;/span>"/>&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">path&lt;/span> &lt;span class="hljs-attr">fill&lt;/span>=&lt;span class="hljs-string">”#080a18&lt;/span>" &lt;span class="hljs-attr">d&lt;/span>=&lt;span class="hljs-string">”M198&lt;/span> &lt;span class="hljs-attr">418l32&lt;/span> &lt;span class="hljs-attr">304&lt;/span> &lt;span class="hljs-attr">116&lt;/span>–&lt;span class="hljs-attr">448&lt;/span>"/>&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">path&lt;/span> &lt;span class="hljs-attr">fill&lt;/span>=&lt;span class="hljs-string">”#3f201d”&lt;/span> &lt;span class="hljs-attr">d&lt;/span>=&lt;span class="hljs-string">”M1086&lt;/span> &lt;span class="hljs-attr">1062l-344&lt;/span>–&lt;span class="hljs-attr">52&lt;/span> &lt;span class="hljs-attr">248&lt;/span>–&lt;span class="hljs-attr">148&lt;/span>"/>&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">path&lt;/span> &lt;span class="hljs-attr">fill&lt;/span>=&lt;span class="hljs-string">”#ebd29f”&lt;/span> &lt;span class="hljs-attr">d&lt;/span>=&lt;span class="hljs-string">”M630&lt;/span> &lt;span class="hljs-attr">658l-60&lt;/span>–&lt;span class="hljs-attr">372&lt;/span> &lt;span class="hljs-attr">516&lt;/span> &lt;span class="hljs-attr">320&lt;/span>"/>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">g&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">svg&lt;/span>>&lt;/span>
@@ -184,7 +184,7 @@ title: 怎么使用 SVG 作为一个图像占位符
 </code></pre>
   
   <p>
-    正如我们预计的那样，使用 100 个形状生成的图像更大，在 SVGO（之前是 8kB）之后，大小约为 5kB。它们在细节上已经很好了，但是仍然是个很小的载荷。使用多少三角形主要取决于图像类型和细腻程度（如，对比度、颜色数量、复杂度）。
+    正如[我们](https://www.w3cdoc.com)预计的那样，使用 100 个形状生成的图像更大，在 SVGO（之前是 8kB）之后，大小约为 5kB。它们在细节上已经很好了，但是仍然是个很小的载荷。使用多少三角形主要取决于图像类型和细腻程度（如，对比度、颜色数量、复杂度）。
   </p>
   
   <p>
@@ -214,7 +214,7 @@ title: 怎么使用 SVG 作为一个图像占位符
   </p>
   
   <p>
-    如果我们使用 SQIP 而不是原始图像，我们将得到这样的效果：
+    如果[我们](https://www.w3cdoc.com)使用 SQIP 而不是原始图像，[我们](https://www.w3cdoc.com)将得到这样的效果：
   </p>
   
   <p>
@@ -226,7 +226,7 @@ title: 怎么使用 SVG 作为一个图像占位符
   </p>
   
   <p>
-    输出的 SVG 约 900 字节，并且通过检查代码，我们可以发现 <code>feGaussianBlur</code> 过滤被应用到该组形状上：
+    输出的 SVG 约 900 字节，并且通过检查代码，[我们](https://www.w3cdoc.com)可以发现 <code>feGaussianBlur</code> 过滤被应用到该组形状上：
   </p>
   
   <pre><code class="hljs processing">&lt;svg xmlns=&lt;span class="hljs-string">"http://www.w3.org/2000/svg"&lt;/span> viewBox=&lt;span class="hljs-string">"0 0 2000 2000"&lt;/span>>&lt;&lt;span class="hljs-built_in">filter&lt;/span> id=&lt;span class="hljs-string">"b"&lt;/span>>&lt;feGaussianBlur stdDeviation=&lt;span class="hljs-string">"12"&lt;/span> />&lt;/&lt;span class="hljs-built_in">filter&lt;/span>>&lt;path &lt;span class="hljs-built_in">fill&lt;/span>=&lt;span class="hljs-string">"#817c70"&lt;/span> d=&lt;span class="hljs-string">"M0 0h2000v2000H0z"&lt;/span>/>&lt;g &lt;span class="hljs-built_in">filter&lt;/span>=&lt;span class="hljs-string">"url(#b)"&lt;/span> transform=&lt;span class="hljs-string">"translate(4 4) scale(7.8125)"&lt;/span> &lt;span class="hljs-built_in">fill&lt;/span>-opacity=&lt;span class="hljs-string">".5"&lt;/span>>&lt;&lt;span class="hljs-built_in">ellipse&lt;/span> &lt;span class="hljs-built_in">fill&lt;/span>=&lt;span class="hljs-string">"#000210"&lt;/span> rx=&lt;span class="hljs-string">"1"&lt;/span> ry=&lt;span class="hljs-string">"1"&lt;/span> transform=&lt;span class="hljs-string">"matrix(50.41098 -3.7951 11.14787 148.07886 107 194.6)"&lt;/span>/>&lt;&lt;span class="hljs-built_in">ellipse&lt;/span> &lt;span class="hljs-built_in">fill&lt;/span>=&lt;span class="hljs-string">"#eee3bb"&lt;/span> rx=&lt;span class="hljs-string">"1"&lt;/span> ry=&lt;span class="hljs-string">"1"&lt;/span> transform=&lt;span class="hljs-string">"matrix(-56.38179 17.684 -24.48514 -78.06584 205 110.1)"&lt;/span>/>&lt;&lt;span class="hljs-built_in">ellipse&lt;/span> &lt;span class="hljs-built_in">fill&lt;/span>=&lt;span class="hljs-string">"#fff4bd"&lt;/span> rx=&lt;span class="hljs-string">"1"&lt;/span> ry=&lt;span class="hljs-string">"1"&lt;/span> transform=&lt;span class="hljs-string">"matrix(35.40604 -5.49219 14.85017 95.73337 16.4 123.6)"&lt;/span>/>&lt;&lt;span class="hljs-built_in">ellipse&lt;/span> &lt;span class="hljs-built_in">fill&lt;/span>=&lt;span class="hljs-string">"#79c7db"&lt;/span> cx=&lt;span class="hljs-string">"21"&lt;/span> cy=&lt;span class="hljs-string">"39"&lt;/span> rx=&lt;span class="hljs-string">"65"&lt;/span> ry=&lt;span class="hljs-string">"65"&lt;/span>/>&lt;&lt;span class="hljs-built_in">ellipse&lt;/span> &lt;span class="hljs-built_in">fill&lt;/span>=&lt;span class="hljs-string">"#0c1320"&lt;/span> cx=&lt;span class="hljs-string">"117"&lt;/span> cy=&lt;span class="hljs-string">"38"&lt;/span> rx=&lt;span class="hljs-string">"34"&lt;/span> ry=&lt;span class="hljs-string">"47"&lt;/span>/>&lt;&lt;span class="hljs-built_in">ellipse&lt;/span> &lt;span class="hljs-built_in">fill&lt;/span>=&lt;span class="hljs-string">"#5cb0cd"&lt;/span> rx=&lt;span class="hljs-string">"1"&lt;/span> ry=&lt;span class="hljs-string">"1"&lt;/span> transform=&lt;span class="hljs-string">"matrix(-39.46201 77.24476 -54.56092 -27.87353 219.2 7.9)"&lt;/span>/>&lt;path &lt;span class="hljs-built_in">fill&lt;/span>=&lt;span class="hljs-string">"#e57339"&lt;/span> d=&lt;span class="hljs-string">"M271 159l-123–16 43 128z"&lt;/span>/>&lt;&lt;span class="hljs-built_in">ellipse&lt;/span> &lt;span class="hljs-built_in">fill&lt;/span>=&lt;span class="hljs-string">"#47332f"&lt;/span> cx=&lt;span class="hljs-string">"214"&lt;/span> cy=&lt;span class="hljs-string">"237"&lt;/span> rx=&lt;span class="hljs-string">"242"&lt;/span> ry=&lt;span class="hljs-string">"19"&lt;/span>/>&lt;/g>&lt;/svg>
@@ -246,7 +246,7 @@ title: 怎么使用 SVG 作为一个图像占位符
   </h4>
   
   <p>
-    我们刚才看了使用了边缘和原始形状的 SVG。另外一种矢量化图像的方式是 “描绘” 它们。在几天前 <a href="https://twitter.com/mikaelainalem">Mikael Ainalem</a> 分享了一个 <a href="https://codepen.io/ainalem/full/aLKxjm/">codepen</a> 代码，展示了怎么去使用两色轮廓作为一个占位符。结果非常漂亮：
+    [我们](https://www.w3cdoc.com)刚才看了使用了边缘和原始形状的 SVG。另外一种矢量化图像的方式是 “描绘” 它们。在几天前 <a href="https://twitter.com/mikaelainalem">Mikael Ainalem</a> 分享了一个 <a href="https://codepen.io/ainalem/full/aLKxjm/">codepen</a> 代码，展示了怎么去使用两色轮廓作为一个占位符。结果非常漂亮：
   </p>
   
   <p>
@@ -282,7 +282,7 @@ title: 怎么使用 SVG 作为一个图像占位符
   </h3>
   
   <p>
-    我们看到了从图像中生成 SVG 并使用它们作为占位符的各种不同的工具和技术。与 <a href="https://medium.com/@jmperezperez/using-webp-to-create-tiny-preview-images-3e9b924f28d6">WebP 是一个用于缩略图的奇妙格式</a> 一样，SVG 也是一个用于占位符的有趣格式。我们可以控制细节的级别（和它们的大小），它是高可压缩的，并且很容易用 CSS 和 JS 进行处理。
+    [我们](https://www.w3cdoc.com)看到了从图像中生成 SVG 并使用它们作为占位符的各种不同的工具和技术。与 <a href="https://medium.com/@jmperezperez/using-webp-to-create-tiny-preview-images-3e9b924f28d6">WebP 是一个用于缩略图的奇妙格式</a> 一样，SVG 也是一个用于占位符的有趣格式。[我们](https://www.w3cdoc.com)可以控制细节的级别（和它们的大小），它是高可压缩的，并且很容易用 CSS 和 JS 进行处理。
   </p>
   
   <h4>
@@ -295,7 +295,7 @@ title: 怎么使用 SVG 作为一个图像占位符
   
   <ul>
     <li>
-      <a href="https://github.com/Tw1ddle/geometrize-haxe">Geometrize</a> 是用 Haxe 写的 Primitive 的一个移植。也有<a href="https://github.com/Tw1ddle/geometrize-haxe-web">一个 JS 实现</a>，你可以直接 <a href="http://www.samcodes.co.uk/project/geometrize-haxe-web/">在你的浏览器上</a>尝试它。
+      <a href="https://github.com/Tw1ddle/geometrize-haxe">Geometrize</a> 是用 Haxe 写的 Primitive 的一个移植。也有<a href="https://github.com/Tw1ddle/geometrize-haxe-web">一个 JS 实现</a>，你可以直接 <a href="http://www.samcodes.co.uk/project/geometrize-haxe-web/">在你的[浏览器](https://www.w3cdoc.com)上</a>尝试它。
     </li>
     <li>
       <a href="https://github.com/ondras/primitive.js">Primitive.js</a>，它也是 Primitive 在 JS 中的一个移植，<a href="https://github.com/cielito-lindo-productions/primitive.nextgen">primitive.nextgen</a>，它是使用 Primitive.js 和 Electron 的 Primitive 的桌面版应用的一个移植。

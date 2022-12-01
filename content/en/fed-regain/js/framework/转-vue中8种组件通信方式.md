@@ -6,7 +6,7 @@ title: '转: vue中8种组件通信方式'
 ---
 <div>
   <p>
-    vue是数据驱动视图更新的框架, 所以对于vue来说组件间的数据通信非常重要，那么组件之间如何进行数据通信的呢？ 首先我们需要知道在vue中组件之间存在什么样的关系, 才更容易理解他们的通信方式, 就好像过年回家，坐着一屋子的陌生人，相互之间怎么称呼，这时就需要先知道自己和他们之间是什么样的关系。 vue组件中关系说明:
+    vue是数据驱动视图更新的框架, 所以对于vue来说组件间的数据通信非常重要，那么组件之间如何进行数据通信的呢？ 首先[我们](https://www.w3cdoc.com)需要知道在vue中组件之间存在什么样的关系, 才更容易理解他们的通信方式, 就好像过年回家，坐着一屋子的陌生人，相互之间怎么称呼，这时就需要先知道自己和他们之间是什么样的关系。 vue组件中关系说明:
   </p><figure>
   
   <p id="fGchZMH">
@@ -14,7 +14,7 @@ title: '转: vue中8种组件通信方式'
   </p><figcaption></figcaption></figure>
   
   <p>
-    如上图所示, A与B、A与C、B与D、C与E组件之间是父子关系； B与C之间是兄弟关系；A与D、A与E之间是隔代关系； D与E是堂兄关系（非直系亲属） 针对以上关系我们归类为：
+    如上图所示, A与B、A与C、B与D、C与E组件之间是父子关系； B与C之间是兄弟关系；A与D、A与E之间是隔代关系； D与E是堂兄关系（非直系亲属） 针对以上关系[我们](https://www.w3cdoc.com)归类为：
   </p>
   
   <ul>
@@ -325,7 +325,7 @@ title: '转: vue中8种组件通信方式'
   </h3>
   
   <p>
-    <code>ref</code>：如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；如果用在子组件上，引用就指向组件实例，可以通过实例直接调用组件的方法或访问数据， 我们看一个<code>ref</code> 来访问组件的例子:
+    <code>ref</code>：如果在普通的 DOM 元素上使用，引用指向的就是 DOM 元素；如果用在子组件上，引用就指向组件实例，可以通过实例直接调用组件的方法或访问数据， [我们](https://www.w3cdoc.com)看一个<code>ref</code> 来访问组件的例子:
   </p>
   
   <pre><code class="hljs javascript copyable" lang="javascript">&lt;span class="hljs-comment">// 子组件 A.vue&lt;/span>
@@ -397,7 +397,7 @@ title: '转: vue中8种组件通信方式'
   </h4>
   
   <p>
-    假设你有两个组件: <code>additionNum</code> 和 <code>showNum</code>, 这两个组件可以是兄弟组件也可以是父子组件；这里我们以兄弟组件为例:
+    假设你有两个组件: <code>additionNum</code> 和 <code>showNum</code>, 这两个组件可以是兄弟组件也可以是父子组件；这里[我们](https://www.w3cdoc.com)以兄弟组件为例:
   </p>
   
   <pre><code class="hljs html copyable" lang="html">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
@@ -667,7 +667,7 @@ Vue.use(Vuex)
   </h3>
   
   <p>
-    现在我们来讨论一种情况， 我们一开始给出的组件关系图中A组件与D组件是隔代关系， 那它们之前进行通信有哪些方式呢？
+    现在[我们](https://www.w3cdoc.com)来讨论一种情况， [我们](https://www.w3cdoc.com)一开始给出的组件关系图中A组件与D组件是隔代关系， 那它们之前进行通信有哪些方式呢？
   </p>
   
   <ol>

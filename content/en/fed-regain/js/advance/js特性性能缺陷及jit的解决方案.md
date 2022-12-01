@@ -11,9 +11,9 @@ xzh_tui_back:
 
 
 ---
-拜读了David的《[Know Your Engines: How to Make Your JavaScript Fast][1]》，David是Mozilla的JS引擎工程师，文章主要介绍了JIT与GC原理，以及如何根据某些基本原理，优化js代码的执行效率，虽然是老文了，但对我来说仍受益匪浅。这里，我根据上文整理了本文，同时，大家也可以从侧面了解下JIT。
+拜读了David的《[Know Your Engines: How to Make Your JavaScript Fast][1]》，David是Mozilla的JS引擎工程师，文章主要介绍了JIT与GC原理，以及如何根据某些基本原理，优化js代码的执行效率，虽然是老文了，但对我来说仍受益匪浅。这里，我根据上文整理了本文，同时，[大家](https://www.w3cdoc.com)也可以从侧面了解下JIT。
 
-近5年来，在主流浏览器上，Javascript的运行速度有10-100倍的提升，这要归功于Javascript新引擎JIT。但在深入了解JIT前，我们先看看Javascript的一个最重要的特性：untyped（无类型）。
+近5年来，在主流[浏览器](https://www.w3cdoc.com)上，Javascript的运行速度有10-100倍的提升，这要归功于Javascript新引擎JIT。但在深入了解JIT前，[我们](https://www.w3cdoc.com)先看看Javascript的一个最重要的特性：untyped（无类型）。
 
 一. 无类型：
 
@@ -151,7 +151,7 @@ Javascript是个无类型的语言，这导致了 x = y +ｚ这种表达式，�
   </p>
   
   <p>
-    其中，（1），（2） CPU帮我们搞定；（7）JIT把结果保存在寄存器里。
+    其中，（1），（2） CPU帮[我们](https://www.w3cdoc.com)搞定；（7）JIT把结果保存在寄存器里。
   </p>
   
   <p>

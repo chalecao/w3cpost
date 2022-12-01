@@ -6,7 +6,7 @@ title: Chrome 79+默认执行SameSite-by-default，跨域请求默认不携带co
 
 ## 关于设置cookie
 
-一般是通过请求后端接口，后端接口返回set-cookie请求头，浏览器会自动设置对应cookie，浏览器默认是阻止js操作set-cookie的请求头的。
+一般是通过请求后端接口，后端接口返回set-cookie请求头，[浏览器](https://www.w3cdoc.com)会自动设置对应cookie，[浏览器](https://www.w3cdoc.com)默认是阻止js操作set-cookie的请求头的。
 
 <p id="yHeWXIa">
   <img loading="lazy" class="alignnone  wp-image-6097 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png?x-oss-process=image/format,webp" alt="" width="688" height="212" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png?x-oss-process=image/format,webp 1536w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_92/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_246/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_236/format,webp 768w" sizes="(max-width: 688px) 100vw, 688px" />
@@ -41,7 +41,7 @@ Set-Cookie: &lt;cookie-name>=&lt;cookie-value>; Domain=&lt;domain-value>; Secure
 >   <strong>Note:</strong> Insecure sites (<code>http:</code>) can&#8217;t set cookies with the <code>Secure</code> attribute (since Chrome 52 and Firefox 52). For Firefox, the <code>https:</code> requirements are ignored when the <code>Secure</code> attribute is set by localhost (since Firefox 75).
 > </p>
 
-secure 参数可选，只有是HTTPS请求的响应才能设置secure属性，可以很好地防止劫持。需要注意的是这个参数并不能保证cookie是安全的，cookie是存在客户端硬盘的，其他软件或者javascript仍然可以读取或者修改。chrome >=52, FireFox >= 52版本浏览器，在http请求中是不能设置secure属性的cookie的
+secure 参数可选，只有是HTTPS请求的响应才能设置secure属性，可以很好地防止劫持。需要注意的是这个参数并不能保证cookie是安全的，cookie是存在客户端硬盘的，其他软件或者javascript仍然可以读取或者修改。chrome >=52, FireFox >= 52版本[浏览器](https://www.w3cdoc.com)，在http请求中是不能设置secure属性的cookie的
 
 `HttpOnly` <span class="inlineIndicator optional optionalInline">Optional，</span>Forbids JavaScript from accessing the cookie, for example, through the [`Document.cookie`][2] property. Note that a cookie that has been created with HttpOnly will still be sent with JavaScript-initiated requests, e.g. when calling [`XMLHttpRequest.send()`][3] or [`fetch()`][4]. This mitigates attacks against cross-site scripting ([XSS][5]).
 
@@ -58,12 +58,12 @@ Asserts that a cookie must not be sent with cross-origin requests, providing som
 samesite可选值有strict、lax和none，
 
 * strict表示只有同域请求才会带cookie；
-* lax表示跨域的子请求不会带cookie（比如加载图片、iframe中的请求），只有跳转链接用浏览器打开url这种主请求才会带cookie
+* lax表示跨域的子请求不会带cookie（比如加载图片、iframe中的请求），只有跳转链接用[浏览器](https://www.w3cdoc.com)打开url这种主请求才会带cookie
 * none表示不管是否跨域都会带cookie
 
-需要注意跨域请求带cookie需要放置CSRF攻击，浏览器后面逐渐会默认给cookie设置成lax，跨域时候子请求就不会再默认带cookie，除非samesite设置成none，同时新的浏览器要求设置secure属性，才能设置samesite为none
+需要注意跨域请求带cookie需要放置CSRF攻击，[浏览器](https://www.w3cdoc.com)后面逐渐会默认给cookie设置成lax，跨域时候子请求就不会再默认带cookie，除非samesite设置成none，同时新的[浏览器](https://www.w3cdoc.com)要求设置secure属性，才能设置samesite为none
 
-这里就找到了根本原因，肯定是新版本浏览器安全性做了提升，
+这里就找到了根本原因，肯定是新版本[浏览器](https://www.w3cdoc.com)安全性做了提升，
 
 ## Chrome的same-site规则
 

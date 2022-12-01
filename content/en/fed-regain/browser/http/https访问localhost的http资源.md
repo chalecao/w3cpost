@@ -7,7 +7,7 @@ title: HTTPS访问localhost的http资源
 ---
 # HTTPS加载http
 
-https加载http的资源，浏览器会有mixed content错误，默认是阻止的。
+https加载http的资源，[浏览器](https://www.w3cdoc.com)会有mixed content错误，默认是阻止的。
 
 <p id="gDNLAwy">
   <img loading="lazy" class="alignnone wp-image-5781 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94b2a2b253.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94b2a2b253.png?x-oss-process=image/format,webp" alt="" width="646" height="486" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94b2a2b253.png?x-oss-process=image/format,webp 1172w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94b2a2b253.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_226/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94b2a2b253.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_578/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94b2a2b253.png?x-oss-process=image/quality,q_50/resize,m_fill,w_797,h_600/format,webp 797w" sizes="(max-width: 646px) 100vw, 646px" />
@@ -17,7 +17,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
 
 <div class="devsite-article-body clearfix ">
   <p>
-    <strong>混合内容</strong>在以下情况下出现：初始 HTML 内容通过安全的 HTTPS 连接加载，但其他资源（例如，图像、视频、样式表、脚本）则通过不安全的 HTTP 连接加载。之所以称为混合内容，是因为同时加载了 HTTP 和 HTTPS 内容以显示同一个页面，且通过 HTTPS 加载的初始请求是安全的。现代浏览器会针对此类型的内容显示警告，以向用户表明此页面包含不安全的资源。
+    <strong>混合内容</strong>在以下情况下出现：初始 HTML 内容通过安全的 HTTPS 连接加载，但其他资源（例如，图像、视频、样式表、脚本）则通过不安全的 HTTP 连接加载。之所以称为混合内容，是因为同时加载了 HTTP 和 HTTPS 内容以显示同一个页面，且通过 HTTPS 加载的初始请求是安全的。现代[浏览器](https://www.w3cdoc.com)会针对此类型的内容显示警告，以向用户表明此页面包含不安全的资源。
   </p>
   
   <h3 id="tldr" class="hide-from-toc" tabindex="0" data-text="TL;DR">
@@ -33,12 +33,12 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
     </li>
   </ul>
   
-  <h2 id="%E8%B5%84%E6%BA%90%E8%AF%B7%E6%B1%82%E5%92%8C%E7%BD%91%E7%BB%9C%E6%B5%8F%E8%A7%88%E5%99%A8" tabindex="0" data-text="资源请求和网络浏览器">
-    资源请求和网络浏览器
+  <h2 id="%E8%B5%84%E6%BA%90%E8%AF%B7%E6%B1%82%E5%92%8C%E7%BD%91%E7%BB%9C%E6%B5%8F%E8%A7%88%E5%99%A8" tabindex="0" data-text="资源请求和网络[浏览器](https://www.w3cdoc.com)">
+    资源请求和网络[浏览器](https://www.w3cdoc.com)
   </h2>
   
   <p>
-    当浏览器访问网站的页面时，它将请求 HTML 资源。然后，网络服务器返回 HTML 内容，浏览器进行解析并显示给用户。通常，一个 HTML 文件不足以显示一个完整页面，因此，HTML 文件包含浏览器需要请求的其他资源的引用。这些子资源可以是图像、视频、额外 HTML、CSS 或 JavaScript 之类的资源；每个资源均使用单独的请求获取。
+    当[浏览器](https://www.w3cdoc.com)访问网站的页面时，它将请求 HTML 资源。然后，网络服务器返回 HTML 内容，[浏览器](https://www.w3cdoc.com)进行解析并显示给用户。通常，一个 HTML 文件不足以显示一个完整页面，因此，HTML 文件包含[浏览器](https://www.w3cdoc.com)需要请求的其他资源的引用。这些子资源可以是图像、视频、额外 HTML、CSS 或 JavaScript 之类的资源；每个资源均使用单独的请求获取。
   </p>
   
   <h2 id="https_%E7%9A%84%E4%BC%98%E5%8A%BF" tabindex="0" data-text="HTTPS 的优势">
@@ -46,7 +46,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
   </h2>
   
   <p>
-    当浏览器通过 HTTPS（HTTP Secure 的缩写形式）请求资源时，它使用一个已加密连接与网络服务器进行通信。
+    当[浏览器](https://www.w3cdoc.com)通过 HTTPS（HTTP Secure 的缩写形式）请求资源时，它使用一个已加密连接与网络服务器进行通信。
   </p>
   
   <p>
@@ -74,7 +74,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
   </p>
   
   <p>
-    HTTPS 让浏览器检查并确保其已打开正确的网站，并且没有被重定向到恶意的网站。 当导航到您的银行网站时，您的浏览器对该网站进行身份验证，从而防止攻击者冒充您的银行窃取您的登录凭据。
+    HTTPS 让[浏览器](https://www.w3cdoc.com)检查并确保其已打开正确的网站，并且没有被重定向到恶意的网站。 当导航到您的银行网站时，您的[浏览器](https://www.w3cdoc.com)对该网站进行身份验证，从而防止攻击者冒充您的银行窃取您的登录凭据。
   </p>
   
   <h3 id="%E6%95%B0%E6%8D%AE%E5%AE%8C%E6%95%B4%E6%80%A7" tabindex="0" data-text="数据完整性">
@@ -86,7 +86,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
   </p>
   
   <p>
-    HTTPS 让浏览器检测是否有攻击者更改了浏览器接收的任何数据。 使用您的银行网站转账时，这样做可防止当您的请求在传输中时攻击者更改目标帐号。
+    HTTPS 让[浏览器](https://www.w3cdoc.com)检测是否有攻击者更改了[浏览器](https://www.w3cdoc.com)接收的任何数据。 使用您的银行网站转账时，这样做可防止当您的请求在传输中时攻击者更改目标帐号。
   </p>
   
   <h3 id="%E4%BF%9D%E5%AF%86%E6%80%A7" tabindex="0" data-text="保密性">
@@ -98,7 +98,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
   </p>
   
   <p>
-    HTTPS 可防止攻击者窃取浏览器的请求，跟踪访问的网站或窃取已发送或接收的信息。
+    HTTPS 可防止攻击者窃取[浏览器](https://www.w3cdoc.com)的请求，跟踪访问的网站或窃取已发送或接收的信息。
   </p>
   
   <h3 id="https%E3%80%81%E4%BC%A0%E8%BE%93%E5%B1%82%E5%AE%89%E5%85%A8%E5%8D%8F%E8%AE%AE_tls_%E5%92%8C_ssl" tabindex="0" data-text="HTTPS、传输层安全协议 (TLS) 和 SSL">
@@ -106,7 +106,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
   </h3>
   
   <p>
-    HTTPS 是 HTTP Secure 的缩写，即超文本传输安全协议。此处的 <strong>secure</strong> 部分来自于添加到浏览器发送和接收的请求的加密。目前大多数浏览器都使用传输层安全协议 (TLS) 提供加密；<strong>TLS</strong> 有时称为 SSL。
+    HTTPS 是 HTTP Secure 的缩写，即超文本传输安全协议。此处的 <strong>secure</strong> 部分来自于添加到[浏览器](https://www.w3cdoc.com)发送和接收的请求的加密。目前大多数[浏览器](https://www.w3cdoc.com)都使用传输层安全协议 (TLS) 提供加密；<strong>TLS</strong> 有时称为 SSL。
   </p>
   
   <p>
@@ -124,7 +124,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
       <a class="external" href="https://www.khanacademy.org/computing/computer-science/cryptography">可汗学院 (Khan Academy) 的加密课程</a>
     </li>
     <li>
-      <a class="external" href="https://hpbn.co/">高性能浏览器网络</a>（作者：Ilya Grigorik）中的<a class="external" href="https://hpbn.co/transport-layer-security-tls/">传输层安全协议 (TLS) 章节</a>
+      <a class="external" href="https://hpbn.co/">高性能[浏览器](https://www.w3cdoc.com)网络</a>（作者：Ilya Grigorik）中的<a class="external" href="https://hpbn.co/transport-layer-security-tls/">传输层安全协议 (TLS) 章节</a>
     </li>
   </ul>
   
@@ -137,7 +137,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
   </p>
   
   <p>
-    尽管许多浏览器向用户报告混合内容警告，但出现警告时为时已晚：不安全的请求已被执行，且页面的安全性被破坏。遗憾的是，这种情况在网络中很普遍，正因如此，浏览器不能简单地阻止所有混合请求，否则将会限制许多网站的功能。
+    尽管许多[浏览器](https://www.w3cdoc.com)向用户报告混合内容警告，但出现警告时为时已晚：不安全的请求已被执行，且页面的安全性被破坏。遗憾的是，这种情况在网络中很普遍，正因如此，[浏览器](https://www.w3cdoc.com)不能简单地阻止所有混合请求，否则将会限制许多网站的功能。
   </p><figure><figcaption>
   
   <p id="otLCzBK">
@@ -217,11 +217,11 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
     </p>
     
     <p>
-      在此示例中，使用一个 <strong>HTTP</strong> 网址加载脚本 <code>simple-example.js</code>。这是最简单的混合内容案例。浏览器请求 <code>simple-example.js</code> 文件时，攻击者可以将代码注入返回的内容，并控制整个页面。
+      在此示例中，使用一个 <strong>HTTP</strong> 网址加载脚本 <code>simple-example.js</code>。这是最简单的混合内容案例。[浏览器](https://www.w3cdoc.com)请求 <code>simple-example.js</code> 文件时，攻击者可以将代码注入返回的内容，并控制整个页面。
     </p>
     
     <p>
-      幸运的是，大多数现代浏览器均默认阻止此类危险的内容。 请参阅<a class="external" href="https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content?hl=zh-cn#browser-behavior-with-mixed-content">具有混合内容的浏览器行为</a>。
+      幸运的是，大多数现代[浏览器](https://www.w3cdoc.com)均默认阻止此类危险的内容。 请参阅<a class="external" href="https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content?hl=zh-cn#browser-behavior-with-mixed-content">具有混合内容的[浏览器](https://www.w3cdoc.com)行为</a>。
     </p><figure><figcaption> 
     
     <p id="LGBctVS">
@@ -313,11 +313,11 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
       </p>
       
       <p>
-        下面的 <strong>HTTP</strong> 网址是在 JavaScript 中动态构建的，并且最终被 <code>XMLHttpRequest</code> 用于加载不安全的资源。 与上面简单的示例相似，当浏览器请求 <code>xmlhttprequest-data.js</code> 文件时，攻击者可以将代码注入返回的内容中，并控制整个页面。
+        下面的 <strong>HTTP</strong> 网址是在 JavaScript 中动态构建的，并且最终被 <code>XMLHttpRequest</code> 用于加载不安全的资源。 与上面简单的示例相似，当[浏览器](https://www.w3cdoc.com)请求 <code>xmlhttprequest-data.js</code> 文件时，攻击者可以将代码注入返回的内容中，并控制整个页面。
       </p>
       
       <p>
-        大多数现代浏览器也会阻止这些危险的请求。
+        大多数现代[浏览器](https://www.w3cdoc.com)也会阻止这些危险的请求。
       </p><figure><figcaption> 
       
       <p id="xYcjFGe">
@@ -444,7 +444,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
         </p></figure> 
         
         <p>
-          不安全的图像会降低网站的安全性，但是它们的危险性与其他类型的混合内容不一样。 现代浏览器仍会加载混合内容图像，但也会向用户显示警告。
+          不安全的图像会降低网站的安全性，但是它们的危险性与其他类型的混合内容不一样。 现代[浏览器](https://www.w3cdoc.com)仍会加载混合内容图像，但也会向用户显示警告。
         </p>
         
         <h2 id="%E6%B7%B7%E5%90%88%E5%86%85%E5%AE%B9%E7%B1%BB%E5%9E%8B%E4%B8%8E%E7%9B%B8%E5%85%B3%E5%AE%89%E5%85%A8%E5%A8%81%E8%83%81" tabindex="0" data-text="混合内容类型与相关安全威胁">
@@ -460,7 +460,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
         </p>
         
         <p>
-          <strong>主动混合内容</strong>作为整体与页面进行交互，并且几乎允许攻击者对页面进行任何操作。 主动混合内容包括浏览器可下载和执行的脚本、样式表、iframe、flash 资源及其他代码。
+          <strong>主动混合内容</strong>作为整体与页面进行交互，并且几乎允许攻击者对页面进行任何操作。 主动混合内容包括[浏览器](https://www.w3cdoc.com)可下载和执行的脚本、样式表、iframe、flash 资源及其他代码。
         </p>
         
         <h3 id="%E8%A2%AB%E5%8A%A8%E6%B7%B7%E5%90%88%E5%86%85%E5%AE%B9" tabindex="0" data-text="被动混合内容">
@@ -472,7 +472,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
         </p>
         
         <p>
-          即使攻击者不改变您的网站内容，您仍面临严重的隐私问题，攻击者可以使用混合内容请求跟踪用户。攻击者可以基于浏览器加载的图像或其他资源了解用户访问哪些页面，以及查看了哪些产品。
+          即使攻击者不改变您的网站内容，您仍面临严重的隐私问题，攻击者可以使用混合内容请求跟踪用户。攻击者可以基于[浏览器](https://www.w3cdoc.com)加载的图像或其他资源了解用户访问哪些页面，以及查看了哪些产品。
         </p>
         
         <p>
@@ -550,7 +550,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
         </p>
         
         <p>
-          大多数浏览器仍向用户渲染此类型的混合内容，但是也会显示警告，因为这些内容会给您的网站和用户带来安全风险和隐私风险。
+          大多数[浏览器](https://www.w3cdoc.com)仍向用户渲染此类型的混合内容，但是也会显示警告，因为这些内容会给您的网站和用户带来安全风险和隐私风险。
         </p>
         
         <p id="nKURSft">
@@ -566,7 +566,7 @@ https加载http的资源，浏览器会有mixed content错误，默认是阻止�
         </p>
         
         <p>
-          鉴于这种威胁的严重性，许多浏览器都会默认阻止此类型的内容以保护用户，但是其作用因浏览器供应商和版本而有所差异。
+          鉴于这种威胁的严重性，许多[浏览器](https://www.w3cdoc.com)都会默认阻止此类型的内容以保护用户，但是其作用因[浏览器](https://www.w3cdoc.com)供应商和版本而有所差异。
         </p>
         
         <p>
@@ -691,16 +691,16 @@ happen in many places including, @font-face, cursor, background-image, and so on
           <img loading="lazy" width="1172" height="882" class="alignnone size-full wp-image-5785 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94f265e77b.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94f265e77b.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94f265e77b.png?x-oss-process=image/format,webp 1172w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94f265e77b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_226/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94f265e77b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_578/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5ea94f265e77b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_797,h_600/format,webp 797w" sizes="(max-width: 1172px) 100vw, 1172px" />
         </p><figure><figcaption>Chrome JavaScript 控制台的混合内容错误。</figcaption></figure> 
         
-        <h2 id="%E5%85%B7%E6%9C%89%E6%B7%B7%E5%90%88%E5%86%85%E5%AE%B9%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E8%A1%8C%E4%B8%BA" tabindex="0" data-text="具有混合内容的浏览器行为">
-          具有混合内容的浏览器行为
+        <h2 id="%E5%85%B7%E6%9C%89%E6%B7%B7%E5%90%88%E5%86%85%E5%AE%B9%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%E8%A1%8C%E4%B8%BA" tabindex="0" data-text="具有混合内容的[浏览器](https://www.w3cdoc.com)行为">
+          具有混合内容的[浏览器](https://www.w3cdoc.com)行为
         </h2>
         
         <p>
-          鉴于上述威胁，浏览器最好是阻止所有混合内容。 但是，这将破坏大量网站，而数百万用户每天都要访问这些网站。 当前的折衷做法是阻止最危险的混合内容类型，同时仍允许请求不太危险的混合内容类型。
+          鉴于上述威胁，[浏览器](https://www.w3cdoc.com)最好是阻止所有混合内容。 但是，这将破坏大量网站，而数百万用户每天都要访问这些网站。 当前的折衷做法是阻止最危险的混合内容类型，同时仍允许请求不太危险的混合内容类型。
         </p>
         
         <p>
-          现代浏览器遵循<a class="external" href="https://w3c.github.io/webappsec/specs/mixedcontent/">混合内容规范</a>，其定义了<a class="external" href="https://w3c.github.io/webappsec/specs/mixedcontent/#category-optionally-blockable"><strong>可选择性地阻止的内容</strong></a>和<a class="external" href="https://w3c.github.io/webappsec/specs/mixedcontent/#category-blockable"><strong>可阻止的内容</strong></a>类别。
+          现代[浏览器](https://www.w3cdoc.com)遵循<a class="external" href="https://w3c.github.io/webappsec/specs/mixedcontent/">混合内容规范</a>，其定义了<a class="external" href="https://w3c.github.io/webappsec/specs/mixedcontent/#category-optionally-blockable"><strong>可选择性地阻止的内容</strong></a>和<a class="external" href="https://w3c.github.io/webappsec/specs/mixedcontent/#category-blockable"><strong>可阻止的内容</strong></a>类别。
         </p>
         
         <p>
@@ -708,23 +708,23 @@ happen in many places including, @font-face, cursor, background-image, and so on
         </p>
         
         <p>
-          <strong>可选择性阻止的内容</strong>以外的所有内容被视为<strong>可阻止的内容</strong>，将被浏览器阻止。
+          <strong>可选择性阻止的内容</strong>以外的所有内容被视为<strong>可阻止的内容</strong>，将被[浏览器](https://www.w3cdoc.com)阻止。
         </p>
         
-        <h3 id="%E6%B5%8F%E8%A7%88%E5%99%A8%E7%89%88%E6%9C%AC" tabindex="0" data-text="浏览器版本">
-          浏览器版本
+        <h3 id="%E6%B5%8F%E8%A7%88%E5%99%A8%E7%89%88%E6%9C%AC" tabindex="0" data-text="[浏览器](https://www.w3cdoc.com)版本">
+          [浏览器](https://www.w3cdoc.com)版本
         </h3>
         
         <p>
-          切记，并不是网站的每个访问者都使用最新的浏览器。 不同浏览器供应商的不同版本的浏览器处理混合内容的方式不尽相同。 最糟糕的情况是，有些浏览器和版本根本不会阻止任何混合内容，这对于用户而言非常不安全。
+          切记，并不是网站的每个访问者都使用最新的[浏览器](https://www.w3cdoc.com)。 不同[浏览器](https://www.w3cdoc.com)供应商的不同版本的[浏览器](https://www.w3cdoc.com)处理混合内容的方式不尽相同。 最糟糕的情况是，有些[浏览器](https://www.w3cdoc.com)和版本根本不会阻止任何混合内容，这对于用户而言非常不安全。
         </p>
         
         <p>
-          每个浏览器的确切行为不断变化，因此，我们在这里不做具体介绍。 如果您对特定浏览器的行为方式感兴趣，请直接查看供应商发布的信息。
+          每个[浏览器](https://www.w3cdoc.com)的确切行为不断变化，因此，[我们](https://www.w3cdoc.com)在这里不做具体介绍。 如果您对特定[浏览器](https://www.w3cdoc.com)的行为方式感兴趣，请直接查看供应商发布的信息。
         </p>
         
         <aside class="note">
-          <strong>Note:</strong> 您的用户在访问您的网站时指望您保护他们。修复混合内容问题以保护<b>所有</b>访问者（包括使用较旧浏览器的访问者）很重要。
+          <strong>Note:</strong> 您的用户在访问您的网站时指望您保护他们。修复混合内容问题以保护<b>所有</b>访问者（包括使用较旧[浏览器](https://www.w3cdoc.com)的访问者）很重要。
         </aside></div> 
         
         <aside>
@@ -747,7 +747,7 @@ happen in many places including, @font-face, cursor, background-image, and so on
         </h1>
         
         <p>
-          但是有时候你会发现浏览器会<a href="https://stackoverflow.com/questions/25277457/google-chrome-redirecting-localhost-to-https">强制把http://localhost 转成 https://localhost </a>, 这个问题原因是：<a href="https://www.chromium.org/hsts">Chrome HSTS 限制</a>
+          但是有时候你会发现[浏览器](https://www.w3cdoc.com)会<a href="https://stackoverflow.com/questions/25277457/google-chrome-redirecting-localhost-to-https">强制把http://localhost 转成 https://localhost </a>, 这个问题原因是：<a href="https://www.chromium.org/hsts">Chrome HSTS 限制</a>
         </p>
         
         <p>

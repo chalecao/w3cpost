@@ -18,7 +18,7 @@ egg.startCluster({
   baseDir: __dirname,
 });</pre>
 
-这样，我们就可以通过 PM2 进行启动了(本次启动在egg项目的根目录)：
+这样，[我们](https://www.w3cdoc.com)就可以通过 PM2 进行启动了(本次启动在egg项目的根目录)：
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">pm2 start server.js --name test</pre>
 
@@ -40,7 +40,7 @@ egg.startCluster({
 * forever: 管理多个站点，一般每个站点的访问量不大的情况，不需要监控。
 * PM2: 网站的访问量比较大，需要完整的监控页面。
 
-> 公司原来的项目采用的是 forever 的形式，不过如果 node 出现问题的时候，没有办法获取到有效的监控数据进行错误排查，因此新开发的系统准备采用 pm2 的形式进行前端以及 node 层的监控。
+> 公司原来的项目采用的是 forever 的形式，不过如果 node 出现问题的时候，没有办法获取到有效的监控数据进行错误排查，因此新开发的系统准备采用 pm2 的形式进行[前端](https://www.w3cdoc.com)以及 node 层的监控。
 
 <h3 class="heading" data-id="heading-2">
   PM2 的主要特性
@@ -149,7 +149,7 @@ $ pm2 start ./build/server.js
 
 <img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b95194d9f80?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b95194d9f80?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="774" data-height="1054" /> <figcaption></figcaption></figure>
 
-> 我只能说，这也太 NB 了吧，不仅可以监控这些进程，还能监控运行这些进程的机器的状态，逆天了。然后它会自动起一个服务在指定端口，如图在 9615 启动了一个服务，我们可以访问。虽然我看不太懂，但是对于测试运维同学来说，应该挺有用的吧。
+> 我只能说，这也太 NB 了吧，不仅可以监控这些进程，还能监控运行这些进程的机器的状态，逆天了。然后它会自动起一个服务在指定端口，如图在 9615 启动了一个服务，[我们](https://www.w3cdoc.com)可以访问。虽然我看不太懂，但是对于测试运维同学来说，应该挺有用的吧。
 
 * 停止 指定/所有 进程
 
@@ -163,7 +163,7 @@ $ pm2 stop all
 
 <img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b95514f5929?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b95514f5929?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="1280" data-height="628" /> <figcaption></figcaption></figure>
 
-> 如图，我们运行了两个服务状态都是 online，使用 stop 0 之后，kaifazhe 的服务变成了 stopped，然后使用 stop all，所有进程状态全变成了 stopped。
+> 如图，[我们](https://www.w3cdoc.com)运行了两个服务状态都是 online，使用 stop 0 之后，kaifazhe 的服务变成了 stopped，然后使用 stop all，所有进程状态全变成了 stopped。
 
 * 重启 指定/所有 进程
 
@@ -189,7 +189,7 @@ $ pm2 delete all
   <img loading="lazy" width="1280" height="653" class="alignnone size-full wp-image-5826 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_153/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_392/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_408/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
 </p><figcaption></figcaption></figure>
 
-> 从上图我们可以看出，restart 0 之后，0 进程从 stopped 状态变成了 online，然后我们使用 delete 0,进程 0 就消失不见了，我们再 delete all,可以看到现在没有任何进程在运行。
+> 从上图[我们](https://www.w3cdoc.com)可以看出，restart 0 之后，0 进程从 stopped 状态变成了 online，然后[我们](https://www.w3cdoc.com)使用 delete 0,进程 0 就消失不见了，[我们](https://www.w3cdoc.com)再 delete all,可以看到现在没有任何进程在运行。
 
 <h3 class="heading" data-id="heading-5">
   配置 PM2 启动文件
@@ -236,7 +236,7 @@ module.exports = {
 };
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
 
-> 对于上面的 env，我们可以在内部添加很多个参数变量，这样我们所使用的 process.env.XXX 就会对应发生变化,例如上面，我们 process.env.ORIGIN_ADDR 的值就是`http://www.youdao.com`～
+> 对于上面的 env，[我们](https://www.w3cdoc.com)可以在内部添加很多个参数变量，这样[我们](https://www.w3cdoc.com)所使用的 process.env.XXX 就会对应发生变化,例如上面，[我们](https://www.w3cdoc.com) process.env.ORIGIN_ADDR 的值就是`http://www.youdao.com`～
 
 <h3 class="heading" data-id="heading-7">
   负载均衡
@@ -268,21 +268,21 @@ pm2 start app.js -i max
   pm2日志
 </h3>
 
-上面配置文件可以看出来，我们可以配置logs，包括普通的out和错误的error日志。其实也不需要我们做什么，我们只需要在config里面配置好就行，他就会自动往里面写日志：<figure>
+上面配置文件可以看出来，[我们](https://www.w3cdoc.com)可以配置logs，包括普通的out和错误的error日志。其实也不需要[我们](https://www.w3cdoc.com)做什么，[我们](https://www.w3cdoc.com)只需要在config里面配置好就行，他就会自动往里面写日志：<figure>
 
 <p id="qPSMkki">
   <img loading="lazy" width="1280" height="683" class="alignnone size-full wp-image-5825 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d9e9c57.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d9e9c57.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d9e9c57.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d9e9c57.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_160/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d9e9c57.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_410/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220d9e9c57.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_427/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
 </p><figcaption></figcaption></figure>
 
-很简单的功能，就包含了日志，真是美妙到不行，但是，真的那么美妙吗？哈哈，好像不是？我们的日志全部输出到了`err.log`和`out.log`内，日积月累，OMG不敢想象，排查问题肯定很费劲，所以就有了下面的日志分割～
+很简单的功能，就包含了日志，真是美妙到不行，但是，真的那么美妙吗？哈哈，好像不是？[我们](https://www.w3cdoc.com)的日志全部输出到了`err.log`和`out.log`内，日积月累，OMG不敢想象，排查问题肯定很费劲，所以就有了下面的日志分割～
 
 <h3 class="heading" data-id="heading-10">
   日志分割
 </h3>
 
-我们正常意义上的日志，以node为例，应该都是使用的`log4js`来进行按日期写入的，那么pm2可不可以按日期写入呢？答案肯定是：可以。
+[我们](https://www.w3cdoc.com)正常意义上的日志，以node为例，应该都是使用的`log4js`来进行按日期写入的，那么pm2可不可以按日期写入呢？答案肯定是：可以。
 
-pm2为我们提供了插件系统，而日期分割功能就正好用到了插件系统：<a href="https://github.com/keymetrics/pm2-logrotate" target="_blank" rel="nofollow noopener noreferrer">pm2-logrotate</a>
+pm2为[我们](https://www.w3cdoc.com)提供了插件系统，而日期分割功能就正好用到了插件系统：<a href="https://github.com/keymetrics/pm2-logrotate" target="_blank" rel="nofollow noopener noreferrer">pm2-logrotate</a>
 
 安装：
 
@@ -307,7 +307,7 @@ pm2为我们提供了插件系统，而日期分割功能就正好用到了插�
   配合pm2-web实现监控可视化
 </h2>
 
-可能很多人不喜欢控制台，喜欢把监控数据进行可视化更方便查看和分析。不要紧，高手们已经为我们提供了工具，pm2-web，一看就是专门配合pm2来使用的。
+可能很多人不喜欢控制台，喜欢把监控数据进行可视化更方便查看和分析。不要紧，高手们已经为[我们](https://www.w3cdoc.com)提供了工具，pm2-web，一看就是专门配合pm2来使用的。
 
 <h3 class="heading" data-id="heading-12">
   安装
@@ -320,7 +320,7 @@ pm2为我们提供了插件系统，而日期分割功能就正好用到了插�
   使用
 </h3>
 
-默认pm2-web会自动启动一个端口8080，但是我们还是喜欢可控状态的，因此按照配置文件的方式启动。
+默认pm2-web会自动启动一个端口8080，但是[我们](https://www.w3cdoc.com)还是喜欢可控状态的，因此按照配置文件的方式启动。
 
 <pre><code class="hljs bash copyable" lang="bash">$ pm2-web --config pm2-web-config.json
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
@@ -335,13 +335,13 @@ pm2为我们提供了插件系统，而日期分割功能就正好用到了插�
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
 
-这样你就可以在浏览器查看可视化的监控状态了～<figure>
+这样你就可以在[浏览器](https://www.w3cdoc.com)查看可视化的监控状态了～<figure>
 
 <p id="TZrysSf">
   <img loading="lazy" width="924" height="956" class="alignnone size-full wp-image-5822 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee22099bca7a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee22099bca7a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee22099bca7a.png?x-oss-process=image/format,webp 924w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee22099bca7a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_290,h_300/format,webp 290w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee22099bca7a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_795/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee22099bca7a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_580,h_600/format,webp 580w" sizes="(max-width: 924px) 100vw, 924px" />
 </p><figcaption></figcaption></figure>
 
-> 说明一下，图片是我从网上找的，为什么没在本地启动呢，原因是`pm2-web`依赖`node-inspector`,而`node-inspector`对于高版本node无法安装，很多人提了issue，但是感觉开发者也处于放弃了的状态。我也不打算在本地安装低版本node，所以感兴趣的大家可以安装个低版本的试试～
+> 说明一下，图片是我从网上找的，为什么没在本地启动呢，原因是`pm2-web`依赖`node-inspector`,而`node-inspector`对于高版本node无法安装，很多人提了issue，但是感觉开发者也处于放弃了的状态。我也不打算在本地安装低版本node，所以感兴趣的[大家](https://www.w3cdoc.com)可以安装个低版本的试试～
 
 <h3 class="heading" data-id="heading-14">
   谢谢～～～

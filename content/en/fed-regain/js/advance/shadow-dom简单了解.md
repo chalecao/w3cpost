@@ -40,15 +40,15 @@ Shadow DOM它允许在文档（document）渲染时插入一棵DOM元素子树�
 &lt;/body&gt;
 &lt;/html&gt;</pre>
 
-页面完成了，在浏览器chrome中打开，然后打开 Chrome 的开发者工具，点击右上角的“Settings”按钮，勾选“Show user agent shadow DOM”。
+页面完成了，在[浏览器](https://www.w3cdoc.com)chrome中打开，然后打开 Chrome 的开发者工具，点击右上角的“Settings”按钮，勾选“Show user agent shadow DOM”。
 
 <img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/Fq09xC-qD04z43WYyVb4P0tPC-NC.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/Fq09xC-qD04z43WYyVb4P0tPC-NC.png?x-oss-process=image/format,webp" alt="Show user agent shadow DOM" width="365" height="502" />
 
-浏览器截图：
+[浏览器](https://www.w3cdoc.com)截图：
 
 <img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FhgQ2ofckuyoCPD8RlAd3INcGRAx.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FhgQ2ofckuyoCPD8RlAd3INcGRAx.png?x-oss-process=image/format,webp" alt="Video Shadow DOM" width="714" height="358" />
 
-# shadow-root称为影子根，可以看到它在video里面，换句话说，#shadow-root寄生在video上，所以video此时称为影子宿主。可以看到上图有两个#shadow-root，这是因为#shadow-root可以嵌套，形成节点树，即称为影子树（shadow trees）。影子树对其中的内容进行了封装，有选择性的进行渲染。这就意味着我们可以插入文本、重新安排内容、添加样式等等。如下所示：
+# shadow-root称为影子根，可以看到它在video里面，换句话说，#shadow-root寄生在video上，所以video此时称为影子宿主。可以看到上图有两个#shadow-root，这是因为#shadow-root可以嵌套，形成节点树，即称为影子树（shadow trees）。影子树对其中的内容进行了封装，有选择性的进行渲染。这就意味着[我们](https://www.w3cdoc.com)可以插入文本、重新安排内容、添加样式等等。如下所示：
 
 <img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FoF1XzsX8voCu3Gh9mJKBXkHeQDC.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FoF1XzsX8voCu3Gh9mJKBXkHeQDC.jpg?x-oss-process=image/format,webp" alt="影子树" width="498" height="618" />
 
@@ -84,7 +84,7 @@ shadowRoot.innerHTML = '&lt;p class="shadowroot_son"&gt;夏天夏天悄悄过去
 &lt;/body&gt;
 &lt;/html&gt;</pre>
 
-浏览器截图：
+[浏览器](https://www.w3cdoc.com)截图：
 
 <img class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FtgCUt4VAb4Y5JemQFBXnI3tvo4W.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FtgCUt4VAb4Y5JemQFBXnI3tvo4W.png?x-oss-process=image/format,webp" alt="创建Shadow DOM" />
 
@@ -114,7 +114,7 @@ shadowRoot.innerHTML = '&lt;p class="shadowroot_son"&gt;夏天夏天悄悄过去
 
 ### 3.3 实例 {#3-3-实例.post-heading}
 
-通过以上对 `<content>`和`<template>`的简单了解，我们来通过一个实例加深理解：
+通过以上对 `<content>`和`<template>`的简单了解，[我们](https://www.w3cdoc.com)来通过一个实例加深理解：
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
@@ -152,17 +152,17 @@ shadowRoot.appendChild(document.importNode(template.content, true));
 
 &lt;/html&gt;</pre>
 
-浏览器截图：
+[浏览器](https://www.w3cdoc.com)截图：
 
 <img class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FswaNQUdHF17XfTya9wO4ZnKIryN.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FswaNQUdHF17XfTya9wO4ZnKIryN.png?x-oss-process=image/format,webp" alt="content&template" />
 
-我们来看一下下面三个属性的用途：
+[我们](https://www.w3cdoc.com)来看一下下面三个属性的用途：
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">console.log(template.innerHTML); // 获取完整的HTML片段
 console.log(template.content); // 返回一个文档片段#document-fragment
 console.log(template.childNodes); // 返回[]，说明childNodes无效</pre>
 
-**贪心插入点**：如果把select=”.shadowhost_content1”改成select=””或者select=”*”，那么会有不一样的结果。因为贪心选择器放在了模板的第一个，他会将所有内容都抓取，不给其他select 选择器留一点内容。浏览器截图如下：
+**贪心插入点**：如果把select=”.shadowhost_content1”改成select=””或者select=”*”，那么会有不一样的结果。因为贪心选择器放在了模板的第一个，他会将所有内容都抓取，不给其他select 选择器留一点内容。[浏览器](https://www.w3cdoc.com)截图如下：
 
 <img class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FgnGjHYb8sI1_jns_CViHrsXgc6n.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FgnGjHYb8sI1_jns_CViHrsXgc6n.png?x-oss-process=image/format,webp" alt="贪心插入点" />
 
@@ -260,7 +260,7 @@ shadowRoot.appendChild(document.importNode(template.content, true));
 &lt;/html&gt;</pre>
 
 <p class="post-heading">
-  浏览器截图如下：
+  [浏览器](https://www.w3cdoc.com)截图如下：
 </p>
 
 <img class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FojZYP5WW1JAGN-3fyW9jnFLGiuN.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FojZYP5WW1JAGN-3fyW9jnFLGiuN.png?x-oss-process=image/format,webp" alt="::content&::shadow&/deep/" />
@@ -338,7 +338,7 @@ console.log(e.target.id + ' click!');
 
 看上去只能在chrome中愉快地玩耍。
 
-<a href="http://webcomponents.org/" target="_blank" rel="external noopener noreferrer">webcomponents.js</a>使得Shadow DOM在非 native 支持的浏览器上实现。
+<a href="http://webcomponents.org/" target="_blank" rel="external noopener noreferrer">webcomponents.js</a>使得Shadow DOM在非 native 支持的[浏览器](https://www.w3cdoc.com)上实现。
 
 ## 7. 参考链接 {#7-参考链接.post-heading}
 

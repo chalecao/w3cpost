@@ -4,9 +4,9 @@ title: react hooks模拟各个生命周期函数
 ---
 # 前言 {#-}
 
-react hook是继16.6的Suspense、lazy、memo后的又一巨大的令人兴奋的特性。然后有各种文章说了hook的优缺点，其中缺点包括：没有直接替代getSnapshotBeforeUpdate、componentDidUpdate生命周期的hook、不能像class组件那样写this、函数太大。这只是表面的现象，只要稍微思考一下，hook其实是无所不能的，我甚至相信未来挑不出hook的毛病来。今天手把手带大家过一遍如何实现class组件特性。
+react hook是继16.6的Suspense、lazy、memo后的又一巨大的令人兴奋的特性。然后有各种文章说了hook的优缺点，其中缺点包括：没有直接替代getSnapshotBeforeUpdate、componentDidUpdate生命周期的hook、不能像class组件那样写this、函数太大。这只是表面的现象，只要稍微思考一下，hook其实是无所不能的，我甚至相信未来挑不出hook的毛病来。今天手把手带[大家](https://www.w3cdoc.com)过一遍如何实现class组件特性。
 
-基本用法可见官网，阅读本文需要先了解`useState`、`useEffect`、`useRef`、`useLayoutEffect`的使用方法。本文核心hook——`useRef`，本文也算是一篇`useRef`的应用文章。当你知道核心是基于`useRef`的时候，或许已经想到实现办法了，很好，我们心有灵犀 「握个手」
+基本用法可见官网，阅读本文需要先了解`useState`、`useEffect`、`useRef`、`useLayoutEffect`的使用方法。本文核心hook——`useRef`，本文也算是一篇`useRef`的应用文章。当你知道核心是基于`useRef`的时候，或许已经想到实现办法了，很好，[我们](https://www.w3cdoc.com)心有灵犀 「握个手」
 
 # useRef {#useref}
 
@@ -23,7 +23,7 @@ react hook是继16.6的Suspense、lazy、memo后的又一巨大的令人兴奋�
 }
 </code></pre>
 
-函数组件的执行，整个函数体所有的必然躲不掉重新执行，那么如果希望有一个不重新走一遍的变量，我们通常会把它放函数组件外面去：
+函数组件的执行，整个函数体所有的必然躲不掉重新执行，那么如果希望有一个不重新走一遍的变量，[我们](https://www.w3cdoc.com)通常会把它放函数组件外面去：
 
 <pre class="hljs jsx"><code class="hljs jsx">&lt;span class="hljs-keyword">let&lt;/span> isMount = &lt;span class="hljs-literal">false&lt;/span>;
 &lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-type">C&lt;/span>&lt;span class="hljs-literal">()&lt;/span>{
@@ -32,7 +32,7 @@ react hook是继16.6的Suspense、lazy、memo后的又一巨大的令人兴奋�
 }
 </code></pre>
 
-这就是一个判断组件有没有挂载到页面的实现方法，如果我们用`useRef`，显然优雅很多了，而且是不是有点this的感觉
+这就是一个判断组件有没有挂载到页面的实现方法，如果[我们](https://www.w3cdoc.com)用`useRef`，显然优雅很多了，而且是不是有点this的感觉
 
 <pre class="hljs jsx"><code class="hljs jsx">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">C&lt;/span>&lt;span class="hljs-params">()&lt;/span>&lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> mount = useRef({}).current;
@@ -99,7 +99,7 @@ ok，现在假的this要原形毕露了:
 }
 </code></pre>
 
-我们已经知道了如何模拟this和state初始化了，那我们可以实现一个类似class组件的setState了：给ref里面的属性赋值，再forceUpdate。
+[我们](https://www.w3cdoc.com)已经知道了如何模拟this和state初始化了，那[我们](https://www.w3cdoc.com)可以实现一个类似class组件的setState了：给ref里面的属性赋值，再forceUpdate。
 
 > 本文只是希望全部收拢在useRef，然后修改状态的方法纯粹一点，当然可以用useState对着一个个state值进行修改
 
@@ -127,7 +127,7 @@ ok，现在假的this要原形毕露了:
 }
 </code></pre>
 
-到此，我们已经实现了class组件的`this`，`setState`，`forceUpdate`了
+到此，[我们](https://www.w3cdoc.com)已经实现了class组件的`this`，`setState`，`forceUpdate`了
 
 # didmount、didupdate、willunmount的实现 {#didmount-didupdate-willunmount-}
 
@@ -181,7 +181,7 @@ ok，现在假的this要原形毕露了:
 
 # 记录上一次状态 {#-}
 
-有人可能也注意到了，上面的componentDidUpdate是没有传入上一次props和state的。是的，getDerivedStateFromProps也要上一个state的。所以我们还需要一个ref存上一个状态：
+有人可能也注意到了，上面的componentDidUpdate是没有传入上一次props和state的。是的，getDerivedStateFromProps也要上一个state的。所以[我们](https://www.w3cdoc.com)还需要一个ref存上一个状态：
 
 <pre class="hljs jsx"><code class="hljs jsx">export &lt;span class="hljs-keyword">default&lt;/span> (props) =&gt; {
   const forceUpdate = useForceUpdate();
@@ -278,7 +278,7 @@ ok，现在假的this要原形毕露了:
 
 # componentDidCatch {#componentdidcatch}
 
-另一个不能用hook直接替代的生命周期，说到错误，这个生命周期也是捕捉函数render执行的时候的错误。那些编译不过的，非函数渲染时候报的错，它无法捕获的哦。基于这个前提，我们还是基于try-catch大法实现一波：
+另一个不能用hook直接替代的生命周期，说到错误，这个生命周期也是捕捉函数render执行的时候的错误。那些编译不过的，非函数渲染时候报的错，它无法捕获的哦。基于这个前提，[我们](https://www.w3cdoc.com)还是基于try-catch大法实现一波：
 
 <pre class="hljs jsx"><code class="hljs jsx">// 对最后的return 修改，这里还可以个性化一下fallback ui呢
   try {

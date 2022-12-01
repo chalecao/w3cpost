@@ -23,7 +23,7 @@ title: canvas图片处理与动画
   
 &lt;div style="display:flex; flex-direction: row"&gt;  
   
-    &lt;!--通过style方式为canvas设置宽高在火狐浏览器上导致绘制内容纵向拉伸。。。--&gt;  
+    &lt;!--通过style方式为canvas设置宽高在火狐[浏览器](https://www.w3cdoc.com)上导致绘制内容纵向拉伸。。。--&gt;  
     &lt;canvas id="drawing" width="400px" height="400px"&gt;canvas to draw&lt;/canvas&gt;  
   
     &lt;pre id="container" style="margin: 10px"/&gt;  
@@ -120,7 +120,7 @@ title: canvas图片处理与动画
 <div>
   <div>
     <p>
-      动画本质上是图像按照事先设定好的顺序在一定的时间内的<strong>图像序列变化运动</strong>。<br /> 这种图像序列的变化运动给我们最为直观的感受就是图像仿佛真实的在运动一般，由此产生动画效果。<br /> 然后，事实并非如此，真相往往难以用肉眼观察得到，除非你是上帝~~~<br /> 动画的特性在于：
+      动画本质上是图像按照事先设定好的顺序在一定的时间内的<strong>图像序列变化运动</strong>。<br /> 这种图像序列的变化运动给[我们](https://www.w3cdoc.com)最为直观的感受就是图像仿佛真实的在运动一般，由此产生动画效果。<br /> 然后，事实并非如此，真相往往难以用肉眼观察得到，除非你是上帝~~~<br /> 动画的特性在于：
     </p>
 
     <ul>
@@ -128,7 +128,7 @@ title: canvas图片处理与动画
         每一张图像的内容是事先设定好的，内容是不变的，变化的是图像序列按照规定的顺序在变动；
       </li>
       <li>
-        构成动画特效需要在单位时间内渲染一定量的图像，每张图像称之为帧（Frame），通常电影只需要24FPS就足够流畅，而游戏则需要60FPS，我们设计动画时通常选用60FPS；
+        构成动画特效需要在单位时间内渲染一定量的图像，每张图像称之为帧（Frame），通常电影只需要24FPS就足够流畅，而游戏则需要60FPS，[我们](https://www.w3cdoc.com)设计动画时通常选用60FPS；
       </li>
     </ul>
     
@@ -176,7 +176,7 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
     
     <pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-built_in">window&lt;/span>.requestAnimationFrame(callback)
 先前我已经说过，动画是在单位时间内按照一定顺序的图像序列的变化形成的；
-这个API的功能就是，你可以在回调函数里面写一个脚本改变图形的宽高，然后这一API就会根据浏览器的刷新频率而在一定时间内调用callback；
+这个API的功能就是，你可以在回调函数里面写一个脚本改变图形的宽高，然后这一API就会根据[浏览器](https://www.w3cdoc.com)的刷新频率而在一定时间内调用callback；
 然后，根据递归的思想，实现callback的反复调用，最终实现动画效果；
 不明白，上代码
 </code></pre>
@@ -187,7 +187,7 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
     &lt;span class="hljs-comment">//some code for animation effect here&lt;/span>
 })();
 
-上面的代码意思是立即执行drawFrame这个函数，发现  &lt;span class="hljs-built_in">window&lt;/span>.requestAnimationFrame(drawFrame)，okay根据浏览器的刷新频率，在一定时间之后执行；
+上面的代码意思是立即执行drawFrame这个函数，发现  &lt;span class="hljs-built_in">window&lt;/span>.requestAnimationFrame(drawFrame)，okay根据[浏览器](https://www.w3cdoc.com)的刷新频率，在一定时间之后执行；
 接下来执行你所编写的改变图像内容（图像的位置、宽高、颜色等等）的脚本，执行回调；
 循环反复，形成动画效果
 </code></pre>
@@ -198,7 +198,7 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
     
     <pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-built_in">window&lt;/span>.requestAnimationFrame这个API你可以理解为&lt;span class="hljs-built_in">window&lt;/span>.setTimeout(callback,time)
 
-事实上，当部分浏览器不兼容这个API时，我们也可以写成以下形式：
+事实上，当部分[浏览器](https://www.w3cdoc.com)不兼容这个API时，[我们](https://www.w3cdoc.com)也可以写成以下形式：
 
 &lt;span class="hljs-keyword">if&lt;/span>(!&lt;span class="hljs-built_in">window&lt;/span>.requestAnimationFrame){
     &lt;span class="hljs-built_in">window&lt;/span>.requestAnimationFrame = (
@@ -227,11 +227,11 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
     </h4>
     
     <p>
-      有了前面的基础知识，现在我们就会想：如果我们能够在每16ms（1秒60帧，1000/60）内渲染1张图像，并且每一张图像的内容发生微调，那么在1秒钟整个画面就会产生动画效果了。
+      有了前面的基础知识，现在[我们](https://www.w3cdoc.com)就会想：如果[我们](https://www.w3cdoc.com)能够在每16ms（1秒60帧，1000/60）内渲染1张图像，并且每一张图像的内容发生微调，那么在1秒钟整个画面就会产生动画效果了。
     </p>
     
     <p>
-      内容的微调可以是图形的移动的距离、转动的方向以及缩放的比例等等，而“捕获”这些数据的方法就用使用到我们以前忽视的解析几何的知识了。
+      内容的微调可以是图形的移动的距离、转动的方向以及缩放的比例等等，而“捕获”这些数据的方法就用使用到[我们](https://www.w3cdoc.com)以前忽视的解析几何的知识了。
     </p>
     
     <h5>
@@ -290,7 +290,7 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
 </code></pre>
 
     <p>
-      这段代码涉及部分封装的函数，这里就不讲<br /> 这里主要讲解一下思路，如果我们需要圆在x轴上移动，那么一个思路是改变圆的圆心，使圆心在x轴上不断变化，最终形成动画的效果；<br /> 上面的ball.x = xpeed就是每执行一次RAF(window.requestAnimationFrame)，圆心就向右移动1像素；
+      这段代码涉及部分封装的函数，这里就不讲<br /> 这里主要讲解一下思路，如果[我们](https://www.w3cdoc.com)需要圆在x轴上移动，那么一个思路是改变圆的圆心，使圆心在x轴上不断变化，最终形成动画的效果；<br /> 上面的ball.x = xpeed就是每执行一次RAF(window.requestAnimationFrame)，圆心就向右移动1像素；
     </p>
     
     <p>
@@ -321,7 +321,7 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
     </p>
     
     <pre class="hljs undefined"><code>1.物体的匀速运动无非是改变其在坐标轴的值，但是**每次的改变量是不变的**，也就是单位时间内的移动距离是不变的，这样才符合匀速；
-2.通过向量的合成原理，我们可以在canvas画布上实现任意方向的匀速运动
+2.通过向量的合成原理，[我们](https://www.w3cdoc.com)可以在canvas画布上实现任意方向的匀速运动
 </code></pre>
 
     <hr />
@@ -476,7 +476,7 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
     
     <ul>
       <li>
-        <strong>波形运动</strong><br /> 波形运动，顾名思义像波浪般的运动，运动轨迹如同下面的三角函数一般；<br /> 此时，我们不禁会想：要实现波形运动的轨迹，是不是需要用到三角函数呢？<br /> Bingo，答对了~~~可是知识已经还给我敬爱的老师嘞；
+        <strong>波形运动</strong><br /> 波形运动，顾名思义像波浪般的运动，运动轨迹如同下面的三角函数一般；<br /> 此时，[我们](https://www.w3cdoc.com)不禁会想：要实现波形运动的轨迹，是不是需要用到三角函数呢？<br /> Bingo，答对了~~~可是知识已经还给我敬爱的老师嘞；
       </li>
     </ul>
     
@@ -500,7 +500,7 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
     </p>
     
     <p>
-      先分析一下思路：<br /> 实现圆按照波形运动的动画原理是什么？<br /> 每16ms浏览器渲染1帧，每1帧圆的圆心位置发生改变，改变的路径就是这个正弦函数；
+      先分析一下思路：<br /> 实现圆按照波形运动的动画原理是什么？<br /> 每16ms[浏览器](https://www.w3cdoc.com)渲染1帧，每1帧圆的圆心位置发生改变，改变的路径就是这个正弦函数；
     </p>
     
     <div class="image-package">
@@ -607,7 +607,7 @@ angle += &lt;span class="hljs-number">0.1&lt;/span>;
     
     <ul>
       <li>
-        <strong>圆形运动</strong><br /> 现在我们再想一下，如何让圆围绕一个点做圆周运动？<br /> 我们学到的解析几何有什么是可以表示圆的？相信各位童鞋已经学会开始抢答了，对啦就是
+        <strong>圆形运动</strong><br /> 现在[我们](https://www.w3cdoc.com)再想一下，如何让圆围绕一个点做圆周运动？<br /> [我们](https://www.w3cdoc.com)学到的解析几何有什么是可以表示圆的？相信各位童鞋已经学会开始抢答了，对啦就是
       </li>
     </ul>
     
@@ -638,7 +638,7 @@ angle += &lt;span class="hljs-number">0.1&lt;/span>;
     </div>
     
     <p>
-      如果有看官想到这一层面，我会觉得你很牛X，因为我是事后复习才想到这一点的。不卖关子，大家应该听说过极坐标把（再一次验证原理的有效性）
+      如果有看官想到这一层面，我会觉得你很牛X，因为我是事后复习才想到这一点的。不卖关子，[大家](https://www.w3cdoc.com)应该听说过极坐标把（再一次验证原理的有效性）
     </p>
     
     <pre class="hljs cpp"><code class="cpp">&lt;span class="hljs-comment">//圆的极坐标表达式为&lt;/span>
@@ -846,7 +846,7 @@ Arrow.prototype.draw = &lt;span class="hljs-function">&lt;span class="hljs-keywo
     </p>
     
     <p>
-      上面的angle的赋值是机械式，如果我们想要鼠标转到哪里，箭头就指到哪里，会不会更加具有交互性；
+      上面的angle的赋值是机械式，如果[我们](https://www.w3cdoc.com)想要鼠标转到哪里，箭头就指到哪里，会不会更加具有交互性；
     </p>
     
     <p>
@@ -928,7 +928,7 @@ Arrow.prototype.draw = &lt;span class="hljs-function">&lt;span class="hljs-keywo
     </h4>
     
     <p>
-      canvas提供缩放功能的API可以让我们对物体进行缩放大小，如果结合我们之前学的一些解析几何的知识，那么就可以创作出千变万化的缩放特效出来；
+      canvas提供缩放功能的API可以让[我们](https://www.w3cdoc.com)对物体进行缩放大小，如果结合[我们](https://www.w3cdoc.com)之前学的一些解析几何的知识，那么就可以创作出千变万化的缩放特效出来；
     </p>
     
     <div class="image-package">

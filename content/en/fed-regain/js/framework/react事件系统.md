@@ -6,8 +6,8 @@ title: react事件系统
 ## 一 前言 {#item-1}
 
 React事件系统有两类：合成事件和原生事件。  
-在写React组件是我们很容易绑定一个合成事件，但是在一个组件里面是没有办法去绑定另一个组件的合成事件的，此时原生事件就派上了用场。  
-除了讲述混合（合成事件与原生事件混用）事件，事件冒泡也是我们经常需要处理的事情，这篇文章结合React进行介绍。
+在写React组件是[我们](https://www.w3cdoc.com)很容易绑定一个合成事件，但是在一个组件里面是没有办法去绑定另一个组件的合成事件的，此时原生事件就派上了用场。  
+除了讲述混合（合成事件与原生事件混用）事件，事件冒泡也是[我们](https://www.w3cdoc.com)经常需要处理的事情，这篇文章结合React进行介绍。
 
 最近调试组件绑定keydown事件，发现取到的key和code值在搜狗中文输入法下面有问题，后来发现要用e.nativeEvent来获取值是没问题。这里说下原因。
 
@@ -15,7 +15,7 @@ React事件系统有两类：合成事件和原生事件。
 
 ### 1.React事件系统 {#item-2-1}
 
-1-1. React 基于 Virtual DOM 实现了一个SyntheticEvent（合成事件）层，我们所定义的事件处理器会接收到一个SyntheticEvent对象的实例，同样支持事件的冒泡机制，我们可以使用stopPropagation()和preventDefault()来中断它。
+1-1. React 基于 Virtual DOM 实现了一个SyntheticEvent（合成事件）层，[我们](https://www.w3cdoc.com)所定义的事件处理器会接收到一个SyntheticEvent对象的实例，同样支持事件的冒泡机制，[我们](https://www.w3cdoc.com)可以使用stopPropagation()和preventDefault()来中断它。
 
 1-2. 所有事件都自动绑定到最外层上（document）。
 
@@ -31,7 +31,7 @@ React 事件前，一定要熟悉它的事件代理机制。它并不会把事�
 
 ### 3.在React中使用原生事件 {#item-2-3}
 
-React 架构下也可以使用原生事件。React 提供了完备的生命周期方法，其中componentDidMount会在组件已经完成安装并且在浏览器中存在真实的 DOM 后调用，此时我们就可以完成原生事件的绑定。  
+React 架构下也可以使用原生事件。React 提供了完备的生命周期方法，其中componentDidMount会在组件已经完成安装并且在[浏览器](https://www.w3cdoc.com)中存在真实的 DOM 后调用，此时[我们](https://www.w3cdoc.com)就可以完成原生事件的绑定。  
 但是React不会自动管理原生事件，所以需要你在**卸载组件的时候注销掉原生事件**。
 
 ### 4.合成事件与原生事件混用 {#item-2-4}
@@ -41,7 +41,7 @@ React 架构下也可以使用原生事件。React 提供了完备的生命周�
 * 不要将合成事件与原生事件混用
 * 通过e.target判断来避免
 
-重点是下面这段话，这也是我们今天要着重解决的问题：
+重点是下面这段话，这也是[我们](https://www.w3cdoc.com)今天要着重解决的问题：
 
 > 用reactEvent.nativeEvent.stopPropagation()来阻止冒泡是不行的。阻止 React 事件冒泡的行为只能用于 React 合成事件系统中，且没办法阻止原生事件的冒泡。反之，在原生事件中的阻止冒泡行为，却可以阻止 React 合成事件的传播。
 
@@ -63,7 +63,7 @@ React 合成事件与原生事件执行顺序图：
   <img loading="lazy" width="800" height="369" class="alignnone size-full wp-image-6068 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec52848017.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec52848017.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec52848017.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec52848017.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_138/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec52848017.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_354/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
 </p>
 
-从图中我们可以得到一下结论：  
+从图中[我们](https://www.w3cdoc.com)可以得到一下结论：  
 （1）DOM 事件冒泡到document上才会触发React的合成事件，所以React 合成事件对象的e.stopPropagation，只能阻止 React 模拟的事件冒泡，并不能阻止真实的 DOM 事件冒泡  
 （2）DOM 事件的阻止冒泡也可以阻止合成事件原因是DOM 事件的阻止冒泡使事件不会传播到document上  
 （3）当合成事件和DOM 事件 都绑定在document上的时候，React的处理是合成事件应该是先放进去的所以会先触发，在这种情况下，原生事件对象的 stopImmediatePropagation能做到阻止进一步触发document DOM事件
@@ -125,7 +125,7 @@ listenTo: &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&
     &lt;span class="hljs-keyword">var&lt;/span> dependencies = EventPluginRegistry.registrationNameDependencies[registrationName];
 
     &lt;span class="hljs-keyword">for&lt;/span> (&lt;span class="hljs-keyword">var&lt;/span> i = &lt;span class="hljs-number">0&lt;/span>; i &lt; dependencies.length; i++){
-        &lt;span class="hljs-comment">// 内部有大量判断浏览器兼容等的步骤，提取一下核心代码&lt;/span>
+        &lt;span class="hljs-comment">// 内部有大量判断[浏览器](https://www.w3cdoc.com)兼容等的步骤，提取一下核心代码&lt;/span>
         &lt;span class="hljs-keyword">var&lt;/span> dependency = dependencies[i];
 
         &lt;span class="hljs-comment">// topEvent 和原生 DOM 事件的转化关系&lt;/span>
@@ -150,7 +150,7 @@ trapBubbledEvent: &lt;span class="hljs-function">&lt;span class="hljs-keyword">f
 
 &lt;span class="hljs-comment">// 三个参数为 Document（挂载节点）、原生 DOM Event、事件绑定函数&lt;/span>
 listen: &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">listen&lt;/span>&lt;span class="hljs-params">(target, eventType, callback)&lt;/span> &lt;/span>{
-    &lt;span class="hljs-comment">// 去除浏览器兼容部分，留下核心后&lt;/span>
+    &lt;span class="hljs-comment">// 去除[浏览器](https://www.w3cdoc.com)兼容部分，留下核心后&lt;/span>
     target.addEventListener(eventType, callback, &lt;span class="hljs-literal">false&lt;/span>);
     &lt;span class="hljs-comment">// 返回一个解绑的函数&lt;/span>
     &lt;span class="hljs-keyword">return&lt;/span> {
@@ -161,10 +161,10 @@ listen: &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt
 }
 </code></pre>
 
-在 listen 方法中，我们终于发现了熟悉的 addEventListener 这个原生事件注册方法。只有 document 节点才会调用这个方法，故仅仅只有 document 节点上才有 DOM 事件。这大大简化了 DOM 事件逻辑，也节约了内存。
+在 listen 方法中，[我们](https://www.w3cdoc.com)终于发现了熟悉的 addEventListener 这个原生事件注册方法。只有 document 节点才会调用这个方法，故仅仅只有 document 节点上才有 DOM 事件。这大大简化了 DOM 事件逻辑，也节约了内存。
 
 7-2.事件存储  
-事件注册之后，还需要将事件绑定的回调函数存储下来。这样，在触发事件后才能去寻找相应回调来触发。在一开始的代码中，我们已经看到，是使用 putListener 方法来进行事件回调存储。
+事件注册之后，还需要将事件绑定的回调函数存储下来。这样，在触发事件后才能去寻找相应回调来触发。在一开始的代码中，[我们](https://www.w3cdoc.com)已经看到，是使用 putListener 方法来进行事件回调存储。
 
 <pre class="hljs actionscript"><code>&lt;span class="hljs-comment">// inst：注册事件的 React 组件实例&lt;/span>
 &lt;span class="hljs-comment">// registrationName：React 事件，如：onClick、onChange&lt;/span>

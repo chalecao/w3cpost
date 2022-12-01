@@ -10,7 +10,7 @@ title: 使用 Webpack-chain 链式生成 webpack 配置
 ---
 <div>
   <p>
-    vuepress 有三套 webpack 配置：基础配置、dev 配置、build 配置，看似和普通的一个前端项目也没什么差别，但它使用 webpack-chain 生成配置而不是传统的写死配置。
+    vuepress 有三套 webpack 配置：基础配置、dev 配置、build 配置，看似和普通的一个[前端](https://www.w3cdoc.com)项目也没什么差别，但它使用 webpack-chain 生成配置而不是传统的写死配置。
   </p>
   
   <blockquote>
@@ -32,7 +32,7 @@ title: 使用 Webpack-chain 链式生成 webpack 配置
   </h4>
   
   <p>
-    引入 webpack-chain 后，我们所有的 webpack 配置通过一个链式包装器便可生成了：<button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button>
+    引入 webpack-chain 后，[我们](https://www.w3cdoc.com)所有的 webpack 配置通过一个链式包装器便可生成了：<button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button>
   </p>
   
   <div class="_2Uzcx_">
@@ -46,7 +46,7 @@ title: 使用 Webpack-chain 链式生成 webpack 配置
   </div>
   
   <p>
-    在引入详细的示例之前，先让我们介绍一下 webpack-chain 中内置的两种数据结构：ChainMap、ChainSet。
+    在引入详细的示例之前，先让[我们](https://www.w3cdoc.com)介绍一下 webpack-chain 中内置的两种数据结构：ChainMap、ChainSet。
   </p>
   
   <h4>
@@ -66,7 +66,7 @@ title: 使用 Webpack-chain 链式生成 webpack 配置
   </p>
   
   <p>
-    假如我们需要指定 webpack 配置的 enrty，我们只需要这样做：<button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button>
+    假如[我们](https://www.w3cdoc.com)需要指定 webpack 配置的 enrty，[我们](https://www.w3cdoc.com)只需要这样做：<button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button>
   </p>
   
   <div class="_2Uzcx_">
@@ -92,7 +92,7 @@ title: 使用 Webpack-chain 链式生成 webpack 配置
   </p>
   
   <p>
-    这可以帮助我们增删改查整个 webpack 配置中的任意一个部分。
+    这可以帮助[我们](https://www.w3cdoc.com)增删改查整个 webpack 配置中的任意一个部分。
   </p>
   
   <h4>
@@ -120,7 +120,7 @@ title: 使用 Webpack-chain 链式生成 webpack 配置
   </h3>
   
   <p>
-    我们打开源码目录：
+    [我们](https://www.w3cdoc.com)打开源码目录：
   </p>
   
   <p id="kPOPQxe">
@@ -164,11 +164,11 @@ title: 使用 Webpack-chain 链式生成 webpack 配置
   </div>
   
   <p>
-    最常调用的 end 方法便是来源于这了，它会返回调用链中最前端的那个对象。
+    最常调用的 end 方法便是来源于这了，它会返回调用链中最[前端](https://www.w3cdoc.com)的那个对象。
   </p>
   
   <p>
-    比如说，我们在 vuepress 中有这样一段代码：
+    比如说，[我们](https://www.w3cdoc.com)在 vuepress 中有这样一段代码：
   </p>
   
   <div class="_2Uzcx_">
@@ -205,7 +205,7 @@ title: 使用 Webpack-chain 链式生成 webpack 配置
   </h3>
   
   <p>
-    分成三个配置我们就不赘述了，毕竟大家平常开发的项目中也可能这样做。在这里我需要特别提一下的地方便是<strong>编写函数生成 webpack 配置</strong>：
+    分成三个配置[我们](https://www.w3cdoc.com)就不赘述了，毕竟[大家](https://www.w3cdoc.com)平常开发的项目中也可能这样做。在这里我需要特别提一下的地方便是<strong>编写函数生成 webpack 配置</strong>：
   </p>
   
   <p>

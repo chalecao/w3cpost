@@ -7,17 +7,17 @@ title: 简述Chromium, CEF, Webkit, JavaScriptCore, V8, Blink
 ---
 <div>
   <h1>
-    了解浏览器
+    了解[浏览器](https://www.w3cdoc.com)
   </h1>
   
   <ol>
     <li>
-      浏览器内核概念
+      [浏览器](https://www.w3cdoc.com)内核概念
     </li>
   </ol>
   
   <p>
-    浏览器内核分为两部分：渲染引擎（render engin）、js引擎(js engin)
+    [浏览器](https://www.w3cdoc.com)内核分为两部分：渲染引擎（render engin）、js引擎(js engin)
   </p>
   
   <p>
@@ -33,11 +33,11 @@ title: 简述Chromium, CEF, Webkit, JavaScriptCore, V8, Blink
   </p>
   
   <p>
-    2. webkit浏览器渲染引擎的进度史<img loading="lazy" width="914" height="273" class="alignnone size-full wp-image-4485 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff11f4314f6.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff11f4314f6.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff11f4314f6.png?x-oss-process=image/format,webp 914w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff11f4314f6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_90/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff11f4314f6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_229/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff11f4314f6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_239/format,webp 800w" sizes="(max-width: 914px) 100vw, 914px" />
+    2. webkit[浏览器](https://www.w3cdoc.com)渲染引擎的进度史<img loading="lazy" width="914" height="273" class="alignnone size-full wp-image-4485 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff11f4314f6.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff11f4314f6.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff11f4314f6.png?x-oss-process=image/format,webp 914w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff11f4314f6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_90/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff11f4314f6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_229/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff11f4314f6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_239/format,webp 800w" sizes="(max-width: 914px) 100vw, 914px" />
   </p>
   
   <p>
-    <img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/12/3/16771e073967ab5f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/12/3/16771e073967ab5f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="914" data-height="273" />3. webkit浏览器内核部分内容介绍<br /> <img loading="lazy" width="951" height="398" class="alignnone size-full wp-image-4486 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff120a4707e.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff120a4707e.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff120a4707e.png?x-oss-process=image/format,webp 951w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff120a4707e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_126/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff120a4707e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_321/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff120a4707e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_335/format,webp 800w" sizes="(max-width: 951px) 100vw, 951px" />
+    <img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/12/3/16771e073967ab5f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/12/3/16771e073967ab5f?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="914" data-height="273" />3. webkit[浏览器](https://www.w3cdoc.com)内核部分内容介绍<br /> <img loading="lazy" width="951" height="398" class="alignnone size-full wp-image-4486 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff120a4707e.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff120a4707e.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff120a4707e.png?x-oss-process=image/format,webp 951w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff120a4707e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_126/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff120a4707e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_321/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cff120a4707e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_335/format,webp 800w" sizes="(max-width: 951px) 100vw, 951px" />
   </p>
   
   <p>
@@ -73,7 +73,7 @@ title: 简述Chromium, CEF, Webkit, JavaScriptCore, V8, Blink
       V8（在<a href="https://juejin.im/editor/drafts/5c04948c5188252e4c2e93bf" target="_blank" rel="noopener">这里</a>详细了解）
     </li>
     <li>
-      Webkit<br /> (refer: W<a href="https://link.juejin.im?target=https%3A%2F%2Fbook.douban.com%2Fsubject%2F25910556%2F" target="_blank" rel="nofollow noopener noreferrer">ebkit技术内幕</a>)<br /> 苹果公司基于KDE（Linux桌面系统）的KHTML开源，包括Webcore和JavaScriptCore两个引擎。苹果比较了Gecko和KHTML之后，选择后者的原因，是KHTML拥有清晰的源码结构和极快的渲染速度。2008年，谷歌公司发布的chrome浏览器，采用的chromium内核是基于Webkit而来应用：safari, mail, app store等应用webkit布局：当webkit创建RenderObject对象之后，每个对象是不知道自己的位置、大小等信息的，webkit根据盒模型来计算他们的位置、大小等信息的过程称为布局计算/排版。布局计算分类：第一类是对整个RenderObject树进行的计算；第二类是对RenderObject树中某个子树的计算，常见于文本元素或者overflow：auto块的计算。布局计算：布局计算是一个递归的过程，这是因为一个节点的大小通常需要先计算它的子节点的位置、大小等信息。补充：</p> <p>
+      Webkit<br /> (refer: W<a href="https://link.juejin.im?target=https%3A%2F%2Fbook.douban.com%2Fsubject%2F25910556%2F" target="_blank" rel="nofollow noopener noreferrer">ebkit技术内幕</a>)<br /> 苹果公司基于KDE（Linux桌面系统）的KHTML开源，包括Webcore和JavaScriptCore两个引擎。苹果比较了Gecko和KHTML之后，选择后者的原因，是KHTML拥有清晰的源码结构和极快的渲染速度。2008年，谷歌公司发布的chrome[浏览器](https://www.w3cdoc.com)，采用的chromium内核是基于Webkit而来应用：safari, mail, app store等应用webkit布局：当webkit创建RenderObject对象之后，每个对象是不知道自己的位置、大小等信息的，webkit根据盒模型来计算他们的位置、大小等信息的过程称为布局计算/排版。布局计算分类：第一类是对整个RenderObject树进行的计算；第二类是对RenderObject树中某个子树的计算，常见于文本元素或者overflow：auto块的计算。布局计算：布局计算是一个递归的过程，这是因为一个节点的大小通常需要先计算它的子节点的位置、大小等信息。补充：</p> <p>
         为什么说transform实现动画较直接设置几何属性性能较好？
       </p>
 
@@ -82,7 +82,7 @@ title: 简述Chromium, CEF, Webkit, JavaScriptCore, V8, Blink
       </p>
       
       <p>
-        2.现代浏览器针对transform等开启GPU加速。
+        2.现代[浏览器](https://www.w3cdoc.com)针对transform等开启GPU加速。
       </p>
       
       <p>
@@ -134,7 +134,7 @@ title: 简述Chromium, CEF, Webkit, JavaScriptCore, V8, Blink
             </p>
             
             <p>
-              一个将浏览器功能（页面渲染、js执行）嵌入到其他应用程序的框架，支持windows, Linux, Mac平台
+              一个将[浏览器](https://www.w3cdoc.com)功能（页面渲染、js执行）嵌入到其他应用程序的框架，支持windows, Linux, Mac平台
             </p>
             
             <p>
@@ -161,7 +161,7 @@ title: 简述Chromium, CEF, Webkit, JavaScriptCore, V8, Blink
             </p>
             
             <p>
-              1）做一个浏览器
+              1）做一个[浏览器](https://www.w3cdoc.com)
             </p>
             
             <p>
@@ -197,7 +197,7 @@ title: 简述Chromium, CEF, Webkit, JavaScriptCore, V8, Blink
             </p>
             
             <p>
-              CEF是包含Chromium浏览器的应用框架
+              CEF是包含Chromium[浏览器](https://www.w3cdoc.com)的应用框架
             </p>
             
             <p>

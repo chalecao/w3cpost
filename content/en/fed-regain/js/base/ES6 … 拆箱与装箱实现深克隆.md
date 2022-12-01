@@ -60,7 +60,7 @@ ee: [11, 22, 33]
 
 这回又解决了一个问题，深克隆，以后深拷贝就可以用 &#8230; 了，是不是很简单。
 
-<span style="color: #ff0000;">PS: 以上测试在Chrome浏览器中正常，在前端webpack或者rollup打包需要babel-preset-stage-3支持，但是这个babel最终会转换成Object.assign, 所以又变成浅拷贝了！！！</span>
+<span style="color: #ff0000;">PS: 以上测试在Chrome[浏览器](https://www.w3cdoc.com)中正常，在[前端](https://www.w3cdoc.com)webpack或者rollup打包需要babel-preset-stage-3支持，但是这个babel最终会转换成Object.assign, 所以又变成浅拷贝了！！！</span>
 
 再补充个深克隆的实验
 
@@ -72,4 +72,4 @@ aa[11] = function(){console.log(23)}
 aa[11]() // 输出 23
 bb[11]() // 输出 11</pre>
 
-函数都可以实现深克隆，厉害。不是这是浏览器实现了的。上面红色的字提示了，如果用polyfill，注意回退情况。如果是中后台可控范围，可以放心用
+函数都可以实现深克隆，厉害。不是这是[浏览器](https://www.w3cdoc.com)实现了的。上面红色的字提示了，如果用polyfill，注意回退情况。如果是中后台可控范围，可以放心用

@@ -4,7 +4,7 @@ title: chrome dev远程调试android 和ios
 ---
 <div>
   <p>
-    调试是开发过程很重要的过程，而随着移动端的普及，移动开发也越来越多，并且由于移动端的诸多限制，使得调试相对PC复杂很多。因此远程调试就显得非常重要了。 近几年，浏览器厂商也纷纷推出自己的远程调试工具，比如Opera Mobile 推出的Opera Dragonfly，iOS Safari 可以开启Web检查器在 Mac OS X系统中实现远程调试。Android 4.0+系统的 Chrome for Android可以配合 ADB（Android Debug Bridge）实现桌面远程调试，桌面版Chrome 32+已经支持免安装ADB即可实现远程调试移动设备页面/WebView 。国内的UC浏览器开发者版也推出了自己的远程调试工具RemoteInspector。除了浏览器厂商之外，也涌现出许多第三方开发的远程调试工具，诸如支持全平台调试的Weinre等。
+    调试是开发过程很重要的过程，而随着移动端的普及，移动开发也越来越多，并且由于移动端的诸多限制，使得调试相对PC复杂很多。因此远程调试就显得非常重要了。 近几年，[浏览器](https://www.w3cdoc.com)厂商也纷纷推出自己的远程调试工具，比如Opera Mobile 推出的Opera Dragonfly，iOS Safari 可以开启Web检查器在 Mac OS X系统中实现远程调试。Android 4.0+系统的 Chrome for Android可以配合 ADB（Android Debug Bridge）实现桌面远程调试，桌面版Chrome 32+已经支持免安装ADB即可实现远程调试移动设备页面/WebView 。国内的UC[浏览器](https://www.w3cdoc.com)开发者版也推出了自己的远程调试工具RemoteInspector。除了[浏览器](https://www.w3cdoc.com)厂商之外，也涌现出许多第三方开发的远程调试工具，诸如支持全平台调试的Weinre等。
   </p>
   
   <p>
@@ -81,7 +81,7 @@ title: chrome dev远程调试android 和ios
 </code></pre>
 </div>
 
-Android的webview debugger socket是一种unix domain socket，所以我们要基于adb来和这个socket通信。
+Android的webview debugger socket是一种unix domain socket，所以[我们](https://www.w3cdoc.com)要基于adb来和这个socket通信。
 
 ## adb通信原理
 
@@ -106,7 +106,7 @@ android提供了smartsocket,详见<a href="https://android.googlesource.com/plat
 > server: “FAIL”
 
 总结来说，就是可以给adb-server发送一条指令`<service-name>`，然后adb-server会转发给adbd，让adbd来执行`<service-name>`.  
-举例来说，当我们执行`adb shell cat /proc/net/unix`,最终就是通过adbd在设备上执行的。
+举例来说，当[我们](https://www.w3cdoc.com)执行`adb shell cat /proc/net/unix`,最终就是通过adbd在设备上执行的。
 
 <img loading="lazy" class="alignnone wp-image-3389 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png?x-oss-process=image/format,webp" alt="" width="500" height="421" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png?x-oss-process=image/format,webp 1032w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_253/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_647/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_712,h_600/format,webp 712w" sizes="(max-width: 500px) 100vw, 500px" />
 
@@ -130,7 +130,7 @@ Stetho的通信模型如上图，其中stetho-server就是app启的一个Thread�
 
     adb forward tcp:9223 localabstract:webview_devtools_remote_m5x_17803
 
-  在浏览器访问下这个9223端口，因为http协议底层走的也是tcp所以可以直接用浏览器看下：https://localhost:9223/json
+  在[浏览器](https://www.w3cdoc.com)访问下这个9223端口，因为http协议底层走的也是tcp所以可以直接用[浏览器](https://www.w3cdoc.com)看下：https://localhost:9223/json
 
 <div>
   <pre><code></code><code>
@@ -149,9 +149,9 @@ Stetho的通信模型如上图，其中stetho-server就是app启的一个Thread�
 
 ## 调试方法
 
-**基于chrome浏览器调试**
+**基于chrome[浏览器](https://www.w3cdoc.com)调试**
 
-其实链接手机到浏览器后，只要开启了调试模式，开启了调试webview，打开浏览器的下面url页面，勾选发现Discover USB devices和Discover network devices，会自动发现可调式的设备，列出可调式网页页面。
+其实链接手机到[浏览器](https://www.w3cdoc.com)后，只要开启了调试模式，开启了调试webview，打开[浏览器](https://www.w3cdoc.com)的下面url页面，勾选发现Discover USB devices和Discover network devices，会自动发现可调式的设备，列出可调式网页页面。
 
     chrome://inspect/#devices
 
@@ -159,7 +159,7 @@ Stetho的通信模型如上图，其中stetho-server就是app启的一个Thread�
 
 **基于inspector.html网页调试**
 
-chrome浏览器的调试原理其实和这个基于网页的调试是一样的。这里为了更清晰的说明原理。上面基于`adb forward`实现端口映射之后，也可以拿到webview的debug web socket。那么就可以基于这个web socket调试了。其实打开上面那个`devtoolsFrontendUrl`
+chrome[浏览器](https://www.w3cdoc.com)的调试原理其实和这个基于网页的调试是一样的。这里为了更清晰的说明原理。上面基于`adb forward`实现端口映射之后，也可以拿到webview的debug web socket。那么就可以基于这个web socket调试了。其实打开上面那个`devtoolsFrontendUrl`
 
 就可以了，链接已经拼接好了。
 
@@ -168,7 +168,7 @@ chrome浏览器的调试原理其实和这个基于网页的调试是一样的�
 
 其中：
 
-* https://chrome-devtools-frontend.appspot.com/serve_rev/@a000f5daeaac3f79102a0c8f6eaab57aa0e00ae9/inspector.html是chrome云服务器托管的实现了 chrome devtools protocol （https://chromedevtools.github.io/devtools-protocol/）的调试器。chrome浏览器中已经默认集成了。
+* https://chrome-devtools-frontend.appspot.com/serve_rev/@a000f5daeaac3f79102a0c8f6eaab57aa0e00ae9/inspector.html是chrome云服务器托管的实现了 chrome devtools protocol （https://chromedevtools.github.io/devtools-protocol/）的调试器。chrome[浏览器](https://www.w3cdoc.com)中已经默认集成了。
 * 后面的参数`ws=localhost:9223/devtools/page/e5158e4a-d1df-4c43-b56c-fd19319dcadb",<br />
 "id": "e5158e4a-d1df-4c43-b56c-fd19319dcadb` `就是`webview的debug web socket，同时遵循chrome devtools protocol ，基于 JSON RPC格式和调试器互相通信
 
@@ -225,10 +225,10 @@ adb connect $IP:5555
 
 参考：
 
-  1. 揭秘浏览器远程调试技术：https://taobaofed.org/blog/2016/10/19/chrome-remote-debugging-technics/
+  1. 揭秘[浏览器](https://www.w3cdoc.com)远程调试技术：https://taobaofed.org/blog/2016/10/19/chrome-remote-debugging-technics/
   2. weex debugger： https://github.com/weexteam/weex-debugger
   3. Chrome for Android Remote Inspector 原理：https://blog.csdn.net/xxhforest/article/details/52204197
-  4. 前端调试：https://juejin.im/post/5a921819f265da4e832684d1
+  4. [前端](https://www.w3cdoc.com)调试：https://juejin.im/post/5a921819f265da4e832684d1
   5. chrome devtools protocol viewer： https://chromedevtools.github.io/devtools-protocol/
   6. https://github.com/cyrus-and/chrome-remote-interface/blob/master/README.md
   7. Puppeteer：https://juejin.im/entry/5a3aa0e86fb9a045076fd385

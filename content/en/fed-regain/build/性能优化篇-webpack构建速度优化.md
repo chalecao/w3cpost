@@ -14,9 +14,9 @@ title: 性能优化篇—Webpack构建速度优化
 
 * **web可视化查看构建分析：**得到了webpack构建信息文件stats.json，如何进行很好的可视化查看？
       1. 方案一：通过可视化分析工具<a href="http://webpack.github.io/analyse/" target="_blank" rel="nofollow noopener noreferrer">Webpack Analyse</a>，是个在线Web应用，上传stats.json文件就可以；不过好像需要翻墙；
-      2. 方案二：安装`webpack-bundle-analyzer`工具`npm i -g webpack-bundle-analyzer`,生成stats.json后直接在其文件夹目录执行`webpack-bundle-analyzer`后，浏览器会打开对应网页并展示构建分析`webpack-bundle-analyzer stats.json -p 8888`<a href="https://www.npmjs.com/package/webpack-bundle-analyzer" target="_blank" rel="nofollow noopener noreferrer">文档地址webpack-bundle-analyzer</a>
+      2. 方案二：安装`webpack-bundle-analyzer`工具`npm i -g webpack-bundle-analyzer`,生成stats.json后直接在其文件夹目录执行`webpack-bundle-analyzer`后，[浏览器](https://www.w3cdoc.com)会打开对应网页并展示构建分析`webpack-bundle-analyzer stats.json -p 8888`<a href="https://www.npmjs.com/package/webpack-bundle-analyzer" target="_blank" rel="nofollow noopener noreferrer">文档地址webpack-bundle-analyzer</a>
       3. webpack-dashboard是一款统计和优化webpack日志的工具，可以以表格形势展示日志信息。其中包括构建过程和状态、日志以及涉及的模块列表
-      4. jarvis是一款基于webapck-dashboard的webpack性能分析插件，性能分析的结果在浏览器显示，比webpack-bundler-anazlyer更美观清晰<a href="https://github.com/zouhir/jarvis" target="_blank" rel="nofollow noopener noreferrer">GitHub文档地址</a>
+      4. jarvis是一款基于webapck-dashboard的webpack性能分析插件，性能分析的结果在[浏览器](https://www.w3cdoc.com)显示，比webpack-bundler-anazlyer更美观清晰<a href="https://github.com/zouhir/jarvis" target="_blank" rel="nofollow noopener noreferrer">GitHub文档地址</a>
   * `npm i -D webpack-jarvis`
   * `webpack.config.js`配置：
     <pre class="hljs typescript"><code>&lt;span class="hljs-keyword">const&lt;/span> Jarvis = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"webpack-jarvis"&lt;/span>);

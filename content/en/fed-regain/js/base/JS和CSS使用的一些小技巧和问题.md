@@ -42,11 +42,11 @@ PS: 看过一篇文章，一位大牛用css渐变写了超级玛丽：[链接][1
 
 ## append与appendChild
 
-这里说的append是dom的方法，目前处于草案，虽然有很多浏览器支持，但是在开发h5页面时，偶尔还是会有报错，有些极个别浏览器拿不支持。mdn：<https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append>
+这里说的append是dom的方法，目前处于草案，虽然有很多[浏览器](https://www.w3cdoc.com)支持，但是在开发h5页面时，偶尔还是会有报错，有些极个别[浏览器](https://www.w3cdoc.com)拿不支持。mdn：<https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/append>
 
 append的功能和jquery的append没有多大差别。
 
-appendChild这个api是DOM level2的，现在基本所有浏览器都支持的。注意后面appendChild的参数必须是一个节点node
+appendChild这个api是DOM level2的，现在基本所有[浏览器](https://www.w3cdoc.com)都支持的。注意后面appendChild的参数必须是一个节点node
 
 ## 隐藏iframe的src
 
@@ -107,7 +107,7 @@ function removeClass(sel, cls) {
 // reject 5
 </code></pre>
 
-上面的大家都知道，那么第二次then会怎样？
+上面的[大家](https://www.w3cdoc.com)都知道，那么第二次then会怎样？
 
 <pre class="pure-highlightjs"><code class="">new Promise(function(resolve, reject){
     resolve(Promise.reject(5))

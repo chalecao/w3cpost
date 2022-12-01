@@ -7,7 +7,7 @@ title: 异步回调之Promise对象
 你可能知道，Javascript语言的执行环境是”单线程”（single thread）。  
 所谓”单线程”，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。
 
-这种模式的好处是实现起来比较简单，执行环境相对单纯；坏处是只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。常见的浏览器无响应（假死），往往就是因为某一段Javascript代码长时间运行（比如死循环），导致整个页面卡在这个地方，其他任务无法执行。
+这种模式的好处是实现起来比较简单，执行环境相对单纯；坏处是只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。常见的[浏览器](https://www.w3cdoc.com)无响应（假死），往往就是因为某一段Javascript代码长时间运行（比如死循环），导致整个页面卡在这个地方，其他任务无法执行。
 
 <img loading="lazy" class="aligncenter" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/promise1.jpg" alt="异步回调之Promise对象" width="492" height="330" />
 
@@ -16,7 +16,7 @@ title: 异步回调之Promise对象
 为了解决这个问题，Javascript语言将任务的执行模式分成两种：同步（Synchronous）和异步（Asynchronous）。  
 “同步模式”就是上一段的模式，后一个任务等待前一个任务结束，然后再执行，程序的执行顺序与任务的排列顺序是一致的、同步的；”异步模式”则完全不同，每一个任务有一个或多个回调函数（callback），前一个任务结束后，不是执行后一个任务，而是执行回调函数，后一个任务则是不等前一个任务结束就执行，所以程序的执行顺序与任务的排列顺序是不一致的、异步的。
 
-“异步模式”非常重要。在浏览器端，耗时很长的操作都应该异步执行，避免浏览器失去响应，最好的例子就是Ajax操作。在服务器端，”异步模式”甚至是唯一的模式，因为执行环境是单线程的，如果允许同步执行所有http请求，服务器性能会急剧下降，很快就会失去响应。  
+“异步模式”非常重要。在[浏览器](https://www.w3cdoc.com)端，耗时很长的操作都应该异步执行，避免[浏览器](https://www.w3cdoc.com)失去响应，最好的例子就是Ajax操作。在服务器端，”异步模式”甚至是唯一的模式，因为执行环境是单线程的，如果允许同步执行所有http请求，服务器性能会急剧下降，很快就会失去响应。  
 本文总结了”异步模式”编程的4种方法，理解它们可以让你写出结构更合理、性能更出色、维护更方便的Javascript程序。
 
 ### 回调函数
@@ -49,7 +49,7 @@ f1(f2);
 
 </code></pre>
 
-采用这种方式，我们把同步操作变成了异步操作，f1不会堵塞程序运行，相当于先执行程序的主要逻辑，将耗时的操作推迟执行。  
+采用这种方式，[我们](https://www.w3cdoc.com)把同步操作变成了异步操作，f1不会堵塞程序运行，相当于先执行程序的主要逻辑，将耗时的操作推迟执行。  
 回调函数的优点是简单、容易理解和部署，缺点是不利于代码的阅读和维护，各个部分之间高度耦合（Coupling），流程会很混乱，而且每个任务只能指定一个回调函数。
 
 ### 事件监听
@@ -80,7 +80,7 @@ f1.trigger(‘done’)表示，执行完成后，立即触发done事件，从而
 ### 发布/订阅
 
 上一节的”事件”，完全可以理解成”信号”。  
-我们假定，存在一个”信号中心”，某个任务执行完成，就向信号中心”发布”（publish）一个信号，其他任务可以向信号中心”订阅”（subscribe）这个信号，从而知道什么时候自己可以开始执行。这就叫做”发布/订阅模式”（publish-subscribe pattern），又称”观察者模式”（observer pattern）。  
+[我们](https://www.w3cdoc.com)假定，存在一个”信号中心”，某个任务执行完成，就向信号中心”发布”（publish）一个信号，其他任务可以向信号中心”订阅”（subscribe）这个信号，从而知道什么时候自己可以开始执行。这就叫做”发布/订阅模式”（publish-subscribe pattern），又称”观察者模式”（observer pattern）。  
 这个模式有多种实现，下面采用的是Ben Alman的Tiny Pub/Sub，这是jQuery的一个插件。  
 首先，f2向”信号中心”jQuery订阅”done”信号。
 
@@ -109,7 +109,7 @@ jQuery.publish(“done”)的意思是，f1执行完成后，向”信号中心�
 
 </code></pre>
 
-这种方法的性质与”事件监听”类似，但是明显优于后者。因为我们可以通过查看”消息中心”，了解存在多少信号、每个信号有多少订阅者，从而监控程序的运行。
+这种方法的性质与”事件监听”类似，但是明显优于后者。因为[我们](https://www.w3cdoc.com)可以通过查看”消息中心”，了解存在多少信号、每个信号有多少订阅者，从而监控程序的运行。
 
 ### Promises对象
 
@@ -150,11 +150,11 @@ f1().then(f2).fail(f3);
 
 </code></pre>
 
-而且，它还有一个前面三种方法都没有的好处：如果一个任务已经完成，再添加回调函数，该回调函数会立即执行。所以，你不用担心是否错过了某个事件或信号。这种方法的缺点就是编写和理解，都相对比较难。下面我们详细介绍promise对象。
+而且，它还有一个前面三种方法都没有的好处：如果一个任务已经完成，再添加回调函数，该回调函数会立即执行。所以，你不用担心是否错过了某个事件或信号。这种方法的缺点就是编写和理解，都相对比较难。下面[我们](https://www.w3cdoc.com)详细介绍promise对象。
 
 ### promise详解
 
-其实 Promise 这个东西提出来也挺久时间了，它是一种解决复杂异步回调逻辑的方法。大部分人类的正常思维方式都是线性连贯的，但是在 JavaScript 中，异步却是主流。所以，在遇到复杂逻辑时，我们往往会写成这样：
+其实 Promise 这个东西提出来也挺久时间了，它是一种解决复杂异步回调逻辑的方法。大部分人类的正常思维方式都是线性连贯的，但是在 JavaScript 中，异步却是主流。所以，在遇到复杂逻辑时，[我们](https://www.w3cdoc.com)往往会写成这样：
 
 <pre class="hljs javascript"><code class="javascript">
 // Code uses jQuery to illustrate the Pyramid of Doom
@@ -178,11 +178,11 @@ alert("Hello World!");
 
 这就是所谓的「回调金字塔」,解决这个方法最简单的方法，就是把匿名函数取个名字，单独提取出来定义。但是当遇到多变的业务场景时，具名函数的方法也不太管用，于是便有了各种高级的碾平异步回调的解决方案，Promise 就是其中一种。
 
-在 ECMAScript 6 中，Promise 模式得到了原生的支持。我们就从原生模型说起。
+在 ECMAScript 6 中，Promise 模式得到了原生的支持。[我们](https://www.w3cdoc.com)就从原生模型说起。
 
 #### ECMAScript 6 Promise
 
-为了简化各种各样的异步逻辑，我们先假设有一个会花一些时间来完成的 JS 函数。它的功能很简单，就是过一段时间以后调用传入的回调函数。
+为了简化各种各样的异步逻辑，[我们](https://www.w3cdoc.com)先假设有一个会花一些时间来完成的 JS 函数。它的功能很简单，就是过一段时间以后调用传入的回调函数。
 
 <pre class="hljs javascript"><code class="javascript">
 var wait = function(callback, param) {
@@ -224,9 +224,9 @@ promise.then(function(response) {
 
 </code></pre>
 
-于是问题又来了，什么叫做 fulfilled 和 rejected 呢？一个 promise 会有三种状态，大致可以理解为执行成功（fulfilled）、执行失败（rejected）和正在执行中（pending）。Promise 包含一个状态机，它内部的状态转换，只允许从 pending 到 fulfilled 或者 rejected 一次，不允许更多了。如果用大家喜闻乐见的薛定谔的猫来解释，就是打开盒子的时候，我们的猫要么死了，要么没死，要么不确定死没死，死的的猫无法复活，活猫也一定不会死:D
+于是问题又来了，什么叫做 fulfilled 和 rejected 呢？一个 promise 会有三种状态，大致可以理解为执行成功（fulfilled）、执行失败（rejected）和正在执行中（pending）。Promise 包含一个状态机，它内部的状态转换，只允许从 pending 到 fulfilled 或者 rejected 一次，不允许更多了。如果用[大家](https://www.w3cdoc.com)喜闻乐见的薛定谔的猫来解释，就是打开盒子的时候，[我们](https://www.w3cdoc.com)的猫要么死了，要么没死，要么不确定死没死，死的的猫无法复活，活猫也一定不会死:D
 
-新建一个 promise 的时候，我们需要在代码中定义什么时候算成功了，什么时候算失败了。于是上面 wait 的例子便可以改写这样了：
+新建一个 promise 的时候，[我们](https://www.w3cdoc.com)需要在代码中定义什么时候算成功了，什么时候算失败了。于是上面 wait 的例子便可以改写这样了：
 
 <pre class="hljs javascript"><code class="javascript">
 function waitPromise(param) {
@@ -252,20 +252,20 @@ return waitPromise('剥开我的心');
 
 </code></pre>
 
-从上面的例子中，我们可以看出几点：
+从上面的例子中，[我们](https://www.w3cdoc.com)可以看出几点：
 
 一个 promise 它 resolve（或者 reject）的东西就是 then 的两个回调接受的参数。  
 then 可以链式调用，调用的顺序就是你定义的顺序。  
 在 onFulfilled（或者 onRejected）中，你可以返回一个 promise，此时 then 会返回这个 promise 的一个代理，并响应它的状态变化（即给下一个 then 使用）。  
 onFulfilled 和 onRejected 中，除了可以返回一个 promise 以外，还可以返回一个对象，其中包含一个 then 方法——这样的对象称作 thenable。当 thenable 被返回时，代理的 promise 就会去调用该方法，并传入 resolvePromise 和 rejectPromise 两个参数，于是这个 promise 也就链式地传递下去了。除此之外，返回一个不是 thenable 的值也是可以的，这相当于一个简化，该返回值会被链式的 promise 立即 fulfill。
 
-上面的例子比较一根筋，所有的 then 只定义了第一个参数（即成功的回调），其实我们还可以通过调用 onRejected 或者抛出一个异常来表示 Promise 执行失败，从而进入 then 的第二个函数中（then(func1, func2) 必定会调用且仅调用其中一个）。听上去是不是有点 try/catch 的味道，事实上，Promise 还真提供了一个语法糖，就是 catch(func)，它其实相当于 then(undefined, func)。链条中加入的 catch 可以管上它之前所有的 promise 中的失败情况。
+上面的例子比较一根筋，所有的 then 只定义了第一个参数（即成功的回调），其实[我们](https://www.w3cdoc.com)还可以通过调用 onRejected 或者抛出一个异常来表示 Promise 执行失败，从而进入 then 的第二个函数中（then(func1, func2) 必定会调用且仅调用其中一个）。听上去是不是有点 try/catch 的味道，事实上，Promise 还真提供了一个语法糖，就是 catch(func)，它其实相当于 then(undefined, func)。链条中加入的 catch 可以管上它之前所有的 promise 中的失败情况。
 
-听上去好像很绕口的样子，而且这个 Promise 也不过是把回调拉平了而已嘛，至于这么复杂么？其实，依赖这些，我们可以方便地实现更多异步逻辑。在 ECMAScript 6中，Promise 还定义了两个接口：
+听上去好像很绕口的样子，而且这个 Promise 也不过是把回调拉平了而已嘛，至于这么复杂么？其实，依赖这些，[我们](https://www.w3cdoc.com)可以方便地实现更多异步逻辑。在 ECMAScript 6中，Promise 还定义了两个接口：
 
 Promise.all：接受一堆 promise 的数组（任何可迭代的对象都可以），只有当他们都解决了以后，才会解决  
 Promise.race：也是接受一堆 promise，但是只要有一个成功或者失败了，就会立即解决或驳回它本身  
-怎么样，是不是突显出 JavaScript 的函数式风格了。就目前的形势而言，Chrome 33 和 Firefox 30 以上的浏览器都已经实现了原生 Promise。  
+怎么样，是不是突显出 JavaScript 的函数式风格了。就目前的形势而言，Chrome 33 和 Firefox 30 以上的[浏览器](https://www.w3cdoc.com)都已经实现了原生 Promise。  
 Promises/A+
 
 之前说了那么多关于 Promise 的这个规定，那个规定，其实它是有一个统一的名称的，就叫做 Promises/A+。在它的网站上，你可以阅读到完整的规范文档。  
@@ -294,7 +294,7 @@ return uploadFile()
 
 ### 重新发明轮子
 
-尽管 Promise 的实现有很多，但是它们的核心都是一样的，就是围绕着 then 方法展开。既然有了标准规范，其实我们可以自己实现一个简单的 Promise。
+尽管 Promise 的实现有很多，但是它们的核心都是一样的，就是围绕着 then 方法展开。既然有了标准规范，其实[我们](https://www.w3cdoc.com)可以自己实现一个简单的 Promise。
 
 首先当然要创建一个 Promise 对象的构造函数，它接受一个函数作为参数，调用这个函数的时候，会传入 resolve 和 reject 方法。
 
@@ -359,11 +359,11 @@ function reject(reason) {
 }
 </code></pre>
 
-具体的 resolve 实现中，我们会判断解决的值是否是一个 thenable，如果是的话，就会去执行这个 then 函数，并且接受它的状态和返回值。如果不是，就直接使用该值解决这个 promise。
+具体的 resolve 实现中，[我们](https://www.w3cdoc.com)会判断解决的值是否是一个 thenable，如果是的话，就会去执行这个 then 函数，并且接受它的状态和返回值。如果不是，就直接使用该值解决这个 promise。
 
-可以想象，当我们执行 promise 的 then 方法时，其实是完成了一个类似观察者模式的注册过程。当 promise 还处于 pending 状态时，回调函数会被暂时存储起来，待到解决或失败时再执行，但是当 then 发现这个 promise 已经完成了状态转换，便可以根据状态立即执行回调了。
+可以想象，当[我们](https://www.w3cdoc.com)执行 promise 的 then 方法时，其实是完成了一个类似观察者模式的注册过程。当 promise 还处于 pending 状态时，回调函数会被暂时存储起来，待到解决或失败时再执行，但是当 then 发现这个 promise 已经完成了状态转换，便可以根据状态立即执行回调了。
 
-在这里，我们使用了 this.handlers 数组来暂存 then 的回调函数，当状态改变时，会调用 dequeue 方法来处理队列。
+在这里，[我们](https://www.w3cdoc.com)使用了 this.handlers 数组来暂存 then 的回调函数，当状态改变时，会调用 dequeue 方法来处理队列。
 
 <pre class="hljs javascript"><code class="javascript">
 function dequeue() {
@@ -419,14 +419,14 @@ function handle(thenPromise, onFulfilled, onRejected) {
 }
 </code></pre>
 
-在上面的 handle 函数中，我们立即调用回调函数，并且根据回调函数的类型来改变 then 方法返回的 promise 的状态，这样就形成了一个 promise 链条。
+在上面的 handle 函数中，[我们](https://www.w3cdoc.com)立即调用回调函数，并且根据回调函数的类型来改变 then 方法返回的 promise 的状态，这样就形成了一个 promise 链条。
 
-大约 100 多行代码，我们就实现了一个粗糙的 Promise 库。当然，上面的代码可能还有很多 Bug，并且也不是严格符合 Promises/A+ 的。如果读者发现问题，请不吝指出。
+大约 100 多行代码，[我们](https://www.w3cdoc.com)就实现了一个粗糙的 Promise 库。当然，上面的代码可能还有很多 Bug，并且也不是严格符合 Promises/A+ 的。如果读者发现问题，请不吝指出。
 
 有了这个核心的基础，实现外围的 API 例如 Promise.all、Promise.race 就比较简单了，这里就不给出了。其实，Promise 看似用起来很简单，想要自己严格实现一个，还是有不少难点的，其中最容易被绕晕的就是对 then  
 的实现，以及如何处理 then 的回调中又返回新的 promise 的逻辑。
 
-我们回到文章开头的例子，使用我们自己的 MyPromise 试验一下。简单起见，就不写那么多层了。
+[我们](https://www.w3cdoc.com)回到文章开头的例子，使用[我们](https://www.w3cdoc.com)自己的 MyPromise 试验一下。简单起见，就不写那么多层了。
 
 <pre class="hljs javascript"><code class="javascript">
 function waitPromise(param) {
@@ -443,7 +443,7 @@ waitPromise('如果你愿意').then(function(response) {
 
 </code></pre>
 
-可以看到我们可以成功输出两行文字。你能根据上面的实现，看出这次调用事实上一共产生了多少个 promise 对象吗？
+可以看到[我们](https://www.w3cdoc.com)可以成功输出两行文字。你能根据上面的实现，看出这次调用事实上一共产生了多少个 promise 对象吗？
 
 答案是五个：
 
@@ -508,7 +508,7 @@ Promise.all([p1, p2]).then((result) =&gt; {
 })
 </code></pre>
 
-需要特别注意的是，Promise.all获得的成功结果的数组里面的数据顺序和Promise.all接收到的数组顺序是一致的，即p1的结果在前，即便p1的结果获取的比p2要晚。这带来了一个绝大的好处：在前端开发请求数据的过程中，偶尔会遇到发送多个请求并根据请求顺序获取和使用数据的场景，使用Promise.all毫无疑问可以解决这个问题。
+需要特别注意的是，Promise.all获得的成功结果的数组里面的数据顺序和Promise.all接收到的数组顺序是一致的，即p1的结果在前，即便p1的结果获取的比p2要晚。这带来了一个绝大的好处：在[前端](https://www.w3cdoc.com)开发请求数据的过程中，偶尔会遇到发送多个请求并根据请求顺序获取和使用数据的场景，使用Promise.all毫无疑问可以解决这个问题。
 
 ##### 二、Promise.race的使用
 

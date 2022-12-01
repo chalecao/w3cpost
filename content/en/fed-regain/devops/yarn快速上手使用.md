@@ -124,7 +124,7 @@ Yarn 是一个 JS 包依赖管理器。官网：<https://yarnpkg.com/>
 
 每个包都有一个配置文件 <code class="highlighter-rouge">package.json</code>，Yarn 据该文件识别每个包，并进行处理。
 
-Yarn 会在项目的根目录下创建一个 <code class="highlighter-rouge">yarn.lock</code> 文件，用于管理依赖关联，我们无需修改该文件，并需要将该文件包含进代码库中。
+Yarn 会在项目的根目录下创建一个 <code class="highlighter-rouge">yarn.lock</code> 文件，用于管理依赖关联，[我们](https://www.w3cdoc.com)无需修改该文件，并需要将该文件包含进代码库中。
 
 ## package.json {#packagejson}
 

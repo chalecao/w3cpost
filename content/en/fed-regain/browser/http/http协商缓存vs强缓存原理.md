@@ -7,25 +7,25 @@ title: HTTP协商缓存VS强缓存原理
 
 ---
 <div class="clear">
-  之前一直对浏览器缓存只能描述一个大概，深层次的原理不能描述上来；终于在前端的两次面试过程中被问倒下，为了泄恨，查阅一些资料最终对其有了一个更深入的理解，废话不多说，赶紧来看看浏览器缓存的那些事吧，有不对的地方，请各位不吝赐教啊。
+  之前一直对[浏览器](https://www.w3cdoc.com)缓存只能描述一个大概，深层次的原理不能描述上来；终于在[前端](https://www.w3cdoc.com)的两次面试过程中被问倒下，为了泄恨，查阅一些资料最终对其有了一个更深入的理解，废话不多说，赶紧来看看[浏览器](https://www.w3cdoc.com)缓存的那些事吧，有不对的地方，请各位不吝赐教啊。
 </div>
 
 <div class="postBody">
   <div id="cnblogs_post_body" class="blogpost-body">
     <p>
-       本文主要讲解浏览器端的缓存，缓存的作用是不言而喻的，能够极大的改善网页性能，提高用户体验。
+       本文主要讲解[浏览器](https://www.w3cdoc.com)端的缓存，缓存的作用是不言而喻的，能够极大的改善网页性能，提高用户体验。
     </p>
 
     <h2>
-      1、浏览器缓存
+      1、[浏览器](https://www.w3cdoc.com)缓存
     </h2>
     
     <p>
-      缓存这东西，第一次必须获取到资源后，然后根据返回的信息来告诉如何缓存资源，可能采用的是强缓存，也可能告诉客户端浏览器是协商缓存，这都需要根据响应的header内容来决定的。下面用两幅图来描述浏览器的缓存是怎么玩的，让大家有个大概的认知。
+      缓存这东西，第一次必须获取到资源后，然后根据返回的信息来告诉如何缓存资源，可能采用的是强缓存，也可能告诉客户端[浏览器](https://www.w3cdoc.com)是协商缓存，这都需要根据响应的header内容来决定的。下面用两幅图来描述[浏览器](https://www.w3cdoc.com)的缓存是怎么玩的，让[大家](https://www.w3cdoc.com)有个大概的认知。
     </p>
     
     <p>
-      浏览器第一次请求时：
+      [浏览器](https://www.w3cdoc.com)第一次请求时：
     </p>
     
     <p>
@@ -33,7 +33,7 @@ title: HTTP协商缓存VS强缓存原理
     </p>
     
     <p>
-      浏览器后续在进行请求时：
+      [浏览器](https://www.w3cdoc.com)后续在进行请求时：
     </p>
     
     <p>
@@ -45,15 +45,15 @@ title: HTTP协商缓存VS强缓存原理
     </p>
     
     <p>
-      从上图可以知道，浏览器缓存包含两种类型，即强缓存（也叫本地缓存）和协商缓存，浏览器在第一次请求发生后，再次请求时：
+      从上图可以知道，[浏览器](https://www.w3cdoc.com)缓存包含两种类型，即强缓存（也叫本地缓存）和协商缓存，[浏览器](https://www.w3cdoc.com)在第一次请求发生后，再次请求时：
     </p>
     
     <ul>
       <li>
-        浏览器在请求某一资源时，会先获取该资源缓存的header信息，判断是否命中强缓存（cache-control和expires信息），若命中直接从缓存中获取资源信息，包括缓存header信息；本次请求根本就不会与服务器进行通信；在firebug下可以查看某个具有强缓存资源返回的信息，例如本地firebug查看的一个强缓存js文件<img loading="lazy" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/408483-20160525185916397-1208157783.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/408483-20160525185916397-1208157783.jpg?x-oss-process=image/format,webp" alt="" width="517" height="297" />
+        [浏览器](https://www.w3cdoc.com)在请求某一资源时，会先获取该资源缓存的header信息，判断是否命中强缓存（cache-control和expires信息），若命中直接从缓存中获取资源信息，包括缓存header信息；本次请求根本就不会与服务器进行通信；在firebug下可以查看某个具有强缓存资源返回的信息，例如本地firebug查看的一个强缓存js文件<img loading="lazy" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/408483-20160525185916397-1208157783.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/408483-20160525185916397-1208157783.jpg?x-oss-process=image/format,webp" alt="" width="517" height="297" />
       </li>
       <li>
-        如果没有命中强缓存，浏览器会发送请求到服务器，请求会携带第一次请求返回的有关缓存的header字段信息（Last-Modified/If-Modified-Since和Etag/If-None-Match），由服务器根据请求中的相关header信息来比对结果是否协商缓存命中；若命中，则服务器返回新的响应header信息更新缓存中的对应header信息，但是并不返回资源内容，它会告知浏览器可以直接从缓存获取；否则返回最新的资源内容
+        如果没有命中强缓存，[浏览器](https://www.w3cdoc.com)会发送请求到服务器，请求会携带第一次请求返回的有关缓存的header字段信息（Last-Modified/If-Modified-Since和Etag/If-None-Match），由服务器根据请求中的相关header信息来比对结果是否协商缓存命中；若命中，则服务器返回新的响应header信息更新缓存中的对应header信息，但是并不返回资源内容，它会告知[浏览器](https://www.w3cdoc.com)可以直接从缓存获取；否则返回最新的资源内容
       </li>
     </ul>
     
@@ -144,7 +144,7 @@ title: HTTP协商缓存VS强缓存原理
             public：可以被所有的用户缓存，包括终端用户和CDN等中间代理服务器。
           </li>
           <li>
-            private：只能被终端用户的浏览器缓存，不允许CDN等中继缓存服务器对其缓存。
+            private：只能被终端用户的[浏览器](https://www.w3cdoc.com)缓存，不允许CDN等中继缓存服务器对其缓存。
           </li>
         </ul>
       </li>
@@ -168,19 +168,19 @@ title: HTTP协商缓存VS强缓存原理
           <li style="list-style-type: none;">
             <ul>
               <li>
-                浏览器第一次跟服务器请求一个资源，服务器在返回这个资源的同时，在respone的header加上Last-Modified的header，这个header表示这个资源在服务器上的最后修改时间
+                [浏览器](https://www.w3cdoc.com)第一次跟服务器请求一个资源，服务器在返回这个资源的同时，在respone的header加上Last-Modified的header，这个header表示这个资源在服务器上的最后修改时间
               </li>
               <li>
-                浏览器再次跟服务器请求这个资源时，在request的header上加上If-Modified-Since的header，这个header的值就是上一次请求时返回的Last-Modified的值
+                [浏览器](https://www.w3cdoc.com)再次跟服务器请求这个资源时，在request的header上加上If-Modified-Since的header，这个header的值就是上一次请求时返回的Last-Modified的值
               </li>
               <li>
-                服务器再次收到资源请求时，根据浏览器传过来If-Modified-Since和资源在服务器上的最后修改时间判断资源是否有变化，如果没有变化则返回304 Not Modified，但是不会返回资源内容；如果有变化，就正常返回资源内容。当服务器返回304 Not Modified的响应时，response header中不会再添加Last-Modified的header，因为既然资源没有变化，那么Last-Modified也就不会改变，这是服务器返回304时的response header
+                服务器再次收到资源请求时，根据[浏览器](https://www.w3cdoc.com)传过来If-Modified-Since和资源在服务器上的最后修改时间判断资源是否有变化，如果没有变化则返回304 Not Modified，但是不会返回资源内容；如果有变化，就正常返回资源内容。当服务器返回304 Not Modified的响应时，response header中不会再添加Last-Modified的header，因为既然资源没有变化，那么Last-Modified也就不会改变，这是服务器返回304时的response header
               </li>
               <li>
-                浏览器收到304的响应后，就会从缓存中加载资源
+                [浏览器](https://www.w3cdoc.com)收到304的响应后，就会从缓存中加载资源
               </li>
               <li>
-                如果协商缓存没有命中，浏览器直接从服务器加载资源时，Last-Modified的Header在重新加载的时候会被更新，下次请求时，If-Modified-Since会启用上次返回的Last-Modified值
+                如果协商缓存没有命中，[浏览器](https://www.w3cdoc.com)直接从服务器加载资源时，Last-Modified的Header在重新加载的时候会被更新，下次请求时，If-Modified-Since会启用上次返回的Last-Modified值
               </li>
             </ul>
           </li>
@@ -198,13 +198,13 @@ title: HTTP协商缓存VS强缓存原理
     
     <blockquote>
       <p>
-        　　你可能会觉得使用Last-Modified已经足以让浏览器知道本地的缓存副本是否足够新，为什么还需要Etag呢？HTTP1.1中Etag的出现主要是为了解决几个Last-Modified比较难解决的问题：
+        　　你可能会觉得使用Last-Modified已经足以让[浏览器](https://www.w3cdoc.com)知道本地的缓存副本是否足够新，为什么还需要Etag呢？HTTP1.1中Etag的出现主要是为了解决几个Last-Modified比较难解决的问题：
       </p>
     </blockquote>
     
     <ul>
       <li>
-        一些文件也许会周期性的更改，但是他的内容并不改变(仅仅改变的修改时间)，这个时候我们并不希望客户端认为这个文件被修改了，而重新GET；
+        一些文件也许会周期性的更改，但是他的内容并不改变(仅仅改变的修改时间)，这个时候[我们](https://www.w3cdoc.com)并不希望客户端认为这个文件被修改了，而重新GET；
       </li>
       <li>
         某些文件修改非常频繁，比如在秒以下的时间内进行修改，(比方说1s内修改了N次)，If-Modified-Since能检查到的粒度是s级的，这种修改无法判断(或者说UNIX记录MTIME只能精确到秒)；
@@ -239,11 +239,11 @@ title: HTTP协商缓存VS强缓存原理
     </h2>
     
     <p>
-      上面说到，使用强缓存时，浏览器不会发送请求到服务端，根据设置的缓存时间浏览器一直从缓存中获取资源，在这期间若资源产生了变化，浏览器就在缓存期内就一直得不到最新的资源，那么如何防止这种事情发生呢？
+      上面说到，使用强缓存时，[浏览器](https://www.w3cdoc.com)不会发送请求到服务端，根据设置的缓存时间[浏览器](https://www.w3cdoc.com)一直从缓存中获取资源，在这期间若资源产生了变化，[浏览器](https://www.w3cdoc.com)就在缓存期内就一直得不到最新的资源，那么如何防止这种事情发生呢？
     </p>
     
     <p>
-      <strong>通过更新页面中引用的资源路径，让浏览器主动放弃缓存，加载新资源。</strong>
+      <strong>通过更新页面中引用的资源路径，让[浏览器](https://www.w3cdoc.com)主动放弃缓存，加载新资源。</strong>
     </p>
     
     <p>
@@ -255,7 +255,7 @@ title: HTTP协商缓存VS强缓存原理
     </p>
     
     <p>
-      这样每次文件改变后就会生成新的query值，这样query值不同，也就是页面引用的资源路径不同了，之前缓存过的资源就被浏览器忽略了，因为资源请求的路径变了。
+      这样每次文件改变后就会生成新的query值，这样query值不同，也就是页面引用的资源路径不同了，之前缓存过的资源就被[浏览器](https://www.w3cdoc.com)忽略了，因为资源请求的路径变了。
     </p>
   </div>
 </div>

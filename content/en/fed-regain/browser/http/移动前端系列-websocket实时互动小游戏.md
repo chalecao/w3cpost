@@ -1,18 +1,18 @@
 ---
-title: 移动前端系列——websocket实时互动小游戏
+title: 移动[前端](https://www.w3cdoc.com)系列——websocket实时互动小游戏
 
 
 
 
 ---
-原本是想在写这文章之前，给大家来个二维码，让大家来感受一下我那个狂拽酷炫叼炸天的实时互动小游戏，无奈一直没有找到一台足以hold住其气场的服务器。所以，此处可能需要大家跟随我的描述，脑补一下那高端大气上档次的画面及低调奢华有内涵交互设计：
+原本是想在写这文章之前，给[大家](https://www.w3cdoc.com)来个二维码，让[大家](https://www.w3cdoc.com)来感受一下我那个狂拽酷炫叼炸天的实时互动小游戏，无奈一直没有找到一台足以hold住其气场的服务器。所以，此处可能需要[大家](https://www.w3cdoc.com)跟随我的描述，脑补一下那高端大气上档次的画面及低调奢华有内涵交互设计：
 
 * 登录界面（此处省略4.33W字）
 * 房间列表页（此处省略3.75W字）
 * 游戏界面（此处省略5.83W字）
 
-真不是我故意这样的，实在是人类的语言已无法将其形容，过份的修饰描述只怕是有损其光辉闪耀的形象。此时的我，更是怀着对其满满的敬意，忐忑第敲打着键盘，为大家介绍其狂拽酷炫叼炸天是怎样形成的。  
-从文章的标题上，我们不难看出，这个游戏是基于websocket。那么我就先从websocket的作用以及其优点这两个方面，给大家简单介绍一下websocket：
+真不是我故意这样的，实在是人类的语言已无法将其形容，过份的修饰描述只怕是有损其光辉闪耀的形象。此时的我，更是怀着对其满满的敬意，忐忑第敲打着键盘，为[大家](https://www.w3cdoc.com)介绍其狂拽酷炫叼炸天是怎样形成的。  
+从文章的标题上，[我们](https://www.w3cdoc.com)不难看出，这个游戏是基于websocket。那么我就先从websocket的作用以及其优点这两个方面，给[大家](https://www.w3cdoc.com)简单介绍一下websocket：
 
 # Websocket的作用 {#articleHeader0}
 
@@ -25,20 +25,20 @@ title: 移动前端系列——websocket实时互动小游戏
 * 多屏互动
 * &#8230;
 
-在日常的使用web的过程中，这种功能非常常见，比如：新浪微博的WebIM、WebQQ、大智慧网页版等等，我们在处理日常的一些专题中，适当地加入一些多屏互动，也能很好地增加用户的参与度，增强一些现场的互动，如：斗战诛天营救悟空、神秘站等
+在日常的使用web的过程中，这种功能非常常见，比如：新浪微博的WebIM、WebQQ、大智慧网页版等等，[我们](https://www.w3cdoc.com)在处理日常的一些专题中，适当地加入一些多屏互动，也能很好地增加用户的参与度，增强一些现场的互动，如：斗战诛天营救悟空、神秘站等
 
 <p id="TfxSLbt">
   <img loading="lazy" width="232" height="272" class="alignnone size-full wp-image-4934 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3621554e.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3621554e.png?x-oss-process=image/format,webp" alt="" />
 </p>
 
-在websocket出来之前，如果我们想实现上述类型的功能，我们通常采用的是以下几种方式：
+在websocket出来之前，如果[我们](https://www.w3cdoc.com)想实现上述类型的功能，[我们](https://www.w3cdoc.com)通常采用的是以下几种方式：
 
 * 轮询
 * 长轮询
 * 长连接
 * Flash
 
-我就先通过比较以上几种方式的优缺点，让大家更为清楚地了解websocket牛B之处
+我就先通过比较以上几种方式的优缺点，让[大家](https://www.w3cdoc.com)更为清楚地了解websocket牛B之处
 
 ### 轮询 {#articleHeader1}
 
@@ -64,7 +64,7 @@ PS:两张图找不同的游戏已开始，请注意看右侧服务器端部分�
 
 优点：相比轮询，减少了无效请求次数，消息的实时性得到提升  
 缺点：保持连接同样造成服务器资源浪费  
-就目前而言，大多数兼容低版本浏览器的聊天室（聊天室貌似基本玩完了）、在线客服，采用的都还是这种方式
+就目前而言，大多数兼容低版本[浏览器](https://www.w3cdoc.com)的聊天室（聊天室貌似基本玩完了）、在线客服，采用的都还是这种方式
 
 ### 长连接 {#articleHeader3}
 
@@ -88,7 +88,7 @@ PS:两张图找不同的游戏已开始，请注意看右侧服务器端部分�
 优点：socket协议  
 缺点：需要安装flash player，对移动端（特别是IOS，貌似高级的安卓也在放弃flash）不友好
 
-通过对上面四种传统方式的分析，我们不难发现，其实前面的三种方式都是传统意义上的HTTP请求（PS:那些个乱七八糟的握手什么，就不在这里探讨了），然后你就会发现，每次的请求都会有一堆类似下面的这些个步骤
+通过对上面四种传统方式的分析，[我们](https://www.w3cdoc.com)不难发现，其实前面的三种方式都是传统意义上的HTTP请求（PS:那些个乱七八糟的握手什么，就不在这里探讨了），然后你就会发现，每次的请求都会有一堆类似下面的这些个步骤
 
 <p id="HFlygOF">
   <img loading="lazy" width="332" height="150" class="alignnone size-full wp-image-4939 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb39b052a0.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb39b052a0.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb39b052a0.png?x-oss-process=image/format,webp 332w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb39b052a0.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_136/format,webp 300w" sizes="(max-width: 332px) 100vw, 332px" />
@@ -104,18 +104,18 @@ PS:两张图找不同的游戏已开始，请注意看右侧服务器端部分�
 
 # Websocket的优点 {#articleHeader5}
 
-说到这个优点，我只想让大家看一个websocket官网上的一个图表
+说到这个优点，我只想让[大家](https://www.w3cdoc.com)看一个websocket官网上的一个图表
 
 <p id="eGdihks">
   <img loading="lazy" width="510" height="369" class="alignnone size-full wp-image-4941 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3ac260f9.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3ac260f9.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3ac260f9.png?x-oss-process=image/format,webp 510w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3ac260f9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_217/format,webp 300w" sizes="(max-width: 510px) 100vw, 510px" />
 </p>
 
-通过这么一个图表，我们会发现，请求量越大的情况下，Websocket的表现就越是勇猛。与此同时，这么一个勇猛的外表下，脏着的确是一颗少女般的心。别误会，值的是学习起她来很简单。  
+通过这么一个图表，[我们](https://www.w3cdoc.com)会发现，请求量越大的情况下，Websocket的表现就越是勇猛。与此同时，这么一个勇猛的外表下，脏着的确是一颗少女般的心。别误会，值的是学习起她来很简单。  
 下面就从websocket服务器及其api两个方面来简单介绍一下：
 
 # Webscoket服务器的搭建 {#articleHeader6}
 
-本次所讲述的websocket是基于nodejs服务器来完成整套部署的。所以，我们需要先在服务器上搭建一个nodejs环境
+本次所讲述的websocket是基于nodejs服务器来完成整套部署的。所以，[我们](https://www.w3cdoc.com)需要先在服务器上搭建一个nodejs环境
 
 ## Nodejs安装 {#articleHeader7}
 
@@ -125,19 +125,19 @@ PS:两张图找不同的游戏已开始，请注意看右侧服务器端部分�
   <img loading="lazy" width="497" height="140" class="alignnone size-full wp-image-4942 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3b50df6a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3b50df6a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3b50df6a.png?x-oss-process=image/format,webp 497w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3b50df6a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_85/format,webp 300w" sizes="(max-width: 497px) 100vw, 497px" />
 </p>
 
-安装完成之后，我们可以在命令行工具中运行 node -v来检测安装是否成功
+安装完成之后，[我们](https://www.w3cdoc.com)可以在命令行工具中运行 node -v来检测安装是否成功
 
 <p id="uEiMMpJ">
   <img loading="lazy" width="497" height="30" class="alignnone size-full wp-image-4943 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3be34661.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3be34661.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3be34661.png?x-oss-process=image/format,webp 497w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3be34661.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_18/format,webp 300w" sizes="(max-width: 497px) 100vw, 497px" />
 </p>
 
-如果正常地显示出了版本号，那么说明nodejs安装成功，接下来我们就需要安装websocket模块了
+如果正常地显示出了版本号，那么说明nodejs安装成功，接下来[我们](https://www.w3cdoc.com)就需要安装websocket模块了
 
 ## Websocket模块安装 {#articleHeader8}
 
-Nodejs安装完成之后，其默认就给安装好了nodejs包管理工具npm，通过使用npm命令，我们就可以来安装/卸载/更新nodejs的包。
+Nodejs安装完成之后，其默认就给安装好了nodejs包管理工具npm，通过使用npm命令，[我们](https://www.w3cdoc.com)就可以来安装/卸载/更新nodejs的包。
 
-一切正常的话，我们就可以通过使用命令
+一切正常的话，[我们](https://www.w3cdoc.com)就可以通过使用命令
 
 <pre class="hljs sql"><code>npm &lt;span class="hljs-keyword">install&lt;/span> ws
 </code></pre>
@@ -148,7 +148,7 @@ Nodejs安装完成之后，其默认就给安装好了nodejs包管理工具npm�
   <img loading="lazy" width="521" height="414" class="alignnone size-full wp-image-4944 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3c844fce.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3c844fce.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3c844fce.png?x-oss-process=image/format,webp 521w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3c844fce.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_238/format,webp 300w" sizes="(max-width: 521px) 100vw, 521px" />
 </p>
 
-websocket的服务器环境基本搭建完成，接下来我们通过几行简单地代码就可以把一个websocket服务器启动起来
+websocket的服务器环境基本搭建完成，接下来[我们](https://www.w3cdoc.com)通过几行简单地代码就可以把一个websocket服务器启动起来
 
 <pre class="hljs javascript"><code>&lt;span class="hljs-keyword">var&lt;/span> cons = &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Array&lt;/span>();
 &lt;span class="hljs-keyword">var&lt;/span> ws = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'ws'&lt;/span>).Server;
@@ -175,7 +175,7 @@ server.on(&lt;span class="hljs-string">'connection'&lt;/span>,&lt;span class="hl
 <pre class="hljs nginx"><code>&lt;span class="hljs-attribute">node&lt;/span> app.js
 </code></pre>
 
-到此为止，服务端的部署完成，接下来，就可以看看websocket是如何在浏览器上跑起来的。  
+到此为止，服务端的部署完成，接下来，就可以看看websocket是如何在[浏览器](https://www.w3cdoc.com)上跑起来的。  
 在客户端，仅需要一条语句，就算是建立起了客户端和服务器端的链接
 
 <pre class="hljs scala"><code>&lt;span class="hljs-keyword">var&lt;/span> ws = &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-type">WebSocket&lt;/span>(&lt;span class="hljs-symbol">'ws&lt;/span>:&lt;span class="hljs-comment">//127.0.0.1:8808/');&lt;/span>
@@ -226,7 +226,7 @@ PS：所传递参数中的地址需要服务器上配置的一致
 </code></pre>
 
 该完整demo可以<a href="http://ossweb-img.qq.com/images/tgideas/attachment/socket.zip" target="_blank" rel="nofollow noopener noreferrer">点击此处下载</a>  
-由此可见，websocket用起来真的很简单。但是这个功能相对来说非常单一，在实际的项目过程中，我们所涉及到的业务逻辑可能会相对来说复杂很多，比如说某些消息只想被某个特定的范围里面的用户接收，同时，至少在天朝，使用低版本IE浏览器或者其相同内核（Trident）的用户所占比例还是不少，没理由把这批用户放弃，为了解决这个问题，socket.io组件便孕育而生了
+由此可见，websocket用起来真的很简单。但是这个功能相对来说非常单一，在实际的项目过程中，[我们](https://www.w3cdoc.com)所涉及到的业务逻辑可能会相对来说复杂很多，比如说某些消息只想被某个特定的范围里面的用户接收，同时，至少在天朝，使用低版本IE[浏览器](https://www.w3cdoc.com)或者其相同内核（Trident）的用户所占比例还是不少，没理由把这批用户放弃，为了解决这个问题，socket.io组件便孕育而生了
 
 # Socket.io {#articleHeader10}
 
@@ -255,7 +255,7 @@ Handler函数自己YY一下吧，
 即建立起了socket连接.
 
 有的童鞋可能会奇怪，在自己的代码目录中并没有socket.io.js这个文件，设置在网站根目录下socket.io这个目录都没有，其原因是这个请求被rewrite了，所以~~仅仅使用的话..你可以不用在意这个细节，如果你只是想去看看这个文件的代码，可以直接去访问那个路径即可。  
-对于socket.io，我们只需要掌握两个功能函数，即可以完成基本的websocket功能了。这两个函数分别为:
+对于socket.io，[我们](https://www.w3cdoc.com)只需要掌握两个功能函数，即可以完成基本的websocket功能了。这两个函数分别为:
 
 * on 事件监听
 * emit 触发事件
@@ -295,7 +295,7 @@ Handler函数自己YY一下吧，
 1.客户端填好信息后，通过指定事件将这些数据发送到服务器端，服务端通过监听这个指定的事件，去完成相应的操作。完成之后，同样通过一个指定的事件，将消息发送回客户端。  
 2.客户端监听到服务器所触发的那个事件后，给出相应的操作或者是错误提示信息
 
-在我们的这个案例中，关键代码如下
+在[我们](https://www.w3cdoc.com)的这个案例中，关键代码如下
 
 客户端向服务器发送注册事件（写在客户端）
 
@@ -326,7 +326,7 @@ socket.emit(&lt;span class="hljs-string">'registe'&lt;/span>, {
 
 创建房间的流程和注册的流程一致，重新定义个事件名基本上就OK了。但是真当你按照上面的那些流程去操作的时候，你会发现当你停留在房间列表页的时候，你只能看到你自己刚创建的房间被动态插入到列表中。在你停留在房间列表的时候，其他用户创建的房间，你看不见。同样的，你的房间也不会实时刷新到其他用户的房间列表中。除非你手动刷新你页面。
 
-如果，因为这点，你觉得socket也就不过如此的话，那么你就是真的是小瞧socket.io了，socket.io发送消息，默认情况下是只发送给当前连接的socket，但是它也是可以把消息发送给所有人的。我们只需要修改一点代码即可达成实时更新所有用户房间列表的功能.
+如果，因为这点，你觉得socket也就不过如此的话，那么你就是真的是小瞧socket.io了，socket.io发送消息，默认情况下是只发送给当前连接的socket，但是它也是可以把消息发送给所有人的。[我们](https://www.w3cdoc.com)只需要修改一点代码即可达成实时更新所有用户房间列表的功能.
 
 下面的这几行代码是服务端创建房间的关键代码:
 
@@ -341,17 +341,17 @@ io.sockets.emit(&lt;span class="hljs-string">'create'&lt;/span>, {
 });
 </code></pre>
 
-上面的注册/登录我们在服务器向客户端发送消息时,用到的是`socket.emit`  
+上面的注册/登录[我们](https://www.w3cdoc.com)在服务器向客户端发送消息时,用到的是`socket.emit`  
 在创建房间列表时，用到的是`io.sockets.emit`  
-通过使用下面的这种方式，我们就可以实现想所有连接的socket发送消息的功能
+通过使用下面的这种方式，[我们](https://www.w3cdoc.com)就可以实现想所有连接的socket发送消息的功能
 
 ## 加入房间 {#articleHeader14}
 
 通过上面两个功能点的讲解，也许你马上就想到了加入房间功能应该如何实现了，客户端发送一个加入房间的事件到服务器端，服务器给当前的这个用户一个标识，标识当前这个用户所进入的房间，然后通知到客户端就好了。确实，你这样实现也确实可以实现基本的加入房间功能，但是你别因此就关闭了我这篇文章，搞不好这里还能给你提供一个更优雅的实现方式呢！（第一次看到上面就关了，第二次才看到这里的朋友，你也是幸运的）.
 
-没错，这里就是要给大家提供一个更优雅的方式，如果你按照上面的那个思路往下进行，你会发现代码写起来似乎越来越费劲。这里需要给大家介绍的就是另外一个API：`socket.join`
+没错，这里就是要给[大家](https://www.w3cdoc.com)提供一个更优雅的方式，如果你按照上面的那个思路往下进行，你会发现代码写起来似乎越来越费劲。这里需要给[大家](https://www.w3cdoc.com)介绍的就是另外一个API：`socket.join`
 
-从字面上我们似乎就发现了，这个API简直就是为加入房间而生了。没错，用他来实现加入房间，很完美。但是个人还是建议你把他理解成为加入某个分组。相信这样，我才不会固化了大家伙的思维。
+从字面上[我们](https://www.w3cdoc.com)似乎就发现了，这个API简直就是为加入房间而生了。没错，用他来实现加入房间，很完美。但是个人还是建议你把他理解成为加入某个分组。相信这样，我才不会固化了[大家](https://www.w3cdoc.com)伙的思维。
 
 如果是用这种方法，那么加入房间就会变得异常轻松
 
@@ -367,7 +367,7 @@ io.sockets.emit(&lt;span class="hljs-string">'create'&lt;/span>, {
 
 ## 对战（实时排行榜） {#articleHeader15}
 
-所谓实时排行榜，就肯定是服务器上有数据发生变化时，需要通知客户端去更新。前面我给大家介绍过两种发送数据的方式
+所谓实时排行榜，就肯定是服务器上有数据发生变化时，需要通知客户端去更新。前面我给[大家](https://www.w3cdoc.com)介绍过两种发送数据的方式
 
 <pre class="hljs objectivec"><code>socket.emit  &lt;span class="hljs-comment">//向当前连接的socket&lt;/span>
 </code></pre>
@@ -377,10 +377,10 @@ io.sockets.emit(&lt;span class="hljs-string">'create'&lt;/span>, {
 <pre class="hljs objectivec"><code>io.sockets.emit &lt;span class="hljs-comment">//向所有连接的socket发送信息&lt;/span>
 </code></pre>
 
-但是，在实际的这种加入房间的游戏对战中，似乎这两种发送消息的方式都不满足。第一种范围太小，光自己看到不顶用；第二种范围又太大，很容易骚扰到其他房间的用户。我们需要第三种：消息只能被指定房间中的用户接收。很不巧的是，socket.io还真提供了这种API：
+但是，在实际的这种加入房间的游戏对战中，似乎这两种发送消息的方式都不满足。第一种范围太小，光自己看到不顶用；第二种范围又太大，很容易骚扰到其他房间的用户。[我们](https://www.w3cdoc.com)需要第三种：消息只能被指定房间中的用户接收。很不巧的是，socket.io还真提供了这种API：
 
 <pre class="hljs groovy"><code>io.sockets.&lt;span class="hljs-keyword">in&lt;/span>(roomID).emit
-roomID也就是我们上面socket.join方法中传递的参数，那么此时，我们的代码仅需要如此：
+roomID也就是[我们](https://www.w3cdoc.com)上面socket.join方法中传递的参数，那么此时，[我们](https://www.w3cdoc.com)的代码仅需要如此：
 io.sockets.&lt;span class="hljs-keyword">in&lt;/span>(roomID).emit(&lt;span class="hljs-string">'update scroce'&lt;/span>, {
 &lt;span class="hljs-string">player :&lt;/span> roomInfo[roonName].player,
     &lt;span class="hljs-string">userInfo :&lt;/span> userInfo

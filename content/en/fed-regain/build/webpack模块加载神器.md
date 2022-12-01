@@ -24,7 +24,7 @@ AMD 语法中, 也要注意, 是按 CommonJS 的方案查找的:
 
 比如某个模块依赖 window.jQuery, 需要从 npm 模块中将 jquery 挂载到全局。Webpack 有不少的 Shim 的模块, 比如 expose-loader 用于解决这个问题，<a href="https://github.com/webpack/docs/wiki/shimming-modules，其他比如从模块中导出变量...具体说明有点晦涩" target="_blank" rel="external">https://github.com/webpack/docs/wiki/shimming-modules，其他比如从模块中导出变量&#8230;具体说明有点晦涩</a>..
 
-手头的两个例子, 比如我们用到 Pen 这个模块,这个模块对依赖一个 window.jQuery, 可我手头的 jQuery 是 CommonJS 语法的  
+手头的两个例子, 比如[我们](https://www.w3cdoc.com)用到 Pen 这个模块,这个模块对依赖一个 window.jQuery, 可我手头的 jQuery 是 CommonJS 语法的  
 而 Pen 对象又是生成好了绑在全局的, 可是我又需要通过 require(‘pen’) 获取变量，最终的写法就是做 Shim 处理直接提供支持:
 
 ### [][5]基本的使用
@@ -39,7 +39,7 @@ AMD 语法中, 也要注意, 是按 CommonJS 的方案查找的:
 Webpack 是类似 Browserify 那样在本地按目录对依赖进行查找的,可以构造一个例子, 用 –display-error-details 查看查找过程,  
 例子当中 resolve.extensions 用于指明程序自动补全识别哪些后缀,注意一下, extensions 第一个是空字符串! 对应不需要后缀的情况.
 
-./c 是不存在, 从这个错误信息当中我们大致能了解 Webpack 是怎样查找的。大概就是会尝试各种文件名, 会尝试作为模块, 等等  
+./c 是不存在, 从这个错误信息当中[我们](https://www.w3cdoc.com)大致能了解 Webpack 是怎样查找的。大概就是会尝试各种文件名, 会尝试作为模块, 等等  
 一般模块就是查找 node_modules, 但这个也是能被配置的:  
 <a href="https://webpack.github.io/docs/configuration.html#resolve-modulesdirectories" target="_blank" rel="external">https://webpack.github.io/docs/configuration.html#resolve-modulesdirectories</a>
 

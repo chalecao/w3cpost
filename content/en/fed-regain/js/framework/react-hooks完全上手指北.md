@@ -8,14 +8,14 @@ title: React Hooks完全上手指北
 
 ### Class Component设计理论 {#VruRj}
 
-React以一种全新的编程范式定义了前端开发约束，它为视图开发带来了一种全新的心智模型：
+React以一种全新的编程范式定义了[前端](https://www.w3cdoc.com)开发约束，它为视图开发带来了一种全新的心智模型：
 
 * React认为，UI视图是数据的一种视觉映射，即`UI = F(DATA)`，这里的`F`需要负责**对输入数据进行加工、并对数据的变更做出响应**
 * 公式里的`F`在React里抽象成组件，React是**以组件为粒度编排应用**的，组件是代码复用的最小单元
 * 在设计上，React采用`props`属性来接收外部的数据，使用`state`属性来管理组件自身产生的数据（状态），而为了实现（运行时）对数据变更做出响应需要，React**采用基于类（Class）的组件设计**！
 * 除此之外，React认为**组件是有生命周期**的，因此开创性地将生命周期的概念引入到了组件设计，从组件的create到destory提供了一系列的API供开发者使用
 
-这就是React组件设计的理论基础，我们最熟悉的React组件一般长这样：
+这就是React组件设计的理论基础，[我们](https://www.w3cdoc.com)最熟悉的React组件一般长这样：
 
 <div id="8zdrB" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20React%E5%9F%BA%E4%BA%8EClass%E8%AE%BE%E8%AE%A1%E7%BB%84%E4%BB%B6%5Cnclass%20MyConponent%20extends%20React.Component%20%7B%5Cn%20%20%2F%2F%20%E7%BB%84%E4%BB%B6%E8%87%AA%E8%BA%AB%E4%BA%A7%E7%94%9F%E7%9A%84%E6%95%B0%E6%8D%AE%5Cn%5Ctstate%20%3D%20%7B%5Cn%20%20%5Ctcounts%3A%200%5Cn%20%20%7D%5Cn%5Ct%5Cn%5Ct%2F%2F%20%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E5%8F%98%E6%9B%B4%5Cn%5CtclickHandle%20%3D%20()%20%3D%3E%20%7B%5Cn%20%20%5Ctthis.setState(%7B%20counts%3A%20this.state.counts%2B%2B%20%7D)%3B%5Cn%20%20%20%20if%20(this.props.onClick)%20this.props.onClick()%3B%5Cn%20%20%7D%5Cn%20%20%5Cn%20%20%2F%2F%20lifecycle%20API%5Cn%20%20componentWillUnmount()%20%7B%5Cn%20%20%5Ctconsole.log('Will%20mouned!')%3B%5Cn%20%20%7D%5Cn%20%20%5Ct%5Cn%5Ct%2F%2F%20lifecycle%20API%5Cn%20%20componentDidMount()%20%7B%5Cn%20%20%5Ctconsole.log('Did%20mouned!')%3B%5Cn%20%20%7D%5Cn%5Ct%5Cn%5Ct%2F%2F%20%E6%8E%A5%E6%94%B6%E5%A4%96%E6%9D%A5%E6%95%B0%E6%8D%AE%EF%BC%88%E6%88%96%E5%8A%A0%E5%B7%A5%E5%A4%84%E7%90%86%EF%BC%89%EF%BC%8C%E5%B9%B6%E7%BC%96%E6%8E%92%E6%95%B0%E6%8D%AE%E5%9C%A8%E8%A7%86%E8%A7%89%E4%B8%8A%E7%9A%84%E5%91%88%E7%8E%B0%5Cn%5Ctrender(props)%20%7B%5Cn%20%20%20%20return%20(%5Cn%20%20%20%20%5Ct%3C%3E%5Cn%20%20%20%20%20%20%5Ct%3Cdiv%3EInput%20content%3A%20%7Bprops.content%7D%2C%20btn%20click%20counts%3A%20%7Bthis.state.counts%7D%3C%2Fdiv%3E%5Cn%5Ct%5Ct%5Ct%5Ct%3Cbutton%20onClick%3D%7Bthis.clickHandle%7D%3EAdd%3C%2Fbutton%3E%5Cn%20%20%20%20%20%20%3C%2F%3E%5Cn%20%20%20%20)%3B%5Cn%20%20%7D%5Cn%7D%22%2C%22id%22%3A%228zdrB%22%7D">
   <div class="lake-codeblock-content">
@@ -574,7 +574,7 @@ useState() mount阶段：
 
 * `dispatchAction`函数是更新state的关键，它会生成一个`update`挂载到hook队列上面，并提交一个React更新调度，后续的工作和类组件一致。
 * 理论上可以同时调用多次dispatch，但只有最后一次会生效（queue的last指针指向最后一次update的state）
-* 注意`useState`更新数据和`setState`不同的是，前者会对state做merge，我们只需把更改的部分传进去，但是`useState`则是直接覆盖！
+* 注意`useState`更新数据和`setState`不同的是，前者会对state做merge，[我们](https://www.w3cdoc.com)只需把更改的部分传进去，但是`useState`则是直接覆盖！
 
 > schedule阶段介于reconcile和commit阶段之间，schedule的起点方法是scheduleWork。 ReactDOM.render, setState，forceUpdate, React Hooks的dispatchAction都要经过scheduleWork。
 >

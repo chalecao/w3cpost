@@ -15,7 +15,7 @@ const someAction = value =&gt; dispatch =&gt; {
 }
 </code>&lt;/code></pre>
 
-这里我们需要判断item有值的时候走dispatch方法，否则什么都不做。有一种思路是使用短路逻辑或者三元函数。
+这里[我们](https://www.w3cdoc.com)需要判断item有值的时候走dispatch方法，否则什么都不做。有一种思路是使用短路逻辑或者三元函数。
 
 <pre class="pure-highlightjs"><code class="">// short circuit
 const someAction = value =&gt; dispatch =&gt; {
@@ -30,11 +30,11 @@ const someAction = value =&gt; dispatch =&gt; {
 }
 </code>&lt;/code></pre>
 
-短路逻辑和三元函数虽然都能解决这个问题，我们这里用另外一种思路。
+短路逻辑和三元函数虽然都能解决这个问题，[我们](https://www.w3cdoc.com)这里用另外一种思路。
 
 ## Solution A: ifVal Helper Function {#6c1a.graf.graf--h3.graf-after--p}
 
-为了采用函数式的方法解决这个问题，我们先写个help类函数来实现，后面也更容易理解。
+为了采用函数式的方法解决这个问题，[我们](https://www.w3cdoc.com)先写个help类函数来实现，后面也更容易理解。
 
 <pre class="pure-highlightjs"><code class="">// 1: old school
 function ifVal (x, f) {
@@ -63,14 +63,14 @@ const ifVal = (x, f) =&gt; {
 const ifVal = (x, f) =&gt; x == null ? null : f(x)
 </code>&lt;/code></pre>
 
-现在我们可以采用ifVal函数替代旧的if函数。
+现在[我们](https://www.w3cdoc.com)可以采用ifVal函数替代旧的if函数。
 
 <pre class="pure-highlightjs"><code class="">// functional alternative
 const someAction = value =&gt; dispatch =&gt;
   ifVal(getItem(value), item =&gt; dispatch({ type: 'ACTION', item }))
 </code>&lt;/code></pre>
 
-我们现在比较两种情况：
+[我们](https://www.w3cdoc.com)现在比较两种情况：
 
 <pre class="pure-highlightjs"><code class="">/**
  * execute the function if the value is not null or undefined
@@ -97,7 +97,7 @@ const someAction = value =&gt; dispatch =&gt;
 
 ## Solution B: Functors {#3d9b.graf.graf--h3.graf-after--p}
 
-我们也可以使用MayBe Type，如果有值，返回Just type，否者就是Nothing type。我们使用<a class="markup--anchor markup--p-anchor" href="https://sanctuary.js.org/" target="_blank" rel="noopener" data-href="https://sanctuary.js.org/">Sanctuary</a> 类库。
+[我们](https://www.w3cdoc.com)也可以使用MayBe Type，如果有值，返回Just type，否者就是Nothing type。[我们](https://www.w3cdoc.com)使用<a class="markup--anchor markup--p-anchor" href="https://sanctuary.js.org/" target="_blank" rel="noopener" data-href="https://sanctuary.js.org/">Sanctuary</a> 类库。
 
 <pre class="pure-highlightjs"><code class="">/*Examples of Sanctuary's Maybe*/
 

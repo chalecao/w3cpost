@@ -118,7 +118,7 @@ Basic options:
 
 ### 简单实例 {#articleHeader4}
 
-> 生成浏览器可用
+> 生成[浏览器](https://www.w3cdoc.com)可用
 
 <pre class="hljs objectivec"><code>&lt;span class="hljs-comment">//打包main.js到bundle.js 打包格式是立即执行函数&lt;/span>
 rollup main.js -o bundle.js -f iife</code></pre>
@@ -128,7 +128,7 @@ rollup main.js -o bundle.js -f iife</code></pre>
 <pre class="hljs objectivec"><code>&lt;span class="hljs-comment">//打包main.js到bundle.js 打包格式是commonjs。&lt;/span>
 rollup main.js -o bundle.js -f cjs</code></pre>
 
-> Node.js和浏览器都可用
+> Node.js和[浏览器](https://www.w3cdoc.com)都可用
 
 <pre class="hljs objectivec"><code>&lt;span class="hljs-comment">//打包main.js到bundle.js 打包格式是UMD,这个格式需要一个模块名&lt;/span>
 rollup main.js -o bundle.js -f umd --name &lt;span class="hljs-string">"myBundle"&lt;/span></code></pre>
@@ -184,7 +184,7 @@ _解析：_
 &lt;span class="hljs-comment">// src/example1/module2.js&lt;/span>
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> &lt;span class="hljs-string">'hello config!'&lt;/span></code></pre>
 
-接下来就是运行命令，`rollup.config.js`本来是Rollup默认运行的配置文件，如果我们的`rollup.config.js`是放在根目录下的，可以直接运行`rollup -c`，不用任何选项，但是我们是放在`src/module2`文件夹下的，所以要加上配置文件的路径  
+接下来就是运行命令，`rollup.config.js`本来是Rollup默认运行的配置文件，如果[我们](https://www.w3cdoc.com)的`rollup.config.js`是放在根目录下的，可以直接运行`rollup -c`，不用任何选项，但是[我们](https://www.w3cdoc.com)是放在`src/module2`文件夹下的，所以要加上配置文件的路径  
 `rollup -c src/module2/rollup.config.js`
 
 **注意**
@@ -197,7 +197,7 @@ _解析：_
 
 ### example3 {#articleHeader8}
 
-随着构建更复杂的 bundle，我们需要加入插件(plugins)。
+随着构建更复杂的 bundle，[我们](https://www.w3cdoc.com)需要加入插件(plugins)。
 
 使用 <a href="https://github.com/rollup/rollup-plugin-json" target="_blank" rel="nofollow noopener noreferrer">rollup-plugin-json</a>，令 Rollup 从 JSON 文件中读取数据。  
 将 rollup-plugin-json 安装为开发依赖，因为代码实际执行时不依赖这个插件——只是在打包时使用，所以用的是`--save-dev` 而不是 `--save`
@@ -262,7 +262,7 @@ Rollup 不知道怎么处理依赖于从 npm 安装到你的 `node_modules` �
     ]
 }</code></pre>
 
-运行： `rollup -c src/example4/rollup.config.js` 会有一个警告 `Unresolved dependencies` ,我们看一下 打包好的`dist/example4/bundle.js`
+运行： `rollup -c src/example4/rollup.config.js` 会有一个警告 `Unresolved dependencies` ,[我们](https://www.w3cdoc.com)看一下 打包好的`dist/example4/bundle.js`
 
 <pre class="hljs javascript"><code>&lt;span class="hljs-comment">// 截取dist/example4/bundle.js`&lt;/span>
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">_interopDefault&lt;/span> (&lt;span class="hljs-params">ex&lt;/span>) &lt;/span>{ &lt;span class="hljs-keyword">return&lt;/span> (ex && (&lt;span class="hljs-keyword">typeof&lt;/span> ex === &lt;span class="hljs-string">'object'&lt;/span>) && &lt;span class="hljs-string">'default'&lt;/span> &lt;span class="hljs-keyword">in&lt;/span> ex) ? ex[&lt;span class="hljs-string">'default'&lt;/span>] : ex; }
@@ -270,7 +270,7 @@ Rollup 不知道怎么处理依赖于从 npm 安装到你的 `node_modules` �
 &lt;span class="hljs-keyword">var&lt;/span> answer = _interopDefault(&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'the-answer'&lt;/span>));
 
 &lt;span class="hljs-comment">// 可以看到the-answer并没有打包进来，还得用node的require去请求，然后经过函数转化才能拿到the-answer的输出值&lt;/span>
-&lt;span class="hljs-comment">// 我们可以看一下 node_modules 下的 the-answer 模块暴露出的内容&lt;/span>
+&lt;span class="hljs-comment">// [我们](https://www.w3cdoc.com)可以看一下 node_modules 下的 the-answer 模块暴露出的内容&lt;/span>
 
 &lt;span class="hljs-keyword">var&lt;/span> index = &lt;span class="hljs-number">42&lt;/span>;
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> index;
@@ -278,7 +278,7 @@ Rollup 不知道怎么处理依赖于从 npm 安装到你的 `node_modules` �
 &lt;span class="hljs-comment">// 这样也可以看出，如果the-answer如果打包进来，应该是：&lt;/span>
 &lt;span class="hljs-keyword">var&lt;/span> answer = &lt;span class="hljs-number">42&lt;/span>;</code></pre>
 
-**现在我们需要一个插件 <a href="https://github.com/rollup/rollup-plugin-node-resolve" target="_blank" rel="nofollow noopener noreferrer">rollup-plugin-node-resolve </a>来告诉 Rollup 如何查找外部模块**
+**现在[我们](https://www.w3cdoc.com)需要一个插件 <a href="https://github.com/rollup/rollup-plugin-node-resolve" target="_blank" rel="nofollow noopener noreferrer">rollup-plugin-node-resolve </a>来告诉 Rollup 如何查找外部模块**
 
 `npm i -D rollup-plugin-node-resolve`
 
@@ -297,7 +297,7 @@ Rollup 不知道怎么处理依赖于从 npm 安装到你的 `node_modules` �
     ]
 }</code></pre>
 
-再次运行`rollup -c src/example4/rollup.config.js` 没有警告 ,我们看一下打包好的`dist/example4/bundle.js`
+再次运行`rollup -c src/example4/rollup.config.js` 没有警告 ,[我们](https://www.w3cdoc.com)看一下打包好的`dist/example4/bundle.js`
 
 <pre class="hljs javascript"><code>&lt;span class="hljs-meta">'use strict'&lt;/span>;
 
@@ -312,7 +312,7 @@ Rollup 不知道怎么处理依赖于从 npm 安装到你的 `node_modules` �
 
 ### example5 {#articleHeader10}
 
-类似 `the-answer` 一些库因为 `package.json`里的module选项可以让我们正常导入的ES6模块。 但是目前，npm中的大多数包都是以CommonJS模块的形式出现的。 在它们更改之前，我们需要将CommonJS模块转换为 ES2015 供 Rollup 处理。
+类似 `the-answer` 一些库因为 `package.json`里的module选项可以让[我们](https://www.w3cdoc.com)正常导入的ES6模块。 但是目前，npm中的大多数包都是以CommonJS模块的形式出现的。 在它们更改之前，[我们](https://www.w3cdoc.com)需要将CommonJS模块转换为 ES2015 供 Rollup 处理。
 
 <a href="https://github.com/rollup/rollup-plugin-commonjs" target="_blank" rel="nofollow noopener noreferrer">rollup-plugin-commonjs</a> 插件就是用来将 CommonJS 转换成 ES2015 模块的。通常，这个插件会跟 `rollup-plugin-node-resolve`配合使用，这样就能打包 `node_modules`依赖中的CommonJS。  
 `rollup-plugin-commonjs` 应该用在其他插件转换你的模块之前 &#8211; 这是为了防止其他插件的改变破坏CommonJS的检测。
@@ -383,12 +383,12 @@ external 接受一个模块名称的数组或一个接受模块名称的函数(�
     external: [&lt;span class="hljs-string">'lodash'&lt;/span>]
 }</code></pre>
 
-配置文件中加入 `external` 就不会把第三方的库打包进我们最后的文件了。可以在 `src/example5/rollup.config.js` 中把 `external` 注释掉看看打包后的文件，会把整个 `lodsh` 打包进来。  
+配置文件中加入 `external` 就不会把第三方的库打包进[我们](https://www.w3cdoc.com)最后的文件了。可以在 `src/example5/rollup.config.js` 中把 `external` 注释掉看看打包后的文件，会把整个 `lodsh` 打包进来。  
 _扩展：_ 如果用到 `lodsh` ，可以使用 <a href="https://github.com/lodash/babel-plugin-lodash" target="_blank" rel="nofollow noopener noreferrer">babel-plugin-lodash</a> 来最优选择lodash模块。
 
 ### example7 {#articleHeader12}
 
-我们在项目中有很大概率用到 `babel` ，使用 Babel 和 Rollup 的最简单方法是使用 <a href="https://github.com/rollup/rollup-plugin-babel" target="_blank" rel="nofollow noopener noreferrer">rollup-plugin-babel</a>
+[我们](https://www.w3cdoc.com)在项目中有很大概率用到 `babel` ，使用 Babel 和 Rollup 的最简单方法是使用 <a href="https://github.com/rollup/rollup-plugin-babel" target="_blank" rel="nofollow noopener noreferrer">rollup-plugin-babel</a>
 
 安装： `npm i -D rollup-plugin-babel`
 

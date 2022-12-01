@@ -13,11 +13,11 @@ title: 打包中的Scope Hoisting功能
 </code></pre>
 </div>
 
-这篇文章将会从多个方面详细介绍这项新功能，在这之前，我们先来看看 Webpack 是如何将多个模块打包在一起的。
+这篇文章将会从多个方面详细介绍这项新功能，在这之前，[我们](https://www.w3cdoc.com)先来看看 Webpack 是如何将多个模块打包在一起的。
 
 ## Webpack 默认的模块打包方式
 
-现在假设我们的项目有这样两个文件：
+现在假设[我们](https://www.w3cdoc.com)的项目有这样两个文件：
 
 <div class="highlight">
   <pre><code class="language-js">&lt;span class="c1">// module-a.js
@@ -28,7 +28,7 @@ title: 打包中的Scope Hoisting功能
 </code></pre>
 </div>
 
-现在我们用 Webpack 打包一下，得到的文件大致像这样：
+现在[我们](https://www.w3cdoc.com)用 Webpack 打包一下，得到的文件大致像这样：
 
 <div class="highlight">
   <pre><code class="language-js">&lt;span class="c1">// bundle.js

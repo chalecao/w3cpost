@@ -2,11 +2,11 @@
 title: html渲染过程
 weight: 4
 ---
-欢迎学习前端知识体系课程，本系列属于：[前端增长教程][1]
+欢迎学习[前端](https://www.w3cdoc.com)知识体系课程，本系列属于：[[前端](https://www.w3cdoc.com)增长教程][1]
 
-一个 Chrome 浏览器一般会有一个 Browser 进程(运行UI线程、管理tab和运行插件线程等等的主进程)，一个 GPU 进程，和多个 Renderer 进程，通常每个 Renderer 进程对应一个页面。在特殊架构（Android WebView）或者特定配置下，Browser 进程可以兼作 GPU 进程或者 Renderer 进程（意味着没有独立的 GPU 或者 Renderer 进程），但是 Browser 跟 Renderer，Browser 跟 GPU，Renderer 跟 GPU 之间的系统架构和通讯方式基本保持不变，线程架构也是同样。参考这里：<http://dev.chromium.org/developers/design-documents/multi-process-architecture>
+一个 Chrome [浏览器](https://www.w3cdoc.com)一般会有一个 Browser 进程(运行UI线程、管理tab和运行插件线程等等的主进程)，一个 GPU 进程，和多个 Renderer 进程，通常每个 Renderer 进程对应一个页面。在特殊架构（Android WebView）或者特定配置下，Browser 进程可以兼作 GPU 进程或者 Renderer 进程（意味着没有独立的 GPU 或者 Renderer 进程），但是 Browser 跟 Renderer，Browser 跟 GPU，Renderer 跟 GPU 之间的系统架构和通讯方式基本保持不变，线程架构也是同样。参考这里：<http://dev.chromium.org/developers/design-documents/multi-process-architecture>
 
-  1. Blink 主要运行在 Renderer 进程的 Renderer 线程，我们通常会称之为内核主线程；
+  1. Blink 主要运行在 Renderer 进程的 Renderer 线程，[我们](https://www.w3cdoc.com)通常会称之为内核主线程；
   2. Layer Compositor 主要运行在 Renderer 进程的 Compositor 线程；
   3. Display Compositor 主要运行在 Browser 进程的 UI 线程；
 
@@ -20,7 +20,7 @@ weight: 4
   </h1>
   
   <p>
-    Chromium拥有一套多进程架构。Chromium有一个浏览器进程和多个带有沙盒能力的渲染进程。Blink则运行在渲染进程中。
+    Chromium拥有一套多进程架构。Chromium有一个[浏览器](https://www.w3cdoc.com)进程和多个带有沙盒能力的渲染进程。Blink则运行在渲染进程中。
   </p>
   
   <p>
@@ -33,7 +33,7 @@ weight: 4
   
   <ul>
     <li>
-      一个<b>页面（Page）</b>代表一个浏览器页签，一个渲染进程可能负责渲染多个页面。
+      一个<b>页面（Page）</b>代表一个[浏览器](https://www.w3cdoc.com)页签，一个渲染进程可能负责渲染多个页面。
     </li>
     <li>
       一个<b>框（Frame）</b>代表主框或者一个iframe，一个<b>页面至少包含一个框。</b>
@@ -54,7 +54,7 @@ weight: 4
   </p>
   
   <p>
-    由于Blink运行在渲染进程中的沙盒中，当Blink需要访问文件或播放视频或者访问用户信息（cookie、password等）时必须与浏览器进程通信。这种不同进程间的通信方式被Mojo实现。随着Chromium不断向服务化架构演进，Blink可以通过Mojo来降低消息传递过程中对发送方和接收方对于具体实现的依赖（服务可能在多个进程中，也可能在同一个进程中，消息传递方式不同）
+    由于Blink运行在渲染进程中的沙盒中，当Blink需要访问文件或播放视频或者访问用户信息（cookie、password等）时必须与[浏览器](https://www.w3cdoc.com)进程通信。这种不同进程间的通信方式被Mojo实现。随着Chromium不断向服务化架构演进，Blink可以通过Mojo来降低消息传递过程中对发送方和接收方对于具体实现的依赖（服务可能在多个进程中，也可能在同一个进程中，消息传递方式不同）
   </p>
   
 ![](/images/posts/img_5fafedeb516cd.webp)
@@ -68,7 +68,7 @@ weight: 4
   </p>
   
   <p>
-    Blink实现了在浏览器页签中所有的渲染工作，其中包括：
+    Blink实现了在[浏览器](https://www.w3cdoc.com)页签中所有的渲染工作，其中包括：
   </p>
   
   <ul>
@@ -97,7 +97,7 @@ weight: 4
   </p>
   
   <p>
-    几乎所有重要的工作都运行在主线程上。包括运行JavaScript（除了Workers），DOM生成，CSS样式和布局计算等，所以交互性能的优化关键主要围绕主线程。这部分会在后续章节JavaScript事件循环机制上介绍，可以参考<a href="https://www.f2e123.com/javascriptnodejs/4734.html">浏览器与node环境的事件循环机制</a>。
+    几乎所有重要的工作都运行在主线程上。包括运行JavaScript（除了Workers），DOM生成，CSS样式和布局计算等，所以交互性能的优化关键主要围绕主线程。这部分会在后续章节JavaScript事件循环机制上介绍，可以参考<a href="https://www.f2e123.com/javascriptnodejs/4734.html">[浏览器](https://www.w3cdoc.com)与node环境的事件循环机制</a>。
   </p>
   
   <p>
@@ -171,7 +171,7 @@ weight: 4
   </h2>
   
   <p>
-    浏览器 UI 线程，如果跟 GPU 线程不是同一个线程，则只负责外壳的绘制，如果跟 GPU 线程是同一个线程，则同时负责绘制外壳的UI界面，和网页的合成输出，到窗口帧缓存；
+    [浏览器](https://www.w3cdoc.com) UI 线程，如果跟 GPU 线程不是同一个线程，则只负责外壳的绘制，如果跟 GPU 线程是同一个线程，则同时负责绘制外壳的UI界面，和网页的合成输出，到窗口帧缓存；
   </p>
   
   <h1>
@@ -181,7 +181,7 @@ weight: 4
 ![](/images/posts/img_5faff3e35521d.webp)
   
   <p>
-    所有的渲染流水线都会有帧的概念，帧这个概念抽象描述了渲染流水线下级模块往上级模块输出的绘制内容相关数据的封装。我们可以看到 Blink 输出 Main Frame 给 Layer Compositor，Layer Compositor 输出 Compositor Frame 给 Display Compositor，Display Compositor 输出 GL Frame 给 Window。我们觉得一个动画是否流畅，最终取决于 GL Frame 的帧率（也就是目标窗口的绘制更新频率），而觉得一个触屏操作是否响应即时，取决于从 Blink 处理事件到 Window 更新的整个过程的耗时（理论上应该还要加上事件从 Browser 发送给 Compositor，再发送给 Blink 的这个过程的耗时）。
+    所有的渲染流水线都会有帧的概念，帧这个概念抽象描述了渲染流水线下级模块往上级模块输出的绘制内容相关数据的封装。[我们](https://www.w3cdoc.com)可以看到 Blink 输出 Main Frame 给 Layer Compositor，Layer Compositor 输出 Compositor Frame 给 Display Compositor，Display Compositor 输出 GL Frame 给 Window。[我们](https://www.w3cdoc.com)觉得一个动画是否流畅，最终取决于 GL Frame 的帧率（也就是目标窗口的绘制更新频率），而觉得一个触屏操作是否响应即时，取决于从 Blink 处理事件到 Window 更新的整个过程的耗时（理论上应该还要加上事件从 Browser 发送给 Compositor，再发送给 Blink 的这个过程的耗时）。
   </p>
   
 ![](/images/posts/img_5fafe3c1d061c.webp)
@@ -209,7 +209,7 @@ weight: 4
 ![](/images/posts/img_5faffa26a68dd.webp)
   
   <p>
-    上一节我们说 Render 树是衔接浏览器排版引擎和渲染引擎之间的桥梁，它是排版引擎的输出，渲染引擎的输入。不过浏览器渲染引擎并不是直接使用 Render 树进行绘制，为了方便处理 Positioning（定位），Clipping（裁剪），Overflow-scroll（页內滚动），CSS Transform/Opacity/Animation/Filter，Mask or Reflection，Z-indexing（Z排序）等，浏览器需要生成另外一棵树 &#8211; Layer 树。
+    上一节[我们](https://www.w3cdoc.com)说 Render 树是衔接[浏览器](https://www.w3cdoc.com)排版引擎和渲染引擎之间的桥梁，它是排版引擎的输出，渲染引擎的输入。不过[浏览器](https://www.w3cdoc.com)渲染引擎并不是直接使用 Render 树进行绘制，为了方便处理 Positioning（定位），Clipping（裁剪），Overflow-scroll（页內滚动），CSS Transform/Opacity/Animation/Filter，Mask or Reflection，Z-indexing（Z排序）等，[浏览器](https://www.w3cdoc.com)需要生成另外一棵树 &#8211; Layer 树。
   </p>
   
 ![](/images/posts/img_5faffa4345505.webp)
@@ -225,11 +225,11 @@ weight: 4
 > It’s the root object for the page, It has explicit CSS position properties (relative, absolute or a transform),It is transparent Has overflow, an alpha mask or reflection, Has a CSS filter, Corresponds to canvas element that has a 3D (WebGL) context or an accelerated 2D context, Corresponds to a video element
   
   <p>
-    浏览器渲染引擎遍历 Layer 树，访问每一个 RenderLayer，再遍历从属于这个 RenderLayer 的 RenderObject，将每一个 RenderObject 绘制出来。读者可以认为，Layer 树决定了网页绘制的层次顺序，而从属于 RenderLayer 的 RenderObject 决定了这个 Layer 的内容，所有的 RenderLayer 和 RenderObject 一起就决定了网页在屏幕上最终呈现出来的内容。
+    [浏览器](https://www.w3cdoc.com)渲染引擎遍历 Layer 树，访问每一个 RenderLayer，再遍历从属于这个 RenderLayer 的 RenderObject，将每一个 RenderObject 绘制出来。读者可以认为，Layer 树决定了网页绘制的层次顺序，而从属于 RenderLayer 的 RenderObject 决定了这个 Layer 的内容，所有的 RenderLayer 和 RenderObject 一起就决定了网页在屏幕上最终呈现出来的内容。
   </p>
   
   <p>
-    <strong>软件渲染模式下，浏览器绘制 RenderLayer 和 RenderObject 的顺序，来自 <a href="http://www.chromium.org/developers/design-documents/gpu-accelerated-compositing-in-chrome" target="_blank" rel="noopener noreferrer">GPU Accelerated Compositing in Chrome</a></strong>
+    <strong>软件渲染模式下，[浏览器](https://www.w3cdoc.com)绘制 RenderLayer 和 RenderObject 的顺序，来自 <a href="http://www.chromium.org/developers/design-documents/gpu-accelerated-compositing-in-chrome" target="_blank" rel="noopener noreferrer">GPU Accelerated Compositing in Chrome</a></strong>
   </p>
 
 > In the software path, the page is rendered by sequentially painting all the RenderLayers, from back to front. The RenderLayer hierarchy is traversed recursively starting from the root and the bulk of the work is done in RenderLayer::paintLayer() which performs the following basic steps (the list of steps is simplified here for clarity):
@@ -248,7 +248,7 @@ weight: 4
   </h2>
   
   <p>
-    对于现代浏览器来说，所谓硬件加速，就是使用 GPU 来进行合成，绘制仍然使用 CPU 来完成。在多线程渲染模式下，因为绘制和合成分别处于不同的线程，绘制使用 CPU，合成使用 GPU，这样可以通过 CPU/GPU 之间的并发运行有效地提升浏览器整体的渲染性能。更何况，窗口的更新是由合成线程来负责的，合成的效率越高，窗口更新的间隔就越短，用户感受到 UI 界面变化的流畅度就越高，只要窗口更新的间隔能够始终保持在16.7毫秒以内，UI 界面就能够一直保持60帧/每秒的极致流畅度（因为一般来说，显示屏幕的刷新频率是60hz，所以60帧/秒已经是极限帧率，超过这个数值意义不大，而且 OS 的图形子系统本身就会强制限制 UI 界面的更新跟屏幕的刷新保持同步）。
+    对于现代[浏览器](https://www.w3cdoc.com)来说，所谓硬件加速，就是使用 GPU 来进行合成，绘制仍然使用 CPU 来完成。在多线程渲染模式下，因为绘制和合成分别处于不同的线程，绘制使用 CPU，合成使用 GPU，这样可以通过 CPU/GPU 之间的并发运行有效地提升[浏览器](https://www.w3cdoc.com)整体的渲染性能。更何况，窗口的更新是由合成线程来负责的，合成的效率越高，窗口更新的间隔就越短，用户感受到 UI 界面变化的流畅度就越高，只要窗口更新的间隔能够始终保持在16.7毫秒以内，UI 界面就能够一直保持60帧/每秒的极致流畅度（因为一般来说，显示屏幕的刷新频率是60hz，所以60帧/秒已经是极限帧率，超过这个数值意义不大，而且 OS 的图形子系统本身就会强制限制 UI 界面的更新跟屏幕的刷新保持同步）。
   </p>
   
   <p>
@@ -264,11 +264,11 @@ weight: 4
   </h2>
   
   <p>
-    而在合成加速的渲染架构下，一些 RenderLayer 会拥有自己独立的缓存，它们被称为合成图层（Compositing Layer），WebKit 会为这些 RenderLayer 创建对应的 GraphicsLayer，不同的浏览器需要提供自己的 GraphicsLayer 实现用于管理缓存的分配，释放，更新等等。拥有 GraphicsLayer 的 RenderLayer 会被绘制到自己的缓存里面，而没有 GraphicsLayer 的 RenderLayer 它们会向上追溯有 GraphicsLayer 的父/祖先 RenderLayer，直到 Root RenderLayer 为止，然后绘制在有 GraphicsLayer 的父/祖先 RenderLayer 的缓存上，而 Root RenderLayer 总是会创建一个 GraphicsLayer 并拥有自己独立的缓存。最终，GraphicsLayer 又构成了一棵与 RenderLayer 并行的树，而 RenderLayer 与 GraphicsLayer 的关系有些类似于 RenderObject 与 RenderLayer 之间的关系。
+    而在合成加速的渲染架构下，一些 RenderLayer 会拥有自己独立的缓存，它们被称为合成图层（Compositing Layer），WebKit 会为这些 RenderLayer 创建对应的 GraphicsLayer，不同的[浏览器](https://www.w3cdoc.com)需要提供自己的 GraphicsLayer 实现用于管理缓存的分配，释放，更新等等。拥有 GraphicsLayer 的 RenderLayer 会被绘制到自己的缓存里面，而没有 GraphicsLayer 的 RenderLayer 它们会向上追溯有 GraphicsLayer 的父/祖先 RenderLayer，直到 Root RenderLayer 为止，然后绘制在有 GraphicsLayer 的父/祖先 RenderLayer 的缓存上，而 Root RenderLayer 总是会创建一个 GraphicsLayer 并拥有自己独立的缓存。最终，GraphicsLayer 又构成了一棵与 RenderLayer 并行的树，而 RenderLayer 与 GraphicsLayer 的关系有些类似于 RenderObject 与 RenderLayer 之间的关系。
   </p>
   
   <p>
-    合成加速渲染架构下的网页合成，也变得比以前复杂，不再是简单的将一个缓存拷贝到窗口缓存上，而是需要完成源自不同 Layer 的多个缓存的拷贝，再加上可能的2D/3D变换，再加上缓存之间的 Alpha 混合等操作，当然，对于支持硬件加速，使用 GPU 来完成合成的浏览器来说，速度还是很快的。
+    合成加速渲染架构下的网页合成，也变得比以前复杂，不再是简单的将一个缓存拷贝到窗口缓存上，而是需要完成源自不同 Layer 的多个缓存的拷贝，再加上可能的2D/3D变换，再加上缓存之间的 Alpha 混合等操作，当然，对于支持硬件加速，使用 GPU 来完成合成的[浏览器](https://www.w3cdoc.com)来说，速度还是很快的。
   </p>
   
   <blockquote>
@@ -302,19 +302,19 @@ weight: 4
         Layer has a sibling with a lower z-index which has a compositing layer (in other words the layer is rendered on top of a composited layer)
       </li>
       <li>
-        will-change 可以明确告诉浏览器生成合成图层
+        will-change 可以明确告诉[浏览器](https://www.w3cdoc.com)生成合成图层
       </li>
     </ol>
   </blockquote>
   
   <p>
-    合成加速的渲染架构下，Layer 的内容变化，只需要更新所属的 GraphicsLayer 的缓存即可，而缓存的更新，也只需要绘制直接或者间接属于这个 GraphicsLayer 的 RenderLayer 而不是所有的 RenderLayer。特别是一些特定的 CSS 样式属性的变化，实际上并不引起内容的变化，只需要改变一些 GraphicsLayer 的合成参数，然后重新合成即可，而合成相对绘制而言是很快的，这些特定的 CSS 样式属性我们一般称之为是被加速的，不同的浏览器支持的状况不太一样，但基本上<strong>CSS Transform & Opacity</strong> 在所有支持合成加速的浏览器上都是被加速的。被加速的CSS 样式属性的动画，就比较容易达到60帧/每秒的流畅效果了。另外像 Fixed 元素，Overflow-scroll，在合成加速的渲染架构下，因为不需要重新生成缓存，所以渲染的效率也同样是非常高。
+    合成加速的渲染架构下，Layer 的内容变化，只需要更新所属的 GraphicsLayer 的缓存即可，而缓存的更新，也只需要绘制直接或者间接属于这个 GraphicsLayer 的 RenderLayer 而不是所有的 RenderLayer。特别是一些特定的 CSS 样式属性的变化，实际上并不引起内容的变化，只需要改变一些 GraphicsLayer 的合成参数，然后重新合成即可，而合成相对绘制而言是很快的，这些特定的 CSS 样式属性[我们](https://www.w3cdoc.com)一般称之为是被加速的，不同的[浏览器](https://www.w3cdoc.com)支持的状况不太一样，但基本上<strong>CSS Transform & Opacity</strong> 在所有支持合成加速的[浏览器](https://www.w3cdoc.com)上都是被加速的。被加速的CSS 样式属性的动画，就比较容易达到60帧/每秒的流畅效果了。另外像 Fixed 元素，Overflow-scroll，在合成加速的渲染架构下，因为不需要重新生成缓存，所以渲染的效率也同样是非常高。
   </p>
   
 ![](/images/posts/img_5faffed28f681.webp)
   
   <p>
-    不过并不是拥有独立缓存的 RenderLayer 越多越好，太多拥有独立缓存的 Layer 会带来一些严重的副作用 &#8211; 首先它大大增加了内存的开销，这点在移动设备上的影响更大，甚至导致浏览器在一些内存较少的移动设备上无法很好地支持图层合成加速；其次，它加大了合成的时间开销，导致合成性能的下降，而合成性能跟网页滚动/缩放操作的流畅度又息息相关，最终导致网页滚动/缩放的流畅度下降，让用户觉得浏览器/网页卡顿。
+    不过并不是拥有独立缓存的 RenderLayer 越多越好，太多拥有独立缓存的 Layer 会带来一些严重的副作用 &#8211; 首先它大大增加了内存的开销，这点在移动设备上的影响更大，甚至导致[浏览器](https://www.w3cdoc.com)在一些内存较少的移动设备上无法很好地支持图层合成加速；其次，它加大了合成的时间开销，导致合成性能的下降，而合成性能跟网页滚动/缩放操作的流畅度又息息相关，最终导致网页滚动/缩放的流畅度下降，让用户觉得[浏览器](https://www.w3cdoc.com)/网页卡顿。
   </p>
   
   <h1>

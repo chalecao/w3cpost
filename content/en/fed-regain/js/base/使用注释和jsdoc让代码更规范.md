@@ -13,14 +13,14 @@ title: 使用注释和JSDOC让代码更规范
 很显而易见的，编辑器也不能够确定这个函数究竟是什么含义，因为任何类型的两个参数都可以进行相加。  
 所以编辑器就会使用一个在 TypeScript 中经常出现用来标识任意类型的 `any` 关键字来描述函数的参数以及返回值。
 
-而这种情况下我们可以很简单的使用 JSDoc 来手动描述这个函数的作用：<img loading="lazy" width="800" height="622" class="alignnone size-full wp-image-4523 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_233/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_597/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/quality,q_50/resize,m_fill,w_772,h_600/format,webp 772w" sizes="(max-width: 800px) 100vw, 800px" /><span class="img-wrap"><br /> </span>
+而这种情况下[我们](https://www.w3cdoc.com)可以很简单的使用 JSDoc 来手动描述这个函数的作用：<img loading="lazy" width="800" height="622" class="alignnone size-full wp-image-4523 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_233/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_597/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/quality,q_50/resize,m_fill,w_772,h_600/format,webp 772w" sizes="(max-width: 800px) 100vw, 800px" /><span class="img-wrap"><br /> </span>
 
-> 实际上有些函数是需要手动指定`@return {TYPE}`来确定函数返回值类型的，但因为我们函数的作用就是通过两个参数相加并返回，所以编辑器推算出了函数返回值的类型。
+> 实际上有些函数是需要手动指定`@return {TYPE}`来确定函数返回值类型的，但因为[我们](https://www.w3cdoc.com)函数的作用就是通过两个参数相加并返回，所以编辑器推算出了函数返回值的类型。
 
 对比上下两段代码，代码上并没有什么区别，也许有人会嗤之以鼻，认为代码已经足够清晰，并不需要额外的添加注释来说明。  
 这种盲目自信一般会在接手了其他人更烂的代码后被打破，然后再反思自己究竟做错了什么，需要去维护这样的代码。
 
-亦或者我们来放出一个稍微复杂一些的例子：<img loading="lazy" width="1722" height="1558" class="alignnone size-full wp-image-4524 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png?x-oss-process=image/format,webp 1722w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_271/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_695/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png?x-oss-process=image/quality,q_50/resize,m_fill,w_663,h_600/format,webp 663w" sizes="(max-width: 1722px) 100vw, 1722px" />
+亦或者[我们](https://www.w3cdoc.com)来放出一个稍微复杂一些的例子：<img loading="lazy" width="1722" height="1558" class="alignnone size-full wp-image-4524 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png?x-oss-process=image/format,webp 1722w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_271/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_695/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png?x-oss-process=image/quality,q_50/resize,m_fill,w_663,h_600/format,webp 663w" sizes="(max-width: 1722px) 100vw, 1722px" />
 
 <span class="img-wrap"></span>
 
@@ -35,7 +35,7 @@ title: 使用注释和JSDOC让代码更规范
   2. `createOrder`的返回值又是什么结构
   3. `notify`中传入的两个变量又都是用来做什么的
 
-我们也只能够从`notify`函数中找到一些线索，查看到前两个函数所返回对象的部分属性， \_但是仍然不能知道这些属性的类型是什么\_。  
+[我们](https://www.w3cdoc.com)也只能够从`notify`函数中找到一些线索，查看到前两个函数所返回对象的部分属性， \_但是仍然不能知道这些属性的类型是什么\_。  
 而想要维护这样的一段代码，就需要占用很多脑容量去记忆，这实际上是一个性价比非常低的事情，当这段代码再转给第三个人时，第三个人还需要再经历完整的流程，一个个函数、一行行代码去阅读，去记忆。  
 如果你把这个当作是对程序的深入了解程度、对业务的娴熟掌握，那么我觉得我也帮不了你了。  
 就像是现在超市结账时，没有柜员会以能够记忆N多商品价格而感到骄傲，扫码枪能做到的事情，为什么要占用你的大脑呢。
@@ -61,7 +61,7 @@ JSDoc 在写法上有着特定的要求，比如说行内也必须要是这样�
 实际上`@type`的使用频率相较于其他两个是很低的，因为大多数情况下`@type`用于标识变量的类型。  
 而变量的来源基本上只有两个 1. 基本类型赋值 2. 函数返回值  
 首先是第一个基本类型的赋值，这个基本上 vscode 就帮你做了，而不需要自己手动的去指定。  
-而另外一个函数的返回值，如果我们在函数上添加了`@return`后，那么调用该函数并获取返回值的变量类型也会被设置为`@return`对应的类型。
+而另外一个函数的返回值，如果[我们](https://www.w3cdoc.com)在函数上添加了`@return`后，那么调用该函数并获取返回值的变量类型也会被设置为`@return`对应的类型。
 
 ### type {#articleHeader2}
 
@@ -95,10 +95,10 @@ JSDoc 在写法上有着特定的要求，比如说行内也必须要是这样�
 必然会存在着大量的复杂结构类型的变量、参数或返回值。
 
 关于函数参数，在 JSDoc 中两种方式可以描述复杂类型：<img loading="lazy" width="1744" height="462" class="alignnone size-full wp-image-4527 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f25b7f9e.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f25b7f9e.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f25b7f9e.png?x-oss-process=image/format,webp 1744w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f25b7f9e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_79/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f25b7f9e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_203/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f25b7f9e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_212/format,webp 800w" sizes="(max-width: 1744px) 100vw, 1744px" />  
-不过这个只能应用在`@param`中，而且复用性并不高，如果有好几处同样结构的定义，那我们就需要把这样的注释拷贝多份，显然不是一个优雅的写法。  
-又或者我们可以使用另外两个标记，`@typedef`和`@property`，格式都与上边提到的标记类似，可以应用在所有需要指定类型的地方：<img loading="lazy" width="1730" height="620" class="alignnone size-full wp-image-4528 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f3d1bc75.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f3d1bc75.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f3d1bc75.png?x-oss-process=image/format,webp 1730w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f3d1bc75.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_108/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f3d1bc75.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_275/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f3d1bc75.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_287/format,webp 800w" sizes="(max-width: 1730px) 100vw, 1730px" /><img loading="lazy" width="1322" height="554" class="alignnone size-full wp-image-4529 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f5c8d902.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f5c8d902.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f5c8d902.png?x-oss-process=image/format,webp 1322w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f5c8d902.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_126/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f5c8d902.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_322/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f5c8d902.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_335/format,webp 800w" sizes="(max-width: 1322px) 100vw, 1322px" />
+不过这个只能应用在`@param`中，而且复用性并不高，如果有好几处同样结构的定义，那[我们](https://www.w3cdoc.com)就需要把这样的注释拷贝多份，显然不是一个优雅的写法。  
+又或者[我们](https://www.w3cdoc.com)可以使用另外两个标记，`@typedef`和`@property`，格式都与上边提到的标记类似，可以应用在所有需要指定类型的地方：<img loading="lazy" width="1730" height="620" class="alignnone size-full wp-image-4528 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f3d1bc75.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f3d1bc75.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f3d1bc75.png?x-oss-process=image/format,webp 1730w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f3d1bc75.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_108/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f3d1bc75.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_275/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f3d1bc75.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_287/format,webp 800w" sizes="(max-width: 1730px) 100vw, 1730px" /><img loading="lazy" width="1322" height="554" class="alignnone size-full wp-image-4529 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f5c8d902.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f5c8d902.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f5c8d902.png?x-oss-process=image/format,webp 1322w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f5c8d902.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_126/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f5c8d902.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_322/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2f5c8d902.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_335/format,webp 800w" sizes="(max-width: 1322px) 100vw, 1322px" />
 
-使用`@typedef`定义的类型可以很轻松的复用，在需要的地方直接指定我们定义好的类型即可。  
+使用`@typedef`定义的类型可以很轻松的复用，在需要的地方直接指定[我们](https://www.w3cdoc.com)定义好的类型即可。  
 同理，这样的自定义类型可以直接应用在`@return`中。
 
 ### param {#articleHeader3}
@@ -120,7 +120,7 @@ JSDoc 在写法上有着特定的要求，比如说行内也必须要是这样�
 
 #### 可选参数
 
-如果我们想要表示一个参数为可选的参数，可以的在参数名上包一个`[]`即可。
+如果[我们](https://www.w3cdoc.com)想要表示一个参数为可选的参数，可以的在参数名上包一个`[]`即可。
 
 <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">/**
  * @param {number} [param] 描述
@@ -141,7 +141,7 @@ JSDoc 在写法上有着特定的要求，比如说行内也必须要是这样�
  */&lt;/span>
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">test&lt;/span> (&lt;span class="hljs-params">param = &lt;span class="hljs-number">123&lt;/span>&lt;/span>) &lt;/span>{ }</code></pre>
 
-两者效果是一样的，并且由于我们手动指定了一个基础类型的值，那么我们连类型的指定都可以省去了，简单的定义一下参数的描述即可。
+两者效果是一样的，并且由于[我们](https://www.w3cdoc.com)手动指定了一个基础类型的值，那么[我们](https://www.w3cdoc.com)连类型的指定都可以省去了，简单的定义一下参数的描述即可。
 
 ### return {#articleHeader4}
 
@@ -182,7 +182,7 @@ JSDoc 在写法上有着特定的要求，比如说行内也必须要是这样�
 
 ## 小结 {#articleHeader5}
 
-再回到我们最初的那个代码片段上，将其修改为添加了 JSDoc 版本的样子：
+再回到[我们](https://www.w3cdoc.com)最初的那个代码片段上，将其修改为添加了 JSDoc 版本的样子：
 
 <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">/**
  * @typedef   {Object} UserInfo

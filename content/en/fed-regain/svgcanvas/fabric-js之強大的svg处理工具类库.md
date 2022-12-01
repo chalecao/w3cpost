@@ -145,7 +145,7 @@ SVG是canvas的另一种文本格式，好处是生成的文本可以被外部�
 ### [][16]谢谢！
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2015/10/29/2015_fabric/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2015/10/29/2015_fabric/</a>  
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/2015/10/29/2015_fabric/#什么是Fabric-js "什么是Fabric.js"
  [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/fabric.png

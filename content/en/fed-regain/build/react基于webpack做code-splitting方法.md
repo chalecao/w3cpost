@@ -20,13 +20,13 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
 
 翻译过来大概意思就是：
 
-> 代码分割功能允许将web应用代码分割为多个独立模块，当用户导航到一个匹配的路由或者派发某些特定事件时，来按需加载这些模块。这样就可以将大型的模块分割为多个小型的模块，实现系统资源加载的最大优化，如果使用得当，能够极大的减少我们的应用首屏加载时间。
+> 代码分割功能允许将web应用代码分割为多个独立模块，当用户导航到一个匹配的路由或者派发某些特定事件时，来按需加载这些模块。这样就可以将大型的模块分割为多个小型的模块，实现系统资源加载的最大优化，如果使用得当，能够极大的减少[我们](https://www.w3cdoc.com)的应用首屏加载时间。
 
 # Code splitting 分类 {#2}
 
 ## 一、缓存和并行加载的资源分割 {#3}
 
-这种方法是将某些第三方基础框架模块（例如：moment、loadash）或者多个页面的公用模块拆分出来独立打包加载，通常这些模块改动频率很低，将其与业务功能模块拆分出来并行加载，一方面可以最大限度的利用浏览器缓存，另一方面也可以大大降低多页面系统的代码冗余度。
+这种方法是将某些第三方基础框架模块（例如：moment、loadash）或者多个页面的公用模块拆分出来独立打包加载，通常这些模块改动频率很低，将其与业务功能模块拆分出来并行加载，一方面可以最大限度的利用[浏览器](https://www.w3cdoc.com)缓存，另一方面也可以大大降低多页面系统的代码冗余度。
 
 按照资源类型不同又可以分为`js公共资源分割`和`css资源分割`两类。
 
@@ -63,7 +63,7 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
 
 <pre><code class="shell hljs nginx">&lt;span class="hljs-attribute">webpack&lt;/span> --progress --hide-modules</code></pre>
 
-可以看到最终打包为两个js文件 `main.js` 、`vendor.js`，但如果检查者两个文件会发现`moment`模块代码被重复打包到两个文件中，而这肯定不是我们想要的，这时候就需要 webpack的plugin发挥作用了。
+可以看到最终打包为两个js文件 `main.js` 、`vendor.js`，但如果检查者两个文件会发现`moment`模块代码被重复打包到两个文件中，而这肯定不是[我们](https://www.w3cdoc.com)想要的，这时候就需要 webpack的plugin发挥作用了。
 
 <img class="aligncenter" title="vendo" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor.jpg?x-oss-process=image/format,webp" alt="vendo" />
 
@@ -91,19 +91,19 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
    ]
 }</code></pre>
 
-执行webpack打包命令，我们发现`moment`只被打包进`vendor.js`中。
+执行webpack打包命令，[我们](https://www.w3cdoc.com)发现`moment`只被打包进`vendor.js`中。
 
 <img class="aligncenter" title="vendo" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor2.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor2.jpg?x-oss-process=image/format,webp" alt="vendo" />
 
 #### webpack运行时模块（manifest） {#7}
 
-* 在前面的`步骤2`当中webpack在浏览器中加载js模块的运行时代码块也打包进了`vendor.js`，如果为打包的js文件添加`chunkhash`，则每次修改 `index.js`后再次编译打包，由于运行时代码需要重新编译生成，导致`vendor.js`重新打包并生成新的`chunkhash`。
+* 在前面的`步骤2`当中webpack在[浏览器](https://www.w3cdoc.com)中加载js模块的运行时代码块也打包进了`vendor.js`，如果为打包的js文件添加`chunkhash`，则每次修改 `index.js`后再次编译打包，由于运行时代码需要重新编译生成，导致`vendor.js`重新打包并生成新的`chunkhash`。
 
 **webpack运行时代码块部分：**
 
 <img loading="lazy" class="aligncenter" title="webpackjsonp" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/webpackjsonp.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/webpackjsonp.jpg?x-oss-process=image/format,webp" alt="webpackjsonp" width="830" height="539" />
 
-* 实际项目中我们希望修改业务功能后打包时只重新打包业务模块，而不打包第三方公共基础库。这里我们可以将webpack的`运行时代码`提取到独立的`manifest`文件中，这样每次修改业务代码只重新打包生成业务代码模块`main.js`和运行时代码模块`manifest.js`，就实现了业务模块和公共基础库模块的分离。
+* 实际项目中[我们](https://www.w3cdoc.com)希望修改业务功能后打包时只重新打包业务模块，而不打包第三方公共基础库。这里[我们](https://www.w3cdoc.com)可以将webpack的`运行时代码`提取到独立的`manifest`文件中，这样每次修改业务代码只重新打包生成业务代码模块`main.js`和运行时代码模块`manifest.js`，就实现了业务模块和公共基础库模块的分离。
 
 <img class="aligncenter" title="manifest1" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/manifest1.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/manifest1.jpg?x-oss-process=image/format,webp" alt="manifest1" />
 
@@ -170,7 +170,7 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
 ## 二、按需加载代码分割 {#9}
 
 * 前面介绍的`静态资源分离打包`需要开发者在webpack配置文件中明确分割点来提取独立的公共模块，这种方式适合提取`第三方公共基础库`（vue、react、moment等）以及webpack 的`运行时代码模块`。
-* 除此之外webpack还提供了按需加载的代码分割功能，常用于在web应用路由或者用户行为事件逻辑中动态按需加载特定的功能模块`chunk`，这就是我们本文中后面要重点介绍的。
+* 除此之外webpack还提供了按需加载的代码分割功能，常用于在web应用路由或者用户行为事件逻辑中动态按需加载特定的功能模块`chunk`，这就是[我们](https://www.w3cdoc.com)本文中后面要重点介绍的。
 
 ### Code splitting with require.ensure {#10}
 
@@ -208,7 +208,7 @@ webpack将`import()`看做一个分割点并将其请求的module打包为一个
 * import()使用须知
   * [import()][5]目前还是处于TC39 proposal阶段。
   * 在Babel中使用`import()`方法，需要安装 [dynamic-import][6]插件并选择使用`babel-preset-stage-3`处理解析错误。
-* 动态表达式 [Dynamic expressions][7]`import()`中的传参可支持部分表达式的写法了，如果之前有接触过CommonJS中`require()`表达式写法，应该不会对此感到陌生。它的操作其实和 CommonJS 类似，给所有可能的文件创建一个环境，当你传递那部分代码的模块还不确定的时候，webpack 会自动生成所有可能的模块，然后根据需求加载。这个特性在前端路由的时候很有用，可以实现按需加载资源。`import()`会针对每一个读取到的module创建独立的`chunk`。
+* 动态表达式 [Dynamic expressions][7]`import()`中的传参可支持部分表达式的写法了，如果之前有接触过CommonJS中`require()`表达式写法，应该不会对此感到陌生。它的操作其实和 CommonJS 类似，给所有可能的文件创建一个环境，当你传递那部分代码的模块还不确定的时候，webpack 会自动生成所有可能的模块，然后根据需求加载。这个特性在[前端](https://www.w3cdoc.com)路由的时候很有用，可以实现按需加载资源。`import()`会针对每一个读取到的module创建独立的`chunk`。
     <pre><code class="js hljs javascript">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">route&lt;/span>(&lt;span class="hljs-params">path, query&lt;/span>) &lt;/span>{
 
   &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-keyword">import&lt;/span>(&lt;span class="hljs-string">`./routes/&lt;span class="hljs-subst">${path}&lt;/span>/route`&lt;/span>)
@@ -221,10 +221,10 @@ webpack将`import()`看做一个分割点并将其请求的module打包为一个
 
 * 使用语法：
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-comment">// 在require bundle时，浏览器会立即加载&lt;/span>
+<pre><code class="js hljs javascript">&lt;span class="hljs-comment">// 在require bundle时，[浏览器](https://www.w3cdoc.com)会立即加载&lt;/span>
 &lt;span class="hljs-keyword">var&lt;/span> waitForChunk = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"bundle!./file.js"&lt;/span>);
 
-&lt;span class="hljs-comment">// 使用lazy模式，浏览器并不立即加载，只在调用wrapper函数才加载&lt;/span>
+&lt;span class="hljs-comment">// 使用lazy模式，[浏览器](https://www.w3cdoc.com)并不立即加载，只在调用wrapper函数才加载&lt;/span>
 &lt;span class="hljs-keyword">var&lt;/span> waitForChunk = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"bundle?lazy!./file.js"&lt;/span>);
 
 &lt;span class="hljs-comment">// 等待加载，在回调中使用&lt;/span>
@@ -355,7 +355,7 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
 
 ## React懒加载组件 {#17}
 
-文章前面提到使用React动态路由来按需加载react组件，但实际项目开发中很多时候不需要或者没法引入react-router，我们就可以使用webpack官方封装的`React懒加载组件`来动态加载指定的React组件，源代码见 [LazilyLoad][15]。
+文章前面提到使用React动态路由来按需加载react组件，但实际项目开发中很多时候不需要或者没法引入react-router，[我们](https://www.w3cdoc.com)就可以使用webpack官方封装的`React懒加载组件`来动态加载指定的React组件，源代码见 [LazilyLoad][15]。
 
 ### LazilyLoad懒加载组件 {#18}
 
@@ -567,7 +567,7 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
     </h2>
     
     <p>
-      react-router4是对之前react-router的一次大改，按照官方的说法，是将路由的问题转变成了react组件的问题，所以在react-router4里面，不同于以往使用require.ensure，我们使用一些其他办法异步的请求组件的js文件。
+      react-router4是对之前react-router的一次大改，按照官方的说法，是将路由的问题转变成了react组件的问题，所以在react-router4里面，不同于以往使用require.ensure，[我们](https://www.w3cdoc.com)使用一些其他办法异步的请求组件的js文件。
     </p>
     
     <h3>
@@ -626,7 +626,7 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
     </p>
     
     <p>
-      然后在入口的路由文件里面这样写（假设我们有两个组件,Cp1, Cp2）
+      然后在入口的路由文件里面这样写（假设[我们](https://www.w3cdoc.com)有两个组件,Cp1, Cp2）
     </p>
     
     <pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-keyword">import&lt;/span> React &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react'&lt;/span>
@@ -697,11 +697,11 @@ Line &lt;span class="hljs-number">42&lt;/span>:  Unexpected &lt;span class="hljs
     </h3>
     
     <p>
-      import() 属于es的一个proposal，也就是提案，还没有正式立项，所以具体会有什么问题我这里也不清楚，不过babel已经支持，所以我们这里可以尝试使用，将之前使用bundle-loader的例子改造一下
+      import() 属于es的一个proposal，也就是提案，还没有正式立项，所以具体会有什么问题我这里也不清楚，不过babel已经支持，所以[我们](https://www.w3cdoc.com)这里可以尝试使用，将之前使用bundle-loader的例子改造一下
     </p>
     
     <p>
-      因为import返回一个promise，所以我们这里将componentDidMount变成一个async函数
+      因为import返回一个promise，所以[我们](https://www.w3cdoc.com)这里将componentDidMount变成一个async函数
     </p>
     
     <pre class="hljs javascript"><code class="javascript">{&lt;span class="hljs-comment">/*
@@ -782,7 +782,7 @@ Line &lt;span class="hljs-number">42&lt;/span>:  Unexpected &lt;span class="hljs
     </h3>
     
     <p>
-      方案B虽然实现了我们异步加载组件的需求，但是调用还是显得比较麻烦，我们需要一种更优雅的方式来实现异步加载，同时还希望能传递参数给组件和自定义组件在加载时候的显示效果，所以这里对方案B进一步进行封装
+      方案B虽然实现了[我们](https://www.w3cdoc.com)异步加载组件的需求，但是调用还是显得比较麻烦，[我们](https://www.w3cdoc.com)需要一种更优雅的方式来实现异步加载，同时还希望能传递参数给组件和自定义组件在加载时候的显示效果，所以这里对方案B进一步进行封装
     </p>
     
     <p>

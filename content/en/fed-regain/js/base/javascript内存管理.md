@@ -7,7 +7,7 @@ title: Javascript内存管理
 ---
 ## 1 引言
 
-JS 中的内存管理, 我的感觉就像 JS 中的一门副科, 我们平时不会太重视, 但是一旦出问题又很棘手. 所以可以通过平时多了解一些 JS 中内存管理问题, 在写代码中通过一些习惯, 避免内存泄露的问题.
+JS 中的内存管理, 我的感觉就像 JS 中的一门副科, [我们](https://www.w3cdoc.com)平时不会太重视, 但是一旦出问题又很棘手. 所以可以通过平时多了解一些 JS 中内存管理问题, 在写代码中通过一些习惯, 避免内存泄露的问题.
 
 ## 2 内容概要
 
@@ -73,7 +73,7 @@ window.onload = function(){
 };</code></pre>
 </div>
 
-在上面的例子里, myDivElement 这个 DOM 元素里的 circularReference 属性引用了 myDivElement, 造成了循环引用. IE 6, 7 使用引用计数方式对 DOM 对象进行垃圾回收. 该方式常常造成对象被循环引用时内存发生泄漏. 现代浏览器通过使用标记-清除内存回收算法, 来解决这一问题.
+在上面的例子里, myDivElement 这个 DOM 元素里的 circularReference 属性引用了 myDivElement, 造成了循环引用. IE 6, 7 使用引用计数方式对 DOM 对象进行垃圾回收. 该方式常常造成对象被循环引用时内存发生泄漏. 现代[浏览器](https://www.w3cdoc.com)通过使用标记-清除内存回收算法, 来解决这一问题.
 
 2.2.4 标记-清除算法
 
@@ -81,7 +81,7 @@ window.onload = function(){
 
 这个算法假定设置一个叫做根 **_root_** 的对象（在Javascript里，根是全局对象）. 定期的, 垃圾回收器将从根开始, 找所有从根开始引用的对象, 然后找这些对象引用的对象, 从根开始,垃圾回收器将找到所有可以获得的对象和所有不能获得的对象.
 
-从2012年起, 所有现代浏览器都使用了标记-清除内存回收算法. 所有对JavaScript垃圾回收算法的改进都是基于标记-清除算法的改进.<figure>
+从2012年起, 所有现代[浏览器](https://www.w3cdoc.com)都使用了标记-清除内存回收算法. 所有对JavaScript垃圾回收算法的改进都是基于标记-清除算法的改进.<figure>
 
 <p id="WbRhjUa">
   <img loading="lazy" width="600" height="317" class="alignnone size-full wp-image-4747 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c24bf79f37.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c24bf79f37.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c24bf79f37.png?x-oss-process=image/format,webp 600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c24bf79f37.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_159/format,webp 300w" sizes="(max-width: 600px) 100vw, 600px" />
@@ -89,7 +89,7 @@ window.onload = function(){
 
 2.2.5 自动 GC 的问题
 
-尽管自动 GC 很方便, 但是我们不知道GC 什么时候会进行. 这意味着如果我们在使用过程中使用了大量的内存, 而 GC 没有运行的情况下, 或者 GC 无法回收这些内存的情况下, 程序就有可能假死, 这个就需要我们在程序中手动做一些操作来触发内存回收.
+尽管自动 GC 很方便, 但是[我们](https://www.w3cdoc.com)不知道GC 什么时候会进行. 这意味着如果[我们](https://www.w3cdoc.com)在使用过程中使用了大量的内存, 而 GC 没有运行的情况下, 或者 GC 无法回收这些内存的情况下, 程序就有可能假死, 这个就需要[我们](https://www.w3cdoc.com)在程序中手动做一些操作来触发内存回收.
 
 2.2.6 什么是内存泄露?
 
@@ -105,7 +105,7 @@ window.onload = function(){
 }</code></pre>
 </div>
 
-在 JS 中处理未被声明的变量, 上述范例中的 **_bar_** 时, 会把 **_bar_** , 定义到全局对象中, 在浏览器中就是 **_window_** 上. 在页面中的全局变量, 只有当页面被关闭后才会被销毁. 所以这种写法就会造成内存泄露, 当然在这个例子中泄露的只是一个简单的字符串, 但是在实际的代码中, 往往情况会更加糟糕.
+在 JS 中处理未被声明的变量, 上述范例中的 **_bar_** 时, 会把 **_bar_** , 定义到全局对象中, 在[浏览器](https://www.w3cdoc.com)中就是 **_window_** 上. 在页面中的全局变量, 只有当页面被关闭后才会被销毁. 所以这种写法就会造成内存泄露, 当然在这个例子中泄露的只是一个简单的字符串, 但是在实际的代码中, 往往情况会更加糟糕.
 
 另外一种意外创建全局变量的情况.
 
@@ -119,7 +119,7 @@ foo();</code></pre>
 
 在这种情况下调用 **_foo_**, this被指向了全局变量 **_window_**, 意外的创建了全局变量.
 
-我们谈到了一些意外情况下定义的全局变量, 代码中也有一些我们明确定义的全局变量. 如果使用这些全局变量用来暂存大量的数据, 记得在使用后, 对其重新赋值为 null.
+[我们](https://www.w3cdoc.com)谈到了一些意外情况下定义的全局变量, 代码中也有一些[我们](https://www.w3cdoc.com)明确定义的全局变量. 如果使用这些全局变量用来暂存大量的数据, 记得在使用后, 对其重新赋值为 null.
 
 2.3.2 未销毁的定时器和回调函数
 
@@ -139,7 +139,7 @@ setInterval(function() {
 
 2.3.3 闭包
 
-在 JS 开发中, 我们会经常用到闭包, 一个内部函数, 有权访问包含其的外部函数中的变量. 下面这种情况下, 闭包也会造成内存泄露.
+在 JS 开发中, [我们](https://www.w3cdoc.com)会经常用到闭包, 一个内部函数, 有权访问包含其的外部函数中的变量. 下面这种情况下, 闭包也会造成内存泄露.
 
 <div class="highlight">
   <pre><code class="language-text">var theThing = null;
@@ -167,7 +167,7 @@ setInterval(replaceThing, 1000);</code></pre>
 
 2.3.4 DOM 引用
 
-很多时候, 我们对 Dom 的操作, 会把 Dom 的引用保存在一个数组或者 Map 中.
+很多时候, [我们](https://www.w3cdoc.com)对 Dom 的操作, 会把 Dom 的引用保存在一个数组或者 Map 中.
 
 <div class="highlight">
   <pre><code class="language-text">var elements = {
@@ -178,13 +178,13 @@ function doStuff() {
 }
 function removeImage() {
     document.body.removeChild(document.getElementById('image'));
-    // 这个时候我们对于 #image 仍然有一个引用, Image 元素, 仍然无法被内存回收.
+    // 这个时候[我们](https://www.w3cdoc.com)对于 #image 仍然有一个引用, Image 元素, 仍然无法被内存回收.
 }</code></pre>
 </div>
 
-上述案例中, 即使我们对于 image 元素进行了移除, 但是仍然有对 image 元素的引用, 依然无法对齐进行内存回收.
+上述案例中, 即使[我们](https://www.w3cdoc.com)对于 image 元素进行了移除, 但是仍然有对 image 元素的引用, 依然无法对齐进行内存回收.
 
-另外需要注意的一个点是, 对于一个 Dom 树的叶子节点的引用. 举个例子: 如果我们引用了一个表格中的 **_td _**元素, 一旦在 Dom 中删除了整个表格, 我们直观的觉得内存回收应该回收除了被引用的 **_td _**外的其他元素. 但是事实上, 这个 **_td_** 元素是整个表格的一个子元素, 并保留对于其父元素的引用. 这就会导致对于整个表格, 都无法进行内存回收. 所以我们要小心处理对于 Dom 元素的引用.
+另外需要注意的一个点是, 对于一个 Dom 树的叶子节点的引用. 举个例子: 如果[我们](https://www.w3cdoc.com)引用了一个表格中的 **_td _**元素, 一旦在 Dom 中删除了整个表格, [我们](https://www.w3cdoc.com)直观的觉得内存回收应该回收除了被引用的 **_td _**外的其他元素. 但是事实上, 这个 **_td_** 元素是整个表格的一个子元素, 并保留对于其父元素的引用. 这就会导致对于整个表格, 都无法进行内存回收. 所以[我们](https://www.w3cdoc.com)要小心处理对于 Dom 元素的引用.
 
 ## 3 精读
 
@@ -196,11 +196,11 @@ JS 这类高级语言，隐藏了内存管理功能。但无论开发人员是�
 
 所以在 JS 这类高级语言中，有必要掌握基础内存分配原理，在对内存敏感的场景，比如 nodejs 代码做严格检查与优化。谨慎使用 dom 操作、主动删除没有业务意义的变量、避免提前优化、过度优化，在保证代码可读性的前提下，利用性能监控工具，通过调用栈定位问题代码。
 
-同时对于如何利用 chrome调试工具, 分析内存泄露的方法和技巧. 可以参考上期<a class="internal" href="https://www.smashingmagazine.com/2019/01/front-end-performance-checklist-2019-pdf-pages/" data-za-detail-view-id="1043">《2017前端性能优化备忘录》</a>
+同时对于如何利用 chrome调试工具, 分析内存泄露的方法和技巧. 可以参考上期<a class="internal" href="https://www.smashingmagazine.com/2019/01/front-end-performance-checklist-2019-pdf-pages/" data-za-detail-view-id="1043">《2017[前端](https://www.w3cdoc.com)性能优化备忘录》</a>
 
 ## 4 总结
 
-即便在 JS 中, 我们很少去直接去做内存管理. 但是我们在写代码的时候, 也要有内存管理的意识, 谨慎的处理可能会造成内存泄露的场景.
+即便在 JS 中, [我们](https://www.w3cdoc.com)很少去直接去做内存管理. 但是[我们](https://www.w3cdoc.com)在写代码的时候, 也要有内存管理的意识, 谨慎的处理可能会造成内存泄露的场景.
 
 ## 参考文章
 

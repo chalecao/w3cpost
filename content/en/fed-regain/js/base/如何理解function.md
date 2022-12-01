@@ -4,11 +4,11 @@ title: 如何理解function
 ---
 # 想过function吗？
 
-Function作为Javascript的核心技术之一,清晰的理解function的机制和用法,对我们进行javascript开发非常重要。你有想过function是什么吗？ECMAScript 的函数实际上是功能完整的对象。其中function是javascript中定义函数的关键字，由function定义的函数是一个由代码集合而成的对象，属于引用类型。而Function则是javascript中的引用类型中的一种，类似Number和String和Object和Boolean。Function类可以表示开发者定义的任何函数。
+Function作为Javascript的核心技术之一,清晰的理解function的机制和用法,对[我们](https://www.w3cdoc.com)进行javascript开发非常重要。你有想过function是什么吗？ECMAScript 的函数实际上是功能完整的对象。其中function是javascript中定义函数的关键字，由function定义的函数是一个由代码集合而成的对象，属于引用类型。而Function则是javascript中的引用类型中的一种，类似Number和String和Object和Boolean。Function类可以表示开发者定义的任何函数。
 
 <img class="aligncenter" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/function.jpg" alt="如何理解function" />
 
-本节属于：[前端工程师自学面试找工作必备知识][1]
+本节属于：[[前端](https://www.w3cdoc.com)工程师自学面试找工作必备知识][1]
 
 # Function与function
 
@@ -149,7 +149,7 @@ func('function'); //return 'function'</pre>
 
 ### function当作对象
 
-是的没错,在javascript中function就是对象,我们可以向使用一个对象那样使用function。它可以有自己的属性和方法.有如下的一个funciton:
+是的没错,在javascript中function就是对象,[我们](https://www.w3cdoc.com)可以向使用一个对象那样使用function。它可以有自己的属性和方法.有如下的一个funciton:
 
 <div>
   <pre class="EnlighterJSRAW" data-enlighter-language="null">function nameOf(name) {
@@ -174,7 +174,7 @@ person.nameOf('yang dong') // return "YANG DONG"</pre>
 nameOf.blogger = "YANG_DONG";</pre>
 </div>
 
-没错,function可以拥有自己的属性。考虑这样一种场景, 假如我们要统计某个function被调用的次数.那么我们有两种方式来实现:
+没错,function可以拥有自己的属性。考虑这样一种场景, 假如[我们](https://www.w3cdoc.com)要统计某个function被调用的次数.那么[我们](https://www.w3cdoc.com)有两种方式来实现:
 
   1. 设定一个全局变量来记录,该funciton被调用的次数,每调用一次,该变量加1:
 
@@ -209,9 +209,9 @@ nameOf(); //nameOf.counter = 2</pre>
 
 Javascript不支持名字空间(本人不太理解如此强大的语言为什么不支持名字空间呢,这是为什么呢?),
 
-不过我们依然可以使用其强大的funciton为我们支持名字空间.
+不过[我们](https://www.w3cdoc.com)依然可以使用其强大的funciton为[我们](https://www.w3cdoc.com)支持名字空间.
 
-从上节我们知道function可以定义自己的属性,我们就可以利用该特性来生成名字空间.请看以下代码:
+从上节[我们](https://www.w3cdoc.com)知道function可以定义自己的属性,[我们](https://www.w3cdoc.com)就可以利用该特性来生成名字空间.请看以下代码:
 
 <div>
   <pre class="EnlighterJSRAW" data-enlighter-language="null">nameOf.getBloggerName = function() {
@@ -258,11 +258,11 @@ getVariable()(); //return local;
 
 以上是function的一些应用场景,当然它还不止这些.
 
-比如: function作为构造函数(也就是funciton作为类),继承等.这些内容将在以后的blog中为大家介绍,敬请期待.
+比如: function作为构造函数(也就是funciton作为类),继承等.这些内容将在以后的blog中为[大家](https://www.w3cdoc.com)介绍,敬请期待.
 
 ## Function对象的属性和方法
 
-函数是 JavaScript 中的引用数据类型，在函数这个对象上定义了一些属性和方法，下面我们逐一来介绍这些属性和方法，这对于理解Javascript的继承机制具有一定的帮助。
+函数是 JavaScript 中的引用数据类型，在函数这个对象上定义了一些属性和方法，下面[我们](https://www.w3cdoc.com)逐一来介绍这些属性和方法，这对于理解Javascript的继承机制具有一定的帮助。
 
 ### 属性arguments
 
@@ -301,7 +301,7 @@ arguments is an Object instance.</pre>
 
   functionName.length
 
-不同于arguments.length，这点我们在上面有介绍。因为Javascript调用函数时候对函数参数不作任何个数和类型检查，也就没有函数调用错误概念。但是我们可以利用functionName.length和arguments.length的不同，在函数调用内部来检测参数个数检测。
+不同于arguments.length，这点[我们](https://www.w3cdoc.com)在上面有介绍。因为Javascript调用函数时候对函数参数不作任何个数和类型检查，也就没有函数调用错误概念。但是[我们](https://www.w3cdoc.com)可以利用functionName.length和arguments.length的不同，在函数调用内部来检测参数个数检测。
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">function checkVarCount(a, b) {
 if (checkVarCount.length !== arguments.length) {
@@ -392,7 +392,7 @@ document.write("Object constructor is MyObj.");
 
 ### prototype
 
-获取对象的原型。每一个构造函数都有一个prototype属性，指向另一个对象。这个对象的所有属性和方法，都会被构造函数的实例继承。这意味着，我们可以把那些不变的属性和方法，直接定义在prototype对象上。
+获取对象的原型。每一个构造函数都有一个prototype属性，指向另一个对象。这个对象的所有属性和方法，都会被构造函数的实例继承。这意味着，[我们](https://www.w3cdoc.com)可以把那些不变的属性和方法，直接定义在prototype对象上。
 
 <div>
   <pre class="EnlighterJSRAW" data-enlighter-language="null">function Man(name, age) {
@@ -410,7 +410,7 @@ Man.prototype.isStrong = true;
 alert(li.isStrong);//true</pre>
 </div>
 
-这样我们也可以向已定义好的对象（包括javascript提供的原生对象）中追加方法和属性，
+这样[我们](https://www.w3cdoc.com)也可以向已定义好的对象（包括javascript提供的原生对象）中追加方法和属性，
 
 <div>
   <pre class="EnlighterJSRAW" data-enlighter-language="null">var aa = new Number(2);
@@ -609,7 +609,7 @@ btnStop.addEventListener("click", someCar.stop, false);
 &lt;/script&gt;</pre>
 </div>
 
-从上面Sample我们发现，当不使用bind方法的时候，事件里面的this指向的触发click事件dom元素input，它当然没有owner属性；如果利用bind指定事件里面的this对象，就能达到我们想要的效果。
+从上面Sample[我们](https://www.w3cdoc.com)发现，当不使用bind方法的时候，事件里面的this指向的触发click事件dom元素input，它当然没有owner属性；如果利用bind指定事件里面的this对象，就能达到[我们](https://www.w3cdoc.com)想要的效果。
 
 #### toString
 
@@ -667,6 +667,6 @@ setTimeout(new Function('alert(1)'),1e3)
 
 ### 谢谢！
 
-欢迎关注前端学堂公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注[前端](https://www.w3cdoc.com)学堂公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
 
  [1]: https://www.f2e123.com/javascriptnodejs/742.html

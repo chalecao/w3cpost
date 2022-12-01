@@ -735,7 +735,7 @@ show(&lt;span class="hljs-string">'Webpack'&lt;/span>);</code></pre>
 |&lt;span class="hljs-comment">-- webpack.config.js&lt;/span></code></pre>
   
   <p>
-    一切文件就绪，在项目根目录下执行 <code>webpack</code> 命令运行 Webpack 构建，你会发现目录下多出一个 <code>dist</code>目录，里面有个 <code>bundle.js</code> 文件， <code>bundle.js</code> 文件是一个可执行的 JavaScript 文件，它包含页面所依赖的两个模块 <code>main.js</code> 和 <code>show.js</code>及内置的 <code>webpackBootstrap</code> 启动函数。 这时你用浏览器打开 <code>index.html</code> 网页将会看到 <code>Hello,Webpack</code>。
+    一切文件就绪，在项目根目录下执行 <code>webpack</code> 命令运行 Webpack 构建，你会发现目录下多出一个 <code>dist</code>目录，里面有个 <code>bundle.js</code> 文件， <code>bundle.js</code> 文件是一个可执行的 JavaScript 文件，它包含页面所依赖的两个模块 <code>main.js</code> 和 <code>show.js</code>及内置的 <code>webpackBootstrap</code> 启动函数。 这时你用[浏览器](https://www.w3cdoc.com)打开 <code>index.html</code> 网页将会看到 <code>Hello,Webpack</code>。
   </p>
   
   <h3 id="articleHeader8">
@@ -753,7 +753,7 @@ show(&lt;span class="hljs-string">'Webpack'&lt;/span>);</code></pre>
   <pre class="javascript hljs"><code class="js">(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">modules&lt;/span>) &lt;/span>{ &lt;span class="hljs-comment">// webpackBootstrap&lt;/span>
   &lt;span class="hljs-comment">// 1. 缓存模块&lt;/span>
   &lt;span class="hljs-keyword">var&lt;/span> installedModules = {};
-  &lt;span class="hljs-comment">// 2. 定义可以在浏览器使用的require函数&lt;/span>
+  &lt;span class="hljs-comment">// 2. 定义可以在[浏览器](https://www.w3cdoc.com)使用的require函数&lt;/span>
   &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">__webpack_require__&lt;/span>(&lt;span class="hljs-params">moduleId&lt;/span>) &lt;/span>{
 
     &lt;span class="hljs-comment">// 2.1检查模块是否在缓存里，在的话直接返回&lt;/span>
@@ -834,11 +834,11 @@ show(&lt;span class="hljs-string">'Webpack'&lt;/span>);</code></pre>
 })([&lt;span class="hljs-comment">/*存放所有模块的数组*/&lt;/span>])</code></pre>
   
   <p>
-    bundles.js能直接在浏览器中运行的原因是，在输出的文件中通过<code>__webpack_require__</code>函数,定义了一个可以在浏览器中执行的加载函数(加载文件使用ajax实现),来模拟Node.js中的require语句。
+    bundles.js能直接在[浏览器](https://www.w3cdoc.com)中运行的原因是，在输出的文件中通过<code>__webpack_require__</code>函数,定义了一个可以在[浏览器](https://www.w3cdoc.com)中执行的加载函数(加载文件使用ajax实现),来模拟Node.js中的require语句。
   </p>
   
   <p>
-    原来一个个独立的模块文件被合并到了一个单独的 bundle.js 的原因在于浏览器不能像 Node.js 那样快速地去本地加载一个个模块文件，而必须通过网络请求去加载还未得到的文件。 如果模块数量很多，加载时间会很长，因此把所有模块都存放在了数组中，执行一次网络加载。
+    原来一个个独立的模块文件被合并到了一个单独的 bundle.js 的原因在于[浏览器](https://www.w3cdoc.com)不能像 Node.js 那样快速地去本地加载一个个模块文件，而必须通过网络请求去加载还未得到的文件。 如果模块数量很多，加载时间会很长，因此把所有模块都存放在了数组中，执行一次网络加载。
   </p>
   
   <p>

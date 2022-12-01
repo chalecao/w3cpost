@@ -7,7 +7,7 @@ title: MPP架构
 </p>
 
 <p data-type="paragraph">
-  <span data-name="user" data-type="color">这个问题不少小伙伴在面试时都遇到过，因为对 MPP 这个概念了解较少，不少人都卡壳了，但是我们常用的大数据计算引擎有很多都是 MPP 架构的，</span><i data-type="italic"><span data-name="user" data-type="color">像我们熟悉的 Impala、ClickHouse、Druid、Doris 等都是 MPP 架构</span></i>。
+  <span data-name="user" data-type="color">这个问题不少小伙伴在面试时都遇到过，因为对 MPP 这个概念了解较少，不少人都卡壳了，但是[我们](https://www.w3cdoc.com)常用的大数据计算引擎有很多都是 MPP 架构的，</span><i data-type="italic"><span data-name="user" data-type="color">像[我们](https://www.w3cdoc.com)熟悉的 Impala、ClickHouse、Druid、Doris 等都是 MPP 架构</span></i>。
 </p>
 
 <p data-type="paragraph">
@@ -53,7 +53,7 @@ title: MPP架构
 </ol>
 
 <p data-type="paragraph">
-  我们今天的主角是 MPP，因为<i data-type="italic"><span data-name="user" data-type="color">随着分布式、并行化技术成熟应用，MPP 引擎逐渐表现出强大的高吞吐、低时延计算能力，有很多采用 MPP 架构的引擎都能达到“亿级秒开”</span></i>。
+  [我们](https://www.w3cdoc.com)今天的主角是 MPP，因为<i data-type="italic"><span data-name="user" data-type="color">随着分布式、并行化技术成熟应用，MPP 引擎逐渐表现出强大的高吞吐、低时延计算能力，有很多采用 MPP 架构的引擎都能达到“亿级秒开”</span></i>。
 </p>
 
 <p data-type="paragraph">
@@ -193,7 +193,7 @@ title: MPP架构
 </p>
 
 <p data-type="paragraph">
-  <span data-name="user" data-type="color">批处理架构和 MPP 架构的不同点可以举例来说：我们执行一个任务，首先这个任务会被分成多个 task 执行，<strong data-type="strong">对于 MapReduce 来说，这些 tasks 被随机的分配在空闲的 Executor 上；而对于 MPP 架构的引擎来说，每个处理数据的 task 被绑定到持有该数据切片的指定 Executor 上</strong>。</span>
+  <span data-name="user" data-type="color">批处理架构和 MPP 架构的不同点可以举例来说：[我们](https://www.w3cdoc.com)执行一个任务，首先这个任务会被分成多个 task 执行，<strong data-type="strong">对于 MapReduce 来说，这些 tasks 被随机的分配在空闲的 Executor 上；而对于 MPP 架构的引擎来说，每个处理数据的 task 被绑定到持有该数据切片的指定 Executor 上</strong>。</span>
 </p>
 
 <p data-type="paragraph">
@@ -257,7 +257,7 @@ title: MPP架构
 </p>
 
 <p data-type="paragraph">
-  <span data-name="user" data-type="color">两个架构的优势和缺陷都很明显，并且它们有互补关系，如果我们能将二者结合起来使用，是不是就能发挥各自最大的优势。目前批处理和 MPP 也确实正在逐渐走向融合，也已经有了一些设计方案，一旦技术成熟，可能会风靡大数据领域，我们拭目以待！</span>
+  <span data-name="user" data-type="color">两个架构的优势和缺陷都很明显，并且它们有互补关系，如果[我们](https://www.w3cdoc.com)能将二者结合起来使用，是不是就能发挥各自最大的优势。目前批处理和 MPP 也确实正在逐渐走向融合，也已经有了一些设计方案，一旦技术成熟，可能会风靡大数据领域，[我们](https://www.w3cdoc.com)拭目以待！</span>
 </p>
 
 <h3 data-id="heading5" data-type="heading">

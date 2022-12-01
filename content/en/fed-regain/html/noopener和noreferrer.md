@@ -8,7 +8,7 @@ weight: 7
   </p>
 
   <p>
-    ​ 错误提示为Prevent usage of unsafe <code>target='_blank'</code> (react/jsx-no-target-blank)，当我们希望使用<code>target=_blank</code>来打开一个新标签页时，一定要加上<code>rel='noreferrer noopener'</code>，否则你的网页就会存在很严重的安全问题！！！
+    ​ 错误提示为Prevent usage of unsafe <code>target='_blank'</code> (react/jsx-no-target-blank)，当[我们](https://www.w3cdoc.com)希望使用<code>target=_blank</code>来打开一个新标签页时，一定要加上<code>rel='noreferrer noopener'</code>，否则你的网页就会存在很严重的安全问题！！！
   </p>
   
   <h2>
@@ -19,7 +19,7 @@ weight: 7
     ​ 假设在浏览A页面时，通过<code>&lt;a target="_blank" href="http://baidu.com/"&gt;Click&lt;/a&gt;</code>标签链接到了B页面，那么在B页面中通过<code>window.reopner</code>即可获取A页面的<code>window</code>对象，这样的话即可拿到部分的A页面的控制权，即使B页面是跨域的也可以拿到该控制权！
   </p>
 
-我们编写两个页面进行简单的测试，A页面（index.html）中有一个a标签，以及一个’待宰割‘的 Click：
+[我们](https://www.w3cdoc.com)编写两个页面进行简单的测试，A页面（index.html）中有一个a标签，以及一个’待宰割‘的 Click：
 ```
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +60,7 @@ B页面(test.html)中添加如下的js代码来试图篡改A页面：
   </h2>
   
   <p>
-    ​ 给<code>&lt;a&gt;</code>标签添加<code>rel=noopener</code>可以使<code>window.opener</code>在Chrome 49 and Opera 36以上版本中为<code>null</code>。如果点击A页面上的链接跳转到了B页面，则称A页面为B页面的referrer（来源页面），通过referrer我们可以知道网站的流量从何而来。
+    ​ 给<code>&lt;a&gt;</code>标签添加<code>rel=noopener</code>可以使<code>window.opener</code>在Chrome 49 and Opera 36以上版本中为<code>null</code>。如果点击A页面上的链接跳转到了B页面，则称A页面为B页面的referrer（来源页面），通过referrer[我们](https://www.w3cdoc.com)可以知道网站的流量从何而来。
   </p>
   
   <p>

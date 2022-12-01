@@ -2,7 +2,7 @@
 title: 浏览器JS引擎工作原理
 
 ---
-本文主要介绍浏览器引擎基本知识，介绍javascript虚拟机如何解析执行JS脚本，以及期间可以做的优化工作。
+本文主要介绍[浏览器](https://www.w3cdoc.com)引擎基本知识，介绍javascript虚拟机如何解析执行JS脚本，以及期间可以做的优化工作。
 
 # webkit
 
@@ -10,7 +10,7 @@ title: 浏览器JS引擎工作原理
   <img loading="lazy" width="1646" height="270" class="alignnone size-full wp-image-6396 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb93a0a7151d.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb93a0a7151d.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb93a0a7151d.png?x-oss-process=image/format,webp 1646w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb93a0a7151d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_49/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb93a0a7151d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_131/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb93a0a7151d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_126/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb93a0a7151d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_252/format,webp 1536w" sizes="(max-width: 1646px) 100vw, 1646px" />
 </p>
 
-前面[浏览器渲染原理][1]中我们介绍了浏览器的渲染进程，是webkit核心blink负责处理的。关于html的渲染解析这里不介绍，webkit中源于两部分：KHTML（主要指渲染部分）和KJS（V8引擎）
+前面[[浏览器](https://www.w3cdoc.com)渲染原理][1]中[我们](https://www.w3cdoc.com)介绍了[浏览器](https://www.w3cdoc.com)的渲染进程，是webkit核心blink负责处理的。关于html的渲染解析这里不介绍，webkit中源于两部分：KHTML（主要指渲染部分）和KJS（V8引擎）
 
 精心打造全新课程，欢迎吐槽！反馈宝贵意见！
 
@@ -93,7 +93,7 @@ title: 浏览器JS引擎工作原理
 
 ## parser
 
-顾名思义，parser 模块我们可以理解为是一个解析器。解析过程是一个语法分析的过程，它会将词法分析结果 tokens 转换为抽象语法树「Abstract Syntax Tree」，同时会验证语法，如果有错误就抛出语法错误。我们可以通过在线网站 <a href="https://esprima.org/demo/parse.html" target="_blank" rel="noopener noreferrer">esprima</a> 来观察 JavasSript 代码通过词法分析变成 AST 之后的样子。这部分在[程序语言进阶之DSL与AST实战解析][2]课程中有介绍。
+顾名思义，parser 模块[我们](https://www.w3cdoc.com)可以理解为是一个解析器。解析过程是一个语法分析的过程，它会将词法分析结果 tokens 转换为抽象语法树「Abstract Syntax Tree」，同时会验证语法，如果有错误就抛出语法错误。[我们](https://www.w3cdoc.com)可以通过在线网站 <a href="https://esprima.org/demo/parse.html" target="_blank" rel="noopener noreferrer">esprima</a> 来观察 JavasSript 代码通过词法分析变成 AST 之后的样子。这部分在[程序语言进阶之DSL与AST实战解析][2]课程中有介绍。
 
 <p id="BFmRHlE">
   <img loading="lazy" class="alignnone wp-image-6404 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb944926de56.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb944926de56.png?x-oss-process=image/format,webp" alt="" width="675" height="398" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb944926de56.png?x-oss-process=image/format,webp 1868w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb944926de56.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_177/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb944926de56.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_472/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb944926de56.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_453/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb944926de56.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_906/format,webp 1536w" sizes="(max-width: 675px) 100vw, 675px" />
@@ -167,11 +167,11 @@ title: 浏览器JS引擎工作原理
 </h2>
 
 <p data-lake-id="8e5dbeef3eb11803c711f87e9ac7161f" data-wording="true">
-  原则上来说，应该对应用中我们编写的所有代码进行解析。但是实际情况有很大的优化空间。在我们代码里，有大量的代码，虽然声明了函数，但是这部分代码并未被使用，因此如果全部都做 Full-parsing 的话，那么整个解析过程就会做许多无用功。
+  原则上来说，应该对应用中[我们](https://www.w3cdoc.com)编写的所有代码进行解析。但是实际情况有很大的优化空间。在[我们](https://www.w3cdoc.com)代码里，有大量的代码，虽然声明了函数，但是这部分代码并未被使用，因此如果全部都做 Full-parsing 的话，那么整个解析过程就会做许多无用功。
 </p>
 
 <p data-lake-id="f6c213722318d1a04fbd2f3bd8f0f6b8" data-wording="true">
-  使用浏览器的调试工具 Coverage 能够清晰的看出来，如下图，表格中的 Usage Visualization 表示的代码使用情况，红色部分表示未被执行过的代码，蓝色部分表示执行过的代码。我们发现，未被使用的代码超过了一半多。这些代码多半是我们在项目中引入的依赖包中声明的函数等。
+  使用[浏览器](https://www.w3cdoc.com)的调试工具 Coverage 能够清晰的看出来，如下图，表格中的 Usage Visualization 表示的代码使用情况，红色部分表示未被执行过的代码，蓝色部分表示执行过的代码。[我们](https://www.w3cdoc.com)发现，未被使用的代码超过了一半多。这些代码多半是[我们](https://www.w3cdoc.com)在项目中引入的依赖包中声明的函数等。
 </p>
 
 <p id="zvwTcbD">
@@ -198,7 +198,7 @@ title: 浏览器JS引擎工作原理
 </ul>
 
 <p data-lake-id="4a813789e4ddcb4c146a3ce6a0969ff9" data-wording="true">
-  我们来看这样一段代码
+  [我们](https://www.w3cdoc.com)来看这样一段代码
 </p>
 
 <div id="Zsy9y" class="lake-card-margin" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22function%20foo1()%20%7B%5Cn%20%20console.log('foo1')%5Cn%7D%5Cnfunction%20foo2()%20%7B%5Cn%20%20console.log('foo2')%5Cn%7D%5Cn%5Cnfoo2()%3B%22%2C%22heightLimit%22%3Atrue%2C%22margin%22%3Atrue%2C%22id%22%3A%22Zsy9y%22%7D">
@@ -258,7 +258,7 @@ title: 浏览器JS引擎工作原理
 </ul>
 
 <p data-lake-id="c09884fc570cec165f0786f214973b76" data-wording="true">
-  此时对应的，其实就是<strong>执行上下文</strong>的创建过程，关于执行上下文我们后续详细分析。需要区分的是，作用域与作用域链的信息是在预解析阶段就已经明确了。分析一下这段代码的解析过程
+  此时对应的，其实就是<strong>执行上下文</strong>的创建过程，关于执行上下文[我们](https://www.w3cdoc.com)后续详细分析。需要区分的是，作用域与作用域链的信息是在预解析阶段就已经明确了。分析一下这段代码的解析过程
 </p>
 
 <div id="xproj" class="lake-card-margin" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20%E5%A3%B0%E6%98%8E%E6%97%B6%E6%9C%AA%E8%B0%83%E7%94%A8%EF%BC%8C%E5%9B%A0%E6%AD%A4%E4%BC%9A%E8%A2%AB%E8%AE%A4%E4%B8%BA%E6%98%AF%E4%B8%8D%E8%A2%AB%E6%89%A7%E8%A1%8C%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%8C%E8%BF%9B%E8%A1%8C%E9%A2%84%E8%A7%A3%E6%9E%90%5Cnfunction%20foo()%20%7B%5Cn%20%20console.log('foo')%5Cn%7D%5Cn%5Cn%2F%2F%20%E5%A3%B0%E6%98%8E%E6%97%B6%E6%9C%AA%E8%B0%83%E7%94%A8%EF%BC%8C%E5%9B%A0%E6%AD%A4%E4%BC%9A%E8%A2%AB%E8%AE%A4%E4%B8%BA%E6%98%AF%E4%B8%8D%E8%A2%AB%E6%89%A7%E8%A1%8C%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%8C%E8%BF%9B%E8%A1%8C%E9%A2%84%E8%A7%A3%E6%9E%90%5Cnfunction%20fn()%20%7B%7D%5Cn%5Cn%2F%2F%20%E5%87%BD%E6%95%B0%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%EF%BC%8C%E5%8F%AA%E8%BF%9B%E8%A1%8C%E4%B8%80%E6%AC%A1%E5%85%A8%E9%87%8F%E8%A7%A3%E6%9E%90%5Cn(function%20bar()%20%7B%5Cn%5Cn%7D)()%5Cn%5Cn%2F%2F%20%E6%89%A7%E8%A1%8C%20foo%EF%BC%8C%E9%82%A3%E4%B9%88%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E5%AF%B9%20foo%20%E5%87%BD%E6%95%B0%E8%BF%9B%E8%A1%8C%E5%85%A8%E9%87%8F%E8%A7%A3%E6%9E%90%EF%BC%8C%E6%AD%A4%E6%97%B6%20foo%20%E5%87%BD%E6%95%B0%E8%A2%AB%E8%A7%A3%E6%9E%90%E4%BA%86%E4%B8%A4%E6%AC%A1%20%5Cnfoo()%3B%22%2C%22heightLimit%22%3Atrue%2C%22margin%22%3Atrue%2C%22id%22%3A%22xproj%22%7D">
@@ -306,14 +306,14 @@ title: 浏览器JS引擎工作原理
 </p>
 
 <p data-lake-id="ea22b63638bea9a78494d982c952b87d" data-wording="true">
-  注意：V8 引擎会对 parser 阶段的解析结果，缓存 3 天，因此如果我们把不怎么变动的代码打包在一起，如公共代码，把经常变动的业务代码等打包到另外的 js 文件中，能够有效的提高执行效率。
+  注意：V8 引擎会对 parser 阶段的解析结果，缓存 3 天，因此如果[我们](https://www.w3cdoc.com)把不怎么变动的代码打包在一起，如公共代码，把经常变动的业务代码等打包到另外的 js 文件中，能够有效的提高执行效率。
 </p>
 
 <h2 data-lake-id="ea22b63638bea9a78494d982c952b87d" data-wording="true">
   Ignition解释器
 </h2>
 
-Ignition 是 v8 提供的一个解释器。他的作用是负责将抽象语法树 AST 转换为字节码「bytecode」。并且同时收集下一个阶段「编译」所需要的信息。这个过程，我们也可以理解为预编译过程。基于性能的考虑，预编译过程与编译过程有的时候不会区分的那么明显，有的代码在预编译阶段就能直接执行。
+Ignition 是 v8 提供的一个解释器。他的作用是负责将抽象语法树 AST 转换为字节码「bytecode」。并且同时收集下一个阶段「编译」所需要的信息。这个过程，[我们](https://www.w3cdoc.com)也可以理解为预编译过程。基于性能的考虑，预编译过程与编译过程有的时候不会区分的那么明显，有的代码在预编译阶段就能直接执行。
 
 ## TurboFan编译器
 
@@ -326,7 +326,7 @@ Ignition 是 v8 提供的一个解释器。他的作用是负责将抽象语法�
 </p>
 
 <p data-lake-id="4325b75c26fc81f847e54e1dab2b7671" data-wording="true">
-  在这个过程中，有一个建议能够帮助我们避免去优化操作，从而提高代码执行效率。那就是<strong>不要总是改变对象类型。</strong>例如以下一个例子
+  在这个过程中，有一个建议能够帮助[我们](https://www.w3cdoc.com)避免去优化操作，从而提高代码执行效率。那就是<strong>不要总是改变对象类型。</strong>例如以下一个例子
 </p>
 
 <div id="YUCmJ" class="lake-card-margin" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22function%20foo(obj)%20%7B%5Cn%20%20return%20obj.name%5Cn%7D%22%2C%22heightLimit%22%3Atrue%2C%22margin%22%3Atrue%2C%22id%22%3A%22YUCmJ%22%7D">
@@ -346,7 +346,7 @@ Ignition 是 v8 提供的一个解释器。他的作用是负责将抽象语法�
 </div>
 
 <p data-lake-id="46f703ad9ca712a0a3dc3eb069ca0f52" data-wording="true">
-  由于 JavaScript 的动态性，我们虽然定义了一个函数 foo，但是该函数的参数 obj 并没有明确它的类型，那么这个时候，如果我传入的参数分别为以下几种情况
+  由于 JavaScript 的动态性，[我们](https://www.w3cdoc.com)虽然定义了一个函数 foo，但是该函数的参数 obj 并没有明确它的类型，那么这个时候，如果我传入的参数分别为以下几种情况
 </p>
 
 <div id="4H6nn" class="lake-card-margin" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22obj0%20%3D%20%7B%5Cn%20%20name%3A%20'Alex'%5Cn%7D%5Cn%5Cnobj1%20%3D%20%7B%5Cn%20%20name%3A%20'tom'%2C%5Cn%20%20age%3A%201%5Cn%7D%5Cn%5Cnobj2%20%3D%20%7B%5Cn%20%20name%3A%20'Jake'%2C%5Cn%20%20age%3A%201%2C%5Cn%20%20gender%3A%201%5Cn%7D%22%2C%22heightLimit%22%3Atrue%2C%22margin%22%3Atrue%2C%22id%22%3A%224H6nn%22%7D">
@@ -385,7 +385,7 @@ Ignition 是 v8 提供的一个解释器。他的作用是负责将抽象语法�
 </h2>
 
 <p data-lake-id="7caabaab604e8cc110a82d59f32ae774" data-wording="true">
-  在我们执行的 JavaScript 代码中，有大量的垃圾内存需要处理。甚至绝大多数内存占用都是垃圾。因此我们必须有一个机制来管理这些垃圾内存，用于回收利用。这就是垃圾回收器 Orinoco。
+  在[我们](https://www.w3cdoc.com)执行的 JavaScript 代码中，有大量的垃圾内存需要处理。甚至绝大多数内存占用都是垃圾。因此[我们](https://www.w3cdoc.com)必须有一个机制来管理这些垃圾内存，用于回收利用。这就是垃圾回收器 Orinoco。
 </p>
 
 <p data-lake-id="cc6858c9ccab89540fa870c57ecc0685" data-wording="true">
@@ -409,7 +409,7 @@ Ignition 是 v8 提供的一个解释器。他的作用是负责将抽象语法�
 </p>
 
 <p data-lake-id="df17c88fb93109be46db3b9438296f6f" data-wording="true">
-  在官方文档中，提供了<a href="https://docs.google.com/presentation/d/1chhN90uB8yPaIhx_h2M3lPyxPgdPmkADqSNAoXYQiVE/edit#slide=id.g18d89eb289_1_389" target="_blank" rel="noopener noreferrer">一个 PPT</a>，我们可以观察不同版本的演变过程。该 PPT 介绍了为何要使用新的编译组合。
+  在官方文档中，提供了<a href="https://docs.google.com/presentation/d/1chhN90uB8yPaIhx_h2M3lPyxPgdPmkADqSNAoXYQiVE/edit#slide=id.g18d89eb289_1_389" target="_blank" rel="noopener noreferrer">一个 PPT</a>，[我们](https://www.w3cdoc.com)可以观察不同版本的演变过程。该 PPT 介绍了为何要使用新的编译组合。
 </p>
 
 <ul data-lake-id="cd45251ec347b7b935978b44c004ee7b">
@@ -440,7 +440,7 @@ Ignition 是 v8 提供的一个解释器。他的作用是负责将抽象语法�
   <img loading="lazy" width="2160" height="598" class="alignnone size-full wp-image-6408 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb948db4380e.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb948db4380e.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb948db4380e.png?x-oss-process=image/format,webp 2160w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb948db4380e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_83/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb948db4380e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_221/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb948db4380e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_213/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb948db4380e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_425/format,webp 1536w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb948db4380e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_2048,h_567/format,webp 2048w" sizes="(max-width: 2160px) 100vw, 2160px" />
 </p>
 
-这里既然说到了浏览器js虚拟机编译执行JS代码的过程，顺带说一下v8引擎的对象访问优化的机制，也是为了优化代码的执行效率。
+这里既然说到了[浏览器](https://www.w3cdoc.com)js虚拟机编译执行JS代码的过程，顺带说一下v8引擎的对象访问优化的机制，也是为了优化代码的执行效率。
 
 精心打造全新课程，欢迎吐槽！反馈宝贵意见！
 

@@ -8,7 +8,7 @@ title: Canvas图像处理和滤镜特效
 
 ### [][1]简介
 
-这段时间做了一个手机WebRTC拍照加特效的应用，主要用到canvas标签获取图像矩阵（这个在上一篇博客中已经详细介绍过：），然后做图像处理，例如滤镜特效（马赛克，浮雕，衬底，反色等），这里我们详细介绍相关的知识。其实从原理上讲，大部分的图像处理都是对图像像素矩阵和某个特效矩阵做卷积，得到新的像素矩阵，就是处理后的效果。关于这个大学课程《数字信息处理》里面有详细介绍。  
+这段时间做了一个手机WebRTC拍照加特效的应用，主要用到canvas标签获取图像矩阵（这个在上一篇博客中已经详细介绍过：），然后做图像处理，例如滤镜特效（马赛克，浮雕，衬底，反色等），这里[我们](https://www.w3cdoc.com)详细介绍相关的知识。其实从原理上讲，大部分的图像处理都是对图像像素矩阵和某个特效矩阵做卷积，得到新的像素矩阵，就是处理后的效果。关于这个大学课程《数字信息处理》里面有详细介绍。  
 <a></a>
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/05/2014_html_canvas/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/05/2014_html_canvas/</a>
@@ -40,11 +40,11 @@ canvas是一个新的HTML元素，这个元素可以被Script语言(通常是Jav
 切片绘图：context.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)  
 合理的绘制多幅图像可以做出漂亮的组合效果，比如常见的画廊就是框图片与照片的叠加，只不过要注意绘制的先后顺序。  
 第一个参数image代表图片的来源，可以是下列几种：  
-　　(1)页面内的图片:我们可以通过 document.images 集合、document.getElementsByTagName 方法又或者 document.getElementById 方法来获取页面内的图片。  
+　　(1)页面内的图片:[我们](https://www.w3cdoc.com)可以通过 document.images 集合、document.getElementsByTagName 方法又或者 document.getElementById 方法来获取页面内的图片。  
 　　(2)已经完备的canvas：可以使用document.getElementsByTagName或document.getElementById方法来获取已经准备好的canvas元素。一个常用的场景就是为另一个大的canvas做缩略图。  
 　　(3)通过data:url方式(<a href="https://en.wikipedia.org/wiki/Data:_URL" target="_blank" rel="external">https://en.wikipedia.org/wiki/Data:_URL</a> )嵌入图像：Data urls允许用一串Base64编码的字符串的方式来定义一个图片。其优点就是图片内容即时可用，无须再到服务器兜一圈。(还有一个优点是，可以将CSS，JavaScript，HTML和图片全部封装在一起，迁移起来十分方便。)缺点就是图像没法缓存，图片大的话内嵌的url数据会相当的长。例如：
 
-　　(4)动态创建的图片：我们可以用脚本创建一个新的Image对象，但这种方法的主要缺点是如果不希望脚本因为等待图片装置而暂停，还得需要突破预装载。  
+　　(4)动态创建的图片：[我们](https://www.w3cdoc.com)可以用脚本创建一个新的Image对象，但这种方法的主要缺点是如果不希望脚本因为等待图片装置而暂停，还得需要突破预装载。  
 var img = new Image();  
 img.src = ‘myImage.png’;  
 　　当脚本执行后，图片开始装载。若调用drawImage时，图片没装载完，脚本会等待直至装载完毕。如果不希望这样的效果，则需要使用图片的onload事件。(见下面的例子)。其他几个参数的含义：sx,sy是Image在源中的起始坐标，sw/sWidth,sh/sHeight是源中图片的宽和高，dx,dy是在目标中的坐标，dw/dWidth,dh/dHeight是目标的宽和高。具体可以参看下图：  
@@ -63,7 +63,7 @@ img.src = ‘myImage.png’;
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/05/2014_html_canvas/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/05/2014_html_canvas/</a>
 
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/05/2014_html_canvas/#简介 "简介"
  [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/05/2014_html_canvas/#canas介绍 "canas介绍"

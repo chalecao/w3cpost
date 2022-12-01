@@ -2,7 +2,7 @@
 title: web components入门与实践
 
 ---
- Web Components是一套不同的技术，允许您创建可重用的定制元素（它们的功能封装在您的代码之外）并且在您的web应用中使用它们。 作为开发者，我们都知道尽可能多的重用代码是一个好主意。这对于自定义标记结构来说通常不是那么容易 — 想想复杂的HTML（以及相关的样式和脚本），有时您不得不写代码来呈现自定义UI控件，并且如果您不小心的话，多次使用它们会使您的页面变得一团糟。 Web Components旨在解决这些问题 — 它由四项主要技术组成，它们可以一起使用来创建封装功能的定制元素，可以在你喜欢的任何地方重用，不必担心代码冲突。
+ Web Components是一套不同的技术，允许您创建可重用的定制元素（它们的功能封装在您的代码之外）并且在您的web应用中使用它们。 作为开发者，[我们](https://www.w3cdoc.com)都知道尽可能多的重用代码是一个好主意。这对于自定义标记结构来说通常不是那么容易 — 想想复杂的HTML（以及相关的样式和脚本），有时您不得不写代码来呈现自定义UI控件，并且如果您不小心的话，多次使用它们会使您的页面变得一团糟。 Web Components旨在解决这些问题 — 它由四项主要技术组成，它们可以一起使用来创建封装功能的定制元素，可以在你喜欢的任何地方重用，不必担心代码冲突。
 
 * **Custom elements（自定义元素）：**一组JavaScript API，允许您定义custom elements及其行为，然后可以在您的用户界面中按照需要使用它们。
 * **Shadow DOM（影子DOM）**：一组JavaScript API，用于将封装的“影子”DOM树附加到元素（与主文档DOM分开呈现）并控制其关联的功能。通过这种方式，您可以保持元素的功能私有，这样它们就可以被脚本化和样式化，而不用担心与文档的其他部分发生冲突。看这里（ [Shadow DOM简单了解][1]）
@@ -19,7 +19,7 @@ title: web components入门与实践
 
 # 生命周期 {#生命周期}
 
-我们以polymer3为例，PolymerElement 继承了 HTMLElement，所以它拥有和 HTMLElement 一致的生命周期。 **constructor**：组件被 create 的时候会被调用，整个生命周期中最早触发也只会触发一次，通常可以在这里做一些初始化私有变量、记录数据的一些操作；但是出于性能和职责分离的考虑，不建议在这里做一些 DOM 相关的事情。 **connectedCallback**：组件被 `连接` 到 DOM Tree 的时候会触发，这个时机包括节点被插入节点树、节点被从节点树中移动，所以它可能会被触发多次。你可以在这里监听 DOM 事件或者对 DOM 节点做一些修改。 **disconnectedCallback**：组件被从 DOM Tree 中移除的时候触发，这个生命周期也可能被触发多次。如果你在 connectedCallback 中监听了事件，一定要记得在这里移除，否则事件监听回调可能会一直引用导致内存泄露和一些奇怪的问题。 **adoptedCallback**：不常用，不多介绍。 **attributeChangedCallback**：当组件的 attribute 发生变化的时候触发，它的三个形参分别是 `name, oldValue, newValue`，记得别把顺序搞反了。如果你声明了 properties 对象，对 attribute 的相应值变化也会触发这个回调。需要注意的是，如果你覆盖了组件的 `observedAttributes` 静态方法，properties 对象中声明的值不会触发，它会按照你覆盖的 `observedAttributes` 静态方法的返回值为准。 除此之外，polymer 还额外添加了一些生命周期 **ready**：由于 HTMLElement 的生命周期中没有一个可以操作 DOM，又只触发一次的周期，Polymer 人为地添加了 ready 这个时机，它在整个生命周期中只会触发一次，也就是第一次节点插入到 DOM 树的时刻。 记得调用 `super.ready()` 来触发 `PolymerElement` 的初始化阶段。在初始化阶段，Polymer 会做以下几件事情：
+[我们](https://www.w3cdoc.com)以polymer3为例，PolymerElement 继承了 HTMLElement，所以它拥有和 HTMLElement 一致的生命周期。 **constructor**：组件被 create 的时候会被调用，整个生命周期中最早触发也只会触发一次，通常可以在这里做一些初始化私有变量、记录数据的一些操作；但是出于性能和职责分离的考虑，不建议在这里做一些 DOM 相关的事情。 **connectedCallback**：组件被 `连接` 到 DOM Tree 的时候会触发，这个时机包括节点被插入节点树、节点被从节点树中移动，所以它可能会被触发多次。你可以在这里监听 DOM 事件或者对 DOM 节点做一些修改。 **disconnectedCallback**：组件被从 DOM Tree 中移除的时候触发，这个生命周期也可能被触发多次。如果你在 connectedCallback 中监听了事件，一定要记得在这里移除，否则事件监听回调可能会一直引用导致内存泄露和一些奇怪的问题。 **adoptedCallback**：不常用，不多介绍。 **attributeChangedCallback**：当组件的 attribute 发生变化的时候触发，它的三个形参分别是 `name, oldValue, newValue`，记得别把顺序搞反了。如果你声明了 properties 对象，对 attribute 的相应值变化也会触发这个回调。需要注意的是，如果你覆盖了组件的 `observedAttributes` 静态方法，properties 对象中声明的值不会触发，它会按照你覆盖的 `observedAttributes` 静态方法的返回值为准。 除此之外，polymer 还额外添加了一些生命周期 **ready**：由于 HTMLElement 的生命周期中没有一个可以操作 DOM，又只触发一次的周期，Polymer 人为地添加了 ready 这个时机，它在整个生命周期中只会触发一次，也就是第一次节点插入到 DOM 树的时刻。 记得调用 `super.ready()` 来触发 `PolymerElement` 的初始化阶段。在初始化阶段，Polymer 会做以下几件事情：
 
 * attache 组件实例的 Shadow DOM，所以在这个阶段之后才可以访问 `this.shadowRoot`
 * 初始化 properties，并赋初始值
@@ -65,15 +65,15 @@ title: web components入门与实践
 :
 :   综合实践，如下面这个例子：
 
-我们可以看到这样的代码：
+[我们](https://www.w3cdoc.com)可以看到这样的代码：
 
     static get template() {
         return html`xxxx`
     }
 
-其实这是我们之前介绍过的 [基于ES6标签模板实现事件绑定与数据监听][9] 中的标签模板。  
+其实这是[我们](https://www.w3cdoc.com)之前介绍过的 [基于ES6标签模板实现事件绑定与数据监听][9] 中的标签模板。  
 
-# 前端进阶系列视频课程
+# [前端](https://www.w3cdoc.com)进阶系列视频课程
 
 《[用JavaScript自己写Virtual DOM][10]》：<https://t.cn/REeKJp0>
 
@@ -81,13 +81,13 @@ title: web components入门与实践
 
 <!-- wp:paragraph -->
 
-《前端函数式编程FP易学易用》：<https://t.cn/REeKVSk>
+《[前端](https://www.w3cdoc.com)函数式编程FP易学易用》：<https://t.cn/REeKVSk>
 
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
 
-《前端自己用NodeJS编写区块链BlockChain》：<https://t.cn/REeoF7v>
+《[前端](https://www.w3cdoc.com)自己用NodeJS编写区块链BlockChain》：<https://t.cn/REeoF7v>
 
 <!-- /wp:paragraph -->
 

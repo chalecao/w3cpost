@@ -8,13 +8,13 @@ title: 提升javascript代码编译速度的几点建议
 ---
 # 概述 {#articleHeader0}
 
-我们都知道运行一大段 JavaScript 代码性能会变得很糟糕。代码不仅仅需要在网络中传输而且还需要解析，编译为字节码，最后运行。之前的文章讨论了诸如 JS 引擎，运行时及调用栈，还有为 Google Chrome 和 NodeJS 广泛使用的 V8 引擎的话题。它们都在整个 JavaScript 的运行过程中扮演着重要的角色。
+[我们](https://www.w3cdoc.com)都知道运行一大段 JavaScript 代码性能会变得很糟糕。代码不仅仅需要在网络中传输而且还需要解析，编译为字节码，最后运行。之前的文章讨论了诸如 JS 引擎，运行时及调用栈，还有为 Google Chrome 和 NodeJS 广泛使用的 V8 引擎的话题。它们都在整个 JavaScript 的运行过程中扮演着重要的角色。
 
 今天所讲的主题也非常重要：了解到大多数的 JavaScript 引擎是如何把文本解析为机器能够理解的代码，转换之后发生的事情以及开发者如何利用这一知识。
 
 # 编程语言原理 {#articleHeader1}
 
-那么，首先让我们回顾一下编程语言原理。无论使用何种编程语言，你经常需要一些软件来处理源码以便让计算机能够理解。该软件可以是解释器或编译器。不管是使用解释型语言(JavaScript, Python, Ruby) 或者编译型语言(C#, Java, Rust)，它们都有一个共同点：把源码作为纯文本解析为语法抽象树(AST)的数据结构。AST 不仅要以结构化地方式展示源码，而且在语义分析中扮演了重要的角色，编译器检查验证程序和语言元素的语法使用是否正确。之后， 使用 AST 来生成实际的字节码或者机器码。
+那么，首先让[我们](https://www.w3cdoc.com)回顾一下编程语言原理。无论使用何种编程语言，你经常需要一些软件来处理源码以便让计算机能够理解。该软件可以是解释器或编译器。不管是使用解释型语言(JavaScript, Python, Ruby) 或者编译型语言(C#, Java, Rust)，它们都有一个共同点：把源码作为纯文本解析为语法抽象树(AST)的数据结构。AST 不仅要以结构化地方式展示源码，而且在语义分析中扮演了重要的角色，编译器检查验证程序和语言元素的语法使用是否正确。之后， 使用 AST 来生成实际的字节码或者机器码。
 
 # AST 程序 {#articleHeader2}
 
@@ -22,7 +22,7 @@ AST 不止应用于语言解释器和编译器，在计算机世界中，还有�
 
 # JavaScript 解析 {#articleHeader3}
 
-让我们看一下 AST 的构造。以如下一个简单 JavaScript 函数为例子：
+让[我们](https://www.w3cdoc.com)看一下 AST 的构造。以如下一个简单 JavaScript 函数为例子：
 
 <pre class="hljs actionscript"><code>&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">foo&lt;/span>&lt;span class="hljs-params">(x)&lt;/span> &lt;/span>{
     &lt;span class="hljs-keyword">if&lt;/span> (x &gt; &lt;span class="hljs-number">10&lt;/span>) {
@@ -43,7 +43,7 @@ AST 不止应用于语言解释器和编译器，在计算机世界中，还有�
 
 请注意，这里为了展示用只是解析器输出的简化版本。实际的 AST 要更加复杂。然而，这里的意思即了解一下运行源码之前的第一个步骤。可以访问 <a href="https://astexplorer.net/" target="_blank" rel="nofollow noopener noreferrer">AST Explorer</a> 来查看实际的 AST 树。这是一个在线工具，你可以在上面写 JavaScript 代码，然后网站会输出目标代码的 AST。
 
-也许你会问为什么我得学习 JavaScript 解析器的工作原理。反正，浏览器会负责运行 JavaScript 代码。你有那么一丁点是正确的。以下图表展示了 JavaScript 运行过程中不同阶段的耗时。瞪大眼睛瞅瞅，也许你可以发现点有趣的东西。
+也许你会问为什么我得学习 JavaScript 解析器的工作原理。反正，[浏览器](https://www.w3cdoc.com)会负责运行 JavaScript 代码。你有那么一丁点是正确的。以下图表展示了 JavaScript 运行过程中不同阶段的耗时。瞪大眼睛瞅瞅，也许你可以发现点有趣的东西。
 
 <p id="zrhUbRN">
   <img loading="lazy" class="alignnone wp-image-3450 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/format,webp" alt="" width="709" height="289" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_122/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_313/format,webp 768w" sizes="(max-width: 709px) 100vw, 709px" />
@@ -51,7 +51,7 @@ AST 不止应用于语言解释器和编译器，在计算机世界中，还有�
 
 <span class="img-wrap"></span>
 
-发现没？通常情况下，浏览器大概消耗了 15% 到 20% 的总运行时间来解析 JavaScript.我没有具体统计过这些数值。这些统计数据来自于现实世界中程序和网站的各种 JavaScript 使用姿势。 现在也许 15% 看起来不是很多，但相信我，很多的。一个典型的单页程序会加载大约 0.4M 的 JavaScript 代码，然后消耗掉浏览器大概 370ms 的时间来进行解析。也许你会又说，这也不是很多嘛。本身花费的时间并不多。但记住了，这只是把 JavaScript 代码转化为 ASTs 所消耗的时间。其中不包含运行本身的时间或者页面加载期间其它诸如 <a href="https://blog.sessionstack.com/how-javascript-works-the-rendering-engine-and-tips-to-optimize-its-performance-7b95553baeda" target="_blank" rel="nofollow noopener noreferrer">CSS 和 HTML</a> 渲染的过程的耗时。这仅仅只是桌面浏览器所面临的问题。移动浏览器的情况会更加复杂。一般情况下，手机移动浏览器解析代码的时间是桌面浏览器的 2-5 倍。
+发现没？通常情况下，[浏览器](https://www.w3cdoc.com)大概消耗了 15% 到 20% 的总运行时间来解析 JavaScript.我没有具体统计过这些数值。这些统计数据来自于现实世界中程序和网站的各种 JavaScript 使用姿势。 现在也许 15% 看起来不是很多，但相信我，很多的。一个典型的单页程序会加载大约 0.4M 的 JavaScript 代码，然后消耗掉[浏览器](https://www.w3cdoc.com)大概 370ms 的时间来进行解析。也许你会又说，这也不是很多嘛。本身花费的时间并不多。但记住了，这只是把 JavaScript 代码转化为 ASTs 所消耗的时间。其中不包含运行本身的时间或者页面加载期间其它诸如 <a href="https://blog.sessionstack.com/how-javascript-works-the-rendering-engine-and-tips-to-optimize-its-performance-7b95553baeda" target="_blank" rel="nofollow noopener noreferrer">CSS 和 HTML</a> 渲染的过程的耗时。这仅仅只是桌面[浏览器](https://www.w3cdoc.com)所面临的问题。移动[浏览器](https://www.w3cdoc.com)的情况会更加复杂。一般情况下，手机移动[浏览器](https://www.w3cdoc.com)解析代码的时间是桌面[浏览器](https://www.w3cdoc.com)的 2-5 倍。
 
 <p id="MQeNjQr">
   <img loading="lazy" class="alignnone wp-image-3451 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/format,webp" alt="" width="489" height="321" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_197/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_504/format,webp 768w" sizes="(max-width: 489px) 100vw, 489px" />
@@ -59,9 +59,9 @@ AST 不止应用于语言解释器和编译器，在计算机世界中，还有�
 
 <span class="img-wrap"></span>
 
-以上图表展示了不同移动和桌面浏览器解析 1MB JavaScript 代码所消耗的时间。
+以上图表展示了不同移动和桌面[浏览器](https://www.w3cdoc.com)解析 1MB JavaScript 代码所消耗的时间。
 
-另外，为了获得更多类原生的用户体验而把越来越多的业务逻辑堆积在前端，网页程序变得越来越复杂。网页程序越来越胖，都快走不动了。你可以轻易地想到网络应用受到的性能影响。只需打开浏览器开发者工具，然后使用该工具来检测解析，编译及其它发生于浏览器中直到页面完全加载所消耗的时间。
+另外，为了获得更多类原生的用户体验而把越来越多的业务逻辑堆积在[前端](https://www.w3cdoc.com)，网页程序变得越来越复杂。网页程序越来越胖，都快走不动了。你可以轻易地想到网络应用受到的性能影响。只需打开[浏览器](https://www.w3cdoc.com)开发者工具，然后使用该工具来检测解析，编译及其它发生于[浏览器](https://www.w3cdoc.com)中直到页面完全加载所消耗的时间。
 
 <p id="fNyzYRp">
   <img loading="lazy" width="800" height="334" class="alignnone size-full wp-image-3452 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_125/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_321/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
@@ -69,9 +69,9 @@ AST 不止应用于语言解释器和编译器，在计算机世界中，还有�
 
 <span class="img-wrap"></span>
 
-不幸的是，移动浏览器没有开发者工具来进行性能检测。不用担心。因为有 <a href="https://github.com/danielmendel/DeviceTiming" target="_blank" rel="nofollow noopener noreferrer">DeviceTiming</a> 工具。它可以用来帮助检测受控环境中脚本的解析和运行时间。它通过插入代码来封装本地代码，这样每当从不同设备访问的时候，可以本地测量解析和运行时间。
+不幸的是，移动[浏览器](https://www.w3cdoc.com)没有开发者工具来进行性能检测。不用担心。因为有 <a href="https://github.com/danielmendel/DeviceTiming" target="_blank" rel="nofollow noopener noreferrer">DeviceTiming</a> 工具。它可以用来帮助检测受控环境中脚本的解析和运行时间。它通过插入代码来封装本地代码，这样每当从不同设备访问的时候，可以本地测量解析和运行时间。
 
-好事即 JavaScript 引擎做了大量的工作来避免冗余工作及更加高效。以下为主流浏览器使用的技术。
+好事即 JavaScript 引擎做了大量的工作来避免冗余工作及更加高效。以下为主流[浏览器](https://www.w3cdoc.com)使用的技术。
 
 例如，V8 实现了 script 流和代码缓存技术。Script 流即当脚本开始下载的时候，async 和 deferred 的脚本在单独的线程中进行解析。这意味着解析会在脚本下载完成时立即完成。这会提升 10% 的页面加载速度。
 
@@ -89,7 +89,7 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 本文的目标即开发者如何帮助加快 JavaScript 解析器的解析速度。现代 JavaScript 解析器使用 heuristics(启发法) 来决定是否立即运行指定的代码片段或者推迟在未来的某个时候运行。基于这些 heuristics，解析器会进行立即或者懒解析。立即解析会运行需要立即编译的函数。其主要做三件事：构建 AST，构建作用域层级，然后检查所有的语法错误。而懒解析只运行未编译的函数，它不构建 AST和检查任何语法错误。只构建作用域层级，这样相对于立即解析会节省大约一半的时间。
 
-显然，这并不是一个新概念。甚至像 IE9 这样老掉牙的浏览器也支持该优化技术，虽然和现代解析器的工作方式相比是以一种简陋的方式实现的。
+显然，这并不是一个新概念。甚至像 IE9 这样老掉牙的[浏览器](https://www.w3cdoc.com)也支持该优化技术，虽然和现代解析器的工作方式相比是以一种简陋的方式实现的。
 
 举个栗子吧。假设有如下代码片段：
 
@@ -156,7 +156,7 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
     &lt;span class="hljs-keyword">return&lt;/span> x * &lt;span class="hljs-number">10&lt;/span>;
 }</code></pre>
 
-因为没有明显地标识表明需要立即运行该函数所以浏览器会进行懒解析。然而，我们确定这是不对的，那么可以运行两个步骤。
+因为没有明显地标识表明需要立即运行该函数所以[浏览器](https://www.w3cdoc.com)会进行懒解析。然而，[我们](https://www.w3cdoc.com)确定这是不对的，那么可以运行两个步骤。
 
 首先，把函数存储为一变量。
 
@@ -174,7 +174,7 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 现在，解析器看见 function 关键字前的左括号便会立即进行解析。
 
-因需要知道解析器在何种情况下懒解析或者立即解析代码，所以可操作性会很差。同样地，开发者需要花时间考虑指定的函数是否需要立即解析。肯定没人想费力地这么做。最后，这肯定会让代码难以阅读和理解。可以使用 Optimize.js 来处理此类情况。该工具只是用来优化 JavaScript 源代码的初始加载时间。他们对代码运行静态分析，然后通过使用括号封装需要立即运行的函数以便浏览器立即解析并准备运行它们。
+因需要知道解析器在何种情况下懒解析或者立即解析代码，所以可操作性会很差。同样地，开发者需要花时间考虑指定的函数是否需要立即解析。肯定没人想费力地这么做。最后，这肯定会让代码难以阅读和理解。可以使用 Optimize.js 来处理此类情况。该工具只是用来优化 JavaScript 源代码的初始加载时间。他们对代码运行静态分析，然后通过使用括号封装需要立即运行的函数以便[浏览器](https://www.w3cdoc.com)立即解析并准备运行它们。
 
 那么，可以如平常杂编码然后一小段代码如下：
 
@@ -194,7 +194,7 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 # 预编译 {#articleHeader4}
 
-但是为何不在服务端进行这些工作呢？总之，比强制各个客户端重复做该项事情更好的做法是只运行一次并在客户端输出结果。那么，有一个正在进行的讨论即引擎是否需要提供一个运行预编译代码的功能以节省浏览器的运行时间。本质上，该思路即使用服务端工具来生成字节码，这样就只需要传输字节码并在客户端运行。之后，将会看到启动时间上的一些主要差异。这听起来很有诱惑性但实现起来会很难。可能会有反效果，因为它将会很庞大且由于安全原因很有可能需要进行签名和处理。例如，V8 团队已经在内部解决重复解析问题，这样预编译有可能实际上没啥鸟用。
+但是为何不在服务端进行这些工作呢？总之，比强制各个客户端重复做该项事情更好的做法是只运行一次并在客户端输出结果。那么，有一个正在进行的讨论即引擎是否需要提供一个运行预编译代码的功能以节省[浏览器](https://www.w3cdoc.com)的运行时间。本质上，该思路即使用服务端工具来生成字节码，这样就只需要传输字节码并在客户端运行。之后，将会看到启动时间上的一些主要差异。这听起来很有诱惑性但实现起来会很难。可能会有反效果，因为它将会很庞大且由于安全原因很有可能需要进行签名和处理。例如，V8 团队已经在内部解决重复解析问题，这样预编译有可能实际上没啥鸟用。
 
 # 一些建议 {#articleHeader5}
 
@@ -210,7 +210,7 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 ## 拓展 {#articleHeader6}
 
-有时候，特别是手机端浏览器，比如当你点击前进/后退按钮的时候，浏览器会进行缓存。但是在有些场景下，你可能不需要浏览器的这种功能。有如下解决办法：
+有时候，特别是手机端[浏览器](https://www.w3cdoc.com)，比如当你点击前进/后退按钮的时候，[浏览器](https://www.w3cdoc.com)会进行缓存。但是在有些场景下，你可能不需要[浏览器](https://www.w3cdoc.com)的这种功能。有如下解决办法：
 
 <pre class="hljs typescript"><code>&lt;span class="hljs-built_in">window&lt;/span>.addEventListener(&lt;span class="hljs-string">'pageshow'&lt;/span>, &lt;span class="hljs-function">(&lt;span class="hljs-params">event&lt;/span>) =&gt;&lt;/span> {
   &lt;span class="hljs-comment">// 检查前进/后退缓存，是否从缓存加载页面&lt;/span>

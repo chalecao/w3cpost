@@ -12,9 +12,9 @@ title: react shadow
 ---
 1. Shadow DOM 是什么
 
-Shadow DOM 是什么？我们先来打开 Chrome 的 DevTool，并在 &#8216;Settings -> Preferences -> Elements&#8217; 中把 &#8216; Show user agent shadow DOM&#8217; 打上勾。然后，打开一个支持 HTML5 播放的视频网站。
+Shadow DOM 是什么？[我们](https://www.w3cdoc.com)先来打开 Chrome 的 DevTool，并在 &#8216;Settings -> Preferences -> Elements&#8217; 中把 &#8216; Show user agent shadow DOM&#8217; 打上勾。然后，打开一个支持 HTML5 播放的视频网站。
 
-可以看到 `video` 内部有一个 `#shadow-root` ，在 ShadowRoot 之下还能看到 `div` 这样的普通 HTML 标签。我们能知道 `video` 会有「播放/暂停按钮、进度条、视频时间显示、音量控制」等控件，那其实，就是由 ShadowRoot 中的这些子元素构成的。而我们最常用的 `input` 其实也附加了 Shadow DOM，比如，我们在 Chrome 中尝试给一个 Input 加上 `placeholder` ，通过 DevTools 便能看到，其实文字是在 ShadowRoot 下的一个 Id 为 `palcehoder` 的 div 中。
+可以看到 `video` 内部有一个 `#shadow-root` ，在 ShadowRoot 之下还能看到 `div` 这样的普通 HTML 标签。[我们](https://www.w3cdoc.com)能知道 `video` 会有「播放/暂停按钮、进度条、视频时间显示、音量控制」等控件，那其实，就是由 ShadowRoot 中的这些子元素构成的。而[我们](https://www.w3cdoc.com)最常用的 `input` 其实也附加了 Shadow DOM，比如，[我们](https://www.w3cdoc.com)在 Chrome 中尝试给一个 Input 加上 `placeholder` ，通过 DevTools 便能看到，其实文字是在 ShadowRoot 下的一个 Id 为 `palcehoder` 的 div 中。
 
 &nbsp;
 
@@ -41,15 +41,15 @@ Shadow DOM 允许在文档（Document）渲染时插入一棵「子 DOM  树�
 
 <a name="0koI0"></a>
 
-## 2.1. 浏览器内建的原生组件 {#2}
+## 2.1. [浏览器](https://www.w3cdoc.com)内建的原生组件 {#2}
 
-Shadow DOM 最大的用处应该是隔离外部环境用于封装组件。估计浏览器的开发者们也意识到通过 HTML/CSS 来实现浏览器内建的原生组件更容易，如上边提到的浏览器原生组件 `input`，`video`，还有 `textarea`，`select`，`audio` 等，也都是由 HTML/CSS 渲染出来的。
+Shadow DOM 最大的用处应该是隔离外部环境用于封装组件。估计[浏览器](https://www.w3cdoc.com)的开发者们也意识到通过 HTML/CSS 来实现[浏览器](https://www.w3cdoc.com)内建的原生组件更容易，如上边提到的[浏览器](https://www.w3cdoc.com)原生组件 `input`，`video`，还有 `textarea`，`select`，`audio` 等，也都是由 HTML/CSS 渲染出来的。
 
 <a name="El1CC"></a>
 
 ## 2.2. Web Components {#3}
 
-Web Components 允许开发者创建可重用的自定义元素，它们可以一起使用来创建封装功能的自定义元素，并可以像浏览器原生的元素一样在任何地方重用，而不必担心样式和 DOM 的冲突问题，主要由三项主要技术组成：
+Web Components 允许开发者创建可重用的自定义元素，它们可以一起使用来创建封装功能的自定义元素，并可以像[浏览器](https://www.w3cdoc.com)原生的元素一样在任何地方重用，而不必担心样式和 DOM 的冲突问题，主要由三项主要技术组成：
 
 * **Custom Elements**（自定义元素）：一组 JavaScript API，允许您定义 Custom Elements 及其行为，然后可以在您的用户界面中按照需要使用它们。
 * **HTML Templates**（ HTML 模板）： `template` 和 `slot` 元素使您可以编写不在呈现页面中显示的标记模板。然后它们可以作为自定义元素结构的基础被多次重用。
@@ -61,7 +61,7 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
 
 ## 2.3 其他需要隔离的场景 {#4}
 
-不少人大概会听说过「微前端」，微前端作为一种「架构风格」，其中可由多个「可独立交付的前端子应用」组合成一个大的整体。那么在「微前端架构」下，每一个独立的子应用间及子应用间的如何保证不会冲突？样式不会相互覆盖？那么，是否可以将每个「子应用」通过 Shadow DOM 进行隔离？答案是肯定的，我就在部分项目中有过实践。
+不少人大概会听说过「微[前端](https://www.w3cdoc.com)」，微[前端](https://www.w3cdoc.com)作为一种「架构风格」，其中可由多个「可独立交付的[前端](https://www.w3cdoc.com)子应用」组合成一个大的整体。那么在「微[前端](https://www.w3cdoc.com)架构」下，每一个独立的子应用间及子应用间的如何保证不会冲突？样式不会相互覆盖？那么，是否可以将每个「子应用」通过 Shadow DOM 进行隔离？答案是肯定的，我就在部分项目中有过实践。
 
 其他，在需要进行 DOM/CSS 隔离的场景，都有可能是 Shadow DOM 的用武之地。比如像 「阿里云购物车」这种需要「嵌入集成」到不同产品售卖页的「公共组件」，就很需要避免和宿主页面的样式冲突，即不影响宿主页面，也不要受宿主页面的影响。
 
@@ -75,11 +75,11 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
   </p>
   
   <h1 id="5">
-    3. 主流浏览器的支持情况
+    3. 主流[浏览器](https://www.w3cdoc.com)的支持情况
   </h1>
   
   <p>
-    其中 Chrome，Opera 和 Safari 默认就支持 Shadow DOM，而 Firefox 从 63 版本开始已经支持，可以看到支持最好的是 Chrome，而 IE 直到 11 也都是不支持的，微软的另一款浏览器 Edge 要换成和 Chrome 相同内核了，那换核后的 Edge 肯定会支持 Shadow DOM 了。
+    其中 Chrome，Opera 和 Safari 默认就支持 Shadow DOM，而 Firefox 从 63 版本开始已经支持，可以看到支持最好的是 Chrome，而 IE 直到 11 也都是不支持的，微软的另一款[浏览器](https://www.w3cdoc.com) Edge 要换成和 Chrome 相同内核了，那换核后的 Edge 肯定会支持 Shadow DOM 了。
   </p>
   
   <p id="YYYJvoG">
@@ -87,7 +87,7 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
   </p>
   
   <p>
-    各浏览器支持详细情况，请参考 <a href="https://caniuse.com/#feat=shadowdomv1">https://caniuse.com/#feat=shadowdomv1</a>
+    各[浏览器](https://www.w3cdoc.com)支持详细情况，请参考 <a href="https://caniuse.com/#feat=shadowdomv1">https://caniuse.com/#feat=shadowdomv1</a>
   </p>
   
   <p>
@@ -164,7 +164,7 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
       <strong>&#8220;open&#8221;</strong> ：可 Host 元素上通过 <code>host.shadowRoot</code>  获取 shadowRoot 引用，这样任何代码都可以通过 shadowRoot 来访问的子 DOM 树。
     </li>
     <li>
-      <strong>&#8220;closed&#8221;</strong>：在 Host 元素上通过 <code>host.shadowRoot</code>  获取的是 null，我们只能通过 <code>Element.attachShadow</code> 的返回值拿到 shadowRoot 的引用（通常可能隐藏在类中）。例如，浏览器内建的 input、video 等就是关闭的，我们没有办法访问它们。
+      <strong>&#8220;closed&#8221;</strong>：在 Host 元素上通过 <code>host.shadowRoot</code>  获取的是 null，[我们](https://www.w3cdoc.com)只能通过 <code>Element.attachShadow</code> 的返回值拿到 shadowRoot 的引用（通常可能隐藏在类中）。例如，[浏览器](https://www.w3cdoc.com)内建的 input、video 等就是关闭的，[我们](https://www.w3cdoc.com)没有办法访问它们。
     </li>
   </ul>
   
@@ -193,7 +193,7 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
   </div>
   
   <p>
-    用 <code>&lt;img&gt;</code> 这样的非容器素作为 Shadow Host 是不合理的，因此这段代码将抛出 <code>DOMException</code> 错误。此外因为安全原因一些元素也不能附加 Shadow DOM（比如 A 元素），会出现错误的另一个原因是浏览器已经用该元素附加了 Shadow DOM，比如 Input 等。
+    用 <code>&lt;img&gt;</code> 这样的非容器素作为 Shadow Host 是不合理的，因此这段代码将抛出 <code>DOMException</code> 错误。此外因为安全原因一些元素也不能附加 Shadow DOM（比如 A 元素），会出现错误的另一个原因是[浏览器](https://www.w3cdoc.com)已经用该元素附加了 Shadow DOM，比如 Input 等。
   </p>
   
   <p>
@@ -232,11 +232,11 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
   </h1>
   
   <p>
-    在基于 React 的项目中应该如何使用 Shadow DOM 呢？比如你正在基于 React 编写一个面向不同产品或业务，可嵌入集成使用的公共组件，比如你正在基于 React 做一个「微前端架构」应用的设计或开发。
+    在基于 React 的项目中应该如何使用 Shadow DOM 呢？比如你正在基于 React 编写一个面向不同产品或业务，可嵌入集成使用的公共组件，比如你正在基于 React 做一个「微[前端](https://www.w3cdoc.com)架构」应用的设计或开发。
   </p>
   
   <p>
-    我们在编写 React 应用时一般不希望到处是 DOM 操作，因为这很不 React (形容词)。那是否能封装成一下用更 React (形容词) 的组件风格去使用 Shadow DOM 呢?
+    [我们](https://www.w3cdoc.com)在编写 React 应用时一般不希望到处是 DOM 操作，因为这很不 React (形容词)。那是否能封装成一下用更 React (形容词) 的组件风格去使用 Shadow DOM 呢?
   </p>
   
   <p>
@@ -296,7 +296,7 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
   </p>
   
   <p>
-    我们需通过 <code>Element.attachShadow</code> 附加到元素，然后就能拿到附加后的 ShadowRoot 实例。 针对 ShadowRoot 这样一个原生 DOM Node 的的引用，除了利用 <code>ReactDOM.render</code> 或 <code>ReactDOM.createPortal</code>  ，我们并不能轻易的将 React.Element 渲染到其中，除非直接接操作 DOM。
+    [我们](https://www.w3cdoc.com)需通过 <code>Element.attachShadow</code> 附加到元素，然后就能拿到附加后的 ShadowRoot 实例。 针对 ShadowRoot 这样一个原生 DOM Node 的的引用，除了利用 <code>ReactDOM.render</code> 或 <code>ReactDOM.createPortal</code>  ，[我们](https://www.w3cdoc.com)并不能轻易的将 React.Element 渲染到其中，除非直接接操作 DOM。
   </p>
   
   <p>
@@ -361,15 +361,15 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
   </div>
   
   <p>
-    在浏览器中看看效果，可以看到是可以正常显示的。但与此同时会发现一个问题「隔离在 ShadowRoot 中的元素上的事件无法被触发了」，这是什么原因呢？
+    在[浏览器](https://www.w3cdoc.com)中看看效果，可以看到是可以正常显示的。但与此同时会发现一个问题「隔离在 ShadowRoot 中的元素上的事件无法被触发了」，这是什么原因呢？
   </p>
   
   <p>
-    是由于 React 的「合成事件机制」的导致的，我们知道在 React 中「事件」并不会直接绑定到具体的 DOM 元素上，而是通过在 document 上绑定的 ReactEventListener 来管理， 当时元素被单击或触发其他事件时，事件被 dispatch 到 document 时将由 React 进行处理并触发相应合成事件的执行。
+    是由于 React 的「合成事件机制」的导致的，[我们](https://www.w3cdoc.com)知道在 React 中「事件」并不会直接绑定到具体的 DOM 元素上，而是通过在 document 上绑定的 ReactEventListener 来管理， 当时元素被单击或触发其他事件时，事件被 dispatch 到 document 时将由 React 进行处理并触发相应合成事件的执行。
   </p>
   
   <p data-spm-anchor-id="ata.13261165.0.i1.703736d0HVWJkY">
-    那为什么合成事件在 Shadow DOM 中不能被正常触发？是因为当在 Shadow DOM 外部捕获时浏览器会对事件进行「重定向」，也就是说在 Shadow DOM 中发生的事件在外部捕获时将会使用 host 元素作为事件源。这将让 React 在处理合成事件时，不认为 ShadowDOM 中元素基于 JSX 语法绑定的事件被触发了。
+    那为什么合成事件在 Shadow DOM 中不能被正常触发？是因为当在 Shadow DOM 外部捕获时[浏览器](https://www.w3cdoc.com)会对事件进行「重定向」，也就是说在 Shadow DOM 中发生的事件在外部捕获时将会使用 host 元素作为事件源。这将让 React 在处理合成事件时，不认为 ShadowDOM 中元素基于 JSX 语法绑定的事件被触发了。
   </p>
   
   <p id="YqAVKMi">
@@ -447,7 +447,7 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
   </p>
   
   <p>
-    看似一切顺利，但却会发现父组件的 state 更新时，而 ShadowView 组件并没有更新。如上边的示例，其中的 message 显示的还是旧的，而原因就在我们使用 ReactDOM.render 时，Shadow DOM 的元素和父组件不在一个 React 渲染上下文中了。
+    看似一切顺利，但却会发现父组件的 state 更新时，而 ShadowView 组件并没有更新。如上边的示例，其中的 message 显示的还是旧的，而原因就在[我们](https://www.w3cdoc.com)使用 ReactDOM.render 时，Shadow DOM 的元素和父组件不在一个 React 渲染上下文中了。
   </p>
   
   <p>
@@ -459,7 +459,7 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
   </h2>
   
   <p>
-    我们知道 createPortal 的出现为「弹窗、提示框」等脱离文档流的组件开发提供了便利，替换了之前不稳定的 API unstable_renderSubtreeIntoContainer。
+    [我们](https://www.w3cdoc.com)知道 createPortal 的出现为「弹窗、提示框」等脱离文档流的组件开发提供了便利，替换了之前不稳定的 API unstable_renderSubtreeIntoContainer。
   </p>
   
   <p>

@@ -8,7 +8,7 @@ title: iphone6和6s中webview的bug
 
 ### [][1]技术鸡汤
 
-好久没有更新博客了，还是来说说最近做的事情吧。先从一个bug说起，由于在app中无论是ios还是android，展示和控制富文本都不是一件容易的事情，所以由于业务需求，我们会采用嵌套webview的形式来完成相应的功能。webview适配的方案有很多，但是其中也隐藏了许多的bug。  
+好久没有更新博客了，还是来说说最近做的事情吧。先从一个bug说起，由于在app中无论是ios还是android，展示和控制富文本都不是一件容易的事情，所以由于业务需求，[我们](https://www.w3cdoc.com)会采用嵌套webview的形式来完成相应的功能。webview适配的方案有很多，但是其中也隐藏了许多的bug。  
 <a></a>  
 ![iphone6和6s中webview的bug][2]  
 常用的适配方案（rem方案）：  
@@ -29,7 +29,7 @@ title: iphone6和6s中webview的bug
 ### [][4]谢谢！
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2016/09/07/2016_ios_webview/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2016/09/07/2016_ios_webview/</a>  
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/2016/09/07/2016_ios_webview/#技术鸡汤 "技术鸡汤"
  [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/read-15.png

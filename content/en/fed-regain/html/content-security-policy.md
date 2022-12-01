@@ -5,14 +5,14 @@ weight: 6
 ---
 ![](/images/posts/img_5bf6b08415258.webp)
 
-首先我们要知道web浏览器为了安全都有会<strong>同源限制</strong>，什么是同源限制？就是来自 <a href="https://link.jianshu.com?t=https://mybank.com" target="_blank" rel="nofollow noopener noreferrer">https://mybank.com</a> 的代码应仅能访问 <a href="https://link.jianshu.com?t=https://mybank.com" target="_blank" rel="nofollow noopener noreferrer">https://mybank.com</a> 的数据，而绝不被允许访问 <a href="https://link.jianshu.com?t=https://evil.example.com" target="_blank" rel="nofollow noopener noreferrer">https://evil.example.com</a>。同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据，比如cookie/locaStoragy/IndexDB就遵守同源限制。XMLHettpRequest也是存在同源限制，相信只要开发过web的同学在ajax获取数据时都遇到过这个问题。
+首先[我们](https://www.w3cdoc.com)要知道web[浏览器](https://www.w3cdoc.com)为了安全都有会<strong>同源限制</strong>，什么是同源限制？就是来自 <a href="https://link.jianshu.com?t=https://mybank.com" target="_blank" rel="nofollow noopener noreferrer">https://mybank.com</a> 的代码应仅能访问 <a href="https://link.jianshu.com?t=https://mybank.com" target="_blank" rel="nofollow noopener noreferrer">https://mybank.com</a> 的数据，而绝不被允许访问 <a href="https://link.jianshu.com?t=https://evil.example.com" target="_blank" rel="nofollow noopener noreferrer">https://evil.example.com</a>。同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据，比如cookie/locaStoragy/IndexDB就遵守同源限制。XMLHettpRequest也是存在同源限制，相信只要开发过web的同学在ajax获取数据时都遇到过这个问题。
 
-同源限制可以一定程度上限制我们的用户信息不会被盗取，但是却没法防止我们的页面被插入不法分子的资源（js，img，css等），毕竟页面上带src的元素资源是不受同源限制的。这些页面上的牛皮鲜让人很讨厌，影响是极其恶劣的：会让我们的js监控误报、会影响用户体验、甚至隐私泄露，所以我们需要对src资源也作出一定的限制，这就得Content-Security-Policy来了
+同源限制可以一定程度上限制[我们](https://www.w3cdoc.com)的用户信息不会被盗取，但是却没法防止[我们](https://www.w3cdoc.com)的页面被插入不法分子的资源（js，img，css等），毕竟页面上带src的元素资源是不受同源限制的。这些页面上的牛皮鲜让人很讨厌，影响是极其恶劣的：会让[我们](https://www.w3cdoc.com)的js监控误报、会影响用户体验、甚至隐私泄露，所以[我们](https://www.w3cdoc.com)需要对src资源也作出一定的限制，这就得Content-Security-Policy来了
     
 ## Content-Security-Policy
     
 Content-Security-Policy（内容安全政策,下文简称为CSP）,作用呢主要有两点：
-- 使用白名单的方式告诉客户端（浏览器）允许加载和不允许加载的资源。
+- 使用白名单的方式告诉客户端（[浏览器](https://www.w3cdoc.com)）允许加载和不允许加载的资源。
 - 向服务器举报这种强贴牛皮鲜广告的行为，以便做出更加针对性的措施予以绝杀。
 
 句法
@@ -27,7 +27,7 @@ Content-Security-Policy: <policy-directive>; <policy-directive>
 
 ### 怎么用    
 
-我们知道了好处还是很犀利的啊，这么好的东西怎么玩？其实也很简单，前面说到了他其实就是一个http header嘛，所以我们只需要在返回html页面的同时加上个response header 就行了，后面的script-src代表是一个指令，指示浏览器你只能加载我屁股后面那些规则下的js代码，其他的都一律拒绝。
+[我们](https://www.w3cdoc.com)知道了好处还是很犀利的啊，这么好的东西怎么玩？其实也很简单，前面说到了他其实就是一个http header嘛，所以[我们](https://www.w3cdoc.com)只需要在返回html页面的同时加上个response header 就行了，后面的script-src代表是一个指令，指示[浏览器](https://www.w3cdoc.com)你只能加载我屁股后面那些规则下的js代码，其他的都一律拒绝。
     
 ```
 Content-Security-Policy: script-src 'self' https://apis.google.com

@@ -4,7 +4,7 @@ title: TensorFlow.js简单概念和用法
 ---
 ## 简介
 
-TensorFlow.js 是一个利用 WebGL 来进行加速的机器学习类库，它基于浏览器，提供了高层次的 JavaScript API 接口。它将高性能机器学习构建块带到您的指尖，使您能够在浏览器中训练神经网络或在推理模式下运行预先训练的模型。有关安装/配置 TensorFlow.js 的指南，请参阅 <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//js.tensorflow.org/index.html%23getting-started" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">入门指南</a>。
+TensorFlow.js 是一个利用 WebGL 来进行加速的机器学习类库，它基于[浏览器](https://www.w3cdoc.com)，提供了高层次的 JavaScript API 接口。它将高性能机器学习构建块带到您的指尖，使您能够在[浏览器](https://www.w3cdoc.com)中训练神经网络或在推理模式下运行预先训练的模型。有关安装/配置 TensorFlow.js 的指南，请参阅 <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//js.tensorflow.org/index.html%23getting-started" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">入门指南</a>。
 
 * * *
 
@@ -28,7 +28,7 @@ TensorFlow.js 中数据的核心表现形式是 **<a class=" wrap external" hre
 &lt;/span></code></pre>
 </div>
 
-但是，如果仅仅需要构造低维张量，我们推荐使用以下函数而不是 `tf.tensor` 来增强代码的可读性：`tf.scalar`，`tf.tensor1d`，`tf.tensor2d`，`tf.tensor3d`和`tf.tensor4d`。
+但是，如果仅仅需要构造低维张量，[我们](https://www.w3cdoc.com)推荐使用以下函数而不是 `tf.tensor` 来增强代码的可读性：`tf.scalar`，`tf.tensor1d`，`tf.tensor2d`，`tf.tensor3d`和`tf.tensor4d`。
 
 以下示例使用 `tf.tensor2d` 来创建与上面示例相同的张量：
 
@@ -217,5 +217,5 @@ TensorFlow.js 提供了两个有助于解决这个问题的函数：`dispose` �
 
 ## 两条重要提示
 
-* 传递给 `tf.tidy` 的函数应该是同步的，并且不应该返回 Promise。我们建议将更新 UI 或者网络请求等异步代码放在 `tf.tidy` 函数外。
+* 传递给 `tf.tidy` 的函数应该是同步的，并且不应该返回 Promise。[我们](https://www.w3cdoc.com)建议将更新 UI 或者网络请求等异步代码放在 `tf.tidy` 函数外。
 * `tf.tidy` 不会清理变量。变量通常存活于机器学习模型的整个生命周期中，因此TensorFlow.js 不会去清理它们，即使它们创建于 `tf.tidy` 之中。但是，您可以通过手动调用 `dispose` 去清除它们。

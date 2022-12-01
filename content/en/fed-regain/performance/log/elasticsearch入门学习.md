@@ -73,7 +73,7 @@ Elasticsearch是一个近乎实时的搜索平台。这意味着从索引文档�
 
 在默认情况下，Elasticsearch中的每个索引都分配了5个主分片和1个副本，这意味着如果集群中至少有两个节点，那么索引将有5个主分片和另外5个副本分片（PS：这5个副本分片组成1个完整副本），每个索引总共有10个分片。
 
-（画外音：副本是针对索引而言的，同时需要注意索引和节点数量没有关系，我们说2个副本指的是索引被复制了2次，而1个索引可能由5个分片组成，那么在这种情况下，集群中的分片数应该是 5 × (1 + 2) = 15 ）
+（画外音：副本是针对索引而言的，同时需要注意索引和节点数量没有关系，[我们](https://www.w3cdoc.com)说2个副本指的是索引被复制了2次，而1个索引可能由5个分片组成，那么在这种情况下，集群中的分片数应该是 5 × (1 + 2) = 15 ）
 
 # 安装
 
@@ -115,15 +115,15 @@ cd elasticsearch-6.3.2/bin
 1533625274 15:01:14  elasticsearch green           1         1      0   0    0    0        0             0                  -                100.0%</pre>
 </div>
 
-我们可以看到，我们命名为“elasticsearch”的集群现在是green状态。
+[我们](https://www.w3cdoc.com)可以看到，[我们](https://www.w3cdoc.com)命名为“elasticsearch”的集群现在是green状态。
 
-无论何时我们请求集群健康时，我们会得到green, yellow, 或者 red 这三种状态。
+无论何时[我们](https://www.w3cdoc.com)请求集群健康时，[我们](https://www.w3cdoc.com)会得到green, yellow, 或者 red 这三种状态。
 
 * Green ： everything is good（一切都很好）（所有功能正常）
 * Yellow ： 所有数据都是可用的，但有些副本还没有分配（所有功能正常）
 * Red ： 有些数据不可用（部分功能正常）
 
-从上面的响应中我们可以看到，集群&#8221;elasticsearch&#8221;总共有1个节点，0个分片因为还没有数据。
+从上面的响应中[我们](https://www.w3cdoc.com)可以看到，集群&#8221;elasticsearch&#8221;总共有1个节点，0个分片因为还没有数据。
 
 下面看一下集群的节点列表：
 
@@ -156,11 +156,11 @@ cd elasticsearch-6.3.2/bin
   <pre>health status index uuid pri rep docs.count docs.deleted store.size pri.store.size</pre>
 </div>
 
-上面的输出意味着：我们在集群中没有索引
+上面的输出意味着：[我们](https://www.w3cdoc.com)在集群中没有索引
 
 ## 创建一个索引
 
-现在，我们创建一个名字叫“customer”的索引，然后查看索引：
+现在，[我们](https://www.w3cdoc.com)创建一个名字叫“customer”的索引，然后查看索引：
 
 请求：
 
@@ -193,15 +193,15 @@ cd elasticsearch-6.3.2/bin
 yellow open   customer rG5fxdruTNmD-bdYIF5zOg   5   1          0            0      1.1kb          1.1kb</pre>
 </div>
 
-结果的第二行告诉我们，我们现在有叫&#8221;customer&#8221;的索引，并且他有5个主分片和1个副本（默认是1个副本），有0个文档。
+结果的第二行告诉[我们](https://www.w3cdoc.com)，[我们](https://www.w3cdoc.com)现在有叫&#8221;customer&#8221;的索引，并且他有5个主分片和1个副本（默认是1个副本），有0个文档。
 
-可能你已经注意到这个&#8221;customer&#8221;索引的健康状态是yellow。回想一下我们之前的讨论，yellow意味着一些副本(尚未)被分配。
+可能你已经注意到这个&#8221;customer&#8221;索引的健康状态是yellow。回想一下[我们](https://www.w3cdoc.com)之前的讨论，yellow意味着一些副本(尚未)被分配。
 
-之所以会出现这种情况，是因为Elasticsearch默认情况下为这个索引创建了一个副本。由于目前我们只有一个节点在运行，所以直到稍后另一个节点加入集群时，才会分配一个副本(对于高可用性)。一旦该副本分配到第二个节点上，该索引的健康状态将变为green。
+之所以会出现这种情况，是因为Elasticsearch默认情况下为这个索引创建了一个副本。由于目前[我们](https://www.w3cdoc.com)只有一个节点在运行，所以直到稍后另一个节点加入集群时，才会分配一个副本(对于高可用性)。一旦该副本分配到第二个节点上，该索引的健康状态将变为green。
 
 ## 索引并查询一个文档
 
-现在，让我们put一些数据到我们的&#8221;customer&#8221;索引：
+现在，让[我们](https://www.w3cdoc.com)put一些数据到[我们](https://www.w3cdoc.com)的&#8221;customer&#8221;索引：
 
 请求：
 
@@ -236,7 +236,7 @@ yellow open   customer rG5fxdruTNmD-bdYIF5zOg   5   1          0            0   
   </div>
 </div>
 
-从上面的响应可以看到，我们在&#8221;customer&#8221;索引下成功创建了一个文档。这个文档还有一个内部id为1，这是我们在创建的时候指定的。
+从上面的响应可以看到，[我们](https://www.w3cdoc.com)在&#8221;customer&#8221;索引下成功创建了一个文档。这个文档还有一个内部id为1，这是[我们](https://www.w3cdoc.com)在创建的时候指定的。
 
 需要注意的是，Elasticsearch并不要求你在索引文档之前就先创建索引，然后才能将文档编入索引。在前面的示例中，如果事先不存在&#8221;customer&#8221;索引，Elasticsearch将自动创建&#8221;customer&#8221;索引。
 
@@ -277,7 +277,7 @@ yellow open   customer rG5fxdruTNmD-bdYIF5zOg   5   1          0            0   
 
 ## 删除一个索引
 
-现在，让我们删除前面创建的索引，然后查看全部索引
+现在，让[我们](https://www.w3cdoc.com)删除前面创建的索引，然后查看全部索引
 
 请求：
 
@@ -303,7 +303,7 @@ yellow open   customer rG5fxdruTNmD-bdYIF5zOg   5   1          0            0   
   <pre>health status index uuid pri rep docs.count docs.deleted store.size pri.store.size</pre>
 </div>
 
-到现在为止，我们已经学习了创建/删除索引、索引/查询文档这四个命令
+到现在为止，[我们](https://www.w3cdoc.com)已经学习了创建/删除索引、索引/查询文档这四个命令
 
 <div class="cnblogs_code">
   <pre>curl -X PUT "localhost:9200/customer"
@@ -312,7 +312,7 @@ curl -X GET "localhost:9200/customer/_doc/1"
 curl -X DELETE "localhost:9200/customer"</pre>
 </div>
 
-如果我们仔细研究上面的命令，我们实际上可以看到如何在Elasticsearch中访问数据的模式。这种模式可以概括如下：
+如果[我们](https://www.w3cdoc.com)仔细研究上面的命令，[我们](https://www.w3cdoc.com)实际上可以看到如何在Elasticsearch中访问数据的模式。这种模式可以概括如下：
 
 <div class="cnblogs_code">
   <pre>&lt;REST Verb> /&lt;Index>/&lt;Type>/&lt;ID></pre>
@@ -322,7 +322,7 @@ curl -X DELETE "localhost:9200/customer"</pre>
 
 ## 更新文档
 
-事实上，每当我们执行更新时，Elasticsearch就会删除旧文档，然后索引一个新的文档。
+事实上，每当[我们](https://www.w3cdoc.com)执行更新时，Elasticsearch就会删除旧文档，然后索引一个新的文档。
 
 下面这个例子展示了如何更新一个文档（ID为1），改变name字段为&#8221;Jane Doe&#8221;，同时添加一个age字段：
 
@@ -578,7 +578,7 @@ curl -X DELETE "localhost:9200/customer"</pre>
   </div>
 </div>
 
-现在，我们来重新查看一下索引文档
+现在，[我们](https://www.w3cdoc.com)来重新查看一下索引文档
 
 <div class="cnblogs_code">
   <pre>curl -X GET "localhost:9200/customer/_doc/1?pretty"</pre>
@@ -590,7 +590,7 @@ curl -X DELETE "localhost:9200/customer"</pre>
 
 ## 示例数据
 
-现在我们已经了解了基础知识，让我们尝试处理一个更真实的数据集。我准备了一个关于客户银行账户信息的虚构JSON文档示例。每个文档都有以下格式：
+现在[我们](https://www.w3cdoc.com)已经了解了基础知识，让[我们](https://www.w3cdoc.com)尝试处理一个更真实的数据集。我准备了一个关于客户银行账户信息的虚构JSON文档示例。每个文档都有以下格式：
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
@@ -620,7 +620,7 @@ curl -X DELETE "localhost:9200/customer"</pre>
 
 你可以从这里<a href="https://raw.githubusercontent.com/elastic/elasticsearch/master/docs/src/test/resources/accounts.json" target="_blank" rel="noopener noreferrer">下载</a>示例数据
 
-提取它到我们的当前目录，并且加载到我们的集群中：
+提取它到[我们](https://www.w3cdoc.com)的当前目录，并且加载到[我们](https://www.w3cdoc.com)的集群中：
 
 新建一个文件accounts.json，然后将数据复制粘贴到该文件中，保存退出
 
@@ -632,7 +632,7 @@ curl -X DELETE "localhost:9200/customer"</pre>
 
 此时，accounts.json中的文档数据便被索引到&#8221;bank&#8221;索引下
 
-让我们查看一下索引：
+让[我们](https://www.w3cdoc.com)查看一下索引：
 
 请求：
 
@@ -648,13 +648,13 @@ yellow open   customer DoM-O7QmRk-6f3Iuls7X6Q   5   1          1            0   
 yellow open   bank     59jD3B4FR8iifWWjrdMzUg   5   1       1000            0    474.7kb        474.7kb</pre>
 </div>
 
-可以看到，现在我们的集群中有两个索引，分别是&#8221;customer&#8221;和&#8221;bank&#8221;
+可以看到，现在[我们](https://www.w3cdoc.com)的集群中有两个索引，分别是&#8221;customer&#8221;和&#8221;bank&#8221;
 
 &#8220;customer&#8221;索引，1个文档，&#8221;bank&#8221;索引有1000个文档
 
 ## The Search API
 
-现在让我们从一些简单的搜索开始。运行搜索有两种基本方法：一种是通过REST请求URI发送检索参数，另一种是通过REST请求体发送检索参数。
+现在让[我们](https://www.w3cdoc.com)从一些简单的搜索开始。运行搜索有两种基本方法：一种是通过REST请求URI发送检索参数，另一种是通过REST请求体发送检索参数。
 
 （画外音：一种是把检索参数放在URL后面，另一种是放在请求体里面。相当于HTTP的GET和POST请求）
 
@@ -666,9 +666,9 @@ yellow open   bank     59jD3B4FR8iifWWjrdMzUg   5   1       1000            0   
   <pre>curl -X GET "localhost:9200/bank/_search?q=*&sort=account_number:asc&pretty"</pre>
 </div>
 
-让我们来剖析一下上面的请求。
+让[我们](https://www.w3cdoc.com)来剖析一下上面的请求。
 
-我们在&#8221;bank&#8221;索引中检索，q=*参数表示匹配所有文档；sort=account\_number:asc表示每个文档的account\_number字段升序排序；pretty参数表示返回漂亮打印的JSON结果。
+[我们](https://www.w3cdoc.com)在&#8221;bank&#8221;索引中检索，q=*参数表示匹配所有文档；sort=account\_number:asc表示每个文档的account\_number字段升序排序；pretty参数表示返回漂亮打印的JSON结果。
 
 响应结果看起来是这样的：
 
@@ -768,13 +768,13 @@ yellow open   bank     59jD3B4FR8iifWWjrdMzUg   5   1       1000            0   
 可以看到，响应由下列几部分组成：
 
 * took ： Elasticsearch执行搜索的时间（以毫秒为单位）
-* timed_out ： 告诉我们检索是否超时
-* _shards ： 告诉我们检索了多少分片，以及成功/失败的分片数各是多少
+* timed_out ： 告诉[我们](https://www.w3cdoc.com)检索是否超时
+* _shards ： 告诉[我们](https://www.w3cdoc.com)检索了多少分片，以及成功/失败的分片数各是多少
 * hits ： 检索的结果
 * hits.total ： 符合检索条件的文档总数
 * hits.hits ： 实际的检索结果数组（默认为前10个文档）
 * hits.sort ： 排序的key（如果按分值排序的话则不显示）
-* hits.\_score 和 max\_score 现在我们先忽略这些字段
+* hits.\_score 和 max\_score 现在[我们](https://www.w3cdoc.com)先忽略这些字段
 
 下面是一个和上面相同，但是用请求体的例子：
 
@@ -797,7 +797,7 @@ yellow open   bank     59jD3B4FR8iifWWjrdMzUg   5   1       1000            0   
   </div>
 </div>
 
-区别在于，我们没有在URI中传递q=*，而是向_search API提供json风格的查询请求体
+区别在于，[我们](https://www.w3cdoc.com)没有在URI中传递q=*，而是向_search API提供json风格的查询请求体
 
 很重要的一点是，一旦返回搜索结果，Elasticsearch就完全完成了对请求的处理，不会在结果中维护任何类型的服务器端资源或打开游标。这是许多其他平台如SQL形成鲜明对比。
 
@@ -807,7 +807,7 @@ Elasticsearch提供了一种JSON风格的语言，您可以使用这种语言执
 
 查询语言非常全面，乍一看可能有些吓人，但实际上最好的学习方法是从几个基本示例开始。
 
-回到我们上一个例子，我们执行这样的查询：
+回到[我们](https://www.w3cdoc.com)上一个例子，[我们](https://www.w3cdoc.com)执行这样的查询：
 
 <div class="cnblogs_code">
   <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
@@ -817,9 +817,9 @@ Elasticsearch提供了一种JSON风格的语言，您可以使用这种语言执
 '</pre>
 </div>
 
-查询部分告诉我们查询定义是什么，match\_all部分只是我们想要运行的查询类型。这里match\_all查询只是在指定索引中搜索所有文档。
+查询部分告诉[我们](https://www.w3cdoc.com)查询定义是什么，match\_all部分只是[我们](https://www.w3cdoc.com)想要运行的查询类型。这里match\_all查询只是在指定索引中搜索所有文档。
 
-除了查询参数外，我们还可以传递其他参数来影响搜索结果。在上面部分的例子中，我们传的是sort参数，这里我们传size：
+除了查询参数外，[我们](https://www.w3cdoc.com)还可以传递其他参数来影响搜索结果。在上面部分的例子中，[我们](https://www.w3cdoc.com)传的是sort参数，这里[我们](https://www.w3cdoc.com)传size：
 
 <div class="cnblogs_code">
   <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
@@ -869,9 +869,9 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 ## 搜索
 
-继续学习查询DSL。首先，让我们看一下返回的文档字段。默认情况下，会返回完整的JSON文档（PS：也就是返回所有字段）。这被成为source（hits._source）
+继续学习查询DSL。首先，让[我们](https://www.w3cdoc.com)看一下返回的文档字段。默认情况下，会返回完整的JSON文档（PS：也就是返回所有字段）。这被成为source（hits._source）
 
-如果我们不希望返回整个源文档，我们可以从源文档中只请求几个字段来返回。
+如果[我们](https://www.w3cdoc.com)不希望返回整个源文档，[我们](https://www.w3cdoc.com)可以从源文档中只请求几个字段来返回。
 
 下面的例子展示了只返回文档中的两个字段：account_number 和 balance字段
 
@@ -886,7 +886,7 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 （画外音：相当于SELECT account_number， balance FROM bank）
 
-现在让我们继续查询部分。以前，我们已经看到了如何使用match_all查询匹配所有文档。现在让我们引入一个名为match query的新查询，它可以被看作是基本的字段搜索查询(即针对特定字段或字段集进行的搜索)。
+现在让[我们](https://www.w3cdoc.com)继续查询部分。以前，[我们](https://www.w3cdoc.com)已经看到了如何使用match_all查询匹配所有文档。现在让[我们](https://www.w3cdoc.com)引入一个名为match query的新查询，它可以被看作是基本的字段搜索查询(即针对特定字段或字段集进行的搜索)。
 
 下面的例子返回account_number为20的文档
 
@@ -924,7 +924,7 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 （画外音：相当于SELECT * FROM bank WHERE address LIKE &#8216;%mill&#8217; OR address LIKE &#8216;%lane%&#8217;）
 
-让我们来引入bool查询，bool查询允许我们使用布尔逻辑将较小的查询组合成较大的查询。
+让[我们](https://www.w3cdoc.com)来引入bool查询，bool查询允许[我们](https://www.w3cdoc.com)使用布尔逻辑将较小的查询组合成较大的查询。
 
 下面的例子将两个match查询组合在一起，返回address中包含&#8221;mill&#8221;和&#8221;lane&#8221;的账户：
 
@@ -982,7 +982,7 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 （画外音：逻辑运算符：与/或/非，and/or/not，在这里就是must/should/must_not）
 
-我们可以在bool查询中同时组合must、should和must_not子句。此外，我们可以在任何bool子句中编写bool查询，以模拟任何复杂的多级布尔逻辑。
+[我们](https://www.w3cdoc.com)可以在bool查询中同时组合must、should和must_not子句。此外，[我们](https://www.w3cdoc.com)可以在任何bool子句中编写bool查询，以模拟任何复杂的多级布尔逻辑。
 
 下面的例子是一个综合应用：
 
@@ -1015,15 +1015,15 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 ## 过滤
 
-分数是一个数值，它是文档与我们指定的搜索查询匹配程度的相对度量（PS：相似度）。分数越高，文档越相关，分数越低，文档越不相关。
+分数是一个数值，它是文档与[我们](https://www.w3cdoc.com)指定的搜索查询匹配程度的相对度量（PS：相似度）。分数越高，文档越相关，分数越低，文档越不相关。
 
 但是查询并不总是需要产生分数，特别是当它们仅用于“过滤”文档集时。Elasticsearch检测到这些情况并自动优化查询执行，以便不计算无用的分数。
 
-我们在前一节中介绍的bool查询还支持filter子句，该子句允许使用查询来限制将由其他子句匹配的文档，而不改变计算分数的方式。
+[我们](https://www.w3cdoc.com)在前一节中介绍的bool查询还支持filter子句，该子句允许使用查询来限制将由其他子句匹配的文档，而不改变计算分数的方式。
 
-作为一个例子，让我们引入range查询，它允许我们通过一系列值筛选文档。这通常用于数字或日期过滤。
+作为一个例子，让[我们](https://www.w3cdoc.com)引入range查询，它允许[我们](https://www.w3cdoc.com)通过一系列值筛选文档。这通常用于数字或日期过滤。
 
-下面这个例子用一个布尔查询返回所有余额在20000到30000之间（包括30000，BETWEEN&#8230;AND&#8230;是一个闭区间）的账户。换句话说，我们想要找到余额大于等于20000并且小于等等30000的账户。
+下面这个例子用一个布尔查询返回所有余额在20000到30000之间（包括30000，BETWEEN&#8230;AND&#8230;是一个闭区间）的账户。换句话说，[我们](https://www.w3cdoc.com)想要找到余额大于等于20000并且小于等等30000的账户。
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
@@ -1168,7 +1168,7 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
   </div>
 </div>
 
-注意，我们将size=0设置为不显示搜索结果，因为我们只想看到响应中的聚合结果。
+注意，[我们](https://www.w3cdoc.com)将size=0设置为不显示搜索结果，因为[我们](https://www.w3cdoc.com)只想看到响应中的聚合结果。
 
 接下来的例子跟上一个类似，按照state分组，然后取balance的平均值
 
@@ -1208,7 +1208,7 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
   <pre>SELECT state, COUNT(*), AVG(balance) FROM bank GROUP BY state ORDER BY COUNT(*) DESC LIMIT 10;</pre>
 </div>
 
-下面这个例子展示了我们如何根据年龄段(20-29岁，30-39岁，40-49岁)来分组，然后根据性别分组，最后得到平均账户余额，每个年龄等级，每个性别：
+下面这个例子展示了[我们](https://www.w3cdoc.com)如何根据年龄段(20-29岁，30-39岁，40-49岁)来分组，然后根据性别分组，最后得到平均账户余额，每个年龄等级，每个性别：
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">

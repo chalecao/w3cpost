@@ -40,7 +40,7 @@ title: JS闭包与原型链
 
 ## 原型与构造函数
 
-Js所有的函数都有一个prototype属性，这个属性引用了一个对象，即原型对象，也简称原型。这个函数包括构造函数和普通函数，我们讲的更多是构造函数的原型，但是也不能否定普通函数也有原型。譬如普通函数：
+Js所有的函数都有一个prototype属性，这个属性引用了一个对象，即原型对象，也简称原型。这个函数包括构造函数和普通函数，[我们](https://www.w3cdoc.com)讲的更多是构造函数的原型，但是也不能否定普通函数也有原型。譬如普通函数：
 
 <pre class="pure-highlightjs"><code class="">function F(){
 　　;
@@ -79,7 +79,7 @@ alert("member: " + num);//alert出原型所有成员个数。
 <pre class="pure-highlightjs"><code class="">A.prototype.say=function(){alert("Hi")};
 </code>&lt;/code></pre>
 
-那所有的A的对象都具有了say方法，这个原型对象的say方法是唯一的副本给大家共享的，而不是每一个对象都有关于say方法的一个副本。
+那所有的A的对象都具有了say方法，这个原型对象的say方法是唯一的副本给[大家](https://www.w3cdoc.com)共享的，而不是每一个对象都有关于say方法的一个副本。
 
 ## 原型与继承
 
@@ -179,7 +179,7 @@ return x - y;
 
 #### 原型使用方式2
 
-当我们把一堆方法写到Calculator中，但是有些方法我们不想对外公开，即实现public/private，那么我们只能返回公开的方法:<figure>
+当[我们](https://www.w3cdoc.com)把一堆方法写到Calculator中，但是有些方法[我们](https://www.w3cdoc.com)不想对外公开，即实现public/private，那么[我们](https://www.w3cdoc.com)只能返回公开的方法:<figure>
 
 <table>
   <tr>
@@ -253,9 +253,9 @@ return x - y;
   </tr>
 </table></figure>
 
-这里用利用函数自执行在加载文件同时，执行上面的JS代码，那么我们就可以访问对外公开的方法和属性。访问方法：(new Calculaotr()).A(1,2); 错误的访问方法：(new Calculaotr()).add(1,2);
+这里用利用函数自执行在加载文件同时，执行上面的JS代码，那么[我们](https://www.w3cdoc.com)就可以访问对外公开的方法和属性。访问方法：(new Calculaotr()).A(1,2); 错误的访问方法：(new Calculaotr()).add(1,2);
 
-我们可能会遇到这样的情况，类A的一个属性是B类型，在JS中，可以通过以下方式实现:<figure>
+[我们](https://www.w3cdoc.com)可能会遇到这样的情况，类A的一个属性是B类型，在JS中，可以通过以下方式实现:<figure>
 
 <table>
   <tr>
@@ -325,11 +325,11 @@ return x - y;
   </tr>
 </table></figure>
 
-这里我们可以看到Calculator的原型是指向到BaseCalculator的一个实例上，目的是让Calculator集成它的add(x,y)和subtract(x,y)这2个function，
+这里[我们](https://www.w3cdoc.com)可以看到Calculator的原型是指向到BaseCalculator的一个实例上，目的是让Calculator集成它的add(x,y)和subtract(x,y)这2个function，
 
 还有一点要说的是，由于它的原型是BaseCalculator的一个实例，所以不管你创建多少个Calculator对象实例，他们的原型指向的都是同一个实例。
 
-如果我们不想让Calculator对象访问BaseCalculator的decimalDigits属性，可以这样:<figure>
+如果[我们](https://www.w3cdoc.com)不想让Calculator对象访问BaseCalculator的decimalDigits属性，可以这样:<figure>
 
 <table>
   <tr>
@@ -403,7 +403,7 @@ return x - y;
 
 重写原型:
 
-在项目中，引入外部JS库，但是有些方法并不是我们想要的，此时我们通过重写原型，就可以达到我们想要的结果:<figure>
+在项目中，引入外部JS库，但是有些方法并不是[我们](https://www.w3cdoc.com)想要的，此时[我们](https://www.w3cdoc.com)通过重写原型，就可以达到[我们](https://www.w3cdoc.com)想要的结果:<figure>
 
 <table>
   <tr>
@@ -625,7 +625,7 @@ return x - y;
 
 以上add函数返回的是3，而不是13则说明，属性查找时，优先查找自己的属性。然后在往上一级找，最后找Object，这样看来，在遍历时用for in效率就是个问题。
 
-还有一点，我们可以赋值任何类型的对象到原型上，但是不能赋值原子类型的值，比如如下代码是无效的：<figure>
+还有一点，[我们](https://www.w3cdoc.com)可以赋值任何类型的对象到原型上，但是不能赋值原子类型的值，比如如下代码是无效的：<figure>
 
 <table>
   <tr>
@@ -645,7 +645,7 @@ return x - y;
 
 hasOwnProperty是判断一个对象是否包含自定义属性而不是原型链上的属性，是JS中唯一一个查找属性，但不查找原型链的函数。
 
-但是JS不会保护hasOwnProperty函数，如果刚好某个对象中也有hasOwnProperty函数，则我们可以通过以下方式正确获得想要的结果:<figure>
+但是JS不会保护hasOwnProperty函数，如果刚好某个对象中也有hasOwnProperty函数，则[我们](https://www.w3cdoc.com)可以通过以下方式正确获得想要的结果:<figure>
 
 <table>
   <tr>
@@ -659,7 +659,7 @@ hasOwnProperty是判断一个对象是否包含自定义属性而不是原型链
   </tr>
 </table></figure>
 
-这里的c是Calculator的一个对象,tax是我们要找的属性。
+这里的c是Calculator的一个对象,tax是[我们](https://www.w3cdoc.com)要找的属性。
 
 当我面在for in loop 语句中查找属性时，用hasOwnProperty函数，提高效率:<figure>
 
@@ -701,4 +701,4 @@ hasOwnProperty是判断一个对象是否包含自定义属性而不是原型链
 
 ### 谢谢！
 
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T

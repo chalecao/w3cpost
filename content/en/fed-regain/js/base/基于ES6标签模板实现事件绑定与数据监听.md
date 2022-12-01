@@ -22,7 +22,7 @@ ES6 字符模板 \`hello ${name}\`
     >{0: ["Hello ", " tpl ", ""], 1: 1, 2: 2}
     </code>
 
-看出猫腻了吗？标签模板会把字符模板拆分开，把数据和模板片段传到标签函数里。那么我们可以基于这个特性，实现我们想要的功能：事件绑定与数据监听。
+看出猫腻了吗？标签模板会把字符模板拆分开，把数据和模板片段传到标签函数里。那么[我们](https://www.w3cdoc.com)可以基于这个特性，实现[我们](https://www.w3cdoc.com)想要的功能：事件绑定与数据监听。
 
 ## 事件绑定
 
@@ -37,16 +37,16 @@ document.body.appendChild(content)
   </div>
 </div>
 
-  编写上面这段代码，我们用这种格式来定义事件：
+  编写上面这段代码，[我们](https://www.w3cdoc.com)用这种格式来定义事件：
 
 <div>
   <pre><code>&lt;code>${{ click: handleClick(123) }}
 </code>&lt;/code></pre>
 </div>
 
-  click是事件名，<code>handleClick</code>是高阶函数响应这个点击事件。这里用高阶函数，主要是为了方便传参数。不明白的地方可以参考：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/qianduanhanshushibianchengfpyixueyiyong/">前端函数式编程FP易学易用</a>
+  click是事件名，<code>handleClick</code>是高阶函数响应这个点击事件。这里用高阶函数，主要是为了方便传参数。不明白的地方可以参考：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/qianduanhanshushibianchengfpyixueyiyong/">[前端](https://www.w3cdoc.com)函数式编程FP易学易用</a>
 
-  nodeTpl这个标签模板函数中，我们只需要判断传进来的参数是不是一个对象，然后再绑定对应的事件就可以了。
+  nodeTpl这个标签模板函数中，[我们](https://www.w3cdoc.com)只需要判断传进来的参数是不是一个对象，然后再绑定对应的事件就可以了。
 
 <div>
   <pre><code>&lt;code>
@@ -199,7 +199,7 @@ proxy其实类似于knockout的做法，为要监听的目标生成一个代理�
       })
     }
     
-    // 我们不需为每个属性进行监听，仅监听这个对象即可
+    // [我们](https://www.w3cdoc.com)不需为每个属性进行监听，仅监听这个对象即可
     let obj = defineReactive({ a: 1, b: 2 })
     
     obj.a = 2 // set=>> a 2
@@ -207,7 +207,7 @@ proxy其实类似于knockout的做法，为要监听的目标生成一个代理�
     obj.c = 3 // set=>> c 3
     </code>
 
-有了这些方法，我们就可以拿到数据变化的触发点，然后可以用来更新我们页面需要更新的地方，进行视图渲染。
+有了这些方法，[我们](https://www.w3cdoc.com)就可以拿到数据变化的触发点，然后可以用来更新[我们](https://www.w3cdoc.com)页面需要更新的地方，进行视图渲染。
 
 如果只是监听一处的数据变化还是比较简单的，关键是一个数据可能用在多个地方，所以数据发生变化的时候，多个地方要同时处理。根据上面第一部分事件绑定来说，这里需要对元素的监听做统一处理。合并相同的监听对象的监听，这样在改监听对象发生变化的时候，可以处理所有的事件绑定和内容变更。
 
@@ -329,7 +329,7 @@ proxy其实类似于knockout的做法，为要监听的目标生成一个代理�
     
                                     newNode.innerHTML = '';
                                     let olist = srul.oldNode.childNodes;
-                                    // 这里搬移childNodes 里面不能使用顺序使用append方法，childNodes会发生变化，这可能是浏览器bug
+                                    // 这里搬移childNodes 里面不能使用顺序使用append方法，childNodes会发生变化，这可能是[浏览器](https://www.w3cdoc.com)bug
                                     // 使用倒序没有问题，使用insertBefore模拟prepend方法
                                     for (let i = olist.length -1; i >= 0; i--) {
                                             // 模拟prepend

@@ -17,7 +17,7 @@ AARRR专注于获客（Acquisition），作为一个2007年提出的概念， AA
 
 一组数据显示，现在平均每个App在安装后的情况：前3天内将流失掉77％的DAU。在30天内，它将流失90％的DAU。而到了90天，流失率跃升到95％以上。不管你是否心存怀疑，这就是目前众多创业公司所面对的现实窘境，它创造了Brian Balfour所说的“无意义成长之轮”。
 
-因为以上两个原因，现在黑客增长的真正关键在于用户留存，而不是获客。所以我们需要一个更好的模型——就是RARRA模型。
+因为以上两个原因，现在黑客增长的真正关键在于用户留存，而不是获客。所以[我们](https://www.w3cdoc.com)需要一个更好的模型——就是RARRA模型。
 
 ## AARRR与RARRA的区别 {#toc-2}
 
@@ -29,9 +29,9 @@ RARRA模型是托马斯·佩蒂特Thomas Petit和贾博·帕普Gabor Papp对于�
 
 ## RARRA模型下，如何做用户增长？（成功案例分享） {#toc-3}
 
-分享一个我们前不久自己做的**RARRA模型下**用户增长的成功案例：
+分享一个[我们](https://www.w3cdoc.com)前不久自己做的**RARRA模型下**用户增长的成功案例：
 
-我们做的是一个在线教育平台，课程的分类包括：
+[我们](https://www.w3cdoc.com)做的是一个在线教育平台，课程的分类包括：
 
 * 以拉新为目的的新用户免费体验课（0元）；
 * 以转化为目的的低价专题课（50元以内）；
@@ -43,9 +43,9 @@ RARRA模型是托马斯·佩蒂特Thomas Petit和贾博·帕普Gabor Papp对于�
 
 **数据分析的第一步，也是关键点在于：构建指标体系。**
 
-对于一个平台来说，一般的数据指标都非常多，但必须确定唯一关键指标（OMTM），也是大家常说的**北极星指标**，作为驱动的方向。
+对于一个平台来说，一般的数据指标都非常多，但必须确定唯一关键指标（OMTM），也是[大家](https://www.w3cdoc.com)常说的**北极星指标**，作为驱动的方向。
 
-回归商业本质，一切商业模式的终极目标当然是**收入**，但是收入这个指标并非北极星指标，而是**决定北极星指标的上级因素。**如下图所示，平台收入=有效听课用户数*客单价。因为课程的客单价有大致的市场标准，不会做太多变动。因此经过分析，我们认为直播课程运营的北极星指标是——**有效听课用户数，**也就是购买了课程并且有效听课的用户数量。
+回归商业本质，一切商业模式的终极目标当然是**收入**，但是收入这个指标并非北极星指标，而是**决定北极星指标的上级因素。**如下图所示，平台收入=有效听课用户数*客单价。因为课程的客单价有大致的市场标准，不会做太多变动。因此经过分析，[我们](https://www.w3cdoc.com)认为直播课程运营的北极星指标是——**有效听课用户数，**也就是购买了课程并且有效听课的用户数量。
 
 那么接下来，就要对北极星指标进行分解。
 
@@ -60,13 +60,13 @@ RARRA模型是托马斯·佩蒂特Thomas Petit和贾博·帕普Gabor Papp对于�
 
 但是由于时间和资源的限制，对于三个指标，运营策略上肯定会有侧重点和先后顺序。
 
-**一开始，我们采用的是AARRR模型，把重点放在提升流量和新用户转化率上。**通过广告投放、拉新红包等大量引流，并在课程设计上做了很多设计促进新用户转化率。最后流量和转化率都提升了，但问题是，用户停留在0元免费课和低价转化课上，而续报高价课的有效用户很少，这样看似产品新增用户很多，热热闹闹，但整体的营收还是上不去。
+**一开始，[我们](https://www.w3cdoc.com)采用的是AARRR模型，把重点放在提升流量和新用户转化率上。**通过广告投放、拉新红包等大量引流，并在课程设计上做了很多设计促进新用户转化率。最后流量和转化率都提升了，但问题是，用户停留在0元免费课和低价转化课上，而续报高价课的有效用户很少，这样看似产品新增用户很多，热热闹闹，但整体的营收还是上不去。
 
-团队分析后认为，**AARRR模型**可能并不适合我们。既然续课率出了问题，应该尝试采用**RARRA模型，**把运营重点放在留存上。
+团队分析后认为，**AARRR模型**可能并不适合[我们](https://www.w3cdoc.com)。既然续课率出了问题，应该尝试采用**RARRA模型，**把运营重点放在留存上。
 
 于是，数据组开始探索留存的问题点出现在哪里。
 
-我们拉出不同维度用户数据进行对比，最后发现新用户和老用户的续课率差值竟高达53%。
+[我们](https://www.w3cdoc.com)拉出不同维度用户数据进行对比，最后发现新用户和老用户的续课率差值竟高达53%。
 
 <img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/ZeVAtME5SaSCJlqxcOse.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/ZeVAtME5SaSCJlqxcOse.png?x-oss-process=image/format,webp" alt="" width="466" height="273" data-action="zoom" />
 
@@ -76,12 +76,12 @@ RARRA模型是托马斯·佩蒂特Thomas Petit和贾博·帕普Gabor Papp对于�
 
 找到了最痛的点，问题其实已经解决了一半。
 
-接下来，通过各种数据因素分析，我们判断出了影响新用户续课率的几个重点因素，分别是：用户来源、课前服务、课程质量。并且对每一个因素继续分解深挖。（标红为续课率效果最好）
+接下来，通过各种数据因素分析，[我们](https://www.w3cdoc.com)判断出了影响新用户续课率的几个重点因素，分别是：用户来源、课前服务、课程质量。并且对每一个因素继续分解深挖。（标红为续课率效果最好）
 
 <img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/QohKG1fJkDzXqSrchHa3.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/QohKG1fJkDzXqSrchHa3.png?x-oss-process=image/format,webp" alt="" width="524" height="215" data-action="zoom" />
 
 * 在课程质量方面，三个细分数据指标综合可以衡量课程质量。
-* 课前服务时间上，通过数据对比，我们发现课前两周进行服务的效果最好，续课率也最高。
+* 课前服务时间上，通过数据对比，[我们](https://www.w3cdoc.com)发现课前两周进行服务的效果最好，续课率也最高。
 * 用户来源上，短期班课的用户续课率远高于其他两个来源。
 
 根据以上的数据分析，给出了运营策略指导为：
@@ -96,4 +96,4 @@ RARRA模型是托马斯·佩蒂特Thomas Petit和贾博·帕普Gabor Papp对于�
 
 <img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/IN5JQpiAh7yw4traFGec.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/IN5JQpiAh7yw4traFGec.png?x-oss-process=image/format,webp" alt="" width="544" height="300" data-action="zoom" />
 
-阶段性的成功，正是及时调整了用户增长模型，并采用系统的数据分析方法驱动用户增长。可以看出，数据驱动下，最终给出的运营策略非常简洁，但前面数据组背后付出的努力和精力是很难被看到的。这正是我们想要的结果，扎根稳且深入，但呈现的却是简洁明了的运营指令。
+阶段性的成功，正是及时调整了用户增长模型，并采用系统的数据分析方法驱动用户增长。可以看出，数据驱动下，最终给出的运营策略非常简洁，但前面数据组背后付出的努力和精力是很难被看到的。这正是[我们](https://www.w3cdoc.com)想要的结果，扎根稳且深入，但呈现的却是简洁明了的运营指令。

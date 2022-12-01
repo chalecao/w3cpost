@@ -115,7 +115,7 @@ title: 转:react-redux原理介绍，最易懂的说明
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
 
     <p>
-      我们可以通过store.getState()来了解工厂中商品的状态， 使用store.dispatch发送action指令。
+      [我们](https://www.w3cdoc.com)可以通过store.getState()来了解工厂中商品的状态， 使用store.dispatch发送action指令。
     </p>
     
     <h4 class="heading" data-id="heading-4">
@@ -169,7 +169,7 @@ store.dispatch(actions.increase()) // {count: 3}
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
 
     <p>
-      <strong>我们可以直接在react component上使用store.dispatch，但是这样不太方便，这个时候我们需要react-redux</strong>
+      <strong>[我们](https://www.w3cdoc.com)可以直接在react component上使用store.dispatch，但是这样不太方便，这个时候[我们](https://www.w3cdoc.com)需要react-redux</strong>
     </p>
     
     <pre><code class="hljs bash copyable" lang="bash">class Todos extends Component {
@@ -214,7 +214,7 @@ store.dispatch(actions.increase()) // {count: 3}
     </p>
     
     <p>
-      这个函数允许我们将 store 中的数据作为 props 绑定到组件上。
+      这个函数允许[我们](https://www.w3cdoc.com)将 store 中的数据作为 props 绑定到组件上。
     </p>
     
     <p>
@@ -269,7 +269,7 @@ class Todos extends Component {
     </p>
     
     <p>
-      7.1 <code>mapStateToProps这个函数允许我们将 store 中的数据作为 props 绑定到组件上。</code>
+      7.1 <code>mapStateToProps这个函数允许[我们](https://www.w3cdoc.com)将 store 中的数据作为 props 绑定到组件上。</code>
     </p>
     
     <p>
@@ -299,7 +299,7 @@ class Todos extends Component {
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
 
     <p>
-      在reducer.js中，定义了初始化的state，通过connect方法，我们就能使用this.props.lists拿到初始化的state。
+      在reducer.js中，定义了初始化的state，通过connect方法，[我们](https://www.w3cdoc.com)就能使用this.props.lists拿到初始化的state。
     </p>
     
     <pre><code class="hljs bash copyable" lang="bash">import React, { Component } from &lt;span class="hljs-string">'react'&lt;/span>;
@@ -366,7 +366,7 @@ class Todos extends Component {
     </p>
     
     <p>
-      我们可以方便得使用去调用
+      [我们](https://www.w3cdoc.com)可以方便得使用去调用
     </p>
     
     <pre><code class="hljs bash copyable" lang="bash">    &lt;div onCLick={()=&gt;this.props.del_todo() }&gt;&lt;span class="hljs-built_in">test&lt;/span>&lt;/div&gt;
@@ -377,7 +377,7 @@ class Todos extends Component {
     </h4>
     
     <p>
-      了解到这里，我们会发现并没有使用store.dispatch方法去发出命令，但是state已经修改，view也变化了，那么到底发生了什么？
+      了解到这里，[我们](https://www.w3cdoc.com)会发现并没有使用store.dispatch方法去发出命令，但是state已经修改，view也变化了，那么到底发生了什么？
     </p>
     
     <pre><code class="hljs bash copyable" lang="bash">store.dispatch(actions.increase())

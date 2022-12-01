@@ -9,7 +9,7 @@ title: 从Seq2seq到Attention模型到Self Attention（2）
 
 # 前言
 
-系列一中，我们学到attention model是如何运作的，缺点就是不能平行化，且忽略了输入句中文字间和目标句中文字间的关係。
+系列一中，[我们](https://www.w3cdoc.com)学到attention model是如何运作的，缺点就是不能平行化，且忽略了输入句中文字间和目标句中文字间的关係。
 
 为了解决此问题，2017年，Self attention诞生了。<figure>
 
@@ -19,7 +19,7 @@ title: 从Seq2seq到Attention模型到Self Attention（2）
 
 # **Self Attention**
 
-Self attention是Google在 “Attention is all you need”论文中提出的”The transformer”模型中主要的概念之一，我们可以把”The transformer”想成是个黑盒子，将输入句输入这个黑盒子，就会產生目标句。
+Self attention是Google在 “Attention is all you need”论文中提出的”The transformer”模型中主要的概念之一，[我们](https://www.w3cdoc.com)可以把”The transformer”想成是个黑盒子，将输入句输入这个黑盒子，就会產生目标句。
 
 最特别的地方是，”The transformer”完全捨弃了RNN、CNN的架构。<figure>
 
@@ -37,7 +37,7 @@ Self attention是Google在 “Attention is all you need”论文中提出的”T
 
 # **Query, Key, Value**
 
-进入”The transformer”前，我们重新复习attention model，attention model是从输入句<X1,X2,X3…Xm>產生h1,h2,h….hm的hidden state，透过attention score α 乘上input 的序列加权求和得到Context vector c_{i}，有了context vector和hidden state vector，便可计算目标句<y1…yn>。换言之，就是将输入句作为input而目标句作为output。
+进入”The transformer”前，[我们](https://www.w3cdoc.com)重新复习attention model，attention model是从输入句<X1,X2,X3…Xm>產生h1,h2,h….hm的hidden state，透过attention score α 乘上input 的序列加权求和得到Context vector c_{i}，有了context vector和hidden state vector，便可计算目标句<y1…yn>。换言之，就是将输入句作为input而目标句作为output。
 
 如果用另一种说法重新詮释：
 
@@ -51,13 +51,13 @@ Self attention是Google在 “Attention is all you need”论文中提出的”T
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/agghoenmg7.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/agghoenmg7.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
-有了Key, Value, Query的概念，我们可以将attention model中的Decoder公式重新改写。1. score e\_{ij}= Similarity(Query, Key\_{i})，上一篇有提到3种计算权重的方式，而我们选择用内积。2. 有了Similarity(Query, Key\_{i})，便可以透过softmax算出Softmax(sim\_{i})=a\_{i}，接著就可以透过attention score a\_{i}乘上Value_{i}的序列和加总所得 = Attention(Query, Source)，也就是context/attention vector。<figure>
+有了Key, Value, Query的概念，[我们](https://www.w3cdoc.com)可以将attention model中的Decoder公式重新改写。1. score e\_{ij}= Similarity(Query, Key\_{i})，上一篇有提到3种计算权重的方式，而[我们](https://www.w3cdoc.com)选择用内积。2. 有了Similarity(Query, Key\_{i})，便可以透过softmax算出Softmax(sim\_{i})=a\_{i}，接著就可以透过attention score a\_{i}乘上Value_{i}的序列和加总所得 = Attention(Query, Source)，也就是context/attention vector。<figure>
 
 <div class="image-block">
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/l2fqqik7e3.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/l2fqqik7e3.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
-在了解Key, Value, Query的概念后，我们可以进入”the transformer”的世界了。
+在了解Key, Value, Query的概念后，[我们](https://www.w3cdoc.com)可以进入”the transformer”的世界了。
 
 # **Scaled Dot-Product Attention**
 
@@ -71,7 +71,7 @@ Self attention是Google在 “Attention is all you need”论文中提出的”T
 
 “The transformer”在计算attention的方式有三种，1. encoder self attention，存在於encoder间. 2. decoder self attention，存在於decoder间，3. encoder-decoder attention, 这种attention算法和过去的attention model相似。
 
-接下来我们透过encoder和decoder两部份，来分别介绍encoder/decoder self attention。<figure>
+接下来[我们](https://www.w3cdoc.com)透过encoder和decoder两部份，来分别介绍encoder/decoder self attention。<figure>
 
 <div class="image-block">
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/mvfg113ss1.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/mvfg113ss1.jpeg.jpg?x-oss-process=image/format,webp" />
@@ -79,7 +79,7 @@ Self attention是Google在 “Attention is all you need”论文中提出的”T
 
 # **Encoder**
 
-我们将”The transformer”模型分为左右两部分，左边是Encoder，如前述，”Attention is all you need”当中N=6，代表Encoder部分是由6个encoder堆积而成的。其中在计算encoder self attention时，更透过multi-head的方式去学习不同空间的特徵，在后续内容会探讨multi-head的部分。<figure>
+[我们](https://www.w3cdoc.com)将”The transformer”模型分为左右两部分，左边是Encoder，如前述，”Attention is all you need”当中N=6，代表Encoder部分是由6个encoder堆积而成的。其中在计算encoder self attention时，更透过multi-head的方式去学习不同空间的特徵，在后续内容会探讨multi-head的部分。<figure>
 
 <div class="image-block">
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/82c9vllxe1.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/82c9vllxe1.jpeg.jpg?x-oss-process=image/format,webp" />
@@ -87,13 +87,13 @@ Self attention是Google在 “Attention is all you need”论文中提出的”T
 
 # **如何计算encoder self attention?**
 
-我们先用微观的角度来观察Attention(q_{t}, K, V)，也就是输入句中的某个文字，再将所有输入句中的文字一次用矩阵Attention(Q,K,V)来解决。
+[我们](https://www.w3cdoc.com)先用微观的角度来观察Attention(q_{t}, K, V)，也就是输入句中的某个文字，再将所有输入句中的文字一次用矩阵Attention(Q,K,V)来解决。
 
-第一步是创造三个encoder的输入向量Q,K,V，举例来说，“Are you very big?”中的每一个字的隐向量都有各自的Q,K,V，接著我们会乘上一个初始化矩阵，论文中输出维度d_{model}=512。
+第一步是创造三个encoder的输入向量Q,K,V，举例来说，“Are you very big?”中的每一个字的隐向量都有各自的Q,K,V，接著[我们](https://www.w3cdoc.com)会乘上一个初始化矩阵，论文中输出维度d_{model}=512。
 
-第二步是透过内积来计算score <q\_{t}, k\_{s}>，类似attention model 中的score e_{ij}。假设我们在计算第一个字”Are”的self-attention，我们可能会将输入句中的每个文字”Are”, ”you”, ‘very’, ‘big’分别和”Are”去做比较，这个分数决定了我们在encode某个特定位置的文字时，应该给予多少注意力(attention)。所以当我们在计算#位置1的self-attention，第一个分数是q1、k1的内积 (“Are vs Are”)，第二个分数则是q1、k2 (“Are vs you”)，以此类推。
+第二步是透过内积来计算score <q\_{t}, k\_{s}>，类似attention model 中的score e_{ij}。假设[我们](https://www.w3cdoc.com)在计算第一个字”Are”的self-attention，[我们](https://www.w3cdoc.com)可能会将输入句中的每个文字”Are”, ”you”, ‘very’, ‘big’分别和”Are”去做比较，这个分数决定了[我们](https://www.w3cdoc.com)在encode某个特定位置的文字时，应该给予多少注意力(attention)。所以当[我们](https://www.w3cdoc.com)在计算#位置1的self-attention，第一个分数是q1、k1的内积 (“Are vs Are”)，第二个分数则是q1、k2 (“Are vs you”)，以此类推。
 
-第三步是将算出的分数除以根号d\_{k}，论文当中假定d\_{k}=64，接著传递至exponential函数中并乘上1/Z，其实这结果就是attention/softmax score，我们可以把1/Z看成是softmax时，所除上的exponential总和，最终的总分数就是attention score，代表我们应该放多少注意力在这个位置上，也就是attention model的概念，有趣的是，怎麼算一定都会发现自己位置上的分数永远最高，但有时候可以发现和其他位置的文字是有关联的。
+第三步是将算出的分数除以根号d\_{k}，论文当中假定d\_{k}=64，接著传递至exponential函数中并乘上1/Z，其实这结果就是attention/softmax score，[我们](https://www.w3cdoc.com)可以把1/Z看成是softmax时，所除上的exponential总和，最终的总分数就是attention score，代表[我们](https://www.w3cdoc.com)应该放多少注意力在这个位置上，也就是attention model的概念，有趣的是，怎麼算一定都会发现自己位置上的分数永远最高，但有时候可以发现和其他位置的文字是有关联的。
 
 最后一步就是把attention score再乘上value，然后加总得到attention vector(z_{I})，这就是#位置1的attention vector z1，概念都和以往的attention model类似。<figure>
 
@@ -101,7 +101,7 @@ Self attention是Google在 “Attention is all you need”论文中提出的”T
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/6g00lvm91h.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/6g00lvm91h.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
-以上就是self-attention的计算，算出来的向量我们可以往前传递至feed-forward neural network，实际的运作上，是直接将每个文字同时处理，因此会变成一个矩阵，而非单一词向量，计算后的结果attention vector也会变成attention matrix Z。<figure>
+以上就是self-attention的计算，算出来的向量[我们](https://www.w3cdoc.com)可以往前传递至feed-forward neural network，实际的运作上，是直接将每个文字同时处理，因此会变成一个矩阵，而非单一词向量，计算后的结果attention vector也会变成attention matrix Z。<figure>
 
 <div class="image-block">
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/kgiopfokv2.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/kgiopfokv2.jpeg.jpg?x-oss-process=image/format,webp" />
@@ -109,13 +109,13 @@ Self attention是Google在 “Attention is all you need”论文中提出的”T
 
 # **Multi-head attention**
 
-有趣的是，如果我们只计算一个attention，很难捕捉输入句中所有空间的讯息，为了优化模型，论文当中提出了一个新颖的做法：Multi-head attention，概念是不要只用d\_{model}维度的key, value, query们做单一个attention，而是把key, value, query们线性投射到不同空间h次，分别变成维度d\_{q}, d\_{k} and d\_{v}，再各自做attention，其中，d\_{k}=d\_{v}=d_{model}/h=64，概念就是投射到h个head上。<figure>
+有趣的是，如果[我们](https://www.w3cdoc.com)只计算一个attention，很难捕捉输入句中所有空间的讯息，为了优化模型，论文当中提出了一个新颖的做法：Multi-head attention，概念是不要只用d\_{model}维度的key, value, query们做单一个attention，而是把key, value, query们线性投射到不同空间h次，分别变成维度d\_{q}, d\_{k} and d\_{v}，再各自做attention，其中，d\_{k}=d\_{v}=d_{model}/h=64，概念就是投射到h个head上。<figure>
 
 <div class="image-block">
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/29ljqwxgzm.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/29ljqwxgzm.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
-此外，”The transformer”用了8个attention head，所以我们会產生8组encoder/decoder，每一组都代表将输入文字的隐向量投射到不同空间，如果我们重复计算刚刚所讲的self-attention，我们就会得到8个不同的矩阵Z，可是呢，feed-forward layer期望的是一个矩阵而非8个，所以我们要把这8个矩阵併在一起，透过乘上一个权重矩阵，还原成一个矩阵Z。<figure>
+此外，”The transformer”用了8个attention head，所以[我们](https://www.w3cdoc.com)会產生8组encoder/decoder，每一组都代表将输入文字的隐向量投射到不同空间，如果[我们](https://www.w3cdoc.com)重复计算刚刚所讲的self-attention，[我们](https://www.w3cdoc.com)就会得到8个不同的矩阵Z，可是呢，feed-forward layer期望的是一个矩阵而非8个，所以[我们](https://www.w3cdoc.com)要把这8个矩阵併在一起，透过乘上一个权重矩阵，还原成一个矩阵Z。<figure>
 
 <div class="image-block">
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/8zpq6fahgy.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/8zpq6fahgy.jpeg.jpg?x-oss-process=image/format,webp" />
@@ -163,7 +163,7 @@ Encoder/Decoder中的attention sublayers都会接到一层feed-forward networks(
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/q6irqb4g0d.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/q6irqb4g0d.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
-Encoder内容告一段落，接下来让我们看Decoder的运作模式。
+Encoder内容告一段落，接下来让[我们](https://www.w3cdoc.com)看Decoder的运作模式。
 
 # **Decoder**<figure>
 
@@ -185,7 +185,7 @@ Decoder的运作模式和Encoder大同小异，也都是经过residual connectio
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/v5moa96gum.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/v5moa96gum.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
-至此，我们讲完了三种attention，接著看整体运作模式。
+至此，[我们](https://www.w3cdoc.com)讲完了三种attention，接著看整体运作模式。
 
 从输入文字的序列给Encoder开始，Encoder的output会变成attention vectors的Key、Value，接著传送至encoder-decoder attention layer，帮助Decoder该将注意力摆在输入文字序列的哪个位置进行解码。
 
@@ -201,11 +201,11 @@ Decoder最后会產出一个向量，传到最后一层linear layer后做softmax
 
 过去，Encoder和Decoder的核心架构都是RNN，RNN把输入句的文字序列 (x1…, xn)一个个有序地转成hidden encodings (h1…hn)，接著在產出目标句的文字序列(y1…yn)。然而，RNN的序列性导致模型不可能平行计算，此外，也导致计算复杂度很高，而且，很难捕捉长序列中词语的依赖关係(long-range dependencies)。
 
-透过 “the transformer”，我们可以用multi-head attention来解决平行化和计算复杂度过高的问题，依赖关係也能透过self-attention中词语与词语比较时，长度只有1的方式来克服。
+透过 “the transformer”，[我们](https://www.w3cdoc.com)可以用multi-head attention来解决平行化和计算复杂度过高的问题，依赖关係也能透过self-attention中词语与词语比较时，长度只有1的方式来克服。
 
 # **Future**
 
-在金融业，企业可以透过客户歷程，深入了解客户行为企业，进而提供更好的商品与服务、提升客户满意度，藉此创造价值。然而，和以往的基本特徵不同，从序列化的客户歷程资料去萃取资讯是非常困难的，在有了self-attention的知识后，我们可以将这种处理序列资料的概念应用在复杂的客户歷程上，探索客户潜在行为背后无限的商机。
+在金融业，企业可以透过客户歷程，深入了解客户行为企业，进而提供更好的商品与服务、提升客户满意度，藉此创造价值。然而，和以往的基本特徵不同，从序列化的客户歷程资料去萃取资讯是非常困难的，在有了self-attention的知识后，[我们](https://www.w3cdoc.com)可以将这种处理序列资料的概念应用在复杂的客户歷程上，探索客户潜在行为背后无限的商机。
 
 笔者也推荐有兴趣钻研self-attention概念的读者，可以参考阿里巴巴所提出的论文ATrank，此篇论文将self-attention应用在產品推荐上，并带来更好的成效。
 

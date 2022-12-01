@@ -2,9 +2,9 @@
 title: vue3中的响应式原理
 
 ---
-随着 Vue 3.0 Pre Alpha 版本的公布，我们得以一窥其源码的实现。
+随着 Vue 3.0 Pre Alpha 版本的公布，[我们](https://www.w3cdoc.com)得以一窥其源码的实现。
 
-Vue 最巧妙的特性之一是其响应式系统，而我们也能够在仓库的 packages/reactivity 模块下找到对应的实现。虽然源码的代码量不多，网上的分析文章也有一堆，但是要想清晰地理解响应式原理的具体实现过程，还是挺费脑筋的事情。
+Vue 最巧妙的特性之一是其响应式系统，而[我们](https://www.w3cdoc.com)也能够在仓库的 packages/reactivity 模块下找到对应的实现。虽然源码的代码量不多，网上的分析文章也有一堆，但是要想清晰地理解响应式原理的具体实现过程，还是挺费脑筋的事情。
 
 我把其响应式系统的原理总结成了一张图，而本文也将围绕这张图去讲述具体的实现过程。<span class="img-wrap"></span>
 
@@ -14,7 +14,7 @@ Vue 最巧妙的特性之一是其响应式系统，而我们也能够在仓库�
 
 <span style="font-size: 18px; font-weight: bold;">一个基本的例子</span>
 
-Vue 3.0 的响应式系统是独立的模块，可以完全脱离 Vue 而使用，所以我们在 clone 了源码下来以后，可以直接在 packages/reactivity 模块下调试。
+Vue 3.0 的响应式系统是独立的模块，可以完全脱离 Vue 而使用，所以[我们](https://www.w3cdoc.com)在 clone 了源码下来以后，可以直接在 packages/reactivity 模块下调试。
 
   1. 在项目根目录运行 `yarn dev reactivity`，然后进入 `packages/reactivity` 目录找到产出的 `dist/reactivity.global.js` 文件。
   2. 新建一个 `index.html`，写入如下代码： <pre class="xml hljs"><code class="html">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">"./dist/reactivity.global.js"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
@@ -33,9 +33,9 @@ Vue 3.0 的响应式系统是独立的模块，可以完全脱离 Vue 而使用�
 effect(fn)
 &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span></code></pre>
 
-  3. 在浏览器打开该文件，于控制台执行 `state.count++`，便可看到输出 `set count to 1`。
+  3. 在[浏览器](https://www.w3cdoc.com)打开该文件，于控制台执行 `state.count++`，便可看到输出 `set count to 1`。
 
-在上述的例子中，我们使用 `reactive()` 函数把 `origin` 对象转化成了 Proxy 对象 `state`；使用 `effect()` 函数把 `fn()` 作为响应式回调。当 `state.count` 发生变化时，便触发了 `fn()`。接下来我们将以这个例子结合上文的流程图，来讲解这套响应式系统是怎么运行的。
+在上述的例子中，[我们](https://www.w3cdoc.com)使用 `reactive()` 函数把 `origin` 对象转化成了 Proxy 对象 `state`；使用 `effect()` 函数把 `fn()` 作为响应式回调。当 `state.count` 发生变化时，便触发了 `fn()`。接下来[我们](https://www.w3cdoc.com)将以这个例子结合上文的流程图，来讲解这套响应式系统是怎么运行的。
 
 ## 初始化阶段<span class="img-wrap"><br /> </span>
 
@@ -48,18 +48,18 @@ effect(fn)
   1. 把 `origin` 对象转化成响应式的 Proxy 对象 `state`。
   2. 把函数 `fn()` 作为一个响应式的 effect 函数。
 
-首先我们来分析第一件事。
+首先[我们](https://www.w3cdoc.com)来分析第一件事。
 
-大家都知道，Vue 3.0 使用了 Proxy 来代替之前的 `Object.defineProperty()`，改写了对象的 getter/setter，完成依赖收集和响应触发。但是在这一阶段中，我们暂时先不管它是如何改写对象的 getter/setter 的，这个在后续的”依赖收集阶段“会详细说明。为了简单起见，我们可以把这部分的内容浓缩成一个只有两行代码的 `reactive()` 函数：
+[大家](https://www.w3cdoc.com)都知道，Vue 3.0 使用了 Proxy 来代替之前的 `Object.defineProperty()`，改写了对象的 getter/setter，完成依赖收集和响应触发。但是在这一阶段中，[我们](https://www.w3cdoc.com)暂时先不管它是如何改写对象的 getter/setter 的，这个在后续的”依赖收集阶段“会详细说明。为了简单起见，[我们](https://www.w3cdoc.com)可以把这部分的内容浓缩成一个只有两行代码的 `reactive()` 函数：
 
 <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">reactive&lt;/span>(&lt;span class="hljs-params">target&lt;/span>) &lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> observed = &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Proxy&lt;/span>(target, handler)
   &lt;span class="hljs-keyword">return&lt;/span> observed
 }</code></pre>
 
-> 完整代码在 <a href="https://github.com/jrainlau/tiny-reactive/blob/master/src/reactive.js" rel="nofollow">reactive.js</a>。这里的 `handler` 就是改造 getter/setter 的关键，我们放到后文讲解。
+> 完整代码在 <a href="https://github.com/jrainlau/tiny-reactive/blob/master/src/reactive.js" rel="nofollow">reactive.js</a>。这里的 `handler` 就是改造 getter/setter 的关键，[我们](https://www.w3cdoc.com)放到后文讲解。
 
-接下来我们分析第二件事。
+接下来[我们](https://www.w3cdoc.com)分析第二件事。
 
 当一个普通的函数 `fn()` 被 `effect()` 包裹之后，就会变成一个响应式的 effect 函数，而 `fn()` 也会被**立即执行一次**。
 
@@ -108,7 +108,7 @@ effect(fn)
 
 depsMap 是一个 Map，key 值为触发 getter 时的属性值（此处为 `count`），而 value 则是**触发过该属性值**所对应的各个 effect。
 
-还是有点绕？那么我们再举个例子。假设有个 Proxy 对象和 effect 如下：
+还是有点绕？那么[我们](https://www.w3cdoc.com)再举个例子。假设有个 Proxy 对象和 effect 如下：
 
 <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-keyword">const&lt;/span> state = reactive({
   &lt;span class="hljs-attr">count&lt;/span>: &lt;span class="hljs-number">0&lt;/span>,
@@ -159,7 +159,7 @@ depsMap 是一个 Map，key 值为触发 getter 时的属性值（此处为 `cou
 
 ## 响应阶段 {#item-4}
 
-回顾上一章节的例子，我们得到了一个 `{ count: 0, age: 18 }` 的 Proxy，并构造了三个 effect。在控制台上看看效果：<span class="img-wrap"><br /> </span>
+回顾上一章节的例子，[我们](https://www.w3cdoc.com)得到了一个 `{ count: 0, age: 18 }` 的 Proxy，并构造了三个 effect。在控制台上看看效果：<span class="img-wrap"><br /> </span>
 
 <p id="DBhiZnx">
   <img loading="lazy" width="558" height="288" class="alignnone size-full wp-image-6575 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eac0800b3.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eac0800b3.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eac0800b3.png?x-oss-process=image/format,webp 558w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eac0800b3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_155/format,webp 300w" sizes="(max-width: 558px) 100vw, 558px" />

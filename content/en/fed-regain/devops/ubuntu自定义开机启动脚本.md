@@ -8,7 +8,7 @@ title: ubuntu自定义开机启动脚本
 
 ### [][1]喜爱的ubuntu
 
-喜爱ubuntu，可是众多不方便，怎么办？第一弹，我们先学学自己定制开机启动程序。实现方法是定制开机启动脚本，将脚本加入开机启动即可。需要学习的基础知识：如何写脚本，语法是什么，update-rc.d命令的使用。  
+喜爱ubuntu，可是众多不方便，怎么办？第一弹，[我们](https://www.w3cdoc.com)先学学自己定制开机启动程序。实现方法是定制开机启动脚本，将脚本加入开机启动即可。需要学习的基础知识：如何写脚本，语法是什么，update-rc.d命令的使用。  
 <a></a>  
 ![ubuntu自定义开机启动脚本][2]
 
@@ -16,7 +16,7 @@ title: ubuntu自定义开机启动脚本
 
 其中，#!是一个特殊的表示符，其后，跟着解释此脚本的shell路径。  
 bash只是shell的一种，还有很多其它shell，如：sh,csh,ksh,tcsh,…  
-我们可以通过以下一个示例来进行实验，了解#!/bin/bash的使用。
+[我们](https://www.w3cdoc.com)可以通过以下一个示例来进行实验，了解#!/bin/bash的使用。
 
 #### [][4]注意点1
 
@@ -36,20 +36,20 @@ bash只是shell的一种，还有很多其它shell，如：sh,csh,ksh,tcsh,…
 
 #### [][5]注意点2
 
-假如，我们把tbash1.sh中第一行的#!后面加了一个不存在的路径”/home/sh“：
+假如，[我们](https://www.w3cdoc.com)把tbash1.sh中第一行的#!后面加了一个不存在的路径”/home/sh“：
 
 执行结果为：
 
 #### [][6]注意点3
 
 如果一个脚本在第一行没有加上#!+shell路径这一行，那么，脚本会默认当前用户登录的shell，为脚本解释器。  
-在1）中，脚本tbash3.sh的执行结果，就是用当前自己登录的shell（bash）解释后的结果。我们通常所用的shell都是bash，如果哪天登录到sh，再使用以上类型的脚本，就会有问题。以下是自己登录到sh下，执行tbash3.sh的结果：
+在1）中，脚本tbash3.sh的执行结果，就是用当前自己登录的shell（bash）解释后的结果。[我们](https://www.w3cdoc.com)通常所用的shell都是bash，如果哪天登录到sh，再使用以上类型的脚本，就会有问题。以下是自己登录到sh下，执行tbash3.sh的结果：
 
 ### [][7]注意点4
 
 执行结果：
 
-我们还可以以tbash3.sh为示例。  
+[我们](https://www.w3cdoc.com)还可以以tbash3.sh为示例。  
 用以下命令来执行该脚本：
 
 “bash tbash3.sh”表示使用bash来作为脚本解释器来执行tbash3.sh。同样，也可以使用如”sh 脚本名“这样的命令，来用sh作为脚本解释器。  
@@ -61,7 +61,7 @@ bash只是shell的一种，还有很多其它shell，如：sh,csh,ksh,tcsh,…
 
 在Linux系统下，一个Services的启动、停止以及重启通常是通过/etc/init.d目录下的脚本来控制的。然而，在启动或改变运行级别时，是在/etc/rcX.d中来搜索脚本。其中X是运行级别的number。本文将解释如何启动、关闭和修改服务的运行。当你在Debian下安装一个新的服务，比如Apache2，安装完成后，默认情况下它会启动，并在下一次重启后自动启动。但是如果你不是一直需要这个服务，只在需要的时候启用它，你可以禁用它。直到你需要使用的时候，执行如下指令：
 
-要实现这个目的，你需要先在/etc/rcX.d目录中删除所有apache2的符号链接，但这个方法操作麻烦，且效率低下。因此，我们建议你使用update-rc.d命令来实现这个功能。
+要实现这个目的，你需要先在/etc/rcX.d目录中删除所有apache2的符号链接，但这个方法操作麻烦，且效率低下。因此，[我们](https://www.w3cdoc.com)建议你使用update-rc.d命令来实现这个功能。
 
 #### [][9]删除一个服务
 
@@ -90,7 +90,7 @@ ubuntu的开启启动脚本是放在/etc/init.d目录下，下面在该目录下
 ### [][12]谢谢！
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2015/06/04/2015_webpack/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2015/06/04/2015_webpack/</a>  
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/2015/08/15/2015_ubuntu1/#喜爱的ubuntu "喜爱的ubuntu"
  [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/ubuntu.jpg

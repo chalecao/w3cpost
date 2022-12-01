@@ -73,7 +73,7 @@ URIstring 的副本，其中的某些字符将被十六进制的转义序列进�
 
 ### [][6]总结
 
-通过对三个函数的分析，我们可以知道：escape()除了 ASCII 字母、数字和特定的符号外，对传进来的字符串全部进行转义编码，因此如果想对URL编码，最好不要使用此方法。而encodeURI() 用于编码整个URI,因为URI中的合法字符都不会被编码转换。encodeURIComponent方法在编码单个URIComponent（指请求参 数）应当是最常用的，它可以讲参数中的中文、特殊字符进行转义，而不会影响整个URL。
+通过对三个函数的分析，[我们](https://www.w3cdoc.com)可以知道：escape()除了 ASCII 字母、数字和特定的符号外，对传进来的字符串全部进行转义编码，因此如果想对URL编码，最好不要使用此方法。而encodeURI() 用于编码整个URI,因为URI中的合法字符都不会被编码转换。encodeURIComponent方法在编码单个URIComponent（指请求参 数）应当是最常用的，它可以讲参数中的中文、特殊字符进行转义，而不会影响整个URL。
 
 ### [][7]示例
 
@@ -89,7 +89,7 @@ URIstring 的副本，其中的某些字符将被十六进制的转义序列进�
 ### [][8]谢谢！
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2015/11/01/2015_encode/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2015/11/01/2015_encode/</a>  
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/2015/11/01/2015_encode/#编解码的需求 "编解码的需求"
  [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/xss.jpg

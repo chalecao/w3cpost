@@ -8,7 +8,7 @@ weight: 10
 
 更准确的说法，应该称之为 CSS 自定义属性 ，不过下文为了好理解都称之为 CSS 变量。
 
-一直以来我们都知道，CSS 中是没有变量而言的，要使用 CSS 变量，只能借助 SASS 或者 LESS 这类预编译器。
+一直以来[我们](https://www.w3cdoc.com)都知道，CSS 中是没有变量而言的，要使用 CSS 变量，只能借助 SASS 或者 LESS 这类预编译器。
 
 但是新的草案发布之后，直接在 CSS 中定义和使用变量已经不再是幻想了，像下面这样，看个简单的例子：
 
@@ -60,7 +60,7 @@ weight: 10
   </div>
 </div>
 
-> 这里我们借助了上篇文章 <a href="https://www.cnblogs.com/coco1s/p/6067305.html" target="_blank" rel="noopener"><code>结构性伪类</code></a> 中的 `:root{ }` 伪类，在全局 `:root{ }` 伪类中定义了一个 CSS 变量，取名为 `--bgColor` 。
+> 这里[我们](https://www.w3cdoc.com)借助了上篇文章 <a href="https://www.cnblogs.com/coco1s/p/6067305.html" target="_blank" rel="noopener"><code>结构性伪类</code></a> 中的 `:root{ }` 伪类，在全局 `:root{ }` 伪类中定义了一个 CSS 变量，取名为 `--bgColor` 。
 
 定义完了之后则是使用，假设我要设置一个 div 的背景色为黑色：
 
@@ -104,7 +104,7 @@ weight: 10
   </div>
 </div>
 
-这里，我们在需要使用之前定义变量的地方，通过 `var(定义的变量名)` 来调用。
+这里，[我们](https://www.w3cdoc.com)在需要使用之前定义变量的地方，通过 `var(定义的变量名)` 来调用。
 
 [Demo戳我 &#8212; CSS 变量简单示例][2]。
 
@@ -435,7 +435,7 @@ CSS 如下：
 
 ## CSS 变量的用途
 
-CSS 变量的出现，到底解决了我们哪些实际生产中的问题？列举一些：
+CSS 变量的出现，到底解决了[我们](https://www.w3cdoc.com)哪些实际生产中的问题？列举一些：
 
 #### 1、代码更加符合 DRY（Don‘t repeat yourself）原则。
 
@@ -539,7 +539,7 @@ CSS 变量的出现，到底解决了我们哪些实际生产中的问题？列�
 
 #### 2、精简代码，减少冗余，响应式媒体查询的好帮手
 
-一般而言，使用媒体查询的时候，我们需要将要响应式改变的属性全部重新罗列一遍。
+一般而言，使用媒体查询的时候，[我们](https://www.w3cdoc.com)需要将要响应式改变的属性全部重新罗列一遍。
 
 <div class="cnblogs_Highlighter sh-gutter">
   <div>
@@ -919,7 +919,7 @@ CSS 变量也是可以和 JS 互相交互。
 
 ## Can I Use？
 
-当然，上述示例正常显示的前提是你使用的浏览器已经支持了 CSS 变量：
+当然，上述示例正常显示的前提是你使用的[浏览器](https://www.w3cdoc.com)已经支持了 CSS 变量：
 
 <img loading="lazy" class="alignnone size-full wp-image-1451" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/10/608782-20161116103105123-1885440776.png" alt="" width="1264" height="472" />
 

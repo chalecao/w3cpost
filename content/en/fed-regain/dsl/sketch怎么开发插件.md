@@ -9,7 +9,7 @@ Sketch 是非常流行的 UI 设计工具，2014年随着 Sketch V43 版本增�
 
 目前 Sketch 开发有两大热门课题：① <a href="https://github.com/airbnb/react-sketchapp" target="_blank" rel="noopener noreferrer">React 组件渲染成 sketch</a> 由 airbnb 团队发起，② 使用 <a href="https://github.com/skpm/skpm" target="_blank" rel="noopener noreferrer">skpm</a> 构建开发 Sketch 插件。
 
-Sketch 插件开发相关资料较少且不太完善，我们开发插件过程中可以重点参考官方文档，只是有些陈旧。官方有提供 JavaScript API 借助 CocoaScript bridge 访问内部 Sketch API 和 macOS 框架进行开发插件（Sketch 53~56 版 JS API 在 native MacOS 和 Sketch API 暴露的<a href="https://developer.sketchapp.boltdoggy.com/guides/cocoascript/" target="_blank" rel="noopener noreferrer">特殊环境</a>中运行），提供的底层 API 功能有些薄弱，更深入的就需要了解掌握 <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html" target="_blank" rel="noopener noreferrer">Objective-C</a> 、 <a href="http://link.zhihu.com/?target=https%3A//github.com/ccgus/CocoaScrip" target="_blank" rel="noopener noreferrer">CocoaScript</a> 、<a href="https://developer.apple.com/documentation/appkit" target="_blank" rel="noopener noreferrer">AppKit</a>、<a href="https://link.jianshu.com/?t=https://github.com/abynim/Sketch-Headers" target="_blank" rel="noopener noreferrer">Sketch-Headers</a>。
+Sketch 插件开发相关资料较少且不太完善，[我们](https://www.w3cdoc.com)开发插件过程中可以重点参考官方文档，只是有些陈旧。官方有提供 JavaScript API 借助 CocoaScript bridge 访问内部 Sketch API 和 macOS 框架进行开发插件（Sketch 53~56 版 JS API 在 native MacOS 和 Sketch API 暴露的<a href="https://developer.sketchapp.boltdoggy.com/guides/cocoascript/" target="_blank" rel="noopener noreferrer">特殊环境</a>中运行），提供的底层 API 功能有些薄弱，更深入的就需要了解掌握 <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/Introduction/Introduction.html" target="_blank" rel="noopener noreferrer">Objective-C</a> 、 <a href="http://link.zhihu.com/?target=https%3A//github.com/ccgus/CocoaScrip" target="_blank" rel="noopener noreferrer">CocoaScript</a> 、<a href="https://developer.apple.com/documentation/appkit" target="_blank" rel="noopener noreferrer">AppKit</a>、<a href="https://link.jianshu.com/?t=https://github.com/abynim/Sketch-Headers" target="_blank" rel="noopener noreferrer">Sketch-Headers</a>。
 
 ## Sketch 插件结构 {#Sketch-插件结构.post-heading}
 
@@ -160,7 +160,7 @@ Bundles 包含一个 `manifest.json` 文件，一个或多个 **scripts** �
 
 Sketch 加载插件会根据指定的信息，在菜单栏中有序显示命令名。
 
-在了解了 Sketch 插件结构之后，我们再来了解一下，sketch提供的官方 API： Actions API， Javascript API。
+在了解了 Sketch 插件结构之后，[我们](https://www.w3cdoc.com)再来了解一下，sketch提供的官方 API： Actions API， Javascript API。
 
 ## Sketch Actions API {#Sketch-Actions-API.post-heading}
 
@@ -320,7 +320,7 @@ Sketch 插件开发大概有如下三种方式：① 纯使用 CocoaScript 脚�
 
 ### **Objective-C Classes** {#Objective-C-Classes.post-heading}
 
-Sketch 插件系统可以完全访问应用程序的内部结构和 macOS 中的核心框架。Sketch 是用 Objective-C 构建的，其 Objective-C 类通过 Bridge (CocoaScript/mocha) 提供 Javascript API 调用，简单的了解 Sketch 暴露的相关类以及类方法，对我们开发插件非常有帮助。
+Sketch 插件系统可以完全访问应用程序的内部结构和 macOS 中的核心框架。Sketch 是用 Objective-C 构建的，其 Objective-C 类通过 Bridge (CocoaScript/mocha) 提供 Javascript API 调用，简单的了解 Sketch 暴露的相关类以及类方法，对[我们](https://www.w3cdoc.com)开发插件非常有帮助。
 
 使用 Bridge 定义的一些内省方法来访问以下信息：<figure class="highlight js">
 
@@ -421,7 +421,7 @@ Sketch 插件系统可以完全访问应用程序的内部结构和 macOS 中的
 
 ## Sketch 插件开发上手 {#Sketch-插件开发上手.post-heading}
 
-前面我们了解了许多 Sketch 插件开发知识，那接下来实际上手两个小例子： **① 创建辅助内容面板窗口**， ② **侧边栏导航**。为了方便开发，我们在开发前需先进行如下操作：
+前面[我们](https://www.w3cdoc.com)了解了许多 Sketch 插件开发知识，那接下来实际上手两个小例子： **① 创建辅助内容面板窗口**， ② **侧边栏导航**。为了方便开发，[我们](https://www.w3cdoc.com)在开发前需先进行如下操作：
 
 **崩溃保护**
 
@@ -475,7 +475,7 @@ Sketch 插件系统可以完全访问应用程序的内部结构和 macOS 中的
 
 #### 创建辅助内容面板窗口 {#创建辅助内容面板窗口.post-heading}
 
-首先我们先熟悉一下 macOS 下的辅助内容面板， 如下图最左侧 NSPanel 样例， 它是有展示区域，可设置样式效果，左上角有可操作按钮的辅助窗口。
+首先[我们](https://www.w3cdoc.com)先熟悉一下 macOS 下的辅助内容面板， 如下图最左侧 NSPanel 样例， 它是有展示区域，可设置样式效果，左上角有可操作按钮的辅助窗口。
 
 Sketch 中要创建如下内容面板，需要使用 macOS 下 `AppKit` 框架中 `NSPanel` 类，它是 `NSWindow` 的子类，用于创建辅助窗口。内容面板外观样式设置，可通过 `NSPanel` 类相关属性进行设置， 也可通过 `AppKit` 的`NSVisualEffectView` 类添加模糊的背景效果。内容区域则可通过 `AppKit` 的 `WKWebView` 类，单开 `webview` 渲染网页内容展示。
 
@@ -609,7 +609,7 @@ Sketch 中要创建如下内容面板，需要使用 macOS 下 `AppKit` 框架
 
 #### 侧边栏导航开发 {#侧边栏导航开发.post-heading}
 
-我们开发复杂的 Sketch 插件，一般都要开发侧边栏导航展示插件功能按钮，点击触发相关操作。那开发侧边栏导航，我们主要使用 `AppKit` 中的那些类呢，有 `NSStackView` 、 `NSBox` 、`NSImage`、 `NSImageView`、`NSButton` 等，大致核心代码如下：<figure class="highlight js">
+[我们](https://www.w3cdoc.com)开发复杂的 Sketch 插件，一般都要开发侧边栏导航展示插件功能按钮，点击触发相关操作。那开发侧边栏导航，[我们](https://www.w3cdoc.com)主要使用 `AppKit` 中的那些类呢，有 `NSStackView` 、 `NSBox` 、`NSImage`、 `NSImageView`、`NSButton` 等，大致核心代码如下：<figure class="highlight js">
 
 <table>
   <tr>
@@ -707,7 +707,7 @@ Sketch 中要创建如下内容面板，需要使用 macOS 下 `AppKit` 框架
 
 ## 日志 {#日志.post-heading}
 
-JavaScriptCore <a href="https://developer.sketchapp.com/guides/cocoascript/" target="_blank" rel="noopener noreferrer">运行 Sketch 插件的环境</a> 也有提供类似调试 JavaScript 代码打 log 的方式，我们可以在关键步骤处放入一堆 `console.log/console.error` 等进行落点日志查看。
+JavaScriptCore <a href="https://developer.sketchapp.com/guides/cocoascript/" target="_blank" rel="noopener noreferrer">运行 Sketch 插件的环境</a> 也有提供类似调试 JavaScript 代码打 log 的方式，[我们](https://www.w3cdoc.com)可以在关键步骤处放入一堆 `console.log/console.error` 等进行落点日志查看。
 
 有以下几种选择可以查看日志：
 

@@ -8,7 +8,7 @@ weight: 8
   了解如何使用这些受支持的CSS函数控制元素的大小，保持适当的间距以及实现流体排版。
 </p></header>
 
-随着响应式设计的发展和日益细化，CSS本身也在不断发展，并为作者提供了更多的控制权。的 [`min()`][1]， [`max()`][2]和 [`clamp()`][3]功能，现在支持所有现代浏览器，都在做创作网站最新的工具中和网络应用更加积极地。
+随着响应式设计的发展和日益细化，CSS本身也在不断发展，并为作者提供了更多的控制权。的 [`min()`][1]， [`max()`][2]和 [`clamp()`][3]功能，现在支持所有现代[浏览器](https://www.w3cdoc.com)，都在做创作网站最新的工具中和网络应用更加积极地。
 
 当谈到灵活和流体排版，控制单元调整大小，并保持适当的间隙，`min()`，`max()`，和`clamp()`可以提供帮助。
 
@@ -18,13 +18,13 @@ weight: 8
 >
 > <cite><a href="https://www.w3.org/TR/css-values-4/#calc-notation">CSS值和单位级别4</a></cite>
 
-Safari是第一个[出货][4] 的一整套功能在四月2019年，含铬那年以下后，今年79版，与Firefox [75][5]航运，我们现在有浏览器的奇偶`min()`，`max()`和`clamp()`所有常绿浏览器。<figure class="w-figure"></figure>
+Safari是第一个[出货][4] 的一整套功能在四月2019年，含铬那年以下后，今年79版，与Firefox [75][5]航运，[我们](https://www.w3cdoc.com)现在有[浏览器](https://www.w3cdoc.com)的奇偶`min()`，`max()`和`clamp()`所有常绿[浏览器](https://www.w3cdoc.com)。<figure class="w-figure"></figure>
 
 <p id="OegLNcn">
   <img loading="lazy" width="1373" height="422" class="alignnone size-full wp-image-6341 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png?x-oss-process=image/format,webp 1373w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_92/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_246/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_236/format,webp 768w" sizes="(max-width: 1373px) 100vw, 1373px" />
 </p>
 
-您可以在任何有意义的CSS表达式的右侧使用`min()`，`max()`和`clamp()`。对于`min()`和`max()`，您提供了一个值列表，然后浏览器确定哪一个分别是最小的或最大的。例如，对于：`min(1rem, 50%, 10vw)`，浏览器将计算这些相对单位中的最小单位，并将该值用作实际值。`max()`函数从逗号分隔的表达式列表中选择最大值。`clamp()`输入三个值：最小值，理想值（从中进行计算）和最大值。
+您可以在任何有意义的CSS表达式的右侧使用`min()`，`max()`和`clamp()`。对于`min()`和`max()`，您提供了一个值列表，然后[浏览器](https://www.w3cdoc.com)确定哪一个分别是最小的或最大的。例如，对于：`min(1rem, 50%, 10vw)`，[浏览器](https://www.w3cdoc.com)将计算这些相对单位中的最小单位，并将该值用作实际值。`max()`函数从逗号分隔的表达式列表中选择最大值。`clamp()`输入三个值：最小值，理想值（从中进行计算）和最大值。
 
 您可以单独使用它们（即`font-size: max(0.5vw, 50%, 2rem)`），将它们结合使用`calc()`（即`font-size: max(calc(0.5vw - 1em), 2rem)`）或组合使用（即`font-size: max(min(0.5vw, 1em), 2rem)`）。
 
@@ -52,7 +52,7 @@ Safari是第一个[出货][4] 的一整套功能在四月2019年，含铬那年
   &lt;span class="token property">width&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token function">clamp&lt;/span>&lt;span class="token punctuation">(&lt;/span>45ch&lt;span class="token punctuation">,&lt;/span> 50%&lt;span class="token punctuation">,&lt;/span> 75ch&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token punctuation">}&lt;/span></code></pre>
 
-这允许浏览器确定段落的宽度。它将宽度设置为50％，除非50％小于`45ch`，这时`45ch`将选择，反之亦然，如果50％大于则反之亦然`75ch`。
+这允许[浏览器](https://www.w3cdoc.com)确定段落的宽度。它将宽度设置为50％，除非50％小于`45ch`，这时`45ch`将选择，反之亦然，如果50％大于则反之亦然`75ch`。
 
 ## 参考
 

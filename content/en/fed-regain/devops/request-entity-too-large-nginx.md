@@ -10,7 +10,7 @@ title: Request Entity Too Large Nginx
 ---
 最近自己搭建了一个电商项目服务器，使用Nginx + vsftpd + &#8230; ，
 
-使用Nginx作为HTTP反向代理服务器、帮助实现前端动静分离
+使用Nginx作为HTTP反向代理服务器、帮助实现[前端](https://www.w3cdoc.com)动静分离
 
 问题：但在做附件上传时出现 413 Request Entity Too Large Nginx 错误提示！！  
 查询资料后获知：原来nginx默认上传文件的大小是 1M ，nginx的设置中修改。

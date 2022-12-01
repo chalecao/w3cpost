@@ -8,7 +8,7 @@ title: 使用setTimeout循环调用和setInterval有什么区别
 
 <div>
   <p>
-    <span>与</span><code>setTimeout()</code><span>和一起使用时，需要牢记一些注意事项</span><code>setInterval()</code><span>。现在让我们复习一下。</span>
+    <span>与</span><code>setTimeout()</code><span>和一起使用时，需要牢记一些注意事项</span><code>setInterval()</code><span>。现在让[我们](https://www.w3cdoc.com)复习一下。</span>
   </p>
 </div>
 

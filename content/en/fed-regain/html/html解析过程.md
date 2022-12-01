@@ -3,43 +3,43 @@ title: HTML解析过程
 weight: 3
 ---
 
-# 浏览器开始
+# [浏览器](https://www.w3cdoc.com)开始
 这个过程可以结合[NavigationTiming](https://www.w3.org/TR/navigation-timing/#sec-navigation-info-interface) 来理解。具体流程如下图：
 ![](/images/posts/2022-11-24-23-51-29.png)
 
 # 资源请求
 
-浏览器第一步先请求资源，这过程和NavigationTiming中定义的一些关键时间节点类似，但有所区别。这块主要是在performance中[ResourceTiming][https://www.w3.org/TR/resource-timing/]规范定义的内容：
+[浏览器](https://www.w3cdoc.com)第一步先请求资源，这过程和NavigationTiming中定义的一些关键时间节点类似，但有所区别。这块主要是在performance中[ResourceTiming][https://www.w3.org/TR/resource-timing/]规范定义的内容：
 
 ![](/images/posts/2022-11-24-23-54-15.png)
 
-请求到资源之后，浏览器解析流程主要包含以下部分：
+请求到资源之后，[浏览器](https://www.w3cdoc.com)解析流程主要包含以下部分：
 
   1. 解析HTML，构建DOM树（这里遇到外链，此时会发起请求）
   2. 解析CSS，生成CSS规则树
   3. 合并DOM树和CSS规则，生成render树
   4. 布局render树（Layout/reflow），负责各元素尺寸、位置的计算
   5. 绘制render树（paint），绘制页面像素信息
-  6. 浏览器会将各层的信息发送给GPU，GPU将各层合成（composite），显示在屏幕上
+  6. [浏览器](https://www.w3cdoc.com)会将各层的信息发送给GPU，GPU将各层合成（composite），显示在屏幕上
 
 
 # 构建DOM
 
 ![](/images/posts/2022-11-24-23-54-58.png)
   
-浏览器请求一个url地址，然后通常web服务器会返回一个html页面，最先返回的就是html文件。
+[浏览器](https://www.w3cdoc.com)请求一个url地址，然后通常web服务器会返回一个html页面，最先返回的就是html文件。
   
-浏览器的HTML解释器获取到的首先是字节码，然后解析成对应字符序列。然后根据HTML解释器的DSL定义的tokens匹配解析成一个个html node节点，根据HTML语法定义的抽象语法树生成对应的树形结构（这期间html可能不规范，浏览器有很多容错机制来保证语法解析，参考<a href="https://www.f2e123.com/html5css3/2214.html">嵌套约束</a>），形成DOM树。
+[浏览器](https://www.w3cdoc.com)的HTML解释器获取到的首先是字节码，然后解析成对应字符序列。然后根据HTML解释器的DSL定义的tokens匹配解析成一个个html node节点，根据HTML语法定义的抽象语法树生成对应的树形结构（这期间html可能不规范，[浏览器](https://www.w3cdoc.com)有很多容错机制来保证语法解析，参考<a href="https://www.f2e123.com/html5css3/2214.html">嵌套约束</a>），形成DOM树。
   
 # 构建CSSOM
 ![](/images/posts/2022-11-24-23-55-38.png)  
 
-浏览器加载CSS是同样的资源请求过程，请求后解析流程和HTML类似，CSS解释器会先从适用于该节点的最通用规则开始（例如，如果该节点是 body 元素的子项，则应用所有 body 样式），然后通过应用更具体的规则（即规则“向下级联”）以递归方式优化计算的样式。
+[浏览器](https://www.w3cdoc.com)加载CSS是同样的资源请求过程，请求后解析流程和HTML类似，CSS解释器会先从适用于该节点的最通用规则开始（例如，如果该节点是 body 元素的子项，则应用所有 body 样式），然后通过应用更具体的规则（即规则“向下级联”）以递归方式优化计算的样式。
 
 ![](/images/posts/2022-11-24-23-56-02.png)
 
 需要注意的是：
-- 每个浏览器都有自己默认的样式表
+- 每个[浏览器](https://www.w3cdoc.com)都有自己默认的样式表
 - 从右到左（内层到外）解析css
 - 规则路径形成规则片段树，片段树集合形成CSSOM
   
@@ -54,9 +54,9 @@ DOM树从根节点开始遍历<strong>可见</strong>节点，这里之所以强
 
 ![](/images/posts/2022-11-25-00-00-23.png)
 
-当浏览器通过网络或者本地文件系统加载一个 HTML 文件，并对它进行解析完毕后，内核就会生成它最重要的数据结构 － DOM 树。DOM 树上每一个节点都对应着网页里面的每一个元素，并且网页也可以通过 JavaScript 操作这棵 DOM 树，动态改变它的结构。但是 DOM 树本身并不能直接用于排版和渲染，内核还会生成另外一棵树 － Render 树，Render 树上的每一个节点 － RenderObject，跟 DOM 树上的节点几乎是一一对应的，当一个可见的 DOM 节点被添加到 DOM 树上时，内核就会为它生成对应的 RenderOject 添加到 Render 树上。
+当[浏览器](https://www.w3cdoc.com)通过网络或者本地文件系统加载一个 HTML 文件，并对它进行解析完毕后，内核就会生成它最重要的数据结构 － DOM 树。DOM 树上每一个节点都对应着网页里面的每一个元素，并且网页也可以通过 JavaScript 操作这棵 DOM 树，动态改变它的结构。但是 DOM 树本身并不能直接用于排版和渲染，内核还会生成另外一棵树 － Render 树，Render 树上的每一个节点 － RenderObject，跟 DOM 树上的节点几乎是一一对应的，当一个可见的 DOM 节点被添加到 DOM 树上时，内核就会为它生成对应的 RenderOject 添加到 Render 树上。
   
-Render 树是浏览器排版引擎的主要作业对象，排版引擎根据 DOM 树和 CSS 样式表的样式定义，按照预定的排版规则确定了 Render 树最后的结构，包括其中每一个 RenderObject 的大小和位置，而一棵经过排版的 Render 树，则是浏览器渲染引擎的主要输入，读者可以认为，Render 树是衔接浏览器排版引擎和渲染引擎之间的桥梁，它是排版引擎的输出，渲染引擎的输入。
+Render 树是[浏览器](https://www.w3cdoc.com)排版引擎的主要作业对象，排版引擎根据 DOM 树和 CSS 样式表的样式定义，按照预定的排版规则确定了 Render 树最后的结构，包括其中每一个 RenderObject 的大小和位置，而一棵经过排版的 Render 树，则是[浏览器](https://www.w3cdoc.com)渲染引擎的主要输入，读者可以认为，Render 树是衔接[浏览器](https://www.w3cdoc.com)排版引擎和渲染引擎之间的桥梁，它是排版引擎的输出，渲染引擎的输入。
 
 # layout布局
 
@@ -68,14 +68,14 @@ ayout的基本单位是BFC（块格式化上下文，Block Format Context）和I
 - reflow回流的成本开销要高于repaint重绘，一个节点的回流往往回导致子节点以及同级节点的回流；
 
 ## reflow回流
-现代浏览器会对回流做优化，它会等到足够数量的变化发生，再做一次批处理回流。
+现代[浏览器](https://www.w3cdoc.com)会对回流做优化，它会等到足够数量的变化发生，再做一次批处理回流。
 
 引起回流的原因有以下几种：
 - 页面第一次渲染（初始化）
 - DOM树变化（如：增删节点）
 - Render树变化（如：padding改变）
-- 浏览器窗口resize
-- 获取元素的某些属性：<br /> 浏览器为了获得正确的值也会<strong>提前触发回流</strong>，这样就使得浏览器的优化失效了，这些属性包括offsetLeft、offsetTop、offsetWidth、offsetHeight、 scrollTop/Left/Width/Height、clientTop/Left/Width/Height、调用了getComputedStyle()或者IE的currentStyle
+- [浏览器](https://www.w3cdoc.com)窗口resize
+- 获取元素的某些属性：<br /> [浏览器](https://www.w3cdoc.com)为了获得正确的值也会<strong>提前触发回流</strong>，这样就使得[浏览器](https://www.w3cdoc.com)的优化失效了，这些属性包括offsetLeft、offsetTop、offsetWidth、offsetHeight、 scrollTop/Left/Width/Height、clientTop/Left/Width/Height、调用了getComputedStyle()或者IE的currentStyle
   
 ## repaint重绘
   
@@ -93,10 +93,10 @@ ayout的基本单位是BFC（块格式化上下文，Block Format Context）和I
 - 避免多次读取某些属性（见上）
 - 将复杂的节点元素脱离文档流，降低回流成本
 
-# 浏览器绘制
+# [浏览器](https://www.w3cdoc.com)绘制
 ![](/images/posts/2022-11-25-00-04-50.png)
 
-我们可以将页面绘制的过程分为三个部分：Layout、Paint和合成。Layout负责计算DOM元素的布局关系，Paint负责将DOM元素绘制成位图，合成则负责将位图发送给GPU绘制到屏幕上（如果有transform、opacity等属性则通知GPU做处理）。
+[我们](https://www.w3cdoc.com)可以将页面绘制的过程分为三个部分：Layout、Paint和合成。Layout负责计算DOM元素的布局关系，Paint负责将DOM元素绘制成位图，合成则负责将位图发送给GPU绘制到屏幕上（如果有transform、opacity等属性则通知GPU做处理）。
 
 GPU加速其实是一直存在的，而如同translate3D这种hack只是为了让这个元素生成独立的 GraphicsLayer ， 占用一部分内存，但同时也会在动画或者Repaint的时候不会影响到其他任何元素，对高刷新频率的东西，就应该分离出单独的一个 GraphicsLayer。
 

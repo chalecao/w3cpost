@@ -74,8 +74,8 @@ JavaScript出于安全方面的考虑，不允许跨域调用其他页面的对�
 
 ## 动态创建script
 
-虽然浏览器默认禁止了跨域访问，但并不禁止在页面中引用其他域的JS文件，并可以自由执行引入的JS文件中的function（包括操作cookie、Dom等等）。根据这一点，可以方便地通过创建script节点的方法来实现完全跨域的通信。具体的做法可以参考YUI的<a href="https://developer.yahoo.com/yui/get/" target="_blank" rel="external noopener">Get Utility</a>。  
-这里判断script节点加载完毕还是蛮有意思的：ie只能通过script的readystatechange属性，其它浏览器是script的load事件。以下是部分判断script加载完毕的方法。
+虽然[浏览器](https://www.w3cdoc.com)默认禁止了跨域访问，但并不禁止在页面中引用其他域的JS文件，并可以自由执行引入的JS文件中的function（包括操作cookie、Dom等等）。根据这一点，可以方便地通过创建script节点的方法来实现完全跨域的通信。具体的做法可以参考YUI的<a href="https://developer.yahoo.com/yui/get/" target="_blank" rel="external noopener">Get Utility</a>。  
+这里判断script节点加载完毕还是蛮有意思的：ie只能通过script的readystatechange属性，其它[浏览器](https://www.w3cdoc.com)是script的load事件。以下是部分判断script加载完毕的方法。
 
 ```
         js.onload = js.onreadystatechange = function() {
@@ -193,7 +193,7 @@ JavaScript出于安全方面的考虑，不允许跨域调用其他页面的对�
 
 ## 使用HTML5 postMessage
 
-HTML5中最酷的新功能之一就是 <a href="https://www.whatwg.org/specs/web-apps/current-work/#crossDocumentMessages" target="_blank" rel="external noopener">跨文档消息传输Cross Document Messaging</a>。下一代浏览器都将支持这个功能：Chrome 2.0+、Internet Explorer 8.0+, Firefox 3.0+, Opera 9.6+, 和 Safari 4.0+ 。 Facebook已经使用了这个功能，用postMessage支持基于web的实时消息传递。
+HTML5中最酷的新功能之一就是 <a href="https://www.whatwg.org/specs/web-apps/current-work/#crossDocumentMessages" target="_blank" rel="external noopener">跨文档消息传输Cross Document Messaging</a>。下一代[浏览器](https://www.w3cdoc.com)都将支持这个功能：Chrome 2.0+、Internet Explorer 8.0+, Firefox 3.0+, Opera 9.6+, 和 Safari 4.0+ 。 Facebook已经使用了这个功能，用postMessage支持基于web的实时消息传递。
 
   otherWindow.postMessage(message, targetOrigin);
 
@@ -242,6 +242,6 @@ alert(event.source); // 对a.com、index.html中window对象的引用
 ### 谢谢！
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2015/11/06/2015_cross_domain/" target="_blank" rel="external noopener">//fed123.oss-ap-southeast-2.aliyuncs.com/2015/11/06/2015_cross_domain/</a>  
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/crossdomain.png

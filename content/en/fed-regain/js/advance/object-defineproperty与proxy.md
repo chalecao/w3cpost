@@ -2,7 +2,7 @@
 title: Object.defineProperty与Proxy
 
 ---
-[Object.observe()][1]方法用于异步地监视一个对象的修改。当对象属性被修改时，方法的回调函数会提供一个有序的修改流。然而，这个接口已经被废弃并从各浏览器中移除。你可以使用更通用的 [`Proxy`][2] 对象替代。
+[Object.observe()][1]方法用于异步地监视一个对象的修改。当对象属性被修改时，方法的回调函数会提供一个有序的修改流。然而，这个接口已经被废弃并从各[浏览器](https://www.w3cdoc.com)中移除。你可以使用更通用的 [`Proxy`][2] 对象替代。
 
 <div>
   <div>
@@ -11,7 +11,7 @@ title: Object.defineProperty与Proxy
     </p>
 
     <p>
-      两个版本都有各自的缺陷，大家可以按需自己选择自己需要的
+      两个版本都有各自的缺陷，[大家](https://www.w3cdoc.com)可以按需自己选择自己需要的
     </p>
     
     <ul>

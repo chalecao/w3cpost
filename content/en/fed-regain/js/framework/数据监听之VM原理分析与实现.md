@@ -19,13 +19,13 @@ title: 数据监听之VM原理分析与实现
 
   Github代码：
 
-## 前端进阶系列课程
+## [前端](https://www.w3cdoc.com)进阶系列课程
 
-《用JavaScript自己写MVVM前端框架》：<https://t.cn/REeKJp0>
+《用JavaScript自己写MVVM[前端](https://www.w3cdoc.com)框架》：<https://t.cn/REeKJp0>
 
-《前端函数式编程FP易学易用》：<https://t.cn/REeKVSk>
+《[前端](https://www.w3cdoc.com)函数式编程FP易学易用》：<https://t.cn/REeKVSk>
 
-《前端自己用NodeJS编写区块链BlockChain》：<https://t.cn/REeoF7v>
+《[前端](https://www.w3cdoc.com)自己用NodeJS编写区块链BlockChain》：<https://t.cn/REeoF7v>
 
 《程序语言进阶之DSL与AST实战解析》：<https://t.cn/R3XoQJA>
 
@@ -50,7 +50,7 @@ title: 数据监听之VM原理分析与实现
 
 ## 第一章： JSX回顾
 
-回顾一下之前我们学过的《 [用JavaScript自己写Virtual DOM][1] 》，上面这个例子是我们之前介绍JSX语法构建Virtual DOM的最简单的方案。我们在课程《 [程序语言进阶之DSL与AST实战解析][2] 》中介绍了JSX的实现原理，代码编译的时候会处理JSX文件，根据配置或者页面的注释，基于babylon做词法分析，会拆解代码中的html片段，然后转换成函数形式。如下：
+回顾一下之前[我们](https://www.w3cdoc.com)学过的《 [用JavaScript自己写Virtual DOM][1] 》，上面这个例子是[我们](https://www.w3cdoc.com)之前介绍JSX语法构建Virtual DOM的最简单的方案。[我们](https://www.w3cdoc.com)在课程《 [程序语言进阶之DSL与AST实战解析][2] 》中介绍了JSX的实现原理，代码编译的时候会处理JSX文件，根据配置或者页面的注释，基于babylon做词法分析，会拆解代码中的html片段，然后转换成函数形式。如下：
 
 <pre id="consoleLog">var a = h(
   "ul",

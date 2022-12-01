@@ -14,9 +14,9 @@ title: 最大内容绘画（LCP）
 
 较旧的指标（例如 [load][1]或 [DOMContentLoaded）][2] 不好，因为它们不一定与用户在屏幕上看到的相对应。而且，以用户为中心的更新性能指标（例如[First Contentful Paint（FCP））][3]只能捕捉到加载体验的最开始。如果页面显示启动屏幕或显示加载指示器，则此刻与用户无关。
 
-过去，我们建议使用诸如“[首次有意义的绘画（FMP）”][4]和“[速度指数（SI）”][5]（均可以在Lighthouse中获得）这样的性能指标来帮助捕获最初的颜料后的更多加载体验，但是这些指标非常复杂，难以解释，而且通常是错误的-表示它们仍然无法识别页面的主要内容何时加载。
+过去，[我们](https://www.w3cdoc.com)建议使用诸如“[首次有意义的绘画（FMP）”][4]和“[速度指数（SI）”][5]（均可以在Lighthouse中获得）这样的性能指标来帮助捕获最初的颜料后的更多加载体验，但是这些指标非常复杂，难以解释，而且通常是错误的-表示它们仍然无法识别页面的主要内容何时加载。
 
-有时越简单越好。根据[W3C Web性能工作组的][6]讨论和Google的研究，我们发现，衡量何时加载页面主要内容的一种更准确的方法是查看何时呈现最大的元素。
+有时越简单越好。根据[W3C Web性能工作组的][6]讨论和Google的研究，[我们](https://www.w3cdoc.com)发现，衡量何时加载页面主要内容的一种更准确的方法是查看何时呈现最大的元素。
 
 ## 什么是LCP？<a class="w-headline-link" href="https://web.dev/lcp/#what-is-lcp" aria-hidden="true">＃</a> {#what-is-lcp}
 
@@ -68,9 +68,9 @@ title: 最大内容绘画（LCP）
 
 网页通常是分阶段加载的，因此，页面上最大的元素可能会发生变化。
 
-为了处理这种潜在的变化，浏览器会在绘制<span style="color: #ff0000;">第一帧</span>后立即派出一个 [`PerformanceEntry`][11] 类型，`largest-contentful-paint`该类型标识最大的内容元素。但是，在<span style="color: #ff0000;">渲染后续帧时</span>， 在最大内容元素<span style="color: #ff0000;">发生更改</span>时再次发出 [`PerformanceEntry`][11] 。
+为了处理这种潜在的变化，[浏览器](https://www.w3cdoc.com)会在绘制<span style="color: #ff0000;">第一帧</span>后立即派出一个 [`PerformanceEntry`][11] 类型，`largest-contentful-paint`该类型标识最大的内容元素。但是，在<span style="color: #ff0000;">渲染后续帧时</span>， 在最大内容元素<span style="color: #ff0000;">发生更改</span>时再次发出 [`PerformanceEntry`][11] 。
 
-例如，在带有文本和hero 图像的页面上，浏览器可能最初只是呈现文本-此时，浏览器将调度一个`largest-contentful-paint`条目，该条目可能指向的`element`是文本。之后，一旦英雄图片加载完成，`largest-contentful-paint`便会分派第二个条目，并且其`element`属性将引用`<img />`重要的是要注意，一个元素一旦呈现并对用户可见，就只能被认为是最大的内容元素。尚未加载的图像不被视为“已渲染”。在[字体块期间，][12]文本节点也不使用Web字体。在这种情况下，较小的元素可能会报告为最大的内容元素，但是较大的元素一旦完成渲染，就会通过另一个`PerformanceEntry`对象进行报告 。
+例如，在带有文本和hero 图像的页面上，[浏览器](https://www.w3cdoc.com)可能最初只是呈现文本-此时，[浏览器](https://www.w3cdoc.com)将调度一个`largest-contentful-paint`条目，该条目可能指向的`element`是文本。之后，一旦英雄图片加载完成，`largest-contentful-paint`便会分派第二个条目，并且其`element`属性将引用`<img />`重要的是要注意，一个元素一旦呈现并对用户可见，就只能被认为是最大的内容元素。尚未加载的图像不被视为“已渲染”。在[字体块期间，][12]文本节点也不使用Web字体。在这种情况下，较小的元素可能会报告为最大的内容元素，但是较大的元素一旦完成渲染，就会通过另一个`PerformanceEntry`对象进行报告 。
 
 除了延迟加载图像和字体外，页面可能会在新内容可用时向DOM添加新元素。如果这些新元素中的任何一个大于先前最大的有争议元素，那么`PerformanceEntry` 还将报告一个新元素。
 
@@ -82,7 +82,7 @@ title: 最大内容绘画（LCP）
   </p>
 </div>
 
-<span style="color: #ff0000;">一旦用户与页面进行交互（通过轻击，滚动或按键），浏览器将停止报告新条目</span>，因为用户交互通常会改变用户可见的内容（滚动时尤为如此）。
+<span style="color: #ff0000;">一旦用户与页面进行交互（通过轻击，滚动或按键），[浏览器](https://www.w3cdoc.com)将停止报告新条目</span>，因为用户交互通常会改变用户可见的内容（滚动时尤为如此）。
 
 出于分析目的，您应仅报告最近分 `PerformanceEntry`发给您的分析服务的信息。
 
@@ -156,7 +156,7 @@ LCP可以[在实验室][15] 或[现场][16]进行测量，并且可以在以下
 
 ### 在JavaScript中测量LCP <a class="w-headline-link" href="https://web.dev/lcp/#measure-lcp-in-javascript" aria-hidden="true">＃</a> {#measure-lcp-in-javascript}
 
-参考[打造企业级私有前端监控体系][23]课程中有介绍
+参考[打造企业级私有[前端](https://www.w3cdoc.com)监控体系][23]课程中有介绍
 
 示例：
 
@@ -194,8 +194,8 @@ LCP主要受以下四个因素影响：
 
 ## 关联课程
 
-* [打造企业级私有前端监控体系][23]
-* [高性能极致用户体验前端开发实战][33]
+* [打造企业级私有[前端](https://www.w3cdoc.com)监控体系][23]
+* [高性能极致用户体验[前端](https://www.w3cdoc.com)开发实战][33]
 
  [1]: https://developer.mozilla.org/en-US/docs/Web/Events/load
  [2]: https://developer.mozilla.org/en-US/docs/Web/Events/DOMContentLoaded

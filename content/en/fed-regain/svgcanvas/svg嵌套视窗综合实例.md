@@ -4,7 +4,7 @@ title: SVG嵌套视窗综合实例
 ---
 ### SVG新视窗
 
-在SVG绘制的任何一个时刻，你可以通过嵌套svg或者使用例如symbol的元素来建立新的viewport和用户坐标系。在这篇文章中，我们将看一下我们如何这样做，以及这样做如何帮助我们控制SVG元素并让它们变得更加灵活（或流动）。
+在SVG绘制的任何一个时刻，你可以通过嵌套svg或者使用例如symbol的元素来建立新的viewport和用户坐标系。在这篇文章中，[我们](https://www.w3cdoc.com)将看一下[我们](https://www.w3cdoc.com)如何这样做，以及这样做如何帮助[我们](https://www.w3cdoc.com)控制SVG元素并让它们变得更加灵活（或流动）。
 
 ![SVG嵌套视窗综合实例][1]
 
@@ -12,7 +12,7 @@ title: SVG嵌套视窗综合实例
 
 ### 嵌套svg元素
 
-在第一部分我们讨论了svg元素如何为SVG画布内容建立一个视窗。在SVG绘制过程中的任何一个时刻，你可以创建一个新的视窗其中包含的图形是通过把一个svg元素包含在另一个中绘制的。通过建立新视窗，你隐性得建立了一个新视窗坐标系和新用户坐标系。
+在第一部分[我们](https://www.w3cdoc.com)讨论了svg元素如何为SVG画布内容建立一个视窗。在SVG绘制过程中的任何一个时刻，你可以创建一个新的视窗其中包含的图形是通过把一个svg元素包含在另一个中绘制的。通过建立新视窗，你隐性得建立了一个新视窗坐标系和新用户坐标系。
 
 例如，试想有一个svg以及里面的内容：
 
@@ -42,27 +42,27 @@ title: SVG嵌套视窗综合实例
 
 如果最外层svg的宽度为100%（例如，如果它在一个文档中内联或者你想要它可以流动），内层SVG会扩展拉伸来保持宽度为外层SVG的一半-这是强制的。
 
-嵌套SVG在给SVG画布中的元素增加灵活性和扩展性时尤其有用。我们知道，使用viewBox值和preserveAspectRatio，我们已经可以创建响应式SVG。最外层svg的宽度可以设置成100%来确保它扩展拉伸到它的容器（或页面）扩展或拉伸。然后通过使用viewBox值和 preserveAspectRatio，我们可以保证SVG画布可以自适应viewport中的改变（最外层svg）。我在CSSConf演讲的幻灯片中写到了关于响应式SVG的内容。你可以在这里查看这个技术。  
-然而，当我们像这样创建一个响应式SVG，整个画布以及所有绘制在上面的元素都会有反应并且同时改变。但有时候，你只想让图形中的一个元素变为响应式，并且保持其他东西“固定”在一个位置和/或尺寸。这时候嵌套svg就很有用。
+嵌套SVG在给SVG画布中的元素增加灵活性和扩展性时尤其有用。[我们](https://www.w3cdoc.com)知道，使用viewBox值和preserveAspectRatio，[我们](https://www.w3cdoc.com)已经可以创建响应式SVG。最外层svg的宽度可以设置成100%来确保它扩展拉伸到它的容器（或页面）扩展或拉伸。然后通过使用viewBox值和 preserveAspectRatio，[我们](https://www.w3cdoc.com)可以保证SVG画布可以自适应viewport中的改变（最外层svg）。我在CSSConf演讲的幻灯片中写到了关于响应式SVG的内容。你可以在这里查看这个技术。  
+然而，当[我们](https://www.w3cdoc.com)像这样创建一个响应式SVG，整个画布以及所有绘制在上面的元素都会有反应并且同时改变。但有时候，你只想让图形中的一个元素变为响应式，并且保持其他东西“固定”在一个位置和/或尺寸。这时候嵌套svg就很有用。
 
 svg元素有独立于它父元素的坐标系，它可以有独立的viewBox和preserveAspectRatio属性，你可以任意修改里面内容的尺寸和位置。  
-所以，要让一个元素更加灵活，我们可以把它包裹在svg元素中，并且给svg一个弹性的宽度来适应最外层SVG的宽度，然后声明preserveAspectRatio=”none”这样的话里面的图形会扩展和拉伸到容器的宽度。注意svg可以多层嵌套，但是为了让事情简洁，我在这篇文章里只嵌套一层深度。  
-为了演示嵌套svg如何发挥作用，让我们来看一些例子。  
-例子,试想我们有如下的SVG：  
+所以，要让一个元素更加灵活，[我们](https://www.w3cdoc.com)可以把它包裹在svg元素中，并且给svg一个弹性的宽度来适应最外层SVG的宽度，然后声明preserveAspectRatio=”none”这样的话里面的图形会扩展和拉伸到容器的宽度。注意svg可以多层嵌套，但是为了让事情简洁，我在这篇文章里只嵌套一层深度。  
+为了演示嵌套svg如何发挥作用，让[我们](https://www.w3cdoc.com)来看一些例子。  
+例子,试想[我们](https://www.w3cdoc.com)有如下的SVG：  
 ![SVG嵌套视窗综合实例][2]  
 上述SVG是响应式的。改变屏幕的尺寸会导致整个SVG图形根据需要做出反应。下面的截图展示了拉伸页面的结果，以及SVG如何变得更小。注意SVG的内容如何根据SVG视窗和相互之间保持它们的初始位置。  
 ![SVG嵌套视窗综合实例][3]  
-使用嵌套SVG，我们将改变这个情况。我们可以对SVG中每个独立的元素根据SVG视窗声明一个位置，所以随着SVG 视窗尺寸的改变（即最外层svg的改变），每个元素独立于其他元素发生改变。
+使用嵌套SVG，[我们](https://www.w3cdoc.com)将改变这个情况。[我们](https://www.w3cdoc.com)可以对SVG中每个独立的元素根据SVG视窗声明一个位置，所以随着SVG 视窗尺寸的改变（即最外层svg的改变），每个元素独立于其他元素发生改变。
 
 注意，在这个时候，你需要熟悉SVG viewport, viewBox, 和preserveAspectRatio是如何生效的。
 
-我们将要创建一个效果，当屏幕尺寸变化时，蛋壳的上部分移动使得其中的可爱的小鸡显示出来，如下图所示：  
+[我们](https://www.w3cdoc.com)将要创建一个效果，当屏幕尺寸变化时，蛋壳的上部分移动使得其中的可爱的小鸡显示出来，如下图所示：  
 ![SVG嵌套视窗综合实例][4]  
 为了达到这个效果，蛋的上半部分必须和其他部分分离出来单独包含一个自己的svg。这个svg包含框会有一个IDupper-shell。
 
-然后，我们保证新的svg#upper-shell和外层SVG有一样的高度和宽度。可以通过在svg上声明width=”100%” height=”100%”或者不声明任何高度和宽度来实现。如果内层SVG上没有声明任何宽高，它会自动扩展为外层SVG宽高的100%。
+然后，[我们](https://www.w3cdoc.com)保证新的svg#upper-shell和外层SVG有一样的高度和宽度。可以通过在svg上声明width=”100%” height=”100%”或者不声明任何高度和宽度来实现。如果内层SVG上没有声明任何宽高，它会自动扩展为外层SVG宽高的100%。
 
-最终，为了确保上壳被“抬”起或定位在svg#upper-shell顶部的中心，我们将使用适当的preserveAspectRatio值来确保viewBox被定位在视窗的顶部中心-值是xMidYMin。
+最终，为了确保上壳被“抬”起或定位在svg#upper-shell顶部的中心，[我们](https://www.w3cdoc.com)将使用适当的preserveAspectRatio值来确保viewBox被定位在视窗的顶部中心-值是xMidYMin。
 
 SVG图形的代码如下：
 
@@ -81,9 +81,9 @@ SVG图形的代码如下：
     &lt;/svg&gt;
 &lt;/svg&gt;</pre>
 
-这个时候，注意在嵌套svg#upper-shell上声明的viewBox和最外层svg有相同的值（在它被移除之前）。我们用相同的viewBox值我原因就是这样，SVG在大屏幕上保持最初的样子。
+这个时候，注意在嵌套svg#upper-shell上声明的viewBox和最外层svg有相同的值（在它被移除之前）。[我们](https://www.w3cdoc.com)用相同的viewBox值我原因就是这样，SVG在大屏幕上保持最初的样子。
 
-所以，这件事是这样的：我们开始一个SVG-在我们的例子中，这是一张里面藏着一个小鸡的带裂纹的蛋。然后，我们创建了另一“层”并把上部分的壳放在里面-这一层通过使用嵌套svg创建。嵌套svg和外层svg的尺寸和viewBox一样。最终，内层SVG的viewBox被设置成不管屏幕尺寸是多少都“固定”在viewport的顶部-这确保了当屏幕尺寸很窄时SVG被拉长，上层的壳被向上举起，因此展示出“隐藏”在里面的小鸡。  
+所以，这件事是这样的：[我们](https://www.w3cdoc.com)开始一个SVG-在[我们](https://www.w3cdoc.com)的例子中，这是一张里面藏着一个小鸡的带裂纹的蛋。然后，[我们](https://www.w3cdoc.com)创建了另一“层”并把上部分的壳放在里面-这一层通过使用嵌套svg创建。嵌套svg和外层svg的尺寸和viewBox一样。最终，内层SVG的viewBox被设置成不管屏幕尺寸是多少都“固定”在viewport的顶部-这确保了当屏幕尺寸很窄时SVG被拉长，上层的壳被向上举起，因此展示出“隐藏”在里面的小鸡。  
 ![SVG嵌套视窗综合实例][5]  
 一旦屏幕尺寸拉伸，SVG被拉长，使用preserveAspectratio=”xMidYMin meet”把包含上部分壳的viewBox被定位到viewport的顶部。  
 ![SVG嵌套视窗综合实例][6]  
@@ -92,7 +92,7 @@ SVG图形的代码如下：
 
 嵌套或”分层”SVG使你可以根据改变的视窗定位SVG的一部分，在保持元素宽高比的情况下。所以图片可以在不扭曲内容元素的情况下自适应。
 
-如果我们想要整个鸡蛋剥离显示出小鸡，我们可以单独用一个svg层包含下部分壳，viewBox也相同。确保下部分壳向下移动并固定在视窗的底部中心，我们使用preserveAspectRatio=”xMidYMax meet”来定位。代码如下：
+如果[我们](https://www.w3cdoc.com)想要整个鸡蛋剥离显示出小鸡，[我们](https://www.w3cdoc.com)可以单独用一个svg层包含下部分壳，viewBox也相同。确保下部分壳向下移动并固定在视窗的底部中心，[我们](https://www.w3cdoc.com)使用preserveAspectRatio=”xMidYMax meet”来定位。代码如下：
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;svg version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"&gt;
     &lt;svg id="chick" viewBox="0 0 315 385" preserveAspectRatio="xMidYMid meet"&gt;
@@ -109,7 +109,7 @@ SVG图形的代码如下：
 &lt;/svg&gt;
 &lt;/svg&gt;</pre>
 
-每个svg层/viewport等于最外层svg宽高的100%。所以我们基本有了三个副本。每层包含一个元素-上部分壳，下部分壳，或小鸡。三层的viewBox是相同的，只有preserveAspectRatio不同。  
+每个svg层/viewport等于最外层svg宽高的100%。所以[我们](https://www.w3cdoc.com)基本有了三个副本。每层包含一个元素-上部分壳，下部分壳，或小鸡。三层的viewBox是相同的，只有preserveAspectRatio不同。  
 ![SVG嵌套视窗综合实例][7]  
 当然，在这个例子里，一开始的图形中小鸡隐藏在蛋里，随着屏幕变小才显示出来。然而，你可以做一些不一样的：你可以开始在小屏幕上创建一个图形，然后在大屏幕上显示一些东西；即当svg变宽时才有更多垂直空间来展示元素。
 
@@ -119,9 +119,9 @@ SVG图形的代码如下：
 
 ### 使用嵌套SVG使元素流动
 
-在保持宽高比的情况下定位元素，我们可以使用嵌套svg只允许特定元素流动-可以不保持这些特定元素的宽高比。
+在保持宽高比的情况下定位元素，[我们](https://www.w3cdoc.com)可以使用嵌套svg只允许特定元素流动-可以不保持这些特定元素的宽高比。
 
-例如，如果你只想SVG中的一个元素流动，你可以把它包含在一个svg中，并且使用preserveAspectRatio=”none”来让这个元素扩展始终撑满这个视窗的宽，并且保持宽高比和像我们在之前例子中做的一样定位其他元素。
+例如，如果你只想SVG中的一个元素流动，你可以把它包含在一个svg中，并且使用preserveAspectRatio=”none”来让这个元素扩展始终撑满这个视窗的宽，并且保持宽高比和像[我们](https://www.w3cdoc.com)在之前例子中做的一样定位其他元素。
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;svg&gt;&lt;!-- ... --&gt;
 &lt;svg viewBox=".." preserveAspectRatio="none"&gt;
@@ -134,7 +134,7 @@ Jake Archibald创建了一个简单实用的嵌套SVG使用案例：一个简单
 
 ### 其他建立新视窗的方法
 
-svg不是唯一能在SVG中创建新视窗的元素。在下面部分，我们会讨论使用其他SVG元素创建新视窗的方法。
+svg不是唯一能在SVG中创建新视窗的元素。在下面部分，[我们](https://www.w3cdoc.com)会讨论使用其他SVG元素创建新视窗的方法。
 
 使用use 和 symbol建立一个新的视窗
 
@@ -154,11 +154,11 @@ symbol元素的使用可以参考use元素中的xlink:href属性：
 
 当symbol被使用时，它被深度克隆到生成的shadow tree中，例外是symbol被svg替换。这个生成的svg总是有明确的宽高。如果宽高的值在use元素上，这些值会被转换生成svg。如果属性宽和/或高没有声明，生成的svg元素会使用这些值的100%。
 
-因为我们在DOM中使用了svg，并且因为这个svg实际上包含在外层svg中，我们遇到的嵌套svg的状况和我们在之前一章讨论到的并没有多少不一样-嵌套的svg形成了一个新的viewport。嵌套svg的viewBox是在symbol元素上声明的viewBox。（symbol元素接受viewBox元素值。更多信息，阅读这篇文章：Structuring, Grouping, and Referencing in SVG – The , , and Elements)
+因为[我们](https://www.w3cdoc.com)在DOM中使用了svg，并且因为这个svg实际上包含在外层svg中，[我们](https://www.w3cdoc.com)遇到的嵌套svg的状况和[我们](https://www.w3cdoc.com)在之前一章讨论到的并没有多少不一样-嵌套的svg形成了一个新的viewport。嵌套svg的viewBox是在symbol元素上声明的viewBox。（symbol元素接受viewBox元素值。更多信息，阅读这篇文章：Structuring, Grouping, and Referencing in SVG – The , , and Elements)
 
-所以我们现在有了一个新的viewport，尺寸和位置可以使用元素（x,y, width, height）声明，viewBox值可以在symbol元素上声明。symbol的内容随后再这个视窗和viewBox中被渲染和定位。
+所以[我们](https://www.w3cdoc.com)现在有了一个新的viewport，尺寸和位置可以使用元素（x,y, width, height）声明，viewBox值可以在symbol元素上声明。symbol的内容随后再这个视窗和viewBox中被渲染和定位。
 
-最后，symbol元素也接收preserveAspectratio属性值，你可以在由use建立的新视窗中定位viewBox。这很清楚，不是吗？你可以像我们在之前的部分里一样控制新创建的嵌套svg。
+最后，symbol元素也接收preserveAspectratio属性值，你可以在由use建立的新视窗中定位viewBox。这很清楚，不是吗？你可以像[我们](https://www.w3cdoc.com)在之前的部分里一样控制新创建的嵌套svg。
 
 Dirk Weber 也创建了一个使用嵌套SVG和symbol元素来模仿CSS border images的表现。你可以在这里查看文章。
 
@@ -198,7 +198,7 @@ foreignObject接收属性包括x，y，height和width，用来定位对象和调
 
 ### 谢谢！
 
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/svg-1.jpg
  [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/svg51.png

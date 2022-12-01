@@ -39,7 +39,7 @@ title: BSR、SSG、SSR之next.js
 ## 不同点
 
 <p data-pid="88PuaAln">
-  Next.js 的预渲染可以与前端 React 无缝对接
+  Next.js 的预渲染可以与[前端](https://www.w3cdoc.com) React 无缝对接
 </p>
 
 * * *
@@ -51,7 +51,7 @@ title: BSR、SSG、SSR之next.js
 ## 客户端渲染
 
 <p data-pid="nV62aS8J">
-  客户端渲染，顾名思义就是只在浏览器上执行的渲染，通过Vue 和 React 构建的单页面应用SPA 都是采用这种方式渲染
+  客户端渲染，顾名思义就是只在[浏览器](https://www.w3cdoc.com)上执行的渲染，通过Vue 和 React 构建的单页面应用SPA 都是采用这种方式渲染
 </p>
 
 ### **缺点**
@@ -125,7 +125,7 @@ title: BSR、SSG、SSR之next.js
 </p>
 
 <p data-pid="Awtkxt75">
-  那为什么还需要在每个人的浏览器上渲染一遍呢？
+  那为什么还需要在每个人的[浏览器](https://www.w3cdoc.com)上渲染一遍呢？
 </p>
 
 <p data-pid="pBl1eNMR">
@@ -165,7 +165,7 @@ title: BSR、SSG、SSR之next.js
 </p>
 
 <p data-pid="hczja-gG">
-  首先我们来想一个问题
+  首先[我们](https://www.w3cdoc.com)来想一个问题
 </p>
 
 <p data-pid="Ave-qgak">
@@ -230,10 +230,10 @@ title: BSR、SSG、SSR之next.js
 </code></pre>
 </div>
 
-## 前端是怎么不通过 AJAX 获取到数据的
+## [前端](https://www.w3cdoc.com)是怎么不通过 AJAX 获取到数据的
 
 <p data-pid="wyyB7xMV">
-  posts 数据我们只在服务器获取了，但又是怎样传递给前端的呢？
+  posts 数据[我们](https://www.w3cdoc.com)只在服务器获取了，但又是怎样传递给[前端](https://www.w3cdoc.com)的呢？
 </p>
 
 <p data-pid="4eheMQWz">
@@ -245,11 +245,11 @@ title: BSR、SSG、SSR之next.js
 </p></figure>
 
 <p data-pid="U7n0fTV3">
-  我们可以看到玄机就藏在 id 为 <i><code>_NEXT_DATA__</code></i> 的 script 标签中，里面储存了传给前端的 props 数据
+  [我们](https://www.w3cdoc.com)可以看到玄机就藏在 id 为 <i><code>_NEXT_DATA__</code></i> 的 script 标签中，里面储存了传给[前端](https://www.w3cdoc.com)的 props 数据
 </p>
 
 <p data-pid="DT-dyBqd">
-  这就是同构 SSR 的好处，后端可以将数据直接传给前端，而不需要 AJAX 异步获取
+  这就是同构 SSR 的好处，后端可以将数据直接传给[前端](https://www.w3cdoc.com)，而不需要 AJAX 异步获取
 </p>
 
 ## 静态化的时机
@@ -273,7 +273,7 @@ yarn start</code></pre>
 </div>
 
 <p data-pid="Ij8kwKnN">
-  打包后我们可以会看到这样
+  打包后[我们](https://www.w3cdoc.com)可以会看到这样
 </p>
 
 <p id="EEDybSQ">
@@ -303,7 +303,7 @@ yarn start</code></pre>
 ## 三种文件类型
 
 <p data-pid="KibS1Wqx">
-  build 完成后，我们查看.next 文件里面，发现 posts.html、posts.js、posts.json
+  build 完成后，[我们](https://www.w3cdoc.com)查看.next 文件里面，发现 posts.html、posts.js、posts.json
 </p><figure data-size="normal">
 
 <p id="dDHwTRl">
@@ -325,7 +325,7 @@ yarn start</code></pre>
 </p>
 
 <p data-pid="ayYwuwsq">
-  显然是为了 posts.js 接受不同的数据，当我们展示每篇博客的时候，他们的样式相同，内容不同，就会用到这个功能
+  显然是为了 posts.js 接受不同的数据，当[我们](https://www.w3cdoc.com)展示每篇博客的时候，他们的样式相同，内容不同，就会用到这个功能
 </p>
 
 <p data-pid="p3_D7AH_">
@@ -386,7 +386,7 @@ yarn start</code></pre>
 </p>
 
 <p data-pid="iK1XJmd5">
-  这段代码实现的时，服务器响应请求后获取浏览器信息，返回给前端展示
+  这段代码实现的时，服务器响应请求后获取[浏览器](https://www.w3cdoc.com)信息，返回给[前端](https://www.w3cdoc.com)展示
 </p>
 
 <div class="highlight">
@@ -400,7 +400,7 @@ yarn start</code></pre>
 &lt;span class="kr">const&lt;/span> &lt;span class="nx">index&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">NextPage&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="nx">Props&lt;/span>&lt;span class="o">&gt;&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">props&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&gt;&lt;/span> &lt;span class="p">{&lt;/span>
   &lt;span class="k">return&lt;/span> &lt;span class="p">(&lt;/span>
     &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">div&lt;/span>&lt;span class="o">&gt;&lt;/span>
-      &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">h1&lt;/span>&lt;span class="o">&gt;&lt;/span>&lt;span class="nx">你的浏览器是&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nx">props&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">browser&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="err">/h1&gt;&lt;/span>
+      &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">h1&lt;/span>&lt;span class="o">&gt;&lt;/span>&lt;span class="nx">你的[浏览器](https://www.w3cdoc.com)是&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nx">props&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">browser&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="err">/h1&gt;&lt;/span>
     &lt;span class="o">&lt;&lt;/span>&lt;span class="err">/div&gt;&lt;/span>
   &lt;span class="p">);&lt;/span>
 &lt;span class="p">};&lt;/span>
@@ -423,15 +423,15 @@ yarn start</code></pre>
 </p>
 
 <p data-pid="1FmHiNmp">
-  推荐 <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//reactjs.org/docs/react-dom-server.html%23rendertostring" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">在后端 renderToString() 在前端 hydrate()</a>
+  推荐 <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//reactjs.org/docs/react-dom-server.html%23rendertostring" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">在后端 renderToString() 在[前端](https://www.w3cdoc.com) hydrate()</a>
 </p>
 
 <p data-pid="QeVAWRGt">
-  后端将页面渲染，返回 HTML String 格式，传递到前端，前端进行 hydrate() ,会保留 HTML 并附上时间监听，也就是说后端渲染 HTML，前端添加监听。
+  后端将页面渲染，返回 HTML String 格式，传递到[前端](https://www.w3cdoc.com)，[前端](https://www.w3cdoc.com)进行 hydrate() ,会保留 HTML 并附上时间监听，也就是说后端渲染 HTML，[前端](https://www.w3cdoc.com)添加监听。
 </p>
 
 <p data-pid="4f5BK8OX">
-  前端也会渲染一次，用以确保前后端渲染结果一致
+  [前端](https://www.w3cdoc.com)也会渲染一次，用以确保前后端渲染结果一致
 </p>
 
 * * *
@@ -441,7 +441,7 @@ yarn start</code></pre>
 ### 客户端渲染 SSR
 
 <p data-pid="l18RNerA">
-  只在浏览器上运行，缺点 SEO 不友好，白屏
+  只在[浏览器](https://www.w3cdoc.com)上运行，缺点 SEO 不友好，白屏
 </p>
 
 <p data-pid="HcR1EPmN">

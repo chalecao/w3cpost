@@ -38,7 +38,7 @@ PS: 安装需要root权限，所以需要sudo
 
 ## 安装virtualenv
 
-virtualenv是python的沙箱工具.我们毕竟是在自己机器上做实验,为了不来回修改各种环境变量,我们一般还是弄个沙箱完比较好.测试完直接删除就行,不用再去改各种配置文件.
+virtualenv是python的沙箱工具.[我们](https://www.w3cdoc.com)毕竟是在自己机器上做实验,为了不来回修改各种环境变量,[我们](https://www.w3cdoc.com)一般还是弄个沙箱完比较好.测试完直接删除就行,不用再去改各种配置文件.
 
 <pre class="pure-highlightjs"><code class="null">$pip install --upgrade virtualenv
 # 安装好后创建一个工作目录,我直接在home里创建了个文件夹.
@@ -50,7 +50,7 @@ $ source bin/activate
 (tensorflow) $
 </code></pre>
 
-一般情况是，我们希望创建一个独立的Python运行环境，命名为`venv`：
+一般情况是，[我们](https://www.w3cdoc.com)希望创建一个独立的Python运行环境，命名为`venv`：
 
 <pre><code class="ruby">&lt;span class="constant">Mac&lt;/span>&lt;span class="symbol">:myproject&lt;/span> michael&lt;span class="variable">$ &lt;/span>virtualenv --no-site-packages venv
 &lt;span class="constant">Using&lt;/span> base prefix &lt;span class="string">'/usr/local/.../Python.framework/Versions/3.4'&lt;/span>
@@ -59,7 +59,7 @@ $ source bin/activate
 &lt;span class="constant">Installing&lt;/span> setuptools, pip, wheel...done.
 </code></pre>
 
-命令`virtualenv`就可以创建一个独立的Python运行环境，我们还加上了参数`--no-site-packages`，这样，已经安装到系统Python环境中的所有第三方包都不会复制过来，这样，我们就得到了一个不带任何第三方包的“干净”的Python运行环境。像我的mac电脑默认python是python 2.7 ，我想创建一个独立的3.7的环境，可以指定python版本
+命令`virtualenv`就可以创建一个独立的Python运行环境，[我们](https://www.w3cdoc.com)还加上了参数`--no-site-packages`，这样，已经安装到系统Python环境中的所有第三方包都不会复制过来，这样，[我们](https://www.w3cdoc.com)就得到了一个不带任何第三方包的“干净”的Python运行环境。像我的mac电脑默认python是python 2.7 ，我想创建一个独立的3.7的环境，可以指定python版本
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">tensorflow virtualenv --no-site-packages --python=/Library/Frameworks/Python.framework/Versions/3.7/bin/python3.7 p3env
 Already using interpreter /Library/Frameworks/Python.framework/Versions/3.7/bin/python3.7
@@ -143,7 +143,7 @@ PATH=$PATH:/Users/chalecao/Library/Python/2.7/bin
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">jupyter notebook</pre>
 
-然后浏览器会打开网页，选择新建->python2, 即可：
+然后[浏览器](https://www.w3cdoc.com)会打开网页，选择新建->python2, 即可：
 
 <p id="EnLXfQI">
   <img loading="lazy" class="alignnone wp-image-3221 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png?x-oss-process=image/format,webp" alt="" width="431" height="385" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png?x-oss-process=image/format,webp 962w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_268/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_687/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_671,h_600/format,webp 671w" sizes="(max-width: 431px) 100vw, 431px" />

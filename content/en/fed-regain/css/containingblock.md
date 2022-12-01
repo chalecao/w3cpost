@@ -9,7 +9,7 @@ weight: 9
   什么是containing block？
 </h1>
 
-如果干巴巴的问一个前端什么是containing block。大部分都不知所云。官方示意如下：
+如果干巴巴的问一个[前端](https://www.w3cdoc.com)什么是containing block。大部分都不知所云。官方示意如下：
 
 > The size and position of an element are often impacted by its containing block. Most often, the containing block is the content area of an element&#8217;s nearest block-level ancestor, but this is not always the case. In this article, we examine the factors that deterime an element&#8217;s containing block.
 
@@ -24,10 +24,10 @@ weight: 9
 最内部的即为内容区。
 
 <h3 class="heading" data-id="heading-2">
-  我们平时用到过吗？
+  [我们](https://www.w3cdoc.com)平时用到过吗？
 </h3>
 
-这个概念虽然可能不熟悉，但是实际上我们经常用到：
+这个概念虽然可能不熟悉，但是实际上[我们](https://www.w3cdoc.com)经常用到：
 
 <pre><code class="hljs css copyable" lang="css">&lt;span class="hljs-comment">/*
 &lt;div class="outer"&gt;
@@ -98,7 +98,7 @@ inner的宽度是多少呢？毫无疑问，是**160px**。那稍微加一点戏
 
 理解了包含块，能够将特性运用到一些特定场景中，已经说明知识点消化的足够好了。但是下面的**彩蛋知识点**，还需要一点运气才能获得~因为它并没有在包含块的MDN文档中被提及。
 
-chrome率先实现了一个实验特性`contain`。它允许开发者声明当前元素和它的内容尽可能的独立于 DOM 树的其他部分。从而使得浏览器在重新计算布局、样式、绘图或它们的组合的时候，只会影响到有限的 DOM 区域，而不是整个页面。
+chrome率先实现了一个实验特性`contain`。它允许开发者声明当前元素和它的内容尽可能的独立于 DOM 树的其他部分。从而使得[浏览器](https://www.w3cdoc.com)在重新计算布局、样式、绘图或它们的组合的时候，只会影响到有限的 DOM 区域，而不是整个页面。
 
 在它的可选值中，**paint**的作用是使得该元素的子孙节点不会超出它的边缘。
 

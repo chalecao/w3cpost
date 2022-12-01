@@ -38,13 +38,13 @@ _在node环境执行上述代码，结果为：_
 
 之所以为’undefined’，原因就在于‘变量提升’，在进入func函数时，将所有通过var声明的变量置前并赋予undefined的值。
 
-**但，**ES6的到来，为我们提供了‘块级作用域’。且‘块级作用域’并不影响var声明的变量。
+**但，**ES6的到来，为[我们](https://www.w3cdoc.com)提供了‘块级作用域’。且‘块级作用域’并不影响var声明的变量。
 
 What?‘块级作用域’又不影响var声明的变量？！！
 
 是的，var声明的变量的性质和原来一样，还是具有‘变量提升’的特性。而‘块级作用域’通过新增命令let和const来体现。
 
-下面，我们透过新增的let和const命令，协同感受下ES6的块级作用域。
+下面，[我们](https://www.w3cdoc.com)透过新增的let和const命令，协同感受下ES6的块级作用域。
 
 **注：**由于let和const属于ES6，所以都必须使用严格模式，否则会报错。
 
@@ -105,7 +105,7 @@ _在node环境中执行上述代码，结果如下：_
 
 <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609093903199-619142117.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609093903199-619142117.png?x-oss-process=image/format,webp" alt="" />
 
-通过demo，我们可以清楚的看见，在第二次（if外）打印i值时，是报错的。
+通过demo，[我们](https://www.w3cdoc.com)可以清楚的看见，在第二次（if外）打印i值时，是报错的。
 
 这因为let声明的变量i是属于if内的块级作用域；而不是像var一样。
 
@@ -148,7 +148,7 @@ _在node环境下执行上述代码，结果如下：_
 
 <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094235886-680485743.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094235886-680485743.png?x-oss-process=image/format,webp" alt="" />
 
-如果let声明的变量没有变量提升，应该打印’1’（func函数外的test）；而他却报错，说明它是提升了的，只是规定了不能在其声明之前使用而已。我们称这特性叫“暂时性死区（temporal dead zone）”。且这一特性，仅对遵循‘块级作用域’的命令有效（let、const）。
+如果let声明的变量没有变量提升，应该打印’1’（func函数外的test）；而他却报错，说明它是提升了的，只是规定了不能在其声明之前使用而已。[我们](https://www.w3cdoc.com)称这特性叫“暂时性死区（temporal dead zone）”。且这一特性，仅对遵循‘块级作用域’的命令有效（let、const）。
 
 关于let，最后再通过一个经典案例，体验下。
 
@@ -192,7 +192,7 @@ for(var i = 0; i &lt; 2; i++){
 arr[1]();</pre>
 </div>
 
-现在有了let，它声明的变量作用域为块级，所以，我们也可以利用let来达到同样的效果。
+现在有了let，它声明的变量作用域为块级，所以，[我们](https://www.w3cdoc.com)也可以利用let来达到同样的效果。
 
 _如下：_
 
@@ -251,7 +251,7 @@ _在node环境下，执行上述代码结果如下：_
   <pre>const PI = 3.14</pre>
 </div>
 
-欢迎学习前端知识体系课程，本系列属于：[前端增长教程][1]
+欢迎学习[前端](https://www.w3cdoc.com)知识体系课程，本系列属于：[[前端](https://www.w3cdoc.com)增长教程][1]
 
 在线视频课程：<a href="https://study.163.com/course/courseMain.htm?share=2&shareId=400000000351011&courseId=1209400904&_trace_c_p_k2_=d5106aa1758748cea6e733c4b1f29bbe" target="_blank" rel="noopener noreferrer">网易云课堂课程</a>      <a href="https://segmentfault.com/ls/1650000019681091" target="_blank" rel="noopener noreferrer">思否课堂</a>
 

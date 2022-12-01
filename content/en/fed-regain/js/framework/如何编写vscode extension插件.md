@@ -3,7 +3,7 @@ title: 如何编写vscode extension插件
 ---
 ## vscode extension
 
-vscode用了好久了，说真心话，真的好用。除了有几次更新，有许多bug，现在已经比较完善了。大家都注意到vscode 有个插件的功能，可以安装扩展。那么自己想写个vscode extension插件 怎么写呢？
+vscode用了好久了，说真心话，真的好用。除了有几次更新，有许多bug，现在已经比较完善了。[大家](https://www.w3cdoc.com)都注意到vscode 有个插件的功能，可以安装扩展。那么自己想写个vscode extension插件 怎么写呢？
 
 官方教程：https://code.visualstudio.com/docs/extensions/overview
 

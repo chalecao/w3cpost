@@ -5,7 +5,7 @@ title: asm.js 和 Emscripten 介绍
 
 
 ---
-2012年，Mozilla 的工程师 <a href="https://github.com/kripken" target="_blank" rel="noopener noreferrer">Alon Zakai</a> 在研究 LLVM 编译器时突发奇想：许多 3D 游戏都是用 C / C++ 语言写的，如果能将 C / C++ 语言编译成 JavaScript 代码，它们不就能在浏览器里运行了吗？众所周知，JavaScript 的基本语法与 C 语言高度相似。
+2012年，Mozilla 的工程师 <a href="https://github.com/kripken" target="_blank" rel="noopener noreferrer">Alon Zakai</a> 在研究 LLVM 编译器时突发奇想：许多 3D 游戏都是用 C / C++ 语言写的，如果能将 C / C++ 语言编译成 JavaScript 代码，它们不就能在[浏览器](https://www.w3cdoc.com)里运行了吗？众所周知，JavaScript 的基本语法与 C 语言高度相似。
 
 于是，他开始研究怎么才能实现这个目标，为此专门做了一个编译器项目 <a href="https://github.com/kripken/emscripten" target="_blank" rel="noopener noreferrer">Emscripten</a>。这个编译器可以将 C / C++ 代码编译成 JS 代码，但不是普通的 JS，而是一种叫做 <a href="http://asmjs.org/" target="_blank" rel="noopener noreferrer">asm.js</a> 的 JavaScript 变体。
 
@@ -26,7 +26,7 @@ C / C++ 编译成 JS 有两个最大的困难。
 
 <img title="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090304.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090304.jpg?x-oss-process=image/format,webp" alt="" />
 
-一旦 JavaScript 引擎发现运行的是 asm.js，就知道这是经过优化的代码，可以跳过语法分析这一步，直接转成汇编语言。另外，浏览器还会调用 WebGL 通过 GPU 执行 asm.js，即 asm.js 的执行引擎与普通的 JavaScript 脚本不同。这些都是 asm.js 运行较快的原因。据称，asm.js 在浏览器里的运行速度，大约是原生代码的50%左右。
+一旦 JavaScript 引擎发现运行的是 asm.js，就知道这是经过优化的代码，可以跳过语法分析这一步，直接转成汇编语言。另外，[浏览器](https://www.w3cdoc.com)还会调用 WebGL 通过 GPU 执行 asm.js，即 asm.js 的执行引擎与普通的 JavaScript 脚本不同。这些都是 asm.js 运行较快的原因。据称，asm.js 在[浏览器](https://www.w3cdoc.com)里的运行速度，大约是原生代码的50%左右。
 
 下面就依次介绍 asm.js 的两大语法特点。
 
@@ -127,7 +127,7 @@ size_t &lt;span class="token function">strlen&lt;span class="token punctuation">
 
 回答是，两者的功能基本一致，就是转出来的代码不一样：asm.js 是文本，WebAssembly 是二进制字节码，因此运行速度更快、体积更小。从长远来看，WebAssembly 的前景更光明。
 
-但是，这并不意味着 asm.js 肯定会被淘汰，因为它有两个优点：首先，它是文本，人类可读，比较直观；其次，所有浏览器都支持 asm.js，不会有兼容性问题。
+但是，这并不意味着 asm.js 肯定会被淘汰，因为它有两个优点：首先，它是文本，人类可读，比较直观；其次，所有[浏览器](https://www.w3cdoc.com)都支持 asm.js，不会有兼容性问题。
 
 ## 二、 Emscripten 编译器
 
@@ -224,7 +224,7 @@ int &lt;span class="token function">main&lt;span class="token punctuation">(&lt;
 $ emcc example1&lt;span class="token punctuation">.&lt;/span>cc &lt;span class="token operator">-&lt;/span>o example1&lt;span class="token punctuation">.&lt;/span>html
 </code></pre>
 
-浏览器打开`example1.html`，就会跳出对话框`Hello World!`。
+[浏览器](https://www.w3cdoc.com)打开`example1.html`，就会跳出对话框`Hello World!`。
 
 ### 3.2 C/C++ 与 JavaScript 的通信
 
@@ -254,7 +254,7 @@ int &lt;span class="token function">main&lt;span class="token punctuation">(&lt;
 $ emcc example2&lt;span class="token punctuation">.&lt;/span>cc &lt;span class="token operator">-&lt;/span>o example2&lt;span class="token punctuation">.&lt;/span>html
 </code></pre>
 
-浏览器打开网页`example2.html`，会显示`val2 == 42`。
+[浏览器](https://www.w3cdoc.com)打开网页`example2.html`，会显示`val2 == 42`。
 
 ### 3.3 EM_ASM 宏系列
 
@@ -287,7 +287,7 @@ int &lt;span class="token function">main&lt;span class="token punctuation">(&lt;
 &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
 
-上面代码中，我们将一个字符串传入 JS 代码。由于没有返回值，所以使用`EM_ASM_ARGS`。另外，我们都知道，在 C / C++ 里面，字符串是一个字符数组，所以要调用`Pointer_stringify()`方法将字符数组转成 JS 的字符串。
+上面代码中，[我们](https://www.w3cdoc.com)将一个字符串传入 JS 代码。由于没有返回值，所以使用`EM_ASM_ARGS`。另外，[我们](https://www.w3cdoc.com)都知道，在 C / C++ 里面，字符串是一个字符数组，所以要调用`Pointer_stringify()`方法将字符数组转成 JS 的字符串。
 
 接着，将这个程序转成 asm.js。
 
@@ -295,7 +295,7 @@ int &lt;span class="token function">main&lt;span class="token punctuation">(&lt;
 $ emcc example3&lt;span class="token punctuation">.&lt;/span>cc &lt;span class="token operator">-&lt;/span>o example3&lt;span class="token punctuation">.&lt;/span>html
 </code></pre>
 
-浏览器打开`example3.html`，会跳出对话框&#8221;Hello from C++!&#8221;。
+[浏览器](https://www.w3cdoc.com)打开`example3.html`，会跳出对话框&#8221;Hello from C++!&#8221;。
 
 ### 3.4 JavaScript 调用 C / C++ 代码
 
@@ -346,7 +346,7 @@ $  emcc &lt;span class="token operator">-&lt;/span>s EXPORTED_FUNCTIONS&lt;span 
 
 注意，编译命令里面要用`-s EXPORTED_FUNCTIONS`参数给出输出的函数名数组，而且函数名前面加下划线。本例只输出两个 C 函数，所以要写成`['_SquareVal', '_main']`。
 
-浏览器打开`example4.html`，就会看到弹出的对话框里面显示下面的内容。
+[浏览器](https://www.w3cdoc.com)打开`example4.html`，就会看到弹出的对话框里面显示下面的内容。
 
 > <pre class=" language-javascript"><code class=" language-javascript">
 Computing&lt;span class="token punctuation">:&lt;/span> &lt;span class="token number">12.5&lt;/span> &lt;span class="token operator">*&lt;/span> &lt;span class="token number">12.5&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token number">156.25&lt;/span>
@@ -388,11 +388,11 @@ $ emcc &lt;span class="token operator">-&lt;/span>s EXPORTED_FUNCTIONS&lt;span c
 &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>body&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
 </code></pre>
 
-浏览器打开这个网页，就可以看到`result == 100`了。
+[浏览器](https://www.w3cdoc.com)打开这个网页，就可以看到`result == 100`了。
 
 ### 3.6 Node 调用 C 函数
 
-如果执行环境不是浏览器，而是 Node，那么调用 C 函数就更方便了。新建一个文件`example6.c`，写入下面的代码。
+如果执行环境不是[浏览器](https://www.w3cdoc.com)，而是 Node，那么调用 C 函数就更方便了。新建一个文件`example6.c`，写入下面的代码。
 
 > <pre class=" language-clike"><code class=" language-clike">
 
@@ -438,7 +438,7 @@ Hi&lt;span class="token operator">!&lt;/span>
 
 ## 四、用途
 
-asm.js 不仅能让浏览器运行 <a href="http://kripken.github.io/boon/boon.html" target="_blank" rel="noopener noreferrer">3D 游戏</a>，还可以运行各种<a href="https://github.com/dherman/asm.js/wiki/Projects-using-asm.js" target="_blank" rel="noopener noreferrer">服务器软件</a>，比如 <a href="https://github.com/kripken/lua.vm.js" target="_blank" rel="noopener noreferrer">Lua</a>、<a href="https://github.com/xxuejie/webruby" target="_blank" rel="noopener noreferrer">Ruby</a> 和 <a href="https://github.com/kripken/sql.js" target="_blank" rel="noopener noreferrer">SQLite</a>。 这意味着很多工具和算法，都可以使用现成的代码，不用重新写一遍。
+asm.js 不仅能让[浏览器](https://www.w3cdoc.com)运行 <a href="http://kripken.github.io/boon/boon.html" target="_blank" rel="noopener noreferrer">3D 游戏</a>，还可以运行各种<a href="https://github.com/dherman/asm.js/wiki/Projects-using-asm.js" target="_blank" rel="noopener noreferrer">服务器软件</a>，比如 <a href="https://github.com/kripken/lua.vm.js" target="_blank" rel="noopener noreferrer">Lua</a>、<a href="https://github.com/xxuejie/webruby" target="_blank" rel="noopener noreferrer">Ruby</a> 和 <a href="https://github.com/kripken/sql.js" target="_blank" rel="noopener noreferrer">SQLite</a>。 这意味着很多工具和算法，都可以使用现成的代码，不用重新写一遍。
 
 另外，由于 asm.js 的运行速度较快，所以一些计算密集型的操作（比如计算 Hash）可以使用 C / C++ 实现，再在 JS 中调用它们。
 

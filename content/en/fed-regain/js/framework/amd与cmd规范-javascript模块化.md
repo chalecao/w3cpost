@@ -18,7 +18,7 @@ title: AMD与CMD规范-javascript模块化
 
 ### [][3]模块化定义
 
-还有一些对于模块化一些专业的定义为：模块化是软件系统的属性，这个系统被分解为一组高内聚，低耦合的模块。那么在理想状态下我们只需要完成自己部分的核心业务逻辑代码，其他方面的依赖可以通过直接加载被人已经写好模块进行使用即可。
+还有一些对于模块化一些专业的定义为：模块化是软件系统的属性，这个系统被分解为一组高内聚，低耦合的模块。那么在理想状态下[我们](https://www.w3cdoc.com)只需要完成自己部分的核心业务逻辑代码，其他方面的依赖可以通过直接加载被人已经写好模块进行使用即可。
 
 首先，既然是模块化设计，那么作为一个模块化系统所必须的能力：
 
@@ -80,9 +80,9 @@ amdjs 的API <a href="https://github.com/amdjs/amdjs-api/wiki" target="_blank" r
 官网 <a href="https://www.requirejs.org/" target="_blank" rel="external">https://www.requirejs.org/</a>  
 API <a href="https://www.requirejs.org/docs/api.html" target="_blank" rel="external">https://www.requirejs.org/docs/api.html</a>
 
-RequireJS 是一个前端的模块化管理的工具库，遵循AMD规范，它的作者就是AMD规范的创始人 James Burke。所以说RequireJS是对AMD规范的阐述一点也不为过。
+RequireJS 是一个[前端](https://www.w3cdoc.com)的模块化管理的工具库，遵循AMD规范，它的作者就是AMD规范的创始人 James Burke。所以说RequireJS是对AMD规范的阐述一点也不为过。
 
-RequireJS 的基本思想为：通过一个函数来将所有所需要的或者说所依赖的模块实现装载进来，然后返回一个新的函数（模块），我们所有的关于新模块的业务代码都在这个函数内部操作，其内部也可无限制的使用已经加载进来的以来的模块。
+RequireJS 的基本思想为：通过一个函数来将所有所需要的或者说所依赖的模块实现装载进来，然后返回一个新的函数（模块），[我们](https://www.w3cdoc.com)所有的关于新模块的业务代码都在这个函数内部操作，其内部也可无限制的使用已经加载进来的以来的模块。
 
 那么scripts下的main.js则是指定的主代码脚本文件，所有的依赖模块代码文件都将从该文件开始异步加载进入执行。
 
@@ -105,7 +105,7 @@ defined用于定义模块，RequireJS要求每个模块均放在独立的文件�
 
 在加载 foo 与 bar 两个模块之后执行回调函数实现具体过程。当然还可以如之前的例子中的，在define定义模块内部进行require调用模块
 
-define 和 require 这两个定义模块，调用模块的方法合称为AMD模式，定义模块清晰，不会污染全局变量，清楚的显示依赖关系。AMD模式可以用于浏览器环境并且允许非同步加载模块，也可以按需动态加载模块。
+define 和 require 这两个定义模块，调用模块的方法合称为AMD模式，定义模块清晰，不会污染全局变量，清楚的显示依赖关系。AMD模式可以用于[浏览器](https://www.w3cdoc.com)环境并且允许非同步加载模块，也可以按需动态加载模块。
 
 ### CMD规范
 
@@ -182,8 +182,8 @@ CMD 是 SeaJS 在推广过程中对模块定义的规范化产出。
 
 类似的还有 CommonJS Modules/2.0 规范，是 BravoJS 在推广过程中对模块定义的规范化产出还有不少??
 
-这些规范的目的都是为了 JavaScript 的模块化开发，特别是在浏览器端的。  
-目前这些规范的实现都能达成浏览器端模块化开发的目的。
+这些规范的目的都是为了 JavaScript 的模块化开发，特别是在[浏览器](https://www.w3cdoc.com)端的。  
+目前这些规范的实现都能达成[浏览器](https://www.w3cdoc.com)端模块化开发的目的。
 
 区别：
 
@@ -204,7 +204,7 @@ CMD 是 SeaJS 在推广过程中对模块定义的规范化产出。
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2015/02/28/2015_amd_cmd/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2015/02/28/2015_amd_cmd/</a>
 
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/2015/02/28/2015_amd_cmd/#模块化思想 "模块化思想"
  [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/amd_cmd.png

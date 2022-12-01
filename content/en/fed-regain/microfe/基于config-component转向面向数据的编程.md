@@ -17,7 +17,7 @@ is_original:
 
 ### 面向数据编程是什么样的体验？ {#articleHeader1}
 
-其实是数据驱动式编程更向前走一步，我们知道现在MVVM框架，像React、vue、Angular这些给前端带来了很大的进步，更优雅的工程化体系结构，更健壮的代码体系结构。同样给开发者带来了数据驱动式开发的体验，但是业务代码还是经常会出现业务逻辑与UI表达形式的穿插混合的情况，很难统一。
+其实是数据驱动式编程更向前走一步，[我们](https://www.w3cdoc.com)知道现在MVVM框架，像React、vue、Angular这些给[前端](https://www.w3cdoc.com)带来了很大的进步，更优雅的工程化体系结构，更健壮的代码体系结构。同样给开发者带来了数据驱动式开发的体验，但是业务代码还是经常会出现业务逻辑与UI表达形式的穿插混合的情况，很难统一。
 
 github： <a href="https://github.com/chalecao/config-component" target="_blank" rel="nofollow noopener noreferrer">https://github.com/chalecao/c&#8230;</a>  
 感谢star！！！
@@ -28,7 +28,7 @@ github： <a href="https://github.com/chalecao/config-component" target="_blank
 
 > **样式 mix 行为 = 样式 + 数据 + 行为**
 
-于是我们抽象出来的**config-component**组件，作为驱动样式行为分离的通用组件，驱动面向数据编程。
+于是[我们](https://www.w3cdoc.com)抽象出来的**config-component**组件，作为驱动样式行为分离的通用组件，驱动面向数据编程。
 
 例如实现下面的表单：
 
@@ -42,7 +42,7 @@ github： <a href="https://github.com/chalecao/config-component" target="_blank
   <img loading="lazy" width="1187" height="725" class="alignnone size-full wp-image-5003 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png?x-oss-process=image/format,webp 1187w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_183/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_469/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_489/format,webp 800w" sizes="(max-width: 1187px) 100vw, 1187px" />
 </p>
 
-左边的图是基于ANTD正常的写法，我们要写Form，要写检验规则，要写子组件等等，关键是这些逻辑是糅合在一起的。右边是基于config-component提供的ConfigForm组件做了封装，只需要提供JSON schema配置数据即可驱动你的页面，分离数据校验和UI逻辑，UI逻辑基于UIconfig，数据校验基于schema做校验。
+左边的图是基于ANTD正常的写法，[我们](https://www.w3cdoc.com)要写Form，要写检验规则，要写子组件等等，关键是这些逻辑是糅合在一起的。右边是基于config-component提供的ConfigForm组件做了封装，只需要提供JSON schema配置数据即可驱动你的页面，分离数据校验和UI逻辑，UI逻辑基于UIconfig，数据校验基于schema做校验。
 
 ### creative feature创新特性 {#articleHeader3}
 

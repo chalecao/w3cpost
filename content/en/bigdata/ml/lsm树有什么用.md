@@ -3,7 +3,7 @@ title: LSM树有什么用
 
 
 ---
-十多年前，谷歌发布了大名鼎鼎的&#8221;三驾马车&#8221;的论文，分别是GFS(2003年)，MapReduce（2004年），BigTable（2006年），为开源界在<a href="https://cloud.tencent.com/solution/bigdata?from=10680" target="_blank" rel="noopener" data-text-link="109_1441835" data-from="10680">大数据</a>领域带来了无数的灵感，其中在 “BigTable” 的论文中很多很酷的方面之一就是它所使用的文件组织方式，这个方法更一般的名字叫 Log Structured-Merge Tree。在面对亿级别之上的海量数据的存储和检索的场景下，我们选择的<a href="https://cloud.tencent.com/solution/database?from=10680" target="_blank" rel="noopener" data-text-link="107_1441835" data-from="10680">数据库</a>通常都是各种强力的NoSQL，比如Hbase，Cassandra，Leveldb，RocksDB等等，这其中前两者是Apache下面的顶级开源项目数据库，后两者分别是Google和Facebook开源的数据库存储引擎。而这些强大的NoSQL数据库都有一个共性，就是其底层使用的数据结构，都是仿照“BigTable”中的文件组织方式来实现的，也就是我们今天要介绍的LSM-Tree。
+十多年前，谷歌发布了大名鼎鼎的&#8221;三驾马车&#8221;的论文，分别是GFS(2003年)，MapReduce（2004年），BigTable（2006年），为开源界在<a href="https://cloud.tencent.com/solution/bigdata?from=10680" target="_blank" rel="noopener" data-text-link="109_1441835" data-from="10680">大数据</a>领域带来了无数的灵感，其中在 “BigTable” 的论文中很多很酷的方面之一就是它所使用的文件组织方式，这个方法更一般的名字叫 Log Structured-Merge Tree。在面对亿级别之上的海量数据的存储和检索的场景下，[我们](https://www.w3cdoc.com)选择的<a href="https://cloud.tencent.com/solution/database?from=10680" target="_blank" rel="noopener" data-text-link="107_1441835" data-from="10680">数据库</a>通常都是各种强力的NoSQL，比如Hbase，Cassandra，Leveldb，RocksDB等等，这其中前两者是Apache下面的顶级开源项目数据库，后两者分别是Google和Facebook开源的数据库存储引擎。而这些强大的NoSQL数据库都有一个共性，就是其底层使用的数据结构，都是仿照“BigTable”中的文件组织方式来实现的，也就是[我们](https://www.w3cdoc.com)今天要介绍的LSM-Tree。
 
 ### 什么是LSM-Tree {#%E4%BB%80%E4%B9%88%E6%98%AFLSM-Tree}
 
@@ -15,7 +15,7 @@ LSM-Tree全称是Log Structured Merge Tree，是一种分层，有序，面向�
   </p>
 </div></figure>
 
-围绕这一原理进行设计和优化，以此让写性能达到最优，正如我们普通的Log的写入方式，这种结构的写入，全部都是以Append的模式追加，不存在删除和修改。当然有得就有舍，这种结构虽然大大提升了数据的写入能力，却是以牺牲部分读取性能为代价，故此这种结构通常适合于写多读少的场景。故LSM被设计来提供比传统的B+树或者ISAM更好的写操作吞吐量，通过消去随机的本地更新操作来达到这个目标。这里面最典型的例子就属于Kakfa了，把磁盘顺序写发挥到了极致，故而在大数据领域成为了互联网公司标配的分布式消息<a href="https://cloud.tencent.com/product/tdmq?from=10680" target="_blank" rel="noopener" data-text-link="100_1441835" data-from="10680">中间件</a>组件。
+围绕这一原理进行设计和优化，以此让写性能达到最优，正如[我们](https://www.w3cdoc.com)普通的Log的写入方式，这种结构的写入，全部都是以Append的模式追加，不存在删除和修改。当然有得就有舍，这种结构虽然大大提升了数据的写入能力，却是以牺牲部分读取性能为代价，故此这种结构通常适合于写多读少的场景。故LSM被设计来提供比传统的B+树或者ISAM更好的写操作吞吐量，通过消去随机的本地更新操作来达到这个目标。这里面最典型的例子就属于Kakfa了，把磁盘顺序写发挥到了极致，故而在大数据领域成为了互联网公司标配的分布式消息<a href="https://cloud.tencent.com/product/tdmq?from=10680" target="_blank" rel="noopener" data-text-link="100_1441835" data-from="10680">中间件</a>组件。
 
 虽然这种结构的写非常简单高效，但其缺点是对读取特别是随机读很不友好，这也是为什么日志通常用在下面的两种简单的场景：
 
@@ -27,7 +27,7 @@ LSM-Tree全称是Log Structured Merge Tree，是一种分层，有序，面向�
 
 ### SSTable 和 LSM-Tree {#SSTable-%E5%92%8C-LSM-Tree}
 
-提到LSM-Tree这种结构，就得提一下LevelDB这个存储引擎，我们知道Bigtable是谷歌开源的一篇论文，很难接触到它的源代码实现。如果说Bigtable是分布式闭源的一个高性能的KV系统，那么LevelDB就是这个KV系统开源的单机版实现，最为重要的是LevelDB是由Bigtable的原作者 Jeff Dean 和 Sanjay Ghemawat 共同完成，可以说高度复刻了Bigtable 论文中对于其实现的描述。
+提到LSM-Tree这种结构，就得提一下LevelDB这个存储引擎，[我们](https://www.w3cdoc.com)知道Bigtable是谷歌开源的一篇论文，很难接触到它的源代码实现。如果说Bigtable是分布式闭源的一个高性能的KV系统，那么LevelDB就是这个KV系统开源的单机版实现，最为重要的是LevelDB是由Bigtable的原作者 Jeff Dean 和 Sanjay Ghemawat 共同完成，可以说高度复刻了Bigtable 论文中对于其实现的描述。
 
 在LSM-Tree里面，核心的数据结构就是SSTable，全称是Sorted String Table，SSTable的概念其实也是来自于 Google 的 Bigtable 论文，论文中对 SSTable 的描述如下：
 
@@ -49,7 +49,7 @@ An SSTable provides a persistent, ordered immutable map from keys to values, whe
   </p>
 </div></figure>
 
-我们总结下在在LSM-Tree里面如何写数据的？
+[我们](https://www.w3cdoc.com)总结下在在LSM-Tree里面如何写数据的？
 
 1，当收到一个写请求时，会先把该条数据记录在WAL Log里面，用作故障恢复。
 
@@ -59,19 +59,19 @@ An SSTable provides a persistent, ordered immutable map from keys to values, whe
 
 4，把内存里面不可变的Memtable给dump到到硬盘上的SSTable层中，此步骤也称为Minor Compaction，这里需要注意在L0层的SSTable是没有进行合并的，所以这里的key range在多个SSTable中可能会出现重叠，在层数大于0层之后的SSTable，不存在重叠key。
 
-5，当每层的磁盘上的SSTable的体积超过一定的大小或者个数，也会周期的进行合并。此步骤也称为Major Compaction，这个阶段会真正 的清除掉被标记删除掉的数据以及多版本数据的合并，避免浪费空间，注意由于SSTable都是有序的，我们可以直接采用merge sort进行高效合并。
+5，当每层的磁盘上的SSTable的体积超过一定的大小或者个数，也会周期的进行合并。此步骤也称为Major Compaction，这个阶段会真正 的清除掉被标记删除掉的数据以及多版本数据的合并，避免浪费空间，注意由于SSTable都是有序的，[我们](https://www.w3cdoc.com)可以直接采用merge sort进行高效合并。
 
-接着我们总结下在LSM-Tree里面如何读数据的？
+接着[我们](https://www.w3cdoc.com)总结下在LSM-Tree里面如何读数据的？
 
 1，当收到一个读请求的时候，会直接先在内存里面查询，如果查询到就返回。
 
 2，如果没有查询到就会依次下沉，知道把所有的Level层查询一遍得到最终结果。
 
-思考查询步骤，我们会发现如果SSTable的分层越多，那么最坏的情况下要把所有的分层扫描一遍，对于这种情况肯定是需要优化的，如何优化？在 Bigtable 论文中提出了几种方式：
+思考查询步骤，[我们](https://www.w3cdoc.com)会发现如果SSTable的分层越多，那么最坏的情况下要把所有的分层扫描一遍，对于这种情况肯定是需要优化的，如何优化？在 Bigtable 论文中提出了几种方式：
 
 1，压缩
 
-SSTable 是可以启用压缩功能的，并且这种压缩不是将整个 SSTable 一起压缩，而是根据 locality 将数据分组，每个组分别压缩，这样的好处当读取数据的时候，我们不需要解压缩整个文件而是解压缩部分 Group 就可以读取。
+SSTable 是可以启用压缩功能的，并且这种压缩不是将整个 SSTable 一起压缩，而是根据 locality 将数据分组，每个组分别压缩，这样的好处当读取数据的时候，[我们](https://www.w3cdoc.com)不需要解压缩整个文件而是解压缩部分 Group 就可以读取。
 
 2，缓存
 
@@ -79,13 +79,13 @@ SSTable 是可以启用压缩功能的，并且这种压缩不是将整个 SSTab
 
 3，索引，Bloom filters
 
-正常情况下，一个读操作是需要读取所有的 SSTable 将结果合并后返回的，但是对于某些 key 而言，有些 SSTable 是根本不包含对应数据的，因此，我们可以对每一个 SSTable 添加 Bloom Filter，因为布隆过滤器在判断一个SSTable不存在某个key的时候，那么就一定不会存在，利用这个特性可以减少不必要的磁盘扫描。
+正常情况下，一个读操作是需要读取所有的 SSTable 将结果合并后返回的，但是对于某些 key 而言，有些 SSTable 是根本不包含对应数据的，因此，[我们](https://www.w3cdoc.com)可以对每一个 SSTable 添加 Bloom Filter，因为布隆过滤器在判断一个SSTable不存在某个key的时候，那么就一定不会存在，利用这个特性可以减少不必要的磁盘扫描。
 
 4，合并
 
 这个在前面的写入流程中已经介绍过，通过定期合并瘦身， 可以有效的清除无效数据，缩短读取路径，提高磁盘利用空间。但Compaction操作是非常消耗CPU和磁盘IO的，尤其是在业务高峰期，如果发生了Major Compaction，则会降低整个系统的吞吐量，这也是一些NoSQL数据库，比如Hbase里面常常会禁用Major Compaction，并在凌晨业务低峰期进行合并的原因。
 
-最后有的同学可能会问道，为什么LSM不直接顺序写入磁盘，而是需要在内存中缓冲一下？ 这个问题其实很容易解答，单条写的性能肯定没有批量写来的块，这个原理其实在Kafka里面也是一样的，虽然kafka给我们的感觉是写入后就落地，但其实并不是，本身是 可以根据条数或者时间比如200ms刷入磁盘一次，这样能大大提升写入效率。此外在LSM中，在磁盘缓冲的另一个好处是，针对新增的数据，可以直接查询返回，能够避免一定的IO操作。
+最后有的同学可能会问道，为什么LSM不直接顺序写入磁盘，而是需要在内存中缓冲一下？ 这个问题其实很容易解答，单条写的性能肯定没有批量写来的块，这个原理其实在Kafka里面也是一样的，虽然kafka给[我们](https://www.w3cdoc.com)的感觉是写入后就落地，但其实并不是，本身是 可以根据条数或者时间比如200ms刷入磁盘一次，这样能大大提升写入效率。此外在LSM中，在磁盘缓冲的另一个好处是，针对新增的数据，可以直接查询返回，能够避免一定的IO操作。
 
 ### B+Tree VS LSM-Tree {#B+Tree-VS-LSM-Tree}
 
@@ -101,13 +101,13 @@ B+Tree则是将数据拆分为固定大小的Block或Page, 一般是4KB大小，
 
 而B+tree的优点是支持高效的读（稳定的OlogN），但是在大规模的写请求下（复杂度O(LogN)），效率会变得比较低，因为随着insert的操作，为了维护B+树结构，节点会不断的分裂和合并。操作磁盘的随机读写概率会变大，故导致性能降低。
 
-还有一点需要提到的是基于LSM-Tree分层存储能够做到写的高吞吐，带来的副作用是整个系统必须频繁的进行compaction，写入量越大，Compaction的过程越频繁。而compaction是一个compare & merge的过程，非常消耗CPU和存储IO，在高吞吐的写入情形下，大量的compaction操作占用大量系统资源，必然带来整个系统性能断崖式下跌，对应用系统产生巨大影响，当然我们可以禁用自动Major Compaction，在每天系统低峰期定期触发合并，来避免这个问题。
+还有一点需要提到的是基于LSM-Tree分层存储能够做到写的高吞吐，带来的副作用是整个系统必须频繁的进行compaction，写入量越大，Compaction的过程越频繁。而compaction是一个compare & merge的过程，非常消耗CPU和存储IO，在高吞吐的写入情形下，大量的compaction操作占用大量系统资源，必然带来整个系统性能断崖式下跌，对应用系统产生巨大影响，当然[我们](https://www.w3cdoc.com)可以禁用自动Major Compaction，在每天系统低峰期定期触发合并，来避免这个问题。
 
 阿里为了优化这个问题，在X-DB引入了异构硬件设备FPGA来代替CPU完成compaction操作，使系统整体性能维持在高水位并避免抖动，是存储引擎得以服务业务苛刻要求的关键。
 
 ### 总结 {#%E6%80%BB%E7%BB%93}
 
-本文主要介绍了LSM-Tree的相关内容，简单的说，其牺牲了部分读取的性能，通过批量顺序写来换取了高吞吐的写性能，这种特性在大数据领域得到充分了体现，最直接的例子就各种NoSQL在大数据领域的应用，学习和了解LSM-Tree的结构将有助于我们更加深入的去理解相关NoSQL数据库的实现原理，掌握隐藏在这些框架下面的核心知识。
+本文主要介绍了LSM-Tree的相关内容，简单的说，其牺牲了部分读取的性能，通过批量顺序写来换取了高吞吐的写性能，这种特性在大数据领域得到充分了体现，最直接的例子就各种NoSQL在大数据领域的应用，学习和了解LSM-Tree的结构将有助于[我们](https://www.w3cdoc.com)更加深入的去理解相关NoSQL数据库的实现原理，掌握隐藏在这些框架下面的核心知识。
 
 历史文章：
 

@@ -8,7 +8,7 @@ title: jquery笔记deferred
 
 ### [][1]什么是deferred对象
 
-开发网站的过程中，我们经常遇到某些耗时很长的javascript操作 。其中，既有异步的操作（比如ajax读取服务器数据），也有同步的操作（比如遍历一个大型数组），它们都不是立即能得到结果的 。通常的做法是，为它们指定回调函数（callback） 。即事先规定，一旦它们运行结束，应该调用哪些函数 。但是，在回调函数方面，jQuery的功能非常弱 。为了改变这一点，jQuery开发团队就设计了deferred对象 。简单说，deferred对象就是jQuery的回调函数解决方案 。在英语中，defer的意思是”延迟”，所以deferred对象的含义就是”延迟”到未来某个点再执行 。它解决了如何处理耗时操作的问题，对那些操作提供了更好的控制，以及统一的编程接口 。它的主要功能，可以归结为四点 。下面我们通过示例代码，一步步来学习 。  
+开发网站的过程中，[我们](https://www.w3cdoc.com)经常遇到某些耗时很长的javascript操作 。其中，既有异步的操作（比如ajax读取服务器数据），也有同步的操作（比如遍历一个大型数组），它们都不是立即能得到结果的 。通常的做法是，为它们指定回调函数（callback） 。即事先规定，一旦它们运行结束，应该调用哪些函数 。但是，在回调函数方面，jQuery的功能非常弱 。为了改变这一点，jQuery开发团队就设计了deferred对象 。简单说，deferred对象就是jQuery的回调函数解决方案 。在英语中，defer的意思是”延迟”，所以deferred对象的含义就是”延迟”到未来某个点再执行 。它解决了如何处理耗时操作的问题，对那些操作提供了更好的控制，以及统一的编程接口 。它的主要功能，可以归结为四点 。下面[我们](https://www.w3cdoc.com)通过示例代码，一步步来学习 。  
 <a></a>  
 ![jquery笔记deferred][2]
 
@@ -46,9 +46,9 @@ deferred对象的另一大好处，就是它允许你为多个事件指定一个
 
 deferred对象的最大优点，就是它把这一套回调函数接口，从ajax操作扩展到了所有操作 。也就是说，任何一个操作—-不管是ajax操作还是本地操作，也不管是异步操作还是同步操作—-都可以使用deferred对象的各种方法，指定回调函数 。
 
-我们来看一个具体的例子 。假定有一个很耗时的操作wait：
+[我们](https://www.w3cdoc.com)来看一个具体的例子 。假定有一个很耗时的操作wait：
 
-我们为它指定回调函数，应该怎么做呢？  
+[我们](https://www.w3cdoc.com)为它指定回调函数，应该怎么做呢？  
 很自然的，你会想到，可以使用$.when()：
 
 但是，这样写的话，done()方法会立即执行，起不到回调函数的作用 。原因在于$.when()的参数只能是deferred对象，所以必须对wait()进行改写：
@@ -79,17 +79,17 @@ wait()函数运行完，就会自动运行done()方法指定的回调函数 。
 
 请看下面的代码：
 
-在上面的这段代码中，wait()函数返回的是promise对象 。然后，我们把回调函数绑定在这个对象上面，而不是原来的deferred对象上面 。这样的好处是，无法改变这个对象的执行状态，要想改变执行状态，只能操作原来的deferred对象 。  
+在上面的这段代码中，wait()函数返回的是promise对象 。然后，[我们](https://www.w3cdoc.com)把回调函数绑定在这个对象上面，而不是原来的deferred对象上面 。这样的好处是，无法改变这个对象的执行状态，要想改变执行状态，只能操作原来的deferred对象 。  
 不过，更好的写法是allenm所指出的，将dtd对象变成wait()函数的内部对象 。
 
 ### [][9]普通操作的回调函数接口2
 
 另一种防止执行状态被外部改变的方法，是使用deferred对象的建构函数$.Deferred() 。  
-这时，wait函数还是保持不变，我们直接把它传入$.Deferred()：
+这时，wait函数还是保持不变，[我们](https://www.w3cdoc.com)直接把它传入$.Deferred()：
 
 jQuery规定，/$.Deferred()可以接受一个函数名（注意，是函数名）作为参数，/$.Deferred()所生成的deferred对象将作为这个函数的默认参数 。
 
-除了上面两种方法以外，我们还可以直接在wait对象上部署deferred接口 。
+除了上面两种方法以外，[我们](https://www.w3cdoc.com)还可以直接在wait对象上部署deferred接口 。
 
 这里的关键是dtd.promise(wait)这一行，它的作用就是在wait对象上部署Deferred接口 。正是因为有了这一行，后面才能直接在wait上面调用done()和fail() 。
 
@@ -127,7 +127,7 @@ jQuery规定，/$.Deferred()可以接受一个函数名（注意，是函数名�
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/09/12/2014_angularjs_2/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/09/12/2014_angularjs_2/</a>
 
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/2014/09/16/2014_jquery_defered/#什么是deferred对象 "什么是deferred对象"
  [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/deferred.jpg

@@ -30,7 +30,7 @@ title: vue与angular与react
 其实我还用过其他的模板引擎，比如jquery的tmpl，像FTL这种模板，还有像smarty这种php模板，还有JSP、ASP这种。不过JSP和ASP这种网页严格的说并不是模板了，而是直接将业务逻辑混合在页面中了。  
 像上面这种采用innerHTML方法直接将字符串转成了DOM元素，其优点是操作简单，兼容性好。但是缺点也是显而易见，使用起来并不方面，特别是事件处理，数据更新等。
 
-我用的比较多的框架其实是angualr，当时也的确是非常的火。13年的时候一直在研究前后端分离的实现方法，当时在给银行做项目，主要采用的技术栈是JSF + Hibernate + Spring + Jquery等，可以参考我写的一本厚厚的电子书: <a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2016/03/31/2016_java_learn/" target="_blank" rel="external noopener">我的JAVA不一般</a>， 这本书写的比较全面了，介绍了很多基础知识。可是后来随着学习的深入，我选择了做前端。
+我用的比较多的框架其实是angualr，当时也的确是非常的火。13年的时候一直在研究前后端分离的实现方法，当时在给银行做项目，主要采用的技术栈是JSF + Hibernate + Spring + Jquery等，可以参考我写的一本厚厚的电子书: <a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2016/03/31/2016_java_learn/" target="_blank" rel="external noopener">我的JAVA不一般</a>， 这本书写的比较全面了，介绍了很多基础知识。可是后来随着学习的深入，我选择了做[前端](https://www.w3cdoc.com)。
 
 我当时做的前后端分离还是比较简单的，基于nginx或者apache或者iis配置一台http服务器，静态资源都放在上面，然后通过ajax请求后端接口，后端接口采用php或者java或者nodejs编写。其实我做过的还是很多的，比如写后台接口就比较轻量级，我比较想做精益化的开发，采用最小的代价，做更多的事情，后端就可以做的很薄，采用thinkphp写一下api，或者java的spingmvc框架，或者nodejs的koa框架，或者直接用node的http模块来写。
 
@@ -42,7 +42,7 @@ String-based 模板技术 (基于字符串的parse和compile过程)
 抽象语法树（Abstract Syntax Tree）也称为AST语法树，指的是源代码语法所对应的树状结构。也就是说，对于一种具体编程语言下的源代码，通过构建语法树的形式将源代码中的语句映射到树中的每一个节点上。  
 ![vue与angular与react][3]
 
-关于字符串模板解析的原理其实和编程语言的编译原理类似，首先都是需要做词法分析，分析出那些是关键词，然后做对应的语法分析，根据定义好的不同语法产生式来匹配最佳的语法，最后就是语义分析，分析出最适合的语义结果，最后输出结果。可以参考我的另一篇：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2017/04/10/2017_js4c/" target="_blank" rel="external noopener">前端构建C语言解释执行环境调研</a>
+关于字符串模板解析的原理其实和编程语言的编译原理类似，首先都是需要做词法分析，分析出那些是关键词，然后做对应的语法分析，根据定义好的不同语法产生式来匹配最佳的语法，最后就是语义分析，分析出最适合的语义结果，最后输出结果。可以参考我的另一篇：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2017/04/10/2017_js4c/" target="_blank" rel="external noopener">[前端](https://www.w3cdoc.com)构建C语言解释执行环境调研</a>
 
 实现一个简单的字符串循环模版：  
 ![vue与angular与react][4]
@@ -94,7 +94,7 @@ String-based 和 Dom-based的模板技术都或多或少的依赖与innerHTML, �
 
 #### Parsing
 
-首先我们使用一个内建DSL来解析模板字符串并输出AST。
+首先[我们](https://www.w3cdoc.com)使用一个内建DSL来解析模板字符串并输出AST。
 
 1）词法分析器又称为扫描器，词法分析是指将文本代码流解析为一个个记号，分析得到的记号以供后续的词法分析使用。 这个模块在Regular顶级模块执行过程中调用Parse模块进行语法分析前会调用Lexer词法分析模块对字符串模板进行词法分析。词法分析的主要流程如下图所示：  
 ![vue与angular与react][7]
@@ -126,14 +126,14 @@ String-based 和 Dom-based的模板技术都或多或少的依赖与innerHTML, �
 一旦regularjs的引擎遇到这段模板与代表的语法元素节点，会进入如下函数处理  
 ![vue与angular与react][11]
 
-正如我们所见， 归功于$watch函数，一旦表达式发生改变，文本节点也会随之改变，这一切其实与angularjs并无两样(事实上regularjs同样也是基于脏检查)
+正如[我们](https://www.w3cdoc.com)所见， 归功于$watch函数，一旦表达式发生改变，文本节点也会随之改变，这一切其实与angularjs并无两样(事实上regularjs同样也是基于脏检查)
 
 与Dom-based 模板技术利用Dom节点承载信息所不同的是，它的中间产物AST 承载了所有Compile过程中需要的信息(语句, 指令, 属性…等等). 这带来几个好处
 
 轻量级, 在Dom中进行读写操作是低效的.  
 可重用的.  
 可序列化 , 你可以在本地或服务器端预处理这个过程。  
-安全, 因为安全不需要innerHTML帮我们生成初始Dom。
+安全, 因为安全不需要innerHTML帮[我们](https://www.w3cdoc.com)生成初始Dom。
 
 ### object的几个方法
 
@@ -165,7 +165,7 @@ Object.defineProperty(obj, "key", {
 
 你可以在创建对象的时候设置属性的get或set方法，也可以直接修改对象的属性。上面这两个方法是ES5新增的方法，主要是IE8的兼容性可以查看上面的参考MDN链接。
 
-有了这两个方法，我们可以做什么？
+有了这两个方法，[我们](https://www.w3cdoc.com)可以做什么？
 
   1. 简化数据操作
 
@@ -216,10 +216,10 @@ alert(vm.w)
 
 &nbsp;
 
-上面的例子是一个简单实现视图和数据绑定的例子。通过这个思路我们可以实现mvvm框架中的vm层。  
+上面的例子是一个简单实现视图和数据绑定的例子。通过这个思路[我们](https://www.w3cdoc.com)可以实现mvvm框架中的vm层。  
 详细可以参考：  
-<a href="https://www.cnblogs.com/aaronjs/p/3614049.html" target="_blank" rel="external noopener">前端MVVM框架设计及实现（一）</a>  
-<a href="https://www.cnblogs.com/aaronjs/p/3617240.html" target="_blank" rel="external noopener">前端MVVM框架设计及实现（二）</a>
+<a href="https://www.cnblogs.com/aaronjs/p/3614049.html" target="_blank" rel="external noopener">[前端](https://www.w3cdoc.com)MVVM框架设计及实现（一）</a>  
+<a href="https://www.cnblogs.com/aaronjs/p/3617240.html" target="_blank" rel="external noopener">[前端](https://www.w3cdoc.com)MVVM框架设计及实现（二）</a>
 
 ### mvvm的差别
 
@@ -228,7 +228,7 @@ alert(vm.w)
 ### 谢谢！
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2017/04/19/2017_vue_react/" target="_blank" rel="external noopener">//fed123.oss-ap-southeast-2.aliyuncs.com/2017/04/19/2017_vue_react/</a>  
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/read-1.jpg
  [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/20170829_59a5917c79d36.png

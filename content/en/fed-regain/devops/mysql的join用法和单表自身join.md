@@ -207,7 +207,7 @@ SELECT* FROM t_blog JOIN t_type ON t_blog.typeId=t_type.id;
 </h2>
 
 <p data-anchor-id="jr2d">
-  外连接就是求两个集合的并集。从笛卡尔积的角度讲就是从笛卡尔积中挑出ON子句条件成立的记录，然后加上左表中剩余的记录，最后加上右表中剩余的记录。另外MySQL不支持OUTER JOIN，但是我们可以对左连接和右连接的结果做UNION操作来实现。
+  外连接就是求两个集合的并集。从笛卡尔积的角度讲就是从笛卡尔积中挑出ON子句条件成立的记录，然后加上左表中剩余的记录，最后加上右表中剩余的记录。另外MySQL不支持OUTER JOIN，但是[我们](https://www.w3cdoc.com)可以对左连接和右连接的结果做UNION操作来实现。
 </p>
 
 <div class="cnblogs_code">

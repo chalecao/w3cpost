@@ -8,7 +8,7 @@ title: 浅析 Node 进程与线程
   </h2>
   
   <p>
-    进程与线程是操作系统中两个重要的角色，它们维系着不同程序的执行流程，通过系统内核的调度，完成多任务执行。今天我们从 Node.js（以下简称 Node）的角度来一起学习相关知识，通过本文读者将了解 Node 进程与线程的特点、代码层面的使用以及它们之间的通信。
+    进程与线程是操作系统中两个重要的角色，它们维系着不同程序的执行流程，通过系统内核的调度，完成多任务执行。今天[我们](https://www.w3cdoc.com)从 Node.js（以下简称 Node）的角度来一起学习相关知识，通过本文读者将了解 Node 进程与线程的特点、代码层面的使用以及它们之间的通信。
   </p>
   
   <h2 class="heading" data-id="heading-2">
@@ -16,7 +16,7 @@ title: 浅析 Node 进程与线程
   </h2>
   
   <p>
-    首先，我们还是回顾一下相关的定义：
+    首先，[我们](https://www.w3cdoc.com)还是回顾一下相关的定义：
   </p>
   
   <p>
@@ -40,7 +40,7 @@ title: 浅析 Node 进程与线程
   </h2>
   
   <p>
-    我们常常听到有开发者说 “ Node.js 是单线程的”，那么 Node 确实是只有一个线程在运行吗？
+    [我们](https://www.w3cdoc.com)常常听到有开发者说 “ Node.js 是单线程的”，那么 Node 确实是只有一个线程在运行吗？
   </p>
   
   <p>
@@ -56,7 +56,7 @@ console.log('process id', process.pid);
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    Node 内建模块 http 创建了一个监听 8000 端口的服务，并打印出该服务运行进程的 pid，控制台输出 pid 为 35919（可变），然后我们通过命令 <code>top -pid 35919</code> 查看进程的详细信息，如下所示：
+    Node 内建模块 http 创建了一个监听 8000 端口的服务，并打印出该服务运行进程的 pid，控制台输出 pid 为 35919（可变），然后[我们](https://www.w3cdoc.com)通过命令 <code>top -pid 35919</code> 查看进程的详细信息，如下所示：
   </p>
   
   <pre><code class="hljs js copyable" lang="js">PID    COMMAND      %CPU TIME     #TH  #WQ  #POR MEM    PURG CMPRS  PGRP  PPID  STATE    BOOSTS     %CPU_ME
@@ -64,7 +64,7 @@ console.log('process id', process.pid);
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    我们看到 <code>#TH</code> (threads 线程) 这一列显示此进程中包含 7 个线程，<strong>说明 Node 进程中并非只有一个线程</strong>。事实上一个 Node 进程通常包含：1 个 Javascript 执行主线程；1 个 watchdog 监控线程用于处理调试信息；1 个 v8 task scheduler 线程用于调度任务优先级，加速延迟敏感任务执行；4 个 v8 线程（可参考以下代码），主要用来执行代码调优与 GC 等后台任务；以及用于异步 I / O 的 libuv 线程池。
+    [我们](https://www.w3cdoc.com)看到 <code>#TH</code> (threads 线程) 这一列显示此进程中包含 7 个线程，<strong>说明 Node 进程中并非只有一个线程</strong>。事实上一个 Node 进程通常包含：1 个 Javascript 执行主线程；1 个 watchdog 监控线程用于处理调试信息；1 个 v8 task scheduler 线程用于调度任务优先级，加速延迟敏感任务执行；4 个 v8 线程（可参考以下代码），主要用来执行代码调优与 GC 等后台任务；以及用于异步 I / O 的 libuv 线程池。
   </p>
   
   <pre><code class="hljs js copyable" lang="js">&lt;span class="hljs-comment">// v8 初始化线程&lt;/span>
@@ -75,7 +75,7 @@ V8::Initialize();
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    其中异步 I/O 线程池，如果执行程序中不包含 I/O 操作如文件读写等，则默认线程池大小为 0，否则 Node 会初始化大小为 4 的异步 I/O 线程池，当然我们也可以通过 <code>process.env.UV_THREADPOOL_SIZE</code> 自己设定线程池大小。需要注意的是在 Node 中网络 I/O 并不占用线程池。
+    其中异步 I/O 线程池，如果执行程序中不包含 I/O 操作如文件读写等，则默认线程池大小为 0，否则 Node 会初始化大小为 4 的异步 I/O 线程池，当然[我们](https://www.w3cdoc.com)也可以通过 <code>process.env.UV_THREADPOOL_SIZE</code> 自己设定线程池大小。需要注意的是在 Node 中网络 I/O 并不占用线程池。
   </p>
   
   <p>
@@ -87,7 +87,7 @@ V8::Initialize();
   </p><figcaption></figcaption></figure>
   
   <p>
-    为了验证上述分析，我们运行示例二的代码，加入文件 I/O 操作：
+    为了验证上述分析，[我们](https://www.w3cdoc.com)运行示例二的代码，加入文件 I/O 操作：
   </p>
   
   <pre><code class="hljs js copyable" lang="js"># 示例二
@@ -111,7 +111,7 @@ console.log(process.pid);
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    此时 <code>#TH</code> 一栏的线程数变成了 11，即大小为 4 的 I/O 线程池被创建。至此，我们针对段首的问题心里有了答案，<strong>Node 严格意义讲并非只有一个线程，通常说的 “Node 是单线程” 其实是指 JS 的执行主线程只有一个</strong>。
+    此时 <code>#TH</code> 一栏的线程数变成了 11，即大小为 4 的 I/O 线程池被创建。至此，[我们](https://www.w3cdoc.com)针对段首的问题心里有了答案，<strong>Node 严格意义讲并非只有一个线程，通常说的 “Node 是单线程” 其实是指 JS 的执行主线程只有一个</strong>。
   </p>
   
   <h2 class="heading" data-id="heading-4">
@@ -123,7 +123,7 @@ console.log(process.pid);
   </p>
   
   <p>
-    从上文异步 I/O 我们也能获得一些思路，Node 进程中通过 libuv 实现了一个事件循环机制（uv_event_loop），当执主程发生阻塞事件，如 I/O 操作时，主线程会将耗时的操作放入事件队列中，然后继续执行后续程序。
+    从上文异步 I/O [我们](https://www.w3cdoc.com)也能获得一些思路，Node 进程中通过 libuv 实现了一个事件循环机制（uv_event_loop），当执主程发生阻塞事件，如 I/O 操作时，主线程会将耗时的操作放入事件队列中，然后继续执行后续程序。
   </p>
   
   <p>
@@ -178,7 +178,7 @@ console.log(process.pid);
   </p>
   
   <p>
-    进程之间通过 <code>process.send</code> 发送消息，通过监听 <code>message</code> 事件接收消息。当一个进程发送消息时，会先序列化为字符串，送入 IPC 信道的一端，另一个进程在另一端接收消息内容，并且反序列化，因此我们可以在进程之间传递对象。
+    进程之间通过 <code>process.send</code> 发送消息，通过监听 <code>message</code> 事件接收消息。当一个进程发送消息时，会先序列化为字符串，送入 IPC 信道的一端，另一个进程在另一端接收消息内容，并且反序列化，因此[我们](https://www.w3cdoc.com)可以在进程之间传递对象。
   </p>
   
   <h3 class="heading" data-id="heading-8">
@@ -313,7 +313,7 @@ if (cluster.isMaster) { // 主控节点逻辑
   </h3>
   
   <p>
-    通过 worker_threads 模块中的 Worker 类我们可以通过传入执行文件的路径创建线程。
+    通过 worker_threads 模块中的 Worker 类[我们](https://www.w3cdoc.com)可以通过传入执行文件的路径创建线程。
   </p>
   
   <pre><code class="hljs js copyable" lang="js">&lt;span class="hljs-keyword">const&lt;/span> { Worker } = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'worker_threads'&lt;/span>);
@@ -438,6 +438,6 @@ thread1 receive: Hi, I am thread2
   </p>
   
   <p>
-    为了简化开发者使用多进程模型以及端口复用，Node 又提供了 cluster 模块实现主-从节点模式的进程管理以及负载调度。由于进程创建、销毁、切换时系统开销较大，worker_threads 模块又随之推出，在保持轻量的前提下，可以利用更少的系统资源高效地处理 进程内 CPU 密集型任务，如数学计算、加解密，进一步提高进程的吞吐率。因篇幅有限，本次分享到此为止，诸多细节期待与大家相互探讨，共同钻研。
+    为了简化开发者使用多进程模型以及端口复用，Node 又提供了 cluster 模块实现主-从节点模式的进程管理以及负载调度。由于进程创建、销毁、切换时系统开销较大，worker_threads 模块又随之推出，在保持轻量的前提下，可以利用更少的系统资源高效地处理 进程内 CPU 密集型任务，如数学计算、加解密，进一步提高进程的吞吐率。因篇幅有限，本次分享到此为止，诸多细节期待与[大家](https://www.w3cdoc.com)相互探讨，共同钻研。
   </p>
 </div>

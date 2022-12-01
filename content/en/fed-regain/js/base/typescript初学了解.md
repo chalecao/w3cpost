@@ -25,7 +25,7 @@ title: TypeScript初学了解
   </p>
   
   <p>
-    那么为什么JS需要做静态类型检查呢？在几年前这个问题也许还会存在比较大的争议，在前端日趋复杂的今天，经过像Google、Microsoft、FaceBook这样的大公司实践表明，类型检查对于代码可维护性和可读性是有非常大的帮助的，尤其针对于需要长期维护的规模性系统。
+    那么为什么JS需要做静态类型检查呢？在几年前这个问题也许还会存在比较大的争议，在[前端](https://www.w3cdoc.com)日趋复杂的今天，经过像Google、Microsoft、FaceBook这样的大公司实践表明，类型检查对于代码可维护性和可读性是有非常大的帮助的，尤其针对于需要长期维护的规模性系统。
   </p>
   
   <h2 class="heading" data-id="heading-1">
@@ -49,15 +49,15 @@ title: TypeScript初学了解
   </ol>
   
   <p>
-    一个好的代码习惯是时常对自己写过的代码进行小的重构，让代码往更可维护的方向去发展。然而对于已经上线的业务代码，往往测试覆盖率不会很高，当我们想要重构时，经常会担心自己的改动会产生各种不可预知的bug。哪怕是一个小的重命名，也有可能照顾不到所有的调用处造成问题。
+    一个好的代码习惯是时常对自己写过的代码进行小的重构，让代码往更可维护的方向去发展。然而对于已经上线的业务代码，往往测试覆盖率不会很高，当[我们](https://www.w3cdoc.com)想要重构时，经常会担心自己的改动会产生各种不可预知的bug。哪怕是一个小的重命名，也有可能照顾不到所有的调用处造成问题。
   </p>
   
   <p>
-    如果是一个TypeScript项目，这种担心就会大大降低，我们可以依赖于TypeScript的静态检查特性帮助找出一个小的改动（如重命名）带来的其他模块的问题，甚至对于模块文件来说，我们可以直接借助编辑器的能力进行<code>“一键重命名”</code>操作。
+    如果是一个TypeScript项目，这种担心就会大大降低，[我们](https://www.w3cdoc.com)可以依赖于TypeScript的静态检查特性帮助找出一个小的改动（如重命名）带来的其他模块的问题，甚至对于模块文件来说，[我们](https://www.w3cdoc.com)可以直接借助编辑器的能力进行<code>“一键重命名”</code>操作。
   </p>
   
   <p>
-    另外一个问题，如果你接手过一个老项目，肯定会头痛于各种文档的缺失和几乎没有注释的代码，一个好的TypeScript项目，是可以做到代码即文档的，通过声明文件我们可以很好地看出各个字段的含义以及哪些是前端必须字段：
+    另外一个问题，如果你接手过一个老项目，肯定会头痛于各种文档的缺失和几乎没有注释的代码，一个好的TypeScript项目，是可以做到代码即文档的，通过声明文件[我们](https://www.w3cdoc.com)可以很好地看出各个字段的含义以及哪些是[前端](https://www.w3cdoc.com)必须字段：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-comment">// 砍价用户信息&lt;/span>
@@ -86,7 +86,7 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    当我们对一个变量或函数等进行赋值时，TypeScript能够自动推断类型赋予变量，TypeScript背后有非常强大的自推断算法帮助识别类型，这个特性无疑可以帮助我们简化一些声明，不必像强类型的语言那样处处是声明，也可以让我们看代码时更加轻松。
+    当[我们](https://www.w3cdoc.com)对一个变量或函数等进行赋值时，TypeScript能够自动推断类型赋予变量，TypeScript背后有非常强大的自推断算法帮助识别类型，这个特性无疑可以帮助[我们](https://www.w3cdoc.com)简化一些声明，不必像强类型的语言那样处处是声明，也可以让[我们](https://www.w3cdoc.com)看代码时更加轻松。
   </p>
   
   <h3 class="heading" data-id="heading-4">
@@ -115,7 +115,7 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
   </h3>
   
   <p>
-    TypeScript有强大的<a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2FDefinitelyTyped%2FDefinitelyTyped" target="_blank" rel="nofollow noopener noreferrer">DefinitelyTyped</a>社区支持，目前类型声明文件基本上已经覆盖了90%以上的常用JS库，在编写代码时我们的提示是非常友好的，也能做到安全的类型检查。（在使用第三方库时，可以现在这个项目中检索一下有没有该库的TS声明，直接引入即可）
+    TypeScript有强大的<a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2FDefinitelyTyped%2FDefinitelyTyped" target="_blank" rel="nofollow noopener noreferrer">DefinitelyTyped</a>社区支持，目前类型声明文件基本上已经覆盖了90%以上的常用JS库，在编写代码时[我们](https://www.w3cdoc.com)的提示是非常友好的，也能做到安全的类型检查。（在使用第三方库时，可以现在这个项目中检索一下有没有该库的TS声明，直接引入即可）
   </p>
   
   <h2 class="heading" data-id="heading-6">
@@ -123,7 +123,7 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
   </h2>
   
   <p>
-    在进入正式的TS类型介绍之前，让我们先回顾一下JS的两个基础：
+    在进入正式的TS类型介绍之前，让[我们](https://www.w3cdoc.com)先回顾一下JS的两个基础：
   </p>
   
   <h3 class="heading" data-id="heading-7">
@@ -131,7 +131,7 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
   </h3>
   
   <p>
-    我们都知道，在JS里，两个等号的判断会进行隐式的类型转换，如：
+    [我们](https://www.w3cdoc.com)都知道，在JS里，两个等号的判断会进行隐式的类型转换，如：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-number">5&lt;/span> == &lt;span class="hljs-string">"5"&lt;/span>); &lt;span class="hljs-comment">// true &lt;/span>
@@ -146,7 +146,7 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    所以在代码层面，一方面我们要<strong>避免这样两个不同类型的比较</strong>，另一方面<strong>使用全等来代替两个等号</strong>，保证在编译期和运行期具有相同的语义。
+    所以在代码层面，一方面[我们](https://www.w3cdoc.com)要<strong>避免这样两个不同类型的比较</strong>，另一方面<strong>使用全等来代替两个等号</strong>，保证在编译期和运行期具有相同的语义。
   </p>
   
   <p>
@@ -165,11 +165,11 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
   </h3>
   
   <p>
-    对于ES6的Class，我们本身已经很熟悉了，值得一提的是，目前对于类的静态属性、成员属性等有一个提案——<a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Ftc39%2Fproposal-class-fields" target="_blank" rel="nofollow noopener noreferrer">proposal-class-fields</a>已经进入了Stage3，这个提案包含了很多东西，主要是类的静态属性、成员属性、公有属性和私有属性。其中，私有属性的提案在社区内引起了非常大的争议，由于它的丑陋和怪异遭受各路人马的抨击，现TC39委员会已决定重新思考该提案。
+    对于ES6的Class，[我们](https://www.w3cdoc.com)本身已经很熟悉了，值得一提的是，目前对于类的静态属性、成员属性等有一个提案——<a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Ftc39%2Fproposal-class-fields" target="_blank" rel="nofollow noopener noreferrer">proposal-class-fields</a>已经进入了Stage3，这个提案包含了很多东西，主要是类的静态属性、成员属性、公有属性和私有属性。其中，私有属性的提案在社区内引起了非常大的争议，由于它的丑陋和怪异遭受各路人马的抨击，现TC39委员会已决定重新思考该提案。
   </p>
   
   <p>
-    现在让我们来看看TypeScript对属性访问控制的情况：
+    现在让[我们](https://www.w3cdoc.com)来看看TypeScript对属性访问控制的情况：
   </p>
   
   <table>
@@ -334,7 +334,7 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    这类字面量类型配合上联合类型还是十分有用的，我们后面再讲。
+    这类字面量类型配合上联合类型还是十分有用的，[我们](https://www.w3cdoc.com)后面再讲。
   </p>
   
   <h3 class="heading" data-id="heading-13">
@@ -349,7 +349,7 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    以上就简单地定义了一个布尔类型的数组，大多数情况下，我们数组的元素类型是固定的，如果我们数组内存在不同类型的元素怎么办？
+    以上就简单地定义了一个布尔类型的数组，大多数情况下，[我们](https://www.w3cdoc.com)数组的元素类型是固定的，如果[我们](https://www.w3cdoc.com)数组内存在不同类型的元素怎么办？
   </p>
   
   <p>
@@ -393,7 +393,7 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
   </h4>
   
   <p>
-    对于对象来说，我们也可以使用内联接口来快速声明类型：
+    对于对象来说，[我们](https://www.w3cdoc.com)也可以使用内联接口来快速声明类型：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">var&lt;/span> personName:{ first: &lt;span class="hljs-built_in">string&lt;/span>, second: &lt;span class="hljs-built_in">string&lt;/span> } = {
@@ -402,7 +402,7 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    内联接口可以帮助我们快速声明类型，但建议谨慎使用，对于可复用以及一般性的接口声明建议使用interface声明。
+    内联接口可以帮助[我们](https://www.w3cdoc.com)快速声明类型，但建议谨慎使用，对于可复用以及一般性的接口声明建议使用interface声明。
   </p>
   
   <h4 class="heading" data-id="heading-16">
@@ -410,7 +410,7 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
   </h4>
   
   <p>
-    对于对象而言，我们可以使用中括号的方式去存取值，对TS而言，同样支持相应的索引类型：
+    对于对象而言，[我们](https://www.w3cdoc.com)可以使用中括号的方式去存取值，对TS而言，同样支持相应的索引类型：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">interface&lt;/span> Foo {
@@ -423,7 +423,7 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
   </p>
   
   <p>
-    对于索引类型，我们在一般化的使用场景上更方便：
+    对于索引类型，[我们](https://www.w3cdoc.com)在一般化的使用场景上更方便：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">interface&lt;/span> NestedCSS {
@@ -492,7 +492,7 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
   </h4>
   
   <p>
-    对于参数，我们可以声明可选参数，即在声明之后加一个问号：
+    对于参数，[我们](https://www.w3cdoc.com)可以声明可选参数，即在声明之后加一个问号：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">foo&lt;/span>(&lt;span class="hljs-params">bar: &lt;span class="hljs-built_in">number&lt;/span>, bas?: &lt;span class="hljs-built_in">string&lt;/span>&lt;/span>): &lt;span class="hljs-title">void&lt;/span> &lt;/span>{
@@ -509,7 +509,7 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
   </p>
   
   <p>
-    当一个函数永远不会返回时，我们可以声明返回值类型为<code>never</code>：
+    当一个函数永远不会返回时，[我们](https://www.w3cdoc.com)可以声明返回值类型为<code>never</code>：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">bar&lt;/span>(): &lt;span class="hljs-title">never&lt;/span> &lt;/span>{
@@ -522,7 +522,7 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
   </h4>
   
   <p>
-    我们还可以使用接口来定义函数，在这种函数实现接口的情形下，我们称这种定义为<code>callable</code>:
+    [我们](https://www.w3cdoc.com)还可以使用接口来定义函数，在这种函数实现接口的情形下，[我们](https://www.w3cdoc.com)称这种定义为<code>callable</code>:
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">interface&lt;/span> Complex {
@@ -579,7 +579,7 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    这个函数可以支持四个参数、两个参数和一个参数，如果我们粗略的将后三个参数都设置为可选参数，那么当传入三个参数时，TS也会认为它是合法的，此时就失去了类型安全，更好的方式是声明函数重载：
+    这个函数可以支持四个参数、两个参数和一个参数，如果[我们](https://www.w3cdoc.com)粗略的将后三个参数都设置为可选参数，那么当传入三个参数时，TS也会认为它是合法的，此时就失去了类型安全，更好的方式是声明函数重载：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">padding&lt;/span>(&lt;span class="hljs-params">all: &lt;span class="hljs-built_in">number&lt;/span>&lt;/span>)&lt;/span>;
@@ -624,7 +624,7 @@ power = &lt;span class="hljs-number">123&lt;/span>;
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    <code>any</code>对于JS代码的迁移是十分友好的，在已经成型的TypeScript项目中，我们要慎用<code>any</code>类型，当你设置为<code>any</code>时，意味着告诉编辑器不要对它进行任何检查。
+    <code>any</code>对于JS代码的迁移是十分友好的，在已经成型的TypeScript项目中，[我们](https://www.w3cdoc.com)要慎用<code>any</code>类型，当你设置为<code>any</code>时，意味着告诉编辑器不要对它进行任何检查。
   </p>
   
   <h4 class="heading" data-id="heading-25">
@@ -632,7 +632,7 @@ power = &lt;span class="hljs-number">123&lt;/span>;
   </h4>
   
   <p>
-    <code>null</code>和<code>undefined</code>作为TypeScript的特殊类型，它同样有字面量的含义，之前我们已经了解到。
+    <code>null</code>和<code>undefined</code>作为TypeScript的特殊类型，它同样有字面量的含义，之前[我们](https://www.w3cdoc.com)已经了解到。
   </p>
   
   <p>
@@ -652,7 +652,7 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
   </h4>
   
   <p>
-    在函数类型中，我们已经介绍了两种类型，专门修饰函数返回值。
+    在函数类型中，[我们](https://www.w3cdoc.com)已经介绍了两种类型，专门修饰函数返回值。
   </p>
   
   <h4 class="heading" data-id="heading-27">
@@ -660,7 +660,7 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
   </h4>
   
   <p>
-    <code>readonly</code>是只读属性的修饰符，当我们的属性是只读时，可以用该修饰符加以约束，在类中，用<code>readonly</code>修饰的属性仅可以在构造函数中初始化：
+    <code>readonly</code>是只读属性的修饰符，当[我们](https://www.w3cdoc.com)的属性是只读时，可以用该修饰符加以约束，在类中，用<code>readonly</code>修饰的属性仅可以在构造函数中初始化：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">class&lt;/span> Foo {
@@ -691,7 +691,7 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    当然，<code>React</code>本身在类的声明时会对传入的<code>props</code>和<code>state</code>做一层<code>ReadOnly</code>的包裹，因此无论我们是否在外面显式声明，赋值给<code>props</code>和<code>state</code>的行为都是会报错的。
+    当然，<code>React</code>本身在类的声明时会对传入的<code>props</code>和<code>state</code>做一层<code>ReadOnly</code>的包裹，因此无论[我们](https://www.w3cdoc.com)是否在外面显式声明，赋值给<code>props</code>和<code>state</code>的行为都是会报错的。
   </p>
   
   <p>
@@ -712,7 +712,7 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
   </h3>
   
   <p>
-    在更加一般化的场景，我们的类型可能并不固定已知，它和<code>any</code>有点像，只不过我们希望在<code>any</code>的基础上能够有更近一步的约束，比如：
+    在更加一般化的场景，[我们](https://www.w3cdoc.com)的类型可能并不固定已知，它和<code>any</code>有点像，只不过[我们](https://www.w3cdoc.com)希望在<code>any</code>的基础上能够有更近一步的约束，比如：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">reverse&lt;/span>&lt;&lt;span class="hljs-title">T&lt;/span>&gt;(&lt;span class="hljs-params">items: T[]&lt;/span>): &lt;span class="hljs-title">T&lt;/span>[] &lt;/span>{
@@ -725,7 +725,7 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    <code>reverse</code>函数是一个很好的示例，对于一个通用的函数<code>reverse</code>来说，数组元素的类型是未知的，可以是任意类型，但<code>reverse</code>函数的返回值也是个数组，它和传入的数组类型是相同的，对于这个约束，我们可以使用泛型，其语法是尖括号，内置泛型变量，多个泛型变量用逗号隔开，泛型变量名称没有限制，一般而言我们以大写字母开头，多个泛型变量使用其语义命名，加上<code>T</code>为前缀。
+    <code>reverse</code>函数是一个很好的示例，对于一个通用的函数<code>reverse</code>来说，数组元素的类型是未知的，可以是任意类型，但<code>reverse</code>函数的返回值也是个数组，它和传入的数组类型是相同的，对于这个约束，[我们](https://www.w3cdoc.com)可以使用泛型，其语法是尖括号，内置泛型变量，多个泛型变量用逗号隔开，泛型变量名称没有限制，一般而言[我们](https://www.w3cdoc.com)以大写字母开头，多个泛型变量使用其语义命名，加上<code>T</code>为前缀。
   </p>
   
   <p>
@@ -743,11 +743,11 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    由于我们的参数类型是<code>T[]</code>，而传入的数组类型是一个<code>number[]</code>，此时<code>T</code>的类型被TypeScript自动推断为<code>number</code>。
+    由于[我们](https://www.w3cdoc.com)的参数类型是<code>T[]</code>，而传入的数组类型是一个<code>number[]</code>，此时<code>T</code>的类型被TypeScript自动推断为<code>number</code>。
   </p>
   
   <p>
-    对于泛型而言，我们同样可以作用于接口和类：
+    对于泛型而言，[我们](https://www.w3cdoc.com)同样可以作用于接口和类：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">interface&lt;/span> Array&lt;T&gt; {
@@ -775,7 +775,7 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    此时我们可以使用一个<code>|</code>分割符来分割多种类型，对于这种复合类型，我们称之为<code>联合类型</code>。
+    此时[我们](https://www.w3cdoc.com)可以使用一个<code>|</code>分割符来分割多种类型，对于这种复合类型，[我们](https://www.w3cdoc.com)称之为<code>联合类型</code>。
   </p>
   
   <h3 class="heading" data-id="heading-30">
@@ -820,7 +820,7 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    我们同样可以使用type来声明一个类型：
+    [我们](https://www.w3cdoc.com)同样可以使用type来声明一个类型：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">type&lt;/span> Text = &lt;span class="hljs-built_in">string&lt;/span> | { text: &lt;span class="hljs-built_in">string&lt;/span> };
@@ -869,7 +869,7 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
   </p>
   
   <p>
-    当然我们还可以指定初始值：
+    当然[我们](https://www.w3cdoc.com)还可以指定初始值：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">enum&lt;/span> Color {
@@ -884,7 +884,7 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
   </p>
   
   <p>
-    大家知道在JavaScript中是不存在枚举类型的，那么TypeScript的枚举最终转换为JavaScript是什么样呢？
+    [大家](https://www.w3cdoc.com)知道在JavaScript中是不存在枚举类型的，那么TypeScript的枚举最终转换为JavaScript是什么样呢？
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">var&lt;/span> Color;
@@ -896,7 +896,7 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    从编译后的代码可以看到，转换为一个key-value的对象后，我们的访问也非常方便：
+    从编译后的代码可以看到，转换为一个key-value的对象后，[我们](https://www.w3cdoc.com)的访问也非常方便：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">var&lt;/span> red = Color.Red; &lt;span class="hljs-comment">// 0&lt;/span>
@@ -933,7 +933,7 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    在我们使用标识位时，可以遵循以下规则：
+    在[我们](https://www.w3cdoc.com)使用标识位时，可以遵循以下规则：
   </p>
   
   <ul>
@@ -996,7 +996,7 @@ Flag |=  EnvFlags.QQ | EnvFlags.Weixin; &lt;span class="hljs-comment">// 加入Q
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    这类枚举和我们之前使用JavaScript定义常量集合的方式很像，好处在于调试或日志输出时，字符串比数字要包含更多的语义。
+    这类枚举和[我们](https://www.w3cdoc.com)之前使用JavaScript定义常量集合的方式很像，好处在于调试或日志输出时，字符串比数字要包含更多的语义。
   </p>
   
   <h3 class="heading" data-id="heading-36">
@@ -1004,7 +1004,7 @@ Flag |=  EnvFlags.QQ | EnvFlags.Weixin; &lt;span class="hljs-comment">// 加入Q
   </h3>
   
   <p>
-    在没有模块化的时代，我们为了防止全局的命名冲突，经常会以命名空间的形式组织代码：
+    在没有模块化的时代，[我们](https://www.w3cdoc.com)为了防止全局的命名冲突，经常会以命名空间的形式组织代码：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">something&lt;/span>) &lt;/span>{
@@ -1029,7 +1029,7 @@ Flag |=  EnvFlags.QQ | EnvFlags.Weixin; &lt;span class="hljs-comment">// 加入Q
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    对于我们自己的工程项目而言，一般建议使用ES6模块的方式去组织代码，而命名空间的模式可适用于对一些全局库的声明，如jQuery：
+    对于[我们](https://www.w3cdoc.com)自己的工程项目而言，一般建议使用ES6模块的方式去组织代码，而命名空间的模式可适用于对一些全局库的声明，如jQuery：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">namespace&lt;/span> $ {
@@ -1038,7 +1038,7 @@ Flag |=  EnvFlags.QQ | EnvFlags.Weixin; &lt;span class="hljs-comment">// 加入Q
 &lt;/span>&lt;/span>&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    当然，命名空间还可以便捷地帮助我们声明静态方法，如和<code>enum</code>的结合使用：
+    当然，命名空间还可以便捷地帮助[我们](https://www.w3cdoc.com)声明静态方法，如和<code>enum</code>的结合使用：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">enum&lt;/span> Weekday {
@@ -1170,7 +1170,7 @@ Flag |=  EnvFlags.QQ | EnvFlags.Weixin; &lt;span class="hljs-comment">// 加入Q
   </p>
   
   <p>
-    不过使用一般化的<code>export</code>更让我们容易获得智能提示：
+    不过使用一般化的<code>export</code>更让[我们](https://www.w3cdoc.com)容易获得智能提示：
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">import&lt;/span> &lt;span class="hljs-comment">/*here*/&lt;/span> &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'something'&lt;/span>;
@@ -1184,7 +1184,7 @@ Flag |=  EnvFlags.QQ | EnvFlags.Weixin; &lt;span class="hljs-comment">// 加入Q
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    我们可以通过智能提示做到快速引入。
+    [我们](https://www.w3cdoc.com)可以通过智能提示做到快速引入。
   </p>
   
   <p>
@@ -1224,7 +1224,7 @@ Highcharts.default.chart(&lt;span class="hljs-string">'container'&lt;/span>, { .
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   
   <p>
-    相比之下，如果没有<code>export default</code>，我们可以直接使用:
+    相比之下，如果没有<code>export default</code>，[我们](https://www.w3cdoc.com)可以直接使用:
   </p>
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">export&lt;/span> * &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">"./foo"&lt;/span>
@@ -1404,7 +1404,7 @@ myFavoriteNumber = &lt;span class="hljs-number">7&lt;/span>;
       错误的写法
     </h2>
     
-    <pre><code class="hljs js copyable" lang="js">&lt;span class="hljs-comment">// number类型没有length属性.所以编译错误,因为我们只能访问此联合类型的所有类型里共有的属性或方法：&lt;/span>
+    <pre><code class="hljs js copyable" lang="js">&lt;span class="hljs-comment">// number类型没有length属性.所以编译错误,因为[我们](https://www.w3cdoc.com)只能访问此联合类型的所有类型里共有的属性或方法：&lt;/span>
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">getLength&lt;/span>(&lt;span class="hljs-params">something: string | number&lt;/span>): &lt;span class="hljs-title">number&lt;/span> &lt;/span>{&#x274c;
     &lt;span class="hljs-keyword">return&lt;/span> something.length;
 }

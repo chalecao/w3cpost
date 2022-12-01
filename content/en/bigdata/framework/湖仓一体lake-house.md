@@ -82,7 +82,7 @@ title: 湖仓一体lake house
   </p>
   
   <p data-lake-id="fe9c21b00ff7ae8808eaaa6f7cce04ce">
-    在Databricks 公司内部，我们已经看到了 Delta Lake 如何为数据湖带来可靠性保证，性能优化和生命周期管理。 使用 Delta Lake 可以解决以下问题：数据格式错误，数据合规性删除或对个别数据进行修改。同时，借助 Delta Lake，高质量数据可以快速写入数据湖，通过云服务（安全且可扩展）部署以提高数据的利用效率。
+    在Databricks 公司内部，[我们](https://www.w3cdoc.com)已经看到了 Delta Lake 如何为数据湖带来可靠性保证，性能优化和生命周期管理。 使用 Delta Lake 可以解决以下问题：数据格式错误，数据合规性删除或对个别数据进行修改。同时，借助 Delta Lake，高质量数据可以快速写入数据湖，通过云服务（安全且可扩展）部署以提高数据的利用效率。
   </p>
   
   <p data-lake-id="0f1680f5258d9e1c0884e40b480c8b06">
@@ -98,7 +98,7 @@ title: 湖仓一体lake house
   </p>
   
   <p data-lake-id="1ea7fe848072b96cb402e73429f914c4">
-    在过去的几年里，Lakehouse 作为一种新的数据管理范式，已独立出现在 Databricks的许多用户和应用案例中。在这篇文章中，我们将阐述这种新范式以及它相对于之前方案的优势。
+    在过去的几年里，Lakehouse 作为一种新的数据管理范式，已独立出现在 Databricks的许多用户和应用案例中。在这篇文章中，[我们](https://www.w3cdoc.com)将阐述这种新范式以及它相对于之前方案的优势。
   </p>
   
   <p data-lake-id="f03ca143206c8eba31eacfa713095eea">
@@ -114,7 +114,7 @@ title: 湖仓一体lake house
   </p>
   
   <p data-lake-id="32247ec3f355d2b67f61838788b7d57f">
-    大约十年前，我们开始建立<a href="https://databricks.com/glossary/data-lake" target="_blank" rel="noopener noreferrer">数据湖</a>——一种多种格式的原始数据的存储数据库。数据湖虽然适合存储数据，但缺少一些关键功能：它们不支持事务处理，不保证数据质量，并且缺乏一致性/隔离性，从而几乎无法实现混合追加和读取数据，以及完成批处理和流式作业。 由于这些原因，数据湖的许多功能尚未实现，并且在很多时候丧失了数据湖的优势。
+    大约十年前，[我们](https://www.w3cdoc.com)开始建立<a href="https://databricks.com/glossary/data-lake" target="_blank" rel="noopener noreferrer">数据湖</a>——一种多种格式的原始数据的存储数据库。数据湖虽然适合存储数据，但缺少一些关键功能：它们不支持事务处理，不保证数据质量，并且缺乏一致性/隔离性，从而几乎无法实现混合追加和读取数据，以及完成批处理和流式作业。 由于这些原因，数据湖的许多功能尚未实现，并且在很多时候丧失了数据湖的优势。
   </p>
   
   <p data-lake-id="23d656d442445c12a829ab750e742f67">
@@ -185,7 +185,7 @@ title: 湖仓一体lake house
   </p>
   
   <p data-lake-id="352bc1db8a021089b8c0de096a3910b7">
-    云对象存储（例如阿里云 OSS）是一些现有的最大、最具成本效益的存储系统，它是存储大型数据仓库和数据湖的主要选择。具有局限性的是，它们作为键值存储的实现方式使其很难实现 ACID 事务和高性能，因为元数据操作（例如列出对象）非常昂贵，并且一致性保证受到限制。在本文中，我们介绍了 Delta Lake，这是最初由Databricks 开发的基于云对象存储的开源 ACID 表存储层。 Delta Lake 使用 Apache Parquet 压缩格式的事务日志来为大型表格数据集提供 ACID 属性，时间旅行和快速的元数据操作（例如，能够快速在数十亿个分区中搜索查询）。它还利用此设计来提供高级功能，例如自动数据布局优化、更新、缓存和审核日志。我们可以从 Apache Spark，Hive，Presto，Redshift 和其他系统访问 Delta Lake 表。Delta Lake 部署在数以千计的 Databricks 客户中，这些客户每天处理 EB 级数据，最大的实例管理 EB 级数据集和数十亿个对象。
+    云对象存储（例如阿里云 OSS）是一些现有的最大、最具成本效益的存储系统，它是存储大型数据仓库和数据湖的主要选择。具有局限性的是，它们作为键值存储的实现方式使其很难实现 ACID 事务和高性能，因为元数据操作（例如列出对象）非常昂贵，并且一致性保证受到限制。在本文中，[我们](https://www.w3cdoc.com)介绍了 Delta Lake，这是最初由Databricks 开发的基于云对象存储的开源 ACID 表存储层。 Delta Lake 使用 Apache Parquet 压缩格式的事务日志来为大型表格数据集提供 ACID 属性，时间旅行和快速的元数据操作（例如，能够快速在数十亿个分区中搜索查询）。它还利用此设计来提供高级功能，例如自动数据布局优化、更新、缓存和审核日志。[我们](https://www.w3cdoc.com)可以从 Apache Spark，Hive，Presto，Redshift 和其他系统访问 Delta Lake 表。Delta Lake 部署在数以千计的 Databricks 客户中，这些客户每天处理 EB 级数据，最大的实例管理 EB 级数据集和数十亿个对象。
   </p>
   
   <p data-lake-id="dc3b120539ae236efea80bb8f5b83a6c">
@@ -241,7 +241,7 @@ title: 湖仓一体lake house
   </h1>
   
   <p data-lake-id="46c6192ad766afb2b62cb7705b87769a">
-    Databricks 写了一篇<a href="https://databricks.com/blog/2020/01/30/what-is-a-data-lakehouse.html" target="_blank" rel="noopener noreferrer">博客</a>，概述了越来越多的企业采用 Lakehouse 模式。该博客引起了技术爱好者的极大兴趣。尽管许多人称赞它为下一代数据体系结构，但有些人认为湖仓一体与数据湖是一回事。最近，我们的几位工程师和创始人写了一篇研究论文，描述了使湖仓一体架构与数据湖区分开的一些核心技术挑战和解决方案，该论文已在The International Conference on Very Large Databases (VLDB) 2020接受并发表，“<a href="https://databricks.com/wp-content/uploads/2020/08/p975-armbrust.pdf" target="_blank" rel="noopener noreferrer">Delta Lake: High-Performance ACID Table Storage Over Cloud Object Stores</a>”。
+    Databricks 写了一篇<a href="https://databricks.com/blog/2020/01/30/what-is-a-data-lakehouse.html" target="_blank" rel="noopener noreferrer">博客</a>，概述了越来越多的企业采用 Lakehouse 模式。该博客引起了技术爱好者的极大兴趣。尽管许多人称赞它为下一代数据体系结构，但有些人认为湖仓一体与数据湖是一回事。最近，[我们](https://www.w3cdoc.com)的几位工程师和创始人写了一篇研究论文，描述了使湖仓一体架构与数据湖区分开的一些核心技术挑战和解决方案，该论文已在The International Conference on Very Large Databases (VLDB) 2020接受并发表，“<a href="https://databricks.com/wp-content/uploads/2020/08/p975-armbrust.pdf" target="_blank" rel="noopener noreferrer">Delta Lake: High-Performance ACID Table Storage Over Cloud Object Stores</a>”。
   </p>
   
   <p data-lake-id="eb7586834b9fa0b829c7db8c1b003e00">
@@ -281,7 +281,7 @@ title: 湖仓一体lake house
   </h3>
   
   <p data-lake-id="2b88f42b6b64871371c6ddb26a6a3855">
-    Delta Lake 是一种云对象存储之上的开源 ACID 表存储层。好比我们寻求建造一辆汽车，而不是寻找更快的马。湖仓一体是一种新架构，结合了数据湖和数据仓库的优势。它不仅拥有更好的数据存储性能，而且在存储和使用数据的方式上发生了根本性的变化。新的系统设计支持 Lakehouse：直接在用于数据湖的低成本存储上实现与数据仓库中类似的数据结构和数据管理功能。如果您想要设计新的存储引擎，那么这种价格低廉且可靠性高的存储（以对象存储的形式）就是您所想要的。
+    Delta Lake 是一种云对象存储之上的开源 ACID 表存储层。好比[我们](https://www.w3cdoc.com)寻求建造一辆汽车，而不是寻找更快的马。湖仓一体是一种新架构，结合了数据湖和数据仓库的优势。它不仅拥有更好的数据存储性能，而且在存储和使用数据的方式上发生了根本性的变化。新的系统设计支持 Lakehouse：直接在用于数据湖的低成本存储上实现与数据仓库中类似的数据结构和数据管理功能。如果您想要设计新的存储引擎，那么这种价格低廉且可靠性高的存储（以对象存储的形式）就是您所想要的。
   </p>
   
   <p data-lake-id="165ba70ce39d569a59b10bb99181e1c2">
@@ -301,7 +301,7 @@ title: 湖仓一体lake house
   </p>
   
   <p data-lake-id="85efa39ae6566dc27a54583c408869a0">
-    在这些用例中，我们发现客户经常使用 Delta Lake 来大幅简化其数据架构，他们直接针对云对象存储运行更多工作负载。更多时候，他们通过创建具有数据湖和事务功能的 Lakehouse 来替换消息队列（例如 Apache Kafka ），数据湖或云数据仓库（例如 Snowflake，Amazon Redshift ）提供的部分或全部功能。
+    在这些用例中，[我们](https://www.w3cdoc.com)发现客户经常使用 Delta Lake 来大幅简化其数据架构，他们直接针对云对象存储运行更多工作负载。更多时候，他们通过创建具有数据湖和事务功能的 Lakehouse 来替换消息队列（例如 Apache Kafka ），数据湖或云数据仓库（例如 Snowflake，Amazon Redshift ）提供的部分或全部功能。
   </p>
   
   <p data-lake-id="958ec1fd7187f069572d76643fbcad22">
@@ -353,11 +353,11 @@ title: 湖仓一体lake house
   </h3>
   
   <p data-lake-id="8dadc38f14033420860042651a7bbcc0">
-    过去几年中最大的硬件变化趋势之一是 CPU 时钟速度已趋于平稳。 其具体原因不在本章的讨论范围之内，但重要的是，我们必须找到新的方法来以超出原始计算能力的速度去更快地处理数据。 一个最有效的方法是提高可以并行处理的数据量。 但是，数据处理引擎需要专门设计以利用这种并行性。
+    过去几年中最大的硬件变化趋势之一是 CPU 时钟速度已趋于平稳。 其具体原因不在本章的讨论范围之内，但重要的是，[我们](https://www.w3cdoc.com)必须找到新的方法来以超出原始计算能力的速度去更快地处理数据。 一个最有效的方法是提高可以并行处理的数据量。 但是，数据处理引擎需要专门设计以利用这种并行性。
   </p>
   
   <p data-lake-id="8e4a84b809460d8f100ffb33a68d11f5">
-    此外，随着业务步伐的加快，留给研发团队提供良好的数据建模的时间越来越少。为了更好的业务敏捷性而进行的较差的建模会导致较差的查询性能。因此，这不是理想的状态，我们希望找到使敏捷性和性能最大化的方法。
+    此外，随着业务步伐的加快，留给研发团队提供良好的数据建模的时间越来越少。为了更好的业务敏捷性而进行的较差的建模会导致较差的查询性能。因此，这不是理想的状态，[我们](https://www.w3cdoc.com)希望找到使敏捷性和性能最大化的方法。
   </p>
   
   <p data-lake-id="b4d8f5083b3a287439bbde767cab6156">
@@ -381,7 +381,7 @@ title: 湖仓一体lake house
   </p>
   
   <p data-lake-id="ebff9443ea922bb73c25ef691a7385a7">
-    事实上，Delta Engine 的最大创新点是本地执行引擎，它解决了当今数据团队所面临的挑战，我们将其称为 Photon（众所周知，它是一个引擎中的引擎）。这个完全重构的 Databricks 执行引擎的构建旨在最大限度地提高现代云硬件中新变化带来的性能。它为所有工作负载类型带来了性能改进，同时仍与开源 Spark API 完全兼容。
+    事实上，Delta Engine 的最大创新点是本地执行引擎，它解决了当今数据团队所面临的挑战，[我们](https://www.w3cdoc.com)将其称为 Photon（众所周知，它是一个引擎中的引擎）。这个完全重构的 Databricks 执行引擎的构建旨在最大限度地提高现代云硬件中新变化带来的性能。它为所有工作负载类型带来了性能改进，同时仍与开源 Spark API 完全兼容。
   </p>
   
   <p data-lake-id="5943bb005e6b0584bc244e2cc98543ae">
@@ -397,7 +397,7 @@ title: 湖仓一体lake house
   </p>
   
   <p data-lake-id="d08ec919427293887ff12f339f4c2f2b">
-    我们对 Delta Engine 为客户带来的价值感到兴奋。它在时间和成本的节约方面具有很大价值。更重要的是在 Lakehouse 模式中，它支持数据团队设计数据体系结构以提高统一性和简化性，并取得很多新进展。
+    [我们](https://www.w3cdoc.com)对 Delta Engine 为客户带来的价值感到兴奋。它在时间和成本的节约方面具有很大价值。更重要的是在 Lakehouse 模式中，它支持数据团队设计数据体系结构以提高统一性和简化性，并取得很多新进展。
   </p>
   
   <p data-lake-id="baf58a9e7e6dde156fb86f7e7a9920ee">

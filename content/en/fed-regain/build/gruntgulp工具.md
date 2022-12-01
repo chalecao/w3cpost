@@ -8,7 +8,7 @@ title: Grunt，Gulp工具
 
 ### [][1]工具介绍
 
-一个应用开发到一定阶段，普遍会遇到一个问题。当功能越来越多，代码量越来越大，bug修复越来越频繁，开发人员一波一波的交替，…..应该用会向着越来越不可控发展。我们不能再准确估计新功能的开发时间，也不知道一个bug修复后是否会引发另一个bug出现。所有的程序开发，都会面临着这样的问题。C/C++程序通过makefile管理编译测试打包的过程，Java程序通过Maven,Ant实现项目构建管理功能，Python有pip，Ruby有gem。在Nodejs的领域，我们同样需要一个项目构建工具。
+一个应用开发到一定阶段，普遍会遇到一个问题。当功能越来越多，代码量越来越大，bug修复越来越频繁，开发人员一波一波的交替，…..应该用会向着越来越不可控发展。[我们](https://www.w3cdoc.com)不能再准确估计新功能的开发时间，也不知道一个bug修复后是否会引发另一个bug出现。所有的程序开发，都会面临着这样的问题。C/C++程序通过makefile管理编译测试打包的过程，Java程序通过Maven,Ant实现项目构建管理功能，Python有pip，Ruby有gem。在Nodejs的领域，[我们](https://www.w3cdoc.com)同样需要一个项目构建工具。
 
 本节主要介绍两种自动化构建工具，包括Grunt和Gulp，后续篇章中还会介绍bower包管理工具和Yeoman构建工具。这里先详细介绍这两种自动化构建工具，gulp.js 是一种基于流的，代码优于配置的新一代构建工具。Gulp 和 Grunt 类似。但相比于 Grunt 的频繁的 IO 操作，Gulp 的流操作，能更快地完成构建。  
 <a></a>  
@@ -28,7 +28,7 @@ Grunt和相关插件是通过npm管理的，目前新版本是Grunt 0.4.x，要�
 
 然后安装grunt-cli，注意grunt-cli的作用是管理本地各版本的grunt，让命令行可以直接执行grunt命令，类似于grunt的客户端管理工具。
 
-执行结果如下，我们看到grunt-cli似乎做了一个软件链接，把grunt脚本复制到nodejs安装根目录里。
+执行结果如下，[我们](https://www.w3cdoc.com)看到grunt-cli似乎做了一个软件链接，把grunt脚本复制到nodejs安装根目录里。
 
 #### [][5]安装Grunt之前，先要配置Grunt。
 
@@ -119,7 +119,7 @@ Gulp中同样存在许多插件（可以在<a href="https://gratimax.net/search-
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/18/2014_grunt_gulp/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/18/2014_grunt_gulp/</a>
 
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/18/2014_grunt_gulp/#工具介绍 "工具介绍"
  [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/css1.jpg

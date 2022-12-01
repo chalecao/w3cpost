@@ -42,16 +42,16 @@ title: NodeJS 网络爬虫
 
 ### [][6]爬虫实例
 
-假设我们现在要去官网爬取彩票的开奖数据，以百度乐彩(<a href="https://baidu.lecai.com/lottery/draw/?agentId=5571" target="_blank" rel="external">https://baidu.lecai.com/lottery/draw/?agentId=5571</a> )网站为例,我们要抓取双色球的开奖数据。  
+假设[我们](https://www.w3cdoc.com)现在要去官网爬取彩票的开奖数据，以百度乐彩(<a href="https://baidu.lecai.com/lottery/draw/?agentId=5571" target="_blank" rel="external">https://baidu.lecai.com/lottery/draw/?agentId=5571</a> )网站为例,[我们](https://www.w3cdoc.com)要抓取双色球的开奖数据。  
 ![NodeJS 网络爬虫][7]  
 首先在项目目录下增加myUtil.js，代码如下：
 
 然后修改 routes/index.js文件，代码如下：
 
-这里我们已经把获取到的网页内容的content输出到了本地，启动应用，打开浏览器：<a href="https://127.0.0.1:3000" target="_blank" rel="external">https://127.0.0.1:3000</a> 可以看见本地显示的和原网页的一模一样。然后我们就可以提取需要的内容。  
-首先通过使用浏览器调试开发工具（按F12），来查找我们需要的数据所在的位置。如下：  
+这里[我们](https://www.w3cdoc.com)已经把获取到的网页内容的content输出到了本地，启动应用，打开[浏览器](https://www.w3cdoc.com)：<a href="https://127.0.0.1:3000" target="_blank" rel="external">https://127.0.0.1:3000</a> 可以看见本地显示的和原网页的一模一样。然后[我们](https://www.w3cdoc.com)就可以提取需要的内容。  
+首先通过使用[浏览器](https://www.w3cdoc.com)调试开发工具（按F12），来查找[我们](https://www.w3cdoc.com)需要的数据所在的位置。如下：  
 ![NodeJS 网络爬虫][8]  
-然后我们通过使用css选择器来选中这块内容，通过jquery来处理。修改routes/index.js
+然后[我们](https://www.w3cdoc.com)通过使用css选择器来选中这块内容，通过jquery来处理。修改routes/index.js
 
 需要注意的是这里面，如果用css选择器，选中双色球的数据列表的选择器为_.ballbg:first-child_，但是使用jQuery的语法_$(‘.ballbg:first-child’)_选取不到第一个列表数据，因为这里面有个区别，jQuery里面有自己的选择器，选取第一个元素是_:first_，于是正确的jQuey选择器语句是_$(‘.ballbg:first’)_，执行结果：
 
@@ -59,7 +59,7 @@ title: NodeJS 网络爬虫
 
 ### [][9]谢谢！
 
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/20/2014_nodejs_2/#前言 "前言"
  [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/nodejscrawl1.jpg

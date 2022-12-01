@@ -3,15 +3,15 @@ title: css的发展现状
 weight: 1
 
 ---
-随着前端工程化的不断完善，CSS 预处理器已经成为项目中不可缺少的部分，很多人在项目技术选型阶段就会先选择一个 CSS 预处理器，绝大部分前端工程的脚手架也内置了一系列的 CSS 预处理的模版，大家已经习惯了享受 CSS 预处理器带来的书写代码的灵活流畅，反而将原生的 CSS 冷落在一旁。
+随着[前端](https://www.w3cdoc.com)工程化的不断完善，CSS 预处理器已经成为项目中不可缺少的部分，很多人在项目技术选型阶段就会先选择一个 CSS 预处理器，绝大部分[前端](https://www.w3cdoc.com)工程的脚手架也内置了一系列的 CSS 预处理的模版，[大家](https://www.w3cdoc.com)已经习惯了享受 CSS 预处理器带来的书写代码的灵活流畅，反而将原生的 CSS 冷落在一旁。
 
-可能许多前端开发人员依然觉得 CSS 预处理器属于比较新的技术，其实不然，最早的 CSS 预处理器 Sass 从 07 年诞生距今已有 12 年，相对较新的的 Stylus 也已发布 9 年了。
+可能许多[前端](https://www.w3cdoc.com)开发人员依然觉得 CSS 预处理器属于比较新的技术，其实不然，最早的 CSS 预处理器 Sass 从 07 年诞生距今已有 12 年，相对较新的的 Stylus 也已发布 9 年了。
 
-前端的技术栈发展突飞猛进，W3C 的 CSS 工作组也一直在持续从社区汲取营养，加快 CSS 的迭代。那么到现在为止，CSS 是否可以取代 CSS 预处理器的地位？CSS 预处理器会不会成为 CSS 过渡时期的产物呢？
+[前端](https://www.w3cdoc.com)的技术栈发展突飞猛进，W3C 的 CSS 工作组也一直在持续从社区汲取营养，加快 CSS 的迭代。那么到现在为止，CSS 是否可以取代 CSS 预处理器的地位？CSS 预处理器会不会成为 CSS 过渡时期的产物呢？
 
 ## W3C 介绍 {#W3C-介绍.post-heading}
 
-CSS 是开放网络的核心语言之一，由 <a href="http://w3.org/Style/CSS/#specs" target="_blank" rel="noopener noreferrer">W3C 规范</a> 实现跨浏览器的标准化。因此，在深入了解 CSS 规范更新进度之前，我们有必要先了解一下 W3C 及其规范制定流程。
+CSS 是开放网络的核心语言之一，由 <a href="http://w3.org/Style/CSS/#specs" target="_blank" rel="noopener noreferrer">W3C 规范</a> 实现跨[浏览器](https://www.w3cdoc.com)的标准化。因此，在深入了解 CSS 规范更新进度之前，[我们](https://www.w3cdoc.com)有必要先了解一下 W3C 及其规范制定流程。
 
 W3C 也就是万维网联盟（World Wide Web Consortium），又称 W3C 理事会，是万维网的主要国际标准组织。为半自治非政府组织（quasi-autonomous non-governmental organisation）。由 <a href="https://en.wikipedia.org/wiki/Tim_Berners-Lee" target="_blank" rel="noopener noreferrer">蒂姆·伯纳斯-李（Tim Berners-Lee）</a>于 1994年10月 于麻省理工学院 MIT 计算机科学与人工智能实验室（MIT／LCS）创立。
 
@@ -19,7 +19,7 @@ W3C 制定了一系列标准并督促网络应用开发者和内容提供者遵�
 
 ### W3C 规范制定流程 {#W3C-规范制定流程.post-heading}
 
-因为接下来我们需要谈到一些不同阶段的 CSS 规范，因此这里有必要简单介绍一下 W3C 的规范制定流程。
+因为接下来[我们](https://www.w3cdoc.com)需要谈到一些不同阶段的 CSS 规范，因此这里有必要简单介绍一下 W3C 的规范制定流程。
 
 按照 W3C 的 <a href="https://www.w3.org/2019/Process-20190301/" target="_blank" rel="noopener noreferrer">Process Document</a>，一个推荐标准的发展需要通过不同的阶段。
 
@@ -40,7 +40,7 @@ W3C 制定了一系列标准并督促网络应用开发者和内容提供者遵�
 
 HTML 和 CSS 是那么密不可分，以至于你可能会觉得它们是一起出现的。实际上，自 1989 年 Tim Berners Lie 发明互联网后的多年中，这个世界上都不存在一个名为 CSS 的事物（更别说 CSS 预处理器了），Web 的原始版本根本就没有提供一种装饰网页的方法。
 
-HTML 规范虽然规定了网页中的标题、段落应该使用的标签，但是没有涉及这些内容应该以何种样式(比如大小、位置、间距、缩进等属性)呈现在浏览器中。
+HTML 规范虽然规定了网页中的标题、段落应该使用的标签，但是没有涉及这些内容应该以何种样式(比如大小、位置、间距、缩进等属性)呈现在[浏览器](https://www.w3cdoc.com)中。
 
 不过，在随后仅短短10年后，CSS就被一个现代的 Web 社区全面采用，这期间的发生了一系列有趣的故事，有兴趣的可以看一下 <a href="https://css-tricks.com/look-back-history-css/?imm_mid=0f79f3&cmp=em-web-na-na-newsltr_20171101" target="_blank" rel="noopener noreferrer">A Look Back at the History of CSS</a>。
 
@@ -54,7 +54,7 @@ HTML 规范虽然规定了网页中的标题、段落应该使用的标签，但
 
 CSS2 在 1998 年 5月 由 W3C 发布，CSS2 规范是基于 CSS1 设计的，扩充和改进了很多更加强大的属性。包括选择器、位置模型、布局、表格样式、媒体类型、伪类、光标样式。
 
-<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/" target="_blank" rel="noopener noreferrer">Cascading Style Sheets Level 2 Revision 1</a>，通常被称为“ CSS 2.1” ，修复了 CSS 2中的错误，删除了支持不良或不能完全互操作的特性，并为规范增加了已经实现的浏览器扩展。 为了遵守 W3C 标准化技术规范的过程，CSS 2.1 在 Working Draft (WD) 状态和 Candidate Recommendation (CP) 状态之间来回了很多年。
+<a href="https://www.w3.org/TR/2011/REC-CSS2-20110607/" target="_blank" rel="noopener noreferrer">Cascading Style Sheets Level 2 Revision 1</a>，通常被称为“ CSS 2.1” ，修复了 CSS 2中的错误，删除了支持不良或不能完全互操作的特性，并为规范增加了已经实现的[浏览器](https://www.w3cdoc.com)扩展。 为了遵守 W3C 标准化技术规范的过程，CSS 2.1 在 Working Draft (WD) 状态和 Candidate Recommendation (CP) 状态之间来回了很多年。
 
 CSS 2.1于 2004 年 2 月 25 日首次成为 <a href="http://www.w3.org/TR/2004/CR-CSS21-20040225/" target="_blank" rel="noopener noreferrer">Candidate Recommendation (CR)标准</a>，但在 2005 年 6 月 13 日又回到 Working Draft (WD) 中进行进一步审查。 它于 2007 年 7 月 19 日回到 Candidate Recommendation (CP) 标准，然后在 2009 年更新了两次。 然而，由于作出了修改和澄清，它再次回到了2010年12月7日的 Last Call Working Draft 。
 
@@ -88,7 +88,7 @@ CSS 自诞生以来，基本语法和核心机制一直没有本质上的变化�
 
 ![image][3]
 
-当一门语言的能力不足而用户的运行环境又不支持其它选择的时候，这门语言就会沦为 “编译目标” 语言。开发者将选择另一门更高级的语言来进行开发，然后编译到底层语言以便实际运行。于是，在前端领域，天降大任于斯人也，CSS 预处理器应运而生。
+当一门语言的能力不足而用户的运行环境又不支持其它选择的时候，这门语言就会沦为 “编译目标” 语言。开发者将选择另一门更高级的语言来进行开发，然后编译到底层语言以便实际运行。于是，在[前端](https://www.w3cdoc.com)领域，天降大任于斯人也，CSS 预处理器应运而生。
 
 ### 百花齐放 {#百花齐放.post-heading}
 
@@ -224,7 +224,7 @@ CSS 预处理器是一个能让你通过预处理器自己独有的语法来生�
 
 ### 额外的编译配置 {#额外的编译配置.post-heading}
 
-在写样式前需要做一些额外的编译配置工作，`sass-node` 安装以及编译的配置就能卡住一批前端新手。
+在写样式前需要做一些额外的编译配置工作，`sass-node` 安装以及编译的配置就能卡住一批[前端](https://www.w3cdoc.com)新手。
 
 ![image][4]
 
@@ -320,7 +320,7 @@ CSS 预处理器是一个能让你通过预处理器自己独有的语法来生�
 
 #### 调试 {#调试.post-heading}
 
-在使用 CSS 预处理器时，我们通常会配置 SourceMap 来辅助调试，但即使这样，还是会碰到一些调试困难的情况：
+在使用 CSS 预处理器时，[我们](https://www.w3cdoc.com)通常会配置 SourceMap 来辅助调试，但即使这样，还是会碰到一些调试困难的情况：
 
 ![image][6]
 
@@ -328,13 +328,13 @@ CSS 预处理器是一个能让你通过预处理器自己独有的语法来生�
 
 各种 CSS 预处理器在更新迭代的过程中，功能越来越繁杂花哨，但是绝大部分人用到的核心功能还是那几样：Variables、Mixing、Nested、Module，顶多再加上一些工具类函数。
 
-我们既想要想要预处理器的优点，又不想要它带来的成本和缺点，有没有两全其美的办法？CSS 这么多年一直也在从社区汲取养分加速进化和迭代，我们能不能从 CSS 标准里面找到答案呢？
+[我们](https://www.w3cdoc.com)既想要想要预处理器的优点，又不想要它带来的成本和缺点，有没有两全其美的办法？CSS 这么多年一直也在从社区汲取养分加速进化和迭代，[我们](https://www.w3cdoc.com)能不能从 CSS 标准里面找到答案呢？
 
 ### Variables in CSS {#Variables-in-CSS.post-heading}
 
 CSS 自定义属性（CSS Custom Properties)，又叫 CSS 变量（CSS Variable）,允许你自己在样式中声明变量，并通过 `var()` 函数使用。
 
-<a href="https://www.w3.org/TR/css-variables-1/" target="_blank" rel="noopener noreferrer">CSS Custom Properties for Cascading Variables</a> 规范在 2012 年 10 月首次作为 工作草案（WD） 提出，并在 2015 年 10 月到达 候选人推荐标准（CR）阶段。现在浏览器支持程度已经接近 93%。
+<a href="https://www.w3.org/TR/css-variables-1/" target="_blank" rel="noopener noreferrer">CSS Custom Properties for Cascading Variables</a> 规范在 2012 年 10 月首次作为 工作草案（WD） 提出，并在 2015 年 10 月到达 候选人推荐标准（CR）阶段。现在[浏览器](https://www.w3cdoc.com)支持程度已经接近 93%。
 
 ![image][7]
 
@@ -400,7 +400,7 @@ CSS 变量定义及使用如下所示，可定义的类型极其丰富。<figure
   </tr>
 </table></figure>
 
-不同于 SASS 预处理器变量的编译时处理，CSS 变量是浏览器在运行时进行处理的，因此 CSS 变量会更加强大和灵活。
+不同于 SASS 预处理器变量的编译时处理，CSS 变量是[浏览器](https://www.w3cdoc.com)在运行时进行处理的，因此 CSS 变量会更加强大和灵活。
 
 #### Operators {#Operators.post-heading}
 
@@ -580,7 +580,7 @@ CSS 的有一个提案：<a href="http://tabatkins.github.io/specs/css-apply-rul
 
 可惜这个提案已被废弃，具体废弃原因感兴趣的可以看看这篇文章：<a href="https://www.xanthir.com/b4o00" target="_blank" rel="noopener noreferrer">Why I Abandoned @apply</a>。
 
-尽管 Mixins 现在 CSS 还没有好的实现标准，但我们坚信迟早会有更优秀的规范涌现出来弥补 CSS 的这一块空白。
+尽管 Mixins 现在 CSS 还没有好的实现标准，但[我们](https://www.w3cdoc.com)坚信迟早会有更优秀的规范涌现出来弥补 CSS 的这一块空白。
 
 ### Nesting in CSS {#Nesting-in-CSS.post-heading}
 
@@ -630,14 +630,14 @@ CSS 里已经有 Nesting 的规范出现，尽管现在只处于 Editor’s Draf
 
 ### Module in CSS {#Module-in-CSS.post-heading}
 
-其实 CSS 很早就有了模块化方案，那就是 `@import`，使用 CSS 的 @import 规则，可以引用其他的文件样式。这个特性从 `IE 5.5` 开始就被所有的浏览器支持，那为什么一直以来使用者寥寥无几呢，原因很多：
+其实 CSS 很早就有了模块化方案，那就是 `@import`，使用 CSS 的 @import 规则，可以引用其他的文件样式。这个特性从 `IE 5.5` 开始就被所有的[浏览器](https://www.w3cdoc.com)支持，那为什么一直以来使用者寥寥无几呢，原因很多：
 
-* 在一些老的浏览器有加载顺序的 bug
+* 在一些老的[浏览器](https://www.w3cdoc.com)有加载顺序的 bug
 * 无法并行加载
 * 导致过多的请求数量
 * ……
 
-不过现在大家的前端项目基本都会使用构建工具（Gulp、Webpack 等）打包后再上线，因此以上哪些缺点也就不存在了，而在 Webpack 的 `css-loader` 中，是可以配置是否开启 `@import` 的。
+不过现在[大家](https://www.w3cdoc.com)的[前端](https://www.w3cdoc.com)项目基本都会使用构建工具（Gulp、Webpack 等）打包后再上线，因此以上哪些缺点也就不存在了，而在 Webpack 的 `css-loader` 中，是可以配置是否开启 `@import` 的。
 
 ![image][10]
 
@@ -649,7 +649,7 @@ CSS 里已经有 Nesting 的规范出现，尽管现在只处于 Editor’s Draf
 
 > 已更名为 :is()
 
-`:matches()` CSS 伪类 函数将选择器列表作为参数，并选择该列表中任意一个选择器可以选择的元素，这对于以更紧凑的形式编写大型选择器非常有用，而且浏览器支持程度也已经接近 93%。<figure class="highlight css">
+`:matches()` CSS 伪类 函数将选择器列表作为参数，并选择该列表中任意一个选择器可以选择的元素，这对于以更紧凑的形式编写大型选择器非常有用，而且[浏览器](https://www.w3cdoc.com)支持程度也已经接近 93%。<figure class="highlight css">
 
 <table>
   <tr>
@@ -761,7 +761,7 @@ CSS 里已经有 Nesting 的规范出现，尽管现在只处于 Editor’s Draf
 
 ## 用起来 {#用起来.post-heading}
 
-尽管上述的 CSS 特性还处于不同阶段，浏览器的支持程度也不尽相同，但是使用 <a href="https://github.com/csstools/postcss-preset-env" target="_blank" rel="noopener noreferrer">postcss-preset-env</a>，你就可以抢先尝试 CSS 的最新特性。
+尽管上述的 CSS 特性还处于不同阶段，[浏览器](https://www.w3cdoc.com)的支持程度也不尽相同，但是使用 <a href="https://github.com/csstools/postcss-preset-env" target="_blank" rel="noopener noreferrer">postcss-preset-env</a>，你就可以抢先尝试 CSS 的最新特性。
 
 当然，`postcss-preset-env` 的配置也十分简单，以 Webpack 为例：<figure class="highlight">
 
@@ -803,9 +803,9 @@ CSS 里已经有 Nesting 的规范出现，尽管现在只处于 Editor’s Draf
 
 ## 总结 {#总结.post-heading}
 
-经过一番梳理，我们发现，尽管 CSS 在社区的刺激下加快了更新迭代的速度，但是到目前为止，依然达不到 `CSS 预处理器 VS CSS` 的地步，只能说在使用 CSS 预处理器的同时，也可以在项目中尝试一些优秀的 CSS 新特性，即：`CSS 预处理器 + CSS`。
+经过一番梳理，[我们](https://www.w3cdoc.com)发现，尽管 CSS 在社区的刺激下加快了更新迭代的速度，但是到目前为止，依然达不到 `CSS 预处理器 VS CSS` 的地步，只能说在使用 CSS 预处理器的同时，也可以在项目中尝试一些优秀的 CSS 新特性，即：`CSS 预处理器 + CSS`。
 
-但是我们依然坚信，在 W3C 的推动下，随着 CSS 自身不断完善，CSS 预处理器终究会像当年的 `CoffeScript` 、`Jade` 一样，变成时代的过渡产物。到那时候，大家也就不用纠结各种 CSS 预处理器的环境配置和技术选型等，直接打开编辑器，就能愉快的书写样式。
+但是[我们](https://www.w3cdoc.com)依然坚信，在 W3C 的推动下，随着 CSS 自身不断完善，CSS 预处理器终究会像当年的 `CoffeScript` 、`Jade` 一样，变成时代的过渡产物。到那时候，[大家](https://www.w3cdoc.com)也就不用纠结各种 CSS 预处理器的环境配置和技术选型等，直接打开编辑器，就能愉快的书写样式。
 
 ## 参考 {#参考.post-heading}
 

@@ -8,7 +8,7 @@ title: JavaScript事件流
 ---
 # 0.DOM级别与DOM事件 {#articleHeader1}
 
-> 首先在介绍DOM事件之前我们先来认识下DOM的不同级别。针对不同级别的DOM，我们的DOM事件处理方式也是不一样的。  
+> 首先在介绍DOM事件之前[我们](https://www.w3cdoc.com)先来认识下DOM的不同级别。针对不同级别的DOM，[我们](https://www.w3cdoc.com)的DOM事件处理方式也是不一样的。  
 > DOM级别一共可以分为4个级别：DOM0级，DOM1级，DOM2级和DOM3级，  
 > 而DOM事件分为3个级别：DOM0级事件处理，DOM2级事件处理和DOM3级事件处理。
 
@@ -57,7 +57,7 @@ DOM2级事件规定的事件流包括三个阶段：
 
 &nbsp;
 
-我们写一个例子：如下图，中间白色区域的盒子分别为box1,box2&#8230;box6,包含控制按钮设置我们的事件
+[我们](https://www.w3cdoc.com)写一个例子：如下图，中间白色区域的盒子分别为box1,box2&#8230;box6,包含控制按钮设置[我们](https://www.w3cdoc.com)的事件
 
 <pre class="hljs xml"><code>    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
         &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">h4&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"currentBox"&lt;/span>&gt;&lt;/span>点击按钮设置类型后再点击中心&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">h4&lt;/span>&gt;&lt;/span>
@@ -107,35 +107,35 @@ DOM2级事件规定的事件流包括三个阶段：
 
 # 3.事件处理程序 {#articleHeader4}
 
-> 前面我们已经说到了，事件处理程序就是响应某个事件的函数，简单地来说，就是函数。我们又把事件处理程序称为事件侦听器。事件处理程序是以&#8221;on&#8221;开头的，比如点击事件的处理程序是&#8221;onclick&#8221;,事件处理程序大概有以下5种。
+> 前面[我们](https://www.w3cdoc.com)已经说到了，事件处理程序就是响应某个事件的函数，简单地来说，就是函数。[我们](https://www.w3cdoc.com)又把事件处理程序称为事件侦听器。事件处理程序是以&#8221;on&#8221;开头的，比如点击事件的处理程序是&#8221;onclick&#8221;,事件处理程序大概有以下5种。
 
 * 1.HTML事件处理程序
 * 2.DOM0级事件处理程序
 * 3.DOM2级事件处理程序
 * 4.IE事件处理程序
-* 5.跨浏览器的事件处理程序
+* 5.跨[浏览器](https://www.w3cdoc.com)的事件处理程序
 
 ## 3.1 HTML事件处理程序 {#articleHeader5}
 
-像我们的第一个例子，就是HTML事件处理程序，它是写在html里面的，是全局作用域：
+像[我们](https://www.w3cdoc.com)的第一个例子，就是HTML事件处理程序，它是写在html里面的，是全局作用域：
 
 <pre class="hljs xml"><code>例子代码--点击事件触发alert函数
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">onclick&lt;/span>=&lt;span class="hljs-string">"alert('hello')"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span></code></pre>
 
-当我们需要使用一个复杂的函数时，将js代码写在这里面，显然很不合适，所以有了下面这种写法：
+当[我们](https://www.w3cdoc.com)需要使用一个复杂的函数时，将js代码写在这里面，显然很不合适，所以有了下面这种写法：
 
 <pre class="hljs xml"><code>例子代码--点击事件触发doSomething()函数，这个函数写在单独的js文件或&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="xml">之中。
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">onclick&lt;/span>=&lt;span class="hljs-string">"doSomething()"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>&lt;/span></code></pre>
 
-这样会出现一个时差问题，当用户在HTML元素出现一开始就进行点击，有可能js还没有加载好，这时候就会报错。但我们可以将函数封装在try-catch块中来处理：
+这样会出现一个时差问题，当用户在HTML元素出现一开始就进行点击，有可能js还没有加载好，这时候就会报错。但[我们](https://www.w3cdoc.com)可以将函数封装在try-catch块中来处理：
 
 <pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">onclick&lt;/span>=&lt;span class="hljs-string">"try{doSomething();}catch(err){}"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span></code></pre>
 
-同时，一个函数的改变，同时可能会涉及html和js的修改，这样是很不方便的，综上，我们有了DOM0级事件处理程序。
+同时，一个函数的改变，同时可能会涉及html和js的修改，这样是很不方便的，综上，[我们](https://www.w3cdoc.com)有了DOM0级事件处理程序。
 
 ## 3.2 DOM0级事件处理程序 {#articleHeader6}
 
-之所以有DOM0级事件处理程序，和我们之前提到的IE以及Netscape对应事件传播方向不同处理而产生的事件处理程序。
+之所以有DOM0级事件处理程序，和[我们](https://www.w3cdoc.com)之前提到的IE以及Netscape对应事件传播方向不同处理而产生的事件处理程序。
 
 <pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>&gt;&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
 
@@ -147,11 +147,11 @@ DOM2级事件规定的事件流包括三个阶段：
 &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span></code></pre>
 
 可以看到button.onclick这种形式，这里事件处理程序作为了btn对象的方法，是局部作用域。  
-所以我们可以用
+所以[我们](https://www.w3cdoc.com)可以用
 
 <pre class="hljs scala"><code>btn.onclick = &lt;span class="hljs-literal">null&lt;/span>;来删除指定的事件处理程序。</code></pre>
 
-如果我们尝试给事件添加两个事件，如：
+如果[我们](https://www.w3cdoc.com)尝试给事件添加两个事件，如：
 
 <pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>&gt;&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
 
@@ -251,9 +251,9 @@ removeEventListener()的方法几乎和添加时用法一摸一样：
 这里事件触发的顺序不是添加的顺序而是添加顺序的相反顺序。  
 使用 attachEvent 方法有个缺点，this 的值会变成 window 对象的引用而不是触发事件的元素。
 
-## 3.5 跨浏览器的事件处理程序 {#articleHeader9}
+## 3.5 跨[浏览器](https://www.w3cdoc.com)的事件处理程序 {#articleHeader9}
 
-<pre class="hljs scala"><code>为了兼容&lt;span class="hljs-type">IE&lt;/span>浏览器和标准的浏览器，我们需要编写通用的方法来处理：
+<pre class="hljs scala"><code>为了兼容&lt;span class="hljs-type">IE&lt;/span>[浏览器](https://www.w3cdoc.com)和标准的[浏览器](https://www.w3cdoc.com)，[我们](https://www.w3cdoc.com)需要编写通用的方法来处理：
 &lt;span class="hljs-keyword">var&lt;/span> &lt;span class="hljs-type">EventUtil&lt;/span> = {
     addHandler: function (element, &lt;span class="hljs-class">&lt;span class="hljs-keyword">type&lt;/span>, &lt;span class="hljs-title">handler&lt;/span>) &lt;/span>{
         &lt;span class="hljs-keyword">if&lt;/span> (element.addEventListener) {
@@ -332,7 +332,7 @@ removeHandler()&#8211;这个方法就是移除使用addHandler添加的事件。
         }
 &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span></code></pre>
 
-在这个例子里，我们用到了**currentTarget**、**eventPhase**属性。
+在这个例子里，[我们](https://www.w3cdoc.com)用到了**currentTarget**、**eventPhase**属性。
 
 ## 4.2 方法 {#articleHeader12}
 
@@ -368,7 +368,7 @@ go.addEventListener(&lt;span class="hljs-string">'click'&lt;/span>, goFn, &lt;sp
  &lt;span class="hljs-keyword">event&lt;/span> = &lt;span class="hljs-keyword">event&lt;/span> || window.&lt;span class="hljs-keyword">event&lt;/span>;
 }</code></pre>
 
-在IE浏览器上面是event事件是没有preventDefault()这个属性的，所以在IE上，我们需要设置的属性是returnValue
+在IE[浏览器](https://www.w3cdoc.com)上面是event事件是没有preventDefault()这个属性的，所以在IE上，[我们](https://www.w3cdoc.com)需要设置的属性是returnValue
 
 <pre class="hljs typescript"><code>&lt;span class="hljs-built_in">window&lt;/span>.event.returnValue=&lt;span class="hljs-literal">false&lt;/span></code></pre>
 
@@ -380,7 +380,7 @@ stopPropagation()也是，所以需要设置cancelBubble，cancelBubble是IE事�
 
 > 事件委托就是利用事件冒泡，只指定一个事件处理程序，就可以管理某一类型的所有事件。
 
-例子说明，我们为ul添加新的li，其中对li标签元素绑定了click事件，但是发现，后增加的元素没有办法触发我们的click事件。
+例子说明，[我们](https://www.w3cdoc.com)为ul添加新的li，其中对li标签元素绑定了click事件，但是发现，后增加的元素没有办法触发[我们](https://www.w3cdoc.com)的click事件。
 
 <pre class="hljs xml"><code>    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btnAdd"&lt;/span>&gt;&lt;/span>添加&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
     &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">ul&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"ulList"&lt;/span>&gt;&lt;/span>
@@ -448,12 +448,12 @@ stopPropagation()也是，所以需要设置cancelBubble，cancelBubble是IE事�
     &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span></code></pre>
 
 这也是问题所在：  
-1.首先我们多次操作DOM获取元素，这样势必会降低浏览器处理性能  
-2.事件不具有继承性，如果我们动态在页面中添加了一个元素，那么还需要重新走一遍上述程序为其添加监听事件
+1.首先[我们](https://www.w3cdoc.com)多次操作DOM获取元素，这样势必会降低[浏览器](https://www.w3cdoc.com)处理性能  
+2.事件不具有继承性，如果[我们](https://www.w3cdoc.com)动态在页面中添加了一个元素，那么还需要重新走一遍上述程序为其添加监听事件
 
-那么有没有更好的方法呢？根据事件的冒泡原理，我们还可以实现另外一个很重要的功能：**事件委托**。
+那么有没有更好的方法呢？根据事件的冒泡原理，[我们](https://www.w3cdoc.com)还可以实现另外一个很重要的功能：**事件委托**。
 
-我们只监听最外层的元素，然后在事件函数中根据事件来源进行不同的事件处理。这样，我们添加事件监听时只需要操作一个元素，极大的降低了DOM访问，并且不用再给新增的元素添加监听事件了，因为元素的事件会冒泡到最外层，被我们截获。
+[我们](https://www.w3cdoc.com)只监听最外层的元素，然后在事件函数中根据事件来源进行不同的事件处理。这样，[我们](https://www.w3cdoc.com)添加事件监听时只需要操作一个元素，极大的降低了DOM访问，并且不用再给新增的元素添加监听事件了，因为元素的事件会冒泡到最外层，被[我们](https://www.w3cdoc.com)截获。
 
 <pre class="hljs xml"><code>    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btnAdd"&lt;/span>&gt;&lt;/span>添加&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
     &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">ul&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"ulList"&lt;/span>&gt;&lt;/span>
@@ -485,9 +485,9 @@ stopPropagation()也是，所以需要设置cancelBubble，cancelBubble是IE事�
 
 这里用父级ul做事件处理，当li被点击时，由于冒泡原理，事件就会冒泡到ul上，因为ul上有点击事件，所以事件就会触发，当然，这里当点击ul的时候，也是会触发的，所以要判断点击的对象到底是不是li标签元素。
 
-Event对象提供了一个属性叫target，可以返回事件的目标节点，我们成为事件源，也就是说，target就可以表示为当前的事件操作的dom，但是不是真正操作dom，当然，这个是有兼容性的，标准浏览器用ev.target，IE浏览器用event.srcElement，此时只是获取了当前节点的位置，并不知道是什么节点名称，这里我们用nodeName来获取具体是什么标签名，这个返回的是一个大写的，我们需要转成小写再做比较（习惯问题）。
+Event对象提供了一个属性叫target，可以返回事件的目标节点，[我们](https://www.w3cdoc.com)成为事件源，也就是说，target就可以表示为当前的事件操作的dom，但是不是真正操作dom，当然，这个是有兼容性的，标准[浏览器](https://www.w3cdoc.com)用ev.target，IE[浏览器](https://www.w3cdoc.com)用event.srcElement，此时只是获取了当前节点的位置，并不知道是什么节点名称，这里[我们](https://www.w3cdoc.com)用nodeName来获取具体是什么标签名，这个返回的是一个大写的，[我们](https://www.w3cdoc.com)需要转成小写再做比较（习惯问题）。
 
-这样，我们就实现了我们的事件委托，当然，不是所有的事件都是可以委托的。  
+这样，[我们](https://www.w3cdoc.com)就实现了[我们](https://www.w3cdoc.com)的事件委托，当然，不是所有的事件都是可以委托的。  
 适合用事件委托的事件：click，mousedown，mouseup，keydown，keyup，keypress。
 
 当用事件委托的时候，根本就不需要去遍历元素的子节点，只需要给父级元素添加事件就好了，新增加的节点也可以触发事件效果。

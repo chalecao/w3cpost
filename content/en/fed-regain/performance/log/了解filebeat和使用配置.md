@@ -221,7 +221,7 @@ output.elasticsearch:
             
             ./filebeat -e -c filebeat.yml -d &#8220;publish&#8221;
             
-            **浏览器访问  ****http://192.168.101.5:5601**
+            **[浏览器](https://www.w3cdoc.com)访问  ****http://192.168.101.5:5601**
 
 <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808211646599-1450436874.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808211646599-1450436874.png?x-oss-process=image/format,webp" alt="" />
 

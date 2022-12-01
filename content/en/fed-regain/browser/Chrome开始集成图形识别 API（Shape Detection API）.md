@@ -2,7 +2,7 @@
 title: Chrome开始集成图形识别 API（Shape Detection API）
 
 ---
-最近，Chrome团队尝试在Chrome中集成了一套与图形识别相关的API，使得图形识别这种以前只在原生应用中存在，或者在浏览器上，要借助其他难用的外部库才能实现的功能，现在只要少量代码即可实现。这些API包括**人脸识别**，**条形码/二维码识别**和**文本识别**，基本上覆盖了当前互联网应用的大部分场景。
+最近，Chrome团队尝试在Chrome中集成了一套与图形识别相关的API，使得图形识别这种以前只在原生应用中存在，或者在[浏览器](https://www.w3cdoc.com)上，要借助其他难用的外部库才能实现的功能，现在只要少量代码即可实现。这些API包括**人脸识别**，**条形码/二维码识别**和**文本识别**，基本上覆盖了当前互联网应用的大部分场景。
 
 **现状**
 
@@ -83,7 +83,7 @@ title: Chrome开始集成图形识别 API（Shape Detection API）
 
 而Chrome的这些API，当前还处于实验阶段，**只**集成在[Chrome Canary][2]版本中，特别是[Android版][3]更新较快。使用前还需要通过把“实验性网络平台功能”`chrome://flags/#enable-experimental-web-platform-features`设置为`Enable`来激活。
 
-激活后，在Console控制台输入以下JavaScript代码，就能验证你的浏览器是否支持相应的API了：
+激活后，在Console控制台输入以下JavaScript代码，就能验证你的[浏览器](https://www.w3cdoc.com)是否支持相应的API了：
 
 * `window.FaceDetector`
 * `window.BarcodeDetector`
@@ -97,7 +97,7 @@ title: Chrome开始集成图形识别 API（Shape Detection API）
 
   1. 人脸识别：
       * 自动框选你家庭聚会照片里的亲戚朋友们，然后你就可以给每个人都贴标签了，不用自己逐个框选。
-      * 在社交网站上注册的时候，你上传了一张照片，浏览器可以帮你裁剪好最佳尺寸。
+      * 在社交网站上注册的时候，你上传了一张照片，[浏览器](https://www.w3cdoc.com)可以帮你裁剪好最佳尺寸。
   2. 条形码识别：
       * 识别网页中的条形码/二维码，并作相应的动作，比如链接跳转，支付等等。
   3. 文本识别：

@@ -10,22 +10,22 @@ title: 浏览器线程理解与microtask与macrotask
     区分进程和线程
   </li>
   <li>
-    浏览器是多进程的
+    [浏览器](https://www.w3cdoc.com)是多进程的
   </li>
   <li>
-    浏览器都包含哪些进程？
+    [浏览器](https://www.w3cdoc.com)都包含哪些进程？
   </li>
   <li>
-    浏览器多进程的优势
+    [浏览器](https://www.w3cdoc.com)多进程的优势
   </li>
   <li>
-    重点是浏览器内核（渲染进程）
+    重点是[浏览器](https://www.w3cdoc.com)内核（渲染进程）
   </li>
   <li>
-    Browser进程和浏览器内核（Renderer进程）的通信过程
+    Browser进程和[浏览器](https://www.w3cdoc.com)内核（Renderer进程）的通信过程
   </li>
   <li>
-    梳理浏览器内核中线程之间的关系
+    梳理[浏览器](https://www.w3cdoc.com)内核中线程之间的关系
   </li>
   <li>
     GUI渲染线程与JS引擎线程互斥
@@ -40,7 +40,7 @@ title: 浏览器线程理解与microtask与macrotask
     WebWorker与SharedWorker
   </li>
   <li>
-    简单梳理下浏览器渲染流程
+    简单梳理下[浏览器](https://www.w3cdoc.com)渲染流程
   </li>
   <li>
     load事件与DOMContentLoaded事件的先后
@@ -113,19 +113,19 @@ title: 浏览器线程理解与microtask与macrotask
   </li>
 </ul>
 
-# 浏览器是多进程的
+# [浏览器](https://www.w3cdoc.com)是多进程的
 
-理解了进程与线程了区别后，接下来对浏览器进行一定程度上的认识：（先看下简化理解）
+理解了进程与线程了区别后，接下来对[浏览器](https://www.w3cdoc.com)进行一定程度上的认识：（先看下简化理解）
 
 <ul class="list-paddingleft-2">
   <li>
-    浏览器是多进程的
+    [浏览器](https://www.w3cdoc.com)是多进程的
   </li>
   <li>
-    浏览器之所以能够运行，是因为系统给它的进程分配了资源（cpu、内存）
+    [浏览器](https://www.w3cdoc.com)之所以能够运行，是因为系统给它的进程分配了资源（cpu、内存）
   </li>
   <li>
-    简单点理解，每打开一个Tab页，就相当于创建了一个独立的浏览器进程。
+    简单点理解，每打开一个Tab页，就相当于创建了一个独立的[浏览器](https://www.w3cdoc.com)进程。
   </li>
 </ul>
 
@@ -135,21 +135,21 @@ title: 浏览器线程理解与microtask与macrotask
   <img loading="lazy" class="alignnone wp-image-3335 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/format,webp" alt="" width="541" height="324" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_180/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_460/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_479/format,webp 800w" sizes="(max-width: 541px) 100vw, 541px" />
 </p>
 
-图中打开了Chrome浏览器的多个标签页，然后可以在Chrome的任务管理器中看到有多个进程（分别是每一个Tab页面有一个独立的进程，以及一个主进程）。
+图中打开了Chrome[浏览器](https://www.w3cdoc.com)的多个标签页，然后可以在Chrome的任务管理器中看到有多个进程（分别是每一个Tab页面有一个独立的进程，以及一个主进程）。
 
 > 感兴趣的可以自行尝试下，如果再多打开一个Tab页，进程正常会+1以上（不过，某些版本的ie却是单进程的）
 
-**注意：**在这里浏览器应该也有自己的优化机制，有时候打开多个tab页后，可以在Chrome任务管理器中看到，有些进程被合并了（所以每一个Tab标签对应一个进程并不一定是绝对的）<section class=""></section> <section class=""></section> <section class=""></section> <section class=""></section>
+**注意：**在这里[浏览器](https://www.w3cdoc.com)应该也有自己的优化机制，有时候打开多个tab页后，可以在Chrome任务管理器中看到，有些进程被合并了（所以每一个Tab标签对应一个进程并不一定是绝对的）<section class=""></section> <section class=""></section> <section class=""></section> <section class=""></section>
 
-# 浏览器都包含哪些进程？<section class=""></section> <section class=""></section>
+# [浏览器](https://www.w3cdoc.com)都包含哪些进程？<section class=""></section> <section class=""></section>
 
-知道了浏览器是多进程后，再来看看它到底包含哪些进程：（为了简化理解，仅列举主要进程）
+知道了[浏览器](https://www.w3cdoc.com)是多进程后，再来看看它到底包含哪些进程：（为了简化理解，仅列举主要进程）
 
-1. Browser进程：浏览器的主进程（负责协调、主控），只有一个。作用有：
+1. Browser进程：[浏览器](https://www.w3cdoc.com)的主进程（负责协调、主控），只有一个。作用有：
 
 <ul class="list-paddingleft-2">
   <li>
-    负责浏览器界面显示，与用户交互。如前进，后退等
+    负责[浏览器](https://www.w3cdoc.com)界面显示，与用户交互。如前进，后退等
   </li>
   <li>
     负责各个页面的管理，创建和销毁其他进程
@@ -166,7 +166,7 @@ title: 浏览器线程理解与microtask与macrotask
 
 GPU进程：最多一个，用于3D绘制等
 
-3. 浏览器渲染进程（浏览器内核）（Renderer进程，内部是多线程的）：默认每个Tab页面一个进程，互不影响。主要作用为
+3. [浏览器](https://www.w3cdoc.com)渲染进程（[浏览器](https://www.w3cdoc.com)内核）（Renderer进程，内部是多线程的）：默认每个Tab页面一个进程，互不影响。主要作用为
 
 <ul class="list-paddingleft-2">
   <li>
@@ -174,9 +174,9 @@ GPU进程：最多一个，用于3D绘制等
   </li>
 </ul>
 
-4. 强化记忆：在浏览器中打开一个网页相当于新起了一个进程（进程内有自己的多线程）
+4. 强化记忆：在[浏览器](https://www.w3cdoc.com)中打开一个网页相当于新起了一个进程（进程内有自己的多线程）
 
-当然，浏览器有时会将多个进程合并（譬如打开多个空白标签页后，会发现多个空白标签页被合并成了一个进程），如图<figure class=""></figure>
+当然，[浏览器](https://www.w3cdoc.com)有时会将多个进程合并（譬如打开多个空白标签页后，会发现多个空白标签页被合并成了一个进程），如图<figure class=""></figure>
 
 <p id="rncgcAs">
   <img loading="lazy" class="alignnone wp-image-3336 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/format,webp" alt="" width="489" height="238" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_146/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_374/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_389/format,webp 800w" sizes="(max-width: 489px) 100vw, 489px" />
@@ -184,36 +184,36 @@ GPU进程：最多一个，用于3D绘制等
 
 另外，可以通过Chrome的更多工具 -> 任务管理器自行验证
 
-# 浏览器多进程的优势
+# [浏览器](https://www.w3cdoc.com)多进程的优势
 
-相比于单进程浏览器，多进程有如下优点：
+相比于单进程[浏览器](https://www.w3cdoc.com)，多进程有如下优点：
 
 <ul class="list-paddingleft-2">
   <li>
-    避免单个page crash影响整个浏览器
+    避免单个page crash影响整个[浏览器](https://www.w3cdoc.com)
   </li>
   <li>
-    避免第三方插件crash影响整个浏览器
+    避免第三方插件crash影响整个[浏览器](https://www.w3cdoc.com)
   </li>
   <li>
     多进程充分利用多核优势
   </li>
   <li>
-    方便使用沙盒模型隔离插件等进程，提高浏览器稳定性
+    方便使用沙盒模型隔离插件等进程，提高[浏览器](https://www.w3cdoc.com)稳定性
   </li>
 </ul>
 
-简单点理解：如果浏览器是单进程，那么某个Tab页崩溃了，就影响了整个浏览器，体验有多差；同理如果是单进程，插件崩溃了也会影响整个浏览器；而且多进程还有其它的诸多优势。。。
+简单点理解：如果[浏览器](https://www.w3cdoc.com)是单进程，那么某个Tab页崩溃了，就影响了整个[浏览器](https://www.w3cdoc.com)，体验有多差；同理如果是单进程，插件崩溃了也会影响整个[浏览器](https://www.w3cdoc.com)；而且多进程还有其它的诸多优势。。。
 
 当然，内存等资源消耗也会更大，有点空间换时间的意思。
 
-# 重点是浏览器内核（渲染进程）
+# 重点是[浏览器](https://www.w3cdoc.com)内核（渲染进程）
 
-重点来了，我们可以看到，上面提到了这么多的进程，那么，对于普通的前端操作来说，最终要的是什么呢？答案是**渲染进程**
+重点来了，[我们](https://www.w3cdoc.com)可以看到，上面提到了这么多的进程，那么，对于普通的[前端](https://www.w3cdoc.com)操作来说，最终要的是什么呢？答案是**渲染进程**
 
 可以这样理解，页面的渲染，JS的执行，事件的循环，都在这个进程内进行。接下来重点分析这个进程
 
-请牢记，浏览器的渲染进程是多线程的（这点如果不理解，请回头看进程和线程的区分）
+请牢记，[浏览器](https://www.w3cdoc.com)的渲染进程是多线程的（这点如果不理解，请回头看进程和线程的区分）
 
 终于到了线程这个概念了&#x1f62d;，好亲切。那么接下来看看它都包含了哪些线程（列举一些主要常驻线程）：
 
@@ -221,7 +221,7 @@ GPU进程：最多一个，用于3D绘制等
 
 <ul class="list-paddingleft-2">
   <li>
-    负责渲染浏览器界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等。
+    负责渲染[浏览器](https://www.w3cdoc.com)界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等。
   </li>
   <li>
     当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时，该线程就会执行
@@ -252,10 +252,10 @@ GPU进程：最多一个，用于3D绘制等
 
 <ul class="list-paddingleft-2">
   <li>
-    归属于浏览器而不是JS引擎，用来控制事件循环（可以理解，JS引擎自己都忙不过来，需要浏览器另开线程协助）
+    归属于[浏览器](https://www.w3cdoc.com)而不是JS引擎，用来控制事件循环（可以理解，JS引擎自己都忙不过来，需要[浏览器](https://www.w3cdoc.com)另开线程协助）
   </li>
   <li>
-    当JS引擎执行代码块如setTimeOut时（也可来自浏览器内核的其他线程,如鼠标点击、AJAX异步请求等），会将对应任务添加到事件线程中
+    当JS引擎执行代码块如setTimeOut时（也可来自[浏览器](https://www.w3cdoc.com)内核的其他线程,如鼠标点击、AJAX异步请求等），会将对应任务添加到事件线程中
   </li>
   <li>
     当对应的事件符合触发条件被触发时，该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理
@@ -272,7 +272,7 @@ GPU进程：最多一个，用于3D绘制等
     传说中的setInterval与setTimeout所在线程
   </li>
   <li>
-    浏览器定时计数器并不是由JavaScript引擎计数的,（因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确）
+    [浏览器](https://www.w3cdoc.com)定时计数器并不是由JavaScript引擎计数的,（因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确）
   </li>
   <li>
     因此通过单独线程来计时并触发定时（计时完毕后，添加到事件队列中，等待JS引擎空闲后执行）
@@ -286,7 +286,7 @@ GPU进程：最多一个，用于3D绘制等
 
 <ul class="list-paddingleft-2">
   <li>
-    在XMLHttpRequest在连接后是通过浏览器新开一个线程请求
+    在XMLHttpRequest在连接后是通过[浏览器](https://www.w3cdoc.com)新开一个线程请求
   </li>
   <li>
     将检测到状态变更时，如果设置有回调函数，异步线程就<strong>产生状态变更事件</strong>，将这个回调再放入事件队列中。再由JavaScript引擎执行。
@@ -301,12 +301,12 @@ GPU进程：最多一个，用于3D绘制等
 
 再说一点，为什么JS引擎是单线程的？额，这个问题其实应该没有标准答案，譬如，可能仅仅是因为由于多线程的复杂性，譬如多线程操作一般要加锁，因此最初设计时选择了单线程。。。
 
-# Browser进程和浏览器内核（Renderer进程）的通信过程
+# Browser进程和[浏览器](https://www.w3cdoc.com)内核（Renderer进程）的通信过程
 
-看到这里，首先，应该对浏览器内的进程和线程都有一定理解了，那么接下来，再谈谈浏览器的Browser进程（控制进程）是如何和内核通信的，  
+看到这里，首先，应该对[浏览器](https://www.w3cdoc.com)内的进程和线程都有一定理解了，那么接下来，再谈谈[浏览器](https://www.w3cdoc.com)的Browser进程（控制进程）是如何和内核通信的，  
 这点也理解后，就可以将这部分的知识串联起来，从头到尾有一个完整的概念。
 
-如果自己打开任务管理器，然后打开一个浏览器，就可以看到：任务管理器中出现了两个进程（一个是主控进程，一个则是打开Tab页的渲染进程），  
+如果自己打开任务管理器，然后打开一个[浏览器](https://www.w3cdoc.com)，就可以看到：任务管理器中出现了两个进程（一个是主控进程，一个则是打开Tab页的渲染进程），  
 然后在这前提下，看下整个的过程：(简化了很多)
 
 <ul class="list-paddingleft-2">
@@ -336,21 +336,21 @@ GPU进程：最多一个，用于3D绘制等
   <img loading="lazy" class="alignnone wp-image-3338 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cc420be92.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cc420be92.png?x-oss-process=image/format,webp" alt="" width="330" height="228" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cc420be92.png?x-oss-process=image/format,webp 470w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cc420be92.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_207/format,webp 300w" sizes="(max-width: 330px) 100vw, 330px" />
 </p>
 
-看完这一整套流程，应该对浏览器的运作有了一定理解了，这样有了知识架构的基础后，后续就方便往上填充内容。
+看完这一整套流程，应该对[浏览器](https://www.w3cdoc.com)的运作有了一定理解了，这样有了知识架构的基础后，后续就方便往上填充内容。
 
-这块再往深处讲的话就涉及到浏览器内核源码解析了，不属于本文范围。
+这块再往深处讲的话就涉及到[浏览器](https://www.w3cdoc.com)内核源码解析了，不属于本文范围。
 
-如果这一块要深挖，建议去读一些浏览器内核源码解析文章，或者可以先看看参考下来源中的第一篇文章，写的不错
+如果这一块要深挖，建议去读一些[浏览器](https://www.w3cdoc.com)内核源码解析文章，或者可以先看看参考下来源中的第一篇文章，写的不错
 
-# 梳理浏览器内核中线程之间的关系
+# 梳理[浏览器](https://www.w3cdoc.com)内核中线程之间的关系
 
-到了这里，已经对浏览器的运行有了一个整体的概念，接下来，先简单梳理一些概念
+到了这里，已经对[浏览器](https://www.w3cdoc.com)的运行有了一个整体的概念，接下来，先简单梳理一些概念
 
 ## GUI渲染线程与JS引擎线程互斥
 
 由于JavaScript是可操纵DOM的，如果在修改这些元素属性同时渲染界面（即JS线程和UI线程同时运行），那么渲染线程前后获得的元素数据就可能不一致了。
 
-因此为了防止渲染出现不可预期的结果，浏览器设置GUI渲染线程与JS引擎为互斥的关系，当JS引擎执行时GUI线程会被挂起，  
+因此为了防止渲染出现不可预期的结果，[浏览器](https://www.w3cdoc.com)设置GUI渲染线程与JS引擎为互斥的关系，当JS引擎执行时GUI线程会被挂起，  
 GUI更新则会被保存在一个队列中等到JS引擎线程空闲时立即被执行。
 
 ## JS阻塞页面加载
@@ -375,7 +375,7 @@ MDN的官方解释是：
 
 <ul class="list-paddingleft-2">
   <li>
-    创建Worker时，JS引擎向浏览器申请开一个子线程（子线程是浏览器开的，完全受主线程控制，而且不能操作DOM）
+    创建Worker时，JS引擎向[浏览器](https://www.w3cdoc.com)申请开一个子线程（子线程是[浏览器](https://www.w3cdoc.com)开的，完全受主线程控制，而且不能操作DOM）
   </li>
   <li>
     JS引擎线程与worker线程间通过特定的方式通信（postMessage API，需要通过序列化对象来与线程交互特定的数据）
@@ -384,7 +384,7 @@ MDN的官方解释是：
 
 所以，如果有非常耗时的工作，请单独开一个Worker线程，这样里面不管如何翻天覆地都不会影响JS引擎主线程，只待计算出结果后，将结果通信给主线程即可，perfect!
 
-而且注意下，JS引擎是单线程的，这一点的本质仍然未改变，Worker可以理解是浏览器给JS引擎开的外挂，专门用来解决那些大量计算问题。
+而且注意下，JS引擎是单线程的，这一点的本质仍然未改变，Worker可以理解是[浏览器](https://www.w3cdoc.com)给JS引擎开的外挂，专门用来解决那些大量计算问题。
 
 其它，关于Worker的详解就不是本文的范畴了，因此不再赘述。
 
@@ -394,30 +394,30 @@ MDN的官方解释是：
 
 <ul class="list-paddingleft-2">
   <li>
-    WebWorker只属于某个页面，不会和其他页面的Render进程（浏览器内核进程）共享
+    WebWorker只属于某个页面，不会和其他页面的Render进程（[浏览器](https://www.w3cdoc.com)内核进程）共享
   </li>
   <li>
     所以Chrome在Render进程中（每一个Tab页就是一个render进程）创建一个新的线程来运行Worker中的JavaScript程序。
   </li>
   <li>
-    SharedWorker是浏览器所有页面共享的，不能采用与Worker同样的方式实现，因为它不隶属于某个Render进程，可以为多个Render进程共享使用
+    SharedWorker是[浏览器](https://www.w3cdoc.com)所有页面共享的，不能采用与Worker同样的方式实现，因为它不隶属于某个Render进程，可以为多个Render进程共享使用
   </li>
   <li>
-    所以Chrome浏览器为SharedWorker单独创建一个进程来运行JavaScript程序，在浏览器中每个相同的JavaScript只存在一个SharedWorker进程，不管它被创建多少次。
+    所以Chrome[浏览器](https://www.w3cdoc.com)为SharedWorker单独创建一个进程来运行JavaScript程序，在[浏览器](https://www.w3cdoc.com)中每个相同的JavaScript只存在一个SharedWorker进程，不管它被创建多少次。
   </li>
 </ul>
 
 看到这里，应该就很容易明白了，本质上就是进程和线程的区别。SharedWorker由独立的进程管理，WebWorker只是属于render进程下的一个线程
 
-# 简单梳理下浏览器渲染流程
+# 简单梳理下[浏览器](https://www.w3cdoc.com)渲染流程
 
-本来是直接计划开始谈JS运行机制的，但想了想，既然上述都一直在谈浏览器，直接跳到JS可能再突兀，因此，中间再补充下浏览器的渲染流程（简单版本）
+本来是直接计划开始谈JS运行机制的，但想了想，既然上述都一直在谈[浏览器](https://www.w3cdoc.com)，直接跳到JS可能再突兀，因此，中间再补充下[浏览器](https://www.w3cdoc.com)的渲染流程（简单版本）
 
 为了简化理解，前期工作直接省略成：（要展开的或完全可以写另一篇超长文）
 
-> 浏览器输入url，浏览器主进程接管，开一个下载线程，然后进行http请求（略去DNS查询，IP寻址等等操作），然后等待响应，获取内容，随后将内容通过RendererHost接口转交给Renderer进程-浏览器渲染流程开始
+> [浏览器](https://www.w3cdoc.com)输入url，[浏览器](https://www.w3cdoc.com)主进程接管，开一个下载线程，然后进行http请求（略去DNS查询，IP寻址等等操作），然后等待响应，获取内容，随后将内容通过RendererHost接口转交给Renderer进程-[浏览器](https://www.w3cdoc.com)渲染流程开始
 
-浏览器器内核拿到内容后，渲染大概可以划分成以下几个步骤：
+[浏览器](https://www.w3cdoc.com)器内核拿到内容后，渲染大概可以划分成以下几个步骤：
 
 <ol class="list-paddingleft-2">
   <li>
@@ -433,7 +433,7 @@ MDN的官方解释是：
     绘制render树（paint），绘制页面像素信息
   </li>
   <li>
-    浏览器会将各层的信息发送给GPU，GPU会将各层合成（composite），显示在屏幕上。
+    [浏览器](https://www.w3cdoc.com)会将各层的信息发送给GPU，GPU会将各层合成（composite），显示在屏幕上。
   </li>
 </ol>
 
@@ -466,7 +466,7 @@ MDN的官方解释是：
 
 这里说的是头部引入css的情况
 
-首先，我们都知道：**css是由单独的下载线程异步下载的。**
+首先，[我们](https://www.w3cdoc.com)都知道：**css是由单独的下载线程异步下载的。**
 
 然后再说下几个现象：
 
@@ -479,7 +479,7 @@ MDN的官方解释是：
   </li>
 </ul>
 
-这可能也是浏览器的一种优化机制。
+这可能也是[浏览器](https://www.w3cdoc.com)的一种优化机制。
 
 因为你加载css的时候，可能会修改下面DOM节点的样式，如果css加载不阻塞render树渲染的话，那么当css加载完之后，render树可能又得重新重绘或者回流了，这就造成了一些没有必要的损耗。
 
@@ -489,7 +489,7 @@ MDN的官方解释是：
 
 渲染步骤中就提到了composite概念。
 
-可以简单的这样理解，浏览器渲染的图层一般包含两大类：普通图层以及复合图层。
+可以简单的这样理解，[浏览器](https://www.w3cdoc.com)渲染的图层一般包含两大类：普通图层以及复合图层。
 
 首先，普通文档流内可以理解为一个复合图层（这里称为默认复合层，里面不管添加多少元素，其实都是在同一个复合图层中）
 
@@ -520,7 +520,7 @@ MDN的官方解释是：
     <code>opacity</code>属性/过渡动画（需要动画执行的过程中才会创建合成层，动画没有开始或结束后元素还会回到之前的状态）
   </li>
   <li>
-    <code>will-chang</code>属性（这个比较偏僻），一般配合opacity与translate使用（而且经测试，除了上述可以引发硬件加速的属性外，其它属性并不会变成复合层），作用是提前告诉浏览器要变化，这样浏览器会开始做一些优化工作（这个最好用完后就释放）
+    <code>will-chang</code>属性（这个比较偏僻），一般配合opacity与translate使用（而且经测试，除了上述可以引发硬件加速的属性外，其它属性并不会变成复合层），作用是提前告诉[浏览器](https://www.w3cdoc.com)要变化，这样[浏览器](https://www.w3cdoc.com)会开始做一些优化工作（这个最好用完后就释放）
   </li>
   <li>
     <code>&lt;video&gt;&lt;iframe&gt;&lt;canvas&gt;&lt;webgl&gt;</code>等元素
@@ -533,9 +533,9 @@ MDN的官方解释是：
 ## **absolute和硬件加速的区别**
 
 可以看到，absolute虽然可以脱离普通文档流，但是无法脱离默认复合层。  
-所以，就算absolute中信息改变时不会改变普通文档流中render树，但是，浏览器最终绘制时，是整个复合层绘制的，所以absolute中信息的改变，仍然会影响整个复合层的绘制。
+所以，就算absolute中信息改变时不会改变普通文档流中render树，但是，[浏览器](https://www.w3cdoc.com)最终绘制时，是整个复合层绘制的，所以absolute中信息的改变，仍然会影响整个复合层的绘制。
 
-（浏览器会重绘它，如果复合层中内容多，absolute带来的绘制信息变化过大，资源消耗是非常严重的）
+（[浏览器](https://www.w3cdoc.com)会重绘它，如果复合层中内容多，absolute带来的绘制信息变化过大，资源消耗是非常严重的）
 
 而硬件加速直接就是在另一个复合层了（另起炉灶），所以它的信息改变不会影响默认复合层（当然了，内部肯定会影响属于自己的复合层），仅仅是引发最后的合成（输出视图）
 
@@ -547,7 +547,7 @@ MDN的官方解释是：
 
 ## **硬件加速时请使用index**
 
-使用硬件加速时，尽可能的使用index，防止浏览器默认给后续的元素创建复合层渲染
+使用硬件加速时，尽可能的使用index，防止[浏览器](https://www.w3cdoc.com)默认给后续的元素创建复合层渲染
 
 具体的原理时这样的：  
 webkit CSS3中，如果这个元素添加了硬件加速，并且index层级比较低，  
@@ -559,7 +559,7 @@ webkit CSS3中，如果这个元素添加了硬件加速，并且index层级比�
 
 # 从Event Loop谈JS的运行机制
 
-到此时，已经是属于浏览器页面初次渲染完毕后的事情，JS引擎的一些运行机制分析。
+到此时，已经是属于[浏览器](https://www.w3cdoc.com)页面初次渲染完毕后的事情，JS引擎的一些运行机制分析。
 
 注意，这里不谈可执行上下文，VO，scop chain等概念（这些完全可以整理成另一篇文章了），这里主要是结合Event Loop来谈JS代码是如何执行的。
 
@@ -656,7 +656,7 @@ webkit CSS3中，如果这个元素添加了硬件加速，并且index层级比�
     执行结果是：先<code>begin</code>后<code>hello!</code>
   </li>
   <li>
-    虽然代码的本意是0毫秒后就推入事件队列，但是W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。<br /> (不过也有一说是不同浏览器有不同的最小时间设定)
+    虽然代码的本意是0毫秒后就推入事件队列，但是W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。<br /> (不过也有一说是不同[浏览器](https://www.w3cdoc.com)有不同的最小时间设定)
   </li>
   <li>
     就算不等待4ms，就算假设0毫秒就推入事件队列，也会先执行<code>begin</code>（因为只有可执行栈内空了后才会主动读取事件队列）
@@ -679,10 +679,10 @@ webkit CSS3中，如果这个元素添加了硬件加速，并且index层级比�
     累计效应（上面提到的），如果setInterval代码在（setInterval）再次添加到队列之前还没有完成执行，就会导致定时器代码连续运行好几次，而之间没有间隔。就算正常间隔执行，多个setInterval的代码执行时间可能会比预期小（因为代码执行需要一定时间）
   </li>
   <li>
-    譬如像iOS的webview,或者Safari等浏览器中都有一个特点，<strong>在滚动的时候是不执行JS的</strong>，如果使用了setInterval，会发现在滚动结束后会执行多次由于滚动不执行JS积攒回调，如果回调执行时间过长,就会非常容器造成卡顿问题和一些不可知的错误（这一块后续有补充，setInterval自带的优化，不会重复添加回调）
+    譬如像iOS的webview,或者Safari等[浏览器](https://www.w3cdoc.com)中都有一个特点，<strong>在滚动的时候是不执行JS的</strong>，如果使用了setInterval，会发现在滚动结束后会执行多次由于滚动不执行JS积攒回调，如果回调执行时间过长,就会非常容器造成卡顿问题和一些不可知的错误（这一块后续有补充，setInterval自带的优化，不会重复添加回调）
   </li>
   <li>
-    而且把浏览器最小化显示等操作时，setInterval并不是不执行程序，它会把setInterval的回调函数放在队列中，等浏览器窗口再次打开时，一瞬间全部执行时
+    而且把[浏览器](https://www.w3cdoc.com)最小化显示等操作时，setInterval并不是不执行程序，它会把setInterval的回调函数放在队列中，等[浏览器](https://www.w3cdoc.com)窗口再次打开时，一瞬间全部执行时
   </li>
 </ul>
 
@@ -726,7 +726,7 @@ setTimeout&lt;/span></code></pre>
     每一个task会从头到尾将这个任务执行完毕，不会执行其它
   </li>
   <li>
-    浏览器为了能够使得JS内部task与DOM任务能够有序的执行，会在一个task执行结束后，在下一个 task 执行开始前，对页面进行重新渲染<br /> （<code>task-&gt;渲染-&gt;task-&gt;...</code>）
+    [浏览器](https://www.w3cdoc.com)为了能够使得JS内部task与DOM任务能够有序的执行，会在一个task执行结束后，在下一个 task 执行开始前，对页面进行重新渲染<br /> （<code>task-&gt;渲染-&gt;task-&gt;...</code>）
   </li>
   <li>
     microtask（又称为微任务），可以理解是在当前 task 执行结束后立即执行的任务
@@ -810,7 +810,7 @@ setTimeout&lt;/span></code></pre>
   </li>
 </ul>
 
-注意，有一些浏览器执行结果不一样（因为它们可能把microtask当成macrotask来执行了），但是为了简单，这里不描述一些不标准的浏览器下的场景（但记住，有些浏览器可能并不标准）
+注意，有一些[浏览器](https://www.w3cdoc.com)执行结果不一样（因为它们可能把microtask当成macrotask来执行了），但是为了简单，这里不描述一些不标准的[浏览器](https://www.w3cdoc.com)下的场景（但记住，有些[浏览器](https://www.w3cdoc.com)可能并不标准）
 
 MutationObserver可以用来实现microtask（它属于microtask，优先级小于Promise，一般是Promise不支持时才会这样做）
 
@@ -839,7 +839,7 @@ MessageChannel属于宏任务，优先级是：`setImmediate->MessageChannel->se
 
 看到这里，不知道对JS的运行机制是不是更加理解了，从头到尾梳理，而不是就某一个碎片化知识应该是会更清晰的吧？
 
-同时，也应该注意到了JS根本就没有想象的那么简单，前端的知识也是无穷无尽，层出不穷的概念、N多易忘的知识点、各式各样的框架、  
+同时，也应该注意到了JS根本就没有想象的那么简单，[前端](https://www.w3cdoc.com)的知识也是无穷无尽，层出不穷的概念、N多易忘的知识点、各式各样的框架、  
 底层原理方面也是可以无限的往下深挖，然后你就会发现，你知道的太少了。。。
 
 另外，本文也打算先告一段落，其它的，如JS词法解析，可执行上下文以及VO等概念就不继续在本文中写了，后续可以考虑另开新的文章。<section class=""></section> <section class=""></section> <section class=""></section> <section class=""></section>

@@ -21,7 +21,7 @@ querySelector和querySelectorAll是W3C提供的新的查询接口（<a href="htt
 
 ### [][4]addEventListener
 
-大家都知道事件的用法就是当某个事件(状况)被触发了之后就会去执行某个Function, 尤其是Javascript, 在当红AJAX的催化下, 了解Javascript的Event用法更加重要, 在这里就大概介绍一下Javascript的Event用法.  
+[大家](https://www.w3cdoc.com)都知道事件的用法就是当某个事件(状况)被触发了之后就会去执行某个Function, 尤其是Javascript, 在当红AJAX的催化下, 了解Javascript的Event用法更加重要, 在这里就大概介绍一下Javascript的Event用法.  
 Mozilla中：  
 addEventListener的使用方式： target.addEventListener(type, listener, capture/bubble);
 
@@ -73,7 +73,7 @@ window.it = clearInterval(window.it);
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/05/2014_js/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/05/2014_js/</a>
 
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/05/2014_js/#前言 "前言"
  [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/javascript.jpg

@@ -1,6 +1,7 @@
 ---
 title: 使用javascript
 weight: 3
+
 ---
 ## Writing Your First JavaScript Program
 
@@ -55,27 +56,32 @@ The presented above attribute was meant to show the language of the script. But 
 
 As we mentioned earlier, using the script tag lets you add JavaScript to a single web page. But you will also need to create scripts that you want to share with all of the pages on your site. But just copying and pasting the same JavaScript code into each page is not so good idea, especially when you have a site with hundreds of pages.
 
-In short, we use external scripts when we have a lot of JavaScript code. That way we get code reusability, as a single JavaScript file can be used in several html pages. The extension for JavaScript file is .js. If we want to use an external script, we should put the name of the script file in the src (source) attribute of a <script> tag:
+In short, we use external scripts when we have a lot of JavaScript code. That way we get code reusability, as a single JavaScript file can be used in several html pages. The extension for JavaScript file is .js. If we want to use an external script, we should put the name of the script file in the src (source) attribute of a script tag:
+
 ```
 <script src="w3cdocScript.js"></script>
 ```
 With the help of the src attribute, we can attach script files to HTML.
+
 ```
 <script src="/path/w3cdocScript.js"></script>
 ```
 In this example /path/w3cdocScript.js is an absolute path for the script, which can also provide some relative path from the same page. For example, src="w3cdocScript.js" means a file "w3cdocScript.js".
 
 We can also give a full URL, which will look like:
+
 ```
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 ```
 If we want to attach several scripts, we should use multiple tags:
+
 ```
 <script src="/w3cdocScript1.js"></script>
 <script src="/w3cdocScript2.js"></script>
 ...
 ```
 If src is set, the script content will be ignored. It means that a single script tag can’t have at the same time the src attribute and code inside. It just won’t work:
+
 ```
 <!DOCTYPE HTML>
 <html>
@@ -89,6 +95,7 @@ If src is set, the script content will be ignored. It means that a single script
 </html>
 ```
 We need to choose either an external script or a regular script with code. Only after that, we can split this example into two scripts to work:
+
 ```
 <!DOCTYPE HTML>
 <html>
@@ -112,6 +119,7 @@ Press the Return key for creating a new blank line, and type: alert('Welcome to 
 Congratulations! You’ve typed your first line of JavaScript code.
 
 Then type script. The code should look like this:
+
 ```
 <!DOCTYPE HTML>
 <html>
@@ -136,6 +144,7 @@ Open the file test2.html in your text editor.
 While script tags appear in a web page’s head, you can put them and JavaScript programs straight in the page’s body.
 
 Below Writing to the document window, type this code:
+
 ```
 <!DOCTYPE HTML>
 <html>
@@ -158,6 +167,7 @@ As you see the page opens and “Welcome to w3cdoc” appears below the headline
 ## The Chrome JavaScript Console
 
 Many web developers prefer using Google’s Chrome browser. Its DevTools attribute gives you many ways to correct and balance HTML, CSS, and JavaScript problems. JavaScript console is a great place for tracking down errors and mistakes in your code. It also recognizes the line in your code where each error occurred.
+
 ```
 <!DOCTYPE HTML>
 <html>

@@ -148,13 +148,13 @@ title: JS中浮点数精度问题
 * `(2^54, 2^55)` 之间的数会四个选一个，只能精确表示4个倍数
 * &#8230; 依次跳过更多2的倍数
 
-下面这张图能很好的表示 JavaScript 中浮点数和实数（Real Number）之间的对应关系。我们常用的 `(-2^53, 2^53)` 只是最中间非常小的一部分，越往两边越稀疏越不精确。  
+下面这张图能很好的表示 JavaScript 中浮点数和实数（Real Number）之间的对应关系。[我们](https://www.w3cdoc.com)常用的 `(-2^53, 2^53)` 只是最中间非常小的一部分，越往两边越稀疏越不精确。  
 <a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f65656539613263613238646433643865366630663563383939353661623433612e6a7067.jpg" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f65656539613263613238646433643865366630663563383939353661623433612e6a7067.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f65656539613263613238646433643865366630663563383939353661623433612e6a7067.jpg?x-oss-process=image/format,webp" alt="fig1.jpg" data-canonical-src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/eee9a2ca28dd3d8e6f0f5c89956ab43a.jpg" /></a>
 
 在淘宝早期的订单系统中把订单号当作数字处理，后来随意订单号暴增，已经超过了  
 `9007199254740992`，最终的解法是把订单号改成字符串处理。
 
-要想解决大数的问题你可以引用第三方库 [bignumber.js][1]，原理是把所有数字当作字符串，重新实现了计算逻辑，缺点是性能比原生的差很多。所以原生支持大数就很有必要了，现在 TC39 已经有一个 Stage 3 的提案 [proposal bigint][2]，大数问题有望彻底解决。在浏览器正式支持前，可以使用 Babel 7.0 来实现，它的内部是自动转换成 [big-integer][3] 来计算，要注意的是这样能保持精度但运算效率会降低。
+要想解决大数的问题你可以引用第三方库 [bignumber.js][1]，原理是把所有数字当作字符串，重新实现了计算逻辑，缺点是性能比原生的差很多。所以原生支持大数就很有必要了，现在 TC39 已经有一个 Stage 3 的提案 [proposal bigint][2]，大数问题有望彻底解决。在[浏览器](https://www.w3cdoc.com)正式支持前，可以使用 Babel 7.0 来实现，它的内部是自动转换成 [big-integer][3] 来计算，要注意的是这样能保持精度但运算效率会降低。
 
 ### `toPrecision` vs `toFixed`
 
@@ -175,7 +175,7 @@ title: JS中浮点数精度问题
 
 ## 解决方案
 
-回到最关心的问题：如何解决浮点误差。首先，理论上用有限的空间来存储无限的小数是不可能保证精确的，但我们可以处理一下得到我们期望的结果。
+回到最关心的问题：如何解决浮点误差。首先，理论上用有限的空间来存储无限的小数是不可能保证精确的，但[我们](https://www.w3cdoc.com)可以处理一下得到[我们](https://www.w3cdoc.com)期望的结果。
 
 ### 数据展示类
 

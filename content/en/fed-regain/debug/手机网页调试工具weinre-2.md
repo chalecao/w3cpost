@@ -8,8 +8,8 @@ title: 手机网页调试工具weinre
 
 ### [][1]调试手机网页
 
-调试手机网页一直很头疼，以前的做法全靠自己分析，用不同的浏览器打开做的网页，根据现象分析结果。貌似好不方便，要是能像浏览器开发者工具那样查看就好了。那么weinre来了。其实这个项目已经早有了。<a href="https://people.apache.org/~pmuellr/weinre/docs/latest/Home.html" target="_blank" rel="external">weiner主页</a>：<a href="https://people.apache.org/~pmuellr/weinre/docs/latest/Home.html" target="_blank" rel="external">https://people.apache.org/~pmuellr/weinre/docs/latest/Home.html</a>  
-这里我们还是介绍一下怎么使用吧。当然调试ionic app也可以用到，所以就放到ionic系列教程里了。  
+调试手机网页一直很头疼，以前的做法全靠自己分析，用不同的[浏览器](https://www.w3cdoc.com)打开做的网页，根据现象分析结果。貌似好不方便，要是能像[浏览器](https://www.w3cdoc.com)开发者工具那样查看就好了。那么weinre来了。其实这个项目已经早有了。<a href="https://people.apache.org/~pmuellr/weinre/docs/latest/Home.html" target="_blank" rel="external">weiner主页</a>：<a href="https://people.apache.org/~pmuellr/weinre/docs/latest/Home.html" target="_blank" rel="external">https://people.apache.org/~pmuellr/weinre/docs/latest/Home.html</a>  
+这里[我们](https://www.w3cdoc.com)还是介绍一下怎么使用吧。当然调试ionic app也可以用到，所以就放到ionic系列教程里了。  
 教程索引：(持续更新)  
 <a href="https://github.com/chalecao/ionic-book" target="_blank" rel="external">ionic中文教程</a>
 
@@ -34,7 +34,7 @@ title: 手机网页调试工具weinre
 
 在windows下，系统防火墙可能会弹出是否允许其访问网络的提示，点击充许即可。
 
-5、浏览器打开
+5、[浏览器](https://www.w3cdoc.com)打开
 
 如果访问正常，说明服务器已配置成功。
 
@@ -48,9 +48,9 @@ phoneGap调试服务器地址：<a href="https://debug.phonegap.com/（相当于
   1. 需调试的页面加入JS脚本  
 
 也可以使用收获夹快速添加调试脚本到需要调试的页面。  
-将以下代码添加到书签，访问需要调试的页面时，访问一下书签，即可以通过JS将调试脚本添加到当前页面，但部份浏览器不支持！
+将以下代码添加到书签，访问需要调试的页面时，访问一下书签，即可以通过JS将调试脚本添加到当前页面，但部份[浏览器](https://www.w3cdoc.com)不支持！
 
-  1. 在PC端使用webkit浏览器打开控制台  
+  1. 在PC端使用webkit[浏览器](https://www.w3cdoc.com)打开控制台  
 
 tips：识别码仅仅是为了识别多个需调试的项目时使用，可供多用户操作。
 
@@ -60,7 +60,7 @@ tips：识别码仅仅是为了识别多个需调试的项目时使用，可供�
 
 转载请注明出处：[https://haomou.net/2015/02/10/2015\_ionic\_debug/][8]
 
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/2015/08/20/2015_ionic_debug2/#调试手机网页 "调试手机网页"
  [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/weinre-demo.jpg

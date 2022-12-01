@@ -11,7 +11,7 @@ weight: 3
 # touch event
 ![](/images/posts/img_5fb40000c7ebe.webp)
 
-主要了解下css相关控制的手势和触摸事件，大家手写slide或者拖拽的时候会用到，有兴趣可以扩展学习下 [touch点击穿透与click与300ms延迟][1]
+主要了解下css相关控制的手势和触摸事件，[大家](https://www.w3cdoc.com)手写slide或者拖拽的时候会用到，有兴趣可以扩展学习下 [touch点击穿透与click与300ms延迟][1]
 
 
 # 参考

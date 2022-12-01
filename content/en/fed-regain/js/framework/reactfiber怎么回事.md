@@ -17,7 +17,7 @@ title: react fiber怎么回事
   <img loading="lazy" width="550" height="280" class="alignnone size-full wp-image-6641 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880adc6321a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880adc6321a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880adc6321a.png?x-oss-process=image/format,webp 550w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880adc6321a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_153/format,webp 300w" sizes="(max-width: 550px) 100vw, 550px" />
 </p>
 
-其根本原因，是大量的同步计算任务阻塞了浏览器的 UI 渲染。默认情况下，JS 运算、页面布局和页面绘制都是运行在浏览器的主线程当中，他们之间是互斥的关系。如果 JS 运算持续占用主线程，页面就没法得到及时的更新。当我们调用`setState`更新页面的时候，React 会遍历应用的所有节点，计算出差异，然后再更新 UI。整个过程是一气呵成，不能被打断的。如果页面元素很多，整个过程占用的时机就可能超过 16 毫秒，就容易出现掉帧的现象。
+其根本原因，是大量的同步计算任务阻塞了[浏览器](https://www.w3cdoc.com)的 UI 渲染。默认情况下，JS 运算、页面布局和页面绘制都是运行在[浏览器](https://www.w3cdoc.com)的主线程当中，他们之间是互斥的关系。如果 JS 运算持续占用主线程，页面就没法得到及时的更新。当[我们](https://www.w3cdoc.com)调用`setState`更新页面的时候，React 会遍历应用的所有节点，计算出差异，然后再更新 UI。整个过程是一气呵成，不能被打断的。如果页面元素很多，整个过程占用的时机就可能超过 16 毫秒，就容易出现掉帧的现象。
 
 针对这一问题，React 团队从框架层面对 web 页面的运行机制做了优化，得到很好的效果。
 
@@ -27,13 +27,13 @@ title: react fiber怎么回事
 
 ### 三、解题思路 {#item-3}
 
-解决主线程长时间被 JS 运算占用这一问题的基本思路，是将运算切割为多个步骤，分批完成。也就是说在完成一部分任务之后，将控制权交回给浏览器，让浏览器有时间进行页面的渲染。等浏览器忙完之后，再继续之前未完成的任务。
+解决主线程长时间被 JS 运算占用这一问题的基本思路，是将运算切割为多个步骤，分批完成。也就是说在完成一部分任务之后，将控制权交回给[浏览器](https://www.w3cdoc.com)，让[浏览器](https://www.w3cdoc.com)有时间进行页面的渲染。等[浏览器](https://www.w3cdoc.com)忙完之后，再继续之前未完成的任务。
 
-旧版 React 通过递归的方式进行渲染，使用的是 JS 引擎自身的函数调用栈，它会一直执行到栈空为止。而`Fiber`实现了自己的组件调用栈，它以链表的形式遍历组件树，可以灵活的暂停、继续和丢弃执行的任务。实现方式是使用了浏览器的`requestIdleCallback`这一 API。官方的解释是这样的：
+旧版 React 通过递归的方式进行渲染，使用的是 JS 引擎自身的函数调用栈，它会一直执行到栈空为止。而`Fiber`实现了自己的组件调用栈，它以链表的形式遍历组件树，可以灵活的暂停、继续和丢弃执行的任务。实现方式是使用了[浏览器](https://www.w3cdoc.com)的`requestIdleCallback`这一 API。官方的解释是这样的：
 
-> window.requestIdleCallback()会在浏览器空闲时期依次调用函数，这就可以让开发者在主事件循环中执行后台或低优先级的任务，而且不会对像动画和用户交互这些延迟触发但关键的事件产生影响。函数一般会按先进先调用的顺序执行，除非函数在浏览器调用它之前就到了它的超时时间。
+> window.requestIdleCallback()会在[浏览器](https://www.w3cdoc.com)空闲时期依次调用函数，这就可以让开发者在主事件循环中执行后台或低优先级的任务，而且不会对像动画和用户交互这些延迟触发但关键的事件产生影响。函数一般会按先进先调用的顺序执行，除非函数在[浏览器](https://www.w3cdoc.com)调用它之前就到了它的超时时间。
 
-有了解题思路后，我们再来看看 React 具体是怎么做的。
+有了解题思路后，[我们](https://www.w3cdoc.com)再来看看 React 具体是怎么做的。
 
 ### 四、React 的答卷 {#item-4}
 
@@ -60,7 +60,7 @@ Fiber 其实指的是一种数据结构，它可以用一个纯 JS 对象来表�
   <img loading="lazy" width="732" height="283" class="alignnone size-full wp-image-6643 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880af598c39.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880af598c39.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880af598c39.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880af598c39.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_116/format,webp 300w" sizes="(max-width: 732px) 100vw, 732px" />
 </p>
 
-而 Fiber Reconciler 每执行一段时间，都会将控制权交回给浏览器，可以分段执行：
+而 Fiber Reconciler 每执行一段时间，都会将控制权交回给[浏览器](https://www.w3cdoc.com)，可以分段执行：
 
 <p id="bWlxHPW">
   <img loading="lazy" width="732" height="287" class="alignnone size-full wp-image-6644 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880afe4e834.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880afe4e834.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880afe4e834.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880afe4e834.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_118/format,webp 300w" sizes="(max-width: 732px) 100vw, 732px" />

@@ -23,7 +23,7 @@ title: tree shaking介绍
   </div>
   
   <p>
-    上图形象的解释了Tree-shaking 的本意，本文所说的前端中的tree-shaking可以理解为通过工具&#8221;摇&#8221;我们的JS文件，将其中用不到的代码&#8221;摇&#8221;掉，是一个性能优化的范畴。具体来说，在 webpack 项目中，有一个入口文件，相当于一棵树的主干，入口文件有很多依赖的模块，相当于树枝。实际情况中，虽然依赖了某个模块，但其实只使用其中的某些功能。通过 tree-shaking，将没有使用的模块摇掉，这样来达到删除无用代码的目的。
+    上图形象的解释了Tree-shaking 的本意，本文所说的[前端](https://www.w3cdoc.com)中的tree-shaking可以理解为通过工具&#8221;摇&#8221;[我们](https://www.w3cdoc.com)的JS文件，将其中用不到的代码&#8221;摇&#8221;掉，是一个性能优化的范畴。具体来说，在 webpack 项目中，有一个入口文件，相当于一棵树的主干，入口文件有很多依赖的模块，相当于树枝。实际情况中，虽然依赖了某个模块，但其实只使用其中的某些功能。通过 tree-shaking，将没有使用的模块摇掉，这样来达到删除无用代码的目的。
   </p>
   
   <div>
@@ -107,7 +107,7 @@ title: tree shaking介绍
   </p>
   
   <p>
-    首先肯定不是浏览器做DCE，因为当我们的代码送到浏览器，那还谈什么消除无法执行的代码来优化呢，所以肯定是送到浏览器之前的步骤进行优化。
+    首先肯定不是[浏览器](https://www.w3cdoc.com)做DCE，因为当[我们](https://www.w3cdoc.com)的代码送到[浏览器](https://www.w3cdoc.com)，那还谈什么消除无法执行的代码来优化呢，所以肯定是送到[浏览器](https://www.w3cdoc.com)之前的步骤进行优化。
   </p>
   
   <p>
@@ -116,7 +116,7 @@ title: tree shaking介绍
   
   <blockquote>
     <p>
-      以下所有的示例代码都能在我们的github中找到，欢迎戳&#x2764;
+      以下所有的示例代码都能在[我们](https://www.w3cdoc.com)的github中找到，欢迎戳&#x2764;
     </p>
   </blockquote>
   
@@ -165,7 +165,7 @@ title: tree shaking介绍
   </p>
   
   <p>
-    可以看到右侧最终打包结果中都去除了无法执行到的代码，结果符合我们的预期。
+    可以看到右侧最终打包结果中都去除了无法执行到的代码，结果符合[我们](https://www.w3cdoc.com)的预期。
   </p>
   
   <p>
@@ -177,7 +177,7 @@ title: tree shaking介绍
   </p>
   
   <p>
-    先思考一个问题，为什么tree-shaking是最近几年流行起来了？而前端模块化概念已经有很多年历史了，其实tree-shaking的消除原理是依赖于ES6的模块特性。
+    先思考一个问题，为什么tree-shaking是最近几年流行起来了？而[前端](https://www.w3cdoc.com)模块化概念已经有很多年历史了，其实tree-shaking的消除原理是依赖于ES6的模块特性。
   </p>
   
   <div>
@@ -207,7 +207,7 @@ title: tree shaking介绍
   </p>
   
   <p>
-    所谓静态分析就是不执行代码，从字面量上对代码进行分析，ES6之前的模块化，比如我们可以动态require一个模块，只有执行后才知道引用的什么模块，这个就不能通过静态分析去做优化。
+    所谓静态分析就是不执行代码，从字面量上对代码进行分析，ES6之前的模块化，比如[我们](https://www.w3cdoc.com)可以动态require一个模块，只有执行后才知道引用的什么模块，这个就不能通过静态分析去做优化。
   </p>
   
   <p>
@@ -215,7 +215,7 @@ title: tree shaking介绍
   </p>
   
   <p>
-    我们还是通过例子来详细了解一下
+    [我们](https://www.w3cdoc.com)还是通过例子来详细了解一下
   </p>
   
   <p>
@@ -236,7 +236,7 @@ title: tree shaking介绍
   </p>
   
   <p>
-    utils中get方法没有被使用到，我们期望的是get方法最终被消除。
+    utils中get方法没有被使用到，[我们](https://www.w3cdoc.com)期望的是get方法最终被消除。
   </p>
   
   <div>
@@ -292,7 +292,7 @@ title: tree shaking介绍
   </p>
   
   <p>
-    增加了对menu.js的引用，但其实代码中并没有用到menu的任何方法和变量，所以我们的期望是，最终代码中menu.js里的内容被消除
+    增加了对menu.js的引用，但其实代码中并没有用到menu的任何方法和变量，所以[我们](https://www.w3cdoc.com)的期望是，最终代码中menu.js里的内容被消除
   </p>
   
   <div>
@@ -360,7 +360,7 @@ title: tree shaking介绍
   </div>
   
   <p>
-    这跟我们想象的完全不一样啊？为什么呢？无用的类不能消除，这还能叫做tree-shaking吗？我当时一度怀疑自己的demo有问题，后来各种网上搜索，才明白demo没有错。
+    这跟[我们](https://www.w3cdoc.com)想象的完全不一样啊？为什么呢？无用的类不能消除，这还能叫做tree-shaking吗？我当时一度怀疑自己的demo有问题，后来各种网上搜索，才明白demo没有错。
   </p>
   
   <p>
@@ -389,7 +389,7 @@ title: tree shaking介绍
       javascript动态语言的特性使得静态分析比较困难
     </li>
     <li>
-      图7下部分的代码就是副作用的一个例子，如果静态分析的时候删除里run或者jump，程序运行时就可能报错，那就本末倒置了，我们的目的是优化，肯定不能影响执行
+      图7下部分的代码就是副作用的一个例子，如果静态分析的时候删除里run或者jump，程序运行时就可能报错，那就本末倒置了，[我们](https://www.w3cdoc.com)的目的是优化，肯定不能影响执行
     </li>
   </ul>
   
@@ -470,7 +470,7 @@ b.prototype.unique = &lt;span class="hljs-function">&lt;span class="hljs-title">
   </p>
   
   <p>
-    我们开始说的三个工具，rollup和webpack表现不理想，那closure compiler又如何呢？
+    [我们](https://www.w3cdoc.com)开始说的三个工具，rollup和webpack表现不理想，那closure compiler又如何呢？
   </p>
   
   <p>
@@ -484,7 +484,7 @@ b.prototype.unique = &lt;span class="hljs-function">&lt;span class="hljs-title">
   </div>
   
   <p>
-    天啊，这不就是我们要的结果吗？完美消除所有无用代码的结果，输出的结果非常性感
+    天啊，这不就是[我们](https://www.w3cdoc.com)要的结果吗？完美消除所有无用代码的结果，输出的结果非常性感
   </p>
   
   <blockquote>
@@ -508,7 +508,7 @@ b.prototype.unique = &lt;span class="hljs-function">&lt;span class="hljs-title">
   </p>
   
   <p>
-    侵入式这个就让人很不爽，google Closure Compiler是java写的，和我们基于node的各种构建库不可能兼容（不过目前好像已经有nodejs版 Closure Compiler），Closure Compiler使用起来也比较麻烦，所以虽然效果很赞，但比较难以应用到项目中，迁移成本较大。
+    侵入式这个就让人很不爽，google Closure Compiler是java写的，和[我们](https://www.w3cdoc.com)基于node的各种构建库不可能兼容（不过目前好像已经有nodejs版 Closure Compiler），Closure Compiler使用起来也比较麻烦，所以虽然效果很赞，但比较难以应用到项目中，迁移成本较大。
   </p>
   
   <p>
@@ -516,7 +516,7 @@ b.prototype.unique = &lt;span class="hljs-function">&lt;span class="hljs-title">
   </p>
   
   <p>
-    三大工具的tree-shaking对于无用代码，无用模块的消除，都是有限的，有条件的。closure compiler是最好的，但与我们日常的基于node的开发流很难兼容。
+    三大工具的tree-shaking对于无用代码，无用模块的消除，都是有限的，有条件的。closure compiler是最好的，但与[我们](https://www.w3cdoc.com)日常的基于node的开发流很难兼容。
   </p>
   
   <div>
@@ -526,7 +526,7 @@ b.prototype.unique = &lt;span class="hljs-function">&lt;span class="hljs-title">
   </div>
   
   <p>
-    tree-shaking对web意义重大，是一个极致优化的理想世界，是前端进化的又一个终极理想。
+    tree-shaking对web意义重大，是一个极致优化的理想世界，是[前端](https://www.w3cdoc.com)进化的又一个终极理想。
   </p>
   
   <p>
@@ -534,7 +534,7 @@ b.prototype.unique = &lt;span class="hljs-function">&lt;span class="hljs-title">
   </p>
   
   <p>
-    决的问题，但还是应该相信新技术能带来更好的前端世界。
+    决的问题，但还是应该相信新技术能带来更好的[前端](https://www.w3cdoc.com)世界。
   </p>
   
   <p>

@@ -8,7 +8,7 @@ title: 关于chrome请求stalled的时间
 
 
 ---
-最近同学反馈说页面请求偶尔很慢，打开浏览器查看加载静态资源时候stalled占用了很长时间，但是只有他的电脑是这样，我这边有stalled时间，但是没有这么长：
+最近同学反馈说页面请求偶尔很慢，打开[浏览器](https://www.w3cdoc.com)查看加载静态资源时候stalled占用了很长时间，但是只有他的电脑是这样，我这边有stalled时间，但是没有这么长：
 
 <p id="ZJBvBiR">
   <img loading="lazy" width="644" height="271" class="alignnone size-full wp-image-5722 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7f73a85ff73.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7f73a85ff73.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7f73a85ff73.png?x-oss-process=image/format,webp 644w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7f73a85ff73.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_126/format,webp 300w" sizes="(max-width: 644px) 100vw, 644px" />
@@ -20,7 +20,7 @@ title: 关于chrome请求stalled的时间
 
 > Time the request spent waiting before it could be sent. This time is inclusive of any time spent in proxy negotiation.Additionally, this time will include when the browser is waiting for an already established connection to become available for re-use, obeying Chrome’s maximum six TCP connection per origin rule.
 
-也即是从TCP连接建立完成，到真正可以传输数据之间的时间差。先让我们要分析TCP连接为什么要等待这么久才能用？我用Wireshark抓包发现(如下图)，TCP连接过程中有多次重传，直到达到最大重传次数后连接被客户端重置。<figure>
+也即是从TCP连接建立完成，到真正可以传输数据之间的时间差。先让[我们](https://www.w3cdoc.com)要分析TCP连接为什么要等待这么久才能用？我用Wireshark抓包发现(如下图)，TCP连接过程中有多次重传，直到达到最大重传次数后连接被客户端重置。<figure>
 
 <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-error.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-error.png?x-oss-process=image/format,webp" alt="wireshark-error" /> </figure>
 
@@ -38,7 +38,7 @@ TCP三次握手后，发送端发送数据后，一段时间内（不同的操�
 
 上面提到，Stackoverflow上找到<a href="http://stackoverflow.com/questions/14821725/ajax-request-over-https-hangs-for-40-seconds-in-chrome-only" target="_blank" rel="noopener noreferrer">一个问题</a>，跟现在需要解决一有些类似点：
 
-* 偶发，并不是必然出现的。这里我们的问题也是偶发，很难复现，需要反复刷。
+* 偶发，并不是必然出现的。这里[我们](https://www.w3cdoc.com)的问题也是偶发，很难复现，需要反复刷。
 * 也是请求被<code class="highlighter-rouge">Pending</code>了很久，从请求的时间线来看，体现在<code class="highlighter-rouge">Stalled</code>上。
 
 该提问到没有给出什么建设性的意见，但它后面的追加编辑却给出了答案。过程是查看Chrome的网络日志，在事件里面发现有一个超时错误：
@@ -59,7 +59,7 @@ TCP三次握手后，发送端发送数据后，一段时间内（不同的操�
 
 <a href="mailto:eroman@chromium.org" target="_blank" rel="noopener noreferrer">eroman</a> 同学指出了这么一个事实：
 
-浏览器对一个资源发起请求前，会先检查本地缓存，此时这个请求对该资源对应的缓存的读写是独占的。那么问题来了，试想一下，当我新开一个标签尝试访问同一个资源的时候，这次请求也会去读取这个缓存，假设之前那次请求很慢，耗时很久，那么后来这次请求因为无法获取对该缓存的操作权限就一直处于等待状态。这样很不科学。于是有人建议优化一下。也就是上面所描述的那样。
+[浏览器](https://www.w3cdoc.com)对一个资源发起请求前，会先检查本地缓存，此时这个请求对该资源对应的缓存的读写是独占的。那么问题来了，试想一下，当我新开一个标签尝试访问同一个资源的时候，这次请求也会去读取这个缓存，假设之前那次请求很慢，耗时很久，那么后来这次请求因为无法获取对该缓存的操作权限就一直处于等待状态。这样很不科学。于是有人建议优化一下。也就是上面所描述的那样。
 
 随着问题的提出，还出了两种可能的实现方案。
 
@@ -85,7 +85,7 @@ TCP三次握手后，发送端发送数据后，一段时间内（不同的操�
 
 所以他的解决方法就很明朗了，对请求加个时间戳让其变得唯一，或者服务器响应头设置为无缓存。Both will work!
 
-那么我们的问题也会是这样的么？我幻想由于某种未知的原因造成之前的请求不正常（虽然网络面板里没有数据证明这样的阻塞请求在问题请求之前存在），然后我们的MIS里打开页面时读取不到缓存，卡了，一会儿缓存好了，正常了，于是在等待了几十秒后请求成功发出去了。
+那么[我们](https://www.w3cdoc.com)的问题也会是这样的么？我幻想由于某种未知的原因造成之前的请求不正常（虽然网络面板里没有数据证明这样的阻塞请求在问题请求之前存在），然后[我们](https://www.w3cdoc.com)的MIS里打开页面时读取不到缓存，卡了，一会儿缓存好了，正常了，于是在等待了几十秒后请求成功发出去了。
 
 似乎不太可能。因为恰好系统的响应头里已经加了缓存控制了 <code class="highlighter-rouge">Cache-Control: no-cache</code>。（没有测过no-store）
 
@@ -284,7 +284,7 @@ t=42742 [st=42741] -REQUEST_ALIVE
   </div>
 </div>
 
-首先，日志显示的总耗时与上面网络面板截图的总耗时是吻合的，都是42.74秒，说明我们定位正确。
+首先，日志显示的总耗时与上面网络面板截图的总耗时是吻合的，都是42.74秒，说明[我们](https://www.w3cdoc.com)定位正确。
 
 > 以下时间均以毫秒计
 
@@ -292,7 +292,7 @@ t=42742 [st=42741] -REQUEST_ALIVE
 
 <code class="highlighter-rouge">+</code>号对应事件开始，<code class="highlighter-rouge">-</code>号对应事件结束，也就是说他们必然成对出现。住里是展开后更加详细的子事件。直到不能再细分。
 
-如果说一开始接触到这个日志时手足无措的话，我们来看一下正常情况下的日志是怎样的，有对比才有发现。
+如果说一开始接触到这个日志时手足无措的话，[我们](https://www.w3cdoc.com)来看一下正常情况下的日志是怎样的，有对比才有发现。
 
 以下随便摘取一次正常请求的日志，如下：
 
@@ -366,7 +366,7 @@ t=1728 [st=172] -REQUEST_ALIVE
   </div>
 </div>
 
-针对上面正常的请求，我们主要关注两部分，如下面的截图：
+针对上面正常的请求，[我们](https://www.w3cdoc.com)主要关注两部分，如下面的截图：
 
 * 发送请求头 \` +HTTP\_TRANSACTION\_SEND_REQUEST [dt=1]\`
 * 读取响应头 \` +HTTP\_TRANSACTION\_READ_HEADERS [dt=161]\`
@@ -375,7 +375,7 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 这是正常的情况下，没有什么问题。并且日志里可以清晰地看到发送的请求头是什么，然后解析出来的响应头是什么。这跟在网络面板看到的是一致的。
 
-再回到出问题的请求日志上来，同样我们只关注这两部分。如下面的截图：
+再回到出问题的请求日志上来，同样[我们](https://www.w3cdoc.com)只关注这两部分。如下面的截图：
 
 <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/3retry.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/3retry.jpg?x-oss-process=image/format,webp" alt="" />
 
@@ -397,7 +397,7 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 问题似乎已经很明朗了。链接被重置。
 
-在第三次尝试的时候正常了，于是正确返回，我们才看到了被解析的响应头被展示在了下面。也就是说在出问题的时候要么响应头未拿到，要么响应头非法导致解析不成功。而原因就是链接被重置。
+在第三次尝试的时候正常了，于是正确返回，[我们](https://www.w3cdoc.com)才看到了被解析的响应头被展示在了下面。也就是说在出问题的时候要么响应头未拿到，要么响应头非法导致解析不成功。而原因就是链接被重置。
 
 那么接下来的工作就是对<code class="highlighter-rouge">ERR_CONNECTION_RESET</code>这个错误的追查了。
 
@@ -405,25 +405,25 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 未找到官方相应的资料，Chrome官网上唯一<a href="https://support.google.com/chrome/answer/117804?hl=en" target="_blank" rel="noopener noreferrer">关于此错误的描述</a>是在安装Chrome时出现Error 101。我估计文档的撰写人员没想到谁会这么蛋疼想要看这些生涩的东西，除了开发者。既然你都是开发者了，那为什么不去看Chromium的源码。
 
-好吧，唯一的途径似乎只能从源码中寻找了。作为只精JS的前端人员，现在要从C，C++代码中找答案了。估计追完这个问题，我会尝试为Chromium贡献代码。
+好吧，唯一的途径似乎只能从源码中寻找了。作为只精JS的[前端](https://www.w3cdoc.com)人员，现在要从C，C++代码中找答案了。估计追完这个问题，我会尝试为Chromium贡献代码。
 
 慢着，在这之前，还是搜到一些关于这个错误的信息的。但似乎都不怎么靠谱。
 
-比如<a href="http://blog.agmon.com/2013/07/05/solving-error-101-neterr_connection_reset-the-connection-was-reset/" target="_blank" rel="noopener noreferrer">这里</a>提到，是因为ISP网络问题，实在无太可能。还有<a href="http://www.tomshardware.com/answers/id-1982982/err-connection-reset-error-chrome.html" target="_blank" rel="noopener noreferrer">这是神马</a>居然一个硬件网站但提到了这个错误，并且怀疑是杀软导致Chrome出问题，但杀软已经在上文被我们排除了。
+比如<a href="http://blog.agmon.com/2013/07/05/solving-error-101-neterr_connection_reset-the-connection-was-reset/" target="_blank" rel="noopener noreferrer">这里</a>提到，是因为ISP网络问题，实在无太可能。还有<a href="http://www.tomshardware.com/answers/id-1982982/err-connection-reset-error-chrome.html" target="_blank" rel="noopener noreferrer">这是神马</a>居然一个硬件网站但提到了这个错误，并且怀疑是杀软导致Chrome出问题，但杀软已经在上文被[我们](https://www.w3cdoc.com)排除了。
 
 ## Chromium 源码 {#chromium-源码}
 
-那么这个错误究竟是什么。能不能找到点靠谱的解释。当然能，让我们进入到Chromium的源码中去。
+那么这个错误究竟是什么。能不能找到点靠谱的解释。当然能，让[我们](https://www.w3cdoc.com)进入到Chromium的源码中去。
 
 ### ERR\_CONNECTION\_RESET被唤起的地方 {#err_connection_reset被唤起的地方}
 
-在Chromium的源码中搜索该常量名，确实出现很多<a href="https://code.google.com/p/chromium/codesearch#search/&q=ERR_CONNECTION_RESET&sq=package:chromium&type=cs" target="_blank" rel="noopener noreferrer">结果</a>。联系到我们查看日志发现问题的上下文，是在解析响应头报的。所以我们定位到<code class="highlighter-rouge">http_stream_parser.cc</code>文件，同时注意到有一个文件叫<code class="highlighter-rouge">net_errors_win.cc</code>，所以猜测他是定义所有错误常量用的，也顺便打开之。
+在Chromium的源码中搜索该常量名，确实出现很多<a href="https://code.google.com/p/chromium/codesearch#search/&q=ERR_CONNECTION_RESET&sq=package:chromium&type=cs" target="_blank" rel="noopener noreferrer">结果</a>。联系到[我们](https://www.w3cdoc.com)查看日志发现问题的上下文，是在解析响应头报的。所以[我们](https://www.w3cdoc.com)定位到<code class="highlighter-rouge">http_stream_parser.cc</code>文件，同时注意到有一个文件叫<code class="highlighter-rouge">net_errors_win.cc</code>，所以猜测他是定义所有错误常量用的，也顺便打开之。
 
-经过观察<code class="highlighter-rouge">src/net/base/net_errors_win.cc</code> 其路径和代码得知其中多为系统级别的错误，似乎跟我们的问题不是很关联，忽略该文件。
+经过观察<code class="highlighter-rouge">src/net/base/net_errors_win.cc</code> 其路径和代码得知其中多为系统级别的错误，似乎跟[我们](https://www.w3cdoc.com)的问题不是很关联，忽略该文件。
 
 <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/source.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/source.jpg?x-oss-process=image/format,webp" alt="" />
 
-<code class="highlighter-rouge">http_stream_parser.cc</code>文件中，<code class="highlighter-rouge">ERR_CONNECTION_RESET</code>仅出现一次。这给我们定位带来了极大的便利。
+<code class="highlighter-rouge">http_stream_parser.cc</code>文件中，<code class="highlighter-rouge">ERR_CONNECTION_RESET</code>仅出现一次。这给[我们](https://www.w3cdoc.com)定位带来了极大的便利。
 
 <a href="https://code.google.com/p/chromium/codesearch#chromium/src/net/http/http_stream_parser.cc&q=ERR_CONNECTION_RESET&sq=package:chromium&dr=C%20http_stream_parser.cc" target="_blank" rel="noopener noreferrer">[chromium]//src/net/base/net_errors_win.cc</a>:
 
@@ -441,13 +441,13 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 这里定义了一个<code class="highlighter-rouge">ShouldTryReadingOnUploadError</code> 的方法，注释耐人寻味，这个时候，这样的情景，能否正确解读注释成为了比读懂代码更重要（这是我在看JS代码时永远无法体味到的感觉），下面尽可能对它进行理解：
 
-> 在尝试发送一个请求体的时候，让服务器尝试发送一个带错误的响应体，如果我们接收到了该错误则返回<code class="highlighter-rouge">true</code>
+> 在尝试发送一个请求体的时候，让服务器尝试发送一个带错误的响应体，如果[我们](https://www.w3cdoc.com)接收到了该错误则返回<code class="highlighter-rouge">true</code>
 
 我承认被上面的复杂从句打败！
 
-那么我们来看这个方法被调用的场景。
+那么[我们](https://www.w3cdoc.com)来看这个方法被调用的场景。
 
-现在我们点击上面的<code class="highlighter-rouge">ShouldTryReadingOnUploadError</code>方法，代码下方出现调用了该方法的地方，一共有两处。
+现在[我们](https://www.w3cdoc.com)点击上面的<code class="highlighter-rouge">ShouldTryReadingOnUploadError</code>方法，代码下方出现调用了该方法的地方，一共有两处。
 
 <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/call.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/call.jpg?x-oss-process=image/format,webp" alt="" />
 
@@ -496,13 +496,13 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 > 跟上面类似，如果<code class="highlighter-rouge">result</code>出错，稍后处理，先返回正常
 
-这也与我们在日志中看到的情况相符，在前面再次错误后，这次请求并没有终止结束，而是尝试到了第三次并且以成功结束的。
+这也与[我们](https://www.w3cdoc.com)在日志中看到的情况相符，在前面再次错误后，这次请求并没有终止结束，而是尝试到了第三次并且以成功结束的。
 
 但不管怎样，从这两个方法，一个<code class="highlighter-rouge">DoSendHeadersComplete</code>， 另一个<code class="highlighter-rouge">DoSendBodyComplete</code>，身上能体现出请求确实已经发出去。
 
 ### TCP RST {#tcp-rst}
 
-另外，在<a href="https://code.google.com/p/chromium/codesearch#chromium/src/net/base/net_error_list.h" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">net_error_list.h</code></a>这个文件的109行，可以准确找到我们在日志中得到的101号错误。它的定义如下：
+另外，在<a href="https://code.google.com/p/chromium/codesearch#chromium/src/net/base/net_error_list.h" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">net_error_list.h</code></a>这个文件的109行，可以准确找到[我们](https://www.w3cdoc.com)在日志中得到的101号错误。它的定义如下：
 
 <div class="language-cpp highlighter-rouge">
   <div class="highlight">
@@ -522,7 +522,7 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 ### 什么是TCP连接 {#什么是tcp连接}
 
-它是一种协议。当网络上一个节点想与另一个节点通信时，双方需要选建立连接。而这个连接过程需要大家都懂的一种约定，TCP就是事先定好的一种约定，于是我们采用它吧，于是其中一个节点按照这个约定发起一建立连接的请求，另一节点收到后，根据该约定，便能读懂这个请求里各字段的意思：哦，丫这是想约我呢。
+它是一种协议。当网络上一个节点想与另一个节点通信时，双方需要选建立连接。而这个连接过程需要[大家](https://www.w3cdoc.com)都懂的一种约定，TCP就是事先定好的一种约定，于是[我们](https://www.w3cdoc.com)采用它吧，于是其中一个节点按照这个约定发起一建立连接的请求，另一节点收到后，根据该约定，便能读懂这个请求里各字段的意思：哦，丫这是想约我呢。
 
 ### 三次握手 {#三次握手}
 
@@ -580,13 +580,13 @@ A收到B的肯定应答，到此A与B经历了三次通信或者说是握手，�
 > The real problem here is something is taking 21 seconds to send us the RST messages, despite the fact that a roundtrip to the server you’re talking to only takes about 100 milliseconds.
 
 * 「之前有过很多成功的连接」，确实，因为出现加载缓慢的情况是偶发的，这之前有过很多正常的不卡的请求存在过。这里没有异议。
-* 「他们都以未知的原因被断掉了」，因为不是正常地断开连接，所以客户端也就是浏览器不知道当前与服务器的TCP连接已经断开，傻傻地保留着与服务器连接的socket，注意，此时已经发生信息的不对等了，这是问题的根源。至于什么原因，给出了可能的原因：路由器认为连接超时将其断掉，同时不排除ISP（互联网服务提供商）的原因，服务器暂时的停运抽风等。不管怎样，客户端浏览器没有收到连接断开的信息。
-* 在上面的基础上，我们去发起一次新的请求。此时浏览器希望重用之前的连接以节省资源，用之前的一个socket去发起连接。21秒后收到服务器返回的重置信息（意思是服务器告诉浏览器：我和你之间没有连接），没关系，上面提到，我们有很多可以重用的连接，于是浏览器重新从可用的连接里面又选择了一个去进行连接，不幸的是，同样的情况再次发生，21秒后收到服务器的重置信息。这体现在日志上就是第二次重试失败。到第三次，因为前面浏览器认为可以重用的连接现在都被正确地标为断开了，没有新的可用，于是这次浏览器发起了全新的请求，成功了！
+* 「他们都以未知的原因被断掉了」，因为不是正常地断开连接，所以客户端也就是[浏览器](https://www.w3cdoc.com)不知道当前与服务器的TCP连接已经断开，傻傻地保留着与服务器连接的socket，注意，此时已经发生信息的不对等了，这是问题的根源。至于什么原因，给出了可能的原因：路由器认为连接超时将其断掉，同时不排除ISP（互联网服务提供商）的原因，服务器暂时的停运抽风等。不管怎样，客户端[浏览器](https://www.w3cdoc.com)没有收到连接断开的信息。
+* 在上面的基础上，[我们](https://www.w3cdoc.com)去发起一次新的请求。此时[浏览器](https://www.w3cdoc.com)希望重用之前的连接以节省资源，用之前的一个socket去发起连接。21秒后收到服务器返回的重置信息（意思是服务器告诉[浏览器](https://www.w3cdoc.com)：我和你之间没有连接），没关系，上面提到，[我们](https://www.w3cdoc.com)有很多可以重用的连接，于是[浏览器](https://www.w3cdoc.com)重新从可用的连接里面又选择了一个去进行连接，不幸的是，同样的情况再次发生，21秒后收到服务器的重置信息。这体现在日志上就是第二次重试失败。到第三次，因为前面[浏览器](https://www.w3cdoc.com)认为可以重用的连接现在都被正确地标为断开了，没有新的可用，于是这次[浏览器](https://www.w3cdoc.com)发起了全新的请求，成功了！
 
 总结出来，两个问题：
 
 * 为什么之前成功的连接不正常的断开了？服务器配置或者网络原因？
-* 是什么让浏览器21秒后才收到重置信息？服务器作出反应过慢还是网络原因？
+* 是什么让[浏览器](https://www.w3cdoc.com)21秒后才收到重置信息？服务器作出反应过慢还是网络原因？
 
 ## Chrome Dev Tool 中时间线各阶段代表的意义 {#chrome-dev-tool-中时间线各阶段代表的意义}
 
@@ -598,7 +598,7 @@ A收到B的肯定应答，到此A与B经历了三次通信或者说是握手，�
 
 在请求能够被发出去前的等等时间。包含了用于处理代理的时间。另外，如果有已经建立好的连接，那么这个时间还包括等待已建立连接被复用的时间，这个遵循Chrome对同一源最大6个TCP连接的规则。
 
-「拿我们的情况来说，上面出错所有的耗时也是算在了这部分里面。网络面板中显示的其余时间比如DNS查找，连接建立等都是属于最后那次成功请求的了」
+「拿[我们](https://www.w3cdoc.com)的情况来说，上面出错所有的耗时也是算在了这部分里面。网络面板中显示的其余时间比如DNS查找，连接建立等都是属于最后那次成功请求的了」
 
 ### Proxy Negotiation {#proxy-negotiation}
 
@@ -630,14 +630,14 @@ A收到B的肯定应答，到此A与B经历了三次通信或者说是握手，�
 
 ## 结论 {#结论}
 
-我相信很多同学是直接跳到这里来了的。事实上我给不出什么解决方案，但能排除前端代码引起问题的可能性。
+我相信很多同学是直接跳到这里来了的。事实上我给不出什么解决方案，但能排除[前端](https://www.w3cdoc.com)代码引起问题的可能性。
 
 具体来说，能够得到的结论有以下几点：
 
 * 请求成功构造，失败情况下也可以看到正常的请求头被打印出来了的
 * 可以肯定的是在与服务器建立连接时被Shut down了，参考上面关于连接重置的部分会更有意义一些
-* 参考上面「进一步解读日志文件」部分，来自Chromium开发者的回复中对日志文件的解读更加合理些，浏览器与服务器的连接不正常断开是导致问题的根源，以至于影响了后面对连接的重用
-* 21秒的等待仍然是个未知数，不知道有何不可抗拒的外力促使浏览器21秒后才收到服务器的重置信息。此处浏览器与服务器的失联原因有待查证
+* 参考上面「进一步解读日志文件」部分，来自Chromium开发者的回复中对日志文件的解读更加合理些，[浏览器](https://www.w3cdoc.com)与服务器的连接不正常断开是导致问题的根源，以至于影响了后面对连接的重用
+* 21秒的等待仍然是个未知数，不知道有何不可抗拒的外力促使[浏览器](https://www.w3cdoc.com)21秒后才收到服务器的重置信息。此处[浏览器](https://www.w3cdoc.com)与服务器的失联原因有待查证
 
 最后寄希望于RD同学跟进，协助排查服务器连接及后端代码的部分。FE同学会保持持续关注。
 

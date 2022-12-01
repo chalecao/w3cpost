@@ -8,7 +8,7 @@ title: SVG的牛B之处，你造吗
 
 ### [][1]牛掰掰的svg
 
-SVG能干啥，想干啥就干啥。可以用来做贴图，做纹理，做动画，甚至做背景图片，你想要的都可以，关键是操作灵活，和别是和canvas又可以相互转化使用，简直是居家旅行必备神器，作为前端工程师，你学会了吗？不会，就抓紧开始吧。  
+SVG能干啥，想干啥就干啥。可以用来做贴图，做纹理，做动画，甚至做背景图片，你想要的都可以，关键是操作灵活，和别是和canvas又可以相互转化使用，简直是居家旅行必备神器，作为[前端](https://www.w3cdoc.com)工程师，你学会了吗？不会，就抓紧开始吧。  
 <a></a>  
 ![SVG的牛B之处，你造吗][2]
 
@@ -49,7 +49,7 @@ SVG也是用来图形化的东东，那么他与位图相比有什么优势呢�
 
 ### [][6]如何显示SVG
 
-SVG文件是纯粹的XML，或许大家更为关心的是如何在Web浏览器中让SVG显示。要在浏览器中显示（前提是浏览器支持），可以通过几种方法来实现：  
+SVG文件是纯粹的XML，或许[大家](https://www.w3cdoc.com)更为关心的是如何在Web[浏览器](https://www.w3cdoc.com)中让SVG显示。要在[浏览器](https://www.w3cdoc.com)中显示（前提是[浏览器](https://www.w3cdoc.com)支持），可以通过几种方法来实现：  
 1.指向SVG文件地址, 将SVG直接嵌套在HTML中  
 而将SVG图像嵌入到HTML文件有多种方法：
 
@@ -77,16 +77,16 @@ SVG文件是纯粹的XML，或许大家更为关心的是如何在Web浏览器�
   1. w3school svg：<a href="https://www.w3school.com.cn/svg/" target="_blank" rel="external">https://www.w3school.com.cn/svg/</a>
   2. svg 手册：<a href="https://www.runoob.com/svg/svg-tutorial.html" target="_blank" rel="external">https://www.runoob.com/svg/svg-tutorial.html</a>
 
-### [][8]浏览器支持
+### [][8][浏览器](https://www.w3cdoc.com)支持
 
-SVG图像虽然很多年就出现在人们的视线中，可是当年其就是后娘生的娃娃，没人爱搭理。只不过凭借其自身的魅力，各大浏览器也开始器重。所以得到的支持度相对于当初要高很多。
+SVG图像虽然很多年就出现在人们的视线中，可是当年其就是后娘生的娃娃，没人爱搭理。只不过凭借其自身的魅力，各大[浏览器](https://www.w3cdoc.com)也开始器重。所以得到的支持度相对于当初要高很多。
 
 可算是一片绿地呀。有关于更详细的兼容情况可以阅读Caniuse提供的数据。
 
 ### [][9]谢谢！
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2015/10/30/2015_svg/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2015/10/30/2015_svg/</a>  
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大前端开发学习 T\_T
+欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/2015/10/30/2015_svg/#牛掰掰的svg "牛掰掰的svg"
  [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/svg-3.jpg
@@ -95,5 +95,5 @@ SVG图像虽然很多年就出现在人们的视线中，可是当年其就是�
  [5]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/svg1.png
  [6]: //fed123.oss-ap-southeast-2.aliyuncs.com/2015/10/30/2015_svg/#如何显示SVG "如何显示SVG"
  [7]: //fed123.oss-ap-southeast-2.aliyuncs.com/2015/10/30/2015_svg/#基础知识 "基础知识"
- [8]: //fed123.oss-ap-southeast-2.aliyuncs.com/2015/10/30/2015_svg/#浏览器支持 "浏览器支持"
+ [8]: //fed123.oss-ap-southeast-2.aliyuncs.com/2015/10/30/2015_svg/#[浏览器](https://www.w3cdoc.com)支持 "[浏览器](https://www.w3cdoc.com)支持"
  [9]: //fed123.oss-ap-southeast-2.aliyuncs.com/2015/10/30/2015_svg/#谢谢！ "谢谢！"

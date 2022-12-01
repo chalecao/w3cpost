@@ -5,9 +5,9 @@ title: 用webpack4和一些插件提升代码编译速度
 
 
 ---
-对于现在的前端项目而言，编译发布几乎是必需操作，有的编译只需要几秒钟，快如闪电，有的却需要10分钟，甚至更多，慢如蜗牛。特别是线上热修复时，分秒必争，响应速度直接影响了用户体验，用户不会有耐心等那么长时间，让你慢慢编译；如果涉及到支付操作，产品损失更是以秒计，每提前哪怕一秒钟发布，在腾讯海量用户面前，都能挽回不小的损失。不仅如此，编译效率的提升，带来的最直观收益就是，开发效率与开发体验双重提升。
+对于现在的[前端](https://www.w3cdoc.com)项目而言，编译发布几乎是必需操作，有的编译只需要几秒钟，快如闪电，有的却需要10分钟，甚至更多，慢如蜗牛。特别是线上热修复时，分秒必争，响应速度直接影响了用户体验，用户不会有耐心等那么长时间，让你慢慢编译；如果涉及到支付操作，产品损失更是以秒计，每提前哪怕一秒钟发布，在腾讯海量用户面前，都能挽回不小的损失。不仅如此，编译效率的提升，带来的最直观收益就是，开发效率与开发体验双重提升。
 
-那么，到底是什么拖慢了webpack打包效率，我们又能做哪些提升呢？
+那么，到底是什么拖慢了webpack打包效率，[我们](https://www.w3cdoc.com)又能做哪些提升呢？
 
 <a class="fancy-ctn fancybox" title="webpack" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-logo.gif" rel="fancy-group"><img title="webpack" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-logo.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-logo.gif?x-oss-process=image/format,webp" /></a>
 
@@ -19,7 +19,7 @@ webpack4 发布时，官方也曾表示，其编译速度提升了 60% ~ 98%。
 
 由于本地项目升级到 webpack4 有几个月了，为了获得测试数据，手动将 webpack 降级为 3.12.0 版本，其它配置基本不做改动。
 
-测试时，Mac仅运行常用的IM、邮箱、终端、浏览器等，为了尽可能避免插件对数据的影响，我关闭了一些优化插件，只保留常用的loader、js压缩插件。
+测试时，Mac仅运行常用的IM、邮箱、终端、[浏览器](https://www.w3cdoc.com)等，为了尽可能避免插件对数据的影响，我关闭了一些优化插件，只保留常用的loader、js压缩插件。
 
 以下是分别在 webpack@3.12.0 及 webpack@4.26.1 两种场景下各测 5 次的运行截图。
 
@@ -38,7 +38,7 @@ webpack4 发布时，官方也曾表示，其编译速度提升了 60% ~ 98%。
 
 ### **新特性** {#新特性}
 
-为了更流畅的升级 webpack4，我们先要了解它。
+为了更流畅的升级 webpack4，[我们](https://www.w3cdoc.com)先要了解它。
 
 webpack4 在大幅度提升编译效率同时，引入了多种新特性：
 
@@ -221,7 +221,7 @@ resolve: {
       2. 想要进一步提升编译速度，就要知道瓶颈在哪？通过测试，发现有两个阶段较慢：① babel 等 loaders 解析阶段；② js 压缩阶段。loader 解析稍后会讨论，而 js 压缩是发布编译的最后阶段，通常webpack需要卡好一会，这是因为压缩 JS 需要先将代码解析成 AST 语法树，然后需要根据复杂的规则去分析和处理 AST，最后将 AST 还原成 JS，这个过程涉及到大量计算，因此比较耗时。如下图，编译就看似卡住。 
         <a class="fancy-ctn fancybox" title="ParallelUglify" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-ParallelUglify.png" rel="fancy-group"><img title="ParallelUglify" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-ParallelUglify.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-ParallelUglify.png?x-oss-process=image/format,webp" /></a>
         
-        实际上，搭载 webpack-parallel-uglify-plugin 插件，这个过程可以倍速提升。我们都知道 node 是单线程的，但node能够fork子进程，基于此，webpack-parallel-uglify-plugin 能够把任务分解给多个子进程去并发的执行，子进程处理完后再把结果发送给主进程，从而实现并发编译，进而大幅提升js压缩速度，如下是配置。
+        实际上，搭载 webpack-parallel-uglify-plugin 插件，这个过程可以倍速提升。[我们](https://www.w3cdoc.com)都知道 node 是单线程的，但node能够fork子进程，基于此，webpack-parallel-uglify-plugin 能够把任务分解给多个子进程去并发的执行，子进程处理完后再把结果发送给主进程，从而实现并发编译，进而大幅提升js压缩速度，如下是配置。
         
         <pre><code class="js hljs javascript has-numbering">&lt;span class="hljs-keyword">const&lt;/span> ParallelUglifyPlugin = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'webpack-parallel-uglify-plugin'&lt;/span>);
 
@@ -262,7 +262,7 @@ optimization: {
         
         搭载 webpack-parallel-uglify-plugin 插件后，webpack3 的构建速度能够提升 46%；即使升级到 webpack4 后，构建速度依然能够进一步提升 35%。
         
-          1. 现在我们来看看，loader 解析速度如何提升。同 webpack-parallel-uglify-plugin 插件一样，HappyPack 也能实现并发编译，从而可以大幅提升 loader 的解析速度， 如下是部分配置。 
+          1. 现在[我们](https://www.w3cdoc.com)来看看，loader 解析速度如何提升。同 webpack-parallel-uglify-plugin 插件一样，HappyPack 也能实现并发编译，从而可以大幅提升 loader 的解析速度， 如下是部分配置。 
             <pre><code class="js hljs javascript has-numbering">&lt;span class="hljs-keyword">const&lt;/span> HappyPack = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'happypack'&lt;/span>);
 &lt;span class="hljs-keyword">const&lt;/span> happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 &lt;span class="hljs-keyword">const&lt;/span> createHappyPlugin = (id, loaders) =&gt; &lt;span class="hljs-keyword">new&lt;/span> HappyPack({
@@ -320,8 +320,8 @@ optimization: {
             
             可见，在搭载 webpack-parallel-uglify-plugin 插件的基础上，happyPack 插件依然能够提升 17% 的编译速度，实际上由于 sass 等 loaders 不支持 happyPack，happyPack 的性能依然有提升空间。更多介绍不妨参考 <a href="http://taobaofed.org/blog/2016/12/08/happypack-source-code-analysis/" target="_blank" rel="external noopener">happypack 原理解析</a>。
             
-              1. 我们都知道，webpack打包时，有一些框架代码是基本不变的，比如说 babel-polyfill、vue、vue-router、vuex、axios、element-ui、fastclick 等，这些模块也有不小的 size，每次编译都要加载一遍，比较费时费力。使用 DLLPlugin 和 DLLReferencePlugin 插件，便可以将这些模块提前打包。 
-                为了完成 dll 过程，我们需要准备一份新的webpack配置，即 webpack.dll.config.js。
+              1. [我们](https://www.w3cdoc.com)都知道，webpack打包时，有一些框架代码是基本不变的，比如说 babel-polyfill、vue、vue-router、vuex、axios、element-ui、fastclick 等，这些模块也有不小的 size，每次编译都要加载一遍，比较费时费力。使用 DLLPlugin 和 DLLReferencePlugin 插件，便可以将这些模块提前打包。 
+                为了完成 dll 过程，[我们](https://www.w3cdoc.com)需要准备一份新的webpack配置，即 webpack.dll.config.js。
                 
                 <pre><code class="js hljs javascript has-numbering">&lt;span class="hljs-keyword">const&lt;/span> webpack = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"webpack"&lt;/span>);
 &lt;span class="hljs-keyword">const&lt;/span> path = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'path'&lt;/span>);
@@ -377,7 +377,7 @@ plugins: [
 ]
 </code></pre>
 
-                dll 公共js轻易不会变化，假如在将来真的发生了更新，那么新的dll文件名便需要加上新的hash，从而避免浏览器缓存老的文件，造成执行出错。由于 hash 的不确定性，我们在 html 入口文件中没办法指定一个固定链接的 script 脚本，刚好，add-asset-html-webpack-plugin 插件可以帮我们自动引入 dll 文件。
+                dll 公共js轻易不会变化，假如在将来真的发生了更新，那么新的dll文件名便需要加上新的hash，从而避免[浏览器](https://www.w3cdoc.com)缓存老的文件，造成执行出错。由于 hash 的不确定性，[我们](https://www.w3cdoc.com)在 html 入口文件中没办法指定一个固定链接的 script 脚本，刚好，add-asset-html-webpack-plugin 插件可以帮[我们](https://www.w3cdoc.com)自动引入 dll 文件。
                 
                 <pre><code class="js hljs javascript has-numbering">&lt;span class="hljs-keyword">const&lt;/span> autoAddDllRes = () =&gt; {
     &lt;span class="hljs-keyword">const&lt;/span> AddAssetHtmlPlugin = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'add-asset-html-webpack-plugin'&lt;/span>);
@@ -409,7 +409,7 @@ plugins: [
                 
                 可见，搭载 dll 后，webpack4 编译速度仍能提升 22%。
                 
-                综上，我们汇总上面的多次数据，得到下表：
+                综上，[我们](https://www.w3cdoc.com)汇总上面的多次数据，得到下表：
                 
                 |                                         | 第1次   | 第2次   | 第3次   | 第4次   | 第5次   | 平均      | 速度提升    |
                 | --------------------------------------- | ----- | ----- | ----- | ----- | ----- | ------- | ------- |

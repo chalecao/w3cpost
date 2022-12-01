@@ -28,4 +28,4 @@ title: 关于ajax请求头设置
 "upgrade",
 "via" ];</pre>
 
-想改的话也有办法，浏览器插件好像可以做到。记得有一个iheader插件。
+想改的话也有办法，[浏览器](https://www.w3cdoc.com)插件好像可以做到。记得有一个iheader插件。

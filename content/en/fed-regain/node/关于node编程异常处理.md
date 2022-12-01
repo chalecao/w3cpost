@@ -9,7 +9,7 @@ title: 关于node编程异常处理
 
 由于Node执行在单线程上，一旦线程上抛的异常没有被捕获，就会引起整个进程的崩溃。所以对Node服务的异常处理、保证进程的稳定性非常重要。
 
-再好的程序员也不敢保证自己的代码不出现异常，除了尽可能捕获可能出现的异常，我们还需要通过一些规范减少异常发生，通过单元测试辅助我们验证代码，通过一些工具保证服务的稳定性。下面我从这几个方面探讨如何保证Node的稳定性。
+再好的程序员也不敢保证自己的代码不出现异常，除了尽可能捕获可能出现的异常，[我们](https://www.w3cdoc.com)还需要通过一些规范减少异常发生，通过单元测试辅助[我们](https://www.w3cdoc.com)验证代码，通过一些工具保证服务的稳定性。下面我从这几个方面探讨如何保证Node的稳定性。
 
 ## 一 异常捕获 {#一_异常捕获}
 
@@ -17,7 +17,7 @@ title: 关于node编程异常处理
 
 ### 1.1 try/catch {#1-1_try/catch}
 
-在大多数语言中，try/catch是捕获异常的好手，能确保我们的代码不进入不可控流程。但是由于Node回调/异步的特性，我们无法通过try/catch来捕捉所有的异常，看下面的示例：
+在大多数语言中，try/catch是捕获异常的好手，能确保[我们](https://www.w3cdoc.com)的代码不进入不可控流程。但是由于Node回调/异步的特性，[我们](https://www.w3cdoc.com)无法通过try/catch来捕捉所有的异常，看下面的示例：
 
 <div>
   <div id="highlighter_285954" class="syntaxhighlighter nogutter  javascript">
@@ -105,8 +105,8 @@ title: 关于node编程异常处理
   </div>
 </div>
 
-上面的代码没有像预期的那样帮我们捕获异常，后果就是这个未被捕获的异常导致整个Node进程crash，所以Node中try/catch的方式不是那么管用。  
-如果有一种方法能帮我们全局捕获异常，Node服务就不会轻易挂掉了。Node确实提供了这种方式，不过却不能完全满足我们的需求。
+上面的代码没有像预期的那样帮[我们](https://www.w3cdoc.com)捕获异常，后果就是这个未被捕获的异常导致整个Node进程crash，所以Node中try/catch的方式不是那么管用。  
+如果有一种方法能帮[我们](https://www.w3cdoc.com)全局捕获异常，Node服务就不会轻易挂掉了。Node确实提供了这种方式，不过却不能完全满足[我们](https://www.w3cdoc.com)的需求。
 
 ### 1.2 uncaughtException {#1-2_uncaughtException}
 
@@ -178,7 +178,7 @@ title: 关于node编程异常处理
   </div>
 </div>
 
-只要给uncaughtException配置了回调，Node进程不会异常退出，但异常发生的上下文已经丢失，我们无法给出友好的返回，比如告诉用户哪里出问题了。而且由于uncaughtException事件发生后，会丢失当前环境的堆栈，可能导致Node不能正常进行内存回收，从而导致内存泄露。所以，uncaughtException的正确使用姿势是，当uncaughtException触发，记录error日志，然后结束Node进程，我们通过日志监控，报警及时解决异常。
+只要给uncaughtException配置了回调，Node进程不会异常退出，但异常发生的上下文已经丢失，[我们](https://www.w3cdoc.com)无法给出友好的返回，比如告诉用户哪里出问题了。而且由于uncaughtException事件发生后，会丢失当前环境的堆栈，可能导致Node不能正常进行内存回收，从而导致内存泄露。所以，uncaughtException的正确使用姿势是，当uncaughtException触发，记录error日志，然后结束Node进程，[我们](https://www.w3cdoc.com)通过日志监控，报警及时解决异常。
 
 <div>
   <div id="highlighter_304011" class="syntaxhighlighter nogutter  javascript">
@@ -298,7 +298,7 @@ title: 关于node编程异常处理
   </div>
 </div>
 
-运行代码我们会发现，异常会被domain捕获到，uncaughtException不会被触发。虽然我们对domain模块寄予厚望，不过目前domain模块的评级为“Unstable”，因为存在不少性能以及稳定性问题。  
+运行代码[我们](https://www.w3cdoc.com)会发现，异常会被domain捕获到，uncaughtException不会被触发。虽然[我们](https://www.w3cdoc.com)对domain模块寄予厚望，不过目前domain模块的评级为“Unstable”，因为存在不少性能以及稳定性问题。  
 关于domain的详细介绍，可以看看以下几篇文章：
 
 * <a href="http://cnodejs.org/topic/516b64596d38277306407936" target="_blank" rel="noopener noreferrer">Node.js 异步异常的处理与domain模块解析</a>
@@ -307,11 +307,11 @@ title: 关于node编程异常处理
 
 ## 二 阻止异常发生 {#二_阻止异常发生}
 
-我们当然无法阻止异常的发生，这里说的阻止异常发生，是希望大家能养成良好的编码习惯，严谨的思维逻辑，来尽可能减少代码抛出未捕获异常。
+[我们](https://www.w3cdoc.com)当然无法阻止异常的发生，这里说的阻止异常发生，是希望[大家](https://www.w3cdoc.com)能养成良好的编码习惯，严谨的思维逻辑，来尽可能减少代码抛出未捕获异常。
 
 ### 2.1 良好的异常处理习惯 {#2-1_良好的异常处理习惯}
 
-* 异步API编写规范：由于异步调用中回调函数里的异常无法被外部捕获，所以我们将API内部发生的异常作为第一个参数传递给回调函数，包括NodeJS官方的API是遵循这个规范的。
+* 异步API编写规范：由于异步调用中回调函数里的异常无法被外部捕获，所以[我们](https://www.w3cdoc.com)将API内部发生的异常作为第一个参数传递给回调函数，包括NodeJS官方的API是遵循这个规范的。
 
 <div>
   <div id="highlighter_681911" class="syntaxhighlighter nogutter  javascript">
@@ -553,7 +553,7 @@ title: 关于node编程异常处理
 
 ### 2.2 单元测试 {#2-2_单元测试}
 
-单元测试的重要性想必所有人都清楚，JS代码跑在浏览器端的时候我们未必会做，因为异常通常只会影响部分人使用的部分功能，不足以引起很多人的重视。JS代码跑在服务端情况完全不一样了，一旦出现异常，影响的是所有的用户，所以单元测试就显得非常重要。
+单元测试的重要性想必所有人都清楚，JS代码跑在[浏览器](https://www.w3cdoc.com)端的时候[我们](https://www.w3cdoc.com)未必会做，因为异常通常只会影响部分人使用的部分功能，不足以引起很多人的重视。JS代码跑在服务端情况完全不一样了，一旦出现异常，影响的是所有的用户，所以单元测试就显得非常重要。
 
 至于如何在NodeJS中写单元测试，可以看看两位大神的分享：
 
@@ -563,7 +563,7 @@ title: 关于node编程异常处理
 ### 2.3 记录日志 {#2-3_记录日志}
 
 还是那句说，谁也不敢保证自己的代码不出现异常，因为有运行环境，网络环境等各种不稳定因素，所以建立健全的排查和跟踪机制就显得很重要，而日志就是实现这种机制的关键。  
-阿里线上环境已经有完善的日志监控体现，我们要做的就是去学会如何使用他。
+阿里线上环境已经有完善的日志监控体现，[我们](https://www.w3cdoc.com)要做的就是去学会如何使用他。
 
 ali-logger:<a href="http://search.npm.taobao.net/package/ali-logger" target="_blank" rel="noopener noreferrer">http://search.npm.taobao.net/package/ali-logger</a>
 
@@ -672,7 +672,7 @@ cluster模块用于创建共享端口的多进程模式,这种模式使多个进
   </div>
 </div>
 
-利用`cluster`，我们可以根据CPU的数量创建多个worker进程，用户的请求会被分配到不同的进程上，如果某个进程出现异常，可以直接将这个进程crash掉，而不会影响其他进程。  
+利用`cluster`，[我们](https://www.w3cdoc.com)可以根据CPU的数量创建多个worker进程，用户的请求会被分配到不同的进程上，如果某个进程出现异常，可以直接将这个进程crash掉，而不会影响其他进程。  
 关于`cluster`实现原理的介绍文章非常多，想深入了解的可以自行搜索一下。
 
 #### 3.1.1 graceful + recluster {#3-1-1_graceful_+_recluster}
@@ -890,13 +890,13 @@ pm2使用非常简单：
 
 如果你想更多的了解pm2，可以直接看pm2的文档:<a href="https://github.com/Unitech/pm2" target="_blank" rel="noopener noreferrer">https://github.com/Unitech/pm2</a>
 
-不过正是由于pm2功能太过强大，我们没有选择pm2，因为他太复杂了，感觉还没有能力驾驭他，特别是万一出现问题，我们还不知道如何解决。也许我们的顾虑是多余的，不过需要一点时间去了解他。
+不过正是由于pm2功能太过强大，[我们](https://www.w3cdoc.com)没有选择pm2，因为他太复杂了，感觉还没有能力驾驭他，特别是万一出现问题，[我们](https://www.w3cdoc.com)还不知道如何解决。也许[我们](https://www.w3cdoc.com)的顾虑是多余的，不过需要一点时间去了解他。
 
 ## 小结 {#小结}
 
 刚开始学习Node的使用，对Node确实有点小担心，因为使用别的语言做Web服务，根本不用担心因为一个错误导致整个服务crash的问题。  
 随着对Node的了解，我掌握了一些技巧，也打消了一些顾虑。  
-不过毕竟Node应用经验有限，所以欢迎大家一起探讨，积累更多宝贵的经验。
+不过毕竟Node应用经验有限，所以欢迎[大家](https://www.w3cdoc.com)一起探讨，积累更多宝贵的经验。
 
 转载：<https://www.cnblogs.com/rubylouvre/p/4442619.html>
 

@@ -4,7 +4,7 @@ title: 从Seq2seq到Attention模型到Self Attention（1）
 ---
 近一两年，注意力模型（Attention Model）是深度学习领域最受瞩目的新星，用来处理与序列相关的数据，特别是2017年Google提出后，模型成效、复杂度又取得了更大的进展。以金融业为例，客户的行为代表一连串的序列，但要从串行化的客户历程数据去萃取信息是非常困难的，如果能够将self-attention的概念应用在客户历程并拆解分析，就能探索客户潜在行为背后无限的商机。然而，笔者从Attention model读到self attention时，遇到不少障碍，其中很大部分是后者在论文提出的概念，鲜少有文章解释如何和前者做关联，笔者希望藉由这系列文，解释在机器翻译的领域中，是如何从Seq2seq演进至Attention model再至self attention，使读者在理解Attention机制不再这么困难。
 
-为此，系列文分为两篇，第一篇着重在解释Seq2seq、Attention模型，第二篇重点摆在self attention，希望大家看完后能有所收获。<figure>
+为此，系列文分为两篇，第一篇着重在解释Seq2seq、Attention模型，第二篇重点摆在self attention，希望[大家](https://www.w3cdoc.com)看完后能有所收获。<figure>
 
 <div class="image-block">
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/x9ts2aog9r.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/x9ts2aog9r.jpeg.jpg?x-oss-process=image/format,webp" />
@@ -22,9 +22,9 @@ title: 从Seq2seq到Attention模型到Self Attention（1）
 
 图（3）是个典型的Seq2seq模型，包含了编码器（Encoder）和解码器（Decoder）.只要输入句子至Encoder，即可从Decoder获得目标句。
 
-举例来说，如果我们将“Are you very big”作为输入句（source sentence），即可得到目标句（target sentence）“你很大？”。机器翻译就是这么简单，然而，如果想了解它如何组成，会发现其中充斥着各种难以咀嚼的RNN/LSTM等概念。
+举例来说，如果[我们](https://www.w3cdoc.com)将“Are you very big”作为输入句（source sentence），即可得到目标句（target sentence）“你很大？”。机器翻译就是这么简单，然而，如果想了解它如何组成，会发现其中充斥着各种难以咀嚼的RNN/LSTM等概念。
 
-接下来，让我们快速回味一下RNN/LSTM，方便后续模型理解。<figure>
+接下来，让[我们](https://www.w3cdoc.com)快速回味一下RNN/LSTM，方便后续模型理解。<figure>
 
 <div class="image-block">
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/6y3j4ilmfq.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/6y3j4ilmfq.jpeg.jpg?x-oss-process=image/format,webp" />
@@ -32,7 +32,7 @@ title: 从Seq2seq到Attention模型到Self Attention（1）
 
 **RNN/LSTM**
 
-RNN是DNN模型的变种，不同之处在于它可以储存过去的行为记忆，进行更准确的预测，然而，就像人脑一样，一旦所需记忆量太大，就会比较健忘。我们可以把隐藏状态（hidden state）h\_{t}认为是记忆单元，h\_{t}可通过前一步的hidden state和当前时刻的输入（input）得到，因为是记忆单元，h\_{t}可以捕捉到之前所有时刻产生的信息，而输出（output）o\_{t}仅依赖于t时刻的记忆，也就是h_{t}。
+RNN是DNN模型的变种，不同之处在于它可以储存过去的行为记忆，进行更准确的预测，然而，就像人脑一样，一旦所需记忆量太大，就会比较健忘。[我们](https://www.w3cdoc.com)可以把隐藏状态（hidden state）h\_{t}认为是记忆单元，h\_{t}可通过前一步的hidden state和当前时刻的输入（input）得到，因为是记忆单元，h\_{t}可以捕捉到之前所有时刻产生的信息，而输出（output）o\_{t}仅依赖于t时刻的记忆，也就是h_{t}。
 
 RNN在反向训练误差时，都会乘上参数，参数乘上误差的结果，大则出现梯度爆炸；小则梯度消失，导致模型成效不佳，如图4。<figure>
 
@@ -54,9 +54,9 @@ RNN在反向训练误差时，都会乘上参数，参数乘上误差的结果�
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/a4s7uet8vw.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/a4s7uet8vw.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
-回到正题，所以Seq2seq是怎么组成的？我们可以看到Seq2seq包含两部分：Encoder和Decoder。一旦将句子输入至Encoder，即可从Decoder获得目标句。本篇文章着墨在Decoder生成过程，Encoder就是个单纯的RNN/ LSTM，读者若有兴趣可再自行研究，此外RNN/LSTM可以互相代替，以下仅以RNN作为解释。
+回到正题，所以Seq2seq是怎么组成的？[我们](https://www.w3cdoc.com)可以看到Seq2seq包含两部分：Encoder和Decoder。一旦将句子输入至Encoder，即可从Decoder获得目标句。本篇文章着墨在Decoder生成过程，Encoder就是个单纯的RNN/ LSTM，读者若有兴趣可再自行研究，此外RNN/LSTM可以互相代替，以下仅以RNN作为解释。
 
-现在我们具备RNN/LSTM的知识，可以发现Seq2seq中，Decoder的公式和RNN根本就是同一个模子出来的，差别在于Decoder多了一个C — 图（6），这个C是指context vector/thought vector。context vector可以想成是一个含有所有输入句信息的向量，也就是Encoder当中，最后一个hidden state。简单来说，Encoder将输入句压缩成固定长度的context vector，context vector即可完整表达输入句，再透过Decoder将context vector内的信息产生输出句，如图7。<figure>
+现在[我们](https://www.w3cdoc.com)具备RNN/LSTM的知识，可以发现Seq2seq中，Decoder的公式和RNN根本就是同一个模子出来的，差别在于Decoder多了一个C — 图（6），这个C是指context vector/thought vector。context vector可以想成是一个含有所有输入句信息的向量，也就是Encoder当中，最后一个hidden state。简单来说，Encoder将输入句压缩成固定长度的context vector，context vector即可完整表达输入句，再透过Decoder将context vector内的信息产生输出句，如图7。<figure>
 
 <div class="image-block">
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/cspt8spjlx.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/cspt8spjlx.jpeg.jpg?x-oss-process=image/format,webp" />
@@ -108,17 +108,17 @@ Context vector c\_{i}是透过attention scoreα乘上input的序列加权求和.
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/wa4buf88tj.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/wa4buf88tj.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
-Neural Machine Translation发表之后，接续的论文Effective approaches of the NMT、Show，Attend and Tell提出了global/local attention和soft/hard attention的概念，而score e\_{ij}的计算方式类似global和soft attention。细节在此不多说，图11可以看到3种计算权重的方式，我们把刚才的公式做些改变，将score e\_{ij}改写成score（h\_{t}，\bar {h\_{s}}），h\_{t}代表s\_{i-1}而\bar {h\_{s}}代表h\_{j}，为了计算方便，我们采用内积（dot）计算权重。
+Neural Machine Translation发表之后，接续的论文Effective approaches of the NMT、Show，Attend and Tell提出了global/local attention和soft/hard attention的概念，而score e\_{ij}的计算方式类似global和soft attention。细节在此不多说，图11可以看到3种计算权重的方式，[我们](https://www.w3cdoc.com)把刚才的公式做些改变，将score e\_{ij}改写成score（h\_{t}，\bar {h\_{s}}），h\_{t}代表s\_{i-1}而\bar {h\_{s}}代表h\_{j}，为了计算方便，[我们](https://www.w3cdoc.com)采用内积（dot）计算权重。
 
-有了score e_{ij}，即可透过softmax算出attention score，context vector也可得到，在attention model中，context vector又称为attention vector。我们可以将attention score列为矩阵，透过此矩阵可看到输入端文字和输出端文字间的对应关系，也就是论文当中提出align的概念。<figure>
+有了score e_{ij}，即可透过softmax算出attention score，context vector也可得到，在attention model中，context vector又称为attention vector。[我们](https://www.w3cdoc.com)可以将attention score列为矩阵，透过此矩阵可看到输入端文字和输出端文字间的对应关系，也就是论文当中提出align的概念。<figure>
 
 <div class="image-block">
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/kx4n8czgqj.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/kx4n8czgqj.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
-我们知道如何计算context vector后，回头看encoder。
+[我们](https://www.w3cdoc.com)知道如何计算context vector后，回头看encoder。
 
-attention model中的encoder用的是改良版RNN：双向RNN（Bi-directional RNN），以往单向RNN的问题在于t时刻时，只能透过之前的信息进行预测，但事实上，模型有时候可能也需要利用未来时刻的信息进行预测，其运作模式为，一个hidden layer用来由左到右，另一个由右到左，透过双向RNN，我们可以对词语进行更好的预测。
+attention model中的encoder用的是改良版RNN：双向RNN（Bi-directional RNN），以往单向RNN的问题在于t时刻时，只能透过之前的信息进行预测，但事实上，模型有时候可能也需要利用未来时刻的信息进行预测，其运作模式为，一个hidden layer用来由左到右，另一个由右到左，透过双向RNN，[我们](https://www.w3cdoc.com)可以对词语进行更好的预测。
 
 举例来说，”我喜欢苹果，因为它很好吃”？和”我喜欢苹果，因为他比安卓稳定”这两个句子当中，如果只看”我喜欢苹果”，你可能不知道苹果指的是水果还是手机，但如果可以根据后面那句得到信息，答案就很显而易见，这就是双向RNN运作的方式。<figure>
 
@@ -132,7 +132,7 @@ Attention model虽然解决了输入句仅有一个context vector的缺点，但
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/rme479pppq.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/rme479pppq.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
-让我们复习一下Seq2seq、Attention model，差别在于计算context vector的方式。<figure>
+让[我们](https://www.w3cdoc.com)复习一下Seq2seq、Attention model，差别在于计算context vector的方式。<figure>
 
 <div class="image-block">
   <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/hojezgdcny.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/hojezgdcny.jpeg.jpg?x-oss-process=image/format,webp" />
@@ -140,7 +140,7 @@ Attention model虽然解决了输入句仅有一个context vector的缺点，但
 
 **总结**
 
-透过上述内容，我们快速的了解Seq2seq、Attention model运作、计算方式，我强烈建议有兴趣的读者可以参考图1中的论文，会有很多收获。
+透过上述内容，[我们](https://www.w3cdoc.com)快速的了解Seq2seq、Attention model运作、计算方式，我强烈建议有兴趣的读者可以参考图1中的论文，会有很多收获。
 
 系列二将着重在Google于论文“Attention is all you need“所提出的self attention、multi-head等概念。
 

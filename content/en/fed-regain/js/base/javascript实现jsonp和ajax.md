@@ -6,7 +6,7 @@ title: JavaScript实现JSONP和ajax
 
 
 ---
-相信大多数前端开发者在需要与后端进行数据交互时，为了方便快捷，都会选择JQuery中封装的AJAX方法，但是有些时候，我们只需要JQuery的AJAX请求方法，而其他的功能用到的很少，这显然是没必要的。
+相信大多数[前端](https://www.w3cdoc.com)开发者在需要与后端进行数据交互时，为了方便快捷，都会选择JQuery中封装的AJAX方法，但是有些时候，[我们](https://www.w3cdoc.com)只需要JQuery的AJAX请求方法，而其他的功能用到的很少，这显然是没必要的。
 
 其实，原生JavaScript实现AJAX并不难，这篇文章将会讲解如何实现简单的AJAX，还有跨域请求JSONP！
 
@@ -194,7 +194,7 @@ AJAX的核心是XMLHttpRequest。
 
 同源策略
 
-AJAX之所以需要“跨域”，罪魁祸首就是浏览器的同源策略。即，一个页面的AJAX只能获取这个页面相同源或者相同域的数据。 如何叫“同源”或者“同域”呢？——协议、域名、端口号都必须相同。例如：
+AJAX之所以需要“跨域”，罪魁祸首就是[浏览器](https://www.w3cdoc.com)的同源策略。即，一个页面的AJAX只能获取这个页面相同源或者相同域的数据。 如何叫“同源”或者“同域”呢？——协议、域名、端口号都必须相同。例如：
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">https://example.com 和 https://example.com 不同，因为协议不同；
 
@@ -208,13 +208,13 @@ https://localhost:8080 和 https://example.com 不同，协议、域名、端口
 
 ``那如何跨域请求呢？这时，JSONP就登场了！
 
-JSONP(JSON with Padding) 是一种跨域请求方式。主要原理是利用了script 标签可以跨域请求的特性，由其 src 属性发送请求到服务器，服务器返回 JavaScript 代码，浏览器接受响应，然后就直接执行了，这和通过 script 标签引用外部文件的原理是一样的。
+JSONP(JSON with Padding) 是一种跨域请求方式。主要原理是利用了script 标签可以跨域请求的特性，由其 src 属性发送请求到服务器，服务器返回 JavaScript 代码，[浏览器](https://www.w3cdoc.com)接受响应，然后就直接执行了，这和通过 script 标签引用外部文件的原理是一样的。
 
-JSONP由两部分组成：回调函数和数据，回调函数一般是在浏览器控制，作为参数发往服务器端（当然，你也可以固定回调函数的名字，但客户端和服务器端的名称一定要一致）。当服务器响应时，服务器端就会把该函数和数据拼成字符串返回。  
+JSONP由两部分组成：回调函数和数据，回调函数一般是在[浏览器](https://www.w3cdoc.com)控制，作为参数发往服务器端（当然，你也可以固定回调函数的名字，但客户端和服务器端的名称一定要一致）。当服务器响应时，服务器端就会把该函数和数据拼成字符串返回。  
 JSONP的请求过程：  
-请求阶段：浏览器创建一个 script 标签，并给其src 赋值(类似 https://example.com/api/?callback=jsonpCallback）。  
-发送请求：当给script的src赋值时，浏览器就会发起一个请求。  
-数据响应：服务端将要返回的数据作为参数和函数名称拼接在一起(格式类似”jsonpCallback({name: &#8216;abc&#8217;})”)返回。当浏览器接收到了响应数据，由于发起请求的是 script，所以相当于直接调用 jsonpCallback 方法，并且传入了一个参数。
+请求阶段：[浏览器](https://www.w3cdoc.com)创建一个 script 标签，并给其src 赋值(类似 https://example.com/api/?callback=jsonpCallback）。  
+发送请求：当给script的src赋值时，[浏览器](https://www.w3cdoc.com)就会发起一个请求。  
+数据响应：服务端将要返回的数据作为参数和函数名称拼接在一起(格式类似”jsonpCallback({name: &#8216;abc&#8217;})”)返回。当[浏览器](https://www.w3cdoc.com)接收到了响应数据，由于发起请求的是 script，所以相当于直接调用 jsonpCallback 方法，并且传入了一个参数。
 
 对于JQuery的JSONP请求，这里就不多讲了，之前也写过一篇文章《JQuery的Ajax请求跨域问题》。
 

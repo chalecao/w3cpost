@@ -9,9 +9,9 @@ title: react hooks的应用
   <img loading="lazy" class="alignnone wp-image-4822 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d332270c7320.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d332270c7320.png?x-oss-process=image/format,webp" alt="" width="388" height="194" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d332270c7320.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d332270c7320.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_150/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d332270c7320.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_384/format,webp 768w" sizes="(max-width: 388px) 100vw, 388px" />
 </p>
 
-最近react 官方在 2018 ReactConf 大会上宣布 React v16.7.0-alpha(内测) 将引入 Hooks。所以我们有必要了解 Hooks，以及由此引发的疑问。
+最近react 官方在 2018 ReactConf 大会上宣布 React v16.7.0-alpha(内测) 将引入 Hooks。所以[我们](https://www.w3cdoc.com)有必要了解 Hooks，以及由此引发的疑问。
 
-当然，学习的最好、最直接的方法就是看文档：[官方文档][1]。所以我也非常建议大家去看文档学习，而且还是官方的文档而不是中文版的文档。本文也是楼主在学习过后的一些**总结与思考**，楼主会把最近学习到的**由浅入深，循序渐进，尽可能简洁**的分享给大家，希望对大家有帮助。不足之处可在评论区补充，本文讲从以下几个大方面来展开：
+当然，学习的最好、最直接的方法就是看文档：[官方文档][1]。所以我也非常建议[大家](https://www.w3cdoc.com)去看文档学习，而且还是官方的文档而不是中文版的文档。本文也是楼主在学习过后的一些**总结与思考**，楼主会把最近学习到的**由浅入深，循序渐进，尽可能简洁**的分享给[大家](https://www.w3cdoc.com)，希望对[大家](https://www.w3cdoc.com)有帮助。不足之处可在评论区补充，本文讲从以下几个大方面来展开：
 
   1. 为什么引入Hooks
   2. Hooks使用和注意事项
@@ -23,15 +23,15 @@ title: react hooks的应用
 react官方给出的动机是用来解决长时间使用和维护react过程中遇到的一些难以避免的问题。比如：
 
   1. **难以重用和共享组件中的与状态相关的逻辑**
-  2. **逻辑复杂的组件**难以开发与维护，当我们的组件需要处理多个互不相关的 local state 时，每个生命周期函数中可能会包含着各种互不相关的逻辑在里面。
+  2. **逻辑复杂的组件**难以开发与维护，当[我们](https://www.w3cdoc.com)的组件需要处理多个互不相关的 local state 时，每个生命周期函数中可能会包含着各种互不相关的逻辑在里面。
   3. 类组件中的this增加学习成本，类组件在基于现有工具的优化上存在些许问题。
   4. 由于业务变动，函数组件不得不改为类组件等等。
 
-在进一步了解之前，我们需要先快速的了解一些基本的 Hooks 的用法。
+在进一步了解之前，[我们](https://www.w3cdoc.com)需要先快速的了解一些基本的 Hooks 的用法。
 
 ## 快速了解 Hooks 的使用 {#articleHeader1}
 
-Hooks让我们的函数组件拥有了类似类组件的特性，比如local state、lifecycle，而且还解决了上面提到的一系列问题，它是如何解决这些问题的，下面会在一一指出。首先来快速的看看Hoos的使用，这里讲最主要的两个 Hooks ：useState 和 useEffect。先看一个你可能看过很多遍的例子
+Hooks让[我们](https://www.w3cdoc.com)的函数组件拥有了类似类组件的特性，比如local state、lifecycle，而且还解决了上面提到的一系列问题，它是如何解决这些问题的，下面会在一一指出。首先来快速的看看Hoos的使用，这里讲最主要的两个 Hooks ：useState 和 useEffect。先看一个你可能看过很多遍的例子
 
 <pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">import&lt;/span> { useState, useEffect } &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react'&lt;/span>;
 
@@ -50,7 +50,7 @@ Hooks让我们的函数组件拥有了类似类组件的特性，比如local sta
 
 ### useState {#articleHeader2}
 
-useState 这个方法可以为我们的函数组件带来 local state，它接收一个用于初始 state 的值，返回一对变量
+useState 这个方法可以为[我们](https://www.w3cdoc.com)的函数组件带来 local state，它接收一个用于初始 state 的值，返回一对变量
 
 <pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">const&lt;/span> [count, setCount] = useState(&lt;span class="hljs-number">0&lt;/span>);
 
@@ -60,7 +60,7 @@ useState 这个方法可以为我们的函数组件带来 local state，它接�
 
 ### useEffect {#articleHeader3}
 
-useEffect 可以利用我们组件中的 local state 进行一些带有副作用的操作
+useEffect 可以利用[我们](https://www.w3cdoc.com)组件中的 local state 进行一些带有副作用的操作
 
 <pre class="javascript hljs"><code class="js">useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
   &lt;span class="hljs-built_in">document&lt;/span>.title = &lt;span class="hljs-string">`You clicked &lt;span class="hljs-subst">${count}&lt;/span> times`&lt;/span>;
@@ -87,7 +87,7 @@ useEffect 中还可以通过让函数返回一个函数来进行一些清理操�
 
 #### 注意事项
 
-我们只能在 _函数组件_ 中使用 Hooks，我们也可以在一个组件中使用多组 Hooks。比如：
+[我们](https://www.w3cdoc.com)只能在 _函数组件_ 中使用 Hooks，[我们](https://www.w3cdoc.com)也可以在一个组件中使用多组 Hooks。比如：
 
 <pre class="javascript hljs"><code class="js">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">FriendStatusWithCounter&lt;/span>(&lt;span class="hljs-params">props&lt;/span>) &lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> [count, setCount] = useState(&lt;span class="hljs-number">0&lt;/span>);
@@ -106,11 +106,11 @@ useEffect 中还可以通过让函数返回一个函数来进行一些清理操�
   &lt;span class="hljs-keyword">return&lt;/span> isOnline
 }</code></pre>
 
-但是这里有一点需要我们注意的就是 **我们只能在顶层代码(Top Level)中调用 Hooks**，不能在循环或判断语句等里面调用，这样是为了让我们的 Hooks 在每次渲染的时候都会按照 **相同的顺序** 调用，因为这里有一个跟关键的问题，那就是 **useState 需要依赖参照第一次渲染的调用顺序来匹配对于的state**，否则 useState 会无法正确返回它对于的state。
+但是这里有一点需要[我们](https://www.w3cdoc.com)注意的就是 **[我们](https://www.w3cdoc.com)只能在顶层代码(Top Level)中调用 Hooks**，不能在循环或判断语句等里面调用，这样是为了让[我们](https://www.w3cdoc.com)的 Hooks 在每次渲染的时候都会按照 **相同的顺序** 调用，因为这里有一个跟关键的问题，那就是 **useState 需要依赖参照第一次渲染的调用顺序来匹配对于的state**，否则 useState 会无法正确返回它对于的state。
 
 ## Hooks 解决的问题 {#articleHeader4}
 
-好了，知道了 Hooks 基本使用后，我们就可以来了解 Hooks 是怎么解决 react 长期存在的问题的。
+好了，知道了 Hooks 基本使用后，[我们](https://www.w3cdoc.com)就可以来了解 Hooks 是怎么解决 react 长期存在的问题的。
 
 ### 如何解决 状态有关的逻辑(stateful logic) 的重用和共享问题。 {#articleHeader5}
 
@@ -146,7 +146,7 @@ useEffect 中还可以通过让函数返回一个函数来进行一些清理操�
 
 ### custom Hooks {#articleHeader6}
 
-custom Hooks 并不是一个api，而是一个规则。具体实现就是通过一个函数来封装跟状态有关的逻辑(stateful logic)，将这些逻辑从组件中抽取出来。在这个函数中我们可以使用其他的 Hooks，也可以单独进行测试，甚至将它贡献给社区。
+custom Hooks 并不是一个api，而是一个规则。具体实现就是通过一个函数来封装跟状态有关的逻辑(stateful logic)，将这些逻辑从组件中抽取出来。在这个函数中[我们](https://www.w3cdoc.com)可以使用其他的 Hooks，也可以单独进行测试，甚至将它贡献给社区。
 
 <pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">import&lt;/span> { useState, useEffect } &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react'&lt;/span>;
 
@@ -159,18 +159,18 @@ custom Hooks 并不是一个api，而是一个规则。具体实现就是通过�
   &lt;span class="hljs-keyword">return&lt;/span> count
 }</code></pre>
 
-比如上面的一个例子，他就是一个 custom Hooks，提取了对 count 的操作。这里需要遵循一个约定，命名要用 `use*`，这是为了方便我们区分，利于我们维护。可以看到他其实就是一个函数，**我们可以在现有的所有其他组件中引用它**
+比如上面的一个例子，他就是一个 custom Hooks，提取了对 count 的操作。这里需要遵循一个约定，命名要用 `use*`，这是为了方便[我们](https://www.w3cdoc.com)区分，利于[我们](https://www.w3cdoc.com)维护。可以看到他其实就是一个函数，**[我们](https://www.w3cdoc.com)可以在现有的所有其他组件中引用它**
 
 <pre class="hljs actionscript"><code>&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">CountStatus&lt;/span>&lt;span class="hljs-params">()&lt;/span> &lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> count = useCount();
   &lt;span class="hljs-keyword">return&lt;/span> count;
 }</code></pre>
 
-这里的核心概念就是将逻辑提取出来封装在 custom Hooks，然后可以在任何的其他组件中共享这部分逻辑，也可以贡献给社区。所以我也预测在不久的将来，会出现很多的充满想象力的各种用途的 custom Hooks 在社区中出现，极大的提高我们的开发效率。
+这里的核心概念就是将逻辑提取出来封装在 custom Hooks，然后可以在任何的其他组件中共享这部分逻辑，也可以贡献给社区。所以我也预测在不久的将来，会出现很多的充满想象力的各种用途的 custom Hooks 在社区中出现，极大的提高[我们](https://www.w3cdoc.com)的开发效率。
 
 ### 具有复杂逻辑的组件的开发和维护 {#articleHeader7}
 
-前面我们也提到，我们的组件可能会随着开发的进行变得越来越复杂，要处理越来越多的 local State，那么在组件的生命周期函数中就会充斥着各种互不相关的逻辑，这里需要引入官方的比较复杂的例子，先看基于以前类组件的情况：
+前面[我们](https://www.w3cdoc.com)也提到，[我们](https://www.w3cdoc.com)的组件可能会随着开发的进行变得越来越复杂，要处理越来越多的 local State，那么在组件的生命周期函数中就会充斥着各种互不相关的逻辑，这里需要引入官方的比较复杂的例子，先看基于以前类组件的情况：
 
 <pre class="javascript hljs"><code class="js">&lt;span class="hljs-class">&lt;span class="hljs-keyword">class&lt;/span> &lt;span class="hljs-title">FriendStatusWithCounter&lt;/span> &lt;span class="hljs-keyword">extends&lt;/span> &lt;span class="hljs-title">React&lt;/span>.&lt;span class="hljs-title">Component&lt;/span> &lt;/span>{
   &lt;span class="hljs-keyword">constructor&lt;/span>(props) {
@@ -231,20 +231,20 @@ custom Hooks 并不是一个api，而是一个规则。具体实现就是通过�
 
 ## 伴随 Hooks 的一些思考 {#articleHeader8}
 
-hooks让我们的函数组件的功能得到了扩充，拥有了和类组件相似的功能，甚至避免了类组件存在的各种问题，那么就会出现各种的疑问，比如
+hooks让[我们](https://www.w3cdoc.com)的函数组件的功能得到了扩充，拥有了和类组件相似的功能，甚至避免了类组件存在的各种问题，那么就会出现各种的疑问，比如
 
 * Hooks 引进后， 函数组件 和 类组件 该如何选择？官方关于类似的问题的答复是：
 
 > Our goal is for Hooks to cover all use cases for classes as soon as possible. There are no Hook equivalents to the uncommon getSnapshotBeforeUpdate and componentDidCatch lifecycles yet, but we plan to add them soon.It is a very early time for Hooks, so some integrations like DevTools support or Flow/TypeScript typings may not be ready yet. Some third-party libraries might also not be compatible with Hooks at the moment.
 
-官方的目标是尽可能快的让 Hooks 去覆盖所有的类组件案例，但是现在 Hooks 还处于一个非常早的阶段，各种调试工具、第三方库等都还没有做好对 Hooks 的支持，而且目前也没有可以取代类组件中 getSnapshotBeforeUpdate 和 componentDidCatch 生命做起的 Hooks，不过很快会加上他们。总的来时就是鼓励大家在以后使用 Hooks，对于已存在的类组件不必大规模的去重写，Hooks及Hooks的生态会继续完善，请期待。
+官方的目标是尽可能快的让 Hooks 去覆盖所有的类组件案例，但是现在 Hooks 还处于一个非常早的阶段，各种调试工具、第三方库等都还没有做好对 Hooks 的支持，而且目前也没有可以取代类组件中 getSnapshotBeforeUpdate 和 componentDidCatch 生命做起的 Hooks，不过很快会加上他们。总的来时就是鼓励[大家](https://www.w3cdoc.com)在以后使用 Hooks，对于已存在的类组件不必大规模的去重写，Hooks及Hooks的生态会继续完善，请期待。
 
-* Hooks 是否可以代替 render-props 和 higher-order components ？前面我们也提到，hooks可以解决后者带来的各种问题，那么 hooks 是否可以代替后者呢？官方的回答：
+* Hooks 是否可以代替 render-props 和 higher-order components ？前面[我们](https://www.w3cdoc.com)也提到，hooks可以解决后者带来的各种问题，那么 hooks 是否可以代替后者呢？官方的回答：
 
 > Often, render props and higher-order components render only a single child. We think Hooks are a simpler way to serve this use case. There is still a place for both patterns (for example, a virtual scroller component might have a renderItem prop, or a visual container component might have its own DOM structure). But in most cases, Hooks will be sufficient and can help reduce nesting in your tree.
 
 大概意思就是，在大多数案例下，hooks 足够应付且更适合，所以优先考虑 hooks。
 
-这是我看到 hooks 后比较关心的两个问题，如果大家想了解更多的问题的话可以到 <a href="https://reactjs.org/docs/hooks-faq.html" target="_blank" rel="nofollow noopener noreferrer">Hooks FAQ</a> 了解。如果有什么不足或要补充的地方，欢迎评论区提出。
+这是我看到 hooks 后比较关心的两个问题，如果[大家](https://www.w3cdoc.com)想了解更多的问题的话可以到 <a href="https://reactjs.org/docs/hooks-faq.html" target="_blank" rel="nofollow noopener noreferrer">Hooks FAQ</a> 了解。如果有什么不足或要补充的地方，欢迎评论区提出。
 
  [1]: https://react.docschina.org/docs/hooks-intro.html

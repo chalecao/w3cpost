@@ -15,24 +15,24 @@ title: 基于config-form转向面向数据的编程
 
 > **样式 mix 行为 = 样式 + 数据 + 行为**
 
-之前我们都知道做样式行为分离，从jQuery之后也出现了像Angular，Backbone，Avalon，React，Vue等等很多前端框架，从MVC设计理念到MVVM到响应式设计。这些前端框架的基本出发点其实都是样式和行为分离，JS框架主要解决的是行为的问题。
+之前[我们](https://www.w3cdoc.com)都知道做样式行为分离，从jQuery之后也出现了像Angular，Backbone，Avalon，React，Vue等等很多[前端](https://www.w3cdoc.com)框架，从MVC设计理念到MVVM到响应式设计。这些[前端](https://www.w3cdoc.com)框架的基本出发点其实都是样式和行为分离，JS框架主要解决的是行为的问题。
 
 > 程序（行为） = 算法 + 数据
 
-大学的计算机课程中我们都学过：程序主要包含两部分，算法和数据。
+大学的计算机课程中[我们](https://www.w3cdoc.com)都学过：程序主要包含两部分，算法和数据。
 
-对于前端领域，其实多了一部分就是样式。当然样式主要包括：HTML结构+CSS样式，这些都是基础知识，就不用做多介绍，从HTML5+CSS3标准之后，也没有多大的变化。但是在MVVM框架中使用方式发生了变化，对于React框架，引入了jsx类型文件，支持编写HTML片段，通过DSL分析，基于AST转化成包装函数，最后编译成我们的代码。
+对于[前端](https://www.w3cdoc.com)领域，其实多了一部分就是样式。当然样式主要包括：HTML结构+CSS样式，这些都是基础知识，就不用做多介绍，从HTML5+CSS3标准之后，也没有多大的变化。但是在MVVM框架中使用方式发生了变化，对于React框架，引入了jsx类型文件，支持编写HTML片段，通过DSL分析，基于AST转化成包装函数，最后编译成[我们](https://www.w3cdoc.com)的代码。
 
 # config-component
 
-config-component其实将JSX中html代码片段做了进一步的抽象，转化成JSON-Schema的数据形式来驱动。用户只需要专注于如何构造处理JSON数据，具体的展现是通过JSON数据来驱动view展示。将我们的程序转化成：样式+数据+算法
+config-component其实将JSX中html代码片段做了进一步的抽象，转化成JSON-Schema的数据形式来驱动。用户只需要专注于如何构造处理JSON数据，具体的展现是通过JSON数据来驱动view展示。将[我们](https://www.w3cdoc.com)的程序转化成：样式+数据+算法
 
 > **程序= 样式 + 数据 + 算法**
 
-从前端目前codeless的发展方向来看，这其实只是其中一部分，更进一步基于config-component我们可以做
+从[前端](https://www.w3cdoc.com)目前codeless的发展方向来看，这其实只是其中一部分，更进一步基于config-component[我们](https://www.w3cdoc.com)可以做
 
-  1. DDV（数据驱动view），对于一些比较固定的场景，比如导购展示页面，完全可以通过数据驱动页面的展示，包括驱动某个UI展示，驱动整个框架展示。这时候后端接口返回数据就需要包含两个层次，UI层数据和业务数据。如果同时将两个数据混在一起，其实就类似我们说的SSR（服务端渲染）了，但是是从另一个方式来实现的，可以说是轻量级的服务端渲染
-  2. 可视化搭建，这个场景和第一个场景结合起来更能发挥价值。后端同学可能并不擅长写UI，即使抽象成JSON Schema，也需要了解简单的一些前端知识。而这个UI层的JSON Schema我们可以通过可视化搭建来完成，搭建之后生成一份JSON Schema，作为页面的UI，在搭建的时候处理好后端数据的映射关系其实就ok了。需要我们处理的其实是一些算法逻辑。
+  1. DDV（数据驱动view），对于一些比较固定的场景，比如导购展示页面，完全可以通过数据驱动页面的展示，包括驱动某个UI展示，驱动整个框架展示。这时候后端接口返回数据就需要包含两个层次，UI层数据和业务数据。如果同时将两个数据混在一起，其实就类似[我们](https://www.w3cdoc.com)说的SSR（服务端渲染）了，但是是从另一个方式来实现的，可以说是轻量级的服务端渲染
+  2. 可视化搭建，这个场景和第一个场景结合起来更能发挥价值。后端同学可能并不擅长写UI，即使抽象成JSON Schema，也需要了解简单的一些[前端](https://www.w3cdoc.com)知识。而这个UI层的JSON Schema[我们](https://www.w3cdoc.com)可以通过可视化搭建来完成，搭建之后生成一份JSON Schema，作为页面的UI，在搭建的时候处理好后端数据的映射关系其实就ok了。需要[我们](https://www.w3cdoc.com)处理的其实是一些算法逻辑。
 
 config-component中提供了config-form组件，主要用于解决中后台的form表单的处理，包含了以下功能：
 
@@ -188,6 +188,6 @@ uiConfig={{
       props: {},
     },</pre>
 
-上面我们只是截取了片段。
+上面[我们](https://www.w3cdoc.com)只是截取了片段。
 
  [1]: https://www.f2e123.com/javascriptnodejs/5000.html

@@ -64,7 +64,7 @@ title: Provisional headers are shown？怎么调试
 
 2. 点击start log to disk， 会弹出个框，选择存储在本地位置
 
-3. 在浏览器上操作，复现你的问题
+3. 在[浏览器](https://www.w3cdoc.com)上操作，复现你的问题
 
 4. 回到刚才那个页面，点击 stop logging
 

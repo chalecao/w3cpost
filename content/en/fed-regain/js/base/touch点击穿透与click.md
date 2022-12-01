@@ -7,7 +7,7 @@ title: touch点击穿透与click与300ms延迟
 ---
 做过移动端H5页面的同学肯定知道，移动端web的事件模型不同于PC页面的事件。看了一些关于touch事件的文章，我想再来回顾下touch事件的原理，为什么通过touch可以触发click事件，touch事件是不是万能的以及它可能存在的问题。
 
-欢迎学习前端知识体系课程，本系列属于：[前端增长教程][1]
+欢迎学习[前端](https://www.w3cdoc.com)知识体系课程，本系列属于：[[前端](https://www.w3cdoc.com)增长教程][1]
 
 在线视频课程：<a href="https://study.163.com/course/courseMain.htm?share=2&shareId=400000000351011&courseId=1209400904&_trace_c_p_k2_=d5106aa1758748cea6e733c4b1f29bbe" target="_blank" rel="noopener noreferrer">网易云课堂课程</a>      <a href="https://segmentfault.com/ls/1650000019681091" target="_blank" rel="noopener noreferrer">思否课堂</a>
 
@@ -23,7 +23,7 @@ PC网页上的大部分操作都是用鼠标的，即响应的是鼠标事件，
   <img loading="lazy" width="609" height="354" class="alignnone size-full wp-image-3101 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01603162c2e.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01603162c2e.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01603162c2e.png?x-oss-process=image/format,webp 609w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01603162c2e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_174/format,webp 300w" sizes="(max-width: 609px) 100vw, 609px" />
 </p>
 
-可以看到在手机上，当我们手触碰屏幕时，要过300ms左右才会触发`mousedown`事件，所以`click`事件在手机上看起来就像慢半拍一样。
+可以看到在手机上，当[我们](https://www.w3cdoc.com)手触碰屏幕时，要过300ms左右才会触发`mousedown`事件，所以`click`事件在手机上看起来就像慢半拍一样。
 
 ### touch事件中可以获取以下参数 {#articleHeader2}
 
@@ -35,15 +35,15 @@ PC网页上的大部分操作都是用鼠标的，即响应的是鼠标事件，
 
 ## tap是怎么来的 {#articleHeader3}
 
-用过Zepto或KISSY等移动端js库的人肯定对`tap`事件不陌生，我们做PC页面时绑定`click`，相应地手机页面就绑定`tap`。但原生的touch事件本身是没有tap的，js库里提供的tap事件都是模拟出来的。
+用过Zepto或KISSY等移动端js库的人肯定对`tap`事件不陌生，[我们](https://www.w3cdoc.com)做PC页面时绑定`click`，相应地手机页面就绑定`tap`。但原生的touch事件本身是没有tap的，js库里提供的tap事件都是模拟出来的。
 
-我们在上面看到，手机上响应 click 事件会有300ms的延迟，那么这300ms到底是干嘛了？浏览器在 touchend 后会等待约300ms，原因是判断用户是否有双击（double tap）行为。如果没有 tap 行为，则触发 click 事件，而双击过程中就不适合触发 click 事件了。由此可以看出 click 事件触发代表一轮触摸事件的结束。
+[我们](https://www.w3cdoc.com)在上面看到，手机上响应 click 事件会有300ms的延迟，那么这300ms到底是干嘛了？[浏览器](https://www.w3cdoc.com)在 touchend 后会等待约300ms，原因是判断用户是否有双击（double tap）行为。如果没有 tap 行为，则触发 click 事件，而双击过程中就不适合触发 click 事件了。由此可以看出 click 事件触发代表一轮触摸事件的结束。
 
-既然说tap事件是模拟出来的，我们可以看下Zepto对 singleTap 事件的处理。<a href="https://github.com/madrobby/zepto/blob/master/src/touch.js#L136-L143" target="_blank" rel="nofollow noopener noreferrer">见源码 136-143 行</a>，可以看出在 touchend 响应 250ms 无操作后，则触发singleTap。
+既然说tap事件是模拟出来的，[我们](https://www.w3cdoc.com)可以看下Zepto对 singleTap 事件的处理。<a href="https://github.com/madrobby/zepto/blob/master/src/touch.js#L136-L143" target="_blank" rel="nofollow noopener noreferrer">见源码 136-143 行</a>，可以看出在 touchend 响应 250ms 无操作后，则触发singleTap。
 
 ## 点击穿透的场景 {#articleHeader4}
 
-有了以上的基础，我们就可以理解为什么会出现_点击穿透_现象了。我们经常会看到“弹窗/浮层”这种东西，我做个了个demo。
+有了以上的基础，[我们](https://www.w3cdoc.com)就可以理解为什么会出现_点击穿透_现象了。[我们](https://www.w3cdoc.com)经常会看到“弹窗/浮层”这种东西，我做个了个demo。
 
 <p id="KsrEFtZ">
   <img loading="lazy" width="313" height="543" class="alignnone size-full wp-image-3100 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01601fc0957.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01601fc0957.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01601fc0957.png?x-oss-process=image/format,webp 313w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01601fc0957.png?x-oss-process=image/quality,q_50/resize,m_fill,w_173,h_300/format,webp 173w" sizes="(max-width: 313px) 100vw, 313px" />
@@ -100,7 +100,7 @@ $(&lt;span class="hljs-string">'#underLayer'&lt;/span>).on(&lt;span class="hljs-
 
 非要细分的话还有第四种，不过概率很低，就是新页面中对应位置元素恰好是a标签，然后就发生连续跳转了。。。诸如此类的，都是点击穿透问题
 
-欢迎学习前端知识体系课程，本系列属于：[前端增长教程][1]
+欢迎学习[前端](https://www.w3cdoc.com)知识体系课程，本系列属于：[[前端](https://www.w3cdoc.com)增长教程][1]
 
 在线视频课程：<a href="https://study.163.com/course/courseMain.htm?share=2&shareId=400000000351011&courseId=1209400904&_trace_c_p_k2_=d5106aa1758748cea6e733c4b1f29bbe" target="_blank" rel="noopener noreferrer">网易云课堂课程</a>      <a href="https://segmentfault.com/ls/1650000019681091" target="_blank" rel="noopener noreferrer">思否课堂</a>
 
@@ -125,9 +125,9 @@ _下下策_ ，因为会带来300ms延迟，页面内任何一个自定义交�
 
 ### 遮挡 {#articleHeader7}
 
-由于 click 事件的滞后性，在这段时间内原来点击的元素消失了，于是便“穿透”了。因此我们顺着这个思路就想到，可以给元素的消失做一个fade效果，类似jQuery里的`fadeOut`，并设置动画duration大于300ms，这样当延迟的 click 触发时，就不会“穿透”到下方的元素了。
+由于 click 事件的滞后性，在这段时间内原来点击的元素消失了，于是便“穿透”了。因此[我们](https://www.w3cdoc.com)顺着这个思路就想到，可以给元素的消失做一个fade效果，类似jQuery里的`fadeOut`，并设置动画duration大于300ms，这样当延迟的 click 触发时，就不会“穿透”到下方的元素了。
 
-同样的道理，不用延时动画，我们还可以动态地在触摸位置生成一个透明的元素，这样当上层元素消失而延迟的click来到时，它点击到的是那个透明的元素，也不会“穿透”到底下。在一定的timeout后再将生成的透明元素移除。<a href="https://jsorz.cn/demo/touch-event/solution1.html" target="_blank" rel="nofollow noopener noreferrer">具体可见demo</a>
+同样的道理，不用延时动画，[我们](https://www.w3cdoc.com)还可以动态地在触摸位置生成一个透明的元素，这样当上层元素消失而延迟的click来到时，它点击到的是那个透明的元素，也不会“穿透”到底下。在一定的timeout后再将生成的透明元素移除。<a href="https://jsorz.cn/demo/touch-event/solution1.html" target="_blank" rel="nofollow noopener noreferrer">具体可见demo</a>
 
 ### pointer-events {#articleHeader8}
 

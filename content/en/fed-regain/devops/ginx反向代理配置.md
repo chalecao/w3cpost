@@ -116,7 +116,7 @@ Context: server, location, if</code></pre>
       返回302 http状态码 ；
     </li>
     <li>
-      浏览器地址栏显示重地向后的url
+      [浏览器](https://www.w3cdoc.com)地址栏显示重地向后的url
     </li>
   </ol>
 </div>
@@ -136,7 +136,7 @@ Context: server, location, if</code></pre>
       返回302 http状态码 ；
     </li>
     <li>
-      浏览器地址栏显示重地向后的url
+      [浏览器](https://www.w3cdoc.com)地址栏显示重地向后的url
     </li>
   </ol>
 </div>
@@ -153,7 +153,7 @@ Context: server, location, if</code></pre>
       临时跳转，返回302 http状态码；
     </li>
     <li>
-      浏览器地址栏显示重地向后的url
+      [浏览器](https://www.w3cdoc.com)地址栏显示重地向后的url
     </li>
   </ol>
   
@@ -168,7 +168,7 @@ Context: server, location, if</code></pre>
       永久跳转，返回301 http状态码；
     </li>
     <li>
-      浏览器地址栏显示重定向后的url
+      [浏览器](https://www.w3cdoc.com)地址栏显示重定向后的url
     </li>
   </ol>
   
@@ -352,7 +352,7 @@ Context:    location, if in location, limit_except</code></pre>
 <div>
   <ul>
     <li>
-      不影响浏览器地址栏的url
+      不影响[浏览器](https://www.w3cdoc.com)地址栏的url
     </li>
     <li>
       设置被代理server的协议和地址，URI可选（可以有，也可以没有）

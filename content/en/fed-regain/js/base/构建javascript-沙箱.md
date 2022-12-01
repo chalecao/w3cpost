@@ -13,13 +13,13 @@ title: 构建JavaScript 沙箱
 </code></pre>
 </div>
 
-vm.Script 中的代码是预编译好的，通过 vm.createContext 将代码加载到一个上下文环境中，置入沙箱（sandbox），然后通过 script.runInContext 执行代码，整个操作都在封闭的 VM 中进行。这是 Node.js 提供给我们的便捷功能，那么，在浏览器环境中呢？是否也能做到将代码运行在沙箱中？
+vm.Script 中的代码是预编译好的，通过 vm.createContext 将代码加载到一个上下文环境中，置入沙箱（sandbox），然后通过 script.runInContext 执行代码，整个操作都在封闭的 VM 中进行。这是 Node.js 提供给[我们](https://www.w3cdoc.com)的便捷功能，那么，在[浏览器](https://www.w3cdoc.com)环境中呢？是否也能做到将代码运行在沙箱中？
 
 ### 代码编译工具
 
 **邪恶的 eval**
 
-eval 函数可以将一个 Javascript 字符串视作代码片段执行，不过它存在诸多问题，如调试困难、性能问题等，并且它在运行时可以访问闭包环境和全局作用域，存在代码注入的安全风险，作为沙箱，这也是我们不期望看到的。eval 虽然好用，但是经常被滥用，在这里我们不多讨论它。
+eval 函数可以将一个 Javascript 字符串视作代码片段执行，不过它存在诸多问题，如调试困难、性能问题等，并且它在运行时可以访问闭包环境和全局作用域，存在代码注入的安全风险，作为沙箱，这也是[我们](https://www.w3cdoc.com)不期望看到的。eval 虽然好用，但是经常被滥用，在这里[我们](https://www.w3cdoc.com)不多讨论它。
 
 **new Function**
 
@@ -51,7 +51,7 @@ with 是阻止程序访问上一级作用域的一道防火墙：
 
 如上代码，code 被执行时，首先会寻找 sandbox 中的变量，如果不存在，会往上追溯global 对象，虽然有一道防火墙，但是依然不能阻止 fn 访问全局作用域。
 
-似乎在 ECMAScript 5 中掌握的知识已经不足以解决 code 逃逸沙箱的问题了，此时我们可以把焦点放在 ES6 提供的新特性上。
+似乎在 ECMAScript 5 中掌握的知识已经不足以解决 code 逃逸沙箱的问题了，此时[我们](https://www.w3cdoc.com)可以把焦点放在 ES6 提供的新特性上。
 
 ### ES6 Proxy
 
@@ -73,7 +73,7 @@ p.s // undefined
 
 代码中，Proxy 给 {} 设置了属性访问拦截器，倘若访问的属性为 a 则返回 1，否则走正常程序。
 
-这里我们可以使用 proxy 对访问做拦截处理，sandbox 本不存在的属性会追溯到全局变量上访问，此时我们可以欺骗程序，告诉它这个「不存在的属性」是存在的，于是有了下面的代码：
+这里[我们](https://www.w3cdoc.com)可以使用 proxy 对访问做拦截处理，sandbox 本不存在的属性会追溯到全局变量上访问，此时[我们](https://www.w3cdoc.com)可以欺骗程序，告诉它这个「不存在的属性」是存在的，于是有了下面的代码：
 
 <div class="highlight">
   <pre><code class="language-text">function compileCode(code) {
@@ -91,7 +91,7 @@ p.s // undefined
 </code></pre>
 </div>
 
-似乎这么做就可以了，但既然用到了 ES6 的特性，我们便不能忽略 ES6 中一个可以控制with 关键词行为的变量。
+似乎这么做就可以了，但既然用到了 ES6 的特性，[我们](https://www.w3cdoc.com)便不能忽略 ES6 中一个可以控制with 关键词行为的变量。
 
 ### Symbol.unscopables
 
@@ -113,7 +113,7 @@ with(A.prototype) {
 </code></pre>
 </div>
 
-上面对 A 设置做了 Symbol.unscopables 的设定，声明 foo 属性在 A 上是不存在的，从而使得代码从 with 中逃逸。对此，我们需要对它做一层加固：
+上面对 A 设置做了 Symbol.unscopables 的设定，声明 foo 属性在 A 上是不存在的，从而使得代码从 with 中逃逸。对此，[我们](https://www.w3cdoc.com)需要对它做一层加固：
 
 <div class="highlight">
   <pre><code class="language-text">function compileCode(code) {
@@ -145,7 +145,7 @@ with(A.prototype) {
 * code 中可以提前关闭 sandbox 的 with 语境，如 &#8216;} alert(this); {&#8216;；
 * code 中可以使用 eval 和 new Function 直接逃逸
 
-对于第一个问题，我们可以通过堆栈深度检测：
+对于第一个问题，[我们](https://www.w3cdoc.com)可以通过堆栈深度检测：
 
 <div class="highlight">
   <pre><code class="language-js">&lt;span class="kd">let&lt;/span> &lt;span class="nx">stack&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
@@ -173,11 +173,11 @@ with(A.prototype) {
 
 ### 最后
 
-灵活是 Javascript 这门语言的特性，也是它难以被掌控的主要原因，这点可以从文中各种沙箱逃逸方式就能看出。ES6 提供了很多新的特性，本文以沙箱为切入点，带着大家学习了几个函数和属性，希望读者有些收获。
+灵活是 Javascript 这门语言的特性，也是它难以被掌控的主要原因，这点可以从文中各种沙箱逃逸方式就能看出。ES6 提供了很多新的特性，本文以沙箱为切入点，带着[大家](https://www.w3cdoc.com)学习了几个函数和属性，希望读者有些收获。
 
 本文没有得到一个完美的答案，但是这个问题依然值得思考和研究。
 
-有一个比较不错的思路是，通过 iframe 执行代码，执行的结果通过 postMessage 函数通讯传输给操作者。并且 iframe 还提供了很多可供设置的安全参数，如 allow-scripts,allow-forms, allow-same-origin, allow-top-navigation 等等，方便我们对沙箱做安全控制。
+有一个比较不错的思路是，通过 iframe 执行代码，执行的结果通过 postMessage 函数通讯传输给操作者。并且 iframe 还提供了很多可供设置的安全参数，如 allow-scripts,allow-forms, allow-same-origin, allow-top-navigation 等等，方便[我们](https://www.w3cdoc.com)对沙箱做安全控制。
 
 ### 更多阅读
 

@@ -4,7 +4,7 @@ title: Serverless发展历程
 ---
 # 背景
 
-Serverless 概念从2012年开始提出，真正推出相关云产品是2014年AWS推出Lambda。如果我们将 Serverless 比作一个婴儿，那么它已经6岁了。虽然业界对Serverless尚无一致认可的定义，但是我相信大部分开发者在听到 Serverless时，会联想到Lambda，并且冒出“函数”、“按需（调用次数）收费”、“事件驱动”等关键词。确实当年刚刚诞生的Serverless就像下面可爱的“紫薯人”，紫色充满神秘感（当年刚推出的时候绝对是黑科技），让人印象深刻
+Serverless 概念从2012年开始提出，真正推出相关云产品是2014年AWS推出Lambda。如果[我们](https://www.w3cdoc.com)将 Serverless 比作一个婴儿，那么它已经6岁了。虽然业界对Serverless尚无一致认可的定义，但是我相信大部分开发者在听到 Serverless时，会联想到Lambda，并且冒出“函数”、“按需（调用次数）收费”、“事件驱动”等关键词。确实当年刚刚诞生的Serverless就像下面可爱的“紫薯人”，紫色充满神秘感（当年刚推出的时候绝对是黑科技），让人印象深刻
 
 <div class="image-package">
   <div class="image-container">
@@ -26,7 +26,7 @@ AWS的巨大影响力以及本身携带的一身黑科技，确实让人记住�
   </div>
 </div>
 
-今天企业都在全面数字化转型，整个技术架构体系都渴望依托云原生来获取巨大技术红利，Serverless从诞生的第一天起就是云原生的，所以我们有必要再系统的认识一下Serverless的理念以及这些年诞生的相关产品，相信不管你是前端、后端、架构师、SRE、CTO都会有所收获，并且在未来能更好的发挥Serverless的技术价值助力商业成功。
+今天企业都在全面数字化转型，整个技术架构体系都渴望依托云原生来获取巨大技术红利，Serverless从诞生的第一天起就是云原生的，所以[我们](https://www.w3cdoc.com)有必要再系统的认识一下Serverless的理念以及这些年诞生的相关产品，相信不管你是[前端](https://www.w3cdoc.com)、后端、架构师、SRE、CTO都会有所收获，并且在未来能更好的发挥Serverless的技术价值助力商业成功。
 
 # 定义
 
@@ -34,13 +34,13 @@ AWS的巨大影响力以及本身携带的一身黑科技，确实让人记住�
 
 Server不会消失，而是让一般的开发者不需要再关注 Server，这意味着【智能弹性】、【快速交付】、【更低成本】，这也是 Serverless 相关产品的典型特性。
 
-所以没必要再去给 Serverless 做什么定义，他本身已经描述的很清晰。我们抛开概念，具体看看在各个具体技术领域的产品，相信你会有更直观的认识。
+所以没必要再去给 Serverless 做什么定义，他本身已经描述的很清晰。[我们](https://www.w3cdoc.com)抛开概念，具体看看在各个具体技术领域的产品，相信你会有更直观的认识。
 
 # PaaS在 Serverless 时代的重生
 
-PaaS 本身的概念挺大，广义的说它处于IaaS和SaaS之间，我们先从一个具体的产品说起：GAE（Google App Engine）。2006年AWS推出了IaaS的云计算，Google认为云计算不应该是IaaS这样的底层形态，所以在2008年推出了自己的云计算代表产品GAE（关于这里的发展缘由，可以参考张磊的这篇文章：[容器十年 ，一部软件交付编年史][1]）。
+PaaS 本身的概念挺大，广义的说它处于IaaS和SaaS之间，[我们](https://www.w3cdoc.com)先从一个具体的产品说起：GAE（Google App Engine）。2006年AWS推出了IaaS的云计算，Google认为云计算不应该是IaaS这样的底层形态，所以在2008年推出了自己的云计算代表产品GAE（关于这里的发展缘由，可以参考张磊的这篇文章：[容器十年 ，一部软件交付编年史][1]）。
 
-初推出的GAE，也像Lambda，让人眼前一亮，但是很快开发者就发现它的限制非常多，用今天的话说就是典型的“我不要你觉得，我要我觉得”，最后的结果就是大家都纷纷回到了IaaS的怀抱。
+初推出的GAE，也像Lambda，让人眼前一亮，但是很快开发者就发现它的限制非常多，用今天的话说就是典型的“我不要你觉得，我要我觉得”，最后的结果就是[大家](https://www.w3cdoc.com)都纷纷回到了IaaS的怀抱。
 
 <div class="image-package">
   <div class="image-container">
@@ -86,7 +86,7 @@ PaaS 本身的概念挺大，广义的说它处于IaaS和SaaS之间，我们先�
   </div>
 </div>
 
-个人认为产生这一认知还是因为将 Serverless 的理念具象化到函数计算（FaaS）这样的产品。现在我们聊到微服务，会想到背后的技术框架，比如Spring Cloud、Dubbo，但是其实微服务这个词已经远远超出了纯技术框架的范畴，他背后也有核心的支撑思想，包括：
+个人认为产生这一认知还是因为将 Serverless 的理念具象化到函数计算（FaaS）这样的产品。现在[我们](https://www.w3cdoc.com)聊到微服务，会想到背后的技术框架，比如Spring Cloud、Dubbo，但是其实微服务这个词已经远远超出了纯技术框架的范畴，他背后也有核心的支撑思想，包括：
 
 1 . 微服务虽然一定程度上增加了技术复杂度，但是在一定规模下他会降低系统复杂度和组织复杂度。
 
@@ -124,7 +124,7 @@ PaaS 本身的概念挺大，广义的说它处于IaaS和SaaS之间，我们先�
 
 # 函数计算FC
 
-讲完Serverless Application（应用），我们再来看看Serverless Function（函数），FC作为”根正苗红“的Serverless产品，相信大家都对他不陌生，经过这么些年的发展，它已经在前端Serverless、多媒体处理、AI、事件类的场景（云产品事件、数据库变更事件等等）、物联网消息等场景得到了很好的应用，甚至也有越来越多的公司将业务完全构建在FC之上，比如：世纪联华的 Serverless 实践。
+讲完Serverless Application（应用），[我们](https://www.w3cdoc.com)再来看看Serverless Function（函数），FC作为”根正苗红“的Serverless产品，相信[大家](https://www.w3cdoc.com)都对他不陌生，经过这么些年的发展，它已经在[前端](https://www.w3cdoc.com)Serverless、多媒体处理、AI、事件类的场景（云产品事件、数据库变更事件等等）、物联网消息等场景得到了很好的应用，甚至也有越来越多的公司将业务完全构建在FC之上，比如：世纪联华的 Serverless 实践。
 
 另外针对早期的很多技术限制，现在也已经有了解决方案：
 
@@ -132,15 +132,15 @@ PaaS 本身的概念挺大，广义的说它处于IaaS和SaaS之间，我们先�
 
 2 . 针对冷启动问题，可以使用预留性能实例解决。
 
-下面我们就具体介绍部分使用FC的典型的场景
+下面[我们](https://www.w3cdoc.com)就具体介绍部分使用FC的典型的场景
 
 ###
 
-# 前端Serverless
+# [前端](https://www.w3cdoc.com)Serverless
 
-前端经过了Ajax、Nodejs、React等技术迭代后，已经形成了相对成熟的技术体系，特别是Nodejs，使前端和服务端产生了联系。
+[前端](https://www.w3cdoc.com)经过了Ajax、Nodejs、React等技术迭代后，已经形成了相对成熟的技术体系，特别是Nodejs，使[前端](https://www.w3cdoc.com)和服务端产生了联系。
 
-前端和后端的分工发挥了各个的优点，但是在协作的过程中也一直存在一个问题，后端同学通常是面向领域和服务提供接口，但是前端是面向用户具体的数据接口，有时候一个简单的需求会因为两边的定义和联调搞半天。所以也诞生了BFF（Backends For Frontends）这样一层，谁使用谁开发，专门解决领域模型 &#8211; UI 模型的转换。
+[前端](https://www.w3cdoc.com)和后端的分工发挥了各个的优点，但是在协作的过程中也一直存在一个问题，后端同学通常是面向领域和服务提供接口，但是[前端](https://www.w3cdoc.com)是面向用户具体的数据接口，有时候一个简单的需求会因为两边的定义和联调搞半天。所以也诞生了BFF（Backends For Frontends）这样一层，谁使用谁开发，专门解决领域模型 &#8211; UI 模型的转换。
 
 <div class="image-package">
   <div class="image-container">
@@ -152,11 +152,11 @@ PaaS 本身的概念挺大，广义的说它处于IaaS和SaaS之间，我们先�
   </div>
 </div>
 
-理想很美好，现实也很骨干，如果前端同学去做BFF这一层，发现要学习后端的DevOps、高可用、容量规划等等，这些其实是前端同学不想关心的，这种诉求在Serverless时代得到了很好的解决，由BFF变为了SFF（Serverless For Frontend）,让前端同学只要写几个 Function，其他都交给Serverless平台
+理想很美好，现实也很骨干，如果[前端](https://www.w3cdoc.com)同学去做BFF这一层，发现要学习后端的DevOps、高可用、容量规划等等，这些其实是[前端](https://www.w3cdoc.com)同学不想关心的，这种诉求在Serverless时代得到了很好的解决，由BFF变为了SFF（Serverless For Frontend）,让[前端](https://www.w3cdoc.com)同学只要写几个 Function，其他都交给Serverless平台
 
-类似的还有服务端渲染 SSR（Server Side Rendering），本来前后端分工后，后端只需要写接口，前端负责渲染，但是在SEO友好以及快速首屏渲染等需求背景下，有时候会用到服务端渲染的方案，同样，使用Serverless 前端同学又可以愉快的玩耍了。
+类似的还有服务端渲染 SSR（Server Side Rendering），本来前后端分工后，后端只需要写接口，[前端](https://www.w3cdoc.com)负责渲染，但是在SEO友好以及快速首屏渲染等需求背景下，有时候会用到服务端渲染的方案，同样，使用Serverless [前端](https://www.w3cdoc.com)同学又可以愉快的玩耍了。
 
-其实现在很多偏前端产品里面（比如各类小程序以及语雀等产品），前端同学会全栈完成整体开发，越来越多的会用到Serverless相关技术
+其实现在很多偏[前端](https://www.w3cdoc.com)产品里面（比如各类小程序以及语雀等产品），[前端](https://www.w3cdoc.com)同学会全栈完成整体开发，越来越多的会用到Serverless相关技术
 
 当然，要用好Serverless，需要完整的生态，包括相关的框架，运行时，工具链，配置规范等等，这方面可以参考阿里 Midway
 
@@ -196,15 +196,15 @@ Kubernetes作为生产级别的容器编排系统，现在已经成为了容器�
 
 # BaaS
 
-上面提到的都是”计算类“Serverless产品，FC、SAE、ASK等，但是我们都知道，开发过程中不可能只有计算逻辑，还有很多其他依赖，比如存储、中间件等。BaaS(Backend-as-a-Service，后端即服务）类产品，提供基于API的服务，这些API一般都是按需使用、免运维、自动扩缩容的，所以他们也是Serverless的。
+上面提到的都是”计算类“Serverless产品，FC、SAE、ASK等，但是[我们](https://www.w3cdoc.com)都知道，开发过程中不可能只有计算逻辑，还有很多其他依赖，比如存储、中间件等。BaaS(Backend-as-a-Service，后端即服务）类产品，提供基于API的服务，这些API一般都是按需使用、免运维、自动扩缩容的，所以他们也是Serverless的。
 
 典型的比如阿里云的OSS，具有与平台无关的 RESTful API 接口，可以在任何应用、任何时间、任何地点存储和访问任意类型的数据。
 
-值得一提还有开发企业级应用时大家非常熟悉的中间件，以阿里为例当前也在进行4.0技术架构升级，全面BaaS化，统一运维、交付、计费、支持模式，开箱即用，产品化程度持续提升
+值得一提还有开发企业级应用时[大家](https://www.w3cdoc.com)非常熟悉的中间件，以阿里为例当前也在进行4.0技术架构升级，全面BaaS化，统一运维、交付、计费、支持模式，开箱即用，产品化程度持续提升
 
 # 总结
 
-总结一下，上面提到的一系列Serverless的产品，覆盖了前端，后端，容器，BaaS各个领域，包括很多上面没有提到的（比如CDN）其实也算是Serverless的产品，所以我不认同伯克利的Serverless=BaaS+FaaS的观点，但是我非常认可他的另一个观点：“Serverless will dominate cloud computing”。
+总结一下，上面提到的一系列Serverless的产品，覆盖了[前端](https://www.w3cdoc.com)，后端，容器，BaaS各个领域，包括很多上面没有提到的（比如CDN）其实也算是Serverless的产品，所以我不认同伯克利的Serverless=BaaS+FaaS的观点，但是我非常认可他的另一个观点：“Serverless will dominate cloud computing”。
 
 Serverless首先是一个理念，不是某一种具体的技术，当未来某一天，99%的云产品都有Serverless化的形态时，云计算也就Serverless化了，这种变化我认为不是非黑即白的，不是推翻重来这种革命性的，而是全面的降低用户使用云的成本，全面的提升开发者的研发效率。
 

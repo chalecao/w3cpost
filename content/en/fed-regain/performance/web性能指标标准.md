@@ -2,17 +2,17 @@
 title: web性能指标标准
 
 ---
-很多人关注的、包括网上发布的一些文章大多都是关于性能优化手段，也有关于性能指标的以及如何做性能监控的，这些很多都基于 Web 性能标准以及浏览器对 Web 性能标准的实现。
+很多人关注的、包括网上发布的一些文章大多都是关于性能优化手段，也有关于性能指标的以及如何做性能监控的，这些很多都基于 Web 性能标准以及[浏览器](https://www.w3cdoc.com)对 Web 性能标准的实现。
 
-欢迎学习前端知识体系课程，本系列属于：[前端增长教程][1]
+欢迎学习[前端](https://www.w3cdoc.com)知识体系课程，本系列属于：[[前端](https://www.w3cdoc.com)增长教程][1]
 
 在线视频课程：<a href="https://study.163.com/course/courseMain.htm?share=2&shareId=400000000351011&courseId=1209400904&_trace_c_p_k2_=d5106aa1758748cea6e733c4b1f29bbe" target="_blank" rel="noopener noreferrer">网易云课堂课程</a>      <a href="https://segmentfault.com/ls/1650000019681091" target="_blank" rel="noopener noreferrer">思否课堂</a>
 
-如果我们全面的了解了 Web 性能标准，就能知道性能指标是如何定义的、性能指标的计算方式以及有哪些浏览器支持的优化策略。基于这些了解，我们才能说如何去排查性能问题、如何去优化性能以及如何去采集这些性能数据来做性能监控。
+如果[我们](https://www.w3cdoc.com)全面的了解了 Web 性能标准，就能知道性能指标是如何定义的、性能指标的计算方式以及有哪些[浏览器](https://www.w3cdoc.com)支持的优化策略。基于这些了解，[我们](https://www.w3cdoc.com)才能说如何去排查性能问题、如何去优化性能以及如何去采集这些性能数据来做性能监控。
 
-从 Web 性能工作组的[主页][2]可以看到全部的性能标准，我们也可以在 [ALL STANDARDS AND DRAFTS][3] 搜索到这些标准。
+从 Web 性能工作组的[主页][2]可以看到全部的性能标准，[我们](https://www.w3cdoc.com)也可以在 [ALL STANDARDS AND DRAFTS][3] 搜索到这些标准。
 
-本篇文章将与大家一起，系统的学习这些 Web 性能标准。我将 Web 性能标准大体分为两类：**性能度量**相关和**优化策略**相关。在介绍每种标准时，我将按这样的顺序介绍：
+本篇文章将与[大家](https://www.w3cdoc.com)一起，系统的学习这些 Web 性能标准。我将 Web 性能标准大体分为两类：**性能度量**相关和**优化策略**相关。在介绍每种标准时，我将按这样的顺序介绍：
 
 * 标准的用处
 * 标准的版本
@@ -21,11 +21,11 @@ title: web性能指标标准
 
 ## 性能度量 {#0}
 
-我们关注的页面的性能主要包括页面呈现时间以及交互操作的流畅度。当页面呈现时间越短、交互越流畅时，我们认为页面性能越好。
+[我们](https://www.w3cdoc.com)关注的页面的性能主要包括页面呈现时间以及交互操作的流畅度。当页面呈现时间越短、交互越流畅时，[我们](https://www.w3cdoc.com)认为页面性能越好。
 
-用户可以在感官上判断性能的好坏，但是作为开发者，我们需要把性能量化，用性能指标来度量性能的好坏。现在主流浏览器已经支持通过特定的 API 来获取页面的性能数据。
+用户可以在感官上判断性能的好坏，但是作为开发者，[我们](https://www.w3cdoc.com)需要把性能量化，用性能指标来度量性能的好坏。现在主流[浏览器](https://www.w3cdoc.com)已经支持通过特定的 API 来获取页面的性能数据。
 
-在 HTML 规范中定义了 [Window][4] 对象，我们可以通过 window 来获取一个 Window 对象， 在 window 上挂载了很多我们熟悉的 API， 例如:
+在 HTML 规范中定义了 [Window][4] 对象，[我们](https://www.w3cdoc.com)可以通过 window 来获取一个 Window 对象， 在 window 上挂载了很多[我们](https://www.w3cdoc.com)熟悉的 API， 例如:
 
 * window.document
 * window.history
@@ -43,7 +43,7 @@ title: web性能指标标准
 
 该规范定义了一个 JavaScript 接口，该接口以毫秒级的分辨率提供当前时间，并且不受系统时钟偏差或调整的影响。
 
-此标准有两个版本 Level 1 和  Level 2，Level 2 已经是正式发布的标准，所以 Level 1 已经过时了，官方不建议再使用，我们只需要知道 Level 2 定义了哪些规范就好。
+此标准有两个版本 Level 1 和  Level 2，Level 2 已经是正式发布的标准，所以 Level 1 已经过时了，官方不建议再使用，[我们](https://www.w3cdoc.com)只需要知道 Level 2 定义了哪些规范就好。
 
 * <del><a href="https://www.w3.org/TR/2012/REC-hr-time-20121217/#sec-high-resolution-time">High Resolution Time Level 1 </a></del> （已过时）
 * [High Resolution Time Level 2][5]  （REC）&#x2714;︎
@@ -52,7 +52,7 @@ Level 2 包含了这些内容：
 
 * **1、定义了测量性能数据的初始时间（Time Origin）**
 
-我们获取到的性能数据都是时间戳，需要一个初始时间来计算时间差，即某一阶段的耗时。
+[我们](https://www.w3cdoc.com)获取到的性能数据都是时间戳，需要一个初始时间来计算时间差，即某一阶段的耗时。
 
 * **2、定义了高精度时间戳 DOMHighResTimeStamp**
 
@@ -69,11 +69,11 @@ Level 2 包含了这些内容：
 
 > Performance 对象最初是在 [Navigation Timing Level 1][6] 中定义的
 
-好了，了解了规范定义的内容，大家也清楚了为什么此规范名为 High Resolution Time 了吧？因为该规范的主要内容是与**高精度时间**相关的。
+好了，了解了规范定义的内容，[大家](https://www.w3cdoc.com)也清楚了为什么此规范名为 High Resolution Time 了吧？因为该规范的主要内容是与**高精度时间**相关的。
 
 ### Performance Timeline {#2}
 
-此标准对上述的 [HR-TIME-2][7] 规范中定义的 Performance 对象进行了扩展，**提供了基于特定筛选条件（Name、EntryType）检索性能度量的接口**，通过这些接口我们可以获得多种维度（页面、资源等）的性能度量时间线。
+此标准对上述的 [HR-TIME-2][7] 规范中定义的 Performance 对象进行了扩展，**提供了基于特定筛选条件（Name、EntryType）检索性能度量的接口**，通过这些接口[我们](https://www.w3cdoc.com)可以获得多种维度（页面、资源等）的性能度量时间线。
 
 此标准目前有两个版本 Level 1 和 Level 2。Level 1 目前是 REC 状态，Level 2 规范还在草案阶段，当 Level 2 规范正式发布时， Level 1 也将被废弃。
 
@@ -87,7 +87,7 @@ Level 2 规范包含了这些内容：
   * getEntriesByType()
   * getEntriesByName()
 
-我们可以在浏览器控制台输入这段代码，看看 Entry 是什么。
+[我们](https://www.w3cdoc.com)可以在[浏览器](https://www.w3cdoc.com)控制台输入这段代码，看看 Entry 是什么。
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -115,7 +115,7 @@ Level 2 规范包含了这些内容：
 
 > 这些对象会在其他 Time 相关的规范中定义，因此这些与 Time 相关的规范都会使用到 Performance Timeline 规范定义的 PerformanceEntry。
 
-所以，我们可以根据 getEntriesByType() 和 getEntriesByName() 来获取特定的 name 和 特定的 entryType 的性能数据。例如：
+所以，[我们](https://www.w3cdoc.com)可以根据 getEntriesByType() 和 getEntriesByName() 来获取特定的 name 和 特定的 entryType 的性能数据。例如：
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -338,11 +338,11 @@ resourceObserver.observe(&lt;span class="token punctuation">{&lt;/span>type&lt;s
   </div>
 </div>
 
-好了，了解了此规范定义的内容，大家也清楚了为什么此规范名为 Performance Timeline 了吧？因为该规范的提供了**获取各种类型**（navigation、resource、paint 等）的**性能时间线**的 API。
+好了，了解了此规范定义的内容，[大家](https://www.w3cdoc.com)也清楚了为什么此规范名为 Performance Timeline 了吧？因为该规范的提供了**获取各种类型**（navigation、resource、paint 等）的**性能时间线**的 API。
 
 ### Resource Timing {#3}
 
-该规范定义了用于访问文档中资源的完整计时信息的 API， 例如请求资源的 DNS、TCP、Request 等的开始时间和结束时间，可以帮助我们收集文档中静态资源的加载时间线、资源大小和资源类型。
+该规范定义了用于访问文档中资源的完整计时信息的 API， 例如请求资源的 DNS、TCP、Request 等的开始时间和结束时间，可以帮助[我们](https://www.w3cdoc.com)收集文档中静态资源的加载时间线、资源大小和资源类型。
 
 此规范有两个版本 Level 1 和  Level 2， Level 1 在 2017 年就成为了候选推荐版本，到今天也没有正式发布。Level 2 当前还在工作草案阶段，在 2020.02.18 还在更新，但并没有在文档中说明与 Level 1 的关系。
 
@@ -371,11 +371,11 @@ Level 2 规范包含了这些内容：
   * setResourceTimingBufferSize()
 * **3、定义了**[**Timing-Allow-Origin**][18]**响应头**
 
-对于跨域请求的资源，获取到的 PerformanceResourceTiming 对象中的属性值（时间），由于[跨域限制][19]，浏览器不会将资源的性能数据提供给用户，这些时间值都会被设置为 0 。
+对于跨域请求的资源，获取到的 PerformanceResourceTiming 对象中的属性值（时间），由于[跨域限制][19]，[浏览器](https://www.w3cdoc.com)不会将资源的性能数据提供给用户，这些时间值都会被设置为 0 。
 
-如果服务端在请求资源的响应头中添加 Timing-Allow-Origin，则浏览器就会将此资源的性能时间值暴露给用户。
+如果服务端在请求资源的响应头中添加 Timing-Allow-Origin，则[浏览器](https://www.w3cdoc.com)就会将此资源的性能时间值暴露给用户。
 
-我们可以通过以下语句获取文档中所有资源的性能数据：
+[我们](https://www.w3cdoc.com)可以通过以下语句获取文档中所有资源的性能数据：
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -401,7 +401,7 @@ Level 2 规范包含了这些内容：
   </div>
 </div>
 
-好了，了解了此规范定义的内容，大家也清楚了为什么此规范名为 Resource Timing 了吧？因为该规范描述了**资源请求时序**的性能度量。
+好了，了解了此规范定义的内容，[大家](https://www.w3cdoc.com)也清楚了为什么此规范名为 Resource Timing 了吧？因为该规范描述了**资源请求时序**的性能度量。
 
 ### Navigation Timing {#4}
 
@@ -412,7 +412,7 @@ Level 2 规范包含了这些内容：
 * [Navigation Timing Level 1][6]  （REC）
 * [Navigation Timing Level 2][20]  （WD）&#x2714;︎
 
-目前很多浏览器已经实现了 Level 2，建议使用 Level 2 规范定义的 API。因为 Level 1 和 Level 2 的差别比较大，但  Level 1 定义的 API 仍有很多人在用，所以下面都详细介绍下。
+目前很多[浏览器](https://www.w3cdoc.com)已经实现了 Level 2，建议使用 Level 2 规范定义的 API。因为 Level 1 和 Level 2 的差别比较大，但  Level 1 定义的 API 仍有很多人在用，所以下面都详细介绍下。
 
 **Navigation Timing Level 1**
 
@@ -422,7 +422,7 @@ Level 2 规范包含了这些内容：
 
 * **1、定义了 PerformanceTiming 对象**
 
-用来衡量页面性能，我们可以通过通过 window.performance.timing 获取页面的性能数据，返回的对象中每个字段的含义可以在 [PerformanceTiming | MDN][21] 上查阅。
+用来衡量页面性能，[我们](https://www.w3cdoc.com)可以通过通过 window.performance.timing 获取页面的性能数据，返回的对象中每个字段的含义可以在 [PerformanceTiming | MDN][21] 上查阅。
 
 按照事件发生的先后顺序，这些性能数据的 TimeLine 如下：
 
@@ -443,7 +443,7 @@ https://www.w3.org/TR/navigation-timing/timing-overview.png][22]
 
 2019 年 Web 性能工作组带来了 [Navigation Timing Level 2][20] ，将会替代 Navigation Timing Level 1。在 Navigation Timing Level 1 中定义的两个属性 performance.timing 和 performance.navigation 被废弃了。
 
-Level 2 新增了以下这些内容，我们可以先不用理解这段英文讲的什么，在阅读完这一小节后就能理解 Level 2 做了哪些更新了。
+Level 2 新增了以下这些内容，[我们](https://www.w3cdoc.com)可以先不用理解这段英文讲的什么，在阅读完这一小节后就能理解 Level 2 做了哪些更新了。
 
 > * the definition of Performance interface was moved to [[PERFORMANCE-TIMELINE-2][24]];
 > * builds on top of [[RESOURCE-TIMING-2][25]];
@@ -459,7 +459,7 @@ Level 2 规范主要包含以下内容：
 
 * **1、定义了 [PerformanceNavigationTiming][35] 对象**
 
-此对象用于度量文档的性能，我们可以通过以下方式获取文档的性能数据，所有时间值都是以 [Origin Time][36] 为起点测量的。
+此对象用于度量文档的性能，[我们](https://www.w3cdoc.com)可以通过以下方式获取文档的性能数据，所有时间值都是以 [Origin Time][36] 为起点测量的。
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -473,7 +473,7 @@ Level 2 规范主要包含以下内容：
 </div>
 
 这将返回以下这些数据  
-这些属性并不都是 [PerformanceNavigationTiming | MDN][37] 对象自有的，有一部分是从原型对象中继承的。我们可以在控制台输入以下代码来查看此对象的原型链。
+这些属性并不都是 [PerformanceNavigationTiming | MDN][37] 对象自有的，有一部分是从原型对象中继承的。[我们](https://www.w3cdoc.com)可以在控制台输入以下代码来查看此对象的原型链。
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -582,7 +582,7 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 * [Resource Timing Level 2][15] 定义的 PerformanceResourceTiming 对象
 * [Performance Timeline Level 2][9] 定义的 PerformanceEntry 对象
 
-> 我们可以通过 [Resource Timing Level 2][15] 标准中定义的 API window.performance.getEntriesByType(&#8220;resource&#8221;) 获取特定资源所需的时间长度。
+> [我们](https://www.w3cdoc.com)可以通过 [Resource Timing Level 2][15] 标准中定义的 API window.performance.getEntriesByType(&#8220;resource&#8221;) 获取特定资源所需的时间长度。
 
 由此，[Navigation Timing Level 2][20] 给出了新的时间线，与 Navigation Timing Level 1 不同的是将描述资源加载的时间用 PerformanceResourceTiming 对象封装了起来。
 
@@ -596,7 +596,7 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 
 NavigationType 是一个枚举类型，包含四种值：navigate、reload 、 back_forward 和 prerender
 
-好了，现在让我们来理解下 Level 2 标准中说的这些改变具体表现在哪里吧。
+好了，现在让[我们](https://www.w3cdoc.com)来理解下 Level 2 标准中说的这些改变具体表现在哪里吧。
 
 the definition of Performance interface was moved to [[PERFORMANCE-TIMELINE-2][24]];
 
@@ -633,9 +633,9 @@ exposes [transfer][31], [encoded body][32] and [decoded body][33] size informati
 
 [secureConnectionStart][34] attribute is now mandatory.
 
-> secureConnectionStart 属性在 Level 1 中是可选的，但在 Level 2 中浏览器必需设置这个属性
+> secureConnectionStart 属性在 Level 1 中是可选的，但在 Level 2 中[浏览器](https://www.w3cdoc.com)必需设置这个属性
 
-好了，了解了此规范定义的内容，大家也清楚了为什么此规范名为 Navigation Timeline 了吧？因为该规范定义了描述**文档**在整个**导航过程**中的**性能度量** PerformanceNavigationTiming 对象。
+好了，了解了此规范定义的内容，[大家](https://www.w3cdoc.com)也清楚了为什么此规范名为 Navigation Timeline 了吧？因为该规范定义了描述**文档**在整个**导航过程**中的**性能度量** PerformanceNavigationTiming 对象。
 
 ### Paint Timing {#5}
 
@@ -649,7 +649,7 @@ exposes [transfer][31], [encoded body][32] and [decoded body][33] size informati
 
 * **1、定义了 PerformancePaintTiming 对象**
 
-用于描述在页面加载期间的一些关键时间点的性能度量，我们可以在控制台通过以下语句查看：
+用于描述在页面加载期间的一些关键时间点的性能度量，[我们](https://www.w3cdoc.com)可以在控制台通过以下语句查看：
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -666,11 +666,11 @@ exposes [transfer][31], [encoded body][32] and [decoded body][33] size informati
 
 * **2、提出了一些关键时间点的定义，例如  First Paint 、First Contentful Paint**
 
-First Paint，是从导航到浏览器将第一个像素呈现到屏幕的时间，这不包括默认的背景绘制，但包括非默认的背景绘制。这是开发人员关心页面加载的第一个关键时刻——当浏览器开始呈现页面时。
+First Paint，是从导航到[浏览器](https://www.w3cdoc.com)将第一个像素呈现到屏幕的时间，这不包括默认的背景绘制，但包括非默认的背景绘制。这是开发人员关心页面加载的第一个关键时刻——当[浏览器](https://www.w3cdoc.com)开始呈现页面时。
 
-**First Contentful Paint** (FCP)，是当浏览器呈现来自 DOM 的第一位内容时，向用户提供页面实际加载的第一个反馈。这是用户第一次开始使用页面内容。
+**First Contentful Paint** (FCP)，是当[浏览器](https://www.w3cdoc.com)呈现来自 DOM 的第一位内容时，向用户提供页面实际加载的第一个反馈。这是用户第一次开始使用页面内容。
 
-好了，了解了此规范定义的内容，大家也清楚了为什么此规范名为 Paint Timing 了吧？因为该规范定义了获取**Paint 关键时间点**的**性能**数据的 API。
+好了，了解了此规范定义的内容，[大家](https://www.w3cdoc.com)也清楚了为什么此规范名为 Paint Timing 了吧？因为该规范定义了获取**Paint 关键时间点**的**性能**数据的 API。
 
 ### User Timing {#6}
 
@@ -748,11 +748,11 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
 
 描述 measure() 方法返回的数据，performance.getEntriesByType(&#8216;measure&#8217;)，字段的具体含义可以在[Performance.measure() | MDN][46] 查看，其中 detail 字段是在 Level 3 规范中定义的。
 
-好了，现在你知道为什么此规范叫 User Timing 了吧？ 因为它提供了可以**让用户自定义时间节点来测量性能**的接口，而不是像 Resource Timing、Navigation Timing 和 Paint Timing 一样由浏览器决定测量的时间节点（例如：redirectStart、domainLookupStart、connectEnd 等等）。<a name="ryyWm"></a>
+好了，现在你知道为什么此规范叫 User Timing 了吧？ 因为它提供了可以**让用户自定义时间节点来测量性能**的接口，而不是像 Resource Timing、Navigation Timing 和 Paint Timing 一样由[浏览器](https://www.w3cdoc.com)决定测量的时间节点（例如：redirectStart、domainLookupStart、connectEnd 等等）。<a name="ryyWm"></a>
 
 ### Server Timing {#7}
 
-我们知道前面已经介绍的 Resource Timing、Navigation Timing、Paint Timing 和 User Timing 规范描述的都是 Web 应用程序的性能特征，比如请求启动的时间、协商连接、接收响应等时间节点，这些性能度量浏览器都可以采集到，但请求是如何路由的、在服务器上花费的时间在哪里等无法获知。
+[我们](https://www.w3cdoc.com)知道前面已经介绍的 Resource Timing、Navigation Timing、Paint Timing 和 User Timing 规范描述的都是 Web 应用程序的性能特征，比如请求启动的时间、协商连接、接收响应等时间节点，这些性能度量[浏览器](https://www.w3cdoc.com)都可以采集到，但请求是如何路由的、在服务器上花费的时间在哪里等无法获知。
 
 此规范描述了如何将服务器端在请求-响应周期内的性能度量传递给用户代理，并定义了一个 API 使应用程序能够收集、处理和执行这些指标。
 
@@ -788,11 +788,11 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
 
 * **2、定义了描述服务端性能度量的接口 PerformanceServerTiming 对象**
 
-浏览器会通过 [Server Timing Header 的解析算法][48] 将解析后的每一个性能度量用 PerformanceServerTiming 对象来表示。
+[浏览器](https://www.w3cdoc.com)会通过 [Server Timing Header 的解析算法][48] 将解析后的每一个性能度量用 PerformanceServerTiming 对象来表示。
 
 * **3、给**[**PerformanceResourceTiming**][49]**对象添加了 serverTiming 属性**
 
-每个 PerformanceServerTiming 描述服务端的一个性能度量信息，这些度量服务端性能的所有PerformanceServerTiming 对象放在一个数组中，挂在  PerformanceResourceTiming 对象的 serverTiming 属性上，我们可以通过以下语句获取：
+每个 PerformanceServerTiming 描述服务端的一个性能度量信息，这些度量服务端性能的所有PerformanceServerTiming 对象放在一个数组中，挂在  PerformanceResourceTiming 对象的 serverTiming 属性上，[我们](https://www.w3cdoc.com)可以通过以下语句获取：
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -806,14 +806,14 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
   </div>
 </div>
 
-好了，了解了此规范定义的内容，大家也清楚了为什么此规范名为 Server Timing 了吧？因为该规范定义了如何**获取服务端各节点性能**的 API。  
+好了，了解了此规范定义的内容，[大家](https://www.w3cdoc.com)也清楚了为什么此规范名为 Server Timing 了吧？因为该规范定义了如何**获取服务端各节点性能**的 API。  
 <a name="J4Zdi"></a>
 
 ### Long Tasks API {#8}
 
-当用户与页面交互时，应用程序和浏览器都会将浏览器随后执行的各种事件排队，例如，用户代理根据用户的活动安排输入事件，应用程序为 requestAnimationFrame 和其他回调等安排回调。一旦进入队列，这些事件就会被浏览器安排逐个出列并执行。
+当用户与页面交互时，应用程序和[浏览器](https://www.w3cdoc.com)都会将[浏览器](https://www.w3cdoc.com)随后执行的各种事件排队，例如，用户代理根据用户的活动安排输入事件，应用程序为 requestAnimationFrame 和其他回调等安排回调。一旦进入队列，这些事件就会被[浏览器](https://www.w3cdoc.com)安排逐个出列并执行。
 
-但是，有些任务可能需要很长时间，如果发生这种情况，UI 线程将被锁定，所有其他任务也将被阻止。对于用户来说，这是一个卡死的页面，浏览器无法响应用户的输入，这是目前 Web 上不良用户体验的主要来源。
+但是，有些任务可能需要很长时间，如果发生这种情况，UI 线程将被锁定，所有其他任务也将被阻止。对于用户来说，这是一个卡死的页面，[浏览器](https://www.w3cdoc.com)无法响应用户的输入，这是目前 Web 上不良用户体验的主要来源。
 
 此规范定义了一个 API，可以使用它来检测这些“长任务（Long Task）”的存在，“长任务”在很长一段时间内独占 UI 线程，并阻止执行其他关键任务，例如响应用户输入。
 
@@ -833,7 +833,7 @@ Long Task 是指超过 50ms 的事件循环任务。
 
 > 50 毫秒这个阈值标准来源于 [RAIL Model][52] 中 [Response: process events in under 50ms][53](切换到英文版) 。
 
-如何检测是否有 Long Task？我们可以使用 PerformanceObserver 这个 API。
+如何检测是否有 Long Task？[我们](https://www.w3cdoc.com)可以使用 PerformanceObserver 这个 API。
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -857,17 +857,17 @@ observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
   </div>
 </div>
 
-好了，了解了此规范定义的内容，大家也清楚了为什么此规范名为 Long Task API 了吧？因为该规范定义了如何**检测长任务（Long Task）**的 API。<a name="P3kBC"></a>
+好了，了解了此规范定义的内容，[大家](https://www.w3cdoc.com)也清楚了为什么此规范名为 Long Task API 了吧？因为该规范定义了如何**检测长任务（Long Task）**的 API。<a name="P3kBC"></a>
 
 ##  优化策略 {#9}
 
-除了以上关于性能度量的标准，Web 性能工作组还制定了一些可以让浏览器来实现的性能优化标准，并给我们提供了使用这些优化措施的 API。<a name="Vm1C0"></a>
+除了以上关于性能度量的标准，Web 性能工作组还制定了一些可以让[浏览器](https://www.w3cdoc.com)来实现的性能优化标准，并给[我们](https://www.w3cdoc.com)提供了使用这些优化措施的 API。<a name="Vm1C0"></a>
 
 ### Resource Hints &#8211; 加载性能 {#10}
 
-许多 Web 应用程序已经利用了各种预取技术来提高加载性能，这包括但不限于在需要之前使用 XMLHttpRequest 来获取和缓存资源。但是，这些实现不能提供与浏览器支持的相同的性能级别。更糟糕的是，这些实现有时与浏览器逻辑冲突，导致延迟或不必要的资源获取，从而降低整个页面性能。
+许多 Web 应用程序已经利用了各种预取技术来提高加载性能，这包括但不限于在需要之前使用 XMLHttpRequest 来获取和缓存资源。但是，这些实现不能提供与[浏览器](https://www.w3cdoc.com)支持的相同的性能级别。更糟糕的是，这些实现有时与[浏览器](https://www.w3cdoc.com)逻辑冲突，导致延迟或不必要的资源获取，从而降低整个页面性能。
 
-此规范定义了 HTML 的 `<Link>` 元素的 rel 属性值，包括 dns-prefetch、preconnect、prefetch 和 prerender。我们可以使用这些资源提示让用用户代理帮助我们预解析 DNS、预链接、预加载资源以及预处理资源以提高页面性能。
+此规范定义了 HTML 的 `<Link>` 元素的 rel 属性值，包括 dns-prefetch、preconnect、prefetch 和 prerender。[我们](https://www.w3cdoc.com)可以使用这些资源提示让用用户代理帮助[我们](https://www.w3cdoc.com)预解析 DNS、预链接、预加载资源以及预处理资源以提高页面性能。
 
 此规范目前只有一个版本，还在工作草案阶段。
 
@@ -877,7 +877,7 @@ observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 * **1、资源提示: dns-prefetch(Resource Hints: dns-prefetch)**
 
-给浏览器提示，在后台执行 DNS 查找以提高性能。
+给[浏览器](https://www.w3cdoc.com)提示，在后台执行 DNS 查找以提高性能。
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -892,7 +892,7 @@ observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 * **2、资源提示:预连接(Resource Hints: preconnect)**
 
-给浏览器提示在后台开始连接握手(DNS，TCP，TLS)以提高性能。
+给[浏览器](https://www.w3cdoc.com)提示在后台开始连接握手(DNS，TCP，TLS)以提高性能。
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -908,7 +908,7 @@ observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 * 3、**资源提示:预取(Resource Hints: prefetch)**
 
-`<link rel=prefetch />` 告诉浏览器获取下一次导航可能需要的资源。大多数情况下，这意味着将以极低的优先级来获取资源（因为浏览器知道当前页面中需要的所有内容比我们认为在下一页中需要的资源更重要）。这意味着 prefetch 的主要用处是加快下一个导航的速度，而不是当前的导航。
+`<link rel=prefetch />` 告诉[浏览器](https://www.w3cdoc.com)获取下一次导航可能需要的资源。大多数情况下，这意味着将以极低的优先级来获取资源（因为[浏览器](https://www.w3cdoc.com)知道当前页面中需要的所有内容比[我们](https://www.w3cdoc.com)认为在下一页中需要的资源更重要）。这意味着 prefetch 的主要用处是加快下一个导航的速度，而不是当前的导航。
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -929,7 +929,7 @@ prefetch 有 3 条规则：
 * crossorigin CORS 设置属性是一个可选属性，指示指定资源的 CORS 策略。
 * **4、资源提示:预渲染(Resource Hints: prerender)**
 
-给浏览器提供提示，以便在后台呈现指定的页面，如果用户导航到页面，则会加快页面加载速度。用于获取下一个可能的 HTML 导航，并通过获取必要的子资源并执行它们来预处理 HTML 响应（即预呈现页面）。
+给[浏览器](https://www.w3cdoc.com)提供提示，以便在后台呈现指定的页面，如果用户导航到页面，则会加快页面加载速度。用于获取下一个可能的 HTML 导航，并通过获取必要的子资源并执行它们来预处理 HTML 响应（即预呈现页面）。
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -993,7 +993,7 @@ prefetch 和 preload 都可以声明一个资源及其获取属性，但在用�
 
 ### Page Visibility &#8211; 节省资源 {#12}
 
-此规范提供了观察页面可见性状态的 API ，例如当用户最小化窗口或切换到另一个选项卡时，API 会发送[visibilitychange][59] 事件，让监听者知道页面状态已更改，我们可以检测事件并执行某些操作。
+此规范提供了观察页面可见性状态的 API ，例如当用户最小化窗口或切换到另一个选项卡时，API 会发送[visibilitychange][59] 事件，让监听者知道页面状态已更改，[我们](https://www.w3cdoc.com)可以检测事件并执行某些操作。
 
 例如网站有图片轮播效果，只有在用户观看轮播的时候，才会自动展示下一张幻灯片；显示信息仪表盘的应用程序不希望在页面不可见时轮询服务器进行更新。
 
@@ -1008,14 +1008,14 @@ Level 2 规范包含以下内容：
 
 * **1、定义了页面状态的枚举：VisibilityState**
 
-这个枚举对象我们是用不到的，而是浏览器用的。
+这个枚举对象[我们](https://www.w3cdoc.com)是用不到的，而是[浏览器](https://www.w3cdoc.com)用的。
 
 * **2、给**[**Document**][62]**对象添加了三个属性**
   * hidden
   * visibilityState
   * onvisibilitychange 事件
 
-我们可以通过 document.hidden 和 document.visibilityState 访问页面可见状态。
+[我们](https://www.w3cdoc.com)可以通过 document.hidden 和 document.visibilityState 访问页面可见状态。
 
 > 出于历史原因，保留对 hidden 属性的支持。开发人员应尽可能使用 visibilityState，document.visibilityState 返回的值在 VisibilityState 枚举中定义。
 
@@ -1048,7 +1048,7 @@ document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
   </div>
 </div>
 
-但是这个规范各大浏览器厂商的实现方式不一样，存在兼容性问题，在实现时需要做兼容，具体兼容方式可在 [Page Visibility API | MDN][63] 查看。<a name="Z5Zpq"></a>
+但是这个规范各大[浏览器](https://www.w3cdoc.com)厂商的实现方式不一样，存在兼容性问题，在实现时需要做兼容，具体兼容方式可在 [Page Visibility API | MDN][63] 查看。<a name="Z5Zpq"></a>
 
 ### requestIdleCallback API &#8211; 充分利用资源 {#13}
 
@@ -1064,7 +1064,7 @@ document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
   * requestIdleCallback()
   * cancelIdleCallback()
 
-我们可以使用 requestIdleCallback() 在浏览器空闲时运行高耗时、低优先级的任务。
+[我们](https://www.w3cdoc.com)可以使用 requestIdleCallback() 在[浏览器](https://www.w3cdoc.com)空闲时运行高耗时、低优先级的任务。
 
 * **2、定义了 IdleDeadline 对象**
 
@@ -1102,13 +1102,13 @@ document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 * 避免运行时间无法预测的任务。
 * 在你需要的时候要用 timeout，但记得只在需要的时候才用。
 
-欢迎学习前端知识体系课程，本系列属于：[前端增长教程][1]
+欢迎学习[前端](https://www.w3cdoc.com)知识体系课程，本系列属于：[[前端](https://www.w3cdoc.com)增长教程][1]
 
 在线视频课程：<a href="https://study.163.com/course/courseMain.htm?share=2&shareId=400000000351011&courseId=1209400904&_trace_c_p_k2_=d5106aa1758748cea6e733c4b1f29bbe" target="_blank" rel="noopener noreferrer">网易云课堂课程</a>      <a href="https://segmentfault.com/ls/1650000019681091" target="_blank" rel="noopener noreferrer">思否课堂</a>
 
 ### Beacon &#8211; 数据上报 {#14}
 
-我们经常需要尝试在卸载（unload）文档之前向 Web 服务上报性能数据。过早的发送数据可能导致错过收集数据的机会。但对于开发者来说保证在文档卸载期间发送数据一直是一个困难，因为用户代理通常会**忽略**在 unload 事件处理器中产生的**异步 XMLHttpRequest**。
+[我们](https://www.w3cdoc.com)经常需要尝试在卸载（unload）文档之前向 Web 服务上报性能数据。过早的发送数据可能导致错过收集数据的机会。但对于开发者来说保证在文档卸载期间发送数据一直是一个困难，因为用户代理通常会**忽略**在 unload 事件处理器中产生的**异步 XMLHttpRequest**。
 
 为了解决这个问题，通常要在 unload 或者 beforeunload 事件处理器中发起一个同步 XMLHttpRequest****来发送数据。同步的 XMLHttpRequest 迫使用户代理延迟卸载文档，使得下一个导航出现的更晚，而下一个页面对于这种较差的载入表现无能为力。
 
@@ -1133,7 +1133,7 @@ document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
   </div>
 </div>
 
-考虑到此方法的兼容性，应该在浏览器不支持 navigator.sendBeacon 时使用其他方法发送数，例如同步的 XMLHttpRequest。
+考虑到此方法的兼容性，应该在[浏览器](https://www.w3cdoc.com)不支持 navigator.sendBeacon 时使用其他方法发送数，例如同步的 XMLHttpRequest。
 
 <a name="PnOh1"></a>
 
@@ -1143,7 +1143,7 @@ document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 这个api主要来检测元素是否出现在视口内，之前做的吸顶吸底的组件主要用这个方法来实现。一般放两个元素，一个元素跟着文档流滚动，一个用来固定吸顶或吸底，当滚动使得跟着文档流的元素出现在视窗内的时候，就按照文档流展示，否则就展示吸顶或吸底。
 
-欢迎学习前端知识体系课程，本系列属于：[前端增长教程][1]
+欢迎学习[前端](https://www.w3cdoc.com)知识体系课程，本系列属于：[[前端](https://www.w3cdoc.com)增长教程][1]
 
 在线视频课程：<a href="https://study.163.com/course/courseMain.htm?share=2&shareId=400000000351011&courseId=1209400904&_trace_c_p_k2_=d5106aa1758748cea6e733c4b1f29bbe" target="_blank" rel="noopener noreferrer">网易云课堂课程</a>      <a href="https://segmentfault.com/ls/1650000019681091" target="_blank" rel="noopener noreferrer">思否课堂</a>
 

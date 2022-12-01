@@ -11,7 +11,7 @@ title: babel涉及到的知识简单介绍
   </h2>
   
   <p>
-    这个问题是对自己的发问，但我相信会有很多跟我一样的同学。<br /> 对于 babel 的使用，近半年来一直停留在与 webpack 结合使用，以及在浏览器开发环境下。导致很多 babel 的包，我都不清楚他们是干嘛的。比如 babel-register，还有 babel-runtime，各种 presets 的区别，transform-runtime 和 babel-polyfill 的区别，helpers 是干嘛的。尽管网上的 babel 的教程很多了，但是解答自己的一些疑问，还是要花费一些功夫。所以抽出时间来总结一下。如果你对于以上概念已经比较清楚了，就不需要往下看了。
+    这个问题是对自己的发问，但我相信会有很多跟我一样的同学。<br /> 对于 babel 的使用，近半年来一直停留在与 webpack 结合使用，以及在[浏览器](https://www.w3cdoc.com)开发环境下。导致很多 babel 的包，我都不清楚他们是干嘛的。比如 babel-register，还有 babel-runtime，各种 presets 的区别，transform-runtime 和 babel-polyfill 的区别，helpers 是干嘛的。尽管网上的 babel 的教程很多了，但是解答自己的一些疑问，还是要花费一些功夫。所以抽出时间来总结一下。如果你对于以上概念已经比较清楚了，就不需要往下看了。
   </p>
   
   <h2 id="articleHeader1">
@@ -19,7 +19,7 @@ title: babel涉及到的知识简单介绍
   </h2>
   
   <p>
-    说实话，从我做前端的时候，接触 babel 的时候，就已经是 babel 6 了，但是这不妨碍了解一下它的重大版本变化。<br /> 上一个版本 babel 5 是全家桶，包括各种package， plugins，尽可能的想通过你的一次安装，达到全能的效果。不过你现在安装<code>npm install babel</code>，会得到一个 warning。babel 6 是 <a href="https://github.com/babel/babel/releases?after=v6.0.1" target="_blank" rel="nofollow noopener noreferrer">2015年10月30号</a>发布，主要做了以下更新：
+    说实话，从我做[前端](https://www.w3cdoc.com)的时候，接触 babel 的时候，就已经是 babel 6 了，但是这不妨碍了解一下它的重大版本变化。<br /> 上一个版本 babel 5 是全家桶，包括各种package， plugins，尽可能的想通过你的一次安装，达到全能的效果。不过你现在安装<code>npm install babel</code>，会得到一个 warning。babel 6 是 <a href="https://github.com/babel/babel/releases?after=v6.0.1" target="_blank" rel="nofollow noopener noreferrer">2015年10月30号</a>发布，主要做了以下更新：
   </p>
   
   <ul>
@@ -46,7 +46,7 @@ title: babel涉及到的知识简单介绍
   </h2>
   
   <p>
-    babel 里面有好多的包，所以必须搞清楚他们都是干嘛的，才能让我们更好的使用这个工具。
+    babel 里面有好多的包，所以必须搞清楚他们都是干嘛的，才能让[我们](https://www.w3cdoc.com)更好的使用这个工具。
   </p>
   
   <h3 id="articleHeader3">
@@ -54,7 +54,7 @@ title: babel涉及到的知识简单介绍
   </h3>
   
   <p>
-    可以看做 babel 的编译器。babel 的核心 api 都在这里面，比如 transform，主要都是处理转码的。它会把我们的 js 代码，抽象成 ast，即 abstract syntax tree 的缩写，是源代码的抽象语法结构的树状表现形式。我们可以理解为，它定义的一种分析 js 语法的树状结构。也就是说 es6 的新语法，跟老语法是不一样的，那我们怎么去定义这个语法呢。所以必须要先转成 ast，去发现这个语法的 kind，分别做对应的处理，才能转化成 es5.
+    可以看做 babel 的编译器。babel 的核心 api 都在这里面，比如 transform，主要都是处理转码的。它会把[我们](https://www.w3cdoc.com)的 js 代码，抽象成 ast，即 abstract syntax tree 的缩写，是源代码的抽象语法结构的树状表现形式。[我们](https://www.w3cdoc.com)可以理解为，它定义的一种分析 js 语法的树状结构。也就是说 es6 的新语法，跟老语法是不一样的，那[我们](https://www.w3cdoc.com)怎么去定义这个语法呢。所以必须要先转成 ast，去发现这个语法的 kind，分别做对应的处理，才能转化成 es5.
   </p>
   
   <p>
@@ -177,7 +177,7 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
   </p>
   
   <p>
-    首先我们需要了解什么是 helpers。babel 有很多帮助函数，例如 toArray函数， jsx转化函数。这些函数是 babel transform 的时候用的，都放在 <code>babel-helpers</code>这个包中。如果 babe 编译的时候检测到某个文件需要这些 helpers，在编译成模块的时候，会放到模块的顶部。<br /> 像这样
+    首先[我们](https://www.w3cdoc.com)需要了解什么是 helpers。babel 有很多帮助函数，例如 toArray函数， jsx转化函数。这些函数是 babel transform 的时候用的，都放在 <code>babel-helpers</code>这个包中。如果 babe 编译的时候检测到某个文件需要这些 helpers，在编译成模块的时候，会放到模块的顶部。<br /> 像这样
   </p>
   
   <div class="widget-codetool" style="display: none;">
@@ -357,7 +357,7 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
         </p>
         
         <p>
-          通过栗子基本已经介绍了 babel-node 的用法了，就是方便我们平常开发时候，写一些脚本的。所以它不适用于生产环境。另外，babel-node 已经内置了 polyfill，并依赖 babel-register 来编译脚本。好，那 babel-register 是什么呢
+          通过栗子基本已经介绍了 babel-node 的用法了，就是方便[我们](https://www.w3cdoc.com)平常开发时候，写一些脚本的。所以它不适用于生产环境。另外，babel-node 已经内置了 polyfill，并依赖 babel-register 来编译脚本。好，那 babel-register 是什么呢
         </p>
         
         <h3 id="articleHeader7">
@@ -372,15 +372,15 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
         <pre class="shell hljs"><code class="shell" style="word-break: break-word; white-space: initial;">npm install babel-register --save-dev</code></pre>
         
         <p>
-          babel-node 可以通过它编译代码，可以了解到，它其实就是一个编译器。我们同样可以在代码中引入它 <code>require('babel-register')</code>，并通过 node 执行我们的代码。
+          babel-node 可以通过它编译代码，可以了解到，它其实就是一个编译器。[我们](https://www.w3cdoc.com)同样可以在代码中引入它 <code>require('babel-register')</code>，并通过 node 执行[我们](https://www.w3cdoc.com)的代码。
         </p>
         
         <p>
-          它的原理是通过改写 node 本身的 require，添加钩子，然后在 require 其他模块的时候，就会触发 babel 编译。也就是你引入<code>require('babel-register')</code>的文件代码，是不会被编译的。只有通过 require 引入的其他代码才会。我们是不是可以理解，babel-node 就是在内存中写入一个临时文件，在顶部引入 babel-register，然后再引入我们的脚本或者代码？
+          它的原理是通过改写 node 本身的 require，添加钩子，然后在 require 其他模块的时候，就会触发 babel 编译。也就是你引入<code>require('babel-register')</code>的文件代码，是不会被编译的。只有通过 require 引入的其他代码才会。[我们](https://www.w3cdoc.com)是不是可以理解，babel-node 就是在内存中写入一个临时文件，在顶部引入 babel-register，然后再引入[我们](https://www.w3cdoc.com)的脚本或者代码？
         </p>
         
         <p>
-          举个栗子，还是 node 中执行 jsx，要通过 babel 编译。我们可以把 jsx 的代码 a.js 编译完输出到一个 b.js，然后 <code>node b.js</code> 也是可以执行的。但是太麻烦，不利于开发。让我们看一下通过 register 怎么用：
+          举个栗子，还是 node 中执行 jsx，要通过 babel 编译。[我们](https://www.w3cdoc.com)可以把 jsx 的代码 a.js 编译完输出到一个 b.js，然后 <code>node b.js</code> 也是可以执行的。但是太麻烦，不利于开发。让[我们](https://www.w3cdoc.com)看一下通过 register 怎么用：
         </p>
         
         <div class="widget-codetool" style="display: none;">
@@ -419,7 +419,7 @@ $ node &lt;span class="hljs-keyword">register&lt;/span>.js</code></pre>
         </p>
         
         <p>
-          值得一提的是，babel-register 这个包之前是在 babel-core 下面的，所以也可以 <code>require('babel-core/register')</code> 去引入，跟<code>require('babel-register')</code>是一样的。但是，babel 的团队把 register 独立出来了，而且未来的某一天（升 7.0）会从 babel-core 中废除，所以我们现在最好还是使用 babel-register 吧。<a href="https://github.com/babel/babel/blob/master/packages/babel-core/register.js#L3" target="_blank" rel="nofollow noopener noreferrer">babel-core/register.js</a>
+          值得一提的是，babel-register 这个包之前是在 babel-core 下面的，所以也可以 <code>require('babel-core/register')</code> 去引入，跟<code>require('babel-register')</code>是一样的。但是，babel 的团队把 register 独立出来了，而且未来的某一天（升 7.0）会从 babel-core 中废除，所以[我们](https://www.w3cdoc.com)现在最好还是使用 babel-register 吧。<a href="https://github.com/babel/babel/blob/master/packages/babel-core/register.js#L3" target="_blank" rel="nofollow noopener noreferrer">babel-core/register.js</a>
         </p>
         
         <h3 id="articleHeader8">
@@ -434,7 +434,7 @@ $ node &lt;span class="hljs-keyword">register&lt;/span>.js</code></pre>
         <pre class="shell hljs"><code class="shell" style="word-break: break-word; white-space: initial;">npm install babel-runtime --save</code></pre>
         
         <p>
-          这个包很简单，就是引用了 core-js 和 regenerator，然后生产环境把它们编译到 dist 目录下，做了映射，供使用。那么什么是 core-js 和 regenerator 呢。<br /> 首先我们要知道上面提到的 babel-core 是对语法进行 transform 的，但是它不支持 build-ints（Eg: promise，Set，Map），prototype function（Eg: array.reduce,string.trim），class static function （Eg：Array.form，Object.assgin），regenerator （Eg：generator，async）等等拓展的编译。所以才要用到 core-js 和 regenerator。
+          这个包很简单，就是引用了 core-js 和 regenerator，然后生产环境把它们编译到 dist 目录下，做了映射，供使用。那么什么是 core-js 和 regenerator 呢。<br /> 首先[我们](https://www.w3cdoc.com)要知道上面提到的 babel-core 是对语法进行 transform 的，但是它不支持 build-ints（Eg: promise，Set，Map），prototype function（Eg: array.reduce,string.trim），class static function （Eg：Array.form，Object.assgin），regenerator （Eg：generator，async）等等拓展的编译。所以才要用到 core-js 和 regenerator。
         </p>
         
         <h4>
@@ -478,7 +478,7 @@ $ node &lt;span class="hljs-keyword">register&lt;/span>.js</code></pre>
         </h4>
         
         <p>
-          还记得提 babel-external-helpers 的时候，介绍 helpers 了吗。babel-runtime 里面的 helpers 就相当于我们上面通过 babel-external-helpers 生成的 helpers.js。只不过它把每个 helper 都单独放到一个文件夹里。这样，配合 transform-runtime 使用的时候，需要用 helper 转化的时候，就从 babel-runtime 中直接引用了。
+          还记得提 babel-external-helpers 的时候，介绍 helpers 了吗。babel-runtime 里面的 helpers 就相当于[我们](https://www.w3cdoc.com)上面通过 babel-external-helpers 生成的 helpers.js。只不过它把每个 helper 都单独放到一个文件夹里。这样，配合 transform-runtime 使用的时候，需要用 helper 转化的时候，就从 babel-runtime 中直接引用了。
         </p>
         
         <div class="widget-codetool" style="display: none;">
@@ -507,7 +507,7 @@ $ node &lt;span class="hljs-keyword">register&lt;/span>.js</code></pre>
         </p>
         
         <p>
-          不过这些模块都做了 esModule 的兼容处理，也就是上面引入的模块是<code>{ "default": require("core-js/library/fn/array/filter"), __esModule: true }</code>这样的，要使用还得加上 <code>.default</code>。所以我们期待的是，最好能有帮我们自动处理的插件，<code>babel-plugin-transform-runtime</code>就是用来做这个的。这个我们放到 plugin 去讲。
+          不过这些模块都做了 esModule 的兼容处理，也就是上面引入的模块是<code>{ "default": require("core-js/library/fn/array/filter"), __esModule: true }</code>这样的，要使用还得加上 <code>.default</code>。所以[我们](https://www.w3cdoc.com)期待的是，最好能有帮[我们](https://www.w3cdoc.com)自动处理的插件，<code>babel-plugin-transform-runtime</code>就是用来做这个的。这个[我们](https://www.w3cdoc.com)放到 plugin 去讲。
         </p>
         
         <h3 id="articleHeader9">
@@ -522,11 +522,11 @@ $ node &lt;span class="hljs-keyword">register&lt;/span>.js</code></pre>
         <pre class="shell hljs"><code class="shell" style="word-break: break-word; white-space: initial;">npm install babel-polyfill --save</code></pre>
         
         <p>
-          babel-runtime 已经是一堆 polyfill 了，为什么这里还有一个类似的包，它同样是引用了 core-js 和 regenerator，垫片支持是一样的。官网是这么说的，babel-polyfill 是为了模拟一个完整的ES2015 +环境，旨在用于应用程序而不是库/工具。并且使用babel-node时，这个polyfill会自动加载（这个我们在介绍 babel-node 的最后已经说了）。
+          babel-runtime 已经是一堆 polyfill 了，为什么这里还有一个类似的包，它同样是引用了 core-js 和 regenerator，垫片支持是一样的。官网是这么说的，babel-polyfill 是为了模拟一个完整的ES2015 +环境，旨在用于应用程序而不是库/工具。并且使用babel-node时，这个polyfill会自动加载（这个[我们](https://www.w3cdoc.com)在介绍 babel-node 的最后已经说了）。
         </p>
         
         <p>
-          也就是说，它会让我们程序的执行环境，模拟成完美支持 es6+ 的环境，毕竟无论是浏览器环境还是 node 环境对 es6+ 的支持都不一样。它是以重载全局变量 （E.g: Promise）,还有原型和类上的静态方法（E.g：Array.prototype.reduce/Array.form），从而达到对 es6+ 的支持。不同于 babel-runtime 的是，babel-polyfill 是一次性引入你的项目中的，就像是 React 包一样，同项目代码一起编译到生产环境。
+          也就是说，它会让[我们](https://www.w3cdoc.com)程序的执行环境，模拟成完美支持 es6+ 的环境，毕竟无论是[浏览器](https://www.w3cdoc.com)环境还是 node 环境对 es6+ 的支持都不一样。它是以重载全局变量 （E.g: Promise）,还有原型和类上的静态方法（E.g：Array.prototype.reduce/Array.form），从而达到对 es6+ 的支持。不同于 babel-runtime 的是，babel-polyfill 是一次性引入你的项目中的，就像是 React 包一样，同项目代码一起编译到生产环境。
         </p>
         
         <h4>
@@ -534,7 +534,7 @@ $ node &lt;span class="hljs-keyword">register&lt;/span>.js</code></pre>
         </h4>
         
         <p>
-          我们结合 babel-register 去使用一下
+          [我们](https://www.w3cdoc.com)结合 babel-register 去使用一下
         </p>
         
         <div class="widget-codetool" style="display: none;">
@@ -596,7 +596,7 @@ a();</code></pre>
         </ol>
         
         <p>
-          所以 plugins 是在第二步加强转译的，所以假如我们自己写个 plugin，应该就是对 ast 结构做一个遍历，操作。
+          所以 plugins 是在第二步加强转译的，所以假如[我们](https://www.w3cdoc.com)自己写个 plugin，应该就是对 ast 结构做一个遍历，操作。
         </p>
         
         <h3 id="articleHeader11">
@@ -604,7 +604,7 @@ a();</code></pre>
         </h3>
         
         <p>
-          上面我们知道，transform-runtime 是为了方便使用 babel-runtime 的，它会分析我们的 ast 中，是否有引用 babel-rumtime 中的垫片（通过映射关系），如果有，就会在当前模块顶部插入我们需要的垫片。试一下：
+          上面[我们](https://www.w3cdoc.com)知道，transform-runtime 是为了方便使用 babel-runtime 的，它会分析[我们](https://www.w3cdoc.com)的 ast 中，是否有引用 babel-rumtime 中的垫片（通过映射关系），如果有，就会在当前模块顶部插入[我们](https://www.w3cdoc.com)需要的垫片。试一下：
         </p>
         
         <div class="widget-codetool" style="display: none;">
@@ -676,7 +676,7 @@ onsole.log((&lt;span class="hljs-number">0&lt;/span>, _values2.default)({ &lt;sp
         </h3>
         
         <p>
-          其实通过上面的介绍我们已经了解他们是干什么的了，这里再稍微总结区分一下吧。我在这里把 babel-runtime 和 babel-plugin-transform-runtime 统称为 transform-runtime，因为一起用才比较好。
+          其实通过上面的介绍[我们](https://www.w3cdoc.com)已经了解他们是干什么的了，这里再稍微总结区分一下吧。我在这里把 babel-runtime 和 babel-plugin-transform-runtime 统称为 transform-runtime，因为一起用才比较好。
         </p>
         
         <ul>
@@ -684,7 +684,7 @@ onsole.log((&lt;span class="hljs-number">0&lt;/span>, _values2.default)({ &lt;sp
             babel-polyfill 是当前环境注入这些 es6+ 标准的垫片，好处是引用一次，不再担心兼容，而且它就是全局下的包，代码的任何地方都可以使用。缺点也很明显，它可能会污染原生的一些方法而把原生的方法重写。如果当前项目已经有一个 polyfill 的包了，那你只能保留其一。而且一次性引入这么一个包，会大大增加体积。如果你只是用几个特性，就没必要了，如果你是开发较大的应用，而且会频繁使用新特性并考虑兼容，那就直接引入吧。
           </li>
           <li>
-            transform-runtime 是利用 plugin 自动识别并替换代码中的新特性，你不需要再引入，只需要装好 babel-runtime 和 配好 plugin 就可以了。好处是按需替换，检测到你需要哪个，就引入哪个 polyfill，如果只用了一部分，打包完的文件体积对比 babel-polyfill 会小很多。而且 transform-runtime 不会污染原生的对象，方法，也不会对其他 polyfill 产生影响。所以 transform-runtime 的方式更适合开发工具包，库，一方面是体积够小，另一方面是用户（开发者）不会因为引用了我们的工具，包而污染了全局的原生方法，产生副作用，还是应该留给用户自己去选择。缺点是随着应用的增大，相同的 polyfill 每个模块都要做重复的工作（检测，替换），虽然 polyfill 只是引用，编译效率不够高效。<strong>值得注意的是，instance 上新添加的一些方法，babel-plugin-transform-runtime 是没有做处理的，比如 数组的 <code>includes, filter, fill</code> 等，这个算是一个关键问题吧，直接推荐用 polyfill。</strong><a href="https://github.com/jakwuh/babel-plugin-transform-runtime" target="_blank" rel="nofollow noopener noreferrer">link</a>
+            transform-runtime 是利用 plugin 自动识别并替换代码中的新特性，你不需要再引入，只需要装好 babel-runtime 和 配好 plugin 就可以了。好处是按需替换，检测到你需要哪个，就引入哪个 polyfill，如果只用了一部分，打包完的文件体积对比 babel-polyfill 会小很多。而且 transform-runtime 不会污染原生的对象，方法，也不会对其他 polyfill 产生影响。所以 transform-runtime 的方式更适合开发工具包，库，一方面是体积够小，另一方面是用户（开发者）不会因为引用了[我们](https://www.w3cdoc.com)的工具，包而污染了全局的原生方法，产生副作用，还是应该留给用户自己去选择。缺点是随着应用的增大，相同的 polyfill 每个模块都要做重复的工作（检测，替换），虽然 polyfill 只是引用，编译效率不够高效。<strong>值得注意的是，instance 上新添加的一些方法，babel-plugin-transform-runtime 是没有做处理的，比如 数组的 <code>includes, filter, fill</code> 等，这个算是一个关键问题吧，直接推荐用 polyfill。</strong><a href="https://github.com/jakwuh/babel-plugin-transform-runtime" target="_blank" rel="nofollow noopener noreferrer">link</a>
           </li>
         </ul>
         
@@ -751,7 +751,7 @@ onsole.log((&lt;span class="hljs-number">0&lt;/span>, _values2.default)({ &lt;sp
         </h3>
         
         <p>
-          这个 preset 真是神器啊，它能根据当前的运行环境，自动确定你需要的 plugins 和 polyfills。通过各个 es标准 feature 在不同浏览器以及 node 版本的支持情况，再去维护一个 feature 跟 plugins 之间的映射关系，最终确定需要的 plugins。
+          这个 preset 真是神器啊，它能根据当前的运行环境，自动确定你需要的 plugins 和 polyfills。通过各个 es标准 feature 在不同[浏览器](https://www.w3cdoc.com)以及 node 版本的支持情况，再去维护一个 feature 跟 plugins 之间的映射关系，最终确定需要的 plugins。
         </p>
         
         <h4>
@@ -773,7 +773,7 @@ onsole.log((&lt;span class="hljs-number">0&lt;/span>, _values2.default)({ &lt;sp
       &lt;span class="hljs-string">"env"&lt;/span>,
       {
         &lt;span class="hljs-string">"targets"&lt;/span>: { &lt;span class="hljs-comment">// 配支持的环境&lt;/span>
-          &lt;span class="hljs-string">"browsers"&lt;/span>: [ &lt;span class="hljs-comment">// 浏览器&lt;/span>
+          &lt;span class="hljs-string">"browsers"&lt;/span>: [ &lt;span class="hljs-comment">// [浏览器](https://www.w3cdoc.com)&lt;/span>
             &lt;span class="hljs-string">"last 2 versions"&lt;/span>,
             &lt;span class="hljs-string">"safari &gt;= 7"&lt;/span>
           ],
@@ -842,7 +842,7 @@ Using polyfills:
         </h4>
         
         <p>
-          env 会自动根据我们的运行环境，去判断需要什么样的 polyfill，而且，打包后的代码体积也会大大减小，但是这一切都在使用 useBuiltIns，而且需要你安装 babel-polyfill，并 import。它会启用一个插件，替换你的<code>import 'babel-polyfill'</code>，不是整个引入了，而是根据你配置的环境和个人需要单独的引入 polyfill。 我尝试了一下是否真的有效，下面是我的对比实验过程：
+          env 会自动根据[我们](https://www.w3cdoc.com)的运行环境，去判断需要什么样的 polyfill，而且，打包后的代码体积也会大大减小，但是这一切都在使用 useBuiltIns，而且需要你安装 babel-polyfill，并 import。它会启用一个插件，替换你的<code>import 'babel-polyfill'</code>，不是整个引入了，而是根据你配置的环境和个人需要单独的引入 polyfill。 我尝试了一下是否真的有效，下面是我的对比实验过程：
         </p>
         
         <p>
@@ -963,7 +963,7 @@ a();
         </p>
         
         <p>
-          咦，这样好像体积更小啊。别忘了，我们的 babel-polyfill 是配置了执行环境的，通过环境看你需要哪些 polyfill。而 transform-runtime，是发现我们代码需要什么 polyfill，当然会少很多了。所以，又回到了用哪个的问题&#8230; &#x1f613; 参考上面的总结。
+          咦，这样好像体积更小啊。别忘了，[我们](https://www.w3cdoc.com)的 babel-polyfill 是配置了执行环境的，通过环境看你需要哪些 polyfill。而 transform-runtime，是发现[我们](https://www.w3cdoc.com)代码需要什么 polyfill，当然会少很多了。所以，又回到了用哪个的问题&#8230; &#x1f613; 参考上面的总结。
         </p>
         
         <h4>
@@ -1081,7 +1081,7 @@ a();
         </p>
         
         <p>
-          mocha 是支持编译器的，通过 <code>--compilers </code> 指定，这里我们用 babel，举个栗子
+          mocha 是支持编译器的，通过 <code>--compilers </code> 指定，这里[我们](https://www.w3cdoc.com)用 babel，举个栗子
         </p>
         
         <div class="widget-codetool" style="display: none;">

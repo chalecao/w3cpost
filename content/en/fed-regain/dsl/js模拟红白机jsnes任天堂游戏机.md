@@ -31,12 +31,12 @@ Nintendo Entertainment System声音处理器： 矩形声波处理器两个，�
 
 这位大牛写的硬件模拟器，是基于上面的硬件配置来写的。看了一下源代码，声波处理器有些问题，目前算法效率太低，导致开启声音时游戏运行比较卡顿。github: <a href="https://github.com/bfirsh/jsnes" target="_blank" rel="external noopener">https://github.com/bfirsh/jsnes</a>
 
-抽空优化优化，大家可以玩玩我做的网页版的，也欢迎打赏哈！
+抽空优化优化，[大家](https://www.w3cdoc.com)可以玩玩我做的网页版的，也欢迎打赏哈！
 
 <img loading="lazy" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/qrcoderead-1.jpg" alt="js模拟红白机jsnes" width="150" height="150" />
 
 ### 谢谢！
 
-欢迎关注公众号（扫描左侧二维码），前端学习交流
+欢迎关注公众号（扫描左侧二维码），[前端](https://www.w3cdoc.com)学习交流
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/1-1F603141504352.jpg

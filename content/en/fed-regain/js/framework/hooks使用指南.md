@@ -118,7 +118,7 @@ title: hooks使用指南
     </div>
 
     <p>
-      对于class component里面的表现，我们可以通过闭包来改变，之所以如此是因为class component里面的state随着render是发生变化的，而useEffect里面即使使用props.count也不会有问题，因为useEffect里面的所有东西都是每次render独立的
+      对于class component里面的表现，[我们](https://www.w3cdoc.com)可以通过闭包来改变，之所以如此是因为class component里面的state随着render是发生变化的，而useEffect里面即使使用props.count也不会有问题，因为useEffect里面的所有东西都是每次render独立的
     </p>
     
     <div class="_2Uzcx_">
@@ -218,7 +218,7 @@ title: hooks使用指南
     </p>
     
     <p>
-      按照惯性思维，我们可能觉得应该是先清理之前一次render注册的事件，然后render组件，然后再注册本次render的事件
+      按照惯性思维，[我们](https://www.w3cdoc.com)可能觉得应该是先清理之前一次render注册的事件，然后render组件，然后再注册本次render的事件
     </p>
     
     <div class="_2Uzcx_">
@@ -231,7 +231,7 @@ title: hooks使用指南
     </div>
 
     <p>
-      但实际上react并不是这样工作的，而是像下面这样，因为react总是在浏览器paint之后再去做effects相关的事情，无论是useEffect还是他返回的函数，而且清理函数也和其他函数一样能够capture当前的props和state，尽管在他执行时已经是新的组件render好了
+      但实际上react并不是这样工作的，而是像下面这样，因为react总是在[浏览器](https://www.w3cdoc.com)paint之后再去做effects相关的事情，无论是useEffect还是他返回的函数，而且清理函数也和其他函数一样能够capture当前的props和state，尽管在他执行时已经是新的组件render好了
     </p>
     
     <div class="_2Uzcx_">
@@ -290,7 +290,7 @@ title: hooks使用指南
     </h2>
     
     <p>
-      在class component里面，lifecycle是我们做一切的基础，但是在使用react-hooks的时候，请忘记lifecycle，尽管useEffect函数很多时候达到了相似的效果
+      在class component里面，lifecycle是[我们](https://www.w3cdoc.com)做一切的基础，但是在使用react-hooks的时候，请忘记lifecycle，尽管useEffect函数很多时候达到了相似的效果
     </p>
     
     <p>
@@ -367,7 +367,7 @@ title: hooks使用指南
     </p>
     
     <p>
-      如下代码，我们想模拟一个定时器，在第一次渲染之后挂载，在组件卸载的时候取消这个定时器，那么这好像和把dependency数组设为[]的功能很像，但是如果这样做的话，结果是定时器只加一次。
+      如下代码，[我们](https://www.w3cdoc.com)想模拟一个定时器，在第一次渲染之后挂载，在组件卸载的时候取消这个定时器，那么这好像和把dependency数组设为[]的功能很像，但是如果这样做的话，结果是定时器只加一次。
     </p>
     
     <div class="_2Uzcx_">
@@ -561,7 +561,7 @@ title: hooks使用指南
     </div>
 
     <p>
-      我们来看一个useEffect的dependency数组含有函数的情况：
+      [我们](https://www.w3cdoc.com)来看一个useEffect的dependency数组含有函数的情况：
     </p>
     
     <div class="_2Uzcx_">
@@ -649,7 +649,7 @@ title: hooks使用指南
         &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">getFetchUrl&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
             &lt;span class="token keyword">return&lt;/span> &lt;span class="token string">'https://hn.algolia.com/api/v1/search?query='&lt;/span> &lt;span class="token operator">+&lt;/span> query&lt;span class="token punctuation">;&lt;/span>
         &lt;span class="token punctuation">}&lt;/span>
-        &lt;span class="token comment">// 对于这样一个组件，如果我们改变了query，按理来说应该要重新拉取数据，但是这种写法里面就无法实现，除非在useEffect的dependency数组里面添加一个query，但是这样是很不明显的，因为useEffect里面的函数只写了一个fetchData，并没有看到query的身影，所以query很容易被忽略，而一旦忽略就会带来bug，所以简单的解决方法就是把fetchData这个函数作为dependency写进useEffect的dependency数组，但是这样也会带来问题，就是每次render之后，无论这次render是否改变了query，都会导致fetchData这个函数发生变化（因为每次render之后函数都是不同的），都会重新拉取数据，这是我们不想要的结果&lt;/span>
+        &lt;span class="token comment">// 对于这样一个组件，如果[我们](https://www.w3cdoc.com)改变了query，按理来说应该要重新拉取数据，但是这种写法里面就无法实现，除非在useEffect的dependency数组里面添加一个query，但是这样是很不明显的，因为useEffect里面的函数只写了一个fetchData，并没有看到query的身影，所以query很容易被忽略，而一旦忽略就会带来bug，所以简单的解决方法就是把fetchData这个函数作为dependency写进useEffect的dependency数组，但是这样也会带来问题，就是每次render之后，无论这次render是否改变了query，都会导致fetchData这个函数发生变化（因为每次render之后函数都是不同的），都会重新拉取数据，这是[我们](https://www.w3cdoc.com)不想要的结果&lt;/span>
 
         &lt;span class="token comment">// Imagine this function is also long&lt;/span>
         &lt;span class="token keyword">async&lt;/span> &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">fetchData&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -720,7 +720,7 @@ title: hooks使用指南
     </div>
 
     <p>
-      useCallback本质上是添加了一层依赖检查。它以另一种方式解决了问题 &#8211; 我们使函数本身只在需要的时候才改变，而不是去掉对函数的依赖
+      useCallback本质上是添加了一层依赖检查。它以另一种方式解决了问题 &#8211; [我们](https://www.w3cdoc.com)使函数本身只在需要的时候才改变，而不是去掉对函数的依赖
     </p>
     
     <p>

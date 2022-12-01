@@ -141,7 +141,7 @@ title: react hook的初步研究前言renderWithHooks的整个过程
 
 > 官方有句话，必须顺序调用hook。衍生的其他规则：不要在if条件判断中使用hook、必须在函数组件内使用hook、不要在循环中使用hook（其实只要保证循环每次都完全一样还是可以的）
 
-如果我们就是这样不按照套路使用的话，比如代码里面由于某种条件判断，使得我们第二次调用组件函数的时候usestate的顺序不一样，伪代码：
+如果[我们](https://www.w3cdoc.com)就是这样不按照套路使用的话，比如代码里面由于某种条件判断，使得[我们](https://www.w3cdoc.com)第二次调用组件函数的时候usestate的顺序不一样，伪代码：
 
 <pre class="prism-token token  language-javascript"><span class="token comment">// 第一次</span>
     <span class="token keyword">const</span> <span class="token punctuation">[</span>n<span class="token punctuation">,</span> setn<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -610,7 +610,7 @@ title: react hook的初步研究前言renderWithHooks的整个过程
 
 # current
 
-ReactCurrentDispatcher$1.current会是HooksDispatcherOnMountInDEV和HooksDispatcherOnUpdateInDEV其中一个，它们都是一个存放所有的hook函数的对象。首先，我们看一下第一次挂载的时候使用的HooksDispatcherOnMountInDEV里面的useState:
+ReactCurrentDispatcher$1.current会是HooksDispatcherOnMountInDEV和HooksDispatcherOnUpdateInDEV其中一个，它们都是一个存放所有的hook函数的对象。首先，[我们](https://www.w3cdoc.com)看一下第一次挂载的时候使用的HooksDispatcherOnMountInDEV里面的useState:
 
 <pre class="prism-token token  language-javascript">HooksDispatcherOnMountInDEV <span class="token operator">=</span> <span class="token punctuation">{</span>
     <span class="token comment">// ....</span>
@@ -676,7 +676,7 @@ ReactCurrentDispatcher$1.current会是HooksDispatcherOnMountInDEV和HooksDispatc
   <img class="" src="https://ask.qcloudimg.com/http-save/yehe-3635362/fshq09ka2l.png?imageView2/2/w/1620" />
 </div></figure>
 
-每一次hook都是用updateWorkInProgressHook获取的。也是这个函数的实现，让我们看起来react内部是用一个数组维护了hook
+每一次hook都是用updateWorkInProgressHook获取的。也是这个函数的实现，让[我们](https://www.w3cdoc.com)看起来react内部是用一个数组维护了hook
 
 <pre class="prism-token token  language-javascript"><span class="token keyword">function</span> <span class="token function">updateWorkInProgressHook</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment">// nextCurrentHook是前面的renderWithHooks赋值的</span>
@@ -705,7 +705,7 @@ ReactCurrentDispatcher$1.current会是HooksDispatcherOnMountInDEV和HooksDispatc
 
 # 手动模拟更新还原过程
 
-我们还是继续在我们的例子上面改。首先，先用最简单的方法实现一个low一点的hook：
+[我们](https://www.w3cdoc.com)还是继续在[我们](https://www.w3cdoc.com)的例子上面改。首先，先用最简单的方法实现一个low一点的hook：
 
 <pre class="prism-token token  language-javascript"><span class="token keyword">let</span> state <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// 存放useState的第一个返回值，状态</span>
 <span class="token keyword">let</span> dispatchers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  <span class="token comment">// 存放useState的第二个返回值，dispatch函数</span>
@@ -730,7 +730,7 @@ ReactCurrentDispatcher$1.current会是HooksDispatcherOnMountInDEV和HooksDispatc
 <span class="token punctuation">}</span>
 复制代码</pre>
 
-就这么简单，极其简单版本hook。但是我们要模拟react里面的重新渲染更新，需要动一点手脚：
+就这么简单，极其简单版本hook。但是[我们](https://www.w3cdoc.com)要模拟react里面的重新渲染更新，需要动一点手脚：
 
 <pre class="prism-token token  language-javascript">根组件就是HookIsHere组件
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
@@ -741,7 +741,7 @@ ReactCurrentDispatcher$1.current会是HooksDispatcherOnMountInDEV和HooksDispatc
 脱离了react环境的简易hook，如果用在HookIsHere组件中，需要手动模拟更新过程：
 
 <pre class="prism-token token  language-javascript"><span class="token keyword">function</span> <span class="token function">HookIsHere</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token function">updateHooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// react每次更新，都会跑完全部hook，我们用这个函数模拟</span>
+  <span class="token function">updateHooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// react每次更新，都会跑完全部hook，[我们](https://www.w3cdoc.com)用这个函数模拟</span>
   <span class="token keyword">return</span> <span class="token punctuation">(</span>
     <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span>
       修改n<span class="token punctuation">:</span><span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
@@ -769,7 +769,7 @@ ReactCurrentDispatcher$1.current会是HooksDispatcherOnMountInDEV和HooksDispatc
   <span class="token keyword">return</span> <span class="token operator">&lt;</span>HookIsHere <span class="token operator">/</span><span class="token operator">&gt;</span><span class="token punctuation">;</span> <span class="token comment">// 会被render返回的，这里只是模拟并没有什么卵用</span>
 <span class="token punctuation">}</span>
 
-<span class="token comment">// 封装一下，能让我们每次更新ui可以重新把函数组件所有的useState运行一次</span>
+<span class="token comment">// 封装一下，能让[我们](https://www.w3cdoc.com)每次更新ui可以重新把函数组件所有的useState运行一次</span>
 <span class="token comment">// 脱离react自身环境实现的简易版本，只能通过这种方法模拟更新</span>
 <span class="token keyword">function</span> <span class="token function">updateHooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token punctuation">[</span>
@@ -791,7 +791,7 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 复制代码</pre>
 
-打开控制台，可以看见我们的自己造的hook跑起来了的console
+打开控制台，可以看见[我们](https://www.w3cdoc.com)的自己造的hook跑起来了的console
 
 全部代码：
 

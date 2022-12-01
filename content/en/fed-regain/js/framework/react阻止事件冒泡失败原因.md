@@ -49,7 +49,7 @@ DOM 事件会先后经历 **捕获** 与 **冒泡** 两个阶段。捕获即
 
 ### 阻止事件的冒泡
 
-通过调用事件身上的 `stopPropagation()` 可阻止事件冒泡，这样可实现只我们想要的元素处理该事件，而其他元素接收不到。
+通过调用事件身上的 `stopPropagation()` 可阻止事件冒泡，这样可实现只[我们](https://www.w3cdoc.com)想要的元素处理该事件，而其他元素接收不到。
 
 <div class="highlight highlight-text-html-basic">
   <pre>&lt;<span class="pl-ent">button</span> <span class="pl-e">onclick</span>=<span class="pl-s"><span class="pl-pds">"</span>btnClickHandler(event)<span class="pl-pds">"</span></span>&gt;CLICK ME&lt;/<span class="pl-ent">button</span>&gt;
@@ -122,7 +122,7 @@ DOM 事件会先后经历 **捕获** 与 **冒泡** 两个阶段。捕获即
 &lt;span class="hljs-built_in">document&lt;/span> clicked
 </code></pre>
 
-document 上的事件处理器正常执行了，并没有因为我们在按钮里面调用 `event.stopPropagation()` 而阻止。
+document 上的事件处理器正常执行了，并没有因为[我们](https://www.w3cdoc.com)在按钮里面调用 `event.stopPropagation()` 而阻止。
 
 那么问题出在哪？
 
@@ -204,7 +204,7 @@ bdoy 上阻止冒泡后，你可能会觉得，既然 body 是按钮及按钮容
 
 React 有自身的一套事件系统，叫作 <a href="https://reactjs.org/docs/events.html" target="_blank" rel="nofollow noopener noreferrer">SyntheticEvent</a>。叫什么不重要，实现上，其实就是通过在 document 上注册事件代理了组件树中所有的事件（<a href="https://github.com/facebook/react/issues/4335#issuecomment-120269153" target="_blank" rel="noopener noreferrer" data-hovercard-type="issue" data-hovercard-url="/facebook/react/issues/4335/hovercard">facebook/react#4335</a>），并且它监听的是 document 冒泡阶段。你完全可以忽略掉 SyntheticEvent 这个名词，如果觉得它有点让事情变得高大上或者增加了一些神秘的话。
 
-除了事件系统，它有自身的一套，另外还需要理解的是，界面上展示的 DOM 与我们代码中的 DOM 组件，也是两样东西，需要在概念上区分开来。
+除了事件系统，它有自身的一套，另外还需要理解的是，界面上展示的 DOM 与[我们](https://www.w3cdoc.com)代码中的 DOM 组件，也是两样东西，需要在概念上区分开来。
 
 所以，当你在页面上点击按钮，事件开始在原生 DOM 上走捕获冒泡流程。React 监听的是 document 上的冒泡阶段。事件冒泡到 document 后，React 将事件再派发到组件树中，然后事件开始在组件树 DOM 中走捕获冒泡流程。
 
@@ -215,13 +215,13 @@ React 有自身的一套事件系统，叫作 <a href="https://reactjs.org/docs
   * 事件到达 document 之后，发现 document 上面一共绑定了三个事件处理器，分别是代码中通过 `document.addEventListener` 在 `ReactDOM.render` 前后调用的，以及一个隐藏的事件处理器，是 <a href="https://github.com/facebook/react/blob/e8857918422b5ce8505ba5ce4a2d153e509c17a1/packages/react-dom/src/events/ReactBrowserEventEmitter.js#L105-L173" target="_blank" rel="noopener noreferrer">ReactDOM 绑定的</a>，也就是前面提到的 React 用来代理事件的那个处理器。
   * 同一元素上如果对同一类型的事件绑定了多个处理器，会按照绑定的顺序来执行。
   * 所以 `ReactDOM.render` 之前的那个处理器先执行，输出 `document:before react mount`。
-  * 然后是 React 的事件处理器。此时，流程才真正进入 React，走进我们的组件。组件里面就好理解了，从 button 冒泡到 container，依次输出。
+  * 然后是 React 的事件处理器。此时，流程才真正进入 React，走进[我们](https://www.w3cdoc.com)的组件。组件里面就好理解了，从 button 冒泡到 container，依次输出。
   * 最后 `ReactDOM.render` 之后的那个处理器先执行，输出 `document:after react mount`。
 * 事件完成了在 document 上的冒泡，往上到了 window，执行相应的处理器并输出 `window`。
 
 理解 **React 是通过监听 document 冒泡阶段来代理组件中的事件**，这点很重要。同时，区分原生 DOM 与 React 组件，也很重要。并且，React 组件上的事件处理器接收到的 `event` 对象也有别于原生的事件对象，不是同一个东西。但这个对象上有个 `nativeEvent` 属性，可获取到原生的事件对象，后面会用到和讨论它。
 
-紧接着的代码的改动中，我们在 body 上阻止了事件冒泡，这样事件在 body 就结束了，没有到达 document，那么 React 的事件就不会被触发，所以 React 组件树中，按钮及容器就没什么反应。如果没理解到这点，光看表象还以为是 bug。
+紧接着的代码的改动中，[我们](https://www.w3cdoc.com)在 body 上阻止了事件冒泡，这样事件在 body 就结束了，没有到达 document，那么 React 的事件就不会被触发，所以 React 组件树中，按钮及容器就没什么反应。如果没理解到这点，光看表象还以为是 bug。
 
 进而可以理解，如果在 `ReactDOM.render()` 之前的的 document 事件处理器上将冒泡结束掉，同样会影响 React 的执行。只不过这里需要调用的不是 `event.stopPropagation()`，而是 `event.stopImmediatePropagation()`。
 
@@ -289,7 +289,7 @@ React 有自身的一套事件系统，叫作 <a href="https://reactjs.org/docs
 }</pre>
 </div>
 
-至于原理，其实前面已经有展示过。React 在 render 时监听了 document 冒泡阶段的事件，当我们的 `App` 组件执行时，准确地说是渲染完成后（`useEffect` 渲染完成后执行），又在 document 上注册了 click 的监听。此时 document 上有两个事件处理器了，并且组件中的这个顺序在 React 后面。
+至于原理，其实前面已经有展示过。React 在 render 时监听了 document 冒泡阶段的事件，当[我们](https://www.w3cdoc.com)的 `App` 组件执行时，准确地说是渲染完成后（`useEffect` 渲染完成后执行），又在 document 上注册了 click 的监听。此时 document 上有两个事件处理器了，并且组件中的这个顺序在 React 后面。
 
 当调用 `event.nativeEvent.stopImmediatePropagation()` 后，阻止了 document 上同类型后续事件处理器的执行，达到了想要的效果。
 

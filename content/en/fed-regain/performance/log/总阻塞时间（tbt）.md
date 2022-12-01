@@ -12,13 +12,13 @@ title: “总阻塞时间”（TBT）
 
 “总阻塞时间”（TBT）度量标准度量了“[首屏内容渲染（FCP）”][1]和[“可交互时间”（TTI）][2]之间的总 [时间，][2] 在该[时间][2]中，主线程被阻塞足够长的时间导致阻塞输入响应。
 
-只要存在[长][3]任务且该任务在主线程上运行超过50毫秒（ms），该主线程即被视为“阻塞”。我们说主线程“被阻止”是因为浏览器无法中断正在进行的任务。因此，如果用户_确实_在较长的任务中间与页面进行交互，则浏览器必须等待任务完成才能响应。
+只要存在[长][3]任务且该任务在主线程上运行超过50毫秒（ms），该主线程即被视为“阻塞”。[我们](https://www.w3cdoc.com)说主线程“被阻止”是因为[浏览器](https://www.w3cdoc.com)无法中断正在进行的任务。因此，如果用户_确实_在较长的任务中间与页面进行交互，则[浏览器](https://www.w3cdoc.com)必须等待任务完成才能响应。
 
 如果任务足够长（例如，超过50毫秒的任何时间），则用户很可能会注意到延迟，并感觉页面缓慢或过时。
 
 给定的长任务的_阻塞时间_是其持续时间超过50毫秒。<span style="color: #ff0000;">页面的</span><span style="color: #ff0000;"><em>总阻塞时间</em>是FCP和TTI之间发生的每个长任务的<em>阻塞时间之</em>和。</span>
 
-例如，考虑页面加载期间浏览器主线程的下图：
+例如，考虑页面加载期间[浏览器](https://www.w3cdoc.com)主线程的下图：
 
 <p id="ekiTnZR">
   <img loading="lazy" width="1698" height="326" class="alignnone size-full wp-image-5919 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/format,webp 1698w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_58/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_154/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_147/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_295/format,webp 1536w" sizes="(max-width: 1698px) 100vw, 1698px" />
@@ -139,7 +139,7 @@ TBT是TTI的一个很好的辅助指标，因为它有助于量化页面在变�
 
 TBT是应该[在实验室中][4]测量的指标。衡量TBT的最佳方法是在您的站点上运行Lighthouse性能审核。有关用法的详细信息，请参见[TBT上][5]的[Lighthouse文档][5]。
 
-也可以通过监听longtask，在tti之前计算tbt时间。参考[打造企业级私有前端监控体系][6]课程中有介绍。
+也可以通过监听longtask，在tti之前计算tbt时间。参考[打造企业级私有[前端](https://www.w3cdoc.com)监控体系][6]课程中有介绍。
 
 ### 实验室工具<a class="w-headline-link" href="https://web.dev/tbt/#lab-tools" aria-hidden="true">＃</a> {#lab-tools}
 
@@ -172,8 +172,8 @@ TBT是应该[在实验室中][4]测量的指标。衡量TBT的最佳方法是在
 
 ## 关联课程
 
-* [打造企业级私有前端监控体系][6]
-* [高性能极致用户体验前端开发实战][16]
+* [打造企业级私有[前端](https://www.w3cdoc.com)监控体系][6]
+* [高性能极致用户体验[前端](https://www.w3cdoc.com)开发实战][16]
 
  [1]: https://web.dev/fcp/
  [2]: https://web.dev/tti/

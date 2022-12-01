@@ -6,7 +6,7 @@ title: JS对象属性的快速删除
 ---
 先划重点：**沿着属性添加的反方向删除属性时，对象不会退化为字典模式**。
 
-在实际业务中，有时针对对象的 delete 操作难以避免，当然我们可以调用上一章提到的方法（MagicFunc）将其优化成为快速模式，但这里主要有 3 个弊端：
+在实际业务中，有时针对对象的 delete 操作难以避免，当然[我们](https://www.w3cdoc.com)可以调用上一章提到的方法（MagicFunc）将其优化成为快速模式，但这里主要有 3 个弊端：
 
 * V8 将对象由快速模式迁移到字典模式也需花费时间处理。
 * 所有这些优化方式都是通过 side effects 来实现，本身可靠性的保障并不高。
@@ -27,7 +27,7 @@ title: JS对象属性的快速删除
 
 > 其中第 3 点是在这 6 点中最重要的一条。
 
-我们来举个例子：
+[我们](https://www.w3cdoc.com)来举个例子：
 
 <div class="highlight">
   <pre><code class="language-js">&lt;span class="c1">// flags: --allow-natives-syntax
@@ -52,13 +52,13 @@ title: JS对象属性的快速删除
 &lt;/span></code></pre>
 </div>
 
-通过例子我们可以看出，**当沿着属性添加的反方向删除属性时，对象不会退化为字典模式**。
+通过例子[我们](https://www.w3cdoc.com)可以看出，**当沿着属性添加的反方向删除属性时，对象不会退化为字典模式**。
 
 V8 是如何实现这个特性（DeleteObjectPropertyFast）的了？
 
 在这其中起着关键作用的就是 JSObject<Map> 中的 backpointer 引用链。
 
-我们现在了解到在构建完 p1/p2 对象后， V8 在内部实际上创建了 3 个 JSObject<Map> 实例。
+[我们](https://www.w3cdoc.com)现在了解到在构建完 p1/p2 对象后， V8 在内部实际上创建了 3 个 JSObject<Map> 实例。
 
 而每个 <Map> 实例都有一个 backpointer 字段引用其前一个（Transition） <Map> 。
 
@@ -87,7 +87,7 @@ V8 是如何实现这个特性（DeleteObjectPropertyFast）的了？
   <img loading="lazy" width="1440" height="810" class="alignnone size-full wp-image-6638 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png?x-oss-process=image/format,webp 1440w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_169/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_450/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_432/format,webp 768w" sizes="(max-width: 1440px) 100vw, 1440px" />
 </p></figure>
 
-通过上述的例子我们可以总结出：
+通过上述的例子[我们](https://www.w3cdoc.com)可以总结出：
 
 * 如果以属性添加的反方向删除属性时，可以方便的通过对象 <Map> 形成的 backpointer 引用链回滚到上一次的状态而无需退化到字典模式。
 * 如果删除的属性并非最后添加到对象内时，backpointer 引用链也无能为力，这时 V8 就会以字典模式来表达对象了。

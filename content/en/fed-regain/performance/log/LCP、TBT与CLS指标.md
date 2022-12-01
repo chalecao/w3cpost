@@ -11,7 +11,7 @@ title: LCP、TBT与CLS指标
     </div>
 
     <p>
-      <code>FP (First Paint) 首次绘制</code>: 标记浏览器渲染任何在视觉上不同于导航前屏幕内容之内容的时间点.
+      <code>FP (First Paint) 首次绘制</code>: 标记[浏览器](https://www.w3cdoc.com)渲染任何在视觉上不同于导航前屏幕内容之内容的时间点.
     </p>
     
     <h2>
@@ -19,7 +19,7 @@ title: LCP、TBT与CLS指标
     </h2>
     
     <p>
-      <code>FCP (First Contentful Paint) 首次内容绘制</code> 标记浏览器渲染来自 DOM 第一位内容的时间点，该内容可能是文本、图像、SVG 甚至 元素.
+      <code>FCP (First Contentful Paint) 首次内容绘制</code> 标记[浏览器](https://www.w3cdoc.com)渲染来自 DOM 第一位内容的时间点，该内容可能是文本、图像、SVG 甚至 元素.
     </p>
     
     <h2>
@@ -105,7 +105,7 @@ title: LCP、TBT与CLS指标
     </h2>
     
     <p>
-      <code>FID (First Input Delay) 首次输入延迟</code>: 指标衡量的是从用户首次与您的网站进行交互（即当他们单击链接，点击按钮等）到浏览器实际能够访问之间的时间, 下面来张图来解释FID和TTI的区别:<br /> <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/20200209204416573.png.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/20200209204416573.png.png?x-oss-process=image/format,webp" alt="在这里插入图片描述" />
+      <code>FID (First Input Delay) 首次输入延迟</code>: 指标衡量的是从用户首次与您的网站进行交互（即当他们单击链接，点击按钮等）到[浏览器](https://www.w3cdoc.com)实际能够访问之间的时间, 下面来张图来解释FID和TTI的区别:<br /> <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/20200209204416573.png.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/20200209204416573.png.png?x-oss-process=image/format,webp" alt="在这里插入图片描述" />
     </p>
     
     <h2>
@@ -133,7 +133,7 @@ title: LCP、TBT与CLS指标
     </p>
     
     <p>
-      首先在浏览器中捕获页面加载的视频，然后对每 100 毫秒间隔的页面截图计算页面填充的百分比，可以得到这样一个曲线（纵轴是页面可视区域内容填充完成度，横轴是时间）。<br /> <img src="https://cdn.nlark.com/yuque/0/2020/png/84793/1587819627733-30dc9e60-5eca-4988-bbf2-a3e752c69b57.png#align=left&#038;display=inline&#038;height=369&#038;margin=%5Bobject%20Object%5D&#038;name=image.png&#038;originHeight=737&#038;originWidth=1004&#038;size=82123&#038;status=done&#038;style=none&#038;width=502" alt="image.png" />
+      首先在[浏览器](https://www.w3cdoc.com)中捕获页面加载的视频，然后对每 100 毫秒间隔的页面截图计算页面填充的百分比，可以得到这样一个曲线（纵轴是页面可视区域内容填充完成度，横轴是时间）。<br /> <img src="https://cdn.nlark.com/yuque/0/2020/png/84793/1587819627733-30dc9e60-5eca-4988-bbf2-a3e752c69b57.png#align=left&#038;display=inline&#038;height=369&#038;margin=%5Bobject%20Object%5D&#038;name=image.png&#038;originHeight=737&#038;originWidth=1004&#038;size=82123&#038;status=done&#038;style=none&#038;width=502" alt="image.png" />
     </p>
     
     <p id="JHsnXWR">

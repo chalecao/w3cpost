@@ -6,7 +6,7 @@ title: 关于hit test
   <img loading="lazy" class="alignnone wp-image-6084 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/format,webp" alt="" width="675" height="259" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/format,webp 1156w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_115/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_306/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_294/format,webp 768w" sizes="(max-width: 675px) 100vw, 675px" />
 </p>
 
-先看下上面这个图，可以了解下hit Test，在我们调用elementsFromPoint 这个 DOM api的时候，内部执行这个hit test尽然花费了5s钟，一开始我以为是这个导致了页面卡顿，后来仔细想想，是因为卡顿导致了这个hit test执行时间长。
+先看下上面这个图，可以了解下hit Test，在[我们](https://www.w3cdoc.com)调用elementsFromPoint 这个 DOM api的时候，内部执行这个hit test尽然花费了5s钟，一开始我以为是这个导致了页面卡顿，后来仔细想想，是因为卡顿导致了这个hit test执行时间长。
 
 <pre class="lang-js s-code-block hljs javascript"><code>| Self Time       | Total Time      | Activity            |
 |-----------------|-----------------|---------------------|
@@ -23,11 +23,11 @@ title: 关于hit test
 
 其实这个是很关键的一个点，在处理手机h5下拉滚动加载的时候解决卡顿问题，是一样的原理。
 
-用户通过鼠标点击或者触摸的时候，浏览器通过hit test来搜集所有点击响应事件，交给浏览器内核blink挨个处理。因为程序中可以通过preventDefault来阻止默认事件，也可以通过[**stopImmediatePropagation**][1]阻止其他响应事件和冒泡，或者[stopPropagation][2]阻止冒泡，所以blink内核需要依次执行所有回调，执行回调函数期间就会阻塞浏览器响应和渲染（之前ios uiwebview(ios>=2)内核的时候会阻塞ui渲染，webkit webview（ios>=8）内核的时候独立了UI线程，不会被js阻塞，但仍然会有卡顿），所以经常会出现向上滚动操作几秒之后页面才会突然滚动上去或者跳动上去。之前的解决方法大都是取消事件处理，不在滚动的dom元素上绑定事件或者做复杂的处理，在window全局scroll事件上处理，而且只做简单业务逻辑，等滚动事件完后在处理业务逻辑。
+用户通过鼠标点击或者触摸的时候，[浏览器](https://www.w3cdoc.com)通过hit test来搜集所有点击响应事件，交给[浏览器](https://www.w3cdoc.com)内核blink挨个处理。因为程序中可以通过preventDefault来阻止默认事件，也可以通过[**stopImmediatePropagation**][1]阻止其他响应事件和冒泡，或者[stopPropagation][2]阻止冒泡，所以blink内核需要依次执行所有回调，执行回调函数期间就会阻塞[浏览器](https://www.w3cdoc.com)响应和渲染（之前ios uiwebview(ios>=2)内核的时候会阻塞ui渲染，webkit webview（ios>=8）内核的时候独立了UI线程，不会被js阻塞，但仍然会有卡顿），所以经常会出现向上滚动操作几秒之后页面才会突然滚动上去或者跳动上去。之前的解决方法大都是取消事件处理，不在滚动的dom元素上绑定事件或者做复杂的处理，在window全局scroll事件上处理，而且只做简单业务逻辑，等滚动事件完后在处理业务逻辑。
 
 hit test就是用来追踪当前点击位置的响应元素，从根节点html>body一直到目标节点。
 
-参考资料2中介绍了chrome 中hit test是在合成层进行处理的。如果不了解合成层可以学习下[前端增长-高级进阶知识梳理总结][3]课程
+参考资料2中介绍了chrome 中hit test是在合成层进行处理的。如果不了解合成层可以学习下[[前端](https://www.w3cdoc.com)增长-高级进阶知识梳理总结][3]课程
 
 > <div>
 >   <h3 dir="ltr">
@@ -79,7 +79,7 @@ hit test就是用来追踪当前点击位置的响应元素，从根节点html>b
 >   </div>
 > </div>
 
-大致的意思就是，在浏览器blink引擎绘制元素的时候会为每个要绘制的元素生成<span style="font-family: arial, sans-serif; font-size: medium;">HitTestDisplayItem，这些元素和对应的事件处理函数都会缓存起来，在合成的时候所有元素都会投射成一个框框到对应的view层。</span>
+大致的意思就是，在[浏览器](https://www.w3cdoc.com)blink引擎绘制元素的时候会为每个要绘制的元素生成<span style="font-family: arial, sans-serif; font-size: medium;">HitTestDisplayItem，这些元素和对应的事件处理函数都会缓存起来，在合成的时候所有元素都会投射成一个框框到对应的view层。</span>
 
 在合成器中，基于触摸点位置进行光线投射，一层一层查询touchEventHandlerRegion，知道找到透明层为止。如果有一个命中，合成器就会把对应的事件转发给UI渲染进程，然后交给blink处理，如果没有合成器最后会发送NO\_CONSUMER\_EXISTS 作为ACK应答。
 
