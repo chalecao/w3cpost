@@ -1,5 +1,6 @@
 ---
 title: 面试STAR法则
+PublishDate: 2022-10-10T09:19:42+01:00
 weight: 50
 images: ["star.jpg"]
 categories: ["工作"]

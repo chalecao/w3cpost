@@ -3,14 +3,11 @@ title: 大话JavaScript 引擎扫盲篇
 
 
 
-
-
 ---
 关于本文标题，我并不认为参与写或者读本文的人是白痴。但是有时某个话题会让你觉得自己就像个白痴一样，而 JavaScript 引擎就是这些话题之一，至少对于我来说是这样。
 
-<p id="OhaecAw">
-  <img loading="lazy" class="alignnone  wp-image-3446 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c89ca151.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c89ca151.png?x-oss-process=image/format,webp" alt="" width="321" height="402" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c89ca151.png?x-oss-process=image/format,webp 430w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c89ca151.png?x-oss-process=image/quality,q_50/resize,m_fill,w_240,h_300/format,webp 240w" sizes="(max-width: 321px) 100vw, 321px" />
-</p>
+
+  <img loading="lazy" class="alignnone  wp-image-3446 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c89ca151.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c89ca151.png?x-oss-process=image/format,webp" alt="" width="321" height="402" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c89ca151.png?x-oss-process=image/format,webp 430w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c89ca151.png?x-oss-process=image/quality,q_50/resize,m_fill,w_240,h_300/format,webp 240w" sizes="(max-width: 321px) 100vw, 321px" />
 
 有时编写 Web 应用的代码会感觉充满魔力，因为[我们](https://www.w3cdoc.com)只是写了一系列字符，就能在[浏览器](https://www.w3cdoc.com)里看到效果了。但是理解魔法背后的技术，可以帮助你更好地提高编程技巧。至少当你试图解释在 JavaScript 驱动的 web 或移动应用的幕后发生了什么的时候，会觉得自己不那么白痴了。
 
@@ -101,7 +98,6 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
       JavaScript Engine
     </th>
   </tr>
-  
   <tr>
     <td>
       Mozilla
@@ -111,7 +107,6 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
       Spidermonkey
     </td>
   </tr>
-  
   <tr>
     <td>
       Chrome
@@ -121,7 +116,6 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
       V8
     </td>
   </tr>
-  
   <tr>
     <td>
       Safari
@@ -131,7 +125,6 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
       JavaScriptCore
     </td>
   </tr>
-  
   <tr>
     <td>
       IE and Edge
@@ -141,7 +134,6 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
       Chakra
     </td>
   </tr>
-  
   <tr>
     <td>
       PhantomJS
@@ -151,7 +143,6 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
       JavaScriptCore
     </td>
   </tr>
-  
   <tr>
     <td>
       HTMLUnit
@@ -161,7 +152,6 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
       Rhino
     </td>
   </tr>
-  
   <tr>
     <td>
       TrifleJS
@@ -171,7 +161,6 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
       V8
     </td>
   </tr>
-  
   <tr>
     <td>
       Node.js
@@ -181,7 +170,6 @@ Google 的 [V8 引擎][10] 是用 C++ 编写的，它也能够编译并执行 
       V8
     </td>
   </tr>
-  
   <tr>
     <td>
       Io.js<em>*</em>
@@ -207,9 +195,8 @@ _*_最终 io.js 从 Node.js 分离开的原因之一就是为了支持 V8 版本
 
 最重要的是，这些引擎的演进与[我们](https://www.w3cdoc.com)对发展 web 和 移动平台的不断探究息息相关，让它们尽可能具有高性能，是相辅相成的。为了追踪这种演进，你可以看到各种各样的引擎在基准图中是如何表现的，就好像 [arewefastyet.com][18] 总结的。例如，比较 Chrome 在搭载 V8 引擎与 non-Crankshafted 引擎时的表现就很有趣。
 
-<p id="TKJpUOl">
-  <img loading="lazy" width="690" height="465" class="alignnone size-full wp-image-3445 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c72330c2.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c72330c2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c72330c2.png?x-oss-process=image/format,webp 690w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c72330c2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_202/format,webp 300w" sizes="(max-width: 690px) 100vw, 690px" />
-</p>
+
+  <img loading="lazy" width="690" height="465" class="alignnone size-full wp-image-3445 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c72330c2.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c72330c2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c72330c2.png?x-oss-process=image/format,webp 690w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d3c72330c2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_202/format,webp 300w" sizes="(max-width: 690px) 100vw, 690px" />
 
 任何一个 web 开发者都要意识到，[我们](https://www.w3cdoc.com)努力编写、调试和维护的代码在不同[浏览器](https://www.w3cdoc.com)中执行效果必然有所差异。为什么某段代码在一个[浏览器](https://www.w3cdoc.com)上工作得很慢，但在另一个上却快得多？
 

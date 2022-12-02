@@ -1,10 +1,7 @@
 ---
 title: jquery笔记deferred
 
-
 ---
-  
-
 
 ### [][1]什么是deferred对象
 

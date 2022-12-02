@@ -3,7 +3,6 @@ title: 移动[前端](https://www.w3cdoc.com)系列——websocket实时互动�
 
 
 
-
 ---
 原本是想在写这文章之前，给[大家](https://www.w3cdoc.com)来个二维码，让[大家](https://www.w3cdoc.com)来感受一下我那个狂拽酷炫叼炸天的实时互动小游戏，无奈一直没有找到一台足以hold住其气场的服务器。所以，此处可能需要[大家](https://www.w3cdoc.com)跟随我的描述，脑补一下那高端大气上档次的画面及低调奢华有内涵交互设计：
 
@@ -27,9 +26,8 @@ title: 移动[前端](https://www.w3cdoc.com)系列——websocket实时互动�
 
 在日常的使用web的过程中，这种功能非常常见，比如：新浪微博的WebIM、WebQQ、大智慧网页版等等，[我们](https://www.w3cdoc.com)在处理日常的一些专题中，适当地加入一些多屏互动，也能很好地增加用户的参与度，增强一些现场的互动，如：斗战诛天营救悟空、神秘站等
 
-<p id="TfxSLbt">
-  <img loading="lazy" width="232" height="272" class="alignnone size-full wp-image-4934 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3621554e.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3621554e.png?x-oss-process=image/format,webp" alt="" />
-</p>
+
+  <img loading="lazy" width="232" height="272" class="alignnone size-full wp-image-4934 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3621554e.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3621554e.png?x-oss-process=image/format,webp" alt="" />
 
 在websocket出来之前，如果[我们](https://www.w3cdoc.com)想实现上述类型的功能，[我们](https://www.w3cdoc.com)通常采用的是以下几种方式：
 
@@ -44,9 +42,8 @@ title: 移动[前端](https://www.w3cdoc.com)系列——websocket实时互动�
 
 定时向服务器发送请求，服务器响应请求并返回数据
 
-<p id="spxHGME">
-  <img loading="lazy" width="248" height="274" class="alignnone size-full wp-image-4935 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb370367fe.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb370367fe.png?x-oss-process=image/format,webp" alt="" />
-</p>
+
+  <img loading="lazy" width="248" height="274" class="alignnone size-full wp-image-4935 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb370367fe.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb370367fe.png?x-oss-process=image/format,webp" alt="" />
 
 优点：后端服务器不需要特殊设置  
 缺点：易产生大量无效请求，浪费服务器资源，且消息有延迟  
@@ -56,9 +53,8 @@ title: 移动[前端](https://www.w3cdoc.com)系列——websocket实时互动�
 
 客户端向服务器发送Ajax请求，服务器保持该请求不中断，一直等有新的数据（或超时）需要处理才返回响应信息并关闭连接，客户端处理完成后，重新发起ajax请求
 
-<p id="dlAvcWL">
-  <img loading="lazy" width="235" height="261" class="alignnone size-full wp-image-4936 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb37d2ffe9.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb37d2ffe9.png?x-oss-process=image/format,webp" alt="" />
-</p>
+
+  <img loading="lazy" width="235" height="261" class="alignnone size-full wp-image-4936 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb37d2ffe9.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb37d2ffe9.png?x-oss-process=image/format,webp" alt="" />
 
 PS:两张图找不同的游戏已开始，请注意看右侧服务器端部分的差异
 
@@ -70,9 +66,8 @@ PS:两张图找不同的游戏已开始，请注意看右侧服务器端部分�
 
 请求一直不中断，服务器端可不断地向客户端输出数据
 
-<p id="EezypYa">
-  <img loading="lazy" width="244" height="267" class="alignnone size-full wp-image-4937 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb387d3ce6.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb387d3ce6.png?x-oss-process=image/format,webp" alt="" />
-</p>
+
+  <img loading="lazy" width="244" height="267" class="alignnone size-full wp-image-4937 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb387d3ce6.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb387d3ce6.png?x-oss-process=image/format,webp" alt="" />
 
 优点：消息实时，不会产生无效请求  
 缺点：对服务器开销较大，单向接收数据还成，客户端如果想要提交数据，一样需要断开连接后重新发送请求
@@ -81,24 +76,21 @@ PS:两张图找不同的游戏已开始，请注意看右侧服务器端部分�
 
 基于socket，服务器可客户端可随时进行双向通信
 
-<p id="HDbrjQm">
-  <img loading="lazy" width="251" height="242" class="alignnone size-full wp-image-4938 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb391064c6.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb391064c6.png?x-oss-process=image/format,webp" alt="" />
-</p>
+
+  <img loading="lazy" width="251" height="242" class="alignnone size-full wp-image-4938 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb391064c6.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb391064c6.png?x-oss-process=image/format,webp" alt="" />
 
 优点：socket协议  
 缺点：需要安装flash player，对移动端（特别是IOS，貌似高级的安卓也在放弃flash）不友好
 
 通过对上面四种传统方式的分析，[我们](https://www.w3cdoc.com)不难发现，其实前面的三种方式都是传统意义上的HTTP请求（PS:那些个乱七八糟的握手什么，就不在这里探讨了），然后你就会发现，每次的请求都会有一堆类似下面的这些个步骤
 
-<p id="HFlygOF">
-  <img loading="lazy" width="332" height="150" class="alignnone size-full wp-image-4939 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb39b052a0.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb39b052a0.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb39b052a0.png?x-oss-process=image/format,webp 332w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb39b052a0.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_136/format,webp 300w" sizes="(max-width: 332px) 100vw, 332px" />
-</p>
+
+  <img loading="lazy" width="332" height="150" class="alignnone size-full wp-image-4939 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb39b052a0.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb39b052a0.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb39b052a0.png?x-oss-process=image/format,webp 332w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb39b052a0.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_136/format,webp 300w" sizes="(max-width: 332px) 100vw, 332px" />
 
 当然了，牛B的你可能会说DNS有缓存，并不会需要那么多DNS Lookup，嗯，那么其他的呢？看看那些头信息（cookie已打码）
 
-<p id="zBXtxRw">
-  <img loading="lazy" width="553" height="124" class="alignnone size-full wp-image-4940 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3a3f3ed2.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3a3f3ed2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3a3f3ed2.png?x-oss-process=image/format,webp 553w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3a3f3ed2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_67/format,webp 300w" sizes="(max-width: 553px) 100vw, 553px" />
-</p>
+
+  <img loading="lazy" width="553" height="124" class="alignnone size-full wp-image-4940 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3a3f3ed2.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3a3f3ed2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3a3f3ed2.png?x-oss-process=image/format,webp 553w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3a3f3ed2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_67/format,webp 300w" sizes="(max-width: 553px) 100vw, 553px" />
 
 <span class="img-wrap"></span>这些信息可是会伴随每次请求，来回地穿梭在服务器和客户端之间。浪费你大量的服务器资源，当然了，弊端包括但不限于此。那么，是时候看看Websocket的优势
 
@@ -106,9 +98,8 @@ PS:两张图找不同的游戏已开始，请注意看右侧服务器端部分�
 
 说到这个优点，我只想让[大家](https://www.w3cdoc.com)看一个websocket官网上的一个图表
 
-<p id="eGdihks">
-  <img loading="lazy" width="510" height="369" class="alignnone size-full wp-image-4941 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3ac260f9.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3ac260f9.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3ac260f9.png?x-oss-process=image/format,webp 510w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3ac260f9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_217/format,webp 300w" sizes="(max-width: 510px) 100vw, 510px" />
-</p>
+
+  <img loading="lazy" width="510" height="369" class="alignnone size-full wp-image-4941 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3ac260f9.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3ac260f9.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3ac260f9.png?x-oss-process=image/format,webp 510w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3ac260f9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_217/format,webp 300w" sizes="(max-width: 510px) 100vw, 510px" />
 
 通过这么一个图表，[我们](https://www.w3cdoc.com)会发现，请求量越大的情况下，Websocket的表现就越是勇猛。与此同时，这么一个勇猛的外表下，脏着的确是一颗少女般的心。别误会，值的是学习起她来很简单。  
 下面就从websocket服务器及其api两个方面来简单介绍一下：
@@ -121,15 +112,13 @@ PS:两张图找不同的游戏已开始，请注意看右侧服务器端部分�
 
 直接从<a href="http://nodejs.org/" target="_blank" rel="nofollow noopener noreferrer">http://nodejs.org</a> 这个网站上下载后直接安装就成，应该是没什么难度的
 
-<p id="XQimogF">
-  <img loading="lazy" width="497" height="140" class="alignnone size-full wp-image-4942 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3b50df6a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3b50df6a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3b50df6a.png?x-oss-process=image/format,webp 497w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3b50df6a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_85/format,webp 300w" sizes="(max-width: 497px) 100vw, 497px" />
-</p>
+
+  <img loading="lazy" width="497" height="140" class="alignnone size-full wp-image-4942 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3b50df6a.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3b50df6a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3b50df6a.png?x-oss-process=image/format,webp 497w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3b50df6a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_85/format,webp 300w" sizes="(max-width: 497px) 100vw, 497px" />
 
 安装完成之后，[我们](https://www.w3cdoc.com)可以在命令行工具中运行 node -v来检测安装是否成功
 
-<p id="uEiMMpJ">
-  <img loading="lazy" width="497" height="30" class="alignnone size-full wp-image-4943 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3be34661.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3be34661.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3be34661.png?x-oss-process=image/format,webp 497w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3be34661.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_18/format,webp 300w" sizes="(max-width: 497px) 100vw, 497px" />
-</p>
+
+  <img loading="lazy" width="497" height="30" class="alignnone size-full wp-image-4943 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3be34661.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3be34661.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3be34661.png?x-oss-process=image/format,webp 497w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3be34661.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_18/format,webp 300w" sizes="(max-width: 497px) 100vw, 497px" />
 
 如果正常地显示出了版本号，那么说明nodejs安装成功，接下来[我们](https://www.w3cdoc.com)就需要安装websocket模块了
 
@@ -144,9 +133,8 @@ Nodejs安装完成之后，其默认就给安装好了nodejs包管理工具npm�
 
 来安装websocket模块
 
-<p id="lOVKrnE">
-  <img loading="lazy" width="521" height="414" class="alignnone size-full wp-image-4944 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3c844fce.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3c844fce.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3c844fce.png?x-oss-process=image/format,webp 521w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3c844fce.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_238/format,webp 300w" sizes="(max-width: 521px) 100vw, 521px" />
-</p>
+
+  <img loading="lazy" width="521" height="414" class="alignnone size-full wp-image-4944 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3c844fce.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3c844fce.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3c844fce.png?x-oss-process=image/format,webp 521w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3c844fce.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_238/format,webp 300w" sizes="(max-width: 521px) 100vw, 521px" />
 
 websocket的服务器环境基本搭建完成，接下来[我们](https://www.w3cdoc.com)通过几行简单地代码就可以把一个websocket服务器启动起来
 

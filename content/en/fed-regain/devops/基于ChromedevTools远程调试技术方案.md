@@ -8,7 +8,8 @@ title: 基于Chrome devTools远程调试技术方案
 
 <h2 id="0" class="bi-heading bi-heading-two bi-dnd" data-key="6" data-id="7k0ech">
   <span data-key="7">基于调试框架支持的调试方案</span>
-</h2>
+
+
 
 <div class="bi-unstyle bi-dnd" data-key="8">
   <span data-key="9">先比较一下现有的调试框架：</span>
@@ -345,13 +346,13 @@ title: 基于Chrome devTools远程调试技术方案
         <td class="bi-table-cell" colspan="1" rowspan="1" data-key="185">
           <div class="bi-table-cell-content">
             <div class="bi-table-cell-content">
-              <p>
-                console
-              </p>
               
-              <p>
+                console
+              
+              
+              
                 network
-              </p>
+              
             </div>
           </div>
           
@@ -444,9 +445,9 @@ title: 基于Chrome devTools远程调试技术方案
         <td class="bi-table-cell" colspan="1" rowspan="1" data-key="236">
           <div class="bi-table-cell-content">
             <div class="bi-table-cell-content">
-              <p>
+              
                 <label class="ant-checkbox-wrapper"><span class="ant-checkbox ant-checkbox-checked">c</span></label>onsole
-              </p>
+              
             </div>
           </div>
           
@@ -847,15 +848,13 @@ title: 基于Chrome devTools远程调试技术方案
   <span data-key="452">开销：</span>
 </div>
 
-<ul class="bi-list" data-key="453">
-  <li class="bi-list-node" data-key="454">
-    <div class="bi-list-node-content">
+
+ <div class="bi-list-node-content">
       <div class="bi-unstyle bi-dnd" data-key="455">
         <span data-key="456">几乎所有的调试框架都需要注入JS代码实现，因为要收集DOM和CSS，需要处理console信息。比较好的方式是通过代理自动注入js代码。</span>
       </div>
     </div>
-  </li>
-</ul>
+
 
 <div class="bi-unstyle bi-dnd" data-key="457">
 </div>
@@ -871,17 +870,14 @@ title: 基于Chrome devTools远程调试技术方案
   <span data-key="464">原生系统支持的调试方法需要首先确认权限问题，所以需要首次连接USB数据线。</span>
 </div>
 
-<ul class="bi-list" data-key="465">
-  <li class="bi-list-node" data-key="466">
-    <div class="bi-list-node-content">
+
+ <div class="bi-list-node-content">
       <div class="bi-unstyle bi-dnd" data-key="467">
         <span data-key="468">IOS可以在后期保持wifi链接调试。</span>
       </div>
     </div>
-  </li>
   
-  <li class="bi-list-node" data-key="469">
-    <div class="bi-list-node-content">
+ <div class="bi-list-node-content">
       <div class="bi-unstyle bi-dnd" data-key="470">
         <span data-key="471">Android手机重启后需要再次链接数据线开启tcp调试端口。</span>
       </div>
@@ -889,8 +885,7 @@ title: 基于Chrome devTools远程调试技术方案
       <div class="bi-unstyle bi-dnd" data-key="470">
       </div>
     </div>
-  </li>
-</ul>
+
 
 <div class="bi-table">
   <div class="bi-table-content-outer">
@@ -1013,7 +1008,8 @@ title: 基于Chrome devTools远程调试技术方案
 
 <h2 id="1" class="bi-heading bi-heading-two bi-dnd" data-key="522" data-id="rzbgcx">
   <span data-key="523">AnyDebugger方案</span>
-</h2>
+
+
 
 <div class="bi-unstyle bi-dnd" data-key="524">
   <span data-key="525">AnyDebugger方案是支持零配置扫码调试的方案，实现Chrome Devtools Protocol，直接基于Chrome Devtools调试页面。</span>
@@ -1091,7 +1087,6 @@ title: 基于Chrome devTools远程调试技术方案
 <div class="bi-dnd-menu bi-dnd-menu-active" draggable="true">
   <div class="bi-dnd-menu-trigger">
   </div>
-  
   <div class="bi-dnd-menu-trigger">
     1. anydebugger.js功能设计
   </div>
@@ -1540,7 +1535,8 @@ title: 基于Chrome devTools远程调试技术方案
 
 <h2 id="4" class="bi-heading bi-heading-four bi-dnd" data-key="864" data-id="cgdbmg">
   <span data-key="865">业务接入</span>
-</h2>
+
+
 
 接入参考github：[anydebugger][1]
 

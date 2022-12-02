@@ -3,7 +3,6 @@ title: Sketch怎么开发插件
 
 
 
-
 ---
 Sketch 是非常流行的 UI 设计工具，2014年随着 Sketch V43 版本增加 Symbols 功能、开放开发者权限，吸引了大批开发者的关注。
 
@@ -236,7 +235,7 @@ Action 事件触发时会将 `context.actionContext` 传递给相应 `handler
 
 Sketch 插件开发大概有如下三种方式：① 纯使用 CocoaScript 脚本进行开发，② 通过 Javascript + CocoaScript 的混合开发模式， ③ 通过 AppKit + Objective-C 进行开发。Sketch 官方建议使用 JavaScript API 编写 Sketch 插件，且官方针对 Sketch Native API 封装了一套 <a href="https://developer.sketch.com/reference/api/" target="_blank" rel="noopener noreferrer">JS API</a>，目前还未涵盖所有场景， 若需要更丰富的底层 API 需结合 CocoaScript 进行实现。通过 <a href="https://developer.sketch.com/reference/api/" target="_blank" rel="noopener noreferrer">JS API</a> 可以很方便的对 Sketch 中 `Document`、`Artboard`、`Group`、`Layer` 进行相关操作以及导入导出等，可能需要考虑兼容性，<a href="https://developer.sketch.com/reference/api/" target="_blank" rel="noopener noreferrer"> JS API</a> 原理图如下：
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/11/api-reference.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/11/api-reference.png?x-oss-process=image/format,webp" alt="api-reference" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/11/api-reference.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/11/api-reference.png?x-oss-process=image/format,webp" alt="api-reference" />
 
 ### CocoaScript {#CocoaScript.post-heading}
 
@@ -403,7 +402,6 @@ Sketch 插件系统可以完全访问应用程序的内部结构和 macOS 中的
 
 <span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initContext</span>(<span class="params">context</span>) </span>{</span>
 <span class="line">  context.document.showMessage(<span class="string">'初始执行脚本'</span>)</span>
-  
 <span class="line">    <span class="keyword">const</span> doc = context.document</span>
 <span class="line">    <span class="keyword">const</span> page = doc.currentPage()</span>
 <span class="line">    <span class="keyword">const</span> artboards = page.artboards()</span>
@@ -479,7 +477,7 @@ Sketch 插件系统可以完全访问应用程序的内部结构和 macOS 中的
 
 Sketch 中要创建如下内容面板，需要使用 macOS 下 `AppKit` 框架中 `NSPanel` 类，它是 `NSWindow` 的子类，用于创建辅助窗口。内容面板外观样式设置，可通过 `NSPanel` 类相关属性进行设置， 也可通过 `AppKit` 的`NSVisualEffectView` 类添加模糊的背景效果。内容区域则可通过 `AppKit` 的 `WKWebView` 类，单开 `webview` 渲染网页内容展示。
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/11/nspanel.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/11/nspanel.png?x-oss-process=image/format,webp" alt="console" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/11/nspanel.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/11/nspanel.png?x-oss-process=image/format,webp" alt="console" />
 
 * 创建 Panel<figure class="highlight js">
 
@@ -715,7 +713,7 @@ JavaScriptCore <a href="https://developer.sketchapp.com/guides/cocoascript/" ta
 * 查看 `~/Library/Logs/com.bohemiancoding.sketch3/Plugin Output.log` 文件
 * 运行 `skpm log` 命令，该命令可以输出上面的文件（执行 `skpm log -f` 可以流式地输出日志）
 * 使用 skpm 开发的插件，安装 <a href="https://github.com/skpm/sketch-dev-tools" target="_blank" rel="noopener noreferrer">sketch-dev-tools</a>，使用 `console.log` 打日志查看。
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/11/sketch-console.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/11/sketch-console.png?x-oss-process=image/format,webp" alt="console" /> </li> </ul>
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/11/sketch-console.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/11/sketch-console.png?x-oss-process=image/format,webp" alt="console" />  
 
 ## SketchTool {#SketchTool.post-heading}
 

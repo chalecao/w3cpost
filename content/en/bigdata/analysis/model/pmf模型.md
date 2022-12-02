@@ -1,7 +1,6 @@
 ---
 title: PMF模型
 
-
 ---
 # 产品是什么
 
@@ -14,9 +13,8 @@ title: PMF模型
 PMF(product market fit)  
 产品和市场达到最佳的契合点，所提供的产品正好满足用户的需求，令客户满意。
 
-<p id="mLDrugZ">
-  <img loading="lazy" class="alignnone  wp-image-6981 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png?x-oss-process=image/format,webp" alt="" width="699" height="392" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png?x-oss-process=image/format,webp 965w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_168/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_448/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_431/format,webp 768w" sizes="(max-width: 699px) 100vw, 699px" />
-</p>
+
+  <img loading="lazy" class="alignnone  wp-image-6981 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png?x-oss-process=image/format,webp" alt="" width="699" height="392" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png?x-oss-process=image/format,webp 965w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_168/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_448/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/img_623f26fd327ae.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_431/format,webp 768w" sizes="(max-width: 699px) 100vw, 699px" />
 
 1.Target Customer 目标用户：明确目标用户  
 2.Underserved Needs 目标用户未被满足的需求：需求分为已有需求，潜在需求，未来需求。分析用户属于哪种需求  
@@ -46,7 +44,7 @@ PMF(product market fit)
 
 但真的是这样吗？产品好就能成功吗？什么样才算好产品？产品是不是越好越好？
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/ItdFyg2j5wiWehzjq8PN.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/ItdFyg2j5wiWehzjq8PN.jpg?x-oss-process=image/format,webp" alt="" width="532" height="299" data-action="zoom" />
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/ItdFyg2j5wiWehzjq8PN.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/ItdFyg2j5wiWehzjq8PN.jpg?x-oss-process=image/format,webp" alt="" width="532" height="299" data-action="zoom" />
 
 # PMF：第一个小目标 {#toc-2}
 
@@ -63,7 +61,7 @@ PMF 的提法来自硅谷大神马克·安德森（ Marc Andreessen ），他给
 
 理解了 PMF，很容易就能理解不仅要把产品做好，更要做对。所谓的“对”，就是恰好与市场匹配，也就是 PMF 状态。在产品导入市场的过程中，追求尽快达到 PMF 状态，应该是第一个小目标。
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/38zADLFXaf1S2ayicvqn.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/38zADLFXaf1S2ayicvqn.jpg?x-oss-process=image/format,webp" alt="" width="567" height="319" data-action="zoom" />
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/38zADLFXaf1S2ayicvqn.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/38zADLFXaf1S2ayicvqn.jpg?x-oss-process=image/format,webp" alt="" width="567" height="319" data-action="zoom" />
 
 # 好市场胜过好产品 {#toc-3}
 
@@ -79,7 +77,7 @@ PMF 的提法来自硅谷大神马克·安德森（ Marc Andreessen ），他给
 
 我身边有两个朋友都在创业做针对成人的音乐培训，相对于儿童音乐培训来说，这就是个贫瘠的市场，不管你产品多么优秀，都很难获得成功。
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/ygjEDX6PRG9KjeKUituV.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/ygjEDX6PRG9KjeKUituV.jpg?x-oss-process=image/format,webp" alt="" width="534" height="300" data-action="zoom" />
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/ygjEDX6PRG9KjeKUituV.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/ygjEDX6PRG9KjeKUituV.jpg?x-oss-process=image/format,webp" alt="" width="534" height="300" data-action="zoom" />
 
 选对了市场，接下来就是产品的层面——产品要满足市场的需求。注意把握这个度，重点在于“满足”，not the best , but the fittest，产品不一定要是最好的，但一定要是最对的。最对的，就是 PMF 状态，产品与市场刚好匹配，而不是低于、超出或者跑偏了市场需求。
 
@@ -111,7 +109,7 @@ PMF 的提法来自硅谷大神马克·安德森（ Marc Andreessen ），他给
 
 不要觉得这是个极端故事，其实很多创业公司都在做类似的事情。因为专注于自己的事情，就容易产生认知偏差，觉得世界上只有自己做的事情是对的。努力很重要，向正确的方向努力，更重要。
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/MfnHQySuR2XtFdG327Qp.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/MfnHQySuR2XtFdG327Qp.jpg?x-oss-process=image/format,webp" alt="" width="525" height="295" data-action="zoom" />
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/MfnHQySuR2XtFdG327Qp.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/MfnHQySuR2XtFdG327Qp.jpg?x-oss-process=image/format,webp" alt="" width="525" height="295" data-action="zoom" />
 
 # PMF 与 MVP {#toc-7}
 

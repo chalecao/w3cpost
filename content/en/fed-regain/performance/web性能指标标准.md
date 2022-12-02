@@ -94,9 +94,9 @@ Level 2 规范包含了这些内容：
     <pre class=" language-json"><code class=" language-json">window.performance.getEntries(&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -123,9 +123,9 @@ Level 2 规范包含了这些内容：
 performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByName&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'https://www.google.com/images/nav_logo299.webp'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -135,19 +135,19 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
   <table>
     <tr>
       <th>
-        <strong>Interface</strong>
+       Interface
       </th>
 
       <th>
-        <strong>EntryType</strong>
+       EntryType
       </th>
       
       <th>
-        <strong>Name</strong>
+       Name
       </th>
       
       <th>
-        <strong>InitiatorType （发起请求的类型）</strong>
+       InitiatorType （发起请求的类型）
       </th>
     </tr>
     
@@ -283,9 +283,8 @@ Entry Type 表示****PerformanceEntry 对象的类型，W3C 性能工作组制�
 
 目前已经注册的 Type 有这些：
 
-<p id="VxXXWRc">
-  <img loading="lazy" width="2574" height="776" class="alignnone size-full wp-image-6170 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/format,webp 2574w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_90/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_241/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_232/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_463/format,webp 1536w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_2048,h_617/format,webp 2048w" sizes="(max-width: 2574px) 100vw, 2574px" />
-</p>
+
+  <img loading="lazy" width="2574" height="776" class="alignnone size-full wp-image-6170 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/format,webp 2574w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_90/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_241/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_232/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_463/format,webp 1536w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf97dc9f3b9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_2048,h_617/format,webp 2048w" sizes="(max-width: 2574px) 100vw, 2574px" />
 
 * **2、定义了**[**PerformanceEntry**][12]**对象**
 
@@ -332,9 +331,9 @@ resourceObserver.observe(&lt;span class="token punctuation">{&lt;/span>type&lt;s
 &lt;/html&gt;
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -353,9 +352,8 @@ resourceObserver.observe(&lt;span class="token punctuation">{&lt;/span>type&lt;s
 
 &nbsp;
 
-<p id="FJneIiP">
-  <img loading="lazy" width="924" height="438" class="alignnone size-full wp-image-6171 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf98035bf7a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf98035bf7a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf98035bf7a.png?x-oss-process=image/format,webp 924w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf98035bf7a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_142/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf98035bf7a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_379/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf98035bf7a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_364/format,webp 768w" sizes="(max-width: 924px) 100vw, 924px" />
-</p>
+
+  <img loading="lazy" width="924" height="438" class="alignnone size-full wp-image-6171 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf98035bf7a.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf98035bf7a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf98035bf7a.png?x-oss-process=image/format,webp 924w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf98035bf7a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_142/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf98035bf7a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_379/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf98035bf7a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_364/format,webp 768w" sizes="(max-width: 924px) 100vw, 924px" />
 
 <https://w3c.github.io/resource-timing/timestamp-diagram.svg>  
 资源时序处理模型
@@ -382,9 +380,9 @@ Level 2 规范包含了这些内容：
     <pre class=" language-javascript"><code class=" language-javascript">performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByType&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'resource'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -395,9 +393,9 @@ Level 2 规范包含了这些内容：
     <pre class=" language-javascript"><code class=" language-javascript">performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByName&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'https://www.google.com/images/nav_logo299.webp'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -426,7 +424,7 @@ Level 2 规范包含了这些内容：
 
 按照事件发生的先后顺序，这些性能数据的 TimeLine 如下：
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf959bc391d4.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf959bc391d4.png?x-oss-process=image/format,webp" /> [  
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf959bc391d4.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf959bc391d4.png?x-oss-process=image/format,webp" /> [  
 https://www.w3.org/TR/navigation-timing/timing-overview.png][22]
 
 * **2、定义了 PerformanceNavigation 对象**
@@ -466,9 +464,9 @@ Level 2 规范主要包含以下内容：
     <pre class=" language-javascript"><code class=" language-javascript">window&lt;span class="token punctuation">.&lt;/span>performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByType&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"navigation"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -490,9 +488,9 @@ Level 2 规范主要包含以下内容：
 console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>protos&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -545,9 +543,9 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -568,9 +566,9 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 &lt;span class="token string">"toJSON"&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -586,9 +584,8 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 
 由此，[Navigation Timing Level 2][20] 给出了新的时间线，与 Navigation Timing Level 1 不同的是将描述资源加载的时间用 PerformanceResourceTiming 对象封装了起来。
 
-<p id="SixxFxY">
-  <img loading="lazy" width="2810" height="1032" class="alignnone size-full wp-image-6173 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf9893c0080.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf9893c0080.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf9893c0080.png?x-oss-process=image/format,webp 2810w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf9893c0080.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_110/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf9893c0080.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_294/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf9893c0080.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_282/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf9893c0080.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_564/format,webp 1536w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf9893c0080.png?x-oss-process=image/quality,q_50/resize,m_fill,w_2048,h_752/format,webp 2048w" sizes="(max-width: 2810px) 100vw, 2810px" />
-</p>
+
+  <img loading="lazy" width="2810" height="1032" class="alignnone size-full wp-image-6173 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf9893c0080.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf9893c0080.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf9893c0080.png?x-oss-process=image/format,webp 2810w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf9893c0080.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_110/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf9893c0080.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_294/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf9893c0080.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_282/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf9893c0080.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_564/format,webp 1536w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5faf9893c0080.png?x-oss-process=image/quality,q_50/resize,m_fill,w_2048,h_752/format,webp 2048w" sizes="(max-width: 2810px) 100vw, 2810px" />
 
 <https://www.w3.org/TR/navigation-timing-2/timestamp-diagram.svg>
 
@@ -656,9 +653,9 @@ exposes [transfer][31], [encoded body][32] and [decoded body][33] size informati
     <pre class=" language-javascript"><code class=" language-javascript">performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByType&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'paint'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -710,9 +707,9 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
 &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -734,9 +731,9 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
  &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -780,9 +777,9 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
 &lt; Server-Timing: total;dur=123.4
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -800,9 +797,9 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
 performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByType&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'resource'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -851,9 +848,9 @@ observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 &lt;span class="token comment" spellcheck="true">// and receiving "longtask" entries in the observer.&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -884,9 +881,9 @@ observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
     <pre class=" language-html"><code class=" language-html">&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>link&lt;/span> &lt;span class="token attr-name">rel&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>dns-prefetch&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">href&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>//example.com&lt;span class="token punctuation">"&lt;/span>&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -900,9 +897,9 @@ observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>link&lt;/span> &lt;span class="token attr-name">rel&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>preconnect&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">href&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>//cdn.example.com&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">crossorigin&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -916,9 +913,9 @@ observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>link&lt;/span> &lt;span class="token attr-name">rel&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>prefetch&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">href&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>/library.js&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">as&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>script&lt;span class="token punctuation">"&lt;/span>&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -936,9 +933,9 @@ prefetch 有 3 条规则：
     <pre class=" language-html"><code class=" language-html">&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>link&lt;/span> &lt;span class="token attr-name">rel&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>prerender&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">href&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>//example.com/next-page.html&lt;span class="token punctuation">"&lt;/span>&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -975,9 +972,9 @@ Using HTTP Header
 Link: &lt;https://example.com/other/styles.css&gt;; rel=preload; as=style
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -1042,9 +1039,9 @@ Level 2 规范包含以下内容：
 document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">addEventListener&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'visibilitychange'&lt;/span>&lt;span class="token punctuation">,&lt;/span> handleVisibilityChange&lt;span class="token punctuation">,&lt;/span> &lt;span class="token boolean">false&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -1088,9 +1085,9 @@ document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 
@@ -1127,9 +1124,9 @@ document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 &lt;span class="token punctuation">}&lt;/span>
 </code></pre>
 
-    <p>
+    
       <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-    </p>
+    
   </div>
 </div>
 

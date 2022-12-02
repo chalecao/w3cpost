@@ -2,9 +2,8 @@
 title: python-编程基础知识
 weight: 8
 ---
-<p id="KgAqhzQ">
-  <img loading="lazy" width="339" height="149" class="alignnone size-full wp-image-2834 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png?x-oss-process=image/format,webp 339w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_132/format,webp 300w" sizes="(max-width: 339px) 100vw, 339px" />
-</p>
+
+  <img loading="lazy" width="339" height="149" class="alignnone size-full wp-image-2834 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png?x-oss-process=image/format,webp 339w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_132/format,webp 300w" sizes="(max-width: 339px) 100vw, 339px" />
 
 ## Python 编程 {#python-}
 
@@ -98,9 +97,8 @@ def fib(n):
          a,b=b,a+b
 fib(20)</pre>
 
-<p style="padding-left: 30px;">
+
   2. <a href="https://aistudio.baidu.com/#/projectDetail/33836">pyplot绘制图表</a>
-</p>
 
 参考：百度AI Studio [在线地址][34]
 

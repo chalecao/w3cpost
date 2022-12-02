@@ -3,7 +3,6 @@ title: asm.js 和 Emscripten 介绍
 
 
 
-
 ---
 2012年，Mozilla 的工程师 <a href="https://github.com/kripken" target="_blank" rel="noopener noreferrer">Alon Zakai</a> 在研究 LLVM 编译器时突发奇想：许多 3D 游戏都是用 C / C++ 语言写的，如果能将 C / C++ 语言编译成 JavaScript 代码，它们不就能在[浏览器](https://www.w3cdoc.com)里运行了吗？众所周知，JavaScript 的基本语法与 C 语言高度相似。
 
@@ -11,7 +10,7 @@ title: asm.js 和 Emscripten 介绍
 
 本文就将介绍 asm.js 和 Emscripten 的基本用法，介绍如何将 C / C++ 转成 JS。
 
-<img title="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090301.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090301.png?x-oss-process=image/format,webp" alt="" />
+<img title="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090301.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090301.png?x-oss-process=image/format,webp" alt="" />
 
 ## 一、asm.js 的简介
 
@@ -24,7 +23,7 @@ C / C++ 编译成 JS 有两个最大的困难。
 
 **asm.js 就是为了解决这两个问题而设计的：它的变量一律都是静态类型，并且取消垃圾回收机制。**除了这两点，它与 JavaScript 并无差异，也就是说，asm.js 是 JavaScript 的一个严格的子集，只能使用后者的一部分语法。
 
-<img title="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090304.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090304.jpg?x-oss-process=image/format,webp" alt="" />
+<img title="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090304.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090304.jpg?x-oss-process=image/format,webp" alt="" />
 
 一旦 JavaScript 引擎发现运行的是 asm.js，就知道这是经过优化的代码，可以跳过语法分析这一步，直接转成汇编语言。另外，[浏览器](https://www.w3cdoc.com)还会调用 WebGL 通过 GPU 执行 asm.js，即 asm.js 的执行引擎与普通的 JavaScript 脚本不同。这些都是 asm.js 运行较快的原因。据称，asm.js 在[浏览器](https://www.w3cdoc.com)里的运行速度，大约是原生代码的50%左右。
 
@@ -37,7 +36,7 @@ asm.js 只提供两种<a href="http://asmjs.org/spec/latest/#value-types" target
 > * 32位带符号整数
 > * 64位带符号浮点数
 
-<img title="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090303.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090303.png?x-oss-process=image/format,webp" alt="" />
+<img title="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090303.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090303.png?x-oss-process=image/format,webp" alt="" />
 
 其他数据类型，比如字符串、布尔值或者对象，asm.js 一概不提供。它们都是以数值的形式存在，保存在内存中，通过 [TypedArray][1] 调用。
 
@@ -135,7 +134,7 @@ size_t &lt;span class="token function">strlen&lt;span class="token punctuation">
 
 虽然 asm.js 可以手写，但是它从来就是编译器的目标语言，要通过编译产生。目前，生成 asm.js 的主要工具是 <a href="http://emscripten.org/" target="_blank" rel="noopener noreferrer">Emscripten</a>。
 
-<img title="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090306.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090306.jpg?x-oss-process=image/format,webp" alt="" />
+<img title="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090306.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090306.jpg?x-oss-process=image/format,webp" alt="" />
 
 Emscripten 的底层是 LLVM 编译器，理论上任何可以生成 LLVM IR（Intermediate Representation）的语言，都可以编译生成 asm.js。 但是实际上，Emscripten 几乎只用于将 C / C++ 代码编译生成 asm.js。
 
@@ -143,7 +142,7 @@ Emscripten 的底层是 LLVM 编译器，理论上任何可以生成 LLVM IR（I
 C&lt;span class="token operator">/&lt;/span>C&lt;span class="token operator">++&lt;/span> ⇒ LLVM &lt;span class="token operator">==&lt;/span>&lt;span class="token operator">&gt;&lt;/span> LLVM IR ⇒ Emscripten ⇒ asm&lt;span class="token punctuation">.&lt;/span>js
 </code></pre>
 
-<img title="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090302.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090302.jpg?x-oss-process=image/format,webp" alt="" />
+<img title="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090302.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090302.jpg?x-oss-process=image/format,webp" alt="" />
 
 ### 2.2 Emscripten 的安装
 

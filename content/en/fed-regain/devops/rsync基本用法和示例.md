@@ -2,7 +2,6 @@
 title: rsync基本用法和示例
 
 
-
 ---
 rsync官方网站: <a href="https://www.samba.org/ftp/rsync/rsync.html" rel="nofollow">https://www.samba.org/ftp/rsync/rsync.html</a>
 

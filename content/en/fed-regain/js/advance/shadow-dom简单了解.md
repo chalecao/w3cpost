@@ -4,8 +4,6 @@ title: Shadow DOM简单了解
 
 
 
-
-
 enclosure:
   - |
     |
@@ -13,7 +11,6 @@ enclosure:
         9989621
         video/mp4
         
-
 
 
 ---
@@ -42,15 +39,15 @@ Shadow DOM它允许在文档（document）渲染时插入一棵DOM元素子树�
 
 页面完成了，在[浏览器](https://www.w3cdoc.com)chrome中打开，然后打开 Chrome 的开发者工具，点击右上角的“Settings”按钮，勾选“Show user agent shadow DOM”。
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/Fq09xC-qD04z43WYyVb4P0tPC-NC.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/Fq09xC-qD04z43WYyVb4P0tPC-NC.png?x-oss-process=image/format,webp" alt="Show user agent shadow DOM" width="365" height="502" />
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/Fq09xC-qD04z43WYyVb4P0tPC-NC.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/Fq09xC-qD04z43WYyVb4P0tPC-NC.png?x-oss-process=image/format,webp" alt="Show user agent shadow DOM" width="365" height="502" />
 
 [浏览器](https://www.w3cdoc.com)截图：
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FhgQ2ofckuyoCPD8RlAd3INcGRAx.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FhgQ2ofckuyoCPD8RlAd3INcGRAx.png?x-oss-process=image/format,webp" alt="Video Shadow DOM" width="714" height="358" />
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FhgQ2ofckuyoCPD8RlAd3INcGRAx.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FhgQ2ofckuyoCPD8RlAd3INcGRAx.png?x-oss-process=image/format,webp" alt="Video Shadow DOM" width="714" height="358" />
 
 # shadow-root称为影子根，可以看到它在video里面，换句话说，#shadow-root寄生在video上，所以video此时称为影子宿主。可以看到上图有两个#shadow-root，这是因为#shadow-root可以嵌套，形成节点树，即称为影子树（shadow trees）。影子树对其中的内容进行了封装，有选择性的进行渲染。这就意味着[我们](https://www.w3cdoc.com)可以插入文本、重新安排内容、添加样式等等。如下所示：
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FoF1XzsX8voCu3Gh9mJKBXkHeQDC.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FoF1XzsX8voCu3Gh9mJKBXkHeQDC.jpg?x-oss-process=image/format,webp" alt="影子树" width="498" height="618" />
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FoF1XzsX8voCu3Gh9mJKBXkHeQDC.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FoF1XzsX8voCu3Gh9mJKBXkHeQDC.jpg?x-oss-process=image/format,webp" alt="影子树" width="498" height="618" />
 
 ## 2. 怎样创建Shadow DOM {#2-怎样创建Shadow-DOM.post-heading}
 
@@ -86,7 +83,7 @@ shadowRoot.innerHTML = '&lt;p class="shadowroot_son"&gt;夏天夏天悄悄过去
 
 [浏览器](https://www.w3cdoc.com)截图：
 
-<img class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FtgCUt4VAb4Y5JemQFBXnI3tvo4W.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FtgCUt4VAb4Y5JemQFBXnI3tvo4W.png?x-oss-process=image/format,webp" alt="创建Shadow DOM" />
+<img class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FtgCUt4VAb4Y5JemQFBXnI3tvo4W.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FtgCUt4VAb4Y5JemQFBXnI3tvo4W.png?x-oss-process=image/format,webp" alt="创建Shadow DOM" />
 
 有没有注意到.shadowroot_son的样式color: #f00;不生效？！那是因为影子宿主和影子根之间存在影子边界（shadow boundary），影子边界保证主 DOM写的 CSS 选择器和 JavaScript 代码都不会影响到Shadow DOM，当然也保护主文档不受 shadow DOM 样式的侵袭。
 
@@ -154,7 +151,7 @@ shadowRoot.appendChild(document.importNode(template.content, true));
 
 [浏览器](https://www.w3cdoc.com)截图：
 
-<img class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FswaNQUdHF17XfTya9wO4ZnKIryN.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FswaNQUdHF17XfTya9wO4ZnKIryN.png?x-oss-process=image/format,webp" alt="content&template" />
+<img class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FswaNQUdHF17XfTya9wO4ZnKIryN.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FswaNQUdHF17XfTya9wO4ZnKIryN.png?x-oss-process=image/format,webp" alt="content&template" />
 
 [我们](https://www.w3cdoc.com)来看一下下面三个属性的用途：
 
@@ -164,7 +161,7 @@ console.log(template.childNodes); // 返回[]，说明childNodes无效</pre>
 
 **贪心插入点**：如果把select=”.shadowhost_content1”改成select=””或者select=”*”，那么会有不一样的结果。因为贪心选择器放在了模板的第一个，他会将所有内容都抓取，不给其他select 选择器留一点内容。[浏览器](https://www.w3cdoc.com)截图如下：
 
-<img class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FgnGjHYb8sI1_jns_CViHrsXgc6n.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FgnGjHYb8sI1_jns_CViHrsXgc6n.png?x-oss-process=image/format,webp" alt="贪心插入点" />
+<img class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FgnGjHYb8sI1_jns_CViHrsXgc6n.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FgnGjHYb8sI1_jns_CViHrsXgc6n.png?x-oss-process=image/format,webp" alt="贪心插入点" />
 
 ## 4. 关于样式 {#4-关于样式.post-heading}
 
@@ -259,11 +256,10 @@ shadowRoot.appendChild(document.importNode(template.content, true));
 
 &lt;/html&gt;</pre>
 
-<p class="post-heading">
-  [浏览器](https://www.w3cdoc.com)截图如下：
-</p>
 
-<img class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FojZYP5WW1JAGN-3fyW9jnFLGiuN.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FojZYP5WW1JAGN-3fyW9jnFLGiuN.png?x-oss-process=image/format,webp" alt="::content&::shadow&/deep/" />
+  [浏览器](https://www.w3cdoc.com)截图如下：
+
+<img class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FojZYP5WW1JAGN-3fyW9jnFLGiuN.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FojZYP5WW1JAGN-3fyW9jnFLGiuN.png?x-oss-process=image/format,webp" alt="::content&::shadow&/deep/" />
 
 ## 5. JavaScript {#5-JavaScript.post-heading}
 
@@ -314,7 +310,7 @@ console.log(e.target.id + ' click!');
 
 分别单击每个输入框，控制台打印截图如下：
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FuPYA7rXQnnK78gC75QnvhRkzpqN.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FuPYA7rXQnnK78gC75QnvhRkzpqN.jpg?x-oss-process=image/format,webp" alt="事件重定向" width="346" height="205" />
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FuPYA7rXQnnK78gC75QnvhRkzpqN.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FuPYA7rXQnnK78gC75QnvhRkzpqN.jpg?x-oss-process=image/format,webp" alt="事件重定向" width="346" height="205" />
 
 ### 5.2 被阻塞的事件（Blocked Events） {#5-2-被阻塞的事件（Blocked-Events）.post-heading}
 
@@ -328,13 +324,13 @@ console.log(e.target.id + ' click!');
 
 分别双击每个输入框，你会发现，shadow text的输入框没有打印，就是没有发生select事件。
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FpPbkUQKdtodVkllgCc3K4-5miOe.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FpPbkUQKdtodVkllgCc3K4-5miOe.jpg?x-oss-process=image/format,webp" alt="被阻塞的事件" width="403" height="121" />
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FpPbkUQKdtodVkllgCc3K4-5miOe.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FpPbkUQKdtodVkllgCc3K4-5miOe.jpg?x-oss-process=image/format,webp" alt="被阻塞的事件" width="403" height="121" />
 
 ### 6. 兼容性 {#6-兼容性.post-heading}
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FpSHZHqQtxYyUIO2vdUCRaVnJyaA.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FpSHZHqQtxYyUIO2vdUCRaVnJyaA.png?x-oss-process=image/format,webp" alt="template兼容性" width="724" height="531" />
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FpSHZHqQtxYyUIO2vdUCRaVnJyaA.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FpSHZHqQtxYyUIO2vdUCRaVnJyaA.png?x-oss-process=image/format,webp" alt="template兼容性" width="724" height="531" />
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FuAGMDQSFdBe_xEdSolSbU-avlpd.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FuAGMDQSFdBe_xEdSolSbU-avlpd.png?x-oss-process=image/format,webp" alt="Shadow DOM兼容性" width="727" height="668" />
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FuAGMDQSFdBe_xEdSolSbU-avlpd.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FuAGMDQSFdBe_xEdSolSbU-avlpd.png?x-oss-process=image/format,webp" alt="Shadow DOM兼容性" width="727" height="668" />
 
 看上去只能在chrome中愉快地玩耍。
 

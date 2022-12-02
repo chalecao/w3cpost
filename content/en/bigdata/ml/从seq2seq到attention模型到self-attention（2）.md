@@ -1,7 +1,6 @@
 ---
 title: 从Seq2seq到Attention模型到Self Attention（2）
 
-
 ---
 [从Seq2seq到Attention模型到Self Attention（1）][1]
 
@@ -14,7 +13,7 @@ title: 从Seq2seq到Attention模型到Self Attention（2）
 为了解决此问题，2017年，Self attention诞生了。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/cgsnnyrt6c.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/cgsnnyrt6c.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/cgsnnyrt6c.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/cgsnnyrt6c.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 # **Self Attention**
@@ -24,7 +23,7 @@ Self attention是Google在 “Attention is all you need”论文中提出的”T
 最特别的地方是，”The transformer”完全捨弃了RNN、CNN的架构。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/ttvebbnwqn.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/ttvebbnwqn.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/ttvebbnwqn.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/ttvebbnwqn.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 # **The transformer**
@@ -32,7 +31,7 @@ Self attention是Google在 “Attention is all you need”论文中提出的”T
 “The transformer”和Seq2seq模型皆包含两部分：Encoder和Decoder。比较特别的是，”The transformer”中的Encoder是由6个Encoder堆积而成(paper当中N=6)，Deocder亦然，这和过去的attention model只使用一个encoder/decoder是不同的。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/n48akpg2d5.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/n48akpg2d5.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/n48akpg2d5.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/n48akpg2d5.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 # **Query, Key, Value**
@@ -48,13 +47,13 @@ Self attention是Google在 “Attention is all you need”论文中提出的”T
 在NLP的领域中，Key, Value通常就是指向同一个文字隐向量(word embedding vector)。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/agghoenmg7.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/agghoenmg7.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/agghoenmg7.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/agghoenmg7.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 有了Key, Value, Query的概念，[我们](https://www.w3cdoc.com)可以将attention model中的Decoder公式重新改写。1. score e\_{ij}= Similarity(Query, Key\_{i})，上一篇有提到3种计算权重的方式，而[我们](https://www.w3cdoc.com)选择用内积。2. 有了Similarity(Query, Key\_{i})，便可以透过softmax算出Softmax(sim\_{i})=a\_{i}，接著就可以透过attention score a\_{i}乘上Value_{i}的序列和加总所得 = Attention(Query, Source)，也就是context/attention vector。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/l2fqqik7e3.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/l2fqqik7e3.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/l2fqqik7e3.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/l2fqqik7e3.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 在了解Key, Value, Query的概念后，[我们](https://www.w3cdoc.com)可以进入”the transformer”的世界了。
@@ -64,7 +63,7 @@ Self attention是Google在 “Attention is all you need”论文中提出的”T
 如果仔细观察，其实“The transformer”计算 attention score的方法和attention model如出一辙，但”The transformer”还要除上分母=根号d_{k}，目的是避免内积过大时，softmax產出的结果非0即1。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/735e0a01a2.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/735e0a01a2.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/735e0a01a2.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/735e0a01a2.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 # **Three kinds of Attention**
@@ -74,7 +73,7 @@ Self attention是Google在 “Attention is all you need”论文中提出的”T
 接下来[我们](https://www.w3cdoc.com)透过encoder和decoder两部份，来分别介绍encoder/decoder self attention。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/mvfg113ss1.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/mvfg113ss1.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/mvfg113ss1.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/mvfg113ss1.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 # **Encoder**
@@ -82,7 +81,7 @@ Self attention是Google在 “Attention is all you need”论文中提出的”T
 [我们](https://www.w3cdoc.com)将”The transformer”模型分为左右两部分，左边是Encoder，如前述，”Attention is all you need”当中N=6，代表Encoder部分是由6个encoder堆积而成的。其中在计算encoder self attention时，更透过multi-head的方式去学习不同空间的特徵，在后续内容会探讨multi-head的部分。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/82c9vllxe1.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/82c9vllxe1.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/82c9vllxe1.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/82c9vllxe1.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 # **如何计算encoder self attention?**
@@ -98,13 +97,13 @@ Self attention是Google在 “Attention is all you need”论文中提出的”T
 最后一步就是把attention score再乘上value，然后加总得到attention vector(z_{I})，这就是#位置1的attention vector z1，概念都和以往的attention model类似。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/6g00lvm91h.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/6g00lvm91h.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/6g00lvm91h.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/6g00lvm91h.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 以上就是self-attention的计算，算出来的向量[我们](https://www.w3cdoc.com)可以往前传递至feed-forward neural network，实际的运作上，是直接将每个文字同时处理，因此会变成一个矩阵，而非单一词向量，计算后的结果attention vector也会变成attention matrix Z。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/kgiopfokv2.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/kgiopfokv2.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/kgiopfokv2.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/kgiopfokv2.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 # **Multi-head attention**
@@ -112,13 +111,13 @@ Self attention是Google在 “Attention is all you need”论文中提出的”T
 有趣的是，如果[我们](https://www.w3cdoc.com)只计算一个attention，很难捕捉输入句中所有空间的讯息，为了优化模型，论文当中提出了一个新颖的做法：Multi-head attention，概念是不要只用d\_{model}维度的key, value, query们做单一个attention，而是把key, value, query们线性投射到不同空间h次，分别变成维度d\_{q}, d\_{k} and d\_{v}，再各自做attention，其中，d\_{k}=d\_{v}=d_{model}/h=64，概念就是投射到h个head上。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/29ljqwxgzm.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/29ljqwxgzm.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/29ljqwxgzm.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/29ljqwxgzm.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 此外，”The transformer”用了8个attention head，所以[我们](https://www.w3cdoc.com)会產生8组encoder/decoder，每一组都代表将输入文字的隐向量投射到不同空间，如果[我们](https://www.w3cdoc.com)重复计算刚刚所讲的self-attention，[我们](https://www.w3cdoc.com)就会得到8个不同的矩阵Z，可是呢，feed-forward layer期望的是一个矩阵而非8个，所以[我们](https://www.w3cdoc.com)要把这8个矩阵併在一起，透过乘上一个权重矩阵，还原成一个矩阵Z。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/8zpq6fahgy.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/8zpq6fahgy.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/8zpq6fahgy.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/8zpq6fahgy.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 # **Residual Connections**
@@ -130,7 +129,7 @@ Residual connection 就是构建一种新的残差结构，将输出改写成和
 Layer normalization则是在深度学习领域中，其中一种正规化方法，最常和batch normalization进行比较，layer normalization的优点在於它是独立计算的，也就是针对单一样本进行正规化，batch normalization则是针对各维度，因此和batch size有所关联，可以参考layer normalization。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/tml8r9gek8.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/tml8r9gek8.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/tml8r9gek8.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/tml8r9gek8.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 # **Position-wise Feed-Forward Networks**
@@ -140,7 +139,7 @@ Encoder/Decoder中的attention sublayers都会接到一层feed-forward networks(
 其中，每个位置进行相同的线性转换，这边使用的是convolution1D，也就是kernel size=1，原因是convolution1D才能保持位置的完整性，可参考CNN，模型的输入/输出维度d_{model}=512，但中间层的维度是2048，目的是为了减少计算量，这部分一样参考神人Kaiming He的Deep Residual Learning for Image Recognition。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/7qq94ewkw3.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/7qq94ewkw3.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/7qq94ewkw3.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/7qq94ewkw3.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 # **Positional Encoding**
@@ -150,7 +149,7 @@ Encoder/Decoder中的attention sublayers都会接到一层feed-forward networks(
 论文使用了方程式PE(pos, 2i)=sin(pos/10000^{2i/d\_{model}})、PE(pos, 2i+1)=cos(pos/10000^{2i/d\_{model}})来计算positional encoding，pos代表的是位置，i代表的是维度，偶数位置的文字会透过sin函数进行转换，奇数位置的文字则透过cos函数进行转换，藉由三角函数，可以发现positional encoding 是个有週期性的波长；举例来说，[pos+k]可以写成PE[pos]的线性转换，使得模型可以学到不同位置文字间的相对位置。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/rvsiyk5ezi.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/rvsiyk5ezi.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/rvsiyk5ezi.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/rvsiyk5ezi.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 如下图，假设embedding 的维度为4：
@@ -160,7 +159,7 @@ Encoder/Decoder中的attention sublayers都会接到一层feed-forward networks(
 下图为含有20字的输入句，文字向量维度为512，可以发现图层随著位置產生变化。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/q6irqb4g0d.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/q6irqb4g0d.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/q6irqb4g0d.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/q6irqb4g0d.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 Encoder内容告一段落，接下来让[我们](https://www.w3cdoc.com)看Decoder的运作模式。
@@ -168,7 +167,7 @@ Encoder内容告一段落，接下来让[我们](https://www.w3cdoc.com)看Decod
 # **Decoder**<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/rvawzidq3s.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/rvawzidq3s.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/rvawzidq3s.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/rvawzidq3s.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 **Masked multi-head attention**
@@ -182,7 +181,7 @@ Decoder的运作模式和Encoder大同小异，也都是经过residual connectio
 “Encoder-Decoder Attention”和Encoder/Decoder self attention不一样，它的Query来自於decoder self-attention，而Key、Value则是encoder的output。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/v5moa96gum.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/v5moa96gum.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/v5moa96gum.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/v5moa96gum.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 至此，[我们](https://www.w3cdoc.com)讲完了三种attention，接著看整体运作模式。
@@ -194,7 +193,7 @@ Decoder的运作模式和Encoder大同小异，也都是经过residual connectio
 Decoder最后会產出一个向量，传到最后一层linear layer后做softmax。Linear layer只是单纯的全连接层网络，并產生每个文字对应的分数，softmax layer会将分数转成机率值，最高机率的值就是在这个时间顺序时所要產生的文字。<figure>
 
 <div class="image-block">
-  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/y4mmolwc13.jpeg.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/y4mmolwc13.jpeg.jpg?x-oss-process=image/format,webp" />
+  <img class="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/y4mmolwc13.jpeg.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/y4mmolwc13.jpeg.jpg?x-oss-process=image/format,webp" />
 </div></figure>
 
 # **Why self attention?**

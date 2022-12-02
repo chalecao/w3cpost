@@ -357,7 +357,8 @@ proxy其实类似于knockout的做法，为要监听的目标生成一个代理�
     <code>const state2 = {
         txt: "xxx"
     }
-    var form2 = nodeTpl`<h2>测试数据监听：</h2>
+    var form2 = nodeTpl`<h2>测试数据监听：
+
             <div><label >姓名：<input placeholder="${state.name}" ${{
             keyup: (e) => {
                 state2.txt = e.target.value
@@ -365,7 +366,8 @@ proxy其实类似于knockout的做法，为要监听的目标生成一个代理�
         }} /> ${{ fn: (txt) => txt, state: state2, param: 'txt' }}</label></div>
             <div style="color:${{ fn: (txt) => txt, state: state2, param: 'txt' }}">111 ${{
             fn: (txt) => {
-                return nodeTpl`<h2>测试表单：${txt}</h2>`
+                return nodeTpl`<h2>测试表单：${txt}
+`
             }, state: state2, param: 'txt'
         }}</div>
             `

@@ -4,9 +4,9 @@ weight: 8
 ---
 <header class="w-article-header">
 
-<p class="w-article-header__subhead w-mb--non">
+
   了解如何使用这些受支持的CSS函数控制元素的大小，保持适当的间距以及实现流体排版。
-</p></header>
+</header>
 
 随着响应式设计的发展和日益细化，CSS本身也在不断发展，并为作者提供了更多的控制权。的 [`min()`][1]， [`max()`][2]和 [`clamp()`][3]功能，现在支持所有现代[浏览器](https://www.w3cdoc.com)，都在做创作网站最新的工具中和网络应用更加积极地。
 
@@ -20,9 +20,8 @@ weight: 8
 
 Safari是第一个[出货][4] 的一整套功能在四月2019年，含铬那年以下后，今年79版，与Firefox [75][5]航运，[我们](https://www.w3cdoc.com)现在有[浏览器](https://www.w3cdoc.com)的奇偶`min()`，`max()`和`clamp()`所有常绿[浏览器](https://www.w3cdoc.com)。<figure class="w-figure"></figure>
 
-<p id="OegLNcn">
-  <img loading="lazy" width="1373" height="422" class="alignnone size-full wp-image-6341 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png?x-oss-process=image/format,webp 1373w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_92/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_246/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_236/format,webp 768w" sizes="(max-width: 1373px) 100vw, 1373px" />
-</p>
+
+  <img loading="lazy" width="1373" height="422" class="alignnone size-full wp-image-6341 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png?x-oss-process=image/format,webp 1373w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_92/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_246/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fb3eda30a5f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_236/format,webp 768w" sizes="(max-width: 1373px) 100vw, 1373px" />
 
 您可以在任何有意义的CSS表达式的右侧使用`min()`，`max()`和`clamp()`。对于`min()`和`max()`，您提供了一个值列表，然后[浏览器](https://www.w3cdoc.com)确定哪一个分别是最小的或最大的。例如，对于：`min(1rem, 50%, 10vw)`，[浏览器](https://www.w3cdoc.com)将计算这些相对单位中的最小单位，并将该值用作实际值。`max()`函数从逗号分隔的表达式列表中选择最大值。`clamp()`输入三个值：最小值，理想值（从中进行计算）和最大值。
 
@@ -30,9 +29,9 @@ Safari是第一个[出货][4] 的一整套功能在四月2019年，含铬那年
 
 <div class="w-aside w-aside--note">
   <blockquote>
-    <p>
+    
       当使用的计算内<code>min()</code>，<code>max()</code>或<code>clamp()</code> 功能，可以nix上<code>calc()</code>。例如，写作<code>font-size: max(calc(0.5vw - 1em), 2rem)</code>将与相同<code>font-size: max(0.5vw - 1em, 2rem)</code>。
-    </p>
+    
   </blockquote>
 </div>
 

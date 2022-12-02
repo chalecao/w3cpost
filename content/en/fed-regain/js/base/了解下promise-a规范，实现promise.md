@@ -3,19 +3,17 @@ title: 了解下Promise A+规范，实现Promise
 
 
 
-
 ---
 <div>
   <h2 class="heading" data-id="heading-1">
     1 从简单使用着手，实现MyPromise大体框架
-  </h2>
   
+
   <blockquote>
-    <p>
+    
       先来看一下promise使用的一个小例子：
-    </p>
+    
   </blockquote>
-  
   <pre><code class="copyable">let p = new Promise(function (resolve, reject) {
   console.log('start')
   resolve('data1')
@@ -30,72 +28,57 @@ p.then(
 )
 console.log('end')
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-  
   <blockquote>
-    <p>
+    
       运行结果如下：
-    </p>
+    
   </blockquote><figure>
-  
-  <p id="MoHvJRp">
-    <img loading="lazy" width="185" height="85" class="alignnone size-full wp-image-5128 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff5529e93.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff5529e93.png?x-oss-process=image/format,webp" alt="" />
-  </p><figcaption></figcaption></figure>
-  
+ <img loading="lazy" width="185" height="85" class="alignnone size-full wp-image-5128 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff5529e93.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff5529e93.png?x-oss-process=image/format,webp" alt="" />
+  <figcaption></figcaption></figure>
   <blockquote>
-    <p>
+    
       针对这个例子做以下几点说明，也是需要直接记住的，因为这就好比是解答数学题的公式一样，开始一定要记牢。
-    </p>
+    
   </blockquote>
-  
   <ol>
-    <li>
+    
       Promise是构造函数，new 出来的实例有then方法。
-    </li>
-    <li>
+    
+    
       new Promise时，传递一个参数，这个参数是函数，又被称为执行器函数(executor)， 并执行器会被立即调用，也就是上面结果中start最先输出的原因。
-    </li>
-    <li>
+    
+    
       executor是函数，它接受两个参数 resolve reject ，同时这两个参数也是函数。
-    </li>
-    <li>
+    
+    
       new Promise后的实例具有状态， 默认状态是等待，当执行器调用resolve后， 实例状态为成功状态， 当执行器调用reject后，实例状态为失败状态。
-    </li>
-    <li>
+    
+    
       promise翻译过来是承诺的意思，实例的状态一经改变，不能再次修改，不能成功再变失败，或者反过来也不行。
-    </li>
-    <li>
-      每一个promise实例都有方法 then ，then中有两个参数 ，<strong>我习惯把第一个参数叫做then的成功回调，把第二个参数叫做then的失败回调</strong>，这两个参数也都是函数，当执行器调用resolve后，then中第一个参数函数会执行。当执行器调用reject后，then中第二个参数函数会执行。
-    </li>
+    
+    
+      每一个promise实例都有方法 then ，then中有两个参数 ，我习惯把第一个参数叫做then的成功回调，把第二个参数叫做then的失败回调，这两个参数也都是函数，当执行器调用resolve后，then中第一个参数函数会执行。当执行器调用reject后，then中第二个参数函数会执行。
+    
   </ol>
-  
   <blockquote>
-    <p>
+    
       那么就目前的这些功能，或者说是规则，来着手写一下MyPromise构造函数吧。
-    </p>
+    
   </blockquote>
-  
-  <p>
-    1 构造函数的参数，在new 的过程中会立即执行
-  </p>
+ 1 构造函数的参数，在new 的过程中会立即执行
   
   <pre><code class="copyable">// 因为会立即执行这个执行器函数
 function MyPromise(executor){
   executor(resolve, reject)
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-  
-  <p>
-    2 new出来的实例具有then方法
-  </p>
+ 2 new出来的实例具有then方法
   
   <pre><code class="copyable">MyPromise.prototype.then = function(onFulfilled, onRejected){
 
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-  
-  <p>
-    3 new出来的实例具有默认状态，执行器执行resolve或者reject，修改状态
-  </p>
+ 3 new出来的实例具有默认状态，执行器执行resolve或者reject，修改状态
   
   <pre><code class="copyable">function MyPromise(executor){
   let self = this
@@ -109,10 +92,7 @@ function MyPromise(executor){
   executor(resolve, reject)
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-  
-  <p>
-    4 当执行器调用resolve后，then中第一个参数函数（成功回调）会执行,当执行器调用reject后，then中第二个参数函数（失败回调）会执行
-  </p>
+ 4 当执行器调用resolve后，then中第一个参数函数（成功回调）会执行,当执行器调用reject后，then中第二个参数函数（失败回调）会执行
   
   <pre><code class="copyable">MyPromise.prototype.then = function(onFulfilled, onRejected){
   let self = this
@@ -124,10 +104,7 @@ function MyPromise(executor){
   }
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-  
-  <p>
-    5 保证promise实例状态一旦变更不能再次改变，只有在pending时候才可以变状态
-  </p>
+ 5 保证promise实例状态一旦变更不能再次改变，只有在pending时候才可以变状态
   
   <pre><code class="copyable">function Promise(executor){
   let self = this
@@ -147,10 +124,7 @@ function MyPromise(executor){
   executor(resolve, reject)
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-  
-  <p>
-    6 执行器执行resolve方法传的值，传递给then中第一个参数函数中
-  </p>
+ 6 执行器执行resolve方法传的值，传递给then中第一个参数函数中
   
   <pre><code class="copyable">function MyPromise(executor){
   let self = this
@@ -182,13 +156,11 @@ MyPromise.prototype.then = function(onFulfilled, onRejected){
   }
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-  
   <blockquote>
-    <p>
+    
       尝试使用一下这个 MyPromise ：
-    </p>
+    
   </blockquote>
-  
   <pre><code class="copyable">let p = new MyPromise(function (resolve, reject) {
   console.log('start')
   resolve('data2')
@@ -203,33 +175,27 @@ p.then(
 )
 console.log('end')
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-  
   <blockquote>
-    <p>
+    
       运行结果如下：
-    </p>
+    
   </blockquote><figure>
-  
-  <p id="Nfcrvjm">
-    <img loading="lazy" width="187" height="89" class="alignnone size-full wp-image-5129 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff677627f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff677627f.png?x-oss-process=image/format,webp" alt="" />
-  </p><figcaption></figcaption></figure>
-  
+ <img loading="lazy" width="187" height="89" class="alignnone size-full wp-image-5129 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff677627f.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff677627f.png?x-oss-process=image/format,webp" alt="" />
+  <figcaption></figcaption></figure>
   <blockquote>
-    <p>
+    
       小结：结果看似对了，不过和原生的promise还是有不同的，就是success那条语句的打印顺序，不要急，MyPromise 还没有写完。
-    </p>
+    
   </blockquote>
-  
   <h2 class="heading" data-id="heading-2">
     2 完善MyPromise，添加异步处理和实现一个实例多次调用then方法
-  </h2>
   
+
   <blockquote>
-    <p>
+    
       还是看原生promise的使用小例子
-    </p>
+    
   </blockquote>
-  
   <pre><code class="copyable">let p = new Promise(function (resolve, reject) {
   console.log('start')
   setTimeout(function(){
@@ -246,23 +212,18 @@ p.then(
 )
 console.log('end')
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-  
   <blockquote>
-    <p>
+    
       运行结果如下
-    </p>
+    
   </blockquote><figure>
-  
-  <p id="zjwzKeb">
-    <img loading="lazy" width="194" height="88" class="alignnone size-full wp-image-5130 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff768e672.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff768e672.png?x-oss-process=image/format,webp" alt="" />
-  </p><figcaption></figcaption></figure>
-  
+ <img loading="lazy" width="194" height="88" class="alignnone size-full wp-image-5130 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff768e672.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff768e672.png?x-oss-process=image/format,webp" alt="" />
+  <figcaption></figcaption></figure>
   <blockquote>
-    <p>
+    
       实例多次调用then方法情况（注意不是链式调用）
-    </p>
+    
   </blockquote>
-  
   <pre><code class="copyable">let p = new Promise(function (resolve, reject) {
   console.log('start')
   setTimeout(function(){
@@ -287,41 +248,33 @@ p.then(
 )
 console.log('end')
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-  
   <blockquote>
-    <p>
+    
       运行结果如下
-    </p>
+    
   </blockquote><figure>
-  
-  <p id="dACnRXM">
-    <img loading="lazy" width="188" height="113" class="alignnone size-full wp-image-5131 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff86c3aba.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff86c3aba.png?x-oss-process=image/format,webp" alt="" />
-  </p><figcaption></figcaption></figure>
-  
+ <img loading="lazy" width="188" height="113" class="alignnone size-full wp-image-5131 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff86c3aba.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff86c3aba.png?x-oss-process=image/format,webp" alt="" />
+  <figcaption></figcaption></figure>
   <blockquote>
-    <p>
+    
       那么针对这种异步的情况和实例p多次调用then方法，[我们](https://www.w3cdoc.com)上述MyPromise该如何修改呢？
-    </p>
+    
   </blockquote>
-  
   <ol>
-    <li>
+    
       对于异步情况，[我们](https://www.w3cdoc.com)先来看上面的例子，当代码执行到了p.then() 的时候，执行器方法中的resolve(&#8216;data1&#8217;)被setTimeout放到了异步任务队列中，
-    </li>
-    <li>
+    
+    
       换句话说，也就是，此时实例p的状态还是默认状态，没有改变，那么[我们](https://www.w3cdoc.com)此时并不知道要去执行then中的第一个参数（成功回调）还是第二个参数（失败回调）。
-    </li>
-    <li>
+    
+    
       在不知道哪个回调会被执行的情况下，就需要先把这两个回调函数保存起来，等到时机成熟，确定调用哪个函数的时候，再拿出来调用。
-    </li>
-    <li>
+    
+    
       其实就是发布订阅的一个变种，[我们](https://www.w3cdoc.com)在执行一次p.then(),就会then中的参数，也就是把成功回调和失败回调都保存起来（订阅），执行器执行了resolve方法或者reject方法时，[我们](https://www.w3cdoc.com)去执行刚保存起来的函数（发布）。
-    </li>
+    
   </ol>
-  
-  <p>
-    此阶段MyPromise升级代码如下
-  </p>
+ 此阶段MyPromise升级代码如下
   
   <pre><code class="copyable">//省略其余等待，突出增加的点，等下发完整版
 function MyPromise(executor){
@@ -346,16 +299,12 @@ MyPromise.prototype.then = function(onFulfilled, onRejected){
   ...
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-  
   <blockquote>
-    <p>
+    
       小结 这样修改后，[我们](https://www.w3cdoc.com)执行器方法中，有异步函数的情况时，p.then执行就会把对应的两个参数保存起来了。那么在什么时候调用呢？答，肯定是在执行器中的resolve执行时候或者reject执行时候。
-    </p>
+    
   </blockquote>
-  
-  <p>
-    接下来贴出这阶段改动的完整代码。
-  </p>
+ 接下来贴出这阶段改动的完整代码。
   
   <pre><code class="copyable">function MyPromise(executor){
   let self = this
@@ -407,13 +356,11 @@ MyPromise.prototype.then = function(onFulfilled, onRejected){
   }
 }
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-  
   <blockquote>
-    <p>
+    
       [我们](https://www.w3cdoc.com)来测试一下这个升级版的MyPrimise吧
-    </p>
+    
   </blockquote>
-  
   <pre><code class="copyable">let p = new MyPromise(function (resolve, reject) {
   console.log('start')
   setTimeout(function(){
@@ -438,23 +385,18 @@ p.then(
 )
 console.log('end')
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-  
   <blockquote>
-    <p>
+    
       运行结果如下,显示打印start和end，两秒后一起打印的两个 success：data1
-    </p>
+    
   </blockquote><figure>
-  
-  <p id="yUjwvTQ">
-    <img loading="lazy" width="184" height="113" class="alignnone size-full wp-image-5132 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff96a5c9d.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff96a5c9d.png?x-oss-process=image/format,webp" alt="" />
-  </p><figcaption></figcaption></figure>
-  
+ <img loading="lazy" width="184" height="113" class="alignnone size-full wp-image-5132 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff96a5c9d.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7ff96a5c9d.png?x-oss-process=image/format,webp" alt="" />
+  <figcaption></figcaption></figure>
   <blockquote>
-    <p>
+    
       小结： 下面这里，为什么能拿到self.value的值，值得好好思考一下呦
-    </p>
+    
   </blockquote>
-  
   <pre><code class="copyable">self.onResolvedCallbacks.push(function(){
   onFulfilled(self.value)
 }) </code></pre>
@@ -462,18 +404,18 @@ console.log('end')
 
 <div>
   <div>
-    <h2>
-      另一种实现
-    </h2>
+    ##     另一种实现
+    
+
 
     <h3>
       什么是Promise?
     </h3>
     
     <blockquote>
-      <p>
+      
         Promise是JS异步编程中的重要概念，异步抽象处理对象，是目前比较流行Javascript异步编程解决方案之一
-      </p>
+      
     </blockquote>
     
     <h3>
@@ -481,36 +423,36 @@ console.log('end')
     </h3>
     
     <ul>
-      <li>
+      
         回调函数
-      </li>
-      <li>
+      
+      
         事件监听
-      </li>
-      <li>
+      
+      
         发布/订阅
-      </li>
-      <li>
+      
+      
         Promise对象
-      </li>
-    </ul>
+      
+    
     
     <h4>
       这里就拿回调函数说说
     </h4>
     
-    <p>
+    
       1.对于回调函数 [我们](https://www.w3cdoc.com)用Jquery的ajax获取数据时 都是以回调函数方式获取的数据
-    </p>
+    
     
     <pre class="line-numbers language-tsx"><code class=" language-tsx">$&lt;span class="token punctuation">.&lt;/span>&lt;span class="token keyword">get&lt;/span>&lt;span class="token punctuation">(&lt;/span>url&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">data&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
     &lt;span class="token builtin">console&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>data&lt;span class="token punctuation">)&lt;/span>
 &lt;span class="token punctuation">)&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
 
-    <p>
+    
       2.如果说 当[我们](https://www.w3cdoc.com)需要发送多个异步请求 并且每个请求之间需要相互依赖 那这时 [我们](https://www.w3cdoc.com)只能 以嵌套方式来解决 形成 &#8220;回调地狱&#8221;
-    </p>
+    
     
     <pre class="line-numbers language-tsx"><code class=" language-tsx">$&lt;span class="token punctuation">.&lt;/span>&lt;span class="token keyword">get&lt;/span>&lt;span class="token punctuation">(&lt;/span>url&lt;span class="token punctuation">,&lt;/span> &lt;span class="token parameter">data1&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
     &lt;span class="token builtin">console&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>data1&lt;span class="token punctuation">)&lt;/span>
@@ -521,33 +463,33 @@ console.log('end')
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
 
     <blockquote>
-      <p>
+      
         这样一来，在处理越多的异步逻辑时，就需要越深的回调嵌套，这种编码模式的问题主要有以下几个：
-      </p>
+      
     </blockquote>
     
     <ul>
-      <li>
+      
         代码逻辑书写顺序与执行顺序不一致，不利于阅读与维护。
-      </li>
-      <li>
+      
+      
         异步操作的顺序变更时，需要大规模的代码重构。
-      </li>
-      <li>
+      
+      
         回调函数基本都是匿名函数，bug 追踪困难。
-      </li>
-      <li>
+      
+      
         回调函数是被第三方库代码（如上例中的 ajax ）而非自己的业务代码所调用的，造成了 IoC 控制反转。
-      </li>
-    </ul>
+      
+    
     
     <h4>
       Promise 处理多个相互关联的异步请求
     </h4>
     
-    <p>
+    
       1.而[我们](https://www.w3cdoc.com)Promise 可以更直观的方式 来解决 &#8220;回调地狱&#8221;
-    </p>
+    
     
     <pre class="line-numbers language-tsx"><code class=" language-tsx">&lt;span class="token keyword">const&lt;/span> &lt;span class="token function-variable function">request&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token parameter">url&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span> 
     &lt;span class="token keyword">return&lt;/span> &lt;span class="token keyword">new&lt;/span> &lt;span class="token class-name">Promise&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">resolve&lt;span class="token punctuation">,&lt;/span> reject&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -567,9 +509,9 @@ console.log('end')
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token keyword">catch&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">err&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token keyword">throw&lt;/span> &lt;span class="token keyword">new&lt;/span> &lt;span class="token class-name">Error&lt;/span>&lt;span class="token punctuation">(&lt;/span>err&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
 
-    <p>
+    
       2.相信[大家](https://www.w3cdoc.com)在 vue/react 都是用axios fetch 请求数据 也都支持 Promise API
-    </p>
+    
     
     <pre class="line-numbers language-jsx"><code class=" language-jsx">&lt;span class="token keyword">import&lt;/span> axios &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">'axios'&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 axios&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">get&lt;/span>&lt;span class="token punctuation">(&lt;/span>url&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">then&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">data&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -578,9 +520,9 @@ axios&lt;span class="token punctuation">.&lt;/span>&lt;span class="token functio
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
 
     <blockquote>
-      <p>
+      
         Axios 是一个基于 promise 的 HTTP 库，可以用在[浏览器](https://www.w3cdoc.com)和 node.js 中。
-      </p>
+      
     </blockquote>
     
     <h3>
@@ -602,39 +544,39 @@ axios&lt;span class="token punctuation">.&lt;/span>&lt;span class="token functio
       2.promise相当于一个状态机
     </h4>
     
-    <p>
+    
       promise的三种状态
-    </p>
+    
     
     <ul>
-      <li>
+      
         pending
-      </li>
-      <li>
+      
+      
         fulfilled
-      </li>
-      <li>
+      
+      
         rejected
-      </li>
-    </ul>
+      
     
-    <p>
+    
+    
       1.promise 对象初始化状态为 pending<br /> 2.当调用resolve(成功)，会由pending => fulfilled<br /> 3.当调用reject(失败)，会由pending => rejected
-    </p>
+    
     
     <blockquote>
-      <p>
+      
         注意promsie状态 只能由 pending => fulfilled/rejected, 一旦修改就不能再变
-      </p>
+      
     </blockquote>
     
     <h4>
       3.promise对象方法
     </h4>
     
-    <p>
+    
       1.then方法注册 当resolve(成功)/reject(失败)的回调函数
-    </p>
+    
     
     <pre class="line-numbers language-cpp"><code class=" language-cpp">&lt;span class="token comment">// onFulfilled 是用来接收promise成功的值&lt;/span>
 &lt;span class="token comment">// onRejected 是用来接收promise失败的原因&lt;/span>
@@ -642,14 +584,14 @@ promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
 
     <blockquote>
-      <p>
+      
         then方法是异步执行的
-      </p>
+      
     </blockquote>
     
-    <p>
+    
       2.resolve(成功) onFulfilled会被调用
-    </p>
+    
     
     <pre class="line-numbers language-tsx"><code class=" language-tsx">&lt;span class="token keyword">const&lt;/span> promise &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">new&lt;/span> &lt;span class="token class-name">Promise&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">resolve&lt;span class="token punctuation">,&lt;/span> reject&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
    &lt;span class="token function">resolve&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'fulfilled'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">// 状态由 pending =&gt; fulfilled&lt;/span>
@@ -661,28 +603,27 @@ promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
 
-    <p>
+    
       3.reject(失败) onRejected会被调用
-    </p>
+    
     
     <pre class="line-numbers language-tsx"><code class=" language-tsx">&lt;span class="token keyword">const&lt;/span> promise &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">new&lt;/span> &lt;span class="token class-name">Promise&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">resolve&lt;span class="token punctuation">,&lt;/span> reject&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
    &lt;span class="token function">reject&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'rejected'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">// 状态由 pending =&gt; rejected&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">then&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">result&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span> &lt;span class="token comment">// onFulfilled 不会被调用&lt;/span>
-  
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token parameter">reason&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span> &lt;span class="token comment">// onRejected &lt;/span>
     &lt;span class="token builtin">console&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>rejected&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">// 'rejected'&lt;/span>
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
 
-    <p>
+    
       4.promise.catch
-    </p>
+    
     
     <blockquote>
-      <p>
+      
         在链式写法中可以捕获前面then中发送的异常,
-      </p>
+      
     </blockquote>
     
     <pre class="line-numbers language-csharp"><code class=" language-csharp">promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token keyword">catch&lt;/span>&lt;span class="token punctuation">(&lt;/span>onRejected&lt;span class="token punctuation">)&lt;/span>
@@ -703,9 +644,9 @@ promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
     </h4>
     
     <blockquote>
-      <p>
+      
         promise.then方法每次调用 都返回一个新的promise对象 所以可以链式写法
-      </p>
+      
     </blockquote>
     
     <pre class="line-numbers language-jsx"><code class=" language-jsx">&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">taskA&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -729,9 +670,9 @@ promise
       5.Promise的静态方法
     </h4>
     
-    <p>
+    
       1.Promise.resolve 返回一个fulfilled状态的promise对象
-    </p>
+    
     
     <pre class="line-numbers language-jsx"><code class=" language-jsx">Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">resolve&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'hello'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">then&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token keyword">function&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">value&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">{&lt;/span>
     console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>value&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
@@ -744,9 +685,9 @@ Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
 
-    <p>
+    
       2.Promise.reject 返回一个rejected状态的promise对象
-    </p>
+    
     
     <pre class="line-numbers language-jsx"><code class=" language-jsx">Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">reject&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">24&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token keyword">new&lt;/span> &lt;span class="token class-name">Promise&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">resolve&lt;span class="token punctuation">,&lt;/span> reject&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -754,14 +695,14 @@ Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
 
-    <p>
+    
       3.Promise.all 接收一个promise对象数组为参数
-    </p>
+    
     
     <blockquote>
-      <p>
+      
         只有全部为resolve才会调用 通常会用来处理 多个并行异步操作
-      </p>
+      
     </blockquote>
     
     <pre class="line-numbers language-tsx"><code class=" language-tsx">&lt;span class="token keyword">const&lt;/span> p1 &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">new&lt;/span> &lt;span class="token class-name">Promise&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">resolve&lt;span class="token punctuation">,&lt;/span> reject&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -783,14 +724,14 @@ Promise&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code><button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></pre>
 
-    <p>
+    
       4.Promise.race 接收一个promise对象数组为参数
-    </p>
+    
     
     <blockquote>
-      <p>
+      
         Promise.race 只要有一个promise对象进入 FulFilled 或者 Rejected 状态的话，就会继续进行后面的处理。
-      </p>
+      
     </blockquote>
     
     <pre class="line-numbers language-jsx"><code class=" language-jsx">&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">timerPromisefy&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">delay&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>

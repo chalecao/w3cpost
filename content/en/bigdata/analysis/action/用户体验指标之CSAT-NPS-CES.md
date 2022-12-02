@@ -14,9 +14,9 @@ title: 用户体验指标之CSAT-NPS-CES
 
 CSAT要求用户评价对特定事件/体验的满意度，大都使用的是五点量表，包括五个选择：非常满意、满意、一般、不满意、非常不满意。<figure>
 
-<p id="MIvHBFx">
-  <img loading="lazy" width="640" height="108" class="alignnone size-full wp-image-6801 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f265cc1.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f265cc1.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f265cc1.png?x-oss-process=image/format,webp 640w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f265cc1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_51/format,webp 300w" sizes="(max-width: 640px) 100vw, 640px" />
-</p></figure>
+
+  <img loading="lazy" width="640" height="108" class="alignnone size-full wp-image-6801 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f265cc1.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f265cc1.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f265cc1.png?x-oss-process=image/format,webp 640w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f265cc1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_51/format,webp 300w" sizes="(max-width: 640px) 100vw, 640px" />
+</figure>
 
 通过计算选择4分和5分的用户所占比例得出最终的CSAT值。CSAT的好处是**简单且扩展性强**，例如在客户打开的某个登录页面或是在拨打一次客户电话之后，[我们](https://www.w3cdoc.com)都可以设定一个CSAT题项进行测量。但在这个过程中，一定要注意问题设计的便利性、复杂程度等，通常不要超过3分钟，并且最好能够通过送积分或者抽奖的方式对参与的客户表示感谢。
 
@@ -40,9 +40,9 @@ CSAT要求用户评价对特定事件/体验的满意度，大都使用的是五
 
 贬损者Detractors（得分在 0～6之间）：使用并不满意或者对你的企业没有忠诚度<figure>
 
-<p id="THTxQtL">
-  <img loading="lazy" width="640" height="274" class="alignnone size-full wp-image-6802 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f9d55ab.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f9d55ab.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f9d55ab.png?x-oss-process=image/format,webp 640w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f9d55ab.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_128/format,webp 300w" sizes="(max-width: 640px) 100vw, 640px" />
-</p></figure>
+
+  <img loading="lazy" width="640" height="274" class="alignnone size-full wp-image-6802 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f9d55ab.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f9d55ab.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f9d55ab.png?x-oss-process=image/format,webp 640w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a686f9d55ab.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_128/format,webp 300w" sizes="(max-width: 640px) 100vw, 640px" />
+</figure>
 
 净推荐值(NPS)=(推荐者数/总样本数)×100%－(贬损者数/总样本数)×100%
 
@@ -64,9 +64,8 @@ NPS询问的是意愿而不是情感，对用户来说更容易回答，且相�
 
 客户的选项包括：强烈不同意，不同意，有点不同意，中立，有点同意，同意，强烈同意
 
-<p id="BpBCQZs">
-  <img loading="lazy" width="640" height="104" class="alignnone size-full wp-image-6803 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a68702f1533.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a68702f1533.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a68702f1533.png?x-oss-process=image/format,webp 640w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a68702f1533.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_49/format,webp 300w" sizes="(max-width: 640px) 100vw, 640px" />
-</p>
+
+  <img loading="lazy" width="640" height="104" class="alignnone size-full wp-image-6803 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a68702f1533.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a68702f1533.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a68702f1533.png?x-oss-process=image/format,webp 640w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/img_60a68702f1533.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_49/format,webp 300w" sizes="(max-width: 640px) 100vw, 640px" />
 
 根据Oracle的一项研究，82％的人把他们的购买经历描述为“花费太多的努力”，CES背后的理论就是，应该想办法减少客户为了解决问题而付出的努力。CES可以帮助你找出可优化的方向，更容易理解在哪里进行改善，较低的费力度也与客户续签直接相关，从而增加客户的生命周期价值。
 

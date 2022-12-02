@@ -86,7 +86,7 @@ exports.forbidIp = {
 
 如上中间件代码，它接收两个参数：options 和 app;  
 options参数指的是 app.config[${middlewareName}]传进来。[我们](https://www.w3cdoc.com)在 如上中间件代码中打印 options; console.log(options); 及 打印 console.log(app); 如下图所示：  
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/561794-20190110000755863-1356246613.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/561794-20190110000755863-1356246613.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/561794-20190110000755863-1356246613.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/561794-20190110000755863-1356246613.png?x-oss-process=image/format,webp" alt="" />
 
 可以看到 console.log(options); options参数的值就是 config配置项中的
 
@@ -103,7 +103,7 @@ options参数指的是 app.config[${middlewareName}]传进来。[我们](https:/
 
 因此[我们](https://www.w3cdoc.com)继续访问 http://127.0.0.1:7001/ 后可以看到如下信息，页面被禁用了。如下图所示：
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/561794-20190110000830588-805829055.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/561794-20190110000830588-805829055.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/561794-20190110000830588-805829055.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/561794-20190110000830588-805829055.png?x-oss-process=image/format,webp" alt="" />
 
 如果[我们](https://www.w3cdoc.com)继续把 config/config.default.js 配置代码改成其他的ip地址，代码如下：
 
@@ -123,7 +123,7 @@ exports.forbidIp = {
 
 [我们](https://www.w3cdoc.com)继续访问 http://127.0.0.1:7001/ 后，页面就正常了。如下所示：
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/561794-20190110000901994-1553035697.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/561794-20190110000901994-1553035697.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/561794-20190110000901994-1553035697.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/561794-20190110000901994-1553035697.png?x-oss-process=image/format,webp" alt="" />
 
 **二：在 router.js路由中使用中间件。**
 

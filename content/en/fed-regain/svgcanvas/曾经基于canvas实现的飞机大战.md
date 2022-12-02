@@ -1,45 +1,27 @@
 ---
 title: 曾经基于canvas实现的飞机大战
 
-
 ---
 
 <div class="detailcontennt">
-  <p>
-    首先看几张效果图：
-  </p>
+ 首先看几张效果图：
   
-  <p>
-    <img loading="lazy" class="alignnone size-medium wp-image-1778" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516961970.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516961970.gif?x-oss-process=image/resize,m_fill,w_221,h_300/format,webp" alt="" width="221" height="300" /><img loading="lazy" class="alignnone size-medium wp-image-1779" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516963924.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516963924.gif?x-oss-process=image/resize,m_fill,w_261,h_300/format,webp" alt="" width="261" height="300" />
-  </p>
+ <img loading="lazy" class="alignnone size-medium wp-image-1778" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516961970.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516961970.gif?x-oss-process=image/resize,m_fill,w_221,h_300/format,webp" alt="" width="221" height="300" /><img loading="lazy" class="alignnone size-medium wp-image-1779" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516963924.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516963924.gif?x-oss-process=image/resize,m_fill,w_261,h_300/format,webp" alt="" width="261" height="300" />
   
-  <p>
-    上面三张图分别对应游戏的三种状态 ready，play，pause。<a href="https://chalecao.github.io/gameH5/AircraftWar/index.html" target="_blank" rel="noopener">体验一下</a>
-  </p>
+ 上面三张图分别对应游戏的三种状态 ready，play，pause。<a href="https://chalecao.github.io/gameH5/AircraftWar/index.html" target="_blank" rel="noopener">体验一下</a>
   
-  <p>
-    先介绍一下canvas 画图的原理，在这个游戏中的背景，飞机，子弹以及飞机被击中爆炸的效果都是一张张的图片，通过canvas的 drawImage() 函数把这一帧需要的所有图片按其所在的位置（坐标）画到画布上，当然有时候也需要画些文本，比如左上角的得分；然后接着画下一帧，同时改变飞机和子弹的位置；画下一帧之前一定要清除画布（通过这个函数 clearRect(x,  y, width, height))，不然就是下图的效果啦：<br /> <img loading="lazy" class="alignnone size-medium wp-image-1780" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516966853.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516966853.gif?x-oss-process=image/resize,m_fill,w_261,h_300/format,webp" alt="" width="261" height="300" />
-  </p>
+ 先介绍一下canvas 画图的原理，在这个游戏中的背景，飞机，子弹以及飞机被击中爆炸的效果都是一张张的图片，通过canvas的 drawImage() 函数把这一帧需要的所有图片按其所在的位置（坐标）画到画布上，当然有时候也需要画些文本，比如左上角的得分；然后接着画下一帧，同时改变飞机和子弹的位置；画下一帧之前一定要清除画布（通过这个函数 clearRect(x,  y, width, height))，不然就是下图的效果啦：<br /> <img loading="lazy" class="alignnone size-medium wp-image-1780" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516966853.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516966853.gif?x-oss-process=image/resize,m_fill,w_261,h_300/format,webp" alt="" width="261" height="300" />
   
-  <p>
-    辣眼睛！！！<br /> 不过在本例中因为每帧都要重新画上背景图，背景图又是填满整个画布的，所以画背景图时就等于把上一帧全部覆盖了，也就相当于清除画布了。
-  </p>
+ 辣眼睛！！！<br /> 不过在本例中因为每帧都要重新画上背景图，背景图又是填满整个画布的，所以画背景图时就等于把上一帧全部覆盖了，也就相当于清除画布了。
   
-  <p>
-    下面[我们](https://www.w3cdoc.com)开始聊实现的细节：
-  </p>
+ 下面[我们](https://www.w3cdoc.com)开始聊实现的细节：
   
-  <h2>
-    加载需要的图片
-  </h2>
+  ##   加载需要的图片
   
-  <p>
-    在让游戏跑起来之前要先把需要的图片加载进来，类似：<br /> <img loading="lazy" class="alignnone size-medium wp-image-1781" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516968807.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516968807.png?x-oss-process=image/resize,m_fill,w_300,h_176/format,webp" alt="" width="300" height="176" />
-  </p>
+
+ 在让游戏跑起来之前要先把需要的图片加载进来，类似：<br /> <img loading="lazy" class="alignnone size-medium wp-image-1781" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516968807.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/20180110224516968807.png?x-oss-process=image/resize,m_fill,w_300,h_176/format,webp" alt="" width="300" height="176" />
   
-  <p>
-    代码如下：
-  </p>
+ 代码如下：
   
   <div class="cnblogs_code">
     <pre><code>&lt;span style="color: #008080;"> 1&lt;/span> &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 所以图片的链接，包括背景图、各种飞机和飞机爆炸图、子弹图等&lt;/span>
@@ -114,22 +96,14 @@ title: 曾经基于canvas实现的飞机大战
 &lt;/span>&lt;span style="color: #008080;">70&lt;/span> &lt;span style="color: #000000;">}
 &lt;/span>&lt;span style="color: #008080;">71&lt;/span> download();</code></pre>
   </div>
+ &nbsp;
   
-  <p>
-    &nbsp;
-  </p>
+ 其中有处理图片分类和加载进度的问题，代码有些冗余。
   
-  <p>
-    其中有处理图片分类和加载进度的问题，代码有些冗余。
-  </p>
+  ##   让背景动起来
   
-  <h2>
-    让背景动起来
-  </h2>
-  
-  <p>
-    从上面的游戏ready状态图可以看出游戏背景在不停的往上移动；<br /> 实现原理：连续画两张背景图到画布上，一上一下，第一张画在坐标为(0，0) 的位置，第二张紧接着第一张，然后每画一帧往上移动一点（一到两个像素吧），当上面的那张图片移出画布之后，将Y轴的坐标重置为0；代码如下：
-  </p>
+
+ 从上面的游戏ready状态图可以看出游戏背景在不停的往上移动；<br /> 实现原理：连续画两张背景图到画布上，一上一下，第一张画在坐标为(0，0) 的位置，第二张紧接着第一张，然后每画一帧往上移动一点（一到两个像素吧），当上面的那张图片移出画布之后，将Y轴的坐标重置为0；代码如下：
   
   <div class="cnblogs_code">
     <pre><code>&lt;span style="color: #008080;">1&lt;/span> &lt;span style="color: #0000ff;">var&lt;/span> y = 0&lt;span style="color: #000000;">;
@@ -139,11 +113,9 @@ title: 曾经基于canvas实现的飞机大战
 &lt;/span>&lt;span style="color: #008080;">5&lt;/span>     y++ == 852 && (y = 0&lt;span style="color: #000000;">);
 &lt;/span>&lt;span style="color: #008080;">6&lt;/span> }</code></pre>
   </div>
+  ##   构造玩家飞机(hero)
   
-  <h2>
-    构造玩家飞机(hero)
-  </h2>
-  
+
   <div class="cnblogs_code">
     <pre><code>&lt;span style="color: #008080;"> 1&lt;/span> &lt;span style="color: #008000;">/*&lt;/span>&lt;span style="color: #008000;">********构造hero***********&lt;/span>&lt;span style="color: #008000;">*/&lt;/span>
 &lt;span style="color: #008080;"> 2&lt;/span> &lt;span style="color: #0000ff;">var&lt;/span> hero = &lt;span style="color: #0000ff;">null&lt;/span>&lt;span style="color: #000000;">;
@@ -208,19 +180,13 @@ title: 曾经基于canvas实现的飞机大战
 &lt;/span>&lt;span style="color: #008080;">61&lt;/span> &lt;span style="color: #000000;">    }
 &lt;/span>&lt;span style="color: #008080;">62&lt;/span> }</code></pre>
   </div>
+ &nbsp;
   
-  <p>
-    &nbsp;
-  </p>
+ 本例中并没有设置hero的碰撞检测和生命值，所以英雄无敌！！！哈哈哈哈！！！<br /> 然并卵，我已经写不下去了；可是，坚持就是胜利呀；好吧，继续！
   
-  <p>
-    本例中并没有设置hero的碰撞检测和生命值，所以英雄无敌！！！哈哈哈哈！！！<br /> 然并卵，我已经写不下去了；可是，坚持就是胜利呀；好吧，继续！
-  </p>
+  ##   构造子弹
   
-  <h2>
-    构造子弹
-  </h2>
-  
+
   <div class="cnblogs_code">
     <pre><code>&lt;span style="color: #008080;"> 1&lt;/span> &lt;span style="color: #008000;">/*&lt;/span>&lt;span style="color: #008000;">*********构造子弹**********&lt;/span>&lt;span style="color: #008000;">*/&lt;/span>
 &lt;span style="color: #008080;"> 2&lt;/span> &lt;span style="color: #0000ff;">var&lt;/span> hullet = []; &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 存储画布中所以子弹的数组&lt;/span>
@@ -251,15 +217,11 @@ title: 曾经基于canvas实现的飞机大战
 &lt;/span>&lt;span style="color: #008080;">27&lt;/span> &lt;span style="color: #000000;">    };
 &lt;/span>&lt;span style="color: #008080;">28&lt;/span> }</code></pre>
   </div>
+ &nbsp;
   
-  <p>
-    &nbsp;
-  </p>
+  ##   构造敌机
   
-  <h2>
-    构造敌机
-  </h2>
-  
+
   <div class="cnblogs_code">
     <pre><code>&lt;span style="color: #008080;"> 1&lt;/span> &lt;span style="color: #008000;">/*&lt;/span>&lt;span style="color: #008000;">**********构造敌机*******&lt;/span>&lt;span style="color: #008000;">*/&lt;/span>
 &lt;span style="color: #008080;"> 2&lt;/span> &lt;span style="color: #0000ff;">var&lt;/span> liveEnemy = []; &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 用于存储画布上的所有敌机&lt;/span>
@@ -338,15 +300,11 @@ title: 曾经基于canvas实现的飞机大战
 &lt;/span>&lt;span style="color: #008080;">75&lt;/span> &lt;span style="color: #000000;">    }
 &lt;/span>&lt;span style="color: #008080;">76&lt;/span> }</code></pre>
   </div>
+ &nbsp;
   
-  <p>
-    &nbsp;
-  </p>
+  ##   游戏的几种状态
   
-  <h2>
-    游戏的几种状态
-  </h2>
-  
+
   <div class="cnblogs_code">
     <pre><code>&lt;span style="color: #008080;">1&lt;/span> &lt;span style="color: #008000;">/*&lt;/span>&lt;span style="color: #008000;">*******定义游戏状态**********&lt;/span>&lt;span style="color: #008000;">*/&lt;/span>
 &lt;span style="color: #008080;">2&lt;/span> const PHASE_DOWNLOAD = 1&lt;span style="color: #000000;">;
@@ -358,14 +316,9 @@ title: 曾经基于canvas实现的飞机大战
 &lt;/span>&lt;span style="color: #008080;">8&lt;/span> &lt;span style="color: #008000;">/*&lt;/span>&lt;span style="color: #008000;">*********游戏当前状态***********&lt;/span>&lt;span style="color: #008000;">*/&lt;/span>
 &lt;span style="color: #008080;">9&lt;/span> &lt;span style="color: #0000ff;">var&lt;/span> curPhase = PHASE_DOWNLOAD;</code></pre>
   </div>
+ &nbsp;
   
-  <p>
-    &nbsp;
-  </p>
-  
-  <p>
-    有了状态，我只需要起一个定时器，判断游戏的状态，绘制对应的帧就行；像这样：
-  </p>
+ 有了状态，我只需要起一个定时器，判断游戏的状态，绘制对应的帧就行；像这样：
   
   <div class="cnblogs_code">
     <pre><code>&lt;span style="color: #008000;">/*&lt;/span>&lt;span style="color: #008000;">*********游戏主引擎********&lt;/span>&lt;span style="color: #008000;">*/&lt;/span>
@@ -393,16 +346,9 @@ title: 曾经基于canvas实现的飞机大战
 &lt;span style="color: #000000;">}
 setInterval(gameEngine, &lt;/span>50);</code></pre>
   </div>
+ 代码见：<a href="https://github.com/chalecao/gameH5">github</a>
   
-  <p>
-    代码见：<a href="https://github.com/chalecao/gameH5">github</a>
-  </p>
+ &nbsp;
   
-  <p>
-    &nbsp;
-  </p>
-  
-  <p>
-    &nbsp;
-  </p>
+ &nbsp;
 </div>

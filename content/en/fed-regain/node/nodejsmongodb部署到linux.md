@@ -1,10 +1,7 @@
 ---
 title: NodeJS+mongoDB部署到Linux
 
-
 ---
-  
-
 
 ### [][1]部署需求
 

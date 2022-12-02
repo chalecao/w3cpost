@@ -47,9 +47,7 @@ XSS 攻击是页面被注入了恶意的代码，为了更形象的介绍，[我
 小明带着一种不祥的预感点开了这个链接[请勿模仿，确认安全的链接才能点开]。果然，页面中弹出了写着”XSS”的对话框。
 
 <blockquote class="with-icon">
-  <p>
-    <i class="fa fa-quote-left post-blockquote-icon"></i><i class="fa fa-quote-left post-blockquote-icon"></i>可恶，中招了！小明眉头一皱，发现了其中的奥秘：
-  </p>
+ <i class="fa fa-quote-left post-blockquote-icon"></i><i class="fa fa-quote-left post-blockquote-icon"></i>可恶，中招了！小明眉头一皱，发现了其中的奥秘：
 </blockquote>
 
 当[浏览器](https://www.w3cdoc.com)请求 `http://xxx/search?keyword="><script>alert('XSS');</script>` 时，服务端会解析出请求参数 `keyword`，得到 `"><script>alert('XSS');</script>`，拼接到 HTML 中返回给[浏览器](https://www.w3cdoc.com)。形成了如下的 HTML：
@@ -121,9 +119,7 @@ XSS 攻击是页面被注入了恶意的代码，为了更形象的介绍，[我
 虽然代码不会立即执行，但一旦用户点击 `a` 标签时，[浏览器](https://www.w3cdoc.com)会就会弹出“XSS”。
 
 <blockquote class="with-icon">
-  <p>
-    <i class="fa fa-quote-left post-blockquote-icon"></i><i class="fa fa-quote-left post-blockquote-icon"></i>可恶，又失策了…
-  </p>
+ <i class="fa fa-quote-left post-blockquote-icon"></i><i class="fa fa-quote-left post-blockquote-icon"></i>可恶，又失策了…
 </blockquote>
 
 在这里，用户的数据并没有在位置上突破[我们](https://www.w3cdoc.com)的限制，仍然是正确的 href 属性。但其内容并不是[我们](https://www.w3cdoc.com)所预期的类型。
@@ -150,9 +146,7 @@ xss = getParameter(&lt;span class="hljs-string">"redirect_to"&lt;/span>).startsW
 安全组随手又扔了一个连接：`http://xxx/?redirect_to=jAvascRipt:alert('XSS')`
 
 <blockquote class="with-icon">
-  <p>
-    <i class="fa fa-quote-left post-blockquote-icon"></i><i class="fa fa-quote-left post-blockquote-icon"></i>这也能执行？…..好吧，[浏览器](https://www.w3cdoc.com)就是这么强大。
-  </p>
+ <i class="fa fa-quote-left post-blockquote-icon"></i><i class="fa fa-quote-left post-blockquote-icon"></i>这也能执行？…..好吧，[浏览器](https://www.w3cdoc.com)就是这么强大。
 </blockquote>
 
 小明欲哭无泪，在判断 URL 开头是否为 `javascript:` 时，先把用户输入转成了小写，然后再进行比对。
@@ -520,17 +514,13 @@ location.href = &lt;span class="hljs-string">'UNTRUSTED'&lt;/span>
   1. XSS 防范是后端 RD 的责任，后端 RD 应该在所有用户提交数据的接口，对敏感字符进行转义，才能进行下一步操作。
 
 <blockquote class="with-icon">
-  <p>
-    <i class="fa fa-quote-left post-blockquote-icon"></i><i class="fa fa-quote-left post-blockquote-icon"></i>不正确。因为： *防范存储型和反射型 XSS 是后端 RD 的责任。而 DOM 型 XSS 攻击不发生在后端，是[前端](https://www.w3cdoc.com) RD 的责任。防范 XSS 是需要后端 RD 和[前端](https://www.w3cdoc.com) RD 共同参与的系统工程。* 转义应该在输出 HTML 时进行，而不是在提交用户输入时。
-  </p>
+ <i class="fa fa-quote-left post-blockquote-icon"></i><i class="fa fa-quote-left post-blockquote-icon"></i>不正确。因为： *防范存储型和反射型 XSS 是后端 RD 的责任。而 DOM 型 XSS 攻击不发生在后端，是[前端](https://www.w3cdoc.com) RD 的责任。防范 XSS 是需要后端 RD 和[前端](https://www.w3cdoc.com) RD 共同参与的系统工程。* 转义应该在输出 HTML 时进行，而不是在提交用户输入时。
 </blockquote>
 
   1. 所有要插入到页面上的数据，都要通过一个敏感字符过滤函数的转义，过滤掉通用的敏感字符后，就可以插入到页面中。
 
 <blockquote class="with-icon">
-  <p>
-    <i class="fa fa-quote-left post-blockquote-icon"></i><i class="fa fa-quote-left post-blockquote-icon"></i>不正确。 不同的上下文，如 HTML 属性、HTML 文字内容、HTML 注释、跳转链接、内联 JavaScript 字符串、内联 CSS 样式表等，所需要的转义规则不一致。 业务 RD 需要选取合适的转义库，并针对不同的上下文调用不同的转义规则。
-  </p>
+ <i class="fa fa-quote-left post-blockquote-icon"></i><i class="fa fa-quote-left post-blockquote-icon"></i>不正确。 不同的上下文，如 HTML 属性、HTML 文字内容、HTML 注释、跳转链接、内联 JavaScript 字符串、内联 CSS 样式表等，所需要的转义规则不一致。 业务 RD 需要选取合适的转义库，并针对不同的上下文调用不同的转义规则。
 </blockquote>
 
 整体的 XSS 防范是非常复杂和繁琐的，[我们](https://www.w3cdoc.com)不仅需要在全部需要转义的位置，对数据进行对应的转义。而且要防止多余和错误的转义，避免正常的用户输入出现乱码。

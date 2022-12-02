@@ -3,9 +3,7 @@ title: “总阻塞时间”（TBT）
 
 ---
 <div class="w-aside w-aside--note">
-  <p>
-    总阻塞时间（TBT）是衡量<a href="https://web.dev/user-centric-performance-metrics/#types-of-metrics">负载响应能力</a>的重要<a href="https://web.dev/user-centric-performance-metrics/#in-the-lab">实验室指标</a>，因为它有助于量化页面在变得可靠交互之前的非交互性的严重程度-低TBT有助于确保页面 <a href="https://web.dev/user-centric-performance-metrics/#questions">可用</a>。
-  </p>
+ 总阻塞时间（TBT）是衡量<a href="https://web.dev/user-centric-performance-metrics/#types-of-metrics">负载响应能力</a>的重要<a href="https://web.dev/user-centric-performance-metrics/#in-the-lab">实验室指标</a>，因为它有助于量化页面在变得可靠交互之前的非交互性的严重程度-低TBT有助于确保页面 <a href="https://web.dev/user-centric-performance-metrics/#questions">可用</a>。
 </div>
 
 ## 什么是TBT？<a class="w-headline-link" href="https://web.dev/tbt/#what-is-tbt" aria-hidden="true">＃</a> {#what-is-tbt}
@@ -20,15 +18,13 @@ title: “总阻塞时间”（TBT）
 
 例如，考虑页面加载期间[浏览器](https://www.w3cdoc.com)主线程的下图：
 
-<p id="ekiTnZR">
-  <img loading="lazy" width="1698" height="326" class="alignnone size-full wp-image-5919 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/format,webp 1698w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_58/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_154/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_147/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_295/format,webp 1536w" sizes="(max-width: 1698px) 100vw, 1698px" />
-</p>
+
+  <img loading="lazy" width="1698" height="326" class="alignnone size-full wp-image-5919 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/format,webp 1698w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_58/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_154/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_147/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930e3842d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_295/format,webp 1536w" sizes="(max-width: 1698px) 100vw, 1698px" />
 
 上面的时间轴有五个任务，其中三个是长任务，因为它们的持续时间超过50毫秒。下图显示了每个长任务的阻塞时间：
 
-<p id="sJZOJpi">
-  <img loading="lazy" width="1662" height="282" class="alignnone size-full wp-image-5920 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930f258964.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930f258964.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930f258964.png?x-oss-process=image/format,webp 1662w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930f258964.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_51/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930f258964.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_136/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930f258964.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_130/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930f258964.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_261/format,webp 1536w" sizes="(max-width: 1662px) 100vw, 1662px" />
-</p>
+
+  <img loading="lazy" width="1662" height="282" class="alignnone size-full wp-image-5920 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930f258964.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930f258964.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930f258964.png?x-oss-process=image/format,webp 1662w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930f258964.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_51/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930f258964.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_136/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930f258964.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_130/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7930f258964.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_261/format,webp 1536w" sizes="(max-width: 1662px) 100vw, 1662px" />
 
 因此，虽然在主线程上运行任务所花费的总时间为560毫秒，但只有345毫秒的时间被视为阻塞时间。
 
@@ -45,7 +41,6 @@ title: “总阻塞时间”（TBT）
       任务阻止时间
     </th>
   </tr>
-  
   <tr>
     <td>
       任务一
@@ -59,7 +54,6 @@ title: “总阻塞时间”（TBT）
       200毫秒
     </td>
   </tr>
-  
   <tr>
     <td>
       任务二
@@ -73,7 +67,6 @@ title: “总阻塞时间”（TBT）
       40毫秒
     </td>
   </tr>
-  
   <tr>
     <td>
       任务三
@@ -87,7 +80,6 @@ title: “总阻塞时间”（TBT）
       0毫秒
     </td>
   </tr>
-  
   <tr>
     <td>
       任务四
@@ -101,7 +93,6 @@ title: “总阻塞时间”（TBT）
       0毫秒
     </td>
   </tr>
-  
   <tr>
     <td>
       任务五
@@ -115,14 +106,13 @@ title: “总阻塞时间”（TBT）
       105毫秒
     </td>
   </tr>
-  
   <tr>
     <td colspan="2">
-      <strong>总封锁时间</strong>
+     总封锁时间
     </td>
 
     <td>
-      <strong>345毫秒</strong>
+     345毫秒
     </td>
   </tr>
 </table>
@@ -148,14 +138,12 @@ TBT是应该[在实验室中][4]测量的指标。衡量TBT的最佳方法是在
 * [WebPageTest][9]
 
 <div class="w-aside w-aside--note">
-  <p>
-    尽管可以在现场测量TBT，但不建议这样做，因为用户交互会以导致大量差异的方式影响页面的TBT。要了解该页面在现场的交互性，您应该测量“<a href="https://web.dev/fid/">首次输入延迟”（FID）</a>。
-  </p>
+ 尽管可以在现场测量TBT，但不建议这样做，因为用户交互会以导致大量差异的方式影响页面的TBT。要了解该页面在现场的交互性，您应该测量“<a href="https://web.dev/fid/">首次输入延迟”（FID）</a>。
 </div>
 
 ## 良好的TBT分数是多少？<a class="w-headline-link" href="https://web.dev/tbt/#what-is-a-good-tbt-score" aria-hidden="true">＃</a> {#what-is-a-good-tbt-score}
 
-为了提供<span style="color: #ff0000;">良好的用户体验</span>，在**一般的移动硬件**上进行测试时，站点应努力使<span style="color: #ff0000;">总阻止时间小于<strong>300毫秒</strong>。</span>
+为了提供<span style="color: #ff0000;">良好的用户体验</span>，在**一般的移动硬件**上进行测试时，站点应努力使<span style="color: #ff0000;">总阻止时间小于300毫秒。</span>
 
 有关页面的TBT怎样影响您的Lighthouse性能得分的详细信息，请参阅[Lighthouse如何确定您的TBT得分][10]
 

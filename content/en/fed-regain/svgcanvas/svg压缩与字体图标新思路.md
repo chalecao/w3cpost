@@ -1,7 +1,6 @@
 ---
 title: SVG压缩与字体图标新思路
 
-
 ---
 已经很晚了，程序员，程序狗，爱学习不爱加班的我，还是在加班，在学习。为了涨工资，ping了。本节安利一个压缩SVG的工具：svgo(<a href="https://github.com/chalecao/svgo)。[我们](https://www.w3cdoc.com)做[前端](https://www.w3cdoc.com)的同学肯定都用过字体图标，有些特殊的字体图标需要视觉做个svg的矢量图，或者你也可以自己做个矢量图，需要学学adobe" target="_blank" rel="external">https://github.com/chalecao/svgo)。[我们](https://www.w3cdoc.com)做[前端](https://www.w3cdoc.com)的同学肯定都用过字体图标，有些特殊的字体图标需要视觉做个svg的矢量图，或者你也可以自己做个矢量图，需要学学adobe</a> illustrator,绘制个矢量图，然后保存成svg格式就可以了。然后用记事本打开保存的svg文件，你会发现有许多没有用的svg标签，这时候你需要一个svg压缩工具，可以帮你做这些事情。  
 <a></a>  

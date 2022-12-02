@@ -2,7 +2,6 @@
 title: preload和prefetch优化
 weight: 8
 
-
 ---
 衡量网站的性能的指标有很多，其中有项重要的指标就是网站的首屏时间，为此[前端](https://www.w3cdoc.com)工程师们都是绞尽脑汁想尽办法进行优化自己的应用，诸如像服务端渲染，懒加载，CDN 加速，ServiceWorker 等等方法，今天介绍的 preload/prefetch 是一种简单，但却事半功倍的优化手段。
 
@@ -167,7 +166,7 @@ const preloadSupported = () => {
 
 现代[浏览器](https://www.w3cdoc.com)很聪明，就如 Chrome [浏览器](https://www.w3cdoc.com)，它会在解析 HTML 时收集外链，并在后台并行下载，它也实现了提前加载以及加载和执行分离。
 
-<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231665479676e587a714b31526a535a536758586370415658612d3939372d3332342e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231665479676e587a714b31526a535a536758586370415658612d3939372d3332342e706e67.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231665479676e587a714b31526a535a536758586370415658612d3939372d3332342e706e67.png?x-oss-process=image/format,webp" alt="" data-canonical-src="https://img.alicdn.com/tfs/TB1fTygnXzqK1RjSZSgXXcpAVXa-997-324.png" /></a>
+<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231665479676e587a714b31526a535a536758586370415658612d3939372d3332342e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231665479676e587a714b31526a535a536758586370415658612d3939372d3332342e706e67.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f544231665479676e587a714b31526a535a536758586370415658612d3939372d3332342e706e67.png?x-oss-process=image/format,webp" alt="" data-canonical-src="https://img.alicdn.com/tfs/TB1fTygnXzqK1RjSZSgXXcpAVXa-997-324.png" /></a>
 
 它相比于 preload 方式而言：
 
@@ -201,25 +200,16 @@ preload 的 onload 事件可以在资源加载完成后修改 rel 属性，从�
 
 ## 响应式加载
     
-<p>
-  preload 是一个link，根据规范有一个media 属性（现在 Chrome 还不支持，不过快了），该属性使得选择性加载成为可能。
-</p>
+preload 是一个link，根据规范有一个media 属性（现在 Chrome 还不支持，不过快了），该属性使得选择性加载成为可能。
 
-<p>
-  有什么用处呢？假设你的站点同时支持桌面和移动端的访问，在使用桌面[浏览器](https://www.w3cdoc.com)访问时，你希望呈现一张可交互的大地图，而在移动端，一张较小的静态地图就足够了。
-</p>
+有什么用处呢？假设你的站点同时支持桌面和移动端的访问，在使用桌面[浏览器](https://www.w3cdoc.com)访问时，你希望呈现一张可交互的大地图，而在移动端，一张较小的静态地图就足够了。
 
-<p>
-  你肯定不想同时加载两个资源，现在常见的做法是通过 JS 判断当前[浏览器](https://www.w3cdoc.com)类型动态地加载资源，但这样一来，[浏览器](https://www.w3cdoc.com)的预加载器就无法及时发现他们，可能耽误加载时机，影响用户体验和 SpeedIndex 评分。
-</p>
+你肯定不想同时加载两个资源，现在常见的做法是通过 JS 判断当前[浏览器](https://www.w3cdoc.com)类型动态地加载资源，但这样一来，[浏览器](https://www.w3cdoc.com)的预加载器就无法及时发现他们，可能耽误加载时机，影响用户体验和 SpeedIndex 评分。
 
-<p>
-  怎样才能让[浏览器](https://www.w3cdoc.com)尽可能早的发现这些资源呢？还是 Preload!
-</p>
+怎样才能让[浏览器](https://www.w3cdoc.com)尽可能早的发现这些资源呢？还是 Preload!
 
-<p>
-  通过 Preload，[我们](https://www.w3cdoc.com)可以提前加载资源，利用 media 属性，[浏览器](https://www.w3cdoc.com)只会加载需要的资源。
-</p>
+通过 Preload，[我们](https://www.w3cdoc.com)可以提前加载资源，利用 media 属性，[浏览器](https://www.w3cdoc.com)只会加载需要的资源。
+
     
 
 ```
@@ -234,22 +224,15 @@ Preload 还有一个特性是其可以通过 HTTP 头信息被呈现。也就是
 Link: <thing_to_load.js>;rel="preload";as="script"
 Link: <thing_to_load.woff2>;rel="preload";as="font";crossorigin
 ```
+这一方式在有些场景尤其有用，比如，当负责优化的人员与页面开发人员不是同一人时（也就是说优化人员可能无法或者不想修改页面代码），还有一个杰出的例子是外部优化引擎（External optimization engine），该引擎对内容进行扫描并优化。
 
-<p>
-  这一方式在有些场景尤其有用，比如，当负责优化的人员与页面开发人员不是同一人时（也就是说优化人员可能无法或者不想修改页面代码），还有一个杰出的例子是外部优化引擎（External optimization engine），该引擎对内容进行扫描并优化。
-</p>
     
-<h2>
-  特征检查 （Feature Detection）
-</h2>
+## 特征检查 （Feature Detection）
 
-<p>
-  前面所有的列子都基于一种假设——[浏览器](https://www.w3cdoc.com)一定程度上支持 preload，至少实现了脚本和样式加载等基本功能。但如果这个假设不成立了。一切都将是然并卵。
-</p>
 
-<p>
-  为了判断[浏览器](https://www.w3cdoc.com)是否支持 preload，[我们](https://www.w3cdoc.com)修改了 DOM 的规范从而能够获知 rel 支持那些值（是否支持 rel=‘preload’）。
-</p>
+前面所有的列子都基于一种假设——[浏览器](https://www.w3cdoc.com)一定程度上支持 preload，至少实现了脚本和样式加载等基本功能。但如果这个假设不成立了。一切都将是然并卵。
+
+为了判断[浏览器](https://www.w3cdoc.com)是否支持 preload，[我们](https://www.w3cdoc.com)修改了 DOM 的规范从而能够获知 rel 支持那些值（是否支持 rel=‘preload’）。
 
 至于如何进行检查，原文中没有，但 Github有一段代码可供参考。
 

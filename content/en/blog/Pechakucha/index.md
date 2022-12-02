@@ -1,5 +1,6 @@
 ---
 title: Pecha kucha提升效率
+PublishDate: 2018-11-10T09:19:42+01:00
 weight: 50
 images: ["img_5e26855a69b62.webp"]
 categories: ["工作"]
@@ -58,10 +59,9 @@ Explanation和Argument有何区别呢？第一，Argument里面的“Premise to 
 
 通过前面的讲解[我们](https://www.w3cdoc.com)知道，在Explanation中，你需要确定的是果（Explanadum）,而在Argument中，你需要确定的是前提（Premises）。果（ Explanadum）确定后往前追溯因，便可提出假说（Hypothesis）；在Argument中， 你需要确定前提（Premises），由一个个前提最终推演出结论（Conclusion）。
 
-因此做好Pecha Kucha分两个阶段：<strong class="content-strong">第一个阶段为准备阶段，第二个阶段为展示阶段。</strong>准备过程为从果（Explanadum）往回追溯原因（Causes）的过程；原因确定以后，在展示环节，[我们](https://www.w3cdoc.com)应该先给假说（Hypothesis），假说包括前提（Premise）和结论（Conclusion），推理过程为，先给出前提（Premise），中间讲事情发展的过程，最后得出一个结论（Conclusion）。
+因此做好Pecha Kucha分两个阶段：<strong class="content-strong">第一个阶段为准备阶段，第二个阶段为展示阶段。准备过程为从果（Explanadum）往回追溯原因（Causes）的过程；原因确定以后，在展示环节，[我们](https://www.w3cdoc.com)应该先给假说（Hypothesis），假说包括前提（Premise）和结论（Conclusion），推理过程为，先给出前提（Premise），中间讲事情发展的过程，最后得出一个结论（Conclusion）。
 
 举个例子，有的同学在做Pecha Kucha的时候会对比雅典和斯巴达，当提出“Why did they differ？”时，这里面包含两层信息，分别是“They”和”Differ“. They differ&#8221;是指&#8221;There are the differences between Athen and Sparta&#8221;，这是果（Explanandum），是待解释的事物；Why是原因（The Causes），即[我们](https://www.w3cdoc.com)需要找Origins. 为什么这个展现形式非常好？因为演说者在展现的过程中，一上来给观众的是一个关键词（待解释的事情：Explanadum），也就是主题（Topic）和我将会去解释的Why（Hyphothesis）。在随后的的演说中，演说者为观众展现两个主体（雅典和斯巴达）之间的关系。也就是说，听众在看第一页时并不知道Athen和Sparta这两个关键词的具体含义，但当他们听完Presentation后知道，雅典和斯巴达这两个地方是有区别的，同时他还知道这件事是有原因的。演说的逻辑是演说者的演说分三步，第一步是告诉[大家](https://www.w3cdoc.com)雅典和斯巴达有区别，且这个区别有原因的；第二步是详细论述两者之间的具体区别；第三步具体分析造成区别的原因。演说的展现形式是雅典是怎样的，斯巴达是怎样的，两者有何区别，造成这种区别的原因是什么。
-</p>
 
 ### 确定具体细节和技法
 刚才说过，展现形式分两部分，第一部分是“确定大的框架和结构”，涉及到两种逻辑，分别是解释（Explanation）和论证（Argument）；第二部分是”确定具体的细节“，则需要具体的，非常细节的技法，包括可视化（Visualization）和
@@ -81,7 +81,6 @@ Explanation和Argument有何区别呢？第一，Argument里面的“Premise to 
 
 那么，到底如何才能成功地做一次Pecha Kucha呢？
 （敲黑板！！划重点！！）
-
 
 ### 第一部分：确定逻辑
 

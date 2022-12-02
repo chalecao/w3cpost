@@ -3,7 +3,6 @@ title: touch点击穿透与click与300ms延迟
 
 
 
-
 ---
 做过移动端H5页面的同学肯定知道，移动端web的事件模型不同于PC页面的事件。看了一些关于touch事件的文章，我想再来回顾下touch事件的原理，为什么通过touch可以触发click事件，touch事件是不是万能的以及它可能存在的问题。
 
@@ -19,9 +18,8 @@ PC网页上的大部分操作都是用鼠标的，即响应的是鼠标事件，
 
 手机上没有鼠标，但不代表手机不能响应mouse事件（其实是借助touch去触发mouse事件）。有人在PC和手机上对事件做了对比实验，以说明手机对touch事件相应速度快于mouse事件。
 
-<p id="yNMwcUw">
-  <img loading="lazy" width="609" height="354" class="alignnone size-full wp-image-3101 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01603162c2e.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01603162c2e.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01603162c2e.png?x-oss-process=image/format,webp 609w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01603162c2e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_174/format,webp 300w" sizes="(max-width: 609px) 100vw, 609px" />
-</p>
+
+  <img loading="lazy" width="609" height="354" class="alignnone size-full wp-image-3101 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01603162c2e.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01603162c2e.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01603162c2e.png?x-oss-process=image/format,webp 609w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01603162c2e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_174/format,webp 300w" sizes="(max-width: 609px) 100vw, 609px" />
 
 可以看到在手机上，当[我们](https://www.w3cdoc.com)手触碰屏幕时，要过300ms左右才会触发`mousedown`事件，所以`click`事件在手机上看起来就像慢半拍一样。
 
@@ -45,9 +43,8 @@ PC网页上的大部分操作都是用鼠标的，即响应的是鼠标事件，
 
 有了以上的基础，[我们](https://www.w3cdoc.com)就可以理解为什么会出现_点击穿透_现象了。[我们](https://www.w3cdoc.com)经常会看到“弹窗/浮层”这种东西，我做个了个demo。
 
-<p id="KsrEFtZ">
-  <img loading="lazy" width="313" height="543" class="alignnone size-full wp-image-3100 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01601fc0957.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01601fc0957.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01601fc0957.png?x-oss-process=image/format,webp 313w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01601fc0957.png?x-oss-process=image/quality,q_50/resize,m_fill,w_173,h_300/format,webp 173w" sizes="(max-width: 313px) 100vw, 313px" />
-</p>
+
+  <img loading="lazy" width="313" height="543" class="alignnone size-full wp-image-3100 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01601fc0957.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01601fc0957.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01601fc0957.png?x-oss-process=image/format,webp 313w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01601fc0957.png?x-oss-process=image/quality,q_50/resize,m_fill,w_173,h_300/format,webp 173w" sizes="(max-width: 313px) 100vw, 313px" />
 
 &nbsp;
 

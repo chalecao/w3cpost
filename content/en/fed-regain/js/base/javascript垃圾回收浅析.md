@@ -1,7 +1,6 @@
 ---
 title: Javascript垃圾回收浅析
 
-
 ---
 # 一. 枚举Javascript引擎分配内存的场景：
 
@@ -100,9 +99,8 @@ CPU空闲清除对象后会造成堆内存出现碎片的情况，当碎片超�
 
 这个和Java回收策略思想是一致的。目的是通过区分“临时”与“持久”对象；多回收“临时对象”区（young generation），少回收“持久对象”区（tenured generation），减少每次需遍历的对象，从而减少每次GC的耗时。如图：
 
-<p id="PZaGIPw">
-  <img loading="lazy" width="690" height="158" class="alignnone size-full wp-image-4984 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca70d12dde.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca70d12dde.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca70d12dde.png?x-oss-process=image/format,webp 690w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca70d12dde.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_69/format,webp 300w" sizes="(max-width: 690px) 100vw, 690px" />
-</p>
+
+  <img loading="lazy" width="690" height="158" class="alignnone size-full wp-image-4984 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca70d12dde.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca70d12dde.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca70d12dde.png?x-oss-process=image/format,webp 690w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca70d12dde.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_69/format,webp 300w" sizes="(max-width: 690px) 100vw, 690px" />
 
     这里需要补充的是：对于tenured generation对象，有额外的开销：把它从young generation迁移到tenured generation，另外，如果被引用了，那引用的指向也需要修改。
 
@@ -112,9 +110,8 @@ CPU空闲清除对象后会造成堆内存出现碎片的情况，当碎片超�
 
 这个方案的思想很简单，就是“每次处理一点，下次再处理一点，如此类推”。如图：
 
-<p id="MYMADrx">
-  <img loading="lazy" width="680" height="129" class="alignnone size-full wp-image-4985 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca71b764a5.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca71b764a5.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca71b764a5.png?x-oss-process=image/format,webp 680w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca71b764a5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_57/format,webp 300w" sizes="(max-width: 680px) 100vw, 680px" />
-</p>
+
+  <img loading="lazy" width="680" height="129" class="alignnone size-full wp-image-4985 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca71b764a5.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca71b764a5.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca71b764a5.png?x-oss-process=image/format,webp 680w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca71b764a5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_57/format,webp 300w" sizes="(max-width: 680px) 100vw, 680px" />
 
     这种方案，虽然耗时短，但中断较多，带来了上下文切换频繁的问题。
 

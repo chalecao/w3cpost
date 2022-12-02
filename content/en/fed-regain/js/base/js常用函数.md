@@ -2,8 +2,6 @@
 title: JS常用函数
 
 ---
-  
-
 
 ### [][1]前言
 
@@ -45,16 +43,12 @@ typeof window.addEventListener != “undefined”
 
 
 
-
-
 setTimeout(function(){  
 //只会执行一次  
 },3000)  
 setInterval(function(){  
 //每隔3000ms执行一次  
 },3000)
-
-
 
 
 

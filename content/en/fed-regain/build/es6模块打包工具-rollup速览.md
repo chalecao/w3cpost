@@ -3,12 +3,9 @@ title: ES6模块打包工具—Rollup速览
 
 
 
-
-
 ---
-<p id="yJYDOfB">
-  <img loading="lazy" class="alignnone  wp-image-3844 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c837ef525b36.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c837ef525b36.png?x-oss-process=image/format,webp" alt="" width="428" height="238" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c837ef525b36.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c837ef525b36.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_167/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c837ef525b36.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_427/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c837ef525b36.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_444/format,webp 800w" sizes="(max-width: 428px) 100vw, 428px" />
-</p>
+
+  <img loading="lazy" class="alignnone  wp-image-3844 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c837ef525b36.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c837ef525b36.png?x-oss-process=image/format,webp" alt="" width="428" height="238" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c837ef525b36.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c837ef525b36.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_167/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c837ef525b36.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_427/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c837ef525b36.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_444/format,webp 800w" sizes="(max-width: 428px) 100vw, 428px" />
 
 ## 简介 {#articleHeader0}
 

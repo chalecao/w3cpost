@@ -3,7 +3,6 @@ title: React Hooks完全上手指北
 
 ---
 
-
 ## Why Hooks? {#KwUmS}
 
 ### Class Component设计理论 {#VruRj}
@@ -26,13 +25,11 @@ React以一种全新的编程范式定义了[前端](https://www.w3cdoc.com)开�
   <span class="cm-property">state</span> <span class="cm-operator">=</span> {
     <span class="cm-property">counts</span>: <span class="cm-number"></span>
   }
-  
   <span class="cm-comment">// 响应数据变更</span>
   <span class="cm-variable">clickHandle</span> <span class="cm-operator">=</span> () <span class="cm-operator">=&gt;</span> {
     <span class="cm-keyword">this</span>.<span class="cm-property">setState</span>({ <span class="cm-property">counts</span>: <span class="cm-keyword">this</span>.<span class="cm-property">state</span>.<span class="cm-property">counts</span><span class="cm-operator">++</span> });
     <span class="cm-keyword">if</span> (<span class="cm-keyword">this</span>.<span class="cm-property">props</span>.<span class="cm-property">onClick</span>) <span class="cm-keyword">this</span>.<span class="cm-property">props</span>.<span class="cm-property">onClick</span>();
   }
-  
   <span class="cm-comment">// lifecycle API</span>
   <span class="cm-variable">componentWillUnmount</span>() {
     <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'Will mouned!'</span>);
@@ -42,7 +39,6 @@ React以一种全新的编程范式定义了[前端](https://www.w3cdoc.com)开�
   <span class="cm-variable">componentDidMount</span>() {
     <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'Did mouned!'</span>);
   }
-  
   <span class="cm-comment">// 接收外来数据（或加工处理），并编排数据在视觉上的呈现</span>
   <span class="cm-variable">render</span>(<span class="cm-variable">props</span>) {
     <span class="cm-keyword">return</span> (
@@ -78,9 +74,8 @@ renderProps的问题：
 * 渲染的不是React组件，因此没有`props`属性，即不能像HOC那样访问`this.props.children`
 * 引入了callback hell问题
 
-<p id="lXbCDOH">
-  <img loading="lazy" class="alignnone  wp-image-4899 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/format,webp" alt="" width="405" height="638" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/format,webp 996w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/quality,q_50/resize,m_fill,w_190,h_300/format,webp 190w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_1211/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/quality,q_50/resize,m_fill,w_381,h_600/format,webp 381w" sizes="(max-width: 405px) 100vw, 405px" />
-</p>
+
+  <img loading="lazy" class="alignnone  wp-image-4899 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/format,webp" alt="" width="405" height="638" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/format,webp 996w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/quality,q_50/resize,m_fill,w_190,h_300/format,webp 190w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_1211/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/quality,q_50/resize,m_fill,w_381,h_600/format,webp 381w" sizes="(max-width: 405px) 100vw, 405px" />
 
 （图片来自React官方示例）
 
@@ -267,7 +262,6 @@ Function Component编译结果：
   <span class="cm-keyword">const</span> <span class="cm-def">handleClick</span> <span class="cm-operator">=</span> () <span class="cm-operator">=&gt;</span> {
     <span class="cm-keyword">this</span>.<span class="cm-property">props</span>.<span class="cm-property">setCounts</span>(<span class="cm-keyword">this</span>.<span class="cm-property">props</span>.<span class="cm-property">counts</span>);
   };
-  
   <span class="cm-comment">// UI的变更只能通过Parent Component更新props来做到！!</span>
   <span class="cm-keyword">return</span> (
     <span class="cm-operator">&lt;</span><span class="cm-operator">&gt;</span>
@@ -280,7 +274,6 @@ Function Component编译结果：
 <span class="cm-keyword">class</span> <span class="cm-def">Parent</span> <span class="cm-keyword">extends</span> <span class="cm-variable">Component</span>() {
   <span class="cm-comment">// 状态管理还是得依赖Class Component</span>
   <span class="cm-property">counts</span> <span class="cm-operator">=</span> <span class="cm-number"></span>
-  
   <span class="cm-variable">render</span> () {
     <span class="cm-keyword">const</span> <span class="cm-def">counts</span> <span class="cm-operator">=</span> <span class="cm-keyword">this</span>.<span class="cm-property">state</span>.<span class="cm-property">counts</span>;
     <span class="cm-keyword">return</span> (
@@ -313,7 +306,6 @@ case：Popup组件依赖视窗宽度适配自身显示宽度、相册组件依�
       <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">useWinSize</span>() {
   <span class="cm-keyword">const</span> <span class="cm-def">html</span> <span class="cm-operator">=</span> <span class="cm-variable">document</span>.<span class="cm-property">documentElement</span>;
   <span class="cm-keyword">const</span> [ <span class="cm-def">size</span>, <span class="cm-def">setSize</span> ] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>({ <span class="cm-property">width</span>: <span class="cm-variable-2">html</span>.<span class="cm-property">clientWidth</span>, <span class="cm-property">height</span>: <span class="cm-variable-2">html</span>.<span class="cm-property">clientHeight</span> });
-  
   <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=&gt;</span> {
     <span class="cm-keyword">const</span> <span class="cm-def">onSize</span> <span class="cm-operator">=</span> <span class="cm-def">e</span> <span class="cm-operator">=&gt;</span> {
       <span class="cm-variable-2">setSize</span>({ <span class="cm-property">width</span>: <span class="cm-variable-2">html</span>.<span class="cm-property">clientWidth</span>, <span class="cm-property">height</span>: <span class="cm-variable-2">html</span>.<span class="cm-property">clientHeight</span> });
@@ -325,7 +317,6 @@ case：Popup组件依赖视窗宽度适配自身显示宽度、相册组件依�
       <span class="cm-variable">window</span>.<span class="cm-property">removeEventListener</span>(<span class="cm-string">'resize'</span>, <span class="cm-variable-2">onSize</span>);
     };
   }, [ <span class="cm-variable-2">html</span> ]);
-  
   <span class="cm-keyword">return</span> <span class="cm-variable-2">size</span>;
 }
 
@@ -399,9 +390,8 @@ case：表单验证
 
 > 思考&#x1f914;：useState为啥不返回object而是返回tuple？
 
-<p id="STikRUl">
-  <img loading="lazy" width="593" height="162" class="alignnone size-full wp-image-4898 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984cee4ca2.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984cee4ca2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984cee4ca2.png?x-oss-process=image/format,webp 593w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984cee4ca2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_82/format,webp 300w" sizes="(max-width: 593px) 100vw, 593px" />
-</p>
+
+  <img loading="lazy" width="593" height="162" class="alignnone size-full wp-image-4898 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984cee4ca2.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984cee4ca2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984cee4ca2.png?x-oss-process=image/format,webp 593w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984cee4ca2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_82/format,webp 300w" sizes="(max-width: 593px) 100vw, 593px" />
 
 * 是Hook：使用了Hook API的函数组件，返回的setter可以改变组件的状态
 * 又不像Hook：和一般意义上的Hook（钩子）不一样，这里的Hook可以多次调用且产生不同的效果，且Hook随Fiber一起生灭
@@ -499,13 +489,11 @@ Hook API的默认实现：
       <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
   <span class="cm-keyword">const</span> [ <span class="cm-def">n1</span>, <span class="cm-def">setN1</span> ] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number">1</span>);
   <span class="cm-keyword">const</span> [ <span class="cm-def">n2</span>, <span class="cm-def">setN2</span> ] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number">2</span>);
-  
   <span class="cm-comment">// if (sth) {</span>
   <span class="cm-comment">//  const [ n4, setN4 ] = useState(4);</span>
   <span class="cm-comment">// } else {</span>
   <span class="cm-comment">//  const [ n5, setN5 ] = useState(5);</span>
   <span class="cm-comment">// }</span>
-  
   <span class="cm-keyword">const</span> [ <span class="cm-def">n3</span>, <span class="cm-def">setN3</span> ] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number">3</span>);
 }</pre>
     </div>
@@ -514,9 +502,8 @@ Hook API的默认实现：
 
 Hook链表结构：
 
-<p id="DiBdmeQ">
-  <img loading="lazy" class="alignnone  wp-image-4897 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984c5c3155.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984c5c3155.png?x-oss-process=image/format,webp" alt="" width="561" height="356" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984c5c3155.png?x-oss-process=image/format,webp 746w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984c5c3155.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_190/format,webp 300w" sizes="(max-width: 561px) 100vw, 561px" />
-</p>
+
+  <img loading="lazy" class="alignnone  wp-image-4897 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984c5c3155.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984c5c3155.png?x-oss-process=image/format,webp" alt="" width="561" height="356" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984c5c3155.png?x-oss-process=image/format,webp 746w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984c5c3155.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_190/format,webp 300w" sizes="(max-width: 561px) 100vw, 561px" />
 
 * Hook API调用会产生一个对应的Hook实例（并追加到Hooks链），但是返回给组件的是state和对应的setter，re-render时框架并不知道这个setter对应哪个Hooks实例（除非用HashMap来存储Hooks，但这就要求调用的时候把相应的key传给React，会增加Hooks使用的复杂度）
 * re-render时会按顺序执行整个Hooks链，如果re-render时sth不满足，则会执行`useState(5)`分支，相反useState(4)则不会执行到，导致`useState(5)`返回的值其实是4，因为**首次render之后，只能通过useState返回的dispatch修改对应Hook的memoizedState**，因此必须要**保证Hooks的顺序不变**，所以不能在分支调用Hook API。
@@ -532,9 +519,7 @@ useState() mount阶段：
 <span class="cm-keyword">function</span> <span class="cm-def">mountState</span>(<span class="cm-def">initialState</span>) {
   <span class="cm-comment">// 从当前Fiber生成一个新的hook对象，将此hook挂载到Fiber的hook链尾，并返回这个hook</span>
   <span class="cm-keyword">var</span> <span class="cm-def">hook</span> <span class="cm-operator">=</span> <span class="cm-variable">mountWorkInProgressHook</span>();
-  
   <span class="cm-variable-2">hook</span>.<span class="cm-property">memoizedState</span> <span class="cm-operator">=</span> <span class="cm-variable-2">hook</span>.<span class="cm-property">baseState</span> <span class="cm-operator">=</span> <span class="cm-variable-2">initialState</span>;
-  
   <span class="cm-keyword">var</span> <span class="cm-def">queue</span> <span class="cm-operator">=</span> <span class="cm-variable-2">hook</span>.<span class="cm-property">queue</span> <span class="cm-operator">=</span> {
     <span class="cm-property">last</span>: <span class="cm-atom">null</span>,
     <span class="cm-property">dispatch</span>: <span class="cm-atom">null</span>,
@@ -590,7 +575,6 @@ update阶段useState()更新状态：
   <span class="cm-keyword">var</span> <span class="cm-def">queue</span> <span class="cm-operator">=</span> <span class="cm-variable-2">hook</span>.<span class="cm-property">queue</span>;
   <span class="cm-keyword">var</span> <span class="cm-def">newState</span>;
   <span class="cm-keyword">var</span> <span class="cm-def">update</span>;
-  
   <span class="cm-keyword">if</span> (<span class="cm-variable">numberOfReRenders</span> <span class="cm-operator">&gt;</span> <span class="cm-number"></span>) {
     <span class="cm-comment">// 组件自己re-render</span>
     <span class="cm-variable-2">newState</span> <span class="cm-operator">=</span> <span class="cm-variable-2">hook</span>.<span class="cm-property">memoizedState</span>;
@@ -601,12 +585,10 @@ update阶段useState()更新状态：
     <span class="cm-variable-2">newState</span> <span class="cm-operator">=</span> <span class="cm-variable-2">hook</span>.<span class="cm-property">baseState</span>;
     <span class="cm-variable-2">update</span> <span class="cm-operator">=</span> <span class="cm-variable-2">hook</span>.<span class="cm-property">baseUpdate</span> <span class="cm-operator">|</span><span class="cm-operator">|</span> <span class="cm-variable-2">queue</span>.<span class="cm-property">last</span>;
   }
-  
   <span class="cm-keyword">do</span> {
     <span class="cm-variable-2">newState</span> <span class="cm-operator">=</span> <span class="cm-variable-2">update</span>.<span class="cm-property">action</span>; <span class="cm-comment">// action可能是函数，这里略去了细节</span>
     <span class="cm-variable-2">update</span> <span class="cm-operator">=</span> <span class="cm-variable-2">update</span>.<span class="cm-property">next</span>;
   } <span class="cm-keyword">while</span>(<span class="cm-variable-2">update</span> <span class="cm-operator">!==</span> <span class="cm-atom">null</span>)
-  
   <span class="cm-variable-2">hook</span>.<span class="cm-property">memoizedState</span> <span class="cm-operator">=</span> <span class="cm-variable-2">newState</span>;
   <span class="cm-keyword">return</span> [<span class="cm-variable-2">hook</span>.<span class="cm-property">memoizedState</span>, <span class="cm-variable-2">queue</span>.<span class="cm-property">dispatch</span>];
 }</pre>
@@ -626,12 +608,10 @@ update阶段useState()更新状态：
   <span class="cm-keyword">const</span> [<span class="cm-def">n1</span>, <span class="cm-def">setN1</span>] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number">1</span>);
   <span class="cm-keyword">const</span> [<span class="cm-def">n2</span>, <span class="cm-def">setN2</span>] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number">2</span>);
   <span class="cm-keyword">const</span> [<span class="cm-def">n3</span>, <span class="cm-def">setN3</span>] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number">3</span>);
-  
   <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=&gt;</span> {
     <span class="cm-variable-2">setN1</span>(<span class="cm-number">10</span>);
     <span class="cm-variable-2">setN1</span>(<span class="cm-number">100</span>);
   }, []);
-  
   <span class="cm-keyword">return</span> (<span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{() <span class="cm-operator">=&gt;</span> <span class="cm-variable-2">setN2</span>(<span class="cm-number">20</span>)}<span class="cm-operator">&gt;</span><span class="cm-variable">click</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button&gt;);</span>
 }</pre>
     </div>
@@ -640,9 +620,8 @@ update阶段useState()更新状态：
 
 图解更新过程：
 
-<p id="okyzUro">
-  <img loading="lazy" class="alignnone  wp-image-4896 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/format,webp" alt="" width="616" height="328" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/format,webp 949w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_160/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_409/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_426/format,webp 800w" sizes="(max-width: 616px) 100vw, 616px" />
-</p>
+
+  <img loading="lazy" class="alignnone  wp-image-4896 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/format,webp" alt="" width="616" height="328" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/format,webp 949w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_160/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_409/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_426/format,webp 800w" sizes="(max-width: 616px) 100vw, 616px" />
 
 * setState返回的setter执行会导致re-render
 * 框架内部会对多次setter操作进行合并（循环执行传入的setter，目的是保证useState拿到最新的状态）
@@ -720,7 +699,6 @@ update阶段useState()更新状态：
       <span class="cm-variable-2">setData</span>(<span class="cm-string-2">`current data: ${</span><span class="cm-variable">Date</span>.<span class="cm-property">now</span>()<span class="cm-string-2">}</span><span class="cm-string-2">`</span>);
     }, <span class="cm-number">3000</span>);
   });
-  
   <span class="cm-keyword">return</span> <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span>{<span class="cm-property">data</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;;</span>
 }
 <span class="cm-comment">// 等价代码</span>
@@ -732,7 +710,6 @@ update阶段useState()更新状态：
       <span class="cm-keyword">this</span>.<span class="cm-property">setState</span>({ <span class="cm-property">data</span>: <span class="cm-string-2">`current data: ${</span><span class="cm-variable">Date</span>.<span class="cm-property">now</span>()<span class="cm-string-2">}</span><span class="cm-string-2">`</span> });
     }, <span class="cm-number">3000</span>);
   }
-  
   <span class="cm-variable">render</span>() {
     <span class="cm-keyword">return</span> <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span>{<span class="cm-property">this</span>.<span class="cm-variable">state</span>.<span class="cm-variable">data</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;;</span>
   }
@@ -771,7 +748,6 @@ Hook接受useEffect传入的callback返回一个函数，在Fiber的清理阶段
     }, <span class="cm-number">1000</span>);
     <span class="cm-variable">window</span>.<span class="cm-property">addEventListener</span>(<span class="cm-string">'load'</span>, <span class="cm-variable">loadHandle</span>);
   }
-  
   <span class="cm-property">componentDidUnmount</span>() {
     <span class="cm-variable">window</span>.<span class="cm-property">removeEventListener</span>(<span class="cm-string">'load'</span>, <span class="cm-variable">loadHandle</span>);
   }
@@ -822,9 +798,8 @@ reducer提供了一种可以在组件外重新编排state的能力，而useReduc
   </div>
 </div>
 
-<p id="aHeFmIY">
-  <img loading="lazy" class="alignnone  wp-image-4895 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png?x-oss-process=image/format,webp" alt="" width="617" height="103" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png?x-oss-process=image/format,webp 1510w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_50/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_128/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_134/format,webp 800w" sizes="(max-width: 617px) 100vw, 617px" />
-</p>
+
+  <img loading="lazy" class="alignnone  wp-image-4895 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png?x-oss-process=image/format,webp" alt="" width="617" height="103" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png?x-oss-process=image/format,webp 1510w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_50/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_128/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_134/format,webp 800w" sizes="(max-width: 617px) 100vw, 617px" />
 
 ### 性能优化（Memoization） {#Pc6Dk}
 
@@ -924,8 +899,7 @@ useMemo用于缓存一些耗时的计算结果，只有当依赖参数改变时�
   <span class="cm-keyword">const</span> <span class="cm-def">MemoList</span> <span class="cm-operator">=</span> <span class="cm-variable">useMemo</span>(() <span class="cm-operator">=&gt;</span> <span class="cm-operator">&lt;</span><span class="cm-variable">List</span> <span class="cm-variable-2">list</span><span class="cm-operator">=</span>{<span class="cm-variable-2">list</span>} <span class="cm-string-2">/&gt;,
 
 <ul>
-  
-</ul>
+
 );</span>
 
 <span class="cm-keyword">return</span> (
@@ -971,9 +945,8 @@ useMemo用于缓存一些耗时的计算结果，只有当依赖参数改变时�
 * 使用`Context.Provider` API在上层组件挂载状态
 * 使用`Context.Consumer` API为具体的组件提供状态
 
-<p id="flZGnES">
-  <img loading="lazy" class="alignnone  wp-image-4894 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/format,webp" alt="" width="531" height="807" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/format,webp 1036w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/quality,q_50/resize,m_fill,w_197,h_300/format,webp 197w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_1167/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/quality,q_50/resize,m_fill,w_395,h_600/format,webp 395w" sizes="(max-width: 531px) 100vw, 531px" />
-</p>
+
+  <img loading="lazy" class="alignnone  wp-image-4894 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/format,webp" alt="" width="531" height="807" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/format,webp 1036w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/quality,q_50/resize,m_fill,w_197,h_300/format,webp 197w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_1167/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/quality,q_50/resize,m_fill,w_395,h_600/format,webp 395w" sizes="(max-width: 531px) 100vw, 531px" />
 
 （图片来自React官方示例）
 
@@ -1148,7 +1121,6 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
 <span class="cm-keyword">const</span> <span class="cm-def">MyComponent</span> <span class="cm-operator">=</span> <span class="cm-variable">React</span>.<span class="cm-property">memo</span>(() <span class="cm-operator">=&gt;</span> {
   <span class="cm-keyword">return</span> <span class="cm-operator">&lt;</span><span class="cm-variable">Child</span> <span class="cm-variable">prop</span><span class="cm-operator">=</span>{<span class="cm-property">prop</span>} <span class="cm-operator">/</span><span class="cm-operator">&gt;</span>
 }, [<span class="cm-variable">prop</span>]);
-  
 <span class="cm-comment">// or</span>
 <span class="cm-keyword">function</span> <span class="cm-def">A</span>({ <span class="cm-def">a</span>, <span class="cm-def">b</span> }) {
   <span class="cm-keyword">const</span> <span class="cm-def">B</span> <span class="cm-operator">=</span> <span class="cm-variable">useMemo</span>(() <span class="cm-operator">=&gt;</span> <span class="cm-operator">&lt;</span><span class="cm-variable">B1</span> <span class="cm-variable-2">a</span><span class="cm-operator">=</span>{<span class="cm-variable-2">a</span>} <span class="cm-string-2">/&gt;, [a]);</span>
@@ -1174,16 +1146,15 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
 
 * useReducer+useContext组合：
 
-<li style="list-style-type: none;">
+
   <ul>
-    <li>
+    
       如果共享一个大的state，一处state变更会导致整棵树re-render，把所有组件使用memo或useMemo包裹也不现实，代码太丑
-    </li>
-    <li>
+    
+    
       使用多个Context，可以实现namespace，但是当组件需要使用多个Context时又会出现Provider嵌套
-    </li>
-  </ul>
-</li>
+    
+
 
 * react-redux@7.x
 * 其他方案

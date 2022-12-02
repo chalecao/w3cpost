@@ -2,7 +2,6 @@
 title: Vue3响应式原理整理
 
 
-
 ---
 整理了一些资源，现在开始学习应该还不算晚[狗头]
 
@@ -102,9 +101,8 @@ Proxy可以在目标对象上加一层拦截/代理，外界对目标对象的�
 
 ## 响应式原理 {#item-4}
 
-<p id="HWInTJK">
-  <img loading="lazy" width="807" height="1093" class="alignnone size-full wp-image-6579 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/format,webp 807w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/quality,q_50/resize,m_fill,w_222,h_300/format,webp 222w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/quality,q_50/resize,m_fill,w_443,h_600/format,webp 443w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_1040/format,webp 768w" sizes="(max-width: 807px) 100vw, 807px" />
-</p>
+
+  <img loading="lazy" width="807" height="1093" class="alignnone size-full wp-image-6579 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/format,webp 807w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/quality,q_50/resize,m_fill,w_222,h_300/format,webp 222w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/quality,q_50/resize,m_fill,w_443,h_600/format,webp 443w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_1040/format,webp 768w" sizes="(max-width: 807px) 100vw, 807px" />
 
 &nbsp;
 
@@ -144,7 +142,6 @@ function reactive(obj){
   &lt;span class="hljs-comment">// Proxy:http://es6.ruanyifeng.com/#docs/proxy&lt;/span>
   &lt;span class="hljs-comment">// Proxy相当于在对象外层加拦截&lt;/span>
   &lt;span class="hljs-comment">// Proxy递归是惰性的,需要添加递归的逻辑&lt;/span>
-  
   &lt;span class="hljs-comment">// Reflect:http://es6.ruanyifeng.com/#docs/reflect&lt;/span>
   &lt;span class="hljs-comment">// Reflect:用于执行对象默认操作，更规范、更友好,可以理解成操作对象的合集&lt;/span>
   &lt;span class="hljs-comment">// Proxy和Object的方法Reflect都有对应&lt;/span>
@@ -266,6 +263,6 @@ function trigger(target, &lt;span class="hljs-built_in">key&lt;/span>){
 
 效果：
 
-<p id="YNjaVFC">
-  <img loading="lazy" width="547" height="548" class="alignnone size-full wp-image-6578 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb66198a5.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb66198a5.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb66198a5.png?x-oss-process=image/format,webp 547w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb66198a5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_300/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb66198a5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_150,h_150/format,webp 150w" sizes="(max-width: 547px) 100vw, 547px" />
-</p>
+
+  <img loading="lazy" width="547" height="548" class="alignnone size-full wp-image-6578 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb66198a5.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb66198a5.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb66198a5.png?x-oss-process=image/format,webp 547w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb66198a5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_300/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb66198a5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_150,h_150/format,webp 150w" sizes="(max-width: 547px) 100vw, 547px" />
+

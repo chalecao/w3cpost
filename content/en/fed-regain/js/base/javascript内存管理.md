@@ -3,7 +3,6 @@ title: Javascript内存管理
 
 
 
-
 ---
 ## 1 引言
 
@@ -13,9 +12,8 @@ JS 中的内存管理, 我的感觉就像 JS 中的一门副科, [我们](https:
 
 ## 2.1 内存生命周期
 
-<p id="TQOpPxC">
-  <img loading="lazy" class="alignnone wp-image-4391 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/img_5ce3754d80c99.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/img_5ce3754d80c99.png?x-oss-process=image/format,webp" alt="" width="458" height="343" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/img_5ce3754d80c99.png?x-oss-process=image/format,webp 1024w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/img_5ce3754d80c99.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_225/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/img_5ce3754d80c99.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_576/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/img_5ce3754d80c99.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_600/format,webp 800w" sizes="(max-width: 458px) 100vw, 458px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-4391 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/img_5ce3754d80c99.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/img_5ce3754d80c99.png?x-oss-process=image/format,webp" alt="" width="458" height="343" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/img_5ce3754d80c99.png?x-oss-process=image/format,webp 1024w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/img_5ce3754d80c99.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_225/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/img_5ce3754d80c99.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_576/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/img_5ce3754d80c99.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_600/format,webp 800w" sizes="(max-width: 458px) 100vw, 458px" />
 
 不管什么程序语言，内存生命周期基本是一致的：
 
@@ -58,9 +56,9 @@ arr = null; // [1,2,3,4]这时没有被引用, 会被自动回收</code></pre>
 f();</code></pre>
 </div><figure>
 
-<p id="SeVdGVH">
-  <img loading="lazy" width="386" height="209" class="alignnone size-full wp-image-4745 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c247564a50.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c247564a50.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c247564a50.png?x-oss-process=image/format,webp 386w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c247564a50.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_162/format,webp 300w" sizes="(max-width: 386px) 100vw, 386px" />
-</p></figure>
+
+  <img loading="lazy" width="386" height="209" class="alignnone size-full wp-image-4745 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c247564a50.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c247564a50.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c247564a50.png?x-oss-process=image/format,webp 386w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c247564a50.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_162/format,webp 300w" sizes="(max-width: 386px) 100vw, 386px" />
+</figure>
 
 实际例子:
 
@@ -83,9 +81,9 @@ window.onload = function(){
 
 从2012年起, 所有现代[浏览器](https://www.w3cdoc.com)都使用了标记-清除内存回收算法. 所有对JavaScript垃圾回收算法的改进都是基于标记-清除算法的改进.<figure>
 
-<p id="WbRhjUa">
-  <img loading="lazy" width="600" height="317" class="alignnone size-full wp-image-4747 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c24bf79f37.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c24bf79f37.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c24bf79f37.png?x-oss-process=image/format,webp 600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c24bf79f37.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_159/format,webp 300w" sizes="(max-width: 600px) 100vw, 600px" />
-</p></figure>
+
+  <img loading="lazy" width="600" height="317" class="alignnone size-full wp-image-4747 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c24bf79f37.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c24bf79f37.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c24bf79f37.png?x-oss-process=image/format,webp 600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c24bf79f37.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_159/format,webp 300w" sizes="(max-width: 600px) 100vw, 600px" />
+</figure>
 
 2.2.5 自动 GC 的问题
 
@@ -204,14 +202,12 @@ JS 这类高级语言，隐藏了内存管理功能。但无论开发人员是�
 
 ## 参考文章
 
-<p id="6564" class="graf graf--h3 graf--leading graf--title">
+
   <a href="https://blog.sessionstack.com/how-javascript-works-memory-management-how-to-handle-4-common-memory-leaks-3f28b94cfbec">How JavaScript works: memory management + how to handle 4 common memory leaks</a>
-</p>
 
 <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//developer.mozilla.org/zh-CN/docs/Web/JavaScript/Memory_Management" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">MDN 的内存管理介绍</a>
 
-<p class="Post-Title">
+
   <a href="https://zhuanlan.zhihu.com/p/30552148">精读《JS 中的内存管理》</a>
-</p>
 
 &nbsp;

@@ -3,7 +3,6 @@ title: HTTP协议以及HTTP2.0/1.1/1.0区别
 
 
 
-
 ---
 ## 一.简介 {#一.简介}
 
@@ -89,9 +88,9 @@ title: HTTP协议以及HTTP2.0/1.1/1.0区别
 * HTTP1.0是没有host域的，HTTP1.1才支持这个参数。
 * HTTP2.0使用多路复用技术(Multiplexing),多路复用允许同时通过单一的 HTTP/2 连接发起多重的请求-响应消息。  
     &#8220;HTTP1.1在同一时间对于同一个域名的请求数量有限制，超过限制就会阻塞请求&#8221;。多路复用底层采用&#8221;增加二进制分帧层&#8221;的方法，使得不改变原来的语义、首部字段的情况下提高传输性能，降低延迟。  
-    二进制分帧将所有传输信息分割为更小的帧，用二进制进行编码，多个请求都在同一个TCP连接上完成，可以承载任意数量的双向数据流。HTTP/2更有效的使用TCP连接，得到性能上的提升。</p>
+    二进制分帧将所有传输信息分割为更小的帧，用二进制进行编码，多个请求都在同一个TCP连接上完成，可以承载任意数量的双向数据流。HTTP/2更有效的使用TCP连接，得到性能上的提升。
     网上不错的一个过程图片:  
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/951506-20180330005255437-1566386281.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/951506-20180330005255437-1566386281.jpg?x-oss-process=image/format,webp" /> </li> </ul>
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/951506-20180330005255437-1566386281.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/951506-20180330005255437-1566386281.jpg?x-oss-process=image/format,webp" />  
 
   * HTTP/2新增首部压缩（Header Compression）:采用HPACK算法
   * HTTP/2新增服务端推送（Header Compression）

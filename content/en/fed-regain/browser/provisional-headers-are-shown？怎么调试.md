@@ -2,60 +2,50 @@
 title: Provisional headers are shown？怎么调试
 
 ---
-  <p>
-    老外给了一个方法：
-  </p>
+ 老外给了一个方法：
   
-  <p>
-    The way I found about the extension that was blocking my resource was through the net-internals tool in Chrome:
-  </p>
+ The way I found about the extension that was blocking my resource was through the net-internals tool in Chrome:
   
-  <p>
-    <strong>For Latest Versions of chrome</strong>
-  </p>
+For Latest Versions of chrome
   
   <ul>
-    <li>
+    
       Type <code>chrome://net-export/</code> in the address bar and hit enter.
-    </li>
-    <li>
+    
+    
       Start Recording. And save Recording file to local.
-    </li>
-    <li>
+    
+    
       Open the page that is showing problems.
-    </li>
-    <li>
+    
+    
       Go back to net-internals
-    </li>
-    <li>
+    
+    
       You can view Recorded Log file Here <a href="https://netlog-viewer.appspot.com/#import" rel="nofollow noreferrer">https://netlog-viewer.appspot.com/#import</a>
-    </li>
-    <li>
-      click on <strong>events (###)</strong> and use the textfield to find the event related to your resource (use parts of the URL).
-    </li>
-    <li>
+    
+    
+      click on events (###) and use the textfield to find the event related to your resource (use parts of the URL).
+    
+    
       Finally, click on the event and see if the info shown tells you something.
-    </li>
-  </ul>
+    
   
-  <p>
-    <strong>For Older Versions of chrome</strong>
-  </p>
+For Older Versions of chrome
   
   <ul>
-    <li>
+    
       Type <code>chrome://net-internals</code> in the address bar and hit enter.
-    </li>
-    <li>
+    
+    
       Open the page that is showing problems.
-    </li>
-    <li>
-      Go back to net-internals, click on <strong>events (###)</strong> and use the textfield to find the event related to your resource (use parts of the URL).
-    </li>
-    <li>
+    
+    
+      Go back to net-internals, click on events (###) and use the textfield to find the event related to your resource (use parts of the URL).
+    
+    
       Finally, click on the event and see if the info shown tells you something.
-    </li>
-  </ul>
+    
 </div>
 
 ## 翻译下
@@ -72,9 +62,8 @@ title: Provisional headers are shown？怎么调试
 
 6. 选择Events，搜索下你的接口，可以看右边的日志，实际上是有cookie的。
 
-<p id="bQaaklo">
-  <img loading="lazy" class="alignnone wp-image-4928 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef33669d9.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef33669d9.png?x-oss-process=image/format,webp" alt="" width="630" height="322" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef33669d9.png?x-oss-process=image/format,webp 2418w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef33669d9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_153/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef33669d9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_393/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef33669d9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_409/format,webp 800w" sizes="(max-width: 630px) 100vw, 630px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-4928 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef33669d9.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef33669d9.png?x-oss-process=image/format,webp" alt="" width="630" height="322" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef33669d9.png?x-oss-process=image/format,webp 2418w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef33669d9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_153/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef33669d9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_393/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4cef33669d9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_409/format,webp 800w" sizes="(max-width: 630px) 100vw, 630px" />
 
 ## 其他
 

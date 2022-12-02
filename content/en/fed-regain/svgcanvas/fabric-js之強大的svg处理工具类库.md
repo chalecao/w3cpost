@@ -1,10 +1,7 @@
 ---
 title: fabric.js之強大的SVG处理工具类库
 
-
 ---
-  
-
 
 ### [][1]什么是Fabric.js
 

@@ -3,8 +3,6 @@ title: 提升javascript代码编译速度的几点建议
 
 
 
-
-
 ---
 # 概述 {#articleHeader0}
 
@@ -35,9 +33,8 @@ AST 不止应用于语言解释器和编译器，在计算机世界中，还有�
 
 解析器会产生如下的 AST。
 
-<p id="EiVzptW">
-  <img loading="lazy" class="alignnone wp-image-3449 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png?x-oss-process=image/format,webp" alt="" width="497" height="514" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png?x-oss-process=image/format,webp 772w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png?x-oss-process=image/quality,q_50/resize,m_fill,w_290,h_300/format,webp 290w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_796/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png?x-oss-process=image/quality,q_50/resize,m_fill,w_579,h_600/format,webp 579w" sizes="(max-width: 497px) 100vw, 497px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3449 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png?x-oss-process=image/format,webp" alt="" width="497" height="514" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png?x-oss-process=image/format,webp 772w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png?x-oss-process=image/quality,q_50/resize,m_fill,w_290,h_300/format,webp 290w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_796/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png?x-oss-process=image/quality,q_50/resize,m_fill,w_579,h_600/format,webp 579w" sizes="(max-width: 497px) 100vw, 497px" />
 
 <span class="img-wrap"></span>
 
@@ -45,17 +42,15 @@ AST 不止应用于语言解释器和编译器，在计算机世界中，还有�
 
 也许你会问为什么我得学习 JavaScript 解析器的工作原理。反正，[浏览器](https://www.w3cdoc.com)会负责运行 JavaScript 代码。你有那么一丁点是正确的。以下图表展示了 JavaScript 运行过程中不同阶段的耗时。瞪大眼睛瞅瞅，也许你可以发现点有趣的东西。
 
-<p id="zrhUbRN">
-  <img loading="lazy" class="alignnone wp-image-3450 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/format,webp" alt="" width="709" height="289" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_122/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_313/format,webp 768w" sizes="(max-width: 709px) 100vw, 709px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3450 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/format,webp" alt="" width="709" height="289" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_122/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_313/format,webp 768w" sizes="(max-width: 709px) 100vw, 709px" />
 
 <span class="img-wrap"></span>
 
 发现没？通常情况下，[浏览器](https://www.w3cdoc.com)大概消耗了 15% 到 20% 的总运行时间来解析 JavaScript.我没有具体统计过这些数值。这些统计数据来自于现实世界中程序和网站的各种 JavaScript 使用姿势。 现在也许 15% 看起来不是很多，但相信我，很多的。一个典型的单页程序会加载大约 0.4M 的 JavaScript 代码，然后消耗掉[浏览器](https://www.w3cdoc.com)大概 370ms 的时间来进行解析。也许你会又说，这也不是很多嘛。本身花费的时间并不多。但记住了，这只是把 JavaScript 代码转化为 ASTs 所消耗的时间。其中不包含运行本身的时间或者页面加载期间其它诸如 <a href="https://blog.sessionstack.com/how-javascript-works-the-rendering-engine-and-tips-to-optimize-its-performance-7b95553baeda" target="_blank" rel="nofollow noopener noreferrer">CSS 和 HTML</a> 渲染的过程的耗时。这仅仅只是桌面[浏览器](https://www.w3cdoc.com)所面临的问题。移动[浏览器](https://www.w3cdoc.com)的情况会更加复杂。一般情况下，手机移动[浏览器](https://www.w3cdoc.com)解析代码的时间是桌面[浏览器](https://www.w3cdoc.com)的 2-5 倍。
 
-<p id="MQeNjQr">
-  <img loading="lazy" class="alignnone wp-image-3451 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/format,webp" alt="" width="489" height="321" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_197/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_504/format,webp 768w" sizes="(max-width: 489px) 100vw, 489px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3451 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/format,webp" alt="" width="489" height="321" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_197/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_504/format,webp 768w" sizes="(max-width: 489px) 100vw, 489px" />
 
 <span class="img-wrap"></span>
 
@@ -63,9 +58,8 @@ AST 不止应用于语言解释器和编译器，在计算机世界中，还有�
 
 另外，为了获得更多类原生的用户体验而把越来越多的业务逻辑堆积在[前端](https://www.w3cdoc.com)，网页程序变得越来越复杂。网页程序越来越胖，都快走不动了。你可以轻易地想到网络应用受到的性能影响。只需打开[浏览器](https://www.w3cdoc.com)开发者工具，然后使用该工具来检测解析，编译及其它发生于[浏览器](https://www.w3cdoc.com)中直到页面完全加载所消耗的时间。
 
-<p id="fNyzYRp">
-  <img loading="lazy" width="800" height="334" class="alignnone size-full wp-image-3452 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_125/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_321/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
-</p>
+
+  <img loading="lazy" width="800" height="334" class="alignnone size-full wp-image-3452 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_125/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_321/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
 
 <span class="img-wrap"></span>
 
@@ -115,9 +109,8 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 调用 console.log 参数为之前函数调用的返回值。
 
-<p id="smhkQiR">
-  <img loading="lazy" class="alignnone wp-image-3453 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d417a207b2.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d417a207b2.png?x-oss-process=image/format,webp" alt="" width="671" height="407" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d417a207b2.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d417a207b2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_182/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d417a207b2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_466/format,webp 768w" sizes="(max-width: 671px) 100vw, 671px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3453 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d417a207b2.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d417a207b2.png?x-oss-process=image/format,webp" alt="" width="671" height="407" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d417a207b2.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d417a207b2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_182/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d417a207b2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_466/format,webp 768w" sizes="(max-width: 671px) 100vw, 671px" />
 
 <span class="img-wrap"></span>
 
@@ -127,9 +120,8 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 所以之前的例子，解析器实际上会像如下这样解析：
 
-<p id="oXwCTTo">
-  <img loading="lazy" class="alignnone wp-image-3454 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d418c391e8.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d418c391e8.png?x-oss-process=image/format,webp" alt="" width="637" height="386" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d418c391e8.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d418c391e8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_182/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d418c391e8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_466/format,webp 768w" sizes="(max-width: 637px) 100vw, 637px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3454 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d418c391e8.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d418c391e8.png?x-oss-process=image/format,webp" alt="" width="637" height="386" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d418c391e8.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d418c391e8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_182/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d418c391e8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_466/format,webp 768w" sizes="(max-width: 637px) 100vw, 637px" />
 
 <span class="img-wrap"></span>
 
@@ -198,9 +190,8 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 # 一些建议 {#articleHeader5}
 
-<p id="articleHeader5">
+
   提升网络应用速度的建议：
-</p>
 
 * 检查依赖。减少不必要的依赖。
 * 分割代码为更小的块而不是一整块。如 webpack 的 code-spliting 功能。

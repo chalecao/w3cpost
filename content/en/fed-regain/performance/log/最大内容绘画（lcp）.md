@@ -4,9 +4,9 @@ title: 最大内容绘画（LCP）
 ---
 <div class="w-aside w-aside--note">
   <blockquote>
-    <p>
+    
       最大内容绘画（LCP）是衡量用户<a href="https://web.dev/user-centric-performance-metrics/#types-of-metrics">感知加载速度的</a>一项重要的以用户为中心的度量标准，因为它标记了页面主要内容可能已加载时页面加载时间线中的时间点-快速的LCP有助于使用户确信页面 <a href="https://web.dev/user-centric-performance-metrics/#questions">有用</a>。
-    </p>
+    
   </blockquote>
 </div>
 
@@ -22,18 +22,15 @@ title: 最大内容绘画（LCP）
 
 “最大内容绘画（LCP）”度量标准报告视口内可见的最大[图像或文本块][7]的渲染时间 。<picture><source srcset="../vitals/lcp_8x2.svg" media="(min-width: 640px)" /></picture>
 
-<p id="hJSigfy">
-  <img loading="lazy" class="alignnone wp-image-5894 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/format,webp" alt="" width="645" height="176" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/format,webp 1782w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_82/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_218/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_209/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_419/format,webp 1536w" sizes="(max-width: 645px) 100vw, 645px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-5894 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/format,webp" alt="" width="645" height="176" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/format,webp 1782w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_82/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_218/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_209/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785bfd3301a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_419/format,webp 1536w" sizes="(max-width: 645px) 100vw, 645px" />
 
 ### 好的LCP分数是多少？<a class="w-headline-link" href="https://web.dev/lcp/#what-is-a-good-lcp-score" aria-hidden="true">＃</a> {#what-is-a-good-lcp-score}
 
 为了提供良好的用户体验，网站应努力在开始加载页面的前**2.5秒**内进行“最大内容绘画” 。为了确保您达到大多数用户的这一目标，衡量移动设备和台式机设备的页面加载量的**第75个百分位**是一个很好的衡量标准。
 
 <div class="w-aside w-aside--note">
-  <p>
-    要了解有关此建议背后的研究和方法的更多信息，请参阅：<a href="https://web.dev/defining-core-web-vitals-thresholds/">定义核心Web Vitals指标阈值</a>
-  </p>
+ 要了解有关此建议背后的研究和方法的更多信息，请参阅：<a href="https://web.dev/defining-core-web-vitals-thresholds/">定义核心Web Vitals指标阈值</a>
 </div>
 
 ### 考虑哪些要素？<a class="w-headline-link" href="https://web.dev/lcp/#what-elements-are-considered" aria-hidden="true">＃</a> {#what-elements-are-considered}
@@ -59,9 +56,7 @@ title: 最大内容绘画（LCP）
 对于所有元素，不考虑通过CSS应用的任何margin，padding或border。
 
 <div class="w-aside w-aside--note">
-  <p>
-    确定哪个文本节点属于哪个元素有时可能很棘手，尤其是对于其子元素包括内联元素和纯文本节点以及块级元素的元素而言。关键是每个文本节点都属于（并且仅属于）其最接近的块级祖先元素。用<a href="https://wicg.github.io/element-timing/#set-of-owned-text-nodes">规范术语来说</a>：每个文本节点都属于生成其<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block">包含块</a>的元素。
-  </p>
+ 确定哪个文本节点属于哪个元素有时可能很棘手，尤其是对于其子元素包括内联元素和纯文本节点以及块级元素的元素而言。关键是每个文本节点都属于（并且仅属于）其最接近的块级祖先元素。用<a href="https://wicg.github.io/element-timing/#set-of-owned-text-nodes">规范术语来说</a>：每个文本节点都属于生成其<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block">包含块</a>的元素。
 </div>
 
 ### 何时报告LCP？<a class="w-headline-link" href="https://web.dev/lcp/#when-is-largest-contentful-paint-reported" aria-hidden="true">＃</a> {#when-is-largest-contentful-paint-reported}
@@ -77,9 +72,7 @@ title: 最大内容绘画（LCP）
 如果页面从DOM中删除了一个元素，则不再考虑该元素。同样，如果元素的关联图像资源发生更改（例如，`img.src`通过JavaScript进行更改），则该元素将停止考虑，直到加载新图像为止。
 
 <div class="w-aside w-aside--note">
-  <p>
-    将来，从DOM中删除的元素仍可以视为LCP候选对象。<a href="https://github.com/WICG/largest-contentful-paint/issues/41#issuecomment-583589387">目前正在进行研究</a> 以评估此更改的影响。您可以遵循<a href="http://bit.ly/chrome-speed-metrics-changelog">CHANGELOG</a>指标 以保持最新。
-  </p>
+ 将来，从DOM中删除的元素仍可以视为LCP候选对象。<a href="https://github.com/WICG/largest-contentful-paint/issues/41#issuecomment-583589387">目前正在进行研究</a> 以评估此更改的影响。您可以遵循<a href="http://bit.ly/chrome-speed-metrics-changelog">CHANGELOG</a>指标 以保持最新。
 </div>
 
 <span style="color: #ff0000;">一旦用户与页面进行交互（通过轻击，滚动或按键），[浏览器](https://www.w3cdoc.com)将停止报告新条目</span>，因为用户交互通常会改变用户可见的内容（滚动时尤为如此）。
@@ -87,9 +80,7 @@ title: 最大内容绘画（LCP）
 出于分析目的，您应仅报告最近分 `PerformanceEntry`发给您的分析服务的信息。
 
 <div class="w-aside w-aside--caution">
-  <p>
-    <strong>注意：</strong> 由于用户可以在背景标签中打开页面，因此，只有当用户将标签聚焦后，才会有最大的绘画效果，这可能比他们第一次加载时要晚得多。
-  </p>
+注意： 由于用户可以在背景标签中打开页面，因此，只有当用户将标签聚焦后，才会有最大的绘画效果，这可能比他们第一次加载时要晚得多。
 </div>
 
 #### 加载时间与渲染时间<a class="w-headline-link" href="https://web.dev/lcp/#load-time-vs.-render-time" aria-hidden="true">＃</a> {#load-time-vs.-render-time}
@@ -110,32 +101,26 @@ title: 最大内容绘画（LCP）
 
 以下是一些流行的网站上何时出现“最大内容满意”涂料的一些示例：
 
-<p id="TSKEWkg">
-  <img loading="lazy" width="1600" height="621" class="alignnone size-full wp-image-5895 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e3d0047f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e3d0047f.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e3d0047f.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e3d0047f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_116/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e3d0047f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_311/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e3d0047f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_298/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e3d0047f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_596/format,webp 1536w" sizes="(max-width: 1600px) 100vw, 1600px" />
-</p>
 
-<p id="YUvXbop">
-  <img loading="lazy" width="1600" height="621" class="alignnone size-full wp-image-5898 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e6c3f8f9.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e6c3f8f9.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e6c3f8f9.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e6c3f8f9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_116/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e6c3f8f9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_311/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e6c3f8f9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_298/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e6c3f8f9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_596/format,webp 1536w" sizes="(max-width: 1600px) 100vw, 1600px" />
-</p>
+  <img loading="lazy" width="1600" height="621" class="alignnone size-full wp-image-5895 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e3d0047f.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e3d0047f.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e3d0047f.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e3d0047f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_116/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e3d0047f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_311/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e3d0047f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_298/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e3d0047f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_596/format,webp 1536w" sizes="(max-width: 1600px) 100vw, 1600px" />
+
+
+  <img loading="lazy" width="1600" height="621" class="alignnone size-full wp-image-5898 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e6c3f8f9.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e6c3f8f9.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e6c3f8f9.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e6c3f8f9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_116/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e6c3f8f9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_311/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e6c3f8f9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_298/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e6c3f8f9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_596/format,webp 1536w" sizes="(max-width: 1600px) 100vw, 1600px" />
 
 在以上两个时间轴中，最大的元素随内容加载而变化。在第一个示例中，新内容被添加到DOM中，并且更改了最大的元素。在第二个示例中，布局发生了更改，以前最大的内容已从视口中删除。
 
 通常情况下，延迟加载的内容要比页面上已有的内容大，但不一定是这种情况。接下来的两个示例显示了在页面完全加载之前发生的最大内容绘画。
 
-<p id="oqvJbgi">
-  <img loading="lazy" width="1600" height="621" class="alignnone size-full wp-image-5896 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e50343ec.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e50343ec.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e50343ec.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e50343ec.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_116/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e50343ec.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_311/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e50343ec.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_298/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e50343ec.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_596/format,webp 1536w" sizes="(max-width: 1600px) 100vw, 1600px" />
-</p>
 
-<p id="vQWExKj">
-  <img loading="lazy" width="1600" height="621" class="alignnone size-full wp-image-5897 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e566d6a9.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e566d6a9.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e566d6a9.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e566d6a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_116/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e566d6a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_311/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e566d6a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_298/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e566d6a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_596/format,webp 1536w" sizes="(max-width: 1600px) 100vw, 1600px" />
-</p>
+  <img loading="lazy" width="1600" height="621" class="alignnone size-full wp-image-5896 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e50343ec.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e50343ec.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e50343ec.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e50343ec.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_116/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e50343ec.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_311/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e50343ec.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_298/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e50343ec.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_596/format,webp 1536w" sizes="(max-width: 1600px) 100vw, 1600px" />
+
+
+  <img loading="lazy" width="1600" height="621" class="alignnone size-full wp-image-5897 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e566d6a9.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e566d6a9.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e566d6a9.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e566d6a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_116/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e566d6a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_311/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e566d6a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_298/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f785e566d6a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_596/format,webp 1536w" sizes="(max-width: 1600px) 100vw, 1600px" />
 
 在第一个示例中，Instagram徽标相对较早地加载，即使逐渐显示其他内容，它仍然是最大的元素。在Google搜索结果页面示例中，最大的元素是一段文本，该文本在任何图像或徽标加载完成之前显示。由于所有单个图像均小于此段，因此在整个加载过程中，它始终是最大的元素。
 
 <div class="w-aside w-aside--note">
-  <p>
-    在Instagram时间轴的第一帧中，您可能会注意到相机徽标周围没有绿色框。这是因为它是一个<code></code>元素，并且<code></code>元素当前不被视为LCP候选对象。第一个LCP候选对象是第二个框架中的文本。
-  </p>
+ 在Instagram时间轴的第一帧中，您可能会注意到相机徽标周围没有绿色框。这是因为它是一个<code></code>元素，并且<code></code>元素当前不被视为LCP候选对象。第一个LCP候选对象是第二个框架中的文本。
 </div>
 
 ## 如何测量LCP <a class="w-headline-link" href="https://web.dev/lcp/#how-to-measure-lcp" aria-hidden="true">＃</a> {#how-to-measure-lcp}

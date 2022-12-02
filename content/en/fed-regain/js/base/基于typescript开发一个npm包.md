@@ -1,10 +1,8 @@
 ---
 title: 基于typescript开发一个npm包
 
-
 baidu_record:
   - 1
-
 
 ---
 很多时候，[我们](https://www.w3cdoc.com)可能想要用 typescript 语言来创建一些模块，并提交到 npm 供别人使用，
@@ -14,48 +12,20 @@ baidu_record:
 答案是：**创建一个优雅的，对开发者友好的模块，至少需要以下 15 个步骤**
 
 <ol class="ol-level-0">
-  <li>
-    初始化文件夹，初始化 git 仓库，初始化 npm，初始化 tsc
-  </li>
-  <li>
-    修改 tsconfig.js 配置
-  </li>
-  <li>
-    添加 npm 脚本
-  </li>
-  <li>
-    添加 tslint 校验代码规则以及 editorconfig,prettier 统一代码风格
-  </li>
-  <li>
-    设置 git 提交的校验钩子
-  </li>
-  <li>
-    开始编写代码
-  </li>
-  <li>
-    watch 模式开发
-  </li>
-  <li>
-    忽略 ts 编译生成的文件夹
-  </li>
-  <li>
-    添加单元测试
-  </li>
-  <li>
-    写一个单元测试示例
-  </li>
-  <li>
-    设置一些有用的 npm 脚本
-  </li>
-  <li>
-    完善 package.json 的描述信息
-  </li>
-  <li>
-    提交代码到 git 仓库
-  </li>
-  <li>
-    发布包到 <a href="http://www.npmjs.com/" target="_blank" rel="nofollow noopener noreferrer" data-from="10680">npm</a>
-  </li>
+ 初始化文件夹，初始化 git 仓库，初始化 npm，初始化 tsc
+ 修改 tsconfig.js 配置
+ 添加 npm 脚本
+ 添加 tslint 校验代码规则以及 editorconfig,prettier 统一代码风格
+ 设置 git 提交的校验钩子
+ 开始编写代码
+ watch 模式开发
+ 忽略 ts 编译生成的文件夹
+ 添加单元测试
+ 写一个单元测试示例
+ 设置一些有用的 npm 脚本
+ 完善 package.json 的描述信息
+ 提交代码到 git 仓库
+ 发布包到 <a href="http://www.npmjs.com/" target="_blank" rel="nofollow noopener noreferrer" data-from="10680">npm</a>
 </ol>
 
 本篇文章里，我会列出每个步骤的详细说明。

@@ -115,7 +115,6 @@ display: inline-block</a>; /* 其实仍为行内元素，但是可以设置width
 
 通过上面的示例[我们](https://www.w3cdoc.com)发现在元素里嵌套元素可能会导[浏览器](https://www.w3cdoc.com)都解析错误，这其实是W3C规范的严格嵌套约束，严格嵌套约束要求必须去遵守，不然就会导致所有[浏览器](https://www.w3cdoc.com)的解析错误。
 
-
 严格嵌套约束规则：
 - a元素里不可以嵌套交互式元素(a、button、select等)
 - p里面不可以嵌套div、h1~h6、p、ul、ol、li、dl、dt、dd、form等
@@ -154,9 +153,7 @@ display: inline-block</a>; /* 其实仍为行内元素，但是可以设置width
 ### Flow（流式元素）
 - 在应用程序和文档的主体部分中使用的大部分元素都被分类为流式元素。
 
-
 > a， abbr， address， area（如果它是map元素的后裔）， article， aside， audio， b， bdi， bdo， blockquote， br， button， canvas， cite， code， command， datalist， del， details， dfn， div， dl，em， embed， fieldset， figure， footer， form， h1， h2， h3， h4， h5， h6， header， hgroup， hr， i， iframe， img， input， ins， kbd， keygen， label， map， mark， math， menu， meter，nav， noscript， object， ol， output， p， pre， progress， q， ruby， s， samp， script， section， select， small， span， strong， style（如果该元素设置了scoped属性）， sub， sup， svg， table，textarea， time， u， ul， var， video， wbr， text
-
 
 ### Heading（标题元素）
 
@@ -165,78 +162,42 @@ display: inline-block</a>; /* 其实仍为行内元素，但是可以设置width
 > h1， h2， h3， h4， h5， h6， hgroup
 
 
-
 ### Sectioning（章节元素）
-
-<p>
-  章节式元素是用于定义标题及页脚范围的元素。
-</p>
+章节式元素是用于定义标题及页脚范围的元素。
 
 <blockquote>
-  <p>
-    article， aside， nav， section
-  </p>
+ article， aside， nav， section
 </blockquote>
+Phrasing（段落元素）
 
-<p>
-  Phrasing（段落元素）
-</p>
-
-<p>
-  段落式元素是文档中的文本、标记段落级文本的元素。
-</p>
+段落式元素是文档中的文本、标记段落级文本的元素。
 
 <blockquote>
-  <p>
-    a（如果其只包含段落式元素）， abbr， area（如果它是map元素的后裔）， audio， b， bdi， bdo， br， button， canvas， cite， code， command， datalist， del（如果其只包含段落式元素）， dfn， em， embed， i，iframe， img， input， ins（如果其只包含段落式元素）， kbd， keygen， label， map（如果其只包含段落式元素）， mark， math， meter， noscript， object， output， progress， q， ruby， s， samp， script，select， small， span， strong， sub， sup， svg， textarea， time， u， var， video， wbr， text
-  </p>
+ a（如果其只包含段落式元素）， abbr， area（如果它是map元素的后裔）， audio， b， bdi， bdo， br， button， canvas， cite， code， command， datalist， del（如果其只包含段落式元素）， dfn， em， embed， i，iframe， img， input， ins（如果其只包含段落式元素）， kbd， keygen， label， map（如果其只包含段落式元素）， mark， math， meter， noscript， object， output， progress， q， ruby， s， samp， script，select， small， span， strong， sub， sup， svg， textarea， time， u， var， video， wbr， text
 </blockquote>
+Embedded（嵌入元素）
 
-<p>
-  Embedded（嵌入元素）
-</p>
-
-<p>
-  嵌入式元素是引用或插入到文档中其他资源的元素。
-</p>
+嵌入式元素是引用或插入到文档中其他资源的元素。
 
 <blockquote>
-  <p>
-    audio， canvas， embed， iframe， img， math， object， svg， video
-  </p>
+ audio， canvas， embed， iframe， img， math， object， svg， video
 </blockquote>
+Interactive（交互元素）
 
-<p>
-  Interactive（交互元素）
-</p>
-
-<p>
-  交互式元素是专门用于与用户交互的元素。
-</p>
+交互式元素是专门用于与用户交互的元素。
 
 <blockquote>
-  <p>
-    a， audio（如果设置了controls属性）， button， details， embed， iframe， img（如果设置了usemap属性）， input（如果type属性不为hidden状态）， keygen， label， menu（如果type属性为toolbar状态），object（如果设置了usemap属性）， select， textarea， video（如果设置了controls属性）
-  </p>
+ a， audio（如果设置了controls属性）， button， details， embed， iframe， img（如果设置了usemap属性）， input（如果type属性不为hidden状态）， keygen， label， menu（如果type属性为toolbar状态），object（如果设置了usemap属性）， select， textarea， video（如果设置了controls属性）
 </blockquote>
+Metadata（元数据元素）
 
-<p>
-  Metadata（元数据元素）
-</p>
-
-<p>
-  元数据元素是可以被用于说明其他内容的表现或行为，或者在当前文档和其他文档之间建立联系的元素
-</p>
+元数据元素是可以被用于说明其他内容的表现或行为，或者在当前文档和其他文档之间建立联系的元素
 
 <blockquote>
-  <p>
-    base，command，link，meta，noscript，script，style，title
-  </p>
+ base，command，link，meta，noscript，script，style，title
 </blockquote>
+各分类会有交叉或重叠的现象，这说明在html5中，元素可能属于上述所有分类中的一个或多个。
 
-<p>
-  各分类会有交叉或重叠的现象，这说明在html5中，元素可能属于上述所有分类中的一个或多个。
-</p>
 </div>
 </div>
 

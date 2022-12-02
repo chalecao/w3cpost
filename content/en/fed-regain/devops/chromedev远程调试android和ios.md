@@ -3,76 +3,50 @@ title: chrome dev远程调试android 和ios
 
 ---
 <div>
-  <p>
-    调试是开发过程很重要的过程，而随着移动端的普及，移动开发也越来越多，并且由于移动端的诸多限制，使得调试相对PC复杂很多。因此远程调试就显得非常重要了。 近几年，[浏览器](https://www.w3cdoc.com)厂商也纷纷推出自己的远程调试工具，比如Opera Mobile 推出的Opera Dragonfly，iOS Safari 可以开启Web检查器在 Mac OS X系统中实现远程调试。Android 4.0+系统的 Chrome for Android可以配合 ADB（Android Debug Bridge）实现桌面远程调试，桌面版Chrome 32+已经支持免安装ADB即可实现远程调试移动设备页面/WebView 。国内的UC[浏览器](https://www.w3cdoc.com)开发者版也推出了自己的远程调试工具RemoteInspector。除了[浏览器](https://www.w3cdoc.com)厂商之外，也涌现出许多第三方开发的远程调试工具，诸如支持全平台调试的Weinre等。
-  </p>
+ 调试是开发过程很重要的过程，而随着移动端的普及，移动开发也越来越多，并且由于移动端的诸多限制，使得调试相对PC复杂很多。因此远程调试就显得非常重要了。 近几年，[浏览器](https://www.w3cdoc.com)厂商也纷纷推出自己的远程调试工具，比如Opera Mobile 推出的Opera Dragonfly，iOS Safari 可以开启Web检查器在 Mac OS X系统中实现远程调试。Android 4.0+系统的 Chrome for Android可以配合 ADB（Android Debug Bridge）实现桌面远程调试，桌面版Chrome 32+已经支持免安装ADB即可实现远程调试移动设备页面/WebView 。国内的UC[浏览器](https://www.w3cdoc.com)开发者版也推出了自己的远程调试工具RemoteInspector。除了[浏览器](https://www.w3cdoc.com)厂商之外，也涌现出许多第三方开发的远程调试工具，诸如支持全平台调试的Weinre等。
   
-  <p>
-    TL,NR，先介绍一下anydebugger方案吧，原理复杂使用简单，参考：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/zhichirenyiduandejiyuchrome-devtoolsyuanchengdiaoshijishufangan/">支持任意端的基于Chrome devTools远程调试技术方案</a>
-  </p>
+ TL,NR，先介绍一下anydebugger方案吧，原理复杂使用简单，参考：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/zhichirenyiduandejiyuchrome-devtoolsyuanchengdiaoshijishufangan/">支持任意端的基于Chrome devTools远程调试技术方案</a>
 </div>
 
 <div>
-  <h2>
-    远程调试
-  </h2>
+  ##   远程调试
   
-  <p>
-    那么远程调试就是调试运行在远程的APP。比如手机上访问google，我需要在PC上调试手机上运行的google APP。 这个就叫做远程调试。
-  </p>
+
+ 那么远程调试就是调试运行在远程的APP。比如手机上访问google，我需要在PC上调试手机上运行的google APP。 这个就叫做远程调试。
   
-  <p>
-    远程调试大概有三种类型：
-  </p>
+ 远程调试大概有三种类型：
   
   <ul>
-    <li>
+    
       调试远程PC（本质上是一个debug server 和 一个debug target，其实下面两种也是这种模型，ios中间会多一个协议转化而已） 这种类型下的debug target就是pc, debug server 也是pc。
-    </li>
-    <li>
+    
+    
       调试android webpage/webview（很多方式，但安卓4.4以后本质都是Chrome DevTools Protocol的扩展） 这种类型下的debug target就是android webview，debug server 是pc。
-    </li>
-    <li>
+    
+    
       调试ios webpag/webview（可以使用iOS WebKit Debug Proxy代理，然后问题便退化成上述两种场景） 这种类型下的debug target就是ios webview， debug server 是pc。
-    </li>
-  </ul>
+    
   
-  <p>
-    <img loading="lazy" class="alignnone wp-image-2108 size-full" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/07/20160814144505027.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/07/20160814144505027.png?x-oss-process=image/format,webp" alt="" width="532" height="392" />
-  </p>
+ <img loading="lazy" class="alignnone wp-image-2108 size-full" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/07/20160814144505027.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/07/20160814144505027.png?x-oss-process=image/format,webp" alt="" width="532" height="392" />
   
-  <p>
-    上图展示了基于adb的chrome webview 的 debug的架构。
-  </p>
+ 上图展示了基于adb的chrome webview 的 debug的架构。
   
-  <h2>
-    Android webview 调试
-  </h2>
+  ##   Android webview 调试
   
-  <p>
-    unix domain socket是linux下面的用于进程间通讯IPC的一种socket，（参考：https://blog.csdn.net/guxch/article/details/7041052）
-  </p>
+
+ unix domain socket是linux下面的用于进程间通讯IPC的一种socket，（参考：https://blog.csdn.net/guxch/article/details/7041052）
   
-  <p>
-    android4.4 版本之后，可以配置开启 WebViews 调试，支持直接使用chrome dev tool调试Android webview。（参考： https://developers.google.com/web/tools/chrome-devtools/remote-debugging/webviews?hl=zh-cn）
-  </p>
+ android4.4 版本之后，可以配置开启 WebViews 调试，支持直接使用chrome dev tool调试Android webview。（参考： https://developers.google.com/web/tools/chrome-devtools/remote-debugging/webviews?hl=zh-cn）
   
-  <p>
-    必须从您的应用中启用 WebView 调试。要启用 WebView 调试，请在 WebView 类上调用静态方法 <a href="https://developer.android.com/reference/android/webkit/WebView.html?hl=zh-cn#setWebContentsDebuggingEnabled(boolean)">setWebContentsDebuggingEnabled</a>。
-  </p>
+ 必须从您的应用中启用 WebView 调试。要启用 WebView 调试，请在 WebView 类上调用静态方法 <a href="https://developer.android.com/reference/android/webkit/WebView.html?hl=zh-cn#setWebContentsDebuggingEnabled(boolean)">setWebContentsDebuggingEnabled</a>。
   
   <pre class="prettyprint notranslate"><code>&lt;span class="kwd">if&lt;/span> &lt;span class="pun">(&lt;/span>&lt;span class="typ">Build&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">VERSION&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">SDK_INT &lt;/span>&lt;span class="pun">&gt;=&lt;/span> &lt;span class="typ">Build&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">VERSION_CODES&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">KITKAT&lt;/span>&lt;span class="pun">)&lt;/span> &lt;span class="pun">{&lt;/span>&lt;span class="pln">
     &lt;/span>&lt;span class="typ">WebView&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">setWebContentsDebuggingEnabled&lt;/span>&lt;span class="pun">(&lt;/span>&lt;span class="kwd">true&lt;/span>&lt;span class="pun">);&lt;/span>
 &lt;span class="pun">}&lt;/span>
 </code></pre>
+ 此设置适用于应用的所有 WebView。
   
-  <p>
-    此设置适用于应用的所有 WebView。
-  </p>
-  
-  <p>
-    <strong>提示</strong>：WebView 调试<strong>不会</strong>受应用清单中 <code>debuggable</code> 标志的状态的影响。如果您希望仅在 <code>debuggable</code> 为 <code>true</code> 时启用 WebView 调试，请在运行时测试标志。
-  </p>
+提示：WebView 调试不会受应用清单中 <code>debuggable</code> 标志的状态的影响。如果您希望仅在 <code>debuggable</code> 为 <code>true</code> 时启用 WebView 调试，请在运行时测试标志。
   
   <pre class="prettyprint notranslate"><code>&lt;span class="kwd">if&lt;/span> &lt;span class="pun">(&lt;/span>&lt;span class="typ">Build&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">VERSION&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">SDK_INT &lt;/span>&lt;span class="pun">&gt;=&lt;/span> &lt;span class="typ">Build&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">VERSION_CODES&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">KITKAT&lt;/span>&lt;span class="pun">)&lt;/span> &lt;span class="pun">{&lt;/span>&lt;span class="pln">
     &lt;/span>&lt;span class="kwd">if&lt;/span> &lt;span class="pun">(&lt;/span>&lt;span class="lit">0&lt;/span> &lt;span class="pun">!=&lt;/span> &lt;span class="pun">(&lt;/span>&lt;span class="pln">getApplicationInfo&lt;/span>&lt;span class="pun">().&lt;/span>&lt;span class="pln">flags &lt;/span>&lt;span class="pun">&&lt;/span> &lt;span class="typ">ApplicationInfo&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">FLAG_DEBUGGABLE&lt;/span>&lt;span class="pun">))&lt;/span>&lt;span class="pln">
@@ -85,9 +59,8 @@ Android的webview debugger socket是一种unix domain socket，所以[我们](ht
 
 ## adb通信原理
 
-<p id="bEQgBTk">
-  <img loading="lazy" class="alignnone wp-image-3390 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22da5eb22ca.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22da5eb22ca.png?x-oss-process=image/format,webp" alt="" width="472" height="354" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22da5eb22ca.png?x-oss-process=image/format,webp 728w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22da5eb22ca.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_225/format,webp 300w" sizes="(max-width: 472px) 100vw, 472px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3390 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22da5eb22ca.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22da5eb22ca.png?x-oss-process=image/format,webp" alt="" width="472" height="354" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22da5eb22ca.png?x-oss-process=image/format,webp 728w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22da5eb22ca.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_225/format,webp 300w" sizes="(max-width: 472px) 100vw, 472px" />
 
 电脑上通过adb命令和手机上的adb守护进程通信，其中采用的通信方式是 smart socket。
 
@@ -108,7 +81,7 @@ android提供了smartsocket,详见<a href="https://android.googlesource.com/plat
 总结来说，就是可以给adb-server发送一条指令`<service-name>`，然后adb-server会转发给adbd，让adbd来执行`<service-name>`.  
 举例来说，当[我们](https://www.w3cdoc.com)执行`adb shell cat /proc/net/unix`,最终就是通过adbd在设备上执行的。
 
-<img loading="lazy" class="alignnone wp-image-3389 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png?x-oss-process=image/format,webp" alt="" width="500" height="421" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png?x-oss-process=image/format,webp 1032w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_253/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_647/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_712,h_600/format,webp 712w" sizes="(max-width: 500px) 100vw, 500px" />
+<img loading="lazy" class="alignnone wp-image-3389 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png?x-oss-process=image/format,webp" alt="" width="500" height="421" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png?x-oss-process=image/format,webp 1032w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_253/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_647/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c22d9d81448a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_712,h_600/format,webp 712w" sizes="(max-width: 500px) 100vw, 500px" />
 
 Stetho的通信模型如上图，其中stetho-server就是app启的一个Thread用来accept客户端的connect。
 
@@ -179,34 +152,27 @@ chrome[浏览器](https://www.w3cdoc.com)的调试原理其实和这个基于网
 </div>
 
 <ol class="bi-list" start="1" data-key="4">
-  <li class="bi-list-node" data-key="5">
-    <div class="bi-list-node-content">
+ <div class="bi-list-node-content">
       <div class="bi-unstyle bi-dnd" data-key="6">
         <span class="bi-link" data-key="8"><span class="bi-link-content"><span data-key="9">remotedebug-ios-webkit-adapter （https://github.com/RemoteDebug/remotedebug-ios-webkit-adapter）</span></span></span><span data-key="10"> 这个项目可以实现将ios的远程调试协议转为chrome远程调试协议，实现在chrome上调试真机和模拟器。</span>
       </div>
     </div>
-  </li>
   
-  <li class="bi-list-node" data-key="11">
-    <div class="bi-list-node-content">
+ <div class="bi-list-node-content">
       <div class="bi-unstyle bi-dnd" data-key="12">
         <span data-key="13">wifi调试，</span>
       </div>
     </div>
-  </li>
 </ol>
 
-<ul class="bi-list" data-key="14">
-  <li class="bi-list-node" data-key="15">
-    <div class="bi-list-node-content">
+
+ <div class="bi-list-node-content">
       <div class="bi-unstyle bi-dnd" data-key="16">
         <span data-key="17">iphone支持connect via network的，但是貌似需要在同一子网，但是公司内网分配ip基本不在同一子网。</span>
       </div>
     </div>
-  </li>
   
-  <li class="bi-list-node" data-key="18">
-    <div class="bi-list-node-content">
+ <div class="bi-list-node-content">
       <div class="bi-unstyle bi-dnd" data-key="19">
         <span data-key="20">android可以采用adb over wifi 来实现，但是手机需要root才能在手机上开启(可以用下面的apk)。或者需要android手机先连上电脑，通过adb命令开启adb over tcp，然后adb连接到手机 ip:port 就可以实现无数据线调试。</span>
       </div>
@@ -220,8 +186,7 @@ adb tcpip 5555
 adb connect $IP:5555
 </code></pre>
     </div>
-  </li>
-</ul>
+
 
 参考：
 
@@ -233,9 +198,9 @@ adb connect $IP:5555
   6. https://github.com/cyrus-and/chrome-remote-interface/blob/master/README.md
   7. Puppeteer：https://juejin.im/entry/5a3aa0e86fb9a045076fd385
   8. https://segmentfault.com/a/1190000004322742
-  9. <p id="什么是远程调试协议？">
+  9. 
       远程调试协议:https://testerhome.com/topics/2047
 
-    </p>
+    
 
  10. https://github.com/ChromeDevTools/awesome-chrome-devtools

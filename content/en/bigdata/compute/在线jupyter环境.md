@@ -2,9 +2,8 @@
 title: 在线jupyter环境
 weight: 7
 ---
-<p id="brEeGYC">
-  <img loading="lazy" class="alignnone wp-image-3226 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png?x-oss-process=image/format,webp" alt="" width="537" height="302" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_169/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_432/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_450/format,webp 800w" sizes="(max-width: 537px) 100vw, 537px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3226 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png?x-oss-process=image/format,webp" alt="" width="537" height="302" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_169/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_432/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09d4fc36d44.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_450/format,webp 800w" sizes="(max-width: 537px) 100vw, 537px" />
 
 juputer，想起来丘比特。哈哈
 

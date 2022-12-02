@@ -5,14 +5,11 @@ title: 关于chrome请求stalled的时间
 
 
 
-
-
 ---
 最近同学反馈说页面请求偶尔很慢，打开[浏览器](https://www.w3cdoc.com)查看加载静态资源时候stalled占用了很长时间，但是只有他的电脑是这样，我这边有stalled时间，但是没有这么长：
 
-<p id="ZJBvBiR">
-  <img loading="lazy" width="644" height="271" class="alignnone size-full wp-image-5722 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7f73a85ff73.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7f73a85ff73.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7f73a85ff73.png?x-oss-process=image/format,webp 644w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7f73a85ff73.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_126/format,webp 300w" sizes="(max-width: 644px) 100vw, 644px" />
-</p>
+
+  <img loading="lazy" width="644" height="271" class="alignnone size-full wp-image-5722 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7f73a85ff73.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7f73a85ff73.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7f73a85ff73.png?x-oss-process=image/format,webp 644w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7f73a85ff73.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_126/format,webp 300w" sizes="(max-width: 644px) 100vw, 644px" />
 
 ## stalled是什么
 
@@ -22,7 +19,7 @@ title: 关于chrome请求stalled的时间
 
 也即是从TCP连接建立完成，到真正可以传输数据之间的时间差。先让[我们](https://www.w3cdoc.com)要分析TCP连接为什么要等待这么久才能用？我用Wireshark抓包发现(如下图)，TCP连接过程中有多次重传，直到达到最大重传次数后连接被客户端重置。<figure>
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-error.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-error.png?x-oss-process=image/format,webp" alt="wireshark-error" /> </figure>
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-error.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-error.png?x-oss-process=image/format,webp" alt="wireshark-error" /> </figure>
 
 为什么会发生重传呢？
 
@@ -30,7 +27,7 @@ title: 关于chrome请求stalled的时间
 
 TCP三次握手后，发送端发送数据后，一段时间内（不同的操作系统时间段不同）接收不到服务端ACK包，就会以 某一时间间隔(时间间隔一般为指数型增长)重新发送，从重传开始到接收端正确响应的时间就是stalled阶段。而重传超过一定的次数（windows系统是5次），发送端就认为本次TCP连接已经down掉了，需要重新建立连接。 对比以下，没有重传的http请求过程。如下图：<figure>
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-normal.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-normal.jpg?x-oss-process=image/format,webp" alt="wireshark-normal" /> </figure>
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-normal.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/wireshark-normal.jpg?x-oss-process=image/format,webp" alt="wireshark-normal" /> </figure>
 
 总结一下：stalled阶段时TCP连接的检测过程，如果检测成功就会继续使用该TCP连接发送数据，如果检测失败就会重新建立TCP连接。所以出现stalled阶段过长，往往是丢包所致，这也意味着网络或服务端有问题。
 
@@ -117,7 +114,7 @@ Server: Apache
 
 可喜的是，在细细口味了上面缓存机制引入的过程后，真是耐人寻味。这里不妨八卦一下。相信你也注意到了，上面提到，该<a href="https://code.google.com/p/chromium/issues/detail?id=46104" target="_blank" rel="noopener noreferrer">缓存问题</a>的提出是在2010年，确切地说是<code class="highlighter-rouge">Jun 8, 2010</code>。是的，2010年6月8日由<a href="mailto:eroman@chromium.org" target="_blank" rel="noopener noreferrer">eroman</a> 同学提出。但最后针对该问题进行修复的代码<a href="https://src.chromium.org/viewvc/chrome?revision=279326&view=revision" target="_blank" rel="noopener noreferrer">提交</a>却是在今年6月份，2014年6月24日，提交时间摆在那里我会乱说？
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/cache-fix-commit.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/cache-fix-commit.jpg?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/cache-fix-commit.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/cache-fix-commit.jpg?x-oss-process=image/format,webp" alt="" />
 
 于是好奇为什么会拖了这么久，遂跟了一下该问题下面的回复看看发生了什么。简直惊呆了。
 
@@ -154,11 +151,11 @@ Server: Apache
 
 再次经过旷日持久的机械操作，重现了！这次，日志在手，天下我有。感觉Bug不会存活多久了。
 
-Chrome Dev Tools 网络面板截图： <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timeline-screen-capture2.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timeline-screen-capture2.jpg?x-oss-process=image/format,webp" alt="" />
+Chrome Dev Tools 网络面板截图： <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timeline-screen-capture2.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timeline-screen-capture2.jpg?x-oss-process=image/format,webp" alt="" />
 
 由上面的截图看到，本次出问题的请求总耗时42.74秒。
 
-问题请求的时间线信息截图： <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timeline-screen-capture.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timeline-screen-capture.jpg?x-oss-process=image/format,webp" alt="" />
+问题请求的时间线信息截图： <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timeline-screen-capture.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timeline-screen-capture.jpg?x-oss-process=image/format,webp" alt="" />
 
 可以预见，通过捕获的日志完全可以看到<code class="highlighter-rouge">Stalled</code>那么久都发生了些什么鬼。
 
@@ -371,13 +368,13 @@ t=1728 [st=172] -REQUEST_ALIVE
 * 发送请求头 \` +HTTP\_TRANSACTION\_SEND_REQUEST [dt=1]\`
 * 读取响应头 \` +HTTP\_TRANSACTION\_READ_HEADERS [dt=161]\`
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/normal-section.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/normal-section.jpg?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/normal-section.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/normal-section.jpg?x-oss-process=image/format,webp" alt="" />
 
 这是正常的情况下，没有什么问题。并且日志里可以清晰地看到发送的请求头是什么，然后解析出来的响应头是什么。这跟在网络面板看到的是一致的。
 
 再回到出问题的请求日志上来，同样[我们](https://www.w3cdoc.com)只关注这两部分。如下面的截图：
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/3retry.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/3retry.jpg?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/3retry.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/3retry.jpg?x-oss-process=image/format,webp" alt="" />
 
 与正常相比，最后一次发送请求和读取响应头无异常，时间就多在了前面还有再次发送和请求的过程，细看时间都花在了以下两个事件中：
 
@@ -421,7 +418,7 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 经过观察<code class="highlighter-rouge">src/net/base/net_errors_win.cc</code> 其路径和代码得知其中多为系统级别的错误，似乎跟[我们](https://www.w3cdoc.com)的问题不是很关联，忽略该文件。
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/source.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/source.jpg?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/source.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/source.jpg?x-oss-process=image/format,webp" alt="" />
 
 <code class="highlighter-rouge">http_stream_parser.cc</code>文件中，<code class="highlighter-rouge">ERR_CONNECTION_RESET</code>仅出现一次。这给[我们](https://www.w3cdoc.com)定位带来了极大的便利。
 
@@ -449,7 +446,7 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 现在[我们](https://www.w3cdoc.com)点击上面的<code class="highlighter-rouge">ShouldTryReadingOnUploadError</code>方法，代码下方出现调用了该方法的地方，一共有两处。
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/call.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/call.jpg?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/call.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/call.jpg?x-oss-process=image/format,webp" alt="" />
 
 分别点击进行查看。
 
@@ -592,7 +589,7 @@ A收到B的肯定应答，到此A与B经历了三次通信或者说是握手，�
 
 另附注一下Chrome Dev Tool 中请求的时间线各阶段代表的意义。 以下内容扒自<a href="https://developer.chrome.com/devtools/docs/network#resource-network-timing" target="_blank" rel="noopener noreferrer">Chrome 开发者文档页</a>，然后我将它本地化了一下下。
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timing.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timing.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timing.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timing.png?x-oss-process=image/format,webp" alt="" />
 
 ### Stalled/Blocking {#stalledblocking}
 

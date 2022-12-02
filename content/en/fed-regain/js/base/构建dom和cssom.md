@@ -3,7 +3,6 @@ title: 构建DOM和CSSOM
 
 
 
-
 ---
 1. ## 什么是DOM {#什么是DOM}
 
@@ -206,4 +205,4 @@ title: 构建DOM和CSSOM
     
     ## 参考文献: {#参考文献}
     
-    <a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/" target="_blank" rel="noopener noreferrer">https://developers.google.com/web/fundamentals/performance/critical-rendering-path/</a></li> </ol>
+    <a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/" target="_blank" rel="noopener noreferrer">https://developers.google.com/web/fundamentals/performance/critical-rendering-path/</a> </ol>

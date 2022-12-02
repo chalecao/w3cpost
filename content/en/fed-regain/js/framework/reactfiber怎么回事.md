@@ -2,7 +2,6 @@
 title: react fiber怎么回事
 
 
-
 ---
 ### 一、前言 {#item-1}
 
@@ -13,17 +12,15 @@ title: react fiber怎么回事
 在页面元素很多，且需要频繁刷新的场景下，React 15 会出现掉帧的现象。请看以下例子：  
 <a href="https://claudiopro.github.io/react-fiber-vs-stack-demo/" rel="nofollow">https://claudiopro.github.io/&#8230;</a>
 
-<p id="theeqsZ">
-  <img loading="lazy" width="550" height="280" class="alignnone size-full wp-image-6641 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880adc6321a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880adc6321a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880adc6321a.png?x-oss-process=image/format,webp 550w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880adc6321a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_153/format,webp 300w" sizes="(max-width: 550px) 100vw, 550px" />
-</p>
+
+  <img loading="lazy" width="550" height="280" class="alignnone size-full wp-image-6641 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880adc6321a.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880adc6321a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880adc6321a.png?x-oss-process=image/format,webp 550w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880adc6321a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_153/format,webp 300w" sizes="(max-width: 550px) 100vw, 550px" />
 
 其根本原因，是大量的同步计算任务阻塞了[浏览器](https://www.w3cdoc.com)的 UI 渲染。默认情况下，JS 运算、页面布局和页面绘制都是运行在[浏览器](https://www.w3cdoc.com)的主线程当中，他们之间是互斥的关系。如果 JS 运算持续占用主线程，页面就没法得到及时的更新。当[我们](https://www.w3cdoc.com)调用`setState`更新页面的时候，React 会遍历应用的所有节点，计算出差异，然后再更新 UI。整个过程是一气呵成，不能被打断的。如果页面元素很多，整个过程占用的时机就可能超过 16 毫秒，就容易出现掉帧的现象。
 
 针对这一问题，React 团队从框架层面对 web 页面的运行机制做了优化，得到很好的效果。
 
-<p id="fqelfOb">
-  <img loading="lazy" width="550" height="280" class="alignnone size-full wp-image-6642 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880ae6b4814.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880ae6b4814.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880ae6b4814.png?x-oss-process=image/format,webp 550w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880ae6b4814.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_153/format,webp 300w" sizes="(max-width: 550px) 100vw, 550px" />
-</p>
+
+  <img loading="lazy" width="550" height="280" class="alignnone size-full wp-image-6642 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880ae6b4814.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880ae6b4814.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880ae6b4814.png?x-oss-process=image/format,webp 550w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880ae6b4814.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_153/format,webp 300w" sizes="(max-width: 550px) 100vw, 550px" />
 
 ### 三、解题思路 {#item-3}
 
@@ -56,15 +53,13 @@ Fiber 其实指的是一种数据结构，它可以用一个纯 JS 对象来表�
 
 为了加以区分，以前的 Reconciler 被命名为`Stack Reconciler`。Stack Reconciler 运作的过程是不能被打断的，必须一条道走到黑：
 
-<p id="TxZcrZE">
-  <img loading="lazy" width="732" height="283" class="alignnone size-full wp-image-6643 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880af598c39.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880af598c39.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880af598c39.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880af598c39.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_116/format,webp 300w" sizes="(max-width: 732px) 100vw, 732px" />
-</p>
+
+  <img loading="lazy" width="732" height="283" class="alignnone size-full wp-image-6643 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880af598c39.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880af598c39.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880af598c39.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880af598c39.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_116/format,webp 300w" sizes="(max-width: 732px) 100vw, 732px" />
 
 而 Fiber Reconciler 每执行一段时间，都会将控制权交回给[浏览器](https://www.w3cdoc.com)，可以分段执行：
 
-<p id="bWlxHPW">
-  <img loading="lazy" width="732" height="287" class="alignnone size-full wp-image-6644 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880afe4e834.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880afe4e834.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880afe4e834.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880afe4e834.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_118/format,webp 300w" sizes="(max-width: 732px) 100vw, 732px" />
-</p>
+
+  <img loading="lazy" width="732" height="287" class="alignnone size-full wp-image-6644 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880afe4e834.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880afe4e834.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880afe4e834.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880afe4e834.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_118/format,webp 300w" sizes="(max-width: 732px) 100vw, 732px" />
 
 为了达到这种效果，就需要有一个调度器 (Scheduler) 来进行任务分配。任务的优先级有六种：
 
@@ -79,9 +74,8 @@ Fiber 其实指的是一种数据结构，它可以用一个纯 JS 对象来表�
 
 Fiber Reconciler 在执行过程中，会分为 2 个阶段。
 
-<p id="jzZqyJI">
-  <img loading="lazy" width="732" height="474" class="alignnone size-full wp-image-6645 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b06c5dd4.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b06c5dd4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b06c5dd4.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b06c5dd4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_194/format,webp 300w" sizes="(max-width: 732px) 100vw, 732px" />
-</p>
+
+  <img loading="lazy" width="732" height="474" class="alignnone size-full wp-image-6645 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b06c5dd4.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b06c5dd4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b06c5dd4.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b06c5dd4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_194/format,webp 300w" sizes="(max-width: 732px) 100vw, 732px" />
 
 * 阶段一，生成 Fiber 树，得出需要更新的节点信息。这一步是一个渐进的过程，可以被打断。
 * 阶段二，将需要更新的节点一次过批量更新，这个过程不能被打断。
@@ -92,15 +86,13 @@ Fiber Reconciler 在执行过程中，会分为 2 个阶段。
 
 Fiber Reconciler 在阶段一进行 Diff 计算的时候，会生成一棵 Fiber 树。这棵树是在 Virtual DOM 树的基础上增加额外的信息来生成的，它本质来说是一个链表。
 
-<p id="OBZofmR">
-  <img loading="lazy" width="732" height="552" class="alignnone size-full wp-image-6646 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b13b6f41.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b13b6f41.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b13b6f41.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b13b6f41.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_226/format,webp 300w" sizes="(max-width: 732px) 100vw, 732px" />
-</p>
+
+  <img loading="lazy" width="732" height="552" class="alignnone size-full wp-image-6646 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b13b6f41.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b13b6f41.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b13b6f41.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b13b6f41.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_226/format,webp 300w" sizes="(max-width: 732px) 100vw, 732px" />
 
 Fiber 树在首次渲染的时候会一次过生成。在后续需要 Diff 的时候，会根据已有树和最新 Virtual DOM 的信息，生成一棵新的树。这颗新树每生成一个新的节点，都会将控制权交回给主线程，去检查有没有优先级更高的任务需要执行。如果没有，则继续构建树的过程：
 
-<p id="jrEPccx">
-  <img loading="lazy" width="732" height="659" class="alignnone size-full wp-image-6647 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b1ee30de.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b1ee30de.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b1ee30de.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b1ee30de.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_270/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b1ee30de.png?x-oss-process=image/quality,q_50/resize,m_fill,w_666,h_600/format,webp 666w" sizes="(max-width: 732px) 100vw, 732px" />
-</p>
+
+  <img loading="lazy" width="732" height="659" class="alignnone size-full wp-image-6647 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b1ee30de.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b1ee30de.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b1ee30de.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b1ee30de.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_270/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_60880b1ee30de.png?x-oss-process=image/quality,q_50/resize,m_fill,w_666,h_600/format,webp 666w" sizes="(max-width: 732px) 100vw, 732px" />
 
 如果过程中有优先级更高的任务需要进行，则 Fiber Reconciler 会丢弃正在生成的树，在空闲的时候再重新执行一遍。
 

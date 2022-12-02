@@ -52,7 +52,7 @@ title: 学习和使用flexbox布局以及变态android文字垂直居中
 
 方法三：
 
-上简单的方法使用 vertical-align和父父元素的lin-height来实现。<img loading="lazy" width="416" height="94" class="alignnone size-full wp-image-4428 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf3e6735d563.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf3e6735d563.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf3e6735d563.png?x-oss-process=image/format,webp 416w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf3e6735d563.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_68/format,webp 300w" sizes="(max-width: 416px) 100vw, 416px" />
+上简单的方法使用 vertical-align和父父元素的lin-height来实现。<img loading="lazy" width="416" height="94" class="alignnone size-full wp-image-4428 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf3e6735d563.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf3e6735d563.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf3e6735d563.png?x-oss-process=image/format,webp 416w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf3e6735d563.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_68/format,webp 300w" sizes="(max-width: 416px) 100vw, 416px" />
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">.count-down-wrapper {
     line-height: 24px; // 最外层设置行高，为了让下一层高度撑开
@@ -97,7 +97,7 @@ title: 学习和使用flexbox布局以及变态android文字垂直居中
     }
 }</pre>
 
-最后结果：<img loading="lazy" width="372" height="88" class="alignnone size-full wp-image-4429 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf3e77e34d14.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf3e77e34d14.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf3e77e34d14.png?x-oss-process=image/format,webp 372w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf3e77e34d14.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_71/format,webp 300w" sizes="(max-width: 372px) 100vw, 372px" />
+最后结果：<img loading="lazy" width="372" height="88" class="alignnone size-full wp-image-4429 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf3e77e34d14.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf3e77e34d14.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf3e77e34d14.png?x-oss-process=image/format,webp 372w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf3e77e34d14.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_71/format,webp 300w" sizes="(max-width: 372px) 100vw, 372px" />
 
 这个效果我在华为mate9手机测试完美，但是锤子坚果pro3 手机测试还是会偏上。最后我还是放弃了，选用flex方法，但是注意的是文本元素不要写line-height属性。
 
@@ -144,7 +144,7 @@ title: 学习和使用flexbox布局以及变态android文字垂直居中
     }
 }</pre>
 
-这样测试结果是锤子手机ok了，华为手机有点偏下。<img loading="lazy" width="390" height="156" class="alignnone size-full wp-image-4430 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf50249954c1.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf50249954c1.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf50249954c1.png?x-oss-process=image/format,webp 390w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf50249954c1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_120/format,webp 300w" sizes="(max-width: 390px) 100vw, 390px" />
+这样测试结果是锤子手机ok了，华为手机有点偏下。<img loading="lazy" width="390" height="156" class="alignnone size-full wp-image-4430 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf50249954c1.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf50249954c1.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf50249954c1.png?x-oss-process=image/format,webp 390w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf50249954c1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_120/format,webp 300w" sizes="(max-width: 390px) 100vw, 390px" />
 
 再认真，我就输了。调了几天，真是心累。
 
@@ -161,7 +161,7 @@ title: 学习和使用flexbox布局以及变态android文字垂直居中
 # 参考文献：
 
   1. Flex 布局教程：语法篇：<https://www.ruanyifeng.com/blog/2015/07/flex-grammar.html>
-  2. <p id="page-title" class="asset-name entry-title">
+  2. 
       Flex 布局教程：实例篇：<a href="https://www.ruanyifeng.com/blog/2015/07/flex-examples.html">https://www.ruanyifeng.com/blog/2015/07/flex-examples.html</a>
 
-    </p>
+    

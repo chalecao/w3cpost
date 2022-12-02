@@ -1,7 +1,6 @@
 ---
 title: react事件系统
 
-
 ---
 ## 一 前言 {#item-1}
 
@@ -49,9 +48,8 @@ React 架构下也可以使用原生事件。React 提供了完备的生命周�
 
 事件冒泡机制：
 
-<p id="tgkzOkz">
-  <img loading="lazy" width="785" height="447" class="alignnone size-full wp-image-6067 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec519895fe.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec519895fe.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec519895fe.png?x-oss-process=image/format,webp 785w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec519895fe.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_171/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec519895fe.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_437/format,webp 768w" sizes="(max-width: 785px) 100vw, 785px" />
-</p>
+
+  <img loading="lazy" width="785" height="447" class="alignnone size-full wp-image-6067 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec519895fe.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec519895fe.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec519895fe.png?x-oss-process=image/format,webp 785w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec519895fe.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_171/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec519895fe.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_437/format,webp 768w" sizes="(max-width: 785px) 100vw, 785px" />
 
 通过 React 绑定的事件，其回调函数中的 event 对象，是经过 React 合成的 SyntheticEvent，与原生的 DOM 事件的 event 不是一回事。准确地说，在 React 中，e.nativeEvent 才是原生 DOM 事件的那个 event。
 
@@ -59,18 +57,16 @@ React 架构下也可以使用原生事件。React 提供了完备的生命周�
 
 React 合成事件与原生事件执行顺序图：
 
-<p id="cDedujG">
-  <img loading="lazy" width="800" height="369" class="alignnone size-full wp-image-6068 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec52848017.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec52848017.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec52848017.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec52848017.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_138/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec52848017.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_354/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
-</p>
+
+  <img loading="lazy" width="800" height="369" class="alignnone size-full wp-image-6068 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec52848017.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec52848017.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec52848017.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec52848017.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_138/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec52848017.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_354/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
 
 从图中[我们](https://www.w3cdoc.com)可以得到一下结论：  
 （1）DOM 事件冒泡到document上才会触发React的合成事件，所以React 合成事件对象的e.stopPropagation，只能阻止 React 模拟的事件冒泡，并不能阻止真实的 DOM 事件冒泡  
 （2）DOM 事件的阻止冒泡也可以阻止合成事件原因是DOM 事件的阻止冒泡使事件不会传播到document上  
 （3）当合成事件和DOM 事件 都绑定在document上的时候，React的处理是合成事件应该是先放进去的所以会先触发，在这种情况下，原生事件对象的 stopImmediatePropagation能做到阻止进一步触发document DOM事件
 
-<p id="JgPZuah">
-  <img loading="lazy" width="800" height="207" class="alignnone size-full wp-image-6069 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec532a157c.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec532a157c.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec532a157c.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec532a157c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_78/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec532a157c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_199/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
-</p>
+
+  <img loading="lazy" width="800" height="207" class="alignnone size-full wp-image-6069 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec532a157c.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec532a157c.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec532a157c.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec532a157c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_78/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5f9ec532a157c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_199/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
 
 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Event/stopImmediatePropagation" target="_blank" rel="nofollow noopener noreferrer">stopImmediatePropagation</a> :如果有多个相同类型事件的事件监听函数绑定到同一个元素,则当该类型的事件触发时,它们会按照被添加的顺序执行。如果其中某个监听函数执行了 event.stopImmediatePropagation()方法，则剩下的监听函数将不会被执行
 

@@ -16,11 +16,10 @@ Immutable 可以很好地解决这些问题。
 
 Immutable Data 就是一旦创建，就不能再被更改的数据。对 Immutable 对象的任何修改或添加删除操作都会返回一个新的 Immutable 对象。Immutable 实现的原理是 Persistent Data Structure（持久化数据结构），也就是使用旧数据创建新数据时，要保证旧数据同时可用且不变。同时为了避免 deepCopy 把所有节点都复制一遍带来的性能损耗，Immutable 使用了 Structural Sharing（结构共享），即如果对象树中一个节点发生变化，只修改这个节点和受它影响的父节点，其它节点则进行共享。请看下面动画：
 
-<img loading="lazy" class="aligncenter size-full wp-image-6495" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/TB1zzi_KXXXXXctXFXXbrb8OVXX-613-575.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/TB1zzi_KXXXXXctXFXXbrb8OVXX-613-575.gif?x-oss-process=image/format,webp" alt="" width="613" height="575" />
+<img loading="lazy" class="aligncenter size-full wp-image-6495" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/TB1zzi_KXXXXXctXFXXbrb8OVXX-613-575.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/TB1zzi_KXXXXXctXFXXbrb8OVXX-613-575.gif?x-oss-process=image/format,webp" alt="" width="613" height="575" />
 
-<p id="eAgfgdT">
+
   <img class="alignnone size-full wp-image-6492 shadow" alt="" />
-</p>
 
 目前流行的 Immutable 库有两个：
 
@@ -233,9 +232,8 @@ Immutable 则提供了简洁高效的判断数据是否变化的方法，只需�
 
 使用 Immutable 后，如下图，当红色节点的 state 变化后，不会再渲染树中的所有节点，而是只渲染图中绿色的部分：
 
-<p id="KTjXgym">
-  <img loading="lazy" width="715" height="324" class="alignnone size-full wp-image-6496 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/12/img_5fcfa87a1f6df.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/12/img_5fcfa87a1f6df.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/12/img_5fcfa87a1f6df.png?x-oss-process=image/format,webp 715w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/12/img_5fcfa87a1f6df.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_136/format,webp 300w" sizes="(max-width: 715px) 100vw, 715px" />
-</p>
+
+  <img loading="lazy" width="715" height="324" class="alignnone size-full wp-image-6496 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/12/img_5fcfa87a1f6df.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/12/img_5fcfa87a1f6df.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/12/img_5fcfa87a1f6df.png?x-oss-process=image/format,webp 715w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/12/img_5fcfa87a1f6df.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_136/format,webp 300w" sizes="(max-width: 715px) 100vw, 715px" />
 
 你也可以借助 `React.addons.PureRenderMixin` 或支持 class 语法的 \[pure-render-decorator\](felixgirault/pure-render-decorator · GitHub) 来实现。
 

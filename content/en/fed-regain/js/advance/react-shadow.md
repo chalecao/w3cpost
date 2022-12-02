@@ -6,9 +6,6 @@ title: react shadow
 
 
 
-
-
-
 ---
 1. Shadow DOM 是什么
 
@@ -18,15 +15,13 @@ Shadow DOM 是什么？[我们](https://www.w3cdoc.com)先来打开 Chrome 的 D
 
 &nbsp;
 
-<p id="wnRnrit">
-  <img loading="lazy" width="2624" height="1706" class="alignnone size-full wp-image-5112 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png?x-oss-process=image/format,webp 2624w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_195/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_499/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_520/format,webp 800w" sizes="(max-width: 2624px) 100vw, 2624px" />
-</p>
+
+  <img loading="lazy" width="2624" height="1706" class="alignnone size-full wp-image-5112 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png?x-oss-process=image/format,webp 2624w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_195/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_499/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_520/format,webp 800w" sizes="(max-width: 2624px) 100vw, 2624px" />
 
 Shadow DOM 允许在文档（Document）渲染时插入一棵「子 DOM  树」，并且这棵子树不在主 DOM 树中，同时为子树中的 DOM 元素和 CSS 提供了封装的能力。Shadow DOM 使得子树 DOM 与主文档的 DOM 保持分离，子 DOM 树中的 CSS 不会影响到主 DOM 树的内容，如下图所示：
 
-<p id="UUpxVCh">
-  <img loading="lazy" width="1120" height="534" class="alignnone size-full wp-image-5113 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa1147f7e.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa1147f7e.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa1147f7e.png?x-oss-process=image/format,webp 1120w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa1147f7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_143/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa1147f7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_366/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa1147f7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_381/format,webp 800w" sizes="(max-width: 1120px) 100vw, 1120px" />
-</p>
+
+  <img loading="lazy" width="1120" height="534" class="alignnone size-full wp-image-5113 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa1147f7e.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa1147f7e.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa1147f7e.png?x-oss-process=image/format,webp 1120w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa1147f7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_143/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa1147f7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_366/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa1147f7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_381/format,webp 800w" sizes="(max-width: 1120px) 100vw, 1120px" />
 
 有几个需要了解和 Shadow DOM 相关的技术概念：
 
@@ -65,57 +60,38 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
 
 其他，在需要进行 DOM/CSS 隔离的场景，都有可能是 Shadow DOM 的用武之地。比如像 「阿里云购物车」这种需要「嵌入集成」到不同产品售卖页的「公共组件」，就很需要避免和宿主页面的样式冲突，即不影响宿主页面，也不要受宿主页面的影响。
 
-<p id="VTHashI">
-  <p id="GzpqukN">
-    <img loading="lazy" width="2278" height="1334" class="alignnone size-full wp-image-5116 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa35c472e.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa35c472e.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa35c472e.png?x-oss-process=image/format,webp 2278w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa35c472e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_176/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa35c472e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_450/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa35c472e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_468/format,webp 800w" sizes="(max-width: 2278px) 100vw, 2278px" />
-  </p>
+
+ <img loading="lazy" width="2278" height="1334" class="alignnone size-full wp-image-5116 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa35c472e.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa35c472e.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa35c472e.png?x-oss-process=image/format,webp 2278w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa35c472e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_176/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa35c472e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_450/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa35c472e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_468/format,webp 800w" sizes="(max-width: 2278px) 100vw, 2278px" />
   
-  <p>
-    <a name="aOCwo"></a>
-  </p>
+ <a name="aOCwo"></a>
   
   <h1 id="5">
     3. 主流[浏览器](https://www.w3cdoc.com)的支持情况
   </h1>
+ 其中 Chrome，Opera 和 Safari 默认就支持 Shadow DOM，而 Firefox 从 63 版本开始已经支持，可以看到支持最好的是 Chrome，而 IE 直到 11 也都是不支持的，微软的另一款[浏览器](https://www.w3cdoc.com) Edge 要换成和 Chrome 相同内核了，那换核后的 Edge 肯定会支持 Shadow DOM 了。
   
-  <p>
-    其中 Chrome，Opera 和 Safari 默认就支持 Shadow DOM，而 Firefox 从 63 版本开始已经支持，可以看到支持最好的是 Chrome，而 IE 直到 11 也都是不支持的，微软的另一款[浏览器](https://www.w3cdoc.com) Edge 要换成和 Chrome 相同内核了，那换核后的 Edge 肯定会支持 Shadow DOM 了。
-  </p>
+ <img loading="lazy" width="2540" height="512" class="alignnone size-full wp-image-5117 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa40663ca.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa40663ca.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa40663ca.png?x-oss-process=image/format,webp 2540w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa40663ca.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_60/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa40663ca.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_155/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa40663ca.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_161/format,webp 800w" sizes="(max-width: 2540px) 100vw, 2540px" />
   
-  <p id="YYYJvoG">
-    <img loading="lazy" width="2540" height="512" class="alignnone size-full wp-image-5117 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa40663ca.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa40663ca.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa40663ca.png?x-oss-process=image/format,webp 2540w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa40663ca.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_60/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa40663ca.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_155/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa40663ca.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_161/format,webp 800w" sizes="(max-width: 2540px) 100vw, 2540px" />
-  </p>
+ 各[浏览器](https://www.w3cdoc.com)支持详细情况，请参考 <a href="https://caniuse.com/#feat=shadowdomv1">https://caniuse.com/#feat=shadowdomv1</a>
   
-  <p>
-    各[浏览器](https://www.w3cdoc.com)支持详细情况，请参考 <a href="https://caniuse.com/#feat=shadowdomv1">https://caniuse.com/#feat=shadowdomv1</a>
-  </p>
-  
-  <p>
-    <a name="SiL0i"></a>
-  </p>
+ <a name="SiL0i"></a>
   
   <h1 id="6">
     4. 如何创建 Shadow DOM
   </h1>
-  
-  <p>
-    Shadow DOM 必须附加在一个元素上，可以是通过 HTML 声明的一个元素，也可以是通过脚本动态创建的元素。可以是原生的元素，如 <code>div、p</code> ，也可以是「自定义元素」如 <code>my-element</code> ，语法如下：
-  </p>
+ Shadow DOM 必须附加在一个元素上，可以是通过 HTML 声明的一个元素，也可以是通过脚本动态创建的元素。可以是原生的元素，如 <code>div、p</code> ，也可以是「自定义元素」如 <code>my-element</code> ，语法如下：
   
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
       <pre class=" language-javascript"><code class=" language-javascript">&lt;span class="token keyword">const&lt;/span> shadowroot &lt;span class="token operator">=&lt;/span> element&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">attachShadow&lt;/span>&lt;span class="token punctuation">(&lt;/span>shadowRootInit&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
 
-      <p>
+      
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-      </p>
+      
     </div>
   </div>
-  
-  <p data-spm-anchor-id="ata.13261165.0.i0.703736d0HVWJkY">
-    参考如下例所示：
-  </p>
+ 参考如下例所示：
   
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -137,48 +113,33 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
 &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>html&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
 </code></pre>
 
-      <p>
+      
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-      </p>
+      
     </div>
   </div>
+ 通过这个简单的示例可以看到「在 Shadow DOM 中定义的样式，并不会影响到主文档中的元素」，如下图<br /> <a href="https://intranetproxy.alipay.com/skylark/lark/0/2019/png/12673/1567668185403-a949d18d-6e4e-41cf-931a-29ea6688cb8b.png#align=left&display=inline&height=678&name=image.png&originHeight=1356&originWidth=2206&size=514537&status=done&width=1103" target="_blank" rel="noopener noreferrer"><br /> </a>
   
-  <p>
-    通过这个简单的示例可以看到「在 Shadow DOM 中定义的样式，并不会影响到主文档中的元素」，如下图<br /> <a href="https://intranetproxy.alipay.com/skylark/lark/0/2019/png/12673/1567668185403-a949d18d-6e4e-41cf-931a-29ea6688cb8b.png#align=left&display=inline&height=678&name=image.png&originHeight=1356&originWidth=2206&size=514537&status=done&width=1103" target="_blank" rel="noopener noreferrer"><br /> </a>
-  </p>
+ <img loading="lazy" width="2206" height="1356" class="alignnone size-full wp-image-5118 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/format,webp 2206w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_184/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_472/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_492/format,webp 800w" sizes="(max-width: 2206px) 100vw, 2206px" />
   
-  <p id="JhWclgf">
-    <img loading="lazy" width="2206" height="1356" class="alignnone size-full wp-image-5118 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/format,webp 2206w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_184/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_472/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_492/format,webp 800w" sizes="(max-width: 2206px) 100vw, 2206px" />
-  </p>
+ <code>Element.attachShadow</code>  的参数 <code>shadowRootInit</code>  的 <code>mode</code>  选项用于设定「封装模式」。它有两个可选的值 ：
   
-  <p>
-    <code>Element.attachShadow</code>  的参数 <code>shadowRootInit</code>  的 <code>mode</code>  选项用于设定「封装模式」。它有两个可选的值 ：
-  </p>
-  
-  <p>
-    &nbsp;
-  </p>
+ &nbsp;
   
   <ul>
-    <li>
-      <strong>&#8220;open&#8221;</strong> ：可 Host 元素上通过 <code>host.shadowRoot</code>  获取 shadowRoot 引用，这样任何代码都可以通过 shadowRoot 来访问的子 DOM 树。
-    </li>
-    <li>
-      <strong>&#8220;closed&#8221;</strong>：在 Host 元素上通过 <code>host.shadowRoot</code>  获取的是 null，[我们](https://www.w3cdoc.com)只能通过 <code>Element.attachShadow</code> 的返回值拿到 shadowRoot 的引用（通常可能隐藏在类中）。例如，[浏览器](https://www.w3cdoc.com)内建的 input、video 等就是关闭的，[我们](https://www.w3cdoc.com)没有办法访问它们。
-    </li>
-  </ul>
+    
+     &#8220;open&#8221; ：可 Host 元素上通过 <code>host.shadowRoot</code>  获取 shadowRoot 引用，这样任何代码都可以通过 shadowRoot 来访问的子 DOM 树。
+    
+    
+     &#8220;closed&#8221;：在 Host 元素上通过 <code>host.shadowRoot</code>  获取的是 null，[我们](https://www.w3cdoc.com)只能通过 <code>Element.attachShadow</code> 的返回值拿到 shadowRoot 的引用（通常可能隐藏在类中）。例如，[浏览器](https://www.w3cdoc.com)内建的 input、video 等就是关闭的，[我们](https://www.w3cdoc.com)没有办法访问它们。
+    
   
-  <p>
-    <a name="BDGQB"></a>
-  </p>
+ <a name="BDGQB"></a>
   
   <h1 id="7">
     5. 哪些元素可以附加 Shadow DOM
   </h1>
-  
-  <p>
-    并非所有 HTML 元素都可以开启 Shadow DOM 的，只有一组有限的元素可以附加 Shadow DOM。有时尝试将 Shadow DOM 树附加到某些元素将会导致 <code>DOMException</code> 错误，例如：
-  </p>
+ 并非所有 HTML 元素都可以开启 Shadow DOM 的，只有一组有限的元素可以附加 Shadow DOM。有时尝试将 Shadow DOM 树附加到某些元素将会导致 <code>DOMException</code> 错误，例如：
   
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -186,19 +147,14 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
 &lt;span class="token comment" spellcheck="true">// =&gt; DOMException&lt;/span>
 </code></pre>
 
-      <p>
+      
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-      </p>
+      
     </div>
   </div>
+ 用 <code>&lt;img&gt;</code> 这样的非容器素作为 Shadow Host 是不合理的，因此这段代码将抛出 <code>DOMException</code> 错误。此外因为安全原因一些元素也不能附加 Shadow DOM（比如 A 元素），会出现错误的另一个原因是[浏览器](https://www.w3cdoc.com)已经用该元素附加了 Shadow DOM，比如 Input 等。
   
-  <p>
-    用 <code>&lt;img&gt;</code> 这样的非容器素作为 Shadow Host 是不合理的，因此这段代码将抛出 <code>DOMException</code> 错误。此外因为安全原因一些元素也不能附加 Shadow DOM（比如 A 元素），会出现错误的另一个原因是[浏览器](https://www.w3cdoc.com)已经用该元素附加了 Shadow DOM，比如 Input 等。
-  </p>
-  
-  <p>
-    下表列出了所有支持的元素：
-  </p>
+ 下表列出了所有支持的元素：
   
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -217,36 +173,26 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
 &lt;span class="token code keyword">                +----------------+----------------+----------------+&lt;/span>
 </code></pre>
 
-      <p>
+      
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-      </p>
+      
     </div>
   </div>
-  
-  <p>
-    <a name="Pba63"></a>
-  </p>
+ <a name="Pba63"></a>
   
   <h1 id="8">
     6. 在 React 中如何应用 Shadow DOM
   </h1>
+ 在基于 React 的项目中应该如何使用 Shadow DOM 呢？比如你正在基于 React 编写一个面向不同产品或业务，可嵌入集成使用的公共组件，比如你正在基于 React 做一个「微[前端](https://www.w3cdoc.com)架构」应用的设计或开发。
   
-  <p>
-    在基于 React 的项目中应该如何使用 Shadow DOM 呢？比如你正在基于 React 编写一个面向不同产品或业务，可嵌入集成使用的公共组件，比如你正在基于 React 做一个「微[前端](https://www.w3cdoc.com)架构」应用的设计或开发。
-  </p>
+ [我们](https://www.w3cdoc.com)在编写 React 应用时一般不希望到处是 DOM 操作，因为这很不 React (形容词)。那是否能封装成一下用更 React (形容词) 的组件风格去使用 Shadow DOM 呢?
   
-  <p>
-    [我们](https://www.w3cdoc.com)在编写 React 应用时一般不希望到处是 DOM 操作，因为这很不 React (形容词)。那是否能封装成一下用更 React (形容词) 的组件风格去使用 Shadow DOM 呢?
-  </p>
-  
-  <p>
-    <a name="LChru"></a>
-  </p>
+ <a name="LChru"></a>
   
   <h2 id="9">
     6.1. 尝试写一个 React 组件
-  </h2>
   
+
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
       <pre class=" language-javascript"><code class=" language-javascript">&lt;span class="token keyword">import&lt;/span> React &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
@@ -273,43 +219,28 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
 ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App &lt;span class="token operator">/&lt;/span>&lt;span class="token operator">&gt;&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"root"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
 
-      <p>
+      
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-      </p>
+      
     </div>
   </div>
+ 跑起来看看效果，一定会发现「咦？什么也没有显示」：
   
-  <p>
-    跑起来看看效果，一定会发现「咦？什么也没有显示」：
-  </p>
+ <img loading="lazy" width="2096" height="1174" class="alignnone size-full wp-image-5119 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/format,webp 2096w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_168/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_430/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_448/format,webp 800w" sizes="(max-width: 2096px) 100vw, 2096px" />
   
-  <p id="lWjUhWR">
-    <img loading="lazy" width="2096" height="1174" class="alignnone size-full wp-image-5119 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/format,webp 2096w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_168/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_430/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_448/format,webp 800w" sizes="(max-width: 2096px) 100vw, 2096px" />
-  </p>
+ 在这里需要稍注意一下，在一个元素上附加了 Shadow DOM 后，元素原本的「子元素」将不会再显示，并且这些子元素也不在 Shadow DOM 中，只有 <code>host.shadowRoot</code>  的子元素才是「子 DOM 树」中一部分。也就是说这个「子 DOM 树」的「根节点」是 <code>host.shadowRoot</code> 而非 host。 <code>host.shadowRoot</code> 是 ShadowRoot 的实例，而 ShadowRoot 则继承于 DocumentFragment，可通过原生 DOM API 操作其子元素。
   
-  <p>
-    在这里需要稍注意一下，在一个元素上附加了 Shadow DOM 后，元素原本的「子元素」将不会再显示，并且这些子元素也不在 Shadow DOM 中，只有 <code>host.shadowRoot</code>  的子元素才是「子 DOM 树」中一部分。也就是说这个「子 DOM 树」的「根节点」是 <code>host.shadowRoot</code> 而非 host。 <code>host.shadowRoot</code> 是 ShadowRoot 的实例，而 ShadowRoot 则继承于 DocumentFragment，可通过原生 DOM API 操作其子元素。
-  </p>
+ &nbsp;
   
-  <p>
-    &nbsp;
-  </p>
+ [我们](https://www.w3cdoc.com)需通过 <code>Element.attachShadow</code> 附加到元素，然后就能拿到附加后的 ShadowRoot 实例。 针对 ShadowRoot 这样一个原生 DOM Node 的的引用，除了利用 <code>ReactDOM.render</code> 或 <code>ReactDOM.createPortal</code>  ，[我们](https://www.w3cdoc.com)并不能轻易的将 React.Element 渲染到其中，除非直接接操作 DOM。
   
-  <p>
-    [我们](https://www.w3cdoc.com)需通过 <code>Element.attachShadow</code> 附加到元素，然后就能拿到附加后的 ShadowRoot 实例。 针对 ShadowRoot 这样一个原生 DOM Node 的的引用，除了利用 <code>ReactDOM.render</code> 或 <code>ReactDOM.createPortal</code>  ，[我们](https://www.w3cdoc.com)并不能轻易的将 React.Element 渲染到其中，除非直接接操作 DOM。
-  </p>
-  
-  <p>
-    <a name="CvZo0"></a>
-  </p>
+ <a name="CvZo0"></a>
   
   <h2 id="10">
     6.2. 基于直接操作 DOM 改造一版
-  </h2>
   
-  <p>
-    在 React 中通过 ref 拿到真实的 DOM 引用后，是否能通过原生的 DOM  API，将 host 的 children 移动到 host.shadowRoot 中？
-  </p>
+
+ 在 React 中通过 ref 拿到真实的 DOM 引用后，是否能通过原生的 DOM  API，将 host 的 children 移动到 host.shadowRoot 中？
   
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -354,43 +285,28 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App &lt;span class="token operator">/&lt;/span>&lt;span class="token operator">&gt;&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"root"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
 
-      <p>
+      
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-      </p>
+      
     </div>
   </div>
+ 在[浏览器](https://www.w3cdoc.com)中看看效果，可以看到是可以正常显示的。但与此同时会发现一个问题「隔离在 ShadowRoot 中的元素上的事件无法被触发了」，这是什么原因呢？
   
-  <p>
-    在[浏览器](https://www.w3cdoc.com)中看看效果，可以看到是可以正常显示的。但与此同时会发现一个问题「隔离在 ShadowRoot 中的元素上的事件无法被触发了」，这是什么原因呢？
-  </p>
+ 是由于 React 的「合成事件机制」的导致的，[我们](https://www.w3cdoc.com)知道在 React 中「事件」并不会直接绑定到具体的 DOM 元素上，而是通过在 document 上绑定的 ReactEventListener 来管理， 当时元素被单击或触发其他事件时，事件被 dispatch 到 document 时将由 React 进行处理并触发相应合成事件的执行。
   
-  <p>
-    是由于 React 的「合成事件机制」的导致的，[我们](https://www.w3cdoc.com)知道在 React 中「事件」并不会直接绑定到具体的 DOM 元素上，而是通过在 document 上绑定的 ReactEventListener 来管理， 当时元素被单击或触发其他事件时，事件被 dispatch 到 document 时将由 React 进行处理并触发相应合成事件的执行。
-  </p>
+ 那为什么合成事件在 Shadow DOM 中不能被正常触发？是因为当在 Shadow DOM 外部捕获时[浏览器](https://www.w3cdoc.com)会对事件进行「重定向」，也就是说在 Shadow DOM 中发生的事件在外部捕获时将会使用 host 元素作为事件源。这将让 React 在处理合成事件时，不认为 ShadowDOM 中元素基于 JSX 语法绑定的事件被触发了。
   
-  <p data-spm-anchor-id="ata.13261165.0.i1.703736d0HVWJkY">
-    那为什么合成事件在 Shadow DOM 中不能被正常触发？是因为当在 Shadow DOM 外部捕获时[浏览器](https://www.w3cdoc.com)会对事件进行「重定向」，也就是说在 Shadow DOM 中发生的事件在外部捕获时将会使用 host 元素作为事件源。这将让 React 在处理合成事件时，不认为 ShadowDOM 中元素基于 JSX 语法绑定的事件被触发了。
-  </p>
+ <img loading="lazy" width="2164" height="1406" class="alignnone size-full wp-image-5122 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png?x-oss-process=image/format,webp 2164w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_195/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_499/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_520/format,webp 800w" sizes="(max-width: 2164px) 100vw, 2164px" />
   
-  <p id="YqAVKMi">
-    <img loading="lazy" width="2164" height="1406" class="alignnone size-full wp-image-5122 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png?x-oss-process=image/format,webp 2164w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_195/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_499/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_520/format,webp 800w" sizes="(max-width: 2164px) 100vw, 2164px" />
-  </p>
+ &nbsp;
   
-  <p>
-    &nbsp;
-  </p>
-  
-  <p>
-    <a name="uMiat"></a>
-  </p>
+ <a name="uMiat"></a>
   
   <h2 id="11">
     6.3. 利用 ReactDOM.render 改造一下
-  </h2>
   
-  <p data-spm-anchor-id="ata.13261165.0.i6.703736d0HVWJkY">
-    ReactDOM.render 的第二个参数，可传入一个 DOM 元素。那是不是能通过 ReactDOM.render 将 React Eements 渲染到 Shodaw DOM 中呢？看一下如下尝试：
-  </p>
+
+ ReactDOM.render 的第二个参数，可传入一个 DOM 元素。那是不是能通过 ReactDOM.render 将 React Eements 渲染到 Shodaw DOM 中呢？看一下如下尝试：
   
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -428,43 +344,28 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App &lt;span class="token operator">/&lt;/span>&lt;span class="token operator">&gt;&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"root"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
 
-      <p>
+      
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-      </p>
+      
     </div>
   </div>
+ 可以看到通过 ReactDOM.render 进行 children 的渲染，是能够正常渲染到 Shadow Root 中，并且在 Shadow DOM 中合成事件也是能正常触发执行的。
   
-  <p>
-    可以看到通过 ReactDOM.render 进行 children 的渲染，是能够正常渲染到 Shadow Root 中，并且在 Shadow DOM 中合成事件也是能正常触发执行的。
-  </p>
+ 为什么此时「隔离在 Shadow DOM 中的元素事件」能够被触发了呢？ 因为在 Reac 在发现渲染的目标在 ShadowRoot 中时，将会将事件绑定在通过 Element.getRootNode() 获取的 DocumentFragment 的 RootNode 上。
   
-  <p>
-    为什么此时「隔离在 Shadow DOM 中的元素事件」能够被触发了呢？ 因为在 Reac 在发现渲染的目标在 ShadowRoot 中时，将会将事件绑定在通过 Element.getRootNode() 获取的 DocumentFragment 的 RootNode 上。
-  </p>
+ <img loading="lazy" class="alignnone  wp-image-5121 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa8c6039b.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa8c6039b.png?x-oss-process=image/format,webp" alt="" width="596" height="403" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa8c6039b.png?x-oss-process=image/format,webp 1228w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa8c6039b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_203/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa8c6039b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_519/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa8c6039b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_541/format,webp 800w" sizes="(max-width: 596px) 100vw, 596px" />
   
-  <p id="dvudJzc">
-    <img loading="lazy" class="alignnone  wp-image-5121 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa8c6039b.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa8c6039b.png?x-oss-process=image/format,webp" alt="" width="596" height="403" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa8c6039b.png?x-oss-process=image/format,webp 1228w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa8c6039b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_203/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa8c6039b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_519/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa8c6039b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_541/format,webp 800w" sizes="(max-width: 596px) 100vw, 596px" />
-  </p>
+ 看似一切顺利，但却会发现父组件的 state 更新时，而 ShadowView 组件并没有更新。如上边的示例，其中的 message 显示的还是旧的，而原因就在[我们](https://www.w3cdoc.com)使用 ReactDOM.render 时，Shadow DOM 的元素和父组件不在一个 React 渲染上下文中了。
   
-  <p>
-    看似一切顺利，但却会发现父组件的 state 更新时，而 ShadowView 组件并没有更新。如上边的示例，其中的 message 显示的还是旧的，而原因就在[我们](https://www.w3cdoc.com)使用 ReactDOM.render 时，Shadow DOM 的元素和父组件不在一个 React 渲染上下文中了。
-  </p>
-  
-  <p>
-    <a name="aODnA"></a>
-  </p>
+ <a name="aODnA"></a>
   
   <h2 id="12">
     6.4. 利用 ReactDOM.createPortal 实现一版
-  </h2>
   
-  <p>
-    [我们](https://www.w3cdoc.com)知道 createPortal 的出现为「弹窗、提示框」等脱离文档流的组件开发提供了便利，替换了之前不稳定的 API unstable_renderSubtreeIntoContainer。
-  </p>
+
+ [我们](https://www.w3cdoc.com)知道 createPortal 的出现为「弹窗、提示框」等脱离文档流的组件开发提供了便利，替换了之前不稳定的 API unstable_renderSubtreeIntoContainer。
   
-  <p>
-    ReactDOM.createPortal 有一个特性是「通过 createPortal 渲染的 DOM，事件可以从 Portal 的入口端冒泡上来」，这一特性很关键，没有父子关系的 DOM ，合成事件能冒泡过来，那通过  createPortal 渲染到 Shadow DOM 中的元素的事件也能正常触发吧？并且能让所有元素的渲染在一个上下文中。那就基于 createPortal 实现一下：
-  </p>
+ ReactDOM.createPortal 有一个特性是「通过 createPortal 渲染的 DOM，事件可以从 Portal 的入口端冒泡上来」，这一特性很关键，没有父子关系的 DOM ，合成事件能冒泡过来，那通过  createPortal 渲染到 Shadow DOM 中的元素的事件也能正常触发吧？并且能让所有元素的渲染在一个上下文中。那就基于 createPortal 实现一下：
   
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
@@ -511,67 +412,48 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App &lt;span class="token operator">/&lt;/span>&lt;span class="token operator">&gt;&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"root"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
 
-      <p>
+      
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-      </p>
+      
     </div>
   </div>
+ <img loading="lazy" width="2164" height="1406" class="alignnone size-full wp-image-5123 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png?x-oss-process=image/format,webp 2164w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_195/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_499/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_520/format,webp 800w" sizes="(max-width: 2164px) 100vw, 2164px" />
   
-  <p id="VYWsaFH">
-    <img loading="lazy" width="2164" height="1406" class="alignnone size-full wp-image-5123 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png?x-oss-process=image/format,webp 2164w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_195/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_499/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_520/format,webp 800w" sizes="(max-width: 2164px) 100vw, 2164px" />
-  </p>
+ Wow! 一切正常，有一个小问题是 createPortal 不支持 React 16 以下的版本，但大多数情况下这并不是个什么大问题。
   
-  <p>
-    Wow! 一切正常，有一个小问题是 createPortal 不支持 React 16 以下的版本，但大多数情况下这并不是个什么大问题。
-  </p>
-  
-  <p>
-    <a name="y3TYp"></a>
-  </p>
+ <a name="y3TYp"></a>
   
   <h1 id="13">
     7. 面向 React 的 ShadowView 组件
   </h1>
+ 上边提到了几种在 React 中实现 Shadwo DOM 组件的方法，而 ShadowView 是一个写好的可开箱即用的面向 React 的 Shadow DOM 容器组件，利用 ShadowView 可以像普通组件一样方便的在 React 应用中创建启用 Shadow DOM 的容器元素。
   
-  <p>
-    上边提到了几种在 React 中实现 Shadwo DOM 组件的方法，而 ShadowView 是一个写好的可开箱即用的面向 React 的 Shadow DOM 容器组件，利用 ShadowView 可以像普通组件一样方便的在 React 应用中创建启用 Shadow DOM 的容器元素。
-  </p>
+ ShadowView 目前完整兼容支持 React 15/16，组件的「事件处理、组件渲染更新」等行为在两个版中都是一致的。
   
-  <p>
-    ShadowView 目前完整兼容支持 React 15/16，组件的「事件处理、组件渲染更新」等行为在两个版中都是一致的。
-  </p>
+ GitHub: <a href="https://github.com/Houfeng/shadow-view?spm=ata.13261165.0.0.703736d0HVWJkY" data-spm-anchor-id="ata.13261165.0.0">https://github.com/Houfeng/shadow-view</a>
   
-  <p>
-    GitHub: <a href="https://github.com/Houfeng/shadow-view?spm=ata.13261165.0.0.703736d0HVWJkY" data-spm-anchor-id="ata.13261165.0.0">https://github.com/Houfeng/shadow-view</a>
-  </p>
-  
-  <p>
-    <a name="Dw1SA"></a>
-  </p>
+ <a name="Dw1SA"></a>
   
   <h2 id="14">
     7.1. 安装组件
-  </h2>
   
+
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
       <pre class=" language-bash"><code class=" language-bash">&lt;span class="token function">npm&lt;/span> i shadow-view --save
 </code></pre>
 
-      <p>
+      
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-      </p>
+      
     </div>
   </div>
-  
-  <p>
-    <a name="uwOxQ"></a>
-  </p>
+ <a name="uwOxQ"></a>
   
   <h2 id="15">
     7.2. 使用组件
-  </h2>
   
+
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
       <pre class=" language-javascript"><code class=" language-javascript">&lt;span class="token keyword">import&lt;/span> &lt;span class="token operator">*&lt;/span> &lt;span class="token keyword">as&lt;/span> React &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
@@ -596,33 +478,30 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App&lt;span class="token operator">/&lt;/span>&lt;span class="token operator">&gt;&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'root'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
 
-      <p>
+      
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
-      </p>
+      
     </div>
   </div>
-  
-  <p>
-    <a name="ZMGXF"></a>
-  </p>
+ <a name="ZMGXF"></a>
   
   <h2 id="16">
     7.3. 组件属性
-  </h2>
   
+
   <div class="table-contianer">
     <table data-spm-anchor-id="ata.13261165.0.i5.703736d0HVWJkY">
       <tr>
         <th>
-          <strong>属性名</strong>
+         属性名
         </th>
 
         <th>
-          <strong>类型</strong>
+         类型
         </th>
         
         <th>
-          <strong>说明</strong>
+         说明
         </th>
       </tr>
       
@@ -711,13 +590,7 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
       </tr>
     </table>
   </div>
-  
   <hr />
+ 那么，ShadowView 是如何兼容支持 React 15 的呢？ 可在 <a href="https://github.com/Houfeng/shadow-view?spm=ata.13261165.0.0.703736d0HVWJkY" data-spm-anchor-id="ata.13261165.0.0">https://github.com/Houfeng/shadow-view</a> 一探究竟。
   
-  <p data-spm-anchor-id="ata.13261165.0.i4.703736d0HVWJkY">
-    那么，ShadowView 是如何兼容支持 React 15 的呢？ 可在 <a href="https://github.com/Houfeng/shadow-view?spm=ata.13261165.0.0.703736d0HVWJkY" data-spm-anchor-id="ata.13261165.0.0">https://github.com/Houfeng/shadow-view</a> 一探究竟。
-  </p>
-  
-  <p>
-    &#8212; END &#8212;
-  </p>
+ &#8212; END &#8212;

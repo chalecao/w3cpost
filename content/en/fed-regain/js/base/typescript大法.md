@@ -2,7 +2,6 @@
 title: typescript大法
 
 
-
 ---
 介绍下`tsconfig`
 
@@ -118,24 +117,18 @@ title: typescript大法
 </div>
 
 <div class="tip custom-block">
-  <p class="custom-block-title">
-    注意
-  </p>
+ 注意
   
-  <p>
-    使用 <code>globs</code>：<code>**/*</code> （一个示例用法：<code>some/folder/**/*</code>）意味着匹配所有的文件夹和所有文件（扩展名为 <code>.ts/.tsx</code>，当开启了 <code>allowJs: true</code> 选项时，扩展名可以是 <code>.js/.jsx</code>）。
-  </p>
+ 使用 <code>globs</code>：<code>**/*</code> （一个示例用法：<code>some/folder/**/*</code>）意味着匹配所有的文件夹和所有文件（扩展名为 <code>.ts/.tsx</code>，当开启了 <code>allowJs: true</code> 选项时，扩展名可以是 <code>.js/.jsx</code>）。
   
-  <h2>
-    参考：
-  </h2>
+  ##   参考：
   
+
   <ul>
-    <li>
+    
       <a href="https://jkchao.github.io/typescript-book-chinese/project/compilationContext.html#%E7%BC%96%E8%AF%91%E9%80%89%E9%A1%B9">typescript</a>
-    </li>
-    <li>
+    
+    
       <a href="https://jkchao.github.io/typescript-book-chinese/compiler/overview.html#%E6%96%87%E4%BB%B6%EF%BC%9Autilities">typescript编译原理</a>
-    </li>
-  </ul>
+    
 </div>

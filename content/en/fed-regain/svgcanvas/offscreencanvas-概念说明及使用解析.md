@@ -3,7 +3,6 @@ title: OffscreenCanvas – 概念说明及使用解析
 
 
 
-
 ---
 这是个人关于 <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">OffscreenCanvas</a> 的第一篇文章，在这篇文章里会对 OffscreenCanvas 的基本概念进行说明，并通过两个实际的例程来解析它的主要使用方式和应用场景。
 
@@ -40,7 +39,7 @@ OffscreenCanvas 目前主要用于两种不同的使用场景：
 
 ## Transfer 模式<figure data-size="normal">
 
-<img class="content_image lazy" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/v2-49c2efd0bf09a73ea403715c1bc4df21_hd.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/v2-49c2efd0bf09a73ea403715c1bc4df21_hd.jpg?x-oss-process=image/format,webp" data-caption="" data-size="normal" data-actualsrc="https://pic2.zhimg.com/v2-49c2efd0bf09a73ea403715c1bc4df21_b.jpg" /> </figure>
+<img class="content_image lazy" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/v2-49c2efd0bf09a73ea403715c1bc4df21_hd.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/v2-49c2efd0bf09a73ea403715c1bc4df21_hd.jpg?x-oss-process=image/format,webp" data-caption="" data-size="normal" data-actualsrc="https://pic2.zhimg.com/v2-49c2efd0bf09a73ea403715c1bc4df21_b.jpg" /> </figure>
 
 > Transfer Demo，使用 Transfer 模式
 

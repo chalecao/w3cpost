@@ -3,13 +3,12 @@ title: 用webpack4和一些插件提升代码编译速度
 
 
 
-
 ---
 对于现在的[前端](https://www.w3cdoc.com)项目而言，编译发布几乎是必需操作，有的编译只需要几秒钟，快如闪电，有的却需要10分钟，甚至更多，慢如蜗牛。特别是线上热修复时，分秒必争，响应速度直接影响了用户体验，用户不会有耐心等那么长时间，让你慢慢编译；如果涉及到支付操作，产品损失更是以秒计，每提前哪怕一秒钟发布，在腾讯海量用户面前，都能挽回不小的损失。不仅如此，编译效率的提升，带来的最直观收益就是，开发效率与开发体验双重提升。
 
 那么，到底是什么拖慢了webpack打包效率，[我们](https://www.w3cdoc.com)又能做哪些提升呢？
 
-<a class="fancy-ctn fancybox" title="webpack" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-logo.gif" rel="fancy-group"><img title="webpack" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-logo.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-logo.gif?x-oss-process=image/format,webp" /></a>
+<a class="fancy-ctn fancybox" title="webpack" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-logo.gif" rel="fancy-group"><img title="webpack" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-logo.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-logo.gif?x-oss-process=image/format,webp" /></a>
 
 webpack 是目前非常受欢迎的打包工具，截止6天前，webpack4 已更新至 `4.28.3` 版本，10 个月的时间，小版本更新达几十次之多，可见社区之繁荣。
 
@@ -23,7 +22,7 @@ webpack4 发布时，官方也曾表示，其编译速度提升了 60% ~ 98%。
 
 以下是分别在 webpack@3.12.0 及 webpack@4.26.1 两种场景下各测 5 次的运行截图。
 
-<a class="fancy-ctn fancybox" title="webpack3~4x编译速度对比" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-0-happyPack-0-dll-0-parallel.34.png" rel="fancy-group"><img title="webpack3~4x编译速度对比" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-0-happyPack-0-dll-0-parallel.34.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-0-happyPack-0-dll-0-parallel.34.png?x-oss-process=image/format,webp" /></a>
+<a class="fancy-ctn fancybox" title="webpack3~4x编译速度对比" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-0-happyPack-0-dll-0-parallel.34.png" rel="fancy-group"><img title="webpack3~4x编译速度对比" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-0-happyPack-0-dll-0-parallel.34.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-0-happyPack-0-dll-0-parallel.34.png?x-oss-process=image/format,webp" /></a>
 
 数据分析如下（单位ms）：
 
@@ -51,7 +50,7 @@ webpack4 在大幅度提升编译效率同时，引入了多种新特性：
       * 开发插件时，你可以选择插件的类型（sync/callback/promise之一）
       * 通过 this.hooks = { myHook: new SyncHook(…) } 来注册hook
 
-    更多插件的工作原理，可以参考：<a href="https://medium.com/webpack/the-new-plugin-system-week-22-23-c24e3b22e95" target="_blank" rel="external noopener">新插件系统如何工作</a>。</li> </ol> 
+    更多插件的工作原理，可以参考：<a href="https://medium.com/webpack/the-new-plugin-system-week-22-23-c24e3b22e95" target="_blank" rel="external noopener">新插件系统如何工作</a>。 </ol> 
     
     ### **快上车，升级前的准备** {#快上车，升级前的准备}
     
@@ -219,7 +218,7 @@ resolve: {
 }</code></pre>
 
       2. 想要进一步提升编译速度，就要知道瓶颈在哪？通过测试，发现有两个阶段较慢：① babel 等 loaders 解析阶段；② js 压缩阶段。loader 解析稍后会讨论，而 js 压缩是发布编译的最后阶段，通常webpack需要卡好一会，这是因为压缩 JS 需要先将代码解析成 AST 语法树，然后需要根据复杂的规则去分析和处理 AST，最后将 AST 还原成 JS，这个过程涉及到大量计算，因此比较耗时。如下图，编译就看似卡住。 
-        <a class="fancy-ctn fancybox" title="ParallelUglify" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-ParallelUglify.png" rel="fancy-group"><img title="ParallelUglify" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-ParallelUglify.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-ParallelUglify.png?x-oss-process=image/format,webp" /></a>
+        <a class="fancy-ctn fancybox" title="ParallelUglify" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-ParallelUglify.png" rel="fancy-group"><img title="ParallelUglify" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-ParallelUglify.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-ParallelUglify.png?x-oss-process=image/format,webp" /></a>
         
         实际上，搭载 webpack-parallel-uglify-plugin 插件，这个过程可以倍速提升。[我们](https://www.w3cdoc.com)都知道 node 是单线程的，但node能够fork子进程，基于此，webpack-parallel-uglify-plugin 能够把任务分解给多个子进程去并发的执行，子进程处理完后再把结果发送给主进程，从而实现并发编译，进而大幅提升js压缩速度，如下是配置。
         
@@ -249,9 +248,9 @@ optimization: {
 
         当然，我分别测试了五组数据，如下是截图：
         
-        <a class="fancy-ctn fancybox" title="ParallelUglifyPlugin插件启用后编译速度分析" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-0-happyPack-0-dll-1-parallel.34.png" rel="fancy-group"><img title="ParallelUglifyPlugin插件启用后编译速度分析" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-0-happyPack-0-dll-1-parallel.34.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-0-happyPack-0-dll-1-parallel.34.png?x-oss-process=image/format,webp" /></a>
+        <a class="fancy-ctn fancybox" title="ParallelUglifyPlugin插件启用后编译速度分析" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-0-happyPack-0-dll-1-parallel.34.png" rel="fancy-group"><img title="ParallelUglifyPlugin插件启用后编译速度分析" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-0-happyPack-0-dll-1-parallel.34.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-0-happyPack-0-dll-1-parallel.34.png?x-oss-process=image/format,webp" /></a>
         
-        数据分析如下（单位ms）：</li> </ol> 
+        数据分析如下（单位ms）： </ol> 
         
         |                                  | 第1次   | 第2次   | 第3次   | 第4次   | 第5次   | 平均      | 速度提升    |
         | -------------------------------- | ----- | ----- | ----- | ----- | ----- | ------- | ------- |
@@ -288,7 +287,7 @@ optimization: {
 
             如下，happyPack开启了3个进程（默认为CPU数-1），运行过程感受下。
             
-            <a class="fancy-ctn fancybox" title="happyPack" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-happyPack.gif" rel="fancy-group"><img title="happyPack" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-happyPack.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-happyPack.gif?x-oss-process=image/format,webp" /></a>
+            <a class="fancy-ctn fancybox" title="happyPack" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-happyPack.gif" rel="fancy-group"><img title="happyPack" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-happyPack.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-happyPack.gif?x-oss-process=image/format,webp" /></a>
             
             另外，像 vue-loader、css-loader 都支持 happyPack 加速，如下所示。
             
@@ -309,9 +308,9 @@ optimization: {
 
             基于 webpack4，搭载 webpack-parallel-uglify-plugin 和 happyPack 插件，测试截图如下：
             
-            <a class="fancy-ctn fancybox" title="搭载两款插件后编译速度分析" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-0-dll-1-parallel.w4.png" rel="fancy-group"><img title="搭载两款插件后编译速度分析" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-0-dll-1-parallel.w4.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-0-dll-1-parallel.w4.png?x-oss-process=image/format,webp" /></a>
+            <a class="fancy-ctn fancybox" title="搭载两款插件后编译速度分析" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-0-dll-1-parallel.w4.png" rel="fancy-group"><img title="搭载两款插件后编译速度分析" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-0-dll-1-parallel.w4.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-0-dll-1-parallel.w4.png?x-oss-process=image/format,webp" /></a>
             
-            数据分析如下（单位ms）：</li> </ol> 
+            数据分析如下（单位ms）： </ol> 
             
             |                                    | 第1次   | 第2次   | 第3次   | 第4次   | 第5次   | 平均      | 速度提升 |
             | ---------------------------------- | ----- | ----- | ----- | ----- | ----- | ------- | ---- |
@@ -398,9 +397,9 @@ plugins: [
 
                 搭载 dll 插件后，webpack4 编译速度进一步提升，如下截图：
                 
-                <a class="fancy-ctn fancybox" title="搭载三款插件后编译速度分析" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-1-dll-1-parallel.w4.png" rel="fancy-group"><img title="搭载三款插件后编译速度分析" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-1-dll-1-parallel.w4.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-1-dll-1-parallel.w4.png?x-oss-process=image/format,webp" /></a>
+                <a class="fancy-ctn fancybox" title="搭载三款插件后编译速度分析" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-1-dll-1-parallel.w4.png" rel="fancy-group"><img title="搭载三款插件后编译速度分析" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-1-dll-1-parallel.w4.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-1-happyPack-1-dll-1-parallel.w4.png?x-oss-process=image/format,webp" /></a>
                 
-                数据分析如下（单位ms）：</li> </ol> 
+                数据分析如下（单位ms）： </ol> 
                 
                 |                                         | 第1次   | 第2次   | 第3次   | 第4次   | 第5次   | 平均      | 速度提升 |
                 | --------------------------------------- | ----- | ----- | ----- | ----- | ----- | ------- | ---- |
@@ -425,11 +424,11 @@ plugins: [
                 
                 当然，编译速度作为一项指标，影响的更多是开发者体验，与之相比，编译后文件大小更为重要。webpack4 编译的文件，比之前版本略小一些，为了更好的追踪文件 size 变化，开发环境和生产环境都需要引入 webpack-bundle-analyzer 插件，如下图。
                 
-                <a class="fancy-ctn fancybox" title="analyzer" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-analyzer.png" rel="fancy-group"><img title="analyzer" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-analyzer.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-analyzer.png?x-oss-process=image/format,webp" /></a>
+                <a class="fancy-ctn fancybox" title="analyzer" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-analyzer.png" rel="fancy-group"><img title="analyzer" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-analyzer.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-analyzer.png?x-oss-process=image/format,webp" /></a>
                 
                 文件 size 如下图所示：
                 
-                <a class="fancy-ctn fancybox" title="analyzer.size" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-analyzer.size_.png" rel="fancy-group"><img title="analyzer.size" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-analyzer.size_.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-analyzer.size_.png?x-oss-process=image/format,webp" /></a>
+                <a class="fancy-ctn fancybox" title="analyzer.size" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-analyzer.size_.png" rel="fancy-group"><img title="analyzer.size" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-analyzer.size_.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/webpack-analyzer.size_.png?x-oss-process=image/format,webp" /></a>
                 
                 ### **面向tree-shaking，约束编码** {#面向tree-shaking，约束编码}
                 

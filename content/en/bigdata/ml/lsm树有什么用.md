@@ -1,7 +1,6 @@
 ---
 title: LSM树有什么用
 
-
 ---
 十多年前，谷歌发布了大名鼎鼎的&#8221;三驾马车&#8221;的论文，分别是GFS(2003年)，MapReduce（2004年），BigTable（2006年），为开源界在<a href="https://cloud.tencent.com/solution/bigdata?from=10680" target="_blank" rel="noopener" data-text-link="109_1441835" data-from="10680">大数据</a>领域带来了无数的灵感，其中在 “BigTable” 的论文中很多很酷的方面之一就是它所使用的文件组织方式，这个方法更一般的名字叫 Log Structured-Merge Tree。在面对亿级别之上的海量数据的存储和检索的场景下，[我们](https://www.w3cdoc.com)选择的<a href="https://cloud.tencent.com/solution/database?from=10680" target="_blank" rel="noopener" data-text-link="107_1441835" data-from="10680">数据库</a>通常都是各种强力的NoSQL，比如Hbase，Cassandra，Leveldb，RocksDB等等，这其中前两者是Apache下面的顶级开源项目数据库，后两者分别是Google和Facebook开源的数据库存储引擎。而这些强大的NoSQL数据库都有一个共性，就是其底层使用的数据结构，都是仿照“BigTable”中的文件组织方式来实现的，也就是[我们](https://www.w3cdoc.com)今天要介绍的LSM-Tree。
 
@@ -10,9 +9,7 @@ title: LSM树有什么用
 LSM-Tree全称是Log Structured Merge Tree，是一种分层，有序，面向磁盘的数据结构，其核心思想是充分了利用了，磁盘批量的顺序写要远比随机写性能高出很多，如下图示：<figure>
 
 <div class="image-block">
-  <p id="hXInQMp">
-    <img loading="lazy" width="300" height="267" class="alignnone size-full wp-image-7111 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258440229dc8.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258440229dc8.png?x-oss-process=image/format,webp" alt="" />
-  </p>
+ <img loading="lazy" width="300" height="267" class="alignnone size-full wp-image-7111 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258440229dc8.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258440229dc8.png?x-oss-process=image/format,webp" alt="" />
 </div></figure>
 
 围绕这一原理进行设计和优化，以此让写性能达到最优，正如[我们](https://www.w3cdoc.com)普通的Log的写入方式，这种结构的写入，全部都是以Append的模式追加，不存在删除和修改。当然有得就有舍，这种结构虽然大大提升了数据的写入能力，却是以牺牲部分读取性能为代价，故此这种结构通常适合于写多读少的场景。故LSM被设计来提供比传统的B+树或者ISAM更好的写操作吞吐量，通过消去随机的本地更新操作来达到这个目标。这里面最典型的例子就属于Kakfa了，把磁盘顺序写发挥到了极致，故而在大数据领域成为了互联网公司标配的分布式消息<a href="https://cloud.tencent.com/product/tdmq?from=10680" target="_blank" rel="noopener" data-text-link="100_1441835" data-from="10680">中间件</a>组件。
@@ -36,17 +33,13 @@ An SSTable provides a persistent, ordered immutable map from keys to values, whe
 如上所述，SSTable是一种拥有持久化，有序且不可变的的键值存储结构，它的key和value都是任意的字节数组，并且了提供了按指定key查找和指定范围的key区间迭代遍历的功能。SSTable内部包含了一系列可配置大小的Block块，典型的大小是64KB，关于这些Block块的index存储在SSTable的尾部，用于帮助快速查找特定的Block。当一个SSTable被打开的时候，index会被加载到内存，然后根据key在内存index里面进行一个二分查找，查到该key对应的磁盘的offset之后，然后去磁盘把响应的块数据读取出来。当然如果内存足够大的话，可以直接把SSTable直接通过MMap的技术映射到内存中，从而提供更快的查找。<figure>
 
 <div class="image-block">
-  <p id="HgdvGwF">
-    <img loading="lazy" width="733" height="121" class="alignnone size-full wp-image-7109 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843bdbc943.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843bdbc943.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843bdbc943.png?x-oss-process=image/format,webp 733w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843bdbc943.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_50/format,webp 300w" sizes="(max-width: 733px) 100vw, 733px" />
-  </p>
+ <img loading="lazy" width="733" height="121" class="alignnone size-full wp-image-7109 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843bdbc943.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843bdbc943.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843bdbc943.png?x-oss-process=image/format,webp 733w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843bdbc943.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_50/format,webp 300w" sizes="(max-width: 733px) 100vw, 733px" />
 </div></figure>
 
 在LSM-Tree里，SSTable有一份在内存里面，其他的多级在磁盘上，如下图是一份完整的LSM-Tree图示：<figure>
 
 <div class="image-block">
-  <p id="hEiaHLF">
-    <img loading="lazy" width="960" height="720" class="alignnone size-full wp-image-7110 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png?x-oss-process=image/format,webp 960w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_225/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_600/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_576/format,webp 768w" sizes="(max-width: 960px) 100vw, 960px" />
-  </p>
+ <img loading="lazy" width="960" height="720" class="alignnone size-full wp-image-7110 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png?x-oss-process=image/format,webp 960w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_225/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_600/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_576/format,webp 768w" sizes="(max-width: 960px) 100vw, 960px" />
 </div></figure>
 
 [我们](https://www.w3cdoc.com)总结下在在LSM-Tree里面如何写数据的？

@@ -3,7 +3,6 @@ title: 什么是containing block？
 weight: 9
 
 
-
 ---
 <h1 class="heading" data-id="heading-0">
   什么是containing block？
@@ -19,7 +18,7 @@ weight: 9
   什么是内容区？
 </h1>
 
-以这个经典的盒模型图：<img loading="lazy" width="455" height="340" class="alignnone size-full wp-image-4467 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cfa527f183fa.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cfa527f183fa.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cfa527f183fa.png?x-oss-process=image/format,webp 455w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cfa527f183fa.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_224/format,webp 300w" sizes="(max-width: 455px) 100vw, 455px" />
+以这个经典的盒模型图：<img loading="lazy" width="455" height="340" class="alignnone size-full wp-image-4467 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cfa527f183fa.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cfa527f183fa.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cfa527f183fa.png?x-oss-process=image/format,webp 455w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cfa527f183fa.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_224/format,webp 300w" sizes="(max-width: 455px) 100vw, 455px" />
 
 最内部的即为内容区。
 

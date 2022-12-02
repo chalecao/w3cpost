@@ -1,14 +1,7 @@
 ---
 title: 基于rem方案实现自适应布局
-
-
-
-  - 1353
-
-
-
-
 ---
+
 <span class="wp_keywordlink">rem</span>是相对于根元素<html>，这样就意味着，[我们](https://www.w3cdoc.com)只需要在根元素确定一个px字号，则可以来算出元素的宽高。本文讲的是如何使用<span class="wp_keywordlink_affiliate"><a title="View all posts in rem" href="https://caibaojian.com/t/rem" target="_blank" rel="noopener">rem</a></span>实现自适应。rem这是个低调的css单位，近一两年开始崭露头角，有许多同学对rem的评价不一，有的在尝试使用，有的在使用过程中遇到坑就弃用了。但是我对rem综合评价是用来做<span class="wp_keywordlink"><a title="网站建设" href="https://caibaojian.com/c/web">web</a></span> app它绝对是最合适的人选之一。
 
 ## <a name="t1"></a>rem是什么？ {#t1}
@@ -29,11 +22,11 @@ rem（font size of the root element）是指相对于根元素的字体大�
 
 1.携程：
 
-<img loading="lazy" class="alignnone size-medium wp-image-1747" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891322.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891322.jpeg?x-oss-process=image/resize,m_fill,w_169,h_300/format,webp" alt="" width="169" height="300" />
+<img loading="lazy" class="alignnone size-medium wp-image-1747" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891322.jpeg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891322.jpeg?x-oss-process=image/resize,m_fill,w_169,h_300/format,webp" alt="" width="169" height="300" />
 
 2.兰亭
 
-<img loading="lazy" class="alignnone size-medium wp-image-1748" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891825.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891825.jpeg?x-oss-process=image/resize,m_fill,w_170,h_300/format,webp" alt="" width="170" height="300" />
+<img loading="lazy" class="alignnone size-medium wp-image-1748" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891825.jpeg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418891825.jpeg?x-oss-process=image/resize,m_fill,w_170,h_300/format,webp" alt="" width="170" height="300" />
 
 上面的网站都是采用的流式布局的技术实现的，他们在页面布局的时候都是通过百分比来定义宽度，但是高度大都是用px来固定住，所以在大屏幕的手机下显示效果会变成有些页面元素宽度被拉的很长，但是高度还是和原来一样，实际显示非常的不协调，这就是流式布局的最致命的缺点，往往只有几个尺寸的手机下看到的效果是令人满意的，其实很多视觉设计师应该无法接受这种效果，因为他们的设计图在大屏幕手机下看到的效果相当于是被横向拉长来一样。
 
@@ -77,7 +70,7 @@ rem（font size of the root element）是指相对于根元素的字体大�
 
 Demo 上面代码结果按钮大小如下图：
 
-<img loading="lazy" class="alignnone size-full wp-image-1749" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418899506.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418899506.jpeg?x-oss-process=image/format,webp" alt="" width="187" height="141" />
+<img loading="lazy" class="alignnone size-full wp-image-1749" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418899506.jpeg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418899506.jpeg?x-oss-process=image/format,webp" alt="" width="187" height="141" />
 
 我把html设置成10px是为了方便[我们](https://www.w3cdoc.com)计算，为什么6rem等于60px。如果这个时候[我们](https://www.w3cdoc.com)的.btn的样式不变，[我们](https://www.w3cdoc.com)再改变html的font-size的值，看看按钮发生上面变化:
 
@@ -89,7 +82,7 @@ Demo
 
 按钮大小结果如下：
 
-<img loading="lazy" class="alignnone size-full wp-image-1750" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418898055.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418898055.jpeg?x-oss-process=image/format,webp" alt="" width="265" height="202" />
+<img loading="lazy" class="alignnone size-full wp-image-1750" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418898055.jpeg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418898055.jpeg?x-oss-process=image/format,webp" alt="" width="265" height="202" />
 
 上面的width，height变成了上面结果的两倍，[我们](https://www.w3cdoc.com)只改变了html的font-size，但.btn样式的width,height的rem设置的属性不变的情况下就改变了按钮在web中的大小。
 
@@ -119,7 +112,7 @@ Demo
 
 首先假设我上面的页面设计稿给我时候是按照640的标准尺寸给我的前提下，（当然这个尺寸肯定不一定是640，可以是320，或者480，又或是375）来看一组表格。
 
-<img loading="lazy" class="alignnone size-medium wp-image-1751" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418903956.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418903956.jpeg?x-oss-process=image/resize,m_fill,w_300,h_174/format,webp" alt="" width="300" height="174" />
+<img loading="lazy" class="alignnone size-medium wp-image-1751" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418903956.jpeg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418903956.jpeg?x-oss-process=image/resize,m_fill,w_300,h_174/format,webp" alt="" width="300" height="174" />
 
 上面的表格蓝色一列是Demo3中页面的尺寸，页面是以640的宽度去切的，怎么计算不同宽度下font-site的值，[大家](https://www.w3cdoc.com)看表格上面的数值变化应该能明白。举个例子：384/640 = 0.6，384是640的0.6倍，所以384页面宽度下的font-size也等于它的0.6倍，这时384的font-size就等于12px。在不同设备的宽度计算方式以此类推。
 
@@ -165,7 +158,7 @@ html {
 
 ### <a name="t8"></a>最后[我们](https://www.w3cdoc.com)再来看一看他的兼容性： {#t8}
 
-<img loading="lazy" class="alignnone size-medium wp-image-1752" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418894538.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418894538.png?x-oss-process=image/resize,m_fill,w_295,h_300/format,webp" alt="" width="295" height="300" />
+<img loading="lazy" class="alignnone size-medium wp-image-1752" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418894538.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/1418894538.png?x-oss-process=image/resize,m_fill,w_295,h_300/format,webp" alt="" width="295" height="300" />
 
 ### <a name="t9"></a>在线工具 {#t9}
 

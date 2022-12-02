@@ -3,13 +3,11 @@ title: 将React当做[前端](https://www.w3cdoc.com)UI运行时环境来看待
 
 
 
-
 ---
 大多数教程把 React 称作是一个 UI 库。这是有道理的，因为 React 就是一个 UI 库。正如官网上的标语所说的那样。
 
-<p id="jiAqmST">
-  <img loading="lazy" width="500" height="146" class="alignnone size-full wp-image-5039 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5daffcce2aa51.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5daffcce2aa51.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5daffcce2aa51.png?x-oss-process=image/format,webp 500w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5daffcce2aa51.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_88/format,webp 300w" sizes="(max-width: 500px) 100vw, 500px" />
-</p>
+
+  <img loading="lazy" width="500" height="146" class="alignnone size-full wp-image-5039 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5daffcce2aa51.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5daffcce2aa51.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5daffcce2aa51.png?x-oss-process=image/format,webp 500w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5daffcce2aa51.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_88/format,webp 300w" sizes="(max-width: 500px) 100vw, 500px" />
 
 我曾经写过关于构建[用户界面][1]会遇到的难题一文。但是本篇文章将以一种不同的方式来讲述 React — 因为它更像是一种<a href="https://en.wikipedia.org/wiki/Runtime_system" target="_blank" rel="nofollow noopener noreferrer">编程运行时</a>。
 

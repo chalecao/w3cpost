@@ -3,12 +3,9 @@ title: React基于webpack做code splitting方法
 
 
 
-
-
 ---
-<p data-spm-anchor-id="a2c4e.11153940.blogcont71200.i1.3fc97c7461PC2D">
+
   随着web应用功能越来越复杂，模块打包后体积越来越大，如何实现静态资源的按需加载，最大程度的减小首页加载模块体积和首屏加载时间，成为模块打包工具的必备核心技能。
-</p>
 
 webpack作为当下最为流行的模块打包工具，成为了react、vue等众多热门框架的官方推荐打包工具。其提供的Code Splitting（代码分割）特性正是实现模块按需加载的关键方式。
 
@@ -65,7 +62,7 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
 
 可以看到最终打包为两个js文件 `main.js` 、`vendor.js`，但如果检查者两个文件会发现`moment`模块代码被重复打包到两个文件中，而这肯定不是[我们](https://www.w3cdoc.com)想要的，这时候就需要 webpack的plugin发挥作用了。
 
-<img class="aligncenter" title="vendo" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor.jpg?x-oss-process=image/format,webp" alt="vendo" />
+<img class="aligncenter" title="vendo" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor.jpg?x-oss-process=image/format,webp" alt="vendo" />
 
 <h4 id="6" data-spm-anchor-id="a2c4e.11153940.blogcont71200.i0.3fc97c7461PC2D">
   使用CommonsChunkPlugin
@@ -93,7 +90,7 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
 
 执行webpack打包命令，[我们](https://www.w3cdoc.com)发现`moment`只被打包进`vendor.js`中。
 
-<img class="aligncenter" title="vendo" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor2.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor2.jpg?x-oss-process=image/format,webp" alt="vendo" />
+<img class="aligncenter" title="vendo" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor2.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/vendor2.jpg?x-oss-process=image/format,webp" alt="vendo" />
 
 #### webpack运行时模块（manifest） {#7}
 
@@ -101,11 +98,11 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
 
 **webpack运行时代码块部分：**
 
-<img loading="lazy" class="aligncenter" title="webpackjsonp" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/webpackjsonp.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/webpackjsonp.jpg?x-oss-process=image/format,webp" alt="webpackjsonp" width="830" height="539" />
+<img loading="lazy" class="aligncenter" title="webpackjsonp" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/webpackjsonp.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/webpackjsonp.jpg?x-oss-process=image/format,webp" alt="webpackjsonp" width="830" height="539" />
 
 * 实际项目中[我们](https://www.w3cdoc.com)希望修改业务功能后打包时只重新打包业务模块，而不打包第三方公共基础库。这里[我们](https://www.w3cdoc.com)可以将webpack的`运行时代码`提取到独立的`manifest`文件中，这样每次修改业务代码只重新打包生成业务代码模块`main.js`和运行时代码模块`manifest.js`，就实现了业务模块和公共基础库模块的分离。
 
-<img class="aligncenter" title="manifest1" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/manifest1.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/manifest1.jpg?x-oss-process=image/format,webp" alt="manifest1" />
+<img class="aligncenter" title="manifest1" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/manifest1.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/manifest1.jpg?x-oss-process=image/format,webp" alt="manifest1" />
 
 * `names`字段支持以数组格式来指定`基础库模块名称`和`运行时代码模块名称`。
 
@@ -165,7 +162,7 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
    ]
 ......</code></pre>
 
-<img title="extract" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/extract.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/extract.jpg?x-oss-process=image/format,webp" alt="extract" />
+<img title="extract" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/extract.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/extract.jpg?x-oss-process=image/format,webp" alt="extract" />
 
 ## 二、按需加载代码分割 {#9}
 
@@ -542,7 +539,7 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
 * [在线demo][18]
 * 按需加载请求
 
-<img loading="lazy" class="aligncenter" title="lazyloaded" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/lazyloaded.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/lazyloaded.png?x-oss-process=image/format,webp" alt="lazyloaded" width="742" height="236" />
+<img loading="lazy" class="aligncenter" title="lazyloaded" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/lazyloaded.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/lazyloaded.png?x-oss-process=image/format,webp" alt="lazyloaded" width="742" height="236" />
 
 &nbsp;
 
@@ -553,36 +550,36 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
     </h1>
 
     <blockquote>
-      <p>
+      
         react-router4官方文档： <a href="https://link.jianshu.com?t=https://reacttraining.com/react-router/web/guides/code-splitting" target="_blank" rel="nofollow noopener noreferrer">https://reacttraining.com/react-router/web/guides/code-splitting</a>
-      </p>
+      
     </blockquote>
     
-    <p>
+    
       对于SPA项目，出于加载速度的考虑，肯定不能在页面初始化的时候加载全部js文件，因此需要将代码分块，也就是所谓的code splitting，我这里基于react-router4.1.1展示一个code split的例子，当然，你也可以参考<a href="https://link.jianshu.com?t=https://reacttraining.com/react-router/web/guides/code-splitting" target="_blank" rel="nofollow noopener noreferrer">react官方文档</a>
-    </p>
     
-    <h2>
-      思路解析
-    </h2>
     
-    <p>
+    ##     思路解析
+    
+
+    
+    
       react-router4是对之前react-router的一次大改，按照官方的说法，是将路由的问题转变成了react组件的问题，所以在react-router4里面，不同于以往使用require.ensure，[我们](https://www.w3cdoc.com)使用一些其他办法异步的请求组件的js文件。
-    </p>
+    
     
     <h3>
       方案A 使用bundle-loader
     </h3>
     
     <blockquote>
-      <p>
+      
         bundle-loader git地址：<a href="https://link.jianshu.com?t=https://github.com/webpack-contrib/bundle-loader" target="_blank" rel="nofollow noopener noreferrer">https://github.com/webpack-contrib/bundle-loader</a>
-      </p>
+      
     </blockquote>
     
-    <p>
+    
       先仿着官方的示例先写一个Bundle组件，简化了一下，大概会是这样的
-    </p>
+    
     
     <pre class="hljs javascript"><code class="javascript">
 {&lt;span class="hljs-comment">/*
@@ -621,13 +618,13 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> Bundle
 </code></pre>
 
-    <p>
-      在被传入的load方法被调用的时候，相应的js文件才会被请求和加载
-    </p>
     
-    <p>
+      在被传入的load方法被调用的时候，相应的js文件才会被请求和加载
+    
+    
+    
       然后在入口的路由文件里面这样写（假设[我们](https://www.w3cdoc.com)有两个组件,Cp1, Cp2）
-    </p>
+    
     
     <pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-keyword">import&lt;/span> React &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react'&lt;/span>
 &lt;span class="hljs-keyword">import&lt;/span> {
@@ -661,48 +658,48 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> CodeSplit
 </code></pre>
 
-    <p>
+    
       这样，代码分割就完成了。
-    </p>
+    
     
     <h4>
       注意
     </h4>
     
-    <p>
+    
       这里有一个小坑，如果你跟我一样使用的是create-react-app的话，你会发现，在运行代码的时候，会报这个错误
-    </p>
+    
     
     <pre class="hljs python"><code class="python">Line &lt;span class="hljs-number">35&lt;/span>:  Unexpected &lt;span class="hljs-string">'!'&lt;/span> &lt;span class="hljs-keyword">in&lt;/span> &lt;span class="hljs-string">'bundle-loader?lazy!./cp1'&lt;/span>. Do &lt;span class="hljs-keyword">not&lt;/span> use &lt;span class="hljs-keyword">import&lt;/span> syntax to configure webpack loaders  &lt;span class="hljs-keyword">import&lt;/span>/no-webpack-loader-syntax
 
 Line &lt;span class="hljs-number">42&lt;/span>:  Unexpected &lt;span class="hljs-string">'!'&lt;/span> &lt;span class="hljs-keyword">in&lt;/span> &lt;span class="hljs-string">'bundle-loader?lazy!./cp2'&lt;/span>. Do &lt;span class="hljs-keyword">not&lt;/span> use &lt;span class="hljs-keyword">import&lt;/span> syntax to configure webpack loaders  &lt;span class="hljs-keyword">import&lt;/span>/no-webpack-loader-syntax
 </code></pre>
 
-    <p>
+    
       这是因为create-react-app不支持webpack-loader，具体的可以看看这个issue
-    </p>
+    
     
     <blockquote>
-      <p>
+      
         why I can&#8217;t use bundle-loader like this: <a href="https://link.jianshu.com?t=https://github.com/facebookincubator/create-react-app/issues/2477" target="_blank" rel="nofollow noopener noreferrer">https://github.com/facebookincubator/create-react-app/issues/2477</a>
-      </p>
+      
     </blockquote>
     
-    <p>
+    
       解决办法也很简单，采用方案B
-    </p>
+    
     
     <h3>
       方案B 使用import()
     </h3>
     
-    <p>
-      import() 属于es的一个proposal，也就是提案，还没有正式立项，所以具体会有什么问题我这里也不清楚，不过babel已经支持，所以[我们](https://www.w3cdoc.com)这里可以尝试使用，将之前使用bundle-loader的例子改造一下
-    </p>
     
-    <p>
+      import() 属于es的一个proposal，也就是提案，还没有正式立项，所以具体会有什么问题我这里也不清楚，不过babel已经支持，所以[我们](https://www.w3cdoc.com)这里可以尝试使用，将之前使用bundle-loader的例子改造一下
+    
+    
+    
       因为import返回一个promise，所以[我们](https://www.w3cdoc.com)这里将componentDidMount变成一个async函数
-    </p>
+    
     
     <pre class="hljs javascript"><code class="javascript">{&lt;span class="hljs-comment">/*
 // 调用方法
@@ -737,9 +734,9 @@ Line &lt;span class="hljs-number">42&lt;/span>:  Unexpected &lt;span class="hljs
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> Bundle
 </code></pre>
 
-    <p>
+    
       然后在入口文件的路由里面这么用
-    </p>
+    
     
     <pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-keyword">import&lt;/span> React &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react'&lt;/span>
 &lt;span class="hljs-keyword">import&lt;/span> {
@@ -773,21 +770,21 @@ Line &lt;span class="hljs-number">42&lt;/span>:  Unexpected &lt;span class="hljs
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> CodeSplit
 </code></pre>
 
-    <p>
+    
       OK,一个大致的代码分割功能差不多就完成了
-    </p>
+    
     
     <h3>
       方案B改进版
     </h3>
     
-    <p>
-      方案B虽然实现了[我们](https://www.w3cdoc.com)异步加载组件的需求，但是调用还是显得比较麻烦，[我们](https://www.w3cdoc.com)需要一种更优雅的方式来实现异步加载，同时还希望能传递参数给组件和自定义组件在加载时候的显示效果，所以这里对方案B进一步进行封装
-    </p>
     
-    <p>
+      方案B虽然实现了[我们](https://www.w3cdoc.com)异步加载组件的需求，但是调用还是显得比较麻烦，[我们](https://www.w3cdoc.com)需要一种更优雅的方式来实现异步加载，同时还希望能传递参数给组件和自定义组件在加载时候的显示效果，所以这里对方案B进一步进行封装
+    
+    
+    
       因为代码比较简单，所以我这里直接把我项目里的代码贴过来了
-    </p>
+    
     
     <pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-comment">// async-component.js&lt;/span>
 &lt;span class="hljs-comment">/**
@@ -840,13 +837,13 @@ Line &lt;span class="hljs-number">42&lt;/span>:  Unexpected &lt;span class="hljs
 }
 </code></pre>
 
-    <p>
+    
       整体思路和之前的代码是一致的<br /> 然后调用的时候只需这么写
-    </p>
+    
 
-    <p>
+    
       Demo组件，就是一个简单的无状态组件
-    </p>
+    
 
     <pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-comment">// demo.jsx&lt;/span>
 
@@ -861,9 +858,9 @@ Line &lt;span class="hljs-number">42&lt;/span>:  Unexpected &lt;span class="hljs
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> Demo
 </code></pre>
 
-    <p>
+    
       调用示例
-    </p>
+    
     
     <pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-keyword">import&lt;/span> asyncComponent &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'./async-component'&lt;/span>
 
@@ -887,9 +884,9 @@ render() {
 }
 </code></pre>
 
-    <p>
+    
       参数也可以通过asyncComponent函数进行传递，不过需要更改下async-component.js的代码，因为比较简单，所以这里就不展示了
-    </p>
+    
   </div>
 </div>
 
@@ -904,9 +901,9 @@ render() {
 * [Implicit Code Splitting and Chunk Loading with React Router and Webpack][21]
 * [Code Splitting &#8211; Using require.ensure][3]
 
-<li data-spm-anchor-id="a2c4e.11153940.blogcont71200.i2.3fc97c7461PC2D">
+
   <a href="https://webpack.js.org/guides/migrating/#code-splitting-with-es2015">Code Splitting with ES2015</a>
-</li>
+
 
  [1]: https://webpack.js.org/guides/code-splitting/
  [2]: https://www.npmjs.com/package/moment

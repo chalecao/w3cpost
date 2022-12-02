@@ -8,9 +8,8 @@ Vue 最巧妙的特性之一是其响应式系统，而[我们](https://www.w3cd
 
 我把其响应式系统的原理总结成了一张图，而本文也将围绕这张图去讲述具体的实现过程。<span class="img-wrap"></span>
 
-<p id="ZaiKNnr">
-  <img loading="lazy" width="1920" height="1080" class="alignnone size-full wp-image-6571 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea6151a3c.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea6151a3c.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea6151a3c.png?x-oss-process=image/format,webp 1920w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea6151a3c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_169/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea6151a3c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_450/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea6151a3c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_432/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea6151a3c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_864/format,webp 1536w" sizes="(max-width: 1920px) 100vw, 1920px" />
-</p>
+
+  <img loading="lazy" width="1920" height="1080" class="alignnone size-full wp-image-6571 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea6151a3c.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea6151a3c.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea6151a3c.png?x-oss-process=image/format,webp 1920w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea6151a3c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_169/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea6151a3c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_450/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea6151a3c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_432/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea6151a3c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_864/format,webp 1536w" sizes="(max-width: 1920px) 100vw, 1920px" />
 
 <span style="font-size: 18px; font-weight: bold;">一个基本的例子</span>
 
@@ -39,9 +38,8 @@ effect(fn)
 
 ## 初始化阶段<span class="img-wrap"><br /> </span>
 
-<p id="qAFKofQ">
-  <img loading="lazy" width="519" height="732" class="alignnone size-full wp-image-6572 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea7bb4289.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea7bb4289.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea7bb4289.png?x-oss-process=image/format,webp 519w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea7bb4289.png?x-oss-process=image/quality,q_50/resize,m_fill,w_213,h_300/format,webp 213w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea7bb4289.png?x-oss-process=image/quality,q_50/resize,m_fill,w_425,h_600/format,webp 425w" sizes="(max-width: 519px) 100vw, 519px" />
-</p>
+
+  <img loading="lazy" width="519" height="732" class="alignnone size-full wp-image-6572 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea7bb4289.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea7bb4289.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea7bb4289.png?x-oss-process=image/format,webp 519w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea7bb4289.png?x-oss-process=image/quality,q_50/resize,m_fill,w_213,h_300/format,webp 213w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea7bb4289.png?x-oss-process=image/quality,q_50/resize,m_fill,w_425,h_600/format,webp 425w" sizes="(max-width: 519px) 100vw, 519px" />
 
 在初始化阶段，主要做了两件事。
 
@@ -98,9 +96,8 @@ effect(fn)
 
 ## 依赖收集阶段<span class="img-wrap"></span>
 
-<p id="CcRzdHt">
-  <img loading="lazy" width="606" height="732" class="alignnone size-full wp-image-6573 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea8e174e4.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea8e174e4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea8e174e4.png?x-oss-process=image/format,webp 606w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea8e174e4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_248,h_300/format,webp 248w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea8e174e4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_497,h_600/format,webp 497w" sizes="(max-width: 606px) 100vw, 606px" />
-</p>
+
+  <img loading="lazy" width="606" height="732" class="alignnone size-full wp-image-6573 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea8e174e4.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea8e174e4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea8e174e4.png?x-oss-process=image/format,webp 606w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea8e174e4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_248,h_300/format,webp 248w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea8e174e4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_497,h_600/format,webp 497w" sizes="(max-width: 606px) 100vw, 606px" />
 
 这个阶段的触发时机，就是在 effect 被立即执行，其内部的 `fn()` 触发了 Proxy 对象的 getter 的时候。简单来说，只要执行到类似 `state.count` 的语句，就会触发 state 的 getter。
 
@@ -129,9 +126,8 @@ depsMap 是一个 Map，key 值为触发 getter 时的属性值（此处为 `cou
 
 那么这里的 targetMap 应该为这个样子：<span class="img-wrap"><br /> </span>
 
-<p id="GCyuTCK">
-  <img loading="lazy" width="732" height="244" class="alignnone size-full wp-image-6574 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea9b2a94a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea9b2a94a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea9b2a94a.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea9b2a94a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_100/format,webp 300w" sizes="(max-width: 732px) 100vw, 732px" />
-</p>
+
+  <img loading="lazy" width="732" height="244" class="alignnone size-full wp-image-6574 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea9b2a94a.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea9b2a94a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea9b2a94a.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069ea9b2a94a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_100/format,webp 300w" sizes="(max-width: 732px) 100vw, 732px" />
 
 这样，`{ target -> key -> dep }` 的对应关系就建立起来了，依赖收集也就完成了。<a href="https://github.com/jrainlau/tiny-reactive/blob/master/src/effect.js#L4-L21" rel="nofollow">代码</a>如下：
 
@@ -161,15 +157,13 @@ depsMap 是一个 Map，key 值为触发 getter 时的属性值（此处为 `cou
 
 回顾上一章节的例子，[我们](https://www.w3cdoc.com)得到了一个 `{ count: 0, age: 18 }` 的 Proxy，并构造了三个 effect。在控制台上看看效果：<span class="img-wrap"><br /> </span>
 
-<p id="DBhiZnx">
-  <img loading="lazy" width="558" height="288" class="alignnone size-full wp-image-6575 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eac0800b3.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eac0800b3.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eac0800b3.png?x-oss-process=image/format,webp 558w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eac0800b3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_155/format,webp 300w" sizes="(max-width: 558px) 100vw, 558px" />
-</p>
+
+  <img loading="lazy" width="558" height="288" class="alignnone size-full wp-image-6575 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eac0800b3.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eac0800b3.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eac0800b3.png?x-oss-process=image/format,webp 558w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eac0800b3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_155/format,webp 300w" sizes="(max-width: 558px) 100vw, 558px" />
 
 效果符合预期，那么它是怎么实现的呢？首先来看看这个阶段的原理图：<span class="img-wrap"></span>
 
-<p id="twycJFr">
-  <img loading="lazy" width="1920" height="1080" class="alignnone size-full wp-image-6576 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eacee3df8.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eacee3df8.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eacee3df8.png?x-oss-process=image/format,webp 1920w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eacee3df8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_169/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eacee3df8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_450/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eacee3df8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_432/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eacee3df8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_864/format,webp 1536w" sizes="(max-width: 1920px) 100vw, 1920px" />
-</p>
+
+  <img loading="lazy" width="1920" height="1080" class="alignnone size-full wp-image-6576 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eacee3df8.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eacee3df8.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eacee3df8.png?x-oss-process=image/format,webp 1920w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eacee3df8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_169/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eacee3df8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_450/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eacee3df8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_432/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eacee3df8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_864/format,webp 1536w" sizes="(max-width: 1920px) 100vw, 1920px" />
 
 当修改对象的某个属性值的时候，会触发对应的 setter。
 

@@ -2,26 +2,25 @@
 title: hooks使用指南
 
 
-
 ---
 <div>
   <div>
-    <article class="_2rhmJa">本文是阅读<a href="https://overreacted.io/a-complete-guide-to-useeffect/" target="_blank" rel="noopener noreferrer">A Complete Guide to useEffect</a>之后的个人总结，建议拜读原文</p>
+    <article class="_2rhmJa">本文是阅读<a href="https://overreacted.io/a-complete-guide-to-useeffect/" target="_blank" rel="noopener noreferrer">A Complete Guide to useEffect</a>之后的个人总结，建议拜读原文
 
-    <h2>
-      理解hooks工作机制
-    </h2>
+    ##     理解hooks工作机制
     
-    <p>
+
+    
+    
       可以这样说，在使用了useState或是useEffect这样的hooks之后，每次组件在render的时候都生成了一份本次render的state、function、effects，这些与之前或是之后的render里面的内容都是没有关系的。而对于class component来说，state是一种引用的形式。这就造成了二者在一些表现上的不同。
-    </p>
     
-    <p>
+    
+    
       来看下面这样一段代码：
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
@@ -48,12 +47,12 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <p>
+    
       再看这样一段代码：
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
@@ -77,12 +76,12 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <p>
+    
       把上述代码改成class component的形式：
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">class&lt;/span> &lt;span class="token class-name">Example&lt;/span> &lt;span class="token keyword">extends&lt;/span> &lt;span class="token class-name">React&lt;span class="token punctuation">.&lt;/span>Component&lt;/span>&lt;span class="token punctuation">{&lt;/span>
 
@@ -117,12 +116,12 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <p>
+    
       对于class component里面的表现，[我们](https://www.w3cdoc.com)可以通过闭包来改变，之所以如此是因为class component里面的state随着render是发生变化的，而useEffect里面即使使用props.count也不会有问题，因为useEffect里面的所有东西都是每次render独立的
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token function">componentDidUpdate&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token comment">// 在class component中必须每次把count取出来&lt;/span>
@@ -135,7 +134,7 @@ title: hooks使用指南
     </div>
 
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Example&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">props&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -148,12 +147,12 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <p>
+    
       可以发现，尽管useEffect里面的函数延迟执行了，但是打出的count依然是当时render里面的count，这也说明了其实每次render都是独立的，里面有独立的state、effects、function
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token comment">// During first render&lt;/span>
     &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -181,26 +180,26 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <p>
+    
       下面这段话是精髓：
-    </p>
+    
     
     <blockquote>
-      <p>
+      
         Inside any particular render, props and state forever stay the same. But if props and state are isolated between renders, so are any values using them (including the event handlers). They also “belong” to a particular render. So even async functions inside an event handler will “see” the same count value.
-      </p>
+      
     </blockquote>
     
-    <h2>
-      useEffect的一些注意点
-    </h2>
+    ##     useEffect的一些注意点
     
-    <p>
+
+    
+    
       来看官方文档里面关于useEffect清除工作的示例：
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Example&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">props&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -213,16 +212,16 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <p>
-      如果props从{id: 10}变化为{id: 20}那么react是怎么样来渲染组件、怎么样做清除工作的呢？
-    </p>
     
-    <p>
+      如果props从{id: 10}变化为{id: 20}那么react是怎么样来渲染组件、怎么样做清除工作的呢？
+    
+    
+    
       按照惯性思维，[我们](https://www.w3cdoc.com)可能觉得应该是先清理之前一次render注册的事件，然后render组件，然后再注册本次render的事件
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-css"><code class="  language-css">    &lt;span class="token selector">React cleans up the effect for&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token property">id&lt;/span>&lt;span class="token punctuation">:&lt;/span> 10&lt;span class="token punctuation">}&lt;/span>&lt;span class="token selector">.
     React renders UI for&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token property">id&lt;/span>&lt;span class="token punctuation">:&lt;/span> 20&lt;span class="token punctuation">}&lt;/span>&lt;span class="token selector">.
@@ -230,12 +229,12 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <p>
+    
       但实际上react并不是这样工作的，而是像下面这样，因为react总是在[浏览器](https://www.w3cdoc.com)paint之后再去做effects相关的事情，无论是useEffect还是他返回的函数，而且清理函数也和其他函数一样能够capture当前的props和state，尽管在他执行时已经是新的组件render好了
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-css"><code class="  language-css">    &lt;span class="token selector">React renders UI for&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token property">id&lt;/span>&lt;span class="token punctuation">:&lt;/span> 20&lt;span class="token punctuation">}&lt;/span>&lt;span class="token selector">.
     The browser paints. We see the UI for&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token property">id&lt;/span>&lt;span class="token punctuation">:&lt;/span> 20&lt;span class="token punctuation">}&lt;/span> &lt;span class="token selector">on the screen.
@@ -244,12 +243,12 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <p>
+    
       清理函数就像闭包一样直接把他所属的render的props和state消费，然后在需要执行的时候使用这些值
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token comment">// First render, props are {id: 10}&lt;/span>
     &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Example&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -285,28 +284,28 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <h2>
-      忘记lifecycle的观念，拥抱synchronization
-    </h2>
+    ##     忘记lifecycle的观念，拥抱synchronization
     
-    <p>
+
+    
+    
       在class component里面，lifecycle是[我们](https://www.w3cdoc.com)做一切的基础，但是在使用react-hooks的时候，请忘记lifecycle，尽管useEffect函数很多时候达到了相似的效果
-    </p>
     
-    <p>
+    
+    
       但从根本上来讲，react-hooks的作用是一种同步的作用，同步函数hooks函数内的内容与外部的props以及state，所以才会在每次render之后执行useEffect里面的函数，这时可以获取到当前render结束后的props和state，来保持一种同步
-    </p>
     
-    <p>
+    
+    
       但正是由于useEffect里面的内容在每次render结束后都会执行，可能有时候内部的内容并没有发生变化，这时就会产生冗余的render，这时候就需要引入依赖，由写程序的人来告诉react我这个useEffect依赖了外部的那些参数，只有这些参数发生变化的时候才去执行我里面的函数。
-    </p>
     
-    <p>
+    
+    
       因为react自己不知道什么时候useEffect里面的函数其实没有发生变化。
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">     &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         document&lt;span class="token punctuation">.&lt;/span>title &lt;span class="token operator">=&lt;/span> &lt;span class="token string">'Hello, '&lt;/span> &lt;span class="token operator">+&lt;/span> name&lt;span class="token punctuation">;&lt;/span>
@@ -314,20 +313,20 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <p>
+    
       上面这段代码相当于告诉react，我这个effect的依赖项是name这个变量，只有当name发生变化的时候才去执行里面的函数
-    </p>
     
-    <p>
+    
+    
       而且这个比较是浅比较，如果state是一个对象，那么对象只要指向不发生变化，那么就不会执行effect里面的函数
-    </p>
     
-    <p>
+    
+    
       譬如：
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Example&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span>a&lt;span class="token punctuation">:&lt;/span> &lt;span class="token number">12&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
@@ -362,16 +361,16 @@ title: hooks使用指南
       关于dependency数组
     </h3>
     
-    <p>
-      如果强行欺骗react来达到跳过某些渲染之后的effect函数的话，那么可能会出现一些意想不到的后果：
-    </p>
     
-    <p>
+      如果强行欺骗react来达到跳过某些渲染之后的effect函数的话，那么可能会出现一些意想不到的后果：
+    
+    
+    
       如下代码，[我们](https://www.w3cdoc.com)想模拟一个定时器，在第一次渲染之后挂载，在组件卸载的时候取消这个定时器，那么这好像和把dependency数组设为[]的功能很像，但是如果这样做的话，结果是定时器只加一次。
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
@@ -389,12 +388,12 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <p>
+    
       如果写成下面这样的形式的话：
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
@@ -409,20 +408,20 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <p>
+    
       所以通过设置dependency数组来欺骗react达到自己不可告人的目的的话，很容易出现bug，而且还不容易发现，所以还是老老实实的不要骗人
-    </p>
     
-    <p>
+    
+    
       要让计时器正确工作的话，第一种方法是把dependency数组正确设置[count]，但这显然不是最好的方法，因为每一轮都会设置计时器，清除计时器。但至少定时器work了。
-    </p>
     
-    <p>
+    
+    
       还有一种方法是利用functional updater，这时候你也可以不用设置dependency
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> id &lt;span class="token operator">=&lt;/span> &lt;span class="token function">setInterval&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -434,35 +433,35 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <h2>
-      其他hooks
-    </h2>
+    ##     其他hooks
+    
+
     
     <h3>
       useContext
     </h3>
     
-    <p>
+    
       使用方法：
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-csharp"><code class="  language-csharp">    &lt;span class="token keyword">const&lt;/span> &lt;span class="token keyword">value&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useContext&lt;/span>&lt;span class="token punctuation">(&lt;/span>myContext&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
     </div>
 
-    <p>
+    
       当最近的一个myContext.Provider更新的时候，这个hook就会导致当前组件发生更新
-    </p>
+    
     
     <h3>
       useReducer
     </h3>
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    
     &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">reducer&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">state&lt;span class="token punctuation">,&lt;/span> action&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -491,12 +490,12 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <p>
+    
       使用dispatch以后，判断是否重新render是通过Object.is来判断的，每次render之后返回的dispatch其实都是不变的，所以之前定时器的例子最好的解决方案就是利用useReducer来实现：
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-php"><code class="  language-php">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>state&lt;span class="token punctuation">,&lt;/span> dispatch&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useReducer&lt;/span>&lt;span class="token punctuation">(&lt;/span>reducer&lt;span class="token punctuation">,&lt;/span> initialState&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
@@ -548,7 +547,7 @@ title: hooks使用指南
     </h3>
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">const&lt;/span> memoizedCallback &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useCallback&lt;/span>&lt;span class="token punctuation">(&lt;/span>
         &lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -560,12 +559,12 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <p>
+    
       [我们](https://www.w3cdoc.com)来看一个useEffect的dependency数组含有函数的情况：
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
@@ -606,7 +605,7 @@ title: hooks使用指南
     </h3>
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">const&lt;/span> memoizedValue &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useMemo&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=&gt;&lt;/span> &lt;span class="token function">computeExpensiveValue&lt;/span>&lt;span class="token punctuation">(&lt;/span>a&lt;span class="token punctuation">,&lt;/span> b&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">[&lt;/span>a&lt;span class="token punctuation">,&lt;/span> b&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
@@ -617,30 +616,30 @@ title: hooks使用指南
     </h3>
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-cpp"><code class="  language-cpp">    &lt;span class="token keyword">const&lt;/span> refContainer &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useRef&lt;/span>&lt;span class="token punctuation">(&lt;/span>initialValue&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 </code></pre>
     </div>
 
-    <p>
+    
       注意：useRef返回相当于一个{current: &#8230;}的plain object，但是和正常这样每轮render之后直接显式创建的区别在于，每轮render之后的useRef返回的plain object都是同一个，只是里面的current发生变化
-    </p>
     
-    <p>
+    
+    
       而且，当里面的current发生变化的时候并不会引起render
-    </p>
     
-    <h2>
-      补充
-    </h2>
     
-    <p>
+    ##     补充
+    
+
+    
+    
       dependency数组里面写函数作为dependency的情景：
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">SearchResults&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>query&lt;span class="token punctuation">,&lt;/span> setQuery&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'react'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
@@ -666,12 +665,12 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <p>
+    
       第一次改进，把函数直接写进dependency数组里面：
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">SearchResults&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token comment">// &#x1f534; Re-triggers all effects on every render&lt;/span>
@@ -694,12 +693,12 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <p>
+    
       上面这种写法的问题就是useEffect里面的函数调用过于频繁，再次利用useCallback进行改造：
-    </p>
+    
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">SearchResults&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>query&lt;span class="token punctuation">,&lt;/span> setQuery&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'react'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
@@ -719,20 +718,20 @@ title: hooks使用指南
 </code></pre>
     </div>
 
-    <p>
-      useCallback本质上是添加了一层依赖检查。它以另一种方式解决了问题 &#8211; [我们](https://www.w3cdoc.com)使函数本身只在需要的时候才改变，而不是去掉对函数的依赖
-    </p>
     
-    <p>
+      useCallback本质上是添加了一层依赖检查。它以另一种方式解决了问题 &#8211; [我们](https://www.w3cdoc.com)使函数本身只在需要的时候才改变，而不是去掉对函数的依赖
+    
+    
+    
       实际上，函数在effect里面也是一种数据流，而在class component中则不是
-    </p>
+    
     
     <h3>
       关于竞态
     </h3>
     
     <div class="_2Uzcx_">
-      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button></p> 
+      <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
       <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Article&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">&lt;span class="token punctuation">{&lt;/span> id &lt;span class="token punctuation">}&lt;/span>&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>article&lt;span class="token punctuation">,&lt;/span> setArticle&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token keyword">null&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>

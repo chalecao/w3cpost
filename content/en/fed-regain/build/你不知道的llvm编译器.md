@@ -3,7 +3,6 @@ title: 你不知道的LLVM编译器
 
 
 
-
 ---
 这几年来，一些新的开发语言如雨后春笋般涌现，比如 Mozilla 的 Rust、Apple 的 Swift 以及 Jetbrains 的 Kotlin 等等，当然很多好的语言也在不断迭代，比如 Java。这些语言为开发人员在开发速度、安全性、便利性、可移植性和功能上提供了多种选择。
 
@@ -19,7 +18,7 @@ LLVM 本质上是一个使用编程方式创建机器原生代码的软件库。
 
 LLVM API 提供了一些原语，用于表示开发编程语言中常见结构和模式。例如，几乎所有的语言都具有函数和全局变量的概念。LLVM 也将函数和全局变量作为 IR 的标准元素。这样，开发人员可以直接使用 LLVM 的实现，并聚焦于自身语言中的独到之处，不再需要花费时间和精力去重造这些特定的轮子。
 
-<a href="https://s3.amazonaws.com/infoq.content.live.0/articles/what-is-llvm-the-power-behind-swift-rust-clang-and-more/zh/resources/1051-1518415138974.jpg" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/15973646652884a59fc863a794571114.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/15973646652884a59fc863a794571114.jpg?x-oss-process=image/format,webp" /></a>
+<a href="https://s3.amazonaws.com/infoq.content.live.0/articles/what-is-llvm-the-power-behind-swift-rust-clang-and-more/zh/resources/1051-1518415138974.jpg" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/15973646652884a59fc863a794571114.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/15973646652884a59fc863a794571114.jpg?x-oss-process=image/format,webp" /></a>
 
 <small>图 1 一个 LLVM IR 的例子。图右侧显示了一个使用 C 编写的简单程序，左侧显示了使用 Clang 编译器转换得到的 LLVM IR 代码</small>
 
@@ -43,7 +42,7 @@ Python 的高性能科学计算库 Numba 将设定的 Python 函数 JIT 编译�
 
 还有一些非正统的方法，也尝试使用 LLVM 作为 JIT。例如，有方法尝试编译 PostgreSQL 查询，并实现了性能翻五番。
 
-<a href="https://s3.amazonaws.com/infoq.content.live.0/articles/what-is-llvm-the-power-behind-swift-rust-clang-and-more/zh/resources/2523-1518415138775.jpg" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/b444fabdcce57126da15804d3bfabed8.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/b444fabdcce57126da15804d3bfabed8.jpg?x-oss-process=image/format,webp" /></a>
+<a href="https://s3.amazonaws.com/infoq.content.live.0/articles/what-is-llvm-the-power-behind-swift-rust-clang-and-more/zh/resources/2523-1518415138775.jpg" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/b444fabdcce57126da15804d3bfabed8.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/b444fabdcce57126da15804d3bfabed8.jpg?x-oss-process=image/format,webp" /></a>
 
 <small>图 2 Numba 使用 LLVM 对科学计算代码做 JIT 编译，加速了代码的执行。例如，经 JIT 加速的 sum2d 函数, 要比常规 Python 代码的执行速度快 139 倍</small>
 

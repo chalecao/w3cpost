@@ -3,11 +3,9 @@ title: react hooks的应用
 
 
 
-
 ---
-<p id="GxiRzoa">
-  <img loading="lazy" class="alignnone wp-image-4822 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d332270c7320.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d332270c7320.png?x-oss-process=image/format,webp" alt="" width="388" height="194" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d332270c7320.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d332270c7320.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_150/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d332270c7320.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_384/format,webp 768w" sizes="(max-width: 388px) 100vw, 388px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-4822 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d332270c7320.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d332270c7320.png?x-oss-process=image/format,webp" alt="" width="388" height="194" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d332270c7320.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d332270c7320.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_150/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d332270c7320.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_384/format,webp 768w" sizes="(max-width: 388px) 100vw, 388px" />
 
 最近react 官方在 2018 ReactConf 大会上宣布 React v16.7.0-alpha(内测) 将引入 Hooks。所以[我们](https://www.w3cdoc.com)有必要了解 Hooks，以及由此引发的疑问。
 
@@ -155,7 +153,6 @@ custom Hooks 并不是一个api，而是一个规则。具体实现就是通过�
   useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
     &lt;span class="hljs-built_in">document&lt;/span>.title = &lt;span class="hljs-string">`You clicked &lt;span class="hljs-subst">${count}&lt;/span> times`&lt;/span>;
   });
-  
   &lt;span class="hljs-keyword">return&lt;/span> count
 }</code></pre>
 

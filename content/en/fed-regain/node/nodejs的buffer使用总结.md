@@ -1,10 +1,7 @@
 ---
 title: NodeJS的buffer使用总结
 
-
 ---
-  
-
 
 ### [][1]buffer拼接数据
 

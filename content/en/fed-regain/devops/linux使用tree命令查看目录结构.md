@@ -5,8 +5,6 @@ title: linux使用tree命令查看目录结构
 
 
 
-
-
 ---
 1.先下载安装包  
 使用命令
@@ -23,9 +21,8 @@ Linux环境（ubuntu 16.10）下安装
 
 3.测试使用，命令：tree
 
-<p id="WNUgrCd">
-  <img loading="lazy" class="alignnone  wp-image-5717 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7b33af6d27e.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7b33af6d27e.png?x-oss-process=image/format,webp" alt="" width="526" height="314" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7b33af6d27e.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7b33af6d27e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_179/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7b33af6d27e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_459/format,webp 768w" sizes="(max-width: 526px) 100vw, 526px" />
-</p>
+
+  <img loading="lazy" class="alignnone  wp-image-5717 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7b33af6d27e.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7b33af6d27e.png?x-oss-process=image/format,webp" alt="" width="526" height="314" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7b33af6d27e.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7b33af6d27e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_179/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/img_5e7b33af6d27e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_459/format,webp 768w" sizes="(max-width: 526px) 100vw, 526px" />
 
 4.tree命令行参数：  
 参数 作用  

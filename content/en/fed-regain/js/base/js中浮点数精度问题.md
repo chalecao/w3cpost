@@ -3,19 +3,19 @@ title: JS中浮点数精度问题
 
 
 
-
 ---
-<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442317747647a584d6e44384b4a6a793158645858615a735658612d313238302d3334362e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442317747647a584d6e44384b4a6a793158645858615a735658612d313238302d3334362e706e67.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442317747647a584d6e44384b4a6a793158645858615a735658612d313238302d3334362e706e67.png?x-oss-process=image/format,webp" alt="JavaScript 浮点数陷阱及解法" data-canonical-src="https://img.alicdn.com/tfs/TB1wGdzXMnD8KJjy1XdXXaZsVXa-1280-346.png" /></a>
+<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442317747647a584d6e44384b4a6a793158645858615a735658612d313238302d3334362e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442317747647a584d6e44384b4a6a793158645858615a735658612d313238302d3334362e706e67.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/68747470733a2f2f696d672e616c6963646e2e636f6d2f7466732f5442317747647a584d6e44384b4a6a793158645858615a735658612d313238302d3334362e706e67.png?x-oss-process=image/format,webp" alt="JavaScript 浮点数陷阱及解法" data-canonical-src="https://img.alicdn.com/tfs/TB1wGdzXMnD8KJjy1XdXXaZsVXa-1280-346.png" /></a>
 
 <div>
   <div>
     <h2 class="heading" data-id="heading-1">
       浮点数运算后的精度问题
-    </h2>
+    
 
-    <p>
+
+    
       在计算商品价格加减乘除时，偶尔## 会出现精度问题，一些常见的例子如下：
-    </p>
+    
     
     <pre><code class="hljs javascript copyable" lang="javascript">&lt;span class="hljs-comment">// 加法 =====================&lt;/span>
 &lt;span class="hljs-number">0.1&lt;/span> + &lt;span class="hljs-number">0.2&lt;/span> = &lt;span class="hljs-number">0.30000000000000004&lt;/span>
@@ -38,15 +38,16 @@ title: JS中浮点数精度问题
 
     <h2 class="heading" data-id="heading-2">
       toFixed奇葩问题
-    </h2>
     
-    <p>
+
+    
+    
       在遇到浮点数运算后出现的精度问题时，刚开始我是使用toFixed(2)来解决的，因为在W3school和菜鸟教程（他们均表示这锅不背）上明确写着定义：toFixed()方法可把Number四舍五入为指定小数位数的数字。
-    </p>
     
-    <p>
+    
+    
       但是在chrome下测试结果不太令人满意：
-    </p>
+    
     
     <pre><code class="hljs javascript copyable" lang="javascript">&lt;span class="hljs-number">1.35&lt;/span>.toFixed(&lt;span class="hljs-number">1&lt;/span>) &lt;span class="hljs-comment">// 1.4 正确&lt;/span>
 &lt;span class="hljs-number">1.335&lt;/span>.toFixed(&lt;span class="hljs-number">2&lt;/span>) &lt;span class="hljs-comment">// 1.33  错误&lt;/span>
@@ -56,9 +57,9 @@ title: JS中浮点数精度问题
 &lt;span class="hljs-number">1.3333335&lt;/span>.toFixed(&lt;span class="hljs-number">6&lt;/span>) &lt;span class="hljs-comment">// 1.333333 错误&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
 
-    <p>
+    
       使用IETester在IE下面测试的结果却是正确的。
-    </p>
+    
     
     <h1 class="heading" data-id="heading-3">
       为什么会产生
@@ -80,27 +81,27 @@ title: JS中浮点数精度问题
 * 指数位E：中间的 11 位存储指数（exponent），用来表示次方数
 * 尾数位M：最后的 52 位是尾数（mantissa），超出的部分自动进一舍零
 
-￼<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f37323637613538623239383932633362373233653364366333663733393035612e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f37323637613538623239383932633362373233653364366333663733393035612e706e67.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f37323637613538623239383932633362373233653364366333663733393035612e706e67.png?x-oss-process=image/format,webp" alt="64 bit allocation" data-canonical-src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/7267a58b29892c3b723e3d6c3f73905a.png" /></a>
+￼<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f37323637613538623239383932633362373233653364366333663733393035612e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f37323637613538623239383932633362373233653364366333663733393035612e706e67.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f37323637613538623239383932633362373233653364366333663733393035612e706e67.png?x-oss-process=image/format,webp" alt="64 bit allocation" data-canonical-src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/7267a58b29892c3b723e3d6c3f73905a.png" /></a>
 
 实际数字就可以用以下公式来计算：  
 ￼  
-<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/31601625-1f199ad0-b220-11e7-9d46-bb48a470bedf.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/31601625-1f199ad0-b220-11e7-9d46-bb48a470bedf.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/31601625-1f199ad0-b220-11e7-9d46-bb48a470bedf.png?x-oss-process=image/format,webp" alt="latex expression" /></a>
+<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/31601625-1f199ad0-b220-11e7-9d46-bb48a470bedf.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/31601625-1f199ad0-b220-11e7-9d46-bb48a470bedf.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/31601625-1f199ad0-b220-11e7-9d46-bb48a470bedf.png?x-oss-process=image/format,webp" alt="latex expression" /></a>
 
 注意以上的公式遵循科学计数法的规范，在十进制是为0<M<10，到二进行就是0<M<2。也就是说整数部分只能是1，所以可以被舍去，只保留后面的小数部分。如 4.5 转换成二进制就是 100.1，科学计数法表示是 1.001*2^2，舍去1后 `M = 001`。E是一个无符号整数，因为长度是11位，取值范围是 0~2047。但是科学计数法中的指数是可以为负数的，所以再减去一个中间数 1023，[0,1022]表示为负，[1024,2047] 表示为正。如4.5 的指数`E = 1025`，尾数M为 001。
 
 最终的公式变成：
 
-<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/31601584-f65ed43e-b21f-11e7-8755-c99b48e5134c.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/31601584-f65ed43e-b21f-11e7-8755-c99b48e5134c.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/31601584-f65ed43e-b21f-11e7-8755-c99b48e5134c.png?x-oss-process=image/format,webp" alt="latex expression" /></a>
+<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/31601584-f65ed43e-b21f-11e7-8755-c99b48e5134c.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/31601584-f65ed43e-b21f-11e7-8755-c99b48e5134c.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/31601584-f65ed43e-b21f-11e7-8755-c99b48e5134c.png?x-oss-process=image/format,webp" alt="latex expression" /></a>
 
 所以 `4.5` 最终表示为（M=001、E=1025）：  
 ￼  
-<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f33353661306164643137356263663436393664353731613862656232303633642e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f33353661306164643137356263663436393664353731613862656232303633642e706e67.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f33353661306164643137356263663436393664353731613862656232303633642e706e67.png?x-oss-process=image/format,webp" alt="4.5 allocation map" data-canonical-src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/356a0add175bcf4696d571a8beb2063d.png" /></a>
+<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f33353661306164643137356263663436393664353731613862656232303633642e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f33353661306164643137356263663436393664353731613862656232303633642e706e67.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f33353661306164643137356263663436393664353731613862656232303633642e706e67.png?x-oss-process=image/format,webp" alt="4.5 allocation map" data-canonical-src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/356a0add175bcf4696d571a8beb2063d.png" /></a>
 
 (图片由此生成 <a href="http://www.binaryconvert.com/convert_double.html" rel="nofollow">http://www.binaryconvert.com/convert_double.html</a>)
 
 下面再以 `0.1` 例解释浮点误差的原因， `0.1` 转成二进制表示为 `0.0001100110011001100`(1100循环)，`1.100110011001100x2^-4`，所以 `E=-4+1023=1019`；M 舍去首位的1，得到 `100110011...`。最终就是：
 
-<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f36313561643436316130653836343166316238393837316532656666383765662e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f36313561643436316130653836343166316238393837316532656666383765662e706e67.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f36313561643436316130653836343166316238393837316532656666383765662e706e67.png?x-oss-process=image/format,webp" alt="0.1 allocation map" data-canonical-src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/615ad461a0e8641f1b89871e2eff87ef.png" /></a>  
+<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f36313561643436316130653836343166316238393837316532656666383765662e706e67.png" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f36313561643436316130653836343166316238393837316532656666383765662e706e67.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f36313561643436316130653836343166316238393837316532656666383765662e706e67.png?x-oss-process=image/format,webp" alt="0.1 allocation map" data-canonical-src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/615ad461a0e8641f1b89871e2eff87ef.png" /></a>  
 ￼  
 转化成十进制后为 `0.100000000000000005551115123126`，因此就出现了浮点误差。
 
@@ -149,7 +150,7 @@ title: JS中浮点数精度问题
 * &#8230; 依次跳过更多2的倍数
 
 下面这张图能很好的表示 JavaScript 中浮点数和实数（Real Number）之间的对应关系。[我们](https://www.w3cdoc.com)常用的 `(-2^53, 2^53)` 只是最中间非常小的一部分，越往两边越稀疏越不精确。  
-<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f65656539613263613238646433643865366630663563383939353661623433612e6a7067.jpg" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f65656539613263613238646433643865366630663563383939353661623433612e6a7067.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f65656539613263613238646433643865366630663563383939353661623433612e6a7067.jpg?x-oss-process=image/format,webp" alt="fig1.jpg" data-canonical-src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/eee9a2ca28dd3d8e6f0f5c89956ab43a.jpg" /></a>
+<a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f65656539613263613238646433643865366630663563383939353661623433612e6a7067.jpg" target="_blank" rel="noopener noreferrer"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f65656539613263613238646433643865366630663563383939353661623433612e6a7067.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/687474703a2f2f617461322d696d672e636e2d68616e677a686f752e696d672d7075622e616c6979756e2d696e632e636f6d2f65656539613263613238646433643865366630663563383939353661623433612e6a7067.jpg?x-oss-process=image/format,webp" alt="fig1.jpg" data-canonical-src="http://ata2-img.cn-hangzhou.img-pub.aliyun-inc.com/eee9a2ca28dd3d8e6f0f5c89956ab43a.jpg" /></a>
 
 在淘宝早期的订单系统中把订单号当作数字处理，后来随意订单号暴增，已经超过了  
 `9007199254740992`，最终的解法是把订单号改成字符串处理。

@@ -3,8 +3,6 @@ title: jsonp而不是AJAX？
 
 
 
-
-
 ---
 在[大家](https://www.w3cdoc.com)的认知里，JSONP，往往是另外一种异步请求的方式，其主要优点是支持跨域数据请求。因此，JSONP往往是将一个Script节点动态插入document，随后[浏览器](https://www.w3cdoc.com)会自动发起一个远程请求。然而JSONP具有非常巨大的性能&工程化价值。
 
@@ -33,11 +31,9 @@ title: jsonp而不是AJAX？
 
 这块大资源并没有错(有时候利用一块大资源，比起每次加载不一样非缓存资源性能还高)，但是在[浏览器](https://www.w3cdoc.com)加载这块大头时候，脚本的解析、编译、执行，也随着体积增长(特别是执行耗时)。然而，[我们](https://www.w3cdoc.com)可以利用上面介绍到的同步JSONP优雅地减少页面加载时间！[我们](https://www.w3cdoc.com)先来回顾一下部分原理：
 
-<p id="IqPOUmX">
-  <img loading="lazy" class="alignnone wp-image-3393 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c23a8258ff8f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c23a8258ff8f.png?x-oss-process=image/format,webp" alt="" width="620" height="375" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c23a8258ff8f.png?x-oss-process=image/format,webp 1244w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c23a8258ff8f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_181/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c23a8258ff8f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_464/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c23a8258ff8f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_484/format,webp 800w" sizes="(max-width: 620px) 100vw, 620px" />
-</p>
 
-    因为主线程被阻碍了，后面的解析工作没有办法继续往下进行，
+  <img loading="lazy" class="alignnone wp-image-3393 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c23a8258ff8f.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c23a8258ff8f.png?x-oss-process=image/format,webp" alt="" width="620" height="375" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c23a8258ff8f.png?x-oss-process=image/format,webp 1244w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c23a8258ff8f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_181/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c23a8258ff8f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_464/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c23a8258ff8f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_484/format,webp 800w" sizes="(max-width: 620px) 100vw, 620px" />
+  因为主线程被阻碍了，后面的解析工作没有办法继续往下进行，
     当遇到这种情况，WebKit会启动另外一个线程去遍历后面的HTML，
     收集需要的资源URL，然后发送请求，这样就可以避免阻塞。 
      ———— 《WebKit技术内幕》

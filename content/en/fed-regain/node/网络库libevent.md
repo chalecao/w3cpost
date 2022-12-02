@@ -3,8 +3,6 @@ title: 网络库libevent、libev、libuv对比
 
 
 
-
-
 ---
 Libevent、libev、libuv三个网络库，都是c语言实现的异步事件库Asynchronousevent library）。  
 异步事件库本质上是提供异步事件通知（Asynchronous Event Notification，AEN）的。异步事件通知机制就是根据发生的事件，调用相应的回调函数进行处理。  
@@ -21,17 +19,15 @@ libuv :开发node的过程中需要一个跨平台的事件库，他们首选了
 
 ![][1]
 
-<p id="NfSTzEd">
-  <img loading="lazy" width="320" height="292" class="alignnone size-full wp-image-6603 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6a2480f8.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6a2480f8.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6a2480f8.png?x-oss-process=image/format,webp 320w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6a2480f8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_274/format,webp 300w" sizes="(max-width: 320px) 100vw, 320px" />
-</p>
+
+  <img loading="lazy" width="320" height="292" class="alignnone size-full wp-image-6603 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6a2480f8.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6a2480f8.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6a2480f8.png?x-oss-process=image/format,webp 320w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6a2480f8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_274/format,webp 300w" sizes="(max-width: 320px) 100vw, 320px" />
 
 可见，目前libuv的影响力最大，其次是libevent，libev关注的人较少。
 
 优先级、事件循环、线程安全维度的对比
 
-<p id="WGFSsAV">
-  <img loading="lazy" width="1552" height="852" class="alignnone size-full wp-image-6604 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6b2996d2.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6b2996d2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6b2996d2.png?x-oss-process=image/format,webp 1552w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6b2996d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_165/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6b2996d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_439/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6b2996d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_422/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6b2996d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_843/format,webp 1536w" sizes="(max-width: 1552px) 100vw, 1552px" />
-</p>
+
+  <img loading="lazy" width="1552" height="852" class="alignnone size-full wp-image-6604 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6b2996d2.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6b2996d2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6b2996d2.png?x-oss-process=image/format,webp 1552w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6b2996d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_165/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6b2996d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_439/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6b2996d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_422/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6b2996d2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_843/format,webp 1536w" sizes="(max-width: 1552px) 100vw, 1552px" />
 
 ## 事件循环
 
@@ -45,9 +41,8 @@ event\_base和loop都不是线程安全的，一个event\_base或loop实例只�
 
 ## 事件种类
 
-<p id="fFkroiE">
-  <img loading="lazy" width="1558" height="1338" class="alignnone size-full wp-image-6602 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6756ca58.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6756ca58.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6756ca58.png?x-oss-process=image/format,webp 1558w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6756ca58.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_258/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6756ca58.png?x-oss-process=image/quality,q_50/resize,m_fill,w_699,h_600/format,webp 699w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6756ca58.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_660/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6756ca58.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_1319/format,webp 1536w" sizes="(max-width: 1558px) 100vw, 1558px" />
-</p>
+
+  <img loading="lazy" width="1558" height="1338" class="alignnone size-full wp-image-6602 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6756ca58.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6756ca58.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6756ca58.png?x-oss-process=image/format,webp 1558w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6756ca58.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_258/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6756ca58.png?x-oss-process=image/quality,q_50/resize,m_fill,w_699,h_600/format,webp 699w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6756ca58.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_660/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b6756ca58.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_1319/format,webp 1536w" sizes="(max-width: 1558px) 100vw, 1558px" />
 
 这个对比对于libev和libuv更有意义，对于libevent，很多都是跟其设计思想有关的。 libev中的embed很少用，libuv没有也没关系；cleanup完全可以用libuv中的async_exit来替代；libuv没有fork事件。
 
@@ -55,9 +50,8 @@ event\_base和loop都不是线程安全的，一个event\_base或loop实例只�
 
 三个库都支持Linux, *BSD, Mac OS X, Solaris, Windows
 
-<p id="fefSLYY">
-  <img loading="lazy" width="1558" height="808" class="alignnone size-full wp-image-6601 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b64f0f090.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b64f0f090.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b64f0f090.png?x-oss-process=image/format,webp 1558w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b64f0f090.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_156/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b64f0f090.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_415/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b64f0f090.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_398/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b64f0f090.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_797/format,webp 1536w" sizes="(max-width: 1558px) 100vw, 1558px" />
-</p>
+
+  <img loading="lazy" width="1558" height="808" class="alignnone size-full wp-image-6601 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b64f0f090.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b64f0f090.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b64f0f090.png?x-oss-process=image/format,webp 1558w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b64f0f090.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_156/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b64f0f090.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_415/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b64f0f090.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_398/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6071b64f0f090.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_797/format,webp 1536w" sizes="(max-width: 1558px) 100vw, 1558px" />
 
 对于Unix/Linux平台，没有什么大不同，优先选择epoll，对于windows，libevent、libev都使用select检测和分发事件（不I/O），libuv在windows下使用IOCP。libevent有一个socket handle, 在windows上使用IOCP进行读写。libev没有类似的。但是libevent的IOCP支持也不是很好（性能不高）。所以如果是在windows平台下，使用原生的IOCP进行I/O，或者使用libuv。
 

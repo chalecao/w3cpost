@@ -2,7 +2,6 @@
 title: react阻止事件冒泡失败原因
 
 
-
 ---
 ## JS 中事件的监听与处理
 
@@ -82,10 +81,7 @@ DOM 事件会先后经历 **捕获** 与 **冒泡** 两个阶段。捕获即
   <pre><span class="pl-c1">document</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">"</span>click<span class="pl-pds">"</span></span>, () <span class="pl-k">=&gt;</span> {
   <span class="pl-c">// close dialog</span>
 });</pre>
-  
-  <p>
-    <span class="pl-smi">dialogElement</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>click<span class="pl-pds">&#8220;</span></span>, <span class="pl-smi">event</span> <span class="pl-k">=></span> {<br /> <span class="pl-c1">event</span>.<span class="pl-c1">stopPropagation</span>();<br /> });
-  </p>
+ <span class="pl-smi">dialogElement</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>click<span class="pl-pds">&#8220;</span></span>, <span class="pl-smi">event</span> <span class="pl-k">=></span> {<br /> <span class="pl-c1">event</span>.<span class="pl-c1">stopPropagation</span>();<br /> });
 </div>
 
 但如果你尝试在 React 中实现上面的逻辑，一开始的尝试会让你怀疑人生。
@@ -102,18 +98,11 @@ DOM 事件会先后经历 **捕获** 与 **冒泡** 两个阶段。捕获即
       <span class="pl-c1">document</span>.<span class="pl-c1">removeEventListener</span>(<span class="pl-s"><span class="pl-pds">"</span>click<span class="pl-pds">"</span></span>, documentClickHandler);
     };
   }, []);</pre>
+ <span class="pl-k">function</span> <span class="pl-en">documentClickHandler</span>() {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>document clicked<span class="pl-pds">&#8220;</span></span>);<br /> }
   
-  <p>
-    <span class="pl-k">function</span> <span class="pl-en">documentClickHandler</span>() {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>document clicked<span class="pl-pds">&#8220;</span></span>);<br /> }
-  </p>
+ <span class="pl-k">function</span> <span class="pl-en">btnClickHandler</span>(<span class="pl-c1">event</span>) {<br /> <span class="pl-c1">event</span>.<span class="pl-c1">stopPropagation</span>();<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>btn clicked<span class="pl-pds">&#8220;</span></span>);<br /> }
   
-  <p>
-    <span class="pl-k">function</span> <span class="pl-en">btnClickHandler</span>(<span class="pl-c1">event</span>) {<br /> <span class="pl-c1">event</span>.<span class="pl-c1">stopPropagation</span>();<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>btn clicked<span class="pl-pds">&#8220;</span></span>);<br /> }
-  </p>
-  
-  <p>
-    <span class="pl-k">return</span> <span class="pl-k"><</span>button onClick<span class="pl-k">=</span>{btnClickHandler}<span class="pl-k">></span><span class="pl-c1">CLICK</span> <span class="pl-c1">ME</span><span class="pl-k"><</span><span class="pl-k">/</span>button<span class="pl-k">></span>;<br /> }
-  </p>
+ <span class="pl-k">return</span> <span class="pl-k"><</span>button onClick<span class="pl-k">=</span>{btnClickHandler}<span class="pl-k">></span><span class="pl-c1">CLICK</span> <span class="pl-c1">ME</span><span class="pl-k"><</span><span class="pl-k">/</span>button<span class="pl-k">></span>;<br /> }
 </div>
 
 输出:
@@ -133,38 +122,21 @@ document 上的事件处理器正常执行了，并没有因为[我们](https://
 <div class="highlight highlight-source-js">
   <pre><span class="pl-k">import</span> <span class="pl-smi">React</span>, { <span class="pl-smi">useEffect</span> } <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">"</span>react<span class="pl-pds">"</span></span>;
 <span class="pl-k">import</span> <span class="pl-smi">ReactDOM</span> <span class="pl-k">from</span> <span class="pl-s"><span class="pl-pds">"</span>react-dom<span class="pl-pds">"</span></span>;</pre>
+ <span class="pl-c1">window</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>click<span class="pl-pds">&#8220;</span></span>, <span class="pl-smi">event</span> <span class="pl-k">=></span> {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>window<span class="pl-pds">&#8220;</span></span>);<br /> });
   
-  <p>
-    <span class="pl-c1">window</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>click<span class="pl-pds">&#8220;</span></span>, <span class="pl-smi">event</span> <span class="pl-k">=></span> {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>window<span class="pl-pds">&#8220;</span></span>);<br /> });
-  </p>
+ <span class="pl-c1">document</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>click<span class="pl-pds">&#8220;</span></span>, <span class="pl-smi">event</span> <span class="pl-k">=></span> {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>document:bedore react mount<span class="pl-pds">&#8220;</span></span>);<br /> });
   
-  <p>
-    <span class="pl-c1">document</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>click<span class="pl-pds">&#8220;</span></span>, <span class="pl-smi">event</span> <span class="pl-k">=></span> {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>document:bedore react mount<span class="pl-pds">&#8220;</span></span>);<br /> });
-  </p>
+ <span class="pl-c1">document</span>.<span class="pl-c1">body</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>click<span class="pl-pds">&#8220;</span></span>, <span class="pl-smi">event</span> <span class="pl-k">=></span> {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>body<span class="pl-pds">&#8220;</span></span>);<br /> });
   
-  <p>
-    <span class="pl-c1">document</span>.<span class="pl-c1">body</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>click<span class="pl-pds">&#8220;</span></span>, <span class="pl-smi">event</span> <span class="pl-k">=></span> {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>body<span class="pl-pds">&#8220;</span></span>);<br /> });
-  </p>
+ <span class="pl-k">function</span> <span class="pl-en">App</span>() {<br /> <span class="pl-k">function</span> <span class="pl-en">documentHandler</span>() {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>document within react<span class="pl-pds">&#8220;</span></span>);<br /> }
   
-  <p>
-    <span class="pl-k">function</span> <span class="pl-en">App</span>() {<br /> <span class="pl-k">function</span> <span class="pl-en">documentHandler</span>() {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>document within react<span class="pl-pds">&#8220;</span></span>);<br /> }
-  </p>
+ <span class="pl-en">useEffect</span>(() <span class="pl-k">=></span> {<br /> <span class="pl-c1">document</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>click<span class="pl-pds">&#8220;</span></span>, documentHandler);<br /> <span class="pl-k">return</span> () <span class="pl-k">=></span> {<br /> <span class="pl-c1">document</span>.<span class="pl-c1">removeEventListener</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>click<span class="pl-pds">&#8220;</span></span>, documentHandler);<br /> };<br /> }, []);
   
-  <p>
-    <span class="pl-en">useEffect</span>(() <span class="pl-k">=></span> {<br /> <span class="pl-c1">document</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>click<span class="pl-pds">&#8220;</span></span>, documentHandler);<br /> <span class="pl-k">return</span> () <span class="pl-k">=></span> {<br /> <span class="pl-c1">document</span>.<span class="pl-c1">removeEventListener</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>click<span class="pl-pds">&#8220;</span></span>, documentHandler);<br /> };<br /> }, []);
-  </p>
+ <span class="pl-k">return</span> (<br /> <span class="pl-k"><</span>div<br /> onClick<span class="pl-k">=</span>{() <span class="pl-k">=></span> {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>raect:container<span class="pl-pds">&#8220;</span></span>);<br /> }}<br /> <span class="pl-k">></span><br /> <span class="pl-k"><</span>button<br /> onClick<span class="pl-k">=</span>{<span class="pl-smi">event</span> <span class="pl-k">=></span> {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>react:button<span class="pl-pds">&#8220;</span></span>);<br /> }}<br /> <span class="pl-k">></span><br /> <span class="pl-c1">CLICK</span> <span class="pl-c1">ME</span><br /> <span class="pl-k"><</span><span class="pl-k">/</span>button<span class="pl-k">></span><br /> <span class="pl-k"><</span><span class="pl-k">/</span>div<span class="pl-k">></span><br /> );<br /> }
   
-  <p>
-    <span class="pl-k">return</span> (<br /> <span class="pl-k"><</span>div<br /> onClick<span class="pl-k">=</span>{() <span class="pl-k">=></span> {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>raect:container<span class="pl-pds">&#8220;</span></span>);<br /> }}<br /> <span class="pl-k">></span><br /> <span class="pl-k"><</span>button<br /> onClick<span class="pl-k">=</span>{<span class="pl-smi">event</span> <span class="pl-k">=></span> {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>react:button<span class="pl-pds">&#8220;</span></span>);<br /> }}<br /> <span class="pl-k">></span><br /> <span class="pl-c1">CLICK</span> <span class="pl-c1">ME</span><br /> <span class="pl-k"><</span><span class="pl-k">/</span>button<span class="pl-k">></span><br /> <span class="pl-k"><</span><span class="pl-k">/</span>div<span class="pl-k">></span><br /> );<br /> }
-  </p>
+ <span class="pl-smi">ReactDOM</span>.<span class="pl-en">render</span>(<span class="pl-k"><</span>App <span class="pl-k">/</span><span class="pl-k">></span>, <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>root<span class="pl-pds">&#8220;</span></span>));
   
-  <p>
-    <span class="pl-smi">ReactDOM</span>.<span class="pl-en">render</span>(<span class="pl-k"><</span>App <span class="pl-k">/</span><span class="pl-k">></span>, <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>root<span class="pl-pds">&#8220;</span></span>));
-  </p>
-  
-  <p>
-    <span class="pl-c1">document</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>click<span class="pl-pds">&#8220;</span></span>, <span class="pl-smi">event</span> <span class="pl-k">=></span> {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>document:after react mount<span class="pl-pds">&#8220;</span></span>);<br /> });
-  </p>
+ <span class="pl-c1">document</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>click<span class="pl-pds">&#8220;</span></span>, <span class="pl-smi">event</span> <span class="pl-k">=></span> {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>document:after react mount<span class="pl-pds">&#8220;</span></span>);<br /> });
 </div>
 
 现在对代码做一些变动，在 body 的事件处理器中把冒泡阻止，再思考其输出。
@@ -262,18 +234,11 @@ React 有自身的一套事件系统，叫作 <a href="https://reactjs.org/docs
 <span class="pl-mi1">+      window.removeEventListener("click", documentClickHandler);</span>
     };
   }, []);</pre>
+ function documentClickHandler() {<br /> console.log(&#8220;document clicked&#8221;);<br /> }
   
-  <p>
-    function documentClickHandler() {<br /> console.log(&#8220;document clicked&#8221;);<br /> }
-  </p>
+ function btnClickHandler(event) {<br /> event.stopPropagation();<br /> console.log(&#8220;btn clicked&#8221;);<br /> }
   
-  <p>
-    function btnClickHandler(event) {<br /> event.stopPropagation();<br /> console.log(&#8220;btn clicked&#8221;);<br /> }
-  </p>
-  
-  <p>
-    return <button onClick={btnClickHandler}>CLICK ME</button>;<br /> }
-  </p>
+ return <button onClick={btnClickHandler}>CLICK ME</button>;<br /> }
 </div>
 
 这里 button 事件处理器上接到到的 event 来自 React 系统，也就是 document 上代理过来的，所以通过它阻止冒泡后，事件到 document 就结束了，而不会往上到 window。
@@ -307,7 +272,6 @@ React 有自身的一套事件系统，叫作 <a href="https://reactjs.org/docs
     <span class="pl-k">if</span> (<span class="pl-smi">btnElement</span>.<span class="pl-c1">current</span>) {
       <span class="pl-smi">btnElement</span>.<span class="pl-c1">current</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">"</span>click<span class="pl-pds">"</span></span>, btnClickHandler);
     }</pre>
-  
   <pre><code class="hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-k"&lt;/span>&gt;&lt;/span>return&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span> () &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-k"&lt;/span>&gt;&lt;/span>=&gt;&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span> {
   &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-c1"&lt;/span>&gt;&lt;/span>document&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>.&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-c1"&lt;/span>&gt;&lt;/span>removeEventListener&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>(&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-s"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-pds"&lt;/span>&gt;&lt;/span>"&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>click&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-pds"&lt;/span>&gt;&lt;/span>"&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>, documentClickHandler);
   &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-k"&lt;/span>&gt;&lt;/span>if&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span> (&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-smi"&lt;/span>&gt;&lt;/span>btnElement&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>.&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-c1"&lt;/span>&gt;&lt;/span>current&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>) {
@@ -315,22 +279,13 @@ React 有自身的一套事件系统，叫作 <a href="https://reactjs.org/docs
   }
 };
 </code></pre>
+ }, []);
   
-  <p>
-    }, []);
-  </p>
+ <span class="pl-k">function</span> <span class="pl-en">documentClickHandler</span>() {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>document clicked<span class="pl-pds">&#8220;</span></span>);<br /> }
   
-  <p>
-    <span class="pl-k">function</span> <span class="pl-en">documentClickHandler</span>() {<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>document clicked<span class="pl-pds">&#8220;</span></span>);<br /> }
-  </p>
+ <span class="pl-k">function</span> <span class="pl-en">btnClickHandler</span>(<span class="pl-c1">event</span>) {<br /> <span class="pl-c1">event</span>.<span class="pl-c1">stopPropagation</span>();<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>btn clicked<span class="pl-pds">&#8220;</span></span>);<br /> }
   
-  <p>
-    <span class="pl-k">function</span> <span class="pl-en">btnClickHandler</span>(<span class="pl-c1">event</span>) {<br /> <span class="pl-c1">event</span>.<span class="pl-c1">stopPropagation</span>();<br /> <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>btn clicked<span class="pl-pds">&#8220;</span></span>);<br /> }
-  </p>
-  
-  <p>
-    <span class="pl-k">return</span> <span class="pl-k"><</span>button ref<span class="pl-k">=</span>{btnElement}<span class="pl-k">></span><span class="pl-c1">CLICK</span> <span class="pl-c1">ME</span><span class="pl-k"><</span><span class="pl-k">/</span>button<span class="pl-k">></span>;<br /> }
-  </p>
+ <span class="pl-k">return</span> <span class="pl-k"><</span>button ref<span class="pl-k">=</span>{btnElement}<span class="pl-k">></span><span class="pl-c1">CLICK</span> <span class="pl-c1">ME</span><span class="pl-k"><</span><span class="pl-k">/</span>button<span class="pl-k">></span>;<br /> }
 </div>
 
 很明显这样是能解决问题，但你根本不会想要这样做。代码丑陋，不直观也不易理解。

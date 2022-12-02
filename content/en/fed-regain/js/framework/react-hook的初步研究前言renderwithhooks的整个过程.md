@@ -3,7 +3,6 @@ title: react hook的初步研究前言renderWithHooks的整个过程
 
 
 
-
 ---
 一开始react团队对外宣布hook 的时候，一眼看上去，觉得肯定proxy或者getter实现的，然后在函数组件外面包一层class extend React.Component。读setState钩子的第一个return结果就返回state，第二个结果就是封装了setState。后来发布了，看了一下代码，原来是维护一个队列（可以说很像数组，也可以说维护一个链表）。
 
@@ -32,25 +31,25 @@ title: react hook的初步研究前言renderWithHooks的整个过程
     <tr>
       <th>
         <div class="table-header">
-          <p>
+          
             编号
-          </p>
+          
         </div>
       </th>
 
       <th>
         <div class="table-header">
-          <p>
+          
             state
-          </p>
+          
         </div>
       </th>
       
       <th>
         <div class="table-header">
-          <p>
+          
             dispatch函数
-          </p>
+          
         </div>
       </th>
     </tr>
@@ -58,25 +57,25 @@ title: react hook的初步研究前言renderWithHooks的整个过程
     <tr>
       <td>
         <div class="table-cell">
-          <p>
+          
             1
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             _n
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             setn_function
-          </p>
+          
         </div>
       </td>
     </tr>
@@ -84,25 +83,25 @@ title: react hook的初步研究前言renderWithHooks的整个过程
     <tr>
       <td>
         <div class="table-cell">
-          <p>
+          
             2
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             _age
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             setAge_function
-          </p>
+          
         </div>
       </td>
     </tr>
@@ -110,25 +109,25 @@ title: react hook的初步研究前言renderWithHooks的整个过程
     <tr>
       <td>
         <div class="table-cell">
-          <p>
+          
             3
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             _sex
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             setSex_function
-          </p>
+          
         </div>
       </td>
     </tr>
@@ -161,33 +160,33 @@ title: react hook的初步研究前言renderWithHooks的整个过程
     <tr>
       <th>
         <div class="table-header">
-          <p>
+          
             编号
-          </p>
+          
         </div>
       </th>
 
       <th>
         <div class="table-header">
-          <p>
+          
             state
-          </p>
+          
         </div>
       </th>
       
       <th>
         <div class="table-header">
-          <p>
+          
             dispatch函数
-          </p>
+          
         </div>
       </th>
       
       <th>
         <div class="table-header">
-          <p>
+          
             hook调用
-          </p>
+          
         </div>
       </th>
     </tr>
@@ -195,33 +194,33 @@ title: react hook的初步研究前言renderWithHooks的整个过程
     <tr>
       <td>
         <div class="table-cell">
-          <p>
+          
             1
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             _n
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             setn_function
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             const [n, setn] = useState(1);
-          </p>
+          
         </div>
       </td>
     </tr>
@@ -229,33 +228,33 @@ title: react hook的初步研究前言renderWithHooks的整个过程
     <tr>
       <td>
         <div class="table-cell">
-          <p>
+          
             2
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             _age
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             setAge_function
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             const [age, setAge] = useState(10);
-          </p>
+          
         </div>
       </td>
     </tr>
@@ -263,33 +262,33 @@ title: react hook的初步研究前言renderWithHooks的整个过程
     <tr>
       <td>
         <div class="table-cell">
-          <p>
+          
             3
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             _sex
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             setSex_function
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             const [man, setSex] = useState(true);
-          </p>
+          
         </div>
       </td>
     </tr>
@@ -305,33 +304,33 @@ title: react hook的初步研究前言renderWithHooks的整个过程
     <tr>
       <th>
         <div class="table-header">
-          <p>
+          
             编号
-          </p>
+          
         </div>
       </th>
 
       <th>
         <div class="table-header">
-          <p>
+          
             state
-          </p>
+          
         </div>
       </th>
       
       <th>
         <div class="table-header">
-          <p>
+          
             dispatch函数
-          </p>
+          
         </div>
       </th>
       
       <th>
         <div class="table-header">
-          <p>
+          
             hook调用
-          </p>
+          
         </div>
       </th>
     </tr>
@@ -339,33 +338,33 @@ title: react hook的初步研究前言renderWithHooks的整个过程
     <tr>
       <td>
         <div class="table-cell">
-          <p>
+          
             1
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             _n
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             setn_function
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             const [age, setAge] = useState(10);
-          </p>
+          
         </div>
       </td>
     </tr>
@@ -373,33 +372,33 @@ title: react hook的初步研究前言renderWithHooks的整个过程
     <tr>
       <td>
         <div class="table-cell">
-          <p>
+          
             2
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             _age
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             setAge_function
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             const [n, setn] = useState(1);
-          </p>
+          
         </div>
       </td>
     </tr>
@@ -407,33 +406,33 @@ title: react hook的初步研究前言renderWithHooks的整个过程
     <tr>
       <td>
         <div class="table-cell">
-          <p>
+          
             3
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             _sex
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             setSex_function
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             const [man, setSex] = useState(true);
-          </p>
+          
         </div>
       </td>
     </tr>
@@ -462,33 +461,33 @@ title: react hook的初步研究前言renderWithHooks的整个过程
     <tr>
       <th>
         <div class="table-header">
-          <p>
+          
             编号
-          </p>
+          
         </div>
       </th>
 
       <th>
         <div class="table-header">
-          <p>
+          
             state
-          </p>
+          
         </div>
       </th>
       
       <th>
         <div class="table-header">
-          <p>
+          
             dispatch函数
-          </p>
+          
         </div>
       </th>
       
       <th>
         <div class="table-header">
-          <p>
+          
             hook调用
-          </p>
+          
         </div>
       </th>
     </tr>
@@ -496,33 +495,33 @@ title: react hook的初步研究前言renderWithHooks的整个过程
     <tr>
       <td>
         <div class="table-cell">
-          <p>
+          
             1
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             _n
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             setn_function
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             const [age, setAge] = useState(10);
-          </p>
+          
         </div>
       </td>
     </tr>
@@ -530,33 +529,33 @@ title: react hook的初步研究前言renderWithHooks的整个过程
     <tr>
       <td>
         <div class="table-cell">
-          <p>
+          
             2
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             _age
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             setAge_function
-          </p>
+          
         </div>
       </td>
       
       <td>
         <div class="table-cell">
-          <p>
+          
             const [man, setSex] = useState(true);
-          </p>
+          
         </div>
       </td>
     </tr>

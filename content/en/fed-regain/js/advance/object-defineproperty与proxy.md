@@ -6,28 +6,26 @@ title: Object.defineProperty与Proxy
 
 <div>
   <div>
-    <p>
+    
       写了两个版本，分别是使用 js 里的 Proxy （代理）和 Object.defineProperty 实现
-    </p>
+    
 
-    <p>
+    
       两个版本都有各自的缺陷，[大家](https://www.w3cdoc.com)可以按需自己选择自己需要的
-    </p>
+    
     
     <ul>
-      <li>
+      
         Proxy 不能监听源对象，只能监控代理对象。代理对象属性值是个对象时，也可以进听到变化。
-      </li>
-      <li>
+      
+      
         Object.defineProperty 有新增属性的时候，无法做到自动监听。属性值是个对象时，监听不到变化。每个属性都要处理一遍，费事。
-      </li>
-    </ul>
+      
+    
   </div>
+  ##   基于Proxy
   
-  <h2>
-    基于Proxy
-  </h2>
-  
+
   <div>
     <pre class="EnlighterJSRAW" data-enlighter-language="null">/**
  * 使用 Proxy 来说实现被废弃的 Object.observe()
@@ -62,9 +60,9 @@ child.name = {aa:11}
 
 child.name = {aa:22} //可以监听到</pre>
 
-    <p>
+    
       &nbsp;
-    </p>
+    
   </div>
 </div>
 
@@ -129,10 +127,7 @@ console.log( child )
 person.name = {aa:11}
 
 person.name = {aa:22} //注意这里的修改监听不到</pre>
-  
-  <p>
-    上面已经提到了如果对象的属性还是个对象，就无法监听到变化。同样，如果属性是个数组，也无法监听到数组的变化。Vue2中是自己hack实现了Array的一些方法，让其可以被监听，后面Vue3会切换使用Proxy
-  </p>
+ 上面已经提到了如果对象的属性还是个对象，就无法监听到变化。同样，如果属性是个数组，也无法监听到数组的变化。Vue2中是自己hack实现了Array的一些方法，让其可以被监听，后面Vue3会切换使用Proxy
 </div>
 
 &nbsp;

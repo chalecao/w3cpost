@@ -3,9 +3,8 @@ title: 说说http状态码和妙用
 
 
 
-
 ---
-<img loading="lazy" width="310" height="163" class="alignnone size-full wp-image-4449 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf9f88b1376f.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf9f88b1376f.jpeg?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf9f88b1376f.jpeg?x-oss-process=image/format,webp 310w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf9f88b1376f.jpeg?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_158/format,webp 300w" sizes="(max-width: 310px) 100vw, 310px" />
+<img loading="lazy" width="310" height="163" class="alignnone size-full wp-image-4449 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf9f88b1376f.jpeg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf9f88b1376f.jpeg?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf9f88b1376f.jpeg?x-oss-process=image/format,webp 310w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf9f88b1376f.jpeg?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_158/format,webp 300w" sizes="(max-width: 310px) 100vw, 310px" />
 
 &nbsp;
 
@@ -83,9 +82,8 @@ title: 说说http状态码和妙用
 
 412 (未满足前提条件) 服务器未满足请求者在请求中设置的其中一个前提条件。
 
-<p id="413">
+
   413 (请求实体过大) 服务器无法处理请求，因为请求实体过大，超出服务器的处理能力。
-</p>
 
 414 (请求的 URI 过长) 请求的 URI(通常为网址)过长，服务器无法处理。
 

@@ -1,17 +1,8 @@
 ---
 title: 数据监听之VM原理分析与实现
 
-
-
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/jpg.jpeg
-
-  - 1259
-
-
-
-
 ---
-<img loading="lazy" class="alignnone" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/jpg.jpeg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/jpg.jpeg?x-oss-process=image/format,webp" alt="" width="480" height="270" />
+<img loading="lazy" class="alignnone" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/jpg.jpeg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/jpg.jpeg?x-oss-process=image/format,webp" alt="" width="480" height="270" />
 
 ## 数据监听之VM原理分析与实现
 

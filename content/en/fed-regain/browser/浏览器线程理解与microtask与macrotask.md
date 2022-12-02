@@ -5,71 +5,29 @@ title: 浏览器线程理解与microtask与macrotask
 
 # 大纲
 
-<ul class="list-paddingleft-2">
-  <li>
-    区分进程和线程
-  </li>
-  <li>
-    [浏览器](https://www.w3cdoc.com)是多进程的
-  </li>
-  <li>
-    [浏览器](https://www.w3cdoc.com)都包含哪些进程？
-  </li>
-  <li>
-    [浏览器](https://www.w3cdoc.com)多进程的优势
-  </li>
-  <li>
-    重点是[浏览器](https://www.w3cdoc.com)内核（渲染进程）
-  </li>
-  <li>
-    Browser进程和[浏览器](https://www.w3cdoc.com)内核（Renderer进程）的通信过程
-  </li>
-  <li>
-    梳理[浏览器](https://www.w3cdoc.com)内核中线程之间的关系
-  </li>
-  <li>
-    GUI渲染线程与JS引擎线程互斥
-  </li>
-  <li>
-    JS阻塞页面加载
-  </li>
-  <li>
-    WebWorker，JS的多线程？
-  </li>
-  <li>
-    WebWorker与SharedWorker
-  </li>
-  <li>
-    简单梳理下[浏览器](https://www.w3cdoc.com)渲染流程
-  </li>
-  <li>
-    load事件与DOMContentLoaded事件的先后
-  </li>
-  <li>
-    css加载是否会阻塞dom树渲染？
-  </li>
-  <li>
-    普通图层和复合图层
-  </li>
-  <li>
-    从Event Loop谈JS的运行机制
-  </li>
-  <li>
-    事件循环机制进一步补充
-  </li>
-  <li>
-    单独说说定时器
-  </li>
-  <li>
-    setTimeout而不是setInterval
-  </li>
-  <li>
-    事件循环进阶：macrotask与microtask
-  </li>
-  <li>
-    写在最后的话
-  </li>
-</ul>
+
+ 区分进程和线程
+ [浏览器](https://www.w3cdoc.com)是多进程的
+ [浏览器](https://www.w3cdoc.com)都包含哪些进程？
+ [浏览器](https://www.w3cdoc.com)多进程的优势
+ 重点是[浏览器](https://www.w3cdoc.com)内核（渲染进程）
+ Browser进程和[浏览器](https://www.w3cdoc.com)内核（Renderer进程）的通信过程
+ 梳理[浏览器](https://www.w3cdoc.com)内核中线程之间的关系
+ GUI渲染线程与JS引擎线程互斥
+ JS阻塞页面加载
+ WebWorker，JS的多线程？
+ WebWorker与SharedWorker
+ 简单梳理下[浏览器](https://www.w3cdoc.com)渲染流程
+ load事件与DOMContentLoaded事件的先后
+ css加载是否会阻塞dom树渲染？
+ 普通图层和复合图层
+ 从Event Loop谈JS的运行机制
+ 事件循环机制进一步补充
+ 单独说说定时器
+ setTimeout而不是setInterval
+ 事件循环进阶：macrotask与microtask
+ 写在最后的话
+
 
 &nbsp;
 
@@ -87,53 +45,36 @@ title: 浏览器线程理解与microtask与macrotask
 
 如果是windows电脑中，可以打开任务管理器，可以看到有一个后台进程列表。对，那里就是查看进程的地方，而且可以看到每个进程的内存资源信息以及cpu占有率。
 
-<p id="XsDikAW">
-  <img loading="lazy" class="alignnone wp-image-3334 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png?x-oss-process=image/format,webp" alt="" width="411" height="300" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_218/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_559/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_582/format,webp 800w" sizes="(max-width: 411px) 100vw, 411px" />所以，应该更容易理解了：进程是cpu资源分配的最小单位（系统会给它分配内存）最后，再用较为官方的术语描述一遍：
-</p>
 
-<ul class="list-paddingleft-2">
-  <li>
-    进程是cpu资源分配的最小单位（是能拥有资源和独立运行的最小单位）
-  </li>
-  <li>
-    线程是cpu调度的最小单位（线程是建立在进程的基础上的一次程序运行单位，一个进程中可以有多个线程）
-  </li>
-</ul>
+  <img loading="lazy" class="alignnone wp-image-3334 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png?x-oss-process=image/format,webp" alt="" width="411" height="300" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_218/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_559/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_582/format,webp 800w" sizes="(max-width: 411px) 100vw, 411px" />所以，应该更容易理解了：进程是cpu资源分配的最小单位（系统会给它分配内存）最后，再用较为官方的术语描述一遍：
+
+
+ 进程是cpu资源分配的最小单位（是能拥有资源和独立运行的最小单位）
+ 线程是cpu调度的最小单位（线程是建立在进程的基础上的一次程序运行单位，一个进程中可以有多个线程）
+
 
 提示：
 
-<ul class="list-paddingleft-2">
-  <li>
-    不同进程之间也可以通信，不过代价较大
-  </li>
-  <li>
-    现在，一般通用的叫法：单线程与多线程，都是指在一个进程内的单和多。（所以核心还是得属于一个进程才行）
-  </li>
-  <li>
-  </li>
-</ul>
+
+ 不同进程之间也可以通信，不过代价较大
+ 现在，一般通用的叫法：单线程与多线程，都是指在一个进程内的单和多。（所以核心还是得属于一个进程才行）
+  
+
 
 # [浏览器](https://www.w3cdoc.com)是多进程的
 
 理解了进程与线程了区别后，接下来对[浏览器](https://www.w3cdoc.com)进行一定程度上的认识：（先看下简化理解）
 
-<ul class="list-paddingleft-2">
-  <li>
-    [浏览器](https://www.w3cdoc.com)是多进程的
-  </li>
-  <li>
-    [浏览器](https://www.w3cdoc.com)之所以能够运行，是因为系统给它的进程分配了资源（cpu、内存）
-  </li>
-  <li>
-    简单点理解，每打开一个Tab页，就相当于创建了一个独立的[浏览器](https://www.w3cdoc.com)进程。
-  </li>
-</ul>
+
+ [浏览器](https://www.w3cdoc.com)是多进程的
+ [浏览器](https://www.w3cdoc.com)之所以能够运行，是因为系统给它的进程分配了资源（cpu、内存）
+ 简单点理解，每打开一个Tab页，就相当于创建了一个独立的[浏览器](https://www.w3cdoc.com)进程。
+
 
 关于以上几点的验证，请再第一张图：
 
-<p id="HDaltcc">
-  <img loading="lazy" class="alignnone wp-image-3335 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/format,webp" alt="" width="541" height="324" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_180/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_460/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_479/format,webp 800w" sizes="(max-width: 541px) 100vw, 541px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3335 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/format,webp" alt="" width="541" height="324" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_180/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_460/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_479/format,webp 800w" sizes="(max-width: 541px) 100vw, 541px" />
 
 图中打开了Chrome[浏览器](https://www.w3cdoc.com)的多个标签页，然后可以在Chrome的任务管理器中看到有多个进程（分别是每一个Tab页面有一个独立的进程，以及一个主进程）。
 
@@ -147,20 +88,12 @@ title: 浏览器线程理解与microtask与macrotask
 
 1. Browser进程：[浏览器](https://www.w3cdoc.com)的主进程（负责协调、主控），只有一个。作用有：
 
-<ul class="list-paddingleft-2">
-  <li>
-    负责[浏览器](https://www.w3cdoc.com)界面显示，与用户交互。如前进，后退等
-  </li>
-  <li>
-    负责各个页面的管理，创建和销毁其他进程
-  </li>
-  <li>
-    将Renderer进程得到的内存中的Bitmap，绘制到用户界面上
-  </li>
-  <li>
-    网络资源的管理，下载等
-  </li>
-</ul>
+
+ 负责[浏览器](https://www.w3cdoc.com)界面显示，与用户交互。如前进，后退等
+ 负责各个页面的管理，创建和销毁其他进程
+ 将Renderer进程得到的内存中的Bitmap，绘制到用户界面上
+ 网络资源的管理，下载等
+
 
 2. 第三方插件进程：每种类型的插件对应一个进程，仅当使用该插件时才创建
 
@@ -168,19 +101,16 @@ GPU进程：最多一个，用于3D绘制等
 
 3. [浏览器](https://www.w3cdoc.com)渲染进程（[浏览器](https://www.w3cdoc.com)内核）（Renderer进程，内部是多线程的）：默认每个Tab页面一个进程，互不影响。主要作用为
 
-<ul class="list-paddingleft-2">
-  <li>
-    页面渲染，脚本执行，事件处理等
-  </li>
-</ul>
+
+ 页面渲染，脚本执行，事件处理等
+
 
 4. 强化记忆：在[浏览器](https://www.w3cdoc.com)中打开一个网页相当于新起了一个进程（进程内有自己的多线程）
 
 当然，[浏览器](https://www.w3cdoc.com)有时会将多个进程合并（譬如打开多个空白标签页后，会发现多个空白标签页被合并成了一个进程），如图<figure class=""></figure>
 
-<p id="rncgcAs">
-  <img loading="lazy" class="alignnone wp-image-3336 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/format,webp" alt="" width="489" height="238" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_146/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_374/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_389/format,webp 800w" sizes="(max-width: 489px) 100vw, 489px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3336 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/format,webp" alt="" width="489" height="238" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_146/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_374/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_389/format,webp 800w" sizes="(max-width: 489px) 100vw, 489px" />
 
 另外，可以通过Chrome的更多工具 -> 任务管理器自行验证
 
@@ -188,20 +118,12 @@ GPU进程：最多一个，用于3D绘制等
 
 相比于单进程[浏览器](https://www.w3cdoc.com)，多进程有如下优点：
 
-<ul class="list-paddingleft-2">
-  <li>
-    避免单个page crash影响整个[浏览器](https://www.w3cdoc.com)
-  </li>
-  <li>
-    避免第三方插件crash影响整个[浏览器](https://www.w3cdoc.com)
-  </li>
-  <li>
-    多进程充分利用多核优势
-  </li>
-  <li>
-    方便使用沙盒模型隔离插件等进程，提高[浏览器](https://www.w3cdoc.com)稳定性
-  </li>
-</ul>
+
+ 避免单个page crash影响整个[浏览器](https://www.w3cdoc.com)
+ 避免第三方插件crash影响整个[浏览器](https://www.w3cdoc.com)
+ 多进程充分利用多核优势
+ 方便使用沙盒模型隔离插件等进程，提高[浏览器](https://www.w3cdoc.com)稳定性
+
 
 简单点理解：如果[浏览器](https://www.w3cdoc.com)是单进程，那么某个Tab页崩溃了，就影响了整个[浏览器](https://www.w3cdoc.com)，体验有多差；同理如果是单进程，插件崩溃了也会影响整个[浏览器](https://www.w3cdoc.com)；而且多进程还有其它的诸多优势。。。
 
@@ -219,85 +141,50 @@ GPU进程：最多一个，用于3D绘制等
 
 1.GUI渲染线程
 
-<ul class="list-paddingleft-2">
-  <li>
-    负责渲染[浏览器](https://www.w3cdoc.com)界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等。
-  </li>
-  <li>
-    当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时，该线程就会执行
-  </li>
-  <li>
-    注意，<strong>GUI渲染线程与JS引擎线程是互斥的</strong>，当JS引擎执行时GUI线程会被挂起（相当于被冻结了），GUI更新会被保存在一个队列中<strong>等到JS引擎空闲时</strong>立即被执行。
-  </li>
-</ul>
+
+ 负责渲染[浏览器](https://www.w3cdoc.com)界面，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等。
+ 当界面需要重绘（Repaint）或由于某种操作引发回流(reflow)时，该线程就会执行
+ 注意，GUI渲染线程与JS引擎线程是互斥的，当JS引擎执行时GUI线程会被挂起（相当于被冻结了），GUI更新会被保存在一个队列中等到JS引擎空闲时立即被执行。
+
 
 2. JS引擎线程
 
-<ul class="list-paddingleft-2">
-  <li>
-    也称为JS内核，负责处理Javascript脚本程序。（例如V8引擎）
-  </li>
-  <li>
-    JS引擎线程负责解析Javascript脚本，运行代码。
-  </li>
-  <li>
-    JS引擎一直等待着任务队列中任务的到来，然后加以处理，一个Tab页（renderer进程）中无论什么时候都只有一个JS线程在运行JS程序
-  </li>
-  <li>
-    同样注意，<strong>GUI渲染线程与JS引擎线程是互斥的</strong>，所以如果JS执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞。
-  </li>
-</ul>
+
+ 也称为JS内核，负责处理Javascript脚本程序。（例如V8引擎）
+ JS引擎线程负责解析Javascript脚本，运行代码。
+ JS引擎一直等待着任务队列中任务的到来，然后加以处理，一个Tab页（renderer进程）中无论什么时候都只有一个JS线程在运行JS程序
+ 同样注意，GUI渲染线程与JS引擎线程是互斥的，所以如果JS执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞。
+
 
 3. 事件触发线程
 
-<ul class="list-paddingleft-2">
-  <li>
-    归属于[浏览器](https://www.w3cdoc.com)而不是JS引擎，用来控制事件循环（可以理解，JS引擎自己都忙不过来，需要[浏览器](https://www.w3cdoc.com)另开线程协助）
-  </li>
-  <li>
-    当JS引擎执行代码块如setTimeOut时（也可来自[浏览器](https://www.w3cdoc.com)内核的其他线程,如鼠标点击、AJAX异步请求等），会将对应任务添加到事件线程中
-  </li>
-  <li>
-    当对应的事件符合触发条件被触发时，该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理
-  </li>
-  <li>
-    注意，由于JS的单线程关系，所以这些待处理队列中的事件都得排队等待JS引擎处理（当JS引擎空闲时才会去执行）
-  </li>
-</ul>
+
+ 归属于[浏览器](https://www.w3cdoc.com)而不是JS引擎，用来控制事件循环（可以理解，JS引擎自己都忙不过来，需要[浏览器](https://www.w3cdoc.com)另开线程协助）
+ 当JS引擎执行代码块如setTimeOut时（也可来自[浏览器](https://www.w3cdoc.com)内核的其他线程,如鼠标点击、AJAX异步请求等），会将对应任务添加到事件线程中
+ 当对应的事件符合触发条件被触发时，该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理
+ 注意，由于JS的单线程关系，所以这些待处理队列中的事件都得排队等待JS引擎处理（当JS引擎空闲时才会去执行）
+
 
 4. 定时触发器线程
 
-<ul class="list-paddingleft-2">
-  <li>
-    传说中的setInterval与setTimeout所在线程
-  </li>
-  <li>
-    [浏览器](https://www.w3cdoc.com)定时计数器并不是由JavaScript引擎计数的,（因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确）
-  </li>
-  <li>
-    因此通过单独线程来计时并触发定时（计时完毕后，添加到事件队列中，等待JS引擎空闲后执行）
-  </li>
-  <li>
-    注意，W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。
-  </li>
-</ul>
+
+ 传说中的setInterval与setTimeout所在线程
+ [浏览器](https://www.w3cdoc.com)定时计数器并不是由JavaScript引擎计数的,（因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确）
+ 因此通过单独线程来计时并触发定时（计时完毕后，添加到事件队列中，等待JS引擎空闲后执行）
+ 注意，W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。
+
 
 5. 异步http请求线程
 
-<ul class="list-paddingleft-2">
-  <li>
-    在XMLHttpRequest在连接后是通过[浏览器](https://www.w3cdoc.com)新开一个线程请求
-  </li>
-  <li>
-    将检测到状态变更时，如果设置有回调函数，异步线程就<strong>产生状态变更事件</strong>，将这个回调再放入事件队列中。再由JavaScript引擎执行。
-  </li>
-</ul>
+
+ 在XMLHttpRequest在连接后是通过[浏览器](https://www.w3cdoc.com)新开一个线程请求
+ 将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中。再由JavaScript引擎执行。
+
 
 看到这里，如果觉得累了，可以先休息下，这些概念需要被消化，毕竟后续将提到的事件循环机制就是基于事件触发线程的，所以如果仅仅是看某个碎片化知识，可能会有一种似懂非懂的感觉。要完成的梳理一遍才能快速沉淀，不易遗忘。放张图巩固下吧：
 
-<p id="LbXQKGo">
-  <img loading="lazy" class="alignnone wp-image-3337 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cbf5a66e5.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cbf5a66e5.png?x-oss-process=image/format,webp" alt="" width="193" height="388" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cbf5a66e5.png?x-oss-process=image/format,webp 287w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cbf5a66e5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_149,h_300/format,webp 149w" sizes="(max-width: 193px) 100vw, 193px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3337 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cbf5a66e5.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cbf5a66e5.png?x-oss-process=image/format,webp" alt="" width="193" height="388" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cbf5a66e5.png?x-oss-process=image/format,webp 287w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cbf5a66e5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_149,h_300/format,webp 149w" sizes="(max-width: 193px) 100vw, 193px" />
 
 再说一点，为什么JS引擎是单线程的？额，这个问题其实应该没有标准答案，譬如，可能仅仅是因为由于多线程的复杂性，譬如多线程操作一般要加锁，因此最初设计时选择了单线程。。。
 
@@ -309,32 +196,19 @@ GPU进程：最多一个，用于3D绘制等
 如果自己打开任务管理器，然后打开一个[浏览器](https://www.w3cdoc.com)，就可以看到：任务管理器中出现了两个进程（一个是主控进程，一个则是打开Tab页的渲染进程），  
 然后在这前提下，看下整个的过程：(简化了很多)
 
-<ul class="list-paddingleft-2">
-  <li>
-    Browser进程收到用户请求，首先需要获取页面内容（譬如通过网络下载资源），随后将该任务通过RendererHost接口传递给Render进程
-  </li>
-  <li>
-    Renderer进程的Renderer接口收到消息，简单解释后，交给渲染线程，然后开始渲染
-  </li>
-  <li>
-    渲染线程接收请求，加载网页并渲染网页，这其中可能需要Browser进程获取资源和需要GPU进程来帮助渲染
-  </li>
-  <li>
-    当然可能会有JS线程操作DOM（这样可能会造成回流并重绘）
-  </li>
-  <li>
-    最后Render进程将结果传递给Browser进程
-  </li>
-  <li>
-    Browser进程接收到结果并将结果绘制出来
-  </li>
-</ul>
+
+ Browser进程收到用户请求，首先需要获取页面内容（譬如通过网络下载资源），随后将该任务通过RendererHost接口传递给Render进程
+ Renderer进程的Renderer接口收到消息，简单解释后，交给渲染线程，然后开始渲染
+ 渲染线程接收请求，加载网页并渲染网页，这其中可能需要Browser进程获取资源和需要GPU进程来帮助渲染
+ 当然可能会有JS线程操作DOM（这样可能会造成回流并重绘）
+ 最后Render进程将结果传递给Browser进程
+ Browser进程接收到结果并将结果绘制出来
+
 
 这里绘一张简单的图：（很简化）
 
-<p id="RobhEPw">
-  <img loading="lazy" class="alignnone wp-image-3338 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cc420be92.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cc420be92.png?x-oss-process=image/format,webp" alt="" width="330" height="228" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cc420be92.png?x-oss-process=image/format,webp 470w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cc420be92.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_207/format,webp 300w" sizes="(max-width: 330px) 100vw, 330px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3338 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cc420be92.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cc420be92.png?x-oss-process=image/format,webp" alt="" width="330" height="228" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cc420be92.png?x-oss-process=image/format,webp 470w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cc420be92.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_207/format,webp 300w" sizes="(max-width: 330px) 100vw, 330px" />
 
 看完这一整套流程，应该对[浏览器](https://www.w3cdoc.com)的运作有了一定理解了，这样有了知识架构的基础后，后续就方便往上填充内容。
 
@@ -373,14 +247,10 @@ MDN的官方解释是：
 
 这样理解下：
 
-<ul class="list-paddingleft-2">
-  <li>
-    创建Worker时，JS引擎向[浏览器](https://www.w3cdoc.com)申请开一个子线程（子线程是[浏览器](https://www.w3cdoc.com)开的，完全受主线程控制，而且不能操作DOM）
-  </li>
-  <li>
-    JS引擎线程与worker线程间通过特定的方式通信（postMessage API，需要通过序列化对象来与线程交互特定的数据）
-  </li>
-</ul>
+
+ 创建Worker时，JS引擎向[浏览器](https://www.w3cdoc.com)申请开一个子线程（子线程是[浏览器](https://www.w3cdoc.com)开的，完全受主线程控制，而且不能操作DOM）
+ JS引擎线程与worker线程间通过特定的方式通信（postMessage API，需要通过序列化对象来与线程交互特定的数据）
+
 
 所以，如果有非常耗时的工作，请单独开一个Worker线程，这样里面不管如何翻天覆地都不会影响JS引擎主线程，只待计算出结果后，将结果通信给主线程即可，perfect!
 
@@ -392,20 +262,12 @@ MDN的官方解释是：
 
 既然都到了这里，就再提一下SharedWorker（避免后续将这两个概念搞混）
 
-<ul class="list-paddingleft-2">
-  <li>
-    WebWorker只属于某个页面，不会和其他页面的Render进程（[浏览器](https://www.w3cdoc.com)内核进程）共享
-  </li>
-  <li>
-    所以Chrome在Render进程中（每一个Tab页就是一个render进程）创建一个新的线程来运行Worker中的JavaScript程序。
-  </li>
-  <li>
-    SharedWorker是[浏览器](https://www.w3cdoc.com)所有页面共享的，不能采用与Worker同样的方式实现，因为它不隶属于某个Render进程，可以为多个Render进程共享使用
-  </li>
-  <li>
-    所以Chrome[浏览器](https://www.w3cdoc.com)为SharedWorker单独创建一个进程来运行JavaScript程序，在[浏览器](https://www.w3cdoc.com)中每个相同的JavaScript只存在一个SharedWorker进程，不管它被创建多少次。
-  </li>
-</ul>
+
+ WebWorker只属于某个页面，不会和其他页面的Render进程（[浏览器](https://www.w3cdoc.com)内核进程）共享
+ 所以Chrome在Render进程中（每一个Tab页就是一个render进程）创建一个新的线程来运行Worker中的JavaScript程序。
+ SharedWorker是[浏览器](https://www.w3cdoc.com)所有页面共享的，不能采用与Worker同样的方式实现，因为它不隶属于某个Render进程，可以为多个Render进程共享使用
+ 所以Chrome[浏览器](https://www.w3cdoc.com)为SharedWorker单独创建一个进程来运行JavaScript程序，在[浏览器](https://www.w3cdoc.com)中每个相同的JavaScript只存在一个SharedWorker进程，不管它被创建多少次。
+
 
 看到这里，应该就很容易明白了，本质上就是进程和线程的区别。SharedWorker由独立的进程管理，WebWorker只是属于render进程下的一个线程
 
@@ -420,30 +282,19 @@ MDN的官方解释是：
 [浏览器](https://www.w3cdoc.com)器内核拿到内容后，渲染大概可以划分成以下几个步骤：
 
 <ol class="list-paddingleft-2">
-  <li>
-    解析html建立dom树
-  </li>
-  <li>
-    解析css构建render树（将CSS代码解析成树形的数据结构，然后结合DOM合并成render树）
-  </li>
-  <li>
-    布局render树（Layout/reflow），负责各元素尺寸、位置的计算
-  </li>
-  <li>
-    绘制render树（paint），绘制页面像素信息
-  </li>
-  <li>
-    [浏览器](https://www.w3cdoc.com)会将各层的信息发送给GPU，GPU会将各层合成（composite），显示在屏幕上。
-  </li>
+ 解析html建立dom树
+ 解析css构建render树（将CSS代码解析成树形的数据结构，然后结合DOM合并成render树）
+ 布局render树（Layout/reflow），负责各元素尺寸、位置的计算
+ 绘制render树（paint），绘制页面像素信息
+ [浏览器](https://www.w3cdoc.com)会将各层的信息发送给GPU，GPU会将各层合成（composite），显示在屏幕上。
 </ol>
 
 所有详细步骤都已经略去，渲染完毕后就是`load`事件了，之后就是自己的JS逻辑处理了。既然略去了一些详细的步骤，那么就提一些可能需要注意的细节把。
 
 这里重绘参考来源中的一张图：<figure class=""></figure>
 
-<p id="iVUNvLj">
-  <img loading="lazy" class="alignnone wp-image-3339 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/format,webp" alt="" width="629" height="246" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_117/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_300/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_313/format,webp 800w" sizes="(max-width: 629px) 100vw, 629px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3339 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/format,webp" alt="" width="629" height="246" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_117/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_300/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_313/format,webp 800w" sizes="(max-width: 629px) 100vw, 629px" />
 
 # load事件与DOMContentLoaded事件的先后
 
@@ -451,14 +302,10 @@ MDN的官方解释是：
 
 很简单，知道它们的定义就可以了：
 
-<ul class="list-paddingleft-2">
-  <li>
-    当 DOMContentLoaded 事件触发时，仅当DOM加载完成，不包括样式表，图片。<br /> (譬如如果有async加载的脚本就不一定完成)
-  </li>
-  <li>
-    当 onload 事件触发时，页面上所有的DOM，样式表，脚本，图片都已经加载完成了。（渲染完毕了）
-  </li>
-</ul>
+
+ 当 DOMContentLoaded 事件触发时，仅当DOM加载完成，不包括样式表，图片。<br /> (譬如如果有async加载的脚本就不一定完成)
+ 当 onload 事件触发时，页面上所有的DOM，样式表，脚本，图片都已经加载完成了。（渲染完毕了）
+
 
 所以，顺序是：`DOMContentLoaded -> load`
 
@@ -470,14 +317,10 @@ MDN的官方解释是：
 
 然后再说下几个现象：
 
-<ul class="list-paddingleft-2">
-  <li>
-    css加载不会阻塞DOM树解析（异步加载时DOM照常构建）
-  </li>
-  <li>
-    但会阻塞render树渲染（渲染时需等css加载完毕，因为render树需要css信息）
-  </li>
-</ul>
+
+ css加载不会阻塞DOM树解析（异步加载时DOM照常构建）
+ 但会阻塞render树渲染（渲染时需等css加载完毕，因为render树需要css信息）
+
 
 这可能也是[浏览器](https://www.w3cdoc.com)的一种优化机制。
 
@@ -504,31 +347,20 @@ MDN的官方解释是：
 
 如下图。可以验证上述的说法
 
-<p id="ITAxcIq">
-  <img loading="lazy" class="alignnone wp-image-3340 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png?x-oss-process=image/format,webp" alt="" width="385" height="241" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_188/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_481/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_501/format,webp 800w" sizes="(max-width: 385px) 100vw, 385px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3340 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png?x-oss-process=image/format,webp" alt="" width="385" height="241" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_188/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_481/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_501/format,webp 800w" sizes="(max-width: 385px) 100vw, 385px" />
 
 ## **如何变成复合图层（硬件加速）**
 
 将该元素变成一个复合图层，就是传说中的硬件加速技术
 
-<ul class="list-paddingleft-2">
-  <li>
-    最常用的方式：<code>translate3d</code>、<code>translateZ</code>
-  </li>
-  <li>
-    <code>opacity</code>属性/过渡动画（需要动画执行的过程中才会创建合成层，动画没有开始或结束后元素还会回到之前的状态）
-  </li>
-  <li>
-    <code>will-chang</code>属性（这个比较偏僻），一般配合opacity与translate使用（而且经测试，除了上述可以引发硬件加速的属性外，其它属性并不会变成复合层），作用是提前告诉[浏览器](https://www.w3cdoc.com)要变化，这样[浏览器](https://www.w3cdoc.com)会开始做一些优化工作（这个最好用完后就释放）
-  </li>
-  <li>
-    <code>&lt;video&gt;&lt;iframe&gt;&lt;canvas&gt;&lt;webgl&gt;</code>等元素
-  </li>
-  <li>
-    其它，譬如以前的flash插件
-  </li>
-</ul>
+
+ 最常用的方式：<code>translate3d</code>、<code>translateZ</code>
+ <code>opacity</code>属性/过渡动画（需要动画执行的过程中才会创建合成层，动画没有开始或结束后元素还会回到之前的状态）
+ <code>will-chang</code>属性（这个比较偏僻），一般配合opacity与translate使用（而且经测试，除了上述可以引发硬件加速的属性外，其它属性并不会变成复合层），作用是提前告诉[浏览器](https://www.w3cdoc.com)要变化，这样[浏览器](https://www.w3cdoc.com)会开始做一些优化工作（这个最好用完后就释放）
+ <code>&lt;video&gt;&lt;iframe&gt;&lt;canvas&gt;&lt;webgl&gt;</code>等元素
+ 其它，譬如以前的flash插件
+
 
 ## **absolute和硬件加速的区别**
 
@@ -565,40 +397,25 @@ webkit CSS3中，如果这个元素添加了硬件加速，并且index层级比�
 
 读这部分的前提是已经知道了JS引擎是单线程，而且这里会用到上文中的几个概念：（如果不是很理解，可以回头温习）
 
-<ul class="list-paddingleft-2">
-  <li>
-    JS引擎线程
-  </li>
-  <li>
-    事件触发线程
-  </li>
-  <li>
-    定时触发器线程
-  </li>
-</ul>
+
+ JS引擎线程
+ 事件触发线程
+ 定时触发器线程
+
 
 然后再理解一个概念：
 
-<ul class="list-paddingleft-2">
-  <li>
-    JS分为同步任务和异步任务
-  </li>
-  <li>
-    同步任务都在主线程上执行，形成一个<code>执行栈</code>
-  </li>
-  <li>
-    主线程之外，<strong>事件触发线程</strong>管理着一个<code>任务队列</code>，只要异步任务有了运行结果，就在<code>任务队列</code>之中放置一个事件。
-  </li>
-  <li>
-    一旦<code>执行栈</code>中的所有同步任务执行完毕（此时JS引擎空闲），系统就会读取<code>任务队列</code>，将可运行的异步任务添加到可执行栈中，开始执行。
-  </li>
-</ul>
+
+ JS分为同步任务和异步任务
+ 同步任务都在主线程上执行，形成一个<code>执行栈</code>
+ 主线程之外，事件触发线程管理着一个<code>任务队列</code>，只要异步任务有了运行结果，就在<code>任务队列</code>之中放置一个事件。
+ 一旦<code>执行栈</code>中的所有同步任务执行完毕（此时JS引擎空闲），系统就会读取<code>任务队列</code>，将可运行的异步任务添加到可执行栈中，开始执行。
+
 
 看图：
 
-<p id="sjqIxuF">
-  <img loading="lazy" class="alignnone wp-image-3341 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd366ab92.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd366ab92.png?x-oss-process=image/format,webp" alt="" width="436" height="455" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd366ab92.png?x-oss-process=image/format,webp 610w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd366ab92.png?x-oss-process=image/quality,q_50/resize,m_fill,w_287,h_300/format,webp 287w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd366ab92.png?x-oss-process=image/quality,q_50/resize,m_fill,w_575,h_600/format,webp 575w" sizes="(max-width: 436px) 100vw, 436px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3341 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd366ab92.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd366ab92.png?x-oss-process=image/format,webp" alt="" width="436" height="455" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd366ab92.png?x-oss-process=image/format,webp 610w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd366ab92.png?x-oss-process=image/quality,q_50/resize,m_fill,w_287,h_300/format,webp 287w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd366ab92.png?x-oss-process=image/quality,q_50/resize,m_fill,w_575,h_600/format,webp 575w" sizes="(max-width: 436px) 100vw, 436px" />
 
 看到这里，应该就可以理解了：为什么有时候setTimeout推入的事件不能准时执行？因为可能在它推入到事件列表时，主线程还不空闲，正在执行其它代码，所以自然有误差。
 
@@ -606,26 +423,17 @@ webkit CSS3中，如果这个元素添加了硬件加速，并且index层级比�
 
 这里就直接引用一张图片来协助理解：（参考自Philip Roberts的演讲《Help, I’m stuck in an event-loop》）<figure class=""></figure>
 
-<p id="SEbWtWV">
-  <img loading="lazy" class="alignnone wp-image-3342 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/format,webp" alt="" width="471" height="384" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/format,webp 636w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_244/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_320,h_260/format,webp 320w" sizes="(max-width: 471px) 100vw, 471px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3342 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/format,webp" alt="" width="471" height="384" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/format,webp 636w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_244/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_320,h_260/format,webp 320w" sizes="(max-width: 471px) 100vw, 471px" />
 
 上图大致描述就是：
 
-<ul class="list-paddingleft-2">
-  <li>
-    主线程运行时会产生执行栈，栈中的代码调用某些api时，它们会在事件队列中添加各种事件（当满足触发条件后，如ajax请求完毕）
-  </li>
-  <li>
-    而栈中的代码执行完毕，就会读取事件队列中的事件，去执行那些回调
-  </li>
-  <li>
-    如此循环
-  </li>
-  <li>
-    注意，总是要等待栈中的代码执行完毕后才会去读取事件队列中的事件
-  </li>
-</ul>
+
+ 主线程运行时会产生执行栈，栈中的代码调用某些api时，它们会在事件队列中添加各种事件（当满足触发条件后，如ajax请求完毕）
+ 而栈中的代码执行完毕，就会读取事件队列中的事件，去执行那些回调
+ 如此循环
+ 注意，总是要等待栈中的代码执行完毕后才会去读取事件队列中的事件
+
 
 # 单独说说定时器
 
@@ -651,17 +459,11 @@ webkit CSS3中，如果这个元素添加了硬件加速，并且index层级比�
 
 注意：
 
-<ul class="list-paddingleft-2">
-  <li>
-    执行结果是：先<code>begin</code>后<code>hello!</code>
-  </li>
-  <li>
-    虽然代码的本意是0毫秒后就推入事件队列，但是W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。<br /> (不过也有一说是不同[浏览器](https://www.w3cdoc.com)有不同的最小时间设定)
-  </li>
-  <li>
-    就算不等待4ms，就算假设0毫秒就推入事件队列，也会先执行<code>begin</code>（因为只有可执行栈内空了后才会主动读取事件队列）
-  </li>
-</ul>
+
+ 执行结果是：先<code>begin</code>后<code>hello!</code>
+ 虽然代码的本意是0毫秒后就推入事件队列，但是W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。<br /> (不过也有一说是不同[浏览器](https://www.w3cdoc.com)有不同的最小时间设定)
+ 就算不等待4ms，就算假设0毫秒就推入事件队列，也会先执行<code>begin</code>（因为只有可执行栈内空了后才会主动读取事件队列）
+
 
 ## setTimeout而不是setInterval
 
@@ -674,17 +476,11 @@ webkit CSS3中，如果这个元素添加了硬件加速，并且index层级比�
 
 而且setInterval有一些比较致命的问题就是：
 
-<ul class="list-paddingleft-2">
-  <li>
-    累计效应（上面提到的），如果setInterval代码在（setInterval）再次添加到队列之前还没有完成执行，就会导致定时器代码连续运行好几次，而之间没有间隔。就算正常间隔执行，多个setInterval的代码执行时间可能会比预期小（因为代码执行需要一定时间）
-  </li>
-  <li>
-    譬如像iOS的webview,或者Safari等[浏览器](https://www.w3cdoc.com)中都有一个特点，<strong>在滚动的时候是不执行JS的</strong>，如果使用了setInterval，会发现在滚动结束后会执行多次由于滚动不执行JS积攒回调，如果回调执行时间过长,就会非常容器造成卡顿问题和一些不可知的错误（这一块后续有补充，setInterval自带的优化，不会重复添加回调）
-  </li>
-  <li>
-    而且把[浏览器](https://www.w3cdoc.com)最小化显示等操作时，setInterval并不是不执行程序，它会把setInterval的回调函数放在队列中，等[浏览器](https://www.w3cdoc.com)窗口再次打开时，一瞬间全部执行时
-  </li>
-</ul>
+
+ 累计效应（上面提到的），如果setInterval代码在（setInterval）再次添加到队列之前还没有完成执行，就会导致定时器代码连续运行好几次，而之间没有间隔。就算正常间隔执行，多个setInterval的代码执行时间可能会比预期小（因为代码执行需要一定时间）
+ 譬如像iOS的webview,或者Safari等[浏览器](https://www.w3cdoc.com)中都有一个特点，在滚动的时候是不执行JS的，如果使用了setInterval，会发现在滚动结束后会执行多次由于滚动不执行JS积攒回调，如果回调执行时间过长,就会非常容器造成卡顿问题和一些不可知的错误（这一块后续有补充，setInterval自带的优化，不会重复添加回调）
+ 而且把[浏览器](https://www.w3cdoc.com)最小化显示等操作时，setInterval并不是不执行程序，它会把setInterval的回调函数放在队列中，等[浏览器](https://www.w3cdoc.com)窗口再次打开时，一瞬间全部执行时
+
 
 所以，鉴于这么多但问题，目前一般认为的最佳方案是：用setTimeout模拟setInterval，或者特殊场合直接用requestAnimationFrame
 
@@ -718,40 +514,22 @@ setTimeout&lt;/span></code></pre>
 
 它们的定义？区别？简单点可以按如下理解：
 
-<ul class="list-paddingleft-2">
-  <li>
-    macrotask（又称之为宏任务），可以理解是每次执行栈执行的代码就是一个宏任务（包括每次从事件队列中获取一个事件回调并放到执行栈中执行）
-  </li>
-  <li>
-    每一个task会从头到尾将这个任务执行完毕，不会执行其它
-  </li>
-  <li>
-    [浏览器](https://www.w3cdoc.com)为了能够使得JS内部task与DOM任务能够有序的执行，会在一个task执行结束后，在下一个 task 执行开始前，对页面进行重新渲染<br /> （<code>task-&gt;渲染-&gt;task-&gt;...</code>）
-  </li>
-  <li>
-    microtask（又称为微任务），可以理解是在当前 task 执行结束后立即执行的任务
-  </li>
-  <li>
-    也就是说，在当前task任务后，下一个task之前，在渲染之前
-  </li>
-  <li>
-    所以它的响应速度相比setTimeout（setTimeout是task）会更快，因为无需等渲染
-  </li>
-  <li>
-    也就是说，在某一个macrotask执行完后，就会将在它执行期间产生的所有microtask都执行完毕（在渲染前）
-  </li>
-</ul>
+
+ macrotask（又称之为宏任务），可以理解是每次执行栈执行的代码就是一个宏任务（包括每次从事件队列中获取一个事件回调并放到执行栈中执行）
+ 每一个task会从头到尾将这个任务执行完毕，不会执行其它
+ [浏览器](https://www.w3cdoc.com)为了能够使得JS内部task与DOM任务能够有序的执行，会在一个task执行结束后，在下一个 task 执行开始前，对页面进行重新渲染<br /> （<code>task-&gt;渲染-&gt;task-&gt;...</code>）
+ microtask（又称为微任务），可以理解是在当前 task 执行结束后立即执行的任务
+ 也就是说，在当前task任务后，下一个task之前，在渲染之前
+ 所以它的响应速度相比setTimeout（setTimeout是task）会更快，因为无需等渲染
+ 也就是说，在某一个macrotask执行完后，就会将在它执行期间产生的所有microtask都执行完毕（在渲染前）
+
 
 分别很么样的场景会形成macrotask和microtask呢？
 
-<ul class="list-paddingleft-2">
-  <li>
-    macrotask：主代码块，setTimeout，setInterval等（可以看到，事件队列中的每一个事件都是一个macrotask）
-  </li>
-  <li>
-    microtask：Promise，process.nextTick等
-  </li>
-</ul>
+
+ macrotask：主代码块，setTimeout，setInterval等（可以看到，事件队列中的每一个事件都是一个macrotask）
+ microtask：Promise，process.nextTick等
+
 
 **补充：在node环境下，process.nextTick的优先级高于Promise**，也就是可以简单理解为：在宏任务结束后会先执行微任务队列中的nextTickQueue部分，然后才会执行微任务中的Promise部分。
 
@@ -761,54 +539,33 @@ setTimeout&lt;/span></code></pre>
 
 再根据线程来理解下：
 
-<ul class="list-paddingleft-2">
-  <li>
-    macrotask中的事件都是放在一个事件队列中的，而这个队列由<strong>事件触发线程</strong>维护
-  </li>
-  <li>
-    microtask中的所有微任务都是添加到微任务队列（Job Queues）中，等待当前macrotask执行完毕后执行，而这个队列由<strong>JS引擎线程维护</strong><br /> （这点由自己理解+推测得出，因为它是在主线程下无缝执行的）
-  </li>
-</ul>
+
+ macrotask中的事件都是放在一个事件队列中的，而这个队列由事件触发线程维护
+ microtask中的所有微任务都是添加到微任务队列（Job Queues）中，等待当前macrotask执行完毕后执行，而这个队列由JS引擎线程维护<br /> （这点由自己理解+推测得出，因为它是在主线程下无缝执行的）
+
 
 所以，总结下运行机制：
 
-<ul class="list-paddingleft-2">
-  <li>
-    执行一个宏任务（栈中没有就从事件队列中获取）
-  </li>
-  <li>
-    执行过程中如果遇到微任务，就将它添加到微任务的任务队列中
-  </li>
-  <li>
-    宏任务执行完毕后，立即执行当前微任务队列中的所有微任务（依次执行）
-  </li>
-  <li>
-    当前宏任务执行完毕，开始检查渲染，然后GUI线程接管渲染
-  </li>
-  <li>
-    渲染完毕后，JS线程继续接管，开始下一个宏任务（从事件队列中获取）
-  </li>
-</ul>
+
+ 执行一个宏任务（栈中没有就从事件队列中获取）
+ 执行过程中如果遇到微任务，就将它添加到微任务的任务队列中
+ 宏任务执行完毕后，立即执行当前微任务队列中的所有微任务（依次执行）
+ 当前宏任务执行完毕，开始检查渲染，然后GUI线程接管渲染
+ 渲染完毕后，JS线程继续接管，开始下一个宏任务（从事件队列中获取）
+
 
 如图：
 
-<p id="BoyYgIk">
-  <img loading="lazy" class="alignnone wp-image-3343 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cdac858b8.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cdac858b8.png?x-oss-process=image/format,webp" alt="" width="310" height="582" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3343 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cdac858b8.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cdac858b8.png?x-oss-process=image/format,webp" alt="" width="310" height="582" />
 
 另外，请注意下`Promise`的`polyfill`与官方版本的区别：
 
-<ul class="list-paddingleft-2">
-  <li>
-    官方版本中，是标准的microtask形式
-  </li>
-  <li>
-    polyfill，一般都是通过setTimeout模拟的，所以是macrotask形式
-  </li>
-  <li>
-    请特别注意这两点区别
-  </li>
-</ul>
+
+ 官方版本中，是标准的microtask形式
+ polyfill，一般都是通过setTimeout模拟的，所以是macrotask形式
+ 请特别注意这两点区别
+
 
 注意，有一些[浏览器](https://www.w3cdoc.com)执行结果不一样（因为它们可能把microtask当成macrotask来执行了），但是为了简单，这里不描述一些不标准的[浏览器](https://www.w3cdoc.com)下的场景（但记住，有些[浏览器](https://www.w3cdoc.com)可能并不标准）
 
@@ -849,32 +606,14 @@ MessageChannel属于宏任务，优先级是：`setImmediate->MessageChannel->se
 * https://blog.csdn.net/sjn0503/article/details/76087631
 * https://segmentfault.com/a/1190000004322358<section class=""></section> <section class=""></section>
 
-<ul class="list-paddingleft-2">
-  <li>
-    https://www.cnblogs.com/lhb25/p/how-browsers-work.html
-  </li>
-  <li>
-    https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
-  </li>
-  <li>
-    https://segmentfault.com/p/1210000012780980<br /> https://blog.csdn.net/Steward2011/article/details/51319298
-  </li>
-  <li>
-    https://www.imweb.io/topic/58e3bfa845e5c13468f567d5
-  </li>
-  <li>
-    https://segmentfault.com/a/1190000008015671
-  </li>
-  <li>
-    https://juejin.im/post/5a4ed917f265da3e317df515
-  </li>
-  <li>
-    https://www.cnblogs.com/iovec/p/7904416.html
-  </li>
-  <li>
-    https://www.cnblogs.com/wyaocn/p/5761163.html
-  </li>
-  <li>
-    https://www.ruanyifeng.com/blog/2014/10/event-loop.html#comment-text
-  </li>
-</ul>
+
+ https://www.cnblogs.com/lhb25/p/how-browsers-work.html
+ https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
+ https://segmentfault.com/p/1210000012780980<br /> https://blog.csdn.net/Steward2011/article/details/51319298
+ https://www.imweb.io/topic/58e3bfa845e5c13468f567d5
+ https://segmentfault.com/a/1190000008015671
+ https://juejin.im/post/5a4ed917f265da3e317df515
+ https://www.cnblogs.com/iovec/p/7904416.html
+ https://www.cnblogs.com/wyaocn/p/5761163.html
+ https://www.ruanyifeng.com/blog/2014/10/event-loop.html#comment-text
+

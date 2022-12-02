@@ -67,7 +67,7 @@ div:hover {
     height: 200px;
 }</pre>
 
-主线程和合成线程将按照下面的流程图执行相应的操作。注意在橘黄色方框的操作可能会比较耗时，在蓝色框中的操作是比较快速的。（译注：懒得重新画图，流程图中的内容略过不译，下同）<a class="fancybox" title="" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-height-2x.png" target="_blank" rel="nofollow noopener noreferrer"><img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-height-2x.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-height-2x.png?x-oss-process=image/format,webp" alt="" width="836" height="1291" /></a>
+主线程和合成线程将按照下面的流程图执行相应的操作。注意在橘黄色方框的操作可能会比较耗时，在蓝色框中的操作是比较快速的。（译注：懒得重新画图，流程图中的内容略过不译，下同）<a class="fancybox" title="" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-height-2x.png" target="_blank" rel="nofollow noopener noreferrer"><img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-height-2x.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-height-2x.png?x-oss-process=image/format,webp" alt="" width="836" height="1291" /></a>
 
 正如你所看到，在上图中有很多橘黄色方框，意味着，[浏览器](https://www.w3cdoc.com)需要做大量的工作，也就是说这个动画可能会变得卡顿。
 
@@ -89,7 +89,7 @@ div:hover {
     transform: scale(1.0);
 }</pre>
 
-让[我们](https://www.w3cdoc.com)看看这种情况下的流程图：<a class="fancybox" title="" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-transform-2x.png" target="_blank" rel="nofollow noopener noreferrer"><img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-transform-2x.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-transform-2x.png?x-oss-process=image/format,webp" alt="" width="791" height="998" /></a>
+让[我们](https://www.w3cdoc.com)看看这种情况下的流程图：<a class="fancybox" title="" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-transform-2x.png" target="_blank" rel="nofollow noopener noreferrer"><img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-transform-2x.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-transform-2x.png?x-oss-process=image/format,webp" alt="" width="791" height="998" /></a>
 
 这次[我们](https://www.w3cdoc.com)可以看到少了很多橙色的方框，意味着动画变得更流畅了！那么，为什么执行一个元素的transform动画会跟height动画表现得不一样呢？
 
@@ -169,23 +169,19 @@ PS：由于测试环境有限，如果[大家](https://www.w3cdoc.com)发现在�
 
 1.Chrome的DevTool中Performance模块查看，先录一下动画操作，然后在frames中点击某一帧，下面可以看到帧率，可以分析原因
 
-<p id="Wsdzfgl">
-  <img loading="lazy" class="alignnone wp-image-3928 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png?x-oss-process=image/format,webp" alt="" width="836" height="867" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png?x-oss-process=image/format,webp 1164w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_289,h_300/format,webp 289w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_797/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_578,h_600/format,webp 578w" sizes="(max-width: 836px) 100vw, 836px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3928 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png?x-oss-process=image/format,webp" alt="" width="836" height="867" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png?x-oss-process=image/format,webp 1164w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_289,h_300/format,webp 289w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_797/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_578,h_600/format,webp 578w" sizes="(max-width: 836px) 100vw, 836px" />
 
 2. 直接打开帧率展示模块，直接在页面上查看帧率
 
-<p id="HnQikGj">
-  <img loading="lazy" class="wp-image-3929 shadow alignleft" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867df7be38.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867df7be38.png?x-oss-process=image/format,webp" alt="" width="351" height="390" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867df7be38.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867df7be38.png?x-oss-process=image/quality,q_50/resize,m_fill,w_270,h_300/format,webp 270w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867df7be38.png?x-oss-process=image/quality,q_50/resize,m_fill,w_540,h_600/format,webp 540w" sizes="(max-width: 351px) 100vw, 351px" />
-</p>
 
-<p id="wLVuhUo">
-  <img loading="lazy" class="alignnone wp-image-3930 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867f379b5d.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867f379b5d.png?x-oss-process=image/format,webp" alt="" width="464" height="414" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867f379b5d.png?x-oss-process=image/format,webp 718w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867f379b5d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_267/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867f379b5d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_673,h_600/format,webp 673w" sizes="(max-width: 464px) 100vw, 464px" />
-</p>
+  <img loading="lazy" class="wp-image-3929 shadow alignleft" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867df7be38.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867df7be38.png?x-oss-process=image/format,webp" alt="" width="351" height="390" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867df7be38.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867df7be38.png?x-oss-process=image/quality,q_50/resize,m_fill,w_270,h_300/format,webp 270w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867df7be38.png?x-oss-process=image/quality,q_50/resize,m_fill,w_540,h_600/format,webp 540w" sizes="(max-width: 351px) 100vw, 351px" />
 
-<p id="oZJjtQw">
-  <img loading="lazy" class="alignnone wp-image-3931 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8868276b037.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8868276b037.png?x-oss-process=image/format,webp" alt="" width="292" height="271" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8868276b037.png?x-oss-process=image/format,webp 418w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8868276b037.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_278/format,webp 300w" sizes="(max-width: 292px) 100vw, 292px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3930 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867f379b5d.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867f379b5d.png?x-oss-process=image/format,webp" alt="" width="464" height="414" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867f379b5d.png?x-oss-process=image/format,webp 718w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867f379b5d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_267/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867f379b5d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_673,h_600/format,webp 673w" sizes="(max-width: 464px) 100vw, 464px" />
+
+
+  <img loading="lazy" class="alignnone wp-image-3931 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8868276b037.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8868276b037.png?x-oss-process=image/format,webp" alt="" width="292" height="271" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8868276b037.png?x-oss-process=image/format,webp 418w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8868276b037.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_278/format,webp 300w" sizes="(max-width: 292px) 100vw, 292px" />
 
 3. 新发现的，可以打开animation面板，chrome会记录你操作的每个动画，这个是动画检查器，[文档在这里][1]
 
@@ -193,13 +189,11 @@ PS：由于测试环境有限，如果[大家](https://www.w3cdoc.com)发现在�
 * 通过慢速播放、重播或查看动画源代码来检查动画。
 * 通过更改动画时间、延迟、持续时间或关键帧偏移修改动画。
 
-<p id="zfmyDPM">
-  <img loading="lazy" class="alignnone wp-image-3932 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c886870c5ca6.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c886870c5ca6.png?x-oss-process=image/format,webp" alt="" width="615" height="305" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c886870c5ca6.png?x-oss-process=image/format,webp 762w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c886870c5ca6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_149/format,webp 300w" sizes="(max-width: 615px) 100vw, 615px" />
-</p>
 
-<p id="UqpXPJA">
-  <img loading="lazy" class="alignnone wp-image-3933 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png?x-oss-process=image/format,webp" alt="" width="846" height="532" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png?x-oss-process=image/format,webp 1122w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_189/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_483/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_503/format,webp 800w" sizes="(max-width: 846px) 100vw, 846px" />
-</p>
+  <img loading="lazy" class="alignnone wp-image-3932 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c886870c5ca6.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c886870c5ca6.png?x-oss-process=image/format,webp" alt="" width="615" height="305" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c886870c5ca6.png?x-oss-process=image/format,webp 762w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c886870c5ca6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_149/format,webp 300w" sizes="(max-width: 615px) 100vw, 615px" />
+
+
+  <img loading="lazy" class="alignnone wp-image-3933 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png?x-oss-process=image/format,webp" alt="" width="846" height="532" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png?x-oss-process=image/format,webp 1122w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_189/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_483/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_503/format,webp 800w" sizes="(max-width: 846px) 100vw, 846px" />
 
 4. 参考[这里][2]介绍层的创建，最后两个兄弟节点，z-index高的，可能会被[浏览器](https://www.w3cdoc.com)也自动识别成复合层来处理
 

@@ -3,8 +3,6 @@ title: JavaScript事件流
 
 
 
-
-
 ---
 # 0.DOM级别与DOM事件 {#articleHeader1}
 
@@ -14,9 +12,8 @@ title: JavaScript事件流
 
 如下图所示：
 
-<p id="lsbIbbB">
-  <img loading="lazy" width="800" height="363" class="alignnone size-full wp-image-3695 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c85a9850.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c85a9850.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c85a9850.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c85a9850.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_136/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c85a9850.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_348/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
-</p>
+
+  <img loading="lazy" width="800" height="363" class="alignnone size-full wp-image-3695 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c85a9850.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c85a9850.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c85a9850.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c85a9850.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_136/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c85a9850.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_348/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
 
 其中1级DOM标准中并没有定义事件相关的内容，所以没有所谓的1级DOM事件模型。
 
@@ -51,9 +48,8 @@ DOM2级事件规定的事件流包括三个阶段：
 （1）事件捕获阶段（2）处于目标阶段（3）事件冒泡阶段。  
 下面图片来自：<a href="https://www.w3.org/TR/DOM-Level-3-Events/#event-flow" target="_blank" rel="nofollow noopener noreferrer">https://www.w3.org/TR/DOM-Lev&#8230;</a>
 
-<p id="JxuvWaJ">
-  <img loading="lazy" width="800" height="678" class="alignnone size-full wp-image-3696 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_254/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_651/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_708,h_600/format,webp 708w" sizes="(max-width: 800px) 100vw, 800px" />
-</p>
+
+  <img loading="lazy" width="800" height="678" class="alignnone size-full wp-image-3696 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_254/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_651/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_708,h_600/format,webp 708w" sizes="(max-width: 800px) 100vw, 800px" />
 
 &nbsp;
 
@@ -86,9 +82,8 @@ DOM2级事件规定的事件流包括三个阶段：
 
 &nbsp;
 
-<p id="IwXYIhD">
-  <img loading="lazy" width="800" height="664" class="alignnone size-full wp-image-3697 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_249/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_637/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png?x-oss-process=image/quality,q_50/resize,m_fill,w_723,h_600/format,webp 723w" sizes="(max-width: 800px) 100vw, 800px" />
-</p>
+
+  <img loading="lazy" width="800" height="664" class="alignnone size-full wp-image-3697 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_249/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_637/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png?x-oss-process=image/quality,q_50/resize,m_fill,w_723,h_600/format,webp 723w" sizes="(max-width: 800px) 100vw, 800px" />
 
 &nbsp;
 
@@ -96,9 +91,8 @@ DOM2级事件规定的事件流包括三个阶段：
 
 &nbsp;
 
-<p id="XXsgdnO">
-  <img loading="lazy" width="800" height="452" class="alignnone size-full wp-image-3698 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cb39d74b.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cb39d74b.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cb39d74b.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cb39d74b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_170/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cb39d74b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_434/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
-</p>
+
+  <img loading="lazy" width="800" height="452" class="alignnone size-full wp-image-3698 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cb39d74b.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cb39d74b.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cb39d74b.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cb39d74b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_170/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cb39d74b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_434/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
 
 &nbsp;
 
@@ -304,9 +298,8 @@ removeHandler()&#8211;这个方法就是移除使用addHandler添加的事件。
 1.HTML DOM Event 对象：<a href="http://www.w3school.com.cn/jsref/dom_obj_event.asp" target="_blank" rel="nofollow noopener noreferrer">http://www.w3school.com.cn/js&#8230;</a>  
 2.详细介绍请查看：<a href="http://www.jb51.net/article/99099.htm" target="_blank" rel="nofollow noopener noreferrer">http://www.jb51.net/article/9&#8230;</a>
 
-<p id="weMziXw">
-  <img loading="lazy" width="800" height="579" class="alignnone size-full wp-image-3699 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789ccbca780.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789ccbca780.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789ccbca780.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789ccbca780.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_217/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789ccbca780.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_556/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
-</p>
+
+  <img loading="lazy" width="800" height="579" class="alignnone size-full wp-image-3699 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789ccbca780.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789ccbca780.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789ccbca780.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789ccbca780.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_217/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789ccbca780.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_556/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
 
 &nbsp;
 
@@ -408,9 +401,8 @@ stopPropagation()也是，所以需要设置cancelBubble，cancelBubble是IE事�
 
 &nbsp;
 
-<p id="IjkzKiB">
-  <img loading="lazy" width="800" height="497" class="alignnone size-full wp-image-3700 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cdc0ae3a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cdc0ae3a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cdc0ae3a.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cdc0ae3a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_186/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cdc0ae3a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_477/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
-</p>
+
+  <img loading="lazy" width="800" height="497" class="alignnone size-full wp-image-3700 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cdc0ae3a.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cdc0ae3a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cdc0ae3a.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cdc0ae3a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_186/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cdc0ae3a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_477/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
 
 &nbsp;
 

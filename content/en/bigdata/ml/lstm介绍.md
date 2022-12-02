@@ -20,9 +20,8 @@ title: LSTM介绍
 
 # 2.类属
 
-<p id="blyjhJX">
-  <img loading="lazy" width="960" height="589" class="alignnone size-full wp-image-4571 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png?x-oss-process=image/format,webp 960w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_184/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_471/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_491/format,webp 800w" sizes="(max-width: 960px) 100vw, 960px" /><strong> </strong>
-</p>
+
+  <img loading="lazy" width="960" height="589" class="alignnone size-full wp-image-4571 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png?x-oss-process=image/format,webp 960w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_184/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_471/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_491/format,webp 800w" sizes="(max-width: 960px) 100vw, 960px" /> 
 
 **LSTM是RNN的一种变种，属于反馈神经网络的范畴。**
 
@@ -103,51 +102,51 @@ LSTM网络随后被证明比传统的RNNs更加有效，尤其当每一个时间
   <table class="table table-bordered" border="1" width="667" cellspacing="0" cellpadding="0">
     <tr>
       <td valign="bottom">
-        <p align="center">
-          <strong>Task</strong>
-        </p>
+        
+         Task
+        
       </td>
 
       <td valign="bottom">
-        <p align="center">
+        
           classification
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           sentiment analysis
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           machine translation
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           dialog
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           language generation
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           QA
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
-          <strong>total</strong>
-        </p>
+        
+         total
+        
       </td>
     </tr>
     
@@ -159,101 +158,101 @@ LSTM网络随后被证明比传统的RNNs更加有效，尤其当每一个时间
     
     <tr>
       <td valign="bottom">
-        <p align="center">
-          <strong>LSTM</strong>
-        </p>
+        
+         LSTM
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           1900
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           148
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           616
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           373
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           27
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           59
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           3690
-        </p>
+        
       </td>
     </tr>
     
     <tr>
       <td valign="bottom">
-        <p align="center">
-          <strong>CNN</strong>
-        </p>
+        
+         CNN
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           5060
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           179
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           247
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           304
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           30
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           100
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           5670
-        </p>
+        
       </td>
     </tr>
     
@@ -265,98 +264,98 @@ LSTM网络随后被证明比传统的RNNs更加有效，尤其当每一个时间
     
     <tr>
       <td valign="bottom">
-        <p align="center">
-          <strong>LSTM</strong>
-        </p>
+        
+         LSTM
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           56
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
-        </p>
+        
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           1
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
-        </p>
+        
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           6
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           2
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           248
-        </p>
+        
       </td>
     </tr>
     
     <tr>
       <td valign="bottom">
-        <p align="center">
-          <strong>CNN</strong>
-        </p>
+        
+         CNN
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           373
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           2
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           13
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
-        </p>
+        
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           25
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           2
-        </p>
+        
       </td>
       
       <td valign="bottom">
-        <p align="center">
+        
           1064
-        </p>
+        
       </td>
     </tr>
   </table>
@@ -376,10 +375,9 @@ LSTM是RNN的一个优秀的变种模型，继承了大部分RNN模型的特性�
 
 # 6.案例
 
-<p class="QuestionHeader-title">
-  <a href="https://www.zhihu.com/question/34681168">CNN(卷积神经网络)、RNN(循环神经网络)、DNN(深度神经网络)</a>
-</p>
 
-<p class="preview-title ">
+  <a href="https://www.zhihu.com/question/34681168">CNN(卷积神经网络)、RNN(循环神经网络)、DNN(深度神经网络)</a>
+
+
   <a href="https://www.altumintelligence.com/articles/a/Time-Series-Prediction-Using-LSTM-Deep-Neural-Networks">案例剖析：利用LSTM深层神经网络进行时间序列预测</a>
-</p>
+

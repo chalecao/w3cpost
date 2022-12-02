@@ -4,13 +4,10 @@ title: 基于config-component转向面向数据的编程
 
 
 
-
-
 xzh_tui_back:
   - 成功
 is_original:
   - 1
-
 
 ---
 ## 面向数据编程 {#articleHeader0}
@@ -32,15 +29,13 @@ github： <a href="https://github.com/chalecao/config-component" target="_blank
 
 例如实现下面的表单：
 
-<p id="SLbEIPp">
-  <img loading="lazy" width="342" height="296" class="alignnone size-full wp-image-5002 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d7277e93dee3.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d7277e93dee3.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d7277e93dee3.png?x-oss-process=image/format,webp 342w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d7277e93dee3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_260/format,webp 300w" sizes="(max-width: 342px) 100vw, 342px" />
-</p>
+
+  <img loading="lazy" width="342" height="296" class="alignnone size-full wp-image-5002 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d7277e93dee3.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d7277e93dee3.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d7277e93dee3.png?x-oss-process=image/format,webp 342w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d7277e93dee3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_260/format,webp 300w" sizes="(max-width: 342px) 100vw, 342px" />
 
 基于antd组件库，比较下不同的代码结构：
 
-<p id="FGhzbRT">
-  <img loading="lazy" width="1187" height="725" class="alignnone size-full wp-image-5003 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png?x-oss-process=image/format,webp 1187w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_183/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_469/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_489/format,webp 800w" sizes="(max-width: 1187px) 100vw, 1187px" />
-</p>
+
+  <img loading="lazy" width="1187" height="725" class="alignnone size-full wp-image-5003 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png?x-oss-process=image/format,webp 1187w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_183/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_469/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/09/img_5d727800b8252.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_489/format,webp 800w" sizes="(max-width: 1187px) 100vw, 1187px" />
 
 左边的图是基于ANTD正常的写法，[我们](https://www.w3cdoc.com)要写Form，要写检验规则，要写子组件等等，关键是这些逻辑是糅合在一起的。右边是基于config-component提供的ConfigForm组件做了封装，只需要提供JSON schema配置数据即可驱动你的页面，分离数据校验和UI逻辑，UI逻辑基于UIconfig，数据校验基于schema做校验。
 

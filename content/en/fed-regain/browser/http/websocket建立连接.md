@@ -3,11 +3,9 @@ title: websocket建立连接
 
 
 
-
 ---
-<p id="WETATVW">
-  <img loading="lazy" width="628" height="511" class="alignnone size-full wp-image-4816 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e5216e90c.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e5216e90c.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e5216e90c.png?x-oss-process=image/format,webp 628w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e5216e90c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_244/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e5216e90c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_320,h_260/format,webp 320w" sizes="(max-width: 628px) 100vw, 628px" />
-</p>
+
+  <img loading="lazy" width="628" height="511" class="alignnone size-full wp-image-4816 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e5216e90c.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e5216e90c.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e5216e90c.png?x-oss-process=image/format,webp 628w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e5216e90c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_244/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e5216e90c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_320,h_260/format,webp 320w" sizes="(max-width: 628px) 100vw, 628px" />
 
 WebSocket是HTML5新增的协议，它的目的是在[浏览器](https://www.w3cdoc.com)和服务器之间建立一个不受限的双向通信的通道，比如说，服务器可以在任意时刻发送消息给[浏览器](https://www.w3cdoc.com)。
 
@@ -59,9 +57,8 @@ Sec-WebSocket-Accept: server-random-string
 
 建立连接之后可以在chrome开发者工具网络栏目下的ws中查看websocket消息。可以看到有很多帧的消息，这些消息都是复用一个http连接。
 
-<p id="IFjBgMI">
-  <img loading="lazy" width="1468" height="652" class="alignnone size-full wp-image-4818 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e55836634.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e55836634.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e55836634.png?x-oss-process=image/format,webp 1468w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e55836634.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_133/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e55836634.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_341/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e55836634.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_355/format,webp 800w" sizes="(max-width: 1468px) 100vw, 1468px" />
-</p>
+
+  <img loading="lazy" width="1468" height="652" class="alignnone size-full wp-image-4818 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e55836634.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e55836634.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e55836634.png?x-oss-process=image/format,webp 1468w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e55836634.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_133/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e55836634.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_341/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d31e55836634.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_355/format,webp 800w" sizes="(max-width: 1468px) 100vw, 1468px" />
 
 为什么WebSocket连接可以实现全双工通信而HTTP连接不行呢？实际上HTTP协议是建立在TCP协议之上的，TCP协议本身就实现了全双工通信，但是HTTP协议的请求－应答机制限制了全双工通信。WebSocket连接建立以后，其实只是简单规定了一下：接下来，咱们通信就不使用HTTP协议了，直接互相发数据吧。
 

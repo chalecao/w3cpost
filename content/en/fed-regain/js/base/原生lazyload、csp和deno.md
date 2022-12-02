@@ -43,9 +43,8 @@ title: 原生lazyload、csp和deno
 * 随着站点的复杂度与日俱增，JavaScript 代码的冷启动时间也在逐步增加。为了压缩 JavaScript 冷启动过程中的编译与字节码生成时间，TC39 提出了 [Binary AST 提案][30]，旨在让网站可以直接交付 AST 代码到[浏览器](https://www.w3cdoc.com)端。Cloudflare 近期开源了他们生成 Binary AST 的 [binjs-ref][31] 方案，可在 Firefox Nightly 中打开相应的配置进行测试，官方测试中可降低多达 97% 的冷启动时间。[&#x1f517;][32]
 * Node.js 12.3.0 发布，实验性支持了 WebAssembly 模块，TLSSocket 暴露了 `keylog` 事件，支持了 `Readable.from` 以将异步迭代器转化为 stream。[&#x1f517;][33]
 
-<p id="GLVFPQY">
-  <img loading="lazy" width="494" height="241" class="alignnone size-full wp-image-4876 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d40f1c8e037a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d40f1c8e037a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d40f1c8e037a.png?x-oss-process=image/format,webp 494w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d40f1c8e037a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_146/format,webp 300w" sizes="(max-width: 494px) 100vw, 494px" />
-</p>
+
+  <img loading="lazy" width="494" height="241" class="alignnone size-full wp-image-4876 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d40f1c8e037a.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d40f1c8e037a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d40f1c8e037a.png?x-oss-process=image/format,webp 494w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d40f1c8e037a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_146/format,webp 300w" sizes="(max-width: 494px) 100vw, 494px" />
 
 > 点评：猜猜上面代码会打印什么？
 

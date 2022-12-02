@@ -11,7 +11,7 @@ There are exists two types of comments: single line comments and multi-line comm
 <!DOCTYPE HTML>
 <html>
   <body>
-    <p>Javascript comments: //</p>
+    Javascript comments: //
     <script>
       // console.log('Welcome to w3Docs!');
     </script>
@@ -27,7 +27,7 @@ As concerns multi-line comments, there are long segments of code that we used to
 <!DOCTYPE HTML>
 <html>
   <body>
-    <p>Javascript comments: /* */</p>
+    Javascript comments: /* */
     <script>
       /*  console.log('Welcome to w3Docs!');
             alert("Welcome to W3Docs");    */

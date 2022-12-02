@@ -31,11 +31,11 @@ After opening your preferred console (like Node.js), you just need to attach a s
 <!DOCTYPE HTML>
 <html>
   <body>
-    <p>Before the script...</p>
+    Before the script...
     <script>
       alert('Hello, world!');
     </script>
-    <p>...After the script.</p>
+    ...After the script.
   </body>
 </html>
 ```
@@ -86,11 +86,11 @@ If src is set, the script content will be ignored. It means that a single script
 <!DOCTYPE HTML>
 <html>
   <body>
-    <p>Before the script...</p>
+    Before the script...
     <script src="w3cdocScript.js">
       alert("Hello, world!"); // the content is ignored, because src is set
     </script>
-    <p>...After the script.</p>
+    ...After the script.
   </body>
 </html>
 ```
@@ -100,12 +100,12 @@ We need to choose either an external script or a regular script with code. Only 
 <!DOCTYPE HTML>
 <html>
   <body>
-    <p>Before the script...</p>
+    Before the script...
     <script src="w3cdocScript.js"></script>
     <script>
       alert("Hello, world!");
     </script>
-    <p>...After the script.</p>
+    ...After the script.
   </body>
 </html>
 ```
@@ -127,7 +127,7 @@ Then type script. The code should look like this:
     <link href="../_css/style.css" rel="stylesheet">
   </head>
   <body>
-    <p>Before the script...</p>
+    Before the script...
     <script>
       alert('Welcome to w3cdoc');
     </script>
@@ -152,14 +152,14 @@ Below Writing to the document window, type this code:
     <link href="../_css/style.css" rel="stylesheet">
   </head>
   <body>
-    <p>Before the script...</p>
+    Before the script...
     <script>
-      document.write('<p>Welcome to w3cdoc!</p>');
+      document.write('Welcome to w3cdoc!');
     </script>
   </body>
 </html>
 ```
-Document.write() is a JavaScript command like the alert() function, it’s writes out whatever you place between the opening and closing parentheses. In this example the HTML <p>Hello world!<p> is added to the page: a paragraph tag and two words.
+Document.write() is a JavaScript command like the alert() function, it’s writes out whatever you place between the opening and closing parentheses. In this example the HTML Hello world! is added to the page: a paragraph tag and two words.
 
 Now save the page and open it in a web browser.
 As you see the page opens and “Welcome to w3cdoc” appears below the headline.
@@ -175,7 +175,7 @@ Many web developers prefer using Google’s Chrome browser. Its DevTools attribu
     <link href="../_css/style.css" rel="stylesheet">
   </head>
   <body>
-    <p>Before the script...</p>
+    Before the script...
     <script>
       alert('Welcome to w3cdoc');
     </script>

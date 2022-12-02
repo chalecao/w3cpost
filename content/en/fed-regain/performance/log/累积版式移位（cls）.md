@@ -4,9 +4,9 @@ title: 累积版式移位（CLS）
 ---
 <div class="w-aside w-aside--note">
   <blockquote>
-    <p>
+    
       累积版式移位（CLS）是衡量用户<a href="https://web.dev/user-centric-performance-metrics/#types-of-metrics">视觉稳定性的</a>一项重要的以用户为中心的度量标准，因为它有助于量化用户经历意外的版式移位的频率-较低的CLS有助于确保页面 <a href="https://web.dev/user-centric-performance-metrics/#questions">令人愉悦</a>。
-    </p>
+    
   </blockquote>
 </div>
 
@@ -16,7 +16,6 @@ title: 累积版式移位（CLS）
 
 <div style="width: 640px;" class="wp-video">
   <!--[if lt IE 9]><![endif]--><video class="wp-video-shortcode" id="video-5903-1" width="640" height="496" preload="metadata" controls="controls"><source type="video/webm" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/layout-instability2.webm?_=1" />
-  
   <a href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/layout-instability2.webm">https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/layout-instability2.webm</a></video>
 </div>
 
@@ -32,18 +31,15 @@ CLS会测量在页面的整个生命周期中发生的每个 _意外的版式�
 
 甲_布局移_发生的任何时间的可见元素改变其从一个所再现的帧到下一个位置。（有关如何计算各个[版式移位得分的][1]详细信息，请参见下文。）<picture><source srcset="../vitals/cls_8x2.svg" media="(min-width: 640px)" /></picture>
 
-<p id="KySgUDR">
-  <img loading="lazy" class="alignnone wp-image-5906 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/format,webp" alt="" width="725" height="182" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/format,webp 1716w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_75/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_200/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_192/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_385/format,webp 1536w" sizes="(max-width: 725px) 100vw, 725px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-5906 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/format,webp" alt="" width="725" height="182" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/format,webp 1716w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_75/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_200/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_192/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f78621803a51.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_385/format,webp 1536w" sizes="(max-width: 725px) 100vw, 725px" />
 
 ### 良好的CLS分数是多少？<a class="w-headline-link" href="https://web.dev/cls/#what-is-a-good-cls-score" aria-hidden="true">＃</a> {#what-is-a-good-cls-score}
 
 为了提供良好的用户体验，网站应努力使CLS分数小于**0.1**。为了确保您达到大多数用户的这一目标，衡量移动设备和台式机设备的页面加载量的**第75个百分位**是一个很好的衡量标准。
 
 <div class="w-aside w-aside--note">
-  <p>
-    要了解有关此建议背后的研究和方法的更多信息，请参阅：<a href="https://web.dev/defining-core-web-vitals-thresholds/">定义核心Web Vitals指标阈值</a>
-  </p>
+ 要了解有关此建议背后的研究和方法的更多信息，请参阅：<a href="https://web.dev/defining-core-web-vitals-thresholds/">定义核心Web Vitals指标阈值</a>
 </div>
 
 ## 什么是位移？ {#layout-shifts-in-detail}
@@ -62,9 +58,8 @@ CLS会测量在页面的整个生命周期中发生的每个 _意外的版式�
 
 前一帧 _和_当前帧的所有_不稳定元素_的可见区域的_并集_（占视口总面积的_一部分）_是当前帧的_影响分数_。
 
-<p id="xVFjyhF">
-  <img loading="lazy" width="1600" height="1200" class="alignnone size-full wp-image-5907 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862bc7c74a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862bc7c74a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862bc7c74a.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862bc7c74a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_225/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862bc7c74a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_600/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862bc7c74a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_576/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862bc7c74a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_1152/format,webp 1536w" sizes="(max-width: 1600px) 100vw, 1600px" />
-</p>
+
+  <img loading="lazy" width="1600" height="1200" class="alignnone size-full wp-image-5907 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862bc7c74a.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862bc7c74a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862bc7c74a.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862bc7c74a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_225/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862bc7c74a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_600/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862bc7c74a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_576/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862bc7c74a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_1152/format,webp 1536w" sizes="(max-width: 1600px) 100vw, 1600px" />
 
 在上图中，有一个元素在一帧中占据了视口的一半。然后，在下一帧中，元素下移视口高度的25％。红色的虚线矩形表示两个帧中元素的可见区域的并集，在这种情况下，其为总视口的75％，因此其 _影响分数_为`0.75`。
 
@@ -72,9 +67,8 @@ CLS会测量在页面的整个生命周期中发生的每个 _意外的版式�
 
 布局移位分数方程的另一部分测量不稳定元素相对于视口移动的距离。的_距离分数_ 是最大的距离的任何_不稳定的元件_在帧已经移动（水平或垂直任一）通过视域的最大尺寸（宽度或高度，取较大值）分开。
 
-<p id="dsLkBua">
-  <img loading="lazy" width="1600" height="1200" class="alignnone size-full wp-image-5908 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862ed081e5.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862ed081e5.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862ed081e5.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862ed081e5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_225/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862ed081e5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_600/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862ed081e5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_576/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862ed081e5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_1152/format,webp 1536w" sizes="(max-width: 1600px) 100vw, 1600px" />
-</p>
+
+  <img loading="lazy" width="1600" height="1200" class="alignnone size-full wp-image-5908 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862ed081e5.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862ed081e5.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862ed081e5.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862ed081e5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_225/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862ed081e5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_600/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862ed081e5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_576/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f7862ed081e5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_1152/format,webp 1536w" sizes="(max-width: 1600px) 100vw, 1600px" />
 
 上面的示例中，最大视口尺寸是高度，不稳定元素已移动了视口高度的25％，这使得 _距离分数_为0.25。
 
@@ -85,9 +79,8 @@ CLS会测量在页面的整个生命周期中发生的每个 _意外的版式�
 
 下一个示例说明将内容添加到现有元素如何影响布局平移分数：
 
-<p id="ligCrmD">
-  <img loading="lazy" width="1600" height="1200" class="alignnone size-full wp-image-5909 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f786309eef82.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f786309eef82.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f786309eef82.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f786309eef82.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_225/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f786309eef82.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_600/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f786309eef82.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_576/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f786309eef82.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_1152/format,webp 1536w" sizes="(max-width: 1600px) 100vw, 1600px" />
-</p>
+
+  <img loading="lazy" width="1600" height="1200" class="alignnone size-full wp-image-5909 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f786309eef82.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f786309eef82.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f786309eef82.png?x-oss-process=image/format,webp 1600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f786309eef82.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_225/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f786309eef82.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_600/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f786309eef82.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_576/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/img_5f786309eef82.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_1152/format,webp 1536w" sizes="(max-width: 1600px) 100vw, 1600px" />
 
 在此示例中，灰色框会更改大小，但其开始位置不会更改，因此它不是_不稳定的元素_。
 

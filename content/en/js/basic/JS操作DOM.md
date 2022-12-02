@@ -42,10 +42,11 @@ Let’s imagine that HTML document is just nested set of boxes . Tags like <body
   </head>
   <body>
     <h1>W3Docs Page</h1>
-    <h2>Welcome to W3Docs page</h2>
-    <p>
+    <h2>Welcome to W3Docs page
+
+    
       <a href="https://www.w3docs.com/">Link to w3docs</a>
-    </p>
+    
   </body>
 </html>
 ```
@@ -69,16 +70,16 @@ In this example you can see how you need to get the parent element of an h1.
   </head>
   <body>
     let parent = document.getElementById(“head”).parentNode
-    <p>Javascript lets you work with css using <strong>getElementById(...)</strong> function . </p>
+    Javascript lets you work with css usinggetElementById(...) function . 
     <ul>
-      <li>Create styles</li>
-      <li>Change styles</li>
-      <li>Delete styles</li>
-      <li>Add css classes</li>
-      <li>Remove css classes</li>
-      <li> etc... </li>
-    </ul>
-    <p><strong>Here is a simple example</strong></p>
+      Create styles
+      Change styles
+      Delete styles
+      Add css classes
+      Remove css classes
+       etc... 
+    
+   Here is a simple example
   </body>
 </html>
 ```
@@ -137,10 +138,11 @@ For finding a specific single node, you can give it an id attribute and use docu
   </head>
   <body>
     <h1>W3Docs Page</h1>
-    <h2>Welcome to W3Docs page</h2>
-    <p> Click in link
+    <h2>Welcome to W3Docs page
+
+     Click in link
       <a id='title' href="https://www.w3docs.com/">Link to w3docs</a>
-    </p>
+    
     <script>
       let element = document.getElementById(`title`);
       alert(element.href);
@@ -212,7 +214,7 @@ Example of the setAttribute() method:
   </head>
   <body>
     <button id="w3Button" type="button" onclick="clickFunction()">Click on button</button>
-    <p id="w3Text">Welcome to W3Docs!</p>
+    Welcome to W3Docs!
     <script>
       function clickFunction() {
         // Select element and set attribute
@@ -236,8 +238,10 @@ Example of the getAttribute() method:
     </style>
   </head>
   <body>
-    <h2 class="text-class">Welcome to W3Docs!</h2>
-    <h2 id="text"></h2>
+    <h2 class="text-class">Welcome to W3Docs!
+
+    <h2 id="text">
+
     <button id="w3Button" type="button" onclick="clickFunction()">Click on button</button>
     <script>
       function clickFunction() {

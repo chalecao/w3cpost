@@ -2,13 +2,12 @@
 title: var、let、const及其作用域
 
 
-
 ---
 <table dir="ltr" border="0">
   <tr>
     <td>
       <h1>
-        <strong>一、var命令</strong>
+       一、var命令
       </h1>
     </td>
   </tr>
@@ -34,7 +33,7 @@ func();</pre>
 
 _在node环境执行上述代码，结果为：_
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609093424918-1010493713.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609093424918-1010493713.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609093424918-1010493713.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609093424918-1010493713.png?x-oss-process=image/format,webp" alt="" />
 
 之所以为’undefined’，原因就在于‘变量提升’，在进入func函数时，将所有通过var声明的变量置前并赋予undefined的值。
 
@@ -56,13 +55,13 @@ _如下：_
 
 _在node环境下，执行代码：_
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609093642808-1831562181.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609093642808-1831562181.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609093642808-1831562181.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609093642808-1831562181.png?x-oss-process=image/format,webp" alt="" />
 
 <table dir="ltr" border="0">
   <tr>
     <td>
       <h1>
-        <strong>二、let命令</strong>
+       二、let命令
       </h1>
     </td>
   </tr>
@@ -84,9 +83,8 @@ _如下：_
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/copycode.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/copycode.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>'use strict';
 function func(args){
     if(true){
@@ -103,7 +101,7 @@ func();</pre>
 
 _在node环境中执行上述代码，结果如下：_
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609093903199-619142117.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609093903199-619142117.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609093903199-619142117.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609093903199-619142117.png?x-oss-process=image/format,webp" alt="" />
 
 通过demo，[我们](https://www.w3cdoc.com)可以清楚的看见，在第二次（if外）打印i值时，是报错的。
 
@@ -125,7 +123,7 @@ func();</pre>
 
 _在node环境下执行上述代码，结果如下：_
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094055105-350268922.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094055105-350268922.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094055105-350268922.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094055105-350268922.png?x-oss-process=image/format,webp" alt="" />
 
 在let声明变量前，使用该变量，它是会报错的，而不是像var那样会‘变量提升’。
 
@@ -146,7 +144,7 @@ func();</pre>
 
 _在node环境下执行上述代码，结果如下：_
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094235886-680485743.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094235886-680485743.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094235886-680485743.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094235886-680485743.png?x-oss-process=image/format,webp" alt="" />
 
 如果let声明的变量没有变量提升，应该打印’1’（func函数外的test）；而他却报错，说明它是提升了的，只是规定了不能在其声明之前使用而已。[我们](https://www.w3cdoc.com)称这特性叫“暂时性死区（temporal dead zone）”。且这一特性，仅对遵循‘块级作用域’的命令有效（let、const）。
 
@@ -209,7 +207,7 @@ arr[1]();</pre>
 
 在node环境下，执行上述代码结果如下：
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094612965-1826541894.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094612965-1826541894.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094612965-1826541894.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094612965-1826541894.png?x-oss-process=image/format,webp" alt="" />
 
 <table dir="ltr" border="0">
   <tr>
@@ -241,7 +239,7 @@ func();</pre>
 
 _在node环境下，执行上述代码结果如下：_
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094819621-537547322.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094819621-537547322.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094819621-537547322.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/887360-20160609094819621-537547322.png?x-oss-process=image/format,webp" alt="" />
 
 正确的方式为，声明就得赋值。
 

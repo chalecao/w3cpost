@@ -3,7 +3,7 @@ title: 搭建本地python和TensorFlow环境
 weight: 6
 
 ---
-<img loading="lazy" class="alignnone wp-image-2727 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf4b44ddeb2c.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf4b44ddeb2c.png?x-oss-process=image/format,webp" alt="" width="477" height="318" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf4b44ddeb2c.png?x-oss-process=image/format,webp 621w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf4b44ddeb2c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_200/format,webp 300w" sizes="(max-width: 477px) 100vw, 477px" />
+<img loading="lazy" class="alignnone wp-image-2727 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf4b44ddeb2c.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf4b44ddeb2c.png?x-oss-process=image/format,webp" alt="" width="477" height="318" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf4b44ddeb2c.png?x-oss-process=image/format,webp 621w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf4b44ddeb2c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_200/format,webp 300w" sizes="(max-width: 477px) 100vw, 477px" />
 
 人工智能的时代已经来了，再不学就晚了。说起来有点惭愧，我研究生主修方向是模式识别与人工智能，【捂脸哭】！
 
@@ -145,15 +145,13 @@ PATH=$PATH:/Users/chalecao/Library/Python/2.7/bin
 
 然后[浏览器](https://www.w3cdoc.com)会打开网页，选择新建->python2, 即可：
 
-<p id="EnLXfQI">
-  <img loading="lazy" class="alignnone wp-image-3221 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png?x-oss-process=image/format,webp" alt="" width="431" height="385" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png?x-oss-process=image/format,webp 962w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_268/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_687/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_671,h_600/format,webp 671w" sizes="(max-width: 431px) 100vw, 431px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3221 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png?x-oss-process=image/format,webp" alt="" width="431" height="385" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png?x-oss-process=image/format,webp 962w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_268/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_687/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf26192f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_671,h_600/format,webp 671w" sizes="(max-width: 431px) 100vw, 431px" />
 
 然后输入你的代码点运行就好了。
 
-<p id="mMEmyWT">
-  <img loading="lazy" class="alignnone wp-image-3222 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf7ce0658.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf7ce0658.png?x-oss-process=image/format,webp" alt="" width="627" height="406" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf7ce0658.png?x-oss-process=image/format,webp 2432w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf7ce0658.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_194/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf7ce0658.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_497/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf7ce0658.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_518/format,webp 800w" sizes="(max-width: 627px) 100vw, 627px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3222 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf7ce0658.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf7ce0658.png?x-oss-process=image/format,webp" alt="" width="627" height="406" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf7ce0658.png?x-oss-process=image/format,webp 2432w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf7ce0658.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_194/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf7ce0658.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_497/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c09cf7ce0658.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_518/format,webp 800w" sizes="(max-width: 627px) 100vw, 627px" />
 
 ## 一些问题
 

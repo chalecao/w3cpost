@@ -5,11 +5,9 @@ title: webpack编译代码原理介绍
 <div class="article fmt article__content" data-id="1190000017890529" data-license="cc">
   <h2 id="articleHeader1">
     0 配置文件
-  </h2>
   
-  <p>
-    首先简单看一下webpack配置文件(webpack.config.js):
-  </p>
+
+ 首先简单看一下webpack配置文件(webpack.config.js):
   
   <pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> path = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'path'&lt;/span>);
 &lt;span class="hljs-keyword">var&lt;/span> node_modules = path.resolve(__dirname, &lt;span class="hljs-string">'node_modules'&lt;/span>);
@@ -53,44 +51,36 @@ title: webpack编译代码原理介绍
     &lt;span class="hljs-keyword">new&lt;/span> webpack.HotModuleReplacementPlugin()
   ]
 };</code></pre>
-  
   <h2 id="articleHeader2">
     1. 工作原理概述
-  </h2>
   
+
   <h3 id="articleHeader3">
     1.1 基本概念
   </h3>
-  
-  <p>
-    在了解webpack原理之前，需要掌握以下几个核心概念
-  </p>
+ 在了解webpack原理之前，需要掌握以下几个核心概念
   
   <ul>
-    <li>
+    
       Entry: 入口，webpack构建第一步从entry开始
-    </li>
-    <li>
+    
+    
       module:模块，在webpack中一个模块对应一个文件。webpack会从entry开始，递归找出所有依赖的模块
-    </li>
-    <li>
+    
+    
       Chunk：代码块，一个chunk由多个模块组合而成，用于代码合并与分割
-    </li>
-    <li>
+    
+    
       Loader: 模块转换器，用于将模块的原内容按照需求转换成新内容
-    </li>
-    <li>
+    
+    
       Plugin:拓展插件，在webpack构建流程中的特定时机会广播对应的事件，插件可以监听这些事件的发生，在特定的时机做对应的事情
-    </li>
-  </ul>
+    
   
   <h3 id="articleHeader4">
     1.2 流程概述
   </h3>
-  
-  <p>
-    webpack从启动到结束依次执行以下操作：
-  </p>
+ webpack从启动到结束依次执行以下操作：
   
   <pre class="hljs sql"><code class="mermaid">初始化参数 &lt;span class="hljs-comment">--&gt; 开始编译 &lt;/span>
 开始编译 &lt;span class="hljs-comment">--&gt;确定入口 &lt;/span>
@@ -99,62 +89,50 @@ title: webpack编译代码原理介绍
 完成编译模块 &lt;span class="hljs-comment">--&gt; 输出资源&lt;/span>
 输出资源 &lt;span class="hljs-comment">--&gt; 输出完成&lt;/span>
 </code></pre>
-  
-  <p>
-    各个阶段执行的操作如下：
-  </p>
+ 各个阶段执行的操作如下：
   
   <ol>
-    <li>
+    
       初始化参数：从配置文件(默认webpack.config.js)和shell语句中读取与合并参数，得出最终的参数
-    </li>
-    <li>
+    
+    
       开始编译(compile)：用上一步得到的参数初始化Comiler对象，加载所有配置的插件，通过执行对象的run方法开始执行编译
-    </li>
-    <li>
+    
+    
       确定入口：根据配置中的entry找出所有的入口文件
-    </li>
-    <li>
+    
+    
       编译模块：从入口文件出发，调用所有配置的Loader对模块进行翻译,再找出该模块依赖的模块，再递归本步骤直到所有入口依赖的文件都经过处理
-    </li>
-    <li>
+    
+    
       完成编译模块：经过第四步之后，得到了每个模块被翻译之后的最终内容以及他们之间的依赖关系
-    </li>
-    <li>
+    
+    
       输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的chunk，再将每个chunk转换成一个单独的文件加入输出列表中，这是可以修改输出内容的最后机会
-    </li>
-    <li>
+    
+    
       输出完成：在确定好输出内容后，根据配置(webpack.config.js && shell)确定输出的路径和文件名，将文件的内容写入文件系统中(fs)
-    </li>
+    
   </ol>
-  
-  <p>
-    在以上过程中，webpack会在特定的时间点广播特定的事件，插件监听事件并执行相应的逻辑，并且插件可以调用webpack提供的api改变webpack的运行结果
-  </p>
+ 在以上过程中，webpack会在特定的时间点广播特定的事件，插件监听事件并执行相应的逻辑，并且插件可以调用webpack提供的api改变webpack的运行结果
   
   <h3 id="articleHeader5">
     1.3 流程细节
   </h3>
-  
-  <p>
-    webpack构建流程可分为以下三大阶段。
-  </p>
+ webpack构建流程可分为以下三大阶段。
   
   <ol>
-    <li>
+    
       初始化：启动构建，读取与合并配置参数，加载plugin,实例化Compiler
-    </li>
-    <li>
+    
+    
       编译：从Entry出发，针对每个Module串行调用对应的Loader去翻译文件中的内容，再找到该Module依赖的Module，递归的进行编译处理
-    </li>
-    <li>
+    
+    
       输出：将编译后的Module组合成Chunk,将Chunk转换成文件，输出到文件系统中
-    </li>
+    
   </ol>
-  
-  <p>
-    如果只执行一次，流程如上，但在开启监听模式下，流程如下图
-  </p>
+ 如果只执行一次，流程如上，但在开启监听模式下，流程如下图
   
   <pre class="hljs sql"><code class="mermaid">graph TD
 
@@ -163,14 +141,10 @@ title: webpack编译代码原理介绍
   输出&lt;span class="hljs-comment">--&gt;文本发生变化&lt;/span>
   文本发生变化&lt;span class="hljs-comment">--&gt;编译&lt;/span>
 </code></pre>
-  
   <h4>
     1.3.1初始化阶段
   </h4>
-  
-  <p>
-    在初始化阶段会发生的事件如下
-  </p>
+ 在初始化阶段会发生的事件如下
   
   <table>
     <tr>
@@ -253,10 +227,7 @@ title: webpack编译代码原理介绍
       </td>
     </tr>
   </table>
-  
-  <p>
-    #### 1.3.2 编译阶段 (事件名全为小写)
-  </p>
+ #### 1.3.2 编译阶段 (事件名全为小写)
   
   <table>
     <tr>
@@ -347,10 +318,7 @@ title: webpack编译代码原理介绍
       </td>
     </tr>
   </table>
-  
-  <p>
-    在编译阶段最重要的事件是compilation,因为在compilation阶段调用了Loader,完成了每个模块的==转换==操作。在compilation阶段又会发生很多小事件，如下表
-  </p>
+ 在编译阶段最重要的事件是compilation,因为在compilation阶段调用了Loader,完成了每个模块的==转换==操作。在compilation阶段又会发生很多小事件，如下表
   
   <table>
     <tr>
@@ -411,14 +379,10 @@ title: webpack编译代码原理介绍
       </td>
     </tr>
   </table>
-  
   <h4>
     2.3 输出阶段
   </h4>
-  
-  <p>
-    输出阶段会发生的事件及解释:
-  </p>
+ 输出阶段会发生的事件及解释:
   
   <table>
     <tr>
@@ -481,10 +445,7 @@ title: webpack编译代码原理介绍
       </td>
     </tr>
   </table>
-  
-  <p>
-    在输出阶段已经得到了各个模块经过转化后的结果和其依赖关系,并且将相应的模块组合在一起形成一个个chunk.在输出阶段根据chunk的类型,使用对应的模板生成最终要输出的文件内容. |
-  </p>
+ 在输出阶段已经得到了各个模块经过转化后的结果和其依赖关系,并且将相应的模块组合在一起形成一个个chunk.在输出阶段根据chunk的类型,使用对应的模板生成最终要输出的文件内容. |
   
   <pre class="javascript hljs"><code class="js">&lt;span class="hljs-comment">//以下代码用来包含webpack运行过程中的每个阶段&lt;/span>
 &lt;span class="hljs-comment">//file:webpack.config.js&lt;/span>
@@ -618,7 +579,6 @@ title: webpack编译代码原理介绍
 
   }
 }</code></pre>
-  
   <pre class="shell hljs"><code class="shell">&lt;span class="hljs-meta">#&lt;/span>&lt;span class="bash">在目录下执行&lt;/span>
 webpack
 &lt;span class="hljs-meta">#&lt;/span>&lt;span class="bash">输出以下内容&lt;/span>
@@ -655,26 +615,18 @@ Time: 95ms
 bundle.js  3.03 kB       0  [emitted]  main
    [0] ./main.js 44 bytes {0} [built]
    [1] ./show.js 114 bytes {0} [built]</code></pre>
-  
   <h2 id="articleHeader6">
     2 输出文件分析
-  </h2>
   
+
   <h3 id="articleHeader7">
     2.1 举个栗子
   </h3>
+ 下面通过 Webpack 构建一个采用 CommonJS 模块化编写的项目，该项目有个网页会通过 JavaScript 在网页中显示 <code>Hello,Webpack</code>。
   
-  <p>
-    下面通过 Webpack 构建一个采用 CommonJS 模块化编写的项目，该项目有个网页会通过 JavaScript 在网页中显示 <code>Hello,Webpack</code>。
-  </p>
+ 运行构建前，先把要完成该功能的最基础的 JavaScript 文件和 HTML 建立好，需要如下文件：
   
-  <p>
-    运行构建前，先把要完成该功能的最基础的 JavaScript 文件和 HTML 建立好，需要如下文件：
-  </p>
-  
-  <p>
-    页面入口文件 <code>index.html</code>
-  </p>
+ 页面入口文件 <code>index.html</code>
   
   <pre class="xml hljs"><code class="html">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">html&lt;/span>&gt;&lt;/span>
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">head&lt;/span>&gt;&lt;/span>
@@ -686,10 +638,7 @@ bundle.js  3.03 kB       0  [emitted]  main
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">"./dist/bundle.js"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
 &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">body&lt;/span>&gt;&lt;/span>
 &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">html&lt;/span>&gt;&lt;/span></code></pre>
-  
-  <p>
-    JS 工具函数文件 <code>show.js</code>
-  </p>
+ JS 工具函数文件 <code>show.js</code>
   
   <pre class="javascript hljs"><code class="js">&lt;span class="hljs-comment">// 操作 DOM 元素，把 content 显示到网页上&lt;/span>
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">show&lt;/span>(&lt;span class="hljs-params">content&lt;/span>) &lt;/span>{
@@ -698,19 +647,13 @@ bundle.js  3.03 kB       0  [emitted]  main
 
 &lt;span class="hljs-comment">// 通过 CommonJS 规范导出 show 函数&lt;/span>
 &lt;span class="hljs-built_in">module&lt;/span>.exports = show;</code></pre>
-  
-  <p>
-    JS 执行入口文件 <code>main.js</code>
-  </p>
+ JS 执行入口文件 <code>main.js</code>
   
   <pre class="javascript hljs"><code class="js">&lt;span class="hljs-comment">// 通过 CommonJS 规范导入 show 函数&lt;/span>
 &lt;span class="hljs-keyword">const&lt;/span> show = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'./show.js'&lt;/span>);
 &lt;span class="hljs-comment">// 执行 show 函数&lt;/span>
 show(&lt;span class="hljs-string">'Webpack'&lt;/span>);</code></pre>
-  
-  <p>
-    Webpack 在执行构建时默认会从项目根目录下的 <code>webpack.config.js</code> 文件读取配置，所以你还需要新建它，其内容如下：
-  </p>
+ Webpack 在执行构建时默认会从项目根目录下的 <code>webpack.config.js</code> 文件读取配置，所以你还需要新建它，其内容如下：
   
   <pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">const&lt;/span> path = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'path'&lt;/span>);
 
@@ -724,31 +667,20 @@ show(&lt;span class="hljs-string">'Webpack'&lt;/span>);</code></pre>
     path: path.resolve(__dirname, &lt;span class="hljs-string">'./dist'&lt;/span>),
   }
 };</code></pre>
-  
-  <p>
-    由于 Webpack 构建运行在 Node.js 环境下，所以该文件最后需要通过 CommonJS 规范导出一个描述如何构建的 <code>Object</code> 对象。
-  </p>
+ 由于 Webpack 构建运行在 Node.js 环境下，所以该文件最后需要通过 CommonJS 规范导出一个描述如何构建的 <code>Object</code> 对象。
   
   <pre class="hljs sql"><code>|&lt;span class="hljs-comment">-- index.html&lt;/span>
 |&lt;span class="hljs-comment">-- main.js&lt;/span>
 |&lt;span class="hljs-comment">-- show.js&lt;/span>
 |&lt;span class="hljs-comment">-- webpack.config.js&lt;/span></code></pre>
-  
-  <p>
-    一切文件就绪，在项目根目录下执行 <code>webpack</code> 命令运行 Webpack 构建，你会发现目录下多出一个 <code>dist</code>目录，里面有个 <code>bundle.js</code> 文件， <code>bundle.js</code> 文件是一个可执行的 JavaScript 文件，它包含页面所依赖的两个模块 <code>main.js</code> 和 <code>show.js</code>及内置的 <code>webpackBootstrap</code> 启动函数。 这时你用[浏览器](https://www.w3cdoc.com)打开 <code>index.html</code> 网页将会看到 <code>Hello,Webpack</code>。
-  </p>
+ 一切文件就绪，在项目根目录下执行 <code>webpack</code> 命令运行 Webpack 构建，你会发现目录下多出一个 <code>dist</code>目录，里面有个 <code>bundle.js</code> 文件， <code>bundle.js</code> 文件是一个可执行的 JavaScript 文件，它包含页面所依赖的两个模块 <code>main.js</code> 和 <code>show.js</code>及内置的 <code>webpackBootstrap</code> 启动函数。 这时你用[浏览器](https://www.w3cdoc.com)打开 <code>index.html</code> 网页将会看到 <code>Hello,Webpack</code>。
   
   <h3 id="articleHeader8">
     2.2 bundle.js文件做了什么
   </h3>
+ 看之前记住：一个模块就是一个文件，
   
-  <p>
-    看之前记住：一个模块就是一个文件，
-  </p>
-  
-  <p>
-    首先看下bundle.js长什么样子，具体代码如下：（建议把以下代码放入编辑器中查看，最好让index.html执行下，弄清楚执行的顺序）
-  </p>
+ 首先看下bundle.js长什么样子，具体代码如下：（建议把以下代码放入编辑器中查看，最好让index.html执行下，弄清楚执行的顺序）
   
   <pre class="javascript hljs"><code class="js">(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">modules&lt;/span>) &lt;/span>{ &lt;span class="hljs-comment">// webpackBootstrap&lt;/span>
   &lt;span class="hljs-comment">// 1. 缓存模块&lt;/span>
@@ -821,10 +753,7 @@ show(&lt;span class="hljs-string">'Webpack'&lt;/span>);</code></pre>
 
   })
 ]);</code></pre>
-  
-  <p>
-    以上看上去复杂的代码其实是一个自执行函数(文件作为自执行函数的参数)，可以简写如下：
-  </p>
+ 以上看上去复杂的代码其实是一个自执行函数(文件作为自执行函数的参数)，可以简写如下：
   
   <pre class="javascript hljs"><code class="js">(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">modules&lt;/span>)&lt;/span>{
     &lt;span class="hljs-comment">//模拟require语句&lt;/span>
@@ -832,32 +761,21 @@ show(&lt;span class="hljs-string">'Webpack'&lt;/span>);</code></pre>
     &lt;span class="hljs-comment">//执行存放所有模块数组中的第0个模块(main.js)&lt;/span>
     __webpack_require_[&lt;span class="hljs-number">0&lt;/span>]
 })([&lt;span class="hljs-comment">/*存放所有模块的数组*/&lt;/span>])</code></pre>
+ bundles.js能直接在[浏览器](https://www.w3cdoc.com)中运行的原因是，在输出的文件中通过<code>__webpack_require__</code>函数,定义了一个可以在[浏览器](https://www.w3cdoc.com)中执行的加载函数(加载文件使用ajax实现),来模拟Node.js中的require语句。
   
-  <p>
-    bundles.js能直接在[浏览器](https://www.w3cdoc.com)中运行的原因是，在输出的文件中通过<code>__webpack_require__</code>函数,定义了一个可以在[浏览器](https://www.w3cdoc.com)中执行的加载函数(加载文件使用ajax实现),来模拟Node.js中的require语句。
-  </p>
+ 原来一个个独立的模块文件被合并到了一个单独的 bundle.js 的原因在于[浏览器](https://www.w3cdoc.com)不能像 Node.js 那样快速地去本地加载一个个模块文件，而必须通过网络请求去加载还未得到的文件。 如果模块数量很多，加载时间会很长，因此把所有模块都存放在了数组中，执行一次网络加载。
   
-  <p>
-    原来一个个独立的模块文件被合并到了一个单独的 bundle.js 的原因在于[浏览器](https://www.w3cdoc.com)不能像 Node.js 那样快速地去本地加载一个个模块文件，而必须通过网络请求去加载还未得到的文件。 如果模块数量很多，加载时间会很长，因此把所有模块都存放在了数组中，执行一次网络加载。
-  </p>
-  
-  <p>
-    修改main.js,改成import引入模块
-  </p>
+ 修改main.js,改成import引入模块
   
   <pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">import&lt;/span> show &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'./show'&lt;/span>;
 show(&lt;span class="hljs-string">'Webpack'&lt;/span>);</code></pre>
-  
-  <p>
-    在目录下执行<code>webpack</code>，会发现：
-  </p>
+ 在目录下执行<code>webpack</code>，会发现：
   
   <ol>
-    <li>
+    
       生成的代码会有所不同，但是主要的区别是自执行函数的参数不同，也就是2.2代码的第二部分不同
-    </li>
+    
   </ol>
-  
   <pre class="javascript hljs"><code class="js">([&lt;span class="hljs-comment">//自执行函数和上面相同，参数不同&lt;/span>
 &lt;span class="hljs-comment">/*0*/&lt;/span>
 (&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">module, __webpack_exports__, __webpack_require__&lt;/span>) &lt;/span>{
@@ -880,39 +798,27 @@ show(&lt;span class="hljs-string">'Webpack'&lt;/span>);</code></pre>
 
 })
 ]);</code></pre>
-  
-  <p>
-    参数不同的原因是es6的import和export模块被webpack编译处理过了,其实作用是一样的，接下来看一下在main.js中异步加载模块时，bundle.js是怎样的
-  </p>
+ 参数不同的原因是es6的import和export模块被webpack编译处理过了,其实作用是一样的，接下来看一下在main.js中异步加载模块时，bundle.js是怎样的
   
   <h3 id="articleHeader9">
     2.3异步加载时，bundle.js代码分析
   </h3>
-  
-  <p>
-    <code>main.js</code>修改如下
-  </p>
+ <code>main.js</code>修改如下
   
   <pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">import&lt;/span>(&lt;span class="hljs-string">'./show'&lt;/span>).then(&lt;span class="hljs-function">&lt;span class="hljs-params">show&lt;/span>=&gt;&lt;/span>{
     show(&lt;span class="hljs-string">'Webpack'&lt;/span>)
 })</code></pre>
-  
-  <p>
-    构建成功后会生成两个文件
-  </p>
+ 构建成功后会生成两个文件
   
   <ol>
-    <li>
+    
       bundle.js 执行入口文件
-    </li>
-    <li>
+    
+    
       0.bundle.js 异步加载文件
-    </li>
+    
   </ol>
-  
-  <p>
-    其中0.bundle.js文件的内容如下：
-  </p>
+ 其中0.bundle.js文件的内容如下：
   
   <pre class="javascript hljs"><code class="js">webpackJsonp(&lt;span class="hljs-comment">/*在其他文件中存放的模块的ID*/&lt;/span>[&lt;span class="hljs-number">0&lt;/span>],[&lt;span class="hljs-comment">//本文件所包含的模块&lt;/span>
 &lt;span class="hljs-comment">/*0*/&lt;/span>,
@@ -930,24 +836,18 @@ show(&lt;span class="hljs-string">'Webpack'&lt;/span>);</code></pre>
 
 })
 ]);</code></pre>
+ bundle.js文件的内容如下：
   
-  <p>
-    bundle.js文件的内容如下：
-  </p>
-  
-  <p>
-    注意：bundle.js比上面的bundle.js的区别在于：
-  </p>
+ 注意：bundle.js比上面的bundle.js的区别在于：
   
   <ol>
-    <li>
+    
       多了一个<code>__webpack_require__.e</code>,用于加载被分割出去的需要异步加载的chunk对应的文件
-    </li>
-    <li>
+    
+    
       多了一个webpackJsonp函数，用于从异步加载的文件中安装模块
-    </li>
+    
   </ol>
-  
   <pre class="javascript hljs"><code class="js">(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">modules&lt;/span>) &lt;/span>{ &lt;span class="hljs-comment">// webpackBootstrap&lt;/span>
     &lt;span class="hljs-comment">// install a JSONP callback for chunk loading&lt;/span>
   &lt;span class="hljs-keyword">var&lt;/span> parentJsonpFunction = &lt;span class="hljs-built_in">window&lt;/span>[&lt;span class="hljs-string">"webpackJsonp"&lt;/span>];

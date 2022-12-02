@@ -110,7 +110,7 @@ text-bottom： 文本的底端对齐；
 style>
 
 //HTML代码
-<p>
+
     <span>Ajax测试span>
     <u>Ajax测试u>
     <del>Ajax测试del>
@@ -118,19 +118,18 @@ style>
 p>
 ```
 
-
 其他说明：  
 
 1. SPAN、U、DEL标签的 offsetWidth = SUM（ 字符 \* font-size \* 修正系数）（这里，中文的修正系数为1，数字的修正系数0.6，英文字符修正系数差异很大，比如ijl很小，wmk等比较大，大写英文同样修正系数不统一）。  
 2. SPAN、U、DEL标签的 offsetHeight。  
 推论：inline元素的背景渲染区域即内容区域大小，直接受到font-size的影响。  
-对`<p>`块级元素，块级元素的计算值高度由包含的行框高度累加而成，因此这里height为60px；  
+对``块级元素，块级元素的计算值高度由包含的行框高度累加而成，因此这里height为60px；  
 1. 把 span.style.lineHeight 设置为 15px(从10px变化到60px) —-> 发现没有变化  
 推断：内容区大小不受line-height影响，line-height用于处理相邻文本行基线间的距离。  
 1. 把 span.style.lineHeight 设置为 70px(从61px变化到80px) —->行框高度开始随着设置调整  
 推断：行框高度是行内最高的行内框高度，通过line-height调整。  
 p元素的height计算值为 span.style.lineHeight值，不由p.style.lineHeight控制。  
-推断二：不设定height属性的`<p>`的height计算值为行框高度累加值。  
+推断二：不设定height属性的``的height计算值为行框高度累加值。  
 20170125170311610.jpeg![][16]
 
 1. 把 span.style.verticalAlign= sub；del.style.verticalAlign= super；–>看图说话  

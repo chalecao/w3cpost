@@ -37,7 +37,7 @@ yo code
   2. [import cost mui][1]，这个是我基于import cost插件做的，通过网络请求只计算 远程包。比如 <pre class="pure-highlightjs"><code class="">import "mui/jquery";
 </code></pre>
 
-    这种远程资源，直接通过http请求，获取header中的content-length字段来计算就好了。置于在项目中这么用远程包，这个是我项目内部处理的。首先需要模块加载，然后把通用的模块发到cdn，然后自己定制下打包脚本就好了。</li> 
+    这种远程资源，直接通过http请求，获取header中的content-length字段来计算就好了。置于在项目中这么用远程包，这个是我项目内部处理的。首先需要模块加载，然后把通用的模块发到cdn，然后自己定制下打包脚本就好了。 
     
       * [vscode开发实践][2]
       * <https://code.visualstudio.com/docs/extensions/webview></ol>

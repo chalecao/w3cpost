@@ -1,16 +1,6 @@
 ---
 title: script标签的defer与async
 
-
-
-  - 1582
-
-  - 2
-
-
-
-
-
 ---
 ## javascript知识点
 
@@ -19,7 +9,7 @@ title: script标签的defer与async
   3. `<script defer src="myscript.js"></script>`有 `defer`，加载后续文档元素的过程将和 `script.js` 的加载并行进行（异步），但是 `script.js` 的执行要在所有元素解析完成之后，`DOMContentLoaded` 事件触发之前完成。
   4. defer和async用一个就好了，混用没有意义。
 
-<img loading="lazy" class="alignnone wp-image-1684 size-full" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/03/2151798436-59da4801c6772_articlex.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/03/2151798436-59da4801c6772_articlex.png?x-oss-process=image/format,webp" alt="" width="787" height="800" />
+<img loading="lazy" class="alignnone wp-image-1684 size-full" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/03/2151798436-59da4801c6772_articlex.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/03/2151798436-59da4801c6772_articlex.png?x-oss-process=image/format,webp" alt="" width="787" height="800" />
 
 ## 什么时候用到
 
@@ -29,15 +19,13 @@ title: script标签的defer与async
 
 ## 加载优先级
 
-<p id="WXADBSh">
-  <img loading="lazy" width="2600" height="2157" class="alignnone size-full wp-image-3798 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f244c8d752.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f244c8d752.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f244c8d752.png?x-oss-process=image/format,webp 2600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f244c8d752.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_249/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f244c8d752.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_637/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f244c8d752.png?x-oss-process=image/quality,q_50/resize,m_fill,w_723,h_600/format,webp 723w" sizes="(max-width: 2600px) 100vw, 2600px" />
-</p>
+
+  <img loading="lazy" width="2600" height="2157" class="alignnone size-full wp-image-3798 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f244c8d752.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f244c8d752.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f244c8d752.png?x-oss-process=image/format,webp 2600w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f244c8d752.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_249/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f244c8d752.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_637/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f244c8d752.png?x-oss-process=image/quality,q_50/resize,m_fill,w_723,h_600/format,webp 723w" sizes="(max-width: 2600px) 100vw, 2600px" />
 
 并不是所有[浏览器](https://www.w3cdoc.com)都一样的，但是在chrome调试工具中可以打开优先级的选项查看：
 
-<p id="ZdrPvAE">
-  <img loading="lazy" class="alignnone wp-image-3799 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png?x-oss-process=image/format,webp" alt="" width="791" height="461" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png?x-oss-process=image/format,webp 1760w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_175/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_447/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_466/format,webp 800w" sizes="(max-width: 791px) 100vw, 791px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-3799 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png?x-oss-process=image/format,webp" alt="" width="791" height="461" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png?x-oss-process=image/format,webp 1760w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_175/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_447/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_466/format,webp 800w" sizes="(max-width: 791px) 100vw, 791px" />
 
 &nbsp;
 

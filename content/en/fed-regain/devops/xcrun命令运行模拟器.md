@@ -6,14 +6,10 @@ title: xcrun命令运行模拟器
   <h1>
     一、Xcode允许[我们](https://www.w3cdoc.com)使用xcrun命令运行模拟器
   </h1>
+  ##   1、列出你安装的所有可用的设备
   
-  <h2>
-    1、列出你安装的所有可用的设备
-  </h2>
-  
-  <p>
-    xcrun instruments -s<br /> 终端显示结果：
-  </p>
+
+ xcrun instruments -s<br /> 终端显示结果：
   
   <pre class="hljs css"><code class="css">&lt;span class="hljs-selector-tag">Apple&lt;/span> &lt;span class="hljs-selector-tag">TV&lt;/span> (11&lt;span class="hljs-selector-class">.2&lt;/span>) &lt;span class="hljs-selector-attr">[E08E425C-ACE2-49EE-9451-2F8DE1606B44]&lt;/span> (&lt;span class="hljs-selector-tag">Simulator&lt;/span>)
 &lt;span class="hljs-selector-tag">Apple&lt;/span> &lt;span class="hljs-selector-tag">TV&lt;/span> 4&lt;span class="hljs-selector-tag">K&lt;/span> (11&lt;span class="hljs-selector-class">.2&lt;/span>) &lt;span class="hljs-selector-attr">[5F7F618E-755D-4FB5-B1D2-C723BA3B7613]&lt;/span> (&lt;span class="hljs-selector-tag">Simulator&lt;/span>)
@@ -51,50 +47,33 @@ title: xcrun命令运行模拟器
 &lt;span class="hljs-selector-tag">iPhone&lt;/span> &lt;span class="hljs-selector-tag">SE&lt;/span> (11&lt;span class="hljs-selector-class">.2&lt;/span>) &lt;span class="hljs-selector-attr">[D8ACFB1F-6678-4014-8993-72050939481D]&lt;/span> (&lt;span class="hljs-selector-tag">Simulator&lt;/span>)
 &lt;span class="hljs-selector-tag">iPhone&lt;/span> &lt;span class="hljs-selector-tag">X&lt;/span> (11&lt;span class="hljs-selector-class">.2&lt;/span>) &lt;span class="hljs-selector-attr">[1346D0CB-C0A7-40F9-BB8B-C095B736C696]&lt;/span> (&lt;span class="hljs-selector-tag">Simulator&lt;/span>)
 </code></pre>
+  ##   2、开启指定模拟器（上面的列表就是可用模拟器名称）
   
-  <h2>
-    2、开启指定模拟器（上面的列表就是可用模拟器名称）
-  </h2>
-  
-  <p>
-    xcrun instruments -w &#8220;iPhone 8 (11.2)&#8221;
-  </p>
+
+ xcrun instruments -w &#8220;iPhone 8 (11.2)&#8221;
   
   <h1>
     二、使用的Xcode的simctl命令来控制模拟器
   </h1>
+  ##   1、安装指定的app
   
-  <h2>
-    1、安装指定的app
-  </h2>
+
+ xcrun simctl install booted <app路径>
   
-  <p>
-    xcrun simctl install booted <app路径>
-  </p>
-  
-  <p>
-    安装ipa
-  </p>
+ 安装ipa
   
   <pre class="EnlighterJSRAW" data-enlighter-language="null">1.将xx.ipa  改成xx.zip,解压得到xx.app
 
 2.打开模拟器
 
 3.打开终端，运行xcrun simctl install booted xx.app</pre>
+  ##   2、运行指定的app （com.example.app）
   
-  <h2>
-    2、运行指定的app （com.example.app）
-  </h2>
+
+ xcrun simctl launch booted <app identifier>
   
-  <p>
-    xcrun simctl launch booted <app identifier>
-  </p>
+  ##   3、卸载指定的应用
   
-  <h2>
-    3、卸载指定的应用
-  </h2>
-  
-  <p>
-    xcrun simctl uninstall booted <app identifier>
-  </p>
+
+ xcrun simctl uninstall booted <app identifier>
 </div>

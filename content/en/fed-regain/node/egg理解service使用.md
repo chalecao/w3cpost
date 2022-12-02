@@ -56,26 +56,23 @@ application.js —— this指向：app对象, 调用：this.app
 
 <div>
   <div>
-    <p>
+    
       context.js —— this指向：ctx对象，调用：this.ctx
-    </p>
+    
 
-    <p>
+    
       request.js —— this指向：ctx.request对象，调用：this.ctx.request
-    </p>
     
-    <p>
+    
+    
       response.js —— this指向：ctx.response对象，调用：this.ctx.response
-    </p>
     
-    <p>
+    
+    
       helper.js —— this指向：ctx.helper对象，调用：this.ctx.helper
-    </p>
+    
   </div>
-  
-  <p>
-    <strong>test/**</strong> 一般用于单元测试。<br /> <strong>app.js</strong> 一般用于启动时候的初始化。<br /> <strong>app/view/**</strong> 用于放置模板文件，具体是做模板渲染的。<br /> <strong>app/model/**</strong> 用于放置领域模型，由领域类相关插件约定。如 egg-sequelize
-  </p>
+test/** 一般用于单元测试。<br />app.js 一般用于启动时候的初始化。<br />app/view/** 用于放置模板文件，具体是做模板渲染的。<br />app/model/** 用于放置领域模型，由领域类相关插件约定。如 egg-sequelize
 </div>
 
 如上就是官网中对egg目录的约定，[我们](https://www.w3cdoc.com)只需要在对应目录中写对应的代码即可，框架内部会自动会帮[我们](https://www.w3cdoc.com)把内部代码组织起来，具体怎么组织的，它的主要逻辑应该在 egg-core 中，在接下来的学习中，我会逐步学习egg-core源码来理解egg整个框架的原理的。  
@@ -149,17 +146,15 @@ module.exports = IndexController;</pre>
 
 </pre>
 
-<ul class="view-list">
-  <li style="list-style-type: none;">
-    <ul class="view-list">
-      {% for item in list %}</p>
 
-      <li class="item">
+ 
+      {% for item in list %}
+
+      
         <a href="{{ item.url }}">{{ item.title }}</a>
-      </li>
-    </ul>
-  </li>
-</ul>
+      
+    
+
 
 {% endfor %}
 
@@ -288,9 +283,8 @@ exports.index = {
 
 然后[我们](https://www.w3cdoc.com)在 [浏览器](https://www.w3cdoc.com)访问 http://127.0.0.1:7001/index 后，在页面中返回如下页面：
 
-<p id="ERlFqNw">
-  <img loading="lazy" width="1940" height="1374" class="alignnone size-full wp-image-6120 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/format,webp 1940w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_212/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_567/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_544/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_1088/format,webp 1536w" sizes="(max-width: 1940px) 100vw, 1940px" />
-</p>
+
+  <img loading="lazy" width="1940" height="1374" class="alignnone size-full wp-image-6120 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/format,webp 1940w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_212/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_567/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_544/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5facdce64dc7e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_1536,h_1088/format,webp 1536w" sizes="(max-width: 1940px) 100vw, 1940px" />
 
 ![][1]
 

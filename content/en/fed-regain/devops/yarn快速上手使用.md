@@ -3,11 +3,9 @@ title: yarn快速上手使用
 
 
 
-
 ---
-<p id="OctSexx">
-  <img loading="lazy" class="alignnone wp-image-4992 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d6877a8423b7.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d6877a8423b7.png?x-oss-process=image/format,webp" alt="" width="477" height="214" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d6877a8423b7.png?x-oss-process=image/format,webp 4812w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d6877a8423b7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_135/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d6877a8423b7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_344/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d6877a8423b7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_359/format,webp 800w" sizes="(max-width: 477px) 100vw, 477px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-4992 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d6877a8423b7.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d6877a8423b7.png?x-oss-process=image/format,webp" alt="" width="477" height="214" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d6877a8423b7.png?x-oss-process=image/format,webp 4812w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d6877a8423b7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_135/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d6877a8423b7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_344/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d6877a8423b7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_359/format,webp 800w" sizes="(max-width: 477px) 100vw, 477px" />
 
 # 简介 {#简介}
 
@@ -231,44 +229,44 @@ Yarn 和 Npm 基本上是兼容的，Yarn 可以使用 npm 创建的 <code clas
 
 <div>
   <div>
-    <h2>
-      初始化一个项目
-    </h2>
+    ##     初始化一个项目
+    
+
 
     <pre class="hljs shell"><code class="shell">yarn init
 </code></pre>
 
-    <p>
-      功能跟npm init 几乎一样
-    </p>
     
-    <p>
+      功能跟npm init 几乎一样
+    
+    
+    
       以默认值初始化
-    </p>
+    
     
     <pre class="hljs shell"><code class="shell">yarn init --yes
 yarn init -y
 </code></pre>
 
-    <p>
+    
       与npm也雷同
-    </p>
+    
     
     <pre class="hljs shell"><code class="shell">npm init -f
 </code></pre>
 
-    <p>
+    
       添加依赖
-    </p>
+    
     
     <pre class="hljs shell"><code class="shell">yarn add [package]
 yarn add [package]@[version]
 yarn add [package]@[tag]
 </code></pre>
 
-    <p>
+    
       正如npm以下命令一样
-    </p>
+    
     
     <pre class="hljs shell"><code class="shell">npm install [package]
 npm install [package]@[version]
@@ -392,20 +390,20 @@ npm install [package]@[tag]
     <pre class="hljs shell"><code class="shell">yarn install [package] --peer
 </code></pre>
 
-    <p>
-      还可以安装平行依赖呢
-    </p>
     
-    <h2>
-      强制重装所有模块
-    </h2>
+      还可以安装平行依赖呢
+    
+    
+    ##     强制重装所有模块
+    
+
     
     <pre class="hljs shell"><code class="shell">yarn install --force
 </code></pre>
 
-    <p>
+    
       yarn 是从npm下载模块的，完全兼容已经在用npm的项目，可以无缝切换。<br /> yarn 安装过后会在项目根目录下生成并自动管理yarn.lock文件，把这个文件加入到git版本控制中，这个文件记录了依赖安装的版本和结构信息，通过同步给别人，别人再用yarn安装，可以确保你们生成的目录结构和包版本信息完全一致。
-    </p>
+    
   </div>
 </div>
 

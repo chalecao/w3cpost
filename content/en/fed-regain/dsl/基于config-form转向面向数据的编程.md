@@ -5,9 +5,8 @@ title: 基于config-form转向面向数据的编程
 
 本文接上篇继续分析如何转向面向数据的编程
 
-<p id="MXBKKlE">
-  <img loading="lazy" class="alignnone  wp-image-5505 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png?x-oss-process=image/format,webp" alt="" width="394" height="328" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png?x-oss-process=image/format,webp 798w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_250/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_639/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_721,h_600/format,webp 721w" sizes="(max-width: 394px) 100vw, 394px" />
-</p>
+
+  <img loading="lazy" class="alignnone  wp-image-5505 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png?x-oss-process=image/format,webp" alt="" width="394" height="328" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png?x-oss-process=image/format,webp 798w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_250/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_639/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/12/img_5e05cf08ebb5f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_721,h_600/format,webp 721w" sizes="(max-width: 394px) 100vw, 394px" />
 
 # 面向数据
 

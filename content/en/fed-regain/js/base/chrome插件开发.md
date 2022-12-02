@@ -6,9 +6,8 @@ title: chrome插件开发
 
 chrome extensions 中的通信交互：<https://www.cnblogs.com/experiments-of-ORLAN/p/3736511.html>
 
-<p class="postTitle">
+
   Chrome[浏览器](https://www.w3cdoc.com)扩展开发系列之十三：消息传递Message：<a href="https://www.cnblogs.com/champagne/p/4848520.html">https://www.cnblogs.com/champagne/p/4848520.html</a>
-</p>
 
 Where to read console messages from background.js in a Chrome extension?：
 
@@ -16,17 +15,14 @@ Where to read console messages from background.js in a Chrome extension?：
 
 Chrome扩展开发常见问题汇总：<https://www.cnblogs.com/slmk/archive/2012/11/16/2772985.html>
 
-<p class="csdn_top">
+
   Chrome插件开发进阶：<a href="https://blog.csdn.net/my_business/article/details/7711525">https://blog.csdn.net/my_business/article/details/7711525</a>
-</p>
 
-<p class="postTitle">
+
   Chrome[浏览器](https://www.w3cdoc.com)扩展开发系列之十二：Content Scripts：<a href="https://www.cnblogs.com/champagne/p/4844682.html">https://www.cnblogs.com/champagne/p/4844682.html</a>
-</p>
 
-<p class="postTitle">
+
   chrome开发-extension：<a href="https://www.jianshu.com/p/38725b874472">https://www.jianshu.com/p/38725b874472</a>
-</p>
 
 &nbsp;
 

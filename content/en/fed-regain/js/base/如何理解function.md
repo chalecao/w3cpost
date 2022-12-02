@@ -18,10 +18,7 @@ ECMAScript 最令人感兴趣的可能莫过于函数实际上是功能完整的
 
 <div>
   <pre class="EnlighterJSRAW" data-enlighter-language="null">var function_name = new Function(arg1, arg2, ..., argN, function_body)</pre>
-  
-  <p>
-    在上面的形式中，每个 arg 都是一个参数（最多 25 个），最后一个参数是函数主体（要执行的代码）。这些参数必须是字符串。
-  </p>
+ 在上面的形式中，每个 arg 都是一个参数（最多 25 个），最后一个参数是函数主体（要执行的代码）。这些参数必须是字符串。
 </div>
 
 记得下面这个函数吗？
@@ -30,10 +27,7 @@ ECMAScript 最令人感兴趣的可能莫过于函数实际上是功能完整的
   <pre class="EnlighterJSRAW" data-enlighter-language="null">function sayHi(sName, sMessage) {
     alert("Hello " + sName + sMessage);
 }</pre>
-  
-  <p>
-    还可以这样定义它：
-  </p>
+ 还可以这样定义它：
 </div>
 
   <pre class="EnlighterJSRAW" data-enlighter-language="null">var sayHi = new Function("sName", "sMessage", "alert(/"Hello /" + sName + sMessage);");</pre>
@@ -125,10 +119,7 @@ document.write(doAdd.toString());</pre>
   <pre class="EnlighterJSRAW" data-enlighter-language="null">function myfunc(param) {
 //code
 }</pre>
-  
-  <p>
-    注意Javascript中的函数名相同的两个function被认为是同一个，在运行时到底调用哪一个function取决于加载顺序,后一个加载的function会覆盖前一个.
-  </p>
+ 注意Javascript中的函数名相同的两个function被认为是同一个，在运行时到底调用哪一个function取决于加载顺序,后一个加载的function会覆盖前一个.
 </div>
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">function func1() {return 'func1'; }
@@ -217,10 +208,7 @@ Javascript不支持名字空间(本人不太理解如此强大的语言为什么
   <pre class="EnlighterJSRAW" data-enlighter-language="null">nameOf.getBloggerName = function() {
     return nameOf.blogger;
 }</pre>
-  
-  <p>
-    此时在nameOf名字空间之下已经包含了:blogger,counter属性和function getBloggerName方法.
-  </p>
+ 此时在nameOf名字空间之下已经包含了:blogger,counter属性和function getBloggerName方法.
 </div>
 
 ### function作为method
@@ -419,10 +407,7 @@ Number.prototype.add = function (add1) {
 return this + add1;
 }
 alert(aa.add(1)); // 3</pre>
-  
-  <p>
-    &nbsp;
-  </p>
+ &nbsp;
 </div>
 
 # 常用方法

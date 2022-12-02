@@ -2,9 +2,8 @@
 title: 关于hit test
 
 ---
-<p id="iLmlKlS">
-  <img loading="lazy" class="alignnone wp-image-6084 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/format,webp" alt="" width="675" height="259" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/format,webp 1156w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_115/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_306/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_294/format,webp 768w" sizes="(max-width: 675px) 100vw, 675px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-6084 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/format,webp" alt="" width="675" height="259" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/format,webp 1156w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_115/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_306/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_294/format,webp 768w" sizes="(max-width: 675px) 100vw, 675px" />
 
 先看下上面这个图，可以了解下hit Test，在[我们](https://www.w3cdoc.com)调用elementsFromPoint 这个 DOM api的时候，内部执行这个hit test尽然花费了5s钟，一开始我以为是这个导致了页面卡顿，后来仔细想想，是因为卡顿导致了这个hit test执行时间长。
 
@@ -34,9 +33,9 @@ hit test就是用来追踪当前点击位置的响应元素，从根节点html>b
 >     Tracking hit test rects in blink
 >   </h3>
 >
->   <p>
+>   
 >     <span style="font-family: arial, sans-serif; font-size: medium;">In blink, we hook into the creation of Touch event handlers and track EventTargets with handlers in </span><span style="font-family: arial, sans-serif; font-size: medium;">EventHandlerRegistry. During paint, HitTestDisplayItems are emitted for all objects with blocking event handlers. As an optimization, a cache of the HitTestDisplay item data is stored on PaintChunk for all display items in the chunk. Then, after compositing, all hit test rects for a cc::Layer are projected into the cc::Layer&#8217;s coordinate space using </span><span style="font-family: arial, sans-serif; font-size: medium;">PaintArtifactCompositor::UpdateTouchActionRects. This approach of painting hit test data is described in more detail in <a href="https://docs.google.com/document/d/1ksiqEPkDeDuI_l5HvWlq1MfzFyDxSnsNB8YXIaXa3sE/view#">PaintTouchActionRects</a>.</span>
->   </p>
+>   
 >
 >   <h3 dir="ltr">
 >     <a name="TOC-Hit-testing-in-the-compositor"></a>Hit testing in the compositor
@@ -85,13 +84,11 @@ hit test就是用来追踪当前点击位置的响应元素，从根节点html>b
 
 参考资料3中介绍，在ios原生的hit test采用的是反先序深度优先算法，一旦找到目标点击位置落在某个后代元素的view上，就可以停止遍历。
 
-<p id="TatFFwf">
-  <img loading="lazy" class="alignnone wp-image-6085 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6122c8c.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6122c8c.png?x-oss-process=image/format,webp" alt="" width="814" height="389" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6122c8c.png?x-oss-process=image/format,webp 1200w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6122c8c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_143/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6122c8c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_382/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6122c8c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_367/format,webp 768w" sizes="(max-width: 814px) 100vw, 814px" />
-</p>
 
-<p id="lZrcKGT">
-  <img loading="lazy" class="alignnone wp-image-6086 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6e4487e.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6e4487e.png?x-oss-process=image/format,webp" alt="" width="801" height="382" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6e4487e.png?x-oss-process=image/format,webp 1200w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6e4487e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_143/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6e4487e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_382/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6e4487e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_367/format,webp 768w" sizes="(max-width: 801px) 100vw, 801px" />
-</p>
+  <img loading="lazy" class="alignnone wp-image-6085 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6122c8c.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6122c8c.png?x-oss-process=image/format,webp" alt="" width="814" height="389" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6122c8c.png?x-oss-process=image/format,webp 1200w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6122c8c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_143/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6122c8c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_382/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6122c8c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_367/format,webp 768w" sizes="(max-width: 814px) 100vw, 814px" />
+
+
+  <img loading="lazy" class="alignnone wp-image-6086 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6e4487e.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6e4487e.png?x-oss-process=image/format,webp" alt="" width="801" height="382" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6e4487e.png?x-oss-process=image/format,webp 1200w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6e4487e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_143/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6e4487e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_382/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa93a6e4487e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_367/format,webp 768w" sizes="(max-width: 801px) 100vw, 801px" />
 
 ## 解决方案
 

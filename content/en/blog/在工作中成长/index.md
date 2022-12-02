@@ -1,5 +1,6 @@
 ---
 title: 在工作中成长
+PublishDate: 2014-06-10T09:19:42+01:00
 weight: 50
 images: ["grownup.jpeg"]
 categories: ["工作"]

@@ -3,7 +3,6 @@ title: DllPlugin提升webpack编译
 
 
 
-
 ---
 <h1 class="heading" data-id="heading-0">
   一、前言
@@ -17,13 +16,14 @@ title: DllPlugin提升webpack编译
   二、构建效果
 </h1>
 
-<span style="color: red;"><strong>结论先行：</strong></span>使用`DllPlugin`和`DllRefrencePlugin`进行构建，可以<span style="color: red;">缩减50%～70%的构建时间</span>。
+<span style="color: red;">结论先行：</span>使用`DllPlugin`和`DllRefrencePlugin`进行构建，可以<span style="color: red;">缩减50%～70%的构建时间</span>。
 
 参考Demo：<a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fqiudongwei%2Fblog%2Ftree%2Fmaster%2Fdllplugin-demo" target="_blank" rel="nofollow noopener noreferrer">dllplugin-demo</a>
 
 <h2 class="heading" data-id="heading-2">
   2.1 使用DllPlugin前的构建速度
-</h2><figure>
+
+<figure>
 
 <img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/7/8/1647a0f717afb1d1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/7/8/1647a0f717afb1d1?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="1202" data-height="530" /> <figcaption></figcaption></figure>
 
@@ -31,7 +31,8 @@ title: DllPlugin提升webpack编译
 
 <h2 class="heading" data-id="heading-3">
   2.2 使用DllPlugin后的构建速度
-</h2><figure>
+
+<figure>
 
 <img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/7/8/1647a11b6678823a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/7/8/1647a11b6678823a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="1280" data-height="414" /> <figcaption></figcaption></figure>
 
@@ -39,7 +40,8 @@ title: DllPlugin提升webpack编译
 
 <h2 class="heading" data-id="heading-4">
   2.3 如何验证DLLPlugin已经生效
-</h2>
+
+
 
 对比上面两张图打包的模块列表，图二有一行不一样的输出：
 
@@ -57,7 +59,8 @@ DllPlugin作用示意图：<figure>
 
 <h2 class="heading" data-id="heading-6">
   3.1 配置webpack.dll.config.js打包静态公共资源
-</h2>
+
+
 
 <h5 class="heading" data-id="heading-7">
   3.1.1 定义webpack.dll.config.js
@@ -110,7 +113,8 @@ cross-env NODE_ENV=production webpack --config webpack.dll.config.js --colors --
 
 <h2 class="heading" data-id="heading-10">
   3.2 配置webpack.config.js打包入口文件
-</h2>
+
+
 
 生成静态公共资源`vendor.dll.js`之后，下一步就要在入口文件中关联引用，这项工作则是由`DllRefrencePlugin`完成的。
 

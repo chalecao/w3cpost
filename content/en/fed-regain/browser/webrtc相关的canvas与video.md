@@ -1,10 +1,7 @@
 ---
 title: WebRTC相关的canvas与video
 
-
 ---
-  
-
 
 ### [][1]简介
 

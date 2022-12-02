@@ -5,8 +5,6 @@ title: Request Entity Too Large Nginx
 
 
 
-
-
 ---
 最近自己搭建了一个电商项目服务器，使用Nginx + vsftpd + &#8230; ，
 
@@ -17,9 +15,8 @@ title: Request Entity Too Large Nginx
 
 如下图：
 
-<p id="lZafxMN">
-  <img loading="lazy" width="804" height="760" class="alignnone size-full wp-image-5600 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e40f8dec0f46.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e40f8dec0f46.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e40f8dec0f46.png?x-oss-process=image/format,webp 804w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e40f8dec0f46.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_284/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e40f8dec0f46.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_726/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e40f8dec0f46.png?x-oss-process=image/quality,q_50/resize,m_fill,w_635,h_600/format,webp 635w" sizes="(max-width: 804px) 100vw, 804px" />
-</p>
+
+  <img loading="lazy" width="804" height="760" class="alignnone size-full wp-image-5600 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e40f8dec0f46.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e40f8dec0f46.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e40f8dec0f46.png?x-oss-process=image/format,webp 804w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e40f8dec0f46.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_284/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e40f8dec0f46.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_726/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e40f8dec0f46.png?x-oss-process=image/quality,q_50/resize,m_fill,w_635,h_600/format,webp 635w" sizes="(max-width: 804px) 100vw, 804px" />
 
 更改完成后，重启Nginx服务
 

@@ -3,7 +3,6 @@ title: font-face需要知道的一切
 weight: 5
 
 
-
 ---
 字体是实现良好的设计、品牌推广、可读性和无障碍功能的基础。 网页字体可实现所有上述目标以及其他目标：文本可选取、可搜索、可缩放并支持高 DPI，无论屏幕尺寸和分辨率如何，均可提供一致并且锐利的文本渲染。 网页字体是实现良好的设计、用户体验和性能的关键所在。
 
@@ -19,9 +18,8 @@ weight: 5
 
 _网页字体_是一个字形集合，而每个字形是描述字母或符号的矢量形状。 因此，特定字体文件的大小由两个简单变量决定：每个字形矢量路径的复杂程度和特定字体中字形的数量。 例如，Open Sans 是其中一种最流行的网页字体，包含 897 个字形，其中包括拉丁文、希腊文和西里尔文字符。
 
-<p id="OfScsbl">
-  <img loading="lazy" class="alignnone  wp-image-5739 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eebcba6b7.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eebcba6b7.png?x-oss-process=image/format,webp" alt="" width="641" height="247" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eebcba6b7.png?x-oss-process=image/format,webp 1249w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eebcba6b7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_116/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eebcba6b7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_296/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eebcba6b7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_309/format,webp 800w" sizes="(max-width: 641px) 100vw, 641px" />
-</p>
+
+  <img loading="lazy" class="alignnone  wp-image-5739 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eebcba6b7.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eebcba6b7.png?x-oss-process=image/format,webp" alt="" width="641" height="247" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eebcba6b7.png?x-oss-process=image/format,webp 1249w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eebcba6b7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_116/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eebcba6b7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_296/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eebcba6b7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_309/format,webp 800w" sizes="(max-width: 641px) 100vw, 641px" />
 
 选取字体时，重要的是考虑它支持的字符集。 如果您需要将页面内容本地化成多种语言，就应该使用一种能够为用户带来一致的外观和体验的字体。 例如，[Google 的 Noto 字体系列][1]{.external} 旨在支持全世界的语言。 但请注意，Noto（含所有语言）ZIP 格式下载文件的总大小超过了 1.1GB+。
 
@@ -170,7 +168,7 @@ _网页字体_是一个字形集合，而每个字形是描述字母或符号的
 
 每个字体系列都由多个样式变体（常规、加粗、倾斜）和适用于每个样式的多个粗细组成，其中的每个粗细又可能包含迥异的字形形状—例如不同的间距、大小调整或完全不同的形状。
 
-<img loading="lazy" width="697" height="127" class="alignnone size-full wp-image-5740 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eeca77a6a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eeca77a6a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eeca77a6a.png?x-oss-process=image/format,webp 697w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eeca77a6a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_55/format,webp 300w" sizes="(max-width: 697px) 100vw, 697px" />
+<img loading="lazy" width="697" height="127" class="alignnone size-full wp-image-5740 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eeca77a6a.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eeca77a6a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eeca77a6a.png?x-oss-process=image/format,webp 697w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eeca77a6a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_55/format,webp 300w" sizes="(max-width: 697px) 100vw, 697px" />
 
 例如，上图以图解方式说明了一个提供三种不同加粗粗细的字体系列： 400（常规）、700（加粗）和 900（特粗）。 [浏览器](https://www.w3cdoc.com)会将所有其他中间变体（以灰色表示）自动映射到最接近的变体。
 
@@ -213,12 +211,11 @@ _倾斜_变体也适用类似的逻辑。 字体设计者控制其将产生哪�
 * 如果未找到精确字体匹配项，[浏览器](https://www.w3cdoc.com)将以最接近的匹配项替代。
 * 如果未找到样式匹配项（例如，在上例中未声明任何倾斜变体），则[浏览器](https://www.w3cdoc.com)将合成其自己的字体变体。
 
-<p id="NwVJLys">
-  <img loading="lazy" class="alignnone  wp-image-5742 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eee8b258d.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eee8b258d.png?x-oss-process=image/format,webp" alt="" width="855" height="380" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eee8b258d.png?x-oss-process=image/format,webp 1352w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eee8b258d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_133/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eee8b258d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_341/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eee8b258d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_356/format,webp 800w" sizes="(max-width: 855px) 100vw, 855px" />
-</p>
+
+  <img loading="lazy" class="alignnone  wp-image-5742 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eee8b258d.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eee8b258d.png?x-oss-process=image/format,webp" alt="" width="855" height="380" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eee8b258d.png?x-oss-process=image/format,webp 1352w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eee8b258d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_133/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eee8b258d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_341/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89eee8b258d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_356/format,webp 800w" sizes="(max-width: 855px) 100vw, 855px" />
 
 <aside class="warning">
-  <strong>Warning:</strong> 字体创造者还应注意，合成方法可能不适用于西里尔文等文字系统，在这些文字系统中，斜体形式在形状方面非常不同。 要在这些文字系统中实现适当的保真度，请使用实际的斜体字体。
+ Warning: 字体创造者还应注意，合成方法可能不适用于西里尔文等文字系统，在这些文字系统中，斜体形式在形状方面非常不同。 要在这些文字系统中实现适当的保真度，请使用实际的斜体字体。
 </aside>
 
 上例以图解方式说明了 Open-Sans 的实际字体与 合成字体结果之间的差异。 所有合成变体都是依据单个 400 粗细的字体生成。 您可以看出，结果存在显著差异。 其中并未详细说明如何生成加粗和倾斜变体。 因此，结果将因[浏览器](https://www.w3cdoc.com)的不同而发生变化，并且与字体的相关度极高。
@@ -240,11 +237,9 @@ _倾斜_变体也适用类似的逻辑。 字体设计者控制其将产生哪�
 
 字体延迟加载带有一个可能会延迟文本渲染的重要隐藏影响：[浏览器](https://www.w3cdoc.com)必须[构建渲染树][24]（它依赖 DOM 和 CSSOM 树），然后才能知道需要使用哪些字体资源来渲染文本。 因此，字体请求的处理将远远滞后于其他关键资源请求的处理，并且在提取资源之前，可能会阻止[浏览器](https://www.w3cdoc.com)渲染文本。
 
-<p id="JAVCMOh">
-  <img loading="lazy" class="alignnone  wp-image-5743 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89ef17db089.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89ef17db089.png?x-oss-process=image/format,webp" alt="" width="774" height="293" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89ef17db089.png?x-oss-process=image/format,webp 2177w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89ef17db089.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_114/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89ef17db089.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_291/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89ef17db089.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_303/format,webp 800w" sizes="(max-width: 774px) 100vw, 774px" />
-</p>
 
-  1. [浏览器](https://www.w3cdoc.com)请求 HTML 文档。
+  <img loading="lazy" class="alignnone  wp-image-5743 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89ef17db089.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89ef17db089.png?x-oss-process=image/format,webp" alt="" width="774" height="293" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89ef17db089.png?x-oss-process=image/format,webp 2177w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89ef17db089.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_114/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89ef17db089.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_291/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/04/img_5e89ef17db089.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_303/format,webp 800w" sizes="(max-width: 774px) 100vw, 774px" />
+1. [浏览器](https://www.w3cdoc.com)请求 HTML 文档。
   2. [浏览器](https://www.w3cdoc.com)开始解析 HTML 响应和构建 DOM。
   3. [浏览器](https://www.w3cdoc.com)发现 CSS、JS 以及其他资源并分派请求。
   4. [浏览器](https://www.w3cdoc.com)在收到所有 CSS 内容后构建 CSSOM，然后将其与 DOM 树合并以构建渲染树。
@@ -293,7 +288,7 @@ _倾斜_变体也适用类似的逻辑。 字体设计者控制其将产生哪�
 并非所有[浏览器](https://www.w3cdoc.com)都[支持 `<link rel="preload">`][26]，在这些[浏览器](https://www.w3cdoc.com)中，将会直接忽略 `<link rel="preload">`。 但是，所有支持预加载的[浏览器](https://www.w3cdoc.com)也支持 WOFF2，因此您始终应该预加载这种格式。
 
 <aside class="note">
-  <strong>Note:</strong> 使用 <code>&lt;link rel="preload"&gt;</code> 将发出无条件的高优先级网络字体网址请求，而不考虑页面上最终是否实际需要该网络字体。 如果在合理的情况下，不需要网络字体的远程副本（例如，因为 <code>@font-face</code> 定义包含针对 Roboto 等常用字体的 <code>local()</code> 条目），那么使用 <code>&lt;link rel="preload"&gt;</code> 将会产生多余的请求。 预加载但不实际使用资源时，某些[浏览器](https://www.w3cdoc.com)会在其开发者工具控制台中显示警告。
+ Note: 使用 <code>&lt;link rel="preload"&gt;</code> 将发出无条件的高优先级网络字体网址请求，而不考虑页面上最终是否实际需要该网络字体。 如果在合理的情况下，不需要网络字体的远程副本（例如，因为 <code>@font-face</code> 定义包含针对 Roboto 等常用字体的 <code>local()</code> 条目），那么使用 <code>&lt;link rel="preload"&gt;</code> 将会产生多余的请求。 预加载但不实际使用资源时，某些[浏览器](https://www.w3cdoc.com)会在其开发者工具控制台中显示警告。
 </aside>
 
 ### 自定义文本渲染延迟 {#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%96%87%E6%9C%AC%E6%B8%B2%E6%9F%93%E5%BB%B6%E8%BF%9F}
@@ -326,7 +321,7 @@ _倾斜_变体也适用类似的逻辑。 字体设计者控制其将产生哪�
     
     <tr>
       <td data-th="Browser">
-        <strong>Chrome 35+</strong>
+       Chrome 35+
       </td>
       
       <td data-th="Timeout">
@@ -344,7 +339,7 @@ _倾斜_变体也适用类似的逻辑。 字体设计者控制其将产生哪�
     
     <tr>
       <td data-th="Browser">
-        <strong>Opera</strong>
+       Opera
       </td>
       
       <td data-th="Timeout">
@@ -362,7 +357,7 @@ _倾斜_变体也适用类似的逻辑。 字体设计者控制其将产生哪�
     
     <tr>
       <td data-th="Browser">
-        <strong>Firefox</strong>
+       Firefox
       </td>
       
       <td data-th="Timeout">
@@ -380,7 +375,7 @@ _倾斜_变体也适用类似的逻辑。 字体设计者控制其将产生哪�
     
     <tr>
       <td data-th="Browser">
-        <strong>Internet Explorer</strong>
+       Internet Explorer
       </td>
       
       <td data-th="Timeout">
@@ -398,7 +393,7 @@ _倾斜_变体也适用类似的逻辑。 字体设计者控制其将产生哪�
     
     <tr>
       <td data-th="Browser">
-        <strong>Safari</strong>
+       Safari
       </td>
       
       <td data-th="Timeout">

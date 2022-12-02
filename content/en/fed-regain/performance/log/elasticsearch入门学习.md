@@ -84,7 +84,7 @@ cd elasticsearch-6.3.2/bin
 注意：不能以root用户运行elasticsearch</pre>
 </div>
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160516143-599068508.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160516143-599068508.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160516143-599068508.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160516143-599068508.png?x-oss-process=image/format,webp" alt="" />
 
 > By default, Elasticsearch uses port 9200 to provide access to its REST API. This port is configurable if necessary.
 
@@ -94,9 +94,9 @@ cd elasticsearch-6.3.2/bin
   <pre>curl http://localhost:9200/</pre>
 </div>
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160629822-884023316.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160629822-884023316.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160629822-884023316.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160629822-884023316.png?x-oss-process=image/format,webp" alt="" />
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160656888-444370749.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160656888-444370749.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160656888-444370749.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160656888-444370749.png?x-oss-process=image/format,webp" alt="" />
 
 # The REST API
 
@@ -213,9 +213,8 @@ yellow open   customer rG5fxdruTNmD-bdYIF5zOg   5   1          0            0   
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>{
   "_index" : "customer",
   "_type" : "_doc",
@@ -230,9 +229,8 @@ yellow open   customer rG5fxdruTNmD-bdYIF5zOg   5   1          0            0   
   "_seq_no" : 0,
   "_primary_term" : 1
 }</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -254,9 +252,8 @@ yellow open   customer rG5fxdruTNmD-bdYIF5zOg   5   1          0            0   
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>{
   "_index" : "customer",
   "_type" : "_doc",
@@ -267,9 +264,8 @@ yellow open   customer rG5fxdruTNmD-bdYIF5zOg   5   1          0            0   
     "name" : "John Doe"
   }
 }</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -340,9 +336,8 @@ curl -X DELETE "localhost:9200/customer"</pre>
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>{
   "_index" : "customer",
   "_type" : "_doc",
@@ -357,9 +352,8 @@ curl -X DELETE "localhost:9200/customer"</pre>
   "_seq_no" : 1,
   "_primary_term" : 1
 }</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -381,9 +375,8 @@ curl -X DELETE "localhost:9200/customer"</pre>
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>{
   "_index" : "customer",
   "_type" : "_doc",
@@ -398,9 +391,8 @@ curl -X DELETE "localhost:9200/customer"</pre>
   "_seq_no" : 2,
   "_primary_term" : 1
 }</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -418,9 +410,8 @@ curl -X DELETE "localhost:9200/customer"</pre>
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>{
   "_index" : "customer",
   "_type" : "_doc",
@@ -435,9 +426,8 @@ curl -X DELETE "localhost:9200/customer"</pre>
   "_seq_no" : 0,
   "_primary_term" : 1
 }</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -464,9 +454,8 @@ curl -X DELETE "localhost:9200/customer"</pre>
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>{
   "took" : 5,
   "errors" : false,
@@ -507,9 +496,8 @@ curl -X DELETE "localhost:9200/customer"</pre>
     }
   ]
 }</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -529,9 +517,8 @@ curl -X DELETE "localhost:9200/customer"</pre>
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>{
   "took" : 8,
   "errors" : false,
@@ -572,9 +559,8 @@ curl -X DELETE "localhost:9200/customer"</pre>
     }
   ]
 }</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -584,7 +570,7 @@ curl -X DELETE "localhost:9200/customer"</pre>
   <pre>curl -X GET "localhost:9200/customer/_doc/1?pretty"</pre>
 </div>
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807181025087-851548359.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807181025087-851548359.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807181025087-851548359.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807181025087-851548359.png?x-oss-process=image/format,webp" alt="" />
 
 # 检索数据
 
@@ -594,9 +580,8 @@ curl -X DELETE "localhost:9200/customer"</pre>
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>{
     "account_number": 0,
     "balance": 16623,
@@ -610,9 +595,8 @@ curl -X DELETE "localhost:9200/customer"</pre>
     "city": "Hobucken",
     "state": "CO"
 }</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -674,9 +658,8 @@ yellow open   bank     59jD3B4FR8iifWWjrdMzUg   5   1       1000            0   
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>{
   "took" : 96,
   "timed_out" : false,
@@ -759,9 +742,8 @@ yellow open   bank     59jD3B4FR8iifWWjrdMzUg   5   1       1000            0   
   ......
   ]
  }</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -780,9 +762,8 @@ yellow open   bank     59jD3B4FR8iifWWjrdMzUg   5   1       1000            0   
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": { "match_all": {} },
@@ -791,9 +772,8 @@ yellow open   bank     59jD3B4FR8iifWWjrdMzUg   5   1       1000            0   
   ]
 }
 '</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -836,9 +816,8 @@ Elasticsearch提供了一种JSON风格的语言，您可以使用这种语言执
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": { "match_all": {} },
@@ -846,9 +825,8 @@ Elasticsearch提供了一种JSON风格的语言，您可以使用这种语言执
   "size": 10
 }
 '</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -930,9 +908,8 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": {
@@ -945,9 +922,8 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
   }
 }
 '</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -957,9 +933,8 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": {
@@ -972,9 +947,8 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
   }
 }
 '</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -988,9 +962,8 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": {
@@ -1005,9 +978,8 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
   }
 }
 '</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -1027,9 +999,8 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": {
@@ -1047,9 +1018,8 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
   }
 }
 '</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -1063,9 +1033,8 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "size": 0,
@@ -1078,9 +1047,8 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
   }
 }
 '</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -1094,9 +1062,8 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>{
     "took":50,
     "timed_out":false,
@@ -1162,9 +1129,8 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
         }
     }
 }</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -1174,9 +1140,8 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "size": 0,
@@ -1196,9 +1161,8 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
   }
 }
 '</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -1212,9 +1176,8 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "size": 0,
@@ -1255,9 +1218,8 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
   }
 }
 '</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 

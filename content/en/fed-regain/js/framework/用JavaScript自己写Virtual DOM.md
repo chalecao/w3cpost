@@ -4,7 +4,7 @@ title: 用JavaScript自己写Virtual DOM
 ---
 # 用JavaScript自己写virtual DOM
 
-<img loading="lazy" class="aligncenter size-full wp-image-3177" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/9313cf7374a848d69a6ed699596f918f.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/9313cf7374a848d69a6ed699596f918f.jpg?x-oss-process=image/format,webp" alt="" width="450" height="250" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/9313cf7374a848d69a6ed699596f918f.jpg?x-oss-process=image/format,webp 450w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/9313cf7374a848d69a6ed699596f918f.jpg?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_167/format,webp 300w" sizes="(max-width: 450px) 100vw, 450px" />
+<img loading="lazy" class="aligncenter size-full wp-image-3177" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/9313cf7374a848d69a6ed699596f918f.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/9313cf7374a848d69a6ed699596f918f.jpg?x-oss-process=image/format,webp" alt="" width="450" height="250" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/9313cf7374a848d69a6ed699596f918f.jpg?x-oss-process=image/format,webp 450w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/9313cf7374a848d69a6ed699596f918f.jpg?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_167/format,webp 300w" sizes="(max-width: 450px) 100vw, 450px" />
 
   <span style="color: #ff0000;">课程地址</span>： <a href="https://t.cn/REeKJp0">https://t.cn/REeKJp0</a>
 
@@ -14,53 +14,41 @@ title: 用JavaScript自己写Virtual DOM
   [前端](https://www.w3cdoc.com)进阶系列课程
 </h1>
 
-<p style="text-align: left;">
+
   <!-- /wp:heading -->
-</p>
 
-<p style="text-align: left;">
+
   <!-- wp:paragraph -->
-</p>
 
-<p style="text-align: left;">
+
   《用JavaScript自己写MVVM[前端](https://www.w3cdoc.com)框架》：<a href="https://t.cn/REeKJp0">https://t.cn/REeKJp0</a>
-</p>
 
-<p style="text-align: left;">
+
   <!-- /wp:paragraph -->
-</p>
 
-<p style="text-align: left;">
+
   <!-- wp:paragraph -->
-</p>
 
-<p style="text-align: left;">
+
   《[前端](https://www.w3cdoc.com)函数式编程FP易学易用》：<a href="https://t.cn/REeKVSk">https://t.cn/REeKVSk</a>
-</p>
 
-<p style="text-align: left;">
+
   <!-- /wp:paragraph -->
-</p>
 
-<p style="text-align: left;">
+
   <!-- wp:paragraph -->
-</p>
 
-<p style="text-align: left;">
+
   《[前端](https://www.w3cdoc.com)自己用NodeJS编写区块链BlockChain》：<a href="https://t.cn/REeoF7v">https://t.cn/REeoF7v</a>
-</p>
 
-<p style="text-align: left;">
+
   <!-- /wp:paragraph -->
-</p>
 
-<p style="text-align: left;">
+
   <!-- wp:paragraph -->
-</p>
 
-<p style="text-align: left;">
+
   《程序语言进阶之DSL与AST实战解析》：<a href="https://t.cn/R3XoQJA">https://t.cn/R3XoQJA</a>
-</p>
 
 《高性能web[前端](https://www.w3cdoc.com)网页优化开发实战》：[学习在线视频教程][1] 《机器学习python与tensorflow实战》：[在线学习视频教程][2]
 
@@ -68,17 +56,13 @@ title: 用JavaScript自己写Virtual DOM
   <h1 class="u-ctit ctit1">
     适用人群
   </h1>
-  
-  <p class="j-targetuser cintrocon">
-    帮助[前端](https://www.w3cdoc.com)感兴趣的同学理解Virtual DOM相关知识，需要有HTML基础和JavaScript基础知识（含ES5和ES6）即可。
-  </p>
+ 帮助[前端](https://www.w3cdoc.com)感兴趣的同学理解Virtual DOM相关知识，需要有HTML基础和JavaScript基础知识（含ES5和ES6）即可。
 </div>
 
 <div class="u-ctn-intro u-ctn-intro-last">
   <div class="cintrocon j-courseintro">
     关于MVVM[前端](https://www.w3cdoc.com)框架[大家](https://www.w3cdoc.com)都有了解，或多或少的使用过，比如Angular，React，VUE等等。那么你是否也想自己手写一个MVVM的[前端](https://www.w3cdoc.com)框架呢，[我们](https://www.w3cdoc.com)从Virtual DOM入手，手把手教你写基于Virtual DOM的[前端](https://www.w3cdoc.com)框架，在整个编写的过程中，希望[大家](https://www.w3cdoc.com)学习更多，理解更多。 学完本课程，推荐本系列下个专题《函数式编程FP易学易用》，让你理解更深刻，编程水平更上一层楼。 喜爱编程的小伙伴们，我希望您和我一样都是行动派。[我们](https://www.w3cdoc.com)做事踏踏实实、风风火火，要做就做最好，不吹牛x。习大大教导[我们](https://www.w3cdoc.com)，只要技术扎实，到哪都能吃麻辣香锅！！！  
   </div>
-  
   <div class="chapter">
     <h1>
       课程大纲
@@ -86,10 +70,11 @@ title: 用JavaScript自己写Virtual DOM
 
     <h2 class="chapterhead">
       <span class="f-fl f-thide chaptertitle">章节1: </span><span class="f-fl f-thide chaptername">认识DOM与VirtualDOM</span>
-    </h2>
+    
+
     
     <div id="auto-id-1520315402977" class="section" data-lesson="0">
-      <img loading="lazy" class="alignnone wp-image-1838 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/Jietu20180501-134343.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/Jietu20180501-134343.jpg?x-oss-process=image/resize,m_fill,w_1024,h_560/format,webp" alt="" width="515" height="282" />
+      <img loading="lazy" class="alignnone wp-image-1838 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/Jietu20180501-134343.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/Jietu20180501-134343.jpg?x-oss-process=image/resize,m_fill,w_1024,h_560/format,webp" alt="" width="515" height="282" />
     </div>
   </div>
 </div>
@@ -109,7 +94,7 @@ title: 用JavaScript自己写Virtual DOM
 <div class="u-ctn-intro u-ctn-intro-last">
   <div class="chapter">
     <div data-lesson="0">
-      <img loading="lazy" class="alignnone wp-image-1839 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/Jietu20180501-134741.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/Jietu20180501-134741.jpg?x-oss-process=image/resize,m_fill,w_1024,h_581/format,webp" alt="" width="511" height="290" />
+      <img loading="lazy" class="alignnone wp-image-1839 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/Jietu20180501-134741.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/Jietu20180501-134741.jpg?x-oss-process=image/resize,m_fill,w_1024,h_581/format,webp" alt="" width="511" height="290" />
     </div>
   </div>
 </div>
@@ -130,7 +115,8 @@ title: 用JavaScript自己写Virtual DOM
   <div class="chapter">
     <h2 class="chapterhead">
       <span class="f-fl f-thide chaptertitle">章节2: </span><span class="f-fl f-thide chaptername">如何构建VirtualDOM</span>
-    </h2>
+    
+
 
     <h3 id="auto-id-1520315402981" class="section" data-lesson="1">
       <span class="f-fl f-thide ks">    课时2  </span><span class="f-fl f-thide ksname" title="构建Virtual Node">构建Virtual Node</span>
@@ -142,9 +128,7 @@ title: 用JavaScript自己写Virtual DOM
       <span class="f-fl f-thide ks">    课时3  </span><span class="f-fl f-thide ksname" title="构建VirtualDOM">构建VirtualDOM</span>
     </h3>
   </div> 手工实现DOM模型构建不太合理，[我们](https://www.w3cdoc.com)可以借助JSX的工具来完成这个转换。本节[我们](https://www.w3cdoc.com)以rollup打包工具结合babel转换插件实现数据的抽象。具体代码配置参考：
-  
-  <a href="https://github.com/chalecao/virtualdom">github中package.json配置和rollup.config.js</a> <img loading="lazy" class="alignnone wp-image-1844 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/22-1.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/22-1.jpg?x-oss-process=image/resize,m_fill,w_1024,h_639/format,webp" alt="" width="510" height="318" /> <img loading="lazy" class="alignnone wp-image-1843 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/333.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/333.jpg?x-oss-process=image/resize,m_fill,w_1024,h_612/format,webp" alt="" width="505" height="302" />
-  
+  <a href="https://github.com/chalecao/virtualdom">github中package.json配置和rollup.config.js</a> <img loading="lazy" class="alignnone wp-image-1844 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/22-1.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/22-1.jpg?x-oss-process=image/resize,m_fill,w_1024,h_639/format,webp" alt="" width="510" height="318" /> <img loading="lazy" class="alignnone wp-image-1843 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/333.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/333.jpg?x-oss-process=image/resize,m_fill,w_1024,h_612/format,webp" alt="" width="505" height="302" />
   <pre class="pure-highlightjs"><code class="">const vdom = (
     &lt;div id="_Q5" style="border: 1px solid red;"&gt;
         &lt;div style="text-align: center; margin: 36px auto 18px; width: 160px; line-height: 0;"&gt;
@@ -153,7 +137,6 @@ title: 用JavaScript自己写Virtual DOM
         &lt;/div&gt;
     &lt;/div&gt;)
 </code></pre> 上面[我们](https://www.w3cdoc.com)定义的vdom片段采用JSX处理器处理后如下面代码：
-  
   <pre class="pure-highlightjs"><code class="">/*fed123.com*/
 'use strict';
 
@@ -168,9 +151,7 @@ var vdom = vnode(
     )
 );
 </code></pre> 是不是很好理解，JSX编译后会自动根据定义好的语法格式提取出元素的类型和属性和子元素，并填入vnode方法中，[我们](https://www.w3cdoc.com)只需要实现vnode方法就可以。[我们](https://www.w3cdoc.com)可以编写
-  
   <code class="">vnode方法用于构建虚拟节点的模型，</code>编写<code class="">createElement</code>方法用于根据vnode模型创建元素。并且把vnode的子元素追加到父元素上，形成树形层级结构。
-  
   <pre class="pure-highlightjs"><code class="">function vnode(type, props, ...children) {
     return { type, props, children };
   }
@@ -187,15 +168,15 @@ function createElement(node) {
 }
 document.body.appendChild(createElement(vdom));
 </code></pre> 这样[我们](https://www.w3cdoc.com)就完成了虚拟节点vnode和虚拟vDOM的构建。
-  
   <div class="chapter">
     <h2 class="chapterhead">
       <span class="f-fl f-thide chaptertitle">章节3: </span><span class="f-fl f-thide chaptername">Diff VirtualDOM 与Update DOM</span>
-    </h2>
+    
+
   </div>
 </div>
 
-<img loading="lazy" class="alignnone wp-image-1845 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/555.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/555.jpg?x-oss-process=image/resize,m_fill,w_1024,h_590/format,webp" alt="" width="494" height="285" /> 如图展示了最简单的一层DOM的结构变化，无非也就这么几种：<span style="color: #ff0000;">增加元素节点、修改节点，删除节点</span>。[我们](https://www.w3cdoc.com)可以基于DOM API来实现这些基本的操作，代码如下：
+<img loading="lazy" class="alignnone wp-image-1845 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/555.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/555.jpg?x-oss-process=image/resize,m_fill,w_1024,h_590/format,webp" alt="" width="494" height="285" /> 如图展示了最简单的一层DOM的结构变化，无非也就这么几种：<span style="color: #ff0000;">增加元素节点、修改节点，删除节点</span>。[我们](https://www.w3cdoc.com)可以基于DOM API来实现这些基本的操作，代码如下：
 
 <pre class="pure-highlightjs"><code class="">function updateElement($parent, newnode, oldnode) {
     var index = arguments.length &gt; 3 && arguments[3] !== undefined ? arguments[3] : 0;
@@ -222,7 +203,8 @@ document.body.appendChild(createElement(vdom));
 
     <h2 class="chapterhead">
       <span class="f-fl f-thide chaptertitle">章节4: </span><span class="f-fl f-thide chaptername">处理DOM属性和事件绑定</span>
-    </h2>
+    
+
     
     <div id="auto-id-1520315402997" class="section" data-lesson="5">
       <pre class="pure-highlightjs"><code class="">{
@@ -233,7 +215,7 @@ document.body.appendChild(createElement(vdom));
 ]}
 </code></pre> 上面[我们](https://www.w3cdoc.com)抽取的vnode的模型中已经把props拿出来了，[我们](https://www.w3cdoc.com)这里需要把这些样式设置到对应元素上就好了。[我们](https://www.w3cdoc.com)先看下元素的属性变化有哪几种情况：
 
-      <img loading="lazy" class="alignnone wp-image-1846 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/666.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/666.jpg?x-oss-process=image/resize,m_fill,w_1024,h_658/format,webp" alt="" width="515" height="331" /> 如上，元素属性可以增加可以减少，[我们](https://www.w3cdoc.com)通过DOM API实现属性的更新操作，代码如下： 
+      <img loading="lazy" class="alignnone wp-image-1846 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/666.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/666.jpg?x-oss-process=image/resize,m_fill,w_1024,h_658/format,webp" alt="" width="515" height="331" /> 如上，元素属性可以增加可以减少，[我们](https://www.w3cdoc.com)通过DOM API实现属性的更新操作，代码如下： 
       
       <pre class="pure-highlightjs"><code class="">//handle props
 
@@ -301,32 +283,33 @@ function updateProps($el) {
 
     <h2 class="section" data-lesson="5">
       <span class="f-fl f-thide ks">课时6  </span><span class="f-fl f-thide ksname" title="处理Virtual DOM属性方法与思路">处理Virtual DOM属性方法与思路</span>
-    </h2>
+    
+
     
     <div id="auto-id-1520315403001" class="section" data-lesson="6">
-      <span class="f-fl f-thide ks"><img loading="lazy" class="alignnone wp-image-2234 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/Jietu20180910-201317.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/Jietu20180910-201317.jpg?x-oss-process=image/resize,m_fill,w_1024,h_755/format,webp" alt="" width="493" height="364" /></span>
+      <span class="f-fl f-thide ks"><img loading="lazy" class="alignnone wp-image-2234 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/Jietu20180910-201317.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/Jietu20180910-201317.jpg?x-oss-process=image/resize,m_fill,w_1024,h_755/format,webp" alt="" width="493" height="364" /></span>
     </div>
     
     <div class="section" data-lesson="6">
-      <span class="f-fl f-thide ks"><img loading="lazy" class="alignnone wp-image-2235 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/Jietu20180910-201342.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/Jietu20180910-201342.jpg?x-oss-process=image/resize,m_fill,w_1024,h_715/format,webp" alt="" width="494" height="345" />  </span>
+      <span class="f-fl f-thide ks"><img loading="lazy" class="alignnone wp-image-2235 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/Jietu20180910-201342.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/Jietu20180910-201342.jpg?x-oss-process=image/resize,m_fill,w_1024,h_715/format,webp" alt="" width="494" height="345" />  </span>
     </div>
   </div>
-  
   <div class="chapter">
     <h2 class="chapterhead">
       <span class="f-fl f-thide chaptertitle">章节5: </span><span class="f-fl f-thide chaptername">封装组件与工程化应用</span>
-    </h2>
+    
+
 
     <div id="auto-id-1520315403017" class="section" data-lesson="10">
-      <img loading="lazy" class="alignnone " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/Jietu20180910-215437.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/Jietu20180910-215437.jpg?x-oss-process=image/format,webp" width="551" height="412" />
+      <img loading="lazy" class="alignnone " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/Jietu20180910-215437.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/Jietu20180910-215437.jpg?x-oss-process=image/format,webp" width="551" height="412" />
     </div>
     
     <div data-lesson="10">
-      <img loading="lazy" class="alignnone " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/Jietu20180910-215450.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/Jietu20180910-215450.jpg?x-oss-process=image/format,webp" width="552" height="359" />
+      <img loading="lazy" class="alignnone " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/Jietu20180910-215450.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/Jietu20180910-215450.jpg?x-oss-process=image/format,webp" width="552" height="359" />
     </div>
     
     <div data-lesson="10">
-      <img loading="lazy" class="alignnone " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/Jietu20180910-215504.jpg?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/Jietu20180910-215504.jpg?x-oss-process=image/format,webp" width="552" height="410" />
+      <img loading="lazy" class="alignnone " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/Jietu20180910-215504.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/09/Jietu20180910-215504.jpg?x-oss-process=image/format,webp" width="552" height="410" />
     </div>
   </div>
 </div>

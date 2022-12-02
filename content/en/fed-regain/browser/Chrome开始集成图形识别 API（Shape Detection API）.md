@@ -25,7 +25,6 @@ title: Chrome开始集成图形识别 API（Shape Detection API）
       Windows
     </td>
   </tr>
-  
   <tr>
     <td valign="top" width="132">
       条形码
@@ -43,7 +42,6 @@ title: Chrome开始集成图形识别 API（Shape Detection API）
       <a href="https://docs.microsoft.com/en-us/uwp/api/windows.devices.pointofservice.barcodescanner">BarcodeScanner</a>
     </td>
   </tr>
-  
   <tr>
     <td valign="top" width="132">
       人脸
@@ -61,7 +59,6 @@ title: Chrome开始集成图形识别 API（Shape Detection API）
       <a href="https://docs.microsoft.com/en-us/uwp/api/windows.media.faceanalysis">FaceAnalysis</a>
     </td>
   </tr>
-  
   <tr>
     <td valign="top" width="132">
       文本

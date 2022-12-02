@@ -4,7 +4,7 @@ title: 了解Filebeat和使用配置
 ---
 ## 认识Beats
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808165830156-991327199.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808165830156-991327199.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808165830156-991327199.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808165830156-991327199.png?x-oss-process=image/format,webp" alt="" />
 
 Beats是用于单用途数据托运人的平台。它们以轻量级代理的形式安装，并将来自成百上千台机器的数据发送到Logstash或Elasticsearch。
 
@@ -14,17 +14,17 @@ Beats对于收集数据非常有用。它们位于你的服务器上，将数据
 
 为了捕捉（捕获）数据，Elastic提供了各种Beats：
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808170412526-1782553229.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808170412526-1782553229.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808170412526-1782553229.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808170412526-1782553229.png?x-oss-process=image/format,webp" alt="" />
 
 Beats可以直接（或者通过Logstash）将数据发送到Elasticsearch，在那里你可以进一步处理和增强数据，然后在Kibana中将其可视化。
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808170444229-5723261.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808170444229-5723261.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808170444229-5723261.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808170444229-5723261.png?x-oss-process=image/format,webp" alt="" />
 
 ## Filebeat
 
 ### 第1步：安装Filebeat
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808171725468-641427623.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808171725468-641427623.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808171725468-641427623.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808171725468-641427623.png?x-oss-process=image/format,webp" alt="" />
 
 ### 第2步：配置Filebeat
 
@@ -52,7 +52,7 @@ Beats可以直接（或者通过Logstash）将数据发送到Elasticsearch，在
 
 假设配置的输入路径是/var/log/\*/\*.log，假设目录结构是这样的：
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808182426196-188738357.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808182426196-188738357.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808182426196-188738357.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808182426196-188738357.png?x-oss-process=image/format,webp" alt="" />
 
 那么只会抓取到2.log和3.log，而不会抓到1.log和4.log。因为/var/log/aaa/ccc/1.log和/var/log/4.log不会被抓到。
 
@@ -76,9 +76,8 @@ Beats可以直接（或者通过Logstash）将数据发送到Elasticsearch，在
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
-  
   <pre>output.elasticsearch:
       hosts: ["myEShost:9200"]
       username: "filebeat_internal"
@@ -87,9 +86,8 @@ setup.kibana:
       host: "mykibanahost:5601"
       username: "my_kibana_user"  
       password: "{pwd}"</pre>
-  
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
   </div>
 </div>
 
@@ -121,19 +119,19 @@ Filebeat包已经安装了推荐的索引模板。如果你接受filebeat.yml中
 setup.template.fields: "path/to/fields.yml"</pre>
     </div>
 
-    覆盖一个已存在的模板</li> 
+    覆盖一个已存在的模板 
     
       * <div class="cnblogs_code">
           <pre>setup.template.overwrite: true</pre>
         </div>
         
-        禁用自动加载模板</li> 
+        禁用自动加载模板 
         
           * <div class="cnblogs_code">
               <pre>setup.template.enabled: false</pre>
             </div>
             
-            修改索引名称</li> 
+            修改索引名称 
             
               * <div class="cnblogs_code">
                   <pre># 默认情况下，Filebeat写事件到名为filebeat-6.3.2-yyyy.MM.dd的索引，其中yyyy.MM.dd是事件被索引的日期。为了用一个不同的名字，你可以在Elasticsearch输出中设置index选项。例如：
@@ -141,7 +139,7 @@ output.elasticsearch.index: "customname-%{[beat.version]}-%{+yyyy.MM.dd}"
 setup.template.name: "customname"
 setup.template.pattern: "customname-*"
 setup.dashboards.index: "customname-*"</pre>
-                </div></ul>
+                </div>
 
             **手动加载模板**
             
@@ -173,7 +171,7 @@ setup.dashboards.index: "customname-*"</pre>
             
             <div class="cnblogs_code">
               <div class="cnblogs_code_toolbar">
-                <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+                <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
               </div>
               
               <pre>#=========================== Filebeat inputs ==============
@@ -201,7 +199,7 @@ output.elasticsearch:
    hosts: ["localhost:9200"]</pre>
 
               <div class="cnblogs_code_toolbar">
-                <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+                <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
               </div>
             </div>
             
@@ -223,7 +221,7 @@ output.elasticsearch:
             
             **[浏览器](https://www.w3cdoc.com)访问  ****http://192.168.101.5:5601**
 
-<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808211646599-1450436874.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808211646599-1450436874.png?x-oss-process=image/format,webp" alt="" />
+<img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808211646599-1450436874.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180808211646599-1450436874.png?x-oss-process=image/format,webp" alt="" />
 
             ** 查看索引**
             

@@ -37,7 +37,7 @@ title: Session会话分析
 
 Session 记录什么事件，取决于需要关注的用户行为。如果 Session 事件只包含了注册行为（核心事件），那王小明的行为将会被记录为一个 Session。如果包含浏览页面，则会被记录为两个 Session。
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/T4IKlAAG415UXL2S54gf.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/T4IKlAAG415UXL2S54gf.png?x-oss-process=image/format,webp" alt="" width="649" height="438" data-action="zoom" />
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/T4IKlAAG415UXL2S54gf.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/T4IKlAAG415UXL2S54gf.png?x-oss-process=image/format,webp" alt="" width="649" height="438" data-action="zoom" />
 
 **图1 不同切割时长的 Session**图片来源：神策数据
 
@@ -47,7 +47,7 @@ Session 记录什么事件，取决于需要关注的用户行为。如果 Sessi
 
 平均访问时长是指在一定统计时间内，浏览网站的一个页面或整个网站时用户所逗留的总时间与该页面或整个网站的访问次数的比。
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/YbzOa9T4qwFt7mnMhcsI.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/YbzOa9T4qwFt7mnMhcsI.png?x-oss-process=image/format,webp" alt="" width="424" height="111" data-action="zoom" />
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/YbzOa9T4qwFt7mnMhcsI.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/YbzOa9T4qwFt7mnMhcsI.png?x-oss-process=image/format,webp" alt="" width="424" height="111" data-action="zoom" />
 
 **图2 平均访问时长**
 
@@ -57,7 +57,7 @@ Session 记录什么事件，取决于需要关注的用户行为。如果 Sessi
 
 平均交互深度和平均访问深度定义虽有差别，意义却很相似，都是衡量 Web/APP 质量的重要指标，可以帮助企业了解页面内容的价值，功能是否满足用户需求，指标的具体意义需要依照业务判断。
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/Fjw6r8pTxKvosBVLYkm4.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/Fjw6r8pTxKvosBVLYkm4.png?x-oss-process=image/format,webp" alt="" width="476" height="130" data-action="zoom" />
+<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/Fjw6r8pTxKvosBVLYkm4.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/Fjw6r8pTxKvosBVLYkm4.png?x-oss-process=image/format,webp" alt="" width="476" height="130" data-action="zoom" />
 
 **图4 平均交互深度**
 

@@ -1,10 +1,7 @@
 ---
 title: AMD与CMD规范-javascript模块化
 
-
 ---
-  
-
 
 ### [][1]模块化思想
 

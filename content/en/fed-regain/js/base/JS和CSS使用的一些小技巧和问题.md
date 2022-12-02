@@ -1,20 +1,8 @@
 ---
 title: JS和CSS使用的一些小技巧和问题
-
-
-
-  - https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/bf565c2227fc8deb089a0a3eba20cddd.png
-
-  - 1511
-
-  - 2
-
-  - JS和CSS使用的一些小技巧和问题
-
-
-
 ---
-<img loading="lazy" class="alignnone wp-image-2092 size-full" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/bf565c2227fc8deb089a0a3eba20cddd.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/bf565c2227fc8deb089a0a3eba20cddd.png?x-oss-process=image/format,webp" alt="" width="600" height="233" />
+
+<img loading="lazy" class="alignnone wp-image-2092 size-full" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/bf565c2227fc8deb089a0a3eba20cddd.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/04/bf565c2227fc8deb089a0a3eba20cddd.png?x-oss-process=image/format,webp" alt="" width="600" height="233" />
 
 ## 定制间隔线
 
@@ -206,7 +194,7 @@ function removeClass(sel, cls) {
 
 ## nodeList 你需要知道的
 
-  <strong>知识点1</strong>： nodeList 在 ie， ios safari 10 之前，chrome 51 之前是不支持forEach方法的。参考: <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeList">https://developer.mozilla.org/en-US/docs/Web/API/NodeList</a> ， 所以新手经常会犯这个错误。直接
+ 知识点1： nodeList 在 ie， ios safari 10 之前，chrome 51 之前是不支持forEach方法的。参考: <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeList">https://developer.mozilla.org/en-US/docs/Web/API/NodeList</a> ， 所以新手经常会犯这个错误。直接
 
 <div>
   <pre><code>&lt;code>document,querySelectorAll("a").forEach(()=&gt;{
@@ -227,12 +215,10 @@ NodeList.prototype.forEach = Array.prototype.forEach;&lt;/span>
 </code></pre>
 </div>
 
-  <strong>知识点2： </strong>
+ 知识点2： 
 
 <div>
-  <p>
-    In some cases, the <code>NodeList</code> is <em>live</em>, which means that changes in the DOM automatically update the collection. For example, <a title="The Node.childNodes read-only property returns a live NodeList of child nodes of the given element where the first child node is assigned index 0." href="https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes"><code>Node.childNodes</code></a> 获取到的节点是对真实节点的实时引用（live node）:
-  </p>
+ In some cases, the <code>NodeList</code> is <em>live</em>, which means that changes in the DOM automatically update the collection. For example, <a title="The Node.childNodes read-only property returns a live NodeList of child nodes of the given element where the first child node is assigned index 0." href="https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes"><code>Node.childNodes</code></a> 获取到的节点是对真实节点的实时引用（live node）:
   
   <pre class="brush: js line-numbers language-js"><code class=" language-js">&lt;span class="token keyword">var&lt;/span> parent &lt;span class="token operator">=&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'parent'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token keyword">var&lt;/span> child_nodes &lt;span class="token operator">=&lt;/span> parent&lt;span class="token punctuation">.&lt;/span>childNodes&lt;span class="token punctuation">;&lt;/span>

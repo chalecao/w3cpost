@@ -2,7 +2,6 @@
 title: JS对象属性的快速删除
 
 
-
 ---
 先划重点：**沿着属性添加的反方向删除属性时，对象不会退化为字典模式**。
 
@@ -64,9 +63,9 @@ V8 是如何实现这个特性（DeleteObjectPropertyFast）的了？
 
 如下图所示：<figure>
 
-<p id="aVtKUKM">
-  <img loading="lazy" width="1280" height="720" class="alignnone size-full wp-image-6636 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b8fa6b20a.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b8fa6b20a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b8fa6b20a.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b8fa6b20a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_169/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b8fa6b20a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_450/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b8fa6b20a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_432/format,webp 768w" sizes="(max-width: 1280px) 100vw, 1280px" />
-</p></figure>
+
+  <img loading="lazy" width="1280" height="720" class="alignnone size-full wp-image-6636 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b8fa6b20a.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b8fa6b20a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b8fa6b20a.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b8fa6b20a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_169/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b8fa6b20a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_450/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b8fa6b20a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_432/format,webp 768w" sizes="(max-width: 1280px) 100vw, 1280px" />
+</figure>
 
 当删除最后添加的属性 #y 时：
 
@@ -75,17 +74,17 @@ V8 是如何实现这个特性（DeleteObjectPropertyFast）的了？
 
 形成如下图结构：<figure>
 
-<p id="EdjkwHE">
-  <img loading="lazy" width="1440" height="810" class="alignnone size-full wp-image-6637 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b9036f1eb.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b9036f1eb.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b9036f1eb.png?x-oss-process=image/format,webp 1440w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b9036f1eb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_169/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b9036f1eb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_450/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b9036f1eb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_432/format,webp 768w" sizes="(max-width: 1440px) 100vw, 1440px" />
-</p></figure>
+
+  <img loading="lazy" width="1440" height="810" class="alignnone size-full wp-image-6637 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b9036f1eb.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b9036f1eb.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b9036f1eb.png?x-oss-process=image/format,webp 1440w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b9036f1eb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_169/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b9036f1eb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_450/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b9036f1eb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_432/format,webp 768w" sizes="(max-width: 1440px) 100vw, 1440px" />
+</figure>
 
 > 此时对于对象 p2 来说 #x 成为最后一个添加到对象内的属性。
 
 继续删除属性 #x 时，由于 #x 是最后被添加到对象内的属性，故执行过程与删除属性 #y 类似，最终对象 p2 被回滚到初始状态：<figure>
 
-<p id="LepWfjc">
-  <img loading="lazy" width="1440" height="810" class="alignnone size-full wp-image-6638 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png?x-oss-process=image/format,webp 1440w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_169/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_450/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_432/format,webp 768w" sizes="(max-width: 1440px) 100vw, 1440px" />
-</p></figure>
+
+  <img loading="lazy" width="1440" height="810" class="alignnone size-full wp-image-6638 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png?x-oss-process=image/format,webp 1440w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_169/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_450/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b90f6212e.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_432/format,webp 768w" sizes="(max-width: 1440px) 100vw, 1440px" />
+</figure>
 
 通过上述的例子[我们](https://www.w3cdoc.com)可以总结出：
 

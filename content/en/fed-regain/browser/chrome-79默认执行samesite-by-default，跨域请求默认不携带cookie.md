@@ -8,9 +8,8 @@ title: Chrome 79+默认执行SameSite-by-default，跨域请求默认不携带co
 
 一般是通过请求后端接口，后端接口返回set-cookie请求头，[浏览器](https://www.w3cdoc.com)会自动设置对应cookie，[浏览器](https://www.w3cdoc.com)默认是阻止js操作set-cookie的请求头的。
 
-<p id="yHeWXIa">
-  <img loading="lazy" class="alignnone  wp-image-6097 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png?x-oss-process=image/format,webp" alt="" width="688" height="212" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png?x-oss-process=image/format,webp 1536w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_92/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_246/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_236/format,webp 768w" sizes="(max-width: 688px) 100vw, 688px" />
-</p>
+
+  <img loading="lazy" class="alignnone  wp-image-6097 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png?x-oss-process=image/format,webp" alt="" width="688" height="212" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png?x-oss-process=image/format,webp 1536w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_92/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_246/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fabceebde269.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_236/format,webp 768w" sizes="(max-width: 688px) 100vw, 688px" />
 
 示例：
 
@@ -33,13 +32,13 @@ Set-Cookie: &lt;cookie-name>=&lt;cookie-value>; Domain=&lt;domain-value>; Secure
 
 `Secure` <span class="inlineIndicator optional optionalInline">Optional ，</span>Cookie is only sent to the server when a request is made with the `https:` scheme (except on localhost), and therefore is more resistent to <a class="external" href="https://wiki.developer.mozilla.org/en-US/docs/Glossary/MitM" rel="noopener">man-in-the-middle</a> attacks.
 
-> <p class="note">
->   <strong>Note:</strong> Do not assume that <code>Secure</code> prevents all access to sensitive information in cookies (session keys, login details, etc.). Cookies with this attribute can still be read/modified with access to the client&#8217;s hard disk, or from JavaScript if the <code>HttpOnly</code> cookie attribute is not set.
-> </p>
+> 
+>  Note: Do not assume that <code>Secure</code> prevents all access to sensitive information in cookies (session keys, login details, etc.). Cookies with this attribute can still be read/modified with access to the client&#8217;s hard disk, or from JavaScript if the <code>HttpOnly</code> cookie attribute is not set.
+> 
 >
-> <p class="note">
->   <strong>Note:</strong> Insecure sites (<code>http:</code>) can&#8217;t set cookies with the <code>Secure</code> attribute (since Chrome 52 and Firefox 52). For Firefox, the <code>https:</code> requirements are ignored when the <code>Secure</code> attribute is set by localhost (since Firefox 75).
-> </p>
+> 
+>  Note: Insecure sites (<code>http:</code>) can&#8217;t set cookies with the <code>Secure</code> attribute (since Chrome 52 and Firefox 52). For Firefox, the <code>https:</code> requirements are ignored when the <code>Secure</code> attribute is set by localhost (since Firefox 75).
+> 
 
 secure 参数可选，只有是HTTPS请求的响应才能设置secure属性，可以很好地防止劫持。需要注意的是这个参数并不能保证cookie是安全的，cookie是存在客户端硬盘的，其他软件或者javascript仍然可以读取或者修改。chrome >=52, FireFox >= 52版本[浏览器](https://www.w3cdoc.com)，在http请求中是不能设置secure属性的cookie的
 

@@ -3,8 +3,6 @@ title: JavaScript实现JSONP和ajax
 
 
 
-
-
 ---
 相信大多数[前端](https://www.w3cdoc.com)开发者在需要与后端进行数据交互时，为了方便快捷，都会选择JQuery中封装的AJAX方法，但是有些时候，[我们](https://www.w3cdoc.com)只需要JQuery的AJAX请求方法，而其他的功能用到的很少，这显然是没必要的。
 

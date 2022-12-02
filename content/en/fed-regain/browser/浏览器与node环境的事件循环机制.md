@@ -33,9 +33,8 @@ _注：虽然nodejs中的也存在与传统[浏览器](https://www.w3cdoc.com)�
 
 下面这个图片非常直观的展示了这个过程，其中的global就是初次运行脚本时向执行栈中加入的代码：
 
-<p id="EYpBVZA">
-  <img loading="lazy" class="alignnone wp-image-4740 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf608e577f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf608e577f.png?x-oss-process=image/format,webp" alt="" width="423" height="95" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf608e577f.png?x-oss-process=image/format,webp 712w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf608e577f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_67/format,webp 300w" sizes="(max-width: 423px) 100vw, 423px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-4740 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf608e577f.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf608e577f.png?x-oss-process=image/format,webp" alt="" width="423" height="95" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf608e577f.png?x-oss-process=image/format,webp 712w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf608e577f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_67/format,webp 300w" sizes="(max-width: 423px) 100vw, 423px" />
 
 从图片可知，一个方法执行会向执行栈中加入这个方法的执行环境，在这个执行环境中还可以调用其他方法，甚至是自己，其结果不过是在执行栈中再添加一个执行环境。这个过程可以是无限进行下去的，除非发生了栈溢出，即超过了所能使用内存的最大值。
 
@@ -45,9 +44,8 @@ js引擎遇到一个异步事件后并不会一直等待其返回结果，而是
 
 这里还有一张图来展示这个过程：
 
-<p id="jzTDlkC">
-  <img loading="lazy" class="alignnone wp-image-4742 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf61ad4d24.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf61ad4d24.png?x-oss-process=image/format,webp" alt="" width="371" height="325" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf61ad4d24.png?x-oss-process=image/format,webp 601w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf61ad4d24.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_263/format,webp 300w" sizes="(max-width: 371px) 100vw, 371px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-4742 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf61ad4d24.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf61ad4d24.png?x-oss-process=image/format,webp" alt="" width="371" height="325" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf61ad4d24.png?x-oss-process=image/format,webp 601w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2bf61ad4d24.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_263/format,webp 300w" sizes="(max-width: 371px) 100vw, 371px" />
 
 图中的stack表示[我们](https://www.w3cdoc.com)所说的执行栈，web apis则是代表一些异步事件，而callback queue即事件队列。
 
@@ -97,9 +95,8 @@ new Promise(function(resolve,reject){
 
 在node中，事件循环表现出的状态与[浏览器](https://www.w3cdoc.com)中大致相同。不同的是node中有一套自己的模型。node中事件循环的实现是依靠的libuv引擎。[我们](https://www.w3cdoc.com)知道node选择chrome v8引擎作为js解释器，v8引擎将js代码分析后去调用对应的node api，而这些api最后则由libuv引擎驱动，执行对应的任务，并把不同的事件放在不同的队列中等待主线程执行。 因此实际上node中的事件循环存在于libuv引擎中。下面是一个libuv引擎中的事件循环的模型:
 
-<p id="ZibaCMd">
-  <img loading="lazy" class="alignnone  wp-image-4760 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c60b15a561.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c60b15a561.png?x-oss-process=image/format,webp" alt="" width="639" height="288" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c60b15a561.png?x-oss-process=image/format,webp 1312w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c60b15a561.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_135/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c60b15a561.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_346/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c60b15a561.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_360/format,webp 800w" sizes="(max-width: 639px) 100vw, 639px" />
-</p>
+
+  <img loading="lazy" class="alignnone  wp-image-4760 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c60b15a561.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c60b15a561.png?x-oss-process=image/format,webp" alt="" width="639" height="288" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c60b15a561.png?x-oss-process=image/format,webp 1312w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c60b15a561.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_135/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c60b15a561.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_346/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/07/img_5d2c60b15a561.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_360/format,webp 800w" sizes="(max-width: 639px) 100vw, 639px" />
 
 _注：模型中的每一个方块代表事件循环的一个阶段_
 

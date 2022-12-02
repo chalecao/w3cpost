@@ -55,9 +55,8 @@ Google 宣布在 16 年初放弃对 SPDY 的支持，随后 Google 自家支持 
 
 HTTP/1 的请求和响应报文，都是由起始行、首部和实体正文（可选）组成，各部分之间以文本换行符分隔。而 HTTP/2 将请求和响应数据分割为更小的帧，并对它们采用二进制编码。下面这幅图中的 Binary Framing 就是新增的二进制分帧层：
 
-<p id="gtXmhet">
-  <img loading="lazy" width="800" height="412" class="alignnone size-full wp-image-5594 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae8f9afd6f.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae8f9afd6f.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae8f9afd6f.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae8f9afd6f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_155/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae8f9afd6f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_396/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
-</p>
+
+  <img loading="lazy" width="800" height="412" class="alignnone size-full wp-image-5594 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae8f9afd6f.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae8f9afd6f.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae8f9afd6f.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae8f9afd6f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_155/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae8f9afd6f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_396/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
 
 先来看看这几个概念：
 
@@ -68,9 +67,8 @@ HTTP/1 的请求和响应报文，都是由起始行、首部和实体正文（�
 
 在 HTTP/2 中，同域名下所有通信都在单个连接上完成，这个连接可以承载任意数量的双向数据流。每个数据流都以消息的形式发送，而消息又由一个或多个帧组成。多个帧之间可以乱序发送，因为根据帧首部的流标识可以重新组装。下面有一幅图说明帧、消息、流和连接的关系：
 
-<p id="xotXWdr">
-  <img loading="lazy" width="800" height="452" class="alignnone size-full wp-image-5595 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae91cc9e92.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae91cc9e92.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae91cc9e92.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae91cc9e92.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_170/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae91cc9e92.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_434/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
-</p>
+
+  <img loading="lazy" width="800" height="452" class="alignnone size-full wp-image-5595 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae91cc9e92.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae91cc9e92.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae91cc9e92.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae91cc9e92.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_170/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/02/img_5e3ae91cc9e92.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_434/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
 
 TCP
 

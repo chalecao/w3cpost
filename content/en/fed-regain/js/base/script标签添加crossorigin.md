@@ -17,9 +17,8 @@ title: script标签添加crossorigin
 
 从谷歌的结果来看，比较一致的说法是，引入跨域的脚本（比如用了 apis.google.com 上的库文件），如果这个脚本有错误，因为[浏览器](https://www.w3cdoc.com)的限制（根本原因是协议的规定），是拿不到错误信息的。当本地尝试使用 `window.onerror` 去记录脚本的错误时，跨域脚本的错误只会返回 `Script error`。
 
-<p id="mvscmrK">
-  <img loading="lazy" width="260" height="82" class="alignnone size-full wp-image-3103 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c0167d35f0b0.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c0167d35f0b0.png?x-oss-process=image/format,webp" alt="" />
-</p>
+
+  <img loading="lazy" width="260" height="82" class="alignnone size-full wp-image-3103 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c0167d35f0b0.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c0167d35f0b0.png?x-oss-process=image/format,webp" alt="" />
 
 但 HTML5 新的规定，是可以允许本地获取到跨域脚本的错误信息，但有两个条件：<span style="color: #ff0000;">一是跨域脚本的服务器必须通过 <code>Access-Controll-Allow-Origin</code> 头信息允许当前域名可以获取错误信息，二是当前域名的 <code>script</code>标签也必须指明 <code>src</code> 属性指定的地址是支持跨域的地址，也就是 crossorigin 属性。</span>
 
@@ -41,9 +40,9 @@ title: script标签添加crossorigin
 ...
 </code></pre>
 
-          <p>
+          
             注意 src 里面提到地址，都是 HTML 页面的地址，当成 JS 来执行，肯定是会报错的。
-          </p>
+          
         </div>
       </div>
     </div>

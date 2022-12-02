@@ -3,7 +3,6 @@ title: 高性能CSS动画
 weight: 18
 
 
-
 ---
 CSS Animation是实现Web Animation方法之一，其主要通过`@keyframes`和`animation-*`或者`transition`来实现一些Web动效。不过今天[我们](https://www.w3cdoc.com)聊的不是怎么制作Web动画，咱们来聊聊CSS Animation性能相关的话题。
 
@@ -13,15 +12,13 @@ CSS Animation是实现Web Animation方法之一，其主要通过`@keyframes`和
 
 FireFox[浏览器](https://www.w3cdoc.com)渲染流程：
 
-<p id="mjPleUc">
-  <img loading="lazy" class="alignnone wp-image-2923 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32fe4f280.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32fe4f280.png?x-oss-process=image/format,webp" alt="" width="529" height="246" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32fe4f280.png?x-oss-process=image/format,webp 624w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32fe4f280.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_139/format,webp 300w" sizes="(max-width: 529px) 100vw, 529px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-2923 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32fe4f280.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32fe4f280.png?x-oss-process=image/format,webp" alt="" width="529" height="246" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32fe4f280.png?x-oss-process=image/format,webp 624w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32fe4f280.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_139/format,webp 300w" sizes="(max-width: 529px) 100vw, 529px" />
 
 Chrome[浏览器](https://www.w3cdoc.com)渲染流程：
 
-<p id="CDIkncI">
-  <img loading="lazy" class="alignnone wp-image-2922 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32b751afb.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32b751afb.png?x-oss-process=image/format,webp" alt="" width="538" height="249" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32b751afb.png?x-oss-process=image/format,webp 624w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32b751afb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_139/format,webp 300w" sizes="(max-width: 538px) 100vw, 538px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-2922 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32b751afb.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32b751afb.png?x-oss-process=image/format,webp" alt="" width="538" height="249" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32b751afb.png?x-oss-process=image/format,webp 624w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd32b751afb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_139/format,webp 300w" sizes="(max-width: 538px) 100vw, 538px" />
 
 有关于Chrome[浏览器](https://www.w3cdoc.com)渲染的详细内容，可以参考《<a href="https://github.com/abcrun/abcrun.github.com/issues/17" target="_blank" rel="noopener noreferrer">图解[浏览器](https://www.w3cdoc.com)渲染过程 &#8211; 基于Webkit/Blink内核Chrome[浏览器](https://www.w3cdoc.com)</a>》一文著作权归作者所有。
 
@@ -88,9 +85,8 @@ Paint的工作就是把文档中用户可见的那一部分展现给用户。Pai
 
 您在工作时需要了解并注意五个主要区域。 这些是您拥有最大控制权的部分，也是像素至屏幕管道中的关键点：
 
-<p id="MQkRDmj">
-  <img loading="lazy" class="alignnone wp-image-2924 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/format,webp" alt="" width="562" height="86" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/format,webp 1093w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_46/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_117/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_122/format,webp 800w" sizes="(max-width: 562px) 100vw, 562px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-2924 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/format,webp" alt="" width="562" height="86" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/format,webp 1093w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_46/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_117/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_122/format,webp 800w" sizes="(max-width: 562px) 100vw, 562px" />
 
 * **JavaScript**。一般来说，[我们](https://www.w3cdoc.com)会使用 JavaScript 来实现一些视觉变化的效果。比如用 jQuery 的 `animate` 函数做一个动画、对一个数据集进行排序或者往页面里添加一些 DOM 元素等。当然，除了 JavaScript，还有其他一些常用方法也可以实现视觉变化效果，比如：CSS Animations、Transitions 和 Web Animation API。
 * **样式计算**。此过程是根据匹配选择器（例如 `.headline` 或 `.nav > .nav__item`）计算出哪些元素应用哪些 CSS 规则的过程。从中知道规则之后，将应用规则并计算每个元素的最终样式。
@@ -108,30 +104,28 @@ Paint的工作就是把文档中用户可见的那一部分展现给用户。Pai
 
 ## 1. JS / CSS > 样式 > 布局 > 绘制 > 合成 {#1_js_css}
 
-<img loading="lazy" class="alignnone wp-image-2924 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/format,webp" alt="" width="582" height="89" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/format,webp 1093w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_46/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_117/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_122/format,webp 800w" sizes="(max-width: 582px) 100vw, 582px" />
+<img loading="lazy" class="alignnone wp-image-2924 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/format,webp" alt="" width="582" height="89" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/format,webp 1093w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_46/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_117/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd34356b078.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_122/format,webp 800w" sizes="(max-width: 582px) 100vw, 582px" />
 
 如果您修改元素的“layout”属性，也就是改变了元素的几何属性（例如宽度、高度、左侧或顶部位置等），那么[浏览器](https://www.w3cdoc.com)将必须检查所有其他元素，然后“自动重排”页面。任何受影响的部分都需要重新绘制，而且最终绘制的元素需进行合成。
 
 ## 2. JS / CSS > 样式 > 绘制 > 合成 {#2_js_css}
 
-<p id="JPacPTO">
-  <img loading="lazy" class="alignnone wp-image-2925 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd344957057.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd344957057.png?x-oss-process=image/format,webp" alt="" width="589" height="90" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd344957057.png?x-oss-process=image/format,webp 1093w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd344957057.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_46/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd344957057.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_117/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd344957057.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_122/format,webp 800w" sizes="(max-width: 589px) 100vw, 589px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-2925 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd344957057.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd344957057.png?x-oss-process=image/format,webp" alt="" width="589" height="90" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd344957057.png?x-oss-process=image/format,webp 1093w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd344957057.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_46/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd344957057.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_117/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd344957057.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_122/format,webp 800w" sizes="(max-width: 589px) 100vw, 589px" />
 
 如果您修改“paint only”属性（例如背景图片、文字颜色或阴影等），即不会影响页面布局的属性，则[浏览器](https://www.w3cdoc.com)会跳过布局，但仍将执行绘制。
 
 ## 3. JS / CSS > 样式 > 合成 {#3_js_css}
 
-<p id="EYtynQw">
-  <img loading="lazy" class="alignnone wp-image-2926 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd345511cb8.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd345511cb8.png?x-oss-process=image/format,webp" alt="" width="602" height="92" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd345511cb8.png?x-oss-process=image/format,webp 1093w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd345511cb8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_46/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd345511cb8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_117/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd345511cb8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_122/format,webp 800w" sizes="(max-width: 602px) 100vw, 602px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-2926 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd345511cb8.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd345511cb8.png?x-oss-process=image/format,webp" alt="" width="602" height="92" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd345511cb8.png?x-oss-process=image/format,webp 1093w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd345511cb8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_46/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd345511cb8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_117/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd345511cb8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_122/format,webp 800w" sizes="(max-width: 602px) 100vw, 602px" />
 
 如果您更改一个既不要布局也不要绘制的属性，则[浏览器](https://www.w3cdoc.com)将跳到只执行合成。
 
 这个最后的版本开销最小，最适合于应用生命周期中的高压力点，例如动画或滚动。
 
 <aside class="note">
-  <strong>Note:</strong> 如果想知道更改任何指定 CSS 属性将触发上述三个版本中的哪一个，请查看 <a href="https://csstriggers.com/">CSS 触发器</a>。如果要快速了解高性能动画，请阅读<a href="https://developers.google.com/web/fundamentals/performance/rendering/stick-to-compositor-only-properties-and-manage-layer-count?hl=zh-cn">更改仅合成器的属性</a>部分。
+ Note: 如果想知道更改任何指定 CSS 属性将触发上述三个版本中的哪一个，请查看 <a href="https://csstriggers.com/">CSS 触发器</a>。如果要快速了解高性能动画，请阅读<a href="https://developers.google.com/web/fundamentals/performance/rendering/stick-to-compositor-only-properties-and-manage-layer-count?hl=zh-cn">更改仅合成器的属性</a>部分。
 </aside>
 
 性能是一种避免执行工作的艺术，并且使您执行的任何操作尽可能高效。 许多情况下，这需要与[浏览器](https://www.w3cdoc.com)配合，而不是跟它对着干。 值得谨记的是，上面列出的各项管道工作在计算开销上有所不同；一些任务比其他任务的开销要大！
@@ -233,9 +227,8 @@ Repaint（重绘）或者Redraw遍历所有节点，检测节点的可见性、�
 
 [我们](https://www.w3cdoc.com)可以得到一个大概的[浏览器](https://www.w3cdoc.com)线程模型：
 
-<p id="xCphUyz">
-  <img loading="lazy" class="alignnone wp-image-2927 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd352fb55e7.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd352fb55e7.png?x-oss-process=image/format,webp" alt="" width="684" height="359" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd352fb55e7.png?x-oss-process=image/format,webp 844w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd352fb55e7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_157/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd352fb55e7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_403/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd352fb55e7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_420/format,webp 800w" sizes="(max-width: 684px) 100vw, 684px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-2927 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd352fb55e7.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd352fb55e7.png?x-oss-process=image/format,webp" alt="" width="684" height="359" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd352fb55e7.png?x-oss-process=image/format,webp 844w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd352fb55e7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_157/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd352fb55e7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_403/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd352fb55e7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_420/format,webp 800w" sizes="(max-width: 684px) 100vw, 684px" />
 
 [我们](https://www.w3cdoc.com)可以将页面绘制的过程分为三个部分：Layout、Paint和合成。Layout负责计算DOM元素的布局关系，Paint负责将DOM元素绘制成位图，合成则负责将位图发送给GPU绘制到屏幕上（如果有`transform`、`opacity`等属性则通知GPU做处理）。
 
@@ -276,9 +269,8 @@ RenderLayer 树，满足以下任意一点的就会生成独立一个 RenderLaye
 
 为了确保页面的流程，必须保证`60fps`内不发生两次渲染树更新，比如下图，`16ms`内只发生如下几个操作则是正常及正确的：
 
-<p id="GFvBodK">
-  <img loading="lazy" class="alignnone wp-image-2928 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd354282994.png?x-oss-process=image/quality,q_10/resize,m_lfit,w_200" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd354282994.png?x-oss-process=image/format,webp" alt="" width="449" height="257" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd354282994.png?x-oss-process=image/format,webp 577w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd354282994.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_172/format,webp 300w" sizes="(max-width: 449px) 100vw, 449px" />
-</p>
+
+  <img loading="lazy" class="alignnone wp-image-2928 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd354282994.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd354282994.png?x-oss-process=image/format,webp" alt="" width="449" height="257" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd354282994.png?x-oss-process=image/format,webp 577w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bfd354282994.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_172/format,webp 300w" sizes="(max-width: 449px) 100vw, 449px" />
 
 页面滚动时，需要避免不必要的渲染及长时间渲染。其中不必要的渲染包括：
 
@@ -349,10 +341,8 @@ el.addEventListener(&lt;span class="string">'animationEnd'&lt;/span>, removeHint
 这个 contain 属性的主要目的是隔离指定内容的样式、布局和渲染。开发人员可以使用这个 contain 属性来限制指定的DOM元素和它的子元素同页面上其它内容的联系；[我们](https://www.w3cdoc.com)可以把它看做一个iframe。跟iframe很相似，它能建立起一个边界，产生一个新的根布局；保证了它和它的子元素的DOM变化不会触发父元素重新布局、渲染等。
 
 <blockquote cite="https://drafts.csswg.org/css-containment-3/#contain-property">
-  <p>
-    开发人员可以用这个 contain 属性声明一个元素和它的子元素是——尽可能的——和页面上的其它元素保持独立。
-  </p><footer>—
-  
+ 开发人员可以用这个 contain 属性声明一个元素和它的子元素是——尽可能的——和页面上的其它元素保持独立。
+  <footer>—
   <a href="https://drafts.csswg.org/css-containment-3/#contain-property">来自 W3C 规范</a></footer>
 </blockquote>
 
