@@ -81,8 +81,13 @@
 
 [[main]]
   name = "博客"
-  url = "/blog/"
+  url = "/blogg/"
   weight = 20
+
+[[main]]
+  name = "网课教程"
+  url = "/course/"
+  weight = 30
 
 # [[main]]
 #   name = "Quick Start"

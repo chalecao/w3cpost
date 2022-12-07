@@ -26,7 +26,7 @@ weight: 7
 ![WebGL中的Canvas纹理合成][3]  
 2、将canvas传递给THREE.Texture纹理
 
-Canvas可以作为纹理传递给THREE.Texture函数，纹理的构造函数是：<figure>
+Canvas可以作为纹理传递给THREE.Texture函数，纹理的构造函数是：
 
 <table>
   <tr>
@@ -38,11 +38,11 @@ Canvas可以作为纹理传递给THREE.Texture函数，纹理的构造函数是�
         THREE.Texture = function ( image, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy )
     </td>
   </tr>
-</table></figure>
+</table>
 
 这个函数的第一个参数image，接收一个image类型的图像，或者canvas，后面的参数可以暂时不理会，它会以默认值去填充texture后面的参数。
 
-这里[我们](https://www.w3cdoc.com)只需要将canvas传递给Texture就ok了，代码如下：<figure>
+这里[我们](https://www.w3cdoc.com)只需要将canvas传递给Texture就ok了，代码如下：
 
 <table>
   <tr>
@@ -54,13 +54,13 @@ Canvas可以作为纹理传递给THREE.Texture函数，纹理的构造函数是�
         texture = new THREE.Texture( canvas);
     </td>
   </tr>
-</table></figure>
+</table>
 
 那么纹理怎么知道其每一个像素怎么映射到形状状的表面呢，默认情况下，纹理被均匀分配到四边形的各个顶点上。
 
 3、将纹理传递给THREE.MeshBasicMaterial材质
 
-将texture传递给材质就更简单了，材质本身可以接受一个属性名为map的参数，代码如下：<figure>
+将texture传递给材质就更简单了，材质本身可以接受一个属性名为map的参数，代码如下：
 
 <table>
   <tr>
@@ -72,7 +72,7 @@ Canvas可以作为纹理传递给THREE.Texture函数，纹理的构造函数是�
         var material = new THREE.MeshBasicMaterial({map:texture});
     </td>
   </tr>
-</table></figure>
+</table>
 
 这样就将纹理赋给了材质。
 
@@ -80,7 +80,7 @@ Canvas可以作为纹理传递给THREE.Texture函数，纹理的构造函数是�
 
 在[我们](https://www.w3cdoc.com)的中级教程中，详细的讲解过Mesh，从它的概念，组成，怎么将几何体和材质融合一体，又怎么知道几何体和材质是否发生变化，怎么更新Mesh动画，几乎都讲了一遍，可以说是目前最为完整的3DMesh教程。不过这里篇幅有限，而Mesh又确实需要太多的笔墨去讲解，所以，这里就一笔带过了。
 
-Mesh就是一个网格表面，它代表着[我们](https://www.w3cdoc.com)渲染到3D世界中的各种模型。其构造函数如下：<figure>
+Mesh就是一个网格表面，它代表着[我们](https://www.w3cdoc.com)渲染到3D世界中的各种模型。其构造函数如下：
 
 <table>
   <tr>
@@ -92,11 +92,11 @@ Mesh就是一个网格表面，它代表着[我们](https://www.w3cdoc.com)渲�
         THREE.Mesh = function ( geometry, material )
     </td>
   </tr>
-</table></figure>
+</table>
 
 它接受2个参数，一个是几何体，一个是材质。
 
-Mesh就是一个网格表面，它代表着[我们](https://www.w3cdoc.com)渲染到3D世界中的各种模型。其构造函数如下：<figure>
+Mesh就是一个网格表面，它代表着[我们](https://www.w3cdoc.com)渲染到3D世界中的各种模型。其构造函数如下：
 
 <table>
   <tr>
@@ -108,11 +108,11 @@ Mesh就是一个网格表面，它代表着[我们](https://www.w3cdoc.com)渲�
         THREE.Mesh = function ( geometry, material )
     </td>
   </tr>
-</table></figure>
+</table>
 
 它接受2个参数，一个是几何体，一个是材质。
 
-这里[我们](https://www.w3cdoc.com)这样来构造它：<figure>
+这里[我们](https://www.w3cdoc.com)这样来构造它：
 
 <table>
   <tr>
@@ -124,12 +124,12 @@ Mesh就是一个网格表面，它代表着[我们](https://www.w3cdoc.com)渲�
         mesh = new THREE.Mesh( geometry,material );
     </td>
   </tr>
-</table></figure>
+</table>
 
 其中geometry是一个THREE.CubeGeometry表示的正方体。
 
 ok，经过这4步，[我们](https://www.w3cdoc.com)的代码就可以运行了。  
-好了，最后，[我们](https://www.w3cdoc.com)来看看，[我们](https://www.w3cdoc.com)的所有代码。<figure>
+好了，最后，[我们](https://www.w3cdoc.com)来看看，[我们](https://www.w3cdoc.com)的所有代码。
 
 <table>
   <tr>
@@ -276,13 +276,13 @@ ok，经过这4步，[我们](https://www.w3cdoc.com)的代码就可以运行了
     <td>
         <!DOCTYPE html>
       
-        <html lang=&#8221;en&#8221;>
+        <html lang="en">
       
         <head>
       
         <title></title>
       
-        <meta charset=&#8221;utf-8&#8243;>
+        <meta charset="utf-8">
       
         <style>
       
@@ -300,13 +300,13 @@ ok，经过这4步，[我们](https://www.w3cdoc.com)的代码就可以运行了
       
         </head>
       
-        <body data-ke-onload=&#8221;start();&#8221;>
+        <body data-ke-onload="start();">
       
 
       
-        <script src=&#8221;../js/three.js&#8221; data-ke-src=&#8221;../js/three.js&#8221;></script>
+        <script src="../js/three.js" data-ke-src="../js/three.js"></script>
       
-        <script src=&#8221;./clock.js&#8221; data-ke-src=&#8221;./clock.js&#8221;></script>
+        <script src="./clock.js" data-ke-src="./clock.js"></script>
       
 
       
@@ -370,7 +370,7 @@ ok，经过这4步，[我们](https://www.w3cdoc.com)的代码就可以运行了
       
 
       
-        window.addEventListener( &#8216;resize&#8217;, onWindowResize, false );
+        window.addEventListener( "resize", onWindowResize, false );
       
         }
       
@@ -413,7 +413,7 @@ ok，经过这4步，[我们](https://www.w3cdoc.com)的代码就可以运行了
         </html>
     </td>
   </tr>
-</table></figure>
+</table>
 
 代码中clock.js就是绘制时钟的代码，里面有一个全局变量canvas，表示canvas本身。另外，需要注意的是在定义了纹理之后，[我们](https://www.w3cdoc.com)将texture.needsUpdate设置为了true，如果不设置为true，那么纹理就不会更新，很可能你看到的是一个黑色的正方体，原因是纹理没有被载入之前，就开始渲染了，而渲染使用了默认的材质颜色。
 

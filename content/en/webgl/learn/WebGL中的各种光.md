@@ -15,7 +15,7 @@ weight: 5
 
 #### 光源基类
 
-在Threejs中，光源用Light表示，它是所有光源的基类。它的构造函数是：<figure>
+在Threejs中，光源用Light表示，它是所有光源的基类。它的构造函数是：
 
 <table>
   <tr>
@@ -27,9 +27,9 @@ weight: 5
         THREE.Light ( hex )
     </td>
   </tr>
-</table></figure>
+</table>
 
-它有一个参数hex，接受一个16进制的颜色值。例如要定义一种红色的光源，[我们](https://www.w3cdoc.com)可以这样来定义：<figure>
+它有一个参数hex，接受一个16进制的颜色值。例如要定义一种红色的光源，[我们](https://www.w3cdoc.com)可以这样来定义：
 
 <table>
   <tr>
@@ -41,7 +41,7 @@ weight: 5
         Var redLight = new THREE.Light(0xFF0000);
     </td>
   </tr>
-</table></figure>
+</table>
 
 #### 由基类派生出来的其他种类光源
 
@@ -53,7 +53,7 @@ THREE.Light只是其他所有光源的基类，要让光源除了具有颜色的
 
 环境光是经过多次反射而来的光称为环境光，无法确定其最初的方向。环境光是一种无处不在的光。环境光源放出的光线被认为来自任何方向。因此，当你仅为场景指定环境光时，所有的物体无论法向量如何，都将表现为同样的明暗程度。 （这是因为，反射光可以从各个方向进入您的眼睛）
 
-环境光用THREE.AmbientLight来表示，它的构造函数如下所示：<figure>
+环境光用THREE.AmbientLight来表示，它的构造函数如下所示：
 
 <table>
   <tr>
@@ -65,9 +65,9 @@ THREE.Light只是其他所有光源的基类，要让光源除了具有颜色的
         THREE.AmbientLight( hex )
     </td>
   </tr>
-</table></figure>
+</table>
 
-它仍然接受一个16进制的颜色值，作为光源的颜色。环境光将照射场景中的所有物体，让物体显示出某种颜色。环境光的使用例子如下所示：<figure>
+它仍然接受一个16进制的颜色值，作为光源的颜色。环境光将照射场景中的所有物体，让物体显示出某种颜色。环境光的使用例子如下所示：
 
 <table>
   <tr>
@@ -87,7 +87,7 @@ THREE.Light只是其他所有光源的基类，要让光源除了具有颜色的
         scene.add( light );
     </td>
   </tr>
-</table></figure>
+</table>
 
 只需要将光源加入场景，场景就能够通过光源渲染出好的效果来了。
 
@@ -95,7 +95,7 @@ THREE.Light只是其他所有光源的基类，要让光源除了具有颜色的
 
 点光源：由这种光源放出的光线来自同一点，且方向辐射自四面八方。例如蜡烛放出的光，萤火虫放出的光。
 
-点光源用PointLight来表示，它的构造函数如下所示：<figure>
+点光源用PointLight来表示，它的构造函数如下所示：
 
 <table>
   <tr>
@@ -107,7 +107,7 @@ THREE.Light只是其他所有光源的基类，要让光源除了具有颜色的
         PointLight( color, intensity, distance )
     </td>
   </tr>
-</table></figure>
+</table>
 
 这个类的参数稍微复杂一些，[我们](https://www.w3cdoc.com)花点时间来解释一下：
 
@@ -121,7 +121,7 @@ distance：光的距离，从光源所在的位置，经过distance这段距离�
 
 聚光灯：这种光源的光线从一个锥体中射出，在被照射的物体上产生聚光的效果。使用这种光源需要指定光的射出方向以及锥体的顶角α。聚光灯示例如图所示：  
 ![WebGL中的各种光][3]  
-聚光灯的构造函数是：<figure>
+聚光灯的构造函数是：
 
 <table>
   <tr>
@@ -133,7 +133,7 @@ distance：光的距离，从光源所在的位置，经过distance这段距离�
         THREE.SpotLight( hex, intensity, distance, angle, exponent )
     </td>
   </tr>
-</table></figure>
+</table>
 
 函数的参数如下所示：
 
@@ -166,7 +166,7 @@ exponent：光源模型中，衰减的一个参数，越大衰减约快。
 
 #### 不带任何光源的物体
 
-[我们](https://www.w3cdoc.com)首先在屏幕上画一个物体，不带任何的光源，定义物体的颜色为黑色，其值为0x000000，定义材质如下：<figure>
+[我们](https://www.w3cdoc.com)首先在屏幕上画一个物体，不带任何的光源，定义物体的颜色为黑色，其值为0x000000，定义材质如下：
 
 <table>
   <tr>
@@ -178,12 +178,12 @@ exponent：光源模型中，衰减的一个参数，越大衰减约快。
         var material = new THREE.MeshLambertMaterial( { color:0x000000} ); // 这是兰伯特材质，材质中的一种
     </td>
   </tr>
-</table></figure>
+</table>
 
 先看看最终的运行截图，如下所示：  
 ![WebGL中的各种光][4]  
 由这幅图得出结论，当没有任何光源的时候，最终的颜色将是材质的颜色。但是这个结论目前来说，并没有依据。  
-代码如下。<figure>
+代码如下。
 
 <table>
   <tr>
@@ -356,13 +356,13 @@ exponent：光源模型中，衰减的一个参数，越大衰减约快。
       
         <head>
       
-        <meta charset=&#8221;UTF-8&#8243;>
+        <meta charset="UTF-8">
       
         <title>Three框架</title>
       
-        <script src=&#8221;js/three.js&#8221;></script>
+        <script src="js/three.js"></script>
       
-        <style type=&#8221;text/css&#8221;>
+        <style type="text/css">
       
         div#canvas-frame {
       
@@ -388,9 +388,9 @@ exponent：光源模型中，衰减的一个参数，越大衰减约快。
       
         function initThree() {
       
-        width = document.getElementById(&#8216;canvas-frame&#8217;).clientWidth;
+        width = document.getElementById("canvas-frame").clientWidth;
       
-        height = document.getElementById(&#8216;canvas-frame&#8217;).clientHeight;
+        height = document.getElementById("canvas-frame").clientHeight;
       
         renderer = new THREE.WebGLRenderer({
       
@@ -400,7 +400,7 @@ exponent：光源模型中，衰减的一个参数，越大衰减约快。
       
         renderer.setSize(width, height);
       
-        document.getElementById(&#8216;canvas-frame&#8217;).appendChild(renderer.domElement);
+        document.getElementById("canvas-frame").appendChild(renderer.domElement);
       
         renderer.setClearColor(0xFFFFFF, 1.0);
       
@@ -502,16 +502,16 @@ exponent：光源模型中，衰减的一个参数，越大衰减约快。
       
 
       
-        <body onload=&#8221;threeStart();&#8221;>
+        <body onload="threeStart();">
       
-        <div id=&#8221;canvas-frame&#8221;></div>
+        <div id="canvas-frame"></div>
       
         </body>
       
         </html>
     </td>
   </tr>
-</table></figure>
+</table>
 
 现在[我们](https://www.w3cdoc.com)来解析一下：
 
@@ -539,7 +539,7 @@ Lambert材质会受环境光的影响，呈现环境光的颜色，与材质本�
 
 例子：红色环境光照射下的长方体，它用的是淡红色(0x880000)的兰伯特材质。效果如下图：  
 ![WebGL中的各种光][6]  
-[我们](https://www.w3cdoc.com)来看看代码，你可以在5-2.html中找到它，这里不存在环保问题，所以，我把所有代码都列出来了。<figure>
+[我们](https://www.w3cdoc.com)来看看代码，你可以在5-2.html中找到它，这里不存在环保问题，所以，我把所有代码都列出来了。
 
 <table>
   <tr>
@@ -728,13 +728,13 @@ Lambert材质会受环境光的影响，呈现环境光的颜色，与材质本�
       
         <head>
       
-        <meta charset=&#8221;UTF-8&#8243;>
+        <meta charset="UTF-8">
       
         <title>Three框架</title>
       
-        <script src=&#8221;js/three.js&#8221;></script>
+        <script src="js/three.js"></script>
       
-        <style type=&#8221;text/css&#8221;>
+        <style type="text/css">
       
         div#canvas-frame {
       
@@ -760,9 +760,9 @@ Lambert材质会受环境光的影响，呈现环境光的颜色，与材质本�
       
         function initThree() {
       
-        width = document.getElementById(&#8216;canvas-frame&#8217;).clientWidth;
+        width = document.getElementById("canvas-frame").clientWidth;
       
-        height = document.getElementById(&#8216;canvas-frame&#8217;).clientHeight;
+        height = document.getElementById("canvas-frame").clientHeight;
       
         renderer = new THREE.WebGLRenderer({
       
@@ -772,7 +772,7 @@ Lambert材质会受环境光的影响，呈现环境光的颜色，与材质本�
       
         renderer.setSize(width, height);
       
-        document.getElementById(&#8216;canvas-frame&#8217;).appendChild(renderer.domElement);
+        document.getElementById("canvas-frame").appendChild(renderer.domElement);
       
         renderer.setClearColor(0xFFFFFF, 1.0);
       
@@ -890,16 +890,16 @@ Lambert材质会受环境光的影响，呈现环境光的颜色，与材质本�
       
 
       
-        <body onload=&#8221;threeStart();&#8221;>
+        <body onload="threeStart();">
       
-        <div id=&#8221;canvas-frame&#8221;></div>
+        <div id="canvas-frame"></div>
       
         </body>
       
         </html>
     </td>
   </tr>
-</table></figure>
+</table>
 
 好了，[我们](https://www.w3cdoc.com)来分析一下这段代码。
 
@@ -922,7 +922,7 @@ Lambert材质会受环境光的影响，呈现环境光的颜色，与材质本�
 平行光又称为方向光（Directional Light），是一组没有衰减的平行的光线，类似太阳光的效果。  
 方向光的模型如图：  
 ![WebGL中的各种光][7]  
-方向光的构造函数如下所示：<figure>
+方向光的构造函数如下所示：
 
 <table>
   <tr>
@@ -934,7 +934,7 @@ Lambert材质会受环境光的影响，呈现环境光的颜色，与材质本�
         THREE.DirectionalLight = function ( hex, intensity )
     </td>
   </tr>
-</table></figure>
+</table>
 
 其参数如下：
 
@@ -946,7 +946,7 @@ Intensity：光线的强度，默认为1。因为RGB的三个值均在0~255之�
 
 一个红色的方向光，把它放在（0，0,1）的位置，密度为1，照射在一个长方体中。效果如下图所示：  
 ![WebGL中的各种光][8]  
-完整代码：<figure>
+完整代码：
 
 <table>
   <tr>
@@ -1133,13 +1133,13 @@ Intensity：光线的强度，默认为1。因为RGB的三个值均在0~255之�
       
         <head>
       
-        <meta charset=&#8221;UTF-8&#8243;>
+        <meta charset="UTF-8">
       
         <title>Three框架</title>
       
-        <script src=&#8221;js/three.js&#8221;></script>
+        <script src="js/three.js"></script>
       
-        <style type=&#8221;text/css&#8221;>
+        <style type="text/css">
       
         div#canvas-frame {
       
@@ -1165,9 +1165,9 @@ Intensity：光线的强度，默认为1。因为RGB的三个值均在0~255之�
       
         function initThree() {
       
-        width = document.getElementById(&#8216;canvas-frame&#8217;).clientWidth;
+        width = document.getElementById("canvas-frame").clientWidth;
       
-        height = document.getElementById(&#8216;canvas-frame&#8217;).clientHeight;
+        height = document.getElementById("canvas-frame").clientHeight;
       
         renderer = new THREE.WebGLRenderer({
       
@@ -1177,7 +1177,7 @@ Intensity：光线的强度，默认为1。因为RGB的三个值均在0~255之�
       
         renderer.setSize(width, height);
       
-        document.getElementById(&#8216;canvas-frame&#8217;).appendChild(renderer.domElement);
+        document.getElementById("canvas-frame").appendChild(renderer.domElement);
       
         renderer.setClearColor(0xFFFFFF, 1.0);
       
@@ -1293,16 +1293,16 @@ Intensity：光线的强度，默认为1。因为RGB的三个值均在0~255之�
       
 
       
-        <body onload=&#8221;threeStart();&#8221;>
+        <body onload="threeStart();">
       
-        <div id=&#8221;canvas-frame&#8221;></div>
+        <div id="canvas-frame"></div>
       
         </body>
       
         </html>
     </td>
   </tr>
-</table></figure>
+</table>
 
 [我们](https://www.w3cdoc.com)来分析一下上面的代码：
 
@@ -1316,7 +1316,7 @@ Intensity：光线的强度，默认为1。因为RGB的三个值均在0~255之�
 ![WebGL中的各种光][10]  
 请仔细领会这幅图的意思。  
 增加几个物体，从宏观上看一下光源对物体的影响,现在，[我们](https://www.w3cdoc.com)在场景中增加几个物体，来看看，光源对物体的影响。如图是添加了几个物体的截图。仍然是使用方向光。  
-![WebGL中的各种光][11] <figure>
+![WebGL中的各种光][11] 
 
 <table>
   <tr>
@@ -1557,13 +1557,13 @@ Intensity：光线的强度，默认为1。因为RGB的三个值均在0~255之�
       
         <head>
       
-        <meta charset=&#8221;UTF-8&#8243;>
+        <meta charset="UTF-8">
       
         <title>Three框架</title>
       
-        <script src=&#8221;js/Three.js&#8221;></script>
+        <script src="js/Three.js"></script>
       
-        <style type=&#8221;text/css&#8221;>
+        <style type="text/css">
       
         div#canvas-frame {
       
@@ -1589,9 +1589,9 @@ Intensity：光线的强度，默认为1。因为RGB的三个值均在0~255之�
       
         function initThree() {
       
-        width = document.getElementById(&#8216;canvas-frame&#8217;).clientWidth;
+        width = document.getElementById("canvas-frame").clientWidth;
       
-        height = document.getElementById(&#8216;canvas-frame&#8217;).clientHeight;
+        height = document.getElementById("canvas-frame").clientHeight;
       
         renderer = new THREE.WebGLRenderer({
       
@@ -1601,7 +1601,7 @@ Intensity：光线的强度，默认为1。因为RGB的三个值均在0~255之�
       
         renderer.setSize(width, height);
       
-        document.getElementById(&#8216;canvas-frame&#8217;).appendChild(renderer.domElement);
+        document.getElementById("canvas-frame").appendChild(renderer.domElement);
       
         renderer.setClearColor(0xFFFFFF, 1.0);
       
@@ -1771,16 +1771,16 @@ Intensity：光线的强度，默认为1。因为RGB的三个值均在0~255之�
       
 
       
-        <body onload=&#8221;threeStart();&#8221;>
+        <body onload="threeStart();">
       
-        <div id=&#8221;canvas-frame&#8221;></div>
+        <div id="canvas-frame"></div>
       
         </body>
       
         </html>
     </td>
   </tr>
-</table></figure>
+</table>
 
 在A处，[我们](https://www.w3cdoc.com)一共new了6个Mesh，并将每一个mesh放到了不同的位置，这样就生了上图的模样。这里并没有太多的技术含量，童鞋们只需要如法炮制就ok了。
 
@@ -1788,7 +1788,7 @@ Intensity：光线的强度，默认为1。因为RGB的三个值均在0~255之�
 
 接下来，[我们](https://www.w3cdoc.com)来看看多种光源同时存在于场景之中，对物体颜色的影响。
 
-当环境光和方向光同时存在的时候，会出现怎么样的情况呢？可以把这种情况想成两种光源同时作用于物体，它产生的情况，和每种光源分别作用于物体，然后将两者的结果相加，是一样的效果。首先看看下面的代码：<figure>
+当环境光和方向光同时存在的时候，会出现怎么样的情况呢？可以把这种情况想成两种光源同时作用于物体，它产生的情况，和每种光源分别作用于物体，然后将两者的结果相加，是一样的效果。首先看看下面的代码：
 
 <table>
   <tr>
@@ -1864,7 +1864,7 @@ Intensity：光线的强度，默认为1。因为RGB的三个值均在0~255之�
         }
     </td>
   </tr>
-</table></figure>
+</table>
 
 从代码上可以看出，环境光是绿色0x00FF00，方向光是红色0xFF0000，
 
@@ -1890,7 +1890,7 @@ ok，好了，现在[我们](https://www.w3cdoc.com)将环境光和方向光都�
 
 点光源的特点是发光部分为一个小圆面，近似一个点
 
-下面的例子介绍了怎么使用点光源：<figure>
+下面的例子介绍了怎么使用点光源：
 
 <table>
   <tr>
@@ -1918,7 +1918,7 @@ ok，好了，现在[我们](https://www.w3cdoc.com)将环境光和方向光都�
         scene.add(light);
     </td>
   </tr>
-</table></figure>
+</table>
 
 效果如下图：  
 ![WebGL中的各种光][15]  

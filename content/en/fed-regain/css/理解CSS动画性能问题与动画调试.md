@@ -6,7 +6,7 @@ weight: 16
 
 在本文中，[我们](https://www.w3cdoc.com)将探讨[浏览器](https://www.w3cdoc.com)怎么处理 CSS Animations以及Transitions，这样在你编写任何代码之前，就可以大概知道一个动画是否能表现得很流畅！有了这种直觉，你就能够作出适应[浏览器](https://www.w3cdoc.com)的设计，创造如丝般顺滑的用户体验。
 
-## <a name="t0"></a>[浏览器](https://www.w3cdoc.com)内部 {#[浏览器](https://www.w3cdoc.com)内部}
+## [浏览器](https://www.w3cdoc.com)内部 
 
 让[我们](https://www.w3cdoc.com)打开[浏览器](https://www.w3cdoc.com)的引擎盖，四处看看。一旦[我们](https://www.w3cdoc.com)理解它是如何工作的，[我们](https://www.w3cdoc.com)就可以更好的驾驭它。
 
@@ -37,7 +37,7 @@ weight: 16
 
 举个例子，当用户滚动页面时，合成线程会通知主线程更新页面中最新可见部分的位图。但是，如果主线程响应地不够快，合成线程不会保持等待，而是马上绘制已经生成的位图，还没准备好的部分用白色进行填充。
 
-## <a name="t1"></a>GPU {#GPU}
+## GPU 
 
 刚才我提到合成线程会使用 GPU将位图绘制到屏幕上，接下来让[我们](https://www.w3cdoc.com)快速了解一下 GPU。
 
@@ -53,21 +53,25 @@ GPU 的慢在于：
 
   1. 将位图加载到它的内存中
 
-## <a name="t2"></a>transition: height {#transition:_height}
+## transition: height
 
-现在，[我们](https://www.w3cdoc.com)已经对渲染页面的软硬件都有一些初步的理解了，接下来让[我们](https://www.w3cdoc.com)来看看[浏览器](https://www.w3cdoc.com)的主线程和合成线程石如何协同工作来执行一个 CSS Transition的。
+现在，[我们](https://www.w3cdoc.com)已经对渲染页面的软硬件都有一些初步的理解了，接下来让[我们](https://www.w3cdoc.com)来看看[浏览器](https://www.w3cdoc.com)的主线程和合成线程是如何协同工作来执行一个 CSS Transition的。
 
 假设[我们](https://www.w3cdoc.com)要一个元素的height从 100 px 变成 200 px，就像这样：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">div {
+```
+div {
     height: 100px;
     transition: height 1s linear;
 }
 div:hover {
     height: 200px;
-}</pre>
+}
+```
 
-主线程和合成线程将按照下面的流程图执行相应的操作。注意在橘黄色方框的操作可能会比较耗时，在蓝色框中的操作是比较快速的。（译注：懒得重新画图，流程图中的内容略过不译，下同）<a class="fancybox" title="" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-height-2x.png" target="_blank" rel="nofollow noopener noreferrer"><img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-height-2x.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-height-2x.png?x-oss-process=image/format,webp" alt="" width="836" height="1291" /></a>
+主线程和合成线程将按照下面的流程图执行相应的操作。注意在橘黄色方框的操作可能会比较耗时，在蓝色框中的操作是比较快速的。（译注：懒得重新画图，流程图中的内容略过不译，下同）
+
+![](/images/posts/2022-12-04-13-36-46.png)
 
 正如你所看到，在上图中有很多橘黄色方框，意味着，[浏览器](https://www.w3cdoc.com)需要做大量的工作，也就是说这个动画可能会变得卡顿。
 
@@ -81,15 +85,19 @@ div:hover {
 
 假设[我们](https://www.w3cdoc.com)需要将一个元素的尺寸缩小一半，并使用<a href="http://css-tricks.com/almanac/properties/t/transform/" target="_blank" rel="nofollow noopener noreferrer">CSS transform</a>属性来完成缩放，使用CSS transition属性来做缩放动画，就像这样：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">div {
+```
+div {
     transform: scale(0.5);
     transition: transform 1s linear;
 }
 div:hover {
     transform: scale(1.0);
-}</pre>
+}
+```
 
-让[我们](https://www.w3cdoc.com)看看这种情况下的流程图：<a class="fancybox" title="" href="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-transform-2x.png" target="_blank" rel="nofollow noopener noreferrer"><img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-transform-2x.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/animate-transform-2x.png?x-oss-process=image/format,webp" alt="" width="791" height="998" /></a>
+让[我们](https://www.w3cdoc.com)看看这种情况下的流程图：
+
+![](/images/posts/2022-12-04-13-40-39.png)
 
 这次[我们](https://www.w3cdoc.com)可以看到少了很多橙色的方框，意味着动画变得更流畅了！那么，为什么执行一个元素的transform动画会跟height动画表现得不一样呢？
 
@@ -117,7 +125,8 @@ div:hover {
 
 当然也可以这样开启所有[浏览器](https://www.w3cdoc.com)的GPU硬件加速：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">webkit-transform: translateZ(0);
+```
+webkit-transform: translateZ(0);
 -moz-transform: translateZ(0);
 -ms-transform: translateZ(0);
 -o-transform: translateZ(0);
@@ -127,7 +136,8 @@ webkit-transform: translate3d(0,0,0);
 -moz-transform: translate3d(0,0,0);
 -ms-transform: translate3d(0,0,0);
 -o-transform: translate3d(0,0,0);
-transform: translate3d(0,0,0);</pre>
+transform: translate3d(0,0,0);
+```
 
 使用-webkit-transform:transition3d(0,0,0)开启GPU硬件加速的chrome中渲染动画性能明显顺畅了许多，平均能达到55fps左右
 
@@ -167,21 +177,17 @@ PS：由于测试环境有限，如果[大家](https://www.w3cdoc.com)发现在�
 
 推荐两种实时监测网页渲染帧速率的方法：
 
-1.Chrome的DevTool中Performance模块查看，先录一下动画操作，然后在frames中点击某一帧，下面可以看到帧率，可以分析原因
+1. Chrome的DevTool中Performance模块查看，先录一下动画操作，然后在frames中点击某一帧，下面可以看到帧率，可以分析原因
 
-
-  <img loading="lazy" class="alignnone wp-image-3928 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png?x-oss-process=image/format,webp" alt="" width="836" height="867" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png?x-oss-process=image/format,webp 1164w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_289,h_300/format,webp 289w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_797/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867797d8e8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_578,h_600/format,webp 578w" sizes="(max-width: 836px) 100vw, 836px" />
+![](/images/posts/2022-12-04-13-44-19.png)
 
 2. 直接打开帧率展示模块，直接在页面上查看帧率
 
+![](/images/posts/2022-12-04-13-44-30.png)
 
-  <img loading="lazy" class="wp-image-3929 shadow alignleft" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867df7be38.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867df7be38.png?x-oss-process=image/format,webp" alt="" width="351" height="390" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867df7be38.png?x-oss-process=image/format,webp 732w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867df7be38.png?x-oss-process=image/quality,q_50/resize,m_fill,w_270,h_300/format,webp 270w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867df7be38.png?x-oss-process=image/quality,q_50/resize,m_fill,w_540,h_600/format,webp 540w" sizes="(max-width: 351px) 100vw, 351px" />
+![](/images/posts/2022-12-04-13-44-41.png)
 
-
-  <img loading="lazy" class="alignnone wp-image-3930 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867f379b5d.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867f379b5d.png?x-oss-process=image/format,webp" alt="" width="464" height="414" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867f379b5d.png?x-oss-process=image/format,webp 718w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867f379b5d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_267/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8867f379b5d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_673,h_600/format,webp 673w" sizes="(max-width: 464px) 100vw, 464px" />
-
-
-  <img loading="lazy" class="alignnone wp-image-3931 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8868276b037.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8868276b037.png?x-oss-process=image/format,webp" alt="" width="292" height="271" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8868276b037.png?x-oss-process=image/format,webp 418w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c8868276b037.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_278/format,webp 300w" sizes="(max-width: 292px) 100vw, 292px" />
+![](/images/posts/2022-12-04-13-44-50.png)
 
 3. 新发现的，可以打开animation面板，chrome会记录你操作的每个动画，这个是动画检查器，[文档在这里][1]
 
@@ -189,11 +195,9 @@ PS：由于测试环境有限，如果[大家](https://www.w3cdoc.com)发现在�
 * 通过慢速播放、重播或查看动画源代码来检查动画。
 * 通过更改动画时间、延迟、持续时间或关键帧偏移修改动画。
 
+![](/images/posts/2022-12-04-13-45-07.png)
 
-  <img loading="lazy" class="alignnone wp-image-3932 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c886870c5ca6.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c886870c5ca6.png?x-oss-process=image/format,webp" alt="" width="615" height="305" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c886870c5ca6.png?x-oss-process=image/format,webp 762w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c886870c5ca6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_149/format,webp 300w" sizes="(max-width: 615px) 100vw, 615px" />
-
-
-  <img loading="lazy" class="alignnone wp-image-3933 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png?x-oss-process=image/format,webp" alt="" width="846" height="532" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png?x-oss-process=image/format,webp 1122w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_189/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_483/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c88688fdf089.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_503/format,webp 800w" sizes="(max-width: 846px) 100vw, 846px" />
+![](/images/posts/2022-12-04-13-45-15.png)
 
 4. 参考[这里][2]介绍层的创建，最后两个兄弟节点，z-index高的，可能会被[浏览器](https://www.w3cdoc.com)也自动识别成复合层来处理
 
@@ -211,10 +215,6 @@ PS：由于测试环境有限，如果[大家](https://www.w3cdoc.com)发现在�
 使用3D硬件加速提升动画性能时，最好给元素增加一个z-index属性，人为干扰复合层的排序，可以有效减少chrome创建不必要的复合层，提升渲染性能，移动端优化效果尤为明显。
 
 关于层的介绍：[gpu-accelerated-compositing-in-chrome][3]
-
-&nbsp;
-
-&nbsp;
 
  [1]: https://developers.google.com/web/tools/chrome-devtools/inspect-styles/animations?hl=zh-cn
  [2]: https://div.io/topic/1348

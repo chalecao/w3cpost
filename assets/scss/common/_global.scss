@@ -286,3 +286,17 @@ body {
     opacity: 0;
   }
 }
+
+a {
+  position: relative;
+  // display: inline-block;
+  // outline: none;
+  // text-decoration: none;
+  // color: #000;
+  // font-size: 32px;
+  // padding: 5px;
+ }
+ 
+ a:hover::before, a:hover::after { position: absolute; }
+ a:hover::before { content: "👉"; left: -20px; }
+//  a:hover::after { content: "\5D"; right:  -5px; }

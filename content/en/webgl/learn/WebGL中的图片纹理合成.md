@@ -18,7 +18,7 @@ weight: 6
 
 那么在threejs中，或者任何3D引擎中，纹理应该怎么来实现呢？首先应该有一个纹理类，其次是有一个加载图片的方法，将这张图片和这个纹理类捆绑起来。
 
-在threejs中，纹理类由THREE.Texture表示，其构造函数如下所示：<figure>
+在threejs中，纹理类由THREE.Texture表示，其构造函数如下所示：
 
 <table>
   <tr>
@@ -30,11 +30,11 @@ weight: 6
         THREE.Texture( image, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy )
     </td>
   </tr>
-</table></figure>
+</table>
 
 各个参数的意义是：
 
-Image：这是一个图片类型，基本上它有ImageUtils来加载，如下代码<figure>
+Image：这是一个图片类型，基本上它有ImageUtils来加载，如下代码
 
 <table>
   <tr>
@@ -46,7 +46,7 @@ Image：这是一个图片类型，基本上它有ImageUtils来加载，如下�
         var image = THREE.ImageUtils.loadTexture(url); // url 是一个https://xxxx/aaa.jpg 的类似地址，javascript没有从本地加载数据的能力，所以没有办法从您电脑的C盘加载数据。
     </td>
   </tr>
-</table></figure>
+</table>
 
 Mapping：是一个THREE.UVMapping()类型，它表示的是纹理坐标。下一节，[我们](https://www.w3cdoc.com)将说说纹理坐标。
 
@@ -67,7 +67,7 @@ ok，各个参数介绍完了。[我们](https://www.w3cdoc.com)接下来看纹�
 在正常的情况下，你在0.0到1.0的范围内指定纹理坐标。[我们](https://www.w3cdoc.com)来简单看一下纹理坐标如下图：  
 ![WebGL中的图片纹理合成][2]  
 当[我们](https://www.w3cdoc.com)用一幅图来做纹理的时候，那么这幅图就隐示的被赋予了如图一样的纹理坐标，这个纹理坐标将被对应到一个形状上。  
-ok，[我们](https://www.w3cdoc.com)来看一下例子，这个例子很简单，就是在平面上贴上一张美女的图片。<figure>
+ok，[我们](https://www.w3cdoc.com)来看一下例子，这个例子很简单，就是在平面上贴上一张美女的图片。
 
 <table>
   <tr>
@@ -222,7 +222,7 @@ ok，[我们](https://www.w3cdoc.com)来看一下例子，这个例子很简单�
       
         // 纹理坐标怎么弄
       
-        var texture = THREE.ImageUtils.loadTexture(&#8220;textures/a.jpg&#8221;,null,function(t)
+        var texture = THREE.ImageUtils.loadTexture(&#8220;textures/a.jpg",null,function(t)
       
         {
       
@@ -238,7 +238,7 @@ ok，[我们](https://www.w3cdoc.com)来看一下例子，这个例子很简单�
       
 
       
-        window.addEventListener( &#8216;resize&#8217;, onWindowResize, false );
+        window.addEventListener( "resize", onWindowResize, false );
       
 
       
@@ -267,7 +267,7 @@ ok，[我们](https://www.w3cdoc.com)来看一下例子，这个例子很简单�
         }
     </td>
   </tr>
-</table></figure>
+</table>
 
 仔细阅读上面的代码，一共完成了4件事情：
 
@@ -283,7 +283,7 @@ d：将纹理应用于材质
 
 #### 画一个平面
 
-通过PlaneGemotry可以画一个平面，代码如下：<figure>
+通过PlaneGemotry可以画一个平面，代码如下：
 
 <table>
   <tr>
@@ -295,13 +295,13 @@ d：将纹理应用于材质
         var geometry = new THREE.PlaneGeometry( 500, 300, 1, 1 );
     </td>
   </tr>
-</table></figure>
+</table>
 
 这个平面的宽度是500，高度是300.
 
 #### 为平面赋予纹理坐标
 
-平面有4个顶点，所以[我们](https://www.w3cdoc.com)只需要指定4个纹理坐标就行了。纹理坐标由顶点的uv成员来表示，uv被定义为一个二维向量THREE.Vector2()，[我们](https://www.w3cdoc.com)可以通过如下代码来为平面定义纹理：<figure>
+平面有4个顶点，所以[我们](https://www.w3cdoc.com)只需要指定4个纹理坐标就行了。纹理坐标由顶点的uv成员来表示，uv被定义为一个二维向量THREE.Vector2()，[我们](https://www.w3cdoc.com)可以通过如下代码来为平面定义纹理：
 
 <table>
   <tr>
@@ -337,7 +337,7 @@ d：将纹理应用于材质
         geometry.vertices[3].uv = new THREE.Vector2(0,1);
     </td>
   </tr>
-</table></figure>
+</table>
 
 注意，4个顶点分别对应了纹理的4个顶点。还要注意（0,0），（1,0），（1,1），（0,1）他们之间的顺序是逆时针方向。[大家](https://www.w3cdoc.com)在给平面赋纹理坐标的时候也要注意方向，不然three.js是分不清楚的。
 
@@ -348,7 +348,7 @@ d：将纹理应用于材质
 
 所以务必在你的电脑上搭建一个tomcat，apache，iis等服务器中的一种，并把图片资源放到服务器中，并通过<a href="https://localhost:8080/img/a.jpg这样的方式去访问它。这样就能解决上面的交叉域问题。[我们](https://www.w3cdoc.com)接着往下讲。" target="_blank" rel="external noopener">https://localhost:8080/img/a.jpg这样的方式去访问它。这样就能解决上面的交叉域问题。[我们](https://www.w3cdoc.com)接着往下讲。</a>
 
-这里加载纹理使用了上面介绍的loadTexture函数，代码如下：<figure>
+这里加载纹理使用了上面介绍的loadTexture函数，代码如下：
 
 <table>
   <tr>
@@ -365,7 +365,7 @@ d：将纹理应用于材质
     </td>
     
     <td>
-        var texture = THREE.ImageUtils.loadTexture(&#8220;textures/a.jpg&#8221;,null,function(t)
+        var texture = THREE.ImageUtils.loadTexture(&#8220;textures/a.jpg",null,function(t)
       
 
       
@@ -376,7 +376,7 @@ d：将纹理应用于材质
         });
     </td>
   </tr>
-</table></figure>
+</table>
 
 这个函数的第一个参数是一个相对路径，表示与您的网页之间的相对路径。相对路径对应了一个纹理图片textures/a.jpg。
 
@@ -388,7 +388,7 @@ d：将纹理应用于材质
 
 ### 将纹理应用于材质
 
-加载好纹理，万事俱备了，只需要将纹理映射到材质就可以了。[我们](https://www.w3cdoc.com)这里使用了一个普通的材质THREE.MeshBasicMaterial，材质中有一个map属性，可以直接接受纹理，[我们](https://www.w3cdoc.com)可以这样定义一个带纹理的材质：<figure>
+加载好纹理，万事俱备了，只需要将纹理映射到材质就可以了。[我们](https://www.w3cdoc.com)这里使用了一个普通的材质THREE.MeshBasicMaterial，材质中有一个map属性，可以直接接受纹理，[我们](https://www.w3cdoc.com)可以这样定义一个带纹理的材质：
 
 <table>
   <tr>
@@ -400,9 +400,9 @@ d：将纹理应用于材质
         var material = new THREE.MeshBasicMaterial({map:texture});
     </td>
   </tr>
-</table></figure>
+</table>
 
-ok，接下来的事情就简单了，直接将纹理甩给Mesh，同时也别忘了Mesh也需要geometry，他们暧昧的关系如下：<figure>
+ok，接下来的事情就简单了，直接将纹理甩给Mesh，同时也别忘了Mesh也需要geometry，他们暧昧的关系如下：
 
 <table>
   <tr>
@@ -414,9 +414,9 @@ ok，接下来的事情就简单了，直接将纹理甩给Mesh，同时也别�
         var mesh = new THREE.Mesh( geometry,material );
     </td>
   </tr>
-</table></figure>
+</table>
 
-最后的最后，将这个mesh加入场景中：<figure>
+最后的最后，将这个mesh加入场景中：
 
 <table>
   <tr>
@@ -428,7 +428,7 @@ ok，接下来的事情就简单了，直接将纹理甩给Mesh，同时也别�
         scene.add( mesh );
     </td>
   </tr>
-</table></figure>
+</table>
 
 行了，打开你的[浏览器](https://www.w3cdoc.com)，输入你服务器的网址吧，结果就在你眼前。  
 这只是纹理的一个简单入门，也许你还想知道怎么加载立体纹理、为非光滑的平面贴纹理、甚至为人脸贴纹理，那么就关注后面的课程吧。[我们](https://www.w3cdoc.com)无法在一课把这些知识讲完，但后面的课程会陆续告诉你这些知识的，敬请期待，非常感谢您的阅读。

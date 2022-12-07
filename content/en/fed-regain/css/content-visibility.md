@@ -2,13 +2,13 @@
 title: content-visibility
 weight: 10
 ---
-该 [`content-visibility`][1] 属性在Chromium 85中启动，可能是影响页面加载性能的最具影响力的新CSS属性之一。`content-visibility`使用户代理可以跳过元素的渲染工作，包括布局和绘画，直到需要它为止。因为跳过了渲染，所以如果大部分内容不在屏幕上，则利用该`content-visibility`属性可使初始用户加载更快。它还允许与屏幕上的内容进行更快的交互。漂亮整齐。<figure class="w-figure">
+该 [`content-visibility`][1] 属性在Chromium 85中启动，可能是影响页面加载性能的最具影响力的新CSS属性之一。`content-visibility`使用户代理可以跳过元素的渲染工作，包括布局和绘画，直到需要它为止。因为跳过了渲染，所以如果大部分内容不在屏幕上，则利用该`content-visibility`属性可使初始用户加载更快。它还允许与屏幕上的内容进行更快的交互。漂亮整齐。
 
 ![](/images/posts/csscontentdemo.jpeg)
 
 在[我们](https://www.w3cdoc.com)的文章演示中，应用于`content-visibility: auto`分块的内容区域可以使初始负载的渲染性能提高**7倍**。请继续阅读以了解更多信息。  
 
-## [浏览器](https://www.w3cdoc.com)支持<a class="w-headline-link" href="https://web.dev/content-visibility/#support" aria-hidden="true">＃</a> {#support}
+## [浏览器](https://www.w3cdoc.com)支持
 
 `content-visibility`依赖[CSS包含规范中的][2]基元。虽然`content-visibility`目前仅在Chromium 85中受支持（并且被Firefox 视为[“值得原型化”][3]），但[大多数现代[浏览器](https://www.w3cdoc.com)][4]都支持Containment Spec 。
 

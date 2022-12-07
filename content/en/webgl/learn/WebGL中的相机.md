@@ -23,7 +23,7 @@ weight: 4
 
 ### 正投影相机
 
-下面[我们](https://www.w3cdoc.com)来介绍正投影相机，正投影的构造函数如下所示：<figure>
+下面[我们](https://www.w3cdoc.com)来介绍正投影相机，正投影的构造函数如下所示：
 
 <table>
   <tr>
@@ -35,7 +35,7 @@ weight: 4
         OrthographicCamera( left, right, top, bottom, near, far )
     </td>
   </tr>
-</table></figure>
+</table>
 
 结合下面一个图，[我们](https://www.w3cdoc.com)来看看，各个参数的意思。  
 ![WebGL中的相机][5]  
@@ -71,7 +71,7 @@ far：远平面距离相机中心点的垂直距离。远平面是右边竖着�
 
 投影变换的目的就是定义一个视景体，使得视景体外多余的部分裁剪掉，最终图像只是视景体内的有关部分。
 
-好了，看一个简单的例子：<figure>
+好了，看一个简单的例子：
 
 <table>
   <tr>
@@ -91,7 +91,7 @@ far：远平面距离相机中心点的垂直距离。远平面是右边竖着�
         scene.add( camera );
     </td>
   </tr>
-</table></figure>
+</table>
 
 这个例子将[浏览器](https://www.w3cdoc.com)窗口的宽度和高度作为了视景体的高度和宽度，相机正好在窗口的中心点上。这也是[我们](https://www.w3cdoc.com)一般的设置方法，基本上为了方便，[我们](https://www.w3cdoc.com)不会设置其他的值。
 
@@ -101,7 +101,7 @@ far：远平面距离相机中心点的垂直距离。远平面是右边竖着�
 
 正因为，透视相机这么有魅力，所以在各种应用中运用非常广泛。
 
-透视投影相机的构造函数如下所示：<figure>
+透视投影相机的构造函数如下所示：
 
 <table>
   <tr>
@@ -113,7 +113,7 @@ far：远平面距离相机中心点的垂直距离。远平面是右边竖着�
         PerspectiveCamera( fov, aspect, near, far )
     </td>
   </tr>
-</table></figure>
+</table>
 
 [我们](https://www.w3cdoc.com)来欣赏一幅图来看看这个函数的各个参数的意思：  
 ![WebGL中的相机][7]  
@@ -126,7 +126,7 @@ far：远平面距离相机中心点的垂直距离。远平面是右边竖着�
 3、远平面far：这个呢，表示你远处的裁面,
 
 4、纵横比aspect：实际窗口的纵横比，即宽度除以高度。这个值越大，说明你宽度越大，那么你可能看的是宽银幕电影了，如果这个值小于1，那么可能你看到的是如手机的LED屏幕了。  
-好了，看看下面一个简单的例子：<figure>
+好了，看看下面一个简单的例子：
 
 <table>
   <tr>
@@ -146,10 +146,10 @@ far：远平面距离相机中心点的垂直距离。远平面是右边竖着�
         scene.add( camera );
     </td>
   </tr>
-</table></figure>
+</table>
 
 接下来，结合上面讲的两种相机，[我们](https://www.w3cdoc.com)来看一个实例。这个实例首先使用正投影相机，然后在使用透视相机。先看看正投影相机的效果：  
-![WebGL中的相机][8] <figure>
+![WebGL中的相机][8] 
 
 <table>
   <tr>
@@ -344,13 +344,13 @@ far：远平面距离相机中心点的垂直距离。远平面是右边竖着�
       
         <head>
       
-        <meta charset=&#8221;UTF-8&#8243;>
+        <meta charset="UTF-8">
       
         <title>Three框架<-/title>
       
-        <script src=&#8221;js/three.min.js&#8221;></script>
+        <script src="https://sqimg.qq.com/qq_product_operations/mma/javanli_test/lib/three.min.js"></script>
       
-        <style type=&#8221;text/css&#8221;>
+        <style type="text/css">
       
         div#canvas-frame {
       
@@ -376,9 +376,9 @@ far：远平面距离相机中心点的垂直距离。远平面是右边竖着�
       
         function initThree() {
       
-        width = document.getElementById(&#8216;canvas-frame&#8217;).clientWidth;
+        width = document.getElementById("canvas-frame").clientWidth;
       
-        height = document.getElementById(&#8216;canvas-frame&#8217;).clientHeight;
+        height = document.getElementById("canvas-frame").clientHeight;
       
         renderer = new THREE.WebGLRenderer({
       
@@ -388,7 +388,7 @@ far：远平面距离相机中心点的垂直距离。远平面是右边竖着�
       
         renderer.setSize(width, height);
       
-        document.getElementById(&#8216;canvas-frame&#8217;).appendChild(renderer.domElement);
+        document.getElementById("canvas-frame").appendChild(renderer.domElement);
       
         renderer.setClearColorHex(0xFFFFFF, 1.0);
       
@@ -512,18 +512,18 @@ far：远平面距离相机中心点的垂直距离。远平面是右边竖着�
       
 
       
-        <body onload=&#8221;threeStart();&#8221;>
+        <body onload="threeStart();">
       
-        <div id=&#8221;canvas-frame&#8221;></div>
+        <div id="canvas-frame"></div>
       
         </body>
       
         </html>
     </td>
   </tr>
-</table></figure>
+</table>
 
-明白了正投影的效果，[我们](https://www.w3cdoc.com)现在将相机变成透视投影，只要更改上面关于相机的代码，就可以了，这里[我们](https://www.w3cdoc.com)变成如下的代码：<figure>
+明白了正投影的效果，[我们](https://www.w3cdoc.com)现在将相机变成透视投影，只要更改上面关于相机的代码，就可以了，这里[我们](https://www.w3cdoc.com)变成如下的代码：
 
 <table>
   <tr>
@@ -535,7 +535,7 @@ far：远平面距离相机中心点的垂直距离。远平面是右边竖着�
         camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
     </td>
   </tr>
-</table></figure>
+</table>
 
 效果如下:  
 ![WebGL中的相机][9]

@@ -16,27 +16,27 @@ domainTLD = "doks.netlify.app"
 titleHome = "Doks Theme"
 
 ## Twitter Cards
-twitterSite = "@getdoks"
-twitterCreator = "@henkverlinde"
+twitterSite = "@w3cdoc"
+twitterCreator = "@chalecao"
 
 ## JSON-LD
 # schemaType = "Person"
 schemaType = "Organization"
-schemaName = "Doks"
-schemaAuthor = "Henk Verlinde"
-schemaAuthorTwitter = "https://twitter.com/henkverlinde"
-schemaAuthorLinkedIn = "https://www.linkedin.com/in/henkverlinde/"
-schemaAuthorGitHub = "https://github.com/h-enk"
+schemaName = "w3cdoc"
+schemaAuthor = "chale cao"
+schemaAuthorTwitter = "https://twitter.com/chalecao"
+schemaAuthorLinkedIn = "https://www.linkedin.com/in/chalecao/"
+# schemaAuthorGitHub = "https://github.com/h-enk"
 schemaLocale = "en-US"
-schemaLogo = "logo-doks.png"
+schemaLogo = "w3cdoc.png"
 schemaLogoWidth = 512
 schemaLogoHeight = 512
-schemaImage = "doks.png"
+schemaImage = "w3cdoc.png"
 schemaImageWidth = 1280
 schemaImageHeight = 640
-schemaTwitter = "https://twitter.com/getdoks"
+schemaTwitter = "https://twitter.com/w3cdoc"
 schemaLinkedIn = ""
-schemaGitHub = "https://github.com/h-enk/doks"
+# schemaGitHub = "https://github.com/h-enk/doks"
 schemaSection = "blog"
 
 ## Sitelinks Search Box
@@ -78,11 +78,11 @@ alertText = "Introducing the Doks child theme, several DX + UX updates, and more
 
 # Edit Page
 # repoHost [Github | Gitea | GitLab | Bitbucket | BitbucketServer ] is used for building the edit link based on git hoster
-repoHost = "GitHub"
+# repoHost = "GitHub"
 #repoHost = "Gitea"
-docsRepo = "https://github.com/h-enk/doks"
-docsRepoBranch = "master"
-docsRepoSubPath = ""
+# docsRepo = "https://github.com/h-enk/doks"
+# docsRepoBranch = "master"
+# docsRepoSubPath = ""
 editPage = false
 lastMod = false
 

@@ -2,7 +2,11 @@
 title: media type 与media query
 weight: 7
 ---
-**CSS link、@import共同点：**都是为了加载CSS文件。
+
+## link&import
+**CSS link、@import共同点：**
+
+都是为了加载CSS文件。
 
 **CSS link、@import不同点：**
 
@@ -16,23 +20,28 @@ weight: 7
 <a href="http://www.stevesouders.com/blog/2009/04/09/dont-use-import/" target="_blank" rel="noopener noreferrer">don’t use @import</a>  
 <a href="http://developer.yahoo.com/performance/rules.html#csslink" target="_blank" rel="noopener noreferrer">Yahoo 网页性能最佳实践：使用link，不使用import</a>
 
-**media type(媒体类型)**：是css 2中的一个非常有用的属性，通过media type[我们](https://www.w3cdoc.com)可以对不同的设备指定特定的样式，从而实现更丰富的界面。  
+## media type
+**media type(媒体类型)**：
+
+是css 2中的一个非常有用的属性，通过media type[我们](https://www.w3cdoc.com)可以对不同的设备指定特定的样式，从而实现更丰富的界面。  
 例子：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;link href="style.css" media="screen print" ...  
-  
-@import url("style.css") screen;  
-  
-&lt;style media="screen"&gt;  
-@import url("style.css");  
-&lt;/style&gt;</pre>
+```
+<link href="style.css" media="screen print" ...  
+  
+@import url("style.css") screen;  
+  
+<style media="screen">  
+@import url("style.css");  
+</style>
+```
 
-<div id="" class="dp-highlighter">
-</div>
+**media query(媒体查询)**：
 
-**media query(媒体查询)**：是对media type的一种增强，是CSS 3的重要内容之一。  
+是对media type的一种增强，是CSS 3的重要内容之一。 
+
 例子：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;link media="only screen and (max-device-width: 480px)" href="style.css"&gt;</pre>
-
-参考：<a href="http://www.qianduan.net/media-type-and-media-query.html" target="_blank" rel="noopener noreferrer">media type与media query</a>
+```
+<link media="only screen and (max-device-width: 480px)" href="style.css">
+```
