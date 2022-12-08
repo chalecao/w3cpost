@@ -5,11 +5,11 @@ title: 打包中的Scope Hoisting功能
 不久前，Webpack 正式发布了它的第三个版本，这个版本提供了一个新的功能：Scope Hoisting，又译作“作用域提升”。只需在配置文件中添加一个新的插件，就可以让 Webpack 打包出来的代码文件更小、运行的更快：
 
 <div class="highlight">
-  <pre><code class="language-js">&lt;span class="nx">module&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">exports&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="nx">plugins&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">[&lt;/span>
-    &lt;span class="k">new&lt;/span> &lt;span class="nx">webpack&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">optimize&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">ModuleConcatenationPlugin&lt;/span>&lt;span class="p">()&lt;/span>
-  &lt;span class="p">]&lt;/span>
-&lt;span class="p">}&lt;/span>
+  <pre><code class="language-js"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+    <span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">optimize</span><span class="p">.</span><span class="nx">ModuleConcatenationPlugin</span><span class="p">()</span>
+  <span class="p">]</span>
+<span class="p">}</span>
 </code></pre>
 </div>
 
@@ -20,30 +20,30 @@ title: 打包中的Scope Hoisting功能
 现在假设[我们](https://www.w3cdoc.com)的项目有这样两个文件：
 
 <div class="highlight">
-  <pre><code class="language-js">&lt;span class="c1">// module-a.js
-&lt;/span>&lt;span class="k">export&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="s1">'module A'&lt;/span>
-&lt;span class="c1">// entry.js
-&lt;/span>&lt;span class="k">import&lt;/span> &lt;span class="nx">a&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">'./module-a'&lt;/span>
-&lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">a&lt;/span>&lt;span class="p">)&lt;/span>
+  <pre><code class="language-js"><span class="c1">// module-a.js
+</span><span class="k">export</span> <span class="k">default</span> <span class="s1">'module A'</span>
+<span class="c1">// entry.js
+</span><span class="k">import</span> <span class="nx">a</span> <span class="nx">from</span> <span class="s1">'./module-a'</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
 </code></pre>
 </div>
 
 现在[我们](https://www.w3cdoc.com)用 Webpack 打包一下，得到的文件大致像这样：
 
 <div class="highlight">
-  <pre><code class="language-js">&lt;span class="c1">// bundle.js
-&lt;/span>&lt;span class="c1">// 最前面的一段代码实现了模块的加载、执行和缓存的逻辑，这里直接略过
-&lt;/span>&lt;span class="p">[&lt;/span>
-  &lt;span class="cm">/*0*/&lt;/span>
-  &lt;span class="kd">function&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">module&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">exports&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-    &lt;span class="kd">var&lt;/span> &lt;span class="nx">module_a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
-    &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">module_a&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">'default'&lt;/span>&lt;span class="p">])&lt;/span>
-  &lt;span class="p">},&lt;/span>
-  &lt;span class="cm">/*1*/&lt;/span>
-  &lt;span class="kd">function&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">module&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">exports&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-    &lt;span class="nx">exports&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">'default'&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">'module A'&lt;/span>
-  &lt;span class="p">}&lt;/span>
-&lt;span class="p">]&lt;/span>
+  <pre><code class="language-js"><span class="c1">// bundle.js
+</span><span class="c1">// 最前面的一段代码实现了模块的加载、执行和缓存的逻辑，这里直接略过
+</span><span class="p">[</span>
+  <span class="cm">/*0*/</span>
+  <span class="kd">function</span> <span class="p">(</span><span class="nx">module</span><span class="p">,</span> <span class="nx">exports</span><span class="p">,</span> <span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">module_a</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">module_a</span><span class="p">[</span><span class="s1">'default'</span><span class="p">])</span>
+  <span class="p">},</span>
+  <span class="cm">/*1*/</span>
+  <span class="kd">function</span> <span class="p">(</span><span class="nx">module</span><span class="p">,</span> <span class="nx">exports</span><span class="p">,</span> <span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">exports</span><span class="p">[</span><span class="s1">'default'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'module A'</span>
+  <span class="p">}</span>
+<span class="p">]</span>
 </code></pre>
 </div>
 
@@ -58,16 +58,16 @@ title: 打包中的Scope Hoisting功能
 同样的源文件在使用了 ModuleConcatenationPlugin 之后，打包出来的文件会变成下面这样：
 
 <div class="highlight">
-  <pre><code class="language-js">&lt;span class="c1">// bundle.js
-&lt;/span>&lt;span class="p">[&lt;/span>
-  &lt;span class="kd">function&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">module&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">exports&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-    &lt;span class="c1">// CONCATENATED MODULE: ./module-a.js
-&lt;/span>    &lt;span class="kd">var&lt;/span> &lt;span class="nx">module_a_defaultExport&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">'module A'&lt;/span>
+  <pre><code class="language-js"><span class="c1">// bundle.js
+</span><span class="p">[</span>
+  <span class="kd">function</span> <span class="p">(</span><span class="nx">module</span><span class="p">,</span> <span class="nx">exports</span><span class="p">,</span> <span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// CONCATENATED MODULE: ./module-a.js
+</span>    <span class="kd">var</span> <span class="nx">module_a_defaultExport</span> <span class="o">=</span> <span class="s1">'module A'</span>
 
-    &lt;span class="c1">// CONCATENATED MODULE: ./index.js
-&lt;/span>    &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">module_a_defaultExport&lt;/span>&lt;span class="p">)&lt;/span>
-  &lt;span class="p">}&lt;/span>
-&lt;span class="p">]&lt;/span>
+    <span class="c1">// CONCATENATED MODULE: ./index.js
+</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">module_a_defaultExport</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">]</span>
 </code></pre>
 </div>
 
@@ -87,12 +87,12 @@ title: 打包中的Scope Hoisting功能
 暂不支持 CommonJS 模块语法的原因是，这种模块语法中的模块是可以动态加载的，例如下面这段代码：
 
 <div class="highlight">
-  <pre><code class="language-js">&lt;span class="kd">var&lt;/span> &lt;span class="nx">directory&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">'./modules/'&lt;/span>
-&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nb">Math&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">random&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">&gt;&lt;/span> &lt;span class="mf">0.5&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="nx">module&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">exports&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">directory&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s1">'foo.js'&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="nx">module&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">exports&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">directory&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s1">'bar.js'&lt;/span>&lt;span class="p">)&lt;/span>
-&lt;span class="p">}&lt;/span>
+  <pre><code class="language-js"><span class="kd">var</span> <span class="nx">directory</span> <span class="o">=</span> <span class="s1">'./modules/'</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">></span> <span class="mf">0.5</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="nx">directory</span> <span class="o">+</span> <span class="s1">'foo.js'</span><span class="p">)</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="nx">directory</span> <span class="o">+</span> <span class="s1">'bar.js'</span><span class="p">)</span>
+<span class="p">}</span>
 </code></pre>
 </div>
 

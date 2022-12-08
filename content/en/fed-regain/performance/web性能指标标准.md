@@ -91,7 +91,7 @@ Level 2 规范包含了这些内容：
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-json"><code class=" language-json">window.performance.getEntries(&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+    <pre class=" language-json"><code class=" language-json">window.performance.getEntries(<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 
     
@@ -119,8 +119,8 @@ Level 2 规范包含了这些内容：
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-javascript"><code class=" language-javascript">performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByType&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'paint'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByName&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'https://www.google.com/images/nav_logo299.webp'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+    <pre class=" language-javascript"><code class=" language-javascript">performance<span class="token punctuation">.</span><span class="token function">getEntriesByType</span><span class="token punctuation">(</span><span class="token string">'paint'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+performance<span class="token punctuation">.</span><span class="token function">getEntriesByName</span><span class="token punctuation">(</span><span class="token string">'https://www.google.com/images/nav_logo299.webp'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 
     
@@ -296,39 +296,39 @@ PerformanceEntry 对象具有 name、entryType、startTime、duration、 toJS
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-json"><code class=" language-json">&lt;!doctype html&gt;
-&lt;html&gt;
-&lt;head&gt;&lt;/head&gt;
-&lt;body&gt;
-&lt;img id=&lt;span class="token string">"image0"&lt;/span> src=&lt;span class="token string">"https://www.w3.org/Icons/w3c_main.png"&lt;/span> /&gt;
-&lt;script&gt;
-const resourceObserver = new PerformanceObserver(list =&gt; &lt;span class="token punctuation">{&lt;/span>
+    <pre class=" language-json"><code class=" language-json"><!doctype html>
+<html>
+<head></head>
+<body>
+<img id=<span class="token string">"image0"</span> src=<span class="token string">"https://www.w3.org/Icons/w3c_main.png"</span> />
+<script>
+const resourceObserver = new PerformanceObserver(list => <span class="token punctuation">{</span>
   list
-    .getEntries(&lt;span class="token punctuation">)&lt;/span>
+    .getEntries(<span class="token punctuation">)</span>
     // Get the values we are interested in
-    .map((&lt;span class="token punctuation">{&lt;/span> name&lt;span class="token punctuation">,&lt;/span> entryType&lt;span class="token punctuation">,&lt;/span> startTime&lt;span class="token punctuation">,&lt;/span> fetchStart&lt;span class="token punctuation">,&lt;/span> responseStart&lt;span class="token punctuation">,&lt;/span> responseEnd &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span> =&gt; &lt;span class="token punctuation">{&lt;/span>
-      const obj = &lt;span class="token punctuation">{&lt;/span>
-        &lt;span class="token property">"Name"&lt;/span>&lt;span class="token operator">:&lt;/span> name&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token property">"Entry Type"&lt;/span>&lt;span class="token operator">:&lt;/span> entryType&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token property">"Start Time"&lt;/span>&lt;span class="token operator">:&lt;/span> startTime&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token property">"Fetch Start"&lt;/span>&lt;span class="token operator">:&lt;/span> fetchStart&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token property">"Response Start"&lt;/span>&lt;span class="token operator">:&lt;/span> responseStart&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token property">"Response End"&lt;/span>&lt;span class="token operator">:&lt;/span> responseEnd&lt;span class="token punctuation">,&lt;/span>
-      &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-      return JSON.stringify(obj&lt;span class="token punctuation">,&lt;/span> &lt;span class="token null">null&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token number">2&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>
+    .map((<span class="token punctuation">{</span> name<span class="token punctuation">,</span> entryType<span class="token punctuation">,</span> startTime<span class="token punctuation">,</span> fetchStart<span class="token punctuation">,</span> responseStart<span class="token punctuation">,</span> responseEnd <span class="token punctuation">}</span><span class="token punctuation">)</span> => <span class="token punctuation">{</span>
+      const obj = <span class="token punctuation">{</span>
+        <span class="token property">"Name"</span><span class="token operator">:</span> name<span class="token punctuation">,</span>
+        <span class="token property">"Entry Type"</span><span class="token operator">:</span> entryType<span class="token punctuation">,</span>
+        <span class="token property">"Start Time"</span><span class="token operator">:</span> startTime<span class="token punctuation">,</span>
+        <span class="token property">"Fetch Start"</span><span class="token operator">:</span> fetchStart<span class="token punctuation">,</span>
+        <span class="token property">"Response Start"</span><span class="token operator">:</span> responseStart<span class="token punctuation">,</span>
+        <span class="token property">"Response End"</span><span class="token operator">:</span> responseEnd<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      return JSON.stringify(obj<span class="token punctuation">,</span> <span class="token null">null</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
     // Display them to the console.
-    .forEach(console.log&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+    .forEach(console.log<span class="token punctuation">)</span><span class="token punctuation">;</span>
   // Disconnect after processing the events.
-  resourceObserver.disconnect(&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+  resourceObserver.disconnect(<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 // Subscribe to new events for Resource Timing.
-resourceObserver.observe(&lt;span class="token punctuation">{&lt;/span>type&lt;span class="token operator">:&lt;/span> &lt;span class="token string">"resource"&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+resourceObserver.observe(<span class="token punctuation">{</span>type<span class="token operator">:</span> <span class="token string">"resource"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 // 多个 Entry Type
-// userTimingObserver.observe(&lt;span class="token punctuation">{&lt;/span>entryTypes&lt;span class="token operator">:&lt;/span> &lt;span class="token punctuation">[&lt;/span>&lt;span class="token string">"mark"&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token string">"measure"&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+// userTimingObserver.observe(<span class="token punctuation">{</span>entryTypes<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"mark"</span><span class="token punctuation">,</span> <span class="token string">"measure"</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</script>
+</body>
+</html>
 </code></pre>
 
     
@@ -377,7 +377,7 @@ Level 2 规范包含了这些内容：
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-javascript"><code class=" language-javascript">performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByType&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'resource'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+    <pre class=" language-javascript"><code class=" language-javascript">performance<span class="token punctuation">.</span><span class="token function">getEntriesByType</span><span class="token punctuation">(</span><span class="token string">'resource'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 
     
@@ -390,7 +390,7 @@ Level 2 规范包含了这些内容：
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-javascript"><code class=" language-javascript">performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByName&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'https://www.google.com/images/nav_logo299.webp'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+    <pre class=" language-javascript"><code class=" language-javascript">performance<span class="token punctuation">.</span><span class="token function">getEntriesByName</span><span class="token punctuation">(</span><span class="token string">'https://www.google.com/images/nav_logo299.webp'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 
     
@@ -461,7 +461,7 @@ Level 2 规范主要包含以下内容：
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-javascript"><code class=" language-javascript">window&lt;span class="token punctuation">.&lt;/span>performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByType&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"navigation"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+    <pre class=" language-javascript"><code class=" language-javascript">window<span class="token punctuation">.</span>performance<span class="token punctuation">.</span><span class="token function">getEntriesByType</span><span class="token punctuation">(</span><span class="token string">"navigation"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 
     
@@ -475,17 +475,17 @@ Level 2 规范主要包含以下内容：
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-javascript"><code class=" language-javascript">&lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>entry&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByType&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"navigation"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token keyword">let&lt;/span> proto &lt;span class="token operator">=&lt;/span> Object&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getPrototypeOf&lt;/span>&lt;span class="token punctuation">(&lt;/span>entry&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+    <pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">const</span> <span class="token punctuation">[</span>entry<span class="token punctuation">]</span> <span class="token operator">=</span> performance<span class="token punctuation">.</span><span class="token function">getEntriesByType</span><span class="token punctuation">(</span><span class="token string">"navigation"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> proto <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">getPrototypeOf</span><span class="token punctuation">(</span>entry<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-&lt;span class="token keyword">const&lt;/span> protos &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+<span class="token keyword">const</span> protos <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-&lt;span class="token keyword">while&lt;/span>&lt;span class="token punctuation">(&lt;/span>proto&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">toString&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">!=&lt;/span> &lt;span class="token string">'[object Object]'&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    protos&lt;span class="token punctuation">[&lt;/span>proto&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">toString&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> Object&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">keys&lt;/span>&lt;span class="token punctuation">(&lt;/span>proto&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    proto &lt;span class="token operator">=&lt;/span> Object&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getPrototypeOf&lt;/span>&lt;span class="token punctuation">(&lt;/span>proto&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+<span class="token keyword">while</span><span class="token punctuation">(</span>proto<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token string">'[object Object]'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    protos<span class="token punctuation">[</span>proto<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>proto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    proto <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">getPrototypeOf</span><span class="token punctuation">(</span>proto<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>protos&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>protos<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 
     
@@ -498,49 +498,49 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-json"><code class=" language-json">&lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token property">"[object PerformanceNavigationTiming]"&lt;/span>&lt;span class="token operator">:&lt;/span>&lt;span class="token punctuation">[&lt;/span>
-        &lt;span class="token string">"unloadEventStart"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"unloadEventEnd"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"domInteractive"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"domContentLoadedEventStart"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"domContentLoadedEventEnd"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"domComplete"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"loadEventStart"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"loadEventEnd"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"type"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"redirectCount"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"toJSON"&lt;/span>
-    &lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-    &lt;span class="token property">"[object PerformanceResourceTiming]"&lt;/span>&lt;span class="token operator">:&lt;/span>
-        &lt;span class="token string">"initiatorType"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"nextHopProtocol"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"workerStart"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"redirectStart"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"redirectEnd"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"fetchStart"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"domainLookupStart"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"domainLookupEnd"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"connectStart"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"connectEnd"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"secureConnectionStart"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"requestStart"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"responseStart"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"responseEnd"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"transferSize"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"encodedBodySize"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"decodedBodySize"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"serverTiming"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"toJSON"&lt;/span>
-    &lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-    &lt;span class="token property">"[object PerformanceEntry]"&lt;/span>&lt;span class="token operator">:&lt;/span>&lt;span class="token punctuation">[&lt;/span>
-        &lt;span class="token string">"name"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"entryType"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"startTime"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"duration"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        &lt;span class="token string">"toJSON"&lt;/span>
-    &lt;span class="token punctuation">]&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+    <pre class=" language-json"><code class=" language-json"><span class="token punctuation">{</span>
+    <span class="token property">"[object PerformanceNavigationTiming]"</span><span class="token operator">:</span><span class="token punctuation">[</span>
+        <span class="token string">"unloadEventStart"</span><span class="token punctuation">,</span>
+        <span class="token string">"unloadEventEnd"</span><span class="token punctuation">,</span>
+        <span class="token string">"domInteractive"</span><span class="token punctuation">,</span>
+        <span class="token string">"domContentLoadedEventStart"</span><span class="token punctuation">,</span>
+        <span class="token string">"domContentLoadedEventEnd"</span><span class="token punctuation">,</span>
+        <span class="token string">"domComplete"</span><span class="token punctuation">,</span>
+        <span class="token string">"loadEventStart"</span><span class="token punctuation">,</span>
+        <span class="token string">"loadEventEnd"</span><span class="token punctuation">,</span>
+        <span class="token string">"type"</span><span class="token punctuation">,</span>
+        <span class="token string">"redirectCount"</span><span class="token punctuation">,</span>
+        <span class="token string">"toJSON"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"[object PerformanceResourceTiming]"</span><span class="token operator">:</span>
+        <span class="token string">"initiatorType"</span><span class="token punctuation">,</span>
+        <span class="token string">"nextHopProtocol"</span><span class="token punctuation">,</span>
+        <span class="token string">"workerStart"</span><span class="token punctuation">,</span>
+        <span class="token string">"redirectStart"</span><span class="token punctuation">,</span>
+        <span class="token string">"redirectEnd"</span><span class="token punctuation">,</span>
+        <span class="token string">"fetchStart"</span><span class="token punctuation">,</span>
+        <span class="token string">"domainLookupStart"</span><span class="token punctuation">,</span>
+        <span class="token string">"domainLookupEnd"</span><span class="token punctuation">,</span>
+        <span class="token string">"connectStart"</span><span class="token punctuation">,</span>
+        <span class="token string">"connectEnd"</span><span class="token punctuation">,</span>
+        <span class="token string">"secureConnectionStart"</span><span class="token punctuation">,</span>
+        <span class="token string">"requestStart"</span><span class="token punctuation">,</span>
+        <span class="token string">"responseStart"</span><span class="token punctuation">,</span>
+        <span class="token string">"responseEnd"</span><span class="token punctuation">,</span>
+        <span class="token string">"transferSize"</span><span class="token punctuation">,</span>
+        <span class="token string">"encodedBodySize"</span><span class="token punctuation">,</span>
+        <span class="token string">"decodedBodySize"</span><span class="token punctuation">,</span>
+        <span class="token string">"serverTiming"</span><span class="token punctuation">,</span>
+        <span class="token string">"toJSON"</span>
+    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">"[object PerformanceEntry]"</span><span class="token operator">:</span><span class="token punctuation">[</span>
+        <span class="token string">"name"</span><span class="token punctuation">,</span>
+        <span class="token string">"entryType"</span><span class="token punctuation">,</span>
+        <span class="token string">"startTime"</span><span class="token punctuation">,</span>
+        <span class="token string">"duration"</span><span class="token punctuation">,</span>
+        <span class="token string">"toJSON"</span>
+    <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
     
@@ -553,17 +553,17 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-json"><code class=" language-json">&lt;span class="token string">"unloadEventStart"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-&lt;span class="token string">"unloadEventEnd"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-&lt;span class="token string">"domInteractive"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-&lt;span class="token string">"domContentLoadedEventStart"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-&lt;span class="token string">"domContentLoadedEventEnd"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-&lt;span class="token string">"domComplete"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-&lt;span class="token string">"loadEventStart"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-&lt;span class="token string">"loadEventEnd"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-&lt;span class="token string">"type"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-&lt;span class="token string">"redirectCount"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-&lt;span class="token string">"toJSON"&lt;/span>
+    <pre class=" language-json"><code class=" language-json"><span class="token string">"unloadEventStart"</span><span class="token punctuation">,</span>
+<span class="token string">"unloadEventEnd"</span><span class="token punctuation">,</span>
+<span class="token string">"domInteractive"</span><span class="token punctuation">,</span>
+<span class="token string">"domContentLoadedEventStart"</span><span class="token punctuation">,</span>
+<span class="token string">"domContentLoadedEventEnd"</span><span class="token punctuation">,</span>
+<span class="token string">"domComplete"</span><span class="token punctuation">,</span>
+<span class="token string">"loadEventStart"</span><span class="token punctuation">,</span>
+<span class="token string">"loadEventEnd"</span><span class="token punctuation">,</span>
+<span class="token string">"type"</span><span class="token punctuation">,</span>
+<span class="token string">"redirectCount"</span><span class="token punctuation">,</span>
+<span class="token string">"toJSON"</span>
 </code></pre>
 
     
@@ -650,7 +650,7 @@ exposes [transfer][31], [encoded body][32] and [decoded body][33] size informati
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-javascript"><code class=" language-javascript">performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByType&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'paint'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+    <pre class=" language-javascript"><code class=" language-javascript">performance<span class="token punctuation">.</span><span class="token function">getEntriesByType</span><span class="token punctuation">(</span><span class="token string">'paint'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 
     
@@ -697,14 +697,14 @@ measure() 方法则可以测量两个时间点之间的间隔，并给它一个�
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-javascript"><code class=" language-javascript">&lt;span class="token comment" spellcheck="true">// Level 2 中的用法&lt;/span>
-performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">mark&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"mySetTimeout-start"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+    <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// Level 2 中的用法</span>
+performance<span class="token punctuation">.</span><span class="token function">mark</span><span class="token punctuation">(</span><span class="token string">"mySetTimeout-start"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">measure&lt;/span>&lt;span class="token punctuation">(&lt;/span>
-  &lt;span class="token string">"mySetTimeout"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-  &lt;span class="token string">"mySetTimeout-start"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-  &lt;span class="token string">"mySetTimeout-end"&lt;/span>
-&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+performance<span class="token punctuation">.</span><span class="token function">measure</span><span class="token punctuation">(</span>
+  <span class="token string">"mySetTimeout"</span><span class="token punctuation">,</span>
+  <span class="token string">"mySetTimeout-start"</span><span class="token punctuation">,</span>
+  <span class="token string">"mySetTimeout-end"</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 
     
@@ -717,18 +717,18 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-javascript"><code class=" language-javascript">&lt;span class="token comment" spellcheck="true">// Level 3 中的用法&lt;/span>
-performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">mark&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"mySetTimeout-start"&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  detail&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">{&lt;/span>component&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'component_name'&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-  &lt;span class="token comment" spellcheck="true">// 在 Level 2 中 startTime 不用传入，后台默认是 mark 标记的时间，Level 3 中可以支持用户自己定义了&lt;/span>
-  startTime&lt;span class="token punctuation">:&lt;/span> &lt;span class="token number">123&lt;/span>  
-&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+    <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// Level 3 中的用法</span>
+performance<span class="token punctuation">.</span><span class="token function">mark</span><span class="token punctuation">(</span><span class="token string">"mySetTimeout-start"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  detail<span class="token punctuation">:</span> <span class="token punctuation">{</span>component<span class="token punctuation">:</span> <span class="token string">'component_name'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment" spellcheck="true">// 在 Level 2 中 startTime 不用传入，后台默认是 mark 标记的时间，Level 3 中可以支持用户自己定义了</span>
+  startTime<span class="token punctuation">:</span> <span class="token number">123</span>  
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">measure&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"click_to_update_component"&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    detail&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">{&lt;/span>component&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'component_name'&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-    start&lt;span class="token punctuation">:&lt;/span> startMark&lt;span class="token punctuation">.&lt;/span>startTime&lt;span class="token punctuation">,&lt;/span>
-    end&lt;span class="token punctuation">:&lt;/span> performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">now&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">,&lt;/span>
- &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+performance<span class="token punctuation">.</span><span class="token function">measure</span><span class="token punctuation">(</span><span class="token string">"click_to_update_component"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    detail<span class="token punctuation">:</span> <span class="token punctuation">{</span>component<span class="token punctuation">:</span> <span class="token string">'component_name'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    start<span class="token punctuation">:</span> startMark<span class="token punctuation">.</span>startTime<span class="token punctuation">,</span>
+    end<span class="token punctuation">:</span> performance<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+ <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 
     
@@ -765,16 +765,16 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-undefined"><code class="language- language-undefined">&gt; GET /resource HTTP/1.1
-&gt; Host: example.com
+    <pre class=" language-undefined"><code class="language- language-undefined">> GET /resource HTTP/1.1
+> Host: example.com
 
-&lt; HTTP/1.1 200 OK
-&lt; Server-Timing: miss, db;dur=53, app;dur=47.2
-&lt; Server-Timing: customView, dc;desc=atl
-&lt; Server-Timing: cache;desc="Cache Read";dur=23.2
-&lt; Trailer: Server-Timing
-&lt; (... snip response body ...)
-&lt; Server-Timing: total;dur=123.4
+< HTTP/1.1 200 OK
+< Server-Timing: miss, db;dur=53, app;dur=47.2
+< Server-Timing: customView, dc;desc=atl
+< Server-Timing: cache;desc="Cache Read";dur=23.2
+< Trailer: Server-Timing
+< (... snip response body ...)
+< Server-Timing: total;dur=123.4
 </code></pre>
 
     
@@ -793,8 +793,8 @@ performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token f
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-javascript"><code class=" language-javascript">performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByType&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'navigation'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-performance&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntriesByType&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'resource'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+    <pre class=" language-javascript"><code class=" language-javascript">performance<span class="token punctuation">.</span><span class="token function">getEntriesByType</span><span class="token punctuation">(</span><span class="token string">'navigation'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+performance<span class="token punctuation">.</span><span class="token function">getEntriesByType</span><span class="token punctuation">(</span><span class="token string">'resource'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 
     
@@ -834,18 +834,18 @@ Long Task 是指超过 50ms 的事件循环任务。
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-javascript"><code class=" language-javascript">&lt;span class="token keyword">var&lt;/span> observer &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">new&lt;/span> &lt;span class="token class-name">PerformanceObserver&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token keyword">function&lt;/span>&lt;span class="token punctuation">(&lt;/span>list&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">var&lt;/span> perfEntries &lt;span class="token operator">=&lt;/span> list&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getEntries&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token keyword">for&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token keyword">var&lt;/span> i &lt;span class="token operator">=&lt;/span> &lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">;&lt;/span> i &lt;span class="token operator">&lt;&lt;/span> perfEntries&lt;span class="token punctuation">.&lt;/span>length&lt;span class="token punctuation">;&lt;/span> i&lt;span class="token operator">++&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-        &lt;span class="token comment" spellcheck="true">// Process long task notifications:&lt;/span>
-        &lt;span class="token comment" spellcheck="true">// report back for analytics and monitoring&lt;/span>
-        &lt;span class="token comment" spellcheck="true">// ...&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token comment" spellcheck="true">// register observer for long task notifications&lt;/span>
-observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">observe&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span>entryTypes&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">[&lt;/span>&lt;span class="token string">"longtask"&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token comment" spellcheck="true">// Long script execution after this will result in queueing&lt;/span>
-&lt;span class="token comment" spellcheck="true">// and receiving "longtask" entries in the observer.&lt;/span>
+    <pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> observer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PerformanceObserver</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> perfEntries <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">getEntries</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator"><</span> perfEntries<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// Process long task notifications:</span>
+        <span class="token comment" spellcheck="true">// report back for analytics and monitoring</span>
+        <span class="token comment" spellcheck="true">// ...</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// register observer for long task notifications</span>
+observer<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span><span class="token punctuation">{</span>entryTypes<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">"longtask"</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">// Long script execution after this will result in queueing</span>
+<span class="token comment" spellcheck="true">// and receiving "longtask" entries in the observer.</span>
 </code></pre>
 
     
@@ -878,7 +878,7 @@ observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-html"><code class=" language-html">&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>link&lt;/span> &lt;span class="token attr-name">rel&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>dns-prefetch&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">href&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>//example.com&lt;span class="token punctuation">"&lt;/span>&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
+    <pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation"><</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>dns-prefetch<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>//example.com<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 </code></pre>
 
     
@@ -893,8 +893,8 @@ observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-html"><code class=" language-html">&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>link&lt;/span> &lt;span class="token attr-name">rel&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>preconnect&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">href&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>//example.com&lt;span class="token punctuation">"&lt;/span>&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
-&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>link&lt;/span> &lt;span class="token attr-name">rel&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>preconnect&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">href&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>//cdn.example.com&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">crossorigin&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
+    <pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation"><</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>preconnect<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>//example.com<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation"><</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>preconnect<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>//cdn.example.com<span class="token punctuation">"</span></span> <span class="token attr-name">crossorigin</span><span class="token punctuation">></span></span>
 </code></pre>
 
     
@@ -909,8 +909,8 @@ observer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-html"><code class=" language-html">&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>link&lt;/span> &lt;span class="token attr-name">rel&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>prefetch&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">href&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>//example.com/next-page.html&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">as&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>document&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">crossorigin&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>use-credentials&lt;span class="token punctuation">"&lt;/span>&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
-&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>link&lt;/span> &lt;span class="token attr-name">rel&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>prefetch&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">href&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>/library.js&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">as&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>script&lt;span class="token punctuation">"&lt;/span>&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
+    <pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation"><</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>prefetch<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>//example.com/next-page.html<span class="token punctuation">"</span></span> <span class="token attr-name">as</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>document<span class="token punctuation">"</span></span> <span class="token attr-name">crossorigin</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>use-credentials<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation"><</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>prefetch<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/library.js<span class="token punctuation">"</span></span> <span class="token attr-name">as</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>script<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 </code></pre>
 
     
@@ -930,7 +930,7 @@ prefetch 有 3 条规则：
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-html"><code class=" language-html">&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>link&lt;/span> &lt;span class="token attr-name">rel&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>prerender&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">href&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>//example.com/next-page.html&lt;span class="token punctuation">"&lt;/span>&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
+    <pre class=" language-html"><code class=" language-html"><span class="token tag"><span class="token tag"><span class="token punctuation"><</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>prerender<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>//example.com/next-page.html<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 </code></pre>
 
     
@@ -956,20 +956,20 @@ prefetch 有 3 条规则：
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
     <pre class=" language-html"><code class=" language-html">Using markup
-&lt;span class="token comment" spellcheck="true">&lt;!-- preload stylesheet resource via declarative markup --&gt;&lt;/span>
-&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>link&lt;/span> &lt;span class="token attr-name">rel&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>preload&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">href&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>/styles/other.css&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">as&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>style&lt;span class="token punctuation">"&lt;/span>&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
+<span class="token comment" spellcheck="true"><!-- preload stylesheet resource via declarative markup --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation"><</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>preload<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/styles/other.css<span class="token punctuation">"</span></span> <span class="token attr-name">as</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>style<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 
-&lt;span class="token comment" spellcheck="true">&lt;!-- or, preload stylesheet resource via JavaScript --&gt;&lt;/span>
-&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>script&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>&lt;span class="token script language-javascript">
-&lt;span class="token keyword">var&lt;/span> res &lt;span class="token operator">=&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createElement&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"link"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-res&lt;span class="token punctuation">.&lt;/span>rel &lt;span class="token operator">=&lt;/span> &lt;span class="token string">"preload"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-res&lt;span class="token punctuation">.&lt;/span>&lt;span class="token keyword">as&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token string">"style"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-res&lt;span class="token punctuation">.&lt;/span>href &lt;span class="token operator">=&lt;/span> &lt;span class="token string">"styles/other.css"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-document&lt;span class="token punctuation">.&lt;/span>head&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">appendChild&lt;/span>&lt;span class="token punctuation">(&lt;/span>res&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;/span>&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>script&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
+<span class="token comment" spellcheck="true"><!-- or, preload stylesheet resource via JavaScript --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation"><</span>script</span><span class="token punctuation">></span></span><span class="token script language-javascript">
+<span class="token keyword">var</span> res <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"link"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+res<span class="token punctuation">.</span>rel <span class="token operator">=</span> <span class="token string">"preload"</span><span class="token punctuation">;</span>
+res<span class="token punctuation">.</span><span class="token keyword">as</span> <span class="token operator">=</span> <span class="token string">"style"</span><span class="token punctuation">;</span>
+res<span class="token punctuation">.</span>href <span class="token operator">=</span> <span class="token string">"styles/other.css"</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span>head<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>res<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation"></</span>script</span><span class="token punctuation">></span></span>
 
 Using HTTP Header
-Link: &lt;https://example.com/other/styles.css&gt;; rel=preload; as=style
+Link: <https://example.com/other/styles.css>; rel=preload; as=style
 </code></pre>
 
     
@@ -1020,23 +1020,23 @@ Level 2 规范包含以下内容：
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-javascript"><code class=" language-javascript">&lt;span class="token keyword">var&lt;/span> videoElement &lt;span class="token operator">=&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"videoElement"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+    <pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> videoElement <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"videoElement"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-&lt;span class="token comment" spellcheck="true">// Autoplay the video if application is visible&lt;/span>
-&lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>document&lt;span class="token punctuation">.&lt;/span>visibilityState &lt;span class="token operator">==&lt;/span> &lt;span class="token string">"visible"&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  videoElement&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">play&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+<span class="token comment" spellcheck="true">// Autoplay the video if application is visible</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>document<span class="token punctuation">.</span>visibilityState <span class="token operator">==</span> <span class="token string">"visible"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  videoElement<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-&lt;span class="token comment" spellcheck="true">// Handle page visibility change events&lt;/span>
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">handleVisibilityChange&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>document&lt;span class="token punctuation">.&lt;/span>visibilityState &lt;span class="token operator">==&lt;/span> &lt;span class="token string">"hidden"&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    videoElement&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">pause&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span> &lt;span class="token keyword">else&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    videoElement&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">play&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+<span class="token comment" spellcheck="true">// Handle page visibility change events</span>
+<span class="token keyword">function</span> <span class="token function">handleVisibilityChange</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>document<span class="token punctuation">.</span>visibilityState <span class="token operator">==</span> <span class="token string">"hidden"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    videoElement<span class="token punctuation">.</span><span class="token function">pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    videoElement<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">addEventListener&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'visibilitychange'&lt;/span>&lt;span class="token punctuation">,&lt;/span> handleVisibilityChange&lt;span class="token punctuation">,&lt;/span> &lt;span class="token boolean">false&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'visibilitychange'</span><span class="token punctuation">,</span> handleVisibilityChange<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 
     
@@ -1069,20 +1069,20 @@ document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-javascript"><code class=" language-javascript">&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">refinePi&lt;/span>&lt;span class="token punctuation">(&lt;/span>deadline&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">while&lt;/span> &lt;span class="token punctuation">(&lt;/span>deadline&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">timeRemaining&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">&gt;&lt;/span> &lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token function">piStep&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-      pointsInside&lt;span class="token operator">++&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    pointsTotal&lt;span class="token operator">++&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-  currentEstimate &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">4&lt;/span> &lt;span class="token operator">*&lt;/span> pointsInside &lt;span class="token operator">/&lt;/span> pointsTotal&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  textElement &lt;span class="token operator">=&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"piEstimate"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  textElement&lt;span class="token punctuation">.&lt;/span>innerHTML&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"Pi Estimate: "&lt;/span> &lt;span class="token operator">+&lt;/span> currentEstimate&lt;span class="token punctuation">;&lt;/span>
-  requestId &lt;span class="token operator">=&lt;/span> window&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">requestIdleCallback&lt;/span>&lt;span class="token punctuation">(&lt;/span>refinePi&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">start&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  requestId &lt;span class="token operator">=&lt;/span> window&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">requestIdleCallback&lt;/span>&lt;span class="token punctuation">(&lt;/span>refinePi&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+    <pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">function</span> <span class="token function">refinePi</span><span class="token punctuation">(</span>deadline<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>deadline<span class="token punctuation">.</span><span class="token function">timeRemaining</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">piStep</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+      pointsInside<span class="token operator">++</span><span class="token punctuation">;</span>
+    pointsTotal<span class="token operator">++</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  currentEstimate <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">4</span> <span class="token operator">*</span> pointsInside <span class="token operator">/</span> pointsTotal<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  textElement <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"piEstimate"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  textElement<span class="token punctuation">.</span>innerHTML<span class="token operator">=</span><span class="token string">"Pi Estimate: "</span> <span class="token operator">+</span> currentEstimate<span class="token punctuation">;</span>
+  requestId <span class="token operator">=</span> window<span class="token punctuation">.</span><span class="token function">requestIdleCallback</span><span class="token punctuation">(</span>refinePi<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  requestId <span class="token operator">=</span> window<span class="token punctuation">.</span><span class="token function">requestIdleCallback</span><span class="token punctuation">(</span>refinePi<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
     
@@ -1117,11 +1117,11 @@ document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 <div class="highlight">
   <div class="copytoclipboard-wrapper" style="position: relative;">
-    <pre class=" language-javascript"><code class=" language-javascript">window&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">addEventListener&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'unload'&lt;/span>&lt;span class="token punctuation">,&lt;/span> logData&lt;span class="token punctuation">,&lt;/span> &lt;span class="token boolean">false&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+    <pre class=" language-javascript"><code class=" language-javascript">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'unload'</span><span class="token punctuation">,</span> logData<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">logData&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    navigator&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">sendBeacon&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"/log"&lt;/span>&lt;span class="token punctuation">,&lt;/span> analyticsData&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+<span class="token keyword">function</span> <span class="token function">logData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    navigator<span class="token punctuation">.</span><span class="token function">sendBeacon</span><span class="token punctuation">(</span><span class="token string">"/log"</span><span class="token punctuation">,</span> analyticsData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
     

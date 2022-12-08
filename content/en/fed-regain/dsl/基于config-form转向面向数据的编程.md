@@ -41,33 +41,33 @@ config-component中提供了config-form组件，主要用于解决中后台的fo
 
 比较一下传统的写法：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;div className={`step-1 ${step}`}&gt;
-        &lt;div&gt;
-          任务类型： &lt;Select
+<pre class="EnlighterJSRAW" data-enlighter-language="null"><div className={`step-1 ${step}`}>
+        <div>
+          任务类型： <Select
             className="select-type"
-            onChange={id =&gt; setTaskSelected(() =&gt; {
-              const task = taskList.find(item =&gt; item.id == id)
+            onChange={id => setTaskSelected(() => {
+              const task = taskList.find(item => item.id == id)
               task.taskIndex = JSON.parse(task.taskIndex)
               return task
             })}
-            dataSource={taskList.map(it =&gt; ({ label: it.taskName, value: it.id }))}
-          /&gt;
-          &lt;ul className="step-1-tips"&gt;
-            &lt;li&gt;每日任务：活动周期内，每日完成任务指标即可获得奖励，例如：每日收银笔数达到5笔，获得3元红包。&lt;/li&gt;
-            &lt;li&gt;周期任务：活动周期内，累计完成任务指标即可获得奖励，例如：一个月内累计活跃超过24天，获得100元红包。&lt;/li&gt;
-            &lt;li&gt;每日&amp;周期任务：活动周期内，在每日完成任务指标基础上，还要达到周期任务指标，才能领取任务奖励，例如：每日任务完成收银5笔，完成任务天数达到24天及以上，获得100元红包&lt;/li&gt;
-            &lt;li&gt;签到任务：以签到形式的激励任务，可以实现连续参与权益递增&lt;/li&gt;
-          &lt;/ul&gt;
-        &lt;/div&gt;
-        &lt;br /&gt;&lt;br /&gt;
-        &lt;Button type="primary" disabled={!Object.keys(taskSelected.taskIndex).length} onClick={() =&gt; {
+            dataSource={taskList.map(it => ({ label: it.taskName, value: it.id }))}
+          />
+          <ul className="step-1-tips">
+            <li>每日任务：活动周期内，每日完成任务指标即可获得奖励，例如：每日收银笔数达到5笔，获得3元红包。</li>
+            <li>周期任务：活动周期内，累计完成任务指标即可获得奖励，例如：一个月内累计活跃超过24天，获得100元红包。</li>
+            <li>每日&amp;周期任务：活动周期内，在每日完成任务指标基础上，还要达到周期任务指标，才能领取任务奖励，例如：每日任务完成收银5笔，完成任务天数达到24天及以上，获得100元红包</li>
+            <li>签到任务：以签到形式的激励任务，可以实现连续参与权益递增</li>
+          </ul>
+        </div>
+        <br /><br />
+        <Button type="primary" disabled={!Object.keys(taskSelected.taskIndex).length} onClick={() => {
           setStep('step2')
           // 如果是周期任务
           if (isPeriod()) {
             awardGetWayList.splice(1)
           }
-        }}&gt;创建任务&lt;/Button&gt;
-      &lt;/div&gt;</pre>
+        }}>创建任务</Button>
+      </div></pre>
 
 下面是基于config-form写法
 
@@ -76,15 +76,15 @@ config-component中提供了config-form组件，主要用于解决中后台的fo
     activityName: yup.string().required('请填写任务名称').max(12, '活动名称最长12个字符'),
     taskTime: yup.array().required('请填写任务时间').test(
       'check-time',
-      '任务时间 &gt;= 1天',
-      value =&gt; {
+      '任务时间 >= 1天',
+      value => {
         return value && value[1].hour(23).minute(59).second(59).milliseconds(0)
-          .valueOf() - value[0].milliseconds(0).valueOf() &gt;= (24 *60* 60 * 1000 - 1000)
+          .valueOf() - value[0].milliseconds(0).valueOf() >= (24 *60* 60 * 1000 - 1000)
       },
     ),
     activityDes: yup.string().required('请填写任务概要').max(24, '最长24个字符'),
     activityRemark: yup.string().required('请填写任务细则').max(200, '最长200个字符'),
-    minAmount: yup.string().test('check-number', '请输入正确的单个红包最小金额(2位小数)', value =&gt; {
+    minAmount: yup.string().test('check-number', '请输入正确的单个红包最小金额(2位小数)', value => {
       if (!value) return true
       return checkNumber2Decimal(value)
     }),
@@ -108,18 +108,18 @@ const formConfig = {
       } : {})
     },
     schema,
-    onSave: (schemaForm) =&gt; {
+    onSave: (schemaForm) => {
       actionType = SAVING
       // console.log(actionType)
     },
-    onAudit: (schemaForm) =&gt; {
+    onAudit: (schemaForm) => {
       actionType = SUBMIT
       // console.log(actionType)
       schemaForm.submit()
     },
-    onSubmit: (formData) =&gt; {
+    onSubmit: (formData) => {
 ....
-return &lt;ConfigForm
+return <ConfigForm
 {...formConfig}
 uiConfig={{
   layout,

@@ -179,7 +179,7 @@ homepage: false
 <div id="6781d28a" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22id%22%3A%226781d28a%22%2C%22mode%22%3A%22javascript%22%2C%22code%22%3A%22const%20func%20%3D%20(obj)%3D%3E%7B%5Cn%20%20%20return%20%7B...obj%7D%5Cn%7D%22%7D" data-language="javascript">
   <div class="lake-codeblock-content">
     <div class="CodeMirror-sizer">
-      <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">func</span> <span class="cm-operator">=</span> (<span class="cm-def">obj</span>)<span class="cm-operator">=&gt;</span>{
+      <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">func</span> <span class="cm-operator">=</span> (<span class="cm-def">obj</span>)<span class="cm-operator">=></span>{
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">return</span> {<span class="cm-meta">...</span><span class="cm-variable-2">obj</span>}
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}</span></span></pre>
     </div>
@@ -216,13 +216,13 @@ homepage: false
   <div class="lake-codeblock-content">
     <div class="CodeMirror-sizer">
       <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// bad</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">result</span> <span class="cm-operator">=</span> <span class="cm-variable">arr</span>.<span class="cm-property">map</span>((<span class="cm-def">item</span>)<span class="cm-operator">=&gt;</span>{
+</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">result</span> <span class="cm-operator">=</span> <span class="cm-variable">arr</span>.<span class="cm-property">map</span>((<span class="cm-def">item</span>)<span class="cm-operator">=></span>{
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-keyword">return</span> <span class="cm-variable-2">item</span>.<span class="cm-property">age</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}).<span class="cm-property">filter</span>(<span class="cm-def">item</span><span class="cm-operator">=&gt;</span><span class="cm-variable-2">item</span> <span class="cm-operator">&gt;</span> <span class="cm-number">18</span>)
+</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}).<span class="cm-property">filter</span>(<span class="cm-def">item</span><span class="cm-operator">=></span><span class="cm-variable-2">item</span> <span class="cm-operator">></span> <span class="cm-number">18</span>)
 </span></span>
 <span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// good</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">result</span> <span class="cm-operator">=</span> <span class="cm-variable">arr</span>.<span class="cm-property">reduce</span>((<span class="cm-def">buf</span>,<span class="cm-def">item</span>)<span class="cm-operator">=&gt;</span>{
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">return</span> <span class="cm-variable-2">item</span>.<span class="cm-property">age</span> <span class="cm-operator">&gt;</span> <span class="cm-number">18</span> <span class="cm-operator">?</span> <span class="cm-variable-2">buf</span>.<span class="cm-property">concat</span>(<span class="cm-variable-2">item</span>.<span class="cm-property">age</span>) : <span class="cm-variable-2">buf</span>
+</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">result</span> <span class="cm-operator">=</span> <span class="cm-variable">arr</span>.<span class="cm-property">reduce</span>((<span class="cm-def">buf</span>,<span class="cm-def">item</span>)<span class="cm-operator">=></span>{
+</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">return</span> <span class="cm-variable-2">item</span>.<span class="cm-property">age</span> <span class="cm-operator">></span> <span class="cm-number">18</span> <span class="cm-operator">?</span> <span class="cm-variable-2">buf</span>.<span class="cm-property">concat</span>(<span class="cm-variable-2">item</span>.<span class="cm-property">age</span>) : <span class="cm-variable-2">buf</span>
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">},[])</span></span></pre>
     </div>
   </div>
@@ -246,7 +246,7 @@ homepage: false
   <div class="lake-codeblock-content">
     <div class="CodeMirror-sizer">
       <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// bad</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">handler</span> <span class="cm-operator">=</span> (<span class="cm-def">data</span>,<span class="cm-def">options</span>)<span class="cm-operator">=&gt;</span>{
+</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">handler</span> <span class="cm-operator">=</span> (<span class="cm-def">data</span>,<span class="cm-def">options</span>)<span class="cm-operator">=></span>{
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-meta">...</span>.<span class="cm-variable">default</span> <span class="cm-variable">handler</span>
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">if</span>(<span class="cm-variable-2">options</span>.<span class="cm-property">ext1</span>){
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-meta">...</span>. <span class="cm-variable">extension</span> <span class="cm-number">1</span> <span class="cm-variable">handler</span>
@@ -258,7 +258,7 @@ homepage: false
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}
 </span></span>
 <span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// good</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">handler</span> <span class="cm-operator">=</span> (<span class="cm-def">data</span>,<span class="cm-def">func</span>)<span class="cm-operator">=&gt;</span>{
+</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">handler</span> <span class="cm-operator">=</span> (<span class="cm-def">data</span>,<span class="cm-def">func</span>)<span class="cm-operator">=></span>{
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-meta">...</span>.<span class="cm-variable">default</span> <span class="cm-variable">handler</span>
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">if</span>(<span class="cm-variable">isFn</span>(<span class="cm-variable-2">func</span>)){
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-meta">...</span>. <span class="cm-variable-2">func</span>(<span class="cm-variable-2">data</span>)
@@ -279,14 +279,14 @@ homepage: false
   <div class="lake-codeblock-content">
     <div class="CodeMirror-sizer">
       <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">//过去</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isType</span> <span class="cm-operator">=</span> (<span class="cm-def">value</span>,<span class="cm-def">type</span>)<span class="cm-operator">=&gt;</span>{
+</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isType</span> <span class="cm-operator">=</span> (<span class="cm-def">value</span>,<span class="cm-def">type</span>)<span class="cm-operator">=></span>{
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">return</span> <span class="cm-variable-2">value</span> <span class="cm-operator">!=</span> <span class="cm-atom">null</span> <span class="cm-operator">&</span><span class="cm-operator">&</span> <span class="cm-variable">Object</span>.<span class="cm-property">prototype</span>.<span class="cm-property">toString</span>.<span class="cm-property">call</span>(<span class="cm-variable-2">value</span>) <span class="cm-operator">===</span> <span class="cm-string-2">`[object ${</span><span class="cm-variable-2">type</span><span class="cm-string-2">}</span><span class="cm-string-2">]`</span>
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">//使用的时候很麻烦，每次都需要传两个参数</span>
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">if</span>(<span class="cm-variable">isType</span>({},<span class="cm-string">"Array"</span>)){<span class="cm-meta">...</span>.}
 </span></span>
 <span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">//现在</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isType</span> <span class="cm-operator">=</span> <span class="cm-def">type</span> <span class="cm-operator">=&gt;</span> <span class="cm-def">obj</span> <span class="cm-operator">=&gt;</span>
+</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isType</span> <span class="cm-operator">=</span> <span class="cm-def">type</span> <span class="cm-operator">=></span> <span class="cm-def">obj</span> <span class="cm-operator">=></span>
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-variable-2">obj</span> <span class="cm-operator">!=</span> <span class="cm-atom">null</span> <span class="cm-operator">&</span><span class="cm-operator">&</span> <span class="cm-variable">Object</span>.<span class="cm-property">prototype</span>.<span class="cm-property">toString</span>.<span class="cm-property">call</span>(<span class="cm-variable-2">obj</span>) <span class="cm-operator">===</span> <span class="cm-string-2">`[object ${</span><span class="cm-variable-2">type</span><span class="cm-string-2">}</span><span class="cm-string-2">]`</span>
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isFn</span> <span class="cm-operator">=</span> <span class="cm-variable">isType</span>(<span class="cm-string">"Function"</span>)
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isArr</span> <span class="cm-operator">=</span> <span class="cm-variable">isType</span>(<span class="cm-string">'Array'</span>)
@@ -388,7 +388,7 @@ homepage: false
 <div id="6781d28a" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22id%22%3A%226781d28a%22%2C%22mode%22%3A%22javascript%22%2C%22code%22%3A%22const%20func%20%3D%20(obj)%3D%3E%7B%5Cn%20%20%20return%20%7B...obj%7D%5Cn%7D%22%7D" data-language="javascript">
   <div class="lake-codeblock-content">
     <div class="">
-      <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">func</span> <span class="cm-operator">=</span> (<span class="cm-def">obj</span>)<span class="cm-operator">=&gt;</span>{
+      <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">func</span> <span class="cm-operator">=</span> (<span class="cm-def">obj</span>)<span class="cm-operator">=></span>{
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">return</span> {<span class="cm-meta">...</span><span class="cm-variable-2">obj</span>}
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}</span></span></pre>
     </div>
@@ -425,13 +425,13 @@ homepage: false
   <div class="lake-codeblock-content">
     <div class="">
       <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// bad</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">result</span> <span class="cm-operator">=</span> <span class="cm-variable">arr</span>.<span class="cm-property">map</span>((<span class="cm-def">item</span>)<span class="cm-operator">=&gt;</span>{
+</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">result</span> <span class="cm-operator">=</span> <span class="cm-variable">arr</span>.<span class="cm-property">map</span>((<span class="cm-def">item</span>)<span class="cm-operator">=></span>{
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-keyword">return</span> <span class="cm-variable-2">item</span>.<span class="cm-property">age</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}).<span class="cm-property">filter</span>(<span class="cm-def">item</span><span class="cm-operator">=&gt;</span><span class="cm-variable-2">item</span> <span class="cm-operator">&gt;</span> <span class="cm-number">18</span>)
+</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}).<span class="cm-property">filter</span>(<span class="cm-def">item</span><span class="cm-operator">=></span><span class="cm-variable-2">item</span> <span class="cm-operator">></span> <span class="cm-number">18</span>)
 </span></span>
 <span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// good</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">result</span> <span class="cm-operator">=</span> <span class="cm-variable">arr</span>.<span class="cm-property">reduce</span>((<span class="cm-def">buf</span>,<span class="cm-def">item</span>)<span class="cm-operator">=&gt;</span>{
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">return</span> <span class="cm-variable-2">item</span>.<span class="cm-property">age</span> <span class="cm-operator">&gt;</span> <span class="cm-number">18</span> <span class="cm-operator">?</span> <span class="cm-variable-2">buf</span>.<span class="cm-property">concat</span>(<span class="cm-variable-2">item</span>.<span class="cm-property">age</span>) : <span class="cm-variable-2">buf</span>
+</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">result</span> <span class="cm-operator">=</span> <span class="cm-variable">arr</span>.<span class="cm-property">reduce</span>((<span class="cm-def">buf</span>,<span class="cm-def">item</span>)<span class="cm-operator">=></span>{
+</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">return</span> <span class="cm-variable-2">item</span>.<span class="cm-property">age</span> <span class="cm-operator">></span> <span class="cm-number">18</span> <span class="cm-operator">?</span> <span class="cm-variable-2">buf</span>.<span class="cm-property">concat</span>(<span class="cm-variable-2">item</span>.<span class="cm-property">age</span>) : <span class="cm-variable-2">buf</span>
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">},[])</span></span></pre>
     </div>
   </div>
@@ -455,7 +455,7 @@ homepage: false
   <div class="lake-codeblock-content">
     <div class="">
       <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// bad</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">handler</span> <span class="cm-operator">=</span> (<span class="cm-def">data</span>,<span class="cm-def">options</span>)<span class="cm-operator">=&gt;</span>{
+</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">handler</span> <span class="cm-operator">=</span> (<span class="cm-def">data</span>,<span class="cm-def">options</span>)<span class="cm-operator">=></span>{
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-meta">...</span>.<span class="cm-variable">default</span> <span class="cm-variable">handler</span>
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">if</span>(<span class="cm-variable-2">options</span>.<span class="cm-property">ext1</span>){
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-meta">...</span>. <span class="cm-variable">extension</span> <span class="cm-number">1</span> <span class="cm-variable">handler</span>
@@ -467,7 +467,7 @@ homepage: false
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}
 </span></span>
 <span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// good</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">handler</span> <span class="cm-operator">=</span> (<span class="cm-def">data</span>,<span class="cm-def">func</span>)<span class="cm-operator">=&gt;</span>{
+</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">handler</span> <span class="cm-operator">=</span> (<span class="cm-def">data</span>,<span class="cm-def">func</span>)<span class="cm-operator">=></span>{
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-meta">...</span>.<span class="cm-variable">default</span> <span class="cm-variable">handler</span>
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">if</span>(<span class="cm-variable">isFn</span>(<span class="cm-variable-2">func</span>)){
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-meta">...</span>. <span class="cm-variable-2">func</span>(<span class="cm-variable-2">data</span>)
@@ -488,14 +488,14 @@ homepage: false
   <div class="lake-codeblock-content">
     <div class="">
       <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">//过去</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isType</span> <span class="cm-operator">=</span> (<span class="cm-def">value</span>,<span class="cm-def">type</span>)<span class="cm-operator">=&gt;</span>{
+</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isType</span> <span class="cm-operator">=</span> (<span class="cm-def">value</span>,<span class="cm-def">type</span>)<span class="cm-operator">=></span>{
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">return</span> <span class="cm-variable-2">value</span> <span class="cm-operator">!=</span> <span class="cm-atom">null</span> <span class="cm-operator">&</span><span class="cm-operator">&</span> <span class="cm-variable">Object</span>.<span class="cm-property">prototype</span>.<span class="cm-property">toString</span>.<span class="cm-property">call</span>(<span class="cm-variable-2">value</span>) <span class="cm-operator">===</span> <span class="cm-string-2">`[object ${</span><span class="cm-variable-2">type</span><span class="cm-string-2">}</span><span class="cm-string-2">]`</span>
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">//使用的时候很麻烦，每次都需要传两个参数</span>
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">if</span>(<span class="cm-variable">isType</span>({},<span class="cm-string">"Array"</span>)){<span class="cm-meta">...</span>.}
 </span></span>
 <span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">//现在</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isType</span> <span class="cm-operator">=</span> <span class="cm-def">type</span> <span class="cm-operator">=&gt;</span> <span class="cm-def">obj</span> <span class="cm-operator">=&gt;</span>
+</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isType</span> <span class="cm-operator">=</span> <span class="cm-def">type</span> <span class="cm-operator">=></span> <span class="cm-def">obj</span> <span class="cm-operator">=></span>
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-variable-2">obj</span> <span class="cm-operator">!=</span> <span class="cm-atom">null</span> <span class="cm-operator">&</span><span class="cm-operator">&</span> <span class="cm-variable">Object</span>.<span class="cm-property">prototype</span>.<span class="cm-property">toString</span>.<span class="cm-property">call</span>(<span class="cm-variable-2">obj</span>) <span class="cm-operator">===</span> <span class="cm-string-2">`[object ${</span><span class="cm-variable-2">type</span><span class="cm-string-2">}</span><span class="cm-string-2">]`</span>
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isFn</span> <span class="cm-operator">=</span> <span class="cm-variable">isType</span>(<span class="cm-string">"Function"</span>)
 </span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isArr</span> <span class="cm-operator">=</span> <span class="cm-variable">isType</span>(<span class="cm-string">'Array'</span>)

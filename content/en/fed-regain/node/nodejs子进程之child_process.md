@@ -6,19 +6,19 @@ title: nodejs子进程之child_process
 
 举个简单的例子：
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">const&lt;/span> spawn = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>).spawn;
-&lt;span class="hljs-keyword">const&lt;/span> ls = spawn(&lt;span class="hljs-string">'ls'&lt;/span>, [&lt;span class="hljs-string">'-lh'&lt;/span>, &lt;span class="hljs-string">'/usr'&lt;/span>]);
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-keyword">const</span> spawn = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>).spawn;
+<span class="hljs-keyword">const</span> ls = spawn(<span class="hljs-string">'ls'</span>, [<span class="hljs-string">'-lh'</span>, <span class="hljs-string">'/usr'</span>]);
 
-ls.stdout.on(&lt;span class="hljs-string">'data'&lt;/span>, (data) =&gt; {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">`stdout: &lt;span class="hljs-subst">${data}&lt;/span>`&lt;/span>);
+ls.stdout.on(<span class="hljs-string">'data'</span>, (data) => {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`stdout: <span class="hljs-subst">${data}</span>`</span>);
 });
 
-ls.stderr.on(&lt;span class="hljs-string">'data'&lt;/span>, (data) =&gt; {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">`stderr: &lt;span class="hljs-subst">${data}&lt;/span>`&lt;/span>);
+ls.stderr.on(<span class="hljs-string">'data'</span>, (data) => {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`stderr: <span class="hljs-subst">${data}</span>`</span>);
 });
 
-ls.on(&lt;span class="hljs-string">'close'&lt;/span>, (code) =&gt; {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">`child process exited &lt;span class="hljs-keyword">with&lt;/span> code &lt;span class="hljs-subst">${code}&lt;/span>`&lt;/span>);
+ls.on(<span class="hljs-string">'close'</span>, (code) => {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`child process exited <span class="hljs-keyword">with</span> code <span class="hljs-subst">${code}</span>`</span>);
 });</code></pre>
 
 ## 几种创建子进程的方式 {#几种创建子进程的方式}
@@ -45,26 +45,26 @@ ls.on(&lt;span class="hljs-string">'close'&lt;/span>, (code) =&gt; {
   1. 执行成功，`error`为`null`；执行失败，`error`为`Error`实例。`error.code`为错误码，
   2. `stdout`、`stderr`为标准输出、标准错误。默认是字符串，除非`options.encoding`为`buffer`
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">var&lt;/span> exec = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>).exec;
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-keyword">var</span> exec = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>).exec;
 
-&lt;span class="hljs-comment">// 成功的例子&lt;/span>
-exec(&lt;span class="hljs-string">'ls -al'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">error, stdout, stderr&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-keyword">if&lt;/span>(error) {
-        &lt;span class="hljs-built_in">console&lt;/span>.error(&lt;span class="hljs-string">'error: '&lt;/span> + error);
-        &lt;span class="hljs-keyword">return&lt;/span>;
+<span class="hljs-comment">// 成功的例子</span>
+exec(<span class="hljs-string">'ls -al'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">error, stdout, stderr</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-keyword">if</span>(error) {
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'error: '</span> + error);
+        <span class="hljs-keyword">return</span>;
     }
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'stdout: '&lt;/span> + stdout);
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'stderr: '&lt;/span> + &lt;span class="hljs-keyword">typeof&lt;/span> stderr);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'stdout: '</span> + stdout);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'stderr: '</span> + <span class="hljs-keyword">typeof</span> stderr);
 });
 
-&lt;span class="hljs-comment">// 失败的例子&lt;/span>
-exec(&lt;span class="hljs-string">'ls hello.txt'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">error, stdout, stderr&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-keyword">if&lt;/span>(error) {
-        &lt;span class="hljs-built_in">console&lt;/span>.error(&lt;span class="hljs-string">'error: '&lt;/span> + error);
-        &lt;span class="hljs-keyword">return&lt;/span>;
+<span class="hljs-comment">// 失败的例子</span>
+exec(<span class="hljs-string">'ls hello.txt'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">error, stdout, stderr</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-keyword">if</span>(error) {
+        <span class="hljs-built_in">console</span>.error(<span class="hljs-string">'error: '</span> + error);
+        <span class="hljs-keyword">return</span>;
     }
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'stdout: '&lt;/span> + stdout);
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'stderr: '&lt;/span> + stderr);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'stdout: '</span> + stdout);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'stderr: '</span> + stderr);
 });</code></pre>
 
 #### 参数说明： {#参数说明}
@@ -88,13 +88,13 @@ exec(&lt;span class="hljs-string">'ls hello.txt'&lt;/span>, &lt;span class="hljs
 
 传入的命令，如果是用户输入的，有可能产生类似sql注入的风险，比如
 
-<pre><code class="hljs lua hljs coffeescript">exec(&lt;span class="hljs-string">'ls hello.txt; rm -rf *'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">&lt;span class="hljs-reserved">function&lt;/span>&lt;/span>&lt;span class="hljs-params">(error, stdout, stderr)&lt;/span>&lt;/span>{
-    &lt;span class="hljs-keyword">if&lt;/span>(&lt;span class="hljs-built_in">error&lt;/span>) {
-        &lt;span class="hljs-built_in">console&lt;/span>.&lt;span class="hljs-built_in">error&lt;/span>(&lt;span class="hljs-string">'error: '&lt;/span> + &lt;span class="hljs-built_in">error&lt;/span>);
-        &lt;span class="hljs-regexp">//&lt;/span> &lt;span class="hljs-keyword">return&lt;/span>;
+<pre><code class="hljs lua hljs coffeescript">exec(<span class="hljs-string">'ls hello.txt; rm -rf *'</span>, <span class="hljs-function"><span class="hljs-keyword"><span class="hljs-reserved">function</span></span><span class="hljs-params">(error, stdout, stderr)</span></span>{
+    <span class="hljs-keyword">if</span>(<span class="hljs-built_in">error</span>) {
+        <span class="hljs-built_in">console</span>.<span class="hljs-built_in">error</span>(<span class="hljs-string">'error: '</span> + <span class="hljs-built_in">error</span>);
+        <span class="hljs-regexp">//</span> <span class="hljs-keyword">return</span>;
     }
-    &lt;span class="hljs-built_in">console&lt;/span>.&lt;span class="hljs-built_in">log&lt;/span>(&lt;span class="hljs-string">'stdout: '&lt;/span> + &lt;span class="hljs-built_in">stdout&lt;/span>);
-    &lt;span class="hljs-built_in">console&lt;/span>.&lt;span class="hljs-built_in">log&lt;/span>(&lt;span class="hljs-string">'stderr: '&lt;/span> + &lt;span class="hljs-built_in">stderr&lt;/span>);
+    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">'stdout: '</span> + <span class="hljs-built_in">stdout</span>);
+    <span class="hljs-built_in">console</span>.<span class="hljs-built_in">log</span>(<span class="hljs-string">'stderr: '</span> + <span class="hljs-built_in">stderr</span>);
 });</code></pre>
 
 #### 备注事项 {#备注事项}
@@ -114,20 +114,20 @@ Note: Unlike the exec(3) POSIX system call, child_process.exec() does not replac
 
 例子：
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">var&lt;/span> child_process = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>);
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-keyword">var</span> child_process = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>);
 
-child_process.execFile(&lt;span class="hljs-string">'node'&lt;/span>, [&lt;span class="hljs-string">'--version'&lt;/span>], &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">error, stdout, stderr&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-keyword">if&lt;/span>(error){
-        &lt;span class="hljs-keyword">throw&lt;/span> error;
+child_process.execFile(<span class="hljs-string">'node'</span>, [<span class="hljs-string">'--version'</span>], <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">error, stdout, stderr</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-keyword">if</span>(error){
+        <span class="hljs-keyword">throw</span> error;
     }
-    &lt;span class="hljs-built_in">console&lt;/span>.log(stdout);
+    <span class="hljs-built_in">console</span>.log(stdout);
 });
 
-child_process.execFile(&lt;span class="hljs-string">'/Users/a/.nvm/versions/node/v6.1.0/bin/node'&lt;/span>, [&lt;span class="hljs-string">'--version'&lt;/span>], &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">error, stdout, stderr&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-keyword">if&lt;/span>(error){
-        &lt;span class="hljs-keyword">throw&lt;/span> error;
+child_process.execFile(<span class="hljs-string">'/Users/a/.nvm/versions/node/v6.1.0/bin/node'</span>, [<span class="hljs-string">'--version'</span>], <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">error, stdout, stderr</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-keyword">if</span>(error){
+        <span class="hljs-keyword">throw</span> error;
     }
-    &lt;span class="hljs-built_in">console&lt;/span>.log(stdout);
+    <span class="hljs-built_in">console</span>.log(stdout);
 });</code></pre>
 
 ====== 扩展阅读 =======
@@ -136,22 +136,22 @@ child_process.execFile(&lt;span class="hljs-string">'/Users/a/.nvm/versions/node
 
 备注：execFile()内部最终还是通过spawn()实现的， 如果没有设置 {shell: &#8216;/bin/bash&#8217;}，那么 spawm() 内部对命令的解析会有所不同，execFile(&#8216;ls -al .&#8217;) 会直接报错。
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">var&lt;/span> child_process = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>);
-&lt;span class="hljs-keyword">var&lt;/span> execFile = child_process.execFile;
-&lt;span class="hljs-keyword">var&lt;/span> exec = child_process.exec;
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-keyword">var</span> child_process = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>);
+<span class="hljs-keyword">var</span> execFile = child_process.execFile;
+<span class="hljs-keyword">var</span> exec = child_process.exec;
 
-exec(&lt;span class="hljs-string">'ls -al .'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">error, stdout, stderr&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-keyword">if&lt;/span>(error){
-        &lt;span class="hljs-keyword">throw&lt;/span> error;
+exec(<span class="hljs-string">'ls -al .'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">error, stdout, stderr</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-keyword">if</span>(error){
+        <span class="hljs-keyword">throw</span> error;
     }
-    &lt;span class="hljs-built_in">console&lt;/span>.log(stdout);
+    <span class="hljs-built_in">console</span>.log(stdout);
 });
 
-execFile(&lt;span class="hljs-string">'ls -al .'&lt;/span>, {&lt;span class="hljs-attr">shell&lt;/span>: &lt;span class="hljs-string">'/bin/bash'&lt;/span>}, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">error, stdout, stderr&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-keyword">if&lt;/span>(error){
-        &lt;span class="hljs-keyword">throw&lt;/span> error;
+execFile(<span class="hljs-string">'ls -al .'</span>, {<span class="hljs-attr">shell</span>: <span class="hljs-string">'/bin/bash'</span>}, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">error, stdout, stderr</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-keyword">if</span>(error){
+        <span class="hljs-keyword">throw</span> error;
     }
-    &lt;span class="hljs-built_in">console&lt;/span>.log(stdout);
+    <span class="hljs-built_in">console</span>.log(stdout);
 });</code></pre>
 
 ### child_process.fork(modulePath\[, args\]\[, options\]) {#child_process.forkmodulepath-args-options}
@@ -171,69 +171,69 @@ execFile(&lt;span class="hljs-string">'ls -al .'&lt;/span>, {&lt;span class="hlj
 
 **parent.js**
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">var&lt;/span> child_process = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>);
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-keyword">var</span> child_process = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>);
 
-&lt;span class="hljs-comment">// 例子一：会打印出 output from the child&lt;/span>
-&lt;span class="hljs-comment">// 默认情况，silent 为 false，子进程的 stdout 等&lt;/span>
-&lt;span class="hljs-comment">// 从父进程继承&lt;/span>
-child_process.fork(&lt;span class="hljs-string">'./child.js'&lt;/span>, {
-    &lt;span class="hljs-attr">silent&lt;/span>: &lt;span class="hljs-literal">false&lt;/span>
+<span class="hljs-comment">// 例子一：会打印出 output from the child</span>
+<span class="hljs-comment">// 默认情况，silent 为 false，子进程的 stdout 等</span>
+<span class="hljs-comment">// 从父进程继承</span>
+child_process.fork(<span class="hljs-string">'./child.js'</span>, {
+    <span class="hljs-attr">silent</span>: <span class="hljs-literal">false</span>
 });
 
-&lt;span class="hljs-comment">// 例子二：不会打印出 output from the silent child&lt;/span>
-&lt;span class="hljs-comment">// silent 为 true，子进程的 stdout 等&lt;/span>
-&lt;span class="hljs-comment">// pipe 向父进程&lt;/span>
-child_process.fork(&lt;span class="hljs-string">'./silentChild.js'&lt;/span>, {
-    &lt;span class="hljs-attr">silent&lt;/span>: &lt;span class="hljs-literal">true&lt;/span>
+<span class="hljs-comment">// 例子二：不会打印出 output from the silent child</span>
+<span class="hljs-comment">// silent 为 true，子进程的 stdout 等</span>
+<span class="hljs-comment">// pipe 向父进程</span>
+child_process.fork(<span class="hljs-string">'./silentChild.js'</span>, {
+    <span class="hljs-attr">silent</span>: <span class="hljs-literal">true</span>
 });
 
-&lt;span class="hljs-comment">// 例子三：打印出 output from another silent child&lt;/span>
-&lt;span class="hljs-keyword">var&lt;/span> child = child_process.fork(&lt;span class="hljs-string">'./anotherSilentChild.js'&lt;/span>, {
-    &lt;span class="hljs-attr">silent&lt;/span>: &lt;span class="hljs-literal">true&lt;/span>
+<span class="hljs-comment">// 例子三：打印出 output from another silent child</span>
+<span class="hljs-keyword">var</span> child = child_process.fork(<span class="hljs-string">'./anotherSilentChild.js'</span>, {
+    <span class="hljs-attr">silent</span>: <span class="hljs-literal">true</span>
 });
 
-child.stdout.setEncoding(&lt;span class="hljs-string">'utf8'&lt;/span>);
-child.stdout.on(&lt;span class="hljs-string">'data'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">data&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-built_in">console&lt;/span>.log(data);
+child.stdout.setEncoding(<span class="hljs-string">'utf8'</span>);
+child.stdout.on(<span class="hljs-string">'data'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">data</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-built_in">console</span>.log(data);
 });</code></pre>
 
 **child.js**
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'output from the child'&lt;/span>);</code></pre>
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'output from the child'</span>);</code></pre>
 
 **silentChild.js**
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'output from the silent child'&lt;/span>);</code></pre>
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'output from the silent child'</span>);</code></pre>
 
 **anotherSilentChild.js**
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'output from another silent child'&lt;/span>);</code></pre>
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'output from another silent child'</span>);</code></pre>
 
 例子二：ipc
 
 parent.js
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">var&lt;/span> child_process = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>);
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-keyword">var</span> child_process = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>);
 
-&lt;span class="hljs-keyword">var&lt;/span> child = child_process.fork(&lt;span class="hljs-string">'./child.js'&lt;/span>);
+<span class="hljs-keyword">var</span> child = child_process.fork(<span class="hljs-string">'./child.js'</span>);
 
-child.on(&lt;span class="hljs-string">'message'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">m&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'message from child: '&lt;/span> + &lt;span class="hljs-built_in">JSON&lt;/span>.stringify(m));
+child.on(<span class="hljs-string">'message'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">m</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'message from child: '</span> + <span class="hljs-built_in">JSON</span>.stringify(m));
 });
 
-child.send({&lt;span class="hljs-attr">from&lt;/span>: &lt;span class="hljs-string">'parent'&lt;/span>});</code></pre>
+child.send({<span class="hljs-attr">from</span>: <span class="hljs-string">'parent'</span>});</code></pre>
 
-<pre class="javascript"><code class="hljs hljs ">process.on(&lt;span class="hljs-string">'message'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">m&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'message from parent: '&lt;/span> + &lt;span class="hljs-built_in">JSON&lt;/span>.stringify(m));
+<pre class="javascript"><code class="hljs hljs ">process.on(<span class="hljs-string">'message'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">m</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'message from parent: '</span> + <span class="hljs-built_in">JSON</span>.stringify(m));
 });
 
-process.send({&lt;span class="hljs-attr">from&lt;/span>: &lt;span class="hljs-string">'child'&lt;/span>});</code></pre>
+process.send({<span class="hljs-attr">from</span>: <span class="hljs-string">'child'</span>});</code></pre>
 
 运行结果
 
 <pre class="powershell"><code class="hljs hljs cs">➜  ipc git:(master) ✗ node parent.js
-message &lt;span class="hljs-keyword">from&lt;/span> child: {&lt;span class="hljs-string">"from"&lt;/span>:&lt;span class="hljs-string">"child"&lt;/span>}
-message &lt;span class="hljs-keyword">from&lt;/span> parent: {&lt;span class="hljs-string">"from"&lt;/span>:&lt;span class="hljs-string">"parent"&lt;/span>}</code></pre>
+message <span class="hljs-keyword">from</span> child: {<span class="hljs-string">"from"</span>:<span class="hljs-string">"child"</span>}
+message <span class="hljs-keyword">from</span> parent: {<span class="hljs-string">"from"</span>:<span class="hljs-string">"parent"</span>}</code></pre>
 
 例子三：execArgv
 
@@ -243,23 +243,23 @@ message &lt;span class="hljs-keyword">from&lt;/span> parent: {&lt;span class="hl
 
 parent.js
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">var&lt;/span> child_process = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>);
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-keyword">var</span> child_process = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>);
 
-&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'parent execArgv: '&lt;/span> + process.execArgv);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'parent execArgv: '</span> + process.execArgv);
 
-child_process.fork(&lt;span class="hljs-string">'./child.js'&lt;/span>, {
-    &lt;span class="hljs-attr">execArgv&lt;/span>: process.execArgv
+child_process.fork(<span class="hljs-string">'./child.js'</span>, {
+    <span class="hljs-attr">execArgv</span>: process.execArgv
 });</code></pre>
 
 child.js
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'child execArgv: '&lt;/span> + process.execArgv);</code></pre>
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'child execArgv: '</span> + process.execArgv);</code></pre>
 
 运行结果
 
-<pre class="powershell"><code class="hljs hljs bash">➜  &lt;span class="hljs-keyword">exec&lt;/span>Argv git:(master) ✗ node --harmony parent.js
-parent &lt;span class="hljs-keyword">exec&lt;/span>Argv: --harmony
-child &lt;span class="hljs-keyword">exec&lt;/span>Argv: --harmony</code></pre>
+<pre class="powershell"><code class="hljs hljs bash">➜  <span class="hljs-keyword">exec</span>Argv git:(master) ✗ node --harmony parent.js
+parent <span class="hljs-keyword">exec</span>Argv: --harmony
+child <span class="hljs-keyword">exec</span>Argv: --harmony</code></pre>
 
 例子3：execPath（TODO 待举例子）
 
@@ -276,44 +276,44 @@ options参数说明：
 
 例子1：基础例子
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">var&lt;/span> spawn = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>).spawn;
-&lt;span class="hljs-keyword">var&lt;/span> ls = spawn(&lt;span class="hljs-string">'ls'&lt;/span>, [&lt;span class="hljs-string">'-al'&lt;/span>]);
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-keyword">var</span> spawn = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>).spawn;
+<span class="hljs-keyword">var</span> ls = spawn(<span class="hljs-string">'ls'</span>, [<span class="hljs-string">'-al'</span>]);
 
-ls.stdout.on(&lt;span class="hljs-string">'data'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">data&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'data from child: '&lt;/span> + data);
+ls.stdout.on(<span class="hljs-string">'data'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">data</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'data from child: '</span> + data);
 });
 
-ls.stderr.on(&lt;span class="hljs-string">'data'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">data&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'error from child: '&lt;/span> + data);
+ls.stderr.on(<span class="hljs-string">'data'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">data</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'error from child: '</span> + data);
 });
 
-ls.on(&lt;span class="hljs-string">'close'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">code&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'child exists with code: '&lt;/span> + code);
+ls.on(<span class="hljs-string">'close'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">code</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'child exists with code: '</span> + code);
 });</code></pre>
 
 例子2：声明stdio
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">var&lt;/span> spawn = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>).spawn;
-&lt;span class="hljs-keyword">var&lt;/span> ls = spawn(&lt;span class="hljs-string">'ls'&lt;/span>, [&lt;span class="hljs-string">'-al'&lt;/span>], {
-    &lt;span class="hljs-attr">stdio&lt;/span>: &lt;span class="hljs-string">'inherit'&lt;/span>
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-keyword">var</span> spawn = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>).spawn;
+<span class="hljs-keyword">var</span> ls = spawn(<span class="hljs-string">'ls'</span>, [<span class="hljs-string">'-al'</span>], {
+    <span class="hljs-attr">stdio</span>: <span class="hljs-string">'inherit'</span>
 });
 
-ls.on(&lt;span class="hljs-string">'close'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">code&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'child exists with code: '&lt;/span> + code);
+ls.on(<span class="hljs-string">'close'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">code</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'child exists with code: '</span> + code);
 });</code></pre>
 
 例子3：声明使用shell
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">var&lt;/span> spawn = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>).spawn;
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-keyword">var</span> spawn = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>).spawn;
 
-&lt;span class="hljs-comment">// 运行 echo "hello nodejs" | wc&lt;/span>
-&lt;span class="hljs-keyword">var&lt;/span> ls = spawn(&lt;span class="hljs-string">'bash'&lt;/span>, [&lt;span class="hljs-string">'-c'&lt;/span>, &lt;span class="hljs-string">'echo "hello nodejs" | wc'&lt;/span>], {
-    &lt;span class="hljs-attr">stdio&lt;/span>: &lt;span class="hljs-string">'inherit'&lt;/span>,
-    &lt;span class="hljs-attr">shell&lt;/span>: &lt;span class="hljs-literal">true&lt;/span>
+<span class="hljs-comment">// 运行 echo "hello nodejs" | wc</span>
+<span class="hljs-keyword">var</span> ls = spawn(<span class="hljs-string">'bash'</span>, [<span class="hljs-string">'-c'</span>, <span class="hljs-string">'echo "hello nodejs" | wc'</span>], {
+    <span class="hljs-attr">stdio</span>: <span class="hljs-string">'inherit'</span>,
+    <span class="hljs-attr">shell</span>: <span class="hljs-literal">true</span>
 });
 
-ls.on(&lt;span class="hljs-string">'close'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">code&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'child exists with code: '&lt;/span> + code);
+ls.on(<span class="hljs-string">'close'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">code</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'child exists with code: '</span> + code);
 });</code></pre>
 
 例子4：错误处理，包含两种场景，这两种场景有不同的处理方式。
@@ -321,64 +321,64 @@ ls.on(&lt;span class="hljs-string">'close'&lt;/span>, &lt;span class="hljs-funct
 * 场景1：命令本身不存在，创建子进程报错。
 * 场景2：命令存在，但运行过程报错。
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">var&lt;/span> spawn = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>).spawn;
-&lt;span class="hljs-keyword">var&lt;/span> child = spawn(&lt;span class="hljs-string">'bad_command'&lt;/span>);
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-keyword">var</span> spawn = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>).spawn;
+<span class="hljs-keyword">var</span> child = spawn(<span class="hljs-string">'bad_command'</span>);
 
-child.on(&lt;span class="hljs-string">'error'&lt;/span>, (err) =&gt; {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'Failed to start child process 1.'&lt;/span>);
+child.on(<span class="hljs-string">'error'</span>, (err) => {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Failed to start child process 1.'</span>);
 });
 
-&lt;span class="hljs-keyword">var&lt;/span> child2 = spawn(&lt;span class="hljs-string">'ls'&lt;/span>, [&lt;span class="hljs-string">'nonexistFile'&lt;/span>]);
+<span class="hljs-keyword">var</span> child2 = spawn(<span class="hljs-string">'ls'</span>, [<span class="hljs-string">'nonexistFile'</span>]);
 
-child2.stderr.on(&lt;span class="hljs-string">'data'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">data&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'Error msg from process 2: '&lt;/span> + data);
+child2.stderr.on(<span class="hljs-string">'data'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">data</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Error msg from process 2: '</span> + data);
 });
 
-child2.on(&lt;span class="hljs-string">'error'&lt;/span>, (err) =&gt; {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'Failed to start child process 2.'&lt;/span>);
+child2.on(<span class="hljs-string">'error'</span>, (err) => {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Failed to start child process 2.'</span>);
 });</code></pre>
 
 运行结果如下。
 
 <pre class="powershell"><code class="hljs hljs sql">➜  spawn git:(master) ✗ node error/error.js
-Failed to &lt;span class="hljs-operator">&lt;span class="hljs-keyword">start&lt;/span> child &lt;/span>&lt;span class="hljs-keyword">&lt;span class="hljs-operator">process&lt;/span>&lt;/span> &lt;span class="hljs-number">&lt;span class="hljs-operator">1&lt;/span>&lt;/span>&lt;span class="hljs-operator">&lt;span class="hljs-number">.&lt;/span>
-Error msg &lt;span class="hljs-keyword">from&lt;/span> &lt;/span>&lt;span class="hljs-keyword">&lt;span class="hljs-operator">process&lt;/span>&lt;/span> &lt;span class="hljs-number">&lt;span class="hljs-operator">2&lt;/span>&lt;/span>&lt;span class="hljs-operator">: ls: nonexistFile: &lt;span class="hljs-keyword">No&lt;/span> such file &lt;span class="hljs-keyword">or&lt;/span> directory&lt;/span></code></pre>
+Failed to <span class="hljs-operator"><span class="hljs-keyword">start</span> child </span><span class="hljs-keyword"><span class="hljs-operator">process</span></span> <span class="hljs-number"><span class="hljs-operator">1</span></span><span class="hljs-operator"><span class="hljs-number">.</span>
+Error msg <span class="hljs-keyword">from</span> </span><span class="hljs-keyword"><span class="hljs-operator">process</span></span> <span class="hljs-number"><span class="hljs-operator">2</span></span><span class="hljs-operator">: ls: nonexistFile: <span class="hljs-keyword">No</span> such file <span class="hljs-keyword">or</span> directory</span></code></pre>
 
 例子5：echo &#8220;hello nodejs&#8221; | grep &#8220;nodejs&#8221;
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-comment">// echo "hello nodejs" | grep "nodejs"&lt;/span>
-&lt;span class="hljs-keyword">var&lt;/span> child_process = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>);
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-comment">// echo "hello nodejs" | grep "nodejs"</span>
+<span class="hljs-keyword">var</span> child_process = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>);
 
-&lt;span class="hljs-keyword">var&lt;/span> echo = child_process.spawn(&lt;span class="hljs-string">'echo'&lt;/span>, [&lt;span class="hljs-string">'hello nodejs'&lt;/span>]);
-&lt;span class="hljs-keyword">var&lt;/span> grep = child_process.spawn(&lt;span class="hljs-string">'grep'&lt;/span>, [&lt;span class="hljs-string">'nodejs'&lt;/span>]);
+<span class="hljs-keyword">var</span> echo = child_process.spawn(<span class="hljs-string">'echo'</span>, [<span class="hljs-string">'hello nodejs'</span>]);
+<span class="hljs-keyword">var</span> grep = child_process.spawn(<span class="hljs-string">'grep'</span>, [<span class="hljs-string">'nodejs'</span>]);
 
-grep.stdout.setEncoding(&lt;span class="hljs-string">'utf8'&lt;/span>);
+grep.stdout.setEncoding(<span class="hljs-string">'utf8'</span>);
 
-echo.stdout.on(&lt;span class="hljs-string">'data'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">data&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
+echo.stdout.on(<span class="hljs-string">'data'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">data</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
     grep.stdin.write(data);
 });
 
-echo.on(&lt;span class="hljs-string">'close'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">code&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-keyword">if&lt;/span>(code!==&lt;span class="hljs-number">0&lt;/span>){
-        &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'echo exists with code: '&lt;/span> + code);
+echo.on(<span class="hljs-string">'close'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">code</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-keyword">if</span>(code!==<span class="hljs-number">0</span>){
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'echo exists with code: '</span> + code);
     }
     grep.stdin.end();
 });
 
-grep.stdout.on(&lt;span class="hljs-string">'data'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">data&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'grep: '&lt;/span> + data);
+grep.stdout.on(<span class="hljs-string">'data'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">data</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'grep: '</span> + data);
 });
 
-grep.on(&lt;span class="hljs-string">'close'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">code&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-keyword">if&lt;/span>(code!==&lt;span class="hljs-number">0&lt;/span>){
-        &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'grep exists with code: '&lt;/span> + code);
+grep.on(<span class="hljs-string">'close'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">code</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-keyword">if</span>(code!==<span class="hljs-number">0</span>){
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'grep exists with code: '</span> + code);
     }
 });</code></pre>
 
 运行结果：
 
-<pre class="powershell"><code class="hljs hljs perl">➜  spawn git:(master) ✗ node &lt;span class="hljs-keyword">pipe&lt;/span>/&lt;span class="hljs-keyword">pipe&lt;/span>.js
-&lt;span class="hljs-keyword">grep&lt;/span>: hello nodejs</code></pre>
+<pre class="powershell"><code class="hljs hljs perl">➜  spawn git:(master) ✗ node <span class="hljs-keyword">pipe</span>/<span class="hljs-keyword">pipe</span>.js
+<span class="hljs-keyword">grep</span>: hello nodejs</code></pre>
 
 ## 关于`options.stdio` {#关于options.stdio}
 
@@ -389,33 +389,33 @@ grep.on(&lt;span class="hljs-string">'close'&lt;/span>, &lt;span class="hljs-fun
 
 ### 基础例子 {#基础例子}
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">var&lt;/span> spawn = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>).spawn;
-&lt;span class="hljs-keyword">var&lt;/span> ls = spawn(&lt;span class="hljs-string">'ls'&lt;/span>, [&lt;span class="hljs-string">'-al'&lt;/span>]);
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-keyword">var</span> spawn = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>).spawn;
+<span class="hljs-keyword">var</span> ls = spawn(<span class="hljs-string">'ls'</span>, [<span class="hljs-string">'-al'</span>]);
 
-ls.stdout.on(&lt;span class="hljs-string">'data'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">data&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'data from child: '&lt;/span> + data);
+ls.stdout.on(<span class="hljs-string">'data'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">data</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'data from child: '</span> + data);
 });
 
-ls.on(&lt;span class="hljs-string">'close'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">code&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'child exists with code: '&lt;/span> + code);
+ls.on(<span class="hljs-string">'close'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">code</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'child exists with code: '</span> + code);
 });</code></pre>
 
 ### 通过child.stdin.write()写入 {#通过child.stdin.write写入}
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">var&lt;/span> spawn = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>).spawn;
-&lt;span class="hljs-keyword">var&lt;/span> grep = spawn(&lt;span class="hljs-string">'grep'&lt;/span>, [&lt;span class="hljs-string">'nodejs'&lt;/span>]);
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-keyword">var</span> spawn = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>).spawn;
+<span class="hljs-keyword">var</span> grep = spawn(<span class="hljs-string">'grep'</span>, [<span class="hljs-string">'nodejs'</span>]);
 
-setTimeout(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    grep.stdin.write(&lt;span class="hljs-string">'hello nodejs \n hello javascript'&lt;/span>);
+setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    grep.stdin.write(<span class="hljs-string">'hello nodejs \n hello javascript'</span>);
     grep.stdin.end();
-}, &lt;span class="hljs-number">2000&lt;/span>);
+}, <span class="hljs-number">2000</span>);
 
-grep.stdout.on(&lt;span class="hljs-string">'data'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">data&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'data from grep: '&lt;/span> + data);
+grep.stdout.on(<span class="hljs-string">'data'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">data</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'data from grep: '</span> + data);
 });
 
-grep.on(&lt;span class="hljs-string">'close'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">code&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'grep exists with code: '&lt;/span> + code);
+grep.on(<span class="hljs-string">'close'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">code</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'grep exists with code: '</span> + code);
 });</code></pre>
 
 ## 异步 vs 同步 {#异步-vs-同步}
@@ -444,16 +444,16 @@ node同样提供同步的版本，比如：
 
 子进程。可以看到，有个定时器一直在跑
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">var&lt;/span> times = &lt;span class="hljs-number">0&lt;/span>;
-setInterval(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-built_in">console&lt;/span>.log(++times);
-}, &lt;span class="hljs-number">1000&lt;/span>);</code></pre>
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-keyword">var</span> times = <span class="hljs-number">0</span>;
+setInterval(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-built_in">console</span>.log(++times);
+}, <span class="hljs-number">1000</span>);</code></pre>
 
 运行下面代码，会发现父进程一直hold着不退出。
 
-<pre><code class="hljs javascript hljs ">&lt;span class="hljs-keyword">var&lt;/span> child_process = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>);
-child_process.spawn(&lt;span class="hljs-string">'node'&lt;/span>, [&lt;span class="hljs-string">'child.js'&lt;/span>], {
-    &lt;span class="hljs-comment">// stdio: 'inherit'&lt;/span>
+<pre><code class="hljs javascript hljs "><span class="hljs-keyword">var</span> child_process = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>);
+child_process.spawn(<span class="hljs-string">'node'</span>, [<span class="hljs-string">'child.js'</span>], {
+    <span class="hljs-comment">// stdio: 'inherit'</span>
 });</code></pre>
 
 ### 通过child.unref()让父进程退出 {#通过child.unref让父进程退出}
@@ -464,11 +464,11 @@ child_process.spawn(&lt;span class="hljs-string">'node'&lt;/span>, [&lt;span cla
   2. 设置`detached`为`true`
   3. 设置`stdio`为`ignore`（这点容易忘）
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">var&lt;/span> child_process = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>);
-&lt;span class="hljs-keyword">var&lt;/span> child = child_process.spawn(&lt;span class="hljs-string">'node'&lt;/span>, [&lt;span class="hljs-string">'child.js'&lt;/span>], {
-    &lt;span class="hljs-attr">detached&lt;/span>: &lt;span class="hljs-literal">true&lt;/span>,
-    &lt;span class="hljs-attr">stdio&lt;/span>: &lt;span class="hljs-string">'ignore'&lt;/span>  &lt;span class="hljs-comment">// 备注：如果不置为 ignore，那么 父进程还是不会退出&lt;/span>
-    &lt;span class="hljs-comment">// stdio: 'inherit'&lt;/span>
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-keyword">var</span> child_process = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>);
+<span class="hljs-keyword">var</span> child = child_process.spawn(<span class="hljs-string">'node'</span>, [<span class="hljs-string">'child.js'</span>], {
+    <span class="hljs-attr">detached</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">stdio</span>: <span class="hljs-string">'ignore'</span>  <span class="hljs-comment">// 备注：如果不置为 ignore，那么 父进程还是不会退出</span>
+    <span class="hljs-comment">// stdio: 'inherit'</span>
 });
 
 child.unref();</code></pre>
@@ -477,15 +477,15 @@ child.unref();</code></pre>
 
 除了直接将stdio设置为`ignore`，还可以将它重定向到本地的文件。
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">var&lt;/span> child_process = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>);
-&lt;span class="hljs-keyword">var&lt;/span> fs = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'fs'&lt;/span>);
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-keyword">var</span> child_process = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>);
+<span class="hljs-keyword">var</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
 
-&lt;span class="hljs-keyword">var&lt;/span> out = fs.openSync(&lt;span class="hljs-string">'./out.log'&lt;/span>, &lt;span class="hljs-string">'a'&lt;/span>);
-&lt;span class="hljs-keyword">var&lt;/span> err = fs.openSync(&lt;span class="hljs-string">'./err.log'&lt;/span>, &lt;span class="hljs-string">'a'&lt;/span>);
+<span class="hljs-keyword">var</span> out = fs.openSync(<span class="hljs-string">'./out.log'</span>, <span class="hljs-string">'a'</span>);
+<span class="hljs-keyword">var</span> err = fs.openSync(<span class="hljs-string">'./err.log'</span>, <span class="hljs-string">'a'</span>);
 
-&lt;span class="hljs-keyword">var&lt;/span> child = child_process.spawn(&lt;span class="hljs-string">'node'&lt;/span>, [&lt;span class="hljs-string">'child.js'&lt;/span>], {
-    &lt;span class="hljs-attr">detached&lt;/span>: &lt;span class="hljs-literal">true&lt;/span>,
-    &lt;span class="hljs-attr">stdio&lt;/span>: [&lt;span class="hljs-string">'ignore'&lt;/span>, out, err]
+<span class="hljs-keyword">var</span> child = child_process.spawn(<span class="hljs-string">'node'</span>, [<span class="hljs-string">'child.js'</span>], {
+    <span class="hljs-attr">detached</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-attr">stdio</span>: [<span class="hljs-string">'ignore'</span>, out, err]
 });
 
 child.unref();</code></pre>
@@ -544,30 +544,30 @@ SIGTERM：terminate，程序结束信号，该信号可以被阻塞和处理，�
 
 > The importance of the distinction between child\_process.exec() and child\_process.execFile() can vary based on platform. On Unix-type operating systems (Unix, Linux, OSX) child\_process.execFile() can be more efficient because it does not spawn a shell. On Windows, however, .bat and .cmd files are not executable on their own without a terminal, and therefore cannot be launched using child\_process.execFile(). When running on Windows, .bat and .cmd files can be invoked using child\_process.spawn() with the shell option set, with child\_process.exec(), or by spawning cmd.exe and passing the .bat or .cmd file as an argument (which is what the shell option and child_process.exec() do).
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-comment">// On Windows Only ...&lt;/span>
-&lt;span class="hljs-keyword">const&lt;/span> spawn = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>).spawn;
-&lt;span class="hljs-keyword">const&lt;/span> bat = spawn(&lt;span class="hljs-string">'cmd.exe'&lt;/span>, [&lt;span class="hljs-string">'/c'&lt;/span>, &lt;span class="hljs-string">'my.bat'&lt;/span>]);
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-comment">// On Windows Only ...</span>
+<span class="hljs-keyword">const</span> spawn = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>).spawn;
+<span class="hljs-keyword">const</span> bat = spawn(<span class="hljs-string">'cmd.exe'</span>, [<span class="hljs-string">'/c'</span>, <span class="hljs-string">'my.bat'</span>]);
 
-bat.stdout.on(&lt;span class="hljs-string">'data'&lt;/span>, (data) =&gt; {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(data);
+bat.stdout.on(<span class="hljs-string">'data'</span>, (data) => {
+  <span class="hljs-built_in">console</span>.log(data);
 });
 
-bat.stderr.on(&lt;span class="hljs-string">'data'&lt;/span>, (data) =&gt; {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(data);
+bat.stderr.on(<span class="hljs-string">'data'</span>, (data) => {
+  <span class="hljs-built_in">console</span>.log(data);
 });
 
-bat.on(&lt;span class="hljs-string">'exit'&lt;/span>, (code) =&gt; {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">`Child exited &lt;span class="hljs-keyword">with&lt;/span> code &lt;span class="hljs-subst">${code}&lt;/span>`&lt;/span>);
+bat.on(<span class="hljs-string">'exit'</span>, (code) => {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Child exited <span class="hljs-keyword">with</span> code <span class="hljs-subst">${code}</span>`</span>);
 });
 
-&lt;span class="hljs-comment">// OR...&lt;/span>
-&lt;span class="hljs-keyword">const&lt;/span> exec = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>).exec;
-exec(&lt;span class="hljs-string">'my.bat'&lt;/span>, (err, stdout, stderr) =&gt; {
-  &lt;span class="hljs-keyword">if&lt;/span> (err) {
-    &lt;span class="hljs-built_in">console&lt;/span>.error(err);
-    &lt;span class="hljs-keyword">return&lt;/span>;
+<span class="hljs-comment">// OR...</span>
+<span class="hljs-keyword">const</span> exec = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>).exec;
+exec(<span class="hljs-string">'my.bat'</span>, (err, stdout, stderr) => {
+  <span class="hljs-keyword">if</span> (err) {
+    <span class="hljs-built_in">console</span>.error(err);
+    <span class="hljs-keyword">return</span>;
   }
-  &lt;span class="hljs-built_in">console&lt;/span>.log(stdout);
+  <span class="hljs-built_in">console</span>.log(stdout);
 });</code></pre>
 
 ### 进程标题 {#进程标题}
@@ -580,61 +580,61 @@ Note: Node.js currently overwrites argv[0] with process.execPath on startup, so 
 
 **p.js**
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-keyword">const&lt;/span> cp = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>);
-&lt;span class="hljs-keyword">const&lt;/span> n = cp.fork(&lt;span class="hljs-string">`&lt;span class="hljs-subst">${__dirname}&lt;/span>/sub.js`&lt;/span>);
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-keyword">const</span> cp = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>);
+<span class="hljs-keyword">const</span> n = cp.fork(<span class="hljs-string">`<span class="hljs-subst">${__dirname}</span>/sub.js`</span>);
 
-&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'1'&lt;/span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'1'</span>);
 
-n.on(&lt;span class="hljs-string">'message'&lt;/span>, (m) =&gt; {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'PARENT got message:'&lt;/span>, m);
+n.on(<span class="hljs-string">'message'</span>, (m) => {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'PARENT got message:'</span>, m);
 });
 
-&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'2'&lt;/span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'2'</span>);
 
-n.send({ &lt;span class="hljs-attr">hello&lt;/span>: &lt;span class="hljs-string">'world'&lt;/span> });
+n.send({ <span class="hljs-attr">hello</span>: <span class="hljs-string">'world'</span> });
 
-&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'3'&lt;/span>);</code></pre>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'3'</span>);</code></pre>
 
 **sub.js**
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'4'&lt;/span>);
-process.on(&lt;span class="hljs-string">'message'&lt;/span>, (m) =&gt; {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'CHILD got message:'&lt;/span>, m);
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'4'</span>);
+process.on(<span class="hljs-string">'message'</span>, (m) => {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'CHILD got message:'</span>, m);
 });
 
-process.send({ &lt;span class="hljs-attr">foo&lt;/span>: &lt;span class="hljs-string">'bar'&lt;/span> });
-&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'5'&lt;/span>);</code></pre>
+process.send({ <span class="hljs-attr">foo</span>: <span class="hljs-string">'bar'</span> });
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'5'</span>);</code></pre>
 
 运行`node p.js`，打印出来的内容如下
 
-<pre class="powershell"><code class="hljs hljs css">➜  &lt;span class="hljs-tag">ch&lt;/span> &lt;span class="hljs-tag">node&lt;/span> &lt;span class="hljs-tag">p&lt;/span>&lt;span class="hljs-class">.js&lt;/span>
-&lt;span class="hljs-number">1&lt;/span>
-&lt;span class="hljs-number">2&lt;/span>
-&lt;span class="hljs-number">3&lt;/span>
-&lt;span class="hljs-number">4&lt;/span>
-&lt;span class="hljs-number">5&lt;/span>
-&lt;span class="hljs-tag">PARENT&lt;/span> &lt;span class="hljs-tag">got&lt;/span> &lt;span class="hljs-tag">message&lt;/span>: &lt;span class="hljs-rules">{ &lt;span class="hljs-rule">&lt;span class="hljs-attribute">foo&lt;/span>: &lt;/span>&lt;/span>&lt;span class="hljs-string">&lt;span class="hljs-rules">&lt;span class="hljs-rule">&lt;span class="hljs-value">'bar'&lt;/span>&lt;/span>&lt;/span>&lt;/span> }
-&lt;span class="hljs-tag">CHILD&lt;/span> &lt;span class="hljs-tag">got&lt;/span> &lt;span class="hljs-tag">message&lt;/span>: &lt;span class="hljs-rules">{ &lt;span class="hljs-rule">&lt;span class="hljs-attribute">hello&lt;/span>: &lt;/span>&lt;/span>&lt;span class="hljs-string">&lt;span class="hljs-rules">&lt;span class="hljs-rule">&lt;span class="hljs-value">'world'&lt;/span>&lt;/span>&lt;/span>&lt;/span> }</code></pre>
+<pre class="powershell"><code class="hljs hljs css">➜  <span class="hljs-tag">ch</span> <span class="hljs-tag">node</span> <span class="hljs-tag">p</span><span class="hljs-class">.js</span>
+<span class="hljs-number">1</span>
+<span class="hljs-number">2</span>
+<span class="hljs-number">3</span>
+<span class="hljs-number">4</span>
+<span class="hljs-number">5</span>
+<span class="hljs-tag">PARENT</span> <span class="hljs-tag">got</span> <span class="hljs-tag">message</span>: <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">foo</span>: </span></span><span class="hljs-string"><span class="hljs-rules"><span class="hljs-rule"><span class="hljs-value">'bar'</span></span></span></span> }
+<span class="hljs-tag">CHILD</span> <span class="hljs-tag">got</span> <span class="hljs-tag">message</span>: <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">hello</span>: </span></span><span class="hljs-string"><span class="hljs-rules"><span class="hljs-rule"><span class="hljs-value">'world'</span></span></span></span> }</code></pre>
 
 再来个例子
 
-<pre class="javascript"><code class="hljs hljs ">&lt;span class="hljs-comment">// p2.js&lt;/span>
-&lt;span class="hljs-keyword">var&lt;/span> fork = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'child_process'&lt;/span>).fork;
+<pre class="javascript"><code class="hljs hljs "><span class="hljs-comment">// p2.js</span>
+<span class="hljs-keyword">var</span> fork = <span class="hljs-built_in">require</span>(<span class="hljs-string">'child_process'</span>).fork;
 
-&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'p: 1'&lt;/span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'p: 1'</span>);
 
-fork(&lt;span class="hljs-string">'./c2.js'&lt;/span>);
+fork(<span class="hljs-string">'./c2.js'</span>);
 
-&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'p: 2'&lt;/span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'p: 2'</span>);
 
-&lt;span class="hljs-comment">// 从测试结果来看，同样是70ms，有的时候，定时器回调比子进程先执行，有的时候比子进程慢执行。&lt;/span>
-&lt;span class="hljs-keyword">const&lt;/span> t = &lt;span class="hljs-number">70&lt;/span>;
-setTimeout(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">(&lt;/span>&lt;span class="hljs-params">)&lt;/span>&lt;/span>&lt;span class="hljs-function">{&lt;/span>
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'p: 3 in %s'&lt;/span>, t);
+<span class="hljs-comment">// 从测试结果来看，同样是70ms，有的时候，定时器回调比子进程先执行，有的时候比子进程慢执行。</span>
+<span class="hljs-keyword">const</span> t = <span class="hljs-number">70</span>;
+setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(</span><span class="hljs-params">)</span></span><span class="hljs-function">{</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'p: 3 in %s'</span>, t);
 }, t);
 
-&lt;span class="hljs-comment">// c2.js&lt;/span>
-&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'c: 1'&lt;/span>);</code></pre>
+<span class="hljs-comment">// c2.js</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'c: 1'</span>);</code></pre>
 
 ### 关于NODE\_CHANNEL\_FD {#关于node_channel_fd}
 

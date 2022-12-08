@@ -52,11 +52,11 @@ $ source bin/activate
 
 一般情况是，[我们](https://www.w3cdoc.com)希望创建一个独立的Python运行环境，命名为`venv`：
 
-<pre><code class="ruby">&lt;span class="constant">Mac&lt;/span>&lt;span class="symbol">:myproject&lt;/span> michael&lt;span class="variable">$ &lt;/span>virtualenv --no-site-packages venv
-&lt;span class="constant">Using&lt;/span> base prefix &lt;span class="string">'/usr/local/.../Python.framework/Versions/3.4'&lt;/span>
-&lt;span class="constant">New&lt;/span> python executable &lt;span class="keyword">in&lt;/span> venv/bin/python3.&lt;span class="number">4&lt;/span>
-&lt;span class="constant">Also&lt;/span> creating executable &lt;span class="keyword">in&lt;/span> venv/bin/python
-&lt;span class="constant">Installing&lt;/span> setuptools, pip, wheel...done.
+<pre><code class="ruby"><span class="constant">Mac</span><span class="symbol">:myproject</span> michael<span class="variable">$ </span>virtualenv --no-site-packages venv
+<span class="constant">Using</span> base prefix <span class="string">'/usr/local/.../Python.framework/Versions/3.4'</span>
+<span class="constant">New</span> python executable <span class="keyword">in</span> venv/bin/python3.<span class="number">4</span>
+<span class="constant">Also</span> creating executable <span class="keyword">in</span> venv/bin/python
+<span class="constant">Installing</span> setuptools, pip, wheel...done.
 </code></pre>
 
 命令`virtualenv`就可以创建一个独立的Python运行环境，[我们](https://www.w3cdoc.com)还加上了参数`--no-site-packages`，这样，已经安装到系统Python环境中的所有第三方包都不会复制过来，这样，[我们](https://www.w3cdoc.com)就得到了一个不带任何第三方包的“干净”的Python运行环境。像我的mac电脑默认python是python 2.7 ，我想创建一个独立的3.7的环境，可以指定python版本
@@ -73,18 +73,18 @@ done.
 
 新建的Python环境被放到当前目录下的`venv`目录。有了`venv`这个Python环境，可以用`source`进入该环境：
 
-<pre><code class="ruby">&lt;span class="constant">Mac&lt;/span>&lt;span class="symbol">:myproject&lt;/span> michael&lt;span class="variable">$ &lt;/span>source venv/bin/activate
-(venv)&lt;span class="constant">Mac&lt;/span>&lt;span class="symbol">:myproject&lt;/span> michael&lt;span class="variable">$
-&lt;/span></code></pre>
+<pre><code class="ruby"><span class="constant">Mac</span><span class="symbol">:myproject</span> michael<span class="variable">$ </span>source venv/bin/activate
+(venv)<span class="constant">Mac</span><span class="symbol">:myproject</span> michael<span class="variable">$
+</span></code></pre>
 
 注意到命令提示符变了，有个`(venv)`前缀，表示当前环境是一个名为`venv`的Python环境。
 
 下面正常安装各种第三方包，并运行`python`命令：
 
-<pre><code class="ruby">(venv)&lt;span class="constant">Mac&lt;/span>&lt;span class="symbol">:myproject&lt;/span> michael&lt;span class="variable">$ &lt;/span>pip install jinja2
+<pre><code class="ruby">(venv)<span class="constant">Mac</span><span class="symbol">:myproject</span> michael<span class="variable">$ </span>pip install jinja2
 ...
-&lt;span class="constant">Successfully&lt;/span> installed jinja2-&lt;span class="number">2.7&lt;/span>.&lt;span class="number">3&lt;/span> markupsafe-&lt;span class="number">0&lt;/span>.&lt;span class="number">23&lt;/span>
-(venv)&lt;span class="constant">Mac&lt;/span>&lt;span class="symbol">:myproject&lt;/span> michael&lt;span class="variable">$ &lt;/span>python myapp.py
+<span class="constant">Successfully</span> installed jinja2-<span class="number">2.7</span>.<span class="number">3</span> markupsafe-<span class="number">0</span>.<span class="number">23</span>
+(venv)<span class="constant">Mac</span><span class="symbol">:myproject</span> michael<span class="variable">$ </span>python myapp.py
 ...
 </code></pre>
 
@@ -92,8 +92,8 @@ done.
 
 退出当前的`venv`环境，使用`deactivate`命令：
 
-<pre><code class="ruby">(venv)&lt;span class="constant">Mac&lt;/span>&lt;span class="symbol">:myproject&lt;/span> michael&lt;span class="variable">$ &lt;/span>deactivate
-&lt;span class="constant">Mac&lt;/span>&lt;span class="symbol">:myproject&lt;/span> michael&lt;span class="variable">$ &lt;/span>
+<pre><code class="ruby">(venv)<span class="constant">Mac</span><span class="symbol">:myproject</span> michael<span class="variable">$ </span>deactivate
+<span class="constant">Mac</span><span class="symbol">:myproject</span> michael<span class="variable">$ </span>
 </code></pre>
 
 此时就回到了正常的环境，现在`pip`或`python`均是在系统Python环境下执行。
@@ -205,7 +205,7 @@ Required-by:
 
 然后执行下面：
 
-<pre class="lang-py prettyprint prettyprinted"><code>&lt;span class="pln">sudo &lt;/span>&lt;span class="pun">/&lt;/span>&lt;span class="pln">usr&lt;/span>&lt;span class="pun">/&lt;/span>&lt;span class="pln">bin&lt;/span>&lt;span class="pun">/&lt;/span>&lt;span class="pln">easy_install virtualenv&lt;/span></code></pre>
+<pre class="lang-py prettyprint prettyprinted"><code><span class="pln">sudo </span><span class="pun">/</span><span class="pln">usr</span><span class="pun">/</span><span class="pln">bin</span><span class="pun">/</span><span class="pln">easy_install virtualenv</span></code></pre>
 
 ##### 问题5：
 

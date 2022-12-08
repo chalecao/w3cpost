@@ -65,14 +65,14 @@ webpack4 在大幅度提升编译效率同时，引入了多种新特性：
     有两种方式可以加入mode配置。
     
       * 在package.json script中指定–mode： 
-        <pre><code class="js hljs javascript has-numbering">&lt;span class="hljs-string">"scripts"&lt;/span>: {
-    &lt;span class="hljs-string">"dev"&lt;/span>: &lt;span class="hljs-string">"webpack-dev-server --mode development --inline --progress --config build/webpack.dev.config.js"&lt;/span>,
-    &lt;span class="hljs-string">"build"&lt;/span>: &lt;span class="hljs-string">"webpack --mode production --progress --config build/webpack.prod.config.js"&lt;/span>
+        <pre><code class="js hljs javascript has-numbering"><span class="hljs-string">"scripts"</span>: {
+    <span class="hljs-string">"dev"</span>: <span class="hljs-string">"webpack-dev-server --mode development --inline --progress --config build/webpack.dev.config.js"</span>,
+    <span class="hljs-string">"build"</span>: <span class="hljs-string">"webpack --mode production --progress --config build/webpack.prod.config.js"</span>
 }</code></pre>
 
       * 在配置文件中加入mode属性 
-        <pre><code class="js hljs javascript has-numbering">&lt;span class="hljs-built_in">module&lt;/span>.exports = {
-  mode: &lt;span class="hljs-string">'production'&lt;/span> &lt;span class="hljs-comment">// 或 development&lt;/span>
+        <pre><code class="js hljs javascript has-numbering"><span class="hljs-built_in">module</span>.exports = {
+  mode: <span class="hljs-string">'production'</span> <span class="hljs-comment">// 或 development</span>
 };</code></pre>
 
     升级至webpack4后，一些默认插件由 optimization 配置替代了，如下：
@@ -86,24 +86,24 @@ webpack4 在大幅度提升编译效率同时，引入了多种新特性：
     不仅如此，optimization 还提供了如下默认配置：
     
     <pre><code class="js hljs javascript has-numbering">optimization: {
-    minimize: env === &lt;span class="hljs-string">'production'&lt;/span> ? &lt;span class="hljs-literal">true&lt;/span> : &lt;span class="hljs-literal">false&lt;/span>, &lt;span class="hljs-comment">// 开发环境不压缩&lt;/span>
+    minimize: env === <span class="hljs-string">'production'</span> ? <span class="hljs-literal">true</span> : <span class="hljs-literal">false</span>, <span class="hljs-comment">// 开发环境不压缩</span>
     splitChunks: {
-        chunks: &lt;span class="hljs-string">"async"&lt;/span>, &lt;span class="hljs-comment">// 共有三个值可选：initial(初始模块)、async(按需加载模块)和all(全部模块)&lt;/span>
-        minSize: &lt;span class="hljs-number">30000&lt;/span>, &lt;span class="hljs-comment">// 模块超过30k自动被抽离成公共模块&lt;/span>
-        minChunks: &lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-comment">// 模块被引用&gt;=1次，便分割&lt;/span>
-        maxAsyncRequests: &lt;span class="hljs-number">5&lt;/span>,  &lt;span class="hljs-comment">// 异步加载chunk的并发请求数量&lt;=5&lt;/span>
-        maxInitialRequests: &lt;span class="hljs-number">3&lt;/span>, &lt;span class="hljs-comment">// 一个入口并发加载的chunk数量&lt;=3&lt;/span>
-        name: &lt;span class="hljs-literal">true&lt;/span>, &lt;span class="hljs-comment">// 默认由模块名+hash命名，名称相同时多个模块将合并为1个，可以设置为function&lt;/span>
-        automaticNameDelimiter: &lt;span class="hljs-string">'~'&lt;/span>, &lt;span class="hljs-comment">// 命名分隔符&lt;/span>
-        cacheGroups: { &lt;span class="hljs-comment">// 缓存组，会继承和覆盖splitChunks的配置&lt;/span>
-            &lt;span class="hljs-keyword">default&lt;/span>: { &lt;span class="hljs-comment">// 模块缓存规则，设置为false，默认缓存组将禁用&lt;/span>
-                minChunks: &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-comment">// 模块被引用&gt;=2次，拆分至vendors公共模块&lt;/span>
-                priority: &lt;span class="hljs-number">-20&lt;/span>, &lt;span class="hljs-comment">// 优先级&lt;/span>
-                reuseExistingChunk: &lt;span class="hljs-literal">true&lt;/span>, &lt;span class="hljs-comment">// 默认使用已有的模块&lt;/span>
+        chunks: <span class="hljs-string">"async"</span>, <span class="hljs-comment">// 共有三个值可选：initial(初始模块)、async(按需加载模块)和all(全部模块)</span>
+        minSize: <span class="hljs-number">30000</span>, <span class="hljs-comment">// 模块超过30k自动被抽离成公共模块</span>
+        minChunks: <span class="hljs-number">1</span>, <span class="hljs-comment">// 模块被引用>=1次，便分割</span>
+        maxAsyncRequests: <span class="hljs-number">5</span>,  <span class="hljs-comment">// 异步加载chunk的并发请求数量<=5</span>
+        maxInitialRequests: <span class="hljs-number">3</span>, <span class="hljs-comment">// 一个入口并发加载的chunk数量<=3</span>
+        name: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 默认由模块名+hash命名，名称相同时多个模块将合并为1个，可以设置为function</span>
+        automaticNameDelimiter: <span class="hljs-string">'~'</span>, <span class="hljs-comment">// 命名分隔符</span>
+        cacheGroups: { <span class="hljs-comment">// 缓存组，会继承和覆盖splitChunks的配置</span>
+            <span class="hljs-keyword">default</span>: { <span class="hljs-comment">// 模块缓存规则，设置为false，默认缓存组将禁用</span>
+                minChunks: <span class="hljs-number">2</span>, <span class="hljs-comment">// 模块被引用>=2次，拆分至vendors公共模块</span>
+                priority: <span class="hljs-number">-20</span>, <span class="hljs-comment">// 优先级</span>
+                reuseExistingChunk: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 默认使用已有的模块</span>
             },
             vendors: {
-                test: &lt;span class="hljs-regexp">/[\\/]node_modules[\\/]/&lt;/span>, &lt;span class="hljs-comment">// 表示默认拆分node_modules中的模块&lt;/span>
-                priority: &lt;span class="hljs-number">-10&lt;/span>
+                test: <span class="hljs-regexp">/[\\/]node_modules[\\/]/</span>, <span class="hljs-comment">// 表示默认拆分node_modules中的模块</span>
+                priority: <span class="hljs-number">-10</span>
             }
         }
     }
@@ -112,12 +112,12 @@ webpack4 在大幅度提升编译效率同时，引入了多种新特性：
     splitChunks是拆包优化的重点，如果你的项目中包含 element-ui 等第三方组件（组件较大），建议单独拆包，如下所示。
     
     <pre><code class="js hljs javascript has-numbering">splitChunks: {
-    &lt;span class="hljs-comment">// ...&lt;/span>
+    <span class="hljs-comment">// ...</span>
     cacheGroups: {    
         elementUI: {
-            name: &lt;span class="hljs-string">"chunk-elementUI"&lt;/span>, &lt;span class="hljs-comment">// 单独将 elementUI 拆包&lt;/span>
-            priority: &lt;span class="hljs-number">15&lt;/span>, &lt;span class="hljs-comment">// 权重需大于其它缓存组&lt;/span>
-            test: &lt;span class="hljs-regexp">/[\/]node_modules[\/]element-ui[\/]/&lt;/span>
+            name: <span class="hljs-string">"chunk-elementUI"</span>, <span class="hljs-comment">// 单独将 elementUI 拆包</span>
+            priority: <span class="hljs-number">15</span>, <span class="hljs-comment">// 权重需大于其它缓存组</span>
+            test: <span class="hljs-regexp">/[\/]node_modules[\/]element-ui[\/]/</span>
         }
     }
 }
@@ -133,11 +133,11 @@ webpack4 在大幅度提升编译效率同时，引入了多种新特性：
     
     vue-loader v15 需要在 webpack 中添加 VueLoaderPlugin 插件，参考如下。
     
-    <pre><code class="js hljs javascript has-numbering">&lt;span class="hljs-keyword">const&lt;/span> { VueLoaderPlugin } = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"vue-loader"&lt;/span>); &lt;span class="hljs-comment">// const VueLoaderPlugin = require("vue-loader/lib/plugin"); // 两者等同&lt;/span>
+    <pre><code class="js hljs javascript has-numbering"><span class="hljs-keyword">const</span> { VueLoaderPlugin } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"vue-loader"</span>); <span class="hljs-comment">// const VueLoaderPlugin = require("vue-loader/lib/plugin"); // 两者等同</span>
 
-&lt;span class="hljs-comment">//...&lt;/span>
+<span class="hljs-comment">//...</span>
 plugins: [
-  &lt;span class="hljs-keyword">new&lt;/span> VueLoaderPlugin()
+  <span class="hljs-keyword">new</span> VueLoaderPlugin()
 ]
 </code></pre>
 
@@ -150,27 +150,27 @@ plugins: [
     缺陷，不支持css热更新。因此需在开发环境引入 css-hot-loader，以便支持css热更新，如下所示：
     
     <pre><code class="js hljs javascript has-numbering">{
-    test: &lt;span class="hljs-regexp">/\.scss$/&lt;/span>,
+    test: <span class="hljs-regexp">/\.scss$/</span>,
     use: [
-        ...(isDev ? [&lt;span class="hljs-string">"css-hot-loader"&lt;/span>, &lt;span class="hljs-string">"style-loader"&lt;/span>] : [MiniCssExtractPlugin.loader]),
-        &lt;span class="hljs-string">"css-loader"&lt;/span>,
+        ...(isDev ? [<span class="hljs-string">"css-hot-loader"</span>, <span class="hljs-string">"style-loader"</span>] : [MiniCssExtractPlugin.loader]),
+        <span class="hljs-string">"css-loader"</span>,
         postcss,
-        &lt;span class="hljs-string">"sass-loader"&lt;/span>
+        <span class="hljs-string">"sass-loader"</span>
     ]
 }
 </code></pre>
 
     发布到生产环境之前，css是需要优化压缩的，使用 optimize-css-assets-webpack-plugin 插件即可，如下。
     
-    <pre><code class="js hljs javascript has-numbering">&lt;span class="hljs-keyword">const&lt;/span> OptimizeCssAssetsPlugin = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'optimize-css-assets-webpack-plugin'&lt;/span>);
+    <pre><code class="js hljs javascript has-numbering"><span class="hljs-keyword">const</span> OptimizeCssAssetsPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">'optimize-css-assets-webpack-plugin'</span>);
 
-&lt;span class="hljs-comment">//...&lt;/span>
+<span class="hljs-comment">//...</span>
 plugins: [
-    &lt;span class="hljs-keyword">new&lt;/span> OptimizeCssAssetsPlugin({
+    <span class="hljs-keyword">new</span> OptimizeCssAssetsPlugin({
         cssProcessor: cssnano,
         cssProcessorOptions: {
             discardComments: {
-                removeAll: &lt;span class="hljs-literal">true&lt;/span>
+                removeAll: <span class="hljs-literal">true</span>
             }
         }
     })
@@ -184,35 +184,35 @@ plugins: [
     经过很长一段时间的多个项目运行以及测试，以下几点经验**非常有效**。
     
       1. 缩小编译范围，减少不必要的编译工作，即 modules、mainFields、noParse、includes、exclude、alias全部用起来。 
-        <pre><code class="js hljs javascript has-numbering">&lt;span class="hljs-keyword">const&lt;/span> resolve = dir =&gt; path.join(__dirname, &lt;span class="hljs-string">'..'&lt;/span>, dir);
+        <pre><code class="js hljs javascript has-numbering"><span class="hljs-keyword">const</span> resolve = dir => path.join(__dirname, <span class="hljs-string">'..'</span>, dir);
 
-&lt;span class="hljs-comment">// ...&lt;/span>
+<span class="hljs-comment">// ...</span>
 resolve: {
-    modules: [ &lt;span class="hljs-comment">// 指定以下目录寻找第三方模块，避免webpack往父级目录递归搜索&lt;/span>
-        resolve(&lt;span class="hljs-string">'src'&lt;/span>),
-        resolve(&lt;span class="hljs-string">'node_modules'&lt;/span>),
+    modules: [ <span class="hljs-comment">// 指定以下目录寻找第三方模块，避免webpack往父级目录递归搜索</span>
+        resolve(<span class="hljs-string">'src'</span>),
+        resolve(<span class="hljs-string">'node_modules'</span>),
         resolve(config.common.layoutPath)
     ],
-    mainFields: [&lt;span class="hljs-string">'main'&lt;/span>], &lt;span class="hljs-comment">// 只采用main字段作为入口文件描述字段，减少搜索步骤&lt;/span>
+    mainFields: [<span class="hljs-string">'main'</span>], <span class="hljs-comment">// 只采用main字段作为入口文件描述字段，减少搜索步骤</span>
     alias: {
-        vue$: &lt;span class="hljs-string">"vue/dist/vue.common"&lt;/span>,
-        &lt;span class="hljs-string">"@"&lt;/span>: resolve(&lt;span class="hljs-string">"src"&lt;/span>) &lt;span class="hljs-comment">// 缓存src目录为@符号，避免重复寻址&lt;/span>
+        vue$: <span class="hljs-string">"vue/dist/vue.common"</span>,
+        <span class="hljs-string">"@"</span>: resolve(<span class="hljs-string">"src"</span>) <span class="hljs-comment">// 缓存src目录为@符号，避免重复寻址</span>
     }
 },
-&lt;span class="hljs-built_in">module&lt;/span>: {
-    noParse: &lt;span class="hljs-regexp">/jquery|lodash/&lt;/span>, &lt;span class="hljs-comment">// 忽略未采用模块化的文件，因此jquery或lodash将不会被下面的loaders解析&lt;/span>
-    &lt;span class="hljs-comment">// noParse: function(content) {&lt;/span>
-    &lt;span class="hljs-comment">//     return /jquery|lodash/.test(content)&lt;/span>
-    &lt;span class="hljs-comment">// },&lt;/span>
+<span class="hljs-built_in">module</span>: {
+    noParse: <span class="hljs-regexp">/jquery|lodash/</span>, <span class="hljs-comment">// 忽略未采用模块化的文件，因此jquery或lodash将不会被下面的loaders解析</span>
+    <span class="hljs-comment">// noParse: function(content) {</span>
+    <span class="hljs-comment">//     return /jquery|lodash/.test(content)</span>
+    <span class="hljs-comment">// },</span>
     rules: [
         {
-            test: &lt;span class="hljs-regexp">/\.js$/&lt;/span>,
-            include: [ &lt;span class="hljs-comment">// 表示只解析以下目录，减少loader处理范围&lt;/span>
-                resolve(&lt;span class="hljs-string">"src"&lt;/span>),
+            test: <span class="hljs-regexp">/\.js$/</span>,
+            include: [ <span class="hljs-comment">// 表示只解析以下目录，减少loader处理范围</span>
+                resolve(<span class="hljs-string">"src"</span>),
                 resolve(config.common.layoutPath)
             ],
-            exclude: file =&gt; &lt;span class="hljs-regexp">/test/&lt;/span>.test(file), &lt;span class="hljs-comment">// 排除test目录文件&lt;/span>
-            loader: &lt;span class="hljs-string">"happypack/loader?id=happy-babel"&lt;/span> &lt;span class="hljs-comment">// 后面会介绍&lt;/span>
+            exclude: file => <span class="hljs-regexp">/test/</span>.test(file), <span class="hljs-comment">// 排除test目录文件</span>
+            loader: <span class="hljs-string">"happypack/loader?id=happy-babel"</span> <span class="hljs-comment">// 后面会介绍</span>
         },
     ]
 }</code></pre>
@@ -222,23 +222,23 @@ resolve: {
         
         实际上，搭载 webpack-parallel-uglify-plugin 插件，这个过程可以倍速提升。[我们](https://www.w3cdoc.com)都知道 node 是单线程的，但node能够fork子进程，基于此，webpack-parallel-uglify-plugin 能够把任务分解给多个子进程去并发的执行，子进程处理完后再把结果发送给主进程，从而实现并发编译，进而大幅提升js压缩速度，如下是配置。
         
-        <pre><code class="js hljs javascript has-numbering">&lt;span class="hljs-keyword">const&lt;/span> ParallelUglifyPlugin = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'webpack-parallel-uglify-plugin'&lt;/span>);
+        <pre><code class="js hljs javascript has-numbering"><span class="hljs-keyword">const</span> ParallelUglifyPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack-parallel-uglify-plugin'</span>);
 
-&lt;span class="hljs-comment">// ...&lt;/span>
+<span class="hljs-comment">// ...</span>
 optimization: {
     minimizer: [
-        &lt;span class="hljs-keyword">new&lt;/span> ParallelUglifyPlugin({ &lt;span class="hljs-comment">// 多进程压缩&lt;/span>
-            cacheDir: &lt;span class="hljs-string">'.cache/'&lt;/span>,
+        <span class="hljs-keyword">new</span> ParallelUglifyPlugin({ <span class="hljs-comment">// 多进程压缩</span>
+            cacheDir: <span class="hljs-string">'.cache/'</span>,
             uglifyJS: {
                 output: {
-                    comments: &lt;span class="hljs-literal">false&lt;/span>,
-                    beautify: &lt;span class="hljs-literal">false&lt;/span>
+                    comments: <span class="hljs-literal">false</span>,
+                    beautify: <span class="hljs-literal">false</span>
                 },
                 compress: {
-                    warnings: &lt;span class="hljs-literal">false&lt;/span>,
-                    drop_console: &lt;span class="hljs-literal">true&lt;/span>,
-                    collapse_vars: &lt;span class="hljs-literal">true&lt;/span>,
-                    reduce_vars: &lt;span class="hljs-literal">true&lt;/span>
+                    warnings: <span class="hljs-literal">false</span>,
+                    drop_console: <span class="hljs-literal">true</span>,
+                    collapse_vars: <span class="hljs-literal">true</span>,
+                    reduce_vars: <span class="hljs-literal">true</span>
                 }
             }
         }),
@@ -262,24 +262,24 @@ optimization: {
         搭载 webpack-parallel-uglify-plugin 插件后，webpack3 的构建速度能够提升 46%；即使升级到 webpack4 后，构建速度依然能够进一步提升 35%。
         
           1. 现在[我们](https://www.w3cdoc.com)来看看，loader 解析速度如何提升。同 webpack-parallel-uglify-plugin 插件一样，HappyPack 也能实现并发编译，从而可以大幅提升 loader 的解析速度， 如下是部分配置。 
-            <pre><code class="js hljs javascript has-numbering">&lt;span class="hljs-keyword">const&lt;/span> HappyPack = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'happypack'&lt;/span>);
-&lt;span class="hljs-keyword">const&lt;/span> happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
-&lt;span class="hljs-keyword">const&lt;/span> createHappyPlugin = (id, loaders) =&gt; &lt;span class="hljs-keyword">new&lt;/span> HappyPack({
+            <pre><code class="js hljs javascript has-numbering"><span class="hljs-keyword">const</span> HappyPack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'happypack'</span>);
+<span class="hljs-keyword">const</span> happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
+<span class="hljs-keyword">const</span> createHappyPlugin = (id, loaders) => <span class="hljs-keyword">new</span> HappyPack({
     id: id,
     loaders: loaders,
     threadPool: happyThreadPool,
-    verbose: process.env.HAPPY_VERBOSE === &lt;span class="hljs-string">'1'&lt;/span> &lt;span class="hljs-comment">// make happy more verbose with HAPPY_VERBOSE=1&lt;/span>
+    verbose: process.env.HAPPY_VERBOSE === <span class="hljs-string">'1'</span> <span class="hljs-comment">// make happy more verbose with HAPPY_VERBOSE=1</span>
 });
 </code></pre>
 
             那么，对于前面 `loader: "happypack/loader?id=happy-babel"` 这句，便需要在 plugins 中创建一个 `happy-babel` 的插件实例。
             
             <pre><code class="js hljs javascript has-numbering">plugins: [
-    createHappyPlugin(&lt;span class="hljs-string">'happy-babel'&lt;/span>, [{
-        loader: &lt;span class="hljs-string">'babel-loader'&lt;/span>,
+    createHappyPlugin(<span class="hljs-string">'happy-babel'</span>, [{
+        loader: <span class="hljs-string">'babel-loader'</span>,
         options: {
-            babelrc: &lt;span class="hljs-literal">true&lt;/span>,
-            cacheDirectory: &lt;span class="hljs-literal">true&lt;/span> &lt;span class="hljs-comment">// 启用缓存&lt;/span>
+            babelrc: <span class="hljs-literal">true</span>,
+            cacheDirectory: <span class="hljs-literal">true</span> <span class="hljs-comment">// 启用缓存</span>
         }
     }])
 ]
@@ -322,29 +322,29 @@ optimization: {
               1. [我们](https://www.w3cdoc.com)都知道，webpack打包时，有一些框架代码是基本不变的，比如说 babel-polyfill、vue、vue-router、vuex、axios、element-ui、fastclick 等，这些模块也有不小的 size，每次编译都要加载一遍，比较费时费力。使用 DLLPlugin 和 DLLReferencePlugin 插件，便可以将这些模块提前打包。 
                 为了完成 dll 过程，[我们](https://www.w3cdoc.com)需要准备一份新的webpack配置，即 webpack.dll.config.js。
                 
-                <pre><code class="js hljs javascript has-numbering">&lt;span class="hljs-keyword">const&lt;/span> webpack = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"webpack"&lt;/span>);
-&lt;span class="hljs-keyword">const&lt;/span> path = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'path'&lt;/span>);
-&lt;span class="hljs-keyword">const&lt;/span> CleanWebpackPlugin = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"clean-webpack-plugin"&lt;/span>);
-&lt;span class="hljs-keyword">const&lt;/span> dllPath = path.resolve(__dirname, &lt;span class="hljs-string">"../src/assets/dll"&lt;/span>); &lt;span class="hljs-comment">// dll文件存放的目录&lt;/span>
+                <pre><code class="js hljs javascript has-numbering"><span class="hljs-keyword">const</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">"webpack"</span>);
+<span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
+<span class="hljs-keyword">const</span> CleanWebpackPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">"clean-webpack-plugin"</span>);
+<span class="hljs-keyword">const</span> dllPath = path.resolve(__dirname, <span class="hljs-string">"../src/assets/dll"</span>); <span class="hljs-comment">// dll文件存放的目录</span>
 
-&lt;span class="hljs-built_in">module&lt;/span>.exports = {
+<span class="hljs-built_in">module</span>.exports = {
     entry: {
-        &lt;span class="hljs-comment">// 把 vue 相关模块的放到一个单独的动态链接库&lt;/span>
-        vue: [&lt;span class="hljs-string">"babel-polyfill"&lt;/span>, &lt;span class="hljs-string">"fastclick"&lt;/span>, &lt;span class="hljs-string">"vue"&lt;/span>, &lt;span class="hljs-string">"vue-router"&lt;/span>, &lt;span class="hljs-string">"vuex"&lt;/span>, &lt;span class="hljs-string">"axios"&lt;/span>, &lt;span class="hljs-string">"element-ui"&lt;/span>]
+        <span class="hljs-comment">// 把 vue 相关模块的放到一个单独的动态链接库</span>
+        vue: [<span class="hljs-string">"babel-polyfill"</span>, <span class="hljs-string">"fastclick"</span>, <span class="hljs-string">"vue"</span>, <span class="hljs-string">"vue-router"</span>, <span class="hljs-string">"vuex"</span>, <span class="hljs-string">"axios"</span>, <span class="hljs-string">"element-ui"</span>]
     },
     output: {
-        filename: &lt;span class="hljs-string">"[name]-[hash].dll.js"&lt;/span>, &lt;span class="hljs-comment">// 生成vue.dll.js&lt;/span>
+        filename: <span class="hljs-string">"[name]-[hash].dll.js"</span>, <span class="hljs-comment">// 生成vue.dll.js</span>
         path: dllPath,
-        library: &lt;span class="hljs-string">"_dll_[name]"&lt;/span>
+        library: <span class="hljs-string">"_dll_[name]"</span>
     },
     plugins: [
-        &lt;span class="hljs-keyword">new&lt;/span> CleanWebpackPlugin([&lt;span class="hljs-string">"*.js"&lt;/span>], { &lt;span class="hljs-comment">// 清除之前的dll文件&lt;/span>
+        <span class="hljs-keyword">new</span> CleanWebpackPlugin([<span class="hljs-string">"*.js"</span>], { <span class="hljs-comment">// 清除之前的dll文件</span>
             root: dllPath,
         }),
-        &lt;span class="hljs-keyword">new&lt;/span> webpack.DllPlugin({
-            name: &lt;span class="hljs-string">"_dll_[name]"&lt;/span>,
-            &lt;span class="hljs-comment">// manifest.json 描述动态链接库包含了哪些内容&lt;/span>
-            path: path.join(__dirname, &lt;span class="hljs-string">"./"&lt;/span>, &lt;span class="hljs-string">"[name].dll.manifest.json"&lt;/span>)
+        <span class="hljs-keyword">new</span> webpack.DllPlugin({
+            name: <span class="hljs-string">"_dll_[name]"</span>,
+            <span class="hljs-comment">// manifest.json 描述动态链接库包含了哪些内容</span>
+            path: path.join(__dirname, <span class="hljs-string">"./"</span>, <span class="hljs-string">"[name].dll.manifest.json"</span>)
         }),
     ],
 };
@@ -352,25 +352,25 @@ optimization: {
 
                 接着， 需要在 package.json 中新增 dll 命令。
                 
-                <pre><code class="json hljs has-numbering">&lt;span class="hljs-string">"scripts"&lt;/span>: {
-    &lt;span class="hljs-attr">"dll"&lt;/span>: &lt;span class="hljs-string">"webpack --mode production --config build/webpack.dll.config.js"&lt;/span>
+                <pre><code class="json hljs has-numbering"><span class="hljs-string">"scripts"</span>: {
+    <span class="hljs-attr">"dll"</span>: <span class="hljs-string">"webpack --mode production --config build/webpack.dll.config.js"</span>
 }
 </code></pre>
 
                 运行 `npm run dll` 后，会生成 `./src/assets/dll/vue.dll-[hash].js` 公共js 和 `./build/vue.dll.manifest.json` 资源说明文件，至此 dll 准备工作完成，接下来在 wepack 中引用即可。
                 
                 <pre><code class="js hljs javascript has-numbering">externals: {
-    &lt;span class="hljs-string">'vue'&lt;/span>: &lt;span class="hljs-string">'Vue'&lt;/span>,
-    &lt;span class="hljs-string">'vue-router'&lt;/span>: &lt;span class="hljs-string">'VueRouter'&lt;/span>,
-    &lt;span class="hljs-string">'vuex'&lt;/span>: &lt;span class="hljs-string">'vuex'&lt;/span>,
-    &lt;span class="hljs-string">'elemenct-ui'&lt;/span>: &lt;span class="hljs-string">'ELEMENT'&lt;/span>,
-    &lt;span class="hljs-string">'axios'&lt;/span>: &lt;span class="hljs-string">'axios'&lt;/span>,
-    &lt;span class="hljs-string">'fastclick'&lt;/span>: &lt;span class="hljs-string">'FastClick'&lt;/span>
+    <span class="hljs-string">'vue'</span>: <span class="hljs-string">'Vue'</span>,
+    <span class="hljs-string">'vue-router'</span>: <span class="hljs-string">'VueRouter'</span>,
+    <span class="hljs-string">'vuex'</span>: <span class="hljs-string">'vuex'</span>,
+    <span class="hljs-string">'elemenct-ui'</span>: <span class="hljs-string">'ELEMENT'</span>,
+    <span class="hljs-string">'axios'</span>: <span class="hljs-string">'axios'</span>,
+    <span class="hljs-string">'fastclick'</span>: <span class="hljs-string">'FastClick'</span>
 },
 plugins: [
     ...(config.common.needDll ? [
-        &lt;span class="hljs-keyword">new&lt;/span> webpack.DllReferencePlugin({
-            manifest: &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"./vue.dll.manifest.json"&lt;/span>)
+        <span class="hljs-keyword">new</span> webpack.DllReferencePlugin({
+            manifest: <span class="hljs-built_in">require</span>(<span class="hljs-string">"./vue.dll.manifest.json"</span>)
         })
     ] : [])
 ]
@@ -378,18 +378,18 @@ plugins: [
 
                 dll 公共js轻易不会变化，假如在将来真的发生了更新，那么新的dll文件名便需要加上新的hash，从而避免[浏览器](https://www.w3cdoc.com)缓存老的文件，造成执行出错。由于 hash 的不确定性，[我们](https://www.w3cdoc.com)在 html 入口文件中没办法指定一个固定链接的 script 脚本，刚好，add-asset-html-webpack-plugin 插件可以帮[我们](https://www.w3cdoc.com)自动引入 dll 文件。
                 
-                <pre><code class="js hljs javascript has-numbering">&lt;span class="hljs-keyword">const&lt;/span> autoAddDllRes = () =&gt; {
-    &lt;span class="hljs-keyword">const&lt;/span> AddAssetHtmlPlugin = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'add-asset-html-webpack-plugin'&lt;/span>);
-    &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-keyword">new&lt;/span> AddAssetHtmlPlugin([{ &lt;span class="hljs-comment">// 往html中注入dll js&lt;/span>
-        publicPath: config.common.publicPath + &lt;span class="hljs-string">"dll/"&lt;/span>,  &lt;span class="hljs-comment">// 注入到html中的路径&lt;/span>
-        outputPath: &lt;span class="hljs-string">"dll"&lt;/span>, &lt;span class="hljs-comment">// 最终输出的目录&lt;/span>
-        filepath: resolve(&lt;span class="hljs-string">"src/assets/dll/*.js"&lt;/span>),
-        includeSourcemap: &lt;span class="hljs-literal">false&lt;/span>,
-        typeOfAsset: &lt;span class="hljs-string">"js"&lt;/span> &lt;span class="hljs-comment">// options js、css; default js&lt;/span>
+                <pre><code class="js hljs javascript has-numbering"><span class="hljs-keyword">const</span> autoAddDllRes = () => {
+    <span class="hljs-keyword">const</span> AddAssetHtmlPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">'add-asset-html-webpack-plugin'</span>);
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> AddAssetHtmlPlugin([{ <span class="hljs-comment">// 往html中注入dll js</span>
+        publicPath: config.common.publicPath + <span class="hljs-string">"dll/"</span>,  <span class="hljs-comment">// 注入到html中的路径</span>
+        outputPath: <span class="hljs-string">"dll"</span>, <span class="hljs-comment">// 最终输出的目录</span>
+        filepath: resolve(<span class="hljs-string">"src/assets/dll/*.js"</span>),
+        includeSourcemap: <span class="hljs-literal">false</span>,
+        typeOfAsset: <span class="hljs-string">"js"</span> <span class="hljs-comment">// options js、css; default js</span>
     }]);
 };
 
-&lt;span class="hljs-comment">// ...&lt;/span>
+<span class="hljs-comment">// ...</span>
 plugins: [
     ...(config.common.needDll ? [autoAddDllRes()] : [])
 ]
@@ -438,7 +438,7 @@ plugins: [
                 
                 为了使得 tree-shaking 真正生效，引入资源时，仅仅引入需要的组件尤为重要，如下所示：
                 
-                <pre><code class="js hljs javascript has-numbering">&lt;span class="hljs-keyword">import&lt;/span> { Button, Input } &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">"element-ui"&lt;/span>; &lt;span class="hljs-comment">// 只引入需要的组件&lt;/span></code></pre>
+                <pre><code class="js hljs javascript has-numbering"><span class="hljs-keyword">import</span> { Button, Input } <span class="hljs-keyword">from</span> <span class="hljs-string">"element-ui"</span>; <span class="hljs-comment">// 只引入需要的组件</span></code></pre>
                 
                 ### **结尾** {#结尾}
                 

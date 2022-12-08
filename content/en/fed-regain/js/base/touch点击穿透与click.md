@@ -50,17 +50,17 @@ PC网页上的大部分操作都是用鼠标的，即响应的是鼠标事件，
 
 整个容器里有一个底层元素的div，和一个弹出层div，为了让弹出层有模态框的效果，我又加了一个遮罩层。
 
-<pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"container"&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"underLayer"&lt;/span>&gt;&lt;/span>底层元素&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
+<pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"container"&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"underLayer"&lt;/span>>&lt;/span>底层元素&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
 
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"popupLayer"&lt;/span>&gt;&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"layer-title"&lt;/span>&gt;&lt;/span>弹出层&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"layer-action"&lt;/span>&gt;&lt;/span>
-            &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"closePopup"&lt;/span>&gt;&lt;/span>关闭&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
-        &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"bgMask"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"popupLayer"&lt;/span>>&lt;/span>
+        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"layer-title"&lt;/span>>&lt;/span>弹出层&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"layer-action"&lt;/span>>&lt;/span>
+            &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"closePopup"&lt;/span>>&lt;/span>关闭&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
+        &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"bgMask"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
 </code></pre>
 
 然后为底层元素绑定 click 事件，而弹出层的关闭按钮绑定 tap 事件。

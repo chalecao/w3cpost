@@ -25,12 +25,12 @@ title: 使用 Webpack-chain 链式生成 webpack 配置
  引入 webpack-chain 后，[我们](https://www.w3cdoc.com)所有的 webpack 配置通过一个链式包装器便可生成了：<button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button>
   
   <div class="_2Uzcx_">
-    <pre class="line-numbers language-jsx"><code class=" language-jsx">&lt;span class="token keyword">const&lt;/span> Config &lt;span class="token operator">=&lt;/span> &lt;span class="token function">require&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'webpack-chain'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token keyword">const&lt;/span> config &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">new&lt;/span> &lt;span class="token class-name">Config&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token comment">// 链式生成配置&lt;/span>
-&lt;span class="token operator">...&lt;/span>
-&lt;span class="token comment">// 导出 webpack 配置对象&lt;/span>
-&lt;span class="token keyword">export&lt;/span> &lt;span class="token keyword">default&lt;/span> config&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">toConfig&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+    <pre class="line-numbers language-jsx"><code class=" language-jsx"><span class="token keyword">const</span> Config <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'webpack-chain'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> config <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Config</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 链式生成配置</span>
+<span class="token operator">...</span>
+<span class="token comment">// 导出 webpack 配置对象</span>
+<span class="token keyword">export</span> <span class="token keyword">default</span> config<span class="token punctuation">.</span><span class="token function">toConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
   </div>
  在引入详细的示例之前，先让[我们](https://www.w3cdoc.com)介绍一下 webpack-chain 中内置的两种数据结构：ChainMap、ChainSet。
@@ -48,16 +48,16 @@ title: 使用 Webpack-chain 链式生成 webpack 配置
   
   <div class="_2Uzcx_">
     <pre class="line-numbers language-csharp"><code class=" language-csharp">config
-  &lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">entry&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'app'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-    &lt;span class="token punctuation">.&lt;/span>&lt;span class="token keyword">add&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'src/index.js'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
+  <span class="token punctuation">.</span><span class="token function">entry</span><span class="token punctuation">(</span><span class="token string">'app'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token keyword">add</span><span class="token punctuation">(</span><span class="token string">'src/index.js'</span><span class="token punctuation">)</span>
 </code></pre>
   </div>
  它等价于 webpack 配置对象的这部分：<button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button>
   
   <div class="_2Uzcx_">
-    <pre class="line-numbers language-css"><code class=" language-css">&lt;span class="token selector">entry:&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token property">app&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'./src/index.js'&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+    <pre class="line-numbers language-css"><code class=" language-css"><span class="token selector">entry:</span> <span class="token punctuation">{</span>
+  <span class="token property">app</span><span class="token punctuation">:</span> <span class="token string">'./src/index.js'</span>
+<span class="token punctuation">}</span>
 </code></pre>
   </div>
  当然，我想强调的 ChainedSet 真正强大的地方，在于 ChainedSet 提供的内置方法：add(value)、delete(value)、has(value) 等。
@@ -95,20 +95,20 @@ title: 使用 Webpack-chain 链式生成 webpack 配置
  Chainable 实现了链式调用的功能，它的代码很简洁：
   
   <div class="_2Uzcx_">
-    <pre class="line-numbers language-kotlin"><code class=" language-kotlin">module&lt;span class="token punctuation">.&lt;/span>exports &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">class&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">constructor&lt;/span>&lt;span class="token punctuation">(&lt;/span>parent&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>parent &lt;span class="token operator">=&lt;/span> parent&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
+    <pre class="line-numbers language-kotlin"><code class=" language-kotlin">module<span class="token punctuation">.</span>exports <span class="token operator">=</span> <span class="token keyword">class</span> <span class="token punctuation">{</span>
+  <span class="token keyword">constructor</span><span class="token punctuation">(</span>parent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>parent <span class="token operator">=</span> parent<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  &lt;span class="token function">batch&lt;/span>&lt;span class="token punctuation">(&lt;/span>handler&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token function">handler&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
+  <span class="token function">batch</span><span class="token punctuation">(</span>handler<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">handler</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
 
-  &lt;span class="token function">end&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>parent&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+  <span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>parent<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
 </code></pre>
   </div>
  最常调用的 end 方法便是来源于这了，它会返回调用链中最[前端](https://www.w3cdoc.com)的那个对象。
@@ -117,22 +117,22 @@ title: 使用 Webpack-chain 链式生成 webpack 配置
   
   <div class="_2Uzcx_">
     <pre class="line-numbers language-ruby"><code class=" language-ruby">config
-    &lt;span class="token punctuation">.&lt;/span>use&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'cache-loader'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-    &lt;span class="token punctuation">.&lt;/span>loader&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'cache-loader'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-    &lt;span class="token punctuation">.&lt;/span>options&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span>
-      cacheDirectory&lt;span class="token punctuation">,&lt;/span>
+    <span class="token punctuation">.</span>use<span class="token punctuation">(</span><span class="token string">'cache-loader'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>loader<span class="token punctuation">(</span><span class="token string">'cache-loader'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>options<span class="token punctuation">(</span><span class="token punctuation">{</span>
+      cacheDirectory<span class="token punctuation">,</span>
       cacheIdentifier
-    &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-    &lt;span class="token punctuation">.&lt;/span>&lt;span class="token keyword">end&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-    &lt;span class="token punctuation">.&lt;/span>use&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'babel-loader'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-      &lt;span class="token punctuation">.&lt;/span>loader&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'babel-loader'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-      &lt;span class="token punctuation">.&lt;/span>options&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span>
-        &lt;span class="token operator">/&lt;/span>&lt;span class="token operator">/&lt;/span> &lt;span class="token keyword">do&lt;/span> &lt;span class="token keyword">not&lt;/span> pick local project babel config
-        babelrc&lt;span class="token punctuation">:&lt;/span> &lt;span class="token keyword">false&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        presets&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">[&lt;/span>
-          &lt;span class="token keyword">require&lt;/span>&lt;span class="token punctuation">.&lt;/span>resolve&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'@vue/babel-preset-app'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-        &lt;span class="token punctuation">]&lt;/span>
-      &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token keyword">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span>use<span class="token punctuation">(</span><span class="token string">'babel-loader'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span>loader<span class="token punctuation">(</span><span class="token string">'babel-loader'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span>options<span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token operator">/</span><span class="token operator">/</span> <span class="token keyword">do</span> <span class="token keyword">not</span> pick local project babel config
+        babelrc<span class="token punctuation">:</span> <span class="token keyword">false</span><span class="token punctuation">,</span>
+        presets<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+          <span class="token keyword">require</span><span class="token punctuation">.</span>resolve<span class="token punctuation">(</span><span class="token string">'@vue/babel-preset-app'</span><span class="token punctuation">)</span>
+        <span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
 </code></pre>
   </div>
  第八行结尾 end() 处返回的便又是 <code>config</code> 了。
@@ -147,42 +147,42 @@ title: 使用 Webpack-chain 链式生成 webpack 配置
  举个例子，在 createBaseConfig 里，有一个这样的函数：
   
   <div class="_2Uzcx_">
-    <pre class="line-numbers language-jsx"><code class=" language-jsx">&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">createCSSRule&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">lang&lt;span class="token punctuation">,&lt;/span> test&lt;span class="token punctuation">,&lt;/span> loader&lt;span class="token punctuation">,&lt;/span> options&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">const&lt;/span> baseRule &lt;span class="token operator">=&lt;/span> config&lt;span class="token punctuation">.&lt;/span>module&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">rule&lt;/span>&lt;span class="token punctuation">(&lt;/span>lang&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">test&lt;/span>&lt;span class="token punctuation">(&lt;/span>test&lt;span class="token punctuation">)&lt;/span>
-  &lt;span class="token keyword">const&lt;/span> modulesRule &lt;span class="token operator">=&lt;/span> baseRule&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">oneOf&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'modules'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">resourceQuery&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token regex">/module/&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-  &lt;span class="token keyword">const&lt;/span> normalRule &lt;span class="token operator">=&lt;/span> baseRule&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">oneOf&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'normal'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
+    <pre class="line-numbers language-jsx"><code class=" language-jsx"><span class="token keyword">function</span> <span class="token function">createCSSRule</span> <span class="token punctuation">(</span><span class="token parameter">lang<span class="token punctuation">,</span> test<span class="token punctuation">,</span> loader<span class="token punctuation">,</span> options</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> baseRule <span class="token operator">=</span> config<span class="token punctuation">.</span>module<span class="token punctuation">.</span><span class="token function">rule</span><span class="token punctuation">(</span>lang<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>test<span class="token punctuation">)</span>
+  <span class="token keyword">const</span> modulesRule <span class="token operator">=</span> baseRule<span class="token punctuation">.</span><span class="token function">oneOf</span><span class="token punctuation">(</span><span class="token string">'modules'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">resourceQuery</span><span class="token punctuation">(</span><span class="token regex">/module/</span><span class="token punctuation">)</span>
+  <span class="token keyword">const</span> normalRule <span class="token operator">=</span> baseRule<span class="token punctuation">.</span><span class="token function">oneOf</span><span class="token punctuation">(</span><span class="token string">'normal'</span><span class="token punctuation">)</span>
 
-  &lt;span class="token function">applyLoaders&lt;/span>&lt;span class="token punctuation">(&lt;/span>modulesRule&lt;span class="token punctuation">,&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-  &lt;span class="token function">applyLoaders&lt;/span>&lt;span class="token punctuation">(&lt;/span>normalRule&lt;span class="token punctuation">,&lt;/span> &lt;span class="token boolean">false&lt;/span>&lt;span class="token punctuation">)&lt;/span>
+  <span class="token function">applyLoaders</span><span class="token punctuation">(</span>modulesRule<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+  <span class="token function">applyLoaders</span><span class="token punctuation">(</span>normalRule<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span>
 
-  &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">applyLoaders&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">rule&lt;span class="token punctuation">,&lt;/span> modules&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">!&lt;/span>isServer&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-      &lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>isProd&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-        rule&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">use&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'extract-css-loader'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">loader&lt;/span>&lt;span class="token punctuation">(&lt;/span>CSSExtractPlugin&lt;span class="token punctuation">.&lt;/span>loader&lt;span class="token punctuation">)&lt;/span>
-      &lt;span class="token punctuation">}&lt;/span> &lt;span class="token keyword">else&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-        rule&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">use&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'vue-style-loader'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">loader&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'vue-style-loader'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-      &lt;span class="token punctuation">}&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>
+  <span class="token keyword">function</span> <span class="token function">applyLoaders</span> <span class="token punctuation">(</span><span class="token parameter">rule<span class="token punctuation">,</span> modules</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isServer<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>isProd<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        rule<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'extract-css-loader'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">loader</span><span class="token punctuation">(</span>CSSExtractPlugin<span class="token punctuation">.</span>loader<span class="token punctuation">)</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        rule<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'vue-style-loader'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">loader</span><span class="token punctuation">(</span><span class="token string">'vue-style-loader'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
 
-    rule&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">use&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'css-loader'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-      &lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">loader&lt;/span>&lt;span class="token punctuation">(&lt;/span>isServer &lt;span class="token operator">?&lt;/span> &lt;span class="token string">'css-loader/locals'&lt;/span> &lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'css-loader'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-      &lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">options&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span>
-        modules&lt;span class="token punctuation">,&lt;/span>
-        localIdentName&lt;span class="token punctuation">:&lt;/span> &lt;span class="token template-string">&lt;span class="token template-punctuation string">`&lt;/span>&lt;span class="token string">[local]_[hash:base64:8]&lt;/span>&lt;span class="token template-punctuation string">`&lt;/span>&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        importLoaders&lt;span class="token punctuation">:&lt;/span> &lt;span class="token number">1&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-        sourceMap&lt;span class="token punctuation">:&lt;/span> &lt;span class="token operator">!&lt;/span>isProd
-      &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>
+    rule<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'css-loader'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">loader</span><span class="token punctuation">(</span>isServer <span class="token operator">?</span> <span class="token string">'css-loader/locals'</span> <span class="token punctuation">:</span> <span class="token string">'css-loader'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">options</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        modules<span class="token punctuation">,</span>
+        localIdentName<span class="token punctuation">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">[local]_[hash:base64:8]</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span>
+        importLoaders<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+        sourceMap<span class="token punctuation">:</span> <span class="token operator">!</span>isProd
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
 
-    rule&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">use&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'postcss-loader'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">loader&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'postcss-loader'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">options&lt;/span>&lt;span class="token punctuation">(&lt;/span>Object&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">assign&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span>
-      plugins&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">[&lt;/span>&lt;span class="token function">require&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'autoprefixer'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-      sourceMap&lt;span class="token punctuation">:&lt;/span> &lt;span class="token operator">!&lt;/span>isProd
-    &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> siteConfig&lt;span class="token punctuation">.&lt;/span>postcss&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>
+    rule<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token string">'postcss-loader'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">loader</span><span class="token punctuation">(</span><span class="token string">'postcss-loader'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">options</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      plugins<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'autoprefixer'</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      sourceMap<span class="token punctuation">:</span> <span class="token operator">!</span>isProd
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> siteConfig<span class="token punctuation">.</span>postcss<span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-    &lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>loader&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-      rule&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">use&lt;/span>&lt;span class="token punctuation">(&lt;/span>loader&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">loader&lt;/span>&lt;span class="token punctuation">(&lt;/span>loader&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">options&lt;/span>&lt;span class="token punctuation">(&lt;/span>options&lt;span class="token punctuation">)&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>loader<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      rule<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span>loader<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">loader</span><span class="token punctuation">(</span>loader<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">options</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
   </div>
  它做了这样一件事：对特定的一种样式语言进行 css 模块化和非模块化的处理，顺序是 loader -> postcss-loader -> css-loader -> vue-style-loader 或 extract-css-loader。<br /> 使用方式是这样的：
@@ -192,14 +192,14 @@ title: 使用 Webpack-chain 链式生成 webpack 配置
       &nbsp;
     
 
-    <pre class="line-numbers language-tsx"><code class=" language-tsx">&lt;span class="token function">createCSSRule&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'css'&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token regex">/\.css$/&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-&lt;span class="token function">createCSSRule&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'postcss'&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token regex">/\.p(ost)?css$/&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-&lt;span class="token function">createCSSRule&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'scss'&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token regex">/\.scss$/&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token string">'sass-loader'&lt;/span>&lt;span class="token punctuation">,&lt;/span> siteConfig&lt;span class="token punctuation">.&lt;/span>scss&lt;span class="token punctuation">)&lt;/span>
-&lt;span class="token function">createCSSRule&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'sass'&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token regex">/\.sass$/&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token string">'sass-loader'&lt;/span>&lt;span class="token punctuation">,&lt;/span> Object&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">assign&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> indentedSyntax&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span> &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> siteConfig&lt;span class="token punctuation">.&lt;/span>sass&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-&lt;span class="token function">createCSSRule&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'less'&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token regex">/\.less$/&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token string">'less-loader'&lt;/span>&lt;span class="token punctuation">,&lt;/span> siteConfig&lt;span class="token punctuation">.&lt;/span>less&lt;span class="token punctuation">)&lt;/span>
-&lt;span class="token function">createCSSRule&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'stylus'&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token regex">/\.styl(us)?$/&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token string">'stylus-loader'&lt;/span>&lt;span class="token punctuation">,&lt;/span> Object&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">assign&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span>
-  preferPathResolver&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'webpack'&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> siteConfig&lt;span class="token punctuation">.&lt;/span>stylus&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>
+    <pre class="line-numbers language-tsx"><code class=" language-tsx"><span class="token function">createCSSRule</span><span class="token punctuation">(</span><span class="token string">'css'</span><span class="token punctuation">,</span> <span class="token regex">/\.css$/</span><span class="token punctuation">)</span>
+<span class="token function">createCSSRule</span><span class="token punctuation">(</span><span class="token string">'postcss'</span><span class="token punctuation">,</span> <span class="token regex">/\.p(ost)?css$/</span><span class="token punctuation">)</span>
+<span class="token function">createCSSRule</span><span class="token punctuation">(</span><span class="token string">'scss'</span><span class="token punctuation">,</span> <span class="token regex">/\.scss$/</span><span class="token punctuation">,</span> <span class="token string">'sass-loader'</span><span class="token punctuation">,</span> siteConfig<span class="token punctuation">.</span>scss<span class="token punctuation">)</span>
+<span class="token function">createCSSRule</span><span class="token punctuation">(</span><span class="token string">'sass'</span><span class="token punctuation">,</span> <span class="token regex">/\.sass$/</span><span class="token punctuation">,</span> <span class="token string">'sass-loader'</span><span class="token punctuation">,</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span> indentedSyntax<span class="token punctuation">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> siteConfig<span class="token punctuation">.</span>sass<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token function">createCSSRule</span><span class="token punctuation">(</span><span class="token string">'less'</span><span class="token punctuation">,</span> <span class="token regex">/\.less$/</span><span class="token punctuation">,</span> <span class="token string">'less-loader'</span><span class="token punctuation">,</span> siteConfig<span class="token punctuation">.</span>less<span class="token punctuation">)</span>
+<span class="token function">createCSSRule</span><span class="token punctuation">(</span><span class="token string">'stylus'</span><span class="token punctuation">,</span> <span class="token regex">/\.styl(us)?$/</span><span class="token punctuation">,</span> <span class="token string">'stylus-loader'</span><span class="token punctuation">,</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  preferPathResolver<span class="token punctuation">:</span> <span class="token string">'webpack'</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> siteConfig<span class="token punctuation">.</span>stylus<span class="token punctuation">)</span><span class="token punctuation">)</span>
 </code></pre>
   </div>
  是不是一下减少了配置的编写量？而且还很灵活的支持用户自定义 options 和后期的代码变更。

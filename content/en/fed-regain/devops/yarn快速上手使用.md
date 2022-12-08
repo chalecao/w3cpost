@@ -141,7 +141,7 @@ Yarn 会在项目的根目录下创建一个 <code class="highlighter-rouge">ya
   </div>
 </div>
 
-可以指定精确的版本，最小版本 <code class="highlighter-rouge">&gt;=</code>，一个版本区间 <code class="highlighter-rouge">&gt;= ... &lt;</code>。
+可以指定精确的版本，最小版本 <code class="highlighter-rouge">>=</code>，一个版本区间 <code class="highlighter-rouge">>= ... &lt;</code>。
 
 开发环境下的依赖放在 <code class="highlighter-rouge">devDependencies</code> 中：
 

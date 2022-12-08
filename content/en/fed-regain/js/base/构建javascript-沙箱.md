@@ -4,31 +4,29 @@ title: 构建JavaScript 沙箱
 ---
 在 Node.js 中有一个模块叫做 VM，它提供了几个 API，允许代码在 V8 虚拟机上下文中运行，如：
 
-<div class="highlight">
-  <pre><code class="language-js">&lt;span class="k">const&lt;/span> &lt;span class="nx">vm&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">require&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'vm'&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="k">const&lt;/span> &lt;span class="nx">sandbox&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">a&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">b&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="mi">2&lt;/span> &lt;span class="p">};&lt;/span>
-&lt;span class="k">const&lt;/span> &lt;span class="nx">script&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">vm&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">Script&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'a + b'&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="k">const&lt;/span> &lt;span class="nx">context&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">vm&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">createContext&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">sandbox&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="nx">script&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">runInContext&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">context&lt;/span>&lt;span class="p">);&lt;/span>
-</code></pre>
-</div>
+```
+const vm = require('vm');
+const sandbox = { a: 1, b: 2 };
+const script = new vm.Script('a + b');
+const context = new vm.createContext(sandbox);
+script.runInContext(context);
+```
 
 vm.Script 中的代码是预编译好的，通过 vm.createContext 将代码加载到一个上下文环境中，置入沙箱（sandbox），然后通过 script.runInContext 执行代码，整个操作都在封闭的 VM 中进行。这是 Node.js 提供给[我们](https://www.w3cdoc.com)的便捷功能，那么，在[浏览器](https://www.w3cdoc.com)环境中呢？是否也能做到将代码运行在沙箱中？
 
-### 代码编译工具
+## 代码编译工具
 
-**邪恶的 eval**
+### 邪恶的eval
 
 eval 函数可以将一个 Javascript 字符串视作代码片段执行，不过它存在诸多问题，如调试困难、性能问题等，并且它在运行时可以访问闭包环境和全局作用域，存在代码注入的安全风险，作为沙箱，这也是[我们](https://www.w3cdoc.com)不期望看到的。eval 虽然好用，但是经常被滥用，在这里[我们](https://www.w3cdoc.com)不多讨论它。
 
-**new Function**
+## new Function
 
 Function 构造函数会创建一个新的函数对象，它可以作为 eval 的替代品:
 
-<div class="highlight">
-  <pre><code class="language-js">&lt;span class="nx">fn&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nb">Function&lt;/span>&lt;span class="p">(...&lt;/span>&lt;span class="nx">args&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">'functionBody'&lt;/span>&lt;span class="p">);&lt;/span>
-</code></pre>
-</div>
+```
+fn = new Function(...args, 'functionBody');
+```
 
 返回的 fn 是一个定义好的函数，最后一个参数为函数体。它和 eval 不太一样：
 
@@ -41,13 +39,12 @@ Function 构造函数会创建一个新的函数对象，它可以作为 eval �
 
 with 是阻止程序访问上一级作用域的一道防火墙：
 
-<div class="highlight">
-  <pre><code class="language-js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">compileCode&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">code&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="nx">code&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">'with (sandbox) {'&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">code&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s1">'}'&lt;/span>&lt;span class="p">;&lt;/span>
-  &lt;span class="k">return&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nb">Function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'sandbox'&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">code&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="p">}&lt;/span>
-</code></pre>
-</div>
+```
+function compileCode(code) {
+  code = 'with (sandbox) {' + code + '}';
+  return new Function('sandbox', code);
+}
+```
 
 如上代码，code 被执行时，首先会寻找 sandbox 中的变量，如果不存在，会往上追溯global 对象，虽然有一道防火墙，但是依然不能阻止 fn 访问全局作用域。
 
@@ -57,8 +54,8 @@ with 是阻止程序访问上一级作用域的一道防火墙：
 
 ES6 中提供了一个 Proxy 函数，它是访问对象前的一个拦截器，下面举一个简单的栗子：
 
-<div class="highlight">
-  <pre><code class="language-text">const p = new Proxy({}, {
+```
+const p = new Proxy({}, {
   get(target, key) {
     if(key === 'a') {
       return 1;
@@ -68,18 +65,17 @@ ES6 中提供了一个 Proxy 函数，它是访问对象前的一个拦截器，
 });
 p.a // 1
 p.s // undefined
-</code></pre>
-</div>
+```
 
 代码中，Proxy 给 {} 设置了属性访问拦截器，倘若访问的属性为 a 则返回 1，否则走正常程序。
 
 这里[我们](https://www.w3cdoc.com)可以使用 proxy 对访问做拦截处理，sandbox 本不存在的属性会追溯到全局变量上访问，此时[我们](https://www.w3cdoc.com)可以欺骗程序，告诉它这个「不存在的属性」是存在的，于是有了下面的代码：
 
-<div class="highlight">
-  <pre><code class="language-text">function compileCode(code) {
+```
+function compileCode(code) {
   code = 'with (sandbox) {' + code + '}';
   const fn = new Function('sandbox', code);
-  return (sandbox) =&gt; {
+  return (sandbox) => {
     const proxy = new Proxy(sandbox, {
       has(target, key) {
         return true; // 欺骗，告知属性存在
@@ -88,8 +84,7 @@ p.s // undefined
     return fn(proxy);
   }
 }
-</code></pre>
-</div>
+````  
 
 似乎这么做就可以了，但既然用到了 ES6 的特性，[我们](https://www.w3cdoc.com)便不能忽略 ES6 中一个可以控制with 关键词行为的变量。
 
@@ -97,8 +92,8 @@ p.s // undefined
 
 Symbol 是 JS 的第七种数据类型，它能够产生一个唯一的值，同时也具备一些内建属性，这些属性可以用来进行元编程（meta programming），即对语言本身编程，影响语言行为。其中一个内建属性 Symbol.unscopables，通过它可以影响 with 的行为。
 
-<div class="highlight">
-  <pre><code class="language-text">const foo = () =&gt; 'global';
+```
+const foo = () => 'global';
 class A {
   foo() { return 'clourse'; }
   get [Symbol.unscopables]() {
@@ -110,8 +105,7 @@ class A {
 with(A.prototype) {
   foo(); // 'global'
 }
-</code></pre>
-</div>
+```
 
 上面对 A 设置做了 Symbol.unscopables 的设定，声明 foo 属性在 A 上是不存在的，从而使得代码从 with 中逃逸。对此，[我们](https://www.w3cdoc.com)需要对它做一层加固：
 
@@ -119,7 +113,7 @@ with(A.prototype) {
   <pre><code class="language-text">function compileCode(code) {
   code = 'with (sandbox) {' + code + '}';
   const fn = new Function('sandbox', code);
-  return (sandbox) =&gt; {
+  return (sandbox) => {
     const proxy = new Proxy(sandbox, {
       has(target, key) {
         return true; // 欺骗，告知属性存在
@@ -148,26 +142,26 @@ with(A.prototype) {
 对于第一个问题，[我们](https://www.w3cdoc.com)可以通过堆栈深度检测：
 
 <div class="highlight">
-  <pre><code class="language-js">&lt;span class="kd">let&lt;/span> &lt;span class="nx">stack&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kd">let&lt;/span> &lt;span class="kr">char&lt;/span> &lt;span class="k">of&lt;/span> &lt;span class="nx">code&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kr">char&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="s1">'{'&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-    &lt;span class="nx">stack&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">;&lt;/span>
-  &lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kr">char&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="s1">'}'&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-    &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">stack&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-      &lt;span class="k">throw&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nb">Error&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'Syntax Error.'&lt;/span>&lt;span class="p">);&lt;/span>
-    &lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
-      &lt;span class="nx">stack&lt;/span>&lt;span class="o">--&lt;/span>&lt;span class="p">;&lt;/span>
-    &lt;span class="p">}&lt;/span>
-  &lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
+  <pre><code class="language-js">let stack = 0;
+for (let char of code) {
+  if (char === '{') {
+    stack++;
+  } else if (char === '}') {
+    if (stack === 0) {
+      throw new Error('Syntax Error.');
+    } else {
+      stack--;
+    }
+  }
+}
 </code></pre>
 </div>
 
 事实上，这样做依然不严谨，比如代码注释中出现花括号问题，如 /\*{\*/&#8217;} alert(this); {&#8216;/\*}\*/；而对于第二个问题，暂时还没有什么好的办法，尤其是 Function，它可以通过很多方式构造出来：
 
 <div class="highlight">
-  <pre><code class="language-js">&lt;span class="p">(&lt;/span>&lt;span class="kd">function&lt;/span>&lt;span class="p">(){}).&lt;/span>&lt;span class="nx">constructor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"alert(this)"&lt;/span>&lt;span class="p">)();&lt;/span>
-&lt;span class="sr">/2/&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">constructor&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">constructor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"alert(this)"&lt;/span>&lt;span class="p">)();&lt;/span>
+  <pre><code class="language-js">(function(){}).constructor("alert(this)")();
+/2/.constructor.constructor("alert(this)")();
 </code></pre>
 </div>
 

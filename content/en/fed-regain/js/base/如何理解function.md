@@ -262,11 +262,11 @@ var actCount = arguments.length,
 expCount = testArg.length,
 result;
 
-result = "Expected arguments' count is " + expCount + ";&lt;br/&gt;";
-result += "Actual arguments' count is " + actCount + ".&lt;br/&gt;";
-result += "They are:&lt;br/&gt;";
+result = "Expected arguments' count is " + expCount + ";&lt;br/>";
+result += "Actual arguments' count is " + actCount + ".&lt;br/>";
+result += "They are:&lt;br/>";
 for (var i = 0; i &lt; actCount; i++) {
-result += arguments[i] + ";&lt;br/&gt;";
+result += arguments[i] + ";&lt;br/>";
 }
 if (arguments instanceof Array) {
 result += "arguments is an Array instance."
@@ -316,10 +316,10 @@ checkVarCount(1);
 if (test.caller == null) {
 document.write("test is called from the toppest level");
 } else {
-document.write("test is called from the function:&lt;br/&gt;");
+document.write("test is called from the function:&lt;br/>");
 document.writeln(test.caller.toString());
 }
-document.write("&lt;br /&gt;");
+document.write("&lt;br />");
 }
 //call from the top level
 test();
@@ -367,7 +367,7 @@ var x = new String("Hi");
 
 if (x.constructor == String)
 document.write("Object is a String.");
-document.write ("&lt;br /&gt;");
+document.write ("&lt;br />");
 
 var y = new MyObj;
 if (y.constructor == MyObj)
@@ -424,31 +424,31 @@ alert(aa.add(1)); // 3</pre>
 var s = "";
 
 s += "this value: " + this;
-s += "&lt;br /&gt;";
+s += "&lt;br />";
 for (i in callMe.arguments) {
 s += "arguments: " + callMe.arguments[i];
-s += "&lt;br /&gt;";
+s += "&lt;br />";
 }
 return s;
 }
 
-document.write("Original function: &lt;br/&gt;");
+document.write("Original function: &lt;br/>");
 document.write(callMe(1, 2));
-document.write("&lt;br/&gt;");
+document.write("&lt;br/>");
 
-document.write("Function called with apply: &lt;br/&gt;");
+document.write("Function called with apply: &lt;br/>");
 document.write(callMe.apply(3, [4, 5]));
-document.write("&lt;br/&gt;");
+document.write("&lt;br/>");
 
-document.write("Function called with apply with invalid array: &lt;br/&gt;");
+document.write("Function called with apply with invalid array: &lt;br/>");
 try{
 document.write(callMe.apply(3,2));
 } catch (e) {
 document.write(e.message);
 }
-document.write("&lt;br/&gt;&lt;br/&gt;");
+document.write("&lt;br/>&lt;br/>");
 
-document.write("Function called with apply without any argument: &lt;br/&gt;");
+document.write("Function called with apply without any argument: &lt;br/>");
 document.write(callMe.apply());
 //Output result:
 //Original function:
@@ -483,19 +483,19 @@ document.write(callMe.apply());
 var s = "";
 
 s += "this value: " + this;
-s += "&lt;br /&gt;";
+s += "&lt;br />";
 for (i in callMe.arguments) {
 s += "arguments: " + callMe.arguments[i];
-s += "&lt;br /&gt;";
+s += "&lt;br />";
 }
 return s;
 }
 
-document.write("Original function: &lt;br/&gt;");
+document.write("Original function: &lt;br/>");
 document.write(callMe(1, 2));
-document.write("&lt;br/&gt;");
+document.write("&lt;br/>");
 
-document.write("Function called with call: &lt;br/&gt;");
+document.write("Function called with call: &lt;br/>");
 document.write(callMe.call(3, 4, 5));
 
 // Output:
@@ -524,7 +524,7 @@ var checkNumericRange = function (value) {
 if (typeof value !== 'number')
 return false;
 else
-return value &gt;= this.minimum && value &lt;= this.maximum;
+return value >= this.minimum && value &lt;= this.maximum;
 }
 
 // The range object will become the this value in the callback function.
@@ -561,9 +561,9 @@ displayArgs2("b", "c");
 在对象定义内部使用bind方法可以将某个事件绑定到对象内部的某个方法，
 
 <div>
-  <pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;input type="button" id="start" value="Start" /&gt;
-&lt;input type="button" id="stop" value="Stop" /&gt;
-&lt;script type="text/javascript"&gt;
+  <pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;input type="button" id="start" value="Start" />
+&lt;input type="button" id="stop" value="Stop" />
+&lt;script type="text/javascript">
 function Car(owner) {
 this.owner = owner;
 this.start = function () {
@@ -575,7 +575,7 @@ console.log(this.owner + "'s car is starting.");
 };
 this.stop = function () {
 console.log(this);
-//output: &lt;input type="button" id="stop" value="Stop" /&gt;
+//output: &lt;input type="button" id="stop" value="Stop" />
 console.log(this.owner + "'s car is starting.");
 //output: undefined's car is stopping.
 };
@@ -591,7 +591,7 @@ btnStop.attachEvent("onClick", someCar.stop);
 btnStart.addEventListener("click", someCar.start.bind(someCar), false);
 btnStop.addEventListener("click", someCar.stop, false);
 }
-&lt;/script&gt;</pre>
+&lt;/script></pre>
 </div>
 
 从上面Sample[我们](https://www.w3cdoc.com)发现，当不使用bind方法的时候，事件里面的this指向的触发click事件dom元素input，它当然没有owner属性；如果利用bind指定事件里面的this对象，就能达到[我们](https://www.w3cdoc.com)想要的效果。

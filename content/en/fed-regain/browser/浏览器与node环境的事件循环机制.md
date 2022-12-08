@@ -158,9 +158,9 @@ check阶段专门用来执行`setImmediate()`方法的回调，当poll阶段进�
 那么合适使用这个方法比较合适呢？下面有一个例子：
 
 <div class="highlight">
-  <pre><code class="language-text">const server = net.createServer(() =&gt; {}).listen(8080);
+  <pre><code class="language-text">const server = net.createServer(() => {}).listen(8080);
 
-server.on('listening', () =&gt; {});
+server.on('listening', () => {});
 </code></pre>
 </div>
 
@@ -177,11 +177,11 @@ server.on('listening', () =&gt; {});
 `setTimeout()`和不设置时间间隔的`setImmediate()`表现上及其相似。猜猜下面这段代码的结果是什么？
 
 <div class="highlight">
-  <pre><code class="language-text">setTimeout(() =&gt; {
+  <pre><code class="language-text">setTimeout(() => {
     console.log('timeout');
 }, 0);
 
-setImmediate(() =&gt; {
+setImmediate(() => {
     console.log('immediate');
 });
 </code></pre>
@@ -192,11 +192,11 @@ setImmediate(() =&gt; {
 <div class="highlight">
   <pre><code class="language-text">const fs = require('fs');
 
-fs.readFile(__filename, () =&gt; {
-    setTimeout(() =&gt; {
+fs.readFile(__filename, () => {
+    setTimeout(() => {
         console.log('timeout');
     }, 0);
-    setImmediate(() =&gt; {
+    setImmediate(() => {
         console.log('immediate');
     });
 });

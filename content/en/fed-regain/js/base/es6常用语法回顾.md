@@ -174,7 +174,7 @@ JS中声明的普通函数，一般有函数名，一系列参数和函数体，
 
 ES6 为[我们](https://www.w3cdoc.com)提供了一种写匿名函数的新方法，即箭头函数。箭头函数不需要使用`function`关键字，其参数和函数体之间以`=>`相连接：
 
-<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> example = &lt;span class="hljs-function">(&lt;span class="hljs-params">parameters&lt;/span>) =&gt;&lt;/span> {
+<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> example = &lt;span class="hljs-function">(&lt;span class="hljs-params">parameters&lt;/span>) =>&lt;/span> {
   &lt;span class="hljs-comment">// function body&lt;/span>
 }</code></pre>
 
@@ -206,14 +206,14 @@ setTimeout(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function
   &lt;span class="hljs-built_in">console&lt;/span>.log(timer.seconds)
 }, &lt;span class="hljs-number">3500&lt;/span>)
 
-&gt; &lt;span class="hljs-number">0&lt;/span>
+> &lt;span class="hljs-number">0&lt;/span>
 </code></pre>
 
 <pre class="hljs javascript"><code>&lt;span class="hljs-comment">// ES6&lt;/span>
 &lt;span class="hljs-keyword">var&lt;/span> timer = {
   &lt;span class="hljs-attr">seconds&lt;/span>: &lt;span class="hljs-number">0&lt;/span>,
   start() {
-    setInterval(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
+    setInterval(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
       &lt;span class="hljs-keyword">this&lt;/span>.seconds++
     }, &lt;span class="hljs-number">1000&lt;/span>)
   }
@@ -244,7 +244,7 @@ puzzle(&lt;span class="hljs-string">'a'&lt;/span>, &lt;span class="hljs-string">
 作为对比，[我们](https://www.w3cdoc.com)看看下面这个例子，再猜猜，打印结果会是什么？
 
 <pre class="javascript hljs"><code class="js">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">puzzle&lt;/span>() &lt;/span>{
-  &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span>=&gt;&lt;/span>{
+  &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span>=>&lt;/span>{
     &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-built_in">arguments&lt;/span>)
   }
 }
@@ -258,7 +258,7 @@ puzzle(&lt;span class="hljs-string">'a'&lt;/span>, &lt;span class="hljs-string">
 
 完整的箭头函数是这样的：
 
-<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> example = &lt;span class="hljs-function">(&lt;span class="hljs-params">parameters&lt;/span>) =&gt;&lt;/span> {
+<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> example = &lt;span class="hljs-function">(&lt;span class="hljs-params">parameters&lt;/span>) =>&lt;/span> {
   &lt;span class="hljs-comment">// function body&lt;/span>
 }</code></pre>
 
@@ -266,7 +266,7 @@ puzzle(&lt;span class="hljs-string">'a'&lt;/span>, &lt;span class="hljs-string">
 
 当只有一个参数时，[我们](https://www.w3cdoc.com)可以省略箭头函数参数两侧的括号：
 
-<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> double = &lt;span class="hljs-function">&lt;span class="hljs-params">value&lt;/span> =&gt;&lt;/span> {
+<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> double = &lt;span class="hljs-function">&lt;span class="hljs-params">value&lt;/span> =>&lt;/span> {
   &lt;span class="hljs-keyword">return&lt;/span> value * &lt;span class="hljs-number">2&lt;/span>
 }</code></pre>
 
@@ -274,12 +274,12 @@ puzzle(&lt;span class="hljs-string">'a'&lt;/span>, &lt;span class="hljs-string">
 
 对只有单行表达式且，该表达式的值为返回值的箭头函数来说，表征函数体的`{}`，可以省略，`return` 关键字可以省略，会静默返回该单一表达式的值。
 
-<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> double = &lt;span class="hljs-function">(&lt;span class="hljs-params">value&lt;/span>) =&gt;&lt;/span> value * &lt;span class="hljs-number">2&lt;/span></code></pre>
+<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> double = &lt;span class="hljs-function">(&lt;span class="hljs-params">value&lt;/span>) =>&lt;/span> value * &lt;span class="hljs-number">2&lt;/span></code></pre>
 
 **简写3：**  
 上述两种形式可以合并使用，而得到更加简洁的形式
 
-<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> double = &lt;span class="hljs-function">&lt;span class="hljs-params">value&lt;/span> =&gt;&lt;/span> value * &lt;span class="hljs-number">2&lt;/span></code></pre>
+<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> double = &lt;span class="hljs-function">&lt;span class="hljs-params">value&lt;/span> =>&lt;/span> value * &lt;span class="hljs-number">2&lt;/span></code></pre>
 
 现在，你肯定学会了箭头函数的基本使用方法，接下来[我们](https://www.w3cdoc.com)再看几个使用示例。
 
@@ -288,21 +288,21 @@ puzzle(&lt;span class="hljs-string">'a'&lt;/span>, &lt;span class="hljs-string">
 当你的简写箭头函数返回值为一个对象时，你需要用小括号括起你想返回的对象。否则，[浏览器](https://www.w3cdoc.com)会把对象的`{}`解析为箭头函数函数体的开始和结束标记。
 
 <pre class="javascript hljs"><code class="js">&lt;span class="hljs-comment">// 正确的使用形式&lt;/span>
-&lt;span class="hljs-keyword">var&lt;/span> objectFactory = &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> ({ &lt;span class="hljs-attr">modular&lt;/span>: &lt;span class="hljs-string">'es6'&lt;/span> })</code></pre>
+&lt;span class="hljs-keyword">var&lt;/span> objectFactory = &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> ({ &lt;span class="hljs-attr">modular&lt;/span>: &lt;span class="hljs-string">'es6'&lt;/span> })</code></pre>
 
 下面的代码会报错，箭头函数会把本想返回的对象的花括号解析为函数体，`number`被解析为`label`,`value`解释为没有做任何事情表达式，[我们](https://www.w3cdoc.com)又没有显式使用`return`,返回值默认是`undefined`。
 
-<pre class="javascript hljs"><code class="js">[&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>].map(&lt;span class="hljs-function">&lt;span class="hljs-params">value&lt;/span> =&gt;&lt;/span> { &lt;span class="hljs-attr">number&lt;/span>: value })
+<pre class="javascript hljs"><code class="js">[&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>].map(&lt;span class="hljs-function">&lt;span class="hljs-params">value&lt;/span> =>&lt;/span> { &lt;span class="hljs-attr">number&lt;/span>: value })
 &lt;span class="hljs-comment">// &lt;- [undefined, undefined, undefined]&lt;/span></code></pre>
 
 当[我们](https://www.w3cdoc.com)返回的对象字面量不止一个属性时，[浏览器](https://www.w3cdoc.com)编译器不能正确解析第二个属性，这时会抛出语法错误。
 
-<pre class="javascript hljs"><code class="js">[&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>].map(&lt;span class="hljs-function">&lt;span class="hljs-params">value&lt;/span> =&gt;&lt;/span> { &lt;span class="hljs-attr">number&lt;/span>: value, &lt;span class="hljs-attr">verified&lt;/span>: &lt;span class="hljs-literal">true&lt;/span> })
+<pre class="javascript hljs"><code class="js">[&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>].map(&lt;span class="hljs-function">&lt;span class="hljs-params">value&lt;/span> =>&lt;/span> { &lt;span class="hljs-attr">number&lt;/span>: value, &lt;span class="hljs-attr">verified&lt;/span>: &lt;span class="hljs-literal">true&lt;/span> })
 &lt;span class="hljs-comment">// &lt;- SyntaxError&lt;/span></code></pre>
 
 解决方案是把返回的对象字面量包裹在小括号中，以助于[浏览器](https://www.w3cdoc.com)正确解析：
 
-<pre class="javascript hljs"><code class="js">[&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>].map(&lt;span class="hljs-function">&lt;span class="hljs-params">value&lt;/span> =&gt;&lt;/span> ({ &lt;span class="hljs-attr">number&lt;/span>: value, &lt;span class="hljs-attr">verified&lt;/span>: &lt;span class="hljs-literal">true&lt;/span> }))
+<pre class="javascript hljs"><code class="js">[&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>].map(&lt;span class="hljs-function">&lt;span class="hljs-params">value&lt;/span> =>&lt;/span> ({ &lt;span class="hljs-attr">number&lt;/span>: value, &lt;span class="hljs-attr">verified&lt;/span>: &lt;span class="hljs-literal">true&lt;/span> }))
 &lt;span class="hljs-comment">/*&lt;- [
   { number: 1, verified: true },
   { number: 2, verified: true },
@@ -317,7 +317,7 @@ puzzle(&lt;span class="hljs-string">'a'&lt;/span>, &lt;span class="hljs-string">
 
 给函数以合理的命名，有助于增强程序的可读性。箭头函数并不能直接命名，但是却可以通过赋值给变量的形式实现间接命名，如下代码中，[我们](https://www.w3cdoc.com)把箭头函数赋值给变量 `throwError`，当函数被调用时，会抛出错误，[我们](https://www.w3cdoc.com)可以追溯到是箭头函数`throwError`报的错。
 
-<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> throwError = &lt;span class="hljs-function">&lt;span class="hljs-params">message&lt;/span> =&gt;&lt;/span> {
+<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> throwError = &lt;span class="hljs-function">&lt;span class="hljs-params">message&lt;/span> =>&lt;/span> {
   &lt;span class="hljs-keyword">throw&lt;/span> &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Error&lt;/span>(message)
 }
 throwError(&lt;span class="hljs-string">'this is a warning'&lt;/span>)
@@ -327,9 +327,9 @@ throwError(&lt;span class="hljs-string">'this is a warning'&lt;/span>)
 如果你想完全控制你的函数中的`this`，使用箭头函数是简洁高效的，采用函数式编程尤其如此。
 
 <pre class="javascript hljs"><code class="js">[&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>, &lt;span class="hljs-number">4&lt;/span>]
-  .map(&lt;span class="hljs-function">&lt;span class="hljs-params">value&lt;/span> =&gt;&lt;/span> value * &lt;span class="hljs-number">2&lt;/span>)
-  .filter(&lt;span class="hljs-function">&lt;span class="hljs-params">value&lt;/span> =&gt;&lt;/span> value &gt; &lt;span class="hljs-number">2&lt;/span>)
-  .forEach(&lt;span class="hljs-function">&lt;span class="hljs-params">value&lt;/span> =&gt;&lt;/span> &lt;span class="hljs-built_in">console&lt;/span>.log(value))
+  .map(&lt;span class="hljs-function">&lt;span class="hljs-params">value&lt;/span> =>&lt;/span> value * &lt;span class="hljs-number">2&lt;/span>)
+  .filter(&lt;span class="hljs-function">&lt;span class="hljs-params">value&lt;/span> =>&lt;/span> value > &lt;span class="hljs-number">2&lt;/span>)
+  .forEach(&lt;span class="hljs-function">&lt;span class="hljs-params">value&lt;/span> =>&lt;/span> &lt;span class="hljs-built_in">console&lt;/span>.log(value))
 &lt;span class="hljs-comment">// &lt;- 4&lt;/span>
 &lt;span class="hljs-comment">// &lt;- 6&lt;/span>
 &lt;span class="hljs-comment">// &lt;- 8&lt;/span></code></pre>
@@ -482,7 +482,7 @@ right = aux</code></pre>
 
 箭头函数同样支持使用默认值，需要注意的是，就算只有一个参数，如果要给参数添加默认值，参数部分一定要用小括号括起来。
 
-<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> double = &lt;span class="hljs-function">(&lt;span class="hljs-params">input = &lt;span class="hljs-number">0&lt;/span>&lt;/span>) =&gt;&lt;/span> input * &lt;span class="hljs-number">2&lt;/span></code></pre>
+<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> double = &lt;span class="hljs-function">(&lt;span class="hljs-params">input = &lt;span class="hljs-number">0&lt;/span>&lt;/span>) =>&lt;/span> input * &lt;span class="hljs-number">2&lt;/span></code></pre>
 
 [我们](https://www.w3cdoc.com)可以给任何位置的任何参数添加默认值。
 
@@ -555,7 +555,7 @@ carFactory()
 
 解构能让[我们](https://www.w3cdoc.com)的函数方便的只使用里面的部分数据，下面代码中的函数`getCarProductModel`说明了具体该如何使用：
 
-<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> getCarProductModel = &lt;span class="hljs-function">(&lt;span class="hljs-params">{ brand, make, model }&lt;/span>) =&gt;&lt;/span> ({
+<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> getCarProductModel = &lt;span class="hljs-function">(&lt;span class="hljs-params">{ brand, make, model }&lt;/span>) =>&lt;/span> ({
   &lt;span class="hljs-attr">sku&lt;/span>: brand + &lt;span class="hljs-string">':'&lt;/span> + make + &lt;span class="hljs-string">':'&lt;/span> + model,
   brand,
   make,
@@ -633,8 +633,8 @@ join(&lt;span class="hljs-string">'; '&lt;/span>, &lt;span class="hljs-string">'
 
 在箭头函数中使用`rest`参数时，即使只有这一个参数，也需要使用圆括号把它围起来，不然就会报错`SyntaxError`，使用示例如下：
 
-<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> sumAll = &lt;span class="hljs-function">(&lt;span class="hljs-params">...numbers&lt;/span>) =&gt;&lt;/span> numbers.reduce(
-  &lt;span class="hljs-function">(&lt;span class="hljs-params">total, next&lt;/span>) =&gt;&lt;/span> total + next
+<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">var&lt;/span> sumAll = &lt;span class="hljs-function">(&lt;span class="hljs-params">...numbers&lt;/span>) =>&lt;/span> numbers.reduce(
+  &lt;span class="hljs-function">(&lt;span class="hljs-params">total, next&lt;/span>) =>&lt;/span> total + next
 )
 &lt;span class="hljs-built_in">console&lt;/span>.log(sumAll(&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">5&lt;/span>))
 &lt;span class="hljs-comment">// &lt;- 8&lt;/span></code></pre>
@@ -796,37 +796,37 @@ Then a third line`&lt;/span></code></pre>
   &lt;span class="hljs-attr">excerpt&lt;/span>: &lt;span class="hljs-string">'Here goes some properly sanitized HTML'&lt;/span>,
   &lt;span class="hljs-attr">tags&lt;/span>: [&lt;span class="hljs-string">'es6'&lt;/span>, &lt;span class="hljs-string">'template-literals'&lt;/span>, &lt;span class="hljs-string">'es6-in-depth'&lt;/span>]
 }
-&lt;span class="hljs-keyword">var&lt;/span> html = &lt;span class="hljs-string">`&lt;article&gt;
-  &lt;header&gt;
-    &lt;h1&gt;&lt;span class="hljs-subst">${ book.title }&lt;/span>&lt;/h1&gt;
-  &lt;/header&gt;
-  &lt;section&gt;&lt;span class="hljs-subst">${ book.excerpt }&lt;/span>&lt;/section&gt;
-  &lt;footer&gt;
-    &lt;ul&gt;
+&lt;span class="hljs-keyword">var&lt;/span> html = &lt;span class="hljs-string">`&lt;article>
+  &lt;header>
+    &lt;h1>&lt;span class="hljs-subst">${ book.title }&lt;/span>&lt;/h1>
+  &lt;/header>
+  &lt;section>&lt;span class="hljs-subst">${ book.excerpt }&lt;/span>&lt;/section>
+  &lt;footer>
+    &lt;ul>
       &lt;span class="hljs-subst">${
         book.tags
-          .map(tag =&gt; `&lt;li&gt;${ tag }&lt;/li&gt;`)
+          .map(tag => `&lt;li>${ tag }&lt;/li>`)
           .join('\n      ')
       }&lt;/span>
-    &lt;/ul&gt;
-  &lt;/footer&gt;
-&lt;/article&gt;`&lt;/span></code></pre>
+    &lt;/ul>
+  &lt;/footer>
+&lt;/article>`&lt;/span></code></pre>
 
 上述代码将得到下面这样的结果。空格得以保留，多个`li`也按[我们](https://www.w3cdoc.com)的预期被合适的渲染：
 
-<pre class="javascript hljs"><code class="js">&lt;article&gt;
-  &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">header&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">h1&lt;/span>&gt;&lt;/span>Modular ES6&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">h1&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">header&lt;/span>&gt;&lt;/span>&lt;/span>
-  &lt;section&gt;Here goes some properly sanitized HTML&lt;&lt;span class="hljs-regexp">/section&gt;
-  &lt;footer&gt;
-    &lt;ul&gt;
-      &lt;li&gt;es6&lt;/&lt;/span>li&gt;
-      &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">li&lt;/span>&gt;&lt;/span>template-literals&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">li&lt;/span>&gt;&lt;/span>&lt;/span>
-      &lt;li&gt;es6-&lt;span class="hljs-keyword">in&lt;/span>-depth&lt;&lt;span class="hljs-regexp">/li&gt;
-    &lt;/u&lt;/span>l&gt;
-  &lt;span class="xml">&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">footer&lt;/span>&gt;&lt;/span>&lt;/span>
-&lt;&lt;span class="hljs-regexp">/article&gt;&lt;/span></code></pre>
+<pre class="javascript hljs"><code class="js">&lt;article>
+  &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">header&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">h1&lt;/span>>&lt;/span>Modular ES6&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">h1&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">header&lt;/span>>&lt;/span>&lt;/span>
+  &lt;section>Here goes some properly sanitized HTML&lt;&lt;span class="hljs-regexp">/section>
+  &lt;footer>
+    &lt;ul>
+      &lt;li>es6&lt;/&lt;/span>li>
+      &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">li&lt;/span>>&lt;/span>template-literals&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">li&lt;/span>>&lt;/span>&lt;/span>
+      &lt;li>es6-&lt;span class="hljs-keyword">in&lt;/span>-depth&lt;&lt;span class="hljs-regexp">/li>
+    &lt;/u&lt;/span>l>
+  &lt;span class="xml">&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">footer&lt;/span>>&lt;/span>&lt;/span>
+&lt;&lt;span class="hljs-regexp">/article>&lt;/span></code></pre>
 
 不过有时候[我们](https://www.w3cdoc.com)并不希望空格被保留，下例中[我们](https://www.w3cdoc.com)在函数中使用包含缩进的模板字符串，[我们](https://www.w3cdoc.com)希望结果没有缩进，但是实际的结果却有四格的缩进。
 
@@ -847,7 +847,7 @@ Then a third line`&lt;/span></code></pre>
 <pre class="javascript hljs"><code class="js">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">unindent&lt;/span>(&lt;span class="hljs-params">text&lt;/span>) &lt;/span>{
   &lt;span class="hljs-keyword">return&lt;/span> text
     .split(&lt;span class="hljs-string">'\n'&lt;/span>)
-    .map(&lt;span class="hljs-function">&lt;span class="hljs-params">line&lt;/span> =&gt;&lt;/span> line.slice(&lt;span class="hljs-number">4&lt;/span>))
+    .map(&lt;span class="hljs-function">&lt;span class="hljs-params">line&lt;/span> =>&lt;/span> line.slice(&lt;span class="hljs-number">4&lt;/span>))
     .join(&lt;span class="hljs-string">'\n'&lt;/span>)
     .trim()
 }</code></pre>
@@ -882,7 +882,7 @@ It'll be escaped instead of interpreted.`&lt;/span>
 
 <pre class="javascript hljs"><code class="js">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">tag&lt;/span>(&lt;span class="hljs-params">parts, ...values&lt;/span>) &lt;/span>{
   &lt;span class="hljs-keyword">return&lt;/span> parts.reduce(
-    &lt;span class="hljs-function">(&lt;span class="hljs-params">all, part, index&lt;/span>) =&gt;&lt;/span> all + values[index - &lt;span class="hljs-number">1&lt;/span>] + part
+    &lt;span class="hljs-function">(&lt;span class="hljs-params">all, part, index&lt;/span>) =>&lt;/span> all + values[index - &lt;span class="hljs-number">1&lt;/span>] + part
   )
 }</code></pre>
 
@@ -897,7 +897,7 @@ It'll be escaped instead of interpreted.`&lt;/span>
 [我们](https://www.w3cdoc.com)看一个进行额外处理的例子，比如转换所有用户输入的值为大写（假设用户只会输入英语），这里[我们](https://www.w3cdoc.com)定义标记函数`upper`来做这件事：
 
 <pre class="javascript hljs"><code class="js">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">upper&lt;/span>(&lt;span class="hljs-params">parts, ...values&lt;/span>) &lt;/span>{
-  &lt;span class="hljs-keyword">return&lt;/span> parts.reduce(&lt;span class="hljs-function">(&lt;span class="hljs-params">all, part, index&lt;/span>) =&gt;&lt;/span>
+  &lt;span class="hljs-keyword">return&lt;/span> parts.reduce(&lt;span class="hljs-function">(&lt;span class="hljs-params">all, part, index&lt;/span>) =>&lt;/span>
     all + values[index - &lt;span class="hljs-number">1&lt;/span>].toUpperCase() + part
   )
 }
@@ -909,15 +909,15 @@ upper&lt;span class="hljs-string">`Hello, &lt;span class="hljs-subst">${ name }&
 既然可以转换输入为大写，那[我们](https://www.w3cdoc.com)再进一步想想，如果提供合适的标记模板函数，使用标记模板，[我们](https://www.w3cdoc.com)还可以对模板中的表达式进行各种过滤处理，比如有这么一个场景，假设表达式的值都来自用户输入，假设有一个名为`sanitize`的库可用于去除用户输入中的html标签，那通过使用标记模板，就可以有效的防止XSS攻击了，使用方法如下。
 
 <pre class="javascript hljs"><code class="js">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">sanitized&lt;/span>(&lt;span class="hljs-params">parts, ...values&lt;/span>) &lt;/span>{
-  &lt;span class="hljs-keyword">return&lt;/span> parts.reduce(&lt;span class="hljs-function">(&lt;span class="hljs-params">all, part, index&lt;/span>) =&gt;&lt;/span>
+  &lt;span class="hljs-keyword">return&lt;/span> parts.reduce(&lt;span class="hljs-function">(&lt;span class="hljs-params">all, part, index&lt;/span>) =>&lt;/span>
     all + sanitize(values[index - &lt;span class="hljs-number">1&lt;/span>]) + part
   )
 }
-&lt;span class="hljs-keyword">var&lt;/span> comment = &lt;span class="hljs-string">'Evil comment&lt;iframe src="http://evil.corp"&gt;
-    &lt;/iframe&gt;'&lt;/span>
-&lt;span class="hljs-keyword">var&lt;/span> html = sanitized&lt;span class="hljs-string">`&lt;div&gt;&lt;span class="hljs-subst">${ comment }&lt;/span>&lt;/div&gt;`&lt;/span>
+&lt;span class="hljs-keyword">var&lt;/span> comment = &lt;span class="hljs-string">'Evil comment&lt;iframe src="http://evil.corp">
+    &lt;/iframe>'&lt;/span>
+&lt;span class="hljs-keyword">var&lt;/span> html = sanitized&lt;span class="hljs-string">`&lt;div>&lt;span class="hljs-subst">${ comment }&lt;/span>&lt;/div>`&lt;/span>
 &lt;span class="hljs-built_in">console&lt;/span>.log(html)
-&lt;span class="hljs-comment">// &lt;- '&lt;div&gt;Evil comment&lt;/div&gt;'&lt;/span></code></pre>
+&lt;span class="hljs-comment">// &lt;- '&lt;div>Evil comment&lt;/div>'&lt;/span></code></pre>
 
 ES6中的另外一个大的改变是提供了新的变量声明方式：`let`和`const`声明，下面[我们](https://www.w3cdoc.com)一起来学习。
 
@@ -1136,7 +1136,7 @@ todo.check()
 &lt;span class="hljs-comment">// &lt;- ['d', 'e'], would be ['c'] if items had been constant&lt;/span>
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">checklist&lt;/span>(&lt;span class="hljs-params">items&lt;/span>) &lt;/span>{
   &lt;span class="hljs-keyword">return&lt;/span> {
-    &lt;span class="hljs-attr">check&lt;/span>: &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> items.shift()
+    &lt;span class="hljs-attr">check&lt;/span>: &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> items.shift()
   }
 }</code></pre>
 

@@ -28,10 +28,10 @@ ES6 字符模板 \`hello ${name}\`
 
 <div>
   <div>
-    <pre><code>&lt;code>let handleClick = (a) =&gt; (e) =&gt; {
+    <pre><code>&lt;code>let handleClick = (a) => (e) => {
 console.log(a, e)
 }
-let content = nodeTpl`&lt;div ${{ click: handleClick(123) }} class='ok'&gt;click me&lt;/div&gt;`
+let content = nodeTpl`&lt;div ${{ click: handleClick(123) }} class='ok'>click me&lt;/div>`
 document.body.appendChild(content)
 </code>&lt;/code></pre>
   </div>
@@ -62,7 +62,7 @@ function handleElement(arg) {
             id,
             node: arg
         },
-        str: `&lt;div id="${id}" /&gt;&lt;/div&gt;`
+        str: `&lt;div id="${id}" />&lt;/div>`
     }
 }
 /**
@@ -71,7 +71,7 @@ function handleElement(arg) {
  */
 function handleEvent(arg) {
     let id = uuid()
-    let events = Object.keys(arg).map(key =&gt; {
+    let events = Object.keys(arg).map(key => {
         return {
             evtName: key,
             evtHandler: arg[key]
@@ -93,7 +93,7 @@ function handleEvent(arg) {
 export function nodeTpl(template) {
     var s = template[0];
     let rules = []
-    for (var i = 1; i &lt; arguments.length; i++) { var arg = arguments[i]; if (!Array.isArray(arg)) { arg = [arg] } let ss = arg.map(argItem =&gt; {
+    for (var i = 1; i &lt; arguments.length; i++) { var arg = arguments[i]; if (!Array.isArray(arg)) { arg = [arg] } let ss = arg.map(argItem => {
             if (argItem instanceof Element) { // 如果参数是一个元素，那么先用元素占位
                 let data = handleElement(argItem);
                 rules.push(data.mark)
@@ -111,10 +111,10 @@ export function nodeTpl(template) {
         s += template[i];
     }
     let docfrag = str2frag(s)
-    rules.forEach(rul =&gt; {
+    rules.forEach(rul => {
         let oldNode = docfrag.getElementById(rul.id);
         if (rul.type == "event") { //处理事件绑定
-            rul.events.forEach(evt =&gt; {
+            rul.events.forEach(evt => {
                 oldNode.addEventListener(evt.evtName, evt.evtHandler)
             })
         } else if (rul.type == "element") { //处理元素
@@ -122,7 +122,7 @@ export function nodeTpl(template) {
         }
     })
     let child = docfrag.childNodes[0]
-    return child.childNodes.length &gt; 1 ? child : child.childNodes[0]
+    return child.childNodes.length > 1 ? child : child.childNodes[0]
 }
 </code>&lt;/code></pre>
 </div>

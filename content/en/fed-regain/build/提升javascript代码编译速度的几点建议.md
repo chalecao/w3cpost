@@ -22,13 +22,13 @@ AST 不止应用于语言解释器和编译器，在计算机世界中，还有�
 
 让[我们](https://www.w3cdoc.com)看一下 AST 的构造。以如下一个简单 JavaScript 函数为例子：
 
-<pre class="hljs actionscript"><code>&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">foo&lt;/span>&lt;span class="hljs-params">(x)&lt;/span> &lt;/span>{
-    &lt;span class="hljs-keyword">if&lt;/span> (x &gt; &lt;span class="hljs-number">10&lt;/span>) {
-        &lt;span class="hljs-keyword">var&lt;/span> a = &lt;span class="hljs-number">2&lt;/span>;
-        &lt;span class="hljs-keyword">return&lt;/span> a * x;
+<pre class="hljs actionscript"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span><span class="hljs-params">(x)</span> </span>{
+    <span class="hljs-keyword">if</span> (x > <span class="hljs-number">10</span>) {
+        <span class="hljs-keyword">var</span> a = <span class="hljs-number">2</span>;
+        <span class="hljs-keyword">return</span> a * x;
     }
 
-    &lt;span class="hljs-keyword">return&lt;/span> x + &lt;span class="hljs-number">10&lt;/span>;
+    <span class="hljs-keyword">return</span> x + <span class="hljs-number">10</span>;
 }</code></pre>
 
 解析器会产生如下的 AST。
@@ -87,16 +87,16 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 举个栗子吧。假设有如下代码片段：
 
-<pre class="hljs lua"><code>&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">foo&lt;/span>&lt;span class="hljs-params">()&lt;/span>&lt;/span> {
-    &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">bar&lt;/span>&lt;span class="hljs-params">(x)&lt;/span>&lt;/span> {
-        &lt;span class="hljs-keyword">return&lt;/span> x + &lt;span class="hljs-number">10&lt;/span>;
+<pre class="hljs lua"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span> {
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span><span class="hljs-params">(x)</span></span> {
+        <span class="hljs-keyword">return</span> x + <span class="hljs-number">10</span>;
     }
 
-    &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">baz&lt;/span>&lt;span class="hljs-params">(x, y)&lt;/span>&lt;/span> {
-        &lt;span class="hljs-keyword">return&lt;/span> x + y;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">baz</span><span class="hljs-params">(x, y)</span></span> {
+        <span class="hljs-keyword">return</span> x + y;
     }
 
-    console.&lt;span class="hljs-built_in">log&lt;/span>(baz(&lt;span class="hljs-number">100&lt;/span>, &lt;span class="hljs-number">200&lt;/span>));
+    console.<span class="hljs-built_in">log</span>(baz(<span class="hljs-number">100</span>, <span class="hljs-number">200</span>));
 }</code></pre>
 
 和之前代码类似，把代码输入解析器进行语法分析然后输出 AST。这样表述如下：
@@ -131,9 +131,9 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 例如，以下是一个实现 JavaScript 模块的相当常见的模式。
 
-<pre class="hljs actionscript"><code>&lt;span class="hljs-keyword">var&lt;/span> myModule = (&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">()&lt;/span> &lt;/span>{
-  &lt;span class="hljs-comment">// 整个模块的逻辑&lt;/span>
-  &lt;span class="hljs-comment">// 返回模块对象&lt;/span>
+<pre class="hljs actionscript"><code><span class="hljs-keyword">var</span> myModule = (<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-comment">// 整个模块的逻辑</span>
+  <span class="hljs-comment">// 返回模块对象</span>
 })();</code></pre>
 
 该模式可以被大多数现代 JavaScript 解析器识别且标识里面的代码需要立即解析。
@@ -144,24 +144,24 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 假设有一个 foo 函数
 
-<pre class="hljs actionscript"><code>&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">foo&lt;/span>&lt;span class="hljs-params">(x)&lt;/span> &lt;/span>{
-    &lt;span class="hljs-keyword">return&lt;/span> x * &lt;span class="hljs-number">10&lt;/span>;
+<pre class="hljs actionscript"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span><span class="hljs-params">(x)</span> </span>{
+    <span class="hljs-keyword">return</span> x * <span class="hljs-number">10</span>;
 }</code></pre>
 
 因为没有明显地标识表明需要立即运行该函数所以[浏览器](https://www.w3cdoc.com)会进行懒解析。然而，[我们](https://www.w3cdoc.com)确定这是不对的，那么可以运行两个步骤。
 
 首先，把函数存储为一变量。
 
-<pre class="hljs actionscript"><code>&lt;span class="hljs-keyword">var&lt;/span> foo = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">foo&lt;/span>&lt;span class="hljs-params">(x)&lt;/span> &lt;/span>{
-    &lt;span class="hljs-keyword">return&lt;/span> x * &lt;span class="hljs-number">10&lt;/span>;
+<pre class="hljs actionscript"><code><span class="hljs-keyword">var</span> foo = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span><span class="hljs-params">(x)</span> </span>{
+    <span class="hljs-keyword">return</span> x * <span class="hljs-number">10</span>;
 };</code></pre>
 
 注意，在 function 关键字和函数参数的左括号之间的函数名。这并不是必要的，但推荐这样做，因为当抛出异常错误的时候，堆栈追踪会包含实际的函数名而不是 <anonymous>。
 
 解析器仍然会做懒解析。可以做一个微小的改动来解决这一问题：用括号封装函数。
 
-<pre class="hljs actionscript"><code>&lt;span class="hljs-keyword">var&lt;/span> foo = (&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">foo&lt;/span>&lt;span class="hljs-params">(x)&lt;/span> &lt;/span>{
-    &lt;span class="hljs-keyword">return&lt;/span> x * &lt;span class="hljs-number">10&lt;/span>;
+<pre class="hljs actionscript"><code><span class="hljs-keyword">var</span> foo = (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span><span class="hljs-params">(x)</span> </span>{
+    <span class="hljs-keyword">return</span> x * <span class="hljs-number">10</span>;
 });</code></pre>
 
 现在，解析器看见 function 关键字前的左括号便会立即进行解析。
@@ -170,17 +170,17 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 那么，可以如平常杂编码然后一小段代码如下：
 
-<pre class="hljs clojure"><code>(&lt;span class="hljs-name">function&lt;/span>() {
-    console.log(&lt;span class="hljs-name">'Hello&lt;/span>, World!')&lt;span class="hljs-comment">;&lt;/span>
-})()&lt;span class="hljs-comment">;&lt;/span></code></pre>
+<pre class="hljs clojure"><code>(<span class="hljs-name">function</span>() {
+    console.log(<span class="hljs-name">'Hello</span>, World!')<span class="hljs-comment">;</span>
+})()<span class="hljs-comment">;</span></code></pre>
 
 一切看起来很美好，因为在函数声明前添加了左括号。当然，在进入生产环境之前需要进行代码压缩。以下为压缩工具的输出：
 
-<pre class="hljs lua"><code>!&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">()&lt;/span>&lt;/span>{console.&lt;span class="hljs-built_in">log&lt;/span>(&lt;span class="hljs-string">'Hello, World!'&lt;/span>)}();</code></pre>
+<pre class="hljs lua"><code>!<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{console.<span class="hljs-built_in">log</span>(<span class="hljs-string">'Hello, World!'</span>)}();</code></pre>
 
 看起来一切正常。代码如期运行。然而好像少了什么。压缩工具移除了封装函数的括号代之以一个感叹号。这意味着解析器会跳过该代码且将会运行懒解析。总之，为了运行该函数解析器会在懒解析之后进行立即解析。这会导致代码运行变慢。幸运的是，可以利用 Optimize.js 来解决此类问题。传给 Optimize.js 压缩过的代码会输出如下代码：
 
-<pre class="hljs lua"><code>!(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">()&lt;/span>&lt;/span>{console.&lt;span class="hljs-built_in">log&lt;/span>(&lt;span class="hljs-string">'Hello, World!'&lt;/span>)})();</code></pre>
+<pre class="hljs lua"><code>!(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{console.<span class="hljs-built_in">log</span>(<span class="hljs-string">'Hello, World!'</span>)})();</code></pre>
 
 现在，充分利用了各自的优势：压缩代码且解析器正确地识别懒解析和立即解析的函数。
 
@@ -203,11 +203,11 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 有时候，特别是手机端[浏览器](https://www.w3cdoc.com)，比如当你点击前进/后退按钮的时候，[浏览器](https://www.w3cdoc.com)会进行缓存。但是在有些场景下，你可能不需要[浏览器](https://www.w3cdoc.com)的这种功能。有如下解决办法：
 
-<pre class="hljs typescript"><code>&lt;span class="hljs-built_in">window&lt;/span>.addEventListener(&lt;span class="hljs-string">'pageshow'&lt;/span>, &lt;span class="hljs-function">(&lt;span class="hljs-params">event&lt;/span>) =&gt;&lt;/span> {
-  &lt;span class="hljs-comment">// 检查前进/后退缓存，是否从缓存加载页面&lt;/span>
-  &lt;span class="hljs-keyword">if&lt;/span> (event.persisted || &lt;span class="hljs-built_in">window&lt;/span>.performance &&
-    &lt;span class="hljs-built_in">window&lt;/span>.performance.navigation.type === &lt;span class="hljs-number">2&lt;/span>) {
-    &lt;span class="hljs-comment">// 进行相应的逻辑处理&lt;/span>
+<pre class="hljs typescript"><code><span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'pageshow'</span>, <span class="hljs-function">(<span class="hljs-params">event</span>) =></span> {
+  <span class="hljs-comment">// 检查前进/后退缓存，是否从缓存加载页面</span>
+  <span class="hljs-keyword">if</span> (event.persisted || <span class="hljs-built_in">window</span>.performance &&
+    <span class="hljs-built_in">window</span>.performance.navigation.type === <span class="hljs-number">2</span>) {
+    <span class="hljs-comment">// 进行相应的逻辑处理</span>
   }
 };</code></pre>
 

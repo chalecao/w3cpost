@@ -92,7 +92,7 @@ print list1
 def fib(n):
      """Print a Fibonacci series up to n."""
      a,b=0,1
-     while a&lt;n:
+     while a<n:
          print(a),
          a,b=b,a+b
 fib(20)</pre>

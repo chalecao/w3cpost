@@ -28,8 +28,8 @@ DOM 事件会先后经历 **捕获** 与 **冒泡** 两个阶段。捕获即
 考察下面的示例：
 
 <div class="highlight highlight-text-html-basic">
-  <pre>&lt;<span class="pl-ent">button</span> <span class="pl-e">onclick</span>=<span class="pl-s"><span class="pl-pds">"</span>btnClickHandler(event)<span class="pl-pds">"</span></span>&gt;CLICK ME&lt;/<span class="pl-ent">button</span>&gt;
-&lt;<span class="pl-ent">script</span>&gt;
+  <pre>&lt;<span class="pl-ent">button</span> <span class="pl-e">onclick</span>=<span class="pl-s"><span class="pl-pds">"</span>btnClickHandler(event)<span class="pl-pds">"</span></span>>CLICK ME&lt;/<span class="pl-ent">button</span>>
+&lt;<span class="pl-ent">script</span>>
 <span class="pl-s1">  <span class="pl-c1">document</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">"</span>click<span class="pl-pds">"</span></span>, <span class="pl-k">function</span>(<span class="pl-c1">event</span>) {</span>
 <span class="pl-s1">    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>document clicked<span class="pl-pds">"</span></span>);</span>
 <span class="pl-s1">  });</span>
@@ -37,7 +37,7 @@ DOM 事件会先后经历 **捕获** 与 **冒泡** 两个阶段。捕获即
 <span class="pl-s1">  <span class="pl-k">function</span> <span class="pl-en">btnClickHandler</span>(<span class="pl-c1">event</span>) {</span>
 <span class="pl-s1">    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>btn clicked<span class="pl-pds">"</span></span>);</span>
 <span class="pl-s1">  }</span>
-&lt;/<span class="pl-ent">script</span>&gt;</pre>
+&lt;/<span class="pl-ent">script</span>></pre>
 </div>
 
 输出:
@@ -51,8 +51,8 @@ DOM 事件会先后经历 **捕获** 与 **冒泡** 两个阶段。捕获即
 通过调用事件身上的 `stopPropagation()` 可阻止事件冒泡，这样可实现只[我们](https://www.w3cdoc.com)想要的元素处理该事件，而其他元素接收不到。
 
 <div class="highlight highlight-text-html-basic">
-  <pre>&lt;<span class="pl-ent">button</span> <span class="pl-e">onclick</span>=<span class="pl-s"><span class="pl-pds">"</span>btnClickHandler(event)<span class="pl-pds">"</span></span>&gt;CLICK ME&lt;/<span class="pl-ent">button</span>&gt;
-&lt;<span class="pl-ent">script</span>&gt;
+  <pre>&lt;<span class="pl-ent">button</span> <span class="pl-e">onclick</span>=<span class="pl-s"><span class="pl-pds">"</span>btnClickHandler(event)<span class="pl-pds">"</span></span>>CLICK ME&lt;/<span class="pl-ent">button</span>>
+&lt;<span class="pl-ent">script</span>>
 <span class="pl-s1">  <span class="pl-c1">document</span>.<span class="pl-c1">addEventListener</span>(</span>
 <span class="pl-s1">    <span class="pl-s"><span class="pl-pds">"</span>click<span class="pl-pds">"</span></span>,</span>
 <span class="pl-s1">    <span class="pl-k">function</span>(<span class="pl-c1">event</span>) {</span>
@@ -65,7 +65,7 @@ DOM 事件会先后经历 **捕获** 与 **冒泡** 两个阶段。捕获即
 <span class="pl-s1">    <span class="pl-c1">event</span>.<span class="pl-c1">stopPropagation</span>();</span>
 <span class="pl-s1">    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">"</span>btn clicked<span class="pl-pds">"</span></span>);</span>
 <span class="pl-s1">  }</span>
-&lt;/<span class="pl-ent">script</span>&gt;</pre>
+&lt;/<span class="pl-ent">script</span>></pre>
 </div>
 
 输出：
@@ -78,7 +78,7 @@ DOM 事件会先后经历 **捕获** 与 **冒泡** 两个阶段。捕获即
 常见的弹窗组件中，点击弹窗区域之外关闭弹窗的功能，可通过阻止事件冒泡来方便地实现，而不用这种方式的话，会引入复杂的判断当前点击坐标是否在弹窗之外的复杂逻辑。
 
 <div class="highlight highlight-source-js">
-  <pre><span class="pl-c1">document</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">"</span>click<span class="pl-pds">"</span></span>, () <span class="pl-k">=&gt;</span> {
+  <pre><span class="pl-c1">document</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">"</span>click<span class="pl-pds">"</span></span>, () <span class="pl-k">=></span> {
   <span class="pl-c">// close dialog</span>
 });</pre>
  <span class="pl-smi">dialogElement</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">&#8220;</span>click<span class="pl-pds">&#8220;</span></span>, <span class="pl-smi">event</span> <span class="pl-k">=></span> {<br /> <span class="pl-c1">event</span>.<span class="pl-c1">stopPropagation</span>();<br /> });
@@ -92,9 +92,9 @@ DOM 事件会先后经历 **捕获** 与 **冒泡** 两个阶段。捕获即
 
 <div class="highlight highlight-source-js">
   <pre><span class="pl-k">function</span> <span class="pl-en">App</span>() {
-  <span class="pl-en">useEffect</span>(() <span class="pl-k">=&gt;</span> {
+  <span class="pl-en">useEffect</span>(() <span class="pl-k">=></span> {
     <span class="pl-c1">document</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">"</span>click<span class="pl-pds">"</span></span>, documentClickHandler);
-    <span class="pl-k">return</span> () <span class="pl-k">=&gt;</span> {
+    <span class="pl-k">return</span> () <span class="pl-k">=></span> {
       <span class="pl-c1">document</span>.<span class="pl-c1">removeEventListener</span>(<span class="pl-s"><span class="pl-pds">"</span>click<span class="pl-pds">"</span></span>, documentClickHandler);
     };
   }, []);</pre>
@@ -142,7 +142,7 @@ document 上的事件处理器正常执行了，并没有因为[我们](https://
 现在对代码做一些变动，在 body 的事件处理器中把冒泡阻止，再思考其输出。
 
 <div class="highlight highlight-source-diff">
-  <pre>document.body.addEventListener("click", event =&gt; {
+  <pre>document.body.addEventListener("click", event => {
 <span class="pl-mi1">+  event.stopPropagation();</span>
   console.log("body");
 });</pre>
@@ -198,7 +198,7 @@ React 有自身的一套事件系统，叫作 <a href="https://reactjs.org/docs
 进而可以理解，如果在 `ReactDOM.render()` 之前的的 document 事件处理器上将冒泡结束掉，同样会影响 React 的执行。只不过这里需要调用的不是 `event.stopPropagation()`，而是 `event.stopImmediatePropagation()`。
 
 <div class="highlight highlight-source-diff">
-  <pre>document.addEventListener("click", event =&gt; {
+  <pre>document.addEventListener("click", event => {
 <span class="pl-mi1">+  event.stopImmediatePropagation();</span>
   console.log("document:bedore react mount");
 });</pre>
@@ -228,9 +228,9 @@ React 有自身的一套事件系统，叫作 <a href="https://reactjs.org/docs
 
 <div class="highlight highlight-source-diff">
   <pre>function App() {
-  useEffect(() =&gt; {
+  useEffect(() => {
 <span class="pl-mi1">+    window.addEventListener("click", documentClickHandler);</span>
-    return () =&gt; {
+    return () => {
 <span class="pl-mi1">+      window.removeEventListener("click", documentClickHandler);</span>
     };
   }, []);</pre>
@@ -267,15 +267,15 @@ React 有自身的一套事件系统，叫作 <a href="https://reactjs.org/docs
 <div class="highlight highlight-source-js">
   <pre><span class="pl-k">function</span> <span class="pl-en">App</span>() {
   <span class="pl-k">const</span> <span class="pl-c1">btnElement</span> <span class="pl-k">=</span> <span class="pl-en">useRef</span>(<span class="pl-c1">null</span>);
-  <span class="pl-en">useEffect</span>(() <span class="pl-k">=&gt;</span> {
+  <span class="pl-en">useEffect</span>(() <span class="pl-k">=></span> {
     <span class="pl-c1">document</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">"</span>click<span class="pl-pds">"</span></span>, documentClickHandler);
     <span class="pl-k">if</span> (<span class="pl-smi">btnElement</span>.<span class="pl-c1">current</span>) {
       <span class="pl-smi">btnElement</span>.<span class="pl-c1">current</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">"</span>click<span class="pl-pds">"</span></span>, btnClickHandler);
     }</pre>
-  <pre><code class="hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-k"&lt;/span>&gt;&lt;/span>return&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span> () &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-k"&lt;/span>&gt;&lt;/span>=&gt;&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span> {
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-c1"&lt;/span>&gt;&lt;/span>document&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>.&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-c1"&lt;/span>&gt;&lt;/span>removeEventListener&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>(&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-s"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-pds"&lt;/span>&gt;&lt;/span>"&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>click&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-pds"&lt;/span>&gt;&lt;/span>"&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>, documentClickHandler);
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-k"&lt;/span>&gt;&lt;/span>if&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span> (&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-smi"&lt;/span>&gt;&lt;/span>btnElement&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>.&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-c1"&lt;/span>&gt;&lt;/span>current&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>) {
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-smi"&lt;/span>&gt;&lt;/span>btnElement&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>.&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-c1"&lt;/span>&gt;&lt;/span>current&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>.&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-c1"&lt;/span>&gt;&lt;/span>removeEventListener&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>(&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-s"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-pds"&lt;/span>&gt;&lt;/span>"&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>click&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-pds"&lt;/span>&gt;&lt;/span>"&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>, btnClickHandler);
+  <pre><code class="hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-k"&lt;/span>>&lt;/span>return&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span> () &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-k"&lt;/span>>&lt;/span>=>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span> {
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-c1"&lt;/span>>&lt;/span>document&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span>.&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-c1"&lt;/span>>&lt;/span>removeEventListener&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span>(&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-s"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-pds"&lt;/span>>&lt;/span>"&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span>click&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-pds"&lt;/span>>&lt;/span>"&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span>, documentClickHandler);
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-k"&lt;/span>>&lt;/span>if&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span> (&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-smi"&lt;/span>>&lt;/span>btnElement&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span>.&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-c1"&lt;/span>>&lt;/span>current&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span>) {
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-smi"&lt;/span>>&lt;/span>btnElement&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span>.&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-c1"&lt;/span>>&lt;/span>current&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span>.&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-c1"&lt;/span>>&lt;/span>removeEventListener&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span>(&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-s"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-pds"&lt;/span>>&lt;/span>"&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span>click&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"pl-pds"&lt;/span>>&lt;/span>"&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span>, btnClickHandler);
   }
 };
 </code></pre>

@@ -25,13 +25,13 @@ WebSocket并不是全新的协议，而是利用了HTTP协议来建立连接。[
 
 首先，WebSocket连接必须由[浏览器](https://www.w3cdoc.com)发起，因为请求协议是一个标准的HTTP请求，格式如下：
 
-<pre><code class="javascript">GET ws:&lt;span class="comment">//localhost:3000/ws/chat HTTP/1.1&lt;/span>
+<pre><code class="javascript">GET ws:<span class="comment">//localhost:3000/ws/chat HTTP/1.1</span>
 Host: localhost
 Upgrade: websocket
 Connection: Upgrade
-Origin: http:&lt;span class="comment">//localhost:3000&lt;/span>
+Origin: http:<span class="comment">//localhost:3000</span>
 Sec-WebSocket-Key: client-random-string
-Sec-WebSocket-Version: &lt;span class="number">13&lt;/span>
+Sec-WebSocket-Version: <span class="number">13</span>
 </code></pre>
 
 该请求和普通的HTTP请求有几点不同：

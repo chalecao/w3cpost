@@ -51,7 +51,7 @@ github： <a href="https://github.com/chalecao/config-component" target="_blank
 
 安装：
 
-<pre class="hljs sql"><code>npm &lt;span class="hljs-keyword">install&lt;/span> config-component &lt;span class="hljs-comment">--save&lt;/span></code></pre>
+<pre class="hljs sql"><code>npm <span class="hljs-keyword">install</span> config-component <span class="hljs-comment">--save</span></code></pre>
 
 config-component默认提供了2中类型组件，
 
@@ -60,25 +60,25 @@ config-component默认提供了2中类型组件，
 
 For common component:
 
-<pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-keyword">import&lt;/span> {ConfigComponent} &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'config-component'&lt;/span>
+<pre class="javascript hljs"><code class="javascript"><span class="hljs-keyword">import</span> {ConfigComponent} <span class="hljs-keyword">from</span> <span class="hljs-string">'config-component'</span>
 ...
-&lt;ConfigComponent
+<ConfigComponent
       initialValues={...}
       schema={...}
       uiConfig={...}
-      /&gt;</code></pre>
+      /></code></pre>
 
 For form component:
 
-<pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-keyword">import&lt;/span> {ConfigForm} &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'config-component'&lt;/span>
+<pre class="javascript hljs"><code class="javascript"><span class="hljs-keyword">import</span> {ConfigForm} <span class="hljs-keyword">from</span> <span class="hljs-string">'config-component'</span>
 ...
-&lt;ConfigComponent
+<ConfigComponent
       initialValues={...}
       schema={...}
       uiConfig={...}
-      onSubmit={()=&gt;{...}}
+      onSubmit={()=>{...}}
       componentSet={...}
-      /&gt;</code></pre>
+      /></code></pre>
 
 params:
 
@@ -105,31 +105,31 @@ const schema = yup.object().shape({
   firstName: yup.string().required(),
   lastName: yup.string().required(),
   startTime: yup.array().required(),
-  useTime: yup.array().required().when('startTime', (startTime, schem) =&gt; {
+  useTime: yup.array().required().when('startTime', (startTime, schem) => {
     return schem.test(
       'check-start',
       'useTime required',
-      value =&gt; {
+      value => {
         return !!value
       },
     ).test(
       'check-start',
-      'useTime start &gt;= startTime start',
-      value =&gt; {
-        return value && startTime[0].milliseconds(0).valueOf() &lt;= value[0].milliseconds(0).valueOf()
+      'useTime start >= startTime start',
+      value => {
+        return value && startTime[0].milliseconds(0).valueOf() <= value[0].milliseconds(0).valueOf()
       },
     ).test(
       'check-end',
-      'useTime end &gt;= startTime end',
-      value =&gt; {
-        return value && startTime[1].milliseconds(0).valueOf() &lt;= value[1].milliseconds(0).valueOf()
+      'useTime end >= startTime end',
+      value => {
+        return value && startTime[1].milliseconds(0).valueOf() <= value[1].milliseconds(0).valueOf()
       },
     ).required()
   }),
   agree: yup.boolean().required().test(
     'check-agree',
     'agree must checked',
-    value =&gt; {
+    value => {
       return !!value
     },
   ).required(),
@@ -146,7 +146,7 @@ export default function App() {
   const formConfig = {
     initialValues,
     schema,
-    onSubmit: values =&gt; console.log('Your values are:', values),
+    onSubmit: values => console.log('Your values are:', values),
     componentSet: AntdComponents,
   }
 
@@ -173,14 +173,14 @@ export default function App() {
     },
   }
 
-  const onChangeWrapper = schemaKey =&gt; (form, e) =&gt; {
+  const onChangeWrapper = schemaKey => (form, e) => {
     const { onChange, value } = form.getFieldProps(schemaKey)
     console.log('prevalue', value)
     onChange(e)
   }
 
   return (
-    &lt;ConfigForm
+    <ConfigForm
       {...formConfig}
       uiConfig={{
         layout: formItemLayout,
@@ -264,7 +264,7 @@ export default function App() {
         ],
 
       }}
-    /&gt;
+    />
   )
 }</pre>
 

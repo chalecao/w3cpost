@@ -26,7 +26,7 @@ React以一种全新的编程范式定义了[前端](https://www.w3cdoc.com)开�
     <span class="cm-property">counts</span>: <span class="cm-number"></span>
   }
   <span class="cm-comment">// 响应数据变更</span>
-  <span class="cm-variable">clickHandle</span> <span class="cm-operator">=</span> () <span class="cm-operator">=&gt;</span> {
+  <span class="cm-variable">clickHandle</span> <span class="cm-operator">=</span> () <span class="cm-operator">=></span> {
     <span class="cm-keyword">this</span>.<span class="cm-property">setState</span>({ <span class="cm-property">counts</span>: <span class="cm-keyword">this</span>.<span class="cm-property">state</span>.<span class="cm-property">counts</span><span class="cm-operator">++</span> });
     <span class="cm-keyword">if</span> (<span class="cm-keyword">this</span>.<span class="cm-property">props</span>.<span class="cm-property">onClick</span>) <span class="cm-keyword">this</span>.<span class="cm-property">props</span>.<span class="cm-property">onClick</span>();
   }
@@ -42,10 +42,10 @@ React以一种全新的编程范式定义了[前端](https://www.w3cdoc.com)开�
   <span class="cm-comment">// 接收外来数据（或加工处理），并编排数据在视觉上的呈现</span>
   <span class="cm-variable">render</span>(<span class="cm-variable">props</span>) {
     <span class="cm-keyword">return</span> (
-      <span class="cm-operator">&lt;</span><span class="cm-operator">&gt;</span>
-        <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span><span class="cm-variable">Input</span> <span class="cm-variable">content</span>: {<span class="cm-variable">props</span>.<span class="cm-variable">content</span>}, <span class="cm-variable">btn</span> <span class="cm-variable">click</span> <span class="cm-variable">counts</span>: {<span class="cm-keyword">this</span>.<span class="cm-property">state</span>.<span class="cm-property">counts</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;</span>
-        <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{<span class="cm-property">this</span>.<span class="cm-variable">clickHandle</span>}<span class="cm-operator">&gt;</span><span class="cm-variable">Add</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-string-2">/&gt;</span>
+      <span class="cm-operator">&lt;</span><span class="cm-operator">></span>
+        <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">></span><span class="cm-variable">Input</span> <span class="cm-variable">content</span>: {<span class="cm-variable">props</span>.<span class="cm-variable">content</span>}, <span class="cm-variable">btn</span> <span class="cm-variable">click</span> <span class="cm-variable">counts</span>: {<span class="cm-keyword">this</span>.<span class="cm-property">state</span>.<span class="cm-property">counts</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div></span>
+        <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{<span class="cm-property">this</span>.<span class="cm-variable">clickHandle</span>}<span class="cm-operator">></span><span class="cm-variable">Add</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button></span>
+      <span class="cm-operator">&lt;</span><span class="cm-string-2">/></span>
     );
   }
 }</pre>
@@ -99,7 +99,7 @@ renderProps的问题：
 
   <span class="cm-variable">render</span>() {
     <span class="cm-keyword">const</span> { <span class="cm-def">name</span>, <span class="cm-def">age</span> } <span class="cm-operator">=</span> <span class="cm-keyword">this</span>.<span class="cm-property">state</span>;
-    <span class="cm-keyword">return</span> (<span class="cm-operator">&lt;</span><span class="cm-variable">div</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{<span class="cm-keyword">this</span>.<span class="cm-variable">handleClick</span>}<span class="cm-operator">&gt;</span><span class="cm-variable">My</span> <span class="cm-variable">name</span> <span class="cm-variable">is</span> {<span class="cm-variable">name</span>}, <span class="cm-variable">i</span> <span class="cm-variable">am</span> {<span class="cm-variable">age</span>} <span class="cm-variable">years</span> <span class="cm-variable">old</span>.<span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;);</span>
+    <span class="cm-keyword">return</span> (<span class="cm-operator">&lt;</span><span class="cm-variable">div</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{<span class="cm-keyword">this</span>.<span class="cm-variable">handleClick</span>}<span class="cm-operator">></span><span class="cm-variable">My</span> <span class="cm-variable">name</span> <span class="cm-variable">is</span> {<span class="cm-variable">name</span>}, <span class="cm-variable">i</span> <span class="cm-variable">am</span> {<span class="cm-variable">age</span>} <span class="cm-variable">years</span> <span class="cm-variable">old</span>.<span class="cm-operator">&lt;</span><span class="cm-string-2">/div>);</span>
   }
 }</pre>
     </div>
@@ -123,24 +123,24 @@ createClass不需要处理this的指向，到了Class Component稍微不慎就�
     <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'Did mount!'</span>);
   }
 
-  <span class="cm-variable">increaseCount</span> <span class="cm-operator">=</span> () <span class="cm-operator">=&gt;</span> {
+  <span class="cm-variable">increaseCount</span> <span class="cm-operator">=</span> () <span class="cm-operator">=></span> {
     <span class="cm-keyword">this</span>.<span class="cm-property">setState</span>({ <span class="cm-property">count</span>: <span class="cm-keyword">this</span>.<span class="cm-property">state</span>.<span class="cm-property">count</span> <span class="cm-operator">+</span> <span class="cm-number">1</span> });
   }
 
-  <span class="cm-variable">decreaseCount</span> <span class="cm-operator">=</span> () <span class="cm-operator">=&gt;</span> {
+  <span class="cm-variable">decreaseCount</span> <span class="cm-operator">=</span> () <span class="cm-operator">=></span> {
     <span class="cm-keyword">this</span>.<span class="cm-property">setState</span>({ <span class="cm-property">count</span>: <span class="cm-keyword">this</span>.<span class="cm-property">state</span>.<span class="cm-property">count</span> <span class="cm-operator">-</span> <span class="cm-number">1</span> });
   }
 
   <span class="cm-variable">render</span>() {
     <span class="cm-keyword">return</span> (
-      <span class="cm-operator">&lt;</span><span class="cm-operator">&gt;</span>
-        <span class="cm-operator">&lt;</span><span class="cm-variable">h1</span><span class="cm-operator">&gt;</span><span class="cm-variable">Counter</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/h1&gt;</span>
-        <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span><span class="cm-variable">Current</span> <span class="cm-variable">count</span>: {<span class="cm-keyword">this</span>.<span class="cm-variable">state</span>.<span class="cm-variable">count</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;</span>
-        <span class="cm-operator">&lt;</span><span class="cm-variable">p</span><span class="cm-operator">&gt;</span>
-          <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{<span class="cm-property">this</span>.<span class="cm-variable">increaseCount</span>}<span class="cm-operator">&gt;</span><span class="cm-variable">Increase</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button&gt;</span>
-          <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{<span class="cm-property">this</span>.<span class="cm-variable">decreaseCount</span>}<span class="cm-operator">&gt;</span><span class="cm-variable">Decrease</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button&gt;</span>
-        <span class="cm-operator">&lt;</span><span class="cm-string-2">/p&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-string-2">/&gt;</span>
+      <span class="cm-operator">&lt;</span><span class="cm-operator">></span>
+        <span class="cm-operator">&lt;</span><span class="cm-variable">h1</span><span class="cm-operator">></span><span class="cm-variable">Counter</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/h1></span>
+        <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">></span><span class="cm-variable">Current</span> <span class="cm-variable">count</span>: {<span class="cm-keyword">this</span>.<span class="cm-variable">state</span>.<span class="cm-variable">count</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div></span>
+        <span class="cm-operator">&lt;</span><span class="cm-variable">p</span><span class="cm-operator">></span>
+          <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{<span class="cm-property">this</span>.<span class="cm-variable">increaseCount</span>}<span class="cm-operator">></span><span class="cm-variable">Increase</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button></span>
+          <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{<span class="cm-property">this</span>.<span class="cm-variable">decreaseCount</span>}<span class="cm-operator">></span><span class="cm-variable">Decrease</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button></span>
+        <span class="cm-operator">&lt;</span><span class="cm-string-2">/p></span>
+      <span class="cm-operator">&lt;</span><span class="cm-string-2">/></span>
     );
   }
 }
@@ -148,22 +148,22 @@ createClass不需要处理this的指向，到了Class Component稍微不慎就�
 <span class="cm-comment">// Function Component</span>
 <span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
   <span class="cm-keyword">const</span> [ <span class="cm-def">count</span>, <span class="cm-def">setCount</span> ] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number"></span>);
-  <span class="cm-keyword">const</span> <span class="cm-def">increaseCount</span> <span class="cm-operator">=</span> () <span class="cm-operator">=&gt;</span> <span class="cm-variable-2">setCount</span>(<span class="cm-variable-2">count</span> <span class="cm-operator">+</span> <span class="cm-number">1</span>);
-  <span class="cm-keyword">const</span> <span class="cm-def">decreaseCount</span> <span class="cm-operator">=</span> () <span class="cm-operator">=&gt;</span> <span class="cm-variable-2">setCount</span>(<span class="cm-variable-2">count</span> <span class="cm-operator">-</span> <span class="cm-number">1</span>);
+  <span class="cm-keyword">const</span> <span class="cm-def">increaseCount</span> <span class="cm-operator">=</span> () <span class="cm-operator">=></span> <span class="cm-variable-2">setCount</span>(<span class="cm-variable-2">count</span> <span class="cm-operator">+</span> <span class="cm-number">1</span>);
+  <span class="cm-keyword">const</span> <span class="cm-def">decreaseCount</span> <span class="cm-operator">=</span> () <span class="cm-operator">=></span> <span class="cm-variable-2">setCount</span>(<span class="cm-variable-2">count</span> <span class="cm-operator">-</span> <span class="cm-number">1</span>);
 
-  <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=&gt;</span> {
+  <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=></span> {
     <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'Did mount!'</span>);
   }, []);
 
   <span class="cm-keyword">return</span> (
-    <span class="cm-operator">&lt;</span><span class="cm-operator">&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">h1</span><span class="cm-operator">&gt;</span><span class="cm-variable">Counter</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/h1&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span><span class="cm-variable">Current</span> <span class="cm-variable-2">count</span>: {<span class="cm-variable-2">count</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">p</span><span class="cm-operator">&gt;</span>
-        <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{<span class="cm-property">increaseCount</span>}<span class="cm-operator">&gt;</span><span class="cm-variable">Increase</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button&gt;</span>
-        <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{<span class="cm-property">decreaseCount</span>}<span class="cm-operator">&gt;</span><span class="cm-variable">Decrease</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-string-2">/p&gt;</span>
-    <span class="cm-operator">&lt;</span><span class="cm-string-2">/&gt;</span>
+    <span class="cm-operator">&lt;</span><span class="cm-operator">></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">h1</span><span class="cm-operator">></span><span class="cm-variable">Counter</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/h1></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">></span><span class="cm-variable">Current</span> <span class="cm-variable-2">count</span>: {<span class="cm-variable-2">count</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">p</span><span class="cm-operator">></span>
+        <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{<span class="cm-property">increaseCount</span>}<span class="cm-operator">></span><span class="cm-variable">Increase</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button></span>
+        <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{<span class="cm-property">decreaseCount</span>}<span class="cm-operator">></span><span class="cm-variable">Decrease</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button></span>
+      <span class="cm-operator">&lt;</span><span class="cm-string-2">/p></span>
+    <span class="cm-operator">&lt;</span><span class="cm-string-2">/></span>
   );
 }</pre>
     </div>
@@ -259,15 +259,15 @@ Function Component编译结果：
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
       <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">Child</span>(<span class="cm-def">props</span>) {
-  <span class="cm-keyword">const</span> <span class="cm-def">handleClick</span> <span class="cm-operator">=</span> () <span class="cm-operator">=&gt;</span> {
+  <span class="cm-keyword">const</span> <span class="cm-def">handleClick</span> <span class="cm-operator">=</span> () <span class="cm-operator">=></span> {
     <span class="cm-keyword">this</span>.<span class="cm-property">props</span>.<span class="cm-property">setCounts</span>(<span class="cm-keyword">this</span>.<span class="cm-property">props</span>.<span class="cm-property">counts</span>);
   };
   <span class="cm-comment">// UI的变更只能通过Parent Component更新props来做到！!</span>
   <span class="cm-keyword">return</span> (
-    <span class="cm-operator">&lt;</span><span class="cm-operator">&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span>{<span class="cm-property">this</span>.<span class="cm-variable-2">props</span>.<span class="cm-variable">counts</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{<span class="cm-variable-2">handleClick</span>}<span class="cm-operator">&gt;</span><span class="cm-variable">increase</span> <span class="cm-variable">counts</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button&gt;</span>
-    <span class="cm-operator">&lt;</span><span class="cm-string-2">/&gt;</span>
+    <span class="cm-operator">&lt;</span><span class="cm-operator">></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">></span>{<span class="cm-property">this</span>.<span class="cm-variable-2">props</span>.<span class="cm-variable">counts</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{<span class="cm-variable-2">handleClick</span>}<span class="cm-operator">></span><span class="cm-variable">increase</span> <span class="cm-variable">counts</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button></span>
+    <span class="cm-operator">&lt;</span><span class="cm-string-2">/></span>
   );
 }
 
@@ -277,10 +277,10 @@ Function Component编译结果：
   <span class="cm-variable">render</span> () {
     <span class="cm-keyword">const</span> <span class="cm-def">counts</span> <span class="cm-operator">=</span> <span class="cm-keyword">this</span>.<span class="cm-property">state</span>.<span class="cm-property">counts</span>;
     <span class="cm-keyword">return</span> (
-      <span class="cm-operator">&lt;</span><span class="cm-operator">&gt;</span>
-        <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span><span class="cm-variable">sth</span><span class="cm-meta">...</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;</span>
-        <span class="cm-operator">&lt;</span><span class="cm-variable">Child</span> <span class="cm-variable-2">counts</span><span class="cm-operator">=</span>{<span class="cm-variable-2">counts</span>} <span class="cm-variable">setCounts</span><span class="cm-operator">=</span>{(<span class="cm-variable">x</span>) <span class="cm-operator">=&gt;</span> <span class="cm-keyword">this</span>.<span class="cm-property">setState</span>({<span class="cm-property">counts</span>: <span class="cm-variable">counts</span><span class="cm-operator">++</span>})} <span class="cm-string-2">/&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-string-2">/&gt;</span>
+      <span class="cm-operator">&lt;</span><span class="cm-operator">></span>
+        <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">></span><span class="cm-variable">sth</span><span class="cm-meta">...</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/div></span>
+        <span class="cm-operator">&lt;</span><span class="cm-variable">Child</span> <span class="cm-variable-2">counts</span><span class="cm-operator">=</span>{<span class="cm-variable-2">counts</span>} <span class="cm-variable">setCounts</span><span class="cm-operator">=</span>{(<span class="cm-variable">x</span>) <span class="cm-operator">=></span> <span class="cm-keyword">this</span>.<span class="cm-property">setState</span>({<span class="cm-property">counts</span>: <span class="cm-variable">counts</span><span class="cm-operator">++</span>})} <span class="cm-string-2">/></span>
+      <span class="cm-operator">&lt;</span><span class="cm-string-2">/></span>
     );
   }
 }</pre>
@@ -306,14 +306,14 @@ case：Popup组件依赖视窗宽度适配自身显示宽度、相册组件依�
       <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">useWinSize</span>() {
   <span class="cm-keyword">const</span> <span class="cm-def">html</span> <span class="cm-operator">=</span> <span class="cm-variable">document</span>.<span class="cm-property">documentElement</span>;
   <span class="cm-keyword">const</span> [ <span class="cm-def">size</span>, <span class="cm-def">setSize</span> ] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>({ <span class="cm-property">width</span>: <span class="cm-variable-2">html</span>.<span class="cm-property">clientWidth</span>, <span class="cm-property">height</span>: <span class="cm-variable-2">html</span>.<span class="cm-property">clientHeight</span> });
-  <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=&gt;</span> {
-    <span class="cm-keyword">const</span> <span class="cm-def">onSize</span> <span class="cm-operator">=</span> <span class="cm-def">e</span> <span class="cm-operator">=&gt;</span> {
+  <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=></span> {
+    <span class="cm-keyword">const</span> <span class="cm-def">onSize</span> <span class="cm-operator">=</span> <span class="cm-def">e</span> <span class="cm-operator">=></span> {
       <span class="cm-variable-2">setSize</span>({ <span class="cm-property">width</span>: <span class="cm-variable-2">html</span>.<span class="cm-property">clientWidth</span>, <span class="cm-property">height</span>: <span class="cm-variable-2">html</span>.<span class="cm-property">clientHeight</span> });
     };
 
     <span class="cm-variable">window</span>.<span class="cm-property">addEventListener</span>(<span class="cm-string">'resize'</span>, <span class="cm-variable-2">onSize</span>);
     
-    <span class="cm-keyword">return</span> () <span class="cm-operator">=&gt;</span> {
+    <span class="cm-keyword">return</span> () <span class="cm-operator">=></span> {
       <span class="cm-variable">window</span>.<span class="cm-property">removeEventListener</span>(<span class="cm-string">'resize'</span>, <span class="cm-variable-2">onSize</span>);
     };
   }, [ <span class="cm-variable-2">html</span> ]);
@@ -323,12 +323,12 @@ case：Popup组件依赖视窗宽度适配自身显示宽度、相册组件依�
 <span class="cm-comment">// 依赖win宽度，适配图片布局</span>
 <span class="cm-keyword">function</span> <span class="cm-def">Article</span>(<span class="cm-def">props</span>) {
   <span class="cm-keyword">const</span> { <span class="cm-def">width</span> } <span class="cm-operator">=</span> <span class="cm-variable">useWinSize</span>();
-  <span class="cm-keyword">const</span> <span class="cm-def">cls</span> <span class="cm-operator">=</span> <span class="cm-string-2">`layout-${</span><span class="cm-variable-2">width</span> <span class="cm-operator">&gt;=</span> <span class="cm-number">540</span> <span class="cm-operator">?</span> <span class="cm-string">'muti'</span> : <span class="cm-string">'single'</span><span class="cm-string-2">}</span><span class="cm-string-2">`</span>;
+  <span class="cm-keyword">const</span> <span class="cm-def">cls</span> <span class="cm-operator">=</span> <span class="cm-string-2">`layout-${</span><span class="cm-variable-2">width</span> <span class="cm-operator">>=</span> <span class="cm-number">540</span> <span class="cm-operator">?</span> <span class="cm-string">'muti'</span> : <span class="cm-string">'single'</span><span class="cm-string-2">}</span><span class="cm-string-2">`</span>;
   <span class="cm-keyword">return</span> (
-    <span class="cm-operator">&lt;</span><span class="cm-operator">&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">article</span><span class="cm-operator">&gt;</span>{<span class="cm-property">props</span>.<span class="cm-variable">content</span>}<span class="cm-operator">&lt;</span><span class="cm-variable">article</span><span class="cm-operator">&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">div</span> <span class="cm-variable">className</span><span class="cm-operator">=</span>{<span class="cm-variable-2">cls</span>}<span class="cm-operator">&gt;</span><span class="cm-variable">recommended</span> <span class="cm-variable">thumb</span> <span class="cm-variable">list</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;</span>
-    <span class="cm-operator">&lt;</span><span class="cm-string-2">/&gt;</span>
+    <span class="cm-operator">&lt;</span><span class="cm-operator">></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">article</span><span class="cm-operator">></span>{<span class="cm-property">props</span>.<span class="cm-variable">content</span>}<span class="cm-operator">&lt;</span><span class="cm-variable">article</span><span class="cm-operator">></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">div</span> <span class="cm-variable">className</span><span class="cm-operator">=</span>{<span class="cm-variable-2">cls</span>}<span class="cm-operator">></span><span class="cm-variable">recommended</span> <span class="cm-variable">thumb</span> <span class="cm-variable">list</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/div></span>
+    <span class="cm-operator">&lt;</span><span class="cm-string-2">/></span>
   );
 }
 
@@ -339,7 +339,7 @@ case：Popup组件依赖视窗宽度适配自身显示宽度、相册组件依�
     <span class="cm-property">width</span>: <span class="cm-variable-2">width</span> <span class="cm-operator">-</span> <span class="cm-number">200</span>,
     <span class="cm-property">height</span>: <span class="cm-variable-2">height</span> <span class="cm-operator">-</span> <span class="cm-number">300</span>,
   };
-  <span class="cm-keyword">return</span> (<span class="cm-operator">&lt;</span><span class="cm-variable">div</span> <span class="cm-variable-2">style</span><span class="cm-operator">=</span>{<span class="cm-variable-2">style</span>}<span class="cm-operator">&gt;</span>{<span class="cm-property">props</span>.<span class="cm-variable">content</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;);</span>
+  <span class="cm-keyword">return</span> (<span class="cm-operator">&lt;</span><span class="cm-variable">div</span> <span class="cm-variable-2">style</span><span class="cm-operator">=</span>{<span class="cm-variable-2">style</span>}<span class="cm-operator">></span>{<span class="cm-property">props</span>.<span class="cm-variable">content</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div>);</span>
 }</pre>
     </div>
   </div>
@@ -354,20 +354,20 @@ case：表单验证
     <div class="CodeMirror">
       <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
   <span class="cm-keyword">const</span> { <span class="cm-def">waiting</span>, <span class="cm-def">errText</span>, <span class="cm-def">name</span>, <span class="cm-def">onChange</span> } <span class="cm-operator">=</span> <span class="cm-variable">useName</span>();
-  <span class="cm-keyword">const</span> <span class="cm-def">handleSubmit</span> <span class="cm-operator">=</span> <span class="cm-def">e</span> <span class="cm-operator">=&gt;</span> {
+  <span class="cm-keyword">const</span> <span class="cm-def">handleSubmit</span> <span class="cm-operator">=</span> <span class="cm-def">e</span> <span class="cm-operator">=></span> {
     <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string-2">`current name: ${</span><span class="cm-variable-2">name</span><span class="cm-string-2">}</span><span class="cm-string-2">`</span>);
   };
 
   <span class="cm-keyword">return</span> (
-    <span class="cm-operator">&lt;</span><span class="cm-variable">form</span> <span class="cm-variable">onSubmit</span><span class="cm-operator">=</span>{<span class="cm-variable-2">handleSubmit</span>}<span class="cm-operator">&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-operator">&gt;</span>
-        <span class="cm-variable">Name</span>: <span class="cm-operator">&lt;</span><span class="cm-variable">input</span> <span class="cm-variable">onChange</span><span class="cm-operator">=</span>{<span class="cm-property">onChange</span>} <span class="cm-operator">/</span><span class="cm-operator">&gt;</span>
-        <span class="cm-operator">&lt;</span><span class="cm-variable">span</span><span class="cm-operator">&gt;</span>{<span class="cm-property">waiting</span> <span class="cm-operator">?</span> <span class="cm-string">"waiting..."</span> : <span class="cm-variable">errText</span> <span class="cm-operator">|</span><span class="cm-operator">|</span> <span class="cm-string">""</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/span&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-string-2">/&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">p</span><span class="cm-operator">&gt;</span>
-        <span class="cm-operator">&lt;</span><span class="cm-variable">button</span><span class="cm-operator">&gt;</span><span class="cm-variable">submit</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-string-2">/p&gt;</span>
-    <span class="cm-operator">&lt;</span><span class="cm-string-2">/form&gt;</span>
+    <span class="cm-operator">&lt;</span><span class="cm-variable">form</span> <span class="cm-variable">onSubmit</span><span class="cm-operator">=</span>{<span class="cm-variable-2">handleSubmit</span>}<span class="cm-operator">></span>
+      <span class="cm-operator">&lt;</span><span class="cm-operator">></span>
+        <span class="cm-variable">Name</span>: <span class="cm-operator">&lt;</span><span class="cm-variable">input</span> <span class="cm-variable">onChange</span><span class="cm-operator">=</span>{<span class="cm-property">onChange</span>} <span class="cm-operator">/</span><span class="cm-operator">></span>
+        <span class="cm-operator">&lt;</span><span class="cm-variable">span</span><span class="cm-operator">></span>{<span class="cm-property">waiting</span> <span class="cm-operator">?</span> <span class="cm-string">"waiting..."</span> : <span class="cm-variable">errText</span> <span class="cm-operator">|</span><span class="cm-operator">|</span> <span class="cm-string">""</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/span></span>
+      <span class="cm-operator">&lt;</span><span class="cm-string-2">/></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">p</span><span class="cm-operator">></span>
+        <span class="cm-operator">&lt;</span><span class="cm-variable">button</span><span class="cm-operator">></span><span class="cm-variable">submit</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button></span>
+      <span class="cm-operator">&lt;</span><span class="cm-string-2">/p></span>
+    <span class="cm-operator">&lt;</span><span class="cm-string-2">/form></span>
   );
 }</pre>
     </div>
@@ -381,7 +381,7 @@ case：表单验证
 <div id="rWl1H" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22useState%3CS%3E(initialState%3A%20(()%20%3D%3E%20S)%20%7C%20S)%3A%20%5BS%2C%20Dispatch%3CBasicStateAction%3CS%3E%3E%5D%22%2C%22id%22%3A%22rWl1H%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-variable">useState</span><span class="cm-operator">&lt;</span><span class="cm-variable">S</span><span class="cm-operator">&gt;</span>(<span class="cm-variable">initialState</span>: (() <span class="cm-operator">=&gt;</span> <span class="cm-variable">S</span>) <span class="cm-operator">|</span> <span class="cm-variable">S</span>): [<span class="cm-variable">S</span>, <span class="cm-variable">Dispatch</span><span class="cm-operator">&lt;</span><span class="cm-variable">BasicStateAction</span><span class="cm-operator">&lt;</span><span class="cm-variable">S</span><span class="cm-operator">&gt;&gt;</span>]</pre>
+      <pre class="cm-s-default"><span class="cm-variable">useState</span><span class="cm-operator">&lt;</span><span class="cm-variable">S</span><span class="cm-operator">></span>(<span class="cm-variable">initialState</span>: (() <span class="cm-operator">=></span> <span class="cm-variable">S</span>) <span class="cm-operator">|</span> <span class="cm-variable">S</span>): [<span class="cm-variable">S</span>, <span class="cm-variable">Dispatch</span><span class="cm-operator">&lt;</span><span class="cm-variable">BasicStateAction</span><span class="cm-operator">&lt;</span><span class="cm-variable">S</span><span class="cm-operator">>></span>]</pre>
     </div>
   </div>
 </div>
@@ -457,24 +457,24 @@ Hook API的默认实现：
       <pre class="cm-s-default"><span class="cm-keyword">type</span> <span class="cm-type">Hook</span> <span class="cm-operator">=</span> {
   <span class="cm-property">memoizedState</span>: <span class="cm-type">any</span>, <span class="cm-comment">// 存储最新的state</span>
   <span class="cm-property">baseState</span>: <span class="cm-type">any</span>,
-  <span class="cm-property">baseUpdate</span>: <span class="cm-type">Update</span><span class="cm-operator">&lt;</span><span class="cm-type">any</span>, <span class="cm-type">any</span><span class="cm-operator">&gt;</span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>,
-  <span class="cm-property">queue</span>: <span class="cm-type">UpdateQueue</span><span class="cm-operator">&lt;</span><span class="cm-type">any</span>, <span class="cm-type">any</span><span class="cm-operator">&gt;</span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>, <span class="cm-comment">// 更新队列</span>
+  <span class="cm-property">baseUpdate</span>: <span class="cm-type">Update</span><span class="cm-operator">&lt;</span><span class="cm-type">any</span>, <span class="cm-type">any</span><span class="cm-operator">></span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>,
+  <span class="cm-property">queue</span>: <span class="cm-type">UpdateQueue</span><span class="cm-operator">&lt;</span><span class="cm-type">any</span>, <span class="cm-type">any</span><span class="cm-operator">></span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>, <span class="cm-comment">// 更新队列</span>
   <span class="cm-property">next</span>: <span class="cm-type">Hook</span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>, <span class="cm-comment">// 下一个hook</span>
 }
 
-<span class="cm-keyword">type</span> <span class="cm-type">UpdateQueue</span><span class="cm-operator">&lt;</span><span class="cm-type">S</span>, <span class="cm-type">A</span><span class="cm-operator">&gt;</span> <span class="cm-operator">=</span> {
-  <span class="cm-property">last</span>: <span class="cm-type">Update</span><span class="cm-operator">&lt;</span><span class="cm-type">S</span>, <span class="cm-type">A</span><span class="cm-operator">&gt;</span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>, <span class="cm-comment">// 最后一次更新操作</span>
-  <span class="cm-property">dispatch</span>: (<span class="cm-type">A</span> <span class="cm-operator">=&gt;</span> <span class="cm-variable">mixed</span>) <span class="cm-operator">|</span> <span class="cm-atom">null</span>,
-  <span class="cm-variable">lastRenderedReducer</span>: ((<span class="cm-variable">S</span>, <span class="cm-variable">A</span>) <span class="cm-operator">=&gt;</span> <span class="cm-variable">S</span>) <span class="cm-operator">|</span> <span class="cm-atom">null</span>, <span class="cm-comment">// 最新处理处理state的reducer</span>
+<span class="cm-keyword">type</span> <span class="cm-type">UpdateQueue</span><span class="cm-operator">&lt;</span><span class="cm-type">S</span>, <span class="cm-type">A</span><span class="cm-operator">></span> <span class="cm-operator">=</span> {
+  <span class="cm-property">last</span>: <span class="cm-type">Update</span><span class="cm-operator">&lt;</span><span class="cm-type">S</span>, <span class="cm-type">A</span><span class="cm-operator">></span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>, <span class="cm-comment">// 最后一次更新操作</span>
+  <span class="cm-property">dispatch</span>: (<span class="cm-type">A</span> <span class="cm-operator">=></span> <span class="cm-variable">mixed</span>) <span class="cm-operator">|</span> <span class="cm-atom">null</span>,
+  <span class="cm-variable">lastRenderedReducer</span>: ((<span class="cm-variable">S</span>, <span class="cm-variable">A</span>) <span class="cm-operator">=></span> <span class="cm-variable">S</span>) <span class="cm-operator">|</span> <span class="cm-atom">null</span>, <span class="cm-comment">// 最新处理处理state的reducer</span>
   <span class="cm-variable">lastRenderedState</span>: <span class="cm-variable">S</span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>, <span class="cm-comment">// 最新渲染后状态</span>
 };
 
-<span class="cm-keyword">type</span> <span class="cm-type">Update</span><span class="cm-operator">&lt;</span><span class="cm-type">S</span>, <span class="cm-type">A</span><span class="cm-operator">&gt;</span> <span class="cm-operator">=</span> {
+<span class="cm-keyword">type</span> <span class="cm-type">Update</span><span class="cm-operator">&lt;</span><span class="cm-type">S</span>, <span class="cm-type">A</span><span class="cm-operator">></span> <span class="cm-operator">=</span> {
   <span class="cm-meta">...</span>
   <span class="cm-variable">action</span>: <span class="cm-variable">A</span>,
-  <span class="cm-variable">eagerReducer</span>: ((<span class="cm-variable">S</span>, <span class="cm-variable">A</span>) <span class="cm-operator">=&gt;</span> <span class="cm-variable">S</span>) <span class="cm-operator">|</span> <span class="cm-atom">null</span>,
+  <span class="cm-variable">eagerReducer</span>: ((<span class="cm-variable">S</span>, <span class="cm-variable">A</span>) <span class="cm-operator">=></span> <span class="cm-variable">S</span>) <span class="cm-operator">|</span> <span class="cm-atom">null</span>,
   <span class="cm-variable">eagerState</span>: <span class="cm-variable">S</span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>, <span class="cm-comment">// 待更新状态值</span>
-  <span class="cm-variable">next</span>: <span class="cm-variable">Update</span><span class="cm-operator">&lt;</span><span class="cm-variable">S</span>, <span class="cm-variable">A</span><span class="cm-operator">&gt;</span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>,
+  <span class="cm-variable">next</span>: <span class="cm-variable">Update</span><span class="cm-operator">&lt;</span><span class="cm-variable">S</span>, <span class="cm-variable">A</span><span class="cm-operator">></span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>,
   <span class="cm-meta">...</span>
 };</pre>
     </div>
@@ -523,7 +523,7 @@ useState() mount阶段：
   <span class="cm-keyword">var</span> <span class="cm-def">queue</span> <span class="cm-operator">=</span> <span class="cm-variable-2">hook</span>.<span class="cm-property">queue</span> <span class="cm-operator">=</span> {
     <span class="cm-property">last</span>: <span class="cm-atom">null</span>,
     <span class="cm-property">dispatch</span>: <span class="cm-atom">null</span>,
-    <span class="cm-property">lastRenderedReducer</span>: (<span class="cm-def">state</span>, <span class="cm-def">action</span>) <span class="cm-operator">=&gt;</span> <span class="cm-variable">isFn</span>(<span class="cm-variable-2">state</span>) <span class="cm-operator">?</span> <span class="cm-variable-2">action</span>(<span class="cm-variable-2">state</span>) : <span class="cm-variable-2">action</span>,
+    <span class="cm-property">lastRenderedReducer</span>: (<span class="cm-def">state</span>, <span class="cm-def">action</span>) <span class="cm-operator">=></span> <span class="cm-variable">isFn</span>(<span class="cm-variable-2">state</span>) <span class="cm-operator">?</span> <span class="cm-variable-2">action</span>(<span class="cm-variable-2">state</span>) : <span class="cm-variable-2">action</span>,
     <span class="cm-property">lastRenderedState</span>: <span class="cm-variable-2">initialState</span>
   };
   <span class="cm-comment">// currentlyRenderingFiber$1保存当前正在渲染的Fiber节点</span>
@@ -575,10 +575,10 @@ update阶段useState()更新状态：
   <span class="cm-keyword">var</span> <span class="cm-def">queue</span> <span class="cm-operator">=</span> <span class="cm-variable-2">hook</span>.<span class="cm-property">queue</span>;
   <span class="cm-keyword">var</span> <span class="cm-def">newState</span>;
   <span class="cm-keyword">var</span> <span class="cm-def">update</span>;
-  <span class="cm-keyword">if</span> (<span class="cm-variable">numberOfReRenders</span> <span class="cm-operator">&gt;</span> <span class="cm-number"></span>) {
+  <span class="cm-keyword">if</span> (<span class="cm-variable">numberOfReRenders</span> <span class="cm-operator">></span> <span class="cm-number"></span>) {
     <span class="cm-comment">// 组件自己re-render</span>
     <span class="cm-variable-2">newState</span> <span class="cm-operator">=</span> <span class="cm-variable-2">hook</span>.<span class="cm-property">memoizedState</span>;
-    <span class="cm-comment">// renderPhaseUpdates是一个全局变量，是一个的HashMap结构：HashMap&lt;(Queue: Update)&gt;</span>
+    <span class="cm-comment">// renderPhaseUpdates是一个全局变量，是一个的HashMap结构：HashMap&lt;(Queue: Update)></span>
     <span class="cm-variable-2">update</span> <span class="cm-operator">=</span> <span class="cm-variable">renderPhaseUpdates</span>.<span class="cm-property">get</span>(<span class="cm-variable-2">queue</span>);
   } <span class="cm-keyword">else</span> {
     <span class="cm-comment">// update</span>
@@ -608,11 +608,11 @@ update阶段useState()更新状态：
   <span class="cm-keyword">const</span> [<span class="cm-def">n1</span>, <span class="cm-def">setN1</span>] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number">1</span>);
   <span class="cm-keyword">const</span> [<span class="cm-def">n2</span>, <span class="cm-def">setN2</span>] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number">2</span>);
   <span class="cm-keyword">const</span> [<span class="cm-def">n3</span>, <span class="cm-def">setN3</span>] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number">3</span>);
-  <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=&gt;</span> {
+  <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=></span> {
     <span class="cm-variable-2">setN1</span>(<span class="cm-number">10</span>);
     <span class="cm-variable-2">setN1</span>(<span class="cm-number">100</span>);
   }, []);
-  <span class="cm-keyword">return</span> (<span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{() <span class="cm-operator">=&gt;</span> <span class="cm-variable-2">setN2</span>(<span class="cm-number">20</span>)}<span class="cm-operator">&gt;</span><span class="cm-variable">click</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button&gt;);</span>
+  <span class="cm-keyword">return</span> (<span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{() <span class="cm-operator">=></span> <span class="cm-variable-2">setN2</span>(<span class="cm-number">20</span>)}<span class="cm-operator">></span><span class="cm-variable">click</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button>);</span>
 }</pre>
     </div>
   </div>
@@ -631,7 +631,7 @@ update阶段useState()更新状态：
 <div id="rCFHl" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22typescript%22%2C%22code%22%3A%22useEffect(effect%3A%20React.EffectCallback%2C%20deps%3F%3A%20ReadonlyArray%3Cany%3E%20%7C%20undefined)%22%2C%22id%22%3A%22rCFHl%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-variable">useEffect</span>(<span class="cm-variable">effect</span>: <span class="cm-variable">React</span>.<span class="cm-variable">EffectCallback</span>, <span class="cm-variable">deps</span><span class="cm-operator">?</span>: <span class="cm-variable">ReadonlyArray</span><span class="cm-operator">&lt;</span><span class="cm-variable">any</span><span class="cm-operator">&gt;</span> <span class="cm-operator">|</span> <span class="cm-atom">undefined</span>)</pre>
+      <pre class="cm-s-default"><span class="cm-variable">useEffect</span>(<span class="cm-variable">effect</span>: <span class="cm-variable">React</span>.<span class="cm-variable">EffectCallback</span>, <span class="cm-variable">deps</span><span class="cm-operator">?</span>: <span class="cm-variable">ReadonlyArray</span><span class="cm-operator">&lt;</span><span class="cm-variable">any</span><span class="cm-operator">></span> <span class="cm-operator">|</span> <span class="cm-atom">undefined</span>)</pre>
     </div>
   </div>
 </div>
@@ -694,24 +694,24 @@ update阶段useState()更新状态：
 <span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
   <span class="cm-keyword">const</span> [<span class="cm-def">data</span>, <span class="cm-def">setData</span>] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-string">''</span>);
 
-  <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=&gt;</span> {
-    <span class="cm-variable">setTimeout</span>(() <span class="cm-operator">=&gt;</span> {
+  <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=></span> {
+    <span class="cm-variable">setTimeout</span>(() <span class="cm-operator">=></span> {
       <span class="cm-variable-2">setData</span>(<span class="cm-string-2">`current data: ${</span><span class="cm-variable">Date</span>.<span class="cm-property">now</span>()<span class="cm-string-2">}</span><span class="cm-string-2">`</span>);
     }, <span class="cm-number">3000</span>);
   });
-  <span class="cm-keyword">return</span> <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span>{<span class="cm-property">data</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;;</span>
+  <span class="cm-keyword">return</span> <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">></span>{<span class="cm-property">data</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div>;</span>
 }
 <span class="cm-comment">// 等价代码</span>
 <span class="cm-keyword">class</span> <span class="cm-def">App</span> <span class="cm-keyword">extends</span> <span class="cm-variable">Component</span> {
   <span class="cm-property">state</span> <span class="cm-operator">=</span> {<span class="cm-property">data</span> <span class="cm-operator">=</span> <span class="cm-string">''</span>}
 
   <span class="cm-variable">componentDidMount</span>() {
-    <span class="cm-variable">setTimeout</span>(() <span class="cm-operator">=&gt;</span> {
+    <span class="cm-variable">setTimeout</span>(() <span class="cm-operator">=></span> {
       <span class="cm-keyword">this</span>.<span class="cm-property">setState</span>({ <span class="cm-property">data</span>: <span class="cm-string-2">`current data: ${</span><span class="cm-variable">Date</span>.<span class="cm-property">now</span>()<span class="cm-string-2">}</span><span class="cm-string-2">`</span> });
     }, <span class="cm-number">3000</span>);
   }
   <span class="cm-variable">render</span>() {
-    <span class="cm-keyword">return</span> <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span>{<span class="cm-property">this</span>.<span class="cm-variable">state</span>.<span class="cm-variable">data</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;;</span>
+    <span class="cm-keyword">return</span> <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">></span>{<span class="cm-property">this</span>.<span class="cm-variable">state</span>.<span class="cm-variable">data</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div>;</span>
   }
 }</pre>
     </div>
@@ -730,20 +730,20 @@ Hook接受useEffect传入的callback返回一个函数，在Fiber的清理阶段
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
       <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
-  <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=&gt;</span> {
-    <span class="cm-keyword">const</span> <span class="cm-def">timer</span> <span class="cm-operator">=</span> <span class="cm-variable">setTimeout</span>(() <span class="cm-operator">=&gt;</span> {
+  <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=></span> {
+    <span class="cm-keyword">const</span> <span class="cm-def">timer</span> <span class="cm-operator">=</span> <span class="cm-variable">setTimeout</span>(() <span class="cm-operator">=></span> {
       <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'print log after 1s!'</span>);
     }, <span class="cm-number">1000</span>);
     <span class="cm-variable">window</span>.<span class="cm-property">addEventListener</span>(<span class="cm-string">'load'</span>, <span class="cm-variable">loadHandle</span>);
 
-    <span class="cm-keyword">return</span> () <span class="cm-operator">=&gt;</span> <span class="cm-variable">window</span>.<span class="cm-property">removeEventListener</span>(<span class="cm-string">'load'</span>, <span class="cm-variable">loadHandle</span>); <span class="cm-comment">// 执行清理</span>
+    <span class="cm-keyword">return</span> () <span class="cm-operator">=></span> <span class="cm-variable">window</span>.<span class="cm-property">removeEventListener</span>(<span class="cm-string">'load'</span>, <span class="cm-variable">loadHandle</span>); <span class="cm-comment">// 执行清理</span>
   }, []);
 }
 
 <span class="cm-comment">// 同等实现</span>
 <span class="cm-keyword">class</span> <span class="cm-def">App</span> <span class="cm-keyword">extends</span> <span class="cm-variable">Component</span> {
   <span class="cm-property">componentDidMount</span>() {
-    <span class="cm-keyword">const</span> <span class="cm-def">timer</span> <span class="cm-operator">=</span> <span class="cm-variable">setTimeout</span>(() <span class="cm-operator">=&gt;</span> {
+    <span class="cm-keyword">const</span> <span class="cm-def">timer</span> <span class="cm-operator">=</span> <span class="cm-variable">setTimeout</span>(() <span class="cm-operator">=></span> {
       <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'print log after 1s!'</span>);
     }, <span class="cm-number">1000</span>);
     <span class="cm-variable">window</span>.<span class="cm-property">addEventListener</span>(<span class="cm-string">'load'</span>, <span class="cm-variable">loadHandle</span>);
@@ -761,7 +761,7 @@ Hook接受useEffect传入的callback返回一个函数，在Fiber的清理阶段
 <div id="dFs5j" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22typescript%22%2C%22code%22%3A%22useReducer%3CS%2C%20I%2C%20A%3E(reducer%3A%20(S%2C%20A)%20%3D%3E%20S%2C%20initialArg%3A%20I%2C%20init%3F%3A%20I%20%3D%3E%20S%2C%20)%3A%20%5BS%2C%20Dispatch%3CA%3E%5D%22%2C%22id%22%3A%22dFs5j%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-variable">useReducer</span><span class="cm-operator">&lt;</span><span class="cm-type">S</span>, <span class="cm-type">I</span>, <span class="cm-type">A</span><span class="cm-operator">&gt;</span>(<span class="cm-variable">reducer</span>: (<span class="cm-variable">S</span>, <span class="cm-variable">A</span>) <span class="cm-operator">=&gt;</span> <span class="cm-variable">S</span>, <span class="cm-variable">initialArg</span>: <span class="cm-variable">I</span>, <span class="cm-variable">init</span><span class="cm-operator">?</span>: <span class="cm-variable">I</span> <span class="cm-operator">=&gt;</span> <span class="cm-variable">S</span>, ): [<span class="cm-variable">S</span>, <span class="cm-variable">Dispatch</span><span class="cm-operator">&lt;</span><span class="cm-variable">A</span><span class="cm-operator">&gt;</span>]</pre>
+      <pre class="cm-s-default"><span class="cm-variable">useReducer</span><span class="cm-operator">&lt;</span><span class="cm-type">S</span>, <span class="cm-type">I</span>, <span class="cm-type">A</span><span class="cm-operator">></span>(<span class="cm-variable">reducer</span>: (<span class="cm-variable">S</span>, <span class="cm-variable">A</span>) <span class="cm-operator">=></span> <span class="cm-variable">S</span>, <span class="cm-variable">initialArg</span>: <span class="cm-variable">I</span>, <span class="cm-variable">init</span><span class="cm-operator">?</span>: <span class="cm-variable">I</span> <span class="cm-operator">=></span> <span class="cm-variable">S</span>, ): [<span class="cm-variable">S</span>, <span class="cm-variable">Dispatch</span><span class="cm-operator">&lt;</span><span class="cm-variable">A</span><span class="cm-operator">></span>]</pre>
     </div>
   </div>
 </div>
@@ -772,8 +772,8 @@ Hook接受useEffect传入的callback返回一个函数，在Fiber的清理阶段
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
       <pre class="cm-s-default"><span class="cm-keyword">const</span> [<span class="cm-def">state</span>, <span class="cm-def">dispatch</span>] <span class="cm-operator">=</span> <span class="cm-variable">useReducer</span>(<span class="cm-variable">reducer</span>, {<span class="cm-property">count</span>: <span class="cm-variable">initialCount</span>, <span class="cm-property">step</span>: <span class="cm-number">10</span>});
-<span class="cm-comment">// &lt;button onClick={() =&gt; dispatch({type: 'increment'})}&gt;+&lt;/button&gt;</span>
-<span class="cm-comment">// &lt;button onClick={() =&gt; dispatch({type: 'decrement'})}&gt;-&lt;/button&gt;</span></pre>
+<span class="cm-comment">// &lt;button onClick={() => dispatch({type: 'increment'})}>+&lt;/button></span>
+<span class="cm-comment">// &lt;button onClick={() => dispatch({type: 'decrement'})}>-&lt;/button></span></pre>
     </div>
   </div>
 </div>
@@ -808,7 +808,7 @@ reducer提供了一种可以在组件外重新编排state的能力，而useReduc
 <div id="dEG7F" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%20useCallback%3CT%3E(callback%3A%20T%2C%20deps%3A%20Array%3Cmixed%3E%20%7C%20void%20%7C%20null)%3A%20T%22%2C%22id%22%3A%22dEG7F%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"> <span class="cm-variable">useCallback</span><span class="cm-operator">&lt;</span><span class="cm-variable">T</span><span class="cm-operator">&gt;</span>(<span class="cm-variable">callback</span>: <span class="cm-variable">T</span>, <span class="cm-variable">deps</span>: <span class="cm-variable">Array</span><span class="cm-operator">&lt;</span><span class="cm-variable">mixed</span><span class="cm-operator">&gt;</span> <span class="cm-operator">|</span> <span class="cm-keyword">void</span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>): <span class="cm-variable">T</span></pre>
+      <pre class="cm-s-default"> <span class="cm-variable">useCallback</span><span class="cm-operator">&lt;</span><span class="cm-variable">T</span><span class="cm-operator">></span>(<span class="cm-variable">callback</span>: <span class="cm-variable">T</span>, <span class="cm-variable">deps</span>: <span class="cm-variable">Array</span><span class="cm-operator">&lt;</span><span class="cm-variable">mixed</span><span class="cm-operator">></span> <span class="cm-operator">|</span> <span class="cm-keyword">void</span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>): <span class="cm-variable">T</span></pre>
     </div>
   </div>
 </div>
@@ -821,13 +821,13 @@ reducer提供了一种可以在组件外重新编排state的能力，而useReduc
       <pre class="cm-s-default"><span class="cm-comment">// 当Parent组件re-render时，Child组件也会re-render</span>
 <span class="cm-keyword">class</span> <span class="cm-def">Parent</span> <span class="cm-keyword">extends</span> <span class="cm-variable">Component</span> {
   <span class="cm-property">render</span>() {
-    <span class="cm-keyword">const</span> <span class="cm-def">someFn</span> <span class="cm-operator">=</span> () <span class="cm-operator">=&gt;</span> {}; <span class="cm-comment">// re-render时，someFn函数会重新实例化</span>
+    <span class="cm-keyword">const</span> <span class="cm-def">someFn</span> <span class="cm-operator">=</span> () <span class="cm-operator">=></span> {}; <span class="cm-comment">// re-render时，someFn函数会重新实例化</span>
 
     <span class="cm-keyword">return</span> (
-      <span class="cm-operator">&lt;</span><span class="cm-operator">&gt;</span>
-        <span class="cm-operator">&lt;</span><span class="cm-variable">Child</span> <span class="cm-variable-2">someFn</span><span class="cm-operator">=</span>{<span class="cm-variable-2">someFn</span>} <span class="cm-string-2">/&gt;</span>
-        <span class="cm-operator">&lt;</span><span class="cm-variable">Other</span> <span class="cm-operator">/</span><span class="cm-operator">&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-string-2">/&gt;</span>
+      <span class="cm-operator">&lt;</span><span class="cm-operator">></span>
+        <span class="cm-operator">&lt;</span><span class="cm-variable">Child</span> <span class="cm-variable-2">someFn</span><span class="cm-operator">=</span>{<span class="cm-variable-2">someFn</span>} <span class="cm-string-2">/></span>
+        <span class="cm-operator">&lt;</span><span class="cm-variable">Other</span> <span class="cm-operator">/</span><span class="cm-operator">></span>
+      <span class="cm-operator">&lt;</span><span class="cm-string-2">/></span>
     );
   }
 }
@@ -849,22 +849,22 @@ Function Component（查看<a href="https://codesandbox.io/s/memoization-lbgob" 
       <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
   <span class="cm-keyword">const</span> [<span class="cm-def">count</span>, <span class="cm-def">setCount</span>] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number"></span>);
   <span class="cm-keyword">const</span> [<span class="cm-def">list</span>, <span class="cm-def">setList</span>] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>([]);
-  <span class="cm-keyword">const</span> <span class="cm-def">fetchData</span> <span class="cm-operator">=</span> <span class="cm-keyword">async</span> () <span class="cm-operator">=&gt;</span> {
-    <span class="cm-variable">setTimeout</span>(() <span class="cm-operator">=&gt;</span> {
+  <span class="cm-keyword">const</span> <span class="cm-def">fetchData</span> <span class="cm-operator">=</span> <span class="cm-keyword">async</span> () <span class="cm-operator">=></span> {
+    <span class="cm-variable">setTimeout</span>(() <span class="cm-operator">=></span> {
       <span class="cm-variable-2">setList</span>(<span class="cm-variable">initList</span>);
     }, <span class="cm-number">3000</span>);
   };
 
-  <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=&gt;</span> {
+  <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=></span> {
     <span class="cm-variable-2">fetchData</span>();
   }, [<span class="cm-variable-2">fetchData</span>]);
 
   <span class="cm-keyword">return</span> (
-    <span class="cm-operator">&lt;</span><span class="cm-operator">&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span><span class="cm-variable">click</span> {<span class="cm-variable-2">count</span>} <span class="cm-variable">times</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{() <span class="cm-operator">=&gt;</span> <span class="cm-variable">setCount</span>(<span class="cm-variable">count</span> <span class="cm-operator">+</span> <span class="cm-number">1</span>)}<span class="cm-operator">&gt;</span><span class="cm-variable">Add</span> <span class="cm-variable">count</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">List</span> <span class="cm-variable">list</span><span class="cm-operator">=</span>{<span class="cm-property">list</span>} <span class="cm-operator">/</span><span class="cm-operator">&gt;</span>
-    <span class="cm-operator">&lt;</span><span class="cm-string-2">/&gt;</span>
+    <span class="cm-operator">&lt;</span><span class="cm-operator">></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">></span><span class="cm-variable">click</span> {<span class="cm-variable-2">count</span>} <span class="cm-variable">times</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/div></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{() <span class="cm-operator">=></span> <span class="cm-variable">setCount</span>(<span class="cm-variable">count</span> <span class="cm-operator">+</span> <span class="cm-number">1</span>)}<span class="cm-operator">></span><span class="cm-variable">Add</span> <span class="cm-variable">count</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">List</span> <span class="cm-variable">list</span><span class="cm-operator">=</span>{<span class="cm-property">list</span>} <span class="cm-operator">/</span><span class="cm-operator">></span>
+    <span class="cm-operator">&lt;</span><span class="cm-string-2">/></span>
   );
 }</pre>
     </div>
@@ -882,7 +882,7 @@ Function Component（查看<a href="https://codesandbox.io/s/memoization-lbgob" 
 <div id="OQ1C2" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22useMemo%3CT%3E(create%3A%20()%20%3D%3E%20T%2C%20deps%3A%20Array%3Cmixed%3E%20%7C%20void%20%7C%20null)%3A%20T%22%2C%22id%22%3A%22OQ1C2%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-variable">useMemo</span><span class="cm-operator">&lt;</span><span class="cm-variable">T</span><span class="cm-operator">&gt;</span>(<span class="cm-variable">create</span>: () <span class="cm-operator">=&gt;</span> <span class="cm-variable">T</span>, <span class="cm-variable">deps</span>: <span class="cm-variable">Array</span><span class="cm-operator">&lt;</span><span class="cm-variable">mixed</span><span class="cm-operator">&gt;</span> <span class="cm-operator">|</span> <span class="cm-keyword">void</span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>): <span class="cm-variable">T</span></pre>
+      <pre class="cm-s-default"><span class="cm-variable">useMemo</span><span class="cm-operator">&lt;</span><span class="cm-variable">T</span><span class="cm-operator">></span>(<span class="cm-variable">create</span>: () <span class="cm-operator">=></span> <span class="cm-variable">T</span>, <span class="cm-variable">deps</span>: <span class="cm-variable">Array</span><span class="cm-operator">&lt;</span><span class="cm-variable">mixed</span><span class="cm-operator">></span> <span class="cm-operator">|</span> <span class="cm-keyword">void</span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>): <span class="cm-variable">T</span></pre>
     </div>
   </div>
 </div>
@@ -895,19 +895,19 @@ useMemo用于缓存一些耗时的计算结果，只有当依赖参数改变时�
       <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">App</span>(<span class="cm-def">props</span>) {
   <span class="cm-keyword">const</span> <span class="cm-def">start</span> <span class="cm-operator">=</span> <span class="cm-variable-2">props</span>.<span class="cm-property">start</span>;
   <span class="cm-keyword">const</span> <span class="cm-def">list</span> <span class="cm-operator">=</span> <span class="cm-variable-2">props</span>.<span class="cm-property">list</span>;
-  <span class="cm-keyword">const</span> <span class="cm-def">fibValue</span> <span class="cm-operator">=</span> <span class="cm-variable">useMemo</span>(() <span class="cm-operator">=&gt;</span> <span class="cm-variable">fibonacci</span>(<span class="cm-variable-2">start</span>), [<span class="cm-variable-2">start</span>]); <span class="cm-comment">// 缓存耗时操作</span>
-  <span class="cm-keyword">const</span> <span class="cm-def">MemoList</span> <span class="cm-operator">=</span> <span class="cm-variable">useMemo</span>(() <span class="cm-operator">=&gt;</span> <span class="cm-operator">&lt;</span><span class="cm-variable">List</span> <span class="cm-variable-2">list</span><span class="cm-operator">=</span>{<span class="cm-variable-2">list</span>} <span class="cm-string-2">/&gt;,
+  <span class="cm-keyword">const</span> <span class="cm-def">fibValue</span> <span class="cm-operator">=</span> <span class="cm-variable">useMemo</span>(() <span class="cm-operator">=></span> <span class="cm-variable">fibonacci</span>(<span class="cm-variable-2">start</span>), [<span class="cm-variable-2">start</span>]); <span class="cm-comment">// 缓存耗时操作</span>
+  <span class="cm-keyword">const</span> <span class="cm-def">MemoList</span> <span class="cm-operator">=</span> <span class="cm-variable">useMemo</span>(() <span class="cm-operator">=></span> <span class="cm-operator">&lt;</span><span class="cm-variable">List</span> <span class="cm-variable-2">list</span><span class="cm-operator">=</span>{<span class="cm-variable-2">list</span>} <span class="cm-string-2">/>,
 
 <ul>
 
 );</span>
 
 <span class="cm-keyword">return</span> (
-    <span class="cm-operator">&lt;</span><span class="cm-operator">&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span><span class="cm-variable">Do</span> <span class="cm-variable">some</span> <span class="cm-variable">expensive</span> <span class="cm-variable">calculation</span>: {<span class="cm-variable">fibValue</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;</span>
+    <span class="cm-operator">&lt;</span><span class="cm-operator">></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">></span><span class="cm-variable">Do</span> <span class="cm-variable">some</span> <span class="cm-variable">expensive</span> <span class="cm-variable">calculation</span>: {<span class="cm-variable">fibValue</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div></span>
       {<span class="cm-variable">MemoList</span>}
-      <span class="cm-operator">&lt;</span><span class="cm-variable">Other</span> <span class="cm-operator">/</span><span class="cm-operator">&gt;</span>
-    <span class="cm-operator">&lt;</span><span class="cm-string-2">/&gt;</span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">Other</span> <span class="cm-operator">/</span><span class="cm-operator">></span>
+    <span class="cm-operator">&lt;</span><span class="cm-string-2">/></span>
   );
 }</pre>
     </div>
@@ -922,13 +922,13 @@ useMemo用于缓存一些耗时的计算结果，只有当依赖参数改变时�
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
       <pre class="cm-s-default"><span class="cm-comment">// 只有列表项改变时组件才会re-render</span>
-<span class="cm-keyword">const</span> <span class="cm-def">MemoList</span> <span class="cm-operator">=</span> <span class="cm-variable">React</span>.<span class="cm-property">memo</span>(({ <span class="cm-def">list</span> }) <span class="cm-operator">=&gt;</span> {
+<span class="cm-keyword">const</span> <span class="cm-def">MemoList</span> <span class="cm-operator">=</span> <span class="cm-variable">React</span>.<span class="cm-property">memo</span>(({ <span class="cm-def">list</span> }) <span class="cm-operator">=></span> {
   <span class="cm-keyword">return</span> (
-    <span class="cm-operator">&lt;</span><span class="cm-variable">ul</span><span class="cm-operator">&gt;</span>
-      {<span class="cm-property">list</span>.<span class="cm-variable">map</span>(<span class="cm-variable">item</span> <span class="cm-operator">=&gt;</span> (
-        <span class="cm-operator">&lt;</span><span class="cm-variable">li</span> <span class="cm-variable">key</span><span class="cm-operator">=</span>{<span class="cm-variable">item</span>.<span class="cm-variable">id</span>}<span class="cm-operator">&gt;</span>{<span class="cm-property">item</span>.<span class="cm-variable">content</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/li&gt;</span>
+    <span class="cm-operator">&lt;</span><span class="cm-variable">ul</span><span class="cm-operator">></span>
+      {<span class="cm-property">list</span>.<span class="cm-variable">map</span>(<span class="cm-variable">item</span> <span class="cm-operator">=></span> (
+        <span class="cm-operator">&lt;</span><span class="cm-variable">li</span> <span class="cm-variable">key</span><span class="cm-operator">=</span>{<span class="cm-variable">item</span>.<span class="cm-variable">id</span>}<span class="cm-operator">></span>{<span class="cm-property">item</span>.<span class="cm-variable">content</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/li></span>
       ))}
-    <span class="cm-operator">&lt;</span><span class="cm-string-2">/ul&gt;</span>
+    <span class="cm-operator">&lt;</span><span class="cm-string-2">/ul></span>
   );
 });</pre>
     </div>
@@ -957,7 +957,7 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
 <div id="z4QPG" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22typescript%22%2C%22code%22%3A%22useContext%3CT%3E(context%3A%20ReactContext%3CT%3E%2C%20observedBits%3A%20void%20%7C%20number%20%7C%20boolean)%3A%20T%22%2C%22id%22%3A%22z4QPG%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-variable">useContext</span><span class="cm-operator">&lt;</span><span class="cm-type">T</span><span class="cm-operator">&gt;</span>(<span class="cm-variable">context</span>: <span class="cm-variable">ReactContext</span><span class="cm-operator">&lt;</span><span class="cm-variable">T</span><span class="cm-operator">&gt;</span>, <span class="cm-variable">observedBits</span>: <span class="cm-keyword">void</span> <span class="cm-operator">|</span> <span class="cm-variable">number</span> <span class="cm-operator">|</span> <span class="cm-variable">boolean</span>): <span class="cm-variable">T</span></pre>
+      <pre class="cm-s-default"><span class="cm-variable">useContext</span><span class="cm-operator">&lt;</span><span class="cm-type">T</span><span class="cm-operator">></span>(<span class="cm-variable">context</span>: <span class="cm-variable">ReactContext</span><span class="cm-operator">&lt;</span><span class="cm-variable">T</span><span class="cm-operator">></span>, <span class="cm-variable">observedBits</span>: <span class="cm-keyword">void</span> <span class="cm-operator">|</span> <span class="cm-variable">number</span> <span class="cm-operator">|</span> <span class="cm-variable">boolean</span>): <span class="cm-variable">T</span></pre>
     </div>
   </div>
 </div>
@@ -968,7 +968,7 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
       <pre class="cm-s-default"><span class="cm-keyword">const</span> <span class="cm-def">Context</span> <span class="cm-operator">=</span> <span class="cm-variable">createContext</span>();
-<span class="cm-keyword">const</span> <span class="cm-def">reducer</span> <span class="cm-operator">=</span> (<span class="cm-def">state</span>, <span class="cm-def">action</span>) <span class="cm-operator">=&gt;</span> {
+<span class="cm-keyword">const</span> <span class="cm-def">reducer</span> <span class="cm-operator">=</span> (<span class="cm-def">state</span>, <span class="cm-def">action</span>) <span class="cm-operator">=></span> {
   <span class="cm-keyword">switch</span> (<span class="cm-variable-2">action</span>.<span class="cm-property">type</span>) {
     <span class="cm-keyword">case</span> <span class="cm-string">"increase"</span>:
       <span class="cm-keyword">return</span> {
@@ -987,14 +987,14 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
 
 <span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
   <span class="cm-keyword">const</span> [<span class="cm-def">state</span>, <span class="cm-def">dispatch</span>] <span class="cm-operator">=</span> <span class="cm-variable">useReducer</span>(<span class="cm-variable">reducer</span>, { <span class="cm-property">count</span>: <span class="cm-number"></span> });
-  <span class="cm-keyword">const</span> <span class="cm-def">value</span> <span class="cm-operator">=</span> <span class="cm-variable">useMemo</span>(() <span class="cm-operator">=&gt;</span> [<span class="cm-variable-2">state</span>, <span class="cm-variable-2">dispatch</span>], [<span class="cm-variable-2">state</span>]);
+  <span class="cm-keyword">const</span> <span class="cm-def">value</span> <span class="cm-operator">=</span> <span class="cm-variable">useMemo</span>(() <span class="cm-operator">=></span> [<span class="cm-variable-2">state</span>, <span class="cm-variable-2">dispatch</span>], [<span class="cm-variable-2">state</span>]);
 
   <span class="cm-keyword">return</span> (
-    <span class="cm-operator">&lt;</span><span class="cm-variable">Context</span>.<span class="cm-property">Provider</span> <span class="cm-variable-2">value</span><span class="cm-operator">=</span>{<span class="cm-variable-2">value</span>}<span class="cm-operator">&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span><span class="cm-variable">App</span> <span class="cm-variable">count</span>: {<span class="cm-variable">state</span>.<span class="cm-property">count</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">Child1</span> <span class="cm-operator">/</span><span class="cm-operator">&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">Child2</span> <span class="cm-operator">/</span><span class="cm-operator">&gt;</span>
-    <span class="cm-operator">&lt;</span><span class="cm-string-2">/Context.Provider&gt;</span>
+    <span class="cm-operator">&lt;</span><span class="cm-variable">Context</span>.<span class="cm-property">Provider</span> <span class="cm-variable-2">value</span><span class="cm-operator">=</span>{<span class="cm-variable-2">value</span>}<span class="cm-operator">></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">></span><span class="cm-variable">App</span> <span class="cm-variable">count</span>: {<span class="cm-variable">state</span>.<span class="cm-property">count</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">Child1</span> <span class="cm-operator">/</span><span class="cm-operator">></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">Child2</span> <span class="cm-operator">/</span><span class="cm-operator">></span>
+    <span class="cm-operator">&lt;</span><span class="cm-string-2">/Context.Provider></span>
   );
 }
 
@@ -1002,10 +1002,10 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
   <span class="cm-keyword">const</span> [<span class="cm-def">state</span>, <span class="cm-def">dispatch</span>] <span class="cm-operator">=</span> <span class="cm-variable">useContext</span>(<span class="cm-variable">Context</span>);
 
   <span class="cm-keyword">return</span> (
-    <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">span</span><span class="cm-operator">&gt;</span><span class="cm-variable">Child1</span> <span class="cm-variable">count</span>: {<span class="cm-variable-2">state</span>.<span class="cm-variable">count</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/span&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{() <span class="cm-operator">=&gt;</span> <span class="cm-variable">dispatch</span>({ <span class="cm-property">type</span>: <span class="cm-string">"increase"</span> })}<span class="cm-operator">&gt;</span><span class="cm-variable">increase</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button&gt;</span>
-    <span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;</span>
+    <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">span</span><span class="cm-operator">></span><span class="cm-variable">Child1</span> <span class="cm-variable">count</span>: {<span class="cm-variable-2">state</span>.<span class="cm-variable">count</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/span></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{() <span class="cm-operator">=></span> <span class="cm-variable">dispatch</span>({ <span class="cm-property">type</span>: <span class="cm-string">"increase"</span> })}<span class="cm-operator">></span><span class="cm-variable">increase</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button></span>
+    <span class="cm-operator">&lt;</span><span class="cm-string-2">/div></span>
   );
 }
 
@@ -1013,10 +1013,10 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
   <span class="cm-keyword">const</span> [<span class="cm-def">state</span>, <span class="cm-def">dispatch</span>] <span class="cm-operator">=</span> <span class="cm-variable">useContext</span>(<span class="cm-variable">Context</span>);
 
   <span class="cm-keyword">return</span> (
-    <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">span</span><span class="cm-operator">&gt;</span><span class="cm-variable">Child2</span> <span class="cm-variable">count</span>: {<span class="cm-variable-2">state</span>.<span class="cm-variable">count</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/span&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{() <span class="cm-operator">=&gt;</span> <span class="cm-variable">dispatch</span>({ <span class="cm-property">type</span>: <span class="cm-string">"decrease"</span> })}<span class="cm-operator">&gt;</span><span class="cm-variable">decrease</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button&gt;</span>
-    <span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;</span>
+    <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">span</span><span class="cm-operator">></span><span class="cm-variable">Child2</span> <span class="cm-variable">count</span>: {<span class="cm-variable-2">state</span>.<span class="cm-variable">count</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/span></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{() <span class="cm-operator">=></span> <span class="cm-variable">dispatch</span>({ <span class="cm-property">type</span>: <span class="cm-string">"decrease"</span> })}<span class="cm-operator">></span><span class="cm-variable">decrease</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button></span>
+    <span class="cm-operator">&lt;</span><span class="cm-string-2">/div></span>
   );
 }</pre>
     </div>
@@ -1035,15 +1035,15 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
       <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">Counter</span>() {
   <span class="cm-keyword">const</span> [<span class="cm-def">count</span>, <span class="cm-def">setCount</span>] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number"></span>);
 
-  <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=&gt;</span> {
+  <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=></span> {
     <span class="cm-variable">document</span>.<span class="cm-property">title</span> <span class="cm-operator">=</span> <span class="cm-string-2">`You clicked ${</span><span class="cm-variable-2">count</span><span class="cm-string-2">}</span> <span class="cm-string-2">times`</span>;
   });
   <span class="cm-comment">// 连续点击三次button，页面的title将依次改为1、2、3，而不是3、3、3</span>
   <span class="cm-keyword">return</span> (
-    <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">p</span><span class="cm-operator">&gt;</span><span class="cm-variable">You</span> <span class="cm-variable">clicked</span> {<span class="cm-variable-2">count</span>} <span class="cm-variable">times</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/p&gt;</span>
-      <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{() <span class="cm-operator">=&gt;</span> <span class="cm-variable">setCount</span>(<span class="cm-variable">count</span> <span class="cm-operator">+</span> <span class="cm-number">1</span>)}<span class="cm-operator">&gt;</span><span class="cm-variable">Click</span> <span class="cm-variable">me</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button&gt;</span>
-    <span class="cm-operator">&lt;</span><span class="cm-string-2">/div&gt;</span>
+    <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">p</span><span class="cm-operator">></span><span class="cm-variable">You</span> <span class="cm-variable">clicked</span> {<span class="cm-variable-2">count</span>} <span class="cm-variable">times</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/p></span>
+      <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{() <span class="cm-operator">=></span> <span class="cm-variable">setCount</span>(<span class="cm-variable">count</span> <span class="cm-operator">+</span> <span class="cm-number">1</span>)}<span class="cm-operator">></span><span class="cm-variable">Click</span> <span class="cm-variable">me</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button></span>
+    <span class="cm-operator">&lt;</span><span class="cm-string-2">/div></span>
   );
 }</pre>
     </div>
@@ -1080,7 +1080,7 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
       <pre class="cm-s-default"><span class="cm-comment">// mount结束</span>
-<span class="cm-variable">componentDidMount</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span> <span class="cm-def">useDidMount</span>(<span class="cm-def">effect</span>) <span class="cm-operator">=&gt;</span> {
+<span class="cm-variable">componentDidMount</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span> <span class="cm-def">useDidMount</span>(<span class="cm-def">effect</span>) <span class="cm-operator">=></span> {
   <span class="cm-variable">useEffect</span>(<span class="cm-variable">effect</span>, []);
 };</pre>
     </div>
@@ -1093,7 +1093,7 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
       <pre class="cm-s-default"><span class="cm-comment">// render结束，可以执行DOM操作</span>
-<span class="cm-variable">componentDidUpdate</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span> <span class="cm-def">useDomDidMount</span>(<span class="cm-def">effect</span>) <span class="cm-operator">=&gt;</span> {
+<span class="cm-variable">componentDidUpdate</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span> <span class="cm-def">useDomDidMount</span>(<span class="cm-def">effect</span>) <span class="cm-operator">=></span> {
   <span class="cm-variable">useLayoutEffect</span>(<span class="cm-variable">effect</span>, []);
 };</pre>
     </div>
@@ -1105,8 +1105,8 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
 <div id="QM8xf" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22componentWillUnMount%20%3D%20function%20useWillUnMount(effect)%20%3D%3E%20%7B%5Cn%5CtuseEffect(()%20%3D%3E%20effect%2C%20%5B%5D)%3B%5Cn%7D%3B%22%2C%22id%22%3A%22QM8xf%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-variable">componentWillUnMount</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span> <span class="cm-def">useWillUnMount</span>(<span class="cm-def">effect</span>) <span class="cm-operator">=&gt;</span> {
-  <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=&gt;</span> <span class="cm-variable">effect</span>, []);
+      <pre class="cm-s-default"><span class="cm-variable">componentWillUnMount</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span> <span class="cm-def">useWillUnMount</span>(<span class="cm-def">effect</span>) <span class="cm-operator">=></span> {
+  <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=></span> <span class="cm-variable">effect</span>, []);
 };</pre>
     </div>
   </div>
@@ -1118,18 +1118,18 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
       <pre class="cm-s-default"><span class="cm-comment">// 使用React.memo包裹组件</span>
-<span class="cm-keyword">const</span> <span class="cm-def">MyComponent</span> <span class="cm-operator">=</span> <span class="cm-variable">React</span>.<span class="cm-property">memo</span>(() <span class="cm-operator">=&gt;</span> {
-  <span class="cm-keyword">return</span> <span class="cm-operator">&lt;</span><span class="cm-variable">Child</span> <span class="cm-variable">prop</span><span class="cm-operator">=</span>{<span class="cm-property">prop</span>} <span class="cm-operator">/</span><span class="cm-operator">&gt;</span>
+<span class="cm-keyword">const</span> <span class="cm-def">MyComponent</span> <span class="cm-operator">=</span> <span class="cm-variable">React</span>.<span class="cm-property">memo</span>(() <span class="cm-operator">=></span> {
+  <span class="cm-keyword">return</span> <span class="cm-operator">&lt;</span><span class="cm-variable">Child</span> <span class="cm-variable">prop</span><span class="cm-operator">=</span>{<span class="cm-property">prop</span>} <span class="cm-operator">/</span><span class="cm-operator">></span>
 }, [<span class="cm-variable">prop</span>]);
 <span class="cm-comment">// or</span>
 <span class="cm-keyword">function</span> <span class="cm-def">A</span>({ <span class="cm-def">a</span>, <span class="cm-def">b</span> }) {
-  <span class="cm-keyword">const</span> <span class="cm-def">B</span> <span class="cm-operator">=</span> <span class="cm-variable">useMemo</span>(() <span class="cm-operator">=&gt;</span> <span class="cm-operator">&lt;</span><span class="cm-variable">B1</span> <span class="cm-variable-2">a</span><span class="cm-operator">=</span>{<span class="cm-variable-2">a</span>} <span class="cm-string-2">/&gt;, [a]);</span>
-  <span class="cm-keyword">const</span> <span class="cm-def">C</span> <span class="cm-operator">=</span> <span class="cm-variable">useMemo</span>(() <span class="cm-operator">=&gt;</span> <span class="cm-operator">&lt;</span><span class="cm-variable">C1</span> <span class="cm-variable">b</span><span class="cm-operator">=</span>{<span class="cm-variable">b</span>} <span class="cm-string-2">/&gt;, [b]);</span>
+  <span class="cm-keyword">const</span> <span class="cm-def">B</span> <span class="cm-operator">=</span> <span class="cm-variable">useMemo</span>(() <span class="cm-operator">=></span> <span class="cm-operator">&lt;</span><span class="cm-variable">B1</span> <span class="cm-variable-2">a</span><span class="cm-operator">=</span>{<span class="cm-variable-2">a</span>} <span class="cm-string-2">/>, [a]);</span>
+  <span class="cm-keyword">const</span> <span class="cm-def">C</span> <span class="cm-operator">=</span> <span class="cm-variable">useMemo</span>(() <span class="cm-operator">=></span> <span class="cm-operator">&lt;</span><span class="cm-variable">C1</span> <span class="cm-variable">b</span><span class="cm-operator">=</span>{<span class="cm-variable">b</span>} <span class="cm-string-2">/>, [b]);</span>
   <span class="cm-keyword">return</span> (
-    <span class="cm-operator">&lt;</span><span class="cm-operator">&gt;</span>
+    <span class="cm-operator">&lt;</span><span class="cm-operator">></span>
       {<span class="cm-variable">B</span>}
       {<span class="cm-variable">C</span>}
-    <span class="cm-operator">&lt;</span><span class="cm-string-2">/&gt;</span>
+    <span class="cm-operator">&lt;</span><span class="cm-string-2">/></span>
   );
 }</pre>
     </div>

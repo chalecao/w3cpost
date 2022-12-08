@@ -105,9 +105,9 @@ function removeClass(sel, cls) {
 }, function(reason){
     console.log('reject', reason)
     return 2;
-}).then(res=&gt;{
+}).then(res=>{
     console.log(res) //all gos here
-},err=&gt;{
+},err=>{
     console.log(err)
 })
 </code></pre>
@@ -125,9 +125,9 @@ function removeClass(sel, cls) {
     Promise.reject(1)
     //2. throw Error, go next then reject
     throw new Error("2")
-}).then(res=&gt;{
+}).then(res=>{
     console.log(res)
-},err=&gt;{
+},err=>{
     console.log(err)
 })
 </code></pre>
@@ -197,7 +197,7 @@ function removeClass(sel, cls) {
  知识点1： nodeList 在 ie， ios safari 10 之前，chrome 51 之前是不支持forEach方法的。参考: <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeList">https://developer.mozilla.org/en-US/docs/Web/API/NodeList</a> ， 所以新手经常会犯这个错误。直接
 
 <div>
-  <pre><code>&lt;code>document,querySelectorAll("a").forEach(()=&gt;{
+  <pre><code>&lt;code>document,querySelectorAll("a").forEach(()=>{
     ....
 })
 </code>&lt;/code></pre>

@@ -206,8 +206,8 @@ HTML5中最酷的新功能之一就是 <a href="https://www.whatwg.org/specs/web
   a.com/index.html中的代码：
 
 <div>
-  <pre><code>&lt;code>&lt;iframe id="ifr" src="b.com/index.html"&gt;
-&lt;script type="text/javascript"&gt;
+  <pre><code>&lt;code>&lt;iframe id="ifr" src="b.com/index.html">
+&lt;script type="text/javascript">
 window.onload = function() {
 var ifr = document.getElementById('ifr');
 var targetOrigin = 'https://b.com'; // 若写成'https://b.com/c/proxy.html'效果一样
@@ -220,7 +220,7 @@ ifr.contentWindow.postMessage('I was there!', targetOrigin);
   b.com/index.html中的代码：
 
 <div>
-  <pre><code>&lt;code>&lt;script type="text/javascript"&gt;
+  <pre><code>&lt;code>&lt;script type="text/javascript">
 window.addEventListener('message', function(event){
 // 通过origin属性判断消息来源地址
 if (event.origin == 'https://a.com') {

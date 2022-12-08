@@ -154,7 +154,7 @@ _如下：_
 
 <div class="cnblogs_code">
   <pre>var arr = [];
-for(var i = 0; i &lt; 2; i++){
+for(var i = 0; i < 2; i++){
     arr[i] = function(){
         console.log(i);
     };
@@ -168,7 +168,7 @@ arr\[1\]()会输出2，原因是var声明的变量会变量提升，且当执行
 
 <div class="cnblogs_code">
   <pre>var arr = [];
-for(var i = 0; i &lt; 2; i++){
+for(var i = 0; i < 2; i++){
     arr[i] = (function(i){
         return function(){
             console.log(i);
@@ -182,7 +182,7 @@ arr[1]();</pre>
 
 <div class="cnblogs_code">
   <pre>var arr = [];
-for(var i = 0; i &lt; 2; i++){
+for(var i = 0; i < 2; i++){
     (arr[i] = function self(){
         console.log(self.x);
     }).x = i;
@@ -197,7 +197,7 @@ _如下：_
 <div class="cnblogs_code">
   <pre>'use strict';
 var arr = [];
-for(let i = 0; i &lt; 2; i++){
+for(let i = 0; i < 2; i++){
     arr[i] = function(){
         console.log(i);
     };

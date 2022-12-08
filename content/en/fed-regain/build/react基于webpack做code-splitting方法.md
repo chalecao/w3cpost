@@ -33,8 +33,8 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
 
 **index.js**
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-keyword">var&lt;/span> moment = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'moment'&lt;/span>);
-&lt;span class="hljs-built_in">console&lt;/span>.log(moment().format());</code></pre>
+<pre><code class="js hljs javascript"><span class="hljs-keyword">var</span> moment = <span class="hljs-built_in">require</span>(<span class="hljs-string">'moment'</span>);
+<span class="hljs-built_in">console</span>.log(moment().format());</code></pre>
 
 **webpack.config.js**
 
@@ -43,22 +43,22 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
 * `main`为主入口模块文件
 * `vendor`为公共基础库模块，名字可随意设定。称为initial chunk
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-keyword">var&lt;/span> path = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'path'&lt;/span>);
+<pre><code class="js hljs javascript"><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
 
-&lt;span class="hljs-built_in">module&lt;/span>.exports = {
+<span class="hljs-built_in">module</span>.exports = {
    entry: {
-       main: &lt;span class="hljs-string">'./index.js'&lt;/span>,
-       vendor: [&lt;span class="hljs-string">'moment'&lt;/span>]
+       main: <span class="hljs-string">'./index.js'</span>,
+       vendor: [<span class="hljs-string">'moment'</span>]
    },
    output: {
-       filename: &lt;span class="hljs-string">'[name].js'&lt;/span>,
-       path: path.resolve(__dirname, &lt;span class="hljs-string">'dist'&lt;/span>)
+       filename: <span class="hljs-string">'[name].js'</span>,
+       path: path.resolve(__dirname, <span class="hljs-string">'dist'</span>)
    }
 }</code></pre>
 
 执行webpack打包命令：
 
-<pre><code class="shell hljs nginx">&lt;span class="hljs-attribute">webpack&lt;/span> --progress --hide-modules</code></pre>
+<pre><code class="shell hljs nginx"><span class="hljs-attribute">webpack</span> --progress --hide-modules</code></pre>
 
 可以看到最终打包为两个js文件 `main.js` 、`vendor.js`，但如果检查者两个文件会发现`moment`模块代码被重复打包到两个文件中，而这肯定不是[我们](https://www.w3cdoc.com)想要的，这时候就需要 webpack的plugin发挥作用了。
 
@@ -68,22 +68,22 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
   使用CommonsChunkPlugin
 </h4>
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-keyword">var&lt;/span> webpack = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'webpack'&lt;/span>);
-&lt;span class="hljs-keyword">var&lt;/span> path = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'path'&lt;/span>);
+<pre><code class="js hljs javascript"><span class="hljs-keyword">var</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
+<span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
 
-&lt;span class="hljs-built_in">module&lt;/span>.exports = {
+<span class="hljs-built_in">module</span>.exports = {
    entry: {
-       main: &lt;span class="hljs-string">'./index.js'&lt;/span>,
-       vendor: [&lt;span class="hljs-string">'moment'&lt;/span>]
+       main: <span class="hljs-string">'./index.js'</span>,
+       vendor: [<span class="hljs-string">'moment'</span>]
    },
    output: {
-       filename: &lt;span class="hljs-string">'[chunkhash:8].[name].js'&lt;/span>,
-       path: path.resolve(__dirname, &lt;span class="hljs-string">'dist'&lt;/span>)
+       filename: <span class="hljs-string">'[chunkhash:8].[name].js'</span>,
+       path: path.resolve(__dirname, <span class="hljs-string">'dist'</span>)
    },
    plugins: [
-       &lt;span class="hljs-keyword">new&lt;/span> webpack.optimize.CommonsChunkPlugin({
-            &lt;span class="hljs-comment">// vendor是包括公共的第三方代码，称为initial chunk&lt;/span>
-           name: &lt;span class="hljs-string">'vendor'&lt;/span>
+       <span class="hljs-keyword">new</span> webpack.optimize.CommonsChunkPlugin({
+            <span class="hljs-comment">// vendor是包括公共的第三方代码，称为initial chunk</span>
+           name: <span class="hljs-string">'vendor'</span>
        })
    ]
 }</code></pre>
@@ -106,19 +106,19 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
 
 * `names`字段支持以数组格式来指定`基础库模块名称`和`运行时代码模块名称`。
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-built_in">module&lt;/span>.exports = {
+<pre><code class="js hljs javascript"><span class="hljs-built_in">module</span>.exports = {
    entry: {
-       main: &lt;span class="hljs-string">'./index.js'&lt;/span>,
-       vendor: &lt;span class="hljs-string">'moment'&lt;/span>
+       main: <span class="hljs-string">'./index.js'</span>,
+       vendor: <span class="hljs-string">'moment'</span>
    },
    output: {
-       filename: &lt;span class="hljs-string">'[chunkhash:8].[name].js'&lt;/span>,
-       path: path.resolve(__dirname, &lt;span class="hljs-string">'dist'&lt;/span>)
+       filename: <span class="hljs-string">'[chunkhash:8].[name].js'</span>,
+       path: path.resolve(__dirname, <span class="hljs-string">'dist'</span>)
    },
    plugins: [
-       &lt;span class="hljs-keyword">new&lt;/span> webpack.optimize.CommonsChunkPlugin({
-           &lt;span class="hljs-comment">// manifest是包括webpack运行时runtime的块，可以称为entry chunk&lt;/span>
-           names: [&lt;span class="hljs-string">'vendor'&lt;/span>, &lt;span class="hljs-string">'manifest'&lt;/span>]
+       <span class="hljs-keyword">new</span> webpack.optimize.CommonsChunkPlugin({
+           <span class="hljs-comment">// manifest是包括webpack运行时runtime的块，可以称为entry chunk</span>
+           names: [<span class="hljs-string">'vendor'</span>, <span class="hljs-string">'manifest'</span>]
        })
    ]
 }</code></pre>
@@ -134,30 +134,30 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
 
 **index.js**
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-keyword">import&lt;/span> moment &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'moment'&lt;/span>;
-&lt;span class="hljs-keyword">import&lt;/span> &lt;span class="hljs-string">'./index.css'&lt;/span>;
+<pre><code class="js hljs javascript"><span class="hljs-keyword">import</span> moment <span class="hljs-keyword">from</span> <span class="hljs-string">'moment'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./index.css'</span>;
 
-&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'moment:'&lt;/span>, moment().format());</code></pre>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'moment:'</span>, moment().format());</code></pre>
 
 **webpack.config.js**
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-keyword">var&lt;/span> ExtractTextPlugin = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'extract-text-webpack-plugin'&lt;/span>);
+<pre><code class="js hljs javascript"><span class="hljs-keyword">var</span> ExtractTextPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">'extract-text-webpack-plugin'</span>);
 ......
    module: {
        rules: [{
-           test: &lt;span class="hljs-regexp">/\.css$/&lt;/span>,
-           exclude: &lt;span class="hljs-regexp">/node_modules/&lt;/span>,
+           test: <span class="hljs-regexp">/\.css$/</span>,
+           exclude: <span class="hljs-regexp">/node_modules/</span>,
            use: ExtractTextPlugin.extract({
-               loader: &lt;span class="hljs-string">'css-loader'&lt;/span>,
+               loader: <span class="hljs-string">'css-loader'</span>,
                options: {}
            })
        }]
    },
    plugins: [
-       &lt;span class="hljs-keyword">new&lt;/span> ExtractTextPlugin({
-           filename: &lt;span class="hljs-string">'bundle.css'&lt;/span>,
-           disable: &lt;span class="hljs-literal">false&lt;/span>,
-           allChunks: &lt;span class="hljs-literal">true&lt;/span>
+       <span class="hljs-keyword">new</span> ExtractTextPlugin({
+           filename: <span class="hljs-string">'bundle.css'</span>,
+           disable: <span class="hljs-literal">false</span>,
+           allChunks: <span class="hljs-literal">true</span>
        })
    ]
 ......</code></pre>
@@ -175,18 +175,18 @@ webpack作为当下最为流行的模块打包工具，成为了react、vue等�
 
 * require.ensure()语法
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-comment">// 空参数&lt;/span>
-&lt;span class="hljs-built_in">require&lt;/span>.ensure([], &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">require&lt;/span>)&lt;/span>{
-    &lt;span class="hljs-keyword">var&lt;/span> = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'module-b'&lt;/span>);
+<pre><code class="js hljs javascript"><span class="hljs-comment">// 空参数</span>
+<span class="hljs-built_in">require</span>.ensure([], <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">require</span>)</span>{
+    <span class="hljs-keyword">var</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">'module-b'</span>);
 });
 
-&lt;span class="hljs-comment">// 依赖模块 "module-a", "module-b"，会和'module-c'打包成一个chunk来加载&lt;/span>
-&lt;span class="hljs-comment">// 不同的分割点可以使用同一个chunkname，这样可以保证不同分割点的代码模块打包为一个chunk&lt;/span>
-&lt;span class="hljs-built_in">require&lt;/span>.ensure([&lt;span class="hljs-string">"module-a"&lt;/span>, &lt;span class="hljs-string">"module-b"&lt;/span>], &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">require&lt;/span>) &lt;/span>{
-    &lt;span class="hljs-keyword">var&lt;/span> a = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"module-a"&lt;/span>);
-    &lt;span class="hljs-keyword">var&lt;/span> b = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"module-b"&lt;/span>);
-    &lt;span class="hljs-keyword">var&lt;/span> c = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'module-c'&lt;/span>);
-},&lt;span class="hljs-string">"custom-chunk-name"&lt;/span>);</code></pre>
+<span class="hljs-comment">// 依赖模块 "module-a", "module-b"，会和'module-c'打包成一个chunk来加载</span>
+<span class="hljs-comment">// 不同的分割点可以使用同一个chunkname，这样可以保证不同分割点的代码模块打包为一个chunk</span>
+<span class="hljs-built_in">require</span>.ensure([<span class="hljs-string">"module-a"</span>, <span class="hljs-string">"module-b"</span>], <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">require</span>) </span>{
+    <span class="hljs-keyword">var</span> a = <span class="hljs-built_in">require</span>(<span class="hljs-string">"module-a"</span>);
+    <span class="hljs-keyword">var</span> b = <span class="hljs-built_in">require</span>(<span class="hljs-string">"module-b"</span>);
+    <span class="hljs-keyword">var</span> c = <span class="hljs-built_in">require</span>(<span class="hljs-string">'module-c'</span>);
+},<span class="hljs-string">"custom-chunk-name"</span>);</code></pre>
 
 ### Code Splitting with ES2015 {#11}
 
@@ -196,20 +196,20 @@ webpack将`import()`看做一个分割点并将其请求的module打包为一个
 
 * import() 语法
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-keyword">import&lt;/span>(&lt;span class="hljs-string">"./module"&lt;/span>).then(&lt;span class="hljs-built_in">module&lt;/span> =&gt; {
-    &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-built_in">module&lt;/span>.default;
-}).catch(err =&gt; {
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">"Chunk loading failed"&lt;/span>);
+<pre><code class="js hljs javascript"><span class="hljs-keyword">import</span>(<span class="hljs-string">"./module"</span>).then(<span class="hljs-built_in">module</span> => {
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">module</span>.default;
+}).catch(err => {
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Chunk loading failed"</span>);
 });</code></pre>
 
 * import()使用须知
   * [import()][5]目前还是处于TC39 proposal阶段。
   * 在Babel中使用`import()`方法，需要安装 [dynamic-import][6]插件并选择使用`babel-preset-stage-3`处理解析错误。
 * 动态表达式 [Dynamic expressions][7]`import()`中的传参可支持部分表达式的写法了，如果之前有接触过CommonJS中`require()`表达式写法，应该不会对此感到陌生。它的操作其实和 CommonJS 类似，给所有可能的文件创建一个环境，当你传递那部分代码的模块还不确定的时候，webpack 会自动生成所有可能的模块，然后根据需求加载。这个特性在[前端](https://www.w3cdoc.com)路由的时候很有用，可以实现按需加载资源。`import()`会针对每一个读取到的module创建独立的`chunk`。
-    <pre><code class="js hljs javascript">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">route&lt;/span>(&lt;span class="hljs-params">path, query&lt;/span>) &lt;/span>{
+    <pre><code class="js hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">route</span>(<span class="hljs-params">path, query</span>) </span>{
 
-  &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-keyword">import&lt;/span>(&lt;span class="hljs-string">`./routes/&lt;span class="hljs-subst">${path}&lt;/span>/route`&lt;/span>)
-    .then(route =&gt; &lt;span class="hljs-keyword">new&lt;/span> route.Route(query));
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">`./routes/<span class="hljs-subst">${path}</span>/route`</span>)
+    .then(route => <span class="hljs-keyword">new</span> route.Route(query));
 }</code></pre>
 
 ### bundle-loader {#12}
@@ -218,15 +218,15 @@ webpack将`import()`看做一个分割点并将其请求的module打包为一个
 
 * 使用语法：
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-comment">// 在require bundle时，[浏览器](https://www.w3cdoc.com)会立即加载&lt;/span>
-&lt;span class="hljs-keyword">var&lt;/span> waitForChunk = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"bundle!./file.js"&lt;/span>);
+<pre><code class="js hljs javascript"><span class="hljs-comment">// 在require bundle时，[浏览器](https://www.w3cdoc.com)会立即加载</span>
+<span class="hljs-keyword">var</span> waitForChunk = <span class="hljs-built_in">require</span>(<span class="hljs-string">"bundle!./file.js"</span>);
 
-&lt;span class="hljs-comment">// 使用lazy模式，[浏览器](https://www.w3cdoc.com)并不立即加载，只在调用wrapper函数才加载&lt;/span>
-&lt;span class="hljs-keyword">var&lt;/span> waitForChunk = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"bundle?lazy!./file.js"&lt;/span>);
+<span class="hljs-comment">// 使用lazy模式，[浏览器](https://www.w3cdoc.com)并不立即加载，只在调用wrapper函数才加载</span>
+<span class="hljs-keyword">var</span> waitForChunk = <span class="hljs-built_in">require</span>(<span class="hljs-string">"bundle?lazy!./file.js"</span>);
 
-&lt;span class="hljs-comment">// 等待加载，在回调中使用&lt;/span>
-waitForChunk(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">file&lt;/span>) &lt;/span>{
-    &lt;span class="hljs-keyword">var&lt;/span> file = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"./file.js"&lt;/span>);
+<span class="hljs-comment">// 等待加载，在回调中使用</span>
+waitForChunk(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">file</span>) </span>{
+    <span class="hljs-keyword">var</span> file = <span class="hljs-built_in">require</span>(<span class="hljs-string">"./file.js"</span>);
 });</code></pre>
 
 * wrapper函数：
@@ -234,25 +234,25 @@ waitForChunk(&lt;span class="hljs-function">&lt;span class="hljs-keyword">functi
 **默认普通模式wrapper：**
 
 <pre><code class="js hljs javascript">
-&lt;span class="hljs-keyword">var&lt;/span> cbs = [],data;
-&lt;span class="hljs-built_in">module&lt;/span>.exports = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">cb&lt;/span>) &lt;/span>{
-    &lt;span class="hljs-keyword">if&lt;/span>(cbs) cbs.push(cb);
-    &lt;span class="hljs-keyword">else&lt;/span> cb(data);
+<span class="hljs-keyword">var</span> cbs = [],data;
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">cb</span>) </span>{
+    <span class="hljs-keyword">if</span>(cbs) cbs.push(cb);
+    <span class="hljs-keyword">else</span> cb(data);
 },
-&lt;span class="hljs-built_in">require&lt;/span>.ensure([], &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">require&lt;/span>) &lt;/span>{
-    data = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'./file.js'&lt;/span>);
-    &lt;span class="hljs-keyword">var&lt;/span> callbacks = cbs;
-    cbs = &lt;span class="hljs-literal">null&lt;/span>;
-    &lt;span class="hljs-keyword">for&lt;/span>(&lt;span class="hljs-keyword">var&lt;/span> i = &lt;span class="hljs-number">0&lt;/span>, l = callbacks.length; i &lt; l; i++) {
+<span class="hljs-built_in">require</span>.ensure([], <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">require</span>) </span>{
+    data = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./file.js'</span>);
+    <span class="hljs-keyword">var</span> callbacks = cbs;
+    cbs = <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>, l = callbacks.length; i < l; i++) {
         callbacks[i](data);
       }
 });</code></pre>
 
 **lazy模式wrapper：**
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-built_in">module&lt;/span>.exports = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">cb&lt;/span>) &lt;/span>{
-  &lt;span class="hljs-built_in">require&lt;/span>.ensure([], &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">require&lt;/span>) &lt;/span>{
-    &lt;span class="hljs-keyword">var&lt;/span> app = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'./file.js'&lt;/span>);
+<pre><code class="js hljs javascript"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">cb</span>) </span>{
+  <span class="hljs-built_in">require</span>.ensure([], <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">require</span>) </span>{
+    <span class="hljs-keyword">var</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./file.js'</span>);
     cb(app);
   });
 };</code></pre>
@@ -261,7 +261,7 @@ waitForChunk(&lt;span class="hljs-function">&lt;span class="hljs-keyword">functi
 
 * 支持自定义Chunk名称：
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"bundle-loader?lazy&name=my-chunk!./file.js"&lt;/span>);</code></pre>
+<pre><code class="js hljs javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">"bundle-loader?lazy&name=my-chunk!./file.js"</span>);</code></pre>
 
 ### promise-loader {#13}
 
@@ -271,25 +271,25 @@ waitForChunk(&lt;span class="hljs-function">&lt;span class="hljs-keyword">functi
 
 * 使用语法：
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-comment">// 使用Bluebird promise库&lt;/span>
-&lt;span class="hljs-keyword">var&lt;/span> load = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"promise?bluebird!./file.js"&lt;/span>);
+<pre><code class="js hljs javascript"><span class="hljs-comment">// 使用Bluebird promise库</span>
+<span class="hljs-keyword">var</span> load = <span class="hljs-built_in">require</span>(<span class="hljs-string">"promise?bluebird!./file.js"</span>);
 
-&lt;span class="hljs-comment">// 使用全局Promise对象&lt;/span>
-&lt;span class="hljs-keyword">var&lt;/span> load = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"promise?global!./file.js"&lt;/span>);
+<span class="hljs-comment">// 使用全局Promise对象</span>
+<span class="hljs-keyword">var</span> load = <span class="hljs-built_in">require</span>(<span class="hljs-string">"promise?global!./file.js"</span>);
 
-load().then(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">file&lt;/span>) &lt;/span>{
+load().then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">file</span>) </span>{
 
 });
 </code></pre>
 
 * wrapper函数：
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-keyword">var&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span> = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'bluebird'&lt;/span>);
+<pre><code class="js hljs javascript"><span class="hljs-keyword">var</span> <span class="hljs-built_in">Promise</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">'bluebird'</span>);
 
-&lt;span class="hljs-built_in">module&lt;/span>.exports = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">namespace&lt;/span>) &lt;/span>{
-  &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">resolve&lt;/span>) &lt;/span>{
-    &lt;span class="hljs-built_in">require&lt;/span>.ensure([], &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">require&lt;/span>) &lt;/span>{
-      resolve[&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'./file.js'&lt;/span>](namespace)));
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">namespace</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve</span>) </span>{
+    <span class="hljs-built_in">require</span>.ensure([], <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">require</span>) </span>{
+      resolve[<span class="hljs-built_in">require</span>(<span class="hljs-string">'./file.js'</span>](namespace)));
     });
   });
 }</code></pre>
@@ -300,18 +300,18 @@ load().then(&lt;span class="hljs-function">&lt;span class="hljs-keyword">functio
 
 * 使用语法：
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-keyword">var&lt;/span> load = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"es6-promise!./file.js"&lt;/span>);
+<pre><code class="js hljs javascript"><span class="hljs-keyword">var</span> load = <span class="hljs-built_in">require</span>(<span class="hljs-string">"es6-promise!./file.js"</span>);
 
-load(namespace).then(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">file&lt;/span>) &lt;/span>{
-    &lt;span class="hljs-built_in">console&lt;/span>.log(file);
+load(namespace).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">file</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(file);
 });</code></pre>
 
 * wrapper函数：
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-built_in">module&lt;/span>.exports = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">namespace&lt;/span>) &lt;/span>{
-  &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">resolve&lt;/span>) &lt;/span>{
-    &lt;span class="hljs-built_in">require&lt;/span>.ensure([], &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">require&lt;/span>) &lt;/span>{
-      resolve[&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'./file.js'&lt;/span>](namespace)));
+<pre><code class="js hljs javascript"><span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">namespace</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve</span>) </span>{
+    <span class="hljs-built_in">require</span>.ensure([], <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">require</span>) </span>{
+      resolve[<span class="hljs-built_in">require</span>(<span class="hljs-string">'./file.js'</span>](namespace)));
     });
   });
 }</code></pre>
@@ -326,20 +326,20 @@ load(namespace).then(&lt;span class="hljs-function">&lt;span class="hljs-keyword
 
 **使用语法：**
 
-<pre><code class="js hljs javascript">&lt;Router history={history}&gt;
-    &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Route&lt;/span>
-        &lt;span class="hljs-attr">path&lt;/span>=&lt;span class="hljs-string">"/"&lt;/span>
-        &lt;span class="hljs-attr">getComponent&lt;/span>=&lt;span class="hljs-string">{(nextState,&lt;/span> &lt;span class="hljs-attr">callback&lt;/span>) =&gt;&lt;/span> {
+<pre><code class="js hljs javascript"><Router history={history}>
+    <span class="xml"><span class="hljs-tag"><<span class="hljs-name">Route</span>
+        <span class="hljs-attr">path</span>=<span class="hljs-string">"/"</span>
+        <span class="hljs-attr">getComponent</span>=<span class="hljs-string">{(nextState,</span> <span class="hljs-attr">callback</span>) =></span> {
             callback(null, HomePage)
         }}
-    /&gt;
-     &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Route&lt;/span>
-        &lt;span class="hljs-attr">path&lt;/span>=&lt;span class="hljs-string">"/faq"&lt;/span>
-        &lt;span class="hljs-attr">getComponent&lt;/span>=&lt;span class="hljs-string">{(nextState,&lt;/span> &lt;span class="hljs-attr">callback&lt;/span>) =&gt;&lt;/span> {
+    />
+     <span class="hljs-tag"><<span class="hljs-name">Route</span>
+        <span class="hljs-attr">path</span>=<span class="hljs-string">"/faq"</span>
+        <span class="hljs-attr">getComponent</span>=<span class="hljs-string">{(nextState,</span> <span class="hljs-attr">callback</span>) =></span> {
           callback(null, FAQPage);
         }}
-    /&gt;
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">Router&lt;/span>&gt;&lt;/span>&lt;/span></code></pre>
+    />
+<span class="hljs-tag"></<span class="hljs-name">Router</span>></span></span></code></pre>
 
 这些组件会在需要的时候异步加载。这些组件仍然会在同一个文件中，并且你的应用看起来不会有任何不同。
 
@@ -360,46 +360,46 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
 
 **webpack2.x** `import`方法异步加载ES2015模块文件，返回一个Promise对象。
 
-<pre><code class="js hljs javascript">&lt;LazilyLoad modules={{
-  TodoHandler: () =&gt; importLazy(&lt;span class="hljs-keyword">import&lt;/span>(&lt;span class="hljs-string">'./components/TodoHandler'&lt;/span>)),
-  TodoMenuHandler: () =&gt; importLazy(&lt;span class="hljs-keyword">import&lt;/span>(&lt;span class="hljs-string">'./components/TodoMenuHandler'&lt;/span>)),
-  TodoMenu: () =&gt; importLazy(&lt;span class="hljs-keyword">import&lt;/span>(&lt;span class="hljs-string">'./components/TodoMenu'&lt;/span>)),
-}}&gt;
-{({TodoHandler, TodoMenuHandler, TodoMenu}) =&gt; (
-  &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">TodoHandler&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">TodoMenuHandler&lt;/span>&gt;&lt;/span>
-      &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">TodoMenu&lt;/span> /&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">TodoMenuHandler&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">TodoHandler&lt;/span>&gt;&lt;/span>
+<pre><code class="js hljs javascript"><LazilyLoad modules={{
+  TodoHandler: () => importLazy(<span class="hljs-keyword">import</span>(<span class="hljs-string">'./components/TodoHandler'</span>)),
+  TodoMenuHandler: () => importLazy(<span class="hljs-keyword">import</span>(<span class="hljs-string">'./components/TodoMenuHandler'</span>)),
+  TodoMenu: () => importLazy(<span class="hljs-keyword">import</span>(<span class="hljs-string">'./components/TodoMenu'</span>)),
+}}>
+{({TodoHandler, TodoMenuHandler, TodoMenu}) => (
+  <span class="xml"><span class="hljs-tag"><<span class="hljs-name">TodoHandler</span>></span>
+    <span class="hljs-tag"><<span class="hljs-name">TodoMenuHandler</span>></span>
+      <span class="hljs-tag"><<span class="hljs-name">TodoMenu</span> /></span>
+    <span class="hljs-tag"></<span class="hljs-name">TodoMenuHandler</span>></span>
+  <span class="hljs-tag"></<span class="hljs-name">TodoHandler</span>></span>
 )}
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">LazilyLoad&lt;/span>&gt;&lt;/span>&lt;/span></code></pre>
+<span class="hljs-tag"></<span class="hljs-name">LazilyLoad</span>></span></span></code></pre>
 
 **webpack 1.x** 使用前文中提到的`promise-loader`或者`es6-promise-loader`封装按需加载组件。
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-class">&lt;span class="hljs-keyword">class&lt;/span> &lt;span class="hljs-title">App&lt;/span> &lt;span class="hljs-keyword">extends&lt;/span> &lt;span class="hljs-title">React&lt;/span>.&lt;span class="hljs-title">Component&lt;/span> &lt;/span>{
+<pre><code class="js hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
 
    render() {
-        &lt;span class="hljs-keyword">return&lt;/span> (
-            &lt;div&gt;
-                &lt;LazilyLoad modules={{
-                    LoadedLate: () =&gt; require('es6-promise!./lazy/LoadedLate')(),
-                    LoadedLate2: () =&gt; require('es6-promise!./lazy/LoadedLate2')()
-                }}&gt;
-                    {({LoadedLate,LoadedLate2}) =&gt; (
-                        &lt;div&gt;
-                            &lt;LoadedLate /&gt;
-                            &lt;LoadedLate2 /&gt;
-                        &lt;/div&gt;
+        <span class="hljs-keyword">return</span> (
+            <div>
+                <LazilyLoad modules={{
+                    LoadedLate: () => require('es6-promise!./lazy/LoadedLate')(),
+                    LoadedLate2: () => require('es6-promise!./lazy/LoadedLate2')()
+                }}>
+                    {({LoadedLate,LoadedLate2}) => (
+                        <div>
+                            <LoadedLate />
+                            <LoadedLate2 />
+                        </div>
                     )}
-                &lt;/LazilyLoad&gt;
-            &lt;/div&gt;
+                </LazilyLoad>
+            </div>
         );
     }</code></pre>
 
 * `importLazy`方法是为了兼容Babel/ES2015模块，返回模块的`default`属性。
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">const&lt;/span> importLazy = (promise) =&gt; (
-    promise.then((result) =&gt; result.default || result)
+<pre><code class="js hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> importLazy = (promise) => (
+    promise.then((result) => result.default || result)
 );</code></pre>
 
 ## React高阶组件懒加载 {#19}
@@ -412,53 +412,53 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
 
 **LazilyLoadFactory**
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">const&lt;/span> LazilyLoadFactory = (Component, modules) =&gt; {
-    &lt;span class="hljs-keyword">return&lt;/span> (props) =&gt; (
-        &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">LazilyLoad&lt;/span> &lt;span class="hljs-attr">modules&lt;/span>=&lt;span class="hljs-string">{modules}&lt;/span>&gt;&lt;/span>
-            {(mods) =&gt; &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Component&lt;/span> {&lt;span class="hljs-attr">...mods&lt;/span>} {&lt;span class="hljs-attr">...props&lt;/span>} /&gt;&lt;/span>}
-        &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">LazilyLoad&lt;/span>&gt;&lt;/span>
+<pre><code class="js hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> LazilyLoadFactory = (Component, modules) => {
+    <span class="hljs-keyword">return</span> (props) => (
+        <span class="xml"><span class="hljs-tag"><<span class="hljs-name">LazilyLoad</span> <span class="hljs-attr">modules</span>=<span class="hljs-string">{modules}</span>></span>
+            {(mods) => <span class="hljs-tag"><<span class="hljs-name">Component</span> {<span class="hljs-attr">...mods</span>} {<span class="hljs-attr">...props</span>} /></span>}
+        <span class="hljs-tag"></<span class="hljs-name">LazilyLoad</span>></span>
     );
-};&lt;/span></code></pre>
+};</span></code></pre>
 
 ### 使用高阶组件实现按需加载 {#21}
 
 #### webpack 2.x {#22}
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-class">&lt;span class="hljs-keyword">class&lt;/span> &lt;span class="hljs-title">Load_jQuery&lt;/span> &lt;span class="hljs-keyword">extends&lt;/span> &lt;span class="hljs-title">React&lt;/span>.&lt;span class="hljs-title">Component&lt;/span> &lt;/span>{
+<pre><code class="js hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Load_jQuery</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
 
     componentDidMount() {
-        &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'Load_jQuery props:'&lt;/span>, &lt;span class="hljs-keyword">this&lt;/span>.props);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Load_jQuery props:'</span>, <span class="hljs-keyword">this</span>.props);
     }
 
     render() {
-        &lt;span class="hljs-keyword">return&lt;/span> (
-            &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">ref&lt;/span>=&lt;span class="hljs-string">{(ref)&lt;/span> =&gt;&lt;/span> this.props.$(ref).css('background-color', 'red')}&gt;
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{(ref)</span> =></span> this.props.$(ref).css('background-color', 'red')}>
                 Hello jQuery
-            &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>&lt;/span>
+            <span class="hljs-tag"></<span class="hljs-name">div</span>></span></span>
         );
     }
 };
 
-&lt;span class="hljs-comment">// 使用工厂函数封装Load_jQuery为高阶组件，将异步加载的jQuery模块对象以props的形式来获取并使用&lt;/span>
-&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> LazilyLoadFactory(Load_jQuery, {
-    $: () =&gt; &lt;span class="hljs-keyword">import&lt;/span>(&lt;span class="hljs-string">'jquery'&lt;/span>)
+<span class="hljs-comment">// 使用工厂函数封装Load_jQuery为高阶组件，将异步加载的jQuery模块对象以props的形式来获取并使用</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> LazilyLoadFactory(Load_jQuery, {
+    $: () => <span class="hljs-keyword">import</span>(<span class="hljs-string">'jquery'</span>)
 });</code></pre>
 
 #### webpack 1.x {#23}
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-class">&lt;span class="hljs-keyword">class&lt;/span> &lt;span class="hljs-title">Load_jQuery&lt;/span> &lt;span class="hljs-keyword">extends&lt;/span> &lt;span class="hljs-title">React&lt;/span>.&lt;span class="hljs-title">Component&lt;/span> &lt;/span>{
+<pre><code class="js hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Load_jQuery</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
 
    render() {
-        &lt;span class="hljs-keyword">return&lt;/span> (
-            &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">ref&lt;/span>=&lt;span class="hljs-string">{(ref)&lt;/span> =&gt;&lt;/span> this.props.$(ref).css('background-color', 'red')}&gt;
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{(ref)</span> =></span> this.props.$(ref).css('background-color', 'red')}>
                 Hello jQuery
-            &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>&lt;/span>
+            <span class="hljs-tag"></<span class="hljs-name">div</span>></span></span>
         );
     }
 };
 
-&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> LazilyLoadFactory(Load_jQuery, {
-    $: () =&gt; &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'es6-promise!jquery'&lt;/span>)()
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> LazilyLoadFactory(Load_jQuery, {
+    $: () => <span class="hljs-built_in">require</span>(<span class="hljs-string">'es6-promise!jquery'</span>)()
 });</code></pre>
 
 ### ES Decorator {#24}
@@ -467,31 +467,31 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
 
 * 使用方法：
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-comment">// ES Decorators函数实现高阶组件封装&lt;/span>
-&lt;span class="hljs-comment">// 参考 http://technologyadvice.github.io/es7-decorators-babel6/&lt;/span>
-&lt;span class="hljs-keyword">const&lt;/span> LazilyLoadDecorator = (Component) =&gt; {
+<pre><code class="js hljs javascript"><span class="hljs-comment">// ES Decorators函数实现高阶组件封装</span>
+<span class="hljs-comment">// 参考 http://technologyadvice.github.io/es7-decorators-babel6/</span>
+<span class="hljs-keyword">const</span> LazilyLoadDecorator = (Component) => {
 
-    &lt;span class="hljs-keyword">return&lt;/span> LazilyLoadFactory(Component, {
-        $: () =&gt; &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'jquery'&lt;/span>)(),
+    <span class="hljs-keyword">return</span> LazilyLoadFactory(Component, {
+        $: () => <span class="hljs-built_in">require</span>(<span class="hljs-string">'jquery'</span>)(),
     });
 };
 
-&lt;span class="hljs-comment">// ES Decorators语法&lt;/span>
-&lt;span class="hljs-comment">// 需要依赖babel-plugin-transform-decorators-legacy&lt;/span>
-&lt;span class="hljs-comment">// babel-loader配置使用plugins: ["transform-decorators-legacy"]&lt;/span>
+<span class="hljs-comment">// ES Decorators语法</span>
+<span class="hljs-comment">// 需要依赖babel-plugin-transform-decorators-legacy</span>
+<span class="hljs-comment">// babel-loader配置使用plugins: ["transform-decorators-legacy"]</span>
 @LazilyLoadDecorator
-&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> &lt;span class="hljs-class">&lt;span class="hljs-keyword">class&lt;/span> &lt;span class="hljs-title">Load_jQuery&lt;/span> &lt;span class="hljs-keyword">extends&lt;/span> &lt;span class="hljs-title">React&lt;/span>.&lt;span class="hljs-title">Component&lt;/span> &lt;/span>{
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Load_jQuery</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
 
     componentDidMount() {
-        &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'Load_jQuery props:'&lt;/span>, &lt;span class="hljs-keyword">this&lt;/span>.props);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Load_jQuery props:'</span>, <span class="hljs-keyword">this</span>.props);
 
     }
 
     render() {
-        &lt;span class="hljs-keyword">return&lt;/span> (
-            &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">ref&lt;/span>=&lt;span class="hljs-string">{(ref)&lt;/span> =&gt;&lt;/span> this.props.$(ref).css('background-color', 'red')}&gt;
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{(ref)</span> =></span> this.props.$(ref).css('background-color', 'red')}>
                 Hello jQuery
-            &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>&lt;/span>
+            <span class="hljs-tag"></<span class="hljs-name">div</span>></span></span>
         );
     }
 
@@ -499,39 +499,39 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
 
 ### 引用被高阶组件包裹的普通组件 {#25}
 
-<pre><code class="js hljs javascript">&lt;span class="hljs-keyword">import&lt;/span> Load_jQuery &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'./js/Load_jQuery'&lt;/span>;
+<pre><code class="js hljs javascript"><span class="hljs-keyword">import</span> Load_jQuery <span class="hljs-keyword">from</span> <span class="hljs-string">'./js/Load_jQuery'</span>;
 
-&lt;span class="hljs-class">&lt;span class="hljs-keyword">class&lt;/span> &lt;span class="hljs-title">App&lt;/span> &lt;span class="hljs-keyword">extends&lt;/span> &lt;span class="hljs-title">React&lt;/span>.&lt;span class="hljs-title">Component&lt;/span> &lt;/span>{
-    &lt;span class="hljs-keyword">constructor&lt;/span>() {
-        &lt;span class="hljs-keyword">super&lt;/span>(...arguments);
-        &lt;span class="hljs-keyword">this&lt;/span>.state = {
-            load: &lt;span class="hljs-literal">false&lt;/span>,
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+    <span class="hljs-keyword">constructor</span>() {
+        <span class="hljs-keyword">super</span>(...arguments);
+        <span class="hljs-keyword">this</span>.state = {
+            load: <span class="hljs-literal">false</span>,
         };
-        &lt;span class="hljs-keyword">this&lt;/span>.handleClick = &lt;span class="hljs-keyword">this&lt;/span>.handleClick.bind(&lt;span class="hljs-keyword">this&lt;/span>);
+        <span class="hljs-keyword">this</span>.handleClick = <span class="hljs-keyword">this</span>.handleClick.bind(<span class="hljs-keyword">this</span>);
     }
 
     handleClick() {
-        &lt;span class="hljs-keyword">this&lt;/span>.setState({
-            load: !&lt;span class="hljs-keyword">this&lt;/span>.state.load,
+        <span class="hljs-keyword">this</span>.setState({
+            load: !<span class="hljs-keyword">this</span>.state.load,
         });
     }
 
     render() {
-        &lt;span class="hljs-keyword">return&lt;/span> (
-            &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-                &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>
-                    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span>
-                        &lt;span class="hljs-attr">style&lt;/span>=&lt;span class="hljs-string">{{&lt;/span> &lt;span class="hljs-attr">color:&lt;/span> '&lt;span class="hljs-attr">blue&lt;/span>', &lt;span class="hljs-attr">cursor:&lt;/span> '&lt;span class="hljs-attr">pointer&lt;/span>' }}
-                        &lt;span class="hljs-attr">onClick&lt;/span>=&lt;span class="hljs-string">{this.handleClick}&lt;/span>&gt;&lt;/span>点击加载jQuery&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">a&lt;/span>&gt;&lt;/span>
-                &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>
+        <span class="hljs-keyword">return</span> (
+            <span class="xml"><span class="hljs-tag"><<span class="hljs-name">div</span>></span>
+                <span class="hljs-tag"><<span class="hljs-name">p</span>></span>
+                    <span class="hljs-tag"><<span class="hljs-name">a</span>
+                        <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">color:</span> '<span class="hljs-attr">blue</span>', <span class="hljs-attr">cursor:</span> '<span class="hljs-attr">pointer</span>' }}
+                        <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.handleClick}</span>></span>点击加载jQuery<span class="hljs-tag"></<span class="hljs-name">a</span>></span>
+                <span class="hljs-tag"></<span class="hljs-name">p</span>></span>
 
                 {this.state.load ?
-                    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Load_jQuery&lt;/span> /&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
+                    <span class="hljs-tag"><<span class="hljs-name">div</span>></span><span class="hljs-tag"><<span class="hljs-name">Load_jQuery</span> /></span><span class="hljs-tag"></<span class="hljs-name">div</span>></span>
                     : null
                 }
-            &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
+            <span class="hljs-tag"></<span class="hljs-name">div</span>></span>
         );
-    }&lt;/span></code></pre>
+    }</span></code></pre>
 
 ### 基于webpack 1.x实现react组件的懒加载示例 {#26}
 
@@ -582,40 +582,40 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
     
     
     <pre class="hljs javascript"><code class="javascript">
-{&lt;span class="hljs-comment">/*
+{<span class="hljs-comment">/*
 // 调用示例
-&lt;Bundle load={require('bundle-loader?lazy!./somefile.js')}&gt;
-    {(Cmp) =&gt; &lt;Cmp&gt;&lt;/Cmp&gt;}
-&lt;/Bundle&gt;
-*/&lt;/span>}
+<Bundle load={require('bundle-loader?lazy!./somefile.js')}>
+    {(Cmp) => <Cmp></Cmp>}
+</Bundle>
+*/</span>}
 
-&lt;span class="hljs-comment">// Bundle.js&lt;/span>
-&lt;span class="hljs-keyword">import&lt;/span> React, { Component } &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react'&lt;/span>
+<span class="hljs-comment">// Bundle.js</span>
+<span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 
-&lt;span class="hljs-class">&lt;span class="hljs-keyword">class&lt;/span> &lt;span class="hljs-title">Bundle&lt;/span> &lt;span class="hljs-keyword">extends&lt;/span> &lt;span class="hljs-title">Component&lt;/span> &lt;/span>{
-  &lt;span class="hljs-keyword">constructor&lt;/span>() {
-    &lt;span class="hljs-keyword">super&lt;/span>()
-    &lt;span class="hljs-keyword">this&lt;/span>.state = {
-      &lt;span class="hljs-attr">mod&lt;/span>: &lt;span class="hljs-literal">null&lt;/span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bundle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">constructor</span>() {
+    <span class="hljs-keyword">super</span>()
+    <span class="hljs-keyword">this</span>.state = {
+      <span class="hljs-attr">mod</span>: <span class="hljs-literal">null</span>
     }
   }
 
   componentDidMount() {
-    &lt;span class="hljs-keyword">this&lt;/span>.props.load(&lt;span class="hljs-function">(&lt;span class="hljs-params">mod&lt;/span>) =&gt;&lt;/span> {
-      &lt;span class="hljs-keyword">this&lt;/span>.setState({
-        &lt;span class="hljs-attr">mod&lt;/span>: mod.default || mod
+    <span class="hljs-keyword">this</span>.props.load(<span class="hljs-function">(<span class="hljs-params">mod</span>) =></span> {
+      <span class="hljs-keyword">this</span>.setState({
+        <span class="hljs-attr">mod</span>: mod.default || mod
       })
     })
   }
 
   render() {
-    &lt;span class="hljs-keyword">return&lt;/span> (
-      &lt;span class="hljs-keyword">this&lt;/span>.state.mod ? &lt;span class="hljs-keyword">this&lt;/span>.props.children(&lt;span class="hljs-keyword">this&lt;/span>.state.mod) : &lt;span class="hljs-literal">null&lt;/span>
+    <span class="hljs-keyword">return</span> (
+      <span class="hljs-keyword">this</span>.state.mod ? <span class="hljs-keyword">this</span>.props.children(<span class="hljs-keyword">this</span>.state.mod) : <span class="hljs-literal">null</span>
     )
   }
 }
 
-&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> Bundle
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Bundle
 </code></pre>
 
     
@@ -626,36 +626,36 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
       然后在入口的路由文件里面这样写（假设[我们](https://www.w3cdoc.com)有两个组件,Cp1, Cp2）
     
     
-    <pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-keyword">import&lt;/span> React &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react'&lt;/span>
-&lt;span class="hljs-keyword">import&lt;/span> {
+    <pre class="hljs javascript"><code class="javascript"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> {
   BrowserRouter,
   Route
-} &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react-router-dom'&lt;/span>
-&lt;span class="hljs-keyword">import&lt;/span> Bundle &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'./bundle'&lt;/span>
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'react-router-dom'</span>
+<span class="hljs-keyword">import</span> Bundle <span class="hljs-keyword">from</span> <span class="hljs-string">'./bundle'</span>
 
-&lt;span class="hljs-keyword">let&lt;/span> CodeSplit = &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
-  &lt;span class="hljs-keyword">return&lt;/span> (
-    &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">BrowserRouter&lt;/span>&gt;&lt;/span>
-      &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Route&lt;/span> &lt;span class="hljs-attr">path&lt;/span>=&lt;span class="hljs-string">{&lt;/span>'/&lt;span class="hljs-attr">cp1&lt;/span>'} &lt;span class="hljs-attr">render&lt;/span>=&lt;span class="hljs-string">{()&lt;/span> =&gt;&lt;/span> {
-          return (&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Bundle&lt;/span> &lt;span class="hljs-attr">load&lt;/span>=&lt;span class="hljs-string">{require(&lt;/span>'&lt;span class="hljs-attr">bundle-loader&lt;/span>?&lt;span class="hljs-attr">lazy&lt;/span>!&lt;span class="hljs-attr">.&lt;/span>/&lt;span class="hljs-attr">cp1&lt;/span>')}&gt;&lt;/span>
-            {(Cp1) =&gt; &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Cp1&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">Cp1&lt;/span>&gt;&lt;/span>}
-          &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">Bundle&lt;/span>&gt;&lt;/span>)
+<span class="hljs-keyword">let</span> CodeSplit = <span class="hljs-function"><span class="hljs-params">()</span> =></span> {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag"><<span class="hljs-name">BrowserRouter</span>></span>
+      <span class="hljs-tag"><<span class="hljs-name">div</span>></span>
+        <span class="hljs-tag"><<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">{</span>'/<span class="hljs-attr">cp1</span>'} <span class="hljs-attr">render</span>=<span class="hljs-string">{()</span> =></span> {
+          return (<span class="hljs-tag"><<span class="hljs-name">Bundle</span> <span class="hljs-attr">load</span>=<span class="hljs-string">{require(</span>'<span class="hljs-attr">bundle-loader</span>?<span class="hljs-attr">lazy</span>!<span class="hljs-attr">.</span>/<span class="hljs-attr">cp1</span>')}></span>
+            {(Cp1) => <span class="hljs-tag"><<span class="hljs-name">Cp1</span>></span><span class="hljs-tag"></<span class="hljs-name">Cp1</span>></span>}
+          <span class="hljs-tag"></<span class="hljs-name">Bundle</span>></span>)
         }
-        }&gt;&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">Route&lt;/span>&gt;&lt;/span>
+        }><span class="hljs-tag"></<span class="hljs-name">Route</span>></span>
 
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Route&lt;/span> &lt;span class="hljs-attr">path&lt;/span>=&lt;span class="hljs-string">{&lt;/span>'/&lt;span class="hljs-attr">cp2&lt;/span>'} &lt;span class="hljs-attr">render&lt;/span>=&lt;span class="hljs-string">{()&lt;/span> =&gt;&lt;/span> {
-          return (&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Bundle&lt;/span> &lt;span class="hljs-attr">load&lt;/span>=&lt;span class="hljs-string">{require(&lt;/span>'&lt;span class="hljs-attr">bundle-loader&lt;/span>?&lt;span class="hljs-attr">lazy&lt;/span>!&lt;span class="hljs-attr">.&lt;/span>/&lt;span class="hljs-attr">cp2&lt;/span>')}&gt;&lt;/span>
-            {(Cp2) =&gt; &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Cp2&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">Cp2&lt;/span>&gt;&lt;/span>}
-          &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">Bundle&lt;/span>&gt;&lt;/span>)
+        <span class="hljs-tag"><<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">{</span>'/<span class="hljs-attr">cp2</span>'} <span class="hljs-attr">render</span>=<span class="hljs-string">{()</span> =></span> {
+          return (<span class="hljs-tag"><<span class="hljs-name">Bundle</span> <span class="hljs-attr">load</span>=<span class="hljs-string">{require(</span>'<span class="hljs-attr">bundle-loader</span>?<span class="hljs-attr">lazy</span>!<span class="hljs-attr">.</span>/<span class="hljs-attr">cp2</span>')}></span>
+            {(Cp2) => <span class="hljs-tag"><<span class="hljs-name">Cp2</span>></span><span class="hljs-tag"></<span class="hljs-name">Cp2</span>></span>}
+          <span class="hljs-tag"></<span class="hljs-name">Bundle</span>></span>)
         }
-        }&gt;&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">Route&lt;/span>&gt;&lt;/span>
-      &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">BrowserRouter&lt;/span>&gt;&lt;/span>&lt;/span>
+        }><span class="hljs-tag"></<span class="hljs-name">Route</span>></span>
+      <span class="hljs-tag"></<span class="hljs-name">div</span>></span>
+    <span class="hljs-tag"></<span class="hljs-name">BrowserRouter</span>></span></span>
   )
 }
 
-&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> CodeSplit
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> CodeSplit
 </code></pre>
 
     
@@ -670,9 +670,9 @@ webpack提供的`require.ensure`可以定义分割点来打包独立的chunk，�
       这里有一个小坑，如果你跟我一样使用的是create-react-app的话，你会发现，在运行代码的时候，会报这个错误
     
     
-    <pre class="hljs python"><code class="python">Line &lt;span class="hljs-number">35&lt;/span>:  Unexpected &lt;span class="hljs-string">'!'&lt;/span> &lt;span class="hljs-keyword">in&lt;/span> &lt;span class="hljs-string">'bundle-loader?lazy!./cp1'&lt;/span>. Do &lt;span class="hljs-keyword">not&lt;/span> use &lt;span class="hljs-keyword">import&lt;/span> syntax to configure webpack loaders  &lt;span class="hljs-keyword">import&lt;/span>/no-webpack-loader-syntax
+    <pre class="hljs python"><code class="python">Line <span class="hljs-number">35</span>:  Unexpected <span class="hljs-string">'!'</span> <span class="hljs-keyword">in</span> <span class="hljs-string">'bundle-loader?lazy!./cp1'</span>. Do <span class="hljs-keyword">not</span> use <span class="hljs-keyword">import</span> syntax to configure webpack loaders  <span class="hljs-keyword">import</span>/no-webpack-loader-syntax
 
-Line &lt;span class="hljs-number">42&lt;/span>:  Unexpected &lt;span class="hljs-string">'!'&lt;/span> &lt;span class="hljs-keyword">in&lt;/span> &lt;span class="hljs-string">'bundle-loader?lazy!./cp2'&lt;/span>. Do &lt;span class="hljs-keyword">not&lt;/span> use &lt;span class="hljs-keyword">import&lt;/span> syntax to configure webpack loaders  &lt;span class="hljs-keyword">import&lt;/span>/no-webpack-loader-syntax
+Line <span class="hljs-number">42</span>:  Unexpected <span class="hljs-string">'!'</span> <span class="hljs-keyword">in</span> <span class="hljs-string">'bundle-loader?lazy!./cp2'</span>. Do <span class="hljs-keyword">not</span> use <span class="hljs-keyword">import</span> syntax to configure webpack loaders  <span class="hljs-keyword">import</span>/no-webpack-loader-syntax
 </code></pre>
 
     
@@ -701,73 +701,73 @@ Line &lt;span class="hljs-number">42&lt;/span>:  Unexpected &lt;span class="hljs
       因为import返回一个promise，所以[我们](https://www.w3cdoc.com)这里将componentDidMount变成一个async函数
     
     
-    <pre class="hljs javascript"><code class="javascript">{&lt;span class="hljs-comment">/*
+    <pre class="hljs javascript"><code class="javascript">{<span class="hljs-comment">/*
 // 调用方法
-&lt;Bundle load={() =&gt; import(./somefile.js)}&gt;&lt;/Bundle&gt;
-*/&lt;/span>}
+<Bundle load={() => import(./somefile.js)}></Bundle>
+*/</span>}
 
-&lt;span class="hljs-keyword">import&lt;/span> React, { Component } &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react'&lt;/span>
+<span class="hljs-keyword">import</span> React, { Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 
-&lt;span class="hljs-class">&lt;span class="hljs-keyword">class&lt;/span> &lt;span class="hljs-title">Bundle&lt;/span> &lt;span class="hljs-keyword">extends&lt;/span> &lt;span class="hljs-title">Component&lt;/span> &lt;/span>{
-  &lt;span class="hljs-keyword">constructor&lt;/span>() {
-    &lt;span class="hljs-keyword">super&lt;/span>()
-    &lt;span class="hljs-keyword">this&lt;/span>.state = {
-      &lt;span class="hljs-attr">mod&lt;/span>: &lt;span class="hljs-literal">null&lt;/span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Bundle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">constructor</span>() {
+    <span class="hljs-keyword">super</span>()
+    <span class="hljs-keyword">this</span>.state = {
+      <span class="hljs-attr">mod</span>: <span class="hljs-literal">null</span>
     }
   }
 
-  &lt;span class="hljs-keyword">async&lt;/span> componentDidMount() {
-    &lt;span class="hljs-keyword">const&lt;/span> {&lt;span class="hljs-attr">default&lt;/span>: mod} = &lt;span class="hljs-keyword">await&lt;/span> &lt;span class="hljs-keyword">this&lt;/span>.props.load()
+  <span class="hljs-keyword">async</span> componentDidMount() {
+    <span class="hljs-keyword">const</span> {<span class="hljs-attr">default</span>: mod} = <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.props.load()
 
-    &lt;span class="hljs-keyword">this&lt;/span>.setState({
-      &lt;span class="hljs-attr">mod&lt;/span>: mod.default || mod
+    <span class="hljs-keyword">this</span>.setState({
+      <span class="hljs-attr">mod</span>: mod.default || mod
     })
   }
 
   render() {
-    &lt;span class="hljs-keyword">return&lt;/span> (
-      &lt;span class="hljs-keyword">this&lt;/span>.state.mod ? &lt;span class="hljs-keyword">this&lt;/span>.props.children(&lt;span class="hljs-keyword">this&lt;/span>.state.mod) : &lt;span class="hljs-literal">null&lt;/span>
+    <span class="hljs-keyword">return</span> (
+      <span class="hljs-keyword">this</span>.state.mod ? <span class="hljs-keyword">this</span>.props.children(<span class="hljs-keyword">this</span>.state.mod) : <span class="hljs-literal">null</span>
     )
   }
 }
 
-&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> Bundle
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Bundle
 </code></pre>
 
     
       然后在入口文件的路由里面这么用
     
     
-    <pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-keyword">import&lt;/span> React &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react'&lt;/span>
-&lt;span class="hljs-keyword">import&lt;/span> {
+    <pre class="hljs javascript"><code class="javascript"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> {
   BrowserRouter,
   Route
-} &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react-router-dom'&lt;/span>
-&lt;span class="hljs-keyword">import&lt;/span> Bundle &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'./bundle'&lt;/span>
+} <span class="hljs-keyword">from</span> <span class="hljs-string">'react-router-dom'</span>
+<span class="hljs-keyword">import</span> Bundle <span class="hljs-keyword">from</span> <span class="hljs-string">'./bundle'</span>
 
-&lt;span class="hljs-keyword">let&lt;/span> CodeSplit = &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
-  &lt;span class="hljs-keyword">return&lt;/span> (
-    &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">BrowserRouter&lt;/span>&gt;&lt;/span>
-      &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Route&lt;/span> &lt;span class="hljs-attr">path&lt;/span>=&lt;span class="hljs-string">{&lt;/span>'/&lt;span class="hljs-attr">cp1&lt;/span>'} &lt;span class="hljs-attr">render&lt;/span>=&lt;span class="hljs-string">{()&lt;/span> =&gt;&lt;/span> {
-          return (&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Bundle&lt;/span> &lt;span class="hljs-attr">load&lt;/span>=&lt;span class="hljs-string">{()&lt;/span> =&gt;&lt;/span> import('./cp1')}&gt;
-            {(Cp1) =&gt; &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Cp1&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">Cp1&lt;/span>&gt;&lt;/span>}
-          &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">Bundle&lt;/span>&gt;&lt;/span>)
+<span class="hljs-keyword">let</span> CodeSplit = <span class="hljs-function"><span class="hljs-params">()</span> =></span> {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag"><<span class="hljs-name">BrowserRouter</span>></span>
+      <span class="hljs-tag"><<span class="hljs-name">div</span>></span>
+        <span class="hljs-tag"><<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">{</span>'/<span class="hljs-attr">cp1</span>'} <span class="hljs-attr">render</span>=<span class="hljs-string">{()</span> =></span> {
+          return (<span class="hljs-tag"><<span class="hljs-name">Bundle</span> <span class="hljs-attr">load</span>=<span class="hljs-string">{()</span> =></span> import('./cp1')}>
+            {(Cp1) => <span class="hljs-tag"><<span class="hljs-name">Cp1</span>></span><span class="hljs-tag"></<span class="hljs-name">Cp1</span>></span>}
+          <span class="hljs-tag"></<span class="hljs-name">Bundle</span>></span>)
         }
-        }&gt;&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">Route&lt;/span>&gt;&lt;/span>
+        }><span class="hljs-tag"></<span class="hljs-name">Route</span>></span>
 
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Route&lt;/span> &lt;span class="hljs-attr">path&lt;/span>=&lt;span class="hljs-string">{&lt;/span>'/&lt;span class="hljs-attr">cp2&lt;/span>'} &lt;span class="hljs-attr">render&lt;/span>=&lt;span class="hljs-string">{()&lt;/span> =&gt;&lt;/span> {
-          return (&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Bundle&lt;/span> &lt;span class="hljs-attr">load&lt;/span>=&lt;span class="hljs-string">{()&lt;/span> =&gt;&lt;/span> import('./cp2')}&gt;
-            {(Cp2) =&gt; &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Cp2&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">Cp2&lt;/span>&gt;&lt;/span>}
-          &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">Bundle&lt;/span>&gt;&lt;/span>)
+        <span class="hljs-tag"><<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">{</span>'/<span class="hljs-attr">cp2</span>'} <span class="hljs-attr">render</span>=<span class="hljs-string">{()</span> =></span> {
+          return (<span class="hljs-tag"><<span class="hljs-name">Bundle</span> <span class="hljs-attr">load</span>=<span class="hljs-string">{()</span> =></span> import('./cp2')}>
+            {(Cp2) => <span class="hljs-tag"><<span class="hljs-name">Cp2</span>></span><span class="hljs-tag"></<span class="hljs-name">Cp2</span>></span>}
+          <span class="hljs-tag"></<span class="hljs-name">Bundle</span>></span>)
         }
-        }&gt;&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">Route&lt;/span>&gt;&lt;/span>
-      &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">BrowserRouter&lt;/span>&gt;&lt;/span>&lt;/span>
+        }><span class="hljs-tag"></<span class="hljs-name">Route</span>></span>
+      <span class="hljs-tag"></<span class="hljs-name">div</span>></span>
+    <span class="hljs-tag"></<span class="hljs-name">BrowserRouter</span>></span></span>
   )
 }
 
-&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> CodeSplit
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> CodeSplit
 </code></pre>
 
     
@@ -786,54 +786,54 @@ Line &lt;span class="hljs-number">42&lt;/span>:  Unexpected &lt;span class="hljs
       因为代码比较简单，所以我这里直接把我项目里的代码贴过来了
     
     
-    <pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-comment">// async-component.js&lt;/span>
-&lt;span class="hljs-comment">/**
+    <pre class="hljs javascript"><code class="javascript"><span class="hljs-comment">// async-component.js</span>
+<span class="hljs-comment">/**
 
 * 用于react router4 code splitting
- */&lt;/span>
-&lt;span class="hljs-keyword">import&lt;/span> React, {Component} &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react'&lt;/span>
+ */</span>
+<span class="hljs-keyword">import</span> React, {Component} <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 
-&lt;span class="hljs-comment">/**
+<span class="hljs-comment">/**
 
-* @param {Function} loadComponent e.g: () =&gt; import('./component')
+* @param {Function} loadComponent e.g: () => import('./component')
 * @param {ReactNode} placeholder  未加载前的占位
- */&lt;/span>
-&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> (loadComponent, placeholder = &lt;span class="hljs-literal">null&lt;/span>) =&gt; {
-  &lt;span class="hljs-class">&lt;span class="hljs-keyword">class&lt;/span> &lt;span class="hljs-title">AsyncComponent&lt;/span> &lt;span class="hljs-keyword">extends&lt;/span> &lt;span class="hljs-title">Component&lt;/span> &lt;/span>{
-    unmount = &lt;span class="hljs-literal">false&lt;/span>
+ */</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> (loadComponent, placeholder = <span class="hljs-literal">null</span>) => {
+  <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AsyncComponent</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>{
+    unmount = <span class="hljs-literal">false</span>
 
-    &lt;span class="hljs-keyword">constructor&lt;/span>() {
-      &lt;span class="hljs-keyword">super&lt;/span>()
+    <span class="hljs-keyword">constructor</span>() {
+      <span class="hljs-keyword">super</span>()
 
-      &lt;span class="hljs-keyword">this&lt;/span>.state = {
-        &lt;span class="hljs-attr">component&lt;/span>: &lt;span class="hljs-literal">null&lt;/span>
+      <span class="hljs-keyword">this</span>.state = {
+        <span class="hljs-attr">component</span>: <span class="hljs-literal">null</span>
       }
     }
 
     componentWillUnmount() {
-      &lt;span class="hljs-keyword">this&lt;/span>.unmount = &lt;span class="hljs-literal">true&lt;/span>
+      <span class="hljs-keyword">this</span>.unmount = <span class="hljs-literal">true</span>
     }
 
-    &lt;span class="hljs-keyword">async&lt;/span> componentDidMount() {
-      &lt;span class="hljs-keyword">const&lt;/span> {&lt;span class="hljs-attr">default&lt;/span>: component} = &lt;span class="hljs-keyword">await&lt;/span> loadComponent()
+    <span class="hljs-keyword">async</span> componentDidMount() {
+      <span class="hljs-keyword">const</span> {<span class="hljs-attr">default</span>: component} = <span class="hljs-keyword">await</span> loadComponent()
 
-      &lt;span class="hljs-keyword">if&lt;/span>(&lt;span class="hljs-keyword">this&lt;/span>.unmount) &lt;span class="hljs-keyword">return&lt;/span>
+      <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.unmount) <span class="hljs-keyword">return</span>
 
-      &lt;span class="hljs-keyword">this&lt;/span>.setState({
-        &lt;span class="hljs-attr">component&lt;/span>: component
+      <span class="hljs-keyword">this</span>.setState({
+        <span class="hljs-attr">component</span>: component
       })
     }
 
     render() {
-      &lt;span class="hljs-keyword">const&lt;/span> C = &lt;span class="hljs-keyword">this&lt;/span>.state.component
+      <span class="hljs-keyword">const</span> C = <span class="hljs-keyword">this</span>.state.component
 
-      &lt;span class="hljs-keyword">return&lt;/span> (
-        C ? &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">C&lt;/span> {&lt;span class="hljs-attr">...this.props&lt;/span>}&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">C&lt;/span>&gt;&lt;/span>&lt;/span> : placeholder
+      <span class="hljs-keyword">return</span> (
+        C ? <span class="xml"><span class="hljs-tag"><<span class="hljs-name">C</span> {<span class="hljs-attr">...this.props</span>}></span><span class="hljs-tag"></<span class="hljs-name">C</span>></span></span> : placeholder
       )
     }
   }
 
-  &lt;span class="hljs-keyword">return&lt;/span> AsyncComponent
+  <span class="hljs-keyword">return</span> AsyncComponent
 }
 </code></pre>
 
@@ -845,41 +845,41 @@ Line &lt;span class="hljs-number">42&lt;/span>:  Unexpected &lt;span class="hljs
       Demo组件，就是一个简单的无状态组件
     
 
-    <pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-comment">// demo.jsx&lt;/span>
+    <pre class="hljs javascript"><code class="javascript"><span class="hljs-comment">// demo.jsx</span>
 
-&lt;span class="hljs-keyword">import&lt;/span> React &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react'&lt;/span>
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 
-&lt;span class="hljs-keyword">const&lt;/span> Demo = &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
-  &lt;span class="hljs-keyword">return&lt;/span> (
-    &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>demo&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>&lt;/span>
+<span class="hljs-keyword">const</span> Demo = <span class="hljs-function"><span class="hljs-params">()</span> =></span> {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag"><<span class="hljs-name">div</span>></span>demo<span class="hljs-tag"></<span class="hljs-name">div</span>></span></span>
   )
 }
 
-&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> Demo
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Demo
 </code></pre>
 
     
       调用示例
     
     
-    <pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-keyword">import&lt;/span> asyncComponent &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'./async-component'&lt;/span>
+    <pre class="hljs javascript"><code class="javascript"><span class="hljs-keyword">import</span> asyncComponent <span class="hljs-keyword">from</span> <span class="hljs-string">'./async-component'</span>
 
-&lt;span class="hljs-comment">// 获取到异步组件&lt;/span>
-&lt;span class="hljs-keyword">const&lt;/span> AsyncDemo = asyncComponent(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> &lt;span class="hljs-keyword">import&lt;/span>(&lt;span class="hljs-string">'./demo'&lt;/span>))
+<span class="hljs-comment">// 获取到异步组件</span>
+<span class="hljs-keyword">const</span> AsyncDemo = asyncComponent(<span class="hljs-function"><span class="hljs-params">()</span> =></span> <span class="hljs-keyword">import</span>(<span class="hljs-string">'./demo'</span>))
 
-&lt;span class="hljs-comment">//...&lt;/span>
+<span class="hljs-comment">//...</span>
 render() {
-  &lt;span class="hljs-keyword">return&lt;/span> (
-    &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Route&lt;/span> &lt;span class="hljs-attr">path&lt;/span>=&lt;span class="hljs-string">"/demo"&lt;/span> &lt;span class="hljs-attr">component&lt;/span>=&lt;span class="hljs-string">{AsyncDemo}&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">Route&lt;/span>&gt;&lt;/span>&lt;/span>
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag"><<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">"/demo"</span> <span class="hljs-attr">component</span>=<span class="hljs-string">{AsyncDemo}</span>></span><span class="hljs-tag"></<span class="hljs-name">Route</span>></span></span>
   )
 }
 
-&lt;span class="hljs-comment">// 如果要传参&lt;/span>
+<span class="hljs-comment">// 如果要传参</span>
 render() {
-  &lt;span class="hljs-keyword">return&lt;/span> (
-    &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">Route&lt;/span> &lt;span class="hljs-attr">path&lt;/span>=&lt;span class="hljs-string">"/demo"&lt;/span> &lt;span class="hljs-attr">render&lt;/span>=&lt;span class="hljs-string">{()&lt;/span> =&gt;&lt;/span> {
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">AsyncComponent&lt;/span> &lt;span class="hljs-attr">test&lt;/span>=&lt;span class="hljs-string">"hello"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">AsyncComponent&lt;/span>&gt;&lt;/span>
-    }}&gt;&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">Route&lt;/span>&gt;&lt;/span>&lt;/span>
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag"><<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">"/demo"</span> <span class="hljs-attr">render</span>=<span class="hljs-string">{()</span> =></span> {
+        <span class="hljs-tag"><<span class="hljs-name">AsyncComponent</span> <span class="hljs-attr">test</span>=<span class="hljs-string">"hello"</span>></span><span class="hljs-tag"></<span class="hljs-name">AsyncComponent</span>></span>
+    }}><span class="hljs-tag"></<span class="hljs-name">Route</span>></span></span>
   )
 }
 </code></pre>

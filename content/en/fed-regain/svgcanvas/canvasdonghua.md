@@ -4,21 +4,21 @@ title: canvas图片处理与动画
 ---
 ## canvas绘制圆角图片
 
-<pre class="pure-highlightjs"><code class="">&lt;!DOCTYPE html&gt;  
-&lt;html lang="en"&gt;  
-&lt;head&gt;  
-    &lt;meta charset="UTF-8"&gt;  
-    &lt;title&gt;Title&lt;/title&gt;  
-&lt;/head&gt;  
-&lt;body style="background: rgba(199,237,204,1)"&gt;  
-&lt;div style="display:flex; flex-direction: row"&gt;  
- &lt;!--通过style方式为canvas设置宽高在火狐[浏览器](https://www.w3cdoc.com)上导致绘制内容纵向拉伸。。。--&gt;  
-    &lt;canvas id="drawing" width="400px" height="400px"&gt;canvas to draw&lt;/canvas&gt;  
- &lt;pre id="container" style="margin: 10px"/&gt;  
- &lt;img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494089659713&di=2de3a402d0a89cd3e5ea785e30150928&imgtype=0&src=http%3A%2F%2Fsh.sinaimg.cn%2F2014%2F0715%2FU3551P18DT20140715192106.jpg"&gt;  
-&lt;/div&gt;  
-&lt;/body&gt;  
-&lt;script type="text/javascript"&gt;  
+<pre class="pure-highlightjs"><code class="">&lt;!DOCTYPE html>  
+&lt;html lang="en">  
+&lt;head>  
+    &lt;meta charset="UTF-8">  
+    &lt;title>Title&lt;/title>  
+&lt;/head>  
+&lt;body style="background: rgba(199,237,204,1)">  
+&lt;div style="display:flex; flex-direction: row">  
+ &lt;!--通过style方式为canvas设置宽高在火狐[浏览器](https://www.w3cdoc.com)上导致绘制内容纵向拉伸。。。-->  
+    &lt;canvas id="drawing" width="400px" height="400px">canvas to draw&lt;/canvas>  
+ &lt;pre id="container" style="margin: 10px"/>  
+ &lt;img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1494089659713&di=2de3a402d0a89cd3e5ea785e30150928&imgtype=0&src=http%3A%2F%2Fsh.sinaimg.cn%2F2014%2F0715%2FU3551P18DT20140715192106.jpg">  
+&lt;/div>  
+&lt;/body>  
+&lt;script type="text/javascript">  
  window.onload=function () {  
         var drawing = document.getElementById('drawing');  
      if (drawing.getContext) {  
@@ -80,8 +80,8 @@ title: canvas图片处理与动画
         window.location.reload()  
     }  
     console.log = print;  
-&lt;/script&gt;  
-&lt;/html&gt;  
+&lt;/script>  
+&lt;/html>  
 </code></pre>
 
 &nbsp;
@@ -118,7 +118,7 @@ title: canvas图片处理与动画
     
     
     <pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-comment">//demo.html&lt;/span>
-&lt;canvas id=&lt;span class="hljs-string">'canvas'&lt;/span> width=&lt;span class="hljs-string">'500'&lt;/span> height=&lt;span class="hljs-string">'500'&lt;/span>&gt;&lt;span class="xml">&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">canvas&lt;/span>&gt;&lt;/span>&lt;/span>
+&lt;canvas id=&lt;span class="hljs-string">'canvas'&lt;/span> width=&lt;span class="hljs-string">'500'&lt;/span> height=&lt;span class="hljs-string">'500'&lt;/span>>&lt;span class="xml">&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">canvas&lt;/span>>&lt;/span>&lt;/span>
 [注]
 设置canvas的宽高要在元素或在其API，canvas.width || canvas.height，在CSS上设置为得到意想不到的结果，不信试试看哈···
 
@@ -232,10 +232,10 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
       </div>
     </div>
     
-    <pre class="hljs xml"><code class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">canvas&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"canvas"&lt;/span>  &lt;span class="hljs-attr">width&lt;/span>=&lt;span class="hljs-string">"500"&lt;/span> &lt;span class="hljs-attr">height&lt;/span>=&lt;span class="hljs-string">"500"&lt;/span> &lt;span class="hljs-attr">style&lt;/span>=&lt;span class="hljs-string">"background:#000"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">canvas&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">'../js/utils.js'&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">'../js/ball.js'&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+    <pre class="hljs xml"><code class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">canvas&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"canvas"&lt;/span>  &lt;span class="hljs-attr">width&lt;/span>=&lt;span class="hljs-string">"500"&lt;/span> &lt;span class="hljs-attr">height&lt;/span>=&lt;span class="hljs-string">"500"&lt;/span> &lt;span class="hljs-attr">style&lt;/span>=&lt;span class="hljs-string">"background:#000"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">canvas&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">'../js/utils.js'&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">'../js/ball.js'&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 
     &lt;span class="hljs-comment">//这个脚本中，匀速运动的原理是通过连续改变原点在x轴上的坐标，从而实现匀速运动；&lt;/span>
         &lt;span class="hljs-keyword">var&lt;/span> canvas = &lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">'canvas'&lt;/span>);
@@ -252,14 +252,14 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
             ball.x += xspeed;
             ball.y = canvas.height/&lt;span class="hljs-number">2&lt;/span>;
 
-            &lt;span class="hljs-keyword">if&lt;/span>(ball.x&gt;canvas.width+ball.radius){
+            &lt;span class="hljs-keyword">if&lt;/span>(ball.x>canvas.width+ball.radius){
                 ball.x = -ball.radius;
             } 
 
             ball.draw(context);
         })();
 
-    &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+    &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 </code></pre>
 
     
@@ -324,10 +324,10 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
       </div>
     </div>
     
-    <pre class="hljs xml"><code class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">canvas&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"canvas"&lt;/span>  &lt;span class="hljs-attr">width&lt;/span>=&lt;span class="hljs-string">"500"&lt;/span> &lt;span class="hljs-attr">height&lt;/span>=&lt;span class="hljs-string">"500"&lt;/span> &lt;span class="hljs-attr">style&lt;/span>=&lt;span class="hljs-string">"background:#000"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">canvas&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">'../js/utils.js'&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">'../js/ball.js'&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+    <pre class="hljs xml"><code class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">canvas&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"canvas"&lt;/span>  &lt;span class="hljs-attr">width&lt;/span>=&lt;span class="hljs-string">"500"&lt;/span> &lt;span class="hljs-attr">height&lt;/span>=&lt;span class="hljs-string">"500"&lt;/span> &lt;span class="hljs-attr">style&lt;/span>=&lt;span class="hljs-string">"background:#000"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">canvas&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">'../js/utils.js'&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">'../js/ball.js'&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 
         &lt;span class="hljs-keyword">var&lt;/span> canvas = &lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">'canvas'&lt;/span>);
         &lt;span class="hljs-keyword">var&lt;/span> context = canvas.getContext(&lt;span class="hljs-string">'2d'&lt;/span>);
@@ -345,13 +345,13 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
             xspeed += ax;
             ball.y = canvas.height/&lt;span class="hljs-number">2&lt;/span>;
             &lt;span class="hljs-comment">//ball.y += 1;&lt;/span>
-          &lt;span class="hljs-keyword">if&lt;/span>(ball.x&gt;canvas.width+ball.radius){
+          &lt;span class="hljs-keyword">if&lt;/span>(ball.x>canvas.width+ball.radius){
                 ball.x = -ball.radius;
             } 
 
             ball.draw(context);
         })();
-  &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+  &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 </code></pre>
 
     
@@ -385,7 +385,7 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
       数理分析上，物体先是做向下的加速运动，落到地面后（有一个落到地面的速度）再做向上的减速运动知道速度为0时，再做向下的加速运动，循环反复，知道小球落到地面；
     
     
-    <pre class="hljs xml"><code class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+    <pre class="hljs xml"><code class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 
    
         &lt;span class="hljs-keyword">var&lt;/span> canvas = &lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">'canvas'&lt;/span>);
@@ -402,7 +402,7 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
 
         &lt;span class="hljs-comment">//碰撞测试&lt;/span>
         &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">checkGround&lt;/span>(&lt;span class="hljs-params">ball&lt;/span>)&lt;/span>{
-            &lt;span class="hljs-keyword">if&lt;/span>(ball.y+ball.radius&gt;canvas.height){
+            &lt;span class="hljs-keyword">if&lt;/span>(ball.y+ball.radius>canvas.height){
 
                 &lt;span class="hljs-comment">//小球碰到地面时，让球的位置暂时设置为在地面上&lt;/span>
                 ball.y = canvas.height - ball.radius;
@@ -428,7 +428,7 @@ context.restore();&lt;span class="hljs-comment">//恢复到先前保存在contex
             ball.draw(context);
         })();
 
-    &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+    &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 </code></pre>
 
     
@@ -514,7 +514,7 @@ angle += &lt;span class="hljs-number">0.1&lt;/span>;
       完整代码如下：
     
     
-    <pre class="hljs xml"><code class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+    <pre class="hljs xml"><code class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 
     
         &lt;span class="hljs-keyword">var&lt;/span> canvas = &lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">'canvas'&lt;/span>);
@@ -535,13 +535,13 @@ angle += &lt;span class="hljs-number">0.1&lt;/span>;
             &lt;span class="hljs-comment">//ball.y += 1;&lt;/span>
             angle += &lt;span class="hljs-number">0.1&lt;/span>;
 
-            &lt;span class="hljs-keyword">if&lt;/span>(ball.x&gt;canvas.width+ball.radius){
+            &lt;span class="hljs-keyword">if&lt;/span>(ball.x>canvas.width+ball.radius){
                 ball.x = -ball.radius;
             } 
 
             ball.draw(context);
         })();
-  &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+  &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 </code></pre>
 
     
@@ -617,7 +617,7 @@ y = rsinθ
       二话不说上代码：
     
     
-    <pre class="hljs xml"><code class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+    <pre class="hljs xml"><code class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 
     
         &lt;span class="hljs-keyword">var&lt;/span> canvas = &lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">'canvas'&lt;/span>);
@@ -637,13 +637,13 @@ y = rsinθ
             &lt;span class="hljs-comment">//ball.y += 1;&lt;/span>
             angle += &lt;span class="hljs-number">0.1&lt;/span>;
 
-            &lt;span class="hljs-comment">// if(ball.x&gt;canvas.width+ball.radius){&lt;/span>
+            &lt;span class="hljs-comment">// if(ball.x>canvas.width+ball.radius){&lt;/span>
             &lt;span class="hljs-comment">//  ball.x = -ball.radius;&lt;/span>
             &lt;span class="hljs-comment">// } &lt;/span>
 
             ball.draw(context);
         })();
-  &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+  &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 </code></pre>
 
     
@@ -909,7 +909,7 @@ Arrow.prototype.draw = &lt;span class="hljs-function">&lt;span class="hljs-keywo
       </div>
     </div>
     
-    <pre class="hljs xml"><code class="xml">   &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+    <pre class="hljs xml"><code class="xml">   &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
         &lt;span class="hljs-keyword">var&lt;/span> canvas = &lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">'canvas'&lt;/span>);
         &lt;span class="hljs-keyword">var&lt;/span> context = canvas.getContext(&lt;span class="hljs-string">'2d'&lt;/span>);
         &lt;span class="hljs-keyword">var&lt;/span> ball = &lt;span class="hljs-keyword">new&lt;/span> Ball();
@@ -933,7 +933,7 @@ Arrow.prototype.draw = &lt;span class="hljs-function">&lt;span class="hljs-keywo
             &lt;span class="hljs-comment">//ball.scaleX = ball.scaleY = centerScale + angle&lt;/span>
             ball.draw(context);
         })();
-    &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+    &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 </code></pre>
 
     

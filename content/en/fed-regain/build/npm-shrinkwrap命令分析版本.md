@@ -39,8 +39,8 @@ title: npm shrinkwrap命令分析版本
   
  也可以将先行版本号及版本编译信息可以加到“主版本号.次版本号.修订号”的后面，作为延伸。(v1.2.2-beta)
   
-  <pre class="prettyprint"><code class="prism language-shell has-numbering" style="position: unset;">&lt;span class="token comment"># 查看当前哪些包需要更新&lt;/span>
-$ &lt;span class="token function">npm&lt;/span> outdated -g -depth&lt;span class="token operator">=&lt;/span>0</code></pre>
+  <pre class="prettyprint"><code class="prism language-shell has-numbering" style="position: unset;"><span class="token comment"># 查看当前哪些包需要更新</span>
+$ <span class="token function">npm</span> outdated -g -depth<span class="token operator">=</span>0</code></pre>
   <div class="table-box">
     <table>
       <tr>
@@ -214,8 +214,8 @@ npm install 会生成 package.json，以及 node_modules (依赖树)。
   </h3>
  另一个选择是，可以在项目中使用 <a href="https://docs.npmjs.com/cli/shrinkwrap" rel="nofollow">shrinkwrap</a>，在开发阶段依赖稳定后，运行如下命令：
   
-  <pre class="prettyprint"><code class="prism language-shell has-numbering" style="position: unset;">&lt;span class="token function">npm&lt;/span> shrinkwrap
-&lt;span class="token function">npm&lt;/span> shrinkwrap--dev &lt;span class="token comment"># 将dev-dependencies计算在内&lt;/span></code></pre>
+  <pre class="prettyprint"><code class="prism language-shell has-numbering" style="position: unset;"><span class="token function">npm</span> shrinkwrap
+<span class="token function">npm</span> shrinkwrap--dev <span class="token comment"># 将dev-dependencies计算在内</span></code></pre>
  这会生成一个 <code>shrinkwrap.json</code> 文件，该文件包含了你正在使用的模块的指定版本。当运行 <code>npm install</code>时，该文件所指定的模块版本会覆盖 <code>package.json</code> 文件中所指定的版本。
   
 注意问题：
@@ -258,23 +258,23 @@ npm install 会生成 package.json，以及 node_modules (依赖树)。
   </h3>
  为防止出现这种潜在问题，npm使用 <code>package-lock.json</code> 或 <code>npm-shrinkwrap.json</code>（如果存在）。这些文件称为包锁或锁文件。
   
-  <pre class="prettyprint"><code class="prism language-json has-numbering" style="position: unset;">&lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token string">"name"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"A"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-  &lt;span class="token string">"version"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"0.1.0"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-  &lt;span class="token operator">...&lt;/span>metadata fields&lt;span class="token operator">...&lt;/span>
-  &lt;span class="token string">"dependencies"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token string">"B"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-      &lt;span class="token string">"version"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"0.0.1"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-      &lt;span class="token string">"resolved"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"https://registry.npmjs.org/B/-/B-0.0.1.tgz"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-      &lt;span class="token string">"integrity"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"sha512-DeAdb33F+"&lt;/span>
-      &lt;span class="token string">"dependencies"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-        &lt;span class="token string">"C"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-          &lt;span class="token string">"version"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"git://github.com/org/C.git#5c380ae319fc4efe9e7f2d9c78b0faa588fd99b4"&lt;/span>
-        &lt;span class="token punctuation">}&lt;/span>
-      &lt;span class="token punctuation">}&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span></code></pre>
+  <pre class="prettyprint"><code class="prism language-json has-numbering" style="position: unset;"><span class="token punctuation">{</span>
+  <span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"A"</span><span class="token punctuation">,</span>
+  <span class="token string">"version"</span><span class="token punctuation">:</span> <span class="token string">"0.1.0"</span><span class="token punctuation">,</span>
+  <span class="token operator">...</span>metadata fields<span class="token operator">...</span>
+  <span class="token string">"dependencies"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"B"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token string">"version"</span><span class="token punctuation">:</span> <span class="token string">"0.0.1"</span><span class="token punctuation">,</span>
+      <span class="token string">"resolved"</span><span class="token punctuation">:</span> <span class="token string">"https://registry.npmjs.org/B/-/B-0.0.1.tgz"</span><span class="token punctuation">,</span>
+      <span class="token string">"integrity"</span><span class="token punctuation">:</span> <span class="token string">"sha512-DeAdb33F+"</span>
+      <span class="token string">"dependencies"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">"C"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"version"</span><span class="token punctuation">:</span> <span class="token string">"git://github.com/org/C.git#5c380ae319fc4efe9e7f2d9c78b0faa588fd99b4"</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
  该文件描述了一个精确的、可重现的 node_modules 树。一旦它出现，任何未来的安装将基于此文件的工作，而不是从 <code>package.json</code> 重新计算依赖版本。此外，如果 <code>package-lock.json</code> 和 <code>npm-shrinkwrap.json</code> 都存在于包根目录中，则将忽略 <code>package-lock.json</code> 。
   
  <code>npm install</code>，<code>npm rm</code>，<code>npm update</code> 等都将自动同步现有的锁文件。为了防止发生这种更新，你可以使用<code>--no-save</code> 选项来防止完全保存，或者 <code>--no-shrinkwrap</code> 允许更新 <code>package.json</code> 保留 <code>package-lock.json</code> 或<code>npm-shrinkwrap.json</code> 。

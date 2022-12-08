@@ -13,7 +13,7 @@ react hook是继16.6的Suspense、lazy、memo后的又一巨大的令人兴奋�
 `useRef`传入一个参数initValue，并创建一个对象`{ current: initValue }`给函数组件使用，在整个生命周期中该对象保持不变。所以，听到它名字叫做`useRef`的时候，很自然就想到它就是用来做元素的ref的：
 
 <pre class="hljs jsx"><code class="hljs jsx">&lt;span class="hljs-keyword">const&lt;/span> divRef = useRef();
-&lt;span class="hljs-keyword">return&lt;/span>  &lt;&lt;span class="hljs-keyword">div&lt;/span> &lt;span class="hljs-keyword">ref&lt;/span>={divRef}&gt;;
+&lt;span class="hljs-keyword">return&lt;/span>  &lt;&lt;span class="hljs-keyword">div&lt;/span> &lt;span class="hljs-keyword">ref&lt;/span>={divRef}>;
 </code></pre>
 
 最基本的使用方法，接着想进行dom操作，那就这样玩：
@@ -27,8 +27,8 @@ react hook是继16.6的Suspense、lazy、memo后的又一巨大的令人兴奋�
 
 <pre class="hljs jsx"><code class="hljs jsx">&lt;span class="hljs-keyword">let&lt;/span> isMount = &lt;span class="hljs-literal">false&lt;/span>;
 &lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-type">C&lt;/span>&lt;span class="hljs-literal">()&lt;/span>{
-  useEffect(&lt;span class="hljs-literal">()&lt;/span> =&gt; { isMount= &lt;span class="hljs-literal">true&lt;/span>; return &lt;span class="hljs-literal">()&lt;/span> =&gt; { isMount= &lt;span class="hljs-literal">false&lt;/span>; } }, &lt;span class="hljs-literal">[]&lt;/span>);
-  return &lt;div /&gt;
+  useEffect(&lt;span class="hljs-literal">()&lt;/span> => { isMount= &lt;span class="hljs-literal">true&lt;/span>; return &lt;span class="hljs-literal">()&lt;/span> => { isMount= &lt;span class="hljs-literal">false&lt;/span>; } }, &lt;span class="hljs-literal">[]&lt;/span>);
+  return &lt;div />
 }
 </code></pre>
 
@@ -36,21 +36,21 @@ react hook是继16.6的Suspense、lazy、memo后的又一巨大的令人兴奋�
 
 <pre class="hljs jsx"><code class="hljs jsx">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">C&lt;/span>&lt;span class="hljs-params">()&lt;/span>&lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> mount = useRef({}).current;
-  useEffect(() =&gt; { mount.isMount= &lt;span class="hljs-keyword">true&lt;/span>; &lt;span class="hljs-keyword">return&lt;/span> () =&gt; { mount.isMount= &lt;span class="hljs-keyword">false&lt;/span>; } }, []);
-  &lt;span class="hljs-keyword">return&lt;/span> &lt;div /&gt;
+  useEffect(() => { mount.isMount= &lt;span class="hljs-keyword">true&lt;/span>; &lt;span class="hljs-keyword">return&lt;/span> () => { mount.isMount= &lt;span class="hljs-keyword">false&lt;/span>; } }, []);
+  &lt;span class="hljs-keyword">return&lt;/span> &lt;div />
 }
 </code></pre>
 
 ok，现在假的this要原形毕露了:
 
-<pre class="hljs jsx"><code class="hljs jsx">export &lt;span class="hljs-keyword">default&lt;/span> () =&gt; {
+<pre class="hljs jsx"><code class="hljs jsx">export &lt;span class="hljs-keyword">default&lt;/span> () => {
   const _this = useRef({
     &lt;span class="hljs-keyword">state&lt;/span>: { a: &lt;span class="hljs-number">1&lt;/span>, b: &lt;span class="hljs-number">0&lt;/span> },
   }).current;
     return (
-        &lt;span class="hljs-variable">&lt;div&gt;&lt;/span>
+        &lt;span class="hljs-variable">&lt;div>&lt;/span>
                     a: {_this.&lt;span class="hljs-keyword">state&lt;/span>.a} / b : {_this.&lt;span class="hljs-keyword">state&lt;/span>.b}
-        &lt;span class="hljs-variable">&lt;/div&gt;&lt;/span>
+        &lt;span class="hljs-variable">&lt;/div>&lt;/span>
     )
 }
 </code></pre>
@@ -63,7 +63,7 @@ ok，现在假的this要原形毕露了:
 
 <pre class="hljs jsx"><code class="hljs jsx">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;/span> T(){
   const [&lt;span class="hljs-built_in">count&lt;/span>, setCount] = useState(&lt;span class="hljs-number">0&lt;/span>);
-  &lt;span class="hljs-keyword">return&lt;/span> &lt;span onClick={() =&gt; setCount(&lt;span class="hljs-built_in">count&lt;/span> + &lt;span class="hljs-number">1&lt;/span>)}&gt;{&lt;span class="hljs-built_in">count&lt;/span>}&lt;/span&gt;
+  &lt;span class="hljs-keyword">return&lt;/span> &lt;span onClick={() => setCount(&lt;span class="hljs-built_in">count&lt;/span> + &lt;span class="hljs-number">1&lt;/span>)}>{&lt;span class="hljs-built_in">count&lt;/span>}&lt;/span>
 }
 </code></pre>
 
@@ -71,7 +71,7 @@ ok，现在假的this要原形毕露了:
 
 <pre class="hljs jsx"><code class="hljs jsx">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">T&lt;/span>&lt;span class="hljs-params">()&lt;/span>&lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> count = &lt;span class="hljs-number">0&lt;/span>
-  &lt;span class="hljs-keyword">return&lt;/span> &lt;span&gt;{count}&lt;/span&gt;
+  &lt;span class="hljs-keyword">return&lt;/span> &lt;span>{count}&lt;/span>
 }
 </code></pre>
 
@@ -79,22 +79,22 @@ ok，现在假的this要原形毕露了:
 
 <pre class="hljs jsx"><code class="hljs jsx">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">T&lt;/span>&lt;span class="hljs-params">()&lt;/span>&lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> count = &lt;span class="hljs-number">1&lt;/span>
-  &lt;span class="hljs-keyword">return&lt;/span> &lt;span&gt;{count}&lt;/span&gt;
+  &lt;span class="hljs-keyword">return&lt;/span> &lt;span>{count}&lt;/span>
 }
 </code></pre>
 
 所以，真没有什么黑魔法，就是读前一个值然后+1展示而已。好了，回到正题，函数组件的更新就是`useState`，那强制更新呢？如何实现一个`forceUpdate`？其实也很简单，dispatcher（`useState`返回值第二个元素）传入一个函数，类似于class组件的`setState`传入一个函数一样，可以拿到当前的state值：
 
-<pre class="hljs jsx"><code class="hljs jsx">&lt;span class="hljs-keyword">const&lt;/span> useForceUpdate = () =&gt; {
+<pre class="hljs jsx"><code class="hljs jsx">&lt;span class="hljs-keyword">const&lt;/span> useForceUpdate = () => {
   &lt;span class="hljs-keyword">const&lt;/span> forceUpdate = useState[&lt;span class="hljs-number">0&lt;/span>](&lt;span class="hljs-number">1&lt;/span>);
-  &lt;span class="hljs-keyword">return&lt;/span> () =&gt; forceUpdate(x =&gt; x + &lt;span class="hljs-number">1&lt;/span>);
+  &lt;span class="hljs-keyword">return&lt;/span> () => forceUpdate(x => x + &lt;span class="hljs-number">1&lt;/span>);
 }
 
-&lt;span class="hljs-literal">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> () =&gt; {
+&lt;span class="hljs-literal">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> () => {
   &lt;span class="hljs-keyword">const&lt;/span> forceUpdate = useForceUpdate(); &lt;span class="hljs-comment">// 先定义好，后面想用就用&lt;/span>
   &lt;span class="hljs-comment">// ...&lt;/span>
     &lt;span class="hljs-keyword">return&lt;/span> (
-        &lt;div /&gt;
+        &lt;div />
     )
 }
 </code></pre>
@@ -103,7 +103,7 @@ ok，现在假的this要原形毕露了:
 
 > 本文只是希望全部收拢在useRef，然后修改状态的方法纯粹一点，当然可以用useState对着一个个state值进行修改
 
-<pre class="hljs jsx"><code class="hljs jsx">export &lt;span class="hljs-keyword">default&lt;/span> () =&gt; {
+<pre class="hljs jsx"><code class="hljs jsx">export &lt;span class="hljs-keyword">default&lt;/span> () => {
   const forceUpdate = useForceUpdate();
   const _this = useRef({
     &lt;span class="hljs-keyword">state&lt;/span>: { a: &lt;span class="hljs-number">1&lt;/span>, b: &lt;span class="hljs-number">0&lt;/span> },
@@ -118,11 +118,11 @@ ok，现在假的this要原形毕露了:
     forceUpdate,
   }).current;
   return (
-    &lt;span class="hljs-variable">&lt;div&gt;&lt;/span>
+    &lt;span class="hljs-variable">&lt;div>&lt;/span>
       a: {_this.&lt;span class="hljs-keyword">state&lt;/span>.a} / b : {_this.&lt;span class="hljs-keyword">state&lt;/span>.b}
-&lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> {_this.&lt;span class="hljs-built_in">set&lt;/span>State({ a: _this.&lt;span class="hljs-keyword">state&lt;/span>.a + &lt;span class="hljs-number">1&lt;/span> }) }}&gt;a传&lt;span class="hljs-keyword">state&lt;/span>&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
-&lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> {_this.&lt;span class="hljs-built_in">set&lt;/span>State(({ b }) =&gt; ({ b: b + &lt;span class="hljs-number">2&lt;/span> })) }}&gt;b传函数&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
-    &lt;span class="hljs-variable">&lt;/div&gt;&lt;/span>
+&lt;span class="hljs-variable">&lt;button onClick={() =>&lt;/span> {_this.&lt;span class="hljs-built_in">set&lt;/span>State({ a: _this.&lt;span class="hljs-keyword">state&lt;/span>.a + &lt;span class="hljs-number">1&lt;/span> }) }}>a传&lt;span class="hljs-keyword">state&lt;/span>&lt;span class="hljs-variable">&lt;/button>&lt;/span>
+&lt;span class="hljs-variable">&lt;button onClick={() =>&lt;/span> {_this.&lt;span class="hljs-built_in">set&lt;/span>State(({ b }) => ({ b: b + &lt;span class="hljs-number">2&lt;/span> })) }}>b传函数&lt;span class="hljs-variable">&lt;/button>&lt;/span>
+    &lt;span class="hljs-variable">&lt;/div>&lt;/span>
   );
 }
 </code></pre>
@@ -133,7 +133,7 @@ ok，现在假的this要原形毕露了:
 
 其实我上一篇文章已经实现过，这里再糅合到ref里面重新实现一遍。还是一样的方法，基于两个`useEffect`实现三个生命周期：
 
-<pre class="hljs jsx"><code class="hljs jsx">export &lt;span class="hljs-keyword">default&lt;/span> () =&gt; {
+<pre class="hljs jsx"><code class="hljs jsx">export &lt;span class="hljs-keyword">default&lt;/span> () => {
   const forceUpdate = useForceUpdate();
   const isMounted = useRef(); // 挂载标记
   const _this = useRef({
@@ -157,12 +157,12 @@ ok，现在假的this要原形毕露了:
       console.&lt;span class="hljs-keyword">log&lt;/span>('unmount')
     },
   }).current;
-  useEffect(() =&gt; {
+  useEffect(() => {
     _this.componentDidMount();
     return _this.componentWillUnMount;
   }, [_this]);
 
-  useEffect(() =&gt; {
+  useEffect(() => {
     if (!isMounted.current) {
       isMounted.current = true;
     } else {
@@ -170,11 +170,11 @@ ok，现在假的this要原形毕露了:
     }
   })
   return (
-    &lt;span class="hljs-variable">&lt;div&gt;&lt;/span>
+    &lt;span class="hljs-variable">&lt;div>&lt;/span>
       a: {_this.&lt;span class="hljs-keyword">state&lt;/span>.a} / b : {_this.&lt;span class="hljs-keyword">state&lt;/span>.b}
-&lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> {_this.&lt;span class="hljs-built_in">set&lt;/span>State({ a: _this.&lt;span class="hljs-keyword">state&lt;/span>.a + &lt;span class="hljs-number">1&lt;/span> }) }}&gt;a传&lt;span class="hljs-keyword">state&lt;/span>&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
-&lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> {_this.&lt;span class="hljs-built_in">set&lt;/span>State(({ b }) =&gt; ({ b: b + &lt;span class="hljs-number">2&lt;/span> })) }}&gt;b传函数&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
-    &lt;span class="hljs-variable">&lt;/div&gt;&lt;/span>
+&lt;span class="hljs-variable">&lt;button onClick={() =>&lt;/span> {_this.&lt;span class="hljs-built_in">set&lt;/span>State({ a: _this.&lt;span class="hljs-keyword">state&lt;/span>.a + &lt;span class="hljs-number">1&lt;/span> }) }}>a传&lt;span class="hljs-keyword">state&lt;/span>&lt;span class="hljs-variable">&lt;/button>&lt;/span>
+&lt;span class="hljs-variable">&lt;button onClick={() =>&lt;/span> {_this.&lt;span class="hljs-built_in">set&lt;/span>State(({ b }) => ({ b: b + &lt;span class="hljs-number">2&lt;/span> })) }}>b传函数&lt;span class="hljs-variable">&lt;/button>&lt;/span>
+    &lt;span class="hljs-variable">&lt;/div>&lt;/span>
   )
 }
 </code></pre>
@@ -183,7 +183,7 @@ ok，现在假的this要原形毕露了:
 
 有人可能也注意到了，上面的componentDidUpdate是没有传入上一次props和state的。是的，getDerivedStateFromProps也要上一个state的。所以[我们](https://www.w3cdoc.com)还需要一个ref存上一个状态：
 
-<pre class="hljs jsx"><code class="hljs jsx">export &lt;span class="hljs-keyword">default&lt;/span> (props) =&gt; {
+<pre class="hljs jsx"><code class="hljs jsx">export &lt;span class="hljs-keyword">default&lt;/span> (props) => {
   const forceUpdate = useForceUpdate();
   const isMounted = useRef();
   const magic = useRef({ prevProps: props, prevState: {}, snapshot: null }).current;
@@ -218,7 +218,7 @@ ok，现在假的this要原形毕露了:
     }
   }).current;
 
-  useEffect(() =&gt; {
+  useEffect(() => {
     _this.componentDidMount();
     // 后面都是赋值操作，防止同一个引用对象，实际上应该深拷贝的。这里为了方便，但至少要浅拷
     magic.prevProps = { ...props };  // 记录当前的，作为上一个props给下一次用
@@ -226,7 +226,7 @@ ok，现在假的this要原形毕露了:
     return _this.componentWillUnMount;
   }, [_this, magic]);
 
-  useEffect(() =&gt; {
+  useEffect(() => {
     if (!isMounted.current) {
       isMounted.current = true;
     } else {
@@ -238,12 +238,12 @@ ok，现在假的this要原形毕露了:
     }
   })
     return (
-      &lt;span class="hljs-variable">&lt;div&gt;&lt;/span>
+      &lt;span class="hljs-variable">&lt;div>&lt;/span>
         props: {props.p}/
         a: {_this.&lt;span class="hljs-keyword">state&lt;/span>.a} / b : {_this.&lt;span class="hljs-keyword">state&lt;/span>.b}
-        &lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State({ a:_this.&lt;span class="hljs-keyword">state&lt;/span>.a + &lt;span class="hljs-number">1&lt;/span> }) }}&gt;a传&lt;span class="hljs-keyword">state&lt;/span>&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
-        &lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State(({ b }) =&gt; ({ b: b + &lt;span class="hljs-number">2&lt;/span> })) }}&gt;b传函数&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
-      &lt;span class="hljs-variable">&lt;/div&gt;&lt;/span>
+        &lt;span class="hljs-variable">&lt;button onClick={() =>&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State({ a:_this.&lt;span class="hljs-keyword">state&lt;/span>.a + &lt;span class="hljs-number">1&lt;/span> }) }}>a传&lt;span class="hljs-keyword">state&lt;/span>&lt;span class="hljs-variable">&lt;/button>&lt;/span>
+        &lt;span class="hljs-variable">&lt;button onClick={() =>&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State(({ b }) => ({ b: b + &lt;span class="hljs-number">2&lt;/span> })) }}>b传函数&lt;span class="hljs-variable">&lt;/button>&lt;/span>
+      &lt;span class="hljs-variable">&lt;/div>&lt;/span>
     );
 }
 </code></pre>
@@ -268,8 +268,8 @@ ok，现在假的this要原形毕露了:
 > 注意到，下一个useLayoutEffect执行之前，先执行上一个useLayoutEffect的clean up函数，而且都是同步，可以做到近似模拟willupdate或者getSnapshotBeforeUpdate了
 
 <pre class="hljs jsx"><code class="hljs jsx">&lt;span class="hljs-comment">// 再增加一段代码&lt;/span>
-  useLayoutEffect(() =&gt; {
-    &lt;span class="hljs-keyword">return&lt;/span> () =&gt; {
+  useLayoutEffect(() => {
+    &lt;span class="hljs-keyword">return&lt;/span> () => {
       &lt;span class="hljs-comment">// 上一个props、state也传进来，然后magic.snapshot 前面已经传入了componentDidUpdate&lt;/span>
       magic.snapshot = _this.getSnapshotBeforeUpdate(magic.prevProps, magic.prevState);
     }
@@ -283,14 +283,14 @@ ok，现在假的this要原形毕露了:
 <pre class="hljs jsx"><code class="hljs jsx">// 对最后的return 修改，这里还可以个性化一下fallback ui呢
   try {
     return (
-      &lt;span class="hljs-variable">&lt;div&gt;&lt;/span>
+      &lt;span class="hljs-variable">&lt;div>&lt;/span>
         props: {props.p}/
         a: {_this.&lt;span class="hljs-keyword">state&lt;/span>.a} / b : {_this.&lt;span class="hljs-keyword">state&lt;/span>.b}
-        &lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State({ a:_this.&lt;span class="hljs-keyword">state&lt;/span>.a + &lt;span class="hljs-number">1&lt;/span> }) }}&gt;a传&lt;span class="hljs-keyword">state&lt;/span>&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
-        &lt;span class="hljs-variable">&lt;button onClick={() =&gt;&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State(({ b }) =&gt; ({ b: b + &lt;span class="hljs-number">2&lt;/span> })) }}&gt;b传函数&lt;span class="hljs-variable">&lt;/button&gt;&lt;/span>
-      &lt;span class="hljs-variable">&lt;/div&gt;&lt;/span>
+        &lt;span class="hljs-variable">&lt;button onClick={() =>&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State({ a:_this.&lt;span class="hljs-keyword">state&lt;/span>.a + &lt;span class="hljs-number">1&lt;/span> }) }}>a传&lt;span class="hljs-keyword">state&lt;/span>&lt;span class="hljs-variable">&lt;/button>&lt;/span>
+        &lt;span class="hljs-variable">&lt;button onClick={() =>&lt;/span> { _this.&lt;span class="hljs-built_in">set&lt;/span>State(({ b }) => ({ b: b + &lt;span class="hljs-number">2&lt;/span> })) }}>b传函数&lt;span class="hljs-variable">&lt;/button>&lt;/span>
+      &lt;span class="hljs-variable">&lt;/div>&lt;/span>
     )
   } catch (e) {
     _this.componentDidCatch(e)
-    return &lt;span class="hljs-variable">&lt;div&gt;&lt;/span>some err accured&lt;span class="hljs-variable">&lt;/div&gt;&lt;/span>;
+    return &lt;span class="hljs-variable">&lt;div>&lt;/span>some err accured&lt;span class="hljs-variable">&lt;/div>&lt;/span>;
   }</code></pre>

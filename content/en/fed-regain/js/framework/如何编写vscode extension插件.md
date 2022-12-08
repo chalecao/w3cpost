@@ -24,7 +24,7 @@ yo code
             vscode.env.clipboard.writeText(message.data.data)
             invokeCallback(global.panel, message, true);
         } else if (message.data.type == 'readText') {
-            vscode.env.clipboard.readText().then((text) =&gt; {
+            vscode.env.clipboard.readText().then((text) => {
                 invokeCallback(global.panel, message, text);
             });
         }

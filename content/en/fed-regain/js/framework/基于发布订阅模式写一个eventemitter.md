@@ -84,7 +84,7 @@ EventEmeitter.prototype.emit = &lt;span class="hljs-function">&lt;span class="hl
   &lt;span class="hljs-keyword">let&lt;/span> handler;
   &lt;span class="hljs-comment">// 从储存事件键值对的this._events中获取对应事件回调函数&lt;/span>
   handler = &lt;span class="hljs-keyword">this&lt;/span>._events.get(type);
-  &lt;span class="hljs-keyword">if&lt;/span> (args.length &gt; &lt;span class="hljs-number">0&lt;/span>) {
+  &lt;span class="hljs-keyword">if&lt;/span> (args.length > &lt;span class="hljs-number">0&lt;/span>) {
     handler.apply(&lt;span class="hljs-keyword">this&lt;/span>, args);
   } &lt;span class="hljs-keyword">else&lt;/span> {
     handler.call(&lt;span class="hljs-keyword">this&lt;/span>);
@@ -107,7 +107,7 @@ EventEmeitter.prototype.addListener = &lt;span class="hljs-function">&lt;span cl
 &lt;span class="hljs-keyword">const&lt;/span> emitter = &lt;span class="hljs-keyword">new&lt;/span> EventEmeitter();
 
 &lt;span class="hljs-comment">// 监听一个名为arson的事件对应一个回调函数&lt;/span>
-emitter.addListener(&lt;span class="hljs-string">'arson'&lt;/span>, man =&gt; {
+emitter.addListener(&lt;span class="hljs-string">'arson'&lt;/span>, man => {
   &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">`expel &lt;span class="hljs-subst">${man}&lt;/span>`&lt;/span>);
 });
 
@@ -117,10 +117,10 @@ emitter.emit(&lt;span class="hljs-string">'arson'&lt;/span>, &lt;span class="hlj
  似乎不错,[我们](https://www.w3cdoc.com)实现了基本的触发/监听,但是如果有多个监听者呢?
   
   <pre><code class="hljs javascript copyable" lang="javascript">&lt;span class="hljs-comment">// 重复监听同一个事件名&lt;/span>
-emitter.addListener(&lt;span class="hljs-string">'arson'&lt;/span>, man =&gt; {
+emitter.addListener(&lt;span class="hljs-string">'arson'&lt;/span>, man => {
   &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">`expel &lt;span class="hljs-subst">${man}&lt;/span>`&lt;/span>);
 });
-emitter.addListener(&lt;span class="hljs-string">'arson'&lt;/span>, man =&gt; {
+emitter.addListener(&lt;span class="hljs-string">'arson'&lt;/span>, man => {
   &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">`save &lt;span class="hljs-subst">${man}&lt;/span>`&lt;/span>);
 });
 
@@ -144,14 +144,14 @@ EventEmeitter.prototype.emit = &lt;span class="hljs-function">&lt;span class="hl
   &lt;span class="hljs-keyword">if&lt;/span> (&lt;span class="hljs-built_in">Array&lt;/span>.isArray(handler)) {
     &lt;span class="hljs-comment">// 如果是一个数组说明有多个监听者,需要依次此触发里面的函数&lt;/span>
     &lt;span class="hljs-keyword">for&lt;/span> (&lt;span class="hljs-keyword">let&lt;/span> i = &lt;span class="hljs-number">0&lt;/span>; i &lt; handler.length; i++) {
-      &lt;span class="hljs-keyword">if&lt;/span> (args.length &gt; &lt;span class="hljs-number">0&lt;/span>) {
+      &lt;span class="hljs-keyword">if&lt;/span> (args.length > &lt;span class="hljs-number">0&lt;/span>) {
         handler[i].apply(&lt;span class="hljs-keyword">this&lt;/span>, args);
       } &lt;span class="hljs-keyword">else&lt;/span> {
         handler[i].call(&lt;span class="hljs-keyword">this&lt;/span>);
       }
     }
   } &lt;span class="hljs-keyword">else&lt;/span> { &lt;span class="hljs-comment">// 单个函数的情况[我们](https://www.w3cdoc.com)直接触发即可&lt;/span>
-    &lt;span class="hljs-keyword">if&lt;/span> (args.length &gt; &lt;span class="hljs-number">0&lt;/span>) {
+    &lt;span class="hljs-keyword">if&lt;/span> (args.length > &lt;span class="hljs-number">0&lt;/span>) {
       handler.apply(&lt;span class="hljs-keyword">this&lt;/span>, args);
     } &lt;span class="hljs-keyword">else&lt;/span> {
       handler.call(&lt;span class="hljs-keyword">this&lt;/span>);
@@ -177,14 +177,14 @@ EventEmeitter.prototype.addListener = &lt;span class="hljs-function">&lt;span cl
  是的,从此以后可以愉快的触发多个监听者的函数了.
   
   <pre><code class="hljs javascript copyable" lang="javascript">&lt;span class="hljs-comment">// 监听同一个事件名&lt;/span>
-emitter.addListener(&lt;span class="hljs-string">'arson'&lt;/span>, man =&gt; {
+emitter.addListener(&lt;span class="hljs-string">'arson'&lt;/span>, man => {
   &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">`expel &lt;span class="hljs-subst">${man}&lt;/span>`&lt;/span>);
 });
-emitter.addListener(&lt;span class="hljs-string">'arson'&lt;/span>, man =&gt; {
+emitter.addListener(&lt;span class="hljs-string">'arson'&lt;/span>, man => {
   &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">`save &lt;span class="hljs-subst">${man}&lt;/span>`&lt;/span>);
 });
 
-emitter.addListener(&lt;span class="hljs-string">'arson'&lt;/span>, man =&gt; {
+emitter.addListener(&lt;span class="hljs-string">'arson'&lt;/span>, man => {
   &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">`kill &lt;span class="hljs-subst">${man}&lt;/span>`&lt;/span>);
 });
 

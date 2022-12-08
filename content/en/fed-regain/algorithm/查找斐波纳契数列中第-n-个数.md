@@ -91,7 +91,7 @@ main(40);</pre>
 
 <pre class="EnlighterJSRAW" data-enlighter-language="null">function fibonaqi(n){
   let arr=[0,1]
-  for(let i=2;i&lt;n;i++){
+  for(let i=2;i<n;i++){
     arr[i] = arr[i-1] + arr[i-2]
   }
   return arr[n-1]

@@ -68,23 +68,23 @@ DllPlugin作用示意图：<figure>
 
 为了减小篇幅，只帖关键配置内容，详细访问<a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fqiudongwei%2Fblog%2Ftree%2Fmaster%2Fdllplugin-demo" target="_blank" rel="nofollow noopener noreferrer">dllplugin-demo</a>：
 
-<pre><code class="hljs javascript copyable" lang="javascript">&lt;span class="hljs-comment">// webpack.dll.config.js&lt;/span>
-&lt;span class="hljs-built_in">module&lt;/span>.exports = {
-    &lt;span class="hljs-attr">entry&lt;/span>: {
-        &lt;span class="hljs-comment">// 定义程序中打包公共文件的入口文件vendor.js&lt;/span>
-        vendor: [path.resolve(src, &lt;span class="hljs-string">'js'&lt;/span>, &lt;span class="hljs-string">'vendor.js'&lt;/span>)],
+<pre><code class="hljs javascript copyable" lang="javascript"><span class="hljs-comment">// webpack.dll.config.js</span>
+<span class="hljs-built_in">module</span>.exports = {
+    <span class="hljs-attr">entry</span>: {
+        <span class="hljs-comment">// 定义程序中打包公共文件的入口文件vendor.js</span>
+        vendor: [path.resolve(src, <span class="hljs-string">'js'</span>, <span class="hljs-string">'vendor.js'</span>)],
     },
 
-    &lt;span class="hljs-attr">plugins&lt;/span>: [
-        &lt;span class="hljs-keyword">new&lt;/span> webpack.DllPlugin({
-            &lt;span class="hljs-comment">// manifest缓存文件的请求上下文（默认为webpack执行环境上下文）&lt;/span>
+    <span class="hljs-attr">plugins</span>: [
+        <span class="hljs-keyword">new</span> webpack.DllPlugin({
+            <span class="hljs-comment">// manifest缓存文件的请求上下文（默认为webpack执行环境上下文）</span>
             context: process.cwd(),
 
-            &lt;span class="hljs-comment">// manifest.json文件的输出位置&lt;/span>
-            path: path.join(src, &lt;span class="hljs-string">'js'&lt;/span>, &lt;span class="hljs-string">'dll'&lt;/span>, &lt;span class="hljs-string">'[name]-manifest.json'&lt;/span>),
+            <span class="hljs-comment">// manifest.json文件的输出位置</span>
+            path: path.join(src, <span class="hljs-string">'js'</span>, <span class="hljs-string">'dll'</span>, <span class="hljs-string">'[name]-manifest.json'</span>),
 
-            &lt;span class="hljs-comment">// 定义打包的公共vendor文件对外暴露的函数名&lt;/span>
-            name: &lt;span class="hljs-string">'[name]_[hash]'&lt;/span>
+            <span class="hljs-comment">// 定义打包的公共vendor文件对外暴露的函数名</span>
+            name: <span class="hljs-string">'[name]_[hash]'</span>
         })
     ]
 }</code></pre>
@@ -95,12 +95,12 @@ DllPlugin作用示意图：<figure>
 
 在配置好`webpack.dll.config.js`文件之后，在`vendor.js`中声明项目程序中所引用的静态公共资源。
 
-<pre><code class="hljs javascript copyable" lang="javascript">&lt;span class="hljs-comment">// vendor.js&lt;/span>
-&lt;span class="hljs-comment">// 引入自定义在项目目录中的公共资源（可以在配置中声明alias映射关系）&lt;/span>
-&lt;span class="hljs-keyword">import&lt;/span> &lt;span class="hljs-string">'jquery'&lt;/span>;
+<pre><code class="hljs javascript copyable" lang="javascript"><span class="hljs-comment">// vendor.js</span>
+<span class="hljs-comment">// 引入自定义在项目目录中的公共资源（可以在配置中声明alias映射关系）</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">'jquery'</span>;
 
-&lt;span class="hljs-comment">// or 引入npm包资源&lt;/span>
-&lt;span class="hljs-comment">// import 'Vue';&lt;/span></code></pre>
+<span class="hljs-comment">// or 引入npm包资源</span>
+<span class="hljs-comment">// import 'Vue';</span></code></pre>
 
 <h5 class="heading" data-id="heading-9">
   3.1.3 打包静态公共资源
@@ -122,20 +122,20 @@ cross-env NODE_ENV=production webpack --config webpack.dll.config.js --colors --
   3.2.1 在webpack.config.js中关联引用
 </h5>
 
-<pre><code class="hljs javascript copyable" lang="javascript">&lt;span class="hljs-comment">// webpack.config.js&lt;/span>
-&lt;span class="hljs-built_in">module&lt;/span>.exports = {
-    &lt;span class="hljs-attr">entry&lt;/span>: {
-        &lt;span class="hljs-comment">// 项目入口文件&lt;/span>
-        &lt;span class="hljs-string">'app'&lt;/span>:path.resolve(src, &lt;span class="hljs-string">'js'&lt;/span>, &lt;span class="hljs-string">'main.js'&lt;/span>)
+<pre><code class="hljs javascript copyable" lang="javascript"><span class="hljs-comment">// webpack.config.js</span>
+<span class="hljs-built_in">module</span>.exports = {
+    <span class="hljs-attr">entry</span>: {
+        <span class="hljs-comment">// 项目入口文件</span>
+        <span class="hljs-string">'app'</span>:path.resolve(src, <span class="hljs-string">'js'</span>, <span class="hljs-string">'main.js'</span>)
     },
-    &lt;span class="hljs-attr">plugins&lt;/span>: [
-        &lt;span class="hljs-comment">// dllPlugin关联配置&lt;/span>
-        &lt;span class="hljs-keyword">new&lt;/span> webpack.DllReferencePlugin({
-            &lt;span class="hljs-comment">// 跟dll.config里面DllPlugin的context一致&lt;/span>
+    <span class="hljs-attr">plugins</span>: [
+        <span class="hljs-comment">// dllPlugin关联配置</span>
+        <span class="hljs-keyword">new</span> webpack.DllReferencePlugin({
+            <span class="hljs-comment">// 跟dll.config里面DllPlugin的context一致</span>
             context: process.cwd(),
 
-            &lt;span class="hljs-comment">// dll过程生成的manifest文件&lt;/span>
-            manifest: &lt;span class="hljs-built_in">require&lt;/span>(path.join(src, &lt;span class="hljs-string">'js'&lt;/span>, &lt;span class="hljs-string">"dll"&lt;/span>, &lt;span class="hljs-string">"vendor-manifest.json"&lt;/span>))
+            <span class="hljs-comment">// dll过程生成的manifest文件</span>
+            manifest: <span class="hljs-built_in">require</span>(path.join(src, <span class="hljs-string">'js'</span>, <span class="hljs-string">"dll"</span>, <span class="hljs-string">"vendor-manifest.json"</span>))
         })
     ]
 }</code></pre>
@@ -144,13 +144,13 @@ cross-env NODE_ENV=production webpack --config webpack.dll.config.js --colors --
   3.2.2 项目入口文件中引用静态公共资源
 </h5>
 
-<pre><code class="hljs javascript copyable" lang="javascript">&lt;span class="hljs-comment">// main.js&lt;/span>
-&lt;span class="hljs-comment">// 引入的公共模块如果在vendor中有被引用过，那么编译的时候直接使用静态文件vendor.dll.js&lt;/span>
-&lt;span class="hljs-keyword">import&lt;/span> $ &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'jquery'&lt;/span>;
-&lt;span class="hljs-built_in">console&lt;/span>.log($)
+<pre><code class="hljs javascript copyable" lang="javascript"><span class="hljs-comment">// main.js</span>
+<span class="hljs-comment">// 引入的公共模块如果在vendor中有被引用过，那么编译的时候直接使用静态文件vendor.dll.js</span>
+<span class="hljs-keyword">import</span> $ <span class="hljs-keyword">from</span> <span class="hljs-string">'jquery'</span>;
+<span class="hljs-built_in">console</span>.log($)
 
-&lt;span class="hljs-comment">// import Vue from "Vue";&lt;/span>
-&lt;span class="hljs-comment">// console.log(Vue)&lt;/span></code></pre>
+<span class="hljs-comment">// import Vue from "Vue";</span>
+<span class="hljs-comment">// console.log(Vue)</span></code></pre>
 
 引入方式没有什么不同的，跟平时正常引入即可。
 
@@ -160,8 +160,8 @@ cross-env NODE_ENV=production webpack --config webpack.dll.config.js --colors --
 
 最后一步，在模板中注入`vendor.dll.js`
 
-<pre><code class="hljs html copyable" lang="html">&lt;span class="hljs-comment">&lt;!-- index.html --&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">type&lt;/span>=&lt;span class="hljs-string">"text/javascript"&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">"/src/js/dll/vendor.dll.js"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span></code></pre>
+<pre><code class="hljs html copyable" lang="html"><span class="hljs-comment"><!-- index.html --></span>
+<span class="hljs-tag"><<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/javascript"</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/src/js/dll/vendor.dll.js"</span>></span><span class="hljs-tag"></<span class="hljs-name">script</span>></span></code></pre>
 
 如此，在接下来的本地开发（dev过程）和线上构建过程，将不再重复静态公共资源的构建，极大地缩减[我们](https://www.w3cdoc.com)的构建时间。
 

@@ -5,13 +5,13 @@ title: script标签添加crossorigin
 
 <pre class="pure-highlightjs"><code class="null">&lt;script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"&gt;&lt;/script&gt;</code></pre>
+    crossorigin="anonymous">&lt;/script></code></pre>
 
 看起来比以前的写法复杂好多的样子。先不着急慢慢看，多了一个 integrity 属性，看值的样子就知道是用来验证文件完整性的。另外还有一个 crossorigin 属性……怎么？直接通过 script 标签加载网站外 JS 资源也要开始考虑跨域的问题了吗？
 
 这里不讨论 `script` 里 crossorigin 属性怎么用，以及服务器端如何支持此属性，MDN 上的文档已经说得很清楚。参考： [mdn][1]
 
-你可以使用下面的<a style="font-style: normal; text-decoration: none; color: #3d7e9a; margin: 0px; padding: 0px; border: 0px; font-family: Arial, x-locale-body, sans-serif; font-size: 20px; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: -0.0556px; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff;" title="HTML <script> 元素用于嵌入或引用可执行脚本。" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script"><code>&lt;script&gt;</code></a> 元素告诉一个[浏览器](https://www.w3cdoc.com)执行来自 `https://example.com/example-framework.js` 的脚本而不发送用户凭据。
+你可以使用下面的<a style="font-style: normal; text-decoration: none; color: #3d7e9a; margin: 0px; padding: 0px; border: 0px; font-family: Arial, x-locale-body, sans-serif; font-size: 20px; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: -0.0556px; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff;" title="HTML <script> 元素用于嵌入或引用可执行脚本。" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/script"><code>&lt;script></code></a> 元素告诉一个[浏览器](https://www.w3cdoc.com)执行来自 `https://example.com/example-framework.js` 的脚本而不发送用户凭据。
 
 不知道[大家](https://www.w3cdoc.com)对此新属性的感觉如何，我的第一感觉是：新加了这么一个属性，难道是以前 script 不用 crossorigin 属性的时候，会出什么问题吗？到底可能会出什么问题呢？
 
@@ -35,8 +35,8 @@ title: script标签添加crossorigin
     <div class="crayon-tools">
       <div class="crayon-button crayon-nums-button crayon-pressed" title="Toggle Line Numbers">
         <div class="crayon-button-icon">
-          <pre class="pure-highlightjs"><code class="null">&lt;script src="https://某个银行/会员信息网址"&gt;
-&lt;script src="https://某个银行2/会员信息网址"&gt;
+          <pre class="pure-highlightjs"><code class="null">&lt;script src="https://某个银行/会员信息网址">
+&lt;script src="https://某个银行2/会员信息网址">
 ...
 </code></pre>
 

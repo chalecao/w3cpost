@@ -18,11 +18,11 @@ function nQueens(n) {
     var result = [];
     var k = 0;
     result[k] = 0;
-    while (k &gt;= 0) { //when k&lt;0; there is no solution for this 'n'
+    while (k >= 0) { //when k<0; there is no solution for this 'n'
         result[k]++;
-        while (result[k] &lt;= n && !place(result, k))
+        while (result[k] <= n && !place(result, k))
             result[k]++; //find proper position for the current queen
-        if (result[k] &lt;= n) {
+        if (result[k] <= n) {
             if (k == n - 1) break; //the last queen is put at a proper position, end
             else {
                 k++;
@@ -40,7 +40,7 @@ function nQueens(n) {
 //res is the array of a partial solution
 function place(res, k) {
     var abs = Math.abs;
-    for (var i = 0; i &lt; k; i++) {
+    for (var i = 0; i < k; i++) {
         if (res[i] == res[k] || abs(res[i] - res[k]) == abs(i - k))
             return false;
     }

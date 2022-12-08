@@ -53,10 +53,10 @@ cd project<span class="token operator">-</span>name
 git init
 # 添加gitignore文件
 touch <span class="token punctuation">.</span>gitignore
-# 复制这个地址的ignore内容到<span class="token punctuation">.</span>gitignore <span class="token operator">&lt;</span>https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>github<span class="token operator">/</span>gitignore<span class="token operator">/</span>blob<span class="token operator">/</span>master<span class="token operator">/</span>Node<span class="token punctuation">.</span>gitignore<span class="token operator">&gt;</span>
+# 复制这个地址的ignore内容到<span class="token punctuation">.</span>gitignore <span class="token operator">&lt;</span>https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>github<span class="token operator">/</span>gitignore<span class="token operator">/</span>blob<span class="token operator">/</span>master<span class="token operator">/</span>Node<span class="token punctuation">.</span>gitignore<span class="token operator">></span>
 
 # 添加readme文件
-echo <span class="token string">"# My Awesome Typescript Project"</span> <span class="token operator">&gt;&gt;</span> README<span class="token punctuation">.</span>md
+echo <span class="token string">"# My Awesome Typescript Project"</span> <span class="token operator">>></span> README<span class="token punctuation">.</span>md
 # 安装typescript
 npm install <span class="token operator">--</span>save<span class="token operator">-</span>dev typescript
 # 初始化npm包
@@ -223,7 +223,7 @@ touch index<span class="token punctuation">.</span>ts</pre>
 
 写下你的第一行 ts 代码：
 
-<pre class="prism-token token  language-js"><span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">Greeter</span> <span class="token operator">=</span> <span class="token punctuation">(</span>name<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token template-string"><span class="token string">`Hello </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">;</span></pre>
+<pre class="prism-token token  language-js"><span class="token keyword">export</span> <span class="token keyword">const</span> <span class="token function-variable function">Greeter</span> <span class="token operator">=</span> <span class="token punctuation">(</span>name<span class="token punctuation">:</span> string<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token template-string"><span class="token string">`Hello </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">`</span></span><span class="token punctuation">;</span></pre>
 
 ## 7. watch 模式下开发 {#7.-watch-%E6%A8%A1%E5%BC%8F%E4%B8%8B%E5%BC%80%E5%8F%91}
 
@@ -262,7 +262,7 @@ touch index<span class="token punctuation">.</span>ts</pre>
 在 **src** 文件夹下新建一个 `__tests__`的文件夹来存放测试用例文件，新建一个 **Greeter.test.ts**文件,写入：
 
 <pre class="prism-token token  language-js"><span class="token keyword">import</span> <span class="token punctuation">{</span> Greeter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"../index"</span><span class="token punctuation">;</span>
-<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"My Greeter"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">"My Greeter"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
   <span class="token function">expect</span><span class="token punctuation">(</span><span class="token function">Greeter</span><span class="token punctuation">(</span><span class="token string">"Carl"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toBe</span><span class="token punctuation">(</span><span class="token string">"Hello Carl"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
 

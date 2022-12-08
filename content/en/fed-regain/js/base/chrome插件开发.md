@@ -74,7 +74,7 @@ Ok，依据下面几步，你将能够快速地完成这一目的。
 
 这个文件的位置：
 
-<pre class="prettyprint lang-bsh">Default/Extensions/&lt;extensionId&gt;/&lt;versionString&gt;/manifest.json</pre>
+<pre class="prettyprint lang-bsh">Default/Extensions/&lt;extensionId>/&lt;versionString>/manifest.json</pre>
 
 注意，不同的操作系统，userdata的目录不一样，不同系统的目录位置不同
 

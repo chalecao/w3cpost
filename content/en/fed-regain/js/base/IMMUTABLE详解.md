@@ -182,13 +182,13 @@ import Cursor from 'immutable/contrib/cursor';
 
 let data = Immutable.&lt;span class="pl-en">fromJS({ a: { b: { c: &lt;span class="pl-c1">1 } } });
 &lt;span class="pl-c">// 让 cursor 指向 { c: 1 }
-let cursor = Cursor.from(data, ['a', 'b'], newData =&gt; {
+let cursor = Cursor.from(data, ['a', 'b'], newData => {
   // 当 cursor 或其子 cursor 执行 update 时调用
   console.log(newData);
 });
 
 cursor.get('c'); // 1
-cursor = cursor.update('c', x =&gt; x + 1);
+cursor = cursor.update('c', x => x + 1);
 cursor.get('c'); // 2&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span></code></pre>
 </div>
 
@@ -269,7 +269,7 @@ const &lt;span class="pl-c1">Component = &lt;span class="pl-smi">React.&lt;span 
     }
   },
   handleAdd() {
-    this.setState({ data: this.&lt;span class="pl-smi">state.data.update(&lt;span class="pl-s">&lt;span class="pl-pds">'times', v =&gt; v + 1) });
+    this.setState({ data: this.&lt;span class="pl-smi">state.data.update(&lt;span class="pl-s">&lt;span class="pl-pds">'times', v => v + 1) });
     &lt;span class="pl-c">// 这时的 times 并不会改变
     console.log(this.state.data.get('times'));
   }&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span></code></pre>
@@ -279,8 +279,8 @@ const &lt;span class="pl-c1">Component = &lt;span class="pl-smi">React.&lt;span 
 
 <div class="highlight highlight-source-js">
   <pre><code>  &lt;span class="pl-en">handleAdd() {
-    &lt;span class="pl-c1">this.setState(({data}) &lt;span class="pl-k">=&gt; ({
-      data: &lt;span class="pl-smi">data.update(&lt;span class="pl-s">&lt;span class="pl-pds">'times', v =&gt; v + 1) })
+    &lt;span class="pl-c1">this.setState(({data}) &lt;span class="pl-k">=> ({
+      data: &lt;span class="pl-smi">data.update(&lt;span class="pl-s">&lt;span class="pl-pds">'times', v => v + 1) })
     });
   }&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span></code></pre>
 </div>
@@ -300,7 +300,7 @@ let TodoStore = createStore({
   getAll() { return todos; }
 });
 
-Dispatcher.register(action =&gt; {
+Dispatcher.register(action => {
   if (action.actionType === 'create') {
     let id = createGUID();
     history.&lt;span class="pl-c1">push(todos);  // 记录当前操作前的数据，便于撤销
@@ -313,7 +313,7 @@ Dispatcher.register(action =&gt; {
   } else if (action.actionType === 'undo') {
     // 这里是撤销功能实现，
     // 只需从 history 数组中取前一次 todos 即可
-    if (history.length &gt; 0) {
+    if (history.length > 0) {
       todos = history.pop();
     }
     TodoStore.emitChange();

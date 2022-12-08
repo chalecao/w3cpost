@@ -58,7 +58,7 @@ title: Vue3响应式原理整理
 <pre class="hljs javascript"><code class="jsx">&lt;span class="hljs-comment">// 伪代码&lt;/span>
 &lt;span class="hljs-keyword">const&lt;/span> originalProto = &lt;span class="hljs-built_in">Array&lt;/span>.prototype
 &lt;span class="hljs-keyword">const&lt;/span> arrayProto = &lt;span class="hljs-built_in">Object&lt;/span>.create(originalProto)
-[&lt;span class="hljs-string">'push'&lt;/span>,&lt;span class="hljs-string">'pop'&lt;/span>,&lt;span class="hljs-string">'shift'&lt;/span>,&lt;span class="hljs-string">'unshift'&lt;/span>,&lt;span class="hljs-string">'splice'&lt;/span>,&lt;span class="hljs-string">'reverse'&lt;/span>,&lt;span class="hljs-string">'sort'&lt;/span>].forEach(&lt;span class="hljs-function">&lt;span class="hljs-params">key&lt;/span>=&gt;&lt;/span>{
+[&lt;span class="hljs-string">'push'&lt;/span>,&lt;span class="hljs-string">'pop'&lt;/span>,&lt;span class="hljs-string">'shift'&lt;/span>,&lt;span class="hljs-string">'unshift'&lt;/span>,&lt;span class="hljs-string">'splice'&lt;/span>,&lt;span class="hljs-string">'reverse'&lt;/span>,&lt;span class="hljs-string">'sort'&lt;/span>].forEach(&lt;span class="hljs-function">&lt;span class="hljs-params">key&lt;/span>=>&lt;/span>{
     arrayProto[key] = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>()&lt;/span>{
         originalProto[key].apply(&lt;span class="hljs-built_in">this&lt;/span>.arguments)
         notifyUpdate()
@@ -156,7 +156,7 @@ function reactive(obj){
     },
     &lt;span class="hljs-built_in">set&lt;/span>(target, &lt;span class="hljs-built_in">key&lt;/span>, val, receiver){
       &lt;span class="hljs-keyword">const&lt;/span> ret = Reflect.&lt;span class="hljs-built_in">set&lt;/span>(target, &lt;span class="hljs-built_in">key&lt;/span>, val, receiver)
-      console.&lt;span class="hljs-built_in">log&lt;/span>(&lt;span class="hljs-string">'setter '&lt;/span>+&lt;span class="hljs-built_in">key&lt;/span>+&lt;span class="hljs-string">':'&lt;/span>+val + &lt;span class="hljs-string">'=&gt;'&lt;/span> + ret)
+      console.&lt;span class="hljs-built_in">log&lt;/span>(&lt;span class="hljs-string">'setter '&lt;/span>+&lt;span class="hljs-built_in">key&lt;/span>+&lt;span class="hljs-string">':'&lt;/span>+val + &lt;span class="hljs-string">'=>'&lt;/span> + ret)
       &lt;span class="hljs-comment">// 触发更新&lt;/span>
       trigger(target, &lt;span class="hljs-built_in">key&lt;/span>)
       &lt;span class="hljs-keyword">return&lt;/span> ret
@@ -227,21 +227,21 @@ function trigger(target, &lt;span class="hljs-built_in">key&lt;/span>){
   &lt;span class="hljs-keyword">if&lt;/span>(depsMap){
     &lt;span class="hljs-keyword">const&lt;/span> deps = depsMap.&lt;span class="hljs-built_in">get&lt;/span>(&lt;span class="hljs-built_in">key&lt;/span>)
     &lt;span class="hljs-keyword">if&lt;/span>(deps){
-      deps.forEach(effect=&gt;effect())
+      deps.forEach(effect=>effect())
     }
   }
 }</code></pre>
 
 ### 测试demo {#item-5-5}
 
-<pre class="hljs handlebars"><code class="jsx">&lt;span class="xml">&lt;span class="hljs-comment">&lt;!-- test.html --&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"app"&lt;/span>&gt;&lt;/span>
+<pre class="hljs handlebars"><code class="jsx">&lt;span class="xml">&lt;span class="hljs-comment">&lt;!-- test.html -->&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"app"&lt;/span>>&lt;/span>
  &lt;/span>&lt;span class="hljs-template-variable">{{&lt;span class="hljs-name">msg&lt;/span>}}&lt;/span>&lt;span class="xml">
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">"./mini-vue3.js"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">"./mini-vue3.js"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
   &lt;span class="hljs-comment">// 定义一个响应式数据&lt;/span>
   &lt;span class="hljs-keyword">const&lt;/span> state = reactive({
     &lt;span class="hljs-attr">msg&lt;/span>:&lt;span class="hljs-string">'message'&lt;/span>
@@ -256,10 +256,10 @@ function trigger(target, &lt;span class="hljs-built_in">key&lt;/span>){
   effect(updateDom)
 
   &lt;span class="hljs-comment">// 定时变更响应式数据&lt;/span>
-  &lt;span class="hljs-built_in">setInterval&lt;/span>(&lt;span class="hljs-function">()=&gt;&lt;/span>{
+  &lt;span class="hljs-built_in">setInterval&lt;/span>(&lt;span class="hljs-function">()=>&lt;/span>{
     state.msg = &lt;span class="hljs-string">'message'&lt;/span> + &lt;span class="hljs-built_in">Math&lt;/span>.random()
   },&lt;span class="hljs-number">1000&lt;/span>)
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;/span></code></pre>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;/span></code></pre>
 
 效果：
 

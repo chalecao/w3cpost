@@ -13,9 +13,9 @@ title: Node.js 代码规范约定
   
  Sublime Text 2 设置(Preferences > Settings &#8211; User)：
   
-  <pre><code>&lt;code>  "tab_size": 2,
+  <pre><code><code>  "tab_size": 2,
   "translate_tabs_to_spaces": true
-</code>&lt;/code></pre>
+</code></code></pre>
   <h3 id="换行">
     换行
   </h3>
@@ -23,8 +23,8 @@ title: Node.js 代码规范约定
   
  Sublime Text 2 设置(Preferences > Settings &#8211; User)：
   
-  <pre><code>&lt;code>  "default_line_ending": "unix"
-</code>&lt;/code></pre>
+  <pre><code><code>  "default_line_ending": "unix"
+</code></code></pre>
   <h3 id="去除行末尾的多余空格">
     去除行末尾的多余空格
   </h3>
@@ -32,8 +32,8 @@ title: Node.js 代码规范约定
   
  Sublime Text2 设置(Preferences > Settings &#8211; User)：
   
-  <pre><code>&lt;code>  "trim_trailing_white_space_on_save": true
-</code>&lt;/code></pre>
+  <pre><code><code>  "trim_trailing_white_space_on_save": true
+</code></code></pre>
   <h3 id="使用分号">
     使用分号
   </h3>
@@ -46,9 +46,9 @@ title: Node.js 代码规范约定
   
  Sublime Text 2 设置(Preferences > Settings &#8211; User)：
   
-  <pre><code>&lt;code>  "rulers": [80]
-</code>&lt;/code></pre>
- 多屏：<code>view &gt; Layout &gt; Columns 2</code>
+  <pre><code><code>  "rulers": [80]
+</code></code></pre>
+ 多屏：<code>view > Layout > Columns 2</code>
   
   <h3 id="使用单引号">
     使用单引号
@@ -57,12 +57,12 @@ title: Node.js 代码规范约定
   
  <em>Right:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> foo = &lt;span class="hljs-string">'bar'&lt;/span>;
-</code>&lt;/code></pre>
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">var</span> foo = <span class="hljs-string">'bar'</span>;
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> foo = &lt;span class="hljs-string">"bar"&lt;/span>;
-</code>&lt;/code></pre>
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">var</span> foo = <span class="hljs-string">"bar"</span>;
+</code></code></pre>
   <h3 id="大括号位置">
     大括号位置
   </h3>
@@ -70,17 +70,17 @@ title: Node.js 代码规范约定
   
  <em>Right:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">if&lt;/span> (&lt;span class="hljs-literal">true&lt;/span>) {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'winning'&lt;/span>);
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'winning'</span>);
 }
-</code>&lt;/code></pre>
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">if&lt;/span> (&lt;span class="hljs-literal">true&lt;/span>)
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">if</span> (<span class="hljs-literal">true</span>)
 {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'losing'&lt;/span>);
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'losing'</span>);
 }
-</code>&lt;/code></pre>
+</code></code></pre>
  同时，请注意在条件判断前后都添加一个空格。
   
   <h3 id="每个变量声明都带一个-var">
@@ -90,27 +90,27 @@ title: Node.js 代码规范约定
   
  <em>Right:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> keys = [&lt;span class="hljs-string">'foo'&lt;/span>, &lt;span class="hljs-string">'bar'&lt;/span>];
-&lt;span class="hljs-keyword">var&lt;/span> values = [&lt;span class="hljs-number">23&lt;/span>, &lt;span class="hljs-number">42&lt;/span>];
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">var</span> keys = [<span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span>];
+<span class="hljs-keyword">var</span> values = [<span class="hljs-number">23</span>, <span class="hljs-number">42</span>];
 
-&lt;span class="hljs-keyword">var&lt;/span> object = {};
-&lt;span class="hljs-keyword">while&lt;/span> (items.length) {
-  &lt;span class="hljs-keyword">var&lt;/span> key = keys.pop();
+<span class="hljs-keyword">var</span> object = {};
+<span class="hljs-keyword">while</span> (items.length) {
+  <span class="hljs-keyword">var</span> key = keys.pop();
   object[key] = values.pop();
 }
-</code>&lt;/code></pre>
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> keys = [&lt;span class="hljs-string">'foo'&lt;/span>, &lt;span class="hljs-string">'bar'&lt;/span>],
-    values = [&lt;span class="hljs-number">23&lt;/span>, &lt;span class="hljs-number">42&lt;/span>],
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">var</span> keys = [<span class="hljs-string">'foo'</span>, <span class="hljs-string">'bar'</span>],
+    values = [<span class="hljs-number">23</span>, <span class="hljs-number">42</span>],
     object = {},
     key;
 
-&lt;span class="hljs-keyword">while&lt;/span> (items.length) {
+<span class="hljs-keyword">while</span> (items.length) {
   key = keys.pop();
   object[key] = values.pop();
 }
-</code>&lt;/code></pre>
+</code></code></pre>
   <h3 id="变量、属性和函数名都采用小驼峰">
     变量、属性和函数名都采用小驼峰
   </h3>
@@ -118,13 +118,13 @@ title: Node.js 代码规范约定
   
  <em>Right:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> adminUser = db.query(&lt;span class="hljs-string">'SELECT * FROM users ...'&lt;/span>);
-</code>&lt;/code></pre>
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">var</span> adminUser = db.query(<span class="hljs-string">'SELECT * FROM users ...'</span>);
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> admin_user = db.query(&lt;span class="hljs-string">'SELECT *FROM users ...'&lt;/span>);
-&lt;span class="hljs-keyword">var&lt;/span> a = db.query(&lt;span class="hljs-string">'SELECT* FROM users ...'&lt;/span>);
-</code>&lt;/code></pre>
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">var</span> admin_user = db.query(<span class="hljs-string">'SELECT *FROM users ...'</span>);
+<span class="hljs-keyword">var</span> a = db.query(<span class="hljs-string">'SELECT* FROM users ...'</span>);
+</code></code></pre>
   <h3 id="类名采用大驼峰">
     类名采用大驼峰
   </h3>
@@ -132,14 +132,14 @@ title: Node.js 代码规范约定
   
  <em>Right:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">BankAccount&lt;/span>() &lt;/span>{
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">BankAccount</span>() </span>{
 }
-</code>&lt;/code></pre>
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">bank_Account&lt;/span>() &lt;/span>{
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bank_Account</span>() </span>{
 }
-</code>&lt;/code></pre>
+</code></code></pre>
   <h3 id="用大写来标识常量">
     用大写来标识常量
   </h3>
@@ -149,20 +149,20 @@ title: Node.js 代码规范约定
   
  <em>Right:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> SECOND = &lt;span class="hljs-number">1&lt;/span> * &lt;span class="hljs-number">1000&lt;/span>;
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">var</span> SECOND = <span class="hljs-number">1</span> * <span class="hljs-number">1000</span>;
 
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">File&lt;/span>() &lt;/span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">File</span>() </span>{
 }
-File.FULL_PERMISSIONS = &lt;span class="hljs-number">0777&lt;/span>;
-</code>&lt;/code></pre>
+File.FULL_PERMISSIONS = <span class="hljs-number">0777</span>;
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">const&lt;/span> SECOND = &lt;span class="hljs-number">1&lt;/span> * &lt;span class="hljs-number">1000&lt;/span>;
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">const</span> SECOND = <span class="hljs-number">1</span> * <span class="hljs-number">1000</span>;
 
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">File&lt;/span>() &lt;/span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">File</span>() </span>{
 }
-File.fullPermissions = &lt;span class="hljs-number">0777&lt;/span>;
-</code>&lt;/code></pre>
+File.fullPermissions = <span class="hljs-number">0777</span>;
+</code></code></pre>
   <h3 id="对象、数组的创建">
     对象、数组的创建
   </h3>
@@ -170,21 +170,21 @@ File.fullPermissions = &lt;span class="hljs-number">0777&lt;/span>;
   
  <em>Right:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> a = [&lt;span class="hljs-string">'hello'&lt;/span>, &lt;span class="hljs-string">'world'&lt;/span>];
-&lt;span class="hljs-keyword">var&lt;/span> b = {
-  &lt;span class="hljs-attr">good&lt;/span>: &lt;span class="hljs-string">'code'&lt;/span>,
-  &lt;span class="hljs-string">'is generally'&lt;/span>: &lt;span class="hljs-string">'pretty'&lt;/span>,
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">var</span> a = [<span class="hljs-string">'hello'</span>, <span class="hljs-string">'world'</span>];
+<span class="hljs-keyword">var</span> b = {
+  <span class="hljs-attr">good</span>: <span class="hljs-string">'code'</span>,
+  <span class="hljs-string">'is generally'</span>: <span class="hljs-string">'pretty'</span>,
 };
-</code>&lt;/code></pre>
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> a = [
-  &lt;span class="hljs-string">'hello'&lt;/span>, &lt;span class="hljs-string">'world'&lt;/span>
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">var</span> a = [
+  <span class="hljs-string">'hello'</span>, <span class="hljs-string">'world'</span>
 ];
-&lt;span class="hljs-keyword">var&lt;/span> b = {&lt;span class="hljs-string">"good"&lt;/span>: &lt;span class="hljs-string">'code'&lt;/span>
-        , is generally: &lt;span class="hljs-string">'pretty'&lt;/span>
+<span class="hljs-keyword">var</span> b = {<span class="hljs-string">"good"</span>: <span class="hljs-string">'code'</span>
+        , is generally: <span class="hljs-string">'pretty'</span>
         };
-</code>&lt;/code></pre>
+</code></code></pre>
   <h3 id="使用--比较符">
     使用 === 比较符
   </h3>
@@ -192,19 +192,19 @@ File.fullPermissions = &lt;span class="hljs-number">0777&lt;/span>;
   
  <em>Right:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> a = &lt;span class="hljs-number">0&lt;/span>;
-&lt;span class="hljs-keyword">if&lt;/span> (a === &lt;span class="hljs-string">''&lt;/span>) {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'winning'&lt;/span>);
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">var</span> a = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">if</span> (a === <span class="hljs-string">''</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'winning'</span>);
 }
 
-</code>&lt;/code></pre>
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> a = &lt;span class="hljs-number">0&lt;/span>;
-&lt;span class="hljs-keyword">if&lt;/span> (a == &lt;span class="hljs-string">''&lt;/span>) {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'losing'&lt;/span>);
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">var</span> a = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">if</span> (a == <span class="hljs-string">''</span>) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'losing'</span>);
 }
-</code>&lt;/code></pre>
+</code></code></pre>
   <h3 id="三元操作符分多行">
     三元操作符分多行
   </h3>
@@ -212,14 +212,14 @@ File.fullPermissions = &lt;span class="hljs-number">0777&lt;/span>;
   
  <em>Right:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> foo = (a === b)
-  ? &lt;span class="hljs-number">1&lt;/span>
-  : &lt;span class="hljs-number">2&lt;/span>;
-</code>&lt;/code></pre>
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">var</span> foo = (a === b)
+  ? <span class="hljs-number">1</span>
+  : <span class="hljs-number">2</span>;
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> foo = (a === b) ? &lt;span class="hljs-number">1&lt;/span> : &lt;span class="hljs-number">2&lt;/span>;
-</code>&lt;/code></pre>
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">var</span> foo = (a === b) ? <span class="hljs-number">1</span> : <span class="hljs-number">2</span>;
+</code></code></pre>
   <h3 id="不要扩展内建类型">
     不要扩展内建类型
   </h3>
@@ -227,22 +227,22 @@ File.fullPermissions = &lt;span class="hljs-number">0777&lt;/span>;
   
  <em>Right:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> a = [];
-&lt;span class="hljs-keyword">if&lt;/span> (!a.length) {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'winning'&lt;/span>);
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">var</span> a = [];
+<span class="hljs-keyword">if</span> (!a.length) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'winning'</span>);
 }
-</code>&lt;/code></pre>
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-built_in">Array&lt;/span>.prototype.empty = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> () &lt;/span>{
-  &lt;span class="hljs-keyword">return&lt;/span> !&lt;span class="hljs-keyword">this&lt;/span>.length;
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-built_in">Array</span>.prototype.empty = <span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{
+  <span class="hljs-keyword">return</span> !<span class="hljs-keyword">this</span>.length;
 }
 
-&lt;span class="hljs-keyword">var&lt;/span> a = [];
-&lt;span class="hljs-keyword">if&lt;/span> (a.empty()) {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'losing'&lt;/span>);
+<span class="hljs-keyword">var</span> a = [];
+<span class="hljs-keyword">if</span> (a.empty()) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'losing'</span>);
 }
-</code>&lt;/code></pre>
+</code></code></pre>
   <h3 id="使用有意义的判断条件">
     使用有意义的判断条件
   </h3>
@@ -250,18 +250,18 @@ File.fullPermissions = &lt;span class="hljs-number">0777&lt;/span>;
   
  <em>Right:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> isValidPassword = password.length &gt;= &lt;span class="hljs-number">4&lt;/span> && &lt;span class="hljs-regexp">/^(?=.*\d).{4,}$/&lt;/span>.test(password);
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">var</span> isValidPassword = password.length >= <span class="hljs-number">4</span> && <span class="hljs-regexp">/^(?=.*\d).{4,}$/</span>.test(password);
 
-&lt;span class="hljs-keyword">if&lt;/span> (isValidPassword) {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'winning'&lt;/span>);
+<span class="hljs-keyword">if</span> (isValidPassword) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'winning'</span>);
 }
-</code>&lt;/code></pre>
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">if&lt;/span> (password.length &gt;= &lt;span class="hljs-number">4&lt;/span> && &lt;span class="hljs-regexp">/^(?=.*\d).{4,}$/&lt;/span>.test(password)) {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'losing'&lt;/span>);
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">if</span> (password.length >= <span class="hljs-number">4</span> && <span class="hljs-regexp">/^(?=.*\d).{4,}$/</span>.test(password)) {
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'losing'</span>);
 }
-</code>&lt;/code></pre>
+</code></code></pre>
   <h3 id="写精简的函数">
     写精简的函数
   </h3>
@@ -274,39 +274,39 @@ File.fullPermissions = &lt;span class="hljs-number">0777&lt;/span>;
   
  <em>Right:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">isPercentage&lt;/span>(&lt;span class="hljs-params">val&lt;/span>) &lt;/span>{
-  &lt;span class="hljs-keyword">if&lt;/span> (val &lt; &lt;span class="hljs-number">0&lt;/span>) {
-    &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-literal">false&lt;/span>;
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPercentage</span>(<span class="hljs-params">val</span>) </span>{
+  <span class="hljs-keyword">if</span> (val < <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
   }
 
-  &lt;span class="hljs-keyword">if&lt;/span> (val &gt; &lt;span class="hljs-number">100&lt;/span>) {
-    &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-literal">false&lt;/span>;
+  <span class="hljs-keyword">if</span> (val > <span class="hljs-number">100</span>) {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
   }
 
-  &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-literal">true&lt;/span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 }
-</code>&lt;/code></pre>
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">isPercentage&lt;/span>(&lt;span class="hljs-params">val&lt;/span>) &lt;/span>{
-  &lt;span class="hljs-keyword">if&lt;/span> (val &gt;= &lt;span class="hljs-number">0&lt;/span>) {
-    &lt;span class="hljs-keyword">if&lt;/span> (val &lt; &lt;span class="hljs-number">100&lt;/span>) {
-      &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-literal">true&lt;/span>;
-    } &lt;span class="hljs-keyword">else&lt;/span> {
-      &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-literal">false&lt;/span>;
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPercentage</span>(<span class="hljs-params">val</span>) </span>{
+  <span class="hljs-keyword">if</span> (val >= <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">if</span> (val < <span class="hljs-number">100</span>) {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
     }
-  } &lt;span class="hljs-keyword">else&lt;/span> {
-    &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-literal">false&lt;/span>;
+  } <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
   }
 }
-</code>&lt;/code></pre>
+</code></code></pre>
  针对这个示例，甚至可以进一步精简优化：
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">isPercentage&lt;/span>(&lt;span class="hljs-params">val&lt;/span>) &lt;/span>{
-  &lt;span class="hljs-keyword">var&lt;/span> isInRange = (val &gt;= &lt;span class="hljs-number">0&lt;/span> && val &lt;= &lt;span class="hljs-number">100&lt;/span>);
-  &lt;span class="hljs-keyword">return&lt;/span> isInRange;
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isPercentage</span>(<span class="hljs-params">val</span>) </span>{
+  <span class="hljs-keyword">var</span> isInRange = (val >= <span class="hljs-number">0</span> && val <= <span class="hljs-number">100</span>);
+  <span class="hljs-keyword">return</span> isInRange;
 }
-</code>&lt;/code></pre>
+</code></code></pre>
   <h3 id="给你的闭包命名">
     给你的闭包命名
   </h3>
@@ -314,16 +314,16 @@ File.fullPermissions = &lt;span class="hljs-number">0777&lt;/span>;
   
  <em>Right:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">req.on(&lt;span class="hljs-string">'end'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">onEnd&lt;/span>() &lt;/span>{
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'winning'&lt;/span>);
+  <pre><code><code class="lang-js hljs raw">req.on(<span class="hljs-string">'end'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">onEnd</span>() </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'winning'</span>);
 });
-</code>&lt;/code></pre>
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">req.on(&lt;span class="hljs-string">'end'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> () &lt;/span>{
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'losing'&lt;/span>);
+  <pre><code><code class="lang-js hljs raw">req.on(<span class="hljs-string">'end'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'losing'</span>);
 });
-</code>&lt;/code></pre>
+</code></code></pre>
   <h3 id="不要嵌套闭包">
     不要嵌套闭包
   </h3>
@@ -331,22 +331,22 @@ File.fullPermissions = &lt;span class="hljs-number">0777&lt;/span>;
   
  <em>Right:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">setTimeout(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> () &lt;/span>{
+  <pre><code><code class="lang-js hljs raw">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{
   client.connect(afterConnect);
-}, &lt;span class="hljs-number">1000&lt;/span>);
+}, <span class="hljs-number">1000</span>);
 
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">afterConnect&lt;/span>() &lt;/span>{
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'winning'&lt;/span>);
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">afterConnect</span>() </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'winning'</span>);
 }
-</code>&lt;/code></pre>
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">setTimeout(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> () &lt;/span>{
-  client.connect(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> () &lt;/span>{
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'losing'&lt;/span>);
+  <pre><code><code class="lang-js hljs raw">setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{
+  client.connect(<span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'losing'</span>);
   });
-}, &lt;span class="hljs-number">1000&lt;/span>);
-</code>&lt;/code></pre>
+}, <span class="hljs-number">1000</span>);
+</code></code></pre>
   <h3 id="使用单行注释风格">
     使用单行注释风格
   </h3>
@@ -354,38 +354,38 @@ File.fullPermissions = &lt;span class="hljs-number">0777&lt;/span>;
   
  <em>Right:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-comment">// 'ID_SOMETHING=VALUE' -&gt; ['ID_SOMETHING=VALUE'', 'SOMETHING', 'VALUE']&lt;/span>
-&lt;span class="hljs-keyword">var&lt;/span> matches = item.match(&lt;span class="hljs-regexp">/ID_([^\n]+)=([^\n]+)/&lt;/span>));
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-comment">// 'ID_SOMETHING=VALUE' -> ['ID_SOMETHING=VALUE'', 'SOMETHING', 'VALUE']</span>
+<span class="hljs-keyword">var</span> matches = item.match(<span class="hljs-regexp">/ID_([^\n]+)=([^\n]+)/</span>));
 
-&lt;span class="hljs-comment">// This function has a nasty side effect where a failure to increment a&lt;/span>
-&lt;span class="hljs-comment">// redis counter used for statistics will cause an exception. This needs&lt;/span>
-&lt;span class="hljs-comment">// to be fixed in a later iteration.&lt;/span>
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">loadUser&lt;/span>(&lt;span class="hljs-params">id, cb&lt;/span>) &lt;/span>{
-  &lt;span class="hljs-comment">// ...&lt;/span>
+<span class="hljs-comment">// This function has a nasty side effect where a failure to increment a</span>
+<span class="hljs-comment">// redis counter used for statistics will cause an exception. This needs</span>
+<span class="hljs-comment">// to be fixed in a later iteration.</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadUser</span>(<span class="hljs-params">id, cb</span>) </span>{
+  <span class="hljs-comment">// ...</span>
 }
 
-&lt;span class="hljs-keyword">var&lt;/span> isSessionValid = (session.expires &lt; &lt;span class="hljs-built_in">Date&lt;/span>.now());
-&lt;span class="hljs-keyword">if&lt;/span> (isSessionValid) {
-  &lt;span class="hljs-comment">// ...&lt;/span>
+<span class="hljs-keyword">var</span> isSessionValid = (session.expires < <span class="hljs-built_in">Date</span>.now());
+<span class="hljs-keyword">if</span> (isSessionValid) {
+  <span class="hljs-comment">// ...</span>
 }
-</code>&lt;/code></pre>
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-comment">// Execute a regex&lt;/span>
-&lt;span class="hljs-keyword">var&lt;/span> matches = item.match(&lt;span class="hljs-regexp">/ID_([^\n]+)=([^\n]+)/&lt;/span>));
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-comment">// Execute a regex</span>
+<span class="hljs-keyword">var</span> matches = item.match(<span class="hljs-regexp">/ID_([^\n]+)=([^\n]+)/</span>));
 
-&lt;span class="hljs-comment">// Usage: loadUser(5, function () { ... })&lt;/span>
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">loadUser&lt;/span>(&lt;span class="hljs-params">id, cb&lt;/span>) &lt;/span>{
-  &lt;span class="hljs-comment">// ...&lt;/span>
+<span class="hljs-comment">// Usage: loadUser(5, function () { ... })</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loadUser</span>(<span class="hljs-params">id, cb</span>) </span>{
+  <span class="hljs-comment">// ...</span>
 }
 
-&lt;span class="hljs-comment">// Check if the session is valid&lt;/span>
-&lt;span class="hljs-keyword">var&lt;/span> isSessionValid = (session.expires &lt; &lt;span class="hljs-built_in">Date&lt;/span>.now());
-&lt;span class="hljs-comment">// If the session is valid&lt;/span>
-&lt;span class="hljs-keyword">if&lt;/span> (isSessionValid) {
-  &lt;span class="hljs-comment">// ...&lt;/span>
+<span class="hljs-comment">// Check if the session is valid</span>
+<span class="hljs-keyword">var</span> isSessionValid = (session.expires < <span class="hljs-built_in">Date</span>.now());
+<span class="hljs-comment">// If the session is valid</span>
+<span class="hljs-keyword">if</span> (isSessionValid) {
+  <span class="hljs-comment">// ...</span>
 }
-</code>&lt;/code></pre>
+</code></code></pre>
   <h3 id="objectfreeze-objectpreventextensions-objectseal-with-eval">
     Object.freeze, Object.preventExtensions, Object.seal, with, eval
   </h3>
@@ -403,23 +403,23 @@ File.fullPermissions = &lt;span class="hljs-number">0777&lt;/span>;
   
  <em>Right:</em>
   
-  <pre><code>&lt;code class="lang-json hljs raw">function cb(err, data, ...) {...}
-</code>&lt;/code></pre>
+  <pre><code><code class="lang-json hljs raw">function cb(err, data, ...) {...}
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code class="lang-javascript hljs raw">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">cb&lt;/span>(&lt;span class="hljs-params">data, ...&lt;/span>) &lt;/span>{...}
-</code>&lt;/code></pre>
+  <pre><code><code class="lang-javascript hljs raw"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">cb</span>(<span class="hljs-params">data, ...</span>) </span>{...}
+</code></code></pre>
   <h3 id="继承">
     继承
   </h3>
  尽管有许多的方法来实现继承，但是最为推荐的是 ES6 的标准写法：
   
-  <pre><code>&lt;code class="lang-javascript hljs raw">&lt;span class="hljs-class">&lt;span class="hljs-keyword">class&lt;/span> &lt;span class="hljs-title">Socket&lt;/span> &lt;span class="hljs-keyword">extends&lt;/span> &lt;span class="hljs-title">Stream&lt;/span> &lt;/span>{
-  &lt;span class="hljs-keyword">constructor&lt;/span>(options) {
+  <pre><code><code class="lang-javascript hljs raw"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Socket</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Stream</span> </span>{
+  <span class="hljs-keyword">constructor</span>(options) {
     supper(options);
   }
 }
-</code>&lt;/code></pre>
+</code></code></pre>
   <h3 id="文件命名">
     文件命名
   </h3>
@@ -427,15 +427,15 @@ File.fullPermissions = &lt;span class="hljs-number">0777&lt;/span>;
   
  <em>Right :</em>
   
-  <pre><code>&lt;code>child_process.js
+  <pre><code><code>child_process.js
 string_decoder.js
 _linklist.js
-</code>&lt;/code></pre>
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code>childProcess.js
+  <pre><code><code>childProcess.js
 stringDecoder.js
-</code>&lt;/code></pre>
+</code></code></pre>
   <h3 id="空格">
     空格
   </h3>
@@ -443,16 +443,16 @@ stringDecoder.js
   
  <em>Right:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> add = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">a, b&lt;/span>) &lt;/span>{
-  &lt;span class="hljs-keyword">return&lt;/span> a + b;
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">var</span> add = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">a, b</span>) </span>{
+  <span class="hljs-keyword">return</span> a + b;
 };
-</code>&lt;/code></pre>
+</code></code></pre>
  <em>Wrong:</em>
   
-  <pre><code>&lt;code class="lang-js hljs raw">&lt;span class="hljs-keyword">var&lt;/span> add=&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">a,b&lt;/span>)&lt;/span>{
-  &lt;span class="hljs-keyword">return&lt;/span> a+b;
+  <pre><code><code class="lang-js hljs raw"><span class="hljs-keyword">var</span> add=<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a,b</span>)</span>{
+  <span class="hljs-keyword">return</span> a+b;
 }
-</code>&lt;/code></pre>
+</code></code></pre>
   <h3 id="尽量参照-nodejs-源码的编码风格">
     尽量参照 Node.js 源码的编码风格
   </h3>

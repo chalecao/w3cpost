@@ -4,7 +4,7 @@ title: ES6 … 拆箱与装箱实现深克隆
 ---
 你用过 &#8230; 吗？ 没用过的话，你太low了。
 
-<pre class="pure-highlightjs"><code class="">const test = (...args)=&gt;{
+<pre class="pure-highlightjs"><code class="">const test = (...args)=>{
 
 }
 </code></pre>

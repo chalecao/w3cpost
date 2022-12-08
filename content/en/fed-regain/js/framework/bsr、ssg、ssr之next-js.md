@@ -70,28 +70,28 @@ title: BSR、SSG、SSR之next.js
     &lt;span class="nx">id&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">string&lt;/span>&lt;span class="p">,&lt;/span>
     &lt;span class="nx">title&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">string&lt;/span>
 &lt;span class="p">}&lt;/span>
-&lt;span class="kr">const&lt;/span> &lt;span class="nx">PostsIndex&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">NextPage&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">=&gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kr">const&lt;/span> &lt;span class="nx">PostsIndex&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">NextPage&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">=>&lt;/span> &lt;span class="p">{&lt;/span>
     &lt;span class="c1">// [] 表示只在第一次渲染的时候请求
-&lt;/span>    &lt;span class="kr">const&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nx">posts&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">setPosts&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">useState&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="nx">Post&lt;/span>&lt;span class="p">[]&lt;/span>&lt;span class="o">&gt;&lt;/span>&lt;span class="p">([]);&lt;/span>
+&lt;/span>    &lt;span class="kr">const&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nx">posts&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">setPosts&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">useState&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="nx">Post&lt;/span>&lt;span class="p">[]&lt;/span>&lt;span class="o">>&lt;/span>&lt;span class="p">([]);&lt;/span>
     &lt;span class="kr">const&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nx">isLoading&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">setIsLoading&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">useState&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="p">);&lt;/span>
-    &lt;span class="nx">useEffect&lt;/span>&lt;span class="p">(()&lt;/span> &lt;span class="p">=&gt;&lt;/span> &lt;span class="p">{&lt;/span>
+    &lt;span class="nx">useEffect&lt;/span>&lt;span class="p">(()&lt;/span> &lt;span class="p">=>&lt;/span> &lt;span class="p">{&lt;/span>
         &lt;span class="nx">setIsLoading&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="p">);&lt;/span>
         &lt;span class="c1">// 使用 AJAX 异步请求数据
-&lt;/span>        &lt;span class="nx">axios&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'/api/posts'&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">then&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">response&lt;/span> &lt;span class="p">=&gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>        &lt;span class="nx">axios&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'/api/posts'&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">then&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">response&lt;/span> &lt;span class="p">=>&lt;/span> &lt;span class="p">{&lt;/span>
           &lt;span class="nx">setPosts&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">response&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">data&lt;/span>&lt;span class="p">);&lt;/span>
           &lt;span class="nx">setIsLoading&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="p">);&lt;/span>
-        &lt;span class="p">},&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">=&gt;&lt;/span> &lt;span class="p">{&lt;/span>
+        &lt;span class="p">},&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">=>&lt;/span> &lt;span class="p">{&lt;/span>
             &lt;span class="nx">setIsLoading&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="p">);&lt;/span>
         &lt;span class="p">})&lt;/span>
     &lt;span class="p">},&lt;/span> &lt;span class="p">[]);&lt;/span>
     &lt;span class="k">return&lt;/span> &lt;span class="p">(&lt;/span>
-        &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">div&lt;/span>&lt;span class="o">&gt;&lt;/span>
-            &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">h1&lt;/span>&lt;span class="o">&gt;&lt;/span>&lt;span class="nx">文章列表&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="err">/h1&gt;&lt;/span>
-            &lt;span class="p">{&lt;/span>&lt;span class="nx">isLoading&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">div&lt;/span>&lt;span class="o">&gt;&lt;/span>&lt;span class="nx">加载中&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="err">/div&gt; :&lt;/span>
-                &lt;span class="nx">posts&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">p&lt;/span> &lt;span class="p">=&gt;&lt;/span> &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">div&lt;/span> &lt;span class="nx">key&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="nx">p&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">id&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="o">&gt;&lt;/span>
+        &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">div&lt;/span>&lt;span class="o">>&lt;/span>
+            &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">h1&lt;/span>&lt;span class="o">>&lt;/span>&lt;span class="nx">文章列表&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="err">/h1>&lt;/span>
+            &lt;span class="p">{&lt;/span>&lt;span class="nx">isLoading&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">div&lt;/span>&lt;span class="o">>&lt;/span>&lt;span class="nx">加载中&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="err">/div> :&lt;/span>
+                &lt;span class="nx">posts&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">p&lt;/span> &lt;span class="p">=>&lt;/span> &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">div&lt;/span> &lt;span class="nx">key&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="nx">p&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">id&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="o">>&lt;/span>
                 &lt;span class="p">{&lt;/span>&lt;span class="nx">p&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">id&lt;/span>&lt;span class="p">}&lt;/span>
-            &lt;span class="o">&lt;&lt;/span>&lt;span class="err">/div&gt;)}&lt;/span>
-        &lt;span class="o">&lt;&lt;/span>&lt;span class="err">/div&gt;&lt;/span>
+            &lt;span class="o">&lt;&lt;/span>&lt;span class="err">/div>)}&lt;/span>
+        &lt;span class="o">&lt;&lt;/span>&lt;span class="err">/div>&lt;/span>
     &lt;span class="p">)&lt;/span>
 &lt;span class="p">};&lt;/span>
 
@@ -172,27 +172,27 @@ title: BSR、SSG、SSR之next.js
   &lt;span class="nx">posts&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">Post&lt;/span>&lt;span class="p">[];&lt;/span>
 &lt;span class="p">}&lt;/span>
 &lt;span class="c1">// props 中有下面导出的数据 posts
-&lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="nx">PostsIndex&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">NextPage&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="nx">Props&lt;/span>&lt;span class="o">&gt;&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">props&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;span class="kr">const&lt;/span> &lt;span class="nx">PostsIndex&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">NextPage&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="nx">Props&lt;/span>&lt;span class="o">>&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">props&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=>&lt;/span> &lt;span class="p">{&lt;/span>
   &lt;span class="kr">const&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nx">posts&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">props&lt;/span>&lt;span class="p">;&lt;/span>
- &lt;span class="c1">// 前后端控制台都能打印 -&gt; 同构
+ &lt;span class="c1">// 前后端控制台都能打印 -> 同构
 &lt;/span>  &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">posts&lt;/span>&lt;span class="p">);&lt;/span>
   &lt;span class="k">return&lt;/span> &lt;span class="p">(&lt;/span>
-    &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">div&lt;/span>&lt;span class="o">&gt;&lt;/span>
-      &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">h1&lt;/span>&lt;span class="o">&gt;&lt;/span>&lt;span class="nx">文章列表&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="err">/h1&gt;&lt;/span>
-      &lt;span class="p">{&lt;/span>&lt;span class="nx">posts&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">p&lt;/span> &lt;span class="p">=&gt;&lt;/span> &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">div&lt;/span> &lt;span class="nx">key&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="nx">p&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">id&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="o">&gt;&lt;/span>
-        &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">Link&lt;/span> &lt;span class="nx">href&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="sb">`/posts/&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">p&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">id&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="o">&gt;&lt;/span>
-          &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">a&lt;/span>&lt;span class="o">&gt;&lt;/span>
+    &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">div&lt;/span>&lt;span class="o">>&lt;/span>
+      &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">h1&lt;/span>&lt;span class="o">>&lt;/span>&lt;span class="nx">文章列表&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="err">/h1>&lt;/span>
+      &lt;span class="p">{&lt;/span>&lt;span class="nx">posts&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">p&lt;/span> &lt;span class="p">=>&lt;/span> &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">div&lt;/span> &lt;span class="nx">key&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="nx">p&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">id&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="o">>&lt;/span>
+        &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">Link&lt;/span> &lt;span class="nx">href&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="sb">`/posts/&lt;/span>&lt;span class="si">${&lt;/span>&lt;span class="nx">p&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">id&lt;/span>&lt;span class="si">}&lt;/span>&lt;span class="sb">`&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="o">>&lt;/span>
+          &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">a&lt;/span>&lt;span class="o">>&lt;/span>
             &lt;span class="p">{&lt;/span>&lt;span class="nx">p&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">id&lt;/span>&lt;span class="p">}&lt;/span>
-          &lt;span class="o">&lt;&lt;/span>&lt;span class="err">/a&gt;&lt;/span>
-        &lt;span class="o">&lt;&lt;/span>&lt;span class="err">/Link&gt;&lt;/span>
-      &lt;span class="o">&lt;&lt;/span>&lt;span class="err">/div&gt;)}&lt;/span>
-    &lt;span class="o">&lt;&lt;/span>&lt;span class="err">/div&gt;&lt;/span>
+          &lt;span class="o">&lt;&lt;/span>&lt;span class="err">/a>&lt;/span>
+        &lt;span class="o">&lt;&lt;/span>&lt;span class="err">/Link>&lt;/span>
+      &lt;span class="o">&lt;&lt;/span>&lt;span class="err">/div>)}&lt;/span>
+    &lt;span class="o">&lt;&lt;/span>&lt;span class="err">/div>&lt;/span>
   &lt;span class="p">);&lt;/span>
 &lt;span class="p">};&lt;/span>
 
 &lt;span class="kr">export&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="nx">PostsIndex&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="c1">// 实现SSG
-&lt;/span>&lt;span class="kr">export&lt;/span> &lt;span class="kr">const&lt;/span> &lt;span class="nx">getStaticProps&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">GetStaticProps&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">async&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">=&gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;span class="kr">export&lt;/span> &lt;span class="kr">const&lt;/span> &lt;span class="nx">getStaticProps&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">GetStaticProps&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">async&lt;/span> &lt;span class="p">()&lt;/span> &lt;span class="p">=>&lt;/span> &lt;span class="p">{&lt;/span>
   &lt;span class="kr">const&lt;/span> &lt;span class="nx">posts&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">await&lt;/span> &lt;span class="nx">getPosts&lt;/span>&lt;span class="p">();&lt;/span>
   &lt;span class="k">return&lt;/span> &lt;span class="p">{&lt;/span>
     &lt;span class="nx">props&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="p">{&lt;/span>
@@ -346,16 +346,16 @@ yarn start</code></pre>
 &lt;span class="nx">type&lt;/span> &lt;span class="nx">Props&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
   &lt;span class="nx">browser&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">string&lt;/span>
 &lt;span class="p">}&lt;/span>
-&lt;span class="kr">const&lt;/span> &lt;span class="nx">index&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">NextPage&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="nx">Props&lt;/span>&lt;span class="o">&gt;&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">props&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kr">const&lt;/span> &lt;span class="nx">index&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">NextPage&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="nx">Props&lt;/span>&lt;span class="o">>&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">props&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=>&lt;/span> &lt;span class="p">{&lt;/span>
   &lt;span class="k">return&lt;/span> &lt;span class="p">(&lt;/span>
-    &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">div&lt;/span>&lt;span class="o">&gt;&lt;/span>
-      &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">h1&lt;/span>&lt;span class="o">&gt;&lt;/span>&lt;span class="nx">你的[浏览器](https://www.w3cdoc.com)是&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nx">props&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">browser&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="err">/h1&gt;&lt;/span>
-    &lt;span class="o">&lt;&lt;/span>&lt;span class="err">/div&gt;&lt;/span>
+    &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">div&lt;/span>&lt;span class="o">>&lt;/span>
+      &lt;span class="o">&lt;&lt;/span>&lt;span class="nx">h1&lt;/span>&lt;span class="o">>&lt;/span>&lt;span class="nx">你的[浏览器](https://www.w3cdoc.com)是&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nx">props&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">browser&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="o">&lt;&lt;/span>&lt;span class="err">/h1>&lt;/span>
+    &lt;span class="o">&lt;&lt;/span>&lt;span class="err">/div>&lt;/span>
   &lt;span class="p">);&lt;/span>
 &lt;span class="p">};&lt;/span>
 &lt;span class="kr">export&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="nx">index&lt;/span>&lt;span class="p">;&lt;/span>
 
-&lt;span class="kr">export&lt;/span> &lt;span class="kr">const&lt;/span> &lt;span class="nx">getServerSideProps&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">GetServerSideProps&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">async&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">context&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=&gt;&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kr">export&lt;/span> &lt;span class="kr">const&lt;/span> &lt;span class="nx">getServerSideProps&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">GetServerSideProps&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">async&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">context&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">=>&lt;/span> &lt;span class="p">{&lt;/span>
   &lt;span class="kr">const&lt;/span> &lt;span class="nx">headers&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="nx">IncomingHttpHeaders&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">context&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">req&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">headers&lt;/span>&lt;span class="p">;&lt;/span>
   &lt;span class="kr">const&lt;/span> &lt;span class="nx">browser&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">headers&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="s1">'user-agent'&lt;/span>&lt;span class="p">];&lt;/span>
   &lt;span class="k">return&lt;/span> &lt;span class="p">{&lt;/span>

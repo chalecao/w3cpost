@@ -183,10 +183,10 @@ Start Time: 2015-01-02 17:51:05.323
 t=    1 [st=    0] +REQUEST_ALIVE  [dt=42741]
 t=    1 [st=    0]    URL_REQUEST_DELEGATE  [dt=0]
 t=    1 [st=    0]   +URL_REQUEST_START_JOB  [dt=42740]
-                      --&gt; load_flags = 339804160 (BYPASS_DATA_REDUCTION_PROXY | MAYBE_USER_GESTURE | REPORT_RAW_HEADERS | VERIFY_EV_CERT)
-                      --&gt; method = "GET"
-                      --&gt; priority = "LOW"
-                      --&gt; url = "http://qa.tieba.baidu.com/release/getReleaseHistory?projectId=fum1.0.593"
+                      --> load_flags = 339804160 (BYPASS_DATA_REDUCTION_PROXY | MAYBE_USER_GESTURE | REPORT_RAW_HEADERS | VERIFY_EV_CERT)
+                      --> method = "GET"
+                      --> priority = "LOW"
+                      --> url = "http://qa.tieba.baidu.com/release/getReleaseHistory?projectId=fum1.0.593"
 t=    2 [st=    1]      URL_REQUEST_DELEGATE  [dt=0]
 t=    2 [st=    1]      HTTP_CACHE_GET_BACKEND  [dt=0]
 t=    2 [st=    1]      HTTP_CACHE_OPEN_ENTRY  [dt=0]
@@ -195,11 +195,11 @@ t=    2 [st=    1]      HTTP_CACHE_READ_INFO  [dt=0]
 t=    2 [st=    1]      URL_REQUEST_DELEGATE  [dt=0]
 t=    2 [st=    1]     +HTTP_STREAM_REQUEST  [dt=2]
 t=    4 [st=    3]        HTTP_STREAM_REQUEST_BOUND_TO_JOB
-                          --&gt; source_dependency = 193488 (HTTP_STREAM_JOB)
+                          --> source_dependency = 193488 (HTTP_STREAM_JOB)
 t=    4 [st=    3]     -HTTP_STREAM_REQUEST
 t=    4 [st=    3]     +HTTP_TRANSACTION_SEND_REQUEST  [dt=0]
 t=    4 [st=    3]        HTTP_TRANSACTION_SEND_REQUEST_HEADERS
-                          --&gt; GET /release/getReleaseHistory?projectId=fum1.0.593 HTTP/1.1
+                          --> GET /release/getReleaseHistory?projectId=fum1.0.593 HTTP/1.1
                               Host: qa.tieba.baidu.com
                               Connection: keep-alive
                               Accept: application/json, text/plain, */*
@@ -211,17 +211,17 @@ t=    4 [st=    3]        HTTP_TRANSACTION_SEND_REQUEST_HEADERS
 t=    4 [st=    3]     -HTTP_TRANSACTION_SEND_REQUEST
 t=    4 [st=    3]     +HTTP_TRANSACTION_READ_HEADERS  [dt=21301]
 t=    4 [st=    3]        HTTP_STREAM_PARSER_READ_HEADERS  [dt=21301]
-                          --&gt; net_error = -101 (ERR_CONNECTION_RESET)
+                          --> net_error = -101 (ERR_CONNECTION_RESET)
 t=21305 [st=21304]        HTTP_TRANSACTION_RESTART_AFTER_ERROR
-                          --&gt; net_error = -101 (ERR_CONNECTION_RESET)
+                          --> net_error = -101 (ERR_CONNECTION_RESET)
 t=21305 [st=21304]     -HTTP_TRANSACTION_READ_HEADERS
 t=21305 [st=21304]     +HTTP_STREAM_REQUEST  [dt=3]
 t=21307 [st=21306]        HTTP_STREAM_REQUEST_BOUND_TO_JOB
-                          --&gt; source_dependency = 193494 (HTTP_STREAM_JOB)
+                          --> source_dependency = 193494 (HTTP_STREAM_JOB)
 t=21308 [st=21307]     -HTTP_STREAM_REQUEST
 t=21308 [st=21307]     +HTTP_TRANSACTION_SEND_REQUEST  [dt=3]
 t=21308 [st=21307]        HTTP_TRANSACTION_SEND_REQUEST_HEADERS
-                          --&gt; GET /release/getReleaseHistory?projectId=fum1.0.593 HTTP/1.1
+                          --> GET /release/getReleaseHistory?projectId=fum1.0.593 HTTP/1.1
                               Host: qa.tieba.baidu.com
                               Connection: keep-alive
                               Accept: application/json, text/plain, */*
@@ -233,17 +233,17 @@ t=21308 [st=21307]        HTTP_TRANSACTION_SEND_REQUEST_HEADERS
 t=21311 [st=21310]     -HTTP_TRANSACTION_SEND_REQUEST
 t=21311 [st=21310]     +HTTP_TRANSACTION_READ_HEADERS  [dt=21304]
 t=21311 [st=21310]        HTTP_STREAM_PARSER_READ_HEADERS  [dt=21304]
-                          --&gt; net_error = -101 (ERR_CONNECTION_RESET)
+                          --> net_error = -101 (ERR_CONNECTION_RESET)
 t=42615 [st=42614]        HTTP_TRANSACTION_RESTART_AFTER_ERROR
-                          --&gt; net_error = -101 (ERR_CONNECTION_RESET)
+                          --> net_error = -101 (ERR_CONNECTION_RESET)
 t=42615 [st=42614]     -HTTP_TRANSACTION_READ_HEADERS
 t=42615 [st=42614]     +HTTP_STREAM_REQUEST  [dt=12]
 t=42627 [st=42626]        HTTP_STREAM_REQUEST_BOUND_TO_JOB
-                          --&gt; source_dependency = 193498 (HTTP_STREAM_JOB)
+                          --> source_dependency = 193498 (HTTP_STREAM_JOB)
 t=42627 [st=42626]     -HTTP_STREAM_REQUEST
 t=42627 [st=42626]     +HTTP_TRANSACTION_SEND_REQUEST  [dt=2]
 t=42627 [st=42626]        HTTP_TRANSACTION_SEND_REQUEST_HEADERS
-                          --&gt; GET /release/getReleaseHistory?projectId=fum1.0.593 HTTP/1.1
+                          --> GET /release/getReleaseHistory?projectId=fum1.0.593 HTTP/1.1
                               Host: qa.tieba.baidu.com
                               Connection: keep-alive
                               Accept: application/json, text/plain, */*
@@ -256,7 +256,7 @@ t=42629 [st=42628]     -HTTP_TRANSACTION_SEND_REQUEST
 t=42629 [st=42628]     +HTTP_TRANSACTION_READ_HEADERS  [dt=112]
 t=42629 [st=42628]        HTTP_STREAM_PARSER_READ_HEADERS  [dt=112]
 t=42741 [st=42740]        HTTP_TRANSACTION_READ_RESPONSE_HEADERS
-                          --&gt; HTTP/1.1 200 OK
+                          --> HTTP/1.1 200 OK
                               
                               Content-Type: application/json; charset=UTF-8
                               Transfer-Encoding: chunked
@@ -302,27 +302,27 @@ Start Time: 2015-01-03 20:23:54.698
 t=1556 [st=  0] +REQUEST_ALIVE  [dt=172]
 t=1556 [st=  0]    URL_REQUEST_DELEGATE  [dt=0]
 t=1556 [st=  0]   +URL_REQUEST_START_JOB  [dt=171]
-                   --&gt; load_flags = 335609856 (BYPASS_DATA_REDUCTION_PROXY | MAYBE_USER_GESTURE | VERIFY_EV_CERT)
-                   --&gt; method = "GET"
-                   --&gt; priority = "LOW"
-                   --&gt; url = "http://qa.tieba.baidu.com/release/getReleaseHistory?projectId=fum1.0.593"
+                   --> load_flags = 335609856 (BYPASS_DATA_REDUCTION_PROXY | MAYBE_USER_GESTURE | VERIFY_EV_CERT)
+                   --> method = "GET"
+                   --> priority = "LOW"
+                   --> url = "http://qa.tieba.baidu.com/release/getReleaseHistory?projectId=fum1.0.593"
 t=1557 [st=  1]     +URL_REQUEST_DELEGATE  [dt=4]
 t=1557 [st=  1]        DELEGATE_INFO  [dt=4]
-                       --&gt; delegate_info = "extension Tampermonkey"
+                       --> delegate_info = "extension Tampermonkey"
 t=1561 [st=  5]     -URL_REQUEST_DELEGATE
 t=1561 [st=  5]      HTTP_CACHE_GET_BACKEND  [dt=0]
 t=1561 [st=  5]      HTTP_CACHE_OPEN_ENTRY  [dt=1]
-                     --&gt; net_error = -2 (ERR_FAILED)
+                     --> net_error = -2 (ERR_FAILED)
 t=1562 [st=  6]      HTTP_CACHE_CREATE_ENTRY  [dt=0]
 t=1562 [st=  6]      HTTP_CACHE_ADD_TO_ENTRY  [dt=0]
 t=1562 [st=  6]      URL_REQUEST_DELEGATE  [dt=0]
 t=1562 [st=  6]     +HTTP_STREAM_REQUEST  [dt=2]
 t=1564 [st=  8]        HTTP_STREAM_REQUEST_BOUND_TO_JOB
-                       --&gt; source_dependency = 384467 (HTTP_STREAM_JOB)
+                       --> source_dependency = 384467 (HTTP_STREAM_JOB)
 t=1564 [st=  8]     -HTTP_STREAM_REQUEST
 t=1564 [st=  8]     +HTTP_TRANSACTION_SEND_REQUEST  [dt=1]
 t=1564 [st=  8]        HTTP_TRANSACTION_SEND_REQUEST_HEADERS
-                       --&gt; GET /release/getReleaseHistory?projectId=fum1.0.593 HTTP/1.1
+                       --> GET /release/getReleaseHistory?projectId=fum1.0.593 HTTP/1.1
                            Host: qa.tieba.baidu.com
                            Connection: keep-alive
                            Accept: application/json, text/plain, */*
@@ -335,7 +335,7 @@ t=1565 [st=  9]     -HTTP_TRANSACTION_SEND_REQUEST
 t=1565 [st=  9]     +HTTP_TRANSACTION_READ_HEADERS  [dt=161]
 t=1565 [st=  9]        HTTP_STREAM_PARSER_READ_HEADERS  [dt=160]
 t=1725 [st=169]        HTTP_TRANSACTION_READ_RESPONSE_HEADERS
-                       --&gt; HTTP/1.1 200 OK
+                       --> HTTP/1.1 200 OK
                            
                            Content-Type: application/json; charset=UTF-8
                            Transfer-Encoding: chunked
@@ -350,7 +350,7 @@ t=1726 [st=170]      HTTP_CACHE_WRITE_DATA  [dt=0]
 t=1726 [st=170]      HTTP_CACHE_WRITE_INFO  [dt=0]
 t=1726 [st=170]     +URL_REQUEST_DELEGATE  [dt=1]
 t=1726 [st=170]        DELEGATE_INFO  [dt=1]
-                       --&gt; delegate_info = "extension Tampermonkey"
+                       --> delegate_info = "extension Tampermonkey"
 t=1727 [st=171]     -URL_REQUEST_DELEGATE
 t=1727 [st=171]   -URL_REQUEST_START_JOB
 t=1727 [st=171]    URL_REQUEST_DELEGATE  [dt=0]
@@ -385,7 +385,7 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 <div class="language-text highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>--&gt; net_error = -101 (ERR_CONNECTION_RESET)
+    <pre class="highlight"><code>--> net_error = -101 (ERR_CONNECTION_RESET)
 </code></pre>
   </div>
 </div>
@@ -426,12 +426,12 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 <div class="language-cpp highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>&lt;span class="c1">// Returns true if |error_code| is an error for which we give the server a&lt;/span>
-&lt;span class="c1">// chance to send a body containing error information, if the error was received&lt;/span>
-&lt;span class="c1">// while trying to upload a request body.&lt;/span>
-&lt;span class="kt">bool&lt;/span> &lt;span class="nf">ShouldTryReadingOnUploadError&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">error_code&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="k">return&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">error_code&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">ERR_CONNECTION_RESET&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="p">}&lt;/span>
+    <pre class="highlight"><code><span class="c1">// Returns true if |error_code| is an error for which we give the server a</span>
+<span class="c1">// chance to send a body containing error information, if the error was received</span>
+<span class="c1">// while trying to upload a request body.</span>
+<span class="kt">bool</span> <span class="nf">ShouldTryReadingOnUploadError</span><span class="p">(</span><span class="kt">int</span> <span class="n">error_code</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">error_code</span> <span class="o">==</span> <span class="n">ERR_CONNECTION_RESET</span><span class="p">);</span>
+<span class="p">}</span>
 </code></pre>
   </div>
 </div>
@@ -454,19 +454,19 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 <div class="language-cpp highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>&lt;span class="kt">int&lt;/span> &lt;span class="n">HttpStreamParser&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">DoSendHeadersComplete&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">result&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">result&lt;/span> &lt;span class="o">&lt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-    &lt;span class="c1">// In the unlikely case that the headers and body were merged, all the&lt;/span>
-    &lt;span class="c1">// the headers were sent, but not all of the body way, and |result| is&lt;/span>
-    &lt;span class="c1">// an error that this should try reading after, stash the error for now and&lt;/span>
-    &lt;span class="c1">// act like the request was successfully sent.&lt;/span>
-    &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">request_headers_&lt;/span>&lt;span class="o">-&gt;&lt;/span>&lt;span class="n">BytesConsumed&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">&gt;=&lt;/span> &lt;span class="n">request_headers_length_&lt;/span> &lt;span class="o">&&&lt;/span>
-        &lt;span class="n">ShouldTryReadingOnUploadError&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">result&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="p">{&lt;/span>
-      &lt;span class="n">upload_error_&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">result&lt;/span>&lt;span class="p">;&lt;/span>
-      &lt;span class="k">return&lt;/span> &lt;span class="n">OK&lt;/span>&lt;span class="p">;&lt;/span>
-    &lt;span class="p">}&lt;/span>
-    &lt;span class="k">return&lt;/span> &lt;span class="n">result&lt;/span>&lt;span class="p">;&lt;/span>
-  &lt;span class="p">}&lt;/span>
+    <pre class="highlight"><code><span class="kt">int</span> <span class="n">HttpStreamParser</span><span class="o">::</span><span class="n">DoSendHeadersComplete</span><span class="p">(</span><span class="kt">int</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o"><</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// In the unlikely case that the headers and body were merged, all the</span>
+    <span class="c1">// the headers were sent, but not all of the body way, and |result| is</span>
+    <span class="c1">// an error that this should try reading after, stash the error for now and</span>
+    <span class="c1">// act like the request was successfully sent.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">request_headers_</span><span class="o">-></span><span class="n">BytesConsumed</span><span class="p">()</span> <span class="o">>=</span> <span class="n">request_headers_length_</span> <span class="o">&&</span>
+        <span class="n">ShouldTryReadingOnUploadError</span><span class="p">(</span><span class="n">result</span><span class="p">))</span> <span class="p">{</span>
+      <span class="n">upload_error_</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
+      <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+  <span class="p">}</span>
 </code></pre>
   </div>
 </div>
@@ -477,16 +477,16 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 <div class="language-cpp highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>&lt;span class="kt">int&lt;/span> &lt;span class="n">HttpStreamParser&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">DoSendBodyComplete&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">result&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">result&lt;/span> &lt;span class="o">&lt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-    &lt;span class="c1">// If |result| is an error that this should try reading after, stash the&lt;/span>
-    &lt;span class="c1">// error for now and act like the request was successfully sent.&lt;/span>
-    &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">ShouldTryReadingOnUploadError&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">result&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="p">{&lt;/span>
-      &lt;span class="n">upload_error_&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">result&lt;/span>&lt;span class="p">;&lt;/span>
-      &lt;span class="k">return&lt;/span> &lt;span class="n">OK&lt;/span>&lt;span class="p">;&lt;/span>
-    &lt;span class="p">}&lt;/span>
-    &lt;span class="k">return&lt;/span> &lt;span class="n">result&lt;/span>&lt;span class="p">;&lt;/span>
-  &lt;span class="p">}&lt;/span>
+    <pre class="highlight"><code><span class="kt">int</span> <span class="n">HttpStreamParser</span><span class="o">::</span><span class="n">DoSendBodyComplete</span><span class="p">(</span><span class="kt">int</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o"><</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// If |result| is an error that this should try reading after, stash the</span>
+    <span class="c1">// error for now and act like the request was successfully sent.</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">ShouldTryReadingOnUploadError</span><span class="p">(</span><span class="n">result</span><span class="p">))</span> <span class="p">{</span>
+      <span class="n">upload_error_</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
+      <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+  <span class="p">}</span>
 </code></pre>
   </div>
 </div>
@@ -503,8 +503,8 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 <div class="language-cpp highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>&lt;span class="c1">// A connection was reset (corresponding to a TCP RST).&lt;/span>
-&lt;span class="n">NET_ERROR&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">CONNECTION_RESET&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">101&lt;/span>&lt;span class="p">)&lt;/span>
+    <pre class="highlight"><code><span class="c1">// A connection was reset (corresponding to a TCP RST).</span>
+<span class="n">NET_ERROR</span><span class="p">(</span><span class="n">CONNECTION_RESET</span><span class="p">,</span> <span class="o">-</span><span class="mi">101</span><span class="p">)</span>
 </code></pre>
   </div>
 </div>

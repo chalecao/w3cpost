@@ -282,42 +282,42 @@ title: tree shaking介绍
  再举个例子说明下为什么不能消除menu.js，比如下面这个场景
   
   <div>
-    <pre class="hljs bash"><code class="copyable">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-title">Menu&lt;/span>&lt;/span>() {
+    <pre class="hljs bash"><code class="copyable"><span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">Menu</span></span>() {
 }
 
-Menu.prototype.show = &lt;span class="hljs-function">&lt;span class="hljs-title">function&lt;/span>&lt;/span>() {
+Menu.prototype.show = <span class="hljs-function"><span class="hljs-title">function</span></span>() {
 }
 
-Array.prototype.unique = &lt;span class="hljs-function">&lt;span class="hljs-title">function&lt;/span>&lt;/span>() {
+Array.prototype.unique = <span class="hljs-function"><span class="hljs-title">function</span></span>() {
     // 将 array 中的重复元素去除
 }
 
-&lt;span class="hljs-built_in">export&lt;/span> default Menu;
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+<span class="hljs-built_in">export</span> default Menu;
+<span class="copy-code-btn">复制代码</span></code></pre>
   </div>
  如果删除里menu.js，那对Array的扩展也会被删除，就会影响功能。那也许你会问，难道rollup，webpack不能区分是定义Menu的proptotype 还是定义Array的proptotype吗？当然如果代码写成上面这种形式是可以区分的，如果我写成这样呢？
   
   <div>
-    <pre class="hljs bash"><code class="copyable">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-title">Menu&lt;/span>&lt;/span>() {
+    <pre class="hljs bash"><code class="copyable"><span class="hljs-keyword">function</span> <span class="hljs-function"><span class="hljs-title">Menu</span></span>() {
 }
 
-Menu.prototype.show = &lt;span class="hljs-function">&lt;span class="hljs-title">function&lt;/span>&lt;/span>() {
+Menu.prototype.show = <span class="hljs-function"><span class="hljs-title">function</span></span>() {
 }
 
-var a = &lt;span class="hljs-string">'Arr'&lt;/span> + &lt;span class="hljs-string">'ay'&lt;/span>
+var a = <span class="hljs-string">'Arr'</span> + <span class="hljs-string">'ay'</span>
 var b
-&lt;span class="hljs-keyword">if&lt;/span>(a == &lt;span class="hljs-string">'Array'&lt;/span>) {
+<span class="hljs-keyword">if</span>(a == <span class="hljs-string">'Array'</span>) {
     b = Array
-} &lt;span class="hljs-keyword">else&lt;/span> {
+} <span class="hljs-keyword">else</span> {
     b = Menu
 }
 
-b.prototype.unique = &lt;span class="hljs-function">&lt;span class="hljs-title">function&lt;/span>&lt;/span>() {
+b.prototype.unique = <span class="hljs-function"><span class="hljs-title">function</span></span>() {
     // 将 array 中的重复元素去除
 }
 
-&lt;span class="hljs-built_in">export&lt;/span> default Menu;
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+<span class="hljs-built_in">export</span> default Menu;
+<span class="copy-code-btn">复制代码</span></code></pre>
   </div>
  这种代码，静态分析是分析不了的，就算能静态分析代码，想要正确完全的分析也比较困难。
   

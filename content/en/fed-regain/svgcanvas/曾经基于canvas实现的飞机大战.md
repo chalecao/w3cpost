@@ -89,7 +89,7 @@ title: 曾经基于canvas实现的飞机大战
 &lt;/span>&lt;span style="color: #008080;">63&lt;/span>         ctx.strokeStyle = ‘#888‘&lt;span style="color: #000000;">;
 &lt;/span>&lt;span style="color: #008080;">64&lt;/span>         &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;">ctx.strokeText(text,(width-tw)/2,height/2);&lt;/span>
 &lt;span style="color: #008080;">65&lt;/span>         ctx.fillText(text, (width - tw) / 2, height / 2&lt;span style="color: #000000;">);
-&lt;/span>&lt;span style="color: #008080;">66&lt;/span>         &lt;span style="color: #0000ff;">if&lt;/span> (progress &gt;= 100&lt;span style="color: #000000;">) {
+&lt;/span>&lt;span style="color: #008080;">66&lt;/span>         &lt;span style="color: #0000ff;">if&lt;/span> (progress >= 100&lt;span style="color: #000000;">) {
 &lt;/span>&lt;span style="color: #008080;">67&lt;/span> &lt;span style="color: #000000;">            start();
 &lt;/span>&lt;span style="color: #008080;">68&lt;/span> &lt;span style="color: #000000;">        }
 &lt;/span>&lt;span style="color: #008080;">69&lt;/span> &lt;span style="color: #000000;">    }
@@ -162,8 +162,8 @@ title: 曾经基于canvas实现的飞机大战
 &lt;/span>&lt;span style="color: #008080;">43&lt;/span>                 h = heroImg[0&lt;span style="color: #000000;">].height;
 &lt;/span>&lt;span style="color: #008080;">44&lt;/span>             &lt;span style="color: #0000ff;">var&lt;/span> nx = offsetX - w / 2&lt;span style="color: #000000;">,
 &lt;/span>&lt;span style="color: #008080;">45&lt;/span>                 ny = offsetY - h / 2&lt;span style="color: #000000;">;
-&lt;/span>&lt;span style="color: #008080;">46&lt;/span>             nx &lt; 20 - w / 2 ? nx = 20 - w / 2 : nx &gt; (canvas.width - w / 2 - 20) ? nx = (canvas.width - w / 2 - 20) : 0&lt;span style="color: #000000;">;
-&lt;/span>&lt;span style="color: #008080;">47&lt;/span>             ny &lt; 0 ? ny = 0 : ny &gt; (canvas.height - h / 2) ? ny = (canvas.height - h / 2) : 0&lt;span style="color: #000000;">;
+&lt;/span>&lt;span style="color: #008080;">46&lt;/span>             nx &lt; 20 - w / 2 ? nx = 20 - w / 2 : nx > (canvas.width - w / 2 - 20) ? nx = (canvas.width - w / 2 - 20) : 0&lt;span style="color: #000000;">;
+&lt;/span>&lt;span style="color: #008080;">47&lt;/span>             ny &lt; 0 ? ny = 0 : ny > (canvas.height - h / 2) ? ny = (canvas.height - h / 2) : 0&lt;span style="color: #000000;">;
 &lt;/span>&lt;span style="color: #008080;">48&lt;/span>             hero.x =&lt;span style="color: #000000;"> nx;
 &lt;/span>&lt;span style="color: #008080;">49&lt;/span>             hero.y =&lt;span style="color: #000000;"> ny;
 &lt;/span>&lt;span style="color: #008080;">50&lt;/span>             hero.count = 2&lt;span style="color: #000000;">;
@@ -279,7 +279,7 @@ title: 曾经基于canvas实现的飞机大战
 &lt;/span>&lt;span style="color: #008080;">54&lt;/span>         ctx.drawImage(&lt;span style="color: #0000ff;">this&lt;/span>.enemy, &lt;span style="color: #0000ff;">this&lt;/span>.x, &lt;span style="color: #0000ff;">this&lt;/span>&lt;span style="color: #000000;">.y);
 &lt;/span>&lt;span style="color: #008080;">55&lt;/span>         &lt;span style="color: #0000ff;">this&lt;/span>.y += &lt;span style="color: #0000ff;">this&lt;/span>.speed; &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 移动敌机&lt;/span>
 &lt;span style="color: #008080;">56&lt;/span>         &lt;span style="color: #0000ff;">this&lt;/span>.hit(); &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;">判断是否击中敌机&lt;/span>
-&lt;span style="color: #008080;">57&lt;/span>         &lt;span style="color: #0000ff;">if&lt;/span> (&lt;span style="color: #0000ff;">this&lt;/span>.y &gt; canvas.height) { &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 若敌机飞出画布，就标识可移除(让你不长眼！)&lt;/span>
+&lt;span style="color: #008080;">57&lt;/span>         &lt;span style="color: #0000ff;">if&lt;/span> (&lt;span style="color: #0000ff;">this&lt;/span>.y > canvas.height) { &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 若敌机飞出画布，就标识可移除(让你不长眼！)&lt;/span>
 &lt;span style="color: #008080;">58&lt;/span>             &lt;span style="color: #0000ff;">this&lt;/span>.removable = &lt;span style="color: #0000ff;">true&lt;/span>&lt;span style="color: #000000;">;
 &lt;/span>&lt;span style="color: #008080;">59&lt;/span> &lt;span style="color: #000000;">        }
 &lt;/span>&lt;span style="color: #008080;">60&lt;/span> &lt;span style="color: #000000;">    }
@@ -287,8 +287,8 @@ title: 曾经基于canvas实现的飞机大战
 &lt;span style="color: #008080;">62&lt;/span>         &lt;span style="color: #0000ff;">for&lt;/span> (&lt;span style="color: #0000ff;">var&lt;/span> i = 0; i &lt; hullet.length; i++&lt;span style="color: #000000;">) {
 &lt;/span>&lt;span style="color: #008080;">63&lt;/span>             &lt;span style="color: #0000ff;">var&lt;/span> h =&lt;span style="color: #000000;"> hullet[i];
 &lt;/span>&lt;span style="color: #008080;">64&lt;/span>             &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 敌机与子弹的碰撞检测，自己体会吧&lt;/span>
-&lt;span style="color: #008080;">65&lt;/span>             &lt;span style="color: #0000ff;">if&lt;/span> (&lt;span style="color: #0000ff;">this&lt;/span>.x + &lt;span style="color: #0000ff;">this&lt;/span>.width &gt;= h.mx && h.mx + h.width &gt;= &lt;span style="color: #0000ff;">this&lt;/span>.x &&
-&lt;span style="color: #008080;">66&lt;/span>                 h.my + h.height &gt;= &lt;span style="color: #0000ff;">this&lt;/span>.y && &lt;span style="color: #0000ff;">this&lt;/span>.height + &lt;span style="color: #0000ff;">this&lt;/span>.y &gt;=&lt;span style="color: #000000;"> h.my) {
+&lt;span style="color: #008080;">65&lt;/span>             &lt;span style="color: #0000ff;">if&lt;/span> (&lt;span style="color: #0000ff;">this&lt;/span>.x + &lt;span style="color: #0000ff;">this&lt;/span>.width >= h.mx && h.mx + h.width >= &lt;span style="color: #0000ff;">this&lt;/span>.x &&
+&lt;span style="color: #008080;">66&lt;/span>                 h.my + h.height >= &lt;span style="color: #0000ff;">this&lt;/span>.y && &lt;span style="color: #0000ff;">this&lt;/span>.height + &lt;span style="color: #0000ff;">this&lt;/span>.y >=&lt;span style="color: #000000;"> h.my) {
 &lt;/span>&lt;span style="color: #008080;">67&lt;/span>                 &lt;span style="color: #0000ff;">if&lt;/span> (--&lt;span style="color: #0000ff;">this&lt;/span>.lifes == 0) { &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 若生命值为零，标识为死亡&lt;/span>
 &lt;span style="color: #008080;">68&lt;/span>                     &lt;span style="color: #0000ff;">this&lt;/span>.die = &lt;span style="color: #0000ff;">true&lt;/span>&lt;span style="color: #000000;">;
 &lt;/span>&lt;span style="color: #008080;">69&lt;/span>                     &lt;span style="color: #008000;">//&lt;/span>&lt;span style="color: #008000;"> 计分&lt;/span>

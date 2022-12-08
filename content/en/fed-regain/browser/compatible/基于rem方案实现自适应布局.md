@@ -44,7 +44,7 @@ rem（font size of the root element）是指相对于根元素的字体大�
 
 天猫的web app的首页就是采用这种方式去做的，以320宽度为基准，进行缩放，最大缩放为320*1.3 = 416，基本缩放到416都就可以兼容iphone6 plus的屏幕了，这个方法简单粗暴，又高效。说实话我觉得他和用接下去[我们](https://www.w3cdoc.com)要讲的rem都非常高效，不过有部分同学使用过程中反应缩放会导致有些页面元素会糊的情况。
 
-<pre class="html">&lt;meta name="viewport" content="width=320,maximum-scale=1.3,user-scalable=no"&gt;</pre>
+<pre class="html"><meta name="viewport" content="width=320,maximum-scale=1.3,user-scalable=no"></pre>
 
 ## <a name="t7"></a>rem能等比例适配所有屏幕 {#t7}
 
@@ -181,7 +181,7 @@ html {
  function refreshRem() {
   var width = docEl.getBoundingClientRect().width;
   maxWidth = maxWidth || 540;
-  width&gt;maxWidth && (width=maxWidth);
+  width>maxWidth && (width=maxWidth);
   var rem = width * 100 / designWidth;
   remStyle.innerHTML = 'html{font-size:' + rem + 'px;}';
  }

@@ -41,12 +41,12 @@ let you think， think makes you happy!
 <pre class="EnlighterJSRAW" data-enlighter-language="null">function algorithm(param){
   let [arr, k] = param;
   let bucket = [];
-  arr.forEach((v,i)=&gt;{
+  arr.forEach((v,i)=>{
     if(!bucket[i%k]) bucket[i%k]= 0  
-    if(bucket[i%k] &lt; v) bucket[i%k] = v
+    if(bucket[i%k] < v) bucket[i%k] = v
   })
-  for(let i=0; i&lt;k; i++){
-   if(bucket[0] &gt; bucket[i]) bucket[0] = bucket[i]
+  for(let i=0; i<k; i++){
+   if(bucket[0] > bucket[i]) bucket[0] = bucket[i]
   }
   return bucket[0]
 }

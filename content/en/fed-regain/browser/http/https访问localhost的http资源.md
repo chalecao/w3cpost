@@ -118,37 +118,37 @@ https加载http的资源，[浏览器](https://www.w3cdoc.com)会有mixed conten
       查看通过 HTTPS—<a class="external" href="https://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/simple-example.html">https://googlesamples.github.io/web-fundamentals/&#8230;/simple-example.html</a>加载的此示例页面 — 添加一个 HTTP 脚本标记，其尝试加载混合内容。
     
     
-    <pre class=""><span class="dec">&lt;!DOCTYPE html&gt;</span>
-<span class="tag">&lt;html&gt;</span>
-<span class="tag">&lt;head&gt;</span>
-<span class="tag">&lt;meta</span> <span class="atn">charset</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;meta</span> <span class="atn">http-equiv</span><span class="pun">=</span><span class="atv">"X-UA-Compatible"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"IE=edge"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;meta</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"viewport"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"width=device-width, initial-scale=1"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://fonts.lug.ustc.edu.cn/icon?family=Material+Icons"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.indigo-pink.min.css"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;script</span> <span class="atn">defer</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
-<span class="tag">&lt;style&gt;</span><span class="pln">
+    <pre class=""><span class="dec"><!DOCTYPE html></span>
+<span class="tag"><html></span>
+<span class="tag"><head></span>
+<span class="tag"><meta</span> <span class="atn">charset</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="tag">></span>
+<span class="tag"><meta</span> <span class="atn">http-equiv</span><span class="pun">=</span><span class="atv">"X-UA-Compatible"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"IE=edge"</span><span class="tag">></span>
+<span class="tag"><meta</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"viewport"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"width=device-width, initial-scale=1"</span><span class="tag">></span>
+<span class="tag"><link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://fonts.lug.ustc.edu.cn/icon?family=Material+Icons"</span><span class="tag">></span>
+<span class="tag"><link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.indigo-pink.min.css"</span><span class="tag">></span>
+<span class="tag"><script</span> <span class="atn">defer</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.min.js"</span><span class="tag">></script></span>
+<span class="tag"><style></span><span class="pln">
       body </span><span class="pun">{</span>
 <span class="kwd">margin</span><span class="pun">:</span> <span class="lit">2em</span><span class="pun">;</span>
 <span class="pun">}</span>
-<span class="tag">&lt;/style&gt;</span>
-<span class="tag">&lt;title&gt;</span><span class="pln">Simple mixed content example</span><span class="tag">&lt;/title&gt;</span>
-<span class="tag">&lt;/head&gt;</span>
-<span class="tag">&lt;body&gt;</span>
-<span class="tag">&lt;div</span> <span class="atn">role</span><span class="pun">=</span><span class="atv">"main"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;h1&gt;</span><span class="pln">
+<span class="tag"></style></span>
+<span class="tag"><title></span><span class="pln">Simple mixed content example</span><span class="tag"></title></span>
+<span class="tag"></head></span>
+<span class="tag"><body></span>
+<span class="tag"><div</span> <span class="atn">role</span><span class="pun">=</span><span class="atv">"main"</span><span class="tag">></span>
+<span class="tag"><h1></span><span class="pln">
         Simple mixed content example!
-</span><span class="tag">&lt;/h1&gt;</span>
-<span class="tag">&lt;p&gt;</span><span class="pln">
-        View page over: </span><span class="tag">&lt;a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/simple-example.html"</span><span class="tag">&gt;</span><span class="pln">HTTP</span><span class="tag">&lt;/a&gt;</span><span class="pln"> - </span><span class="tag">&lt;a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/simple-example.html"</span><span class="tag">&gt;</span><span class="pln">HTTPS</span><span class="tag">&lt;/a&gt;</span>
-<span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;p&gt;</span><span class="pln">
+</span><span class="tag"></h1></span>
+<span class="tag"><p></span><span class="pln">
+        View page over: </span><span class="tag"><a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/simple-example.html"</span><span class="tag">></span><span class="pln">HTTP</span><span class="tag"></a></span><span class="pln"> - </span><span class="tag"><a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/simple-example.html"</span><span class="tag">></span><span class="pln">HTTPS</span><span class="tag"></a></span>
+<span class="tag"></p></span>
+<span class="tag"><p></span><span class="pln">
         This page loads the script simple-example.js using HTTP. This is the simplest case of mixed content. When the simple-example.js file is requested by the browser, an attacker can inject code into the returned content and take control of the entire page. Thankfully, most modern browsers block this type of dangerous content by default and display an error in the JavaScript console. This can be seen when the page is viewed over HTTPS.
-</span><span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;div</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"output"</span><span class="tag">&gt;</span><span class="pln">Waiting for insecure script to run...</span><span class="tag">&lt;/div&gt;</span>
-<span class="tag">&lt;script</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/simple-example.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
-<span class="tag">&lt;/div&gt;</span>
-<span class="tag">&lt;script&gt;</span>
+</span><span class="tag"></p></span>
+<span class="tag"><div</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"output"</span><span class="tag">></span><span class="pln">Waiting for insecure script to run...</span><span class="tag"></div></span>
+<span class="tag"><script</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/simple-example.js"</span><span class="tag">></script></span>
+<span class="tag"></div></span>
+<span class="tag"><script></span>
 <span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">b</span><span class="pun">,</span><span class="pln">o</span><span class="pun">,</span><span class="pln">i</span><span class="pun">,</span><span class="pln">l</span><span class="pun">,</span><span class="pln">e</span><span class="pun">,</span><span class="pln">r</span><span class="pun">){</span><span class="pln">b</span><span class="pun">.</span><span class="typ">GoogleAnalyticsObject</span><span class="pun">=</span><span class="pln">l</span><span class="pun">;</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]||(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]=</span>
 <span class="kwd">function</span><span class="pun">(){(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">=</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">||[]).</span><span class="pln">push</span><span class="pun">(</span><span class="pln">arguments</span><span class="pun">)});</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">l</span><span class="pun">=+</span><span class="kwd">new</span> <span class="typ">Date</span><span class="pun">;</span><span class="pln">
   e</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">r</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">getElementsByTagName</span><span class="pun">[</span><span class="pln">i</span><span class="pun">](</span><span class="lit"></span><span class="pun">);</span><span class="pln">
@@ -162,9 +162,9 @@ https加载http的资源，[浏览器](https://www.w3cdoc.com)会有mixed conten
       isCompleted</span><span class="pun">[</span><span class="pln">sampleName</span><span class="pun">]</span> <span class="pun">=</span> <span class="kwd">true</span><span class="pun">;</span>
 <span class="pun">}</span>
 <span class="pun">}</span>
-<span class="tag">&lt;/script&gt;</span>
-<span class="tag">&lt;/body&gt;</span>
-<span class="tag">&lt;/html&gt;</span>
+<span class="tag"></script></span>
+<span class="tag"></body></span>
+<span class="tag"></html></span>
 
 </pre>
 
@@ -202,35 +202,35 @@ https加载http的资源，[浏览器](https://www.w3cdoc.com)会有mixed conten
         查看通过 HTTPS—<a class="external" href="https://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/xmlhttprequest-example.html">https://googlesamples.github.io/web-fundamentals/&#8230;/xmlhttprequest-example.html</a> 加载的此示例页面 — 添加一个通过 HTTP 加载的<code>XMLHttpRequest</code>，以获取混合内容 <code>JSON</code> 数据。
       
       
-      <pre class=""><span class="dec">&lt;!DOCTYPE html&gt;</span>
-<span class="tag">&lt;html&gt;</span>
-<span class="tag">&lt;head&gt;</span>
-<span class="tag">&lt;meta</span> <span class="atn">charset</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;meta</span> <span class="atn">http-equiv</span><span class="pun">=</span><span class="atv">"X-UA-Compatible"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"IE=edge"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;meta</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"viewport"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"width=device-width, initial-scale=1"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://fonts.lug.ustc.edu.cn/icon?family=Material+Icons"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.indigo-pink.min.css"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;script</span> <span class="atn">defer</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
-<span class="tag">&lt;style&gt;</span><span class="pln">
+      <pre class=""><span class="dec"><!DOCTYPE html></span>
+<span class="tag"><html></span>
+<span class="tag"><head></span>
+<span class="tag"><meta</span> <span class="atn">charset</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="tag">></span>
+<span class="tag"><meta</span> <span class="atn">http-equiv</span><span class="pun">=</span><span class="atv">"X-UA-Compatible"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"IE=edge"</span><span class="tag">></span>
+<span class="tag"><meta</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"viewport"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"width=device-width, initial-scale=1"</span><span class="tag">></span>
+<span class="tag"><link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://fonts.lug.ustc.edu.cn/icon?family=Material+Icons"</span><span class="tag">></span>
+<span class="tag"><link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.indigo-pink.min.css"</span><span class="tag">></span>
+<span class="tag"><script</span> <span class="atn">defer</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.min.js"</span><span class="tag">></script></span>
+<span class="tag"><style></span><span class="pln">
       body </span><span class="pun">{</span>
 <span class="kwd">margin</span><span class="pun">:</span> <span class="lit">2em</span><span class="pun">;</span>
 <span class="pun">}</span>
-<span class="tag">&lt;/style&gt;</span>
-<span class="tag">&lt;title&gt;</span><span class="pln">XMLHttpRequest mixed content example</span><span class="tag">&lt;/title&gt;</span>
-<span class="tag">&lt;/head&gt;</span>
-<span class="tag">&lt;body&gt;</span>
-<span class="tag">&lt;div</span> <span class="atn">role</span><span class="pun">=</span><span class="atv">"main"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;h1&gt;</span><span class="pln">
+<span class="tag"></style></span>
+<span class="tag"><title></span><span class="pln">XMLHttpRequest mixed content example</span><span class="tag"></title></span>
+<span class="tag"></head></span>
+<span class="tag"><body></span>
+<span class="tag"><div</span> <span class="atn">role</span><span class="pun">=</span><span class="atv">"main"</span><span class="tag">></span>
+<span class="tag"><h1></span><span class="pln">
         XMLHttpRequest mixed content example!
-</span><span class="tag">&lt;/h1&gt;</span>
-<span class="tag">&lt;p&gt;</span><span class="pln">
-        View page over: </span><span class="tag">&lt;a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/xmlhttprequest-example.html"</span><span class="tag">&gt;</span><span class="pln">HTTP</span><span class="tag">&lt;/a&gt;</span><span class="pln"> - </span><span class="tag">&lt;a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/xmlhttprequest-example.html"</span><span class="tag">&gt;</span><span class="pln">HTTPS</span><span class="tag">&lt;/a&gt;</span>
-<span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;p&gt;</span><span class="pln">
+</span><span class="tag"></h1></span>
+<span class="tag"><p></span><span class="pln">
+        View page over: </span><span class="tag"><a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/xmlhttprequest-example.html"</span><span class="tag">></span><span class="pln">HTTP</span><span class="tag"></a></span><span class="pln"> - </span><span class="tag"><a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/xmlhttprequest-example.html"</span><span class="tag">></span><span class="pln">HTTPS</span><span class="tag"></a></span>
+<span class="tag"></p></span>
+<span class="tag"><p></span><span class="pln">
         This page constructs an HTTP URL dynamically in JavaScript, the URL is eventually used to load an insecure resource by XMLHttpRequest. When the xmlhttprequest-data.js file is requested by the browser, an attacker can inject code into the returned content and take control of the entire page. Thankfully, most modern browsers block this type of dangerous content by default and display an error in the JavaScript console. This can be seen when the page is viewed over HTTPS.
-</span><span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;div</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"output"</span><span class="tag">&gt;</span><span class="pln">Waiting for data...</span><span class="tag">&lt;/div&gt;</span>
-<span class="tag">&lt;script&gt;</span>
+</span><span class="tag"></p></span>
+<span class="tag"><div</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"output"</span><span class="tag">></span><span class="pln">Waiting for data...</span><span class="tag"></div></span>
+<span class="tag"><script></span>
 <span class="kwd">var</span><span class="pln"> rootUrl </span><span class="pun">=</span> <span class="str">'http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content'</span><span class="pun">;</span>
 <span class="kwd">var</span><span class="pln"> resources </span><span class="pun">=</span> <span class="pun">{</span><span class="pln">
           jsonData</span><span class="pun">:</span> <span class="str">'/xmlhttprequest-data.js'</span>
@@ -238,13 +238,13 @@ https加载http的资源，[浏览器](https://www.w3cdoc.com)会有mixed conten
 <span class="kwd">var</span><span class="pln"> request </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">XMLHttpRequest</span><span class="pun">();</span><span class="pln">
         request</span><span class="pun">.</span><span class="pln">addEventListener</span><span class="pun">(</span><span class="str">'load'</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
 <span class="kwd">var</span><span class="pln"> jsonData </span><span class="pun">=</span><span class="pln"> JSON</span><span class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span class="pln">request</span><span class="pun">.</span><span class="pln">responseText</span><span class="pun">);</span><span class="pln">
-          document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">'output'</span><span class="pun">).</span><span class="pln">innerHTML </span><span class="pun">+=</span> <span class="str">'&lt;br&gt;'</span> <span class="pun">+</span><span class="pln"> jsonData</span><span class="pun">.</span><span class="pln">data</span><span class="pun">;</span>
+          document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">'output'</span><span class="pun">).</span><span class="pln">innerHTML </span><span class="pun">+=</span> <span class="str">'<br>'</span> <span class="pun">+</span><span class="pln"> jsonData</span><span class="pun">.</span><span class="pln">data</span><span class="pun">;</span>
 <span class="pun">});</span><span class="pln">
         request</span><span class="pun">.</span><span class="pln">open</span><span class="pun">(</span><span class="str">'GET'</span><span class="pun">,</span><span class="pln"> rootUrl </span><span class="pun">+</span><span class="pln"> resources</span><span class="pun">.</span><span class="pln">jsonData</span><span class="pun">,</span> <span class="kwd">true</span><span class="pun">);</span><span class="pln">
         request</span><span class="pun">.</span><span class="pln">send</span><span class="pun">();</span>
-<span class="tag">&lt;/script&gt;</span>
-<span class="tag">&lt;/div&gt;</span>
-<span class="tag">&lt;script&gt;</span>
+<span class="tag"></script></span>
+<span class="tag"></div></span>
+<span class="tag"><script></span>
 <span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">b</span><span class="pun">,</span><span class="pln">o</span><span class="pun">,</span><span class="pln">i</span><span class="pun">,</span><span class="pln">l</span><span class="pun">,</span><span class="pln">e</span><span class="pun">,</span><span class="pln">r</span><span class="pun">){</span><span class="pln">b</span><span class="pun">.</span><span class="typ">GoogleAnalyticsObject</span><span class="pun">=</span><span class="pln">l</span><span class="pun">;</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]||(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]=</span>
 <span class="kwd">function</span><span class="pun">(){(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">=</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">||[]).</span><span class="pln">push</span><span class="pun">(</span><span class="pln">arguments</span><span class="pun">)});</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">l</span><span class="pun">=+</span><span class="kwd">new</span> <span class="typ">Date</span><span class="pun">;</span><span class="pln">
   e</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">r</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">getElementsByTagName</span><span class="pun">[</span><span class="pln">i</span><span class="pun">](</span><span class="lit"></span><span class="pun">);</span><span class="pln">
@@ -258,9 +258,9 @@ https加载http的资源，[浏览器](https://www.w3cdoc.com)会有mixed conten
       isCompleted</span><span class="pun">[</span><span class="pln">sampleName</span><span class="pun">]</span> <span class="pun">=</span> <span class="kwd">true</span><span class="pun">;</span>
 <span class="pun">}</span>
 <span class="pun">}</span>
-<span class="tag">&lt;/script&gt;</span>
-<span class="tag">&lt;/body&gt;</span>
-<span class="tag">&lt;/html&gt;</span>
+<span class="tag"></script></span>
+<span class="tag"></body></span>
+<span class="tag"></html></span>
 
 </pre>
 
@@ -298,23 +298,23 @@ https加载http的资源，[浏览器](https://www.w3cdoc.com)会有mixed conten
           查看通过 HTTPS—<a class="external" href="https://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/image-gallery-example.html">https://googlesamples.github.io/web-fundamentals/&#8230;/image-gallery-example.html</a> 加载的此示例页面时 — 最初没有任何混合内容问题；但是当点击缩略图时，将通过 HTTP 加载完整尺寸的混合内容图像。
         
         
-        <pre class=""><span class="dec">&lt;!DOCTYPE html&gt;</span>
-<span class="tag">&lt;html&gt;</span>
-<span class="tag">&lt;head&gt;</span>
-<span class="tag">&lt;meta</span> <span class="atn">charset</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;meta</span> <span class="atn">http-equiv</span><span class="pun">=</span><span class="atv">"X-UA-Compatible"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"IE=edge"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;meta</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"viewport"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"width=device-width, initial-scale=1"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://fonts.lug.ustc.edu.cn/icon?family=Material+Icons"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.indigo-pink.min.css"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;script</span> <span class="atn">defer</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
-<span class="tag">&lt;style&gt;</span><span class="pln">
+        <pre class=""><span class="dec"><!DOCTYPE html></span>
+<span class="tag"><html></span>
+<span class="tag"><head></span>
+<span class="tag"><meta</span> <span class="atn">charset</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="tag">></span>
+<span class="tag"><meta</span> <span class="atn">http-equiv</span><span class="pun">=</span><span class="atv">"X-UA-Compatible"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"IE=edge"</span><span class="tag">></span>
+<span class="tag"><meta</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"viewport"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"width=device-width, initial-scale=1"</span><span class="tag">></span>
+<span class="tag"><link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://fonts.lug.ustc.edu.cn/icon?family=Material+Icons"</span><span class="tag">></span>
+<span class="tag"><link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.indigo-pink.min.css"</span><span class="tag">></span>
+<span class="tag"><script</span> <span class="atn">defer</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.min.js"</span><span class="tag">></script></span>
+<span class="tag"><style></span><span class="pln">
       body </span><span class="pun">{</span>
 <span class="kwd">margin</span><span class="pun">:</span> <span class="lit">2em</span><span class="pun">;</span>
 <span class="pun">}</span>
-<span class="tag">&lt;/style&gt;</span>
-<span class="tag">&lt;title&gt;</span><span class="pln">Image gallery mixed content example</span><span class="tag">&lt;/title&gt;</span>
-<span class="tag">&lt;script</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"//ajax.lug.ustc.edu.cn/ajax/libs/jquery/2.1.4/jquery.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
-<span class="tag">&lt;script&gt;</span><span class="pln">
+<span class="tag"></style></span>
+<span class="tag"><title></span><span class="pln">Image gallery mixed content example</span><span class="tag"></title></span>
+<span class="tag"><script</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"//ajax.lug.ustc.edu.cn/ajax/libs/jquery/2.1.4/jquery.min.js"</span><span class="tag">></script></span>
+<span class="tag"><script></span><span class="pln">
       $</span><span class="pun">(</span><span class="pln">document</span><span class="pun">).</span><span class="pln">ready</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span><span class="pln">
         $</span><span class="pun">(</span><span class="str">'.gallery'</span><span class="pun">).</span><span class="pln">click</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span> <span class="pun">{</span><span class="pln">
           e</span><span class="pun">.</span><span class="pln">preventDefault</span><span class="pun">();</span><span class="pln">
@@ -325,8 +325,8 @@ https加载http的资源，[浏览器](https://www.w3cdoc.com)会有mixed conten
           $</span><span class="pun">(</span><span class="str">'.overlay'</span><span class="pun">).</span><span class="pln">fadeOut</span><span class="pun">(</span><span class="str">'slow'</span><span class="pun">);</span>
 <span class="pun">})</span>
 <span class="pun">});</span>
-<span class="tag">&lt;/script&gt;</span>
-<span class="tag">&lt;style&gt;</span>
+<span class="tag"></script></span>
+<span class="tag"><style></span>
 <span class="pun">.</span><span class="pln">overlay </span><span class="pun">{</span>
 <span class="kwd">position</span><span class="pun">:</span><span class="pln"> fixed</span><span class="pun">;</span>
 <span class="kwd">top</span><span class="pun">:</span> <span class="lit"></span><span class="pun">;</span>
@@ -347,27 +347,27 @@ https加载http的资源，[浏览器](https://www.w3cdoc.com)会有mixed conten
 <span class="kwd">background-repeat</span><span class="pun">:</span><span class="pln"> no-repeat</span><span class="pun">;</span>
 <span class="kwd">z-index</span><span class="pun">:</span> <span class="lit">10001</span><span class="pun">;</span>
 <span class="pun">}</span>
-<span class="tag">&lt;/style&gt;</span>
-<span class="tag">&lt;/head&gt;</span>
-<span class="tag">&lt;body&gt;</span>
-<span class="tag">&lt;div</span> <span class="atn">role</span><span class="pun">=</span><span class="atv">"main"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;h1&gt;</span><span class="pln">
+<span class="tag"></style></span>
+<span class="tag"></head></span>
+<span class="tag"><body></span>
+<span class="tag"><div</span> <span class="atn">role</span><span class="pun">=</span><span class="atv">"main"</span><span class="tag">></span>
+<span class="tag"><h1></span><span class="pln">
         Image gallery mixed content!
-</span><span class="tag">&lt;/h1&gt;</span>
-<span class="tag">&lt;p&gt;</span><span class="pln">
-        View page over: </span><span class="tag">&lt;a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/image-gallery-example.html"</span><span class="tag">&gt;</span><span class="pln">HTTP</span><span class="tag">&lt;/a&gt;</span><span class="pln"> - </span><span class="tag">&lt;a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/image-gallery-example.html"</span><span class="tag">&gt;</span><span class="pln">HTTPS</span><span class="tag">&lt;/a&gt;</span>
-<span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;p&gt;</span><span class="pln">
-        Image galleries often rely on the &lt;img&gt; tag src attribute to display thumbnail images on the page, the anchor ( &lt;a&gt; ) tag href attribute is then used to load the full sized image for the gallery overlay. Normally &lt;a&gt; tags do not cause mixed content, but in this case the jQuery code overrides the default link behavior &mdash; to navigate to a new page &mdash; and instead loads the HTTP image on this page. While this content isn't blocked, modern browsers display a warning in the JavaScript console. This can be seen when the page is viewed over HTTPS and the thumbnail is clicked.
-</span><span class="tag">&lt;/p&gt;</span><span class="pln">
-      CLICK ME! --&gt;
-</span><span class="tag">&lt;a</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"gallery"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/puppy.jpg"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;img</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"https://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/puppy-thumb.jpg"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;/a&gt;</span>
-<span class="tag">&lt;div</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"overlay overlay-background"</span> <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="kwd">display</span><span class="pun">:</span><span class="pln"> none</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;&lt;/div&gt;</span>
-<span class="tag">&lt;div</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"overlay overlay-foreground"</span> <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="kwd">display</span><span class="pun">:</span><span class="pln"> none</span><span class="pun">;</span><span class="atv">"</span><span class="tag">&gt;&lt;/div&gt;</span>
-<span class="tag">&lt;/div&gt;</span>
-<span class="tag">&lt;script&gt;</span>
+</span><span class="tag"></h1></span>
+<span class="tag"><p></span><span class="pln">
+        View page over: </span><span class="tag"><a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/image-gallery-example.html"</span><span class="tag">></span><span class="pln">HTTP</span><span class="tag"></a></span><span class="pln"> - </span><span class="tag"><a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/image-gallery-example.html"</span><span class="tag">></span><span class="pln">HTTPS</span><span class="tag"></a></span>
+<span class="tag"></p></span>
+<span class="tag"><p></span><span class="pln">
+        Image galleries often rely on the <img> tag src attribute to display thumbnail images on the page, the anchor ( <a> ) tag href attribute is then used to load the full sized image for the gallery overlay. Normally <a> tags do not cause mixed content, but in this case the jQuery code overrides the default link behavior &mdash; to navigate to a new page &mdash; and instead loads the HTTP image on this page. While this content isn't blocked, modern browsers display a warning in the JavaScript console. This can be seen when the page is viewed over HTTPS and the thumbnail is clicked.
+</span><span class="tag"></p></span><span class="pln">
+      CLICK ME! -->
+</span><span class="tag"><a</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"gallery"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/puppy.jpg"</span><span class="tag">></span>
+<span class="tag"><img</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"https://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/puppy-thumb.jpg"</span><span class="tag">></span>
+<span class="tag"></a></span>
+<span class="tag"><div</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"overlay overlay-background"</span> <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="kwd">display</span><span class="pun">:</span><span class="pln"> none</span><span class="pun">;</span><span class="atv">"</span><span class="tag">></div></span>
+<span class="tag"><div</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"overlay overlay-foreground"</span> <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="kwd">display</span><span class="pun">:</span><span class="pln"> none</span><span class="pun">;</span><span class="atv">"</span><span class="tag">></div></span>
+<span class="tag"></div></span>
+<span class="tag"><script></span>
 <span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">b</span><span class="pun">,</span><span class="pln">o</span><span class="pun">,</span><span class="pln">i</span><span class="pun">,</span><span class="pln">l</span><span class="pun">,</span><span class="pln">e</span><span class="pun">,</span><span class="pln">r</span><span class="pun">){</span><span class="pln">b</span><span class="pun">.</span><span class="typ">GoogleAnalyticsObject</span><span class="pun">=</span><span class="pln">l</span><span class="pun">;</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]||(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]=</span>
 <span class="kwd">function</span><span class="pun">(){(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">=</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">||[]).</span><span class="pln">push</span><span class="pun">(</span><span class="pln">arguments</span><span class="pun">)});</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">l</span><span class="pun">=+</span><span class="kwd">new</span> <span class="typ">Date</span><span class="pun">;</span><span class="pln">
   e</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">r</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">getElementsByTagName</span><span class="pun">[</span><span class="pln">i</span><span class="pun">](</span><span class="lit"></span><span class="pun">);</span><span class="pln">
@@ -381,9 +381,9 @@ https加载http的资源，[浏览器](https://www.w3cdoc.com)会有mixed conten
       isCompleted</span><span class="pun">[</span><span class="pln">sampleName</span><span class="pun">]</span> <span class="pun">=</span> <span class="kwd">true</span><span class="pun">;</span>
 <span class="pun">}</span>
 <span class="pun">}</span>
-<span class="tag">&lt;/script&gt;</span>
-<span class="tag">&lt;/body&gt;</span>
-<span class="tag">&lt;/html&gt;</span>
+<span class="tag"></script></span>
+<span class="tag"></body></span>
+<span class="tag"></html></span>
 
 </pre>
 
@@ -395,7 +395,7 @@ https加载http的资源，[浏览器](https://www.w3cdoc.com)会有mixed conten
         
         
         
-          图像库通常依靠 <code>&lt;img&gt;</code> 标记 <code>src</code> 属性在页面上显示缩略图，然后，使用定位 (<code>&lt;a&gt;</code>) 标记 <code>href</code> 属性为图像库叠加层加载完整尺寸的图像。正常情况下，<code>&lt;a&gt;</code> 标记不会产生混合内容，但在此例中，jQuery 代码替换默认链接行为（导航到新页面），改为在此页面上加载 HTTP 图像。
+          图像库通常依靠 <code><img></code> 标记 <code>src</code> 属性在页面上显示缩略图，然后，使用定位 (<code><a></code>) 标记 <code>href</code> 属性为图像库叠加层加载完整尺寸的图像。正常情况下，<code><a></code> 标记不会产生混合内容，但在此例中，jQuery 代码替换默认链接行为（导航到新页面），改为在此页面上加载 HTTP 图像。
         <figure> 
         
         
@@ -439,50 +439,50 @@ https加载http的资源，[浏览器](https://www.w3cdoc.com)会有mixed conten
           以下是被动混合内容的示例：
         
         
-        <pre class=""><span class="dec">&lt;!DOCTYPE html&gt;</span>
-<span class="tag">&lt;html&gt;</span>
-<span class="tag">&lt;head&gt;</span>
-<span class="tag">&lt;meta</span> <span class="atn">charset</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;meta</span> <span class="atn">http-equiv</span><span class="pun">=</span><span class="atv">"X-UA-Compatible"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"IE=edge"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;meta</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"viewport"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"width=device-width, initial-scale=1"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://fonts.lug.ustc.edu.cn/icon?family=Material+Icons"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.indigo-pink.min.css"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;script</span> <span class="atn">defer</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
-<span class="tag">&lt;style&gt;</span><span class="pln">
+        <pre class=""><span class="dec"><!DOCTYPE html></span>
+<span class="tag"><html></span>
+<span class="tag"><head></span>
+<span class="tag"><meta</span> <span class="atn">charset</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="tag">></span>
+<span class="tag"><meta</span> <span class="atn">http-equiv</span><span class="pun">=</span><span class="atv">"X-UA-Compatible"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"IE=edge"</span><span class="tag">></span>
+<span class="tag"><meta</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"viewport"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"width=device-width, initial-scale=1"</span><span class="tag">></span>
+<span class="tag"><link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://fonts.lug.ustc.edu.cn/icon?family=Material+Icons"</span><span class="tag">></span>
+<span class="tag"><link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.indigo-pink.min.css"</span><span class="tag">></span>
+<span class="tag"><script</span> <span class="atn">defer</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.min.js"</span><span class="tag">></script></span>
+<span class="tag"><style></span><span class="pln">
       body </span><span class="pun">{</span>
 <span class="kwd">margin</span><span class="pun">:</span> <span class="lit">2em</span><span class="pun">;</span>
 <span class="pun">}</span>
-<span class="tag">&lt;/style&gt;</span>
-<span class="tag">&lt;title&gt;</span><span class="pln">Passive mixed content example</span><span class="tag">&lt;/title&gt;</span>
-<span class="tag">&lt;style&gt;</span><span class="pln">
+<span class="tag"></style></span>
+<span class="tag"><title></span><span class="pln">Passive mixed content example</span><span class="tag"></title></span>
+<span class="tag"><style></span><span class="pln">
       audio</span><span class="pun">,</span><span class="pln"> img</span><span class="pun">,</span><span class="pln"> video </span><span class="pun">{</span>
 <span class="kwd">display</span><span class="pun">:</span><span class="pln"> block</span><span class="pun">;</span>
 <span class="kwd">margin</span><span class="pun">:</span> <span class="lit">10px</span><span class="pun">;</span>
 <span class="pun">}</span>
-<span class="tag">&lt;/style&gt;</span>
-<span class="tag">&lt;/head&gt;</span>
-<span class="tag">&lt;body&gt;</span>
-<span class="tag">&lt;div</span> <span class="atn">role</span><span class="pun">=</span><span class="atv">"main"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;h1&gt;</span><span class="pln">
+<span class="tag"></style></span>
+<span class="tag"></head></span>
+<span class="tag"><body></span>
+<span class="tag"><div</span> <span class="atn">role</span><span class="pun">=</span><span class="atv">"main"</span><span class="tag">></span>
+<span class="tag"><h1></span><span class="pln">
         Passive mixed content!
-</span><span class="tag">&lt;/h1&gt;</span>
-<span class="tag">&lt;p&gt;</span><span class="pln">
-        View page over: </span><span class="tag">&lt;a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/passive-mixed-content.html"</span><span class="tag">&gt;</span><span class="pln">HTTP</span><span class="tag">&lt;/a&gt;</span><span class="pln"> - </span><span class="tag">&lt;a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/passive-mixed-content.html"</span><span class="tag">&gt;</span><span class="pln">HTTPS</span><span class="tag">&lt;/a&gt;</span>
-<span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;p&gt;</span><span class="pln">
-        Several examples of passive mixed content. When viewed over HTTPS most browsers do </span><span class="tag">&lt;b&gt;</span><span class="pln">not</span><span class="tag">&lt;/b&gt;</span><span class="pln"> block this content but instead display warnings in the JavaScript console.
-</span><span class="tag">&lt;/p&gt;</span>
+</span><span class="tag"></h1></span>
+<span class="tag"><p></span><span class="pln">
+        View page over: </span><span class="tag"><a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/passive-mixed-content.html"</span><span class="tag">></span><span class="pln">HTTP</span><span class="tag"></a></span><span class="pln"> - </span><span class="tag"><a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/passive-mixed-content.html"</span><span class="tag">></span><span class="pln">HTTPS</span><span class="tag"></a></span>
+<span class="tag"></p></span>
+<span class="tag"><p></span><span class="pln">
+        Several examples of passive mixed content. When viewed over HTTPS most browsers do </span><span class="tag"><b></span><span class="pln">not</span><span class="tag"></b></span><span class="pln"> block this content but instead display warnings in the JavaScript console.
+</span><span class="tag"></p></span>
 
-<span class="com">&lt;!-- An insecure audio file loaded on a secure page --&gt;</span>
-<span class="tag">&lt;audio</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/sleep.mp3"</span> <span class="atn">type</span><span class="pun">=</span><span class="atv">"audio/mp3"</span> <span class="atn">controls</span><span class="tag">&gt;&lt;/audio&gt;</span>
+<span class="com"><!-- An insecure audio file loaded on a secure page --></span>
+<span class="tag"><audio</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/sleep.mp3"</span> <span class="atn">type</span><span class="pun">=</span><span class="atv">"audio/mp3"</span> <span class="atn">controls</span><span class="tag">></audio></span>
 
-<span class="com">&lt;!-- An insecure image loaded on a secure page --&gt;</span>
-<span class="tag">&lt;img</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/puppy.jpg"</span><span class="tag">&gt;</span>
+<span class="com"><!-- An insecure image loaded on a secure page --></span>
+<span class="tag"><img</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/puppy.jpg"</span><span class="tag">></span>
 
-<span class="com">&lt;!-- An insecure video file loaded on a secure page --&gt;</span>
-<span class="tag">&lt;video</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"http://storage.googleapis.com/webfundamentals-assets/videos/chrome.webm"</span> <span class="atn">type</span><span class="pun">=</span><span class="atv">"video/webm"</span> <span class="atn">controls</span><span class="tag">&gt;&lt;/video&gt;</span>
-<span class="tag">&lt;/div&gt;</span>
-<span class="tag">&lt;script&gt;</span>
+<span class="com"><!-- An insecure video file loaded on a secure page --></span>
+<span class="tag"><video</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"http://storage.googleapis.com/webfundamentals-assets/videos/chrome.webm"</span> <span class="atn">type</span><span class="pun">=</span><span class="atv">"video/webm"</span> <span class="atn">controls</span><span class="tag">></video></span>
+<span class="tag"></div></span>
+<span class="tag"><script></span>
 <span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">b</span><span class="pun">,</span><span class="pln">o</span><span class="pun">,</span><span class="pln">i</span><span class="pun">,</span><span class="pln">l</span><span class="pun">,</span><span class="pln">e</span><span class="pun">,</span><span class="pln">r</span><span class="pun">){</span><span class="pln">b</span><span class="pun">.</span><span class="typ">GoogleAnalyticsObject</span><span class="pun">=</span><span class="pln">l</span><span class="pun">;</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]||(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]=</span>
 <span class="kwd">function</span><span class="pun">(){(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">=</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">||[]).</span><span class="pln">push</span><span class="pun">(</span><span class="pln">arguments</span><span class="pun">)});</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">l</span><span class="pun">=+</span><span class="kwd">new</span> <span class="typ">Date</span><span class="pun">;</span><span class="pln">
   e</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">r</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">getElementsByTagName</span><span class="pun">[</span><span class="pln">i</span><span class="pun">](</span><span class="lit"></span><span class="pun">);</span><span class="pln">
@@ -496,9 +496,9 @@ https加载http的资源，[浏览器](https://www.w3cdoc.com)会有mixed conten
       isCompleted</span><span class="pun">[</span><span class="pln">sampleName</span><span class="pun">]</span> <span class="pun">=</span> <span class="kwd">true</span><span class="pun">;</span>
 <span class="pun">}</span>
 <span class="pun">}</span>
-<span class="tag">&lt;/script&gt;</span>
-<span class="tag">&lt;/body&gt;</span>
-<span class="tag">&lt;/html&gt;</span>
+<span class="tag"></script></span>
+<span class="tag"></body></span>
+<span class="tag"></html></span>
 
 </pre>
 
@@ -533,36 +533,36 @@ https加载http的资源，[浏览器](https://www.w3cdoc.com)会有mixed conten
           以下包含主动混合内容的示例：
         
         
-        <pre class=""><span class="dec">&lt;!DOCTYPE html&gt;</span>
-<span class="tag">&lt;html&gt;</span>
-<span class="tag">&lt;head&gt;</span>
-<span class="tag">&lt;meta</span> <span class="atn">charset</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;meta</span> <span class="atn">http-equiv</span><span class="pun">=</span><span class="atv">"X-UA-Compatible"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"IE=edge"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;meta</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"viewport"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"width=device-width, initial-scale=1"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://fonts.lug.ustc.edu.cn/icon?family=Material+Icons"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.indigo-pink.min.css"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;script</span> <span class="atn">defer</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
-<span class="tag">&lt;style&gt;</span><span class="pln">
+        <pre class=""><span class="dec"><!DOCTYPE html></span>
+<span class="tag"><html></span>
+<span class="tag"><head></span>
+<span class="tag"><meta</span> <span class="atn">charset</span><span class="pun">=</span><span class="atv">"utf-8"</span><span class="tag">></span>
+<span class="tag"><meta</span> <span class="atn">http-equiv</span><span class="pun">=</span><span class="atv">"X-UA-Compatible"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"IE=edge"</span><span class="tag">></span>
+<span class="tag"><meta</span> <span class="atn">name</span><span class="pun">=</span><span class="atv">"viewport"</span> <span class="atn">content</span><span class="pun">=</span><span class="atv">"width=device-width, initial-scale=1"</span><span class="tag">></span>
+<span class="tag"><link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://fonts.lug.ustc.edu.cn/icon?family=Material+Icons"</span><span class="tag">></span>
+<span class="tag"><link</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.indigo-pink.min.css"</span><span class="tag">></span>
+<span class="tag"><script</span> <span class="atn">defer</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"https://code.getmdl.io/1.2.1/material.min.js"</span><span class="tag">></script></span>
+<span class="tag"><style></span><span class="pln">
       body </span><span class="pun">{</span>
 <span class="kwd">margin</span><span class="pun">:</span> <span class="lit">2em</span><span class="pun">;</span>
 <span class="pun">}</span>
-<span class="tag">&lt;/style&gt;</span>
-<span class="tag">&lt;title&gt;</span><span class="pln">Active mixed content example</span><span class="tag">&lt;/title&gt;</span>
-<span class="com">&lt;!-- An insecure script file loaded on a secure page --&gt;</span>
-<span class="tag">&lt;script</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/simple-example.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag"></style></span>
+<span class="tag"><title></span><span class="pln">Active mixed content example</span><span class="tag"></title></span>
+<span class="com"><!-- An insecure script file loaded on a secure page --></span>
+<span class="tag"><script</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/simple-example.js"</span><span class="tag">></script></span>
 
-<span class="com">&lt;!-- An insecure stylesheet loaded on a secure page --&gt;</span>
-<span class="tag">&lt;link</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/style.css"</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span><span class="tag">&gt;</span>
+<span class="com"><!-- An insecure stylesheet loaded on a secure page --></span>
+<span class="tag"><link</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/style.css"</span> <span class="atn">rel</span><span class="pun">=</span><span class="atv">"stylesheet"</span><span class="tag">></span>
 
-<span class="tag">&lt;style&gt;</span>
+<span class="tag"><style></span>
 <span class="pun">.</span><span class="pln">insecure-background </span><span class="pun">{</span>
 <span class="com">/*An insecure resources loaded from a style property on a secure page, this can
 happen in many places including, @font-face, cursor, background-image, and so on.*/</span>
 <span class="kwd">background</span><span class="pun">:</span> <span class="kwd">url</span><span class="pun">(</span><span class="str">'http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/puppy-thumb.jpg'</span><span class="pun">)</span><span class="pln"> no-repeat</span><span class="pun">;</span>
 <span class="pun">}</span>
-<span class="tag">&lt;/style&gt;</span>
+<span class="tag"></style></span>
 
-<span class="tag">&lt;style&gt;</span>
+<span class="tag"><style></span>
 <span class="pun">.</span><span class="pln">insecure-style-holder span </span><span class="pun">{</span>
 <span class="kwd">color</span><span class="pun">:</span> <span class="lit">#fff</span><span class="pun">;</span>
 <span class="pun">}</span>
@@ -578,49 +578,49 @@ happen in many places including, @font-face, cursor, background-image, and so on
 <span class="kwd">width</span><span class="pun">:</span> <span class="lit">400px</span><span class="pun">;</span>
 <span class="kwd">height</span><span class="pun">:</span> <span class="lit">300px</span><span class="pun">;</span>
 <span class="pun">}</span>
-<span class="tag">&lt;/style&gt;</span>
+<span class="tag"></style></span>
 
-<span class="tag">&lt;/head&gt;</span>
-<span class="tag">&lt;body&gt;</span>
-<span class="tag">&lt;div</span> <span class="atn">role</span><span class="pun">=</span><span class="atv">"main"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;h1&gt;</span><span class="pln">
+<span class="tag"></head></span>
+<span class="tag"><body></span>
+<span class="tag"><div</span> <span class="atn">role</span><span class="pun">=</span><span class="atv">"main"</span><span class="tag">></span>
+<span class="tag"><h1></span><span class="pln">
         Active mixed content!
-</span><span class="tag">&lt;/h1&gt;</span>
-<span class="tag">&lt;p&gt;</span><span class="pln">
-        View page over: </span><span class="tag">&lt;a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/active-mixed-content.html"</span><span class="tag">&gt;</span><span class="pln">HTTP</span><span class="tag">&lt;/a&gt;</span><span class="pln"> - </span><span class="tag">&lt;a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/active-mixed-content.html"</span><span class="tag">&gt;</span><span class="pln">HTTPS</span><span class="tag">&lt;/a&gt;</span>
-<span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;p&gt;</span><span class="pln">
+</span><span class="tag"></h1></span>
+<span class="tag"><p></span><span class="pln">
+        View page over: </span><span class="tag"><a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/active-mixed-content.html"</span><span class="tag">></span><span class="pln">HTTP</span><span class="tag"></a></span><span class="pln"> - </span><span class="tag"><a</span> <span class="atn">href</span><span class="pun">=</span><span class="atv">"https://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/active-mixed-content.html"</span><span class="tag">></span><span class="pln">HTTPS</span><span class="tag"></a></span>
+<span class="tag"></p></span>
+<span class="tag"><p></span><span class="pln">
         Several examples of active mixed content. When viewed over HTTPS most browsers block this content and display errors in the JavaScript console.
-</span><span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;div</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"insecure-style-holder"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;span</span> <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">ba</span><span class="atv">"</span><span class="tag">&gt;</span><span class="pln">Insecure style loaded</span><span class="tag">&lt;/span&gt;</span>
-<span class="tag">&lt;/div&gt;</span>
-<span class="tag">&lt;div</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"insecure-background"</span><span class="tag">&gt;</span><span class="pln">
+</span><span class="tag"></p></span>
+<span class="tag"><div</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"insecure-style-holder"</span><span class="tag">></span>
+<span class="tag"><span</span> <span class="atn">style</span><span class="pun">=</span><span class="atv">"</span><span class="pln">ba</span><span class="atv">"</span><span class="tag">></span><span class="pln">Insecure style loaded</span><span class="tag"></span></span>
+<span class="tag"></div></span>
+<span class="tag"><div</span> <span class="atn">class</span><span class="pun">=</span><span class="atv">"insecure-background"</span><span class="tag">></span><span class="pln">
         Loading insecure background here...
-</span><span class="tag">&lt;/div&gt;</span>
+</span><span class="tag"></div></span>
 
-<span class="tag">&lt;p&gt;</span><span class="pln">Loading insecure iframe...</span><span class="tag">&lt;/p&gt;</span>
-<span class="com">&lt;!-- An insecure iframed page loaded on a secure page --&gt;</span>
-<span class="tag">&lt;iframe</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/image-gallery-example.html"</span><span class="tag">&gt;&lt;/iframe&gt;</span>
+<span class="tag"><p></span><span class="pln">Loading insecure iframe...</span><span class="tag"></p></span>
+<span class="com"><!-- An insecure iframed page loaded on a secure page --></span>
+<span class="tag"><iframe</span> <span class="atn">src</span><span class="pun">=</span><span class="atv">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/image-gallery-example.html"</span><span class="tag">></iframe></span>
 
-<span class="com">&lt;!-- Flash resources also qualify as active mixed content and pose a
-      serious security risk. Be sure to look for &lt;object&gt; tags with type set
-      to "application/x-shockwave-flash", and an http:// data attribute. --&gt;</span>
-<span class="com">&lt;!-- &lt;object type="application/x-shockwave-flash" data="http://..."&gt;&lt;/object&gt; --&gt;</span>
+<span class="com"><!-- Flash resources also qualify as active mixed content and pose a
+      serious security risk. Be sure to look for <object> tags with type set
+      to "application/x-shockwave-flash", and an http:// data attribute. --></span>
+<span class="com"><!-- <object type="application/x-shockwave-flash" data="http://..."></object> --></span>
 
-<span class="tag">&lt;script&gt;</span>
+<span class="tag"><script></span>
 <span class="com">// An insecure resource loaded using XMLHttpRequest</span>
 <span class="kwd">var</span><span class="pln"> request </span><span class="pun">=</span> <span class="kwd">new</span> <span class="typ">XMLHttpRequest</span><span class="pun">();</span><span class="pln">
         request</span><span class="pun">.</span><span class="pln">addEventListener</span><span class="pun">(</span><span class="str">'load'</span><span class="pun">,</span> <span class="kwd">function</span><span class="pun">()</span> <span class="pun">{</span>
 <span class="kwd">var</span><span class="pln"> jsonData </span><span class="pun">=</span><span class="pln"> JSON</span><span class="pun">.</span><span class="pln">parse</span><span class="pun">(</span><span class="pln">request</span><span class="pun">.</span><span class="pln">responseText</span><span class="pun">);</span><span class="pln">
-          document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">'output'</span><span class="pun">).</span><span class="pln">innerHTML </span><span class="pun">+=</span> <span class="str">'&lt;br&gt;'</span> <span class="pun">+</span><span class="pln"> jsonData</span><span class="pun">.</span><span class="pln">data</span><span class="pun">;</span>
+          document</span><span class="pun">.</span><span class="pln">getElementById</span><span class="pun">(</span><span class="str">'output'</span><span class="pun">).</span><span class="pln">innerHTML </span><span class="pun">+=</span> <span class="str">'<br>'</span> <span class="pun">+</span><span class="pln"> jsonData</span><span class="pun">.</span><span class="pln">data</span><span class="pun">;</span>
 <span class="pun">});</span><span class="pln">
         request</span><span class="pun">.</span><span class="pln">open</span><span class="pun">(</span><span class="str">"GET"</span><span class="pun">,</span> <span class="str">"http://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/xmlhttprequest-data.js"</span><span class="pun">,</span> <span class="kwd">true</span><span class="pun">);</span><span class="pln">
         request</span><span class="pun">.</span><span class="pln">send</span><span class="pun">();</span>
-<span class="tag">&lt;/script&gt;</span>
-<span class="tag">&lt;div</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"output"</span><span class="tag">&gt;</span><span class="pln">Waiting for insecure script to run...</span><span class="tag">&lt;/div&gt;</span>
-<span class="tag">&lt;/div&gt;</span>
-<span class="tag">&lt;script&gt;</span>
+<span class="tag"></script></span>
+<span class="tag"><div</span> <span class="atn">id</span><span class="pun">=</span><span class="atv">"output"</span><span class="tag">></span><span class="pln">Waiting for insecure script to run...</span><span class="tag"></div></span>
+<span class="tag"></div></span>
+<span class="tag"><script></span>
 <span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">b</span><span class="pun">,</span><span class="pln">o</span><span class="pun">,</span><span class="pln">i</span><span class="pun">,</span><span class="pln">l</span><span class="pun">,</span><span class="pln">e</span><span class="pun">,</span><span class="pln">r</span><span class="pun">){</span><span class="pln">b</span><span class="pun">.</span><span class="typ">GoogleAnalyticsObject</span><span class="pun">=</span><span class="pln">l</span><span class="pun">;</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]||(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">]=</span>
 <span class="kwd">function</span><span class="pun">(){(</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">=</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">q</span><span class="pun">||[]).</span><span class="pln">push</span><span class="pun">(</span><span class="pln">arguments</span><span class="pun">)});</span><span class="pln">b</span><span class="pun">[</span><span class="pln">l</span><span class="pun">].</span><span class="pln">l</span><span class="pun">=+</span><span class="kwd">new</span> <span class="typ">Date</span><span class="pun">;</span><span class="pln">
   e</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="pln">i</span><span class="pun">);</span><span class="pln">r</span><span class="pun">=</span><span class="pln">o</span><span class="pun">.</span><span class="pln">getElementsByTagName</span><span class="pun">[</span><span class="pln">i</span><span class="pun">](</span><span class="lit"></span><span class="pun">);</span><span class="pln">
@@ -634,9 +634,9 @@ happen in many places including, @font-face, cursor, background-image, and so on
       isCompleted</span><span class="pun">[</span><span class="pln">sampleName</span><span class="pun">]</span> <span class="pun">=</span> <span class="kwd">true</span><span class="pun">;</span>
 <span class="pun">}</span>
 <span class="pun">}</span>
-<span class="tag">&lt;/script&gt;</span>
-<span class="tag">&lt;/body&gt;</span>
-<span class="tag">&lt;/html&gt;</span>
+<span class="tag"></script></span>
+<span class="tag"></body></span>
+<span class="tag"></html></span>
 
 </pre>
 

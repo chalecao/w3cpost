@@ -16,8 +16,8 @@ Vue 最巧妙的特性之一是其响应式系统，而[我们](https://www.w3cd
 Vue 3.0 的响应式系统是独立的模块，可以完全脱离 Vue 而使用，所以[我们](https://www.w3cdoc.com)在 clone 了源码下来以后，可以直接在 packages/reactivity 模块下调试。
 
   1. 在项目根目录运行 `yarn dev reactivity`，然后进入 `packages/reactivity` 目录找到产出的 `dist/reactivity.global.js` 文件。
-  2. 新建一个 `index.html`，写入如下代码： <pre class="xml hljs"><code class="html">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">"./dist/reactivity.global.js"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+  2. 新建一个 `index.html`，写入如下代码： <pre class="xml hljs"><code class="html">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">"./dist/reactivity.global.js"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 &lt;span class="hljs-keyword">const&lt;/span> { reactive, effect } = VueObserver
 
 &lt;span class="hljs-keyword">const&lt;/span> origin = {
@@ -25,12 +25,12 @@ Vue 3.0 的响应式系统是独立的模块，可以完全脱离 Vue 而使用�
 }
 &lt;span class="hljs-keyword">const&lt;/span> state = reactive(origin)
 
-&lt;span class="hljs-keyword">const&lt;/span> fn = &lt;span class="hljs-function">() =&gt;&lt;/span> {
+&lt;span class="hljs-keyword">const&lt;/span> fn = &lt;span class="hljs-function">() =>&lt;/span> {
   &lt;span class="hljs-keyword">const&lt;/span> count = state.count
   &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">`set count to &lt;span class="hljs-subst">${count}&lt;/span>`&lt;/span>)
 }
 effect(fn)
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span></code></pre>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span></code></pre>
 
   3. 在[浏览器](https://www.w3cdoc.com)打开该文件，于控制台执行 `state.count++`，便可看到输出 `set count to 1`。
 
@@ -112,15 +112,15 @@ depsMap 是一个 Map，key 值为触发 getter 时的属性值（此处为 `cou
   &lt;span class="hljs-attr">age&lt;/span>: &lt;span class="hljs-number">18&lt;/span>
 })
 
-&lt;span class="hljs-keyword">const&lt;/span> effect1 = effect(&lt;span class="hljs-function">() =&gt;&lt;/span> {
+&lt;span class="hljs-keyword">const&lt;/span> effect1 = effect(&lt;span class="hljs-function">() =>&lt;/span> {
   &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'effect1: '&lt;/span> + state.count)
 })
 
-&lt;span class="hljs-keyword">const&lt;/span> effect2 = effect(&lt;span class="hljs-function">() =&gt;&lt;/span> {
+&lt;span class="hljs-keyword">const&lt;/span> effect2 = effect(&lt;span class="hljs-function">() =>&lt;/span> {
   &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'effect2: '&lt;/span> + state.age)
 })
 
-&lt;span class="hljs-keyword">const&lt;/span> effect3 = effect(&lt;span class="hljs-function">() =&gt;&lt;/span> {
+&lt;span class="hljs-keyword">const&lt;/span> effect3 = effect(&lt;span class="hljs-function">() =>&lt;/span> {
   &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'effect3: '&lt;/span> + state.count, state.age)
 })</code></pre>
 
@@ -181,12 +181,12 @@ setter 里面的 trigger() 函数会从依赖收集表里找到当前属性对�
   &lt;span class="hljs-keyword">const&lt;/span> effects = &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Set&lt;/span>()
   &lt;span class="hljs-keyword">if&lt;/span> (key !== &lt;span class="hljs-keyword">void&lt;/span> &lt;span class="hljs-number">0&lt;/span>) {
     &lt;span class="hljs-keyword">const&lt;/span> dep = depsMap.get(key)
-    dep && dep.forEach(&lt;span class="hljs-function">&lt;span class="hljs-params">effect&lt;/span> =&gt;&lt;/span> {
+    dep && dep.forEach(&lt;span class="hljs-function">&lt;span class="hljs-params">effect&lt;/span> =>&lt;/span> {
       effects.add(effect)
     })
   }
   &lt;span class="hljs-comment">// 简化版 scheduleRun，挨个执行 effect&lt;/span>
-  effects.forEach(&lt;span class="hljs-function">&lt;span class="hljs-params">effect&lt;/span> =&gt;&lt;/span> {
+  effects.forEach(&lt;span class="hljs-function">&lt;span class="hljs-params">effect&lt;/span> =>&lt;/span> {
     effect()
   })
 }</code></pre>

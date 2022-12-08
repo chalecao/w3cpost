@@ -217,7 +217,7 @@ total 3112
 
 **(5).指定ssh连接参数，如端口、连接的用户、ssh选项等。**
 
-<pre>[root@xuexi tmp]# &gt;~/.ssh/known_hosts   # 先清空host key以便下面的测试
+<pre>[root@xuexi tmp]# >~/.ssh/known_hosts   # 先清空host key以便下面的测试
 
 [root@xuexi tmp]# rsync -e "ssh -p 22 -o StrictHostKeyChecking=no" /etc/fstab 172.16.10.5:/tmp
 Warning: Permanently added '172.16.10.5' (RSA) to the list of known hosts.
@@ -376,18 +376,18 @@ total size is 3365016  speedup is 1.00</pre>
 
 <pre>root:~$ rsync -nr -i a b/
 cd+++++++++ a/
-&gt;f+++++++++ a/1.txt
-&gt;f+++++++++ a/2.txt
-&gt;f+++++++++ a/3.txt
-&gt;f+++++++++ a/4.txt</pre>
+>f+++++++++ a/1.txt
+>f+++++++++ a/2.txt
+>f+++++++++ a/3.txt
+>f+++++++++ a/4.txt</pre>
 
 这里已经显示了传输文件的路径&#8221;a/*&#8221;，也就是说包括了目录a，且是相对路径的。所以要写规则时，需要加上这个a路径，比如下面的排除规则。
 
 <pre>root:~$ rsync -nr -i --exclude="a/2.txt"  a b/
 cd+++++++++ a/
-&gt;f+++++++++ a/1.txt
-&gt;f+++++++++ a/3.txt
-&gt;f+++++++++ a/4.txt
+>f+++++++++ a/1.txt
+>f+++++++++ a/3.txt
+>f+++++++++ a/4.txt
 
 root:~$ rsync -nr -i --exclude="a/*.txt"  a b/
 cd+++++++++ a/</pre>
@@ -395,17 +395,17 @@ cd+++++++++ a/</pre>
 如果上面的传输路径a加上尾随斜线，再看-i的输出路径信息，发现已经改变了：
 
 <pre>root:~$ rsync -nr -i a/ b/
-&gt;f+++++++++ 1.txt
-&gt;f+++++++++ 2.txt
-&gt;f+++++++++ 3.txt
-&gt;f+++++++++ 4.txt</pre>
+>f+++++++++ 1.txt
+>f+++++++++ 2.txt
+>f+++++++++ 3.txt
+>f+++++++++ 4.txt</pre>
 
 所以这时的排除规则中不应该包含a目录前缀：
 
 <pre>root:~$ rsync -nr -i --exclude="2.txt" ./a/ b/
-&gt;f+++++++++ 1.txt
-&gt;f+++++++++ 3.txt
-&gt;f+++++++++ 4.txt</pre>
+>f+++++++++ 1.txt
+>f+++++++++ 3.txt
+>f+++++++++ 4.txt</pre>
 
 <a name="blog243"></a>
 
@@ -615,7 +615,7 @@ comment = anyone can access</pre>
 
 提供模块longshuai身份验证文件，由于rsync daemon是以root身份运行的，所以要求身份验证文件对非root用户不可读写，所以设置为600权限。
 
-<pre>[root@xuexi ~]# echo "rsync_backup:123456" &gt;&gt; /etc/rsyncd.passwd
+<pre>[root@xuexi ~]# echo "rsync_backup:123456" >> /etc/rsyncd.passwd
 
 [root@xuexi ~]# chmod 600 /etc/rsyncd.passwd</pre>
 
@@ -651,11 +651,11 @@ WantedBy=multi-user.target</pre>
 
 例如在客户端上：
 
-<pre>[root@xuexi ~]# echo "123456" &gt; /tmp/rsync_passwd</pre>
+<pre>[root@xuexi ~]# echo "123456" > /tmp/rsync_passwd</pre>
 
 然后使用该&#8221;&#8211;password-file&#8221;连接需要身份验证的longshuai模块。
 
-<pre>[root@xuexi ~]# echo "123456" &gt; /tmp/rsync_passwd</pre>
+<pre>[root@xuexi ~]# echo "123456" > /tmp/rsync_passwd</pre>
 
 如果需要访问模块中的某个文件，则：
 

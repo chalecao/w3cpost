@@ -28,7 +28,7 @@ Service worker 最终要去解决这些问题。虽然 Service Worker 的语法�
 
 那么[浏览器](https://www.w3cdoc.com)就会按照js来解析，但是不影响注册SW。示例：
 
-<pre class="pure-highlightjs"><code class="">&lt;script&gt;
+<pre class="pure-highlightjs"><code class="">&lt;script>
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
             setTimeout(function(){
@@ -48,7 +48,7 @@ Service worker 最终要去解决这些问题。虽然 Service Worker 的语法�
     }else{
         window.TES && TES.timeStamp('onload_no_sw');
     }
-&lt;/script&gt;
+&lt;/script>
 </code></pre>
 
 ## 关于fetch
@@ -68,7 +68,7 @@ fetch(url, {
     method: 'GET',
     headers: myHeaders,
     mode: 'cors'
-}) .then((res) =&gt; {
+}) .then((res) => {
     // TODO
 })
 </code>&lt;/code></pre>

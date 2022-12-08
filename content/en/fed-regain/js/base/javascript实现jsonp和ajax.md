@@ -70,7 +70,7 @@ AJAX的核心是XMLHttpRequest。
 
         //  status：响应的HTTP状态码，以2开头的都是成功
 
-        if(status &gt;= 200 && status &lt; 300) {
+        if(status >= 200 && status &lt; 300) {
 
           var response = '';
 
@@ -295,7 +295,7 @@ JSONP的请求过程：
 
 比如调用淘宝获取ip接口，返回数据是jsonp格式，代码如下：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">new Promise((resolve, reject) =&gt; {
+<pre class="EnlighterJSRAW" data-enlighter-language="null">new Promise((resolve, reject) => {
     ajax({
         url: '//www.taobao.com/help/getip.php',    // 淘宝获取ip接口，jsonp格式
         jsonp: 'ipCallback',  // 采用jsonp请求，且回调函数名为"ipCallback"
@@ -307,7 +307,7 @@ JSONP的请求过程：
             resolve({})
         }
     });
-}).then(res =&gt; {
+}).then(res => {
     console.log(res)
 })</pre>
 

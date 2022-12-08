@@ -22,18 +22,18 @@ JavaScript 作为一种典型的多范式编程语言，这两年随着React的�
 &lt;span class="c1">// Array.slice是纯函数，因为它没有副作用，对于固定的输入，输出总是固定的&lt;/span>
 &lt;span class="c1">// 可以，这很函数式&lt;/span>
 &lt;span class="nx">xs&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">slice&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">//=&gt; [1,2,3]&lt;/span>
+&lt;span class="c1">//=> [1,2,3]&lt;/span>
 &lt;span class="nx">xs&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">slice&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">//=&gt; [1,2,3]&lt;/span>
+&lt;span class="c1">//=> [1,2,3]&lt;/span>
 
 &lt;span class="c1">// Array.splice是不纯的，它有副作用，对于固定的输入，输出不是固定的&lt;/span>
 &lt;span class="c1">// 这不函数式&lt;/span>
 &lt;span class="nx">xs&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">splice&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">//=&gt; [1,2,3]&lt;/span>
+&lt;span class="c1">//=> [1,2,3]&lt;/span>
 &lt;span class="nx">xs&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">splice&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">//=&gt; [4,5]&lt;/span>
+&lt;span class="c1">//=> [4,5]&lt;/span>
 &lt;span class="nx">xs&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">splice&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">//=&gt; []&lt;/span>
+&lt;span class="c1">//=> []&lt;/span>
 </code>&lt;/code></pre>
 </div>
 
@@ -44,10 +44,10 @@ JavaScript 作为一种典型的多范式编程语言，这两年随着React的�
 <div class="highlight">
   <pre><code>&lt;code class="language-js">&lt;span class="c1">//不纯的&lt;/span>
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">min&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">18&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">checkage&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">age&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">age&lt;/span> &lt;span class="o">&gt;&lt;/span> &lt;span class="nx">min&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">checkage&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">age&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">age&lt;/span> &lt;span class="o">>&lt;/span> &lt;span class="nx">min&lt;/span>&lt;span class="p">;&lt;/span>
 
 &lt;span class="c1">//纯的，这很函数式&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">checkage&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">age&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">age&lt;/span> &lt;span class="o">&gt;&lt;/span> &lt;span class="mi">18&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">checkage&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">age&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">age&lt;/span> &lt;span class="o">>&lt;/span> &lt;span class="mi">18&lt;/span>&lt;span class="p">;&lt;/span>
 </code>&lt;/code></pre>
 </div>
 
@@ -59,7 +59,7 @@ JavaScript 作为一种典型的多范式编程语言，这两年随着React的�
 
 <div class="highlight">
   <pre><code>&lt;code class="language-js">&lt;span class="kr">import&lt;/span> &lt;span class="nx">_&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">'lodash'&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">sin&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">memorize&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">x&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nb">Math&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">sin&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">x&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">sin&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">memorize&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">x&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nb">Math&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">sin&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">x&lt;/span>&lt;span class="p">));&lt;/span>
 
 &lt;span class="c1">//第一次计算的时候会稍慢一点&lt;/span>
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">sin&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">);&lt;/span>
@@ -86,14 +86,14 @@ JavaScript 作为一种典型的多范式编程语言，这两年随着React的�
 &lt;span class="p">}&lt;/span>
 
 &lt;span class="c1">//ES6写法，也是比较正统的函数式写法&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">add&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">y&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">y&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">add&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">y&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">y&lt;/span>&lt;span class="p">);&lt;/span>
 
 &lt;span class="c1">//试试看&lt;/span>
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">add2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">add200&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">200&lt;/span>&lt;span class="p">);&lt;/span>
 
-&lt;span class="nx">add2&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// =&gt;4&lt;/span>
-&lt;span class="nx">add200&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// =&gt;250&lt;/span>
+&lt;span class="nx">add2&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// =>4&lt;/span>
+&lt;span class="nx">add200&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// =>250&lt;/span>
 </code>&lt;/code></pre>
 </div>
 
@@ -102,10 +102,10 @@ JavaScript 作为一种典型的多范式编程语言，这两年随着React的�
 还记得上面那个 **checkage**的函数吗？[我们](https://www.w3cdoc.com)可以这样柯里化它：
 
 <div class="highlight">
-  <pre><code>&lt;code class="language-text">var checkage = min =&gt; (age =&gt; age &gt; min);
+  <pre><code>&lt;code class="language-text">var checkage = min => (age => age > min);
 var checkage18 = checkage(18);
 checkage18(20);
-// =&gt;true
+// =>true
 </code>&lt;/code></pre>
 </div>
 
@@ -115,20 +115,20 @@ checkage18(20);
   <pre><code>&lt;code class="language-js">&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="nx">curry&lt;/span> &lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">'lodash'&lt;/span>&lt;span class="p">;&lt;/span>
 
 &lt;span class="c1">//首先柯里化两个纯函数&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">match&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">reg&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">match&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">reg&lt;/span>&lt;span class="p">));&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">filter&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">filter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">match&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">reg&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">match&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">reg&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">filter&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">filter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">));&lt;/span>
 
 &lt;span class="c1">//判断字符串里有没有空格&lt;/span>
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">haveSpace&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">match&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="sr">/\s+/g&lt;/span>&lt;span class="p">);&lt;/span>
 
 &lt;span class="nx">haveSpace&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"ffffffff"&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">//=&gt;null&lt;/span>
+&lt;span class="c1">//=>null&lt;/span>
 
 &lt;span class="nx">haveSpace&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"a b"&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">//=&gt;[" "]&lt;/span>
+&lt;span class="c1">//=>[" "]&lt;/span>
 
 &lt;span class="nx">filter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">haveSpace&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="s2">"abcdefg"&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s2">"Hello World"&lt;/span>&lt;span class="p">]);&lt;/span>
-&lt;span class="c1">//=&gt;["Hello world"]&lt;/span>
+&lt;span class="c1">//=>["Hello world"]&lt;/span>
 </code>&lt;/code></pre>
 </div>
 
@@ -154,13 +154,13 @@ checkage18(20);
 &lt;span class="p">};&lt;/span>
 
 &lt;span class="c1">//或者&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">compose&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">g&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">x&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">f&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">g&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">x&lt;/span>&lt;span class="p">)));&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">compose&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">g&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">x&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">f&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">g&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">x&lt;/span>&lt;span class="p">)));&lt;/span>
 
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">add1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">mul5&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">add1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">mul5&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">;&lt;/span>
 
 &lt;span class="nx">compose&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">mul5&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">add1&lt;/span>&lt;span class="p">)(&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">// =&gt;15 &lt;/span>
+&lt;span class="c1">// =>15 &lt;/span>
 </code>&lt;/code></pre>
 </div>
 
@@ -169,13 +169,13 @@ checkage18(20);
 这种灵活的组合可以让[我们](https://www.w3cdoc.com)像拼积木一样来组合函数式的代码：
 
 <div class="highlight">
-  <pre><code>&lt;code class="language-js">&lt;span class="kd">var&lt;/span> &lt;span class="nx">first&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">arr&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">reverse&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">arr&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">reverse&lt;/span>&lt;span class="p">();&lt;/span>
+  <pre><code>&lt;code class="language-js">&lt;span class="kd">var&lt;/span> &lt;span class="nx">first&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">arr&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">reverse&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">arr&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">reverse&lt;/span>&lt;span class="p">();&lt;/span>
 
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">last&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">compose&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">first&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">reverse&lt;/span>&lt;span class="p">);&lt;/span>
 
 &lt;span class="nx">last&lt;/span>&lt;span class="p">([&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">]);&lt;/span>
-&lt;span class="c1">// =&gt;5&lt;/span>
+&lt;span class="c1">// =>5&lt;/span>
 </code>&lt;/code></pre>
 </div>
 
@@ -188,9 +188,9 @@ checkage18(20);
 细心的话你可能会注意到，之前的代码中[我们](https://www.w3cdoc.com)总是喜欢把一些对象自带的方法转化成纯函数：
 
 <div class="highlight">
-  <pre><code>&lt;code class="language-js">&lt;span class="kd">var&lt;/span> &lt;span class="nx">map&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">);&lt;/span>
+  <pre><code>&lt;code class="language-js">&lt;span class="kd">var&lt;/span> &lt;span class="nx">map&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">);&lt;/span>
 
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">toUpperCase&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">word&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">word&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">toUpperCase&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">toUpperCase&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">word&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">word&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">toUpperCase&lt;/span>&lt;span class="p">();&lt;/span>
 </code>&lt;/code></pre>
 </div>
 
@@ -204,20 +204,20 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
 
 <div class="highlight">
   <pre><code>&lt;code class="language-js">&lt;span class="c1">//这不Piont free&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">f&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">str&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">toUpperCase&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="nx">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">' '&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">f&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">str&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">toUpperCase&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="nx">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">' '&lt;/span>&lt;span class="p">);&lt;/span>
 </code>&lt;/code></pre>
 </div>
 
 这个函数中，[我们](https://www.w3cdoc.com)使用了 str 作为[我们](https://www.w3cdoc.com)的中间变量，但这个中间变量除了让代码变得长了一点以外是毫无意义的。下面改造一下这段代码：
 
 <div class="highlight">
-  <pre><code>&lt;code class="language-js">&lt;span class="kd">var&lt;/span> &lt;span class="nx">toUpperCase&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">word&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">word&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">toUpperCase&lt;/span>&lt;span class="p">();&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">split&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">str&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">x&lt;/span>&lt;span class="p">));&lt;/span>
+  <pre><code>&lt;code class="language-js">&lt;span class="kd">var&lt;/span> &lt;span class="nx">toUpperCase&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">word&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">word&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">toUpperCase&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">split&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">str&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">x&lt;/span>&lt;span class="p">));&lt;/span>
 
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">f&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">compose&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">' '&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nx">toUpperCase&lt;/span>&lt;span class="p">);&lt;/span>
 
 &lt;span class="nx">f&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"abcd efgh"&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">// =&gt;["ABCD", "EFGH"]&lt;/span>
+&lt;span class="c1">// =>["ABCD", "EFGH"]&lt;/span>
 </code>&lt;/code></pre>
 </div>
 
@@ -237,7 +237,7 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
 &lt;span class="p">}&lt;/span>
 
 &lt;span class="c1">//声明式&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">CEOs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">companies&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">c&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">c&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">CEO&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">CEOs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">companies&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">c&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">c&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">CEO&lt;/span>&lt;span class="p">);&lt;/span>
 </code>&lt;/code></pre>
 </div>
 
@@ -270,10 +270,10 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
 <div class="highlight">
   <pre><code>&lt;code class="language-js">&lt;span class="kd">var&lt;/span> &lt;span class="nx">foo&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">$&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'#foo'&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;span class="nx">foo&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getElementById&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'foo'&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">//=&gt; false&lt;/span>
+&lt;span class="c1">//=> false&lt;/span>
 
 &lt;span class="nx">foo&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nb">document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getElementById&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'foo'&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">//=&gt; true&lt;/span>
+&lt;span class="c1">//=> true&lt;/span>
 </code>&lt;/code></pre>
 </div>
 
@@ -287,14 +287,14 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
   <pre><code>&lt;code class="language-js">&lt;span class="kd">var&lt;/span> &lt;span class="nx">Container&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kd">function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">x&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
   &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">__value&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">x&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="p">}&lt;/span>
-&lt;span class="nx">Container&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">Container&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">x&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="nx">Container&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">Container&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">x&lt;/span>&lt;span class="p">);&lt;/span>
 
 &lt;span class="c1">//试试看&lt;/span>
 &lt;span class="nx">Container&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">//=&gt; Container(1)&lt;/span>
+&lt;span class="c1">//=> Container(1)&lt;/span>
 
 &lt;span class="nx">Container&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'abcd'&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">//=&gt; Container('abcd')&lt;/span>
+&lt;span class="c1">//=> Container('abcd')&lt;/span>
 </code>&lt;/code></pre>
 </div>
 
@@ -311,8 +311,8 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
 
 <div class="highlight">
   <pre><code>&lt;code class="language-js">&lt;span class="nx">Container&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span>
-    &lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">x&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>                &lt;span class="c1">//=&gt; Container(4)&lt;/span>
-    &lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">x&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="s1">'Result is '&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">x&lt;/span>&lt;span class="p">);&lt;/span>    &lt;span class="c1">//=&gt; Container('Result is 4')&lt;/span>
+    &lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">x&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>                &lt;span class="c1">//=> Container(4)&lt;/span>
+    &lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">x&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="s1">'Result is '&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">x&lt;/span>&lt;span class="p">);&lt;/span>    &lt;span class="c1">//=> Container('Result is 4')&lt;/span>
 </code>&lt;/code></pre>
 </div>
 
@@ -352,12 +352,12 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
 &lt;span class="nx">Maybe&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="nx">name&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">"Stark"&lt;/span>&lt;span class="p">})&lt;/span>
     &lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">prop&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"age"&lt;/span>&lt;span class="p">))&lt;/span>
     &lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">));&lt;/span>
-&lt;span class="c1">//=&gt; Maybe(null)&lt;/span>
+&lt;span class="c1">//=> Maybe(null)&lt;/span>
 
 &lt;span class="nx">Maybe&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="nx">name&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">"Stark"&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">age&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="mi">21&lt;/span>&lt;span class="p">})&lt;/span>
     &lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">prop&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"age"&lt;/span>&lt;span class="p">))&lt;/span>
     &lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">));&lt;/span>
-&lt;span class="c1">//=&gt; Maybe(31)&lt;/span>
+&lt;span class="c1">//=> Maybe(31)&lt;/span>
 </code>&lt;/code></pre>
 </div>
 
@@ -371,13 +371,13 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">add&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">curry&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">add&lt;/span>&lt;span class="p">);&lt;/span>
 
 &lt;span class="c1">// 创造一个柯里化的 map&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">map&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">functor&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">functor&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">map&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">functor&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">functor&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">));&lt;/span>
 
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">doEverything&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">compose&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">property&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"age"&lt;/span>&lt;span class="p">)));&lt;/span>
 
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">functor&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">Maybe&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="nx">name&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s2">"Stark"&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">age&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="mi">21&lt;/span>&lt;span class="p">});&lt;/span>
 &lt;span class="nx">doEverything&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">functor&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">//=&gt; Maybe(31)&lt;/span>
+&lt;span class="c1">//=> Maybe(31)&lt;/span>
 </code>&lt;/code></pre>
 </div>
 
@@ -404,7 +404,7 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
   <pre><code>&lt;code class="language-js">&lt;span class="nx">doSomething&lt;/span>&lt;span class="p">()&lt;/span>
     &lt;span class="p">.&lt;/span>&lt;span class="nx">then&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">async1&lt;/span>&lt;span class="p">)&lt;/span>
     &lt;span class="p">.&lt;/span>&lt;span class="nx">then&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">async2&lt;/span>&lt;span class="p">)&lt;/span>
-    &lt;span class="p">.&lt;/span>&lt;span class="k">catch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">));&lt;/span>
+    &lt;span class="p">.&lt;/span>&lt;span class="k">catch&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">console&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">e&lt;/span>&lt;span class="p">));&lt;/span>
 </code>&lt;/code></pre>
 </div>
 
@@ -440,10 +440,10 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
 下面来看看 **Left** 和 **Right** 的区别吧：
 
 <div class="highlight">
-  <pre><code>&lt;code class="language-js">&lt;span class="nx">Right&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"Hello"&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">str&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">str&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">" World!"&lt;/span>&lt;span class="p">);&lt;/span>
+  <pre><code>&lt;code class="language-js">&lt;span class="nx">Right&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"Hello"&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">str&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">str&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">" World!"&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;span class="c1">// Right("Hello World!")&lt;/span>
 
-&lt;span class="nx">Left&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"Hello"&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">str&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">str&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">" World!"&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="nx">Left&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"Hello"&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">str&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">str&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="s2">" World!"&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;span class="c1">// Left("Hello")&lt;/span>
 </code>&lt;/code></pre>
 </div>
@@ -451,14 +451,14 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
 **Left** 和 **Right** 唯一的区别就在于 **map** 方法的实现，**Right.map** 的行为和[我们](https://www.w3cdoc.com)之前提到的 **map** 函数一样。但是 **Left.map** 就很不同了：**它不会对容器做任何事情，只是很简单地把这个容器拿进来又扔出去。这个特性意味着，Left 可以用来传递一个错误消息。**
 
 <div class="highlight">
-  <pre><code>&lt;code class="language-js">&lt;span class="kd">var&lt;/span> &lt;span class="nx">getAge&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">user&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">user&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">age&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="nx">Right&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">user&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">age&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="nx">Left&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"ERROR!"&lt;/span>&lt;span class="p">);&lt;/span>
+  <pre><code>&lt;code class="language-js">&lt;span class="kd">var&lt;/span> &lt;span class="nx">getAge&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">user&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">user&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">age&lt;/span> &lt;span class="o">?&lt;/span> &lt;span class="nx">Right&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">user&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">age&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="nx">Left&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"ERROR!"&lt;/span>&lt;span class="p">);&lt;/span>
 
 &lt;span class="c1">//试试&lt;/span>
-&lt;span class="nx">getAge&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="nx">name&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">'stark'&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">age&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">'21'&lt;/span>&lt;span class="p">}).&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">age&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="s1">'Age is '&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">age&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">//=&gt; Right('Age is 21')&lt;/span>
+&lt;span class="nx">getAge&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="nx">name&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">'stark'&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">age&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">'21'&lt;/span>&lt;span class="p">}).&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">age&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="s1">'Age is '&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">age&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="c1">//=> Right('Age is 21')&lt;/span>
 
-&lt;span class="nx">getAge&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="nx">name&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">'stark'&lt;/span>&lt;span class="p">}).&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">age&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="s1">'Age is '&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">age&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">//=&gt; Left('ERROR!')&lt;/span>
+&lt;span class="nx">getAge&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="nx">name&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="s1">'stark'&lt;/span>&lt;span class="p">}).&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">age&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="s1">'Age is '&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nx">age&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="c1">//=> Left('ERROR!')&lt;/span>
 </code>&lt;/code></pre>
 </div>
 
@@ -502,7 +502,7 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
     &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">__value&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">f&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="p">}&lt;/span>
 
-&lt;span class="nx">IO&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">IO&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">_&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">x&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="nx">IO&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">IO&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">_&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">x&lt;/span>&lt;span class="p">);&lt;/span>
 
 &lt;span class="nx">IO&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">prototype&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kd">function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
     &lt;span class="k">return&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">IO&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">compose&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">__value&lt;/span>&lt;span class="p">))&lt;/span>
@@ -513,10 +513,10 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
 **IO** 跟前面那几个 **Functor** 不同的地方在于，它的 __value 是一个函数。它把不纯的操作（比如 IO、网络请求、DOM）包裹到一个函数内，从而延迟这个操作的执行。所以[我们](https://www.w3cdoc.com)认为，**IO 包含的是被包裹的操作的返回值**。
 
 <div class="highlight">
-  <pre><code>&lt;code class="language-js">&lt;span class="kd">var&lt;/span> &lt;span class="nx">io_document&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">IO&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">_&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nb">document&lt;/span>&lt;span class="p">);&lt;/span>
+  <pre><code>&lt;code class="language-js">&lt;span class="kd">var&lt;/span> &lt;span class="nx">io_document&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">IO&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">_&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nb">document&lt;/span>&lt;span class="p">);&lt;/span>
 
 &lt;span class="nx">io_document&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kd">function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">doc&lt;/span>&lt;span class="p">){&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="nx">doc&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">title&lt;/span> &lt;span class="p">});&lt;/span>
-&lt;span class="c1">//=&gt; IO(document.title)&lt;/span>
+&lt;span class="c1">//=> IO(document.title)&lt;/span>
 </code>&lt;/code></pre>
 </div>
 
@@ -531,25 +531,25 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
 
 &lt;span class="c1">// 先来几个基础函数：&lt;/span>
 &lt;span class="c1">// 字符串&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">split&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="kr">char&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kr">char&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">split&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="kr">char&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">str&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kr">char&lt;/span>&lt;span class="p">));&lt;/span>
 &lt;span class="c1">// 数组&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">first&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">arr&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">last&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">arr&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">arr&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">];&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">filter&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">filter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">first&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">arr&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">last&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">arr&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">arr&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">length&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">];&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">filter&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">arr&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">filter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">));&lt;/span>
 &lt;span class="c1">//注意这里的 x 既可以是数组，也可以是 functor&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">map&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">x&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">x&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">map&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">x&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">x&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">f&lt;/span>&lt;span class="p">));&lt;/span>
 &lt;span class="c1">// 判断&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">eq&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">x&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">y&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nx">y&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">eq&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">curry&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nx">x&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">y&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">x&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nx">y&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;span class="c1">// 结合&lt;/span>
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">compose&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">flowRight&lt;/span>&lt;span class="p">;&lt;/span>
 
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">toPairs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">compose&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'='&lt;/span>&lt;span class="p">)),&lt;/span> &lt;span class="nx">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'&'&lt;/span>&lt;span class="p">));&lt;/span>
 &lt;span class="c1">// toPairs('a=1&b=2')&lt;/span>
-&lt;span class="c1">//=&gt; [['a', '1'], ['b', '2']]&lt;/span>
+&lt;span class="c1">//=> [['a', '1'], ['b', '2']]&lt;/span>
 
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">params&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">compose&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">toPairs&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">last&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">'?'&lt;/span>&lt;span class="p">));&lt;/span>
 &lt;span class="c1">// params('https://xxx.com?a=1&b=2')&lt;/span>
-&lt;span class="c1">//=&gt; [['a', '1'], ['b', '2']]&lt;/span>
+&lt;span class="c1">//=> [['a', '1'], ['b', '2']]&lt;/span>
 
 &lt;span class="c1">// 这里会有些难懂=。= 慢慢看&lt;/span>
 &lt;span class="c1">// 1.首先，getParam是一个接受IO(url)，返回一个新的接受 key 的函数；&lt;/span>
@@ -560,10 +560,10 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
 &lt;span class="c1">//   的数组；&lt;/span>
 &lt;span class="c1">// 4.最后调用 Maybe.of，把它包装起来。&lt;/span>
 &lt;span class="c1">// 5.这一系列的调用是针对 IO 的，所以[我们](https://www.w3cdoc.com)用 map 把这些调用封装起来。&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">getParam&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">url&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">key&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">compose&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">Maybe&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">filter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">compose&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">eq&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">key&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nx">first&lt;/span>&lt;span class="p">)),&lt;/span> &lt;span class="nx">params&lt;/span>&lt;span class="p">))(&lt;/span>&lt;span class="nx">url&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">getParam&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">url&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">key&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nx">map&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">compose&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">Maybe&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">of&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">filter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">compose&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">eq&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">key&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="nx">first&lt;/span>&lt;span class="p">)),&lt;/span> &lt;span class="nx">params&lt;/span>&lt;span class="p">))(&lt;/span>&lt;span class="nx">url&lt;/span>&lt;span class="p">);&lt;/span>
 
 &lt;span class="c1">// 创建充满了洪荒之力的 IO！！！&lt;/span>
-&lt;span class="kd">var&lt;/span> &lt;span class="nx">url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">IO&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">_&lt;/span> &lt;span class="o">=&gt;&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">location&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">href&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;span class="kd">var&lt;/span> &lt;span class="nx">url&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">IO&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">_&lt;/span> &lt;span class="o">=>&lt;/span> &lt;span class="nb">window&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">location&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">href&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;span class="c1">// 最终的调用函数！！！&lt;/span>
 &lt;span class="kd">var&lt;/span> &lt;span class="nx">findParam&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">getParam&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">url&lt;/span>&lt;span class="p">);&lt;/span>
 
@@ -571,7 +571,7 @@ Point Free这种模式现在还暂且没有中文的翻译，有兴趣的话可�
 &lt;span class="c1">// 假设现在的 url 是 https://xxx.com?a=1&b=2&lt;/span>
 &lt;span class="c1">// 调用 __value() 来运行它！&lt;/span>
 &lt;span class="nx">findParam&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"a"&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="nx">__value&lt;/span>&lt;span class="p">();&lt;/span>
-&lt;span class="c1">//=&gt; Maybe(['a', '1'])&lt;/span>
+&lt;span class="c1">//=> Maybe(['a', '1'])&lt;/span>
 </code>&lt;/code></pre>
 </div>
 

@@ -236,7 +236,7 @@ foo = &lt;span class="hljs-string">"456"&lt;/span>; &lt;span class="hljs-comment
   <h3 class="heading" data-id="heading-11">
     基本语法
   </h3>
-  <pre><code class="hljs typescript copyable" lang="typescript">:&lt;TypeAnnotation&gt;
+  <pre><code class="hljs typescript copyable" lang="typescript">:&lt;TypeAnnotation>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
  TypeScript的基本类型语法是在变量之后使用冒号进行类型标识，这种语法也揭示了TypeScript的类型声明实际上是可选的。
   
@@ -502,7 +502,7 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
 &lt;span class="hljs-keyword">interface&lt;/span> State {
     readonly bar: &lt;span class="hljs-built_in">number&lt;/span>;
 }
-&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">class&lt;/span> Something &lt;span class="hljs-keyword">extends&lt;/span> React.Component&lt;Props,State&gt; {
+&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">class&lt;/span> Something &lt;span class="hljs-keyword">extends&lt;/span> React.Component&lt;Props,State> {
   someMethod() {
     &lt;span class="hljs-keyword">this&lt;/span>.props.foo = &lt;span class="hljs-number">123&lt;/span>; &lt;span class="hljs-comment">// ERROR: (props are immutable)&lt;/span>
     &lt;span class="hljs-keyword">this&lt;/span>.state.baz = &lt;span class="hljs-number">456&lt;/span>; &lt;span class="hljs-comment">// ERROR: (one should use this.setState)  &lt;/span>
@@ -526,9 +526,9 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
   </h3>
  在更加一般化的场景，[我们](https://www.w3cdoc.com)的类型可能并不固定已知，它和<code>any</code>有点像，只不过[我们](https://www.w3cdoc.com)希望在<code>any</code>的基础上能够有更近一步的约束，比如：
   
-  <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">reverse&lt;/span>&lt;&lt;span class="hljs-title">T&lt;/span>&gt;(&lt;span class="hljs-params">items: T[]&lt;/span>): &lt;span class="hljs-title">T&lt;/span>[] &lt;/span>{
+  <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">reverse&lt;/span>&lt;&lt;span class="hljs-title">T&lt;/span>>(&lt;span class="hljs-params">items: T[]&lt;/span>): &lt;span class="hljs-title">T&lt;/span>[] &lt;/span>{
     &lt;span class="hljs-keyword">var&lt;/span> toreturn = [];
-    &lt;span class="hljs-keyword">for&lt;/span> (&lt;span class="hljs-keyword">let&lt;/span> i = items.length - &lt;span class="hljs-number">1&lt;/span>; i &gt;= &lt;span class="hljs-number">0&lt;/span>; i--) {
+    &lt;span class="hljs-keyword">for&lt;/span> (&lt;span class="hljs-keyword">let&lt;/span> i = items.length - &lt;span class="hljs-number">1&lt;/span>; i >= &lt;span class="hljs-number">0&lt;/span>; i--) {
         toreturn.push(items[i]);
     }
     &lt;span class="hljs-keyword">return&lt;/span> toreturn;
@@ -538,7 +538,7 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
   
  在调用时，可以显示的指定泛型类型：
   
-  <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">var&lt;/span> reversed = reverse&lt;&lt;span class="hljs-built_in">number&lt;/span>&gt;([&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>]);
+  <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">var&lt;/span> reversed = reverse&lt;&lt;span class="hljs-built_in">number&lt;/span>>([&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>]);
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
  也可以利用TypeScript的类型推断，进行隐式调用：
   
@@ -548,7 +548,7 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
   
  对于泛型而言，[我们](https://www.w3cdoc.com)同样可以作用于接口和类：
   
-  <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">interface&lt;/span> Array&lt;T&gt; {
+  <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">interface&lt;/span> Array&lt;T> {
  reverse(): T[];
  &lt;span class="hljs-comment">// ...&lt;/span>
 }
@@ -574,8 +574,8 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
   </h3>
  如果说联合类型的语义等同于<code>或者</code>，那么交叉类型的语义等同于集合中的<code>并集</code>，下面的<code>extend</code>函数是最好的说明：
   
-  <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">extend&lt;/span>&lt;&lt;span class="hljs-title">T&lt;/span>, &lt;span class="hljs-title">U&lt;/span>&gt;(&lt;span class="hljs-params">first: T, second: U&lt;/span>): &lt;span class="hljs-title">T&lt;/span> & &lt;span class="hljs-title">U&lt;/span> &lt;/span>{
-    &lt;span class="hljs-keyword">let&lt;/span> result = &lt;T & U&gt; {};
+  <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">extend&lt;/span>&lt;&lt;span class="hljs-title">T&lt;/span>, &lt;span class="hljs-title">U&lt;/span>>(&lt;span class="hljs-params">first: T, second: U&lt;/span>): &lt;span class="hljs-title">T&lt;/span> & &lt;span class="hljs-title">U&lt;/span> &lt;/span>{
+    &lt;span class="hljs-keyword">let&lt;/span> result = &lt;T & U> {};
     &lt;span class="hljs-keyword">for&lt;/span> (&lt;span class="hljs-keyword">let&lt;/span> id &lt;span class="hljs-keyword">in&lt;/span> first) {
         result[id] = first[id];
     }
@@ -604,7 +604,7 @@ str = &lt;span class="hljs-literal">undefined&lt;/span>;
   
   <pre><code class="hljs typescript copyable" lang="typescript">&lt;span class="hljs-keyword">type&lt;/span> Text = &lt;span class="hljs-built_in">string&lt;/span> | { text: &lt;span class="hljs-built_in">string&lt;/span> };
 &lt;span class="hljs-keyword">type&lt;/span> Coordinates = [&lt;span class="hljs-built_in">number&lt;/span>, &lt;span class="hljs-built_in">number&lt;/span>];
-&lt;span class="hljs-keyword">type&lt;/span> Callback = &lt;span class="hljs-function">(&lt;span class="hljs-params">data: &lt;span class="hljs-built_in">string&lt;/span>&lt;/span>) =&gt;&lt;/span> &lt;span class="hljs-built_in">void&lt;/span>;
+&lt;span class="hljs-keyword">type&lt;/span> Callback = &lt;span class="hljs-function">(&lt;span class="hljs-params">data: &lt;span class="hljs-built_in">string&lt;/span>&lt;/span>) =>&lt;/span> &lt;span class="hljs-built_in">void&lt;/span>;
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
  对于type和interface的取舍：
   
@@ -1214,7 +1214,7 @@ tom.id = &lt;span class="hljs-number">89757&lt;/span>; &lt;span class="hljs-comm
 
     
     <pre><code class="hljs js copyable" lang="js">&lt;span class="hljs-keyword">let&lt;/span> fibonacci: number[] = [&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>, &lt;span class="hljs-number">5&lt;/span>];
-&lt;span class="hljs-keyword">let&lt;/span> fibonacci: &lt;span class="hljs-built_in">Array&lt;/span>&lt;number&gt; = [&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>, &lt;span class="hljs-number">5&lt;/span>];
+&lt;span class="hljs-keyword">let&lt;/span> fibonacci: &lt;span class="hljs-built_in">Array&lt;/span>&lt;number> = [&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>, &lt;span class="hljs-number">5&lt;/span>];
 
 &#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;用接口表示数组&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;
 interface NumberArray {
@@ -1268,8 +1268,8 @@ fibonacci.push(&lt;span class="hljs-string">'8'&lt;/span>);&#x274c;
 &lt;span class="hljs-keyword">let&lt;/span> mySum = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">x: number, y: number&lt;/span>): &lt;span class="hljs-title">number&lt;/span> &lt;/span>{
     &lt;span class="hljs-keyword">return&lt;/span> x + y;
 };
-&lt;span class="hljs-comment">// 不要混淆了 TypeScript 中的 =&gt; 和 ES6 中的 =&gt;&lt;/span>
-&lt;span class="hljs-keyword">let&lt;/span> mySum: &lt;span class="hljs-function">(&lt;span class="hljs-params">x: number, y: number&lt;/span>) =&gt;&lt;/span> number = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">x: number, y: number&lt;/span>): &lt;span class="hljs-title">number&lt;/span> &lt;/span>{
+&lt;span class="hljs-comment">// 不要混淆了 TypeScript 中的 => 和 ES6 中的 =>&lt;/span>
+&lt;span class="hljs-keyword">let&lt;/span> mySum: &lt;span class="hljs-function">(&lt;span class="hljs-params">x: number, y: number&lt;/span>) =>&lt;/span> number = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">x: number, y: number&lt;/span>): &lt;span class="hljs-title">number&lt;/span> &lt;/span>{
     &lt;span class="hljs-keyword">return&lt;/span> x + y;
 };
 &#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;接口定义函数的形状&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;&#x2796;
@@ -1352,8 +1352,8 @@ sum(&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;
     
     <pre><code class="hljs js copyable" lang="js">&lt;span class="hljs-comment">// 可以使用类型断言，将 something 断言成 string&lt;/span>
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">getLength&lt;/span>(&lt;span class="hljs-params">something: string | number&lt;/span>): &lt;span class="hljs-title">number&lt;/span> &lt;/span>{
-    &lt;span class="hljs-keyword">if&lt;/span> ((&lt;string&gt;something).length) {
-        return (&lt;string&gt;something).length;
+    &lt;span class="hljs-keyword">if&lt;/span> ((&lt;string>something).length) {
+        return (&lt;string>something).length;
     } else {
         return something.toString().length;
     }
@@ -1382,7 +1382,7 @@ sum(&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;
     
     <pre><code class="hljs js copyable" lang="js">&lt;span class="hljs-comment">// 使用 type 创建类型别名,类型别名常用于联合类型&lt;/span>
 type Name = string;
-type NameResolver = &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> string;
+type NameResolver = &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> string;
 type NameOrResolver = Name | NameResolver;
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">getName&lt;/span>(&lt;span class="hljs-params">n: NameOrResolver&lt;/span>): &lt;span class="hljs-title">Name&lt;/span> &lt;/span>{
     &lt;span class="hljs-keyword">if&lt;/span> (&lt;span class="hljs-keyword">typeof&lt;/span> n === &lt;span class="hljs-string">'string'&lt;/span>) {
@@ -1530,24 +1530,24 @@ abstract class Animal {
   &lt;span class="hljs-keyword">return&lt;/span> value;
 }
 
-&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;使用泛型后就可以解决这个问题
+>>>>>>>>>>使用泛型后就可以解决这个问题
 &lt;span class="hljs-comment">// T表示泛型，具体什么类型是调用这个方法的时候决定的&lt;/span>
 &lt;span class="hljs-comment">// 表示参数是什么类型就返回什么类型~~~&lt;/span>
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">getData&lt;/span>&lt;&lt;span class="hljs-title">T&lt;/span>&gt;(&lt;span class="hljs-params">value:T&lt;/span>):&lt;span class="hljs-title">T&lt;/span>&lt;/span>{
+&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">getData&lt;/span>&lt;&lt;span class="hljs-title">T&lt;/span>>(&lt;span class="hljs-params">value:T&lt;/span>):&lt;span class="hljs-title">T&lt;/span>&lt;/span>{
   &lt;span class="hljs-keyword">return&lt;/span> value;
 }
-getData&lt;number&gt;(&lt;span class="hljs-number">123&lt;/span>);
-getData&lt;string&gt;(&lt;span class="hljs-string">'1214231'&lt;/span>);
+getData&lt;number>(&lt;span class="hljs-number">123&lt;/span>);
+getData&lt;string>(&lt;span class="hljs-string">'1214231'&lt;/span>);
 
 &lt;span class="hljs-comment">// 定义接口&lt;/span>
 interface ConfigFn{
-    &lt;T&gt;(value:T):T;
+    &lt;T>(value:T):T;
 }
-&lt;span class="hljs-keyword">var&lt;/span> getData:ConfigFn=&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;&lt;span class="hljs-title">T&lt;/span>&gt;(&lt;span class="hljs-params">value:T&lt;/span>):&lt;span class="hljs-title">T&lt;/span>&lt;/span>{
+&lt;span class="hljs-keyword">var&lt;/span> getData:ConfigFn=&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;&lt;span class="hljs-title">T&lt;/span>>(&lt;span class="hljs-params">value:T&lt;/span>):&lt;span class="hljs-title">T&lt;/span>&lt;/span>{
   &lt;span class="hljs-keyword">return&lt;/span> value;
 }
-getData&lt;string&gt;(&lt;span class="hljs-string">'张三'&lt;/span>);
-getData&lt;string&gt;(&lt;span class="hljs-number">1243&lt;/span>);  &lt;span class="hljs-comment">//错误&lt;/span>
+getData&lt;string>(&lt;span class="hljs-string">'张三'&lt;/span>);
+getData&lt;string>(&lt;span class="hljs-number">1243&lt;/span>);  &lt;span class="hljs-comment">//错误&lt;/span>
 </code></pre>
   </div>
 </div>

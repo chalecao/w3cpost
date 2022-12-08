@@ -19,7 +19,7 @@ Object.create();</pre>
 3. 字符串
 
 <pre class="csharpcode"><span class="kwrd">new</span> String(“hello hyddd”);
-“&lt;p&gt;” + e.innerHTML + “&lt;/p&gt;”</pre>
+“&lt;p>” + e.innerHTML + “&lt;/p>”</pre>
 
 随带一说，javascript的字符串和.Net一样，使用资源池和copy on write方式管理字符串。
 

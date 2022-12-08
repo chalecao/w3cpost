@@ -463,25 +463,25 @@ Promise.all可以将多个Promise实例包装成一个新的Promise实例。同�
 
 具体代码如下：
 
-<pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-keyword">let&lt;/span> p1 = &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">(&lt;span class="hljs-params">resolve, reject&lt;/span>) =&gt;&lt;/span> {
+<pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-keyword">let&lt;/span> p1 = &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">(&lt;span class="hljs-params">resolve, reject&lt;/span>) =>&lt;/span> {
   resolve(&lt;span class="hljs-string">'成功了'&lt;/span>)
 })
 
-&lt;span class="hljs-keyword">let&lt;/span> p2 = &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">(&lt;span class="hljs-params">resolve, reject&lt;/span>) =&gt;&lt;/span> {
+&lt;span class="hljs-keyword">let&lt;/span> p2 = &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">(&lt;span class="hljs-params">resolve, reject&lt;/span>) =>&lt;/span> {
   resolve(&lt;span class="hljs-string">'success'&lt;/span>)
 })
 
 &lt;span class="hljs-keyword">let&lt;/span> p3 = Promse.reject(&lt;span class="hljs-string">'失败'&lt;/span>)
 
-&lt;span class="hljs-built_in">Promise&lt;/span>.all([p1, p2]).then(&lt;span class="hljs-function">(&lt;span class="hljs-params">result&lt;/span>) =&gt;&lt;/span> {
+&lt;span class="hljs-built_in">Promise&lt;/span>.all([p1, p2]).then(&lt;span class="hljs-function">(&lt;span class="hljs-params">result&lt;/span>) =>&lt;/span> {
   &lt;span class="hljs-built_in">console&lt;/span>.log(result)               &lt;span class="hljs-comment">//['成功了', 'success']&lt;/span>
-}).catch(&lt;span class="hljs-function">(&lt;span class="hljs-params">error&lt;/span>) =&gt;&lt;/span> {
+}).catch(&lt;span class="hljs-function">(&lt;span class="hljs-params">error&lt;/span>) =>&lt;/span> {
   &lt;span class="hljs-built_in">console&lt;/span>.log(error)
 })
 
-&lt;span class="hljs-built_in">Promise&lt;/span>.all([p1,p3,p2]).then(&lt;span class="hljs-function">(&lt;span class="hljs-params">result&lt;/span>) =&gt;&lt;/span> {
+&lt;span class="hljs-built_in">Promise&lt;/span>.all([p1,p3,p2]).then(&lt;span class="hljs-function">(&lt;span class="hljs-params">result&lt;/span>) =>&lt;/span> {
   &lt;span class="hljs-built_in">console&lt;/span>.log(result)
-}).catch(&lt;span class="hljs-function">(&lt;span class="hljs-params">error&lt;/span>) =&gt;&lt;/span> {
+}).catch(&lt;span class="hljs-function">(&lt;span class="hljs-params">error&lt;/span>) =>&lt;/span> {
   &lt;span class="hljs-built_in">console&lt;/span>.log(error)      &lt;span class="hljs-comment">// 失败了，打出 '失败'&lt;/span>
 })
 </code></pre>
@@ -490,9 +490,9 @@ Promse.all在处理多个异步处理时非常有用，比如说一个页面上�
 
 代码模拟：
 
-<pre class="hljs php"><code class="php">let wake = (time) =&gt; {
-  &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-keyword">new&lt;/span> Promise((resolve, reject) =&gt; {
-    setTimeout(() =&gt; {
+<pre class="hljs php"><code class="php">let wake = (time) => {
+  &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-keyword">new&lt;/span> Promise((resolve, reject) => {
+    setTimeout(() => {
       resolve(`${time / &lt;span class="hljs-number">1000&lt;/span>}秒后醒来`)
     }, time)
   })
@@ -501,9 +501,9 @@ Promse.all在处理多个异步处理时非常有用，比如说一个页面上�
 let p1 = wake(&lt;span class="hljs-number">3000&lt;/span>)
 let p2 = wake(&lt;span class="hljs-number">2000&lt;/span>)
 
-Promise.all([p1, p2]).then((result) =&gt; {
+Promise.all([p1, p2]).then((result) => {
   console.log(result)       &lt;span class="hljs-comment">// [ '3秒后醒来', '2秒后醒来' ]&lt;/span>
-}).&lt;span class="hljs-keyword">catch&lt;/span>((error) =&gt; {
+}).&lt;span class="hljs-keyword">catch&lt;/span>((error) => {
   console.log(error)
 })
 </code></pre>
@@ -514,21 +514,21 @@ Promise.all([p1, p2]).then((result) =&gt; {
 
 顾名思义，Promse.race就是赛跑的意思，意思就是说，Promise.race([p1, p2, p3])里面哪个结果获得的快，就返回那个结果，不管结果本身是成功状态还是失败状态。
 
-<pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-keyword">let&lt;/span> p1 = &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">(&lt;span class="hljs-params">resolve, reject&lt;/span>) =&gt;&lt;/span> {
-  setTimeout(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
+<pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-keyword">let&lt;/span> p1 = &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">(&lt;span class="hljs-params">resolve, reject&lt;/span>) =>&lt;/span> {
+  setTimeout(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
     resolve(&lt;span class="hljs-string">'success'&lt;/span>)
   },&lt;span class="hljs-number">1000&lt;/span>)
 })
 
-&lt;span class="hljs-keyword">let&lt;/span> p2 = &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">(&lt;span class="hljs-params">resolve, reject&lt;/span>) =&gt;&lt;/span> {
-  setTimeout(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
+&lt;span class="hljs-keyword">let&lt;/span> p2 = &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">(&lt;span class="hljs-params">resolve, reject&lt;/span>) =>&lt;/span> {
+  setTimeout(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
     reject(&lt;span class="hljs-string">'failed'&lt;/span>)
   }, &lt;span class="hljs-number">500&lt;/span>)
 })
 
-&lt;span class="hljs-built_in">Promise&lt;/span>.race([p1, p2]).then(&lt;span class="hljs-function">(&lt;span class="hljs-params">result&lt;/span>) =&gt;&lt;/span> {
+&lt;span class="hljs-built_in">Promise&lt;/span>.race([p1, p2]).then(&lt;span class="hljs-function">(&lt;span class="hljs-params">result&lt;/span>) =>&lt;/span> {
   &lt;span class="hljs-built_in">console&lt;/span>.log(result)
-}).catch(&lt;span class="hljs-function">(&lt;span class="hljs-params">error&lt;/span>) =&gt;&lt;/span> {
+}).catch(&lt;span class="hljs-function">(&lt;span class="hljs-params">error&lt;/span>) =>&lt;/span> {
   &lt;span class="hljs-built_in">console&lt;/span>.log(error)  &lt;span class="hljs-comment">// 打开的是 'failed'&lt;/span>
 })
 </code></pre>

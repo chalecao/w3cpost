@@ -13,20 +13,20 @@ title: Chrome 79+默认执行SameSite-by-default，跨域请求默认不携带co
 
 示例：
 
-<pre class="syntaxbox notranslate">Set-Cookie: &lt;cookie-name>=&lt;cookie-value>
-Set-Cookie: &lt;cookie-name>=&lt;cookie-value>; Expires=&lt;date>
-Set-Cookie: &lt;cookie-name>=&lt;cookie-value>; Max-Age=&lt;non-zero-digit>
-Set-Cookie: &lt;cookie-name>=&lt;cookie-value>; Domain=&lt;domain-value>
-Set-Cookie: &lt;cookie-name>=&lt;cookie-value>; Path=&lt;path-value>
-Set-Cookie: &lt;cookie-name>=&lt;cookie-value>; Secure
-Set-Cookie: &lt;cookie-name>=&lt;cookie-value>; HttpOnly
+<pre class="syntaxbox notranslate">Set-Cookie: <cookie-name>=<cookie-value>
+Set-Cookie: <cookie-name>=<cookie-value>; Expires=<date>
+Set-Cookie: <cookie-name>=<cookie-value>; Max-Age=<non-zero-digit>
+Set-Cookie: <cookie-name>=<cookie-value>; Domain=<domain-value>
+Set-Cookie: <cookie-name>=<cookie-value>; Path=<path-value>
+Set-Cookie: <cookie-name>=<cookie-value>; Secure
+Set-Cookie: <cookie-name>=<cookie-value>; HttpOnly
 
-Set-Cookie: &lt;cookie-name>=&lt;cookie-value>; SameSite=Strict
-Set-Cookie: &lt;cookie-name>=&lt;cookie-value>; SameSite=Lax
-Set-Cookie: &lt;cookie-name>=&lt;cookie-value>; SameSite=None
+Set-Cookie: <cookie-name>=<cookie-value>; SameSite=Strict
+Set-Cookie: <cookie-name>=<cookie-value>; SameSite=Lax
+Set-Cookie: <cookie-name>=<cookie-value>; SameSite=None
 
 // Multiple attributes are also possible, for example:
-Set-Cookie: &lt;cookie-name>=&lt;cookie-value>; Domain=&lt;domain-value>; Secure; HttpOnly</pre>
+Set-Cookie: <cookie-name>=<cookie-value>; Domain=<domain-value>; Secure; HttpOnly</pre>
 
 ## 相关参数
 

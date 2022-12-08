@@ -32,13 +32,13 @@ title: '转: vue中8种组件通信方式'
  下面通过一个例子说明父组件如何向子组件传递数据：在子组件<code>article.vue</code>中如何获取父组件<code>section.vue</code>中的数据<code>articles:['红楼梦', '西游记','三国演义']</code>
   
   <pre><code class="hljs html copyable" lang="html">// section父组件
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"section"&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">com-article&lt;/span> &lt;span class="hljs-attr">:articles&lt;/span>=&lt;span class="hljs-string">"articleList"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">com-article&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"section"&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">com-article&lt;/span> &lt;span class="hljs-attr">:articles&lt;/span>=&lt;span class="hljs-string">"articleList"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">com-article&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 &lt;span class="hljs-keyword">import&lt;/span> comArticle &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'./test/article.vue'&lt;/span>
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
   &lt;span class="hljs-attr">name&lt;/span>: &lt;span class="hljs-string">'HelloWorld'&lt;/span>,
@@ -49,21 +49,21 @@ title: '转: vue中8种组件通信方式'
     }
   }
 }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   <pre><code class="hljs html copyable" lang="html">// 子组件 article.vue
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">v-for&lt;/span>=&lt;span class="hljs-string">"(item, index) in articles"&lt;/span> &lt;span class="hljs-attr">:key&lt;/span>=&lt;span class="hljs-string">"index"&lt;/span>&gt;&lt;/span>{{item}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span> &lt;span class="hljs-attr">v-for&lt;/span>=&lt;span class="hljs-string">"(item, index) in articles"&lt;/span> &lt;span class="hljs-attr">:key&lt;/span>=&lt;span class="hljs-string">"index"&lt;/span>>&lt;/span>{{item}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
   &lt;span class="hljs-attr">props&lt;/span>: [&lt;span class="hljs-string">'articles'&lt;/span>]
 }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   <blockquote>
     
@@ -76,14 +76,14 @@ title: '转: vue中8种组件通信方式'
  对于<code>$emit</code> 我自己的理解是这样的: <code>$emit</code>绑定一个自定义事件, 当这个语句被执行时, 就会将参数arg传递给父组件,父组件通过v-on监听并接收参数。 通过一个例子，说明子组件如何向父组件传递数据。 在上个例子的基础上, 点击页面渲染出来的<code>ariticle</code>的<code>item</code>, 父组件中显示在数组中的下标
   
   <pre><code class="hljs html copyable" lang="html">// 父组件中
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"section"&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">com-article&lt;/span> &lt;span class="hljs-attr">:articles&lt;/span>=&lt;span class="hljs-string">"articleList"&lt;/span> @&lt;span class="hljs-attr">onEmitIndex&lt;/span>=&lt;span class="hljs-string">"onEmitIndex"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">com-article&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>{{currentIndex}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"section"&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">com-article&lt;/span> &lt;span class="hljs-attr">:articles&lt;/span>=&lt;span class="hljs-string">"articleList"&lt;/span> @&lt;span class="hljs-attr">onEmitIndex&lt;/span>=&lt;span class="hljs-string">"onEmitIndex"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">com-article&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>>&lt;/span>{{currentIndex}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 &lt;span class="hljs-keyword">import&lt;/span> comArticle &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'./test/article.vue'&lt;/span>
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
   &lt;span class="hljs-attr">name&lt;/span>: &lt;span class="hljs-string">'HelloWorld'&lt;/span>,
@@ -100,15 +100,15 @@ title: '转: vue中8种组件通信方式'
     }
   }
 }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
-  <pre><code class="hljs html copyable" lang="html">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">v-for&lt;/span>=&lt;span class="hljs-string">"(item, index) in articles"&lt;/span> &lt;span class="hljs-attr">:key&lt;/span>=&lt;span class="hljs-string">"index"&lt;/span> @&lt;span class="hljs-attr">click&lt;/span>=&lt;span class="hljs-string">"emitIndex(index)"&lt;/span>&gt;&lt;/span>{{item}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
+  <pre><code class="hljs html copyable" lang="html">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">v-for&lt;/span>=&lt;span class="hljs-string">"(item, index) in articles"&lt;/span> &lt;span class="hljs-attr">:key&lt;/span>=&lt;span class="hljs-string">"index"&lt;/span> @&lt;span class="hljs-attr">click&lt;/span>=&lt;span class="hljs-string">"emitIndex(index)"&lt;/span>>&lt;/span>{{item}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
   &lt;span class="hljs-attr">props&lt;/span>: [&lt;span class="hljs-string">'articles'&lt;/span>],
   &lt;span class="hljs-attr">methods&lt;/span>: {
@@ -117,7 +117,7 @@ title: '转: vue中8种组件通信方式'
     }
   }
 }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   <h3 class="heading" data-id="heading-3">
     二、 <code>$children</code> / <code>$parent</code>
@@ -128,15 +128,15 @@ title: '转: vue中8种组件通信方式'
     使用方法
   </h4>
   <pre><code class="hljs html copyable" lang="html">// 父组件中
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"hello_world"&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>{{msg}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">com-a&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">com-a&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> @&lt;span class="hljs-attr">click&lt;/span>=&lt;span class="hljs-string">"changeA"&lt;/span>&gt;&lt;/span>点击改变子组件值&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"hello_world"&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>>&lt;/span>{{msg}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">com-a&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">com-a&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> @&lt;span class="hljs-attr">click&lt;/span>=&lt;span class="hljs-string">"changeA"&lt;/span>>&lt;/span>点击改变子组件值&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 &lt;span class="hljs-keyword">import&lt;/span> ComA &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'./test/comA.vue'&lt;/span>
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
   &lt;span class="hljs-attr">name&lt;/span>: &lt;span class="hljs-string">'HelloWorld'&lt;/span>,
@@ -154,17 +154,17 @@ title: '转: vue中8种组件通信方式'
     }
   }
 }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   <pre><code class="hljs html copyable" lang="html">// 子组件中
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"com_a"&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>{{messageA}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>获取父组件的值为:  {{parentVal}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"com_a"&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">span&lt;/span>>&lt;/span>{{messageA}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">span&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>>&lt;/span>获取父组件的值为:  {{parentVal}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
   data() {
     &lt;span class="hljs-keyword">return&lt;/span> {
@@ -177,7 +177,7 @@ title: '转: vue中8种组件通信方式'
     }
   }
 }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   <blockquote>
     
@@ -209,13 +209,13 @@ title: '转: vue中8种组件通信方式'
   
   <pre><code class="hljs html copyable" lang="html">// A.vue
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
- &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">comB&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">comB&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+ &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">comB&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">comB&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
   &lt;span class="hljs-keyword">import&lt;/span> comB &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'../components/test/comB.vue'&lt;/span>
   &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
     &lt;span class="hljs-attr">name&lt;/span>: &lt;span class="hljs-string">"A"&lt;/span>,
@@ -226,18 +226,18 @@ title: '转: vue中8种组件通信方式'
       comB
     }
   }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   <pre><code class="hljs html copyable" lang="html">// B.vue
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
     {{demo}}
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">comC&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">comC&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">comC&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">comC&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
   &lt;span class="hljs-keyword">import&lt;/span> comC &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'../components/test/comC.vue'&lt;/span>
   &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
     &lt;span class="hljs-attr">name&lt;/span>: &lt;span class="hljs-string">"B"&lt;/span>,
@@ -251,16 +251,16 @@ title: '转: vue中8种组件通信方式'
       comC
     }
   }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   <pre><code class="hljs html copyable" lang="html">// C.vue
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
     {{demo}}
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
   &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
     &lt;span class="hljs-attr">name&lt;/span>: &lt;span class="hljs-string">"C"&lt;/span>,
     &lt;span class="hljs-attr">inject&lt;/span>: [&lt;span class="hljs-string">'for'&lt;/span>],
@@ -270,7 +270,7 @@ title: '转: vue中8种组件通信方式'
       }
     }
   }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   <h3 class="heading" data-id="heading-9">
     四、<code>ref</code> / <code>refs</code>
@@ -294,10 +294,10 @@ title: '转: vue中8种组件通信方式'
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   <pre><code class="hljs javascript copyable" lang="javascript">// 父组件 app.vue
 
-&lt;template&gt;
-  &lt;component-a ref="comA"&gt;&lt;/component-a&gt;
-&lt;/template&gt;
-&lt;script&gt;
+&lt;template>
+  &lt;component-a ref="comA">&lt;/component-a>
+&lt;/template>
+&lt;script>
   export default {
     mounted () {
       const comA = this.$refs.comA;
@@ -305,7 +305,7 @@ title: '转: vue中8种组件通信方式'
       comA.sayHello();  // hello
     }
   }
-&lt;/script&gt;
+&lt;/script>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   <h3 class="heading" data-id="heading-10">
     五、eventBus
@@ -334,31 +334,31 @@ title: '转: vue中8种组件通信方式'
   </h4>
  假设你有两个组件: <code>additionNum</code> 和 <code>showNum</code>, 这两个组件可以是兄弟组件也可以是父子组件；这里[我们](https://www.w3cdoc.com)以兄弟组件为例:
   
-  <pre><code class="hljs html copyable" lang="html">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">show-num-com&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">show-num-com&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">addition-num-com&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">addition-num-com&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
+  <pre><code class="hljs html copyable" lang="html">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">show-num-com&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">show-num-com&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">addition-num-com&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">addition-num-com&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 &lt;span class="hljs-keyword">import&lt;/span> showNumCom &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'./showNum.vue'&lt;/span>
 &lt;span class="hljs-keyword">import&lt;/span> additionNumCom &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'./additionNum.vue'&lt;/span>
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
   &lt;span class="hljs-attr">components&lt;/span>: { showNumCom, additionNumCom }
 }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   <pre><code class="hljs html copyable" lang="html">// addtionNum.vue 中发送事件
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> @&lt;span class="hljs-attr">click&lt;/span>=&lt;span class="hljs-string">"additionHandle"&lt;/span>&gt;&lt;/span>+加法器&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> @&lt;span class="hljs-attr">click&lt;/span>=&lt;span class="hljs-string">"additionHandle"&lt;/span>>&lt;/span>+加法器&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 &lt;span class="hljs-keyword">import&lt;/span> {EventBus} &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'./event-bus.js'&lt;/span>
 &lt;span class="hljs-built_in">console&lt;/span>.log(EventBus)
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
@@ -376,18 +376,18 @@ title: '转: vue中8种组件通信方式'
     }
   }
 }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   <h4 class="heading" data-id="heading-13">
     3. 接收事件
   </h4>
   <pre><code class="hljs html copyable" lang="html">// showNum.vue 中接收事件
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>计算和: {{count}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>>&lt;/span>计算和: {{count}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 &lt;span class="hljs-keyword">import&lt;/span> { EventBus } &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'./event-bus.js'&lt;/span>
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
   data() {
@@ -397,12 +397,12 @@ title: '转: vue中8种组件通信方式'
   },
 
   mounted() {
-    EventBus.$on(&lt;span class="hljs-string">'addition'&lt;/span>, param =&gt; {
+    EventBus.$on(&lt;span class="hljs-string">'addition'&lt;/span>, param => {
       &lt;span class="hljs-keyword">this&lt;/span>.count = &lt;span class="hljs-keyword">this&lt;/span>.count + param.num;
     })
   }
 }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
  这样就实现了在组件<code>addtionNum.vue</code>中点击相加按钮, 在<code>showNum.vue</code>中利用传递来的 <code>num</code> 展示求和的结果.
   
@@ -447,14 +447,14 @@ EventBus.$off(&lt;span class="hljs-string">'addition'&lt;/span>, {})
   </h4>
   <pre><code class="hljs html copyable" lang="html">// 父组件
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"app"&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">ChildA&lt;/span>/&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">ChildB&lt;/span>/&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"app"&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">ChildA&lt;/span>/>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">ChildB&lt;/span>/>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
   &lt;span class="hljs-keyword">import&lt;/span> ChildA &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'./components/ChildA'&lt;/span> &lt;span class="hljs-comment">// 导入A组件&lt;/span>
   &lt;span class="hljs-keyword">import&lt;/span> ChildB &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'./components/ChildB'&lt;/span> &lt;span class="hljs-comment">// 导入B组件&lt;/span>
 
@@ -462,19 +462,19 @@ EventBus.$off(&lt;span class="hljs-string">'addition'&lt;/span>, {})
     &lt;span class="hljs-attr">name&lt;/span>: &lt;span class="hljs-string">'App'&lt;/span>,
     &lt;span class="hljs-attr">components&lt;/span>: {ChildA, ChildB} &lt;span class="hljs-comment">// 注册A、B组件&lt;/span>
   }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   <pre><code class="hljs html copyable" lang="html">// 子组件childA
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"childA"&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">h1&lt;/span>&gt;&lt;/span>我是A组件&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">h1&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> @&lt;span class="hljs-attr">click&lt;/span>=&lt;span class="hljs-string">"transform"&lt;/span>&gt;&lt;/span>点我让B组件接收到数据&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>因为你点了B，所以我的信息发生了变化：{{BMessage}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"childA"&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">h1&lt;/span>>&lt;/span>我是A组件&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">h1&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> @&lt;span class="hljs-attr">click&lt;/span>=&lt;span class="hljs-string">"transform"&lt;/span>>&lt;/span>点我让B组件接收到数据&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>>&lt;/span>因为你点了B，所以我的信息发生了变化：{{BMessage}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
   &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
     data() {
       &lt;span class="hljs-keyword">return&lt;/span> {
@@ -496,19 +496,19 @@ EventBus.$off(&lt;span class="hljs-string">'addition'&lt;/span>, {})
       }
     }
   }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   <pre><code class="hljs html copyable" lang="html">// 子组件 childB
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"childB"&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">h1&lt;/span>&gt;&lt;/span>我是B组件&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">h1&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> @&lt;span class="hljs-attr">click&lt;/span>=&lt;span class="hljs-string">"transform"&lt;/span>&gt;&lt;/span>点我让A组件接收到数据&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>因为你点了A，所以我的信息发生了变化：{{AMessage}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"childB"&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">h1&lt;/span>>&lt;/span>我是B组件&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">h1&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> @&lt;span class="hljs-attr">click&lt;/span>=&lt;span class="hljs-string">"transform"&lt;/span>>&lt;/span>点我让A组件接收到数据&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>>&lt;/span>因为你点了A，所以我的信息发生了变化：{{AMessage}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
   &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
     data() {
       &lt;span class="hljs-keyword">return&lt;/span> {
@@ -530,7 +530,7 @@ EventBus.$off(&lt;span class="hljs-string">'addition'&lt;/span>, {})
       }
     }
   }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
  vuex的<code>store,js</code>
   
@@ -590,19 +590,19 @@ Vue.use(Vuex)
   <pre><code class="hljs html copyable" lang="html">// app.vue
 // index.vue
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
     &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">child-com1&lt;/span>
       &lt;span class="hljs-attr">:name&lt;/span>=&lt;span class="hljs-string">"name"&lt;/span>
       &lt;span class="hljs-attr">:age&lt;/span>=&lt;span class="hljs-string">"age"&lt;/span>
       &lt;span class="hljs-attr">:gender&lt;/span>=&lt;span class="hljs-string">"gender"&lt;/span>
       &lt;span class="hljs-attr">:height&lt;/span>=&lt;span class="hljs-string">"height"&lt;/span>
       &lt;span class="hljs-attr">title&lt;/span>=&lt;span class="hljs-string">"程序员成长指北"&lt;/span>
-    &gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">child-com1&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
-&lt;span class="hljs-keyword">const&lt;/span> childCom1 = &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> &lt;span class="hljs-keyword">import&lt;/span>(&lt;span class="hljs-string">"./childCom1.vue"&lt;/span>);
+    >&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">child-com1&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-keyword">const&lt;/span> childCom1 = &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> &lt;span class="hljs-keyword">import&lt;/span>(&lt;span class="hljs-string">"./childCom1.vue"&lt;/span>);
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
   &lt;span class="hljs-attr">components&lt;/span>: { childCom1 },
   data() {
@@ -614,19 +614,19 @@ Vue.use(Vuex)
     };
   }
 };
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   <pre><code class="hljs html copyable" lang="html">// childCom1.vue
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"border"&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>name: {{ name}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>childCom1的$attrs: {{ $attrs }}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">child-com2&lt;/span> &lt;span class="hljs-attr">v-bind&lt;/span>=&lt;span class="hljs-string">"$attrs"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">child-com2&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
-&lt;span class="hljs-keyword">const&lt;/span> childCom2 = &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> &lt;span class="hljs-keyword">import&lt;/span>(&lt;span class="hljs-string">"./childCom2.vue"&lt;/span>);
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"border"&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>>&lt;/span>name: {{ name}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>>&lt;/span>childCom1的$attrs: {{ $attrs }}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">child-com2&lt;/span> &lt;span class="hljs-attr">v-bind&lt;/span>=&lt;span class="hljs-string">"$attrs"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">child-com2&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-keyword">const&lt;/span> childCom2 = &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> &lt;span class="hljs-keyword">import&lt;/span>(&lt;span class="hljs-string">"./childCom2.vue"&lt;/span>);
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
   &lt;span class="hljs-attr">components&lt;/span>: {
     childCom2
@@ -640,17 +640,17 @@ Vue.use(Vuex)
      &lt;span class="hljs-comment">// { "age": "18", "gender": "女", "height": "158", "title": "程序员成长指北" }&lt;/span>
   }
 };
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   <pre><code class="hljs html copyable" lang="html">// childCom2.vue
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"border"&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>age: {{ age}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>childCom2: {{ $attrs }}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"border"&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>>&lt;/span>age: {{ age}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>>&lt;/span>childCom2: {{ $attrs }}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">template&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 
 &lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> {
   &lt;span class="hljs-attr">inheritAttrs&lt;/span>: &lt;span class="hljs-literal">false&lt;/span>,
@@ -662,7 +662,7 @@ Vue.use(Vuex)
     &lt;span class="hljs-comment">// { "gender": "女", "height": "158", "title": "程序员成长指北" }&lt;/span>
   }
 };
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
   <h3 class="heading" data-id="heading-21">
     总结

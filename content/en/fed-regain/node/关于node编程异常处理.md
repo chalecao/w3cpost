@@ -607,7 +607,7 @@ cluster模块用于创建共享端口的多进程模式,这种模式使多个进
             </div>
             
             <div class="line number8 index7 alt1">
-              <code class="javascript spaces">  </code><code class="javascript keyword">for</code> <code class="javascript plain">(</code><code class="javascript keyword">var</code> <code class="javascript plain">i = 0; i &lt; numCPUs; i++) {</code>
+              <code class="javascript spaces">  </code><code class="javascript keyword">for</code> <code class="javascript plain">(</code><code class="javascript keyword">var</code> <code class="javascript plain">i = 0; i < numCPUs; i++) {</code>
             </div>
             
             <div class="line number9 index8 alt2">

@@ -670,11 +670,11 @@ Sketch 中要创建如下内容面板，需要使用 macOS 下 `AppKit` 框架
 <span class="line"> <span class="keyword">const</span> stageView = contentView.subviews().objectAtIndex(<span class="number"></span>)</span>
 
 <span class="line"> <span class="keyword">const</span> views = stageView.subviews()</span>
-<span class="line"> <span class="keyword">const</span> existId = views.find(<span class="function"><span class="params">d</span> =&gt;</span> <span class="string">''</span>.concat(d.identifier()) === identifier)</span>
+<span class="line"> <span class="keyword">const</span> existId = views.find(<span class="function"><span class="params">d</span> =></span> <span class="string">''</span>.concat(d.identifier()) === identifier)</span>
 
 <span class="line"> <span class="keyword">const</span> finalViews = []</span>
 
-<span class="line"> <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number"></span>; i &lt; views.count(); i++) {</span>
+<span class="line"> <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number"></span>; i < views.count(); i++) {</span>
 <span class="line">   <span class="keyword">const</span> view = views[i]</span>
 <span class="line">   <span class="keyword">if</span> (existId) {</span>
 <span class="line">     <span class="keyword">if</span> (<span class="string">''</span>.concat(view.identifier()) !== identifier) finalViews.push(view)</span>

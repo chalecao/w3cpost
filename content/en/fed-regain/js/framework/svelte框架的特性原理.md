@@ -436,7 +436,7 @@ Svelte 采用数组来存放，数组中一项是二进制<code>31</code>位的�
   上面就是Svelte 最核心更新DOM机制，下面[我们](https://www.w3cdoc.com)串起来整个的流程。
 
 
-  下面是非常简单的一个 Svelte 组件，点击<code>&lt;button&gt;</code>会触发<code>onClick</code>事件，从而改变name 变量。
+  下面是非常简单的一个 Svelte 组件，点击<code>&lt;button></code>会触发<code>onClick</code>事件，从而改变name 变量。
 <figure data-size="normal">
 
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic1.zhimg.com/80/v2-68c7d2b9d78a77ea31d20fbd28d94840_720w.jpg" width="854" data-caption="" data-size="normal" data-rawwidth="854" data-rawheight="768" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-68c7d2b9d78a77ea31d20fbd28d94840_r.jpg" data-actualsrc="https://pic1.zhimg.com/v2-68c7d2b9d78a77ea31d20fbd28d94840_b.jpg" data-lazy-status="ok" /> </figure>

@@ -136,10 +136,10 @@ title: JS中浮点数精度问题
 由于 E 最大值是 1023，所以最大可以表示的整数是 `2^1024 - 1`，这就是能表示的最大整数。但你并不能这样计算这个数字，因为从 `2^1024` 开始就变成了 `Infinity`
 
 <div class="highlight highlight-source-js">
-  <pre><span class="pl-k">&gt;</span> <span class="pl-c1">Math</span>.<span class="pl-c1">pow</span>(<span class="pl-c1">2</span>, <span class="pl-c1">1023</span>)
+  <pre><span class="pl-k">></span> <span class="pl-c1">Math</span>.<span class="pl-c1">pow</span>(<span class="pl-c1">2</span>, <span class="pl-c1">1023</span>)
 <span class="pl-c1">8.98846567431158e+307</span>
 
-<span class="pl-k">&gt;</span> <span class="pl-c1">Math</span>.<span class="pl-c1">pow</span>(<span class="pl-c1">2</span>, <span class="pl-c1">1024</span>)
+<span class="pl-k">></span> <span class="pl-c1">Math</span>.<span class="pl-c1">pow</span>(<span class="pl-c1">2</span>, <span class="pl-c1">1024</span>)
 <span class="pl-c1">Infinity</span></pre>
 </div>
 

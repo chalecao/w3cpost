@@ -6,7 +6,7 @@ title: 函数式编程处理IF块
 曾几何时，经常有人问我，“如果让你用函数式编程来实现X，该怎么做?”我比较喜欢这类的问题。我尽最大能力思考这类有趣的问题。本篇文章，我用一种更加函数式的方式来实现优雅处理IF函数块的问题。下面的代码有一个if块，但是没有else。
 
 <pre class="pure-highlightjs"><code class="">// A basic redux-thunk action that only dispatches when value exists
-const someAction = value =&gt; dispatch =&gt; {
+const someAction = value => dispatch => {
   const item = getItem(value)
   if (item != null) {
     dispatch({ type: 'ACTION', item })
@@ -17,13 +17,13 @@ const someAction = value =&gt; dispatch =&gt; {
 这里[我们](https://www.w3cdoc.com)需要判断item有值的时候走dispatch方法，否则什么都不做。有一种思路是使用短路逻辑或者三元函数。
 
 <pre class="pure-highlightjs"><code class="">// short circuit
-const someAction = value =&gt; dispatch =&gt; {
+const someAction = value => dispatch => {
   const item = getItem(value)
   item && dispatch({ type: 'ACTION', item })
 }
 
 // ternary
-const someAction = value =&gt; dispatch =&gt; {
+const someAction = value => dispatch => {
   const item = getItem(value)
   item ? dispatch({ type: 'ACTION', item }) : null
 }
@@ -45,7 +45,7 @@ function ifVal (x, f) {
 }
 
 // 2: convert to arrow function
-const ifVal = (x, f) =&gt; {
+const ifVal = (x, f) => {
   if (x == null) {
     return null
   } else {
@@ -54,19 +54,19 @@ const ifVal = (x, f) =&gt; {
 }
 
 // 3: convert if/else to a ternary operator
-const ifVal = (x, f) =&gt; {
+const ifVal = (x, f) => {
   return x == null ? null : f(x)
 }
 
 // 4: voilà!
-const ifVal = (x, f) =&gt; x == null ? null : f(x)
+const ifVal = (x, f) => x == null ? null : f(x)
 </code>&lt;/code></pre>
 
 现在[我们](https://www.w3cdoc.com)可以采用ifVal函数替代旧的if函数。
 
 <pre class="pure-highlightjs"><code class="">// functional alternative
-const someAction = value =&gt; dispatch =&gt;
-  ifVal(getItem(value), item =&gt; dispatch({ type: 'ACTION', item }))
+const someAction = value => dispatch =>
+  ifVal(getItem(value), item => dispatch({ type: 'ACTION', item }))
 </code>&lt;/code></pre>
 
 [我们](https://www.w3cdoc.com)现在比较两种情况：
@@ -77,10 +77,10 @@ const someAction = value =&gt; dispatch =&gt;
  * @param {Function} fn - the function to execute.
  * @returns {Object} - null or the value of the executed function.
  */
-const ifVal = (val, fn) =&gt; val == null ? null : fn(val)
+const ifVal = (val, fn) => val == null ? null : fn(val)
 
 // imperative example
-const someAction = value =&gt; dispatch =&gt; {
+const someAction = value => dispatch => {
   const item = getItem(value)
   if (item!= null) {
     dispatch({ type: 'ACTION', item })
@@ -88,8 +88,8 @@ const someAction = value =&gt; dispatch =&gt; {
 }
 
 // functional example
-const someAction = value =&gt; dispatch =&gt;
-  ifVal(getItem(value), item =&gt; dispatch({ type: 'ACTION', item }))
+const someAction = value => dispatch =>
+  ifVal(getItem(value), item => dispatch({ type: 'ACTION', item }))
 </code>&lt;/code></pre>
 
 扩展阅读，可以参考下Ramda的[when][1]，<a class="markup--anchor markup--p-anchor" href="https://ramdajs.com/docs/#unless" target="_blank" rel="noopener" data-href="https://ramdajs.com/docs/#unless">unless</a>, 和 <a class="markup--anchor markup--p-anchor" href="https://ramdajs.com/docs/#ifElse" target="_blank" rel="noopener" data-href="https://ramdajs.com/docs/#ifElse">ifelse  </a>等其他函数。
@@ -100,12 +100,12 @@ const someAction = value =&gt; dispatch =&gt;
 
 <pre class="pure-highlightjs"><code class="">/*Examples of Sanctuary's Maybe*/
 
-toMaybe(null) //=&gt; Nothing
-toMaybe(undefined) //=&gt; Nothing
-toMaybe(0) //=&gt; Just(0)
-toMaybe(false) //=&gt; Just(false)
-toMaybe(123) //=&gt; Just(123)
-toMaybe({ name: 'joel' }) //=&gt; Just({ name: 'joel' })
+toMaybe(null) //=> Nothing
+toMaybe(undefined) //=> Nothing
+toMaybe(0) //=> Just(0)
+toMaybe(false) //=> Just(false)
+toMaybe(123) //=> Just(123)
+toMaybe({ name: 'joel' }) //=> Just({ name: 'joel' })
 </code>&lt;/code></pre>
 
 MayBe Type是最简单的例子，这里之所以选择Maybe，是因为它完全兼容map数据。

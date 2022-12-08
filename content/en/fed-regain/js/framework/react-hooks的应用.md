@@ -35,14 +35,14 @@ Hooks让[我们](https://www.w3cdoc.com)的函数组件拥有了类似类组件�
 
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">Example&lt;/span>() &lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> [count, setCount] = useState(&lt;span class="hljs-number">0&lt;/span>);
-  useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
+  useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
     &lt;span class="hljs-built_in">document&lt;/span>.title = &lt;span class="hljs-string">`You clicked &lt;span class="hljs-subst">${count}&lt;/span> times`&lt;/span>;
   });
   &lt;span class="hljs-keyword">return&lt;/span> (
-      &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span> {count} &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>&gt;&lt;/span>&lt;/span>
-      &lt;button onClick={() =&gt; setCount(count + &lt;span class="hljs-number">1&lt;/span>)}&gt;
+      &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">p&lt;/span>>&lt;/span> {count} &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">p&lt;/span>>&lt;/span>&lt;/span>
+      &lt;button onClick={() => setCount(count + &lt;span class="hljs-number">1&lt;/span>)}>
         Click me
-      &lt;&lt;span class="hljs-regexp">/button&gt;
+      &lt;&lt;span class="hljs-regexp">/button>
   );
 }&lt;/span></code></pre>
 
@@ -60,21 +60,21 @@ useState 这个方法可以为[我们](https://www.w3cdoc.com)的函数组件带
 
 useEffect 可以利用[我们](https://www.w3cdoc.com)组件中的 local state 进行一些带有副作用的操作
 
-<pre class="javascript hljs"><code class="js">useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
+<pre class="javascript hljs"><code class="js">useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
   &lt;span class="hljs-built_in">document&lt;/span>.title = &lt;span class="hljs-string">`You clicked &lt;span class="hljs-subst">${count}&lt;/span> times`&lt;/span>;
 });</code></pre>
 
 useEffect 中还可以通过传入第二个参数来决定是否执行里面的操作来避免一些不必要的性能损失，只要第二个参数数组中的成员的值没有改变，就会跳过此次执行。如果传入一个空数组 [ ]，那么该 effect 只会在组件 mount 和 unmount 时期执行。
 
-<pre class="javascript hljs"><code class="js">useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
+<pre class="javascript hljs"><code class="js">useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
   &lt;span class="hljs-built_in">document&lt;/span>.title = &lt;span class="hljs-string">`You clicked &lt;span class="hljs-subst">${count}&lt;/span> times`&lt;/span>;
 }, [count]); &lt;span class="hljs-comment">// 如果count没有改变，就跳过此次执行&lt;/span></code></pre>
 
 useEffect 中还可以通过让函数返回一个函数来进行一些清理操作（clean up），比如取消订阅等
 
-<pre class="javascript hljs"><code class="js">useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
+<pre class="javascript hljs"><code class="js">useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
   api.subscribe(theId);
-  &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
+  &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
       api.unsubscribe(theId)    &lt;span class="hljs-comment">//clean up&lt;/span>
   }
 });</code></pre>
@@ -89,14 +89,14 @@ useEffect 中还可以通过让函数返回一个函数来进行一些清理操�
 
 <pre class="javascript hljs"><code class="js">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">FriendStatusWithCounter&lt;/span>(&lt;span class="hljs-params">props&lt;/span>) &lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> [count, setCount] = useState(&lt;span class="hljs-number">0&lt;/span>);
-  useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
+  useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
     &lt;span class="hljs-built_in">document&lt;/span>.title = &lt;span class="hljs-string">`You clicked &lt;span class="hljs-subst">${count}&lt;/span> times`&lt;/span>;
   });
 
   &lt;span class="hljs-keyword">const&lt;/span> [isOnline, setIsOnline] = useState(&lt;span class="hljs-literal">null&lt;/span>);
-  useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
+  useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
     API.subscribe(props.friend.id);
-    &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
+    &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
       API.unsubscribe(props.friend.id);
     };
   });
@@ -116,9 +116,9 @@ useEffect 中还可以通过让函数返回一个函数来进行一些清理操�
 
 * <a href="https://reactjs.org/docs/render-props.html" target="_blank" rel="nofollow noopener noreferrer">Render Props</a> 通过props接受一个返回react element的函数，来动态决定自己要渲染的结果；
 
-<pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">DataProvider&lt;/span> &lt;span class="hljs-attr">render&lt;/span>=&lt;span class="hljs-string">{data&lt;/span> =&gt;&lt;/span> (
-  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">h1&lt;/span>&gt;&lt;/span>Hello {data.target}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">h1&lt;/span>&gt;&lt;/span>
-)}/&gt;</code></pre>
+<pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">DataProvider&lt;/span> &lt;span class="hljs-attr">render&lt;/span>=&lt;span class="hljs-string">{data&lt;/span> =>&lt;/span> (
+  &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">h1&lt;/span>>&lt;/span>Hello {data.target}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">h1&lt;/span>>&lt;/span>
+)}/></code></pre>
 
 * 还有就是<a href="https://reactjs.org/docs/higher-order-components.html" target="_blank" rel="nofollow noopener noreferrer">Higher-Order Components</a> 以一种类似 **工厂模式** 的方式去生产出具有相同或类似逻辑的组件。
 
@@ -135,7 +135,7 @@ useEffect 中还可以通过让函数返回一个函数来进行一些清理操�
       &lt;span class="hljs-comment">// doSomething&lt;/span>
     }
     render() {
-      &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">WrappedComponent&lt;/span> {&lt;span class="hljs-attr">...this.props&lt;/span>} /&gt;&lt;/span>;
+      &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">WrappedComponent&lt;/span> {&lt;span class="hljs-attr">...this.props&lt;/span>} />&lt;/span>;
     }
   };
 }&lt;/span></code></pre>
@@ -150,7 +150,7 @@ custom Hooks 并不是一个api，而是一个规则。具体实现就是通过�
 
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">useCount&lt;/span>() &lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> [count, setCount] = useState(&lt;span class="hljs-number">0&lt;/span>);
-  useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
+  useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
     &lt;span class="hljs-built_in">document&lt;/span>.title = &lt;span class="hljs-string">`You clicked &lt;span class="hljs-subst">${count}&lt;/span> times`&lt;/span>;
   });
   &lt;span class="hljs-keyword">return&lt;/span> count
@@ -206,14 +206,14 @@ custom Hooks 并不是一个api，而是一个规则。具体实现就是通过�
 
 <pre class="hljs javascript"><code>&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">FriendStatusWithCounter&lt;/span>(&lt;span class="hljs-params">props&lt;/span>) &lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> [count, setCount] = useState(&lt;span class="hljs-number">0&lt;/span>);
-  useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
+  useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
     &lt;span class="hljs-built_in">document&lt;/span>.title = &lt;span class="hljs-string">`You clicked &lt;span class="hljs-subst">${count}&lt;/span> times`&lt;/span>;
   });
 
   &lt;span class="hljs-keyword">const&lt;/span> [isOnline, setIsOnline] = useState(&lt;span class="hljs-literal">null&lt;/span>);
-  useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
+  useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
-    &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
+    &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
     };
   });

@@ -16,8 +16,8 @@ title: JavaScript数组去重简单的方法
   i,
   j,
   len = arr.length;
- for(i = 0; i &lt; len; i++){
-  for(j = i + 1; j &lt; len; j++){
+ for(i = 0; i < len; i++){
+  for(j = i + 1; j < len; j++){
    if(arr[i] === arr[j]){
     j = ++i;
    }
@@ -43,8 +43,8 @@ arra.distinct();    //返回[3,4,2,1]</pre>
   i,
   j,
   len = arr.length;
- for(i = 0; i &lt; len; i++){
-  for(j = i + 1; j &lt; len; j++){
+ for(i = 0; i < len; i++){
+  for(j = i + 1; j < len; j++){
    if(arr[i] == arr[j]){
     arr.splice(j,1);
     len--;
@@ -70,7 +70,7 @@ console.log(b.toString()); //1,2,3,4,5,6,56</pre>
   obj = {},
   result = [],
   len = arr.length;
- for(i = 0; i&lt; arr.length; i++){
+ for(i = 0; i< arr.length; i++){
   if(!obj[arr[i]]){ //如果能查找到，证明数组元素重复了
    obj[arr[i]] = 1;
    result.push(arr[i]);
@@ -96,7 +96,7 @@ console.log(b.toString()); //1,2,3,4,5,6,56</pre>
   return a - b;
  })
  function loop(index){
-  if(index &gt;= 1){
+  if(index >= 1){
    if(arr[index] === arr[index-1]){
     arr.splice(index,1);
    }

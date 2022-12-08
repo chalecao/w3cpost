@@ -142,7 +142,7 @@ title: 转:react-redux原理介绍，最易懂的说明
     
     <pre><code class="hljs bash copyable" lang="bash">import { createStore } from &lt;span class="hljs-string">'redux'&lt;/span>
 
-const reducer = (state = {count: 0}, action) =&gt; {
+const reducer = (state = {count: 0}, action) => {
   switch (action.type){
     &lt;span class="hljs-keyword">case&lt;/span> &lt;span class="hljs-string">'INCREASE'&lt;/span>: &lt;span class="hljs-built_in">return&lt;/span> {count: state.count + 1};
     &lt;span class="hljs-keyword">case&lt;/span> &lt;span class="hljs-string">'DECREASE'&lt;/span>: &lt;span class="hljs-built_in">return&lt;/span> {count: state.count - 1};
@@ -151,13 +151,13 @@ const reducer = (state = {count: 0}, action) =&gt; {
 }
 
 const actions = {
-  increase: () =&gt; ({&lt;span class="hljs-built_in">type&lt;/span>: &lt;span class="hljs-string">'INCREASE'&lt;/span>}),
-  decrease: () =&gt; ({&lt;span class="hljs-built_in">type&lt;/span>: &lt;span class="hljs-string">'DECREASE'&lt;/span>})
+  increase: () => ({&lt;span class="hljs-built_in">type&lt;/span>: &lt;span class="hljs-string">'INCREASE'&lt;/span>}),
+  decrease: () => ({&lt;span class="hljs-built_in">type&lt;/span>: &lt;span class="hljs-string">'DECREASE'&lt;/span>})
 }
 
 const store = createStore(reducer);
 
-store.subscribe(() =&gt;
+store.subscribe(() =>
   console.log(store.getState())
 );
 
@@ -174,7 +174,7 @@ store.dispatch(actions.increase()) // {count: 3}
     <pre><code class="hljs bash copyable" lang="bash">class Todos extends Component {
     &lt;span class="hljs-function">&lt;span class="hljs-title">render&lt;/span>&lt;/span>(){
         &lt;span class="hljs-built_in">return&lt;/span>(
-            &lt;div onCLick={()=&gt;store.dispatch(actions.delTodo()) }&gt;&lt;span class="hljs-built_in">test&lt;/span>&lt;/div&gt;
+            &lt;div onCLick={()=>store.dispatch(actions.delTodo()) }>&lt;span class="hljs-built_in">test&lt;/span>&lt;/div>
         )
     }
 }
@@ -244,13 +244,13 @@ import {connect} from &lt;span class="hljs-string">'react-redux'&lt;/span>;
 class Todos extends Component {
     &lt;span class="hljs-function">&lt;span class="hljs-title">render&lt;/span>&lt;/span>(){
         &lt;span class="hljs-built_in">return&lt;/span>(
-            &lt;div onCLick={()=&gt;this.props.del_todo() }&gt;&lt;span class="hljs-built_in">test&lt;/span>&lt;/div&gt;
+            &lt;div onCLick={()=>this.props.del_todo() }>&lt;span class="hljs-built_in">test&lt;/span>&lt;/div>
         )
     }
 }
 
 &lt;span class="hljs-built_in">export&lt;/span> default connect(
-    state=&gt;state,
+    state=>state,
     actions
 )(Todos);
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
@@ -280,7 +280,7 @@ class Todos extends Component {
         &lt;span class="hljs-keyword">case&lt;/span> types.ADD_TODO:
             &lt;span class="hljs-built_in">return&lt;/span> {...state,lists:[...state.lists,{text:action.text}]}
         &lt;span class="hljs-keyword">case&lt;/span> types.TOGGLE_TODO:
-            &lt;span class="hljs-built_in">return&lt;/span> {...state,lists:state.lists.map((item,index)=&gt;{
+            &lt;span class="hljs-built_in">return&lt;/span> {...state,lists:state.lists.map((item,index)=>{
                 &lt;span class="hljs-keyword">if&lt;/span>(index == action.index){
                     item.completed = !item.completed
                 }
@@ -310,19 +310,19 @@ class Todos extends Component {
     &lt;span class="hljs-function">&lt;span class="hljs-title">render&lt;/span>&lt;/span>(){
         &lt;span class="hljs-built_in">return&lt;/span>(
             {
-                + &lt;ul&gt;
-                +    this.props.state.lists.map(list =&gt;(
-                +        &lt;li&gt;{list.text}&lt;/li&gt;
+                + &lt;ul>
+                +    this.props.state.lists.map(list =>(
+                +        &lt;li>{list.text}&lt;/li>
                 +    ))
-                + &lt;/ul&gt;
+                + &lt;/ul>
             }
-            &lt;div onCLick={()=&gt;this.props.del_todo() }&gt;&lt;span class="hljs-built_in">test&lt;/span>&lt;/div&gt;
+            &lt;div onCLick={()=>this.props.del_todo() }>&lt;span class="hljs-built_in">test&lt;/span>&lt;/div>
         )
     }
 }
 
 &lt;span class="hljs-built_in">export&lt;/span> default connect(
-    state=&gt;state,
+    state=>state,
     actions
 )(Todos);
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
@@ -368,7 +368,7 @@ class Todos extends Component {
       [我们](https://www.w3cdoc.com)可以方便得使用去调用
     
     
-    <pre><code class="hljs bash copyable" lang="bash">    &lt;div onCLick={()=&gt;this.props.del_todo() }&gt;&lt;span class="hljs-built_in">test&lt;/span>&lt;/div&gt;
+    <pre><code class="hljs bash copyable" lang="bash">    &lt;div onCLick={()=>this.props.del_todo() }>&lt;span class="hljs-built_in">test&lt;/span>&lt;/div>
 &lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
 
     <h4 class="heading" data-id="heading-7">
@@ -406,7 +406,7 @@ import propTypes from &lt;span class="hljs-string">'prop-types'&lt;/span>;
             this.state = mapStateToProps(this.store.getState());
           }
           &lt;span class="hljs-function">&lt;span class="hljs-title">componentWillMount&lt;/span>&lt;/span>(){
-              this.unsubscribe = this.store.subscribe(()=&gt;{
+              this.unsubscribe = this.store.subscribe(()=>{
                   this.setState(mapStateToProps(this.store.getState()));
               });
           }
@@ -421,7 +421,7 @@ import propTypes from &lt;span class="hljs-string">'prop-types'&lt;/span>;
                   console.log(&lt;span class="hljs-string">'object'&lt;/span>, mapDispatchToProps)
                 actions = &lt;span class="hljs-built_in">bind&lt;/span>ActionCreators(mapDispatchToProps,this.store.dispatch);
               }
-                &lt;span class="hljs-built_in">return&lt;/span> &lt;WrapedComponent {...this.state} {...actions}/&gt;
+                &lt;span class="hljs-built_in">return&lt;/span> &lt;WrapedComponent {...this.state} {...actions}/>
          }
       }
       &lt;span class="hljs-built_in">return&lt;/span> ProxyComponent;

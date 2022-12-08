@@ -173,12 +173,12 @@ Object.defineProperty(obj, "key", {
 
   1. 实现数据绑定处理
 
-<pre class="pure-highlightjs"><code class="">&lt;div id='box' ao-controller="box"&gt;
-&lt;div id='aa-attr' style="background: #a9ea00;width:100px;height:100px;" ao-css-width="w" ao-click='click' &gt;&lt;/div&gt;
-&lt;p id='aa-text'&gt;{{ w }}&lt;/p&gt;
-&lt;/div&gt;
+<pre class="pure-highlightjs"><code class="">&lt;div id='box' ao-controller="box">
+&lt;div id='aa-attr' style="background: #a9ea00;width:100px;height:100px;" ao-css-width="w" ao-click='click' >&lt;/div>
+&lt;p id='aa-text'>{{ w }}&lt;/p>
+&lt;/div>
 
-&lt;script&gt;
+&lt;script>
 
 var vm = {}
 
@@ -211,7 +211,7 @@ vm.w = 300 //设置element.style.width == 300
 
 alert(vm.w)
 
-&lt;/script&gt;
+&lt;/script>
 </code>&lt;/code></pre>
 
 &nbsp;

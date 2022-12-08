@@ -130,12 +130,12 @@ title: 用JavaScript自己写Virtual DOM
   </div> 手工实现DOM模型构建不太合理，[我们](https://www.w3cdoc.com)可以借助JSX的工具来完成这个转换。本节[我们](https://www.w3cdoc.com)以rollup打包工具结合babel转换插件实现数据的抽象。具体代码配置参考：
   <a href="https://github.com/chalecao/virtualdom">github中package.json配置和rollup.config.js</a> <img loading="lazy" class="alignnone wp-image-1844 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/22-1.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/22-1.jpg?x-oss-process=image/resize,m_fill,w_1024,h_639/format,webp" alt="" width="510" height="318" /> <img loading="lazy" class="alignnone wp-image-1843 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/333.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/333.jpg?x-oss-process=image/resize,m_fill,w_1024,h_612/format,webp" alt="" width="505" height="302" />
   <pre class="pure-highlightjs"><code class="">const vdom = (
-    &lt;div id="_Q5" style="border: 1px solid red;"&gt;
-        &lt;div style="text-align: center; margin: 36px auto 18px; width: 160px; line-height: 0;"&gt;
-            &lt;img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png" height="56" style="border: none; margin: 8px 0px;"&gt;&lt;/img&gt;
+    &lt;div id="_Q5" style="border: 1px solid red;">
+        &lt;div style="text-align: center; margin: 36px auto 18px; width: 160px; line-height: 0;">
+            &lt;img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png" height="56" style="border: none; margin: 8px 0px;">&lt;/img>
             hello
-        &lt;/div&gt;
-    &lt;/div&gt;)
+        &lt;/div>
+    &lt;/div>)
 </code></pre> 上面[我们](https://www.w3cdoc.com)定义的vdom片段采用JSX处理器处理后如下面代码：
   <pre class="pure-highlightjs"><code class="">/*fed123.com*/
 'use strict';
@@ -179,7 +179,7 @@ document.body.appendChild(createElement(vdom));
 <img loading="lazy" class="alignnone wp-image-1845 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/555.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/555.jpg?x-oss-process=image/resize,m_fill,w_1024,h_590/format,webp" alt="" width="494" height="285" /> 如图展示了最简单的一层DOM的结构变化，无非也就这么几种：<span style="color: #ff0000;">增加元素节点、修改节点，删除节点</span>。[我们](https://www.w3cdoc.com)可以基于DOM API来实现这些基本的操作，代码如下：
 
 <pre class="pure-highlightjs"><code class="">function updateElement($parent, newnode, oldnode) {
-    var index = arguments.length &gt; 3 && arguments[3] !== undefined ? arguments[3] : 0;
+    var index = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
 
     if (!newnode) {
         $parent.removeChild($parent.childNodes[index]);
@@ -248,8 +248,8 @@ function updateProp($el, name, newvalue, oldValue) {
     }
 }
 function updateProps($el) {
-    var newprops = arguments.length &gt; 1 && arguments[1] !== undefined ? arguments[1] : {};
-    var oldProps = arguments.length &gt; 2 && arguments[2] !== undefined ? arguments[2] : {};
+    var newprops = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var oldProps = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
     var _props = Object.assign({}, newprops, oldProps);
     Object.keys(_props).forEach(function (key) {

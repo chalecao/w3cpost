@@ -311,7 +311,7 @@ CSR文件必须有CA的签名才可形成证书，可将此文件发送到verisi
         <td>
           <div>
             <div>
-              <code>cat</code> <code>server.key server.crt &gt; server.pem</code>
+              <code>cat</code> <code>server.key server.crt > server.pem</code>
             </div>
           </div>
         </td>

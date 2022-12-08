@@ -50,8 +50,8 @@ title: babel涉及到的知识简单介绍
     <div class="widget-codetool--inner">
     </div>
   </div>
-  <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-keyword">var&lt;/span> babel = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'babel-core'&lt;/span>);
-&lt;span class="hljs-keyword">var&lt;/span> transform = babel.transform;</code></pre>
+  <pre class="javascript hljs"><code class="javascript"><span class="hljs-keyword">var</span> babel = <span class="hljs-built_in">require</span>(<span class="hljs-string">'babel-core'</span>);
+<span class="hljs-keyword">var</span> transform = babel.transform;</code></pre>
   <ul>
     
       babel.transform(code: string, options?: Object)
@@ -61,7 +61,7 @@ title: babel涉及到的知识简单介绍
     <div class="widget-codetool--inner">
     </div>
   </div>
-  <pre class="javascript hljs"><code class="javascript">transform(&lt;span class="hljs-string">"code"&lt;/span>, options) &lt;span class="hljs-comment">// =&gt; { code, map, ast }&lt;/span>
+  <pre class="javascript hljs"><code class="javascript">transform(<span class="hljs-string">"code"</span>, options) <span class="hljs-comment">// => { code, map, ast }</span>
 </code></pre>
   <ul>
     
@@ -72,12 +72,12 @@ title: babel涉及到的知识简单介绍
     <div class="widget-codetool--inner">
     </div>
   </div>
-  <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-keyword">var&lt;/span> path = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'path'&lt;/span>);
-&lt;span class="hljs-keyword">var&lt;/span> result = babel.transformFileSync(path.resolve(__dirname) + &lt;span class="hljs-string">"/test.js"&lt;/span>, {
-  &lt;span class="hljs-attr">presets&lt;/span>: [&lt;span class="hljs-string">'env'&lt;/span>],
-  &lt;span class="hljs-attr">plugins&lt;/span>: [&lt;span class="hljs-string">'transform-runtime'&lt;/span>],
-}, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">err, result&lt;/span>) &lt;/span>{&lt;span class="hljs-comment">// { code, map, ast }&lt;/span>
-    &lt;span class="hljs-built_in">console&lt;/span>.log(result);
+  <pre class="javascript hljs"><code class="javascript"><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
+<span class="hljs-keyword">var</span> result = babel.transformFileSync(path.resolve(__dirname) + <span class="hljs-string">"/test.js"</span>, {
+  <span class="hljs-attr">presets</span>: [<span class="hljs-string">'env'</span>],
+  <span class="hljs-attr">plugins</span>: [<span class="hljs-string">'transform-runtime'</span>],
+}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, result</span>) </span>{<span class="hljs-comment">// { code, map, ast }</span>
+    <span class="hljs-built_in">console</span>.log(result);
 });</code></pre>
   <ul>
     
@@ -88,11 +88,11 @@ title: babel涉及到的知识简单介绍
     <div class="widget-codetool--inner">
     </div>
   </div>
-  <pre class="hljs typescript"><code>&lt;span class="hljs-keyword">var&lt;/span> result = babel.transformFileSync(path.resolve(__dirname) + &lt;span class="hljs-string">"/test.js"&lt;/span>, {
-  presets: [&lt;span class="hljs-string">'env'&lt;/span>],
-  plugins: [&lt;span class="hljs-string">'transform-runtime'&lt;/span>],
+  <pre class="hljs typescript"><code><span class="hljs-keyword">var</span> result = babel.transformFileSync(path.resolve(__dirname) + <span class="hljs-string">"/test.js"</span>, {
+  presets: [<span class="hljs-string">'env'</span>],
+  plugins: [<span class="hljs-string">'transform-runtime'</span>],
 });
-&lt;span class="hljs-built_in">console&lt;/span>.log(result, &lt;span class="hljs-string">'res'&lt;/span>);
+<span class="hljs-built_in">console</span>.log(result, <span class="hljs-string">'res'</span>);
 </code></pre>
   <ul>
     
@@ -112,7 +112,7 @@ title: babel涉及到的知识简单介绍
     <div class="widget-codetool--inner">
     </div>
   </div>
-  <pre class="hljs sql"><code>npm &lt;span class="hljs-keyword">install&lt;/span> &lt;span class="hljs-comment">--save-dev babel-cli&lt;/span>
+  <pre class="hljs sql"><code>npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save-dev babel-cli</span>
 
 npm isntall babel-cli -g</code></pre>
  使用对应就是
@@ -121,9 +121,9 @@ npm isntall babel-cli -g</code></pre>
     <div class="widget-codetool--inner">
     </div>
   </div>
-  <pre class="hljs fortran"><code>node_module/.bin/babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hljs-keyword">file&lt;/span> script-compiled.js
+  <pre class="hljs fortran"><code>node_module/.bin/babel script.js --<span class="hljs-keyword">out</span>-<span class="hljs-keyword">file</span> script-compiled.js
 
-babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hljs-keyword">file&lt;/span> script-compiled.js</code></pre>
+babel script.js --<span class="hljs-keyword">out</span>-<span class="hljs-keyword">file</span> script-compiled.js</code></pre>
  具体使用还是看<a href="http://babeljs.io/docs/usage/cli/" target="_blank" rel="nofollow noopener noreferrer">官方文档</a>吧，我就不搬文档了。
   
   <h3 id="articleHeader5">
@@ -137,21 +137,21 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
     <div class="widget-codetool--inner">
     </div>
   </div>
-  <pre class="javascript hljs"><code class="javascript">(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">module, exports, __webpack_require__&lt;/span>) &lt;/span>{
+  <pre class="javascript hljs"><code class="javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">module, exports, __webpack_require__</span>) </span>{
 
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">_asyncToGenerator&lt;/span>(&lt;span class="hljs-params">fn&lt;/span>) &lt;/span>{ &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> () &lt;/span>{  }; } &lt;span class="hljs-comment">// 模块顶部定义 helper&lt;/span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_asyncToGenerator</span>(<span class="hljs-params">fn</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{  }; } <span class="hljs-comment">// 模块顶部定义 helper</span>
 
-&lt;span class="hljs-comment">// some code &lt;/span>
-&lt;span class="hljs-comment">// async 语法已经被 transform-async-to-generator 转化，再利用 helper 函数包装，消费 generator。&lt;/span>
-&lt;span class="hljs-keyword">const&lt;/span> func = &lt;span class="hljs-function">(&lt;span class="hljs-params">(&lt;/span>) =&gt;&lt;/span> {
-  &lt;span class="hljs-keyword">var&lt;/span> _ref =_asyncToGenerator(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>* () &lt;/span>{
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'begin'&lt;/span>);
-    &lt;span class="hljs-keyword">yield&lt;/span> &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> (&lt;span class="hljs-params">resolve&lt;/span>) &lt;/span>{
-      setTimeout(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> () &lt;/span>{
+<span class="hljs-comment">// some code </span>
+<span class="hljs-comment">// async 语法已经被 transform-async-to-generator 转化，再利用 helper 函数包装，消费 generator。</span>
+<span class="hljs-keyword">const</span> func = <span class="hljs-function">(<span class="hljs-params">(</span>) =></span> {
+  <span class="hljs-keyword">var</span> _ref =_asyncToGenerator(<span class="hljs-function"><span class="hljs-keyword">function</span>* () </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'begin'</span>);
+    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve</span>) </span>{
+      setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{
         resolve();
-      }, &lt;span class="hljs-number">1000&lt;/span>);
+      }, <span class="hljs-number">1000</span>);
     });
-    &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'done'&lt;/span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'done'</span>);
   });
 })
 
@@ -167,7 +167,7 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
         </div>
       </div>
 
-      <pre class="hljs groovy"><code style="word-break: break-word; white-space: initial;"> node_modules&lt;span class="hljs-regexp">/.bin/&lt;/span>babel-external-helpers &gt; helpers.js</code></pre>
+      <pre class="hljs groovy"><code style="word-break: break-word; white-space: initial;"> node_modules<span class="hljs-regexp">/.bin/</span>babel-external-helpers > helpers.js</code></pre>
       
       
         注意：示例代码的包都是装到项目中的，也就是本地。同样你可以全局安装直接执行。 
@@ -188,7 +188,7 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
           </div>
           
           <pre class="hljs json"><code>{
-  &lt;span class="hljs-attr">"plugins"&lt;/span>: [&lt;span class="hljs-string">"external-helpers"&lt;/span>]
+  <span class="hljs-attr">"plugins"</span>: [<span class="hljs-string">"external-helpers"</span>]
 }</code></pre>
         
 
@@ -198,7 +198,7 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
             </div>
           </div>
           
-          <pre class="hljs typescript"><code style="word-break: break-word; white-space: initial;">&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'./helpers.js'&lt;/span>);</code></pre>
+          <pre class="hljs typescript"><code style="word-break: break-word; white-space: initial;"><span class="hljs-built_in">require</span>(<span class="hljs-string">'./helpers.js'</span>);</code></pre>
         </ol> 
         
         
@@ -226,15 +226,15 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
           </div>
         </div>
         
-        <pre class="hljs javascript"><code>&lt;span class="hljs-comment">// test.js&lt;/span>
-&lt;span class="hljs-keyword">const&lt;/span> React = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'react'&lt;/span>);
-&lt;span class="hljs-keyword">const&lt;/span> elements = [&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>].map(&lt;span class="hljs-function">(&lt;span class="hljs-params">item&lt;/span>) =&gt;&lt;/span> {
-  &lt;span class="hljs-keyword">return&lt;/span> (
-    &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>{item}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>&lt;/span>
+        <pre class="hljs javascript"><code><span class="hljs-comment">// test.js</span>
+<span class="hljs-keyword">const</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>);
+<span class="hljs-keyword">const</span> elements = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].map(<span class="hljs-function">(<span class="hljs-params">item</span>) =></span> {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag"><<span class="hljs-name">div</span>></span>{item}<span class="hljs-tag"></<span class="hljs-name">div</span>></span></span>
   )
 });
 
-&lt;span class="hljs-built_in">console&lt;/span>.log(elements);</code></pre>
+<span class="hljs-built_in">console</span>.log(elements);</code></pre>
 
         
           执行 test.js，会报错，不认识这个语法。
@@ -245,7 +245,7 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
           </div>
         </div>
         
-        <pre class="hljs objectivec"><code style="word-break: break-word; white-space: initial;">node test.js &lt;span class="hljs-comment">//报错&lt;/span></code></pre>
+        <pre class="hljs objectivec"><code style="word-break: break-word; white-space: initial;">node test.js <span class="hljs-comment">//报错</span></code></pre>
         
         
           但是使用 babel-node 就可以。
@@ -256,7 +256,7 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
           </div>
         </div>
         
-        <pre class="hljs groovy"><code style="word-break: break-word; white-space: initial;"> node_modules&lt;span class="hljs-regexp">/.bin/&lt;/span>babel-node --presets react test.js</code></pre>
+        <pre class="hljs groovy"><code style="word-break: break-word; white-space: initial;"> node_modules<span class="hljs-regexp">/.bin/</span>babel-node --presets react test.js</code></pre>
         
         
           &#8211;presets react 是参数，等同于
@@ -268,7 +268,7 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
         </div>
         
         <pre class="hljs json"><code>{
-  &lt;span class="hljs-attr">"presets"&lt;/span>: [&lt;span class="hljs-string">"react"&lt;/span>]
+  <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"react"</span>]
 }</code></pre>
 
         
@@ -335,31 +335,31 @@ babel script.js --&lt;span class="hljs-keyword">out&lt;/span>-&lt;span class="hl
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">// register.js 引入 babel-register，并配置。然后引入要执行代码的入口文件&lt;/span>
-&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'babel-register'&lt;/span>)({ &lt;span class="hljs-attr">presets&lt;/span>: [&lt;span class="hljs-string">'react'&lt;/span>] });
-&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'./test'&lt;/span>)</code></pre>
+        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// register.js 引入 babel-register，并配置。然后引入要执行代码的入口文件</span>
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'babel-register'</span>)({ <span class="hljs-attr">presets</span>: [<span class="hljs-string">'react'</span>] });
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'./test'</span>)</code></pre>
 
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">// test.js 这个文件是 jsx...&lt;/span>
-&lt;span class="hljs-keyword">const&lt;/span> React = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'react'&lt;/span>);
-&lt;span class="hljs-keyword">const&lt;/span> elements = [&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>].map(&lt;span class="hljs-function">(&lt;span class="hljs-params">item&lt;/span>) =&gt;&lt;/span> {
-  &lt;span class="hljs-keyword">return&lt;/span> (
-    &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>{item}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>&lt;/span>
+        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// test.js 这个文件是 jsx...</span>
+<span class="hljs-keyword">const</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>);
+<span class="hljs-keyword">const</span> elements = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].map(<span class="hljs-function">(<span class="hljs-params">item</span>) =></span> {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag"><<span class="hljs-name">div</span>></span>{item}<span class="hljs-tag"></<span class="hljs-name">div</span>></span></span>
   )
 });
-&lt;span class="hljs-built_in">console&lt;/span>.log(elements);</code></pre>
+<span class="hljs-built_in">console</span>.log(elements);</code></pre>
 
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
         </div>
         
-        <pre class="hljs objectivec"><code>&lt;span class="hljs-comment">// 执行&lt;/span>
-$ node &lt;span class="hljs-keyword">register&lt;/span>.js</code></pre>
+        <pre class="hljs objectivec"><code><span class="hljs-comment">// 执行</span>
+$ node <span class="hljs-keyword">register</span>.js</code></pre>
 
         
           它的特点就是实时编译，不需要输出文件，执行的时候再去编译。所以它很适用于开发。总结一下就是，多用在 node 跑程序，做实时编译用的，通常会结合其他插件作编译器使用，比如 mocha 做测试的时候。
@@ -397,9 +397,9 @@ $ node &lt;span class="hljs-keyword">register&lt;/span>.js</code></pre>
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">// 比如，只不过需要单个引用&lt;/span>
-&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'core-js/array/reduce'&lt;/span>);
-&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'core-js/object/values'&lt;/span>);</code></pre>
+        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// 比如，只不过需要单个引用</span>
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'core-js/array/reduce'</span>);
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'core-js/object/values'</span>);</code></pre>
 
         <h4>
           regenerator
@@ -418,7 +418,7 @@ $ node &lt;span class="hljs-keyword">register&lt;/span>.js</code></pre>
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript" style="word-break: break-word; white-space: initial;">&lt;span class="hljs-built_in">module&lt;/span>.exports = { &lt;span class="hljs-string">"default"&lt;/span>: &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">"core-js/library/fn/array/filter"&lt;/span>), &lt;span class="hljs-attr">__esModule&lt;/span>: &lt;span class="hljs-literal">true&lt;/span> };</code></pre>
+        <pre class="javascript hljs"><code class="javascript" style="word-break: break-word; white-space: initial;"><span class="hljs-built_in">module</span>.exports = { <span class="hljs-string">"default"</span>: <span class="hljs-built_in">require</span>(<span class="hljs-string">"core-js/library/fn/array/filter"</span>), <span class="hljs-attr">__esModule</span>: <span class="hljs-literal">true</span> };</code></pre>
         
         <h4>
           helpers
@@ -433,9 +433,9 @@ $ node &lt;span class="hljs-keyword">register&lt;/span>.js</code></pre>
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-keyword">var&lt;/span> _asyncToGenerator2 = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'babel-runtime/helpers/asyncToGenerator'&lt;/span>);
+        <pre class="javascript hljs"><code class="javascript"><span class="hljs-keyword">var</span> _asyncToGenerator2 = <span class="hljs-built_in">require</span>(<span class="hljs-string">'babel-runtime/helpers/asyncToGenerator'</span>);
 
-&lt;span class="hljs-keyword">var&lt;/span> _asyncToGenerator3 =_interopRequireDefault(_asyncToGenerator2);</code></pre>
+<span class="hljs-keyword">var</span> _asyncToGenerator3 =_interopRequireDefault(_asyncToGenerator2);</code></pre>
 
         <h4>
           文件结构：
@@ -489,25 +489,25 @@ $ node &lt;span class="hljs-keyword">register&lt;/span>.js</code></pre>
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">// index.js&lt;/span>
-&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'babel-core/register'&lt;/span>)({});
-&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'babel-polyfill'&lt;/span>);
-&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'./async'&lt;/span>);</code></pre>
+        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// index.js</span>
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'babel-core/register'</span>)({});
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'babel-polyfill'</span>);
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'./async'</span>);</code></pre>
 
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">// async.js&lt;/span>
-&lt;span class="hljs-keyword">async&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">a&lt;/span>() &lt;/span>{
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'begin'&lt;/span>);
-  &lt;span class="hljs-keyword">await&lt;/span> &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">(&lt;span class="hljs-params">resolve&lt;/span>) =&gt;&lt;/span> {
-    setTimeout(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
+        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// async.js</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>() </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'begin'</span>);
+  <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =></span> {
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =></span> {
       resolve();
-    }, &lt;span class="hljs-number">1000&lt;/span>)
+    }, <span class="hljs-number">1000</span>)
   })
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'done'&lt;/span>);
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'done'</span>);
 }
 a();</code></pre>
 
@@ -516,7 +516,7 @@ a();</code></pre>
           </div>
         </div>
         
-        <pre class="hljs shell"><code style="word-break: break-word; white-space: initial;">&lt;span class="hljs-meta">$&lt;/span>&lt;span class="bash"> node index.js&lt;/span></code></pre>
+        <pre class="hljs shell"><code style="word-break: break-word; white-space: initial;"><span class="hljs-meta">$</span><span class="bash"> node index.js</span></code></pre>
         
         
           完美运行。
@@ -567,8 +567,8 @@ a();</code></pre>
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">// 编译前&lt;/span>
-&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-built_in">Object&lt;/span>.values({ &lt;span class="hljs-number">1&lt;/span>: &lt;span class="hljs-number">2&lt;/span> }));
+        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// 编译前</span>
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.values({ <span class="hljs-number">1</span>: <span class="hljs-number">2</span> }));
 </code></pre>
 
         <div class="widget-codetool" style="display: none;">
@@ -583,16 +583,16 @@ a();</code></pre>
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">// 编译后&lt;/span>
-&lt;span class="hljs-meta">'use strict'&lt;/span>;
+        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// 编译后</span>
+<span class="hljs-meta">'use strict'</span>;
 
-&lt;span class="hljs-keyword">var&lt;/span> _values = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'babel-runtime/core-js/object/values'&lt;/span>);
+<span class="hljs-keyword">var</span> _values = <span class="hljs-built_in">require</span>(<span class="hljs-string">'babel-runtime/core-js/object/values'</span>);
 
-&lt;span class="hljs-keyword">var&lt;/span> _values2 =_interopRequireDefault(_values);
+<span class="hljs-keyword">var</span> _values2 =_interopRequireDefault(_values);
 
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">_interopRequireDefault&lt;/span>(&lt;span class="hljs-params">obj&lt;/span>) &lt;/span>{ &lt;span class="hljs-keyword">return&lt;/span> obj && obj.__esModule ? obj : { &lt;span class="hljs-attr">default&lt;/span>: obj }; }
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_interopRequireDefault</span>(<span class="hljs-params">obj</span>) </span>{ <span class="hljs-keyword">return</span> obj && obj.__esModule ? obj : { <span class="hljs-attr">default</span>: obj }; }
 
-onsole.log((&lt;span class="hljs-number">0&lt;/span>, _values2.default)({ &lt;span class="hljs-number">1&lt;/span>: &lt;span class="hljs-number">2&lt;/span> }));</code></pre>
+onsole.log((<span class="hljs-number">0</span>, _values2.default)({ <span class="hljs-number">1</span>: <span class="hljs-number">2</span> }));</code></pre>
 
         
           另外，它还有几个配置
@@ -603,14 +603,14 @@ onsole.log((&lt;span class="hljs-number">0&lt;/span>, _values2.default)({ &lt;sp
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">// 默认值&lt;/span>
+        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// 默认值</span>
 {
-  &lt;span class="hljs-string">"plugins"&lt;/span>: [
-    [&lt;span class="hljs-string">"transform-runtime"&lt;/span>, {
-      &lt;span class="hljs-string">"helpers"&lt;/span>: &lt;span class="hljs-literal">true&lt;/span>,
-      &lt;span class="hljs-string">"polyfill"&lt;/span>: &lt;span class="hljs-literal">true&lt;/span>,
-      &lt;span class="hljs-string">"regenerator"&lt;/span>: &lt;span class="hljs-literal">true&lt;/span>,
-      &lt;span class="hljs-string">"moduleName"&lt;/span>: &lt;span class="hljs-string">"babel-runtime"&lt;/span>
+  <span class="hljs-string">"plugins"</span>: [
+    [<span class="hljs-string">"transform-runtime"</span>, {
+      <span class="hljs-string">"helpers"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-string">"polyfill"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-string">"regenerator"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-string">"moduleName"</span>: <span class="hljs-string">"babel-runtime"</span>
     }]
   ]
 }</code></pre>
@@ -692,7 +692,7 @@ onsole.log((&lt;span class="hljs-number">0&lt;/span>, _values2.default)({ &lt;sp
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript">{ &lt;span class="hljs-string">"presets"&lt;/span>: [&lt;span class="hljs-string">"latest"&lt;/span>] } === { &lt;span class="hljs-string">"presets"&lt;/span>: [&lt;span class="hljs-string">"env"&lt;/span>] }
+        <pre class="javascript hljs"><code class="javascript">{ <span class="hljs-string">"presets"</span>: [<span class="hljs-string">"latest"</span>] } === { <span class="hljs-string">"presets"</span>: [<span class="hljs-string">"env"</span>] }
 </code></pre>
 
         <h3 id="articleHeader14">
@@ -717,27 +717,27 @@ onsole.log((&lt;span class="hljs-number">0&lt;/span>, _values2.default)({ &lt;sp
         </div>
         
         <pre class="javascript hljs"><code class="javascript">{
-  &lt;span class="hljs-string">"presets"&lt;/span>: [
+  <span class="hljs-string">"presets"</span>: [
     [
-      &lt;span class="hljs-string">"env"&lt;/span>,
+      <span class="hljs-string">"env"</span>,
       {
-        &lt;span class="hljs-string">"targets"&lt;/span>: { &lt;span class="hljs-comment">// 配支持的环境&lt;/span>
-          &lt;span class="hljs-string">"browsers"&lt;/span>: [ &lt;span class="hljs-comment">// [浏览器](https://www.w3cdoc.com)&lt;/span>
-            &lt;span class="hljs-string">"last 2 versions"&lt;/span>,
-            &lt;span class="hljs-string">"safari &gt;= 7"&lt;/span>
+        <span class="hljs-string">"targets"</span>: { <span class="hljs-comment">// 配支持的环境</span>
+          <span class="hljs-string">"browsers"</span>: [ <span class="hljs-comment">// [浏览器](https://www.w3cdoc.com)</span>
+            <span class="hljs-string">"last 2 versions"</span>,
+            <span class="hljs-string">"safari >= 7"</span>
           ],
-          &lt;span class="hljs-string">"node"&lt;/span>: &lt;span class="hljs-string">"current"&lt;/span>
+          <span class="hljs-string">"node"</span>: <span class="hljs-string">"current"</span>
         },
-        &lt;span class="hljs-string">"modules"&lt;/span>: &lt;span class="hljs-literal">true&lt;/span>,  &lt;span class="hljs-comment">//设置ES6 模块转译的模块格式 默认是 commonjs&lt;/span>
-        &lt;span class="hljs-string">"debug"&lt;/span>: &lt;span class="hljs-literal">true&lt;/span>, &lt;span class="hljs-comment">// debug，编译的时候 console&lt;/span>
-        &lt;span class="hljs-string">"useBuiltIns"&lt;/span>: &lt;span class="hljs-literal">false&lt;/span>, &lt;span class="hljs-comment">// 是否开启自动支持 polyfill&lt;/span>
-        &lt;span class="hljs-string">"include"&lt;/span>: [], &lt;span class="hljs-comment">// 总是启用哪些 plugins&lt;/span>
-        &lt;span class="hljs-string">"exclude"&lt;/span>: []  &lt;span class="hljs-comment">// 强制不启用哪些 plugins，用来防止某些插件被启用&lt;/span>
+        <span class="hljs-string">"modules"</span>: <span class="hljs-literal">true</span>,  <span class="hljs-comment">//设置ES6 模块转译的模块格式 默认是 commonjs</span>
+        <span class="hljs-string">"debug"</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// debug，编译的时候 console</span>
+        <span class="hljs-string">"useBuiltIns"</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// 是否开启自动支持 polyfill</span>
+        <span class="hljs-string">"include"</span>: [], <span class="hljs-comment">// 总是启用哪些 plugins</span>
+        <span class="hljs-string">"exclude"</span>: []  <span class="hljs-comment">// 强制不启用哪些 plugins，用来防止某些插件被启用</span>
       }
     ]
   ],
-  &lt;span class="hljs-attr">plugins&lt;/span>: [
-    &lt;span class="hljs-string">"transform-react-jsx"&lt;/span> &lt;span class="hljs-comment">//如果是需要支持 jsx 这个东西要单独装一下。&lt;/span>
+  <span class="hljs-attr">plugins</span>: [
+    <span class="hljs-string">"transform-react-jsx"</span> <span class="hljs-comment">//如果是需要支持 jsx 这个东西要单独装一下。</span>
   ]
 }</code></pre>
 
@@ -760,30 +760,30 @@ onsole.log((&lt;span class="hljs-number">0&lt;/span>, _values2.default)({ &lt;sp
         
         <pre class="javascript hljs"><code class="javascript">Using targets:
 {
-  &lt;span class="hljs-string">"chrome"&lt;/span>: &lt;span class="hljs-string">"59"&lt;/span>,
-  &lt;span class="hljs-string">"android"&lt;/span>: &lt;span class="hljs-string">"4.4.3"&lt;/span>,
-  &lt;span class="hljs-string">"edge"&lt;/span>: &lt;span class="hljs-string">"14"&lt;/span>,
-  &lt;span class="hljs-string">"firefox"&lt;/span>: &lt;span class="hljs-string">"54"&lt;/span>,
-  &lt;span class="hljs-string">"ie"&lt;/span>: &lt;span class="hljs-string">"10"&lt;/span>,
-  &lt;span class="hljs-string">"ios"&lt;/span>: &lt;span class="hljs-string">"10"&lt;/span>,
-  &lt;span class="hljs-string">"safari"&lt;/span>: &lt;span class="hljs-string">"7"&lt;/span>,
-  &lt;span class="hljs-string">"node"&lt;/span>: &lt;span class="hljs-string">"4.8.4"&lt;/span>
+  <span class="hljs-string">"chrome"</span>: <span class="hljs-string">"59"</span>,
+  <span class="hljs-string">"android"</span>: <span class="hljs-string">"4.4.3"</span>,
+  <span class="hljs-string">"edge"</span>: <span class="hljs-string">"14"</span>,
+  <span class="hljs-string">"firefox"</span>: <span class="hljs-string">"54"</span>,
+  <span class="hljs-string">"ie"</span>: <span class="hljs-string">"10"</span>,
+  <span class="hljs-string">"ios"</span>: <span class="hljs-string">"10"</span>,
+  <span class="hljs-string">"safari"</span>: <span class="hljs-string">"7"</span>,
+  <span class="hljs-string">"node"</span>: <span class="hljs-string">"4.8.4"</span>
 }
 
 Modules transform: commonjs
 
 Using plugins:
-  check-es2015-constants {&lt;span class="hljs-string">"android"&lt;/span>:&lt;span class="hljs-string">"4.4.3"&lt;/span>,&lt;span class="hljs-string">"ie"&lt;/span>:&lt;span class="hljs-string">"10"&lt;/span>,&lt;span class="hljs-string">"safari"&lt;/span>:&lt;span class="hljs-string">"7"&lt;/span>,&lt;span class="hljs-string">"node"&lt;/span>:&lt;span class="hljs-string">"4.8.4"&lt;/span>}
-  transform-es2015-arrow-functions {&lt;span class="hljs-string">"android"&lt;/span>:&lt;span class="hljs-string">"4.4.3"&lt;/span>,&lt;span class="hljs-string">"ie"&lt;/span>:&lt;span class="hljs-string">"10"&lt;/span>,&lt;span class="hljs-string">"safari"&lt;/span>:&lt;span class="hljs-string">"7"&lt;/span>,&lt;span class="hljs-string">"node"&lt;/span>:&lt;span class="hljs-string">"4.8.4"&lt;/span>}
-  transform-es2015-block-scoped-functions {&lt;span class="hljs-string">"android"&lt;/span>:&lt;span class="hljs-string">"4.4.3"&lt;/span>,&lt;span class="hljs-string">"ie"&lt;/span>:&lt;span class="hljs-string">"10"&lt;/span>,&lt;span class="hljs-string">"safari"&lt;/span>:&lt;span class="hljs-string">"7"&lt;/span>}
-  transform-es2015-block-scoping {&lt;span class="hljs-string">"android"&lt;/span>:&lt;span class="hljs-string">"4.4.3"&lt;/span>,&lt;span class="hljs-string">"ie"&lt;/span>:&lt;span class="hljs-string">"10"&lt;/span>,&lt;span class="hljs-string">"safari"&lt;/span>:&lt;span class="hljs-string">"7"&lt;/span>,&lt;span class="hljs-string">"node"&lt;/span>:&lt;span class="hljs-string">"4.8.4"&lt;/span>}
+  check-es2015-constants {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"node"</span>:<span class="hljs-string">"4.8.4"</span>}
+  transform-es2015-arrow-functions {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"node"</span>:<span class="hljs-string">"4.8.4"</span>}
+  transform-es2015-block-scoped-functions {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>}
+  transform-es2015-block-scoping {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"node"</span>:<span class="hljs-string">"4.8.4"</span>}
   ...
 Using polyfills:
-  es6.typed.array-buffer {&lt;span class="hljs-string">"android"&lt;/span>:&lt;span class="hljs-string">"4.4.3"&lt;/span>,&lt;span class="hljs-string">"ie"&lt;/span>:&lt;span class="hljs-string">"10"&lt;/span>,&lt;span class="hljs-string">"safari"&lt;/span>:&lt;span class="hljs-string">"7"&lt;/span>,&lt;span class="hljs-string">"node"&lt;/span>:&lt;span class="hljs-string">"4.8.4"&lt;/span>}
-  es6.typed.int8-array {&lt;span class="hljs-string">"android"&lt;/span>:&lt;span class="hljs-string">"4.4.3"&lt;/span>,&lt;span class="hljs-string">"ie"&lt;/span>:&lt;span class="hljs-string">"10"&lt;/span>,&lt;span class="hljs-string">"safari"&lt;/span>:&lt;span class="hljs-string">"7"&lt;/span>,&lt;span class="hljs-string">"node"&lt;/span>:&lt;span class="hljs-string">"4.8.4"&lt;/span>}
-  es6.typed.uint8-array {&lt;span class="hljs-string">"android"&lt;/span>:&lt;span class="hljs-string">"4.4.3"&lt;/span>,&lt;span class="hljs-string">"ie"&lt;/span>:&lt;span class="hljs-string">"10"&lt;/span>,&lt;span class="hljs-string">"safari"&lt;/span>:&lt;span class="hljs-string">"7"&lt;/span>,&lt;span class="hljs-string">"node"&lt;/span>:&lt;span class="hljs-string">"4.8.4"&lt;/span>}
-  es6.typed.uint8-clamped-array {&lt;span class="hljs-string">"android"&lt;/span>:&lt;span class="hljs-string">"4.4.3"&lt;/span>,&lt;span class="hljs-string">"ie"&lt;/span>:&lt;span class="hljs-string">"10"&lt;/span>,&lt;span class="hljs-string">"safari"&lt;/span>:&lt;span class="hljs-string">"7"&lt;/span>,&lt;span class="hljs-string">"node"&lt;/span>:&lt;span class="hljs-string">"4.8.4"&lt;/span>}
-  es6.typed.int16-array {&lt;span class="hljs-string">"android"&lt;/span>:&lt;span class="hljs-string">"4.4.3"&lt;/span>,&lt;span class="hljs-string">"ie"&lt;/span>:&lt;span class="hljs-string">"10"&lt;/span>,&lt;span class="hljs-string">"safari"&lt;/span>:&lt;span class="hljs-string">"7"&lt;/span>,&lt;span class="hljs-string">"node"&lt;/span>:&lt;span class="hljs-string">"4.8.4"&lt;/span>}
+  es6.typed.array-buffer {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"node"</span>:<span class="hljs-string">"4.8.4"</span>}
+  es6.typed.int8-array {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"node"</span>:<span class="hljs-string">"4.8.4"</span>}
+  es6.typed.uint8-array {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"node"</span>:<span class="hljs-string">"4.8.4"</span>}
+  es6.typed.uint8-clamped-array {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"node"</span>:<span class="hljs-string">"4.8.4"</span>}
+  es6.typed.int16-array {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"node"</span>:<span class="hljs-string">"4.8.4"</span>}
   ...</code></pre>
 
         <h4>
@@ -803,32 +803,32 @@ Using polyfills:
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'./async'&lt;/span>);
-&lt;span class="hljs-comment">// import 'babel-polyfill';&lt;/span>
+        <pre class="javascript hljs"><code class="javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">'./async'</span>);
+<span class="hljs-comment">// import 'babel-polyfill';</span>
 
-&lt;span class="hljs-keyword">const&lt;/span> React = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'react'&lt;/span>);
-&lt;span class="hljs-keyword">const&lt;/span> elements = [&lt;span class="hljs-number">1&lt;/span>, &lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">3&lt;/span>].map(&lt;span class="hljs-function">(&lt;span class="hljs-params">item&lt;/span>) =&gt;&lt;/span> {
-  &lt;span class="hljs-keyword">return&lt;/span> (
-    &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>{item}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>&gt;&lt;/span>&lt;/span>
+<span class="hljs-keyword">const</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>);
+<span class="hljs-keyword">const</span> elements = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].map(<span class="hljs-function">(<span class="hljs-params">item</span>) =></span> {
+  <span class="hljs-keyword">return</span> (
+    <span class="xml"><span class="hljs-tag"><<span class="hljs-name">div</span>></span>{item}<span class="hljs-tag"></<span class="hljs-name">div</span>></span></span>
   )
 });
 
-&lt;span class="hljs-built_in">console&lt;/span>.log(elements);
+<span class="hljs-built_in">console</span>.log(elements);
 
-&lt;span class="hljs-keyword">async&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">a&lt;/span>() &lt;/span>{
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'begin'&lt;/span>);
-  &lt;span class="hljs-keyword">await&lt;/span> &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">(&lt;span class="hljs-params">resolve&lt;/span>) =&gt;&lt;/span> {
-    setTimeout(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =&gt;&lt;/span> {
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>() </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'begin'</span>);
+  <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =></span> {
+    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =></span> {
       resolve();
-    }, &lt;span class="hljs-number">1000&lt;/span>)
+    }, <span class="hljs-number">1000</span>)
   })
-  &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'done'&lt;/span>);
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'done'</span>);
 }
 a();
 
-&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-built_in">Object&lt;/span>.values({ &lt;span class="hljs-number">1&lt;/span>: &lt;span class="hljs-number">2&lt;/span> }));
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.values({ <span class="hljs-number">1</span>: <span class="hljs-number">2</span> }));
 
-&lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-built_in">Array&lt;/span>.isArray([]));
+<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Array</span>.isArray([]));
 </code></pre>
 
         
@@ -952,15 +952,15 @@ a();
         </div>
         
         <pre class="hljs json"><code>{
-  &lt;span class="hljs-attr">"presets"&lt;/span>: [
-    &lt;span class="hljs-string">"env"&lt;/span>
+  <span class="hljs-attr">"presets"</span>: [
+    <span class="hljs-string">"env"</span>
   ],
-  &lt;span class="hljs-attr">"plugins"&lt;/span>: [
-    [&lt;span class="hljs-string">"transform-runtime"&lt;/span>, {
-      &lt;span class="hljs-attr">"helpers"&lt;/span>: &lt;span class="hljs-literal">true&lt;/span>,
-      &lt;span class="hljs-attr">"polyfill"&lt;/span>: &lt;span class="hljs-literal">true&lt;/span>,
-      &lt;span class="hljs-attr">"regenerator"&lt;/span>: &lt;span class="hljs-literal">true&lt;/span>,
-      &lt;span class="hljs-attr">"moduleName"&lt;/span>: &lt;span class="hljs-string">"babel-runtime"&lt;/span>
+  <span class="hljs-attr">"plugins"</span>: [
+    [<span class="hljs-string">"transform-runtime"</span>, {
+      <span class="hljs-attr">"helpers"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"polyfill"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"regenerator"</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">"moduleName"</span>: <span class="hljs-string">"babel-runtime"</span>
     }]
   ]
 }</code></pre>
@@ -976,9 +976,9 @@ a();
           </div>
         </div>
         
-        <pre class="hljs objectivec"><code>&lt;span class="hljs-string">"babel"&lt;/span>: {
-  &lt;span class="hljs-string">"presets"&lt;/span>: [
-    &lt;span class="hljs-string">"env"&lt;/span>
+        <pre class="hljs objectivec"><code><span class="hljs-string">"babel"</span>: {
+  <span class="hljs-string">"presets"</span>: [
+    <span class="hljs-string">"env"</span>
   ],
 }</code></pre>
 
@@ -993,7 +993,7 @@ a();
           </div>
         </div>
         
-        <pre class="hljs sql"><code style="word-break: break-word; white-space: initial;">babel script.js &lt;span class="hljs-comment">--plugins=transform-runtime --presets=env&lt;/span></code></pre>
+        <pre class="hljs sql"><code style="word-break: break-word; white-space: initial;">babel script.js <span class="hljs-comment">--plugins=transform-runtime --presets=env</span></code></pre>
         
         <h2 id="articleHeader16">
           配合其他工具
@@ -1013,12 +1013,12 @@ a();
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript">  &lt;span class="hljs-built_in">module&lt;/span>: {
-    &lt;span class="hljs-attr">rules&lt;/span>: [
+        <pre class="javascript hljs"><code class="javascript">  <span class="hljs-built_in">module</span>: {
+    <span class="hljs-attr">rules</span>: [
       {
-        &lt;span class="hljs-attr">test&lt;/span>: &lt;span class="hljs-regexp">/\.js$/&lt;/span>,
-        &lt;span class="hljs-attr">use&lt;/span>: [&lt;span class="hljs-string">'babel-loader'&lt;/span>],
-        &lt;span class="hljs-attr">exclude&lt;/span>: &lt;span class="hljs-regexp">/node_modules/&lt;/span>,
+        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.js$/</span>,
+        <span class="hljs-attr">use</span>: [<span class="hljs-string">'babel-loader'</span>],
+        <span class="hljs-attr">exclude</span>: <span class="hljs-regexp">/node_modules/</span>,
       }
     ]
   }</code></pre>
@@ -1040,10 +1040,10 @@ a();
           </div>
         </div>
         
-        <pre class="hljs typescript"><code class="javascipt">&lt;span class="hljs-comment">// 求和函数 add.js&lt;/span>
-&lt;span class="hljs-keyword">const&lt;/span> add = &lt;span class="hljs-function">(&lt;span class="hljs-params">x, y&lt;/span>) =&gt;&lt;/span> x + y;
+        <pre class="hljs typescript"><code class="javascipt"><span class="hljs-comment">// 求和函数 add.js</span>
+<span class="hljs-keyword">const</span> add = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =></span> x + y;
 
-&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-keyword">default&lt;/span> add;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> add;
 </code></pre>
 
         <div class="widget-codetool" style="display: none;">
@@ -1051,13 +1051,13 @@ a();
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">// 测试脚本 add.test.js&lt;/span>
-&lt;span class="hljs-keyword">import&lt;/span> { expect } &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'chai'&lt;/span>; &lt;span class="hljs-comment">// chai 是断言库&lt;/span>
-&lt;span class="hljs-keyword">import&lt;/span> add &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'./add'&lt;/span>;
+        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// 测试脚本 add.test.js</span>
+<span class="hljs-keyword">import</span> { expect } <span class="hljs-keyword">from</span> <span class="hljs-string">'chai'</span>; <span class="hljs-comment">// chai 是断言库</span>
+<span class="hljs-keyword">import</span> add <span class="hljs-keyword">from</span> <span class="hljs-string">'./add'</span>;
 
-describe(&lt;span class="hljs-string">'es6 两数相加'&lt;/span>, () =&gt; {
-  it(&lt;span class="hljs-string">'2 + 4 = 6'&lt;/span>, () =&gt; {
-    expect(add(&lt;span class="hljs-number">2&lt;/span>, &lt;span class="hljs-number">4&lt;/span>)).equal(&lt;span class="hljs-number">6&lt;/span>);
+describe(<span class="hljs-string">'es6 两数相加'</span>, () => {
+  it(<span class="hljs-string">'2 + 4 = 6'</span>, () => {
+    expect(add(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>)).equal(<span class="hljs-number">6</span>);
   })
 });
 </code></pre>

@@ -45,24 +45,24 @@ asm.js 只提供两种<a href="http://asmjs.org/spec/latest/#value-types" target
 asm.js 的类型声明有固定写法，`变量 | 0`表示整数，`+变量`表示浮点数。
 
 > <pre class=" language-javascript"><code class=" language-javascript">
-&lt;span class="token keyword">var&lt;/span> a &lt;span class="token operator">=&lt;/span> &lt;span class="token number">1&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
 
-&lt;span class="token keyword">var&lt;/span> x &lt;span class="token operator">=&lt;/span> a &lt;span class="token operator">|&lt;/span> &lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment" spellcheck="true"> // x 是32位整数
-&lt;/span>&lt;span class="token keyword">var&lt;/span> y &lt;span class="token operator">=&lt;/span> &lt;span class="token operator">+&lt;/span>a&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment" spellcheck="true"> // y 是64位浮点数
-&lt;/span></code></pre>
+<span class="token keyword">var</span> x <span class="token operator">=</span> a <span class="token operator">|</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true"> // x 是32位整数
+</span><span class="token keyword">var</span> y <span class="token operator">=</span> <span class="token operator">+</span>a<span class="token punctuation">;</span> <span class="token comment" spellcheck="true"> // y 是64位浮点数
+</span></code></pre>
 
 上面代码中，变量`x`声明为整数，`y`声明为浮点数。支持 asm.js 的引擎一看到`x = a | 0`，就知道`x`是整数，然后采用 asm.js 的机制处理。如果引擎不支持 asm.js 也没关系，这段代码照样可以运行，最后得到的还是同样的结果。
 
 再看下面的例子。
 
-> <pre class=" language-javascript"><code class=" language-javascript">&lt;span class="token comment" spellcheck="true">
+> <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">
 // 写法一
-&lt;/span>&lt;span class="token keyword">var&lt;/span> first &lt;span class="token operator">=&lt;/span> &lt;span class="token number">5&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token keyword">var&lt;/span> second &lt;span class="token operator">=&lt;/span> first&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token comment" spellcheck="true">
+</span><span class="token keyword">var</span> first <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> second <span class="token operator">=</span> first<span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">
 // 写法二
-&lt;/span>&lt;span class="token keyword">var&lt;/span> first &lt;span class="token operator">=&lt;/span> &lt;span class="token number">5&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token keyword">var&lt;/span> second &lt;span class="token operator">=&lt;/span> first &lt;span class="token operator">|&lt;/span> &lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+</span><span class="token keyword">var</span> first <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> second <span class="token operator">=</span> first <span class="token operator">|</span> <span class="token number">0</span><span class="token punctuation">;</span>
 </code></pre>
 
 上面代码中，写法一是普通的 JavaScript，变量`second`只有在运行时才能知道类型，这样就很慢了，写法二是 asm.js，`second`在声明时就知道是整数，速度就提高了。
@@ -70,11 +70,11 @@ asm.js 的类型声明有固定写法，`变量 | 0`表示整数，`+变量`表�
 函数的参数和返回值，都要用这种方式指定类型。
 
 > <pre class=" language-javascript"><code class=" language-javascript">
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">add&lt;span class="token punctuation">(&lt;/span>&lt;/span>x&lt;span class="token punctuation">,&lt;/span> y&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  x &lt;span class="token operator">=&lt;/span> x &lt;span class="token operator">|&lt;/span> &lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  y &lt;span class="token operator">=&lt;/span> y &lt;span class="token operator">|&lt;/span> &lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>x &lt;span class="token operator">+&lt;/span> y&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">|&lt;/span> &lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+<span class="token keyword">function</span> <span class="token function">add<span class="token punctuation">(</span></span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  x <span class="token operator">=</span> x <span class="token operator">|</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  y <span class="token operator">=</span> y <span class="token operator">|</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>x <span class="token operator">+</span> y<span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
 上面代码中，除了参数`x`和`y`需要声明类型，函数的返回值也需要声明类型。
@@ -86,38 +86,38 @@ asm.js 没有垃圾回收机制，所有内存操作都由程序员自己控制�
 下面就是直接读写内存的例子。
 
 > <pre class=" language-javascript"><code class=" language-javascript">
-&lt;span class="token keyword">var&lt;/span> buffer &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">new&lt;/span> &lt;span class="token class-name">ArrayBuffer&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">32768&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token keyword">var&lt;/span> HEAP8 &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">new&lt;/span> &lt;span class="token class-name">Int8Array&lt;/span>&lt;span class="token punctuation">(&lt;/span>buffer&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">compiledCode&lt;span class="token punctuation">(&lt;/span>&lt;/span>ptr&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  HEAP&lt;span class="token punctuation">[&lt;/span>ptr&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token number">12&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> HEAP&lt;span class="token punctuation">[&lt;/span>ptr &lt;span class="token operator">+&lt;/span> &lt;span class="token number">4&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>  
+<span class="token keyword">var</span> buffer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayBuffer</span><span class="token punctuation">(</span><span class="token number">32768</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> HEAP8 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Int8Array</span><span class="token punctuation">(</span>buffer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">compiledCode<span class="token punctuation">(</span></span>ptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  HEAP<span class="token punctuation">[</span>ptr<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">12</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> HEAP<span class="token punctuation">[</span>ptr <span class="token operator">+</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>  
 </code></pre>
 
 如果涉及到指针，也是一样处理。
 
 > <pre class=" language-clike"><code class=" language-clike">
-size_t &lt;span class="token function">strlen&lt;span class="token punctuation">(&lt;/span>&lt;/span>char &lt;span class="token operator">*&lt;/span>ptr&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  char &lt;span class="token operator">*&lt;/span>curr &lt;span class="token operator">=&lt;/span> ptr&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token keyword">while&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">*&lt;/span>curr &lt;span class="token operator">!&lt;/span>&lt;span class="token operator">=&lt;/span> &lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    curr&lt;span class="token operator">++&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>curr &lt;span class="token operator">-&lt;/span> ptr&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+size_t <span class="token function">strlen<span class="token punctuation">(</span></span>char <span class="token operator">*</span>ptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  char <span class="token operator">*</span>curr <span class="token operator">=</span> ptr<span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">*</span>curr <span class="token operator">!</span><span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    curr<span class="token operator">++</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>curr <span class="token operator">-</span> ptr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
 上面的代码编译成 asm.js，就是下面这样。
 
 > <pre class=" language-javascript"><code class=" language-javascript">
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">strlen&lt;span class="token punctuation">(&lt;/span>&lt;/span>ptr&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  ptr &lt;span class="token operator">=&lt;/span> ptr&lt;span class="token operator">|&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token keyword">var&lt;/span> curr &lt;span class="token operator">=&lt;/span> &lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  curr &lt;span class="token operator">=&lt;/span> ptr&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token keyword">while&lt;/span> &lt;span class="token punctuation">(&lt;/span>MEM8&lt;span class="token punctuation">[&lt;/span>curr&lt;span class="token punctuation">]&lt;/span>&lt;span class="token operator">|&lt;/span>&lt;span class="token number">0&lt;/span> &lt;span class="token operator">!&lt;/span>&lt;span class="token operator">=&lt;/span> &lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    curr &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">(&lt;/span>curr &lt;span class="token operator">+&lt;/span> &lt;span class="token number">1&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token operator">|&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>curr &lt;span class="token operator">-&lt;/span> ptr&lt;span class="token punctuation">)&lt;/span>&lt;span class="token operator">|&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+<span class="token keyword">function</span> <span class="token function">strlen<span class="token punctuation">(</span></span>ptr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  ptr <span class="token operator">=</span> ptr<span class="token operator">|</span><span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> curr <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  curr <span class="token operator">=</span> ptr<span class="token punctuation">;</span>
+  <span class="token keyword">while</span> <span class="token punctuation">(</span>MEM8<span class="token punctuation">[</span>curr<span class="token punctuation">]</span><span class="token operator">|</span><span class="token number">0</span> <span class="token operator">!</span><span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    curr <span class="token operator">=</span> <span class="token punctuation">(</span>curr <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">|</span><span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span>curr <span class="token operator">-</span> ptr<span class="token punctuation">)</span><span class="token operator">|</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
 ### 1.4 asm.js 与 WebAssembly 的异同
@@ -139,7 +139,7 @@ size_t &lt;span class="token function">strlen&lt;span class="token punctuation">
 Emscripten 的底层是 LLVM 编译器，理论上任何可以生成 LLVM IR（Intermediate Representation）的语言，都可以编译生成 asm.js。 但是实际上，Emscripten 几乎只用于将 C / C++ 代码编译生成 asm.js。
 
 > <pre class=" language-bash"><code class=" language-bash">
-C&lt;span class="token operator">/&lt;/span>C&lt;span class="token operator">++&lt;/span> ⇒ LLVM &lt;span class="token operator">==&lt;/span>&lt;span class="token operator">&gt;&lt;/span> LLVM IR ⇒ Emscripten ⇒ asm&lt;span class="token punctuation">.&lt;/span>js
+C<span class="token operator">/</span>C<span class="token operator">++</span> ⇒ LLVM <span class="token operator">==</span><span class="token operator">></span> LLVM IR ⇒ Emscripten ⇒ asm<span class="token punctuation">.</span>js
 </code></pre>
 
 <img title="" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090302.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/bg2017090302.jpg?x-oss-process=image/format,webp" alt="" />
@@ -151,11 +151,11 @@ Emscripten 的安装可以根据<a href="http://kripken.github.io/emscripten-sit
 你可以按照下面的<a href="https://github.com/kripken/emscripten/issues/5443#issuecomment-320981440" target="_blank" rel="noopener noreferrer">步骤</a>操作。
 
 > <pre class=" language-bash"><code class=" language-bash">
-$ git clone https&lt;span class="token punctuation">:&lt;/span>&lt;span class="token operator">/&lt;/span>&lt;span class="token operator">/&lt;/span>github&lt;span class="token punctuation">.&lt;/span>com&lt;span class="token operator">/&lt;/span>juj&lt;span class="token operator">/&lt;/span>emsdk&lt;span class="token punctuation">.&lt;/span>git
+$ git clone https<span class="token punctuation">:</span><span class="token operator">/</span><span class="token operator">/</span>github<span class="token punctuation">.</span>com<span class="token operator">/</span>juj<span class="token operator">/</span>emsdk<span class="token punctuation">.</span>git
 $ cd emsdk
-$ &lt;span class="token punctuation">.&lt;/span>&lt;span class="token operator">/&lt;/span>emsdk install &lt;span class="token operator">--&lt;/span>build&lt;span class="token operator">=&lt;/span>Release sdk&lt;span class="token operator">-&lt;/span>incoming&lt;span class="token operator">-&lt;/span>64bit binaryen&lt;span class="token operator">-&lt;/span>master&lt;span class="token operator">-&lt;/span>64bit
-$ &lt;span class="token punctuation">.&lt;/span>&lt;span class="token operator">/&lt;/span>emsdk activate &lt;span class="token operator">--&lt;/span>build&lt;span class="token operator">=&lt;/span>Release sdk&lt;span class="token operator">-&lt;/span>incoming&lt;span class="token operator">-&lt;/span>64bit binaryen&lt;span class="token operator">-&lt;/span>master&lt;span class="token operator">-&lt;/span>64bit
-$ source &lt;span class="token punctuation">.&lt;/span>&lt;span class="token operator">/&lt;/span>emsdk_env&lt;span class="token punctuation">.&lt;/span>sh
+$ <span class="token punctuation">.</span><span class="token operator">/</span>emsdk install <span class="token operator">--</span>build<span class="token operator">=</span>Release sdk<span class="token operator">-</span>incoming<span class="token operator">-</span>64bit binaryen<span class="token operator">-</span>master<span class="token operator">-</span>64bit
+$ <span class="token punctuation">.</span><span class="token operator">/</span>emsdk activate <span class="token operator">--</span>build<span class="token operator">=</span>Release sdk<span class="token operator">-</span>incoming<span class="token operator">-</span>64bit binaryen<span class="token operator">-</span>master<span class="token operator">-</span>64bit
+$ source <span class="token punctuation">.</span><span class="token operator">/</span>emsdk_env<span class="token punctuation">.</span>sh
 </code></pre>
 
 注意，最后一行非常重要。每次重新登陆或者新建 Shell 窗口，都要执行一次这行命令`source ./emsdk_env.sh`。
@@ -166,19 +166,19 @@ $ source &lt;span class="token punctuation">.&lt;/span>&lt;span class="token ope
 
 > <pre class=" language-clike"><code class=" language-clike">
 
-# include &lt;span class="token operator">&lt;&lt;/span>iostream&lt;span class="token operator">&gt;&lt;/span>
+# include <span class="token operator"><</span>iostream<span class="token operator">></span>
 
-int &lt;span class="token function">main&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  std&lt;span class="token punctuation">:&lt;/span>&lt;span class="token punctuation">:&lt;/span>cout &lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">&lt;&lt;/span> &lt;span class="token string">"Hello World!"&lt;/span> &lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">&lt;&lt;/span> std&lt;span class="token punctuation">:&lt;/span>&lt;span class="token punctuation">:&lt;/span>endl&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+int <span class="token function">main<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator"><</span><span class="token operator"><</span> <span class="token string">"Hello World!"</span> <span class="token operator"><</span><span class="token operator"><</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
 然后，将这个程序转成 asm.js。
 
 > <pre class=" language-bash"><code class=" language-bash">
-$ emcc hello&lt;span class="token punctuation">.&lt;/span>cc
-$ node a&lt;span class="token punctuation">.&lt;/span>out&lt;span class="token punctuation">.&lt;/span>js
-Hello World&lt;span class="token operator">!&lt;/span>
+$ emcc hello<span class="token punctuation">.</span>cc
+$ node a<span class="token punctuation">.</span>out<span class="token punctuation">.</span>js
+Hello World<span class="token operator">!</span>
 </code></pre>
 
 上面代码中，`emcc`命令用于编译源码，默认生成`a.out.js`。使用 Node 执行`a.out.js`，就会在命令行输出 Hello World。
@@ -188,14 +188,14 @@ Hello World&lt;span class="token operator">!&lt;/span>
 `emcc`是 Emscripten 的编译命令。它的用法非常简单。
 
 > <pre class=" language-bash"><code class=" language-bash">
-&lt;span class="token comment" spellcheck="true"># 生成 a.out.js
-&lt;/span>$ emcc hello&lt;span class="token punctuation">.&lt;/span>c
+<span class="token comment" spellcheck="true"># 生成 a.out.js
+</span>$ emcc hello<span class="token punctuation">.</span>c
 
-&lt;span class="token comment" spellcheck="true"># 生成 hello.js
-&lt;/span>$ emcc hello&lt;span class="token punctuation">.&lt;/span>c &lt;span class="token operator">-&lt;/span>o hello&lt;span class="token punctuation">.&lt;/span>js
+<span class="token comment" spellcheck="true"># 生成 hello.js
+</span>$ emcc hello<span class="token punctuation">.</span>c <span class="token operator">-</span>o hello<span class="token punctuation">.</span>js
 
-&lt;span class="token comment" spellcheck="true"># 生成 hello.html 和 hello.js
-&lt;/span>$ emcc hello&lt;span class="token punctuation">.&lt;/span>c &lt;span class="token operator">-&lt;/span>o hello&lt;span class="token punctuation">.&lt;/span>html
+<span class="token comment" spellcheck="true"># 生成 hello.html 和 hello.js
+</span>$ emcc hello<span class="token punctuation">.</span>c <span class="token operator">-</span>o hello<span class="token punctuation">.</span>html
 </code></pre>
 
 ## 三、Emscripten 语法
@@ -208,11 +208,11 @@ Emscripten 允许 C / C++ 代码直接调用 JavaScript。
 
 > <pre class=" language-clike"><code class=" language-clike">
 
-# include &lt;span class="token operator">&lt;&lt;/span>emscripten&lt;span class="token punctuation">.&lt;/span>h&lt;span class="token operator">&gt;&lt;/span>
+# include <span class="token operator"><</span>emscripten<span class="token punctuation">.</span>h<span class="token operator">></span>
 
-int &lt;span class="token function">main&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token function">EM_ASM&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token punctuation">{&lt;/span> &lt;span class="token function">alert&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token string">'Hello World!'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+int <span class="token function">main<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">EM_ASM<span class="token punctuation">(</span></span><span class="token punctuation">{</span> <span class="token function">alert<span class="token punctuation">(</span></span><span class="token string">'Hello World!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
 `EM_ASM`是一个宏，会调用嵌入的 JavaScript 代码。注意，JavaScript 代码要写在大括号里面。
@@ -220,7 +220,7 @@ int &lt;span class="token function">main&lt;span class="token punctuation">(&lt;
 然后，将这个程序编译成 asm.js。
 
 > <pre class=" language-bash"><code class=" language-bash">
-$ emcc example1&lt;span class="token punctuation">.&lt;/span>cc &lt;span class="token operator">-&lt;/span>o example1&lt;span class="token punctuation">.&lt;/span>html
+$ emcc example1<span class="token punctuation">.</span>cc <span class="token operator">-</span>o example1<span class="token punctuation">.</span>html
 </code></pre>
 
 [浏览器](https://www.w3cdoc.com)打开`example1.html`，就会跳出对话框`Hello World!`。
@@ -233,16 +233,16 @@ Emscripten 允许 C / C++ 代码与 JavaScript 通信。
 
 > <pre class=" language-clike"><code class=" language-clike">
 
-# include &lt;span class="token operator">&lt;&lt;/span>emscripten&lt;span class="token punctuation">.&lt;/span>h&lt;span class="token operator">&gt;&lt;/span>
+# include <span class="token operator"><</span>emscripten<span class="token punctuation">.</span>h<span class="token operator">></span>
 
-# include &lt;span class="token operator">&lt;&lt;/span>iostream&lt;span class="token operator">&gt;&lt;/span>
+# include <span class="token operator"><</span>iostream<span class="token operator">></span>
 
-int &lt;span class="token function">main&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  int val1 &lt;span class="token operator">=&lt;/span> &lt;span class="token number">21&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  int val2 &lt;span class="token operator">=&lt;/span> &lt;span class="token function">EM_ASM_INT&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token punctuation">{&lt;/span> &lt;span class="token keyword">return&lt;/span> $&lt;span class="token number">0&lt;/span> &lt;span class="token operator">*&lt;/span> &lt;span class="token number">2&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> val1&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+int <span class="token function">main<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  int val1 <span class="token operator">=</span> <span class="token number">21</span><span class="token punctuation">;</span>
+  int val2 <span class="token operator">=</span> <span class="token function">EM_ASM_INT<span class="token punctuation">(</span></span><span class="token punctuation">{</span> <span class="token keyword">return</span> $<span class="token number">0</span> <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> val1<span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-  std&lt;span class="token punctuation">:&lt;/span>&lt;span class="token punctuation">:&lt;/span>cout &lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">&lt;&lt;/span> &lt;span class="token string">"val2 == "&lt;/span> &lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">&lt;&lt;/span> val2 &lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">&lt;&lt;/span> std&lt;span class="token punctuation">:&lt;/span>&lt;span class="token punctuation">:&lt;/span>endl&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+  std<span class="token punctuation">:</span><span class="token punctuation">:</span>cout <span class="token operator"><</span><span class="token operator"><</span> <span class="token string">"val2 == "</span> <span class="token operator"><</span><span class="token operator"><</span> val2 <span class="token operator"><</span><span class="token operator"><</span> std<span class="token punctuation">:</span><span class="token punctuation">:</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
 上面代码中，`EM_ASM_INT`表示 JavaScript 代码返回的是一个整数，它的参数里面的`$0`表示第一个参数，`$1`表示第二个参数，以此类推。`EM_ASM_INT`的其他参数会按照顺序，传入 JavaScript 表达式。
@@ -250,7 +250,7 @@ int &lt;span class="token function">main&lt;span class="token punctuation">(&lt;
 然后，将这个程序编译成 asm.js。
 
 > <pre class=" language-bash"><code class=" language-bash">
-$ emcc example2&lt;span class="token punctuation">.&lt;/span>cc &lt;span class="token operator">-&lt;/span>o example2&lt;span class="token punctuation">.&lt;/span>html
+$ emcc example2<span class="token punctuation">.</span>cc <span class="token operator">-</span>o example2<span class="token punctuation">.</span>html
 </code></pre>
 
 [浏览器](https://www.w3cdoc.com)打开网页`example2.html`，会显示`val2 == 42`。
@@ -270,20 +270,20 @@ Emscripten 提供以下宏。
 
 > <pre class=" language-clike"><code class=" language-clike">
 
-# include &lt;span class="token operator">&lt;&lt;/span>emscripten&lt;span class="token punctuation">.&lt;/span>h&lt;span class="token operator">&gt;&lt;/span>
+# include <span class="token operator"><</span>emscripten<span class="token punctuation">.</span>h<span class="token operator">></span>
 
-# include &lt;span class="token operator">&lt;&lt;/span>string&lt;span class="token operator">&gt;&lt;/span>
+# include <span class="token operator"><</span>string<span class="token operator">></span>
 
-void &lt;span class="token function">Alert&lt;span class="token punctuation">(&lt;/span>&lt;/span>const std&lt;span class="token punctuation">:&lt;/span>&lt;span class="token punctuation">:&lt;/span>string &lt;span class="token operator">&&lt;/span> msg&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token function">EM_ASM_ARGS&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token punctuation">{&lt;/span>
-    var msg &lt;span class="token operator">=&lt;/span> &lt;span class="token function">Pointer_stringify&lt;span class="token punctuation">(&lt;/span>&lt;/span>$&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token function">alert&lt;span class="token punctuation">(&lt;/span>&lt;/span>msg&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> msg&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">c_str&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+void <span class="token function">Alert<span class="token punctuation">(</span></span>const std<span class="token punctuation">:</span><span class="token punctuation">:</span>string <span class="token operator">&</span> msg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">EM_ASM_ARGS<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+    var msg <span class="token operator">=</span> <span class="token function">Pointer_stringify<span class="token punctuation">(</span></span>$<span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">alert<span class="token punctuation">(</span></span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> msg<span class="token punctuation">.</span><span class="token function">c_str<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int &lt;span class="token function">main&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token function">Alert&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token string">"Hello from C++!"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+int <span class="token function">main<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">Alert<span class="token punctuation">(</span></span><span class="token string">"Hello from C++!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
 上面代码中，[我们](https://www.w3cdoc.com)将一个字符串传入 JS 代码。由于没有返回值，所以使用`EM_ASM_ARGS`。另外，[我们](https://www.w3cdoc.com)都知道，在 C / C++ 里面，字符串是一个字符数组，所以要调用`Pointer_stringify()`方法将字符数组转成 JS 的字符串。
@@ -291,7 +291,7 @@ int &lt;span class="token function">main&lt;span class="token punctuation">(&lt;
 接着，将这个程序转成 asm.js。
 
 > <pre class=" language-bash"><code class=" language-bash">
-$ emcc example3&lt;span class="token punctuation">.&lt;/span>cc &lt;span class="token operator">-&lt;/span>o example3&lt;span class="token punctuation">.&lt;/span>html
+$ emcc example3<span class="token punctuation">.</span>cc <span class="token operator">-</span>o example3<span class="token punctuation">.</span>html
 </code></pre>
 
 [浏览器](https://www.w3cdoc.com)打开`example3.html`，会跳出对话框&#8221;Hello from C++!&#8221;。
@@ -302,21 +302,21 @@ JS 代码也可以调用 C / C++ 代码。新建一个文件`example4.cc`，写�
 
 > <pre class=" language-clike"><code class=" language-clike">
 
-# include &lt;span class="token operator">&lt;&lt;/span>emscripten&lt;span class="token punctuation">.&lt;/span>h&lt;span class="token operator">&gt;&lt;/span>
+# include <span class="token operator"><</span>emscripten<span class="token punctuation">.</span>h<span class="token operator">></span>
 
-extern &lt;span class="token string">"C"&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  double &lt;span class="token function">SquareVal&lt;span class="token punctuation">(&lt;/span>&lt;/span>double val&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> val &lt;span class="token operator">*&lt;/span> val&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+extern <span class="token string">"C"</span> <span class="token punctuation">{</span>
+  double <span class="token function">SquareVal<span class="token punctuation">(</span></span>double val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> val <span class="token operator">*</span> val<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 
-int &lt;span class="token function">main&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token function">EM_ASM&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token punctuation">{&lt;/span>
-    SquareVal &lt;span class="token operator">=&lt;/span> Module&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">cwrap&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token string">'SquareVal'&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token string">'number'&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">[&lt;/span>&lt;span class="token string">'number'&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    var x &lt;span class="token operator">=&lt;/span> &lt;span class="token number">12.5&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token function">alert&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token string">'Computing: '&lt;/span> &lt;span class="token operator">+&lt;/span> x &lt;span class="token operator">+&lt;/span> &lt;span class="token string">' * '&lt;/span> &lt;span class="token operator">+&lt;/span> x &lt;span class="token operator">+&lt;/span> &lt;span class="token string">' = '&lt;/span> &lt;span class="token operator">+&lt;/span> &lt;span class="token function">SquareVal&lt;span class="token punctuation">(&lt;/span>&lt;/span>x&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+int <span class="token function">main<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">EM_ASM<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+    SquareVal <span class="token operator">=</span> Module<span class="token punctuation">.</span><span class="token function">cwrap<span class="token punctuation">(</span></span><span class="token string">'SquareVal'</span><span class="token punctuation">,</span> <span class="token string">'number'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'number'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    var x <span class="token operator">=</span> <span class="token number">12.5</span><span class="token punctuation">;</span>
+    <span class="token function">alert<span class="token punctuation">(</span></span><span class="token string">'Computing: '</span> <span class="token operator">+</span> x <span class="token operator">+</span> <span class="token string">' * '</span> <span class="token operator">+</span> x <span class="token operator">+</span> <span class="token string">' = '</span> <span class="token operator">+</span> <span class="token function">SquareVal<span class="token punctuation">(</span></span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
 上面代码中，`EM_ASM`执行 JS 代码，里面有一个 C 语言函数`SquareVal`。这个函数必须放在`extern "C"`代码块之中定义，而且 JS 代码还要用`Module.cwrap()`方法引入这个函数。
@@ -330,17 +330,17 @@ int &lt;span class="token function">main&lt;span class="token punctuation">(&lt;
 除了`Module.cwrap()`，还有一个`Module.ccall()`方法，可以在 JS 代码之中调用 C 函数。
 
 > <pre class=" language-javascript"><code class=" language-javascript">
-&lt;span class="token keyword">var&lt;/span> result &lt;span class="token operator">=&lt;/span> Module&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">ccall&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token string">'int_sqrt'&lt;/span>&lt;span class="token punctuation">,&lt;/span>&lt;span class="token comment" spellcheck="true"> // C 函数的名称
-&lt;/span>  &lt;span class="token string">'number'&lt;/span>&lt;span class="token punctuation">,&lt;/span>&lt;span class="token comment" spellcheck="true"> // 返回值的类型
-&lt;/span>  &lt;span class="token punctuation">[&lt;/span>&lt;span class="token string">'number'&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">,&lt;/span>&lt;span class="token comment" spellcheck="true"> // 参数类型的数组
-&lt;/span>  &lt;span class="token punctuation">[&lt;/span>&lt;span class="token number">28&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token comment" spellcheck="true"> // 参数数组
-&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+<span class="token keyword">var</span> result <span class="token operator">=</span> Module<span class="token punctuation">.</span><span class="token function">ccall<span class="token punctuation">(</span></span><span class="token string">'int_sqrt'</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true"> // C 函数的名称
+</span>  <span class="token string">'number'</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true"> // 返回值的类型
+</span>  <span class="token punctuation">[</span><span class="token string">'number'</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token comment" spellcheck="true"> // 参数类型的数组
+</span>  <span class="token punctuation">[</span><span class="token number">28</span><span class="token punctuation">]</span><span class="token comment" spellcheck="true"> // 参数数组
+</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 
 回到前面的示例，现在将`example4.cc`编译成 asm.js。
 
 > <pre class=" language-bash"><code class=" language-bash">
-$  emcc &lt;span class="token operator">-&lt;/span>s EXPORTED_FUNCTIONS&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"['_SquareVal', '_main']"&lt;/span> example4&lt;span class="token punctuation">.&lt;/span>cc &lt;span class="token operator">-&lt;/span>o example4&lt;span class="token punctuation">.&lt;/span>html
+$  emcc <span class="token operator">-</span>s EXPORTED_FUNCTIONS<span class="token operator">=</span><span class="token string">"['_SquareVal', '_main']"</span> example4<span class="token punctuation">.</span>cc <span class="token operator">-</span>o example4<span class="token punctuation">.</span>html
 </code></pre>
 
 注意，编译命令里面要用`-s EXPORTED_FUNCTIONS`参数给出输出的函数名数组，而且函数名前面加下划线。本例只输出两个 C 函数，所以要写成`['_SquareVal', '_main']`。
@@ -348,7 +348,7 @@ $  emcc &lt;span class="token operator">-&lt;/span>s EXPORTED_FUNCTIONS&lt;span 
 [浏览器](https://www.w3cdoc.com)打开`example4.html`，就会看到弹出的对话框里面显示下面的内容。
 
 > <pre class=" language-javascript"><code class=" language-javascript">
-Computing&lt;span class="token punctuation">:&lt;/span> &lt;span class="token number">12.5&lt;/span> &lt;span class="token operator">*&lt;/span> &lt;span class="token number">12.5&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token number">156.25&lt;/span>
+Computing<span class="token punctuation">:</span> <span class="token number">12.5</span> <span class="token operator">*</span> <span class="token number">12.5</span> <span class="token operator">=</span> <span class="token number">156.25</span>
 </code></pre>
 
 ## 3.5 C 函数输出为 JavaScript 模块
@@ -356,11 +356,11 @@ Computing&lt;span class="token punctuation">:&lt;/span> &lt;span class="token nu
 另一种情况是输出 C 函数，供网页里面的 JavaScript 脚本调用。 新建一个文件`example5.cc`，写入下面的代码。
 
 > <pre class=" language-clike"><code class=" language-clike">
-extern &lt;span class="token string">"C"&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  double &lt;span class="token function">SquareVal&lt;span class="token punctuation">(&lt;/span>&lt;/span>double val&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> val &lt;span class="token operator">*&lt;/span> val&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+extern <span class="token string">"C"</span> <span class="token punctuation">{</span>
+  double <span class="token function">SquareVal<span class="token punctuation">(</span></span>double val<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> val <span class="token operator">*</span> val<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
 上面代码中，`SquareVal`是一个 C 函数，放在`extern "C"`代码块里面，就可以对外输出。
@@ -368,7 +368,7 @@ extern &lt;span class="token string">"C"&lt;/span> &lt;span class="token punctua
 然后，编译这个函数。
 
 > <pre class=" language-bash"><code class=" language-bash">
-$ emcc &lt;span class="token operator">-&lt;/span>s EXPORTED_FUNCTIONS&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"['_SquareVal']"&lt;/span> example5&lt;span class="token punctuation">.&lt;/span>cc &lt;span class="token operator">-&lt;/span>o example5&lt;span class="token punctuation">.&lt;/span>js
+$ emcc <span class="token operator">-</span>s EXPORTED_FUNCTIONS<span class="token operator">=</span><span class="token string">"['_SquareVal']"</span> example5<span class="token punctuation">.</span>cc <span class="token operator">-</span>o example5<span class="token punctuation">.</span>js
 </code></pre>
 
 上面代码中，`-s EXPORTED_FUNCTIONS`参数告诉编译器，代码里面需要输出的函数名。函数名前面要加下划线。
@@ -376,15 +376,15 @@ $ emcc &lt;span class="token operator">-&lt;/span>s EXPORTED_FUNCTIONS&lt;span c
 接着，写一个网页，加载刚刚生成的`example5.js`。
 
 > <pre class=" language-markup"><code class=" language-markup">
-&lt;span class="token doctype">&lt;!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN"&gt;&lt;/span>
-&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>body&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
-&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>h1&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>Test File&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>h1&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
-&lt;span class="token script">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>script &lt;span class="token attr-name">type&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>text/javascript&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token attr-name">src&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>example5.js&lt;span class="token punctuation">"&lt;/span>&lt;/span>&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>script&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>&lt;/span>
-&lt;span class="token script">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>script&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
-  SquareVal &lt;span class="token operator">=&lt;/span> Module&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">cwrap&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token string">'SquareVal'&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token string">'number'&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">[&lt;/span>&lt;span class="token string">'number'&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">write&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token string">"result == "&lt;/span> &lt;span class="token operator">+&lt;/span> &lt;span class="token function">SquareVal&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token number">10&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>script&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>&lt;/span>
-&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>body&lt;span class="token punctuation">&gt;&lt;/span>&lt;/span>
+<span class="token doctype"><!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN"></span>
+<span class="token tag"><span class="token punctuation"><</span>body<span class="token punctuation">></span></span>
+<span class="token tag"><span class="token punctuation"><</span>h1<span class="token punctuation">></span></span>Test File<span class="token tag"><span class="token punctuation"></</span>h1<span class="token punctuation">></span></span>
+<span class="token script"><span class="token tag"><span class="token punctuation"><</span>script <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>example5.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token punctuation"></</span>script<span class="token punctuation">></span></span></span>
+<span class="token script"><span class="token tag"><span class="token punctuation"><</span>script<span class="token punctuation">></span></span>
+  SquareVal <span class="token operator">=</span> Module<span class="token punctuation">.</span><span class="token function">cwrap<span class="token punctuation">(</span></span><span class="token string">'SquareVal'</span><span class="token punctuation">,</span> <span class="token string">'number'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'number'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  document<span class="token punctuation">.</span><span class="token function">write<span class="token punctuation">(</span></span><span class="token string">"result == "</span> <span class="token operator">+</span> <span class="token function">SquareVal<span class="token punctuation">(</span></span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token tag"><span class="token punctuation"></</span>script<span class="token punctuation">></span></span></span>
+<span class="token tag"><span class="token punctuation"></</span>body<span class="token punctuation">></span></span>
 </code></pre>
 
 [浏览器](https://www.w3cdoc.com)打开这个网页，就可以看到`result == 100`了。
@@ -395,33 +395,33 @@ $ emcc &lt;span class="token operator">-&lt;/span>s EXPORTED_FUNCTIONS&lt;span c
 
 > <pre class=" language-clike"><code class=" language-clike">
 
-# include &lt;span class="token operator">&lt;&lt;/span>stdio&lt;span class="token punctuation">.&lt;/span>h&lt;span class="token operator">&gt;&lt;/span>
+# include <span class="token operator"><</span>stdio<span class="token punctuation">.</span>h<span class="token operator">></span>
 
-# include &lt;span class="token operator">&lt;&lt;/span>emscripten&lt;span class="token punctuation">.&lt;/span>h&lt;span class="token operator">&gt;&lt;/span>
+# include <span class="token operator"><</span>emscripten<span class="token punctuation">.</span>h<span class="token operator">></span>
 
-void &lt;span class="token function">sayHi&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token function">printf&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token string">"Hi!\n"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+void <span class="token function">sayHi<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">printf<span class="token punctuation">(</span></span><span class="token string">"Hi!\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 
-int &lt;span class="token function">daysInWeek&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token number">7&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+int <span class="token function">daysInWeek<span class="token punctuation">(</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token number">7</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 
 然后，将这个脚本编译成 asm.js。
 
 > <pre class=" language-bash"><code class=" language-bash">
-$ emcc &lt;span class="token operator">-&lt;/span>s EXPORTED_FUNCTIONS&lt;span class="token operator">=&lt;/span>&lt;span class="token string">"['_sayHi', '_daysInWeek']"&lt;/span> example6&lt;span class="token punctuation">.&lt;/span>c &lt;span class="token operator">-&lt;/span>o example6&lt;span class="token punctuation">.&lt;/span>js
+$ emcc <span class="token operator">-</span>s EXPORTED_FUNCTIONS<span class="token operator">=</span><span class="token string">"['_sayHi', '_daysInWeek']"</span> example6<span class="token punctuation">.</span>c <span class="token operator">-</span>o example6<span class="token punctuation">.</span>js
 </code></pre>
 
 接着，写一个 Node 脚本`test.js`。
 
 > <pre class=" language-javascript"><code class=" language-javascript">
-&lt;span class="token keyword">var&lt;/span> em_module &lt;span class="token operator">=&lt;/span> &lt;span class="token function">require&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token string">'./api_example.js'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+<span class="token keyword">var</span> em_module <span class="token operator">=</span> <span class="token function">require<span class="token punctuation">(</span></span><span class="token string">'./api_example.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-em_module&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">_sayHi&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-em_module&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">ccall&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token string">"sayHi"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;span class="token punctuation">(&lt;/span>&lt;/span>em_module&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">_daysInWeek&lt;span class="token punctuation">(&lt;/span>&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+em_module<span class="token punctuation">.</span><span class="token function">_sayHi<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+em_module<span class="token punctuation">.</span><span class="token function">ccall<span class="token punctuation">(</span></span><span class="token string">"sayHi"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span>em_module<span class="token punctuation">.</span><span class="token function">_daysInWeek<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
 
 上面代码中，Node 脚本调用 C 函数有两种方法，一种是使用下划线函数名调用`em_module._sayHi()`，另一种使用`ccall`方法调用`em_module.ccall("sayHi")`。
@@ -429,10 +429,10 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 运行这个脚本，就可以看到命令行的输出。
 
 > <pre class=" language-bash"><code class=" language-bash">
-$ node test&lt;span class="token punctuation">.&lt;/span>js
-Hi&lt;span class="token operator">!&lt;/span>
-Hi&lt;span class="token operator">!&lt;/span>
-&lt;span class="token number">7&lt;/span>
+$ node test<span class="token punctuation">.</span>js
+Hi<span class="token operator">!</span>
+Hi<span class="token operator">!</span>
+<span class="token number">7</span>
 </code></pre>
 
 ## 四、用途

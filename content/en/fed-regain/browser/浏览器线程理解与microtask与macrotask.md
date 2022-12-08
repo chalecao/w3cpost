@@ -358,7 +358,7 @@ MDN的官方解释是：
  最常用的方式：<code>translate3d</code>、<code>translateZ</code>
  <code>opacity</code>属性/过渡动画（需要动画执行的过程中才会创建合成层，动画没有开始或结束后元素还会回到之前的状态）
  <code>will-chang</code>属性（这个比较偏僻），一般配合opacity与translate使用（而且经测试，除了上述可以引发硬件加速的属性外，其它属性并不会变成复合层），作用是提前告诉[浏览器](https://www.w3cdoc.com)要变化，这样[浏览器](https://www.w3cdoc.com)会开始做一些优化工作（这个最好用完后就释放）
- <code>&lt;video&gt;&lt;iframe&gt;&lt;canvas&gt;&lt;webgl&gt;</code>等元素
+ <code><video><iframe><canvas><webgl></code>等元素
  其它，譬如以前的flash插件
 
 
@@ -449,11 +449,11 @@ webkit CSS3中，如果这个元素添加了硬件加速，并且index层级比�
 
 譬如:
 
-<pre class=""><code>&lt;span class="">setTimeout&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">function&lt;/span>&lt;span class="">(){&lt;/span>&lt;span class="">console&lt;/span>&lt;span class="">.&lt;/span>&lt;span class="">log&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">'hello!'&lt;/span>&lt;span class="">);},&lt;/span>&lt;span class="">1000&lt;/span>&lt;span class="">);&lt;/span></code></pre>
+<pre class=""><code><span class="">setTimeout</span><span class="">(</span><span class="">function</span><span class="">(){</span><span class="">console</span><span class="">.</span><span class="">log</span><span class="">(</span><span class="">'hello!'</span><span class="">);},</span><span class="">1000</span><span class="">);</span></code></pre>
 
 这段代码的作用是当`1000`毫秒计时完毕后（由定时器线程计时），将回调函数推入事件队列中，等待主线程执行
 
-<pre class=""><code>&lt;span class="">setTimeout&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">function&lt;/span>&lt;span class="">(){&lt;/span>&lt;span class="">console&lt;/span>&lt;span class="">.&lt;/span>&lt;span class="">log&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">'hello!'&lt;/span>&lt;span class="">);},&lt;/span>&lt;span class="">0&lt;/span>&lt;span class="">);&lt;/span>&lt;span class="">console&lt;/span>&lt;span class="">.&lt;/span>&lt;span class="">log&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">'begin'&lt;/span>&lt;span class="">);&lt;/span></code></pre>
+<pre class=""><code><span class="">setTimeout</span><span class="">(</span><span class="">function</span><span class="">(){</span><span class="">console</span><span class="">.</span><span class="">log</span><span class="">(</span><span class="">'hello!'</span><span class="">);},</span><span class="">0</span><span class="">);</span><span class="">console</span><span class="">.</span><span class="">log</span><span class="">(</span><span class="">'begin'</span><span class="">);</span></code></pre>
 
 这段代码的效果是最快的时间内将回调函数推入事件队列中，等待主线程执行
 
@@ -495,18 +495,18 @@ https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
 
 上文中将JS事件循环机制梳理了一遍，在ES5的情况是够用了，但是在ES6盛行的现在，仍然会遇到一些问题，譬如下面这题：
 
-<pre class=""><code>&lt;span class="">console&lt;/span>&lt;span class="">.&lt;/span>&lt;span class="">log&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">'script start'&lt;/span>&lt;span class="">);
-&lt;/span>&lt;span class="">setTimeout&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">function&lt;/span>&lt;span class="">(){&lt;/span>&lt;span class="">console&lt;/span>&lt;span class="">.&lt;/span>&lt;span class="">log&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">'setTimeout'&lt;/span>&lt;span class="">);},&lt;/span>&lt;span class="">0&lt;/span>&lt;span class="">);
-&lt;/span>&lt;span class="">Promise&lt;/span>&lt;span class="">.&lt;/span>&lt;span class="">resolve&lt;/span>&lt;span class="">().&lt;/span>&lt;span class="">then&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">function&lt;/span>&lt;span class="">(){&lt;/span>&lt;span class="">console&lt;/span>&lt;span class="">.&lt;/span>&lt;span class="">log&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">'promise1'&lt;/span>&lt;span class="">);}).&lt;/span>&lt;span class="">then&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">function&lt;/span>&lt;span class="">(){&lt;/span>&lt;span class="">console&lt;/span>&lt;span class="">.&lt;/span>&lt;span class="">log&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">'promise2'&lt;/span>&lt;span class="">);});
-&lt;/span>&lt;span class="">console&lt;/span>&lt;span class="">.&lt;/span>&lt;span class="">log&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">'script end'&lt;/span>&lt;span class="">);&lt;/span></code></pre>
+<pre class=""><code><span class="">console</span><span class="">.</span><span class="">log</span><span class="">(</span><span class="">'script start'</span><span class="">);
+</span><span class="">setTimeout</span><span class="">(</span><span class="">function</span><span class="">(){</span><span class="">console</span><span class="">.</span><span class="">log</span><span class="">(</span><span class="">'setTimeout'</span><span class="">);},</span><span class="">0</span><span class="">);
+</span><span class="">Promise</span><span class="">.</span><span class="">resolve</span><span class="">().</span><span class="">then</span><span class="">(</span><span class="">function</span><span class="">(){</span><span class="">console</span><span class="">.</span><span class="">log</span><span class="">(</span><span class="">'promise1'</span><span class="">);}).</span><span class="">then</span><span class="">(</span><span class="">function</span><span class="">(){</span><span class="">console</span><span class="">.</span><span class="">log</span><span class="">(</span><span class="">'promise2'</span><span class="">);});
+</span><span class="">console</span><span class="">.</span><span class="">log</span><span class="">(</span><span class="">'script end'</span><span class="">);</span></code></pre>
 
 嗯哼，它的正确执行顺序是这样子的：
 
-<pre class=""><code>&lt;span class="">script start
+<pre class=""><code><span class="">script start
 script end
 promise1
 promise2
-setTimeout&lt;/span></code></pre>
+setTimeout</span></code></pre>
 
 为什么呢？因为Promise里有了一个一个新的概念：`microtask`
 
@@ -517,7 +517,7 @@ setTimeout&lt;/span></code></pre>
 
  macrotask（又称之为宏任务），可以理解是每次执行栈执行的代码就是一个宏任务（包括每次从事件队列中获取一个事件回调并放到执行栈中执行）
  每一个task会从头到尾将这个任务执行完毕，不会执行其它
- [浏览器](https://www.w3cdoc.com)为了能够使得JS内部task与DOM任务能够有序的执行，会在一个task执行结束后，在下一个 task 执行开始前，对页面进行重新渲染<br /> （<code>task-&gt;渲染-&gt;task-&gt;...</code>）
+ [浏览器](https://www.w3cdoc.com)为了能够使得JS内部task与DOM任务能够有序的执行，会在一个task执行结束后，在下一个 task 执行开始前，对页面进行重新渲染<br /> （<code>task->渲染->task->...</code>）
  microtask（又称为微任务），可以理解是在当前 task 执行结束后立即执行的任务
  也就是说，在当前task任务后，下一个task之前，在渲染之前
  所以它的响应速度相比setTimeout（setTimeout是task）会更快，因为无需等渲染
@@ -575,14 +575,14 @@ MutationObserver可以用来实现microtask（它属于microtask，优先级小�
 
 像以前的Vue源码中就是利用它来模拟nextTick的，具体原理是，创建一个TextNode并监听内容变化，然后要nextTick的时候去改一下这个节点的文本内容，如下：（Vue的源码，未修改）
 
-<pre class=""><code>&lt;span class="">var&lt;/span>&lt;span class=""> counter&lt;/span>&lt;span class="">=&lt;/span>&lt;span class="">1&lt;/span>
-&lt;span class="">var&lt;/span>&lt;span class=""> observer&lt;/span>&lt;span class="">=&lt;/span>&lt;span class="">newMutationObserver&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">nextTickHandler&lt;/span>&lt;span class="">)&lt;/span>
-&lt;span class="">var&lt;/span>&lt;span class=""> textNode&lt;/span>&lt;span class="">=&lt;/span>&lt;span class="">document&lt;/span>&lt;span class="">.&lt;/span>&lt;span class="">createTextNode&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">String&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">counter&lt;/span>&lt;span class="">))&lt;/span>&lt;span class="">
-observer&lt;/span>&lt;span class="">.&lt;/span>&lt;span class="">observe&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">textNode&lt;/span>&lt;span class="">,{&lt;/span>&lt;span class="">characterData&lt;/span>&lt;span class="">:&lt;/span>&lt;span class="">true&lt;/span>&lt;span class="">})&lt;/span>&lt;span class="">
-timerFunc&lt;/span>&lt;span class="">=()=&gt;{&lt;/span>&lt;span class="">
-    counter&lt;/span>&lt;span class="">=(&lt;/span>&lt;span class="">counter&lt;/span>&lt;span class="">+&lt;/span>&lt;span class="">1&lt;/span>&lt;span class="">)%&lt;/span>&lt;span class="">2&lt;/span>&lt;span class="">
-    textNode&lt;/span>&lt;span class="">.&lt;/span>&lt;span class="">data&lt;/span>&lt;span class="">=&lt;/span>&lt;span class="">String&lt;/span>&lt;span class="">(&lt;/span>&lt;span class="">counter&lt;/span>&lt;span class="">)&lt;/span>
-&lt;span class="">}&lt;/span></code></pre>
+<pre class=""><code><span class="">var</span><span class=""> counter</span><span class="">=</span><span class="">1</span>
+<span class="">var</span><span class=""> observer</span><span class="">=</span><span class="">newMutationObserver</span><span class="">(</span><span class="">nextTickHandler</span><span class="">)</span>
+<span class="">var</span><span class=""> textNode</span><span class="">=</span><span class="">document</span><span class="">.</span><span class="">createTextNode</span><span class="">(</span><span class="">String</span><span class="">(</span><span class="">counter</span><span class="">))</span><span class="">
+observer</span><span class="">.</span><span class="">observe</span><span class="">(</span><span class="">textNode</span><span class="">,{</span><span class="">characterData</span><span class="">:</span><span class="">true</span><span class="">})</span><span class="">
+timerFunc</span><span class="">=()=>{</span><span class="">
+    counter</span><span class="">=(</span><span class="">counter</span><span class="">+</span><span class="">1</span><span class="">)%</span><span class="">2</span><span class="">
+    textNode</span><span class="">.</span><span class="">data</span><span class="">=</span><span class="">String</span><span class="">(</span><span class="">counter</span><span class="">)</span>
+<span class="">}</span></code></pre>
 
 对应Vue源码链接
 

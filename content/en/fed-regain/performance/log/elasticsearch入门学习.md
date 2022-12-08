@@ -311,7 +311,7 @@ curl -X DELETE "localhost:9200/customer"</pre>
 如果[我们](https://www.w3cdoc.com)仔细研究上面的命令，[我们](https://www.w3cdoc.com)实际上可以看到如何在Elasticsearch中访问数据的模式。这种模式可以概括如下：
 
 <div class="cnblogs_code">
-  <pre>&lt;REST Verb> /&lt;Index>/&lt;Type>/&lt;ID></pre>
+  <pre><REST Verb> /<Index>/<Type>/<ID></pre>
 </div>
 
 # 修改数据

@@ -158,10 +158,10 @@ JSDoc 在写法上有着特定的要求，比如说行内也必须要是这样�
 
 <pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">// 函数返回 Promise 实例的情况可以这么指定类型&lt;/span>
 &lt;span class="hljs-comment">/**
- * @return {Promise&lt;number&gt;}
+ * @return {Promise&lt;number>}
  */&lt;/span>
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">test&lt;/span> () &lt;/span>{
-  &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">(&lt;span class="hljs-params">res&lt;/span>) =&gt;&lt;/span> {
+  &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">(&lt;span class="hljs-params">res&lt;/span>) =>&lt;/span> {
     res(&lt;span class="hljs-number">1&lt;/span>)
   })
 }
@@ -205,14 +205,14 @@ JSDoc 在写法上有着特定的要求，比如说行内也必须要是这样�
 &lt;span class="hljs-comment">/**
  * 获取用户信息
  * @param   {number} uid 用户UID
- * @return  {Promise&lt;UserInfo&gt;}
+ * @return  {Promise&lt;UserInfo>}
  */&lt;/span>
 &lt;span class="hljs-keyword">async&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">getUserInfo&lt;/span> (&lt;span class="hljs-params">uid&lt;/span>) &lt;/span>{ }
 
 &lt;span class="hljs-comment">/**
  * 创建订单
  * @param  {number} uid 用户UID
- * @return {Promise&lt;Order&gt;}
+ * @return {Promise&lt;Order>}
  */&lt;/span>
 &lt;span class="hljs-keyword">async&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">createOrder&lt;/span> (&lt;span class="hljs-params">uid&lt;/span>) &lt;/span>{ }
 
