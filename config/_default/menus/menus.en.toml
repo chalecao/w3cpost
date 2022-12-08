@@ -81,7 +81,7 @@
 
 [[main]]
   name = "博客"
-  url = "/blogg/"
+  url = "/blog/"
   weight = 20
 
 [[main]]
