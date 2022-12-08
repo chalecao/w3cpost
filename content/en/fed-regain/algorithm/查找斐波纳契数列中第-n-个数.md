@@ -16,7 +16,9 @@ title: 查找斐波纳契数列中第 N 个数
 
 **斐波纳契数列的前 10 个数字是**：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">0, 1, 1, 2, 3, 5, 8, 13, 21, 34 ...</pre>
+```
+0, 1, 1, 2, 3, 5, 8, 13, 21, 34 ...
+```
 
 # 示例
 
@@ -30,7 +32,7 @@ title: 查找斐波纳契数列中第 N 个数
 
 简单的想法就是递归，规则很明显了，但是有没有更好的解法呢？
 
-&nbsp;
+
 
 # Just Try
 
@@ -44,7 +46,7 @@ title: 查找斐波纳契数列中第 N 个数
 
 let you think， think makes you happy!
 
-&nbsp;
+
 
 # 参考答案
 
@@ -52,7 +54,8 @@ let you think， think makes you happy!
 
 代码很简单，看下就会了
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">function fibonaqi(n){
+```
+function fibonaqi(n){
   if(n==1) return 0;
   if(n==2) return 1;
   return fibonaqi(n-1)+fibonaqi(n-2)
@@ -60,7 +63,8 @@ let you think， think makes you happy!
 function main(param) {
   console.show(fibonaqi(param))
 }
-main(10)</pre>
+main(10)
+```
 
 PS：思考一下性能问题，试试把入参改成100？ 是不是会卡死一段时间？ 经我测试入参在45的时候还可以勉强算出来。
 
@@ -70,7 +74,8 @@ PS：思考一下性能问题，试试把入参改成100？ 是不是会卡死�
 
 动态规划就是：将原问题拆解成若干子问题，同时保存子问题的答案，使得每个子问题只求解一次，最终获得原问题的答案。
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">let temp = []
+```
+let temp = []
 function fibonaqi(n){
   if(n==1) return 0;
   if(n==2) return 1;
@@ -83,13 +88,15 @@ function main(...param) {
   console.show("参数：" + param, "结果：" + JSON.stringify(fibonaqi(param)))
   testPerformance(fibonaqi, param)
 }
-main(40);</pre>
+main(40);
+```
 
 ### 思路：正向计算
 
 比如让我计算第10个，我就挨个计算前10个，然后返回，因为正好和斐波那契数列的规则相似，所以一层循环就可以计算完。
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">function fibonaqi(n){
+```
+function fibonaqi(n){
   let arr=[0,1]
   for(let i=2;i<n;i++){
     arr[i] = arr[i-1] + arr[i-2]
@@ -99,7 +106,8 @@ main(40);</pre>
 function main(param) {
   console.show(fibonaqi(param))
 }
-main(10)</pre>
+main(10)
+```
 
 代码复制到在线编程环境试一下：[在线编程环境][1]
 

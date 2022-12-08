@@ -20,7 +20,8 @@ AJAX的核心是XMLHttpRequest。
 
 我将AJAX请求封装成ajax()方法，它接受一个配置对象params。
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">function ajax(params) {
+```
+function ajax(params) {
 
   params = params || {};
 
@@ -70,7 +71,7 @@ AJAX的核心是XMLHttpRequest。
 
         //  status：响应的HTTP状态码，以2开头的都是成功
 
-        if(status >= 200 && status &lt; 300) {
+        if(status >= 200 && status < 300) {
 
           var response = '';
 
@@ -163,13 +164,15 @@ AJAX的核心是XMLHttpRequest。
   }
 
 }
-</pre>
+
+```
 
 在上面的代码中，已经添加具体的注释，如需了解更多AJAX，可查看博主的书籍《JavaScript半知半解》中的AJAX章节：AJAX
 
 使用实例：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">ajax({
+```
+ajax({
 
   url: 'test.php',   // 请求地址
 
@@ -186,7 +189,8 @@ AJAX的核心是XMLHttpRequest。
   error: function(error) {}   // 请求失败的回调函数
 
 });
-</pre>
+
+```
 
 二、JSONP
 
@@ -194,15 +198,19 @@ AJAX的核心是XMLHttpRequest。
 
 AJAX之所以需要“跨域”，罪魁祸首就是[浏览器](https://www.w3cdoc.com)的同源策略。即，一个页面的AJAX只能获取这个页面相同源或者相同域的数据。 如何叫“同源”或者“同域”呢？——协议、域名、端口号都必须相同。例如：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">https://example.com 和 https://example.com 不同，因为协议不同；
+```
+https://example.com 和 https://example.com 不同，因为协议不同；
 
 https://localhost:8080 和 https://localhost:1000 不同，因为端口不同；
 
-https://localhost:8080 和 https://example.com 不同，协议、域名、端口号都不同，根本不是一家的。</pre>
+https://localhost:8080 和 https://example.com 不同，协议、域名、端口号都不同，根本不是一家的。
+```
 
 当跨域请求时，一般都会看到这个错误：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">XMLHttpRequest cannot load https://ghmagical.com/article/?intro=jsonp%E8%AF%B7%E6%B1%82&v=5520. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'https://localhost' is therefore not allowed access.</pre>
+```
+XMLHttpRequest cannot load https://ghmagical.com/article/?intro=jsonp%E8%AF%B7%E6%B1%82&v=5520. No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'https://localhost' is therefore not allowed access.
+```
 
 ``那如何跨域请求呢？这时，JSONP就登场了！
 
@@ -220,7 +228,8 @@ JSONP的请求过程：
 
 依旧是ajax()方法里添加JSONP，后面会将两者整合在一起，JSONP的配置参数主要多了一个jsonp参数，它就是你的回调函数名。
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">function ajax(params) {
+```
+function ajax(params) {
     params = params || {};
     params.data = params.data || {};
     var json = params.jsonp ? jsonp(params) : json(params);
@@ -268,13 +277,15 @@ JSONP的请求过程：
     function random() {
         return Math.floor(Math.random() * 10000 + 500);
     }
-}</pre>
+}
+```
 
 注意：因为 script 标签的 src 属性只在第一次设置的时候起作用，导致 script 标签没法重用，所以每次完成操作之后要移除；
 
 使用实例：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">ajax({
+```
+ajax({
 
   url: 'test.php',    // 请求地址
 
@@ -291,11 +302,13 @@ JSONP的请求过程：
   error: function(error) {}   // 请求失败的回调函数
 
 });
-</pre>
+
+```
 
 比如调用淘宝获取ip接口，返回数据是jsonp格式，代码如下：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">new Promise((resolve, reject) => {
+```
+new Promise((resolve, reject) => {
     ajax({
         url: '//www.taobao.com/help/getip.php',    // 淘宝获取ip接口，jsonp格式
         jsonp: 'ipCallback',  // 采用jsonp请求，且回调函数名为"ipCallback"
@@ -309,6 +322,7 @@ JSONP的请求过程：
     });
 }).then(res => {
     console.log(res)
-})</pre>
+})
+```
 
-&nbsp;
+

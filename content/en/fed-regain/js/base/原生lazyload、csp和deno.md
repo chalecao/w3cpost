@@ -25,7 +25,7 @@ title: 原生lazyload、csp和deno
 * Chrome 75 起将支持 [Web Share API Level 2][17]，在 Level 1 支持分享文字和 url 到 Web App 的基础上，额外支持了分享图片、音频、视频和文件。[&#x1f517;][18]
 * Edge 发布了 macOS 预览版，针对 Touch Bar 进行了浏览体验的增强。[&#x1f517;][19]
 
-&nbsp;
+
 
 ## 百宝箱 {#1}
 

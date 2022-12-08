@@ -1541,13 +1541,15 @@ title: 基于Chrome devTools远程调试技术方案
 接入参考github：[anydebugger][1]
 
 <div data-key="1018">
-  <pre class="EnlighterJSRAW" data-enlighter-language="null">npm install anydebugger -g
+  ```
+npm install anydebugger -g
 
 anydebugger -v //see version
 
 anydebugger //start debug
 
-anydebugger -p 9000 //start debug</pre>
+anydebugger -p 9000 //start debug
+```
 </div>
 
 <audio style="display: none;" controls="controls"></audio>

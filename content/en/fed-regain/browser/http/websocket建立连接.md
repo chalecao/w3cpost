@@ -25,14 +25,16 @@ WebSocket并不是全新的协议，而是利用了HTTP协议来建立连接。[
 
 首先，WebSocket连接必须由[浏览器](https://www.w3cdoc.com)发起，因为请求协议是一个标准的HTTP请求，格式如下：
 
-<pre><code class="javascript">GET ws:<span class="comment">//localhost:3000/ws/chat HTTP/1.1</span>
+```
+GET ws://localhost:3000/ws/chat HTTP/1.1
 Host: localhost
 Upgrade: websocket
 Connection: Upgrade
-Origin: http:<span class="comment">//localhost:3000</span>
+Origin: http://localhost:3000
 Sec-WebSocket-Key: client-random-string
-Sec-WebSocket-Version: <span class="number">13</span>
-</code></pre>
+Sec-WebSocket-Version: 13
+
+```
 
 该请求和普通的HTTP请求有几点不同：
 
@@ -43,11 +45,13 @@ Sec-WebSocket-Version: <span class="number">13</span>
 
 随后，服务器如果接受该请求，就会返回如下响应：
 
-<pre><code class="undefined">HTTP/1.1 101 Switching Protocols
+```
+HTTP/1.1 101 Switching Protocols
 Upgrade: websocket
 Connection: Upgrade
 Sec-WebSocket-Accept: server-random-string
-</code></pre>
+
+```
 
 该响应代码`101`表示本次连接的HTTP协议即将被更改，更改后的协议就是`Upgrade: websocket`指定的WebSocket协议。
 
@@ -79,4 +83,4 @@ Sec-WebSocket-Accept: server-random-string
 
 由于WebSocket是一个协议，服务器具体怎么实现，取决于所用编程语言和框架本身。Node.js本身支持的协议包括TCP协议和HTTP协议，要支持WebSocket协议，需要对Node.js提供的HTTPServer做额外的开发。已经有若干基于Node.js的稳定可靠的WebSocket实现，[我们](https://www.w3cdoc.com)直接用npm安装使用即可。
 
-&nbsp;
+

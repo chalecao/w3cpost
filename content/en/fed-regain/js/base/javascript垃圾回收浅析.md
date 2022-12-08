@@ -6,46 +6,56 @@ title: Javascript垃圾回收浅析
 
 1. Object
 
-<pre class="csharpcode"><span class="kwrd">new</span> Object();
-<span class="kwrd">new</span> MyConstructor();
+```
+new Object();
+new MyConstructor();
 { a: 4, b: 5 }
-Object.create();</pre>
+Object.create();
+```
 
 2. 数组
 
-<pre class="csharpcode"><span class="kwrd">new</span> Array();
-[ 1, 2, 3, 4 ];</pre>
+```
+new Array();
+[ 1, 2, 3, 4 ];
+```
 
 3. 字符串
 
-<pre class="csharpcode"><span class="kwrd">new</span> String(“hello hyddd”);
-“&lt;p>” + e.innerHTML + “&lt;/p>”</pre>
+```
+new String(“hello hyddd”);
+“<p>” + e.innerHTML + “</p>”
+```
 
 随带一说，javascript的字符串和.Net一样，使用资源池和copy on write方式管理字符串。
 
 4. 函数对象
 
-<pre class="csharpcode"><span class="kwrd">var</span> x = <span class="kwrd">function</span> () { ... }
-<span class="kwrd">new</span> Function(code);</pre>
+```
+var x = function () { ... }
+new Function(code);
+```
 
 5. 闭包
 
-<pre class="csharpcode"><span class="kwrd">function</span> outer(name) {
-<span class="kwrd">var</span> x = name;
-<span class="kwrd">return</span> <span class="kwrd">function</span> inner() {
-  <span class="kwrd">return</span> “Hi, “ + name;
+```
+function outer(name) {
+var x = name;
+return function inner() {
+  return “Hi, “ + name;
 }
-}</pre>
+}
+```
 
 闭包和prototype不一样，以上函数为例，当调用outer时，会生成并返回一个对象（隐含变量x），每次调用都创建一个，而prototype则是每次都返回同一个而对象（即：无论多少次调用，只创建一个对象）。
 
-&nbsp;
+
 
 # 二. GC方案
 
 相对其他语言的复杂的GC方案，Javascript的GC相对还是比较简单的。
 
-&nbsp;
+
 
 1. Javascript引擎基础GC方案是（simple GC）：mark and sweep（标记清除），即：
 
@@ -53,13 +63,13 @@ Object.create();</pre>
 
 （2）回收已不可访问的对象。
 
-&nbsp;
+
 
 2. GC的缺陷
 
 和其他语言一样，javascript的GC策略也无法避免一个问题：GC时，停止响应其他操作，这是为了安全考虑。而Javascript的GC在100ms甚至以上，对一般的应用还好，但对于JS游戏，动画对连贯性要求比较高的应用，就麻烦了。这就是新引擎需要优化的点：避免GC造成的长时间停止响应。
 
-&nbsp;
+
 
 ## 3. GC优化策略
 
@@ -104,7 +114,7 @@ CPU空闲清除对象后会造成堆内存出现碎片的情况，当碎片超�
 
     这里需要补充的是：对于tenured generation对象，有额外的开销：把它从young generation迁移到tenured generation，另外，如果被引用了，那引用的指向也需要修改。
 
-&nbsp;
+
 
 ### （2）增量GC
 
@@ -115,7 +125,7 @@ CPU空闲清除对象后会造成堆内存出现碎片的情况，当碎片超�
 
     这种方案，虽然耗时短，但中断较多，带来了上下文切换频繁的问题。
 
-&nbsp;
+
 
 4. 总结
 

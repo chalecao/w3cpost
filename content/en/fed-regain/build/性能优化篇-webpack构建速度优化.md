@@ -18,21 +18,23 @@ title: 性能优化篇—Webpack构建速度优化
       4. jarvis是一款基于webapck-dashboard的webpack性能分析插件，性能分析的结果在[浏览器](https://www.w3cdoc.com)显示，比webpack-bundler-anazlyer更美观清晰<a href="https://github.com/zouhir/jarvis" target="_blank" rel="nofollow noopener noreferrer">GitHub文档地址</a>
   * `npm i -D webpack-jarvis`
   * `webpack.config.js`配置：
-    <pre class="hljs typescript"><code><span class="hljs-keyword">const</span> Jarvis = <span class="hljs-built_in">require</span>(<span class="hljs-string">"webpack-jarvis"</span>);
+    ```
+const Jarvis = require("webpack-jarvis");
 
 plugins: [
-  <span class="hljs-keyword">new</span> Jarvis({
-    watchOnly: <span class="hljs-literal">false</span>,
-    port: <span class="hljs-number">3001</span> <span class="hljs-comment">// optional: set a port</span>
+  new Jarvis({
+    watchOnly: false,
+    port: 3001 // optional: set a port
   })
-];</code></pre>
+];
+```
 
       * port:监听的端口，默认1337，监听面板将监听这个端口，通常像<a href="http://localhost/" target="_blank" rel="nofollow noopener noreferrer">http://localhost</a>:port/
       * host:域名，默认localhost,不限制域名。
       * watchOnly:仅仅监听编译阶段。默认为true,如果高为false，jarvis不仅仅运行在编译阶段，在编译完成后还保持运行状态。
       * 界面：**看到构建时间为：**`Time: 11593ms`(作为优化时间对比)
 
-<span class="img-wrap"><img title="clipboard.png" src="https://segmentfault.com/img/bVbpGzp?w=2808&h=1684" alt="clipboard.png" data-src="/img/bVbpGzp?w=2808&h=1684" /></span>
+<img title="clipboard.png" src="https://segmentfault.com/img/bVbpGzp?w=2808&h=1684" alt="clipboard.png" data-src="/img/bVbpGzp?w=2808&h=1684" />
 
 ### webpack配置优化 {#articleHeader1}
 
@@ -45,23 +47,27 @@ plugins: [
   1. **优化Loader配置**
       * Loader处理文件的转换操作是很耗时的，所以需要让尽可能少的文件被Loader处理
 
-    <pre class="hljs css"><code>{
-    <span class="hljs-attribute">test</span>: /\.js$/,
+    ```
+{
+    test: /\.js$/,
     use: [
-        <span class="hljs-string">'babel-loader?cacheDirectory'</span>,//开启转换结果缓存
+        'babel-loader?cacheDirectory',//开启转换结果缓存
     ],
-    include: path.<span class="hljs-built_in">resolve</span>(__dirname, <span class="hljs-string">'src'</span>),//只对src目录中文件采用babel-loader
-    exclude: path.<span class="hljs-built_in">resolve</span>(__dirname,<span class="hljs-string">' ./node_modules'</span>),//排除node_modules目录下的文件
+    include: path.resolve(__dirname, 'src'),//只对src目录中文件采用babel-loader
+    exclude: path.resolve(__dirname,' ./node_modules'),//排除node_modules目录下的文件
 
-},</code></pre>
+},
+```
 
   2. **优化resolve.modules配置**
       * `resolve.modules`用于配置webpack去哪些目录下寻找第三方模块，默认是`['node_modules']`，但是，它会先去当前目录的`./node_modules`查找，没有的话再去`../node_modules`最后到根目录；
       * 所以当安装的第三方模块都放在项目根目录时，就没有必要安默认的一层一层的查找，直接指明存放的绝对位置
 
-    <pre class="hljs css"><code><span class="hljs-selector-tag">resolve</span>: {
-        <span class="hljs-attribute">modules</span>: [path.<span class="hljs-built_in">resolve</span>(__dirname, <span class="hljs-string">'node_modules'</span>)],
-    }</code></pre>
+    ```
+resolve: {
+        modules: [path.resolve(__dirname, 'node_modules')],
+    }
+```
 
   3. **优化resolve.extensions**配置
       * 在导入没带文件后缀的路径时，webpack会自动带上后缀去尝试询问文件是否存在，而`resolve.extensions`用于配置尝试后缀列表；默认为`extensions:['js','json']`;
@@ -87,49 +93,53 @@ plugins: [
       2. **DllReferencePlugin:**用于在主要的配置文件中引入`DllPlugin`插件打包好的动态链接库文件
 * **配置webpack_dll.config.js**构建动态链接库
 
-<pre class="hljs lua"><code>const <span class="hljs-built_in">path</span> = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
-const DllPlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack/lib/DllPlugin'</span>);
+```
+const path = require('path');
+const DllPlugin = require('webpack/lib/DllPlugin');
 
 module.exports = {
-    mode: <span class="hljs-string">'production'</span>,
+    mode: 'production',
     entry: {
         // 将React相关模块放入一个动态链接库
-        react: [<span class="hljs-string">'react'</span>,<span class="hljs-string">'react-dom'</span>,<span class="hljs-string">'react-router-dom'</span>,<span class="hljs-string">'react-loadable'</span>],
-        librarys: [<span class="hljs-string">'wangeditor'</span>],
-        utils: [<span class="hljs-string">'axios'</span>,<span class="hljs-string">'js-cookie'</span>]
+        react: ['react','react-dom','react-router-dom','react-loadable'],
+        librarys: ['wangeditor'],
+        utils: ['axios','js-cookie']
     },
-    <span class="hljs-built_in">output</span>: {
-        filename: <span class="hljs-string">'[name]-dll.js'</span>,
-        <span class="hljs-built_in">path</span>: <span class="hljs-built_in">path</span>.resolve(__dirname, <span class="hljs-string">'dll'</span>),
+    output: {
+        filename: '[name]-dll.js',
+        path: path.resolve(__dirname, 'dll'),
         // 存放动态链接库的全局变量名，加上_dll_防止全局变量冲突
-        library: <span class="hljs-string">'_dll_[name]'</span>
+        library: '_dll_[name]'
     },
-    // 动态链接库的全局变量名称，需要可<span class="hljs-built_in">output</span>.library中保持一致，也是输出的manifest.json文件中name的字段值
-    // 如react.manifest.json字段中存在<span class="hljs-string">"name"</span>:<span class="hljs-string">"_dll_react"</span>
+    // 动态链接库的全局变量名称，需要可output.library中保持一致，也是输出的manifest.json文件中name的字段值
+    // 如react.manifest.json字段中存在"name":"_dll_react"
     plugins: [
         new DllPlugin({
-            name: <span class="hljs-string">'_dll_[name]'</span>,
-            <span class="hljs-built_in">path</span>: <span class="hljs-built_in">path</span>.join(__dirname, <span class="hljs-string">'dll'</span>, <span class="hljs-string">'[name].manifest.json'</span>)
+            name: '_dll_[name]',
+            path: path.join(__dirname, 'dll', '[name].manifest.json')
         })
     ]
-}</code></pre>
+}
+```
 
 * **webpack.pro.config.js**中使用
 
-<pre class="hljs typescript"><code><span class="hljs-keyword">const</span> DllReferencePlugin = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack/lib/DllReferencePlugin'</span>);
+```
+const DllReferencePlugin = require('webpack/lib/DllReferencePlugin');
 ...
 plugins: [
-    <span class="hljs-comment">// 告诉webpack使用了哪些动态链接库</span>
-        <span class="hljs-keyword">new</span> DllReferencePlugin({
-            manifest: <span class="hljs-built_in">require</span>(<span class="hljs-string">'./dll/react.manifest.json'</span>)
+    // 告诉webpack使用了哪些动态链接库
+        new DllReferencePlugin({
+            manifest: require('./dll/react.manifest.json')
         }),
-        <span class="hljs-keyword">new</span> DllReferencePlugin({
-            manifest: <span class="hljs-built_in">require</span>(<span class="hljs-string">'./dll/librarys.manifest.json'</span>)
+        new DllReferencePlugin({
+            manifest: require('./dll/librarys.manifest.json')
         }),
-        <span class="hljs-keyword">new</span> DllReferencePlugin({
-            manifest: <span class="hljs-built_in">require</span>(<span class="hljs-string">'./dll/utils.manifest.json'</span>)
+        new DllReferencePlugin({
+            manifest: require('./dll/utils.manifest.json')
         }),
-]</code></pre>
+]
+```
 
 * **注意：**在`webpack_dll.config.js`文件中，`DllPlugin`中的name参数必须和`output.library`中的一致；因为`DllPlugin`的name参数影响输出的manifest.json的name；而webpack.pro.config.js中的`DllReferencePlugin`会读取`manifest.json`的name，将值作为从全局变量中获取动态链接库内容时的全局变量名
 * **执行构建**
@@ -148,44 +158,46 @@ plugins: [
       1. 安装：`npm i -D happypack`
       2. 重新配置`rules`部分,将`loader`交给`happypack`来分配：
 
-<pre class="hljs typescript"><code><span class="hljs-keyword">const</span> HappyPack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'happypack'</span>);
-<span class="hljs-keyword">const</span> happyThreadPool = HappyPack.ThreadPool({size: <span class="hljs-number">5</span>}); <span class="hljs-comment">//构建共享进程池，包含5个进程</span>
+```
+const HappyPack = require('happypack');
+const happyThreadPool = HappyPack.ThreadPool({size: 5}); //构建共享进程池，包含5个进程
 ...
 plugins: [
-    <span class="hljs-comment">// happypack并行处理</span>
-    <span class="hljs-keyword">new</span> HappyPack({
-        <span class="hljs-comment">// 用唯一ID来代表当前HappyPack是用来处理一类特定文件的，与rules中的use对应</span>
-        id: <span class="hljs-string">'babel'</span>,
-        loaders: [<span class="hljs-string">'babel-loader?cacheDirectory'</span>],<span class="hljs-comment">//默认设置loader处理</span>
-        threadPool: happyThreadPool,<span class="hljs-comment">//使用共享池处理</span>
+    // happypack并行处理
+    new HappyPack({
+        // 用唯一ID来代表当前HappyPack是用来处理一类特定文件的，与rules中的use对应
+        id: 'babel',
+        loaders: ['babel-loader?cacheDirectory'],//默认设置loader处理
+        threadPool: happyThreadPool,//使用共享池处理
     }),
-    <span class="hljs-keyword">new</span> HappyPack({
-        <span class="hljs-comment">// 用唯一ID来代表当前HappyPack是用来处理一类特定文件的，与rules中的use对应</span>
-        id: <span class="hljs-string">'css'</span>,
+    new HappyPack({
+        // 用唯一ID来代表当前HappyPack是用来处理一类特定文件的，与rules中的use对应
+        id: 'css',
         loaders: [
-            <span class="hljs-string">'css-loader'</span>,
-            <span class="hljs-string">'postcss-loader'</span>,
-            <span class="hljs-string">'sass-loader'</span>],
+            'css-loader',
+            'postcss-loader',
+            'sass-loader'],
             threadPool: happyThreadPool
     })
 ],
-<span class="hljs-keyword">module</span>: {
+module: {
     rules: [
     {
-        test: <span class="hljs-regexp">/\.(js|jsx)$/</span>,
-        use: [<span class="hljs-string">'happypack/loader?id=babel'</span>],
-        exclude: path.resolve(__dirname,<span class="hljs-string">' ./node_modules'</span>),
+        test: /\.(js|jsx)$/,
+        use: ['happypack/loader?id=babel'],
+        exclude: path.resolve(__dirname,' ./node_modules'),
     },
     {
-        test: <span class="hljs-regexp">/\.(scss|css)$/</span>,
-        <span class="hljs-comment">//使用的mini-css-extract-plugin提取css此处，如果放在上面会出错</span>
-        use: [MiniCssExtractPlugin.loader,<span class="hljs-string">'happypack/loader?id=css'</span>],
+        test: /\.(scss|css)$/,
+        //使用的mini-css-extract-plugin提取css此处，如果放在上面会出错
+        use: [MiniCssExtractPlugin.loader,'happypack/loader?id=css'],
         include:[
-            path.resolve(__dirname,<span class="hljs-string">'src'</span>),
-            path.join(__dirname, <span class="hljs-string">'./node_modules/antd'</span>)
+            path.resolve(__dirname,'src'),
+            path.join(__dirname, './node_modules/antd')
         ]
     },
-}</code></pre>
+}
+```
 
 * 参数：
       1. `threads`：代表开启几个子进程去处理这一类文件，默认是3个；
@@ -204,35 +216,37 @@ plugins: [
       6. `workerCount: ''`：开启几个子进程去并发的执行压缩。默认是当前运行电脑的 CPU 核数减去1
       7. `sourceMap: false`：是否为压缩后的代码生成对应的Source Map, 默认不生成
 
-<pre class="hljs groovy"><code>...
-<span class="hljs-string">minimizer:</span> [
-    <span class="hljs-comment">// webpack:production模式默认有配有js压缩，但是如果这里设置了css压缩，js压缩也要重新设置,因为使用minimizer会自动取消webpack的默认配置</span>
-    <span class="hljs-keyword">new</span> optimizeCssPlugin({
-<span class="hljs-symbol">        assetNameRegExp:</span> <span class="hljs-regexp">/\.css$/</span>g,
-<span class="hljs-symbol">        cssProcessor:</span> require(<span class="hljs-string">'cssnano'</span>),
-<span class="hljs-symbol">        cssProcessorOptions:</span> { <span class="hljs-string">discardComments:</span> { <span class="hljs-string">removeAll:</span> <span class="hljs-literal">true</span> } },
-<span class="hljs-symbol">        canPrint:</span> <span class="hljs-literal">true</span>
+```
+...
+minimizer: [
+    // webpack:production模式默认有配有js压缩，但是如果这里设置了css压缩，js压缩也要重新设置,因为使用minimizer会自动取消webpack的默认配置
+    new optimizeCssPlugin({
+        assetNameRegExp: /\.css$/g,
+        cssProcessor: require('cssnano'),
+        cssProcessorOptions: { discardComments: { removeAll: true } },
+        canPrint: true
     }),
-    <span class="hljs-keyword">new</span> ParallelUglifyPlugin({
-<span class="hljs-symbol">        cacheDir:</span> <span class="hljs-string">'.cache/'</span>,
-<span class="hljs-symbol">        uglifyJS:</span>{
-<span class="hljs-symbol">            output:</span> {
-           <span class="hljs-comment">// 是否输出可读性较强的代码，即会保留空格和制表符，默认为输出，为了达到更好的压缩效果，可以设置为false</span>
-<span class="hljs-symbol">                beautify:</span> <span class="hljs-literal">false</span>,
-        <span class="hljs-comment">//是否保留代码中的注释，默认为保留，为了达到更好的压缩效果，可以设置为false</span>
-<span class="hljs-symbol">                comments:</span> <span class="hljs-literal">false</span>
+    new ParallelUglifyPlugin({
+        cacheDir: '.cache/',
+        uglifyJS:{
+            output: {
+           // 是否输出可读性较强的代码，即会保留空格和制表符，默认为输出，为了达到更好的压缩效果，可以设置为false
+                beautify: false,
+        //是否保留代码中的注释，默认为保留，为了达到更好的压缩效果，可以设置为false
+                comments: false
             },
-<span class="hljs-symbol">            compress:</span> {
-            <span class="hljs-comment">//是否在UglifyJS删除没有用到的代码时输出警告信息，默认为输出</span>
-<span class="hljs-symbol">                warnings:</span> <span class="hljs-literal">false</span>,
-            <span class="hljs-comment">//是否删除代码中所有的console语句，默认为不删除，开启后，会删除所有的console语句</span>
-<span class="hljs-symbol">                drop_console:</span> <span class="hljs-literal">true</span>,
-            <span class="hljs-comment">//是否内嵌虽然已经定义了，但是只用到一次的变量，比如将 var x = 1; y = x, 转换成 y = 1, 默认为否</span>
-<span class="hljs-symbol">                collapse_vars:</span> <span class="hljs-literal">true</span>,
+            compress: {
+            //是否在UglifyJS删除没有用到的代码时输出警告信息，默认为输出
+                warnings: false,
+            //是否删除代码中所有的console语句，默认为不删除，开启后，会删除所有的console语句
+                drop_console: true,
+            //是否内嵌虽然已经定义了，但是只用到一次的变量，比如将 var x = 1; y = x, 转换成 y = 1, 默认为否
+                collapse_vars: true,
             }
         }
 }),
-]</code></pre>
+]
+```
 
 * * *
 

@@ -7,14 +7,16 @@ title: 关于hit test
 
 先看下上面这个图，可以了解下hit Test，在[我们](https://www.w3cdoc.com)调用elementsFromPoint 这个 DOM api的时候，内部执行这个hit test尽然花费了5s钟，一开始我以为是这个导致了页面卡顿，后来仔细想想，是因为卡顿导致了这个hit test执行时间长。
 
-<pre class="lang-js s-code-block hljs javascript"><code>| Self Time       | Total Time      | Activity            |
+```
+| Self Time       | Total Time      | Activity            |
 |-----------------|-----------------|---------------------|
-| <span class="hljs-number">3579</span> ms (<span class="hljs-number">67.5</span>%) | <span class="hljs-number">3579</span> ms (<span class="hljs-number">67.5</span>%) | Rendering           |
-| <span class="hljs-number">3455</span> ms (<span class="hljs-number">65.2</span>%) | <span class="hljs-number">3455</span> ms (<span class="hljs-number">65.2</span>%) |   Hit Test          | <span class="xml"><span class="hljs-tag"><<span class="hljs-name">-</span> <span class="hljs-attr">this</span> <span class="hljs-attr">one</span>
-|   <span class="hljs-attr">78</span> <span class="hljs-attr">ms</span>  (<span class="hljs-attr">1.5</span>%) |   <span class="hljs-attr">78</span> <span class="hljs-attr">ms</span>  (<span class="hljs-attr">1.5</span>%) |   <span class="hljs-attr">Update</span> <span class="hljs-attr">Layer</span> <span class="hljs-attr">Tree</span> |
-|   <span class="hljs-attr">40</span> <span class="hljs-attr">ms</span>  (<span class="hljs-attr">0.8</span>%) |   <span class="hljs-attr">40</span> <span class="hljs-attr">ms</span>  (<span class="hljs-attr">0.8</span>%) |   <span class="hljs-attr">Recalculate</span> <span class="hljs-attr">Style</span> |
-| <span class="hljs-attr">1343</span> <span class="hljs-attr">ms</span> (<span class="hljs-attr">25.3</span>%) | <span class="hljs-attr">1343</span> <span class="hljs-attr">ms</span> (<span class="hljs-attr">25.3</span>%) | <span class="hljs-attr">Scripting</span>           |
-|  <span class="hljs-attr">378</span> <span class="hljs-attr">ms</span>  (<span class="hljs-attr">7.1</span>%) |  <span class="hljs-attr">378</span> <span class="hljs-attr">ms</span>  (<span class="hljs-attr">7.1</span>%) | <span class="hljs-attr">Painting</span>            |</span></span></code></pre>
+| 3579 ms (67.5%) | 3579 ms (67.5%) | Rendering           |
+| 3455 ms (65.2%) | 3455 ms (65.2%) |   Hit Test          | <- this one
+|   78 ms  (1.5%) |   78 ms  (1.5%) |   Update Layer Tree |
+|   40 ms  (0.8%) |   40 ms  (0.8%) |   Recalculate Style |
+| 1343 ms (25.3%) | 1343 ms (25.3%) | Scripting           |
+|  378 ms  (7.1%) |  378 ms  (7.1%) | Painting            |
+```
 
 如果你通过performance查看页面性能，发现你的页面也是这个样子，那么你的页面也存在同样的性能问题。
 
@@ -34,7 +36,7 @@ hit test就是用来追踪当前点击位置的响应元素，从根节点html>b
 >   </h3>
 >
 >   
->     <span style="font-family: arial, sans-serif; font-size: medium;">In blink, we hook into the creation of Touch event handlers and track EventTargets with handlers in </span><span style="font-family: arial, sans-serif; font-size: medium;">EventHandlerRegistry. During paint, HitTestDisplayItems are emitted for all objects with blocking event handlers. As an optimization, a cache of the HitTestDisplay item data is stored on PaintChunk for all display items in the chunk. Then, after compositing, all hit test rects for a cc::Layer are projected into the cc::Layer&#8217;s coordinate space using </span><span style="font-family: arial, sans-serif; font-size: medium;">PaintArtifactCompositor::UpdateTouchActionRects. This approach of painting hit test data is described in more detail in <a href="https://docs.google.com/document/d/1ksiqEPkDeDuI_l5HvWlq1MfzFyDxSnsNB8YXIaXa3sE/view#">PaintTouchActionRects</a>.</span>
+>     In blink, we hook into the creation of Touch event handlers and track EventTargets with handlers in EventHandlerRegistry. During paint, HitTestDisplayItems are emitted for all objects with blocking event handlers. As an optimization, a cache of the HitTestDisplay item data is stored on PaintChunk for all display items in the chunk. Then, after compositing, all hit test rects for a cc::Layer are projected into the cc::Layer&#8217;s coordinate space using PaintArtifactCompositor::UpdateTouchActionRects. This approach of painting hit test data is described in more detail in <a href="https://docs.google.com/document/d/1ksiqEPkDeDuI_l5HvWlq1MfzFyDxSnsNB8YXIaXa3sE/view#">PaintTouchActionRects</a>.
 >   
 >
 >   <h3 dir="ltr">
@@ -43,7 +45,7 @@ hit test就是用来追踪当前点击位置的响应元素，从根节点html>b
 > </div>
 >
 > <div>
->   <span style="font-family: arial, sans-serif; font-size: medium;">The hit testing is currently done just for the touchStart events since the point at which these event hit determines where the next train of events will be sent until we receive another touchStart (due to a different gesture starting or due to another finger being pressed on screen). On the compositor, (as of the fix for <a href="https://www.chromium.org/developers/design-documents/goog_353685820">bug </a></span><span style="font-family: arial, sans-serif; font-size: medium;"><a href="https://code.google.com/p/chromium/issues/detail?id=351723">351723</a>) </span>we do a ray cast at the point of the touch and consult the touchEventHandlerRegion for each layer until we hit a layer we know is opaque to hit testing. If there is a hit, the compositor forwards this touch event to the renderer and then it is sent to blink to be processed as usual. If there is no touchEventHandlerRegion that was hit, the compositor sends an ACK with NO_CONSUMER_EXISTS.
+>   The hit testing is currently done just for the touchStart events since the point at which these event hit determines where the next train of events will be sent until we receive another touchStart (due to a different gesture starting or due to another finger being pressed on screen). On the compositor, (as of the fix for <a href="https://www.chromium.org/developers/design-documents/goog_353685820">bug </a><a href="https://code.google.com/p/chromium/issues/detail?id=351723">351723</a>) we do a ray cast at the point of the touch and consult the touchEventHandlerRegion for each layer until we hit a layer we know is opaque to hit testing. If there is a hit, the compositor forwards this touch event to the renderer and then it is sent to blink to be processed as usual. If there is no touchEventHandlerRegion that was hit, the compositor sends an ACK with NO_CONSUMER_EXISTS.
 > </div>
 >
 > <div>
@@ -58,15 +60,15 @@ hit test就是用来追踪当前点击位置的响应元素，从根节点html>b
 >   </div>
 >
 >   <div>
->     <span style="font-family: arial, sans-serif; font-size: medium;">As far as the browser side is concerned, only the ACKs it receives for the outgoing touch events matter in determining the current state. Currently there are four states that the ACK can be at. INPUT_EVENT_STATE_ACK_UNKNOWN is the initial default state that the touch_event_queue is at and might not be used on different platforms(ex: Android). When a touchStart event comes the touch event queue on the browser side always sends this touch event through IPC to the compositor. Then the touch event queue waits for the ACK for that touchStart to make a decision about the rest of the touch events in queue.</span>
+>     As far as the browser side is concerned, only the ACKs it receives for the outgoing touch events matter in determining the current state. Currently there are four states that the ACK can be at. INPUT_EVENT_STATE_ACK_UNKNOWN is the initial default state that the touch_event_queue is at and might not be used on different platforms(ex: Android). When a touchStart event comes the touch event queue on the browser side always sends this touch event through IPC to the compositor. Then the touch event queue waits for the ACK for that touchStart to make a decision about the rest of the touch events in queue.
 >   </div>
 >
 >   <div>
->     <span style="font-family: arial, sans-serif; font-size: medium;"> </span>
+>      
 >   </div>
 >
 >   <div>
->     <span style="font-family: arial, sans-serif; font-size: medium;">If it receives </span>NO_CONSUMER_EXISTS, it stops sending touch events to the compositor until the next touchStart arrives and sends them directly to the platform specific gesture detector. This is mostly the case for regular browsing helps the gesture detector take over after a single touch event gets ACKed back from the compositor making it possible for the gesture to be generated fast enough to not cause any visible lag.
+>     If it receives NO_CONSUMER_EXISTS, it stops sending touch events to the compositor until the next touchStart arrives and sends them directly to the platform specific gesture detector. This is mostly the case for regular browsing helps the gesture detector take over after a single touch event gets ACKed back from the compositor making it possible for the gesture to be generated fast enough to not cause any visible lag.
 >   </div>
 >
 >   <div>
@@ -78,7 +80,7 @@ hit test就是用来追踪当前点击位置的响应元素，从根节点html>b
 >   </div>
 > </div>
 
-大致的意思就是，在[浏览器](https://www.w3cdoc.com)blink引擎绘制元素的时候会为每个要绘制的元素生成<span style="font-family: arial, sans-serif; font-size: medium;">HitTestDisplayItem，这些元素和对应的事件处理函数都会缓存起来，在合成的时候所有元素都会投射成一个框框到对应的view层。</span>
+大致的意思就是，在[浏览器](https://www.w3cdoc.com)blink引擎绘制元素的时候会为每个要绘制的元素生成HitTestDisplayItem，这些元素和对应的事件处理函数都会缓存起来，在合成的时候所有元素都会投射成一个框框到对应的view层。
 
 在合成器中，基于触摸点位置进行光线投射，一层一层查询touchEventHandlerRegion，知道找到透明层为止。如果有一个命中，合成器就会把对应的事件转发给UI渲染进程，然后交给blink处理，如果没有合成器最后会发送NO\_CONSUMER\_EXISTS 作为ACK应答。
 

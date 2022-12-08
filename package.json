@@ -36,7 +36,7 @@
     "copy:katex-fonts": "shx cp ./node_modules/katex/dist/fonts/* ./static/fonts/",
     "postinstall": "hugo-installer --version otherDependencies.hugo --extended --destination node_modules/.bin/hugo",
     "version": "auto-changelog -p && git add CHANGELOG.md",
-    "pub":"sh deploy_w3cdoc.sh && sh deploy_f2e123.sh"
+    "pub":"npm run build && sh deploy_w3cdoc.sh && sh deploy_f2e123.sh"
   },
   "devDependencies": {
     "@babel/cli": "^7.18",

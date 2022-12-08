@@ -52,7 +52,9 @@ CLS会测量在页面的整个生命周期中发生的每个 _意外的版式�
 
 要计算_布局平移分数_，[浏览器](https://www.w3cdoc.com)将查看视口大小以及两个渲染帧之间视口中_不稳定元素_的移动。布局偏移分数是该运动的两个度量的乘积：_影响比例（impact fraction）_ 和 _位移比例_（均在下面定义）。
 
-<pre class="language-text"><code class="language-text">layout shift score = impact fraction * distance fraction</code></pre>
+```
+layout shift score = impact fraction * distance fraction
+```
 
 ### 影响比例 {#impact-fraction}
 
@@ -149,11 +151,13 @@ CSS[`transform`][6] 属性使您可以为元素设置动画，而不会触发�
 
 <div class="w-aside w-aside--note">
   <div>
-    <pre class="prettyprint"><span class="kwd">const</span><span class="pln"> entryType </span><span class="pun">=</span> <span class="str">'layout-shift'</span><span class="pln">
-constobserver</span><span class="pun">=</span><span class="pln">newPerformanceObserver</span><span class="pun">((</span><span class="pln">list</span><span class="pun">)</span> <span class="pun">=></span> <span class="pun">{</span><span class="pln">
-    list</span><span class="pun">.</span><span class="pln">getEntries</span><span class="pun">().</span><span class="pln">forEach</span><span class="pun">(</span><span class="pln">console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">);</span>
-<span class="pun">})</span><span class="pln">
-observer</span><span class="pun">.</span><span class="pln">observe</span><span class="pun">({</span><span class="pln"> entryTypes</span><span class="pun">:</span> <span class="pun">[</span><span class="pln">entryType</span><span class="pun">]</span> <span class="pun">});</span></pre>
+    ```
+const entryType = 'layout-shift'
+constobserver=newPerformanceObserver((list) => {
+    list.getEntries().forEach(console.log);
+})
+observer.observe({ entryTypes: [entryType] });
+```
   </div>
 </div>
 

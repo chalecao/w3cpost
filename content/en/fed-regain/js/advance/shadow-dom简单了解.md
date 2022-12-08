@@ -24,18 +24,20 @@ Shadow DOM它允许在文档（document）渲染时插入一棵DOM元素子树�
 
 看一个简单的video：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="html">&lt;!DOCTYPE html>
-&lt;html lang="en">
-&lt;head>
-    &lt;meta charset="UTF-8">
-    &lt;title>Shadow DOM&lt;/title>
-&lt;/head>
-&lt;body>
-    &lt;video controls autoplay name="media" width="500">
-        &lt;source id="mp4" src="http://7ryl2t.com2.z0.glb.qiniucdn.com/572ffc37a2e5a.mp4" type="video/mp4">
-    &lt;/video>
-&lt;/body>
-&lt;/html></pre>
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shadow DOM</title>
+</head>
+<body>
+    <video controls autoplay name="media" width="500">
+        <source id="mp4" src="http://7ryl2t.com2.z0.glb.qiniucdn.com/572ffc37a2e5a.mp4" type="video/mp4">
+    </video>
+</body>
+</html>
+```
 
 页面完成了，在[浏览器](https://www.w3cdoc.com)chrome中打开，然后打开 Chrome 的开发者工具，点击右上角的“Settings”按钮，勾选“Show user agent shadow DOM”。
 
@@ -53,20 +55,21 @@ Shadow DOM它允许在文档（document）渲染时插入一棵DOM元素子树�
 
 使用createShadowRoot()来创建Shadow DOM，并赋值给一个变量，然后添加元素给变量即可。
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;!DOCTYPE html>
-&lt;html lang="en">
-&lt;head>
-&lt;meta charset="UTF-8">
-&lt;title>Shadow DOM&lt;/title>
-&lt;style type="text/css">
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Shadow DOM</title>
+<style type="text/css">
 .shadowroot_son {
 color: #f00;
 }
-&lt;/style>
-&lt;/head>
-&lt;body>
-&lt;div class="shadowhost">Hello, world!&lt;/div>
-&lt;script>
+</style>
+</head>
+<body>
+<div class="shadowhost">Hello, world!</div>
+<script>
 
 // 影子宿主（shadow host）
 var shadowHost = document.querySelector('.shadowhost');
@@ -75,11 +78,12 @@ var shadowHost = document.querySelector('.shadowhost');
 var shadowRoot = shadowHost.createShadowRoot();
 
 // 影子根作为影子树的第一个节点，其他的节点比如p节点都是它的子节点。
-shadowRoot.innerHTML = '&lt;p class="shadowroot_son">夏天夏天悄悄过去留下小秘密！&lt;/p>';
+shadowRoot.innerHTML = '<p class="shadowroot_son">夏天夏天悄悄过去留下小秘密！</p>';
 
-&lt;/script>
-&lt;/body>
-&lt;/html></pre>
+</script>
+</body>
+</html>
+```
 
 [浏览器](https://www.w3cdoc.com)截图：
 
@@ -101,9 +105,11 @@ shadowRoot.innerHTML = '&lt;p class="shadowroot_son">夏天夏天悄悄过去留
 
 目前的模板HTML做法通常是在`<script>` 中嵌入模板HTML，让内部的HTML标签按照字符串处理的，从而使得内容不显示：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;script type="text/template">
+```
+<script type="text/template">
 // ...
-&lt;/script></pre>
+</script>
+```
 
 `<template>`元素的出现旨在让HTML模板变得更加标准与规范。
 
@@ -113,28 +119,29 @@ shadowRoot.innerHTML = '&lt;p class="shadowroot_son">夏天夏天悄悄过去留
 
 通过以上对 `<content>`和`<template>`的简单了解，[我们](https://www.w3cdoc.com)来通过一个实例加深理解：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;!DOCTYPE html>
-&lt;html lang="en">
+```
+<!DOCTYPE html>
+<html lang="en">
 
-&lt;head>
-&lt;meta charset="UTF-8">
-&lt;title>content&template&lt;/title>
-&lt;/head>
+<head>
+<meta charset="UTF-8">
+<title>content&template</title>
+</head>
 
-&lt;body>
+<body>
 
-&lt;div class="shadowhost">
-&lt;em class="shadowhost_content1">唱歌&lt;/em>
-&lt;em class="shadowhost_content2">跳舞&lt;/em>
-&lt;/div>
+<div class="shadowhost">
+<em class="shadowhost_content1">唱歌</em>
+<em class="shadowhost_content2">跳舞</em>
+</div>
 
-&lt;!-- S 模板标签 template -->
-&lt;template class="template">
-&lt;h1>你&lt;content select=".shadowhost_content1">&lt;/content>我&lt;content select=".shadowhost_content2">&lt;/content>!&lt;/h1>
-&lt;/template>
-&lt;!-- E 模板标签 template -->
+<!-- S 模板标签 template -->
+<template class="template">
+<h1>你<content select=".shadowhost_content1"></content>我<content select=".shadowhost_content2"></content>!</h1>
+</template>
+<!-- E 模板标签 template -->
 
-&lt;script>
+<script>
 var shadowHost = document.querySelector('.shadowhost');
 
 var shadowRoot = shadowHost.createShadowRoot();
@@ -143,11 +150,12 @@ var template = document.querySelector('.template');
 // template.content会返回一个文档片段，可以理解为另外一个document。
 // 利用document.importNode获取节点，true表示深度克隆。
 shadowRoot.appendChild(document.importNode(template.content, true));
-&lt;/script>
+</script>
 
-&lt;/body>
+</body>
 
-&lt;/html></pre>
+</html>
+```
 
 [浏览器](https://www.w3cdoc.com)截图：
 
@@ -155,9 +163,11 @@ shadowRoot.appendChild(document.importNode(template.content, true));
 
 [我们](https://www.w3cdoc.com)来看一下下面三个属性的用途：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">console.log(template.innerHTML); // 获取完整的HTML片段
+```
+console.log(template.innerHTML); // 获取完整的HTML片段
 console.log(template.content); // 返回一个文档片段#document-fragment
-console.log(template.childNodes); // 返回[]，说明childNodes无效</pre>
+console.log(template.childNodes); // 返回[]，说明childNodes无效
+```
 
 **贪心插入点**：如果把select=”.shadowhost_content1”改成select=””或者select=”*”，那么会有不一样的结果。因为贪心选择器放在了模板的第一个，他会将所有内容都抓取，不给其他select 选择器留一点内容。[浏览器](https://www.w3cdoc.com)截图如下：
 
@@ -173,7 +183,9 @@ console.log(template.childNodes); // 返回[]，说明childNodes无效</pre>
 
 另外:host还可以配合:hover、:active等状态来设置样式，如：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">:host(:hover) { border: 2px solid #0ff;}</pre>
+```
+:host(:hover) { border: 2px solid #0ff;}
+```
 
 ### 4.2 ::shadow {#4-2-shadow.post-heading}
 
@@ -192,13 +204,14 @@ console.log(template.childNodes); // 返回[]，说明childNodes无效</pre>
 
 ### 4.5 实例 {#4-5-实例.post-heading}
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;!DOCTYPE html>
-&lt;html lang="en">
+```
+<!DOCTYPE html>
+<html lang="en">
 
-&lt;head>
-&lt;meta charset="UTF-8">
-&lt;title>::content&::shadow&/deep/&lt;/title>
-&lt;style type="text/css">
+<head>
+<meta charset="UTF-8">
+<title>::content&::shadow&/deep/</title>
+<style type="text/css">
 /*::shadow*/
 /*.shadowhost::shadow h1 {
 padding: 20px;
@@ -210,18 +223,18 @@ border: 1px solid #f00;
 padding: 20px;
 border: 1px solid #000;
 }
-&lt;/style>
-&lt;/head>
+</style>
+</head>
 
-&lt;body>
-&lt;div class="shadowhost">
-&lt;em class="shadowhost_content1">唱歌&lt;/em>
-&lt;em class="shadowhost_content2">跳舞&lt;/em>
-&lt;/div>
+<body>
+<div class="shadowhost">
+<em class="shadowhost_content1">唱歌</em>
+<em class="shadowhost_content2">跳舞</em>
+</div>
 
-&lt;!-- S 模板标签 template -->
-&lt;template class="template">
-&lt;style>
+<!-- S 模板标签 template -->
+<template class="template">
+<style>
 /*定义宿主样式:host*/
 :host {
 color: #E85E5E;
@@ -238,23 +251,24 @@ color: #fff;
 background: #FFCC00;
 border-radius: 10px;
 }
-&lt;/style>
-&lt;h1>你&lt;content select=".shadowhost_content1">&lt;/content>我&lt;content select=".shadowhost_content2">&lt;/content>!&lt;/h1>
-&lt;/template>
-&lt;!-- E 模板标签 template -->
+</style>
+<h1>你<content select=".shadowhost_content1"></content>我<content select=".shadowhost_content2"></content>!</h1>
+</template>
+<!-- E 模板标签 template -->
 
-&lt;script>
+<script>
 var shadowHost = document.querySelector('.shadowhost');
 
 var shadowRoot = shadowHost.createShadowRoot();
 var template = document.querySelector('.template');
 
 shadowRoot.appendChild(document.importNode(template.content, true));
-&lt;/script>
+</script>
 
-&lt;/body>
+</body>
 
-&lt;/html></pre>
+</html>
+```
 
 
   [浏览器](https://www.w3cdoc.com)截图如下：
@@ -271,30 +285,31 @@ Shadow DOM 里的 JS 与传统的 JS 一个真正不同的点在于事件调度�
 
 分布节点来自原有 DOM 结构，没必要重定向。
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;!DOCTYPE html>
-&lt;html lang="en">
-&lt;head>
-&lt;meta charset="UTF-8">
-&lt;title>select&lt;/title>
-&lt;/head>
-&lt;body>
-&lt;input id="normal-text" type="text" value="I'm normal text">
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>select</title>
+</head>
+<body>
+<input id="normal-text" type="text" value="I'm normal text">
 
-&lt;div id="host">
-&lt;!-- “dustributed text”为分布节点，来自原有 DOM 结构，没必要重定向。 -->
-&lt;input id="distributed-text" type="text" value="I'm distributed text">
-&lt;/div>
+<div id="host">
+<!-- “dustributed text”为分布节点，来自原有 DOM 结构，没必要重定向。 -->
+<input id="distributed-text" type="text" value="I'm distributed text">
+</div>
 
-&lt;template>
-&lt;div>
-&lt;input id="shadow-text" type="text" value="I'm shadow text">
-&lt;/div>
-&lt;div>
-&lt;content>&lt;/content>
-&lt;/div>
-&lt;/template>
+<template>
+<div>
+<input id="shadow-text" type="text" value="I'm shadow text">
+</div>
+<div>
+<content></content>
+</div>
+</template>
 
-&lt;script>
+<script>
 var host = document.querySelector('#host');
 var root = host.createShadowRoot();
 var template = document.querySelector('template');
@@ -303,10 +318,11 @@ root.appendChild(document.importNode(template.content, true));
 document.addEventListener('click', function(e) {
 console.log(e.target.id + ' click!');
 });
-&lt;/script>
-&lt;/body>
+</script>
+</body>
 
-&lt;/html></pre>
+</html>
+```
 
 分别单击每个输入框，控制台打印截图如下：
 
@@ -318,9 +334,11 @@ console.log(e.target.id + ' click!');
 
 把上面的监听事件click改成select，即改成：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">document.addEventListener('select', function(e) {
+```
+document.addEventListener('select', function(e) {
     console.log(e.target.id + ' select!');
-});</pre>
+});
+```
 
 分别双击每个输入框，你会发现，shadow text的输入框没有打印，就是没有发生select事件。
 
@@ -340,4 +358,4 @@ console.log(e.target.id + ' click!');
 
 <a href="https://css-tricks.com/modular-future-web-components/" target="_blank" rel="external noopener noreferrer">A Guide to Web Components</a>  
 <a href="http://www.ituring.com.cn/article/177453" target="_blank" rel="external noopener noreferrer">Shadow DOM系列文章</a>  
-<a href="http://www.zhangxinxu.com/wordpress/2014/07/hello-html5-template-tag/" target="_blank" rel="external noopener noreferrer">HTML5 <code>&lt;template></code>标签元素简介</a>
+<a href="http://www.zhangxinxu.com/wordpress/2014/07/hello-html5-template-tag/" target="_blank" rel="external noopener noreferrer">HTML5 <template>标签元素简介</a>

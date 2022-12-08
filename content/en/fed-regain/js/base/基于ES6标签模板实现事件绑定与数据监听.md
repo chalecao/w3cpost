@@ -9,18 +9,18 @@ ES6 字符模板 \`hello ${name}\`
 
 字符模板是ES6模板功能的增强。字符模板前面的function类似标签声明。举个例子：
 
-    <code>function tpl(template){
+    function tpl(template){
         console.log(template)
         console.log(arguments)
     }
     let content = tpl`Hello ${1} tpl ${2}`;
-    </code>
+    
 
 输出结果：
 
-    <code>>["Hello ", " tpl ", ""]
+    >["Hello ", " tpl ", ""]
     >{0: ["Hello ", " tpl ", ""], 1: 1, 2: 2}
-    </code>
+    
 
 看出猫腻了吗？标签模板会把字符模板拆分开，把数据和模板片段传到标签函数里。那么[我们](https://www.w3cdoc.com)可以基于这个特性，实现[我们](https://www.w3cdoc.com)想要的功能：事件绑定与数据监听。
 
@@ -28,28 +28,33 @@ ES6 字符模板 \`hello ${name}\`
 
 <div>
   <div>
-    <pre><code>&lt;code>let handleClick = (a) => (e) => {
+    ```
+let handleClick = (a) => (e) => {
 console.log(a, e)
 }
-let content = nodeTpl`&lt;div ${{ click: handleClick(123) }} class='ok'>click me&lt;/div>`
+let content = nodeTpl`<div ${{ click: handleClick(123) }} class='ok'>click me</div>`
 document.body.appendChild(content)
-</code>&lt;/code></pre>
+</code>
+```
   </div>
 </div>
 
   编写上面这段代码，[我们](https://www.w3cdoc.com)用这种格式来定义事件：
 
 <div>
-  <pre><code>&lt;code>${{ click: handleClick(123) }}
-</code>&lt;/code></pre>
+  ```
+${{ click: handleClick(123) }}
+</code>
+```
 </div>
 
-  click是事件名，<code>handleClick</code>是高阶函数响应这个点击事件。这里用高阶函数，主要是为了方便传参数。不明白的地方可以参考：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/qianduanhanshushibianchengfpyixueyiyong/">[前端](https://www.w3cdoc.com)函数式编程FP易学易用</a>
+  click是事件名，handleClick是高阶函数响应这个点击事件。这里用高阶函数，主要是为了方便传参数。不明白的地方可以参考：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/qianduanhanshushibianchengfpyixueyiyong/">[前端](https://www.w3cdoc.com)函数式编程FP易学易用</a>
 
   nodeTpl这个标签模板函数中，[我们](https://www.w3cdoc.com)只需要判断传进来的参数是不是一个对象，然后再绑定对应的事件就可以了。
 
 <div>
-  <pre><code>&lt;code>
+  ```
+
 /**
  * if es6 tpl mix an element, append element later
  * @param {*} arg
@@ -62,7 +67,7 @@ function handleElement(arg) {
             id,
             node: arg
         },
-        str: `&lt;div id="${id}" />&lt;/div>`
+        str: `<div id="${id}" /></div>`
     }
 }
 /**
@@ -93,7 +98,7 @@ function handleEvent(arg) {
 export function nodeTpl(template) {
     var s = template[0];
     let rules = []
-    for (var i = 1; i &lt; arguments.length; i++) { var arg = arguments[i]; if (!Array.isArray(arg)) { arg = [arg] } let ss = arg.map(argItem => {
+    for (var i = 1; i < arguments.length; i++) { var arg = arguments[i]; if (!Array.isArray(arg)) { arg = [arg] } let ss = arg.map(argItem => {
             if (argItem instanceof Element) { // 如果参数是一个元素，那么先用元素占位
                 let data = handleElement(argItem);
                 rules.push(data.mark)
@@ -124,13 +129,14 @@ export function nodeTpl(template) {
     let child = docfrag.childNodes[0]
     return child.childNodes.length > 1 ? child : child.childNodes[0]
 }
-</code>&lt;/code></pre>
+</code>
+```
 </div>
 
 然后点击页面上的click me，控制台打印：
 
-    <code>>123,MouseEvent
-    </code>
+    >123,MouseEvent
+    
 
 是不是很神奇。也比较简单哈。
 
@@ -148,38 +154,38 @@ export function nodeTpl(template) {
 
 defineProperty是比较官方的做法，在定义对象属性的时候可以对set和get方法做定义，准确的说是做重载，这样在获取或者修改这个属性的时候就能触发预先定义的set和get方法，自然也能做相应处理。注意这里监听的是对象的某个属性，只有通过defineProperty设置过的属性才可以监听到。``
 
-    <span class="pl-k">var</span> data <span class="pl-k">=</span> {name<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>kindeng<span class="pl-pds">'</span></span>};
-    <span class="pl-en">observe</span>(data);
-    <span class="pl-smi">data</span>.<span class="pl-c1">name</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>dmq<span class="pl-pds">'</span></span>; <span class="pl-c">// 哈哈哈，监听到值变化了 kindeng --> dmq</span>
+    var data = {name: 'kindeng'};
+    observe(data);
+    data.name = 'dmq'; // 哈哈哈，监听到值变化了 kindeng --> dmq
     
-    <span class="pl-k">function</span> <span class="pl-en">observe</span>(<span class="pl-smi">data</span>) {
-        <span class="pl-k">if</span> (<span class="pl-k">!</span>data <span class="pl-k">||</span> <span class="pl-k">typeof</span> data <span class="pl-k">!==</span> <span class="pl-s"><span class="pl-pds">'</span>object<span class="pl-pds">'</span></span>) {
-            <span class="pl-k">return</span>;
+    function observe(data) {
+        if (!data || typeof data !== 'object') {
+            return;
         }
-        <span class="pl-c">// 取出所有属性遍历</span>
-        <span class="pl-c1">Object</span>.<span class="pl-c1">keys</span>(data).<span class="pl-c1">forEach</span>(<span class="pl-k">function</span>(<span class="pl-smi">key</span>) {
-         <span class="pl-en">defineReactive</span>(data, key, data[key]);
+        // 取出所有属性遍历
+        Object.keys(data).forEach(function(key) {
+         defineReactive(data, key, data[key]);
      });
     };
     
-    <span class="pl-k">function</span> <span class="pl-en">defineReactive</span>(<span class="pl-smi">data</span>, <span class="pl-smi">key</span>, <span class="pl-smi">val</span>) {
-        <span class="pl-en">observe</span>(val); <span class="pl-c">// 监听子属性</span>
-        <span class="pl-c1">Object</span>.<span class="pl-en">defineProperty</span>(data, key, {
-            enumerable<span class="pl-k">:</span> <span class="pl-c1">true</span>, <span class="pl-c">// 可枚举</span>
-            configurable<span class="pl-k">:</span> <span class="pl-c1">false</span>, <span class="pl-c">// 不能再define</span>
-            <span class="pl-en">get</span><span class="pl-k">:</span> <span class="pl-k">function</span>() {
-                <span class="pl-k">return</span> val;
+    function defineReactive(data, key, val) {
+        observe(val); // 监听子属性
+        Object.defineProperty(data, key, {
+            enumerable: true, // 可枚举
+            configurable: false, // 不能再define
+            get: function() {
+                return val;
             },
-            <span class="pl-en">set</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">newVal</span>) {
-                <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>哈哈哈，监听到值变化了 <span class="pl-pds">'</span></span>, val, <span class="pl-s"><span class="pl-pds">'</span> --> <span class="pl-pds">'</span></span>, newVal);
-                val <span class="pl-k">=</span> newVal;
+            set: function(newVal) {
+                console.log('哈哈哈，监听到值变化了 ', val, ' --> ', newVal);
+                val = newVal;
             }
         });
     }
 
 proxy其实类似于knockout的做法，为要监听的目标生成一个代理对象，后面的操作都在代理对象上操作就可以。初始化代理对象的时候也可以定义set、和get方法，获取监听的触发点。注意这里proxy监听的是整个目标对象，这也是和defineProperty最大的区别，proxy代理的对象上所有的属性变化都可以监听到。
 
-    <code>var p = new Proxy(target, {
+    var p = new Proxy(target, {
       get: function(target, property, receiver) { //获取属性
       },
       set: function(target, property, value, receiver) { // 设置属性
@@ -187,9 +193,9 @@ proxy其实类似于knockout的做法，为要监听的目标生成一个代理�
       has: function(target, prop) { // for in循环
       }
     });
-    </code>
+    
 
-    <code>//举个例子
+    //举个例子
     function defineReactive (data) {
       return new Proxy(data, {
         set (target, prop, value) {
@@ -205,13 +211,13 @@ proxy其实类似于knockout的做法，为要监听的目标生成一个代理�
     obj.a = 2 // set=>> a 2
     // c属性的变化依旧被监听到
     obj.c = 3 // set=>> c 3
-    </code>
+    
 
 有了这些方法，[我们](https://www.w3cdoc.com)就可以拿到数据变化的触发点，然后可以用来更新[我们](https://www.w3cdoc.com)页面需要更新的地方，进行视图渲染。
 
 如果只是监听一处的数据变化还是比较简单的，关键是一个数据可能用在多个地方，所以数据发生变化的时候，多个地方要同时处理。根据上面第一部分事件绑定来说，这里需要对元素的监听做统一处理。合并相同的监听对象的监听，这样在改监听对象发生变化的时候，可以处理所有的事件绑定和内容变更。
 
-    <code>function render(template, as) {
+    function render(template, as) {
         let s = template[0]
         let rules = []
         for (let i = 1; i < as.length; i++) { let arg = as[i]; if (!Array.isArray(arg)) { arg = [arg] } let tmpl = template[i]; let ss = arg.map(argItem => {
@@ -348,13 +354,13 @@ proxy其实类似于knockout的做法，为要监听的目标生成一个代理�
                                     }
     ...
     }
-    </code>
+    
 
 上面这部分是关键代码， 实现起来比较麻烦。github地址：<https://github.com/chalecao/es6tpl>
 
 使用起来比较简单，给一个示例：
 
-    <code>const state2 = {
+    const state2 = {
         txt: "xxx"
     }
     var form2 = nodeTpl`<h2>测试数据监听：
@@ -373,7 +379,7 @@ proxy其实类似于knockout的做法，为要监听的目标生成一个代理�
             `
     
     document.body.appendChild(form2)
-    </code>
+    
 
 其实，仔细思考下这个功能是做的有些复杂了。指出几个问题：
 

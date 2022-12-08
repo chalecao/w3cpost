@@ -23,8 +23,10 @@ title: JavaScript事件流
 > **事件名称**：click/mouseover/blur(&#8220;不带on&#8221;)响应某个事件的函数就是**事件处理程序**(事件侦听器)。  
 > **事件处理程序函数名称**：onclick/onmouseove/onblur
 
-<pre class="hljs xml"><code>例子代码--点击事件触发alert函数
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">onclick&lt;/span>=&lt;span class="hljs-string">"alert('hello')"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span></code></pre>
+```
+例子代码--点击事件触发alert函数
+<button</span> onclick</span>="alert('hello')"</span>></span></button</span>></span>
+```
 
 更多事件类别请参考w3c中关于事件的详细类别。  
 <a href="http://www.w3school.com.cn/js/js_events.asp" target="_blank" rel="nofollow noopener noreferrer">JavaScript 事件</a>  
@@ -51,50 +53,52 @@ DOM2级事件规定的事件流包括三个阶段：
 
   <img loading="lazy" width="800" height="678" class="alignnone size-full wp-image-3696 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_254/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_651/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789c9b6cdf4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_708,h_600/format,webp 708w" sizes="(max-width: 800px) 100vw, 800px" />
 
-&nbsp;
+
 
 [我们](https://www.w3cdoc.com)写一个例子：如下图，中间白色区域的盒子分别为box1,box2&#8230;box6,包含控制按钮设置[我们](https://www.w3cdoc.com)的事件
 
-<pre class="hljs xml"><code>    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">h4&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"currentBox"&lt;/span>>&lt;/span>点击按钮设置类型后再点击中心&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">h4&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btnCapture"&lt;/span> &lt;span class="hljs-attr">onclick&lt;/span>=&lt;span class="hljs-string">"setCapture()"&lt;/span>>&lt;/span>设置捕获&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btnBubble"&lt;/span> &lt;span class="hljs-attr">onclick&lt;/span>=&lt;span class="hljs-string">"setBubble()"&lt;/span>>&lt;/span>设置冒泡&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btnAll"&lt;/span> &lt;span class="hljs-attr">onclick&lt;/span>=&lt;span class="hljs-string">"setAll()"&lt;/span>>&lt;/span>设置捕获和冒泡&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span> &lt;span class="hljs-attr">onclick&lt;/span>=&lt;span class="hljs-string">"clearAll()"&lt;/span>>&lt;/span>动画完成后再清除设置&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
-    &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"box"&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"box1"&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"box"&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"box2"&lt;/span>>&lt;/span>
-            &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"box"&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"box3"&lt;/span>>&lt;/span>
-                &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"box"&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"box4"&lt;/span>>&lt;/span>
-                    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"box"&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"box5"&lt;/span>>&lt;/span>
-                        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"box"&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"box6"&lt;/span>>&lt;/span>
+```
+    <div</span>></span>
+        <h4</span> id</span>="currentBox"</span>></span>点击按钮设置类型后再点击中心</h4</span>></span>
+        <button</span> class</span>="btn"</span> id</span>="btnCapture"</span> onclick</span>="setCapture()"</span>></span>设置捕获</button</span>></span>
+        <button</span> class</span>="btn"</span> id</span>="btnBubble"</span> onclick</span>="setBubble()"</span>></span>设置冒泡</button</span>></span>
+        <button</span> class</span>="btn"</span> id</span>="btnAll"</span> onclick</span>="setAll()"</span>></span>设置捕获和冒泡</button</span>></span>
+        <button</span> class</span>="btn"</span> onclick</span>="clearAll()"</span>></span>动画完成后再清除设置</button</span>></span>
+    </div</span>></span>
+    <div</span> class</span>="box"</span> id</span>="box1"</span>></span>
+        <div</span> class</span>="box"</span> id</span>="box2"</span>></span>
+            <div</span> class</span>="box"</span> id</span>="box3"</span>></span>
+                <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"box4"</span>></span>
+                    <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"box5"</span>></span>
+                        <span class="hljs-tag"><<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"box"</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"box6"</span>></span>
                             点击
 
-                        &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
-                    &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
-                &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
-            &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
-    &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
-</code></pre>
+                        <span class="hljs-tag"></<span class="hljs-name">div</span>></span>
+                    <span class="hljs-tag"></<span class="hljs-name">div</span>></span>
+                <span class="hljs-tag"></<span class="hljs-name">div</span>></span>
+            <span class="hljs-tag"></<span class="hljs-name">div</span>></span>
+        <span class="hljs-tag"></<span class="hljs-name">div</span>></span>
+    <span class="hljs-tag"></<span class="hljs-name">div</span>></span>
+
+```
 
 大概流程图如下：
 
-&nbsp;
+
 
 
   <img loading="lazy" width="800" height="664" class="alignnone size-full wp-image-3697 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_249/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_637/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789caabfb74.png?x-oss-process=image/quality,q_50/resize,m_fill,w_723,h_600/format,webp 723w" sizes="(max-width: 800px) 100vw, 800px" />
 
-&nbsp;
+
 
 演示效果如图：
 
-&nbsp;
+
 
 
   <img loading="lazy" width="800" height="452" class="alignnone size-full wp-image-3698 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cb39d74b.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cb39d74b.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cb39d74b.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cb39d74b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_170/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cb39d74b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_434/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
 
-&nbsp;
+
 
 <a href="https://github.com/JiaXinYi/ife-study/blob/master/%E5%89%8D%E7%AB%AF%E5%B0%8F%E7%9F%A5%E8%AF%86/eventflow.html" target="_blank" rel="nofollow noopener noreferrer">例子源码</a>  
 <a href="http://www.cnblogs.com/souvenir/p/4988367.html" target="_blank" rel="nofollow noopener noreferrer">参考链接————小侠同学</a>
@@ -113,17 +117,23 @@ DOM2级事件规定的事件流包括三个阶段：
 
 像[我们](https://www.w3cdoc.com)的第一个例子，就是HTML事件处理程序，它是写在html里面的，是全局作用域：
 
-<pre class="hljs xml"><code>例子代码--点击事件触发alert函数
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">onclick&lt;/span>=&lt;span class="hljs-string">"alert('hello')"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span></code></pre>
+```
+例子代码--点击事件触发alert函数
+<span class="hljs-tag"><<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"alert('hello')"</span>></span><span class="hljs-tag"></<span class="hljs-name">button</span>></span>
+```
 
 当[我们](https://www.w3cdoc.com)需要使用一个复杂的函数时，将js代码写在这里面，显然很不合适，所以有了下面这种写法：
 
-<pre class="hljs xml"><code>例子代码--点击事件触发doSomething()函数，这个函数写在单独的js文件或&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="xml">之中。
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">onclick&lt;/span>=&lt;span class="hljs-string">"doSomething()"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>&lt;/span></code></pre>
+```
+例子代码--点击事件触发doSomething()函数，这个函数写在单独的js文件或<span class="hljs-tag"><<span class="hljs-name">script</span>></span><span class="xml">之中。
+<span class="hljs-tag"><<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"doSomething()"</span>></span><span class="hljs-tag"></<span class="hljs-name">button</span>></span></span>
+```
 
 这样会出现一个时差问题，当用户在HTML元素出现一开始就进行点击，有可能js还没有加载好，这时候就会报错。但[我们](https://www.w3cdoc.com)可以将函数封装在try-catch块中来处理：
 
-<pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">onclick&lt;/span>=&lt;span class="hljs-string">"try{doSomething();}catch(err){}"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span></code></pre>
+```
+<span class="hljs-tag"><<span class="hljs-name">button</span> <span class="hljs-attr">onclick</span>=<span class="hljs-string">"try{doSomething();}catch(err){}"</span>></span><span class="hljs-tag"></<span class="hljs-name">button</span>></span>
+```
 
 同时，一个函数的改变，同时可能会涉及html和js的修改，这样是很不方便的，综上，[我们](https://www.w3cdoc.com)有了DOM0级事件处理程序。
 
@@ -131,33 +141,39 @@ DOM2级事件规定的事件流包括三个阶段：
 
 之所以有DOM0级事件处理程序，和[我们](https://www.w3cdoc.com)之前提到的IE以及Netscape对应事件传播方向不同处理而产生的事件处理程序。
 
-<pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>>&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
+```
+<span class="hljs-tag"><<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"btn"</span>></span>点击<span class="hljs-tag"></<span class="hljs-name">button</span>></span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
-  &lt;span class="hljs-keyword">var&lt;/span> btn=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"btn"&lt;/span>);
-  btn.onclick=&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>()&lt;/span>{
-    alert(&lt;span class="hljs-string">"hello"&lt;/span>);
+<span class="hljs-tag"><<span class="hljs-name">script</span>></span><span class="javascript">
+  <span class="hljs-keyword">var</span> btn=<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"btn"</span>);
+  btn.onclick=<span class="hljs-function"><span class="hljs-keyword">function</span>()</span>{
+    alert(<span class="hljs-string">"hello"</span>);
   }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span></code></pre>
+</span><span class="hljs-tag"></<span class="hljs-name">script</span>></span>
+```
 
 可以看到button.onclick这种形式，这里事件处理程序作为了btn对象的方法，是局部作用域。  
 所以[我们](https://www.w3cdoc.com)可以用
 
-<pre class="hljs scala"><code>btn.onclick = &lt;span class="hljs-literal">null&lt;/span>;来删除指定的事件处理程序。</code></pre>
+```
+btn.onclick = <span class="hljs-literal">null</span>;来删除指定的事件处理程序。
+```
 
 如果[我们](https://www.w3cdoc.com)尝试给事件添加两个事件，如：
 
-<pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>>&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
+```
+<span class="hljs-tag"><<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"btn"</span>></span>点击<span class="hljs-tag"></<span class="hljs-name">button</span>></span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
-  &lt;span class="hljs-keyword">var&lt;/span> btn=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"btn"&lt;/span>);
-  btn.onclick=&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>()&lt;/span>{
-    alert(&lt;span class="hljs-string">"hello"&lt;/span>);
+<span class="hljs-tag"><<span class="hljs-name">script</span>></span><span class="javascript">
+  <span class="hljs-keyword">var</span> btn=<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"btn"</span>);
+  btn.onclick=<span class="hljs-function"><span class="hljs-keyword">function</span>()</span>{
+    alert(<span class="hljs-string">"hello"</span>);
   }
-  btn.onclick=&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>()&lt;/span>{
-    alert(&lt;span class="hljs-string">"hello again"&lt;/span>);
+  btn.onclick=<span class="hljs-function"><span class="hljs-keyword">function</span>()</span>{
+    alert(<span class="hljs-string">"hello again"</span>);
   }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span></code></pre>
+</span><span class="hljs-tag"></<span class="hljs-name">script</span>></span>
+```
 
 输出，hello again，很明显，第一个事件函数被第二个事件函数给覆盖掉了，所以，DOM0级事件处理程序不能添加多个，也不能控制事件流到底是捕获还是冒泡。
 
@@ -174,45 +190,51 @@ removeEventListener() &#8212;删除事件侦听器
 第二个参数是作为事件处理程序的函数  
 第三个参数是一个boolean值，默认false表示使用冒泡机制，true表示捕获机制。
 
-<pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>>&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
+```
+<span class="hljs-tag"><<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"btn"</span>></span>点击<span class="hljs-tag"></<span class="hljs-name">button</span>></span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
-  &lt;span class="hljs-keyword">var&lt;/span> btn=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"btn"&lt;/span>);
-  btn.addEventListener(&lt;span class="hljs-string">'click'&lt;/span>,hello，&lt;span class="hljs-literal">false&lt;/span>);
-  btn.addEventListener(&lt;span class="hljs-string">'click'&lt;/span>,helloagain，&lt;span class="hljs-literal">false&lt;/span>);
-  &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">hello&lt;/span>()&lt;/span>{
-    alert(&lt;span class="hljs-string">"hello"&lt;/span>);
+<span class="hljs-tag"><<span class="hljs-name">script</span>></span><span class="javascript">
+  <span class="hljs-keyword">var</span> btn=<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"btn"</span>);
+  btn.addEventListener(<span class="hljs-string">'click'</span>,hello，<span class="hljs-literal">false</span>);
+  btn.addEventListener(<span class="hljs-string">'click'</span>,helloagain，<span class="hljs-literal">false</span>);
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hello</span>()</span>{
+    alert(<span class="hljs-string">"hello"</span>);
   }
-  &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">helloagain&lt;/span>()&lt;/span>{
-    alert(&lt;span class="hljs-string">"hello again"&lt;/span>);
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">helloagain</span>()</span>{
+    alert(<span class="hljs-string">"hello again"</span>);
   }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span></code></pre>
+</span><span class="hljs-tag"></<span class="hljs-name">script</span>></span>
+```
 
 这时候两个事件处理程序都能够成功触发，说明可以绑定多个事件处理程序，但是注意，如果定义了一摸一样时监听方法，是会发生覆盖的，即同样的事件和事件流机制下相同方法只会触发一次，比如：
 
-<pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>>&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
+```
+<span class="hljs-tag"><<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"btn"</span>></span>点击<span class="hljs-tag"></<span class="hljs-name">button</span>></span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
-  &lt;span class="hljs-keyword">var&lt;/span> btn=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"btn"&lt;/span>);
-  btn.addEventListener(&lt;span class="hljs-string">'click'&lt;/span>,hello，&lt;span class="hljs-literal">false&lt;/span>);
-  btn.addEventListener(&lt;span class="hljs-string">'click'&lt;/span>,hello，&lt;span class="hljs-literal">false&lt;/span>);
-  &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">hello&lt;/span>()&lt;/span>{
-    alert(&lt;span class="hljs-string">"hello"&lt;/span>);
+<span class="hljs-tag"><<span class="hljs-name">script</span>></span><span class="javascript">
+  <span class="hljs-keyword">var</span> btn=<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"btn"</span>);
+  btn.addEventListener(<span class="hljs-string">'click'</span>,hello，<span class="hljs-literal">false</span>);
+  btn.addEventListener(<span class="hljs-string">'click'</span>,hello，<span class="hljs-literal">false</span>);
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hello</span>()</span>{
+    alert(<span class="hljs-string">"hello"</span>);
   }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span></code></pre>
+</span><span class="hljs-tag"></<span class="hljs-name">script</span>></span>
+```
 
 removeEventListener()的方法几乎和添加时用法一摸一样：
 
-<pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>>&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
+```
+<span class="hljs-tag"><<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"btn"</span>></span>点击<span class="hljs-tag"></<span class="hljs-name">button</span>></span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
-  &lt;span class="hljs-keyword">var&lt;/span> btn=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"btn"&lt;/span>);
-  btn.addEventListener(&lt;span class="hljs-string">'click'&lt;/span>,hello，&lt;span class="hljs-literal">false&lt;/span>);
-  btn.removeEventListener(&lt;span class="hljs-string">'click'&lt;/span>,hello，&lt;span class="hljs-literal">false&lt;/span>);
-  &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">hello&lt;/span>()&lt;/span>{
-    alert(&lt;span class="hljs-string">"hello"&lt;/span>);
+<span class="hljs-tag"><<span class="hljs-name">script</span>></span><span class="javascript">
+  <span class="hljs-keyword">var</span> btn=<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"btn"</span>);
+  btn.addEventListener(<span class="hljs-string">'click'</span>,hello，<span class="hljs-literal">false</span>);
+  btn.removeEventListener(<span class="hljs-string">'click'</span>,hello，<span class="hljs-literal">false</span>);
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hello</span>()</span>{
+    alert(<span class="hljs-string">"hello"</span>);
   }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span></code></pre>
+</span><span class="hljs-tag"></<span class="hljs-name">script</span>></span>
+```
 
 这样的话，事件处理程序只会执行一次。  
 但是要注意，如果同一个监听事件分别为“事件捕获”和“事件冒泡”注册了一次，一共两次，这两次事件需要分别移除。两者不会互相干扰。  
@@ -231,43 +253,47 @@ IE事件处理程序中有类似与DOM2级事件处理程序的两个方法：
 之所以没有和DOM2级事件处理程序中类似的第三个参数，是因为IE8及更早版本只支持冒泡事件流。  
 removeEventListener()的方法几乎和添加时用法一摸一样：
 
-<pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>>&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
+```
+<span class="hljs-tag"><<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"btn"</span>></span>点击<span class="hljs-tag"></<span class="hljs-name">button</span>></span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
-  &lt;span class="hljs-keyword">var&lt;/span> btn=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"btn"&lt;/span>);
-  btn.attachEvent(&lt;span class="hljs-string">'onclick'&lt;/span>,hello);
-  btn.detachEvent(&lt;span class="hljs-string">'onclick'&lt;/span>,hello);
-  &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">hello&lt;/span>()&lt;/span>{
-    alert(&lt;span class="hljs-string">"hello"&lt;/span>);
+<span class="hljs-tag"><<span class="hljs-name">script</span>></span><span class="javascript">
+  <span class="hljs-keyword">var</span> btn=<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"btn"</span>);
+  btn.attachEvent(<span class="hljs-string">'onclick'</span>,hello);
+  btn.detachEvent(<span class="hljs-string">'onclick'</span>,hello);
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hello</span>()</span>{
+    alert(<span class="hljs-string">"hello"</span>);
   }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span></code></pre>
+</span><span class="hljs-tag"></<span class="hljs-name">script</span>></span>
+```
 
 这里事件触发的顺序不是添加的顺序而是添加顺序的相反顺序。  
 使用 attachEvent 方法有个缺点，this 的值会变成 window 对象的引用而不是触发事件的元素。
 
 ## 3.5 跨[浏览器](https://www.w3cdoc.com)的事件处理程序 {#articleHeader9}
 
-<pre class="hljs scala"><code>为了兼容&lt;span class="hljs-type">IE&lt;/span>[浏览器](https://www.w3cdoc.com)和标准的[浏览器](https://www.w3cdoc.com)，[我们](https://www.w3cdoc.com)需要编写通用的方法来处理：
-&lt;span class="hljs-keyword">var&lt;/span> &lt;span class="hljs-type">EventUtil&lt;/span> = {
-    addHandler: function (element, &lt;span class="hljs-class">&lt;span class="hljs-keyword">type&lt;/span>, &lt;span class="hljs-title">handler&lt;/span>) &lt;/span>{
-        &lt;span class="hljs-keyword">if&lt;/span> (element.addEventListener) {
-            element.addEventListener(&lt;span class="hljs-class">&lt;span class="hljs-keyword">type&lt;/span>, &lt;span class="hljs-title">handler&lt;/span>, &lt;span class="hljs-title">false&lt;/span>)&lt;/span>;
-        } &lt;span class="hljs-keyword">else&lt;/span> &lt;span class="hljs-keyword">if&lt;/span> (element.attachEvent) {
-            element.attachEvent(&lt;span class="hljs-string">"on"&lt;/span> + &lt;span class="hljs-class">&lt;span class="hljs-keyword">type&lt;/span>, &lt;span class="hljs-title">handler&lt;/span>)&lt;/span>;
-        } &lt;span class="hljs-keyword">else&lt;/span> {
-            element[&lt;span class="hljs-string">"on"&lt;/span> + &lt;span class="hljs-class">&lt;span class="hljs-keyword">type&lt;/span>] &lt;/span>= handler;
+```
+为了兼容<span class="hljs-type">IE</span>[浏览器](https://www.w3cdoc.com)和标准的[浏览器](https://www.w3cdoc.com)，[我们](https://www.w3cdoc.com)需要编写通用的方法来处理：
+<span class="hljs-keyword">var</span> <span class="hljs-type">EventUtil</span> = {
+    addHandler: function (element, <span class="hljs-class"><span class="hljs-keyword">type</span>, <span class="hljs-title">handler</span>) </span>{
+        <span class="hljs-keyword">if</span> (element.addEventListener) {
+            element.addEventListener(<span class="hljs-class"><span class="hljs-keyword">type</span>, <span class="hljs-title">handler</span>, <span class="hljs-title">false</span>)</span>;
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (element.attachEvent) {
+            element.attachEvent(<span class="hljs-string">"on"</span> + <span class="hljs-class"><span class="hljs-keyword">type</span>, <span class="hljs-title">handler</span>)</span>;
+        } <span class="hljs-keyword">else</span> {
+            element[<span class="hljs-string">"on"</span> + <span class="hljs-class"><span class="hljs-keyword">type</span>] </span>= handler;
         }
     },
-    removeHandler: function (element, &lt;span class="hljs-class">&lt;span class="hljs-keyword">type&lt;/span>, &lt;span class="hljs-title">handler&lt;/span>) &lt;/span>{
-        &lt;span class="hljs-keyword">if&lt;/span> (element.removeEventListener()) {
-            element.removeEventListener(&lt;span class="hljs-class">&lt;span class="hljs-keyword">type&lt;/span>, &lt;span class="hljs-title">handler&lt;/span>, &lt;span class="hljs-title">false&lt;/span>)&lt;/span>;
-        } &lt;span class="hljs-keyword">else&lt;/span> &lt;span class="hljs-keyword">if&lt;/span> (element.detachEvent) {
-            element.detachEvent(&lt;span class="hljs-string">"on"&lt;/span> + &lt;span class="hljs-class">&lt;span class="hljs-keyword">type&lt;/span>, &lt;span class="hljs-title">handler&lt;/span>)&lt;/span>;
-        } &lt;span class="hljs-keyword">else&lt;/span> {
-            element[&lt;span class="hljs-string">"on"&lt;/span> + &lt;span class="hljs-class">&lt;span class="hljs-keyword">type&lt;/span>] &lt;/span>= &lt;span class="hljs-literal">null&lt;/span>;
+    removeHandler: function (element, <span class="hljs-class"><span class="hljs-keyword">type</span>, <span class="hljs-title">handler</span>) </span>{
+        <span class="hljs-keyword">if</span> (element.removeEventListener()) {
+            element.removeEventListener(<span class="hljs-class"><span class="hljs-keyword">type</span>, <span class="hljs-title">handler</span>, <span class="hljs-title">false</span>)</span>;
+        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (element.detachEvent) {
+            element.detachEvent(<span class="hljs-string">"on"</span> + <span class="hljs-class"><span class="hljs-keyword">type</span>, <span class="hljs-title">handler</span>)</span>;
+        } <span class="hljs-keyword">else</span> {
+            element[<span class="hljs-string">"on"</span> + <span class="hljs-class"><span class="hljs-keyword">type</span>] </span>= <span class="hljs-literal">null</span>;
         }
     }
-};</code></pre>
+};
+```
 
 这一部分需要创建两个方法：  
 addHandler() &#8211;这个方法职责是视情况来使用DOM0级、DOM2级、IE事件处理程序来添加事件。  
@@ -279,16 +305,18 @@ removeHandler()&#8211;这个方法就是移除使用addHandler添加的事件。
 
 使用：
 
-<pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>>&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
+```
+<span class="hljs-tag"><<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"btn"</span>></span>点击<span class="hljs-tag"></<span class="hljs-name">button</span>></span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
-  &lt;span class="hljs-keyword">var&lt;/span> btn=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"btn"&lt;/span>);
-  EventUtil.addHandler(btn,&lt;span class="hljs-string">'click'&lt;/span>,hello);
-  EventUtil.removeHandler(btn,&lt;span class="hljs-string">'click'&lt;/span>,hello);
-  &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">hello&lt;/span>()&lt;/span>{
-    alert(&lt;span class="hljs-string">"hello"&lt;/span>);
+<span class="hljs-tag"><<span class="hljs-name">script</span>></span><span class="javascript">
+  <span class="hljs-keyword">var</span> btn=<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"btn"</span>);
+  EventUtil.addHandler(btn,<span class="hljs-string">'click'</span>,hello);
+  EventUtil.removeHandler(btn,<span class="hljs-string">'click'</span>,hello);
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hello</span>()</span>{
+    alert(<span class="hljs-string">"hello"</span>);
   }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span></code></pre>
+</span><span class="hljs-tag"></<span class="hljs-name">script</span>></span>
+```
 
 # 4.事件对象 {#articleHeader10}
 
@@ -301,29 +329,31 @@ removeHandler()&#8211;这个方法就是移除使用addHandler添加的事件。
 
   <img loading="lazy" width="800" height="579" class="alignnone size-full wp-image-3699 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789ccbca780.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789ccbca780.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789ccbca780.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789ccbca780.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_217/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789ccbca780.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_556/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
 
-&nbsp;
+
 
 ## 4.1 属性 {#articleHeader11}
 
 下面是一个例子：
 
-<pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span>>&lt;/span>点击&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
+```
+<span class="hljs-tag"><<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"btn"</span>></span>点击<span class="hljs-tag"></<span class="hljs-name">button</span>></span>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
-        &lt;span class="hljs-keyword">var&lt;/span> btn=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"btn"&lt;/span>);
-        btn.ddEventListener(&lt;span class="hljs-string">'click'&lt;/span>, doCurrent, &lt;span class="hljs-literal">true&lt;/span>);
-        &lt;span class="hljs-comment">// 判断事件的属性&lt;/span>
-        &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">doCurrent&lt;/span>(&lt;span class="hljs-params">event&lt;/span>) &lt;/span>{
-            &lt;span class="hljs-comment">//获取当前事件触发的div&lt;/span>
-            &lt;span class="hljs-keyword">var&lt;/span> target = event.currentTarget;
+<span class="hljs-tag"><<span class="hljs-name">script</span>></span><span class="javascript">
+        <span class="hljs-keyword">var</span> btn=<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"btn"</span>);
+        btn.ddEventListener(<span class="hljs-string">'click'</span>, doCurrent, <span class="hljs-literal">true</span>);
+        <span class="hljs-comment">// 判断事件的属性</span>
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doCurrent</span>(<span class="hljs-params">event</span>) </span>{
+            <span class="hljs-comment">//获取当前事件触发的div</span>
+            <span class="hljs-keyword">var</span> target = event.currentTarget;
 
-            &lt;span class="hljs-comment">//通过判断事件的event.eventPhase属性返回事件传播的当前阶段&lt;/span>
-            &lt;span class="hljs-comment">//1：捕获阶段、2：正常事件派发和3：起泡阶段。&lt;/span>
-            &lt;span class="hljs-comment">//得到当前阶段和id值并输出&lt;/span>
-            &lt;span class="hljs-keyword">var&lt;/span> msg = (event.eventPhase == &lt;span class="hljs-number">1&lt;/span> ? &lt;span class="hljs-string">'捕获阶段：'&lt;/span> : &lt;span class="hljs-string">'冒泡阶段：'&lt;/span>)+ target.attributes[&lt;span class="hljs-string">"id"&lt;/span>].value;;
-            &lt;span class="hljs-built_in">console&lt;/span>.log(msg);
+            <span class="hljs-comment">//通过判断事件的event.eventPhase属性返回事件传播的当前阶段</span>
+            <span class="hljs-comment">//1：捕获阶段、2：正常事件派发和3：起泡阶段。</span>
+            <span class="hljs-comment">//得到当前阶段和id值并输出</span>
+            <span class="hljs-keyword">var</span> msg = (event.eventPhase == <span class="hljs-number">1</span> ? <span class="hljs-string">'捕获阶段：'</span> : <span class="hljs-string">'冒泡阶段：'</span>)+ target.attributes[<span class="hljs-string">"id"</span>].value;;
+            <span class="hljs-built_in">console</span>.log(msg);
         }
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span></code></pre>
+</span><span class="hljs-tag"></<span class="hljs-name">script</span>></span>
+```
 
 在这个例子里，[我们](https://www.w3cdoc.com)用到了**currentTarget**、**eventPhase**属性。
 
@@ -332,42 +362,52 @@ removeHandler()&#8211;这个方法就是移除使用addHandler添加的事件。
 Event对象主要有以下两个方法，用于处理事件的传播（冒泡、捕获）和事件的取消。  
 **stopPropagation()**——冒泡机制下，阻止事件的进一步往上冒泡
 
-<pre class="hljs javascript"><code>    &lt;span class="hljs-keyword">var&lt;/span> btn1=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"btn1"&lt;/span>);
-    &lt;span class="hljs-keyword">var&lt;/span> content=&lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">"content"&lt;/span>);
-    btn1.addEventListener(&lt;span class="hljs-string">"click"&lt;/span>,&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">event&lt;/span>)&lt;/span>{
-        alert(&lt;span class="hljs-string">"btn1"&lt;/span>);
+```
+    <span class="hljs-keyword">var</span> btn1=<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"btn1"</span>);
+    <span class="hljs-keyword">var</span> content=<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"content"</span>);
+    btn1.addEventListener(<span class="hljs-string">"click"</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>)</span>{
+        alert(<span class="hljs-string">"btn1"</span>);
         event.stopPropagation();
-    },&lt;span class="hljs-literal">false&lt;/span>);
-    content.addEventListener(&lt;span class="hljs-string">"click"&lt;/span>,&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>()&lt;/span>{
-        alert(&lt;span class="hljs-string">"content"&lt;/span>);
-    },&lt;span class="hljs-literal">false&lt;/span>);
-    &lt;span class="hljs-comment">//这里会输出btn1，阻止了向content的冒泡&lt;/span></code></pre>
+    },<span class="hljs-literal">false</span>);
+    content.addEventListener(<span class="hljs-string">"click"</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>()</span>{
+        alert(<span class="hljs-string">"content"</span>);
+    },<span class="hljs-literal">false</span>);
+    <span class="hljs-comment">//这里会输出btn1，阻止了向content的冒泡</span>
+```
 
 **preventDefault()**——用于取消事件的默认操作,比如链接的跳转或者表单的提交，主要是用来阻止标签的默认行为
 
-<pre class="hljs actionscript"><code>&lt;a id=&lt;span class="hljs-string">"go"&lt;/span> href=&lt;span class="hljs-string">"https://www.baidu.com/"&lt;/span>>禁止跳转&lt;/a>
-&lt;span class="hljs-keyword">var&lt;/span> go = document.getElementById(&lt;span class="hljs-string">'go'&lt;/span>);
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">goFn&lt;/span>&lt;span class="hljs-params">(event)&lt;/span> &lt;/span>{
+```
+<a id=<span class="hljs-string">"go"</span> href=<span class="hljs-string">"https://www.baidu.com/"</span>>禁止跳转</a>
+<span class="hljs-keyword">var</span> go = document.getElementById(<span class="hljs-string">'go'</span>);
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">goFn</span><span class="hljs-params">(event)</span> </span>{
  event.preventDefault();
-&lt;span class="hljs-comment">// 不会跳转&lt;/span>
+<span class="hljs-comment">// 不会跳转</span>
 }
-go.addEventListener(&lt;span class="hljs-string">'click'&lt;/span>, goFn, &lt;span class="hljs-literal">false&lt;/span>);</code></pre>
+go.addEventListener(<span class="hljs-string">'click'</span>, goFn, <span class="hljs-literal">false</span>);
+```
 
 ## 4.3 兼容性 {#articleHeader13}
 
 当然，事件对象也存在一定的兼容性问题，在IE8及以前本版之中，通过设置属性注册事件处理程序时，调用的时候并未传递事件对象，需要通过全局对象window.event来获取。解决方法如下：
 
-<pre class="hljs cs"><code>&lt;span class="hljs-function">function &lt;span class="hljs-title">getEvent&lt;/span>(&lt;span class="hljs-params">&lt;span class="hljs-keyword">event&lt;/span>&lt;/span>)&lt;/span> {
- &lt;span class="hljs-keyword">event&lt;/span> = &lt;span class="hljs-keyword">event&lt;/span> || window.&lt;span class="hljs-keyword">event&lt;/span>;
-}</code></pre>
+```
+<span class="hljs-function">function <span class="hljs-title">getEvent</span>(<span class="hljs-params"><span class="hljs-keyword">event</span></span>)</span> {
+ <span class="hljs-keyword">event</span> = <span class="hljs-keyword">event</span> || window.<span class="hljs-keyword">event</span>;
+}
+```
 
 在IE[浏览器](https://www.w3cdoc.com)上面是event事件是没有preventDefault()这个属性的，所以在IE上，[我们](https://www.w3cdoc.com)需要设置的属性是returnValue
 
-<pre class="hljs typescript"><code>&lt;span class="hljs-built_in">window&lt;/span>.event.returnValue=&lt;span class="hljs-literal">false&lt;/span></code></pre>
+```
+<span class="hljs-built_in">window</span>.event.returnValue=<span class="hljs-literal">false</span>
+```
 
 stopPropagation()也是，所以需要设置cancelBubble，cancelBubble是IE事件对象的一个属性，设置这个属性为true能阻止事件进一步传播。
 
-<pre class="hljs cs"><code>&lt;span class="hljs-keyword">event&lt;/span>.cancelBubble=&lt;span class="hljs-literal">true&lt;/span></code></pre>
+```
+<span class="hljs-keyword">event</span>.cancelBubble=<span class="hljs-literal">true</span>
+```
 
 # 5.事件委托 {#articleHeader14}
 
@@ -375,69 +415,73 @@ stopPropagation()也是，所以需要设置cancelBubble，cancelBubble是IE事�
 
 例子说明，[我们](https://www.w3cdoc.com)为ul添加新的li，其中对li标签元素绑定了click事件，但是发现，后增加的元素没有办法触发[我们](https://www.w3cdoc.com)的click事件。
 
-<pre class="hljs xml"><code>    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btnAdd"&lt;/span>>&lt;/span>添加&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">ul&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"ulList"&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">li&lt;/span>>&lt;/span>1&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">li&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">li&lt;/span>>&lt;/span>2&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">li&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">li&lt;/span>>&lt;/span>3&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">li&lt;/span>>&lt;/span>
-    &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">ul&lt;/span>>&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
-        &lt;span class="hljs-keyword">var&lt;/span> btnAdd = &lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">'btnAdd'&lt;/span>);
-        &lt;span class="hljs-keyword">var&lt;/span> ulList = &lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">'ulList'&lt;/span>);
-        &lt;span class="hljs-keyword">var&lt;/span> list = &lt;span class="hljs-built_in">document&lt;/span>.getElementsByTagName(&lt;span class="hljs-string">'li'&lt;/span>);
-        &lt;span class="hljs-keyword">var&lt;/span> num = &lt;span class="hljs-number">3&lt;/span>;
-        btnAdd.onclick = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> () &lt;/span>{
+```
+    <span class="hljs-tag"><<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"btnAdd"</span>></span>添加<span class="hljs-tag"></<span class="hljs-name">button</span>></span>
+    <span class="hljs-tag"><<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"ulList"</span>></span>
+        <span class="hljs-tag"><<span class="hljs-name">li</span>></span>1<span class="hljs-tag"></<span class="hljs-name">li</span>></span>
+        <span class="hljs-tag"><<span class="hljs-name">li</span>></span>2<span class="hljs-tag"></<span class="hljs-name">li</span>></span>
+        <span class="hljs-tag"><<span class="hljs-name">li</span>></span>3<span class="hljs-tag"></<span class="hljs-name">li</span>></span>
+    <span class="hljs-tag"></<span class="hljs-name">ul</span>></span>
+    <span class="hljs-tag"><<span class="hljs-name">script</span>></span><span class="javascript">
+        <span class="hljs-keyword">var</span> btnAdd = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'btnAdd'</span>);
+        <span class="hljs-keyword">var</span> ulList = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'ulList'</span>);
+        <span class="hljs-keyword">var</span> list = <span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">'li'</span>);
+        <span class="hljs-keyword">var</span> num = <span class="hljs-number">3</span>;
+        btnAdd.onclick = <span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{
             num++;
-            &lt;span class="hljs-keyword">var&lt;/span> li = &lt;span class="hljs-built_in">document&lt;/span>.createElement(&lt;span class="hljs-string">'li'&lt;/span>);
+            <span class="hljs-keyword">var</span> li = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'li'</span>);
             li.innerHTML = num;
             ulList.appendChild(li)
         }
-        &lt;span class="hljs-keyword">for&lt;/span> (i = &lt;span class="hljs-number">0&lt;/span>; i &lt; list.length; i++) {
-            list[i].onclick = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>()&lt;/span>{
-                alert(&lt;span class="hljs-keyword">this&lt;/span>.innerHTML);
+        <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i < list.length; i++) {
+            list[i].onclick = <span class="hljs-function"><span class="hljs-keyword">function</span>()</span>{
+                alert(<span class="hljs-keyword">this</span>.innerHTML);
             }
         }
-    &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span></code></pre>
+    </span><span class="hljs-tag"></<span class="hljs-name">script</span>></span>
+```
 
-&nbsp;
+
 
 
   <img loading="lazy" width="800" height="497" class="alignnone size-full wp-image-3700 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cdc0ae3a.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cdc0ae3a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cdc0ae3a.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cdc0ae3a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_186/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c789cdc0ae3a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_477/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
 
-&nbsp;
+
 
 这是因为如果事件涉及到更新HTML节点或者添加HTML节点时，新添加的节点无法绑定事件，更新的节点也是无法绑定事件，表现的行为是无法触发事件。  
 其中一种解决方法是，添加子节点的时候，再次为其添加监听事件
 
-<pre class="hljs xml"><code>    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btnAdd"&lt;/span>>&lt;/span>添加&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">ul&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"ulList"&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">li&lt;/span>>&lt;/span>1&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">li&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">li&lt;/span>>&lt;/span>2&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">li&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">li&lt;/span>>&lt;/span>3&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">li&lt;/span>>&lt;/span>
-    &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">ul&lt;/span>>&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
-        &lt;span class="hljs-keyword">var&lt;/span> btnAdd = &lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">'btnAdd'&lt;/span>);
-        &lt;span class="hljs-keyword">var&lt;/span> ulList = &lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">'ulList'&lt;/span>);
-        &lt;span class="hljs-keyword">var&lt;/span> list = &lt;span class="hljs-built_in">document&lt;/span>.getElementsByTagName(&lt;span class="hljs-string">'li'&lt;/span>);
-        &lt;span class="hljs-keyword">var&lt;/span> num = &lt;span class="hljs-number">3&lt;/span>;
+```
+    <span class="hljs-tag"><<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"btnAdd"</span>></span>添加<span class="hljs-tag"></<span class="hljs-name">button</span>></span>
+    <span class="hljs-tag"><<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"ulList"</span>></span>
+        <span class="hljs-tag"><<span class="hljs-name">li</span>></span>1<span class="hljs-tag"></<span class="hljs-name">li</span>></span>
+        <span class="hljs-tag"><<span class="hljs-name">li</span>></span>2<span class="hljs-tag"></<span class="hljs-name">li</span>></span>
+        <span class="hljs-tag"><<span class="hljs-name">li</span>></span>3<span class="hljs-tag"></<span class="hljs-name">li</span>></span>
+    <span class="hljs-tag"></<span class="hljs-name">ul</span>></span>
+    <span class="hljs-tag"><<span class="hljs-name">script</span>></span><span class="javascript">
+        <span class="hljs-keyword">var</span> btnAdd = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'btnAdd'</span>);
+        <span class="hljs-keyword">var</span> ulList = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'ulList'</span>);
+        <span class="hljs-keyword">var</span> list = <span class="hljs-built_in">document</span>.getElementsByTagName(<span class="hljs-string">'li'</span>);
+        <span class="hljs-keyword">var</span> num = <span class="hljs-number">3</span>;
 
-        &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">doclick&lt;/span>() &lt;/span>{
-            &lt;span class="hljs-keyword">for&lt;/span> (i = &lt;span class="hljs-number">0&lt;/span>; i &lt; list.length; i++) {
-                list[i].onclick = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> () &lt;/span>{
-                    alert(&lt;span class="hljs-keyword">this&lt;/span>.innerHTML);
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doclick</span>() </span>{
+            <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i < list.length; i++) {
+                list[i].onclick = <span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{
+                    alert(<span class="hljs-keyword">this</span>.innerHTML);
                 }
             }
         }
         doclick();
 
-        btnAdd.onclick = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> () &lt;/span>{
+        btnAdd.onclick = <span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{
             num++;
-            &lt;span class="hljs-keyword">var&lt;/span> li = &lt;span class="hljs-built_in">document&lt;/span>.createElement(&lt;span class="hljs-string">'li'&lt;/span>);
+            <span class="hljs-keyword">var</span> li = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'li'</span>);
             li.innerHTML = num;
             ulList.appendChild(li);
             doclick();
         }
-    &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span></code></pre>
+    </span><span class="hljs-tag"></<span class="hljs-name">script</span>></span>
+```
 
 这也是问题所在：  
 1.首先[我们](https://www.w3cdoc.com)多次操作DOM获取元素，这样势必会降低[浏览器](https://www.w3cdoc.com)处理性能  
@@ -447,33 +491,35 @@ stopPropagation()也是，所以需要设置cancelBubble，cancelBubble是IE事�
 
 [我们](https://www.w3cdoc.com)只监听最外层的元素，然后在事件函数中根据事件来源进行不同的事件处理。这样，[我们](https://www.w3cdoc.com)添加事件监听时只需要操作一个元素，极大的降低了DOM访问，并且不用再给新增的元素添加监听事件了，因为元素的事件会冒泡到最外层，被[我们](https://www.w3cdoc.com)截获。
 
-<pre class="hljs xml"><code>    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"btnAdd"&lt;/span>>&lt;/span>添加&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">ul&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"ulList"&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">li&lt;/span>>&lt;/span>1&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">li&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">li&lt;/span>>&lt;/span>2&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">li&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">li&lt;/span>>&lt;/span>3&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">li&lt;/span>>&lt;/span>
-    &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">ul&lt;/span>>&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
-        &lt;span class="hljs-keyword">var&lt;/span> btnAdd = &lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">'btnAdd'&lt;/span>);
-        &lt;span class="hljs-keyword">var&lt;/span> ulList = &lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">'ulList'&lt;/span>);
-        &lt;span class="hljs-keyword">var&lt;/span> num = &lt;span class="hljs-number">3&lt;/span>;
+```
+    <span class="hljs-tag"><<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"btnAdd"</span>></span>添加<span class="hljs-tag"></<span class="hljs-name">button</span>></span>
+    <span class="hljs-tag"><<span class="hljs-name">ul</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"ulList"</span>></span>
+        <span class="hljs-tag"><<span class="hljs-name">li</span>></span>1<span class="hljs-tag"></<span class="hljs-name">li</span>></span>
+        <span class="hljs-tag"><<span class="hljs-name">li</span>></span>2<span class="hljs-tag"></<span class="hljs-name">li</span>></span>
+        <span class="hljs-tag"><<span class="hljs-name">li</span>></span>3<span class="hljs-tag"></<span class="hljs-name">li</span>></span>
+    <span class="hljs-tag"></<span class="hljs-name">ul</span>></span>
+    <span class="hljs-tag"><<span class="hljs-name">script</span>></span><span class="javascript">
+        <span class="hljs-keyword">var</span> btnAdd = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'btnAdd'</span>);
+        <span class="hljs-keyword">var</span> ulList = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'ulList'</span>);
+        <span class="hljs-keyword">var</span> num = <span class="hljs-number">3</span>;
 
-        ulList.onclick = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">event&lt;/span>)&lt;/span>{
-            &lt;span class="hljs-keyword">var&lt;/span> event = event || &lt;span class="hljs-built_in">window&lt;/span>.event;
-            &lt;span class="hljs-keyword">var&lt;/span> target = event.target || event.srcElement;
-            &lt;span class="hljs-keyword">if&lt;/span>(target.nodeName.toLowerCase() == &lt;span class="hljs-string">'li'&lt;/span>){
+        ulList.onclick = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">event</span>)</span>{
+            <span class="hljs-keyword">var</span> event = event || <span class="hljs-built_in">window</span>.event;
+            <span class="hljs-keyword">var</span> target = event.target || event.srcElement;
+            <span class="hljs-keyword">if</span>(target.nodeName.toLowerCase() == <span class="hljs-string">'li'</span>){
                 alert(target.innerHTML);
             }
         }
 
-        btnAdd.onclick = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> () &lt;/span>{
+        btnAdd.onclick = <span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{
             num++;
-            &lt;span class="hljs-keyword">var&lt;/span> li = &lt;span class="hljs-built_in">document&lt;/span>.createElement(&lt;span class="hljs-string">'li'&lt;/span>);
+            <span class="hljs-keyword">var</span> li = <span class="hljs-built_in">document</span>.createElement(<span class="hljs-string">'li'</span>);
             li.innerHTML = num;
             ulList.appendChild(li);
             doclick();
         }
-    &lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span></code></pre>
+    </span><span class="hljs-tag"></<span class="hljs-name">script</span>></span>
+```
 
 这里用父级ul做事件处理，当li被点击时，由于冒泡原理，事件就会冒泡到ul上，因为ul上有点击事件，所以事件就会触发，当然，这里当点击ul的时候，也是会触发的，所以要判断点击的对象到底是不是li标签元素。
 

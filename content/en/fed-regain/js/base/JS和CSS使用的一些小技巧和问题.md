@@ -12,19 +12,23 @@ title: JS和CSS使用的一些小技巧和问题
 
 方法一：
 
-<pre class="pure-highlightjs"><code class="">border-top: 1px dashed #eee;
-</code></pre>
+```
+border-top: 1px dashed #eee;
+
+```
 
 方法二：
 
-<pre class="pure-highlightjs"><code class="">//基于渐变
+```
+//基于渐变
 .dash {
         height: 1px;
         background-image: linear-gradient(90deg, #eee 0%, #eee 50%, transparent 50%, transparent 100%);
         background-size: 15px 1px;
         margin: 9px 0;
     }
-</code></pre>
+
+```
 
 PS: 看过一篇文章，一位大牛用css渐变写了超级玛丽：[链接][1]  
 
@@ -43,7 +47,8 @@ appendChild这个api是DOM level2的，现在基本所有[浏览器](https://www
   1. 可以自己创建一个iframe，然后可以拿到iframe的contentWindow，contentDocument往里面写内容，
   2. 基于form表单的target属性，可以指定一个iframe的name来打开，这样表单提交后的结果会在iframe中展示，而iframe不会回显src的url。
 
-<pre class="pure-highlightjs"><code class="">postToIframe: function(iframeName, actionUrl, dataKey, data) {
+```
+postToIframe: function(iframeName, actionUrl, dataKey, data) {
                 var _form = document.createElement("form")
 ,_input = document.createElement("input");
                 _form.setAttribute("id", "hideForm"),
@@ -59,33 +64,39 @@ appendChild这个api是DOM level2的，现在基本所有[浏览器](https://www
                 _form.appendChild(r),
                 _form.submit()
 }
-</code></pre>
+
+```
 
 ## js设置important的css
 
-<pre class="pure-highlightjs"><code class="">function myFunction() {
+```
+function myFunction() {
     var x = document.querySelectorAll("#testDiv p.example");
     x[0].style.setProperty("background-color", "red", "important");
 }
-</code></pre>
 
-注意：直接使用<code class="">document.querySelector("#xxx").style.marginTop="0 !important"</code>是不行的。不能带后面的<code class="">!important</code>，只能通过setProperty来实现。
+```
+
+注意：直接使用document.querySelector("#xxx").style.marginTop="0 !important"是不行的。不能带后面的!important，只能通过setProperty来实现。
 
 ## js操作class
 
-<pre class="pure-highlightjs"><code class="">function addClass(sel, cls) {
+```
+function addClass(sel, cls) {
         document.querySelector(sel).classList.add(cls)
 }
 function removeClass(sel, cls) {
         document.querySelector(sel).classList.remove(cls)
 }
-</code></pre>
 
-<code class="">classList</code>这个属性是DOM2支持的，包含了add和remove方法。
+```
+
+classList这个属性是DOM2支持的，包含了add和remove方法。
 
 ## promise执行then之后的reject
 
-<pre class="pure-highlightjs"><code class="">new Promise(function(resolve, reject){
+```
+new Promise(function(resolve, reject){
     resolve(Promise.reject(5))
 }).then(function(value){
     console.log('fulfill', value)
@@ -93,11 +104,13 @@ function removeClass(sel, cls) {
     console.log('reject', reason)
 })
 // reject 5
-</code></pre>
+
+```
 
 上面的[大家](https://www.w3cdoc.com)都知道，那么第二次then会怎样？
 
-<pre class="pure-highlightjs"><code class="">new Promise(function(resolve, reject){
+```
+new Promise(function(resolve, reject){
     resolve(Promise.reject(5))
 }).then(function(value){
     console.log('fulfill', value)
@@ -110,11 +123,13 @@ function removeClass(sel, cls) {
 },err=>{
     console.log(err)
 })
-</code></pre>
+
+```
 
 你会发现，第一次then中的resolve或者reject的返回值都会走到第二次then的resolve。那么怎么走到第二次then的reject呢？
 
-<pre class="pure-highlightjs"><code class="">new Promise(function(resolve, reject){
+```
+new Promise(function(resolve, reject){
     resolve(Promise.reject(5))
 }).then(function(value){
     console.log('fulfill', value)
@@ -130,20 +145,21 @@ function removeClass(sel, cls) {
 },err=>{
     console.log(err)
 })
-</code></pre>
+
+```
 
 两种方法，使用Promise.reject 或者抛出一个异常
 
 ## js 正则表达式判断非法字符 常用正则表达式
 
-    <code>
+    
     var pat=new RegExp("[^a-zA-Z0-9\_\u4e00-\u9fa5]","i");    
     var strTest = $("#testId").val();   
     if(pat.test(strTest)==true)    {        
         showMess("项目名称中含有非法字符");        
         return false;    
     }
-    </code>
+    
 
 示例其他正则代码：
 
@@ -187,8 +203,8 @@ function removeClass(sel, cls) {
 
 其他地方需要添加
 
-    <code>-webkit-overflow-scrolling : touch;
-    </code>
+    -webkit-overflow-scrolling : touch;
+    
 
 知道吗
 
@@ -197,38 +213,44 @@ function removeClass(sel, cls) {
  知识点1： nodeList 在 ie， ios safari 10 之前，chrome 51 之前是不支持forEach方法的。参考: <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeList">https://developer.mozilla.org/en-US/docs/Web/API/NodeList</a> ， 所以新手经常会犯这个错误。直接
 
 <div>
-  <pre><code>&lt;code>document,querySelectorAll("a").forEach(()=>{
+  ```
+document,querySelectorAll("a").forEach(()=>{
     ....
 })
-</code>&lt;/code></pre>
+</code>
+```
 </div>
 
   然后看到监控平台一堆报错。解决办法：
 
 <div>
-  <pre class="brush: js line-numbers language-js"><code class=" language-js">&lt;span class="token keyword">var&lt;/span> list &lt;span class="token operator">=&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">querySelectorAll&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'input[type=checkbox]'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-Array&lt;span class="token punctuation">.&lt;/span>prototype&lt;span class="token punctuation">.&lt;/span>forEach&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">call&lt;/span>&lt;span class="token punctuation">(&lt;/span>list&lt;span class="token punctuation">,&lt;/span> &lt;span class="token keyword">function&lt;/span> &lt;span class="token punctuation">(&lt;/span>checkbox&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  checkbox&lt;span class="token punctuation">.&lt;/span>checked &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">true&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;
+  ```
+var list = document.querySelectorAll('input[type=checkbox]');
+Array.prototype.forEach.call(list, function (checkbox) {
+  checkbox.checked = true;
+});
 还有暴力的(不推荐)：
-NodeList.prototype.forEach = Array.prototype.forEach;&lt;/span>
-</code></pre>
+NodeList.prototype.forEach = Array.prototype.forEach;
+
+```
 </div>
 
  知识点2： 
 
 <div>
- In some cases, the <code>NodeList</code> is <em>live</em>, which means that changes in the DOM automatically update the collection. For example, <a title="The Node.childNodes read-only property returns a live NodeList of child nodes of the given element where the first child node is assigned index 0." href="https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes"><code>Node.childNodes</code></a> 获取到的节点是对真实节点的实时引用（live node）:
+ In some cases, the NodeList is <em>live</em>, which means that changes in the DOM automatically update the collection. For example, <a title="The Node.childNodes read-only property returns a live NodeList of child nodes of the given element where the first child node is assigned index 0." href="https://developer.mozilla.org/en-US/docs/Web/API/Node/childNodes">Node.childNodes</a> 获取到的节点是对真实节点的实时引用（live node）:
   
-  <pre class="brush: js line-numbers language-js"><code class=" language-js">&lt;span class="token keyword">var&lt;/span> parent &lt;span class="token operator">=&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'parent'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token keyword">var&lt;/span> child_nodes &lt;span class="token operator">=&lt;/span> parent&lt;span class="token punctuation">.&lt;/span>childNodes&lt;span class="token punctuation">;&lt;/span>
-console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>child_nodes&lt;span class="token punctuation">.&lt;/span>length&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment" spellcheck="true">// let's assume "2"&lt;/span>
-parent&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">appendChild&lt;/span>&lt;span class="token punctuation">(&lt;/span>document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createElement&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'div'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>child_nodes&lt;span class="token punctuation">.&lt;/span>length&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment" spellcheck="true">// outputs "3"&lt;/span>
-</code></pre>
+  ```
+var parent = document.getElementById('parent');
+var child_nodes = parent.childNodes;
+console.log(child_nodes.length); // let's assume "2"
+parent.appendChild(document.createElement('div'));
+console.log(child_nodes.length); // outputs "3"
+
+```
 </div>
 
-   <a title="The Element method querySelectorAll() returns a static (not live) NodeList representing a list of the document's elements that match the specified group of selectors." href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll"><code>document.querySelectorAll()</code></a> 返回的是执行时获取到的节点信息，是静态引用（节点发生变化，无感知，可以理解成内存中存在的引用），比如节点发生增删，之前返回的节点列表不会变化，所以循环要判空。
+   <a title="The Element method querySelectorAll() returns a static (not live) NodeList representing a list of the document's elements that match the specified group of selectors." href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll">document.querySelectorAll()</a> 返回的是执行时获取到的节点信息，是静态引用（节点发生变化，无感知，可以理解成内存中存在的引用），比如节点发生增删，之前返回的节点列表不会变化，所以循环要判空。
 
 ## babel 打包 展开写法的JS代码的问题
 
@@ -238,28 +260,30 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 
   关于preset，参考：https://babeljs.io/docs/en/env
 
-  preset: env 打包后；<span class="x x-first">[].</span><span class="pl-c1 x">concat</span><span class="x x-last">(</span>document.querySelectorAll(&#8220;a&#8221;))
+  preset: env 打包后；[].concat(document.querySelectorAll(&#8220;a&#8221;))
 
-  preset: es2015打包后：<span class="x x-first">[].</span><span class="pl-c1 x">concat</span><span class="x x-last">(</span><span class="pl-smi">babelHelpers</span>.<span class="pl-en">toConsumableArray</span>(document.querySelectorAll(&#8220;a&#8221;))
+  preset: es2015打包后：[].concat(babelHelpers.toConsumableArray(document.querySelectorAll(&#8220;a&#8221;))
 
 <div>
-  <pre><code>&lt;span class="pl-s">&lt;span class="pl-pds">"&lt;/span>use strict&lt;span class="pl-pds">"&lt;/span>&lt;/span>;
+  ```
+"use strict";
 
-&lt;span class="pl-k">function&lt;/span> &lt;span class="pl-en">_toConsumableArray&lt;/span>(&lt;span class="pl-smi">arr&lt;/span>) { &lt;span class="pl-k">if&lt;/span> (&lt;span class="pl-c1">Array&lt;/span>.&lt;span class="pl-en">isArray&lt;/span>(arr)) { &lt;span class="pl-k">for&lt;/span> (&lt;span class="pl-k">var&lt;/span> i &lt;span class="pl-k">=&lt;/span> &lt;span class="pl-c1">0&lt;/span>, arr2 &lt;span class="pl-k">=&lt;/span> &lt;span class="pl-c1">Array&lt;/span>(&lt;span class="pl-smi">arr&lt;/span>.&lt;span class="pl-c1">length&lt;/span>); i &lt;span class="pl-k">&lt;&lt;/span> &lt;span class="pl-smi">arr&lt;/span>.&lt;span class="pl-c1">length&lt;/span>; i&lt;span class="pl-k">++&lt;/span>) { arr2[i] &lt;span class="pl-k">=&lt;/span> arr[i]; } &lt;span class="pl-k">return&lt;/span> arr2; } &lt;span class="pl-k">else&lt;/span> { &lt;span class="pl-k">return&lt;/span> &lt;span class="pl-c1">Array&lt;/span>.&lt;span class="pl-en">from&lt;/span>(arr); } }
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-[].&lt;span class="pl-c1">concat&lt;/span>(&lt;span class="pl-en">_toConsumableArray&lt;/span>(smth));</code></pre>
+[].concat(_toConsumableArray(smth));
+```
 </div>
 
 从根本上来说不建议这么写 [&#8230;nodeList] ，最好还是写Array.from( nodeList )。 如果必须这么写，那么配置必须是这样：
 
-    <code>presets: [
+    presets: [
         "es2015-rollup"
     ],
-    </code>
+    
 
-如果使用env，那么你就完蛋了，可能就引入了nodeList的bug，不能被concat的。貌似env环境后来去掉了<span class="pl-smi">babelHelpers</span>.<span class="pl-en">toConsumableArray的转换，有性能问题。</span>
+如果使用env，那么你就完蛋了，可能就引入了nodeList的bug，不能被concat的。貌似env环境后来去掉了babelHelpers.toConsumableArray的转换，有性能问题。
 
-    <code>"presets": [[
+    "presets": [[
                     "env",
                     {
                         "modules": false,
@@ -271,7 +295,7 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
                         "useBuiltIns": true
                     }
         ]],
-    </code>
+    
 
 webpack的配置类似，这里不说了。
 

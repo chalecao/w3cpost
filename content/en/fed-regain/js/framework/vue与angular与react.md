@@ -120,8 +120,10 @@ String-based 和 Dom-based的模板技术都或多或少的依赖与innerHTML, �
 
 以上面的模板代码的一个插值为例:
 
-<pre class="pure-highlightjs"><code class="">"{{isLogin? 'Login': 'Wellcome'}}"
-</code>&lt;/code></pre>
+```
+"{{isLogin? 'Login': 'Wellcome'}}"
+&lt;/code>
+```
 
 一旦regularjs的引擎遇到这段模板与代表的语法元素节点，会进入如下函数处理  
 ![vue与angular与react][11]
@@ -144,7 +146,8 @@ String-based 和 Dom-based的模板技术都或多或少的依赖与innerHTML, �
 
 实例：
 
-<pre class="pure-highlightjs"><code class="">o = Object.create(Object.prototype, {
+```
+o = Object.create(Object.prototype, {
 // foo会成为所创建对象的数据属性
 foo: { writable:true, configurable:true, value: "hello" },
 // bar会成为所创建对象的访问器属性
@@ -161,7 +164,8 @@ Object.defineProperty(obj, "key", {
     writable: false,
     value: "static"
 });
-</code>&lt;/code></pre>
+&lt;/code>
+```
 
 你可以在创建对象的时候设置属性的get或set方法，也可以直接修改对象的属性。上面这两个方法是ES5新增的方法，主要是IE8的兼容性可以查看上面的参考MDN链接。
 
@@ -173,7 +177,8 @@ Object.defineProperty(obj, "key", {
 
   1. 实现数据绑定处理
 
-<pre class="pure-highlightjs"><code class="">&lt;div id='box' ao-controller="box">
+```
+&lt;div id='box' ao-controller="box">
 &lt;div id='aa-attr' style="background: #a9ea00;width:100px;height:100px;" ao-css-width="w" ao-click='click' >&lt;/div>
 &lt;p id='aa-text'>{{ w }}&lt;/p>
 &lt;/div>
@@ -212,9 +217,10 @@ vm.w = 300 //设置element.style.width == 300
 alert(vm.w)
 
 &lt;/script>
-</code>&lt;/code></pre>
+&lt;/code>
+```
 
-&nbsp;
+
 
 上面的例子是一个简单实现视图和数据绑定的例子。通过这个思路[我们](https://www.w3cdoc.com)可以实现mvvm框架中的vm层。  
 详细可以参考：  

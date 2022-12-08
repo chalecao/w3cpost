@@ -78,10 +78,12 @@ Elasticsearch是一个近乎实时的搜索平台。这意味着从索引文档�
 # 安装
 
 <div class="cnblogs_code">
-  <pre>tar -zxf elasticsearch-6.3.2.tar.gz
+  ```
+tar -zxf elasticsearch-6.3.2.tar.gz
 cd elasticsearch-6.3.2/bin
 ./elasticsearch
-注意：不能以root用户运行elasticsearch</pre>
+注意：不能以root用户运行elasticsearch
+```
 </div>
 
 <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160516143-599068508.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160516143-599068508.png?x-oss-process=image/format,webp" alt="" />
@@ -91,7 +93,9 @@ cd elasticsearch-6.3.2/bin
 检查Elasticsearch是否正在运行：
 
 <div class="cnblogs_code">
-  <pre>curl http://localhost:9200/</pre>
+  ```
+curl http://localhost:9200/
+```
 </div>
 
 <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160629822-884023316.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807160629822-884023316.png?x-oss-process=image/format,webp" alt="" />
@@ -105,14 +109,18 @@ cd elasticsearch-6.3.2/bin
 请求：
 
 <div class="cnblogs_code">
-  <pre>curl -X GET "localhost:9200/_cat/health?v"</pre>
+  ```
+curl -X GET "localhost:9200/_cat/health?v"
+```
 </div>
 
 响应：
 
 <div class="cnblogs_code">
-  <pre>epoch      timestamp cluster       status node.total node.data shards pri relo init unassign pending_tasks max_task_wait_time active_shards_percent
-1533625274 15:01:14  elasticsearch green           1         1      0   0    0    0        0             0                  -                100.0%</pre>
+  ```
+epoch      timestamp cluster       status node.total node.data shards pri relo init unassign pending_tasks max_task_wait_time active_shards_percent
+1533625274 15:01:14  elasticsearch green           1         1      0   0    0    0        0             0                  -                100.0%
+```
 </div>
 
 [我们](https://www.w3cdoc.com)可以看到，[我们](https://www.w3cdoc.com)命名为“elasticsearch”的集群现在是green状态。
@@ -130,14 +138,18 @@ cd elasticsearch-6.3.2/bin
 请求：
 
 <div class="cnblogs_code">
-  <pre>curl -X GET "localhost:9200/_cat/nodes?v"</pre>
+  ```
+curl -X GET "localhost:9200/_cat/nodes?v"
+```
 </div>
 
 响应：
 
 <div class="cnblogs_code">
-  <pre>ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role master name
-127.0.0.1           15          53   0    0.03    0.03     0.05 mdi       *      Px524Ts</pre>
+  ```
+ip        heap.percent ram.percent cpu load_1m load_5m load_15m node.role master name
+127.0.0.1           15          53   0    0.03    0.03     0.05 mdi       *      Px524Ts
+```
 </div>
 
 可以看到集群中只有一个节点，它的名字是“Px524Ts”
@@ -147,13 +159,17 @@ cd elasticsearch-6.3.2/bin
 请求：
 
 <div class="cnblogs_code">
-  <pre>curl -X GET "localhost:9200/_cat/indices?v"</pre>
+  ```
+curl -X GET "localhost:9200/_cat/indices?v"
+```
 </div>
 
 响应：
 
 <div class="cnblogs_code">
-  <pre>health status index uuid pri rep docs.count docs.deleted store.size pri.store.size</pre>
+  ```
+health status index uuid pri rep docs.count docs.deleted store.size pri.store.size
+```
 </div>
 
 上面的输出意味着：[我们](https://www.w3cdoc.com)在集群中没有索引
@@ -165,7 +181,9 @@ cd elasticsearch-6.3.2/bin
 请求：
 
 <div class="cnblogs_code">
-  <pre>curl -X PUT "localhost:9200/customer?pretty"</pre>
+  ```
+curl -X PUT "localhost:9200/customer?pretty"
+```
 </div>
 
 （画外音：pretty的意思是响应（如果有的话）以JSON格式返回）
@@ -173,24 +191,30 @@ cd elasticsearch-6.3.2/bin
 响应：
 
 <div class="cnblogs_code">
-  <pre>{
+  ```
+{
   "acknowledged" : true,
   "shards_acknowledged" : true,
   "index" : "customer"
-}</pre>
+}
+```
 </div>
 
 请求：
 
 <div class="cnblogs_code">
-  <pre>curl -X GET "localhost:9200/_cat/indices?v"</pre>
+  ```
+curl -X GET "localhost:9200/_cat/indices?v"
+```
 </div>
 
 响应：
 
 <div class="cnblogs_code">
-  <pre>health status index    uuid                   pri rep docs.count docs.deleted store.size pri.store.size
-yellow open   customer rG5fxdruTNmD-bdYIF5zOg   5   1          0            0      1.1kb          1.1kb</pre>
+  ```
+health status index    uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+yellow open   customer rG5fxdruTNmD-bdYIF5zOg   5   1          0            0      1.1kb          1.1kb
+```
 </div>
 
 结果的第二行告诉[我们](https://www.w3cdoc.com)，[我们](https://www.w3cdoc.com)现在有叫&#8221;customer&#8221;的索引，并且他有5个主分片和1个副本（默认是1个副本），有0个文档。
@@ -206,16 +230,19 @@ yellow open   customer rG5fxdruTNmD-bdYIF5zOg   5   1          0            0   
 请求：
 
 <div class="cnblogs_code">
-  <pre>curl -X PUT "localhost:9200/customer/_doc/1?pretty" -H 'Content-Type: application/json' -d'{"name": "John Doe"}'</pre>
+  ```
+curl -X PUT "localhost:9200/customer/_doc/1?pretty" -H 'Content-Type: application/json' -d'{"name": "John Doe"}'
+```
 </div>
 
 响应：
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>{
+  ```
+{
   "_index" : "customer",
   "_type" : "_doc",
   "_id" : "1",
@@ -228,9 +255,10 @@ yellow open   customer rG5fxdruTNmD-bdYIF5zOg   5   1          0            0   
   },
   "_seq_no" : 0,
   "_primary_term" : 1
-}</pre>
+}
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
@@ -245,16 +273,19 @@ yellow open   customer rG5fxdruTNmD-bdYIF5zOg   5   1          0            0   
 请求：
 
 <div class="cnblogs_code">
-  <pre>curl -X GET "localhost:9200/customer/_doc/1?pretty"</pre>
+  ```
+curl -X GET "localhost:9200/customer/_doc/1?pretty"
+```
 </div>
 
 响应：
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>{
+  ```
+{
   "_index" : "customer",
   "_type" : "_doc",
   "_id" : "1",
@@ -263,9 +294,10 @@ yellow open   customer rG5fxdruTNmD-bdYIF5zOg   5   1          0            0   
   "_source" : {
     "name" : "John Doe"
   }
-}</pre>
+}
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
@@ -278,40 +310,52 @@ yellow open   customer rG5fxdruTNmD-bdYIF5zOg   5   1          0            0   
 请求：
 
 <div class="cnblogs_code">
-  <pre>curl -X DELETE "localhost:9200/customer?pretty"</pre>
+  ```
+curl -X DELETE "localhost:9200/customer?pretty"
+```
 </div>
 
 响应：
 
 <div class="cnblogs_code">
-  <pre>{
+  ```
+{
   "acknowledged" : true
-}</pre>
+}
+```
 </div>
 
 接下来，查看一下
 
 <div class="cnblogs_code">
-  <pre>curl -X GET "localhost:9200/_cat/indices?v"</pre>
+  ```
+curl -X GET "localhost:9200/_cat/indices?v"
+```
 </div>
 
 <div class="cnblogs_code">
-  <pre>health status index uuid pri rep docs.count docs.deleted store.size pri.store.size</pre>
+  ```
+health status index uuid pri rep docs.count docs.deleted store.size pri.store.size
+```
 </div>
 
 到现在为止，[我们](https://www.w3cdoc.com)已经学习了创建/删除索引、索引/查询文档这四个命令
 
 <div class="cnblogs_code">
-  <pre>curl -X PUT "localhost:9200/customer"
+  ```
+curl -X PUT "localhost:9200/customer"
 curl -X PUT "localhost:9200/customer/_doc/1" -H 'Content-Type: application/json' -d'{"name": "John Doe"}'
 curl -X GET "localhost:9200/customer/_doc/1"
-curl -X DELETE "localhost:9200/customer"</pre>
+curl -X DELETE "localhost:9200/customer"
+```
 </div>
 
 如果[我们](https://www.w3cdoc.com)仔细研究上面的命令，[我们](https://www.w3cdoc.com)实际上可以看到如何在Elasticsearch中访问数据的模式。这种模式可以概括如下：
 
 <div class="cnblogs_code">
-  <pre><REST Verb> /<Index>/<Type>/<ID></pre>
+  ```
+<REST Verb> /<Index>/<Type>/<ID>
+```
 </div>
 
 # 修改数据
@@ -325,20 +369,23 @@ curl -X DELETE "localhost:9200/customer"</pre>
 请求：
 
 <div class="cnblogs_code">
-  <pre>curl -X POST "localhost:9200/customer/_doc/1/_update?pretty" -H 'Content-Type: application/json' -d'
+  ```
+curl -X POST "localhost:9200/customer/_doc/1/_update?pretty" -H 'Content-Type: application/json' -d'
 {
   "doc": { "name": "Jane Doe", "age": 20 }
 }
-'</pre>
+'
+```
 </div>
 
 响应：
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>{
+  ```
+{
   "_index" : "customer",
   "_type" : "_doc",
   "_id" : "1",
@@ -351,9 +398,10 @@ curl -X DELETE "localhost:9200/customer"</pre>
   },
   "_seq_no" : 1,
   "_primary_term" : 1
-}</pre>
+}
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
@@ -362,11 +410,13 @@ curl -X DELETE "localhost:9200/customer"</pre>
 请求：
 
 <div class="cnblogs_code">
-  <pre>curl -X POST "localhost:9200/customer/_doc/1/_update?pretty" -H 'Content-Type: application/json' -d'
+  ```
+curl -X POST "localhost:9200/customer/_doc/1/_update?pretty" -H 'Content-Type: application/json' -d'
 {
   "script" : "ctx._source.age += 5"
 }
-'</pre>
+'
+```
 </div>
 
 在上面例子中，ctx._source引用的是当前源文档
@@ -375,9 +425,10 @@ curl -X DELETE "localhost:9200/customer"</pre>
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>{
+  ```
+{
   "_index" : "customer",
   "_type" : "_doc",
   "_id" : "1",
@@ -390,9 +441,10 @@ curl -X DELETE "localhost:9200/customer"</pre>
   },
   "_seq_no" : 2,
   "_primary_term" : 1
-}</pre>
+}
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
@@ -403,16 +455,19 @@ curl -X DELETE "localhost:9200/customer"</pre>
 请求：
 
 <div class="cnblogs_code">
-  <pre>curl -X DELETE "localhost:9200/customer/_doc/2?pretty"</pre>
+  ```
+curl -X DELETE "localhost:9200/customer/_doc/2?pretty"
+```
 </div>
 
 响应：
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>{
+  ```
+{
   "_index" : "customer",
   "_type" : "_doc",
   "_id" : "2",
@@ -425,9 +480,10 @@ curl -X DELETE "localhost:9200/customer"</pre>
   },
   "_seq_no" : 0,
   "_primary_term" : 1
-}</pre>
+}
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
@@ -442,21 +498,24 @@ curl -X DELETE "localhost:9200/customer"</pre>
 请求：
 
 <div class="cnblogs_code">
-  <pre>curl -X POST "localhost:9200/customer/_doc/_bulk?pretty" -H 'Content-Type: application/json' -d'
+  ```
+curl -X POST "localhost:9200/customer/_doc/_bulk?pretty" -H 'Content-Type: application/json' -d'
 {"index":{"_id":"1"}}
 {"name": "John Doe" }
 {"index":{"_id":"2"}}
 {"name": "Jane Doe" }
-'</pre>
+'
+```
 </div>
 
 响应：
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>{
+  ```
+{
   "took" : 5,
   "errors" : false,
   "items" : [
@@ -495,9 +554,10 @@ curl -X DELETE "localhost:9200/customer"</pre>
       }
     }
   ]
-}</pre>
+}
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
@@ -506,20 +566,23 @@ curl -X DELETE "localhost:9200/customer"</pre>
 请求：
 
 <div class="cnblogs_code">
-  <pre>curl -X POST "localhost:9200/customer/_doc/_bulk?pretty" -H 'Content-Type: application/json' -d'
+  ```
+curl -X POST "localhost:9200/customer/_doc/_bulk?pretty" -H 'Content-Type: application/json' -d'
 {"update":{"_id":"1"}}
 {"doc": { "name": "John Doe becomes Jane Doe" } }
 {"delete":{"_id":"2"}}
-'</pre>
+'
+```
 </div>
 
 响应：
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>{
+  ```
+{
   "took" : 8,
   "errors" : false,
   "items" : [
@@ -558,16 +621,19 @@ curl -X DELETE "localhost:9200/customer"</pre>
       }
     }
   ]
-}</pre>
+}
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
 现在，[我们](https://www.w3cdoc.com)来重新查看一下索引文档
 
 <div class="cnblogs_code">
-  <pre>curl -X GET "localhost:9200/customer/_doc/1?pretty"</pre>
+  ```
+curl -X GET "localhost:9200/customer/_doc/1?pretty"
+```
 </div>
 
 <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807181025087-851548359.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/874963-20180807181025087-851548359.png?x-oss-process=image/format,webp" alt="" />
@@ -580,9 +646,10 @@ curl -X DELETE "localhost:9200/customer"</pre>
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>{
+  ```
+{
     "account_number": 0,
     "balance": 16623,
     "firstname": "Bradshaw",
@@ -594,9 +661,10 @@ curl -X DELETE "localhost:9200/customer"</pre>
     "email": "bradshawmckenzie@euron.com",
     "city": "Hobucken",
     "state": "CO"
-}</pre>
+}
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
@@ -611,7 +679,9 @@ curl -X DELETE "localhost:9200/customer"</pre>
 在这个accounts.json文件所在目录下执行如下命令：
 
 <div class="cnblogs_code">
-  <pre>curl -H "Content-Type: application/json" -XPOST "localhost:9200/bank/_doc/_bulk?pretty&refresh" --data-binary "@accounts.json"</pre>
+  ```
+curl -H "Content-Type: application/json" -XPOST "localhost:9200/bank/_doc/_bulk?pretty&refresh" --data-binary "@accounts.json"
+```
 </div>
 
 此时，accounts.json中的文档数据便被索引到&#8221;bank&#8221;索引下
@@ -621,15 +691,19 @@ curl -X DELETE "localhost:9200/customer"</pre>
 请求：
 
 <div class="cnblogs_code">
-  <pre>curl "localhost:9200/_cat/indices?v"</pre>
+  ```
+curl "localhost:9200/_cat/indices?v"
+```
 </div>
 
 响应：
 
 <div class="cnblogs_code">
-  <pre>health status index    uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+  ```
+health status index    uuid                   pri rep docs.count docs.deleted store.size pri.store.size
 yellow open   customer DoM-O7QmRk-6f3Iuls7X6Q   5   1          1            0      4.5kb          4.5kb
-yellow open   bank     59jD3B4FR8iifWWjrdMzUg   5   1       1000            0    474.7kb        474.7kb</pre>
+yellow open   bank     59jD3B4FR8iifWWjrdMzUg   5   1       1000            0    474.7kb        474.7kb
+```
 </div>
 
 可以看到，现在[我们](https://www.w3cdoc.com)的集群中有两个索引，分别是&#8221;customer&#8221;和&#8221;bank&#8221;
@@ -647,7 +721,9 @@ yellow open   bank     59jD3B4FR8iifWWjrdMzUg   5   1       1000            0   
 用于搜索的REST API可从_search端点访问。下面的例子返回&#8221;bank&#8221;索引中的所有文档：
 
 <div class="cnblogs_code">
-  <pre>curl -X GET "localhost:9200/bank/_search?q=*&sort=account_number:asc&pretty"</pre>
+  ```
+curl -X GET "localhost:9200/bank/_search?q=*&sort=account_number:asc&pretty"
+```
 </div>
 
 让[我们](https://www.w3cdoc.com)来剖析一下上面的请求。
@@ -658,9 +734,10 @@ yellow open   bank     59jD3B4FR8iifWWjrdMzUg   5   1       1000            0   
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>{
+  ```
+{
   "took" : 96,
   "timed_out" : false,
   "_shards" : {
@@ -741,9 +818,10 @@ yellow open   bank     59jD3B4FR8iifWWjrdMzUg   5   1       1000            0   
       },
   ......
   ]
- }</pre>
+ }
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
@@ -762,18 +840,20 @@ yellow open   bank     59jD3B4FR8iifWWjrdMzUg   5   1       1000            0   
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+  ```
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": { "match_all": {} },
   "sort": [
     { "account_number": "asc" }
   ]
 }
-'</pre>
+'
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
@@ -790,11 +870,13 @@ Elasticsearch提供了一种JSON风格的语言，您可以使用这种语言执
 回到[我们](https://www.w3cdoc.com)上一个例子，[我们](https://www.w3cdoc.com)执行这样的查询：
 
 <div class="cnblogs_code">
-  <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+  ```
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": { "match_all": {} }
 }
-'</pre>
+'
+```
 </div>
 
 查询部分告诉[我们](https://www.w3cdoc.com)查询定义是什么，match\_all部分只是[我们](https://www.w3cdoc.com)想要运行的查询类型。这里match\_all查询只是在指定索引中搜索所有文档。
@@ -802,12 +884,14 @@ Elasticsearch提供了一种JSON风格的语言，您可以使用这种语言执
 除了查询参数外，[我们](https://www.w3cdoc.com)还可以传递其他参数来影响搜索结果。在上面部分的例子中，[我们](https://www.w3cdoc.com)传的是sort参数，这里[我们](https://www.w3cdoc.com)传size：
 
 <div class="cnblogs_code">
-  <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+  ```
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": { "match_all": {} },
   "size": 1
 }
-'</pre>
+'
+```
 </div>
 
 注意：如果size没有指定，则默认是10
@@ -816,17 +900,19 @@ Elasticsearch提供了一种JSON风格的语言，您可以使用这种语言执
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+  ```
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": { "match_all": {} },
   "from": 10,
   "size": 10
 }
-'</pre>
+'
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
@@ -837,12 +923,14 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 这个示例执行match_all，并按照帐户余额降序对结果进行排序，并返回前10个（默认大小）文档。
 
 <div class="cnblogs_code">
-  <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+  ```
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": { "match_all": {} },
   "sort": { "balance": { "order": "desc" } }
 }
-'</pre>
+'
+```
 </div>
 
 ## 搜索
@@ -854,12 +942,14 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 下面的例子展示了只返回文档中的两个字段：account_number 和 balance字段
 
 <div class="cnblogs_code">
-  <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+  ```
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": { "match_all": {} },
   "_source": ["account_number", "balance"]
 }
-'</pre>
+'
+```
 </div>
 
 （画外音：相当于SELECT account_number， balance FROM bank）
@@ -869,11 +959,13 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 下面的例子返回account_number为20的文档
 
 <div class="cnblogs_code">
-  <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+  ```
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": { "match": { "account_number": 20 } }
 }
-'</pre>
+'
+```
 </div>
 
 （画外音：相当于SELECT * FROM bank WHERE account_number = 20）
@@ -881,11 +973,13 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 下面的例子返回address中包含&#8221;mill&#8221;的账户：
 
 <div class="cnblogs_code">
-  <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+  ```
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": { "match": { "address": "mill" } }
 }
-'</pre>
+'
+```
 </div>
 
 （画外音：相当于SELECT * FROM bank WHERE address LIKE &#8216;%mill%&#8217;）
@@ -893,11 +987,13 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 下面的例子返回address中包含&#8221;mill&#8221;或者&#8221;lane&#8221;的账户：
 
 <div class="cnblogs_code">
-  <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+  ```
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": { "match": { "address": "mill lane" } }
 }
-'</pre>
+'
+```
 </div>
 
 （画外音：相当于SELECT * FROM bank WHERE address LIKE &#8216;%mill&#8217; OR address LIKE &#8216;%lane%&#8217;）
@@ -908,9 +1004,10 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+  ```
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": {
     "bool": {
@@ -921,9 +1018,10 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
     }
   }
 }
-'</pre>
+'
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
@@ -933,9 +1031,10 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+  ```
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": {
     "bool": {
@@ -946,9 +1045,10 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
     }
   }
 }
-'</pre>
+'
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
@@ -962,9 +1062,10 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+  ```
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": {
     "bool": {
@@ -977,9 +1078,10 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
     }
   }
 }
-'</pre>
+'
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
@@ -999,9 +1101,10 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+  ```
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "query": {
     "bool": {
@@ -1017,9 +1120,10 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
     }
   }
 }
-'</pre>
+'
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
@@ -1033,9 +1137,10 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+  ```
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "size": 0,
   "aggs": {
@@ -1046,25 +1151,29 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
     }
   }
 }
-'</pre>
+'
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
 在SQL中，上面的聚集操作类似于：
 
 <div class="cnblogs_code">
-  <pre>SELECT state, COUNT(*) FROM bank GROUP BY state ORDER BY COUNT(*) DESC LIMIT 10;</pre>
+  ```
+SELECT state, COUNT(*) FROM bank GROUP BY state ORDER BY COUNT(*) DESC LIMIT 10;
+```
 </div>
 
 响应：
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>{
+  ```
+{
     "took":50,
     "timed_out":false,
     "_shards":{
@@ -1128,9 +1237,10 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
             ]
         }
     }
-}</pre>
+}
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
@@ -1140,9 +1250,10 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+  ```
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "size": 0,
   "aggs": {
@@ -1160,25 +1271,29 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
     }
   }
 }
-'</pre>
+'
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
 在SQL中，相当于：
 
 <div class="cnblogs_code">
-  <pre>SELECT state, COUNT(*), AVG(balance) FROM bank GROUP BY state ORDER BY COUNT(*) DESC LIMIT 10;</pre>
+  ```
+SELECT state, COUNT(*), AVG(balance) FROM bank GROUP BY state ORDER BY COUNT(*) DESC LIMIT 10;
+```
 </div>
 
 下面这个例子展示了[我们](https://www.w3cdoc.com)如何根据年龄段(20-29岁，30-39岁，40-49岁)来分组，然后根据性别分组，最后得到平均账户余额，每个年龄等级，每个性别：
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
+  ```
+curl -X GET "localhost:9200/bank/_search" -H 'Content-Type: application/json' -d'
 {
   "size": 0,
   "aggs": {
@@ -1217,9 +1332,10 @@ from参数（从0开始）指定从哪个文档索引开始，并且size参数�
     }
   }
 }
-'</pre>
+'
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode-4.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 

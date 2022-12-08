@@ -20,7 +20,7 @@ title: 数据监听之VM原理分析与实现
 
 《程序语言进阶之DSL与AST实战解析》：<https://t.cn/R3XoQJA>
 
-&nbsp;
+
 
 ## 课程内容
 
@@ -37,13 +37,14 @@ title: 数据监听之VM原理分析与实现
 
 *
 
-&nbsp;
+
 
 ## 第一章： JSX回顾
 
 回顾一下之前[我们](https://www.w3cdoc.com)学过的《 [用JavaScript自己写Virtual DOM][1] 》，上面这个例子是[我们](https://www.w3cdoc.com)之前介绍JSX语法构建Virtual DOM的最简单的方案。[我们](https://www.w3cdoc.com)在课程《 [程序语言进阶之DSL与AST实战解析][2] 》中介绍了JSX的实现原理，代码编译的时候会处理JSX文件，根据配置或者页面的注释，基于babylon做词法分析，会拆解代码中的html片段，然后转换成函数形式。如下：
 
-<pre id="consoleLog">var a = h(
+```
+var a = h(
   "ul",
   { "class": "list" },
   h(
@@ -56,7 +57,8 @@ title: 数据监听之VM原理分析与实现
     null,
     "item 2"
   )
-);</pre>
+);
+```
 
  [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/hanshushibianchengyuvirtualdom/
  [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/chengxuyuyanjinjiezhidslyuastshizhanjiexi/

@@ -52,7 +52,7 @@ Huffman树是一种特殊结构的二叉树，由Huffman树设计的二进制前
 
 > 给定nn权值作为nn个叶子节点，构造一棵二叉树，若这棵二叉树的带权路径长度达到最小，则称这样的二叉树为最优二叉树，也称为Huffman树。
 
-由以上的定义可以知道，Huffman树是<span style="color: #ff0000;">带权路径长度最小的二叉树 ( 考点 ，应用点)</span>，对于上面的二叉树，其构造完成的Huffman树为：<figure>
+由以上的定义可以知道，Huffman树是带权路径长度最小的二叉树 ( 考点 ，应用点)，对于上面的二叉树，其构造完成的Huffman树为：<figure>
 
 <div class="image-block">
  <img loading="lazy" width="422" height="288" class="alignnone size-full wp-image-7040 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62505328ec640.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62505328ec640.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62505328ec640.png?x-oss-process=image/format,webp 422w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_62505328ec640.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_205/format,webp 300w" sizes="(max-width: 422px) 100vw, 422px" />
@@ -92,14 +92,16 @@ Huffman树是一种特殊结构的二叉树，由Huffman树设计的二进制前
 对于树中节点的结构为：
 
 <div class="code-toolbar">
-  <pre class="prism-token token language-javascript line-numbers" tabindex="0" data-prismjs-copy="复制" data-prismjs-copy-success="复制成功" data-prismjs-copy-error="复制失败" data-prismjs-copy-timeout="3000"><code class="language-javascript">#define <span class="token constant">LEN</span> <span class="token number">512</span>
-struct huffman_node<span class="token punctuation">{</span>
-        char c<span class="token punctuation">;</span>
-        int weight<span class="token punctuation">;</span>
-        char huffman_code<span class="token punctuation">[</span><span class="token constant">LEN</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        huffman_node <span class="token operator">*</span> left<span class="token punctuation">;</span>
-        huffman_node <span class="token operator">*</span> right<span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
+  ```
+#define LEN 512
+struct huffman_node{
+        char c;
+        int weight;
+        char huffman_code[LEN];
+        huffman_node * left;
+        huffman_node * right;
+};
+```
   <div class="toolbar">
     <div class="toolbar-item">
       <button class="copy-to-clipboard-button" type="button" data-copy-state="copy">复制</button>
@@ -110,45 +112,47 @@ struct huffman_node<span class="token punctuation">{</span>
 对于Huffman树的构建过程为：
 
 <div class="code-toolbar">
-  <pre class="prism-token token language-javascript line-numbers" tabindex="0" data-prismjs-copy="复制" data-prismjs-copy-success="复制成功" data-prismjs-copy-error="复制失败" data-prismjs-copy-timeout="3000"><code class="language-javascript">int <span class="token function">huffman_tree_create</span><span class="token punctuation">(</span><span class="token parameter">huffman_node <span class="token operator">*</span><span class="token operator">&</span>root<span class="token punctuation">,</span> map<span class="token operator"><</span>char<span class="token punctuation">,</span> int<span class="token operator">></span> <span class="token operator">&</span>word</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        char line<span class="token punctuation">[</span><span class="token constant">MAX_LINE</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        vector<span class="token operator"><</span>huffman_node <span class="token operator">*</span><span class="token operator">></span> huffman_tree_node<span class="token punctuation">;</span>
+  ```
+int huffman_tree_create(huffman_node *&root, map<char, int> &word){
+        char line[MAX_LINE];
+        vector<huffman_node *> huffman_tree_node;
 
-        map<span class="token operator"><</span>char<span class="token punctuation">,</span> int<span class="token operator">></span><span class="token operator">:</span><span class="token operator">:</span>iterator it_t<span class="token punctuation">;</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span>it_t <span class="token operator">=</span> word<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it_t <span class="token operator">!=</span> word<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> it_t<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token comment">// 为每一个节点申请空间</span>
-                huffman_node <span class="token operator">*</span>node <span class="token operator">=</span> <span class="token punctuation">(</span>huffman_node <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token function">sizeof</span><span class="token punctuation">(</span>huffman_node<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                node<span class="token operator">-</span><span class="token operator">></span>c <span class="token operator">=</span> it_t<span class="token operator">-</span><span class="token operator">></span>first<span class="token punctuation">;</span>
-                node<span class="token operator">-</span><span class="token operator">></span>weight <span class="token operator">=</span> it_t<span class="token operator">-</span><span class="token operator">></span>second<span class="token punctuation">;</span>
-                node<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-                node<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-                huffman_tree_node<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-      <span class="token comment">// 开始从叶节点开始构建Huffman树</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span>huffman_tree_node<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token comment">// 按照weight升序排序</span>
-                <span class="token function">sort</span><span class="token punctuation">(</span>huffman_tree_node<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> huffman_tree_node<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> sort_by_weight<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token comment">// 取出前两个节点</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>huffman_tree_node<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">// 只有一个根结点</span>
-                        root <span class="token operator">=</span> huffman_tree_node<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-                        huffman_tree_node<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>huffman_tree_node<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-                        <span class="token comment">// 取出前两个</span>
-                        huffman_node <span class="token operator">*</span>node_1 <span class="token operator">=</span> huffman_tree_node<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-                        huffman_node <span class="token operator">*</span>node_2 <span class="token operator">=</span> huffman_tree_node<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-                        <span class="token comment">// 删除</span>
-                        huffman_tree_node<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>huffman_tree_node<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        huffman_tree_node<span class="token punctuation">.</span><span class="token function">erase</span><span class="token punctuation">(</span>huffman_tree_node<span class="token punctuation">.</span><span class="token function">begin</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        <span class="token comment">// 生成新的节点</span>
-                        huffman_node <span class="token operator">*</span>node <span class="token operator">=</span> <span class="token punctuation">(</span>huffman_node <span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token function">sizeof</span><span class="token punctuation">(</span>huffman_node<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        node<span class="token operator">-</span><span class="token operator">></span>weight <span class="token operator">=</span> node_1<span class="token operator">-</span><span class="token operator">></span>weight <span class="token operator">+</span> node_2<span class="token operator">-</span><span class="token operator">></span>weight<span class="token punctuation">;</span>
-                        <span class="token punctuation">(</span>node_1<span class="token operator">-</span><span class="token operator">></span>weight <span class="token operator"><</span> node_2<span class="token operator">-</span><span class="token operator">></span>weight<span class="token punctuation">)</span><span class="token operator">?</span><span class="token punctuation">(</span>node<span class="token operator">-</span><span class="token operator">></span>left<span class="token operator">=</span>node_1<span class="token punctuation">,</span>node<span class="token operator">-</span><span class="token operator">></span>right<span class="token operator">=</span>node_2<span class="token punctuation">)</span><span class="token operator">:</span><span class="token punctuation">(</span>node<span class="token operator">-</span><span class="token operator">></span>left<span class="token operator">=</span>node_2<span class="token punctuation">,</span>node<span class="token operator">-</span><span class="token operator">></span>right<span class="token operator">=</span>node_1<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        huffman_tree_node<span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
+        map<char, int>::iterator it_t;
+        for (it_t = word.begin(); it_t != word.end(); it_t++){
+                // 为每一个节点申请空间
+                huffman_node *node = (huffman_node *)malloc(sizeof(huffman_node));
+                node->c = it_t->first;
+                node->weight = it_t->second;
+                node->left = NULL;
+                node->right = NULL;
+                huffman_tree_node.push_back(node);
+        }
+      // 开始从叶节点开始构建Huffman树
+        while (huffman_tree_node.size() > 0){
+                // 按照weight升序排序
+                sort(huffman_tree_node.begin(), huffman_tree_node.end(), sort_by_weight);
+                // 取出前两个节点
+                if (huffman_tree_node.size() == 1){// 只有一个根结点
+                        root = huffman_tree_node[0];
+                        huffman_tree_node.erase(huffman_tree_node.begin());
+                }else{
+                        // 取出前两个
+                        huffman_node *node_1 = huffman_tree_node[0];
+                        huffman_node *node_2 = huffman_tree_node[1];
+                        // 删除
+                        huffman_tree_node.erase(huffman_tree_node.begin());
+                        huffman_tree_node.erase(huffman_tree_node.begin());
+                        // 生成新的节点
+                        huffman_node *node = (huffman_node *)malloc(sizeof(huffman_node));
+                        node->weight = node_1->weight + node_2->weight;
+                        (node_1->weight < node_2->weight)?(node->left=node_1,node->right=node_2):(node->left=node_2,node->right=node_1);
+                        huffman_tree_node.push_back(node);
+                }
+        }
 
-        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+        return 0;
+}
+```
   <div class="toolbar">
     <div class="toolbar-item">
       <button class="copy-to-clipboard-button" type="button" data-copy-state="copy">复制</button>
@@ -159,25 +163,27 @@ struct huffman_node<span class="token punctuation">{</span>
 其中，map结构的word为每一个字符出现的频率，是从文件中解析出来的，解析的代码为：
 
 <div class="code-toolbar">
-  <pre class="prism-token token language-javascript line-numbers" tabindex="0" data-prismjs-copy="复制" data-prismjs-copy-success="复制成功" data-prismjs-copy-error="复制失败" data-prismjs-copy-timeout="3000"><code class="language-javascript">int <span class="token function">read_file</span><span class="token punctuation">(</span><span class="token parameter"><span class="token constant">FILE</span> <span class="token operator">*</span>fn<span class="token punctuation">,</span> map<span class="token operator"><</span>char<span class="token punctuation">,</span> int<span class="token operator">></span> <span class="token operator">&</span>word</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>fn <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        char line<span class="token punctuation">[</span><span class="token constant">MAX_LINE</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">fgets</span><span class="token punctuation">(</span>line<span class="token punctuation">,</span> <span class="token number">1024</span><span class="token punctuation">,</span> fn<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token function">fprintf</span><span class="token punctuation">(</span>stderr<span class="token punctuation">,</span> <span class="token string">"%s\n"</span><span class="token punctuation">,</span> line<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token comment">//解析，统计词频</span>
-                char <span class="token operator">*</span>p <span class="token operator">=</span> line<span class="token punctuation">;</span>
-                <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">*</span>p <span class="token operator">!=</span> <span class="token string">'\0'</span> <span class="token operator">&&</span> <span class="token operator">*</span>p <span class="token operator">!=</span> <span class="token string">'\n'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                        map<span class="token operator"><</span>char<span class="token punctuation">,</span> int<span class="token operator">></span><span class="token operator">:</span><span class="token operator">:</span>iterator it <span class="token operator">=</span> word<span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token operator">*</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        <span class="token keyword">if</span> <span class="token punctuation">(</span>it <span class="token operator">==</span> word<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token comment">// 不存在，插入</span>
-                                word<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token function">make_pair</span><span class="token punctuation">(</span><span class="token operator">*</span>p<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
-                                it<span class="token operator">-</span><span class="token operator">></span>second <span class="token operator">++</span><span class="token punctuation">;</span>
-                        <span class="token punctuation">}</span>
-                        p <span class="token operator">++</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+  ```
+int read_file(FILE *fn, map<char, int> &word){
+        if (fn == NULL) return 1;
+        char line[MAX_LINE];
+        while (fgets(line, 1024, fn)){
+                fprintf(stderr, "%s\n", line);
+                //解析，统计词频
+                char *p = line;
+                while (*p != '\0' && *p != '\n'){
+                        map<char, int>::iterator it = word.find(*p);
+                        if (it == word.end()){// 不存在，插入
+                                word.insert(make_pair(*p, 1));
+                        }else{
+                                it->second ++;
+                        }
+                        p ++;
+                }
+        }
+        return 0;
+}
+```
   <div class="toolbar">
     <div class="toolbar-item">
       <button class="copy-to-clipboard-button" type="button" data-copy-state="copy">复制</button>
@@ -188,13 +194,15 @@ struct huffman_node<span class="token punctuation">{</span>
 当构建好Huffman树后，[我们](https://www.w3cdoc.com)分别利用先序遍历和中序遍历去遍历Huffman树，先序遍历的代码为：
 
 <div class="code-toolbar">
-  <pre class="prism-token token language-javascript line-numbers" tabindex="0" data-prismjs-copy="复制" data-prismjs-copy-success="复制成功" data-prismjs-copy-error="复制失败" data-prismjs-copy-timeout="3000"><code class="language-javascript"><span class="token keyword">void</span> <span class="token function">print_huffman_pre</span><span class="token punctuation">(</span><span class="token parameter">huffman_node <span class="token operator">*</span>node</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>node <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token function">fprintf</span><span class="token punctuation">(</span>stderr<span class="token punctuation">,</span> <span class="token string">"%c\t%d\n"</span><span class="token punctuation">,</span> node<span class="token operator">-</span><span class="token operator">></span>c<span class="token punctuation">,</span> node<span class="token operator">-</span><span class="token operator">></span>weight<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token function">print_huffman_pre</span><span class="token punctuation">(</span>node<span class="token operator">-</span><span class="token operator">></span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token function">print_huffman_pre</span><span class="token punctuation">(</span>node<span class="token operator">-</span><span class="token operator">></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+  ```
+void print_huffman_pre(huffman_node *node){
+        if (node != NULL){
+                fprintf(stderr, "%c\t%d\n", node->c, node->weight);
+                print_huffman_pre(node->left);
+                print_huffman_pre(node->right);
+        }
+}
+```
   <div class="toolbar">
     <div class="toolbar-item">
       <button class="copy-to-clipboard-button" type="button" data-copy-state="copy">复制</button>
@@ -205,13 +213,15 @@ struct huffman_node<span class="token punctuation">{</span>
 中序遍历的代码为：
 
 <div class="code-toolbar">
-  <pre class="prism-token token language-javascript line-numbers" tabindex="0" data-prismjs-copy="复制" data-prismjs-copy-success="复制成功" data-prismjs-copy-error="复制失败" data-prismjs-copy-timeout="3000"><code class="language-javascript"><span class="token keyword">void</span> <span class="token function">print_huffman_in</span><span class="token punctuation">(</span><span class="token parameter">huffman_node <span class="token operator">*</span>node</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>node <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token function">print_huffman_in</span><span class="token punctuation">(</span>node<span class="token operator">-</span><span class="token operator">></span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token function">fprintf</span><span class="token punctuation">(</span>stderr<span class="token punctuation">,</span> <span class="token string">"%c\t%d\n"</span><span class="token punctuation">,</span> node<span class="token operator">-</span><span class="token operator">></span>c<span class="token punctuation">,</span> node<span class="token operator">-</span><span class="token operator">></span>weight<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token function">print_huffman_in</span><span class="token punctuation">(</span>node<span class="token operator">-</span><span class="token operator">></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+  ```
+void print_huffman_in(huffman_node *node){
+        if (node != NULL){
+                print_huffman_in(node->left);
+                fprintf(stderr, "%c\t%d\n", node->c, node->weight);
+                print_huffman_in(node->right);
+        }
+}
+```
   <div class="toolbar">
     <div class="toolbar-item">
       <button class="copy-to-clipboard-button" type="button" data-copy-state="copy">复制</button>
@@ -241,37 +251,39 @@ struct huffman_node<span class="token punctuation">{</span>
 Huffman编码的实现过程为：
 
 <div class="code-toolbar">
-  <pre class="prism-token token language-javascript line-numbers" tabindex="0" data-prismjs-copy="复制" data-prismjs-copy-success="复制成功" data-prismjs-copy-error="复制失败" data-prismjs-copy-timeout="3000"><code class="language-javascript">int <span class="token function">get_huffman_code</span><span class="token punctuation">(</span><span class="token parameter">huffman_node <span class="token operator">*</span><span class="token operator">&</span>node</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>node <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
-        <span class="token comment">// 利用层次遍历，构造每一个节点</span>
-        huffman_node <span class="token operator">*</span>p <span class="token operator">=</span> node<span class="token punctuation">;</span>
-        queue<span class="token operator"><</span>huffman_node <span class="token operator">*</span><span class="token operator">></span> q<span class="token punctuation">;</span>
-        q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">while</span><span class="token punctuation">(</span>q<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                p <span class="token operator">=</span> q<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>p<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                        q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>p<span class="token operator">-</span><span class="token operator">></span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        <span class="token function">strcpy</span><span class="token punctuation">(</span><span class="token punctuation">(</span>p<span class="token operator">-</span><span class="token operator">></span>left<span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>huffman_code<span class="token punctuation">,</span> p<span class="token operator">-</span><span class="token operator">></span>huffman_code<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        char <span class="token operator">*</span>ptr <span class="token operator">=</span> <span class="token punctuation">(</span>p<span class="token operator">-</span><span class="token operator">></span>left<span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>huffman_code<span class="token punctuation">;</span>
-                        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">*</span>ptr <span class="token operator">!=</span> <span class="token string">'\0'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                                ptr <span class="token operator">++</span><span class="token punctuation">;</span>
-                        <span class="token punctuation">}</span>
-                        <span class="token operator">*</span>ptr <span class="token operator">=</span> <span class="token string">'0'</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>p<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                        q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>p<span class="token operator">-</span><span class="token operator">></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        <span class="token function">strcpy</span><span class="token punctuation">(</span><span class="token punctuation">(</span>p<span class="token operator">-</span><span class="token operator">></span>right<span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>huffman_code<span class="token punctuation">,</span> p<span class="token operator">-</span><span class="token operator">></span>huffman_code<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                        char <span class="token operator">*</span>ptr <span class="token operator">=</span> <span class="token punctuation">(</span>p<span class="token operator">-</span><span class="token operator">></span>right<span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>huffman_code<span class="token punctuation">;</span>
-                        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">*</span>ptr <span class="token operator">!=</span> <span class="token string">'\0'</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                                ptr <span class="token operator">++</span><span class="token punctuation">;</span>
-                        <span class="token punctuation">}</span>
-                        <span class="token operator">*</span>ptr <span class="token operator">=</span> <span class="token string">'1'</span><span class="token punctuation">;</span>
-                <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span>
+  ```
+int get_huffman_code(huffman_node *&node){
+        if (node == NULL) return 1;
+        // 利用层次遍历，构造每一个节点
+        huffman_node *p = node;
+        queue<huffman_node *> q;
+        q.push(p);
+        while(q.size() > 0){
+                p = q.front();
+                q.pop();
+                if (p->left != NULL){
+                        q.push(p->left);
+                        strcpy((p->left)->huffman_code, p->huffman_code);
+                        char *ptr = (p->left)->huffman_code;
+                        while (*ptr != '\0'){
+                                ptr ++;
+                        }
+                        *ptr = '0';
+                }
+                if (p->right != NULL){
+                        q.push(p->right);
+                        strcpy((p->right)->huffman_code, p->huffman_code);
+                        char *ptr = (p->right)->huffman_code;
+                        while (*ptr != '\0'){
+                                ptr ++;
+                        }
+                        *ptr = '1';
+                }
+        }
 
-        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+        return 0;
+}
+```
   <div class="toolbar">
     <div class="toolbar-item">
       <button class="copy-to-clipboard-button" type="button" data-copy-state="copy">复制</button>
@@ -282,25 +294,27 @@ Huffman编码的实现过程为：
 利用上述的代码，测试的主函数为：
 
 <div class="code-toolbar">
-  <pre class="prism-token token language-javascript line-numbers" tabindex="0" data-prismjs-copy="复制" data-prismjs-copy-success="复制成功" data-prismjs-copy-error="复制失败" data-prismjs-copy-timeout="3000"><code class="language-javascript">int <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token comment">// 读文件</span>
-        <span class="token constant">FILE</span> <span class="token operator">*</span>fn <span class="token operator">=</span> <span class="token function">fopen</span><span class="token punctuation">(</span><span class="token string">"huffman"</span><span class="token punctuation">,</span> <span class="token string">"r"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        huffman_node <span class="token operator">*</span>root <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-        map<span class="token operator"><</span>char<span class="token punctuation">,</span> int<span class="token operator">></span> word<span class="token punctuation">;</span>
-        <span class="token function">read_file</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> word<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">huffman_tree_create</span><span class="token punctuation">(</span>root<span class="token punctuation">,</span> word<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">fclose</span><span class="token punctuation">(</span>fn<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">fprintf</span><span class="token punctuation">(</span>stderr<span class="token punctuation">,</span> <span class="token string">"pre-order:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">print_huffman_pre</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">fprintf</span><span class="token punctuation">(</span>stderr<span class="token punctuation">,</span> <span class="token string">"in-order:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">print_huffman_in</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ```
+int main(){
+        // 读文件
+        FILE *fn = fopen("huffman", "r");
+        huffman_node *root = NULL;
+        map<char, int> word;
+        read_file(fn, word);
+        huffman_tree_create(root, word);
+        fclose(fn);
+        fprintf(stderr, "pre-order:\n");
+        print_huffman_pre(root);
+        fprintf(stderr, "in-order:\n");
+        print_huffman_in(root);
 
-        <span class="token function">get_huffman_code</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">fprintf</span><span class="token punctuation">(</span>stderr<span class="token punctuation">,</span> <span class="token string">"the final result:\n"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">print_leaf</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token function">destory_huffman_tree</span><span class="token punctuation">(</span>root<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+        get_huffman_code(root);
+        fprintf(stderr, "the final result:\n");
+        print_leaf(root);
+        destory_huffman_tree(root);
+        return 0;
+}
+```
   <div class="toolbar">
     <div class="toolbar-item">
       <button class="copy-to-clipboard-button" type="button" data-copy-state="copy">复制</button>
@@ -311,13 +325,15 @@ Huffman编码的实现过程为：
 print_leaf函数用于打印出每个叶节点的Huffman编码，其具体实现为：
 
 <div class="code-toolbar">
-  <pre class="prism-token token language-javascript line-numbers" tabindex="0" data-prismjs-copy="复制" data-prismjs-copy-success="复制成功" data-prismjs-copy-error="复制失败" data-prismjs-copy-timeout="3000"><code class="language-javascript"><span class="token keyword">void</span> <span class="token function">print_leaf</span><span class="token punctuation">(</span><span class="token parameter">huffman_node <span class="token operator">*</span>node</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>node <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token function">print_leaf</span><span class="token punctuation">(</span>node<span class="token operator">-</span><span class="token operator">></span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token keyword">if</span> <span class="token punctuation">(</span>node<span class="token operator">-</span><span class="token operator">></span>left <span class="token operator">==</span> <span class="token constant">NULL</span> <span class="token operator">&&</span> node<span class="token operator">-</span><span class="token operator">></span>right <span class="token operator">==</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token function">fprintf</span><span class="token punctuation">(</span>stderr<span class="token punctuation">,</span> <span class="token string">"%c\t%s\n"</span><span class="token punctuation">,</span> node<span class="token operator">-</span><span class="token operator">></span>c<span class="token punctuation">,</span> node<span class="token operator">-</span><span class="token operator">></span>huffman_code<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token function">print_leaf</span><span class="token punctuation">(</span>node<span class="token operator">-</span><span class="token operator">></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+  ```
+void print_leaf(huffman_node *node){
+        if (node != NULL){
+                print_leaf(node->left);
+                if (node->left == NULL && node->right == NULL) fprintf(stderr, "%c\t%s\n", node->c, node->huffman_code);
+                print_leaf(node->right);
+        }
+}
+```
   <div class="toolbar">
     <div class="toolbar-item">
       <button class="copy-to-clipboard-button" type="button" data-copy-state="copy">复制</button>
@@ -328,14 +344,16 @@ print_leaf函数用于打印出每个叶节点的Huffman编码，其具体实现
 destory\_huffman\_tree函数用于销毁Huffman树，其具体实现为：
 
 <div class="code-toolbar">
-  <pre class="prism-token token language-javascript line-numbers" tabindex="0" data-prismjs-copy="复制" data-prismjs-copy-success="复制成功" data-prismjs-copy-error="复制失败" data-prismjs-copy-timeout="3000"><code class="language-javascript"><span class="token keyword">void</span> <span class="token function">destory_huffman_tree</span><span class="token punctuation">(</span><span class="token parameter">huffman_node <span class="token operator">*</span>node</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        <span class="token keyword">if</span> <span class="token punctuation">(</span>node <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-                <span class="token function">destory_huffman_tree</span><span class="token punctuation">(</span>node<span class="token operator">-</span><span class="token operator">></span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token function">destory_huffman_tree</span><span class="token punctuation">(</span>node<span class="token operator">-</span><span class="token operator">></span>right<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                <span class="token function">free</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                node <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
+  ```
+void destory_huffman_tree(huffman_node *node){
+        if (node != NULL){
+                destory_huffman_tree(node->left);
+                destory_huffman_tree(node->right);
+                free(node);
+                node = NULL;
+        }
+}
+```
   <div class="toolbar">
     <div class="toolbar-item">
       <button class="copy-to-clipboard-button" type="button" data-copy-state="copy">复制</button>

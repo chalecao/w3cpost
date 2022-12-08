@@ -49,7 +49,7 @@ CA自身的分发及安全保证，一般是通过一些权威的渠道进行的
         <td>
           <div>
             <div>
-              <code>openssl genrsa -des3 -out server.key 2048</code>
+              openssl genrsa -des3 -out server.key 2048
             </div>
           </div>
         </td>
@@ -73,7 +73,7 @@ CA自身的分发及安全保证，一般是通过一些权威的渠道进行的
         <td>
           <div>
             <div>
-              <code>openssl rsa -</code><code>in</code> <code>server.key -out server.key</code>
+              openssl rsa -in server.key -out server.key
             </div>
           </div>
         </td>
@@ -99,7 +99,7 @@ server.key就是没有密码的版本了。
         <td>
           <div>
             <div>
-              <code>openssl req -new -x509 -key server.key -out ca.crt -days 3650</code>
+              openssl req -new -x509 -key server.key -out ca.crt -days 3650
             </div>
           </div>
         </td>
@@ -125,7 +125,7 @@ server.key就是没有密码的版本了。
         <td>
           <div>
             <div>
-              <code>openssl req -new -key server.key -out server.csr</code>
+              openssl req -new -key server.key -out server.csr
             </div>
           </div>
         </td>
@@ -283,7 +283,7 @@ CSR文件必须有CA的签名才可形成证书，可将此文件发送到verisi
         <td>
           <div>
             <div>
-              <code>openssl x509 -req -days 3650 -</code><code>in</code> <code>server.csr -CA ca.crt -CAkey server.key -CAcreateserial -out server.crt</code>
+              openssl x509 -req -days 3650 -in server.csr -CA ca.crt -CAkey server.key -CAcreateserial -out server.crt
             </div>
           </div>
         </td>
@@ -311,7 +311,7 @@ CSR文件必须有CA的签名才可形成证书，可将此文件发送到verisi
         <td>
           <div>
             <div>
-              <code>cat</code> <code>server.key server.crt > server.pem</code>
+              cat server.key server.crt > server.pem
             </div>
           </div>
         </td>

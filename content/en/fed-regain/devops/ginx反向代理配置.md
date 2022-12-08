@@ -4,7 +4,8 @@ title: nginx反向代理配置
 ---
 ## location
 
-<pre class="pure-highlightjs"><code class="">location = / {
+```
+location = / {
     # 精确匹配 / ，主机名后面不能带任何字符串
     [ configuration A ]
 }
@@ -55,7 +56,8 @@ location ~ /images/abc/ {
 }
 
 location ~*/js/.*/\.js
-</code></pre>
+
+```
 
 * 已`=`开头表示精确匹配  
     如 A 中只匹配根目录结尾的请求，后面不能带任何字符串。
@@ -71,9 +73,11 @@ location ~*/js/.*/\.js
 
 <div>
   <div class="cnblogs_code">
-    <pre><code>syntax: rewrite regex replacement [flag]
+    ```
+syntax: rewrite regex replacement [flag]
 Default: —
-Context: server, location, if</code></pre>
+Context: server, location, if
+```
   </div>
 </div>
 
@@ -87,7 +91,9 @@ Context: server, location, if</code></pre>
       
 
       <div class="cnblogs_code">
-        <pre><code> rewrite ^/users/(.*)$ /show?user=$1? last;=</code></pre>
+        ```
+ rewrite ^/users/(.*)$ /show?user=$1? last;=
+```
       </div>
     </div>
 
@@ -171,16 +177,16 @@ Context: server, location, if</code></pre>
   </h3>
   <ul>
     
-      <code>last</code> : 相当于Apache的[L]标记，表示完成rewrite
+      last : 相当于Apache的[L]标记，表示完成rewrite
     
     
-      <code>break</code> : 停止执行当前虚拟主机的后续rewrite指令集
+      break : 停止执行当前虚拟主机的后续rewrite指令集
     
     
-      <code>redirect</code> : 返回302临时重定向，地址栏会显示跳转后的地址
+      redirect : 返回302临时重定向，地址栏会显示跳转后的地址
     
     
-      <code>permanent</code> : 返回301永久重定向，地址栏会显示跳转后的地址
+      permanent : 返回301永久重定向，地址栏会显示跳转后的地址
     
   
  因为301和302不能简单的只返回状态码，还必须有重定向的URL，这就是return指令无法返回301,302的原因了。这里 last 和 break 区别有点难以理解：
@@ -200,24 +206,25 @@ Context: server, location, if</code></pre>
     if指令与全局变量
   
 
-if判断指令<br /> 语法为<code>if(condition){...}</code>，对给定的条件condition进行判断。如果为真，大括号内的rewrite指令将被执行，if条件(conditon)可以是如下任何内容：
+if判断指令<br /> 语法为if(condition){...}，对给定的条件condition进行判断。如果为真，大括号内的rewrite指令将被执行，if条件(conditon)可以是如下任何内容：
   
   <ul>
     
       当表达式只是一个变量时，如果值为空或任何以0开头的字符串都会当做false
     
     
-      直接比较变量和内容时，使用<code>=</code>或<code>!=</code>
+      直接比较变量和内容时，使用=或!=
     
     
-      <code>~</code>正则表达式匹配，<code>~*</code>不区分大小写的匹配，<code>!~</code>区分大小写的不匹配
+      ~正则表达式匹配，~*不区分大小写的匹配，!~区分大小写的不匹配
     
   
- <code>-f</code>和<code>!-f</code>用来判断是否存在文件<br /> <code>-d</code>和<code>!-d</code>用来判断是否存在目录<br /> <code>-e</code>和<code>!-e</code>用来判断是否存在文件或目录<br /> <code>-x</code>和<code>!-x</code>用来判断文件是否可执行
+ -f和!-f用来判断是否存在文件<br /> -d和!-d用来判断是否存在目录<br /> -e和!-e用来判断是否存在文件或目录<br /> -x和!-x用来判断文件是否可执行
   
  例如：
   
-  <pre class="pure-highlightjs"><code class="">if ($http_user_agent ~ MSIE) {
+  ```
+if ($http_user_agent ~ MSIE) {
     rewrite ^(.*)$ /msie/$1 break;
 } //如果UA包含"MSIE"，rewrite请求到/msid/目录下
 
@@ -248,72 +255,73 @@ if ($invalid_referer) {
     return 404;
 } //防盗链
 }
-</code></pre><figure class="highlight stata"></figure>
+
+```<figure class="highlight stata"></figure>
 全局变量<br /> 下面是可以用作if判断的全局变量
   
   <ul>
     
-      <code>$args</code> ： #这个变量等于请求行中的参数，同<code>$query_string</code>
+      $args ： #这个变量等于请求行中的参数，同$query_string
     
     
-      <code>$content_length</code> ： 请求头中的Content-length字段。
+      $content_length ： 请求头中的Content-length字段。
     
     
-      <code>$content_type</code> ： 请求头中的Content-Type字段。
+      $content_type ： 请求头中的Content-Type字段。
     
     
-      <code>$document_root</code> ： 当前请求在root指令中指定的值。
+      $document_root ： 当前请求在root指令中指定的值。
     
     
-      <code>$host</code> ： 请求主机头字段，否则为服务器名称。
+      $host ： 请求主机头字段，否则为服务器名称。
     
     
-      <code>$http_user_agent</code> ： 客户端agent信息
+      $http_user_agent ： 客户端agent信息
     
     
-      <code>$http_cookie</code> ： 客户端cookie信息
+      $http_cookie ： 客户端cookie信息
     
     
-      <code>$limit_rate</code> ： 这个变量可以限制连接速率。
+      $limit_rate ： 这个变量可以限制连接速率。
     
     
-      <code>$request_method</code> ： 客户端请求的动作，通常为GET或POST。
+      $request_method ： 客户端请求的动作，通常为GET或POST。
     
     
-      <code>$remote_addr</code> ： 客户端的IP地址。
+      $remote_addr ： 客户端的IP地址。
     
     
-      <code>$remote_port</code> ： 客户端的端口。
+      $remote_port ： 客户端的端口。
     
     
-      <code>$remote_user</code> ： 已经经过Auth Basic Module验证的用户名。
+      $remote_user ： 已经经过Auth Basic Module验证的用户名。
     
     
-      <code>$request_filename</code> ： 当前请求的文件路径，由root或alias指令与URI请求生成。
+      $request_filename ： 当前请求的文件路径，由root或alias指令与URI请求生成。
     
     
-      <code>$scheme</code> ： HTTP方法（如http，https）。
+      $scheme ： HTTP方法（如http，https）。
     
     
-      <code>$server_protocol</code> ： 请求使用的协议，通常是HTTP/1.0或HTTP/1.1。
+      $server_protocol ： 请求使用的协议，通常是HTTP/1.0或HTTP/1.1。
     
     
-      <code>$server_addr</code> ： 服务器地址，在完成一次系统调用后可以确定这个值。
+      $server_addr ： 服务器地址，在完成一次系统调用后可以确定这个值。
     
     
-      <code>$server_name</code> ： 服务器名称。
+      $server_name ： 服务器名称。
     
     
-      <code>$server_port</code> ： 请求到达服务器的端口号。
+      $server_port ： 请求到达服务器的端口号。
     
     
-      <code>$request_uri</code> ： 包含请求参数的原始URI，不包含主机名，如：”/foo/bar.php?arg=baz”。
+      $request_uri ： 包含请求参数的原始URI，不包含主机名，如：”/foo/bar.php?arg=baz”。
     
     
-      <code>$uri</code> ： 不带请求参数的当前URI，$uri不包含主机名，如”/foo/bar.html”。
+      $uri ： 不带请求参数的当前URI，$uri不包含主机名，如”/foo/bar.html”。
     
     
-      <code>$document_uri</code> ： 与$uri相同。
+      $document_uri ： 与$uri相同。
     
 </div>
 
@@ -321,9 +329,11 @@ if ($invalid_referer) {
 
 <div>
   <div class="cnblogs_code">
-    <pre><code>Syntax:    proxy_pass URL;
+    ```
+Syntax:    proxy_pass URL;
 Default:    —
-Context:    location, if in location, limit_except</code></pre>
+Context:    location, if in location, limit_except
+```
   </div>
 </div>
 
@@ -340,7 +350,9 @@ Context:    location, if in location, limit_except</code></pre>
     
     
       地址可以为域名或者IP，端口可选；eg： <div class="cnblogs_code">
-        <pre><code> proxy_pass https://localhost:8000/uri/;</code></pre>
+        ```
+ proxy_pass https://localhost:8000/uri/;
+```
       </div>
     
 
@@ -349,7 +361,8 @@ Context:    location, if in location, limit_except</code></pre>
         <div class="cnblogs_code_toolbar">
         </div>
         
-        <pre><code>upstream backend {
+        ```
+upstream backend {
     server backend1.example.com       weight=5;
     server backend2.example.com:8080;
     server unix:/tmp/backend3;
@@ -362,7 +375,8 @@ server {
     location / {
         proxy_pass https://backend;
     }
-}</code></pre>
+}
+```
 
         <div class="cnblogs_code_toolbar">
         </div>
@@ -371,7 +385,9 @@ server {
     
     
       server name， port， URI支持变量的形式，eg： <div class="cnblogs_code">
-        <pre><code>proxy_pass https://$host$uri;</code></pre>
+        ```
+proxy_pass https://$host$uri;
+```
       </div>
     
 </div>
@@ -384,7 +400,8 @@ server {
   <ol>
     
       如果proxy_pass的URL定向里包括URI，那么请求中匹配到location中URI的部分会被proxy_pass后面URL中的URI替换，eg： <div class="cnblogs_code">
-        <pre><code>location /name/ {
+        ```
+location /name/ {
     proxy_pass https://127.0.0.1/remote/;
 }
 请求https://127.0.0.1/name/test.html 会被代理到https://example.com/remote/test.html
@@ -397,17 +414,20 @@ location /name/ {
 location /name/ {
      proxy_pass https://127.0.0.1/;
 }
-请求https://127.0.0.1/name/test.html 会被代理到https://example.com/test.html</code></pre>
+请求https://127.0.0.1/name/test.html 会被代理到https://example.com/test.html
+```
       </div>
     
 
     
       如果proxy_pass的URL定向里不包括URI，那么请求中的URI会保持原样传送给后端server，eg： <div class="cnblogs_code">
-        <pre><code>location /name/ {
+        ```
+location /name/ {
     proxy_pass https://127.0.0.1;
 }
 
-请求https://127.0.0.1/name/test.html 会被代理到https://127.0.0.1/name/test.html</code></pre>
+请求https://127.0.0.1/name/test.html 会被代理到https://127.0.0.1/name/test.html
+```
       </div>
     
 
@@ -418,10 +438,12 @@ location /name/ {
         
         
           在proxy_pass前面用了rewrite，如下，这种情况下，proxy_pass是无效的，eg： <div class="cnblogs_code">
-            <pre><code>location /name/ {
+            ```
+location /name/ {
     rewrite    /name/([^/]+) /users?name=$1 break;
     proxy_pass https://127.0.0.1;
-}</code></pre>
+}
+```
           </div>
 
           
@@ -549,105 +571,105 @@ location /name/ {
                       <td class="code">
                         <div class="container">
                           <div class="line number1 index0 alt2">
-                            <code class="bash plain">比如下面设置：</code>
+                            比如下面设置：
                           </div>
                           
                           <div class="line number2 index1 alt1">
-                            <code class="bash plain">location ^~ </code><code class="bash plain">/wangshibo/</code>
+                            location ^~ /wangshibo/
                           </div>
                           
                           <div class="line number3 index2 alt2">
-                            <code class="bash plain">{</code>
+                            {
                           </div>
                           
                           <div class="line number4 index3 alt1">
-                            <code class="bash plain">proxy_cache js_cache;</code>
+                            proxy_cache js_cache;
                           </div>
                           
                           <div class="line number5 index4 alt2">
-                            <code class="bash plain">proxy_set_header Host js.</code><code class="bash functions">test</code><code class="bash plain">.com;</code>
+                            proxy_set_header Host js.test.com;
                           </div>
                           
                           <div class="line number6 index5 alt1">
-                            <code class="bash plain">proxy_pass http:</code><code class="bash plain">//js</code><code class="bash plain">.</code><code class="bash functions">test</code><code class="bash plain">.com/;</code>
+                            proxy_pass http://js.test.com/;
                           </div>
                           
                           <div class="line number7 index6 alt2">
-                            <code class="bash plain">}</code>
+                            }
                           </div>
                           
                           <div class="line number8 index7 alt1">
-                            <code class="bash plain">如上面的配置，如果请求的url是http:</code><code class="bash plain">//servername/wangshibo/test</code><code class="bash plain">.html会被代理成http:</code><code class="bash plain">//js</code><code class="bash plain">.</code><code class="bash functions">test</code><code class="bash plain">.com</code><code class="bash plain">/test</code><code class="bash plain">.html</code>
+                            如上面的配置，如果请求的url是http://servername/wangshibo/test.html会被代理成http://js.test.com/test.html
                           </div>
                           
                           <div class="line number9 index8 alt2">
                           </div>
                           
                           <div class="line number10 index9 alt1">
-                            <code class="bash plain">而如果这么配置</code>
+                            而如果这么配置
                           </div>
                           
                           <div class="line number11 index10 alt2">
-                            <code class="bash plain">location ^~ </code><code class="bash plain">/wangshibo/</code>
+                            location ^~ /wangshibo/
                           </div>
                           
                           <div class="line number12 index11 alt1">
-                            <code class="bash plain">{</code>
+                            {
                           </div>
                           
                           <div class="line number13 index12 alt2">
-                            <code class="bash plain">proxy_cache js_cache;</code>
+                            proxy_cache js_cache;
                           </div>
                           
                           <div class="line number14 index13 alt1">
-                            <code class="bash plain">proxy_set_header Host js.</code><code class="bash functions">test</code><code class="bash plain">.com;</code>
+                            proxy_set_header Host js.test.com;
                           </div>
                           
                           <div class="line number15 index14 alt2">
-                            <code class="bash plain">proxy_pass http:</code><code class="bash plain">//js</code><code class="bash plain">.</code><code class="bash functions">test</code><code class="bash plain">.com;</code>
+                            proxy_pass http://js.test.com;
                           </div>
                           
                           <div class="line number16 index15 alt1">
-                            <code class="bash plain">}</code>
+                            }
                           </div>
                           
                           <div class="line number17 index16 alt2">
-                            <code class="bash plain">则请求的url是http:</code><code class="bash plain">//servername/wangshibo/test</code><code class="bash plain">.html会被代理到http:</code><code class="bash plain">//js</code><code class="bash plain">.</code><code class="bash functions">test</code><code class="bash plain">.com</code><code class="bash plain">/wangshibo/test</code><code class="bash plain">.html</code>
+                            则请求的url是http://servername/wangshibo/test.html会被代理到http://js.test.com/wangshibo/test.html
                           </div>
                           
                           <div class="line number18 index17 alt1">
                           </div>
                           
                           <div class="line number19 index18 alt2">
-                            <code class="bash plain">当然，可以用如下的rewrite来实现/的功能</code>
+                            当然，可以用如下的rewrite来实现/的功能
                           </div>
                           
                           <div class="line number20 index19 alt1">
-                            <code class="bash plain">location ^~ </code><code class="bash plain">/wangshibo/</code>
+                            location ^~ /wangshibo/
                           </div>
                           
                           <div class="line number21 index20 alt2">
-                            <code class="bash plain">{</code>
+                            {
                           </div>
                           
                           <div class="line number22 index21 alt1">
-                            <code class="bash plain">proxy_cache js_cache;</code>
+                            proxy_cache js_cache;
                           </div>
                           
                           <div class="line number23 index22 alt2">
-                            <code class="bash plain">proxy_set_header Host js.</code><code class="bash functions">test</code><code class="bash plain">.com;</code>
+                            proxy_set_header Host js.test.com;
                           </div>
                           
                           <div class="line number24 index23 alt1">
-                            <code class="bash plain">rewrite </code><code class="bash plain">/wangshibo/</code><code class="bash plain">(.+)$ /$1 </code><code class="bash keyword">break</code><code class="bash plain">;</code>
+                            rewrite /wangshibo/(.+)$ /$1 break;
                           </div>
                           
                           <div class="line number25 index24 alt2">
-                            <code class="bash plain">proxy_pass http:</code><code class="bash plain">//js</code><code class="bash plain">.</code><code class="bash functions">test</code><code class="bash plain">.com;</code>
+                            proxy_pass http://js.test.com;
                           </div>
                           
                           <div class="line number26 index25 alt1">
-                            <code class="bash plain">}</code>
+                            }
                           </div>
                         </div>
                       </td>

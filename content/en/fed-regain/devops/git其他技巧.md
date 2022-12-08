@@ -46,7 +46,9 @@ title: 彻底搞懂 Git-Rebase
 <table>
   <tr>
     <td class="code">
-      <pre><span class="line">git rebase -i HEAD~4</span></pre>
+      ```
+<span class="line">git rebase -i HEAD~4</span>
+```
     </td>
   </tr>
 </table></figure>
@@ -56,7 +58,8 @@ title: 彻底搞懂 Git-Rebase
 <table>
   <tr>
     <td class="code">
-      <pre><span class="line">s cacc52da add: qrcode</span>
+      ```
+<span class="line">s cacc52da add: qrcode</span>
 <span class="line">s f072ef48 up
 <span class="line">s 4e84901a feat: add indexedDB floder</span>
 <span class="line">s 8f33126c feat: add test2.js</span>
@@ -77,7 +80,8 @@ title: 彻底搞懂 Git-Rebase
 <span class="line"># If you remove a line here THAT COMMIT WILL BE LOST.</span>
 <span class="line">#</span>
 <span class="line"># However, if you remove everything, the rebase will be aborted.</span>
-<span class="line">#</span></pre>
+<span class="line">#</span>
+```
     </td>
   </tr>
 </table></figure>
@@ -97,10 +101,12 @@ title: 彻底搞懂 Git-Rebase
 <table>
   <tr>
     <td class="code">
-      <pre><span class="line">s cacc52da add: qrcode</span>
+      ```
+<span class="line">s cacc52da add: qrcode</span>
 <span class="line">s f072ef48 up
 <span class="line">s 4e84901a feat: add indexedDB floder</span>
-<span class="line">p 8f33126c feat: add test2.js</span></pre>
+<span class="line">p 8f33126c feat: add test2.js</span>
+```
     </td>
   </tr>
 </table></figure>
@@ -110,7 +116,9 @@ title: 彻底搞懂 Git-Rebase
 <table>
   <tr>
     <td class="code">
-      <pre><span class="line">error: cannot 'squash' without a previous commit</span></pre>
+      ```
+<span class="line">error: cannot 'squash' without a previous commit</span>
+```
     </td>
   </tr>
 </table></figure>
@@ -124,7 +132,9 @@ title: 彻底搞懂 Git-Rebase
 <table>
   <tr>
     <td class="code">
-      <pre><span class="line">git rebase --edit-todo</span></pre>
+      ```
+<span class="line">git rebase --edit-todo</span>
+```
     </td>
   </tr>
 </table></figure>
@@ -134,7 +144,9 @@ title: 彻底搞懂 Git-Rebase
 <table>
   <tr>
     <td class="code">
-      <pre><span class="line">git rebase --continue</span></pre>
+      ```
+<span class="line">git rebase --continue</span>
+```
     </td>
   </tr>
 </table></figure>
@@ -144,7 +156,9 @@ title: 彻底搞懂 Git-Rebase
 <table>
   <tr>
     <td class="code">
-      <pre><span class="line">git log</span></pre>
+      ```
+<span class="line">git log</span>
+```
     </td>
   </tr>
 </table></figure>
@@ -162,7 +176,9 @@ title: 彻底搞懂 Git-Rebase
 <table>
   <tr>
     <td class="code">
-      <pre><span class="line">git:(master) git checkout -b feature1</span></pre>
+      ```
+<span class="line">git:(master) git checkout -b feature1</span>
+```
     </td>
   </tr>
 </table></figure>
@@ -175,7 +191,9 @@ title: 彻底搞懂 Git-Rebase
 <table>
   <tr>
     <td class="code">
-      <pre><span class="line">git:(feature1) git merge master</span></pre>
+      ```
+<span class="line">git:(feature1) git merge master</span>
+```
     </td>
   </tr>
 </table></figure>
@@ -186,7 +204,9 @@ title: 彻底搞懂 Git-Rebase
 <table>
   <tr>
     <td class="code">
-      <pre><span class="line">git:(feature1) git log</span></pre>
+      ```
+<span class="line">git:(feature1) git log</span>
+```
     </td>
   </tr>
 </table></figure>
@@ -200,13 +220,15 @@ title: 彻底搞懂 Git-Rebase
 <table>
   <tr>
     <td class="code">
-      <pre><span class="line">git:(feature1) git rebase master</span></pre>
+      ```
+<span class="line">git:(feature1) git rebase master</span>
+```
     </td>
   </tr>
 </table></figure>
 
 <div class="alert info">
- 这里补充一点：<code>rebase</code> 做了什么操作呢？
+ 这里补充一点：rebase 做了什么操作呢？
 </div>
 
 首先，`git` 会把 `feature1` 分支里面的每个 `commit` 取消掉；  
@@ -227,7 +249,9 @@ title: 彻底搞懂 Git-Rebase
 <table>
   <tr>
     <td class="code">
-      <pre><span class="line">git rebase --continue</span></pre>
+      ```
+<span class="line">git rebase --continue</span>
+```
     </td>
   </tr>
 </table></figure>
@@ -239,7 +263,9 @@ title: 彻底搞懂 Git-Rebase
 <table>
   <tr>
     <td class="code">
-      <pre><span class="line">git rebase —abort</span></pre>
+      ```
+<span class="line">git rebase —abort</span>
+```
     </td>
   </tr>
 </table></figure>
@@ -271,7 +297,7 @@ title: 彻底搞懂 Git-Rebase
 那么当他 `pull` 远程 `master` 的时候，就会有丢失提交纪录。这就是为什么[我们](https://www.w3cdoc.com)经常听到有人说 `git rebase` 是一个危险命令，因为它改变了历史，[我们](https://www.w3cdoc.com)应该谨慎使用。
 
 <div class="alert info">
- 除非你可以肯定该 <code>feature1</code> 分支只有你自己使用，否则请谨慎操作。
+ 除非你可以肯定该 feature1 分支只有你自己使用，否则请谨慎操作。
 </div>
 
 结论：只要你的分支上需要 `rebase` 的所有 `commits` 历史还没有被 `push` 过，就可以安全地使用 `git-rebase`来操作。

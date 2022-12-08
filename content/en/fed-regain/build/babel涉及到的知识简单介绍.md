@@ -15,11 +15,11 @@ title: babel涉及到的知识简单介绍
     版本变化
   
 
- 说实话，从我做[前端](https://www.w3cdoc.com)的时候，接触 babel 的时候，就已经是 babel 6 了，但是这不妨碍了解一下它的重大版本变化。<br /> 上一个版本 babel 5 是全家桶，包括各种package， plugins，尽可能的想通过你的一次安装，达到全能的效果。不过你现在安装<code>npm install babel</code>，会得到一个 warning。babel 6 是 <a href="https://github.com/babel/babel/releases?after=v6.0.1" target="_blank" rel="nofollow noopener noreferrer">2015年10月30号</a>发布，主要做了以下更新：
+ 说实话，从我做[前端](https://www.w3cdoc.com)的时候，接触 babel 的时候，就已经是 babel 6 了，但是这不妨碍了解一下它的重大版本变化。<br /> 上一个版本 babel 5 是全家桶，包括各种package， plugins，尽可能的想通过你的一次安装，达到全能的效果。不过你现在安装npm install babel，会得到一个 warning。babel 6 是 <a href="https://github.com/babel/babel/releases?after=v6.0.1" target="_blank" rel="nofollow noopener noreferrer">2015年10月30号</a>发布，主要做了以下更新：
   
   <ul>
     
-      拆分成几个核心包，<code>babel-core</code>,<code>babel-node</code>,<code>babel-cli</code>&#8230;
+      拆分成几个核心包，babel-core,babel-node,babel-cli&#8230;
     
     
       没有了默认的转换，现在你需要手动的添加 plugin。也就是插件化
@@ -50,8 +50,10 @@ title: babel涉及到的知识简单介绍
     <div class="widget-codetool--inner">
     </div>
   </div>
-  <pre class="javascript hljs"><code class="javascript"><span class="hljs-keyword">var</span> babel = <span class="hljs-built_in">require</span>(<span class="hljs-string">'babel-core'</span>);
-<span class="hljs-keyword">var</span> transform = babel.transform;</code></pre>
+  ```
+var babel = require('babel-core');
+var transform = babel.transform;
+```
   <ul>
     
       babel.transform(code: string, options?: Object)
@@ -61,8 +63,10 @@ title: babel涉及到的知识简单介绍
     <div class="widget-codetool--inner">
     </div>
   </div>
-  <pre class="javascript hljs"><code class="javascript">transform(<span class="hljs-string">"code"</span>, options) <span class="hljs-comment">// => { code, map, ast }</span>
-</code></pre>
+  ```
+transform("code", options) // => { code, map, ast }
+
+```
   <ul>
     
       babel.transformFile(filename: string, options?: Object, callback: Function)
@@ -72,13 +76,15 @@ title: babel涉及到的知识简单介绍
     <div class="widget-codetool--inner">
     </div>
   </div>
-  <pre class="javascript hljs"><code class="javascript"><span class="hljs-keyword">var</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">'path'</span>);
-<span class="hljs-keyword">var</span> result = babel.transformFileSync(path.resolve(__dirname) + <span class="hljs-string">"/test.js"</span>, {
-  <span class="hljs-attr">presets</span>: [<span class="hljs-string">'env'</span>],
-  <span class="hljs-attr">plugins</span>: [<span class="hljs-string">'transform-runtime'</span>],
-}, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err, result</span>) </span>{<span class="hljs-comment">// { code, map, ast }</span>
-    <span class="hljs-built_in">console</span>.log(result);
-});</code></pre>
+  ```
+var path = require('path');
+var result = babel.transformFileSync(path.resolve(__dirname) + "/test.js", {
+  presets: ['env'],
+  plugins: ['transform-runtime'],
+}, function(err, result) {// { code, map, ast }
+    console.log(result);
+});
+```
   <ul>
     
       babel.transformFileSync(filename: string, options?: Object)
@@ -88,12 +94,14 @@ title: babel涉及到的知识简单介绍
     <div class="widget-codetool--inner">
     </div>
   </div>
-  <pre class="hljs typescript"><code><span class="hljs-keyword">var</span> result = babel.transformFileSync(path.resolve(__dirname) + <span class="hljs-string">"/test.js"</span>, {
-  presets: [<span class="hljs-string">'env'</span>],
-  plugins: [<span class="hljs-string">'transform-runtime'</span>],
+  ```
+var result = babel.transformFileSync(path.resolve(__dirname) + "/test.js", {
+  presets: ['env'],
+  plugins: ['transform-runtime'],
 });
-<span class="hljs-built_in">console</span>.log(result, <span class="hljs-string">'res'</span>);
-</code></pre>
+console.log(result, 'res');
+
+```
   <ul>
     
       babel.transformFromAst(ast: Object, code?: string, options?: Object)
@@ -106,24 +114,28 @@ title: babel涉及到的知识简单介绍
   <h3 id="articleHeader4">
     babel-cli
   </h3>
- 提供命令行运行 babel。也就是你可以 <code>babel filename</code> 去对文件转码。<br /> 安装的话
+ 提供命令行运行 babel。也就是你可以 babel filename 去对文件转码。<br /> 安装的话
   
   <div class="widget-codetool" style="display: none;">
     <div class="widget-codetool--inner">
     </div>
   </div>
-  <pre class="hljs sql"><code>npm <span class="hljs-keyword">install</span> <span class="hljs-comment">--save-dev babel-cli</span>
+  ```
+npm install --save-dev babel-cli
 
-npm isntall babel-cli -g</code></pre>
+npm isntall babel-cli -g
+```
  使用对应就是
   
   <div class="widget-codetool" style="display: none;">
     <div class="widget-codetool--inner">
     </div>
   </div>
-  <pre class="hljs fortran"><code>node_module/.bin/babel script.js --<span class="hljs-keyword">out</span>-<span class="hljs-keyword">file</span> script-compiled.js
+  ```
+node_module/.bin/babel script.js --out-file script-compiled.js
 
-babel script.js --<span class="hljs-keyword">out</span>-<span class="hljs-keyword">file</span> script-compiled.js</code></pre>
+babel script.js --out-file script-compiled.js
+```
  具体使用还是看<a href="http://babeljs.io/docs/usage/cli/" target="_blank" rel="nofollow noopener noreferrer">官方文档</a>吧，我就不搬文档了。
   
   <h3 id="articleHeader5">
@@ -131,31 +143,33 @@ babel script.js --<span class="hljs-keyword">out</span>-<span class="hljs-keywor
   </h3>
  babel-cli 中的一个command，用来生成一段代码，包含 babel 所有的 helper 函数。
   
- 首先[我们](https://www.w3cdoc.com)需要了解什么是 helpers。babel 有很多帮助函数，例如 toArray函数， jsx转化函数。这些函数是 babel transform 的时候用的，都放在 <code>babel-helpers</code>这个包中。如果 babe 编译的时候检测到某个文件需要这些 helpers，在编译成模块的时候，会放到模块的顶部。<br /> 像这样
+ 首先[我们](https://www.w3cdoc.com)需要了解什么是 helpers。babel 有很多帮助函数，例如 toArray函数， jsx转化函数。这些函数是 babel transform 的时候用的，都放在 babel-helpers这个包中。如果 babe 编译的时候检测到某个文件需要这些 helpers，在编译成模块的时候，会放到模块的顶部。<br /> 像这样
   
   <div class="widget-codetool" style="display: none;">
     <div class="widget-codetool--inner">
     </div>
   </div>
-  <pre class="javascript hljs"><code class="javascript">(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">module, exports, __webpack_require__</span>) </span>{
+  ```
+(function(module, exports, __webpack_require__) {
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_asyncToGenerator</span>(<span class="hljs-params">fn</span>) </span>{ <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{  }; } <span class="hljs-comment">// 模块顶部定义 helper</span>
+function _asyncToGenerator(fn) { return function () {  }; } // 模块顶部定义 helper
 
-<span class="hljs-comment">// some code </span>
-<span class="hljs-comment">// async 语法已经被 transform-async-to-generator 转化，再利用 helper 函数包装，消费 generator。</span>
-<span class="hljs-keyword">const</span> func = <span class="hljs-function">(<span class="hljs-params">(</span>) =></span> {
-  <span class="hljs-keyword">var</span> _ref =_asyncToGenerator(<span class="hljs-function"><span class="hljs-keyword">function</span>* () </span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'begin'</span>);
-    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">resolve</span>) </span>{
-      setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{
+// some code 
+// async 语法已经被 transform-async-to-generator 转化，再利用 helper 函数包装，消费 generator。
+const func = (() => {
+  var _ref =_asyncToGenerator(function* () {
+    console.log('begin');
+    yield new Promise(function (resolve) {
+      setTimeout(function () {
         resolve();
-      }, <span class="hljs-number">1000</span>);
+      }, 1000);
     });
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'done'</span>);
+    console.log('done');
   });
 })
 
-})</code></pre>
+})
+```
  但是如果多个文件都需要提供，会重复引用这些 helpers，会导致每一个模块都定义一份，代码冗余。所以 babel 提供了这个命令，用于生成一个包含了所有 helpers 的 js 文件，用于直接引用。然后再通过一个 plugin，去检测全局下是否存在这个模块，存在就不需要重新定义了。
   
  使用：
@@ -167,7 +181,9 @@ babel script.js --<span class="hljs-keyword">out</span>-<span class="hljs-keywor
         </div>
       </div>
 
-      <pre class="hljs groovy"><code style="word-break: break-word; white-space: initial;"> node_modules<span class="hljs-regexp">/.bin/</span>babel-external-helpers > helpers.js</code></pre>
+      ```
+ node_modules/.bin/babel-external-helpers > helpers.js
+```
       
       
         注意：示例代码的包都是装到项目中的，也就是本地。同样你可以全局安装直接执行。 
@@ -178,7 +194,9 @@ babel script.js --<span class="hljs-keyword">out</span>-<span class="hljs-keywor
             </div>
           </div>
           
-          <pre class="javascript hljs"><code class="javascript" style="word-break: break-word; white-space: initial;">npm install --save-dev babel-plugin-external-helpers</code></pre>
+          ```
+npm install --save-dev babel-plugin-external-helpers
+```
         
         
         
@@ -187,9 +205,11 @@ babel script.js --<span class="hljs-keyword">out</span>-<span class="hljs-keywor
             </div>
           </div>
           
-          <pre class="hljs json"><code>{
-  <span class="hljs-attr">"plugins"</span>: [<span class="hljs-string">"external-helpers"</span>]
-}</code></pre>
+          ```
+{
+  "plugins": ["external-helpers"]
+}
+```
         
 
         
@@ -198,7 +218,9 @@ babel script.js --<span class="hljs-keyword">out</span>-<span class="hljs-keywor
             </div>
           </div>
           
-          <pre class="hljs typescript"><code style="word-break: break-word; white-space: initial;"><span class="hljs-built_in">require</span>(<span class="hljs-string">'./helpers.js'</span>);</code></pre>
+          ```
+require('./helpers.js');
+```
         </ol> 
         
         
@@ -226,15 +248,17 @@ babel script.js --<span class="hljs-keyword">out</span>-<span class="hljs-keywor
           </div>
         </div>
         
-        <pre class="hljs javascript"><code><span class="hljs-comment">// test.js</span>
-<span class="hljs-keyword">const</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>);
-<span class="hljs-keyword">const</span> elements = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].map(<span class="hljs-function">(<span class="hljs-params">item</span>) =></span> {
-  <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag"><<span class="hljs-name">div</span>></span>{item}<span class="hljs-tag"></<span class="hljs-name">div</span>></span></span>
+        ```
+// test.js
+const React = require('react');
+const elements = [1, 2, 3].map((item) => {
+  return (
+    <div>{item}</div>
   )
 });
 
-<span class="hljs-built_in">console</span>.log(elements);</code></pre>
+console.log(elements);
+```
 
         
           执行 test.js，会报错，不认识这个语法。
@@ -245,7 +269,9 @@ babel script.js --<span class="hljs-keyword">out</span>-<span class="hljs-keywor
           </div>
         </div>
         
-        <pre class="hljs objectivec"><code style="word-break: break-word; white-space: initial;">node test.js <span class="hljs-comment">//报错</span></code></pre>
+        ```
+node test.js //报错
+```
         
         
           但是使用 babel-node 就可以。
@@ -256,7 +282,9 @@ babel script.js --<span class="hljs-keyword">out</span>-<span class="hljs-keywor
           </div>
         </div>
         
-        <pre class="hljs groovy"><code style="word-break: break-word; white-space: initial;"> node_modules<span class="hljs-regexp">/.bin/</span>babel-node --presets react test.js</code></pre>
+        ```
+ node_modules/.bin/babel-node --presets react test.js
+```
         
         
           &#8211;presets react 是参数，等同于
@@ -267,9 +295,11 @@ babel script.js --<span class="hljs-keyword">out</span>-<span class="hljs-keywor
           </div>
         </div>
         
-        <pre class="hljs json"><code>{
-  <span class="hljs-attr">"presets"</span>: [<span class="hljs-string">"react"</span>]
-}</code></pre>
+        ```
+{
+  "presets": ["react"]
+}
+```
 
         
           执行正常。
@@ -292,7 +322,7 @@ babel script.js --<span class="hljs-keyword">out</span>-<span class="hljs-keywor
         
         
         
-          运行 <code>node_modules/.bin/babel-node --presets env</code>
+          运行 node_modules/.bin/babel-node --presets env
         
         
         
@@ -316,18 +346,20 @@ babel script.js --<span class="hljs-keyword">out</span>-<span class="hljs-keywor
           </div>
         </div>
         
-        <pre class="shell hljs"><code class="shell" style="word-break: break-word; white-space: initial;">npm install babel-register --save-dev</code></pre>
+        ```
+npm install babel-register --save-dev
+```
         
         
-          babel-node 可以通过它编译代码，可以了解到，它其实就是一个编译器。[我们](https://www.w3cdoc.com)同样可以在代码中引入它 <code>require('babel-register')</code>，并通过 node 执行[我们](https://www.w3cdoc.com)的代码。
-        
-        
-        
-          它的原理是通过改写 node 本身的 require，添加钩子，然后在 require 其他模块的时候，就会触发 babel 编译。也就是你引入<code>require('babel-register')</code>的文件代码，是不会被编译的。只有通过 require 引入的其他代码才会。[我们](https://www.w3cdoc.com)是不是可以理解，babel-node 就是在内存中写入一个临时文件，在顶部引入 babel-register，然后再引入[我们](https://www.w3cdoc.com)的脚本或者代码？
+          babel-node 可以通过它编译代码，可以了解到，它其实就是一个编译器。[我们](https://www.w3cdoc.com)同样可以在代码中引入它 require('babel-register')，并通过 node 执行[我们](https://www.w3cdoc.com)的代码。
         
         
         
-          举个栗子，还是 node 中执行 jsx，要通过 babel 编译。[我们](https://www.w3cdoc.com)可以把 jsx 的代码 a.js 编译完输出到一个 b.js，然后 <code>node b.js</code> 也是可以执行的。但是太麻烦，不利于开发。让[我们](https://www.w3cdoc.com)看一下通过 register 怎么用：
+          它的原理是通过改写 node 本身的 require，添加钩子，然后在 require 其他模块的时候，就会触发 babel 编译。也就是你引入require('babel-register')的文件代码，是不会被编译的。只有通过 require 引入的其他代码才会。[我们](https://www.w3cdoc.com)是不是可以理解，babel-node 就是在内存中写入一个临时文件，在顶部引入 babel-register，然后再引入[我们](https://www.w3cdoc.com)的脚本或者代码？
+        
+        
+        
+          举个栗子，还是 node 中执行 jsx，要通过 babel 编译。[我们](https://www.w3cdoc.com)可以把 jsx 的代码 a.js 编译完输出到一个 b.js，然后 node b.js 也是可以执行的。但是太麻烦，不利于开发。让[我们](https://www.w3cdoc.com)看一下通过 register 怎么用：
         
         
         <div class="widget-codetool" style="display: none;">
@@ -335,38 +367,44 @@ babel script.js --<span class="hljs-keyword">out</span>-<span class="hljs-keywor
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// register.js 引入 babel-register，并配置。然后引入要执行代码的入口文件</span>
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'babel-register'</span>)({ <span class="hljs-attr">presets</span>: [<span class="hljs-string">'react'</span>] });
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'./test'</span>)</code></pre>
+        ```
+// register.js 引入 babel-register，并配置。然后引入要执行代码的入口文件
+require('babel-register')({ presets: ['react'] });
+require('./test')
+```
 
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// test.js 这个文件是 jsx...</span>
-<span class="hljs-keyword">const</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>);
-<span class="hljs-keyword">const</span> elements = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].map(<span class="hljs-function">(<span class="hljs-params">item</span>) =></span> {
-  <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag"><<span class="hljs-name">div</span>></span>{item}<span class="hljs-tag"></<span class="hljs-name">div</span>></span></span>
+        ```
+// test.js 这个文件是 jsx...
+const React = require('react');
+const elements = [1, 2, 3].map((item) => {
+  return (
+    <div>{item}</div>
   )
 });
-<span class="hljs-built_in">console</span>.log(elements);</code></pre>
+console.log(elements);
+```
 
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
         </div>
         
-        <pre class="hljs objectivec"><code><span class="hljs-comment">// 执行</span>
-$ node <span class="hljs-keyword">register</span>.js</code></pre>
+        ```
+// 执行
+$ node register.js
+```
 
         
           它的特点就是实时编译，不需要输出文件，执行的时候再去编译。所以它很适用于开发。总结一下就是，多用在 node 跑程序，做实时编译用的，通常会结合其他插件作编译器使用，比如 mocha 做测试的时候。
         
         
         
-          值得一提的是，babel-register 这个包之前是在 babel-core 下面的，所以也可以 <code>require('babel-core/register')</code> 去引入，跟<code>require('babel-register')</code>是一样的。但是，babel 的团队把 register 独立出来了，而且未来的某一天（升 7.0）会从 babel-core 中废除，所以[我们](https://www.w3cdoc.com)现在最好还是使用 babel-register 吧。<a href="https://github.com/babel/babel/blob/master/packages/babel-core/register.js#L3" target="_blank" rel="nofollow noopener noreferrer">babel-core/register.js</a>
+          值得一提的是，babel-register 这个包之前是在 babel-core 下面的，所以也可以 require('babel-core/register') 去引入，跟require('babel-register')是一样的。但是，babel 的团队把 register 独立出来了，而且未来的某一天（升 7.0）会从 babel-core 中废除，所以[我们](https://www.w3cdoc.com)现在最好还是使用 babel-register 吧。<a href="https://github.com/babel/babel/blob/master/packages/babel-core/register.js#L3" target="_blank" rel="nofollow noopener noreferrer">babel-core/register.js</a>
         
         
         <h3 id="articleHeader8">
@@ -378,7 +416,9 @@ $ node <span class="hljs-keyword">register</span>.js</code></pre>
           </div>
         </div>
         
-        <pre class="shell hljs"><code class="shell" style="word-break: break-word; white-space: initial;">npm install babel-runtime --save</code></pre>
+        ```
+npm install babel-runtime --save
+```
         
         
           这个包很简单，就是引用了 core-js 和 regenerator，然后生产环境把它们编译到 dist 目录下，做了映射，供使用。那么什么是 core-js 和 regenerator 呢。<br /> 首先[我们](https://www.w3cdoc.com)要知道上面提到的 babel-core 是对语法进行 transform 的，但是它不支持 build-ints（Eg: promise，Set，Map），prototype function（Eg: array.reduce,string.trim），class static function （Eg：Array.form，Object.assgin），regenerator （Eg：generator，async）等等拓展的编译。所以才要用到 core-js 和 regenerator。
@@ -397,9 +437,11 @@ $ node <span class="hljs-keyword">register</span>.js</code></pre>
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// 比如，只不过需要单个引用</span>
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'core-js/array/reduce'</span>);
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'core-js/object/values'</span>);</code></pre>
+        ```
+// 比如，只不过需要单个引用
+require('core-js/array/reduce');
+require('core-js/object/values');
+```
 
         <h4>
           regenerator
@@ -418,7 +460,9 @@ $ node <span class="hljs-keyword">register</span>.js</code></pre>
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript" style="word-break: break-word; white-space: initial;"><span class="hljs-built_in">module</span>.exports = { <span class="hljs-string">"default"</span>: <span class="hljs-built_in">require</span>(<span class="hljs-string">"core-js/library/fn/array/filter"</span>), <span class="hljs-attr">__esModule</span>: <span class="hljs-literal">true</span> };</code></pre>
+        ```
+module.exports = { "default": require("core-js/library/fn/array/filter"), __esModule: true };
+```
         
         <h4>
           helpers
@@ -433,9 +477,11 @@ $ node <span class="hljs-keyword">register</span>.js</code></pre>
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript"><span class="hljs-keyword">var</span> _asyncToGenerator2 = <span class="hljs-built_in">require</span>(<span class="hljs-string">'babel-runtime/helpers/asyncToGenerator'</span>);
+        ```
+var _asyncToGenerator2 = require('babel-runtime/helpers/asyncToGenerator');
 
-<span class="hljs-keyword">var</span> _asyncToGenerator3 =_interopRequireDefault(_asyncToGenerator2);</code></pre>
+var _asyncToGenerator3 =_interopRequireDefault(_asyncToGenerator2);
+```
 
         <h4>
           文件结构：
@@ -450,11 +496,11 @@ $ node <span class="hljs-keyword">register</span>.js</code></pre>
         </h4>
         
         
-          可以单独引入<code>require('babel-runtime/core-js/object/values');</code>
+          可以单独引入require('babel-runtime/core-js/object/values');
         
         
         
-          不过这些模块都做了 esModule 的兼容处理，也就是上面引入的模块是<code>{ "default": require("core-js/library/fn/array/filter"), __esModule: true }</code>这样的，要使用还得加上 <code>.default</code>。所以[我们](https://www.w3cdoc.com)期待的是，最好能有帮[我们](https://www.w3cdoc.com)自动处理的插件，<code>babel-plugin-transform-runtime</code>就是用来做这个的。这个[我们](https://www.w3cdoc.com)放到 plugin 去讲。
+          不过这些模块都做了 esModule 的兼容处理，也就是上面引入的模块是{ "default": require("core-js/library/fn/array/filter"), __esModule: true }这样的，要使用还得加上 .default。所以[我们](https://www.w3cdoc.com)期待的是，最好能有帮[我们](https://www.w3cdoc.com)自动处理的插件，babel-plugin-transform-runtime就是用来做这个的。这个[我们](https://www.w3cdoc.com)放到 plugin 去讲。
         
         
         <h3 id="articleHeader9">
@@ -466,7 +512,9 @@ $ node <span class="hljs-keyword">register</span>.js</code></pre>
           </div>
         </div>
         
-        <pre class="shell hljs"><code class="shell" style="word-break: break-word; white-space: initial;">npm install babel-polyfill --save</code></pre>
+        ```
+npm install babel-polyfill --save
+```
         
         
           babel-runtime 已经是一堆 polyfill 了，为什么这里还有一个类似的包，它同样是引用了 core-js 和 regenerator，垫片支持是一样的。官网是这么说的，babel-polyfill 是为了模拟一个完整的ES2015 +环境，旨在用于应用程序而不是库/工具。并且使用babel-node时，这个polyfill会自动加载（这个[我们](https://www.w3cdoc.com)在介绍 babel-node 的最后已经说了）。
@@ -489,34 +537,40 @@ $ node <span class="hljs-keyword">register</span>.js</code></pre>
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// index.js</span>
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'babel-core/register'</span>)({});
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'babel-polyfill'</span>);
-<span class="hljs-built_in">require</span>(<span class="hljs-string">'./async'</span>);</code></pre>
+        ```
+// index.js
+require('babel-core/register')({});
+require('babel-polyfill');
+require('./async');
+```
 
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// async.js</span>
-<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>() </span>{
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'begin'</span>);
-  <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =></span> {
-    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =></span> {
+        ```
+// async.js
+async function a() {
+  console.log('begin');
+  await new Promise((resolve) => {
+    setTimeout(() => {
       resolve();
-    }, <span class="hljs-number">1000</span>)
+    }, 1000)
   })
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'done'</span>);
+  console.log('done');
 }
-a();</code></pre>
+a();
+```
 
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
         </div>
         
-        <pre class="hljs shell"><code style="word-break: break-word; white-space: initial;"><span class="hljs-meta">$</span><span class="bash"> node index.js</span></code></pre>
+        ```
+$ node index.js
+```
         
         
           完美运行。
@@ -560,39 +614,47 @@ a();</code></pre>
           </div>
         </div>
         
-        <pre class="shell hljs"><code class="shell" style="word-break: break-word; white-space: initial;">npm install babel-plugin-transform-runtime</code></pre>
+        ```
+npm install babel-plugin-transform-runtime
+```
         
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// 编译前</span>
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.values({ <span class="hljs-number">1</span>: <span class="hljs-number">2</span> }));
-</code></pre>
+        ```
+// 编译前
+console.log(Object.values({ 1: 2 }));
+
+```
 
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
         </div>
         
-        <pre class="shell hljs"><code class="shell" style="word-break: break-word; white-space: initial;">node_modules/.bin/babel --plugins transform-runtime values.js</code></pre>
+        ```
+node_modules/.bin/babel --plugins transform-runtime values.js
+```
         
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// 编译后</span>
-<span class="hljs-meta">'use strict'</span>;
+        ```
+// 编译后
+'use strict';
 
-<span class="hljs-keyword">var</span> _values = <span class="hljs-built_in">require</span>(<span class="hljs-string">'babel-runtime/core-js/object/values'</span>);
+var _values = require('babel-runtime/core-js/object/values');
 
-<span class="hljs-keyword">var</span> _values2 =_interopRequireDefault(_values);
+var _values2 =_interopRequireDefault(_values);
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_interopRequireDefault</span>(<span class="hljs-params">obj</span>) </span>{ <span class="hljs-keyword">return</span> obj && obj.__esModule ? obj : { <span class="hljs-attr">default</span>: obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-onsole.log((<span class="hljs-number">0</span>, _values2.default)({ <span class="hljs-number">1</span>: <span class="hljs-number">2</span> }));</code></pre>
+onsole.log((0, _values2.default)({ 1: 2 }));
+```
 
         
           另外，它还有几个配置
@@ -603,20 +665,22 @@ onsole.log((<span class="hljs-number">0</span>, _values2.default)({ <span class=
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// 默认值</span>
+        ```
+// 默认值
 {
-  <span class="hljs-string">"plugins"</span>: [
-    [<span class="hljs-string">"transform-runtime"</span>, {
-      <span class="hljs-string">"helpers"</span>: <span class="hljs-literal">true</span>,
-      <span class="hljs-string">"polyfill"</span>: <span class="hljs-literal">true</span>,
-      <span class="hljs-string">"regenerator"</span>: <span class="hljs-literal">true</span>,
-      <span class="hljs-string">"moduleName"</span>: <span class="hljs-string">"babel-runtime"</span>
+  "plugins": [
+    ["transform-runtime", {
+      "helpers": true,
+      "polyfill": true,
+      "regenerator": true,
+      "moduleName": "babel-runtime"
     }]
   ]
-}</code></pre>
+}
+```
 
         
-          如果你只需要用 regenerator，不需要 core-js 里面的 polyfill 那你就可以在 options 中把 polyfill 设为 false。helpers 设为 false，就相当于没有启用 <code>babel-plugin-external-helpers</code> 的效果，比如翻译 async 的时候，用到了 asyncToGenerator 函数，每个文件还会重新定义一下。moduleName 的话，就是用到的库，你可以把 babel-runtime 换成其他类似的。
+          如果你只需要用 regenerator，不需要 core-js 里面的 polyfill 那你就可以在 options 中把 polyfill 设为 false。helpers 设为 false，就相当于没有启用 babel-plugin-external-helpers 的效果，比如翻译 async 的时候，用到了 asyncToGenerator 函数，每个文件还会重新定义一下。moduleName 的话，就是用到的库，你可以把 babel-runtime 换成其他类似的。
         
         
         <h3 id="articleHeader12">
@@ -632,12 +696,12 @@ onsole.log((<span class="hljs-number">0</span>, _values2.default)({ <span class=
             babel-polyfill 是当前环境注入这些 es6+ 标准的垫片，好处是引用一次，不再担心兼容，而且它就是全局下的包，代码的任何地方都可以使用。缺点也很明显，它可能会污染原生的一些方法而把原生的方法重写。如果当前项目已经有一个 polyfill 的包了，那你只能保留其一。而且一次性引入这么一个包，会大大增加体积。如果你只是用几个特性，就没必要了，如果你是开发较大的应用，而且会频繁使用新特性并考虑兼容，那就直接引入吧。
           
           
-            transform-runtime 是利用 plugin 自动识别并替换代码中的新特性，你不需要再引入，只需要装好 babel-runtime 和 配好 plugin 就可以了。好处是按需替换，检测到你需要哪个，就引入哪个 polyfill，如果只用了一部分，打包完的文件体积对比 babel-polyfill 会小很多。而且 transform-runtime 不会污染原生的对象，方法，也不会对其他 polyfill 产生影响。所以 transform-runtime 的方式更适合开发工具包，库，一方面是体积够小，另一方面是用户（开发者）不会因为引用了[我们](https://www.w3cdoc.com)的工具，包而污染了全局的原生方法，产生副作用，还是应该留给用户自己去选择。缺点是随着应用的增大，相同的 polyfill 每个模块都要做重复的工作（检测，替换），虽然 polyfill 只是引用，编译效率不够高效。值得注意的是，instance 上新添加的一些方法，babel-plugin-transform-runtime 是没有做处理的，比如 数组的 <code>includes, filter, fill</code> 等，这个算是一个关键问题吧，直接推荐用 polyfill。<a href="https://github.com/jakwuh/babel-plugin-transform-runtime" target="_blank" rel="nofollow noopener noreferrer">link</a>
+            transform-runtime 是利用 plugin 自动识别并替换代码中的新特性，你不需要再引入，只需要装好 babel-runtime 和 配好 plugin 就可以了。好处是按需替换，检测到你需要哪个，就引入哪个 polyfill，如果只用了一部分，打包完的文件体积对比 babel-polyfill 会小很多。而且 transform-runtime 不会污染原生的对象，方法，也不会对其他 polyfill 产生影响。所以 transform-runtime 的方式更适合开发工具包，库，一方面是体积够小，另一方面是用户（开发者）不会因为引用了[我们](https://www.w3cdoc.com)的工具，包而污染了全局的原生方法，产生副作用，还是应该留给用户自己去选择。缺点是随着应用的增大，相同的 polyfill 每个模块都要做重复的工作（检测，替换），虽然 polyfill 只是引用，编译效率不够高效。值得注意的是，instance 上新添加的一些方法，babel-plugin-transform-runtime 是没有做处理的，比如 数组的 includes, filter, fill 等，这个算是一个关键问题吧，直接推荐用 polyfill。<a href="https://github.com/jakwuh/babel-plugin-transform-runtime" target="_blank" rel="nofollow noopener noreferrer">link</a>
           
         
         
         
-          另外，关于 babel-runtime 为什么是 dependencies 依赖。它只是一个集中了 polyfill 的 library，对应需要的 polyfill 都是要引入项目中，并跟项目代码一起打包的。不过它不会都引入，你用了哪个，plugin 就给你 require 哪个。所以即使你最终项目只是 <code>require('babel-runtime/core-js/object/values')</code>其中的一个文件，但是对于这包来说，也是生产依赖的。
+          另外，关于 babel-runtime 为什么是 dependencies 依赖。它只是一个集中了 polyfill 的 library，对应需要的 polyfill 都是要引入项目中，并跟项目代码一起打包的。不过它不会都引入，你用了哪个，plugin 就给你 require 哪个。所以即使你最终项目只是 require('babel-runtime/core-js/object/values')其中的一个文件，但是对于这包来说，也是生产依赖的。
         
         
         
@@ -645,7 +709,7 @@ onsole.log((<span class="hljs-number">0</span>, _values2.default)({ <span class=
         
         
         
-          &nbsp;
+          
         
         
         
@@ -658,7 +722,7 @@ onsole.log((<span class="hljs-number">0</span>, _values2.default)({ <span class=
 
         
         
-          各种配置 plugin 实在是费劲，es6+ 编译要加入好多 plugins，比如为了在 node 中使用 esmodule，要把 esmodule 转化成 commomjs，使用 <code>transform-es2015-modules-commonjs</code>，还有 asyncToGenerator，React jsx转化等等，不仅要装好多，还要配好多。
+          各种配置 plugin 实在是费劲，es6+ 编译要加入好多 plugins，比如为了在 node 中使用 esmodule，要把 esmodule 转化成 commomjs，使用 transform-es2015-modules-commonjs，还有 asyncToGenerator，React jsx转化等等，不仅要装好多，还要配好多。
         
         
         
@@ -692,8 +756,10 @@ onsole.log((<span class="hljs-number">0</span>, _values2.default)({ <span class=
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript">{ <span class="hljs-string">"presets"</span>: [<span class="hljs-string">"latest"</span>] } === { <span class="hljs-string">"presets"</span>: [<span class="hljs-string">"env"</span>] }
-</code></pre>
+        ```
+{ "presets": ["latest"] } === { "presets": ["env"] }
+
+```
 
         <h3 id="articleHeader14">
           babel-preset-env
@@ -716,30 +782,32 @@ onsole.log((<span class="hljs-number">0</span>, _values2.default)({ <span class=
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript">{
-  <span class="hljs-string">"presets"</span>: [
+        ```
+{
+  "presets": [
     [
-      <span class="hljs-string">"env"</span>,
+      "env",
       {
-        <span class="hljs-string">"targets"</span>: { <span class="hljs-comment">// 配支持的环境</span>
-          <span class="hljs-string">"browsers"</span>: [ <span class="hljs-comment">// [浏览器](https://www.w3cdoc.com)</span>
-            <span class="hljs-string">"last 2 versions"</span>,
-            <span class="hljs-string">"safari >= 7"</span>
+        "targets": { // 配支持的环境
+          "browsers": [ // [浏览器](https://www.w3cdoc.com)
+            "last 2 versions",
+            "safari >= 7"
           ],
-          <span class="hljs-string">"node"</span>: <span class="hljs-string">"current"</span>
+          "node": "current"
         },
-        <span class="hljs-string">"modules"</span>: <span class="hljs-literal">true</span>,  <span class="hljs-comment">//设置ES6 模块转译的模块格式 默认是 commonjs</span>
-        <span class="hljs-string">"debug"</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// debug，编译的时候 console</span>
-        <span class="hljs-string">"useBuiltIns"</span>: <span class="hljs-literal">false</span>, <span class="hljs-comment">// 是否开启自动支持 polyfill</span>
-        <span class="hljs-string">"include"</span>: [], <span class="hljs-comment">// 总是启用哪些 plugins</span>
-        <span class="hljs-string">"exclude"</span>: []  <span class="hljs-comment">// 强制不启用哪些 plugins，用来防止某些插件被启用</span>
+        "modules": true,  //设置ES6 模块转译的模块格式 默认是 commonjs
+        "debug": true, // debug，编译的时候 console
+        "useBuiltIns": false, // 是否开启自动支持 polyfill
+        "include": [], // 总是启用哪些 plugins
+        "exclude": []  // 强制不启用哪些 plugins，用来防止某些插件被启用
       }
     ]
   ],
-  <span class="hljs-attr">plugins</span>: [
-    <span class="hljs-string">"transform-react-jsx"</span> <span class="hljs-comment">//如果是需要支持 jsx 这个东西要单独装一下。</span>
+  plugins: [
+    "transform-react-jsx" //如果是需要支持 jsx 这个东西要单独装一下。
   ]
-}</code></pre>
+}
+```
 
         
           主要介绍 debug 和 很好用的 useBuiltIns 吧。
@@ -758,40 +826,42 @@ onsole.log((<span class="hljs-number">0</span>, _values2.default)({ <span class=
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript">Using targets:
+        ```
+Using targets:
 {
-  <span class="hljs-string">"chrome"</span>: <span class="hljs-string">"59"</span>,
-  <span class="hljs-string">"android"</span>: <span class="hljs-string">"4.4.3"</span>,
-  <span class="hljs-string">"edge"</span>: <span class="hljs-string">"14"</span>,
-  <span class="hljs-string">"firefox"</span>: <span class="hljs-string">"54"</span>,
-  <span class="hljs-string">"ie"</span>: <span class="hljs-string">"10"</span>,
-  <span class="hljs-string">"ios"</span>: <span class="hljs-string">"10"</span>,
-  <span class="hljs-string">"safari"</span>: <span class="hljs-string">"7"</span>,
-  <span class="hljs-string">"node"</span>: <span class="hljs-string">"4.8.4"</span>
+  "chrome": "59",
+  "android": "4.4.3",
+  "edge": "14",
+  "firefox": "54",
+  "ie": "10",
+  "ios": "10",
+  "safari": "7",
+  "node": "4.8.4"
 }
 
 Modules transform: commonjs
 
 Using plugins:
-  check-es2015-constants {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"node"</span>:<span class="hljs-string">"4.8.4"</span>}
-  transform-es2015-arrow-functions {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"node"</span>:<span class="hljs-string">"4.8.4"</span>}
-  transform-es2015-block-scoped-functions {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>}
-  transform-es2015-block-scoping {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"node"</span>:<span class="hljs-string">"4.8.4"</span>}
+  check-es2015-constants {"android":"4.4.3","ie":"10","safari":"7","node":"4.8.4"}
+  transform-es2015-arrow-functions {"android":"4.4.3","ie":"10","safari":"7","node":"4.8.4"}
+  transform-es2015-block-scoped-functions {"android":"4.4.3","ie":"10","safari":"7"}
+  transform-es2015-block-scoping {"android":"4.4.3","ie":"10","safari":"7","node":"4.8.4"}
   ...
 Using polyfills:
-  es6.typed.array-buffer {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"node"</span>:<span class="hljs-string">"4.8.4"</span>}
-  es6.typed.int8-array {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"node"</span>:<span class="hljs-string">"4.8.4"</span>}
-  es6.typed.uint8-array {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"node"</span>:<span class="hljs-string">"4.8.4"</span>}
-  es6.typed.uint8-clamped-array {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"node"</span>:<span class="hljs-string">"4.8.4"</span>}
-  es6.typed.int16-array {<span class="hljs-string">"android"</span>:<span class="hljs-string">"4.4.3"</span>,<span class="hljs-string">"ie"</span>:<span class="hljs-string">"10"</span>,<span class="hljs-string">"safari"</span>:<span class="hljs-string">"7"</span>,<span class="hljs-string">"node"</span>:<span class="hljs-string">"4.8.4"</span>}
-  ...</code></pre>
+  es6.typed.array-buffer {"android":"4.4.3","ie":"10","safari":"7","node":"4.8.4"}
+  es6.typed.int8-array {"android":"4.4.3","ie":"10","safari":"7","node":"4.8.4"}
+  es6.typed.uint8-array {"android":"4.4.3","ie":"10","safari":"7","node":"4.8.4"}
+  es6.typed.uint8-clamped-array {"android":"4.4.3","ie":"10","safari":"7","node":"4.8.4"}
+  es6.typed.int16-array {"android":"4.4.3","ie":"10","safari":"7","node":"4.8.4"}
+  ...
+```
 
         <h4>
           useBuiltIns
         </h4>
         
         
-          env 会自动根据[我们](https://www.w3cdoc.com)的运行环境，去判断需要什么样的 polyfill，而且，打包后的代码体积也会大大减小，但是这一切都在使用 useBuiltIns，而且需要你安装 babel-polyfill，并 import。它会启用一个插件，替换你的<code>import 'babel-polyfill'</code>，不是整个引入了，而是根据你配置的环境和个人需要单独的引入 polyfill。 我尝试了一下是否真的有效，下面是我的对比实验过程：
+          env 会自动根据[我们](https://www.w3cdoc.com)的运行环境，去判断需要什么样的 polyfill，而且，打包后的代码体积也会大大减小，但是这一切都在使用 useBuiltIns，而且需要你安装 babel-polyfill，并 import。它会启用一个插件，替换你的import 'babel-polyfill'，不是整个引入了，而是根据你配置的环境和个人需要单独的引入 polyfill。 我尝试了一下是否真的有效，下面是我的对比实验过程：
         
         
         
@@ -803,33 +873,35 @@ Using polyfills:
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript"><span class="hljs-built_in">require</span>(<span class="hljs-string">'./async'</span>);
-<span class="hljs-comment">// import 'babel-polyfill';</span>
+        ```
+require('./async');
+// import 'babel-polyfill';
 
-<span class="hljs-keyword">const</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>);
-<span class="hljs-keyword">const</span> elements = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].map(<span class="hljs-function">(<span class="hljs-params">item</span>) =></span> {
-  <span class="hljs-keyword">return</span> (
-    <span class="xml"><span class="hljs-tag"><<span class="hljs-name">div</span>></span>{item}<span class="hljs-tag"></<span class="hljs-name">div</span>></span></span>
+const React = require('react');
+const elements = [1, 2, 3].map((item) => {
+  return (
+    <div>{item}</div>
   )
 });
 
-<span class="hljs-built_in">console</span>.log(elements);
+console.log(elements);
 
-<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">a</span>() </span>{
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'begin'</span>);
-  <span class="hljs-keyword">await</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =></span> {
-    setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =></span> {
+async function a() {
+  console.log('begin');
+  await new Promise((resolve) => {
+    setTimeout(() => {
       resolve();
-    }, <span class="hljs-number">1000</span>)
+    }, 1000)
   })
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'done'</span>);
+  console.log('done');
 }
 a();
 
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Object</span>.values({ <span class="hljs-number">1</span>: <span class="hljs-number">2</span> }));
+console.log(Object.values({ 1: 2 }));
 
-<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">Array</span>.isArray([]));
-</code></pre>
+console.log(Array.isArray([]));
+
+```
 
         
          step2: 然后通过设置不同的参数，打包，获取 build.js，并执行。得到下表
@@ -904,7 +976,7 @@ a();
         
         
         
-          最终的结论就是，使用了 useBuiltIns 确实体积变小了，比直接 <code>import 'babel-polyfill'</code> 好了许多。
+          最终的结论就是，使用了 useBuiltIns 确实体积变小了，比直接 import 'babel-polyfill' 好了许多。
         
         
         
@@ -920,7 +992,7 @@ a();
         </h4>
         
         
-          helpers 的问题。开发项目，使用 preset-env，并 <code>import 'babel-polyfill'</code>，但是 helpers 好像没有地方配置。而且我试了两个文件分别用 async 函数，编译后每个模块都定义了 asyncToGenerat 函数，这种情况下我觉得最后就是自己生成一个 helpers.js 文件了。
+          helpers 的问题。开发项目，使用 preset-env，并 import 'babel-polyfill'，但是 helpers 好像没有地方配置。而且我试了两个文件分别用 async 函数，编译后每个模块都定义了 asyncToGenerat 函数，这种情况下我觉得最后就是自己生成一个 helpers.js 文件了。
         
         
         <h4>
@@ -951,19 +1023,21 @@ a();
           </div>
         </div>
         
-        <pre class="hljs json"><code>{
-  <span class="hljs-attr">"presets"</span>: [
-    <span class="hljs-string">"env"</span>
+        ```
+{
+  "presets": [
+    "env"
   ],
-  <span class="hljs-attr">"plugins"</span>: [
-    [<span class="hljs-string">"transform-runtime"</span>, {
-      <span class="hljs-attr">"helpers"</span>: <span class="hljs-literal">true</span>,
-      <span class="hljs-attr">"polyfill"</span>: <span class="hljs-literal">true</span>,
-      <span class="hljs-attr">"regenerator"</span>: <span class="hljs-literal">true</span>,
-      <span class="hljs-attr">"moduleName"</span>: <span class="hljs-string">"babel-runtime"</span>
+  "plugins": [
+    ["transform-runtime", {
+      "helpers": true,
+      "polyfill": true,
+      "regenerator": true,
+      "moduleName": "babel-runtime"
     }]
   ]
-}</code></pre>
+}
+```
 
         <ul>
           
@@ -976,11 +1050,13 @@ a();
           </div>
         </div>
         
-        <pre class="hljs objectivec"><code><span class="hljs-string">"babel"</span>: {
-  <span class="hljs-string">"presets"</span>: [
-    <span class="hljs-string">"env"</span>
+        ```
+"babel": {
+  "presets": [
+    "env"
   ],
-}</code></pre>
+}
+```
 
         <ul>
           
@@ -993,7 +1069,9 @@ a();
           </div>
         </div>
         
-        <pre class="hljs sql"><code style="word-break: break-word; white-space: initial;">babel script.js <span class="hljs-comment">--plugins=transform-runtime --presets=env</span></code></pre>
+        ```
+babel script.js --plugins=transform-runtime --presets=env
+```
         
         <h2 id="articleHeader16">
           配合其他工具
@@ -1005,7 +1083,7 @@ a();
         </h3>
         
         
-          比较常用，除了 babel 自己的包，多装一个 <code>babel-loader</code> 配合 webpack 使用。并在 webpack.config.js 中加入 loader 的配置
+          比较常用，除了 babel 自己的包，多装一个 babel-loader 配合 webpack 使用。并在 webpack.config.js 中加入 loader 的配置
         
         
         <div class="widget-codetool" style="display: none;">
@@ -1013,15 +1091,17 @@ a();
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript">  <span class="hljs-built_in">module</span>: {
-    <span class="hljs-attr">rules</span>: [
+        ```
+  module: {
+    rules: [
       {
-        <span class="hljs-attr">test</span>: <span class="hljs-regexp">/\.js$/</span>,
-        <span class="hljs-attr">use</span>: [<span class="hljs-string">'babel-loader'</span>],
-        <span class="hljs-attr">exclude</span>: <span class="hljs-regexp">/node_modules/</span>,
+        test: /\.js$/,
+        use: ['babel-loader'],
+        exclude: /node_modules/,
       }
     ]
-  }</code></pre>
+  }
+```
 
         <h3 id="articleHeader18">
           mocha
@@ -1032,7 +1112,7 @@ a();
         
         
         
-          mocha 是支持编译器的，通过 <code>--compilers </code> 指定，这里[我们](https://www.w3cdoc.com)用 babel，举个栗子
+          mocha 是支持编译器的，通过 --compilers  指定，这里[我们](https://www.w3cdoc.com)用 babel，举个栗子
         
         
         <div class="widget-codetool" style="display: none;">
@@ -1040,34 +1120,40 @@ a();
           </div>
         </div>
         
-        <pre class="hljs typescript"><code class="javascipt"><span class="hljs-comment">// 求和函数 add.js</span>
-<span class="hljs-keyword">const</span> add = <span class="hljs-function">(<span class="hljs-params">x, y</span>) =></span> x + y;
+        ```
+// 求和函数 add.js
+const add = (x, y) => x + y;
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> add;
-</code></pre>
+export default add;
+
+```
 
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
         </div>
         
-        <pre class="javascript hljs"><code class="javascript"><span class="hljs-comment">// 测试脚本 add.test.js</span>
-<span class="hljs-keyword">import</span> { expect } <span class="hljs-keyword">from</span> <span class="hljs-string">'chai'</span>; <span class="hljs-comment">// chai 是断言库</span>
-<span class="hljs-keyword">import</span> add <span class="hljs-keyword">from</span> <span class="hljs-string">'./add'</span>;
+        ```
+// 测试脚本 add.test.js
+import { expect } from 'chai'; // chai 是断言库
+import add from './add';
 
-describe(<span class="hljs-string">'es6 两数相加'</span>, () => {
-  it(<span class="hljs-string">'2 + 4 = 6'</span>, () => {
-    expect(add(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>)).equal(<span class="hljs-number">6</span>);
+describe('es6 两数相加', () => {
+  it('2 + 4 = 6', () => {
+    expect(add(2, 4)).equal(6);
   })
 });
-</code></pre>
+
+```
 
         <div class="widget-codetool" style="display: none;">
           <div class="widget-codetool--inner">
           </div>
         </div>
         
-        <pre class="shell hljs"><code class="shell" style="word-break: break-word; white-space: initial;">./node_modules/mocha/bin/mocha --compilers js:babel-register add.test.js</code></pre>
+        ```
+./node_modules/mocha/bin/mocha --compilers js:babel-register add.test.js
+```
         
         
           因为 mocha 终究是在跑 node 程序的，适用于实时编译，所以可以用 babel-register 做编译器。

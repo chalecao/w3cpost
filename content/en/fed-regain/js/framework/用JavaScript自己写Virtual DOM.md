@@ -129,15 +129,18 @@ title: 用JavaScript自己写Virtual DOM
     </h3>
   </div> 手工实现DOM模型构建不太合理，[我们](https://www.w3cdoc.com)可以借助JSX的工具来完成这个转换。本节[我们](https://www.w3cdoc.com)以rollup打包工具结合babel转换插件实现数据的抽象。具体代码配置参考：
   <a href="https://github.com/chalecao/virtualdom">github中package.json配置和rollup.config.js</a> <img loading="lazy" class="alignnone wp-image-1844 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/22-1.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/22-1.jpg?x-oss-process=image/resize,m_fill,w_1024,h_639/format,webp" alt="" width="510" height="318" /> <img loading="lazy" class="alignnone wp-image-1843 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/333.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/333.jpg?x-oss-process=image/resize,m_fill,w_1024,h_612/format,webp" alt="" width="505" height="302" />
-  <pre class="pure-highlightjs"><code class="">const vdom = (
+  ```
+const vdom = (
     &lt;div id="_Q5" style="border: 1px solid red;">
         &lt;div style="text-align: center; margin: 36px auto 18px; width: 160px; line-height: 0;">
             &lt;img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png" height="56" style="border: none; margin: 8px 0px;">&lt;/img>
             hello
         &lt;/div>
     &lt;/div>)
-</code></pre> 上面[我们](https://www.w3cdoc.com)定义的vdom片段采用JSX处理器处理后如下面代码：
-  <pre class="pure-highlightjs"><code class="">/*fed123.com*/
+
+``` 上面[我们](https://www.w3cdoc.com)定义的vdom片段采用JSX处理器处理后如下面代码：
+  ```
+/*fed123.com*/
 'use strict';
 
 var vdom = vnode(
@@ -150,9 +153,11 @@ var vdom = vnode(
         "google"
     )
 );
-</code></pre> 是不是很好理解，JSX编译后会自动根据定义好的语法格式提取出元素的类型和属性和子元素，并填入vnode方法中，[我们](https://www.w3cdoc.com)只需要实现vnode方法就可以。[我们](https://www.w3cdoc.com)可以编写
-  <code class="">vnode方法用于构建虚拟节点的模型，</code>编写<code class="">createElement</code>方法用于根据vnode模型创建元素。并且把vnode的子元素追加到父元素上，形成树形层级结构。
-  <pre class="pure-highlightjs"><code class="">function vnode(type, props, ...children) {
+
+``` 是不是很好理解，JSX编译后会自动根据定义好的语法格式提取出元素的类型和属性和子元素，并填入vnode方法中，[我们](https://www.w3cdoc.com)只需要实现vnode方法就可以。[我们](https://www.w3cdoc.com)可以编写
+  vnode方法用于构建虚拟节点的模型，编写createElement方法用于根据vnode模型创建元素。并且把vnode的子元素追加到父元素上，形成树形层级结构。
+  ```
+function vnode(type, props, ...children) {
     return { type, props, children };
   }
 
@@ -167,7 +172,8 @@ function createElement(node) {
     return $el;
 }
 document.body.appendChild(createElement(vdom));
-</code></pre> 这样[我们](https://www.w3cdoc.com)就完成了虚拟节点vnode和虚拟vDOM的构建。
+
+``` 这样[我们](https://www.w3cdoc.com)就完成了虚拟节点vnode和虚拟vDOM的构建。
   <div class="chapter">
     <h2 class="chapterhead">
       <span class="f-fl f-thide chaptertitle">章节3: </span><span class="f-fl f-thide chaptername">Diff VirtualDOM 与Update DOM</span>
@@ -178,7 +184,8 @@ document.body.appendChild(createElement(vdom));
 
 <img loading="lazy" class="alignnone wp-image-1845 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/555.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/555.jpg?x-oss-process=image/resize,m_fill,w_1024,h_590/format,webp" alt="" width="494" height="285" /> 如图展示了最简单的一层DOM的结构变化，无非也就这么几种：<span style="color: #ff0000;">增加元素节点、修改节点，删除节点</span>。[我们](https://www.w3cdoc.com)可以基于DOM API来实现这些基本的操作，代码如下：
 
-<pre class="pure-highlightjs"><code class="">function updateElement($parent, newnode, oldnode) {
+```
+function updateElement($parent, newnode, oldnode) {
     var index = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0;
 
     if (!newnode) {
@@ -195,7 +202,8 @@ document.body.appendChild(createElement(vdom));
         }
     }
 }
-</code></pre>
+
+```
 
 <div class="u-ctn-intro u-ctn-intro-last">
   <div class="chapter">
@@ -207,17 +215,20 @@ document.body.appendChild(createElement(vdom));
 
     
     <div id="auto-id-1520315402997" class="section" data-lesson="5">
-      <pre class="pure-highlightjs"><code class="">{
+      ```
+{
   type: “div”,
   &lt;span style="color: #ff0000;">props&lt;/span>: {“style”: ”…”},
   children: [
       {type: “img”, props: {“src”: ”…”}
 ]}
-</code></pre> 上面[我们](https://www.w3cdoc.com)抽取的vnode的模型中已经把props拿出来了，[我们](https://www.w3cdoc.com)这里需要把这些样式设置到对应元素上就好了。[我们](https://www.w3cdoc.com)先看下元素的属性变化有哪几种情况：
+
+``` 上面[我们](https://www.w3cdoc.com)抽取的vnode的模型中已经把props拿出来了，[我们](https://www.w3cdoc.com)这里需要把这些样式设置到对应元素上就好了。[我们](https://www.w3cdoc.com)先看下元素的属性变化有哪几种情况：
 
       <img loading="lazy" class="alignnone wp-image-1846 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/666.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/666.jpg?x-oss-process=image/resize,m_fill,w_1024,h_658/format,webp" alt="" width="515" height="331" /> 如上，元素属性可以增加可以减少，[我们](https://www.w3cdoc.com)通过DOM API实现属性的更新操作，代码如下： 
       
-      <pre class="pure-highlightjs"><code class="">//handle props
+      ```
+//handle props
 
 function setProp($el, name, value) {
     if (typeof value == "boolean") {
@@ -256,9 +267,11 @@ function updateProps($el) {
         updateProp($el, key, newprops[key], oldProps[key]);
     });
 }
-</code></pre> 代码比较长，但是思路很清晰的，就是更新元素的属性，中间对于一些特殊bool类型属性做了特殊处理，bool类型的属性用元素可以直接访问的，所以[我们](https://www.w3cdoc.com)把这些布尔属性的值也挂到了元素上。然后[我们](https://www.w3cdoc.com)在更新元素的时候就可以先更新下属性。
 
-      <pre class="pure-highlightjs"><code class="">function updateElement($parent, newnode, oldnode, index = 0) {
+``` 代码比较长，但是思路很清晰的，就是更新元素的属性，中间对于一些特殊bool类型属性做了特殊处理，bool类型的属性用元素可以直接访问的，所以[我们](https://www.w3cdoc.com)把这些布尔属性的值也挂到了元素上。然后[我们](https://www.w3cdoc.com)在更新元素的时候就可以先更新下属性。
+
+      ```
+function updateElement($parent, newnode, oldnode, index = 0) {
     if (!newnode) {
         $parent.removeChild($parent.childNodes[index])
     } else if (!oldnode) {
@@ -278,7 +291,8 @@ function updateProps($el) {
         }
     }
 }
-</code></pre>  
+
+```  
     </div>
 
     <h2 class="section" data-lesson="5">

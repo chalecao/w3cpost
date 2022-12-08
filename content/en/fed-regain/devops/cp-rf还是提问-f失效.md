@@ -4,7 +4,8 @@ title: cp -rf还是提问，-f失效
 ---
 先执行：alias命令看下
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null"># alias
+```
+# alias
 alias cp='cp -i'
 alias dbh='/root/flyway-5.1.4/myflyway.sh -h'
 alias egrep='egrep --color=auto'
@@ -21,7 +22,8 @@ alias mdemo='/root/flyway-5.1.4/demoflyway.sh migrate'
 alias mv='mv -i'
 alias r='/root/flyway-5.1.4/myflyway.sh repair'
 alias rm='rm -i'
-alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'</pre>
+alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'
+```
 
 cp被alias了, 那么就容易办了
 
@@ -35,7 +37,8 @@ cp被alias了, 那么就容易办了
 
 修改~/.bashrc，在“alias cp=&#8217;cp -i&#8217;”前添加#号注释后即可。
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">root@localhost# vi ~/.bashrc
+```
+root@localhost# vi ~/.bashrc
 
 # .bashrc
 
@@ -50,7 +53,8 @@ if [ -f /etc/bashrc ]; then
         . /etc/bashrc
 fi
 
-root@localhost#source ~/.bashrc</pre>
+root@localhost#source ~/.bashrc
+```
 
 3.网上看到还有一种方法（使用前最好先测试）
 

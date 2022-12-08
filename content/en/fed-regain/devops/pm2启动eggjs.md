@@ -8,20 +8,24 @@ title: PM2启动eggjs
 
 在egg项目的根目录定义启动文件：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">// server.js
+```
+// server.js
 const egg = require('egg');
 
 const workers = Number(process.argv[2] || require('os').cpus().length);
 egg.startCluster({
   workers,
   baseDir: __dirname,
-});</pre>
+});
+```
 
 这样，[我们](https://www.w3cdoc.com)就可以通过 PM2 进行启动了(本次启动在egg项目的根目录)：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">pm2 start server.js --name test</pre>
+```
+pm2 start server.js --name test
+```
 
-&nbsp;<h1 class="article-title" data-v-50ff96fb="">PM2简易使用手册</h1> <div class="article-content" data-v-50ff96fb="" data-id="5be4077c5188253e8c6dac27">
+<h1 class="article-title" data-v-50ff96fb="">PM2简易使用手册</h1> <div class="article-content" data-v-50ff96fb="" data-id="5be4077c5188253e8c6dac27">
 
 <h2 class="heading" data-id="heading-0">
   PM2 使用手册
@@ -59,9 +63,11 @@ egg.startCluster({
   安装
 </h3>
 
-<pre><code class="hljs bash copyable" lang="bash">// 全局安装pm2，依赖node和npm
+```
+// 全局安装pm2，依赖node和npm
 npm install -g pm2
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
 <h3 class="heading" data-id="heading-4">
   用法
@@ -71,9 +77,11 @@ npm install -g pm2
 
 > pm2 start
 
-<pre><code class="hljs bash copyable" lang="bash">// start命令启动对应的node server文件
+```
+// start命令启动对应的node server文件
 $ pm2 start ./build/server.js
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
 * 通过配置文件进行启动稍后详细讲解
 
@@ -89,8 +97,10 @@ $ pm2 start ./build/server.js
 
 > pm2 show (appname|id)
 
-<pre><code class="hljs bash copyable" lang="bash">$ pm2 show kaifazhe
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure>
+```
+$ pm2 show kaifazhe
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```<figure>
 
 
   <img loading="lazy" width="1280" height="960" class="alignnone size-full wp-image-5814 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c7c19fd9.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c7c19fd9.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c7c19fd9.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c7c19fd9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_225/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c7c19fd9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_576/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c7c19fd9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_600/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
@@ -102,8 +112,10 @@ $ pm2 start ./build/server.js
 
 > pm2 list
 
-<pre><code class="hljs bash copyable" lang="bash">$ pm2 list
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure>
+```
+$ pm2 list
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```<figure>
 
 
   <img loading="lazy" width="1280" height="206" class="alignnone size-full wp-image-5815 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c861628a.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c861628a.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c861628a.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c861628a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_48/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c861628a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_124/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c861628a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_129/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
@@ -112,8 +124,10 @@ $ pm2 start ./build/server.js
 * 监控每个 node 进程的 cpu 和内存使用情况  
     > pm2 monit
 
-<pre><code class="hljs bash copyable" lang="bash">$ pm2 monit
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure>
+```
+$ pm2 monit
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```<figure>
 
 
   <img loading="lazy" width="1280" height="737" class="alignnone size-full wp-image-5817 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c9ee8362.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c9ee8362.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c9ee8362.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c9ee8362.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_173/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c9ee8362.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_442/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21c9ee8362.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_461/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
@@ -125,8 +139,10 @@ $ pm2 start ./build/server.js
 
 > pm2 logs
 
-<pre><code class="hljs bash copyable" lang="bash">$ pm2 logs
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure>
+```
+$ pm2 logs
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```<figure>
 
 
   <img loading="lazy" width="1280" height="738" class="alignnone size-full wp-image-5818 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21ca69abea.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21ca69abea.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21ca69abea.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21ca69abea.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_173/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21ca69abea.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_443/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21ca69abea.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_461/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
@@ -136,8 +152,10 @@ $ pm2 start ./build/server.js
 
 > pm2 web
 
-<pre><code class="hljs bash copyable" lang="bash">$ pm2 web
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure>
+```
+$ pm2 web
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```<figure>
 
 
   <img loading="lazy" width="1280" height="229" class="alignnone size-full wp-image-5820 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21cb714659.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21cb714659.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21cb714659.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21cb714659.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_54/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21cb714659.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_137/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee21cb714659.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_143/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
@@ -155,11 +173,13 @@ $ pm2 start ./build/server.js
 
 > pm2 stop (id|all)
 
-<pre><code class="hljs bash copyable" lang="bash">// 停止id为0的进程
+```
+// 停止id为0的进程
 $ pm2 stop 0
 // 停止所有进程
 $ pm2 stop all
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```<figure>
 
 <img class="lazyload inited loaded" src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b95514f5929?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-src="https://user-gold-cdn.xitu.io/2018/11/8/166f2b95514f5929?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" data-width="1280" data-height="628" /> <figcaption></figcaption></figure>
 
@@ -169,21 +189,25 @@ $ pm2 stop all
 
 > pm2 restart (id|all)
 
-<pre><code class="hljs bash copyable" lang="bash">// 重启id为0的进程
+```
+// 重启id为0的进程
 $ pm2 restart 0
 // 重启所有进程
 $ pm2 restart all
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
 * 杀死 指定/所有 进程
 
 > pm2 delete (id|all)
 
-<pre><code class="hljs bash copyable" lang="bash">// 杀死id为0的进程
+```
+// 杀死id为0的进程
 $ pm2 delete 0
 // 杀死所有进程
 $ pm2 delete all
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre><figure>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```<figure>
 
 
   <img loading="lazy" width="1280" height="653" class="alignnone size-full wp-image-5826 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_153/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_392/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/06/img_5ee220e2b45bb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_408/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
@@ -201,7 +225,8 @@ pm2 启动的方式可以进行很多的扩展，比如设置环境，设置错�
   pm2.config.js
 </h4>
 
-<pre><code class="hljs bash copyable" lang="bash">// 名称任意，按照个人习惯来
+```
+// 名称任意，按照个人习惯来
 module.exports = {
   apps: [
     {
@@ -234,7 +259,8 @@ module.exports = {
     },
   ],
 };
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
 > 对于上面的 env，[我们](https://www.w3cdoc.com)可以在内部添加很多个参数变量，这样[我们](https://www.w3cdoc.com)所使用的 process.env.XXX 就会对应发生变化,例如上面，[我们](https://www.w3cdoc.com) process.env.ORIGIN_ADDR 的值就是`http://www.youdao.com`～
 
@@ -246,17 +272,21 @@ module.exports = {
 
 > pm2 start server.js -i (number|max)
 
-<pre><code class="hljs bash copyable" lang="bash">&lt;span class="hljs-comment"># 开启三个进程运行项目&lt;/span>
+```
+&lt;span class="hljs-comment"># 开启三个进程运行项目&lt;/span>
 pm2 start app.js -i 3
 &lt;span class="hljs-comment"># 根据机器CPU核数，开启对应数目的进程运行项目&lt;/span>
 pm2 start app.js -i max
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
 > 配置文件里对应的：`"instance": (number|max)`
 
-<pre><code class="hljs bash copyable" lang="bash">// pm2.config.js
+```
+// pm2.config.js
 &lt;span class="hljs-string">"instances"&lt;/span>: 2,  // 启动两个实例
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
 <h2 class="heading" data-id="heading-8">
   日志相关
@@ -287,8 +317,10 @@ pm2为[我们](https://www.w3cdoc.com)提供了插件系统，而日期分割功
 
 安装：
 
-<pre><code class="hljs bash copyable" lang="bash">pm2 install pm2-logrotate // 看好了，是pm2 install而不是npm install
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+```
+pm2 install pm2-logrotate // 看好了，是pm2 install而不是npm install
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
 你装完之后它就自动启动，然后你还可以配置各种参数<figure>
 
@@ -315,8 +347,10 @@ pm2为[我们](https://www.w3cdoc.com)提供了插件系统，而日期分割功
   安装
 </h3>
 
-<pre><code class="hljs bash copyable" lang="bash">npm install -g pm2-web
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+```
+npm install -g pm2-web
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
 <h3 class="heading" data-id="heading-13">
   使用
@@ -324,10 +358,13 @@ pm2为[我们](https://www.w3cdoc.com)提供了插件系统，而日期分割功
 
 默认pm2-web会自动启动一个端口8080，但是[我们](https://www.w3cdoc.com)还是喜欢可控状态的，因此按照配置文件的方式启动。
 
-<pre><code class="hljs bash copyable" lang="bash">$ pm2-web --config pm2-web-config.json
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+```
+$ pm2-web --config pm2-web-config.json
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
-<pre><code class="hljs bash copyable" lang="bash">// pm2-web-config.json
+```
+// pm2-web-config.json
 {
   &lt;span class="hljs-string">"www"&lt;/span>: {
       &lt;span class="hljs-string">"host"&lt;/span>: &lt;span class="hljs-string">"localhost"&lt;/span>,
@@ -335,7 +372,8 @@ pm2为[我们](https://www.w3cdoc.com)提供了插件系统，而日期分割功
       &lt;span class="hljs-string">"port"&lt;/span>: 6688
   }
 }
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
 这样你就可以在[浏览器](https://www.w3cdoc.com)查看可视化的监控状态了～<figure>
 

@@ -39,7 +39,7 @@ Content-Security-Policy: script-src 'self' https://apis.google.com
 ```
 
 ## 指令
-前面说到<code>script-src</code>是一个指令，那就说明还有其他的指令罗，没有错，下面的都是指令，覆盖了web页面的所有资源
+前面说到script-src是一个指令，那就说明还有其他的指令罗，没有错，下面的都是指令，覆盖了web页面的所有资源
 
 ### 获取指令
 提取指令控制可以加载某些资源类型的位置。

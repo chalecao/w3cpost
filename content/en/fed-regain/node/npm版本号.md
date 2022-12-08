@@ -49,10 +49,10 @@ The method `.inc` takes an additional `identifier` string argument that will
 
 <div class="highlight javascript">
   <div class="line">
-    <span class="source js"><span class="variable other object js">semver</span><span class="meta method-call js"><span class="meta delimiter method period js">.</span><span class="entity name function js">inc</span><span class="meta arguments js"><span class="punctuation definition arguments begin bracket round js">(</span><span class="string quoted single js"><span class="punctuation definition string begin js">&#8216;</span>1.2.3<span class="punctuation definition string end js">&#8216;</span></span><span class="meta delimiter object comma js">,</span> <span class="string quoted single js"><span class="punctuation definition string begin js">&#8216;</span>prerelease<span class="punctuation definition string end js">&#8216;</span></span><span class="meta delimiter object comma js">,</span> <span class="string quoted single js"><span class="punctuation definition string begin js">&#8216;</span>beta<span class="punctuation definition string end js">&#8216;</span></span><span class="punctuation definition arguments end bracket round js">)</span></span></span></span>
+    semver.inc(&#8216;1.2.3&#8216;, &#8216;prerelease&#8216;, &#8216;beta&#8216;)
   </div>
   <div class="line">
-    <span class="source js"><span class="comment line double-slash js"><span class="punctuation definition comment js">//</span> &#8216;1.2.4-beta.0&#8217;</span></span>
+    // &#8216;1.2.4-beta.0&#8217;
   </div>
 </div>
 
@@ -60,10 +60,10 @@ command-line example:
 
 <div class="highlight sh">
   <div class="line">
-    <span class="source shell">$ semver 1.2.3 -i prerelease &#8211;preid beta</span>
+    $ semver 1.2.3 -i prerelease &#8211;preid beta
   </div>
   <div class="line">
-    <span class="source shell">1.2.4-beta.0</span>
+    1.2.4-beta.0
   </div>
 </div>
 
@@ -71,10 +71,10 @@ Which then can be used to increment further:
 
 <div class="highlight sh">
   <div class="line">
-    <span class="source shell">$ semver 1.2.4-beta.0 -i prerelease</span>
+    $ semver 1.2.4-beta.0 -i prerelease
   </div>
   <div class="line">
-    <span class="source shell">1.2.4-beta.1</span>
+    1.2.4-beta.1
   </div>
 </div>
 
@@ -127,7 +127,7 @@ Allows patch-level changes if a minor version is specified on the comparator. Al
 
 #### <a id="caret-ranges-123-025-004" class="anchor" href="https://www.npmjs.cn/misc/semver/#caret-ranges-123-025-004" aria-hidden="true"></a>Caret Ranges `^1.2.3` `^0.2.5` `^0.0.4`
 
-Allows changes that do not modify the left-most non-zero digit in the `[major, minor, patch]` tuple. In other words, this allows patch and minor updates for versions `1.0.0` and above, patch updates for versions `0.X >=0.1.0`, and <span style="color: #ff0000;"><em>no</em> updates for versions <code>0.0.X</code>.</span>
+Allows changes that do not modify the left-most non-zero digit in the `[major, minor, patch]` tuple. In other words, this allows patch and minor updates for versions `1.0.0` and above, patch updates for versions `0.X >=0.1.0`, and <em>no</em> updates for versions 0.0.X.
 
 Many authors treat a `0.x` version as if the `x` were the major &#8220;breaking-change&#8221; indicator.
 

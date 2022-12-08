@@ -10,7 +10,8 @@ title: JavaScript数组去重简单的方法
 如果有相同的值则跳过，不相同则push进数组
 
 <div class="jb51code">
-  <pre class="pure-highlightjs">Array.prototype.distinct = function(){
+  ```
+Array.prototype.distinct = function(){
  var arr = this,
   result = [],
   i,
@@ -27,7 +28,8 @@ title: JavaScript数组去重简单的方法
  return result;
 }
 var arra = [1,2,3,4,4,1,1,2,1,1,1];
-arra.distinct();    //返回[3,4,2,1]</pre>
+arra.distinct();    //返回[3,4,2,1]
+```
 </div>
 
 **方法二：利用splice直接在原数组进行操作**
@@ -38,7 +40,8 @@ arra.distinct();    //返回[3,4,2,1]</pre>
 
 注意点:删除元素之后，需要将数组的长度也减1.
 
-<pre class="EnlighterJSRAW" data-enlighter-theme="git" data-enlighter-linenumbers="true">Array.prototype.distinct = function (){
+```
+Array.prototype.distinct = function (){
  var arr = this,
   i,
   j,
@@ -56,7 +59,8 @@ arra.distinct();    //返回[3,4,2,1]</pre>
 };
 var a = [1,2,3,4,5,6,5,3,2,4,56,4,1,2,1,1,1,1,1,1,];
 var b = a.distinct();
-console.log(b.toString()); //1,2,3,4,5,6,56</pre>
+console.log(b.toString()); //1,2,3,4,5,6,56
+```
 
 优点：简单易懂
 
@@ -64,7 +68,8 @@ console.log(b.toString()); //1,2,3,4,5,6,56</pre>
 
 **方法三：利用对象的属性不能相同的特点进行去重**
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">Array.prototype.distinct = function (){
+```
+Array.prototype.distinct = function (){
  var arr = this,
   i,
   obj = {},
@@ -80,7 +85,8 @@ console.log(b.toString()); //1,2,3,4,5,6,56</pre>
 };
 var a = [1,2,3,4,5,6,5,3,2,4,56,4,1,2,1,1,1,1,1,1,];
 var b = a.distinct();
-console.log(b.toString()); //1,2,3,4,5,6,56</pre>
+console.log(b.toString()); //1,2,3,4,5,6,56
+```
 
 **方法四：数组递归去重**
 
@@ -89,7 +95,8 @@ console.log(b.toString()); //1,2,3,4,5,6,56</pre>
 先排序，然后从最后开始比较，遇到相同，则删除
 
 <div class="jb51code">
-  <pre class="pure-highlightjs">Array.prototype.distinct = function (){
+  ```
+Array.prototype.distinct = function (){
  var arr = this,
   len = arr.length;
  arr.sort(function(a,b){  //对数组进行排序才能方便比较
@@ -108,13 +115,15 @@ console.log(b.toString()); //1,2,3,4,5,6,56</pre>
 };
 var a = [1,2,3,4,5,6,5,3,2,4,56,4,1,2,1,1,1,1,1,1,56,45,56];
 var b = a.distinct();
-console.log(b.toString());  //1,2,3,4,5,6,45,56</pre>
+console.log(b.toString());  //1,2,3,4,5,6,45,56
+```
 </div>
 
 **方法五：利用indexOf以及forEach**
 
 <div class="jb51code">
-  <pre class="pure-highlightjs">Array.prototype.distinct = function (){
+  ```
+Array.prototype.distinct = function (){
  var arr = this,
   result = [],
   len = arr.length;
@@ -128,7 +137,8 @@ console.log(b.toString());  //1,2,3,4,5,6,45,56</pre>
 };
 var a = [1,1,1,1,1,1,1,1,1,2,2,2,2,2,2,3,3,3,3,3,3,3,2,3,3,2,2,1,23,1,23,2,3,2,3,2,3];
 var b = a.distinct();
-console.log(b.toString()); //1,23,2,3</pre>
+console.log(b.toString()); //1,23,2,3
+```
 </div>
 
 **方法六：利用ES6的set**
@@ -138,15 +148,19 @@ Set数据结构，它类似于数组，其成员的值都是唯一的。
 利用Array.from将Set结构转换成数组
 
 <div class="jb51code">
-  <pre class="pure-highlightjs">function dedupe(array){
+  ```
+function dedupe(array){
  return Array.from(new Set(array));
 }
-dedupe([1,1,2,3]) //[1,2,3]</pre>
+dedupe([1,1,2,3]) //[1,2,3]
+```
 </div>
 
 拓展运算符(&#8230;)内部使用for&#8230;of循环
 
-<pre class="pure-highlightjs"><code class="">let arr = [1,2,3,3];
+```
+let arr = [1,2,3,3];
 let resultarr = [...new Set(arr)];
 console.log(resultarr); //[1,2,3]
-</code></pre>
+
+```

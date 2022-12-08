@@ -31,27 +31,33 @@ title: 浅析 Node 进程与线程
   
  首先，在终行以下 Node 代码（示例一）：
   
-  <pre><code class="hljs js copyable" lang="js"># 示例一
+  ```
+# 示例一
 require('http').createServer((req, res) => {
   res.writeHead(200);
   res.end('Hello World');
 }).listen(8000);
 console.log('process id', process.pid);
-<span class="copy-code-btn">复制代码</span></code></pre>
- Node 内建模块 http 创建了一个监听 8000 端口的服务，并打印出该服务运行进程的 pid，控制台输出 pid 为 35919（可变），然后[我们](https://www.w3cdoc.com)通过命令 <code>top -pid 35919</code> 查看进程的详细信息，如下所示：
+复制代码
+```
+ Node 内建模块 http 创建了一个监听 8000 端口的服务，并打印出该服务运行进程的 pid，控制台输出 pid 为 35919（可变），然后[我们](https://www.w3cdoc.com)通过命令 top -pid 35919 查看进程的详细信息，如下所示：
   
-  <pre><code class="hljs js copyable" lang="js">PID    COMMAND      %CPU TIME     #TH  #WQ  #POR MEM    PURG CMPRS  PGRP  PPID  STATE    BOOSTS     %CPU_ME
+  ```
+PID    COMMAND      %CPU TIME     #TH  #WQ  #POR MEM    PURG CMPRS  PGRP  PPID  STATE    BOOSTS     %CPU_ME
 35919  node         0.0  00:00.09 7    0    35   8564K  0B   8548K  35919 35622 sleeping *0[1]      0.00000
-<span class="copy-code-btn">复制代码</span></code></pre>
- [我们](https://www.w3cdoc.com)看到 <code>#TH</code> (threads 线程) 这一列显示此进程中包含 7 个线程，说明 Node 进程中并非只有一个线程。事实上一个 Node 进程通常包含：1 个 Javascript 执行主线程；1 个 watchdog 监控线程用于处理调试信息；1 个 v8 task scheduler 线程用于调度任务优先级，加速延迟敏感任务执行；4 个 v8 线程（可参考以下代码），主要用来执行代码调优与 GC 等后台任务；以及用于异步 I / O 的 libuv 线程池。
+复制代码
+```
+ [我们](https://www.w3cdoc.com)看到 #TH (threads 线程) 这一列显示此进程中包含 7 个线程，说明 Node 进程中并非只有一个线程。事实上一个 Node 进程通常包含：1 个 Javascript 执行主线程；1 个 watchdog 监控线程用于处理调试信息；1 个 v8 task scheduler 线程用于调度任务优先级，加速延迟敏感任务执行；4 个 v8 线程（可参考以下代码），主要用来执行代码调优与 GC 等后台任务；以及用于异步 I / O 的 libuv 线程池。
   
-  <pre><code class="hljs js copyable" lang="js"><span class="hljs-comment">// v8 初始化线程</span>
-<span class="hljs-keyword">const</span> int thread_pool_size = <span class="hljs-number">4</span>; <span class="hljs-comment">// 默认 4 个线程</span>
+  ```
+// v8 初始化线程
+const int thread_pool_size = 4; // 默认 4 个线程
 default_platform = v8::platform::CreateDefaultPlatform(thread_pool_size);
 V8::InitializePlatform(default_platform);
 V8::Initialize();
-<span class="copy-code-btn">复制代码</span></code></pre>
- 其中异步 I/O 线程池，如果执行程序中不包含 I/O 操作如文件读写等，则默认线程池大小为 0，否则 Node 会初始化大小为 4 的异步 I/O 线程池，当然[我们](https://www.w3cdoc.com)也可以通过 <code>process.env.UV_THREADPOOL_SIZE</code> 自己设定线程池大小。需要注意的是在 Node 中网络 I/O 并不占用线程池。
+复制代码
+```
+ 其中异步 I/O 线程池，如果执行程序中不包含 I/O 操作如文件读写等，则默认线程池大小为 0，否则 Node 会初始化大小为 4 的异步 I/O 线程池，当然[我们](https://www.w3cdoc.com)也可以通过 process.env.UV_THREADPOOL_SIZE 自己设定线程池大小。需要注意的是在 Node 中网络 I/O 并不占用线程池。
   
  下图为 Node 的进程结构图：
   <figure>
@@ -59,7 +65,8 @@ V8::Initialize();
   <figcaption></figcaption></figure>
  为了验证上述分析，[我们](https://www.w3cdoc.com)运行示例二的代码，加入文件 I/O 操作：
   
-  <pre><code class="hljs js copyable" lang="js"># 示例二
+  ```
+# 示例二
 require('fs').readFile('./test.log', err => {
   if (err) {
     console.log(err);
@@ -69,13 +76,16 @@ require('fs').readFile('./test.log', err => {
   }
 });
 console.log(process.pid);
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
  然后得到如下结果：
   
-  <pre><code class="hljs js copyable" lang="js">PID    COMMAND      %CPU TIME     #TH  #WQ  #POR MEM    PURG CMPR PGRP  PPID  STATE    BOOSTS     %CPU_ME %CPU_OTHRS
+  ```
+PID    COMMAND      %CPU TIME     #TH  #WQ  #POR MEM    PURG CMPR PGRP  PPID  STATE    BOOSTS     %CPU_ME %CPU_OTHRS
 39443  node         0.0  00:00.10 11   0    39   8088K  0B   0B   39443 35622 sleeping *0[1]      0.00000 0.00000
-<span class="copy-code-btn">复制代码</span></code></pre>
- 此时 <code>#TH</code> 一栏的线程数变成了 11，即大小为 4 的 I/O 线程池被创建。至此，[我们](https://www.w3cdoc.com)针对段首的问题心里有了答案，Node 严格意义讲并非只有一个线程，通常说的 “Node 是单线程” 其实是指 JS 的执行主线程只有一个。
+复制代码
+```
+ 此时 #TH 一栏的线程数变成了 11，即大小为 4 的 I/O 线程池被创建。至此，[我们](https://www.w3cdoc.com)针对段首的问题心里有了答案，Node 严格意义讲并非只有一个线程，通常说的 “Node 是单线程” 其实是指 JS 的执行主线程只有一个。
   
   <h2 class="heading" data-id="heading-4">
     事件循环
@@ -121,7 +131,7 @@ console.log(process.pid);
   </h3>
  在 Linux 系统中，可以通过管道、消息队列、信号量、共享内存、Socket 等手段来实现进程通信。在 Node 中，父子进程可通过 IPC(Inter-Process Communication) 信道收发消息，IPC 由 libuv 通过管道 pipe 实现。一旦子进程被创建，并设置父子进程的通信方式为 IPC（参考 stdio 设置），父子进程即可双向通信。
   
- 进程之间通过 <code>process.send</code> 发送消息，通过监听 <code>message</code> 事件接收消息。当一个进程发送消息时，会先序列化为字符串，送入 IPC 信道的一端，另一个进程在另一端接收消息内容，并且反序列化，因此[我们](https://www.w3cdoc.com)可以在进程之间传递对象。
+ 进程之间通过 process.send 发送消息，通过监听 message 事件接收消息。当一个进程发送消息时，会先序列化为字符串，送入 IPC 信道的一端，另一个进程在另一端接收消息内容，并且反序列化，因此[我们](https://www.w3cdoc.com)可以在进程之间传递对象。
   
   <h3 class="heading" data-id="heading-8">
     示例
@@ -130,7 +140,8 @@ console.log(process.pid);
   
  main_process.js
   
-  <pre><code class="hljs js copyable" lang="js"># 主进程
+  ```
+# 主进程
 const { fork } = require('child_process');
 const child = fork('./fib.js'); // 创建子进程
 child.send({ num: 44 }); // 将任务执行数据通过信道发送给子进程
@@ -144,10 +155,12 @@ child.on('exit', () => {
 setInterval(() => { // 主进程继续执行
   console.log('continue excute javascript code', new Date().getSeconds());
 }, 1000);
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
  fib.js
   
-  <pre><code class="hljs js copyable" lang="js"># 子进程 fib.js
+  ```
+# 子进程 fib.js
 // 接收主进程消息，计算斐波那契数列第 N 项，并发送结果给主进程
 // 计算斐波那契数列第 n 项
 function fib(num) {
@@ -165,17 +178,20 @@ process.on('message', msg => { // 获取主进程传递的计算数据
 process.on('SIGHUP', function() {
   process.exit();
 });
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
  结果：
   
-  <pre><code class="hljs js copyable" lang="js">child pid <span class="hljs-number">39974</span>
-<span class="hljs-keyword">continue</span> excute javascript code <span class="hljs-number">41</span>
-<span class="hljs-keyword">continue</span> excute javascript code <span class="hljs-number">42</span>
-<span class="hljs-keyword">continue</span> excute javascript code <span class="hljs-number">43</span>
-<span class="hljs-keyword">continue</span> excute javascript code <span class="hljs-number">44</span>
-receive <span class="hljs-keyword">from</span> child process, calculate result:  <span class="hljs-number">1134903170</span>
+  ```
+child pid 39974
+continue excute javascript code 41
+continue excute javascript code 42
+continue excute javascript code 43
+continue excute javascript code 44
+receive from child process, calculate result:  1134903170
 child process exit
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
   <h2 class="heading" data-id="heading-9">
     集群模式
   
@@ -186,7 +202,8 @@ child process exit
   
  cluster 大大的简化了多进程模型的使用，以下是使用示例：
   
-  <pre><code class="hljs js copyable" lang="js"># 计算斐波那契数列第 43 / 44 项
+  ```
+# 计算斐波那契数列第 43 / 44 项
 const cluster = require('cluster');
 // 计算斐波那契数列第 n 项
 function fib(num) {
@@ -222,7 +239,8 @@ if (cluster.isMaster) { // 主控节点逻辑
   })
 }
 
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
   <h2 class="heading" data-id="heading-10">
     工作线程
   
@@ -234,11 +252,13 @@ if (cluster.isMaster) { // 主控节点逻辑
   </h3>
  通过 worker_threads 模块中的 Worker 类[我们](https://www.w3cdoc.com)可以通过传入执行文件的路径创建线程。
   
-  <pre><code class="hljs js copyable" lang="js"><span class="hljs-keyword">const</span> { Worker } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'worker_threads'</span>);
+  ```
+const { Worker } = require('worker_threads');
 ...
-const worker = <span class="hljs-keyword">new</span> Worker(filepath);
+const worker = new Worker(filepath);
 
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
   <h3 class="heading" data-id="heading-12">
     通信
   </h3>
@@ -247,31 +267,32 @@ const worker = <span class="hljs-keyword">new</span> Worker(filepath);
   </h4>
  worker_threads 中使用了 MessagePort（继承于 EventEmitter，<a href="https://developer.mozilla.org/en-US/docs/Web/API/MessagePort" target="_blank" rel="nofollow noopener noreferrer">参考</a>）来实现线程通信。worker 线程实例上有 parentPort 属性，是 MessagePort 类型的一个实例，子线程可利用 postMessage 通过 parentPort 向父线程传递数据，示例如下：
   
-  <pre><code class="hljs js copyable" lang="js"><span class="hljs-keyword">const</span> { Worker, isMainThread, parentPort } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'worker_threads'</span>);
-<span class="hljs-comment">// 计算斐波那契数列第 n 项</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fib</span>(<span class="hljs-params">num</span>) </span>{
-  <span class="hljs-keyword">if</span> (num === <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-  <span class="hljs-keyword">if</span> (num === <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;
-  <span class="hljs-keyword">return</span> fib(num - <span class="hljs-number">2</span>) + fib(num - <span class="hljs-number">1</span>);
+  ```
+const { Worker, isMainThread, parentPort } = require('worker_threads');
+// 计算斐波那契数列第 n 项
+function fib(num) {
+  if (num === 0) return 0;
+  if (num === 1) return 1;
+  return fib(num - 2) + fib(num - 1);
 }
-<span class="hljs-keyword">if</span> (isMainThread) { <span class="hljs-comment">// 主线程执行函数</span>
-  <span class="hljs-keyword">const</span> worker = <span class="hljs-keyword">new</span> Worker(__filename);
-  worker.once(<span class="hljs-string">'message'</span>, (message) => {
-    <span class="hljs-keyword">const</span> { num, result } = message;
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Fibonacci(<span class="hljs-subst">${num}</span>) is <span class="hljs-subst">${result}</span>`</span>);
+if (isMainThread) { // 主线程执行函数
+  const worker = new Worker(__filename);
+  worker.once('message', (message) => {
+    const { num, result } = message;
+    console.log(`Fibonacci(${num}) is ${result}`);
     process.exit();
   });
-  worker.postMessage(<span class="hljs-number">43</span>);
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'start calculate Fibonacci'</span>);
-  <span class="hljs-comment">// 继续执行后续的计算程序</span>
-  setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =></span> {
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`continue execute code <span class="hljs-subst">${<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>().getSeconds()}</span>`</span>);
-  }, <span class="hljs-number">1000</span>);
-} <span class="hljs-keyword">else</span> { <span class="hljs-comment">// 子线程执行函数</span>
-  parentPort.once(<span class="hljs-string">'message'</span>, (message) => {
-    <span class="hljs-keyword">const</span> num = message;
-    <span class="hljs-keyword">const</span> result = fib(num);
-    <span class="hljs-comment">// 子线程执行完毕，发消息给父线程</span>
+  worker.postMessage(43);
+  console.log('start calculate Fibonacci');
+  // 继续执行后续的计算程序
+  setInterval(() => {
+    console.log(`continue execute code ${new Date().getSeconds()}`);
+  }, 1000);
+} else { // 子线程执行函数
+  parentPort.once('message', (message) => {
+    const num = message;
+    const result = fib(num);
+    // 子线程执行完毕，发消息给父线程
     parentPort.postMessage({
       num,
       result
@@ -279,50 +300,57 @@ const worker = <span class="hljs-keyword">new</span> Worker(filepath);
   });
 }
 
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
  结果:
   
-  <pre><code class="hljs js copyable" lang="js">start calculate Fibonacci
-<span class="hljs-keyword">continue</span> execute code <span class="hljs-number">8</span>
-<span class="hljs-keyword">continue</span> execute code <span class="hljs-number">9</span>
-<span class="hljs-keyword">continue</span> execute code <span class="hljs-number">10</span>
-<span class="hljs-keyword">continue</span> execute code <span class="hljs-number">11</span>
-Fibonacci(<span class="hljs-number">43</span>) is <span class="hljs-number">433494437</span>
+  ```
+start calculate Fibonacci
+continue execute code 8
+continue execute code 9
+continue execute code 10
+continue execute code 11
+Fibonacci(43) is 433494437
 
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
   <h3 class="heading" data-id="heading-14">
     使用 MessageChannel 实现线程间通信
   </h3>
  worker_threads 还可以支持线程间的直接通信，通过两个连接在一起的 MessagePort 端口，worker_threads 实现了双向通信的 MessageChannel。线程间可通过 postMessage 相互通信，示例如下：
   
-  <pre><code class="hljs js copyable" lang="js"><span class="hljs-keyword">const</span> {
+  ```
+const {
   isMainThread, parentPort, threadId, MessageChannel, Worker
-} = <span class="hljs-built_in">require</span>(<span class="hljs-string">'worker_threads'</span>);
+} = require('worker_threads');
 
-<span class="hljs-keyword">if</span> (isMainThread) {
-  <span class="hljs-keyword">const</span> worker1 = <span class="hljs-keyword">new</span> Worker(__filename);
-  <span class="hljs-keyword">const</span> worker2 = <span class="hljs-keyword">new</span> Worker(__filename);
-  <span class="hljs-comment">// 创建通信信道，包含 port1 / port2 两个端口</span>
-  <span class="hljs-keyword">const</span> subChannel = <span class="hljs-keyword">new</span> MessageChannel();
-  <span class="hljs-comment">// 两个子线程绑定各自信道的通信入口</span>
-  worker1.postMessage({ <span class="hljs-attr">port</span>: subChannel.port1 }, [ subChannel.port1 ]);
-  worker2.postMessage({ <span class="hljs-attr">port</span>: subChannel.port2 }, [ subChannel.port2 ]);
-} <span class="hljs-keyword">else</span> {
-  parentPort.once(<span class="hljs-string">'message'</span>, value => {
-    value.port.postMessage(<span class="hljs-string">`Hi, I am thread<span class="hljs-subst">${threadId}</span>`</span>);
-    value.port.on(<span class="hljs-string">'message'</span>, msg => {
-      <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`thread<span class="hljs-subst">${threadId}</span> receive: <span class="hljs-subst">${msg}</span>`</span>);
+if (isMainThread) {
+  const worker1 = new Worker(__filename);
+  const worker2 = new Worker(__filename);
+  // 创建通信信道，包含 port1 / port2 两个端口
+  const subChannel = new MessageChannel();
+  // 两个子线程绑定各自信道的通信入口
+  worker1.postMessage({ port: subChannel.port1 }, [ subChannel.port1 ]);
+  worker2.postMessage({ port: subChannel.port2 }, [ subChannel.port2 ]);
+} else {
+  parentPort.once('message', value => {
+    value.port.postMessage(`Hi, I am thread${threadId}`);
+    value.port.on('message', msg => {
+      console.log(`thread${threadId} receive: ${msg}`);
     });
   });
 }
 
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
  结果:
   
-  <pre><code class="hljs js copyable" lang="js">thread2 receive: Hi, I am thread1
+  ```
+thread2 receive: Hi, I am thread1
 thread1 receive: Hi, I am thread2
 
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
   <h3 class="heading" data-id="heading-15">
     注意
   </h3>

@@ -36,13 +36,13 @@ TCP三次握手后，发送端发送数据后，一段时间内（不同的操�
 上面提到，Stackoverflow上找到<a href="http://stackoverflow.com/questions/14821725/ajax-request-over-https-hangs-for-40-seconds-in-chrome-only" target="_blank" rel="noopener noreferrer">一个问题</a>，跟现在需要解决一有些类似点：
 
 * 偶发，并不是必然出现的。这里[我们](https://www.w3cdoc.com)的问题也是偶发，很难复现，需要反复刷。
-* 也是请求被<code class="highlighter-rouge">Pending</code>了很久，从请求的时间线来看，体现在<code class="highlighter-rouge">Stalled</code>上。
+* 也是请求被Pending了很久，从请求的时间线来看，体现在Stalled上。
 
 该提问到没有给出什么建设性的意见，但它后面的追加编辑却给出了答案。过程是查看Chrome的网络日志，在事件里面发现有一个超时错误：
 
 > t=33627 [st= 5] HTTP\_CACHE\_ADD\_TO\_ENTRY [dt=20001] –> net\_error = -409 (ERR\_CACHE\_LOCK\_TIMEOUT)
 
-耗时20秒之久！而且写得非常明显是<code class="highlighter-rouge">ERR_CACHE_LOCK_TIMEOUT</code>。根据提问者贴出来的链接，了解到Chrome有一个缓存锁的机制。
+耗时20秒之久！而且写得非常明显是ERR_CACHE_LOCK_TIMEOUT。根据提问者贴出来的链接，了解到Chrome有一个缓存锁的机制。
 
 具体源于一个今年6月分实现的一个<a href="https://codereview.chromium.org/345643003" target="_blank" rel="noopener noreferrer">补丁</a>，加入了这么个机制，而这个机制的引入又源于2010年的一个issue。具体信息可以通过这个<a href="https://code.google.com/p/chromium/issues/detail?id=46104" target="_blank" rel="noopener noreferrer">这里</a>查看，下面引用如下。
 
@@ -64,7 +64,7 @@ TCP三次握手后，发送端发送数据后，一段时间内（不同的操�
 
 > (a) [Naive but simpler] Have a timeout on how long we will block readers waiting for a cache entry before giving up and bypassing the cache.
 
-我猜上面第二个<code class="highlighter-rouge">(a)</code>应该是<code class="highlighter-rouge">(b)</code>。简单说第一种优化方案更加复杂但科学。之前的请求对缓存仍然是独占的，但随着前一次请求不断对缓存进行更新，可以把已经更新的部分拿给后面的请求读取，这样就不会完全阻塞后面的请求了。
+我猜上面第二个(a)应该是(b)。简单说第一种优化方案更加复杂但科学。之前的请求对缓存仍然是独占的，但随着前一次请求不断对缓存进行更新，可以把已经更新的部分拿给后面的请求读取，这样就不会完全阻塞后面的请求了。
 
 第二种方案则更加简单暴力。给后来的请求设定一个读取缓存超时的时限，如果超过了这个时限，我认为缓存不可用或者本地没有缓存，忽略这一步直接发请求。
 
@@ -84,13 +84,14 @@ TCP三次握手后，发送端发送数据后，一段时间内（不同的操�
 
 那么[我们](https://www.w3cdoc.com)的问题也会是这样的么？我幻想由于某种未知的原因造成之前的请求不正常（虽然网络面板里没有数据证明这样的阻塞请求在问题请求之前存在），然后[我们](https://www.w3cdoc.com)的MIS里打开页面时读取不到缓存，卡了，一会儿缓存好了，正常了，于是在等待了几十秒后请求成功发出去了。
 
-似乎不太可能。因为恰好系统的响应头里已经加了缓存控制了 <code class="highlighter-rouge">Cache-Control: no-cache</code>。（没有测过no-store）
+似乎不太可能。因为恰好系统的响应头里已经加了缓存控制了 Cache-Control: no-cache。（没有测过no-store）
 
 以下是一次问题请求的响应头：
 
 <div class="language-text highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>HTTP/1.1 200 OK
+    ```
+HTTP/1.1 200 OK
 
 Content-Type: application/json; charset=UTF-8
 Transfer-Encoding: chunked
@@ -102,7 +103,8 @@ tracecode: 28410188240979065866123119
 tracecode: 28410188240506537994123119
 Server: Apache
 
-</code></pre>
+
+```
   </div>
 </div>
 
@@ -112,7 +114,7 @@ Server: Apache
 
 ## chrome的修复记录
 
-可喜的是，在细细口味了上面缓存机制引入的过程后，真是耐人寻味。这里不妨八卦一下。相信你也注意到了，上面提到，该<a href="https://code.google.com/p/chromium/issues/detail?id=46104" target="_blank" rel="noopener noreferrer">缓存问题</a>的提出是在2010年，确切地说是<code class="highlighter-rouge">Jun 8, 2010</code>。是的，2010年6月8日由<a href="mailto:eroman@chromium.org" target="_blank" rel="noopener noreferrer">eroman</a> 同学提出。但最后针对该问题进行修复的代码<a href="https://src.chromium.org/viewvc/chrome?revision=279326&view=revision" target="_blank" rel="noopener noreferrer">提交</a>却是在今年6月份，2014年6月24日，提交时间摆在那里我会乱说？
+可喜的是，在细细口味了上面缓存机制引入的过程后，真是耐人寻味。这里不妨八卦一下。相信你也注意到了，上面提到，该<a href="https://code.google.com/p/chromium/issues/detail?id=46104" target="_blank" rel="noopener noreferrer">缓存问题</a>的提出是在2010年，确切地说是Jun 8, 2010。是的，2010年6月8日由<a href="mailto:eroman@chromium.org" target="_blank" rel="noopener noreferrer">eroman</a> 同学提出。但最后针对该问题进行修复的代码<a href="https://src.chromium.org/viewvc/chrome?revision=279326&view=revision" target="_blank" rel="noopener noreferrer">提交</a>却是在今年6月份，2014年6月24日，提交时间摆在那里我会乱说？
 
 <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/cache-fix-commit.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/cache-fix-commit.jpg?x-oss-process=image/format,webp" alt="" />
 
@@ -120,13 +122,13 @@ Server: Apache
 
 * 同月14号，有了首次对这个问题的回复，那是将该问题指派给了<a href="mailto:rvargas@chromium.org" target="_blank" rel="noopener noreferrer">rvargas</a>同学。
 * 一个月过去了，也就是7月15号，<a href="mailto:rvargas@chromium.org" target="_blank" rel="noopener noreferrer">rvargas</a>同学指出了与该问题关联的另外一个issue「<a href="https://code.google.com/p/chromium/issues/detail?id=6697" target="_blank" rel="noopener noreferrer">issue 6697</a>」
-* 接下来是8月5日，<a href="mailto:rvargas@chromium.org" target="_blank" rel="noopener noreferrer">rvargas</a>同学为该问题贴上了标签<code class="highlighter-rouge">-Mstone-7 Mstone-8 </code>，表明将会在里程碑7或者8里面进行修复。但在后面的10月7日，这个日程又被推到了<code class="highlighter-rouge">-Mstone-8 Mstone-9 </code>。
-* 再接下来11月5日，有人表示以目前的速度及bug数量，还没有时间来修复它，重点在处理优先级为<code class="highlighter-rouge">p1</code>的问题上。于是此问题又成功被顺延了，来到<code class="highlighter-rouge">-mstone-9 Mstone-10 </code>，同时优级降为<code class="highlighter-rouge">p2</code>。Chromium人手也不够啊，看来。
-* 时间来到12月9日，因为优先级为<code class="highlighter-rouge">p2</code>的issue如果没有被标为开始状态的话又自动推到下一个里程碑了，于是顺利来到 <code class="highlighter-rouge">-Mstone-10 MovedFrom-10 Mstone-11 </code>。次年2月来到<code class="highlighter-rouge">-Mstone-11 Mstone-12 </code>。完成了一次跨年！
+* 接下来是8月5日，<a href="mailto:rvargas@chromium.org" target="_blank" rel="noopener noreferrer">rvargas</a>同学为该问题贴上了标签-Mstone-7 Mstone-8 ，表明将会在里程碑7或者8里面进行修复。但在后面的10月7日，这个日程又被推到了-Mstone-8 Mstone-9 。
+* 再接下来11月5日，有人表示以目前的速度及bug数量，还没有时间来修复它，重点在处理优先级为p1的问题上。于是此问题又成功被顺延了，来到-mstone-9 Mstone-10 ，同时优级降为p2。Chromium人手也不够啊，看来。
+* 时间来到12月9日，因为优先级为p2的issue如果没有被标为开始状态的话又自动推到下一个里程碑了，于是顺利来到 -Mstone-10 MovedFrom-10 Mstone-11 。次年2月来到-Mstone-11 Mstone-12 。完成了一次跨年！
 
 …………
 
-* 上面省略N步。如此反复，最后一次被推到了<code class="highlighter-rouge">-Mstone-16 </code>，那是在2011年10月12日。
+* 上面省略N步。如此反复，最后一次被推到了-Mstone-16 ，那是在2011年10月12日。
 * 时间一晃来到2013年，这一年很平静，前面的几个月都没有人对此问题进行回复。直到11月27日，有人看不下去了，评论道：
 
 > This bug has been pushed to the next mstone forever…and is blocking more bugs (e.g https://code.google.com/p/chromium/issues/detail?id=31014)and use-cases same video in 2 tags on one page, and adaptive bit rate html5 video streaming whenever that will kick in. Any chance this will be prioritized?
@@ -147,7 +149,7 @@ Server: Apache
 
 ## 再次重现 {#再次重现}
 
-这次受到上面的启发，开启<code class="highlighter-rouge">chrome://net-internals/#events</code>页面来捕获事件日志。看是否有错误或异常发生。
+这次受到上面的启发，开启chrome://net-internals/#events页面来捕获事件日志。看是否有错误或异常发生。
 
 再次经过旷日持久的机械操作，重现了！这次，日志在手，天下我有。感觉Bug不会存活多久了。
 
@@ -157,16 +159,16 @@ Chrome Dev Tools 网络面板截图： <img src="https://haomou.oss-cn-beijing.
 
 问题请求的时间线信息截图： <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timeline-screen-capture.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/timeline-screen-capture.jpg?x-oss-process=image/format,webp" alt="" />
 
-可以预见，通过捕获的日志完全可以看到<code class="highlighter-rouge">Stalled</code>那么久都发生了些什么鬼。
+可以预见，通过捕获的日志完全可以看到Stalled那么久都发生了些什么鬼。
 
 话不多说，切换到事件捕获页面，定位到出问题的请求，查看其详情。同时将该日志导出，永久保存！作为纪念，也方便以后再次导入查看。有兴趣的同学可以访问下方下载后进行导入，就可以清晰地查看到现场了，就好像你亲历了整个犯罪现场一样。
 
 ### 日志还原 {#日志还原}
 
 * <a href="https://gist.githubusercontent.com/wayou/39772215d075c80d643a/raw/9c91463f22016d20c90de19e77ae3e4f302e0769/gistfile1.txt" target="_blank" rel="noopener noreferrer">下载该日志文件</a>
-* 在Chrome新开一个标签输入<code class="highlighter-rouge">chrome://net-internals/#events</code>
-* 切换到<code class="highlighter-rouge">Import</code>，选择刚才下载的JSON文件进行导入
-* 切换到<code class="highlighter-rouge">Events</code>，定位到<code class="highlighter-rouge">http://qa.tieba.baidu.com/release/getReleaseHistory?projectId=fum1.0.593</code> 这个请求
+* 在Chrome新开一个标签输入chrome://net-internals/#events
+* 切换到Import，选择刚才下载的JSON文件进行导入
+* 切换到Events，定位到http://qa.tieba.baidu.com/release/getReleaseHistory?projectId=fum1.0.593 这个请求
 
 此刻右边出现的便是该问题请求的详细日志。
 
@@ -176,7 +178,8 @@ Chrome Dev Tools 网络面板截图： <img src="https://haomou.oss-cn-beijing.
 
 <div class="language-text highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>193486: URL_REQUEST
+    ```
+193486: URL_REQUEST
 http://qa.tieba.baidu.com/release/getReleaseHistory?projectId=fum1.0.593
 Start Time: 2015-01-02 17:51:05.323
 
@@ -277,7 +280,8 @@ t=42741 [st=42740]    HTTP_CACHE_WRITE_DATA  [dt=0]
 t=42741 [st=42740]    HTTP_TRANSACTION_READ_BODY  [dt=0]
 t=42741 [st=42740]    HTTP_CACHE_WRITE_DATA  [dt=0]
 t=42742 [st=42741] -REQUEST_ALIVE
-</code></pre>
+
+```
   </div>
 </div>
 
@@ -285,9 +289,9 @@ t=42742 [st=42741] -REQUEST_ALIVE
 
 > 以下时间均以毫秒计
 
-日志第一列为时间线，自请求发起时算。 第二列为每步操作所逝去的时间，时间差的概念，与第三列里面的<code class="highlighter-rouge">dt</code>不同，它会积累前面的耗时。 第三列为具体的事件，以及相应事件的耗时<code class="highlighter-rouge">dt</code>，此耗时为绝对耗时。
+日志第一列为时间线，自请求发起时算。 第二列为每步操作所逝去的时间，时间差的概念，与第三列里面的dt不同，它会积累前面的耗时。 第三列为具体的事件，以及相应事件的耗时dt，此耗时为绝对耗时。
 
-<code class="highlighter-rouge">+</code>号对应事件开始，<code class="highlighter-rouge">-</code>号对应事件结束，也就是说他们必然成对出现。住里是展开后更加详细的子事件。直到不能再细分。
++号对应事件开始，-号对应事件结束，也就是说他们必然成对出现。住里是展开后更加详细的子事件。直到不能再细分。
 
 如果说一开始接触到这个日志时手足无措的话，[我们](https://www.w3cdoc.com)来看一下正常情况下的日志是怎样的，有对比才有发现。
 
@@ -295,7 +299,8 @@ t=42742 [st=42741] -REQUEST_ALIVE
 
 <div class="language-text highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>384462: URL_REQUEST
+    ```
+384462: URL_REQUEST
 http://qa.tieba.baidu.com/release/getReleaseHistory?projectId=fum1.0.593
 Start Time: 2015-01-03 20:23:54.698
 
@@ -359,7 +364,8 @@ t=1727 [st=171]    HTTP_CACHE_WRITE_DATA  [dt=1]
 t=1728 [st=172]    HTTP_TRANSACTION_READ_BODY  [dt=0]
 t=1728 [st=172]    HTTP_CACHE_WRITE_DATA  [dt=0]
 t=1728 [st=172] -REQUEST_ALIVE
-</code></pre>
+
+```
   </div>
 </div>
 
@@ -378,27 +384,29 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 与正常相比，最后一次发送请求和读取响应头无异常，时间就多在了前面还有再次发送和请求的过程，细看时间都花在了以下两个事件中：
 
-* <code class="highlighter-rouge">HTTP_STREAM_PARSER_READ_HEADERS [dt=21301]</code>
-* <code class="highlighter-rouge">HTTP_STREAM_PARSER_READ_HEADERS [dt=21304]</code>
+* HTTP_STREAM_PARSER_READ_HEADERS [dt=21301]
+* HTTP_STREAM_PARSER_READ_HEADERS [dt=21304]
 
 该事件的名称已经自我解读，意思是解析读取的响应头。但问题是紧接着下面报错了，
 
 <div class="language-text highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>--> net_error = -101 (ERR_CONNECTION_RESET)
-</code></pre>
+    ```
+--> net_error = -101 (ERR_CONNECTION_RESET)
+
+```
   </div>
 </div>
 
-读取响应头时发生了链接重置的错误，有理由认为本次链接是不成功的，没拿到正确的响应头，于是解析不成功。时间都花在了这里，足足21秒之久，两个21秒造就了上面看到的<code class="highlighter-rouge">Stalled</code>了42秒之久。
+读取响应头时发生了链接重置的错误，有理由认为本次链接是不成功的，没拿到正确的响应头，于是解析不成功。时间都花在了这里，足足21秒之久，两个21秒造就了上面看到的Stalled了42秒之久。
 
 问题似乎已经很明朗了。链接被重置。
 
 在第三次尝试的时候正常了，于是正确返回，[我们](https://www.w3cdoc.com)才看到了被解析的响应头被展示在了下面。也就是说在出问题的时候要么响应头未拿到，要么响应头非法导致解析不成功。而原因就是链接被重置。
 
-那么接下来的工作就是对<code class="highlighter-rouge">ERR_CONNECTION_RESET</code>这个错误的追查了。
+那么接下来的工作就是对ERR_CONNECTION_RESET这个错误的追查了。
 
-## 官方关于 <code class="highlighter-rouge">ERR_CONNECTION_RESET</code> 错误的解释 {#官方关于-err_connection_reset-错误的解释}
+## 官方关于 ERR_CONNECTION_RESET 错误的解释 {#官方关于-err_connection_reset-错误的解释}
 
 未找到官方相应的资料，Chrome官网上唯一<a href="https://support.google.com/chrome/answer/117804?hl=en" target="_blank" rel="noopener noreferrer">关于此错误的描述</a>是在安装Chrome时出现Error 101。我估计文档的撰写人员没想到谁会这么蛋疼想要看这些生涩的东西，除了开发者。既然你都是开发者了，那为什么不去看Chromium的源码。
 
@@ -414,37 +422,39 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 ### ERR\_CONNECTION\_RESET被唤起的地方 {#err_connection_reset被唤起的地方}
 
-在Chromium的源码中搜索该常量名，确实出现很多<a href="https://code.google.com/p/chromium/codesearch#search/&q=ERR_CONNECTION_RESET&sq=package:chromium&type=cs" target="_blank" rel="noopener noreferrer">结果</a>。联系到[我们](https://www.w3cdoc.com)查看日志发现问题的上下文，是在解析响应头报的。所以[我们](https://www.w3cdoc.com)定位到<code class="highlighter-rouge">http_stream_parser.cc</code>文件，同时注意到有一个文件叫<code class="highlighter-rouge">net_errors_win.cc</code>，所以猜测他是定义所有错误常量用的，也顺便打开之。
+在Chromium的源码中搜索该常量名，确实出现很多<a href="https://code.google.com/p/chromium/codesearch#search/&q=ERR_CONNECTION_RESET&sq=package:chromium&type=cs" target="_blank" rel="noopener noreferrer">结果</a>。联系到[我们](https://www.w3cdoc.com)查看日志发现问题的上下文，是在解析响应头报的。所以[我们](https://www.w3cdoc.com)定位到http_stream_parser.cc文件，同时注意到有一个文件叫net_errors_win.cc，所以猜测他是定义所有错误常量用的，也顺便打开之。
 
-经过观察<code class="highlighter-rouge">src/net/base/net_errors_win.cc</code> 其路径和代码得知其中多为系统级别的错误，似乎跟[我们](https://www.w3cdoc.com)的问题不是很关联，忽略该文件。
+经过观察src/net/base/net_errors_win.cc 其路径和代码得知其中多为系统级别的错误，似乎跟[我们](https://www.w3cdoc.com)的问题不是很关联，忽略该文件。
 
 <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/source.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/source.jpg?x-oss-process=image/format,webp" alt="" />
 
-<code class="highlighter-rouge">http_stream_parser.cc</code>文件中，<code class="highlighter-rouge">ERR_CONNECTION_RESET</code>仅出现一次。这给[我们](https://www.w3cdoc.com)定位带来了极大的便利。
+http_stream_parser.cc文件中，ERR_CONNECTION_RESET仅出现一次。这给[我们](https://www.w3cdoc.com)定位带来了极大的便利。
 
 <a href="https://code.google.com/p/chromium/codesearch#chromium/src/net/http/http_stream_parser.cc&q=ERR_CONNECTION_RESET&sq=package:chromium&dr=C%20http_stream_parser.cc" target="_blank" rel="noopener noreferrer">[chromium]//src/net/base/net_errors_win.cc</a>:
 
 <div class="language-cpp highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code><span class="c1">// Returns true if |error_code| is an error for which we give the server a</span>
-<span class="c1">// chance to send a body containing error information, if the error was received</span>
-<span class="c1">// while trying to upload a request body.</span>
-<span class="kt">bool</span> <span class="nf">ShouldTryReadingOnUploadError</span><span class="p">(</span><span class="kt">int</span> <span class="n">error_code</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="p">(</span><span class="n">error_code</span> <span class="o">==</span> <span class="n">ERR_CONNECTION_RESET</span><span class="p">);</span>
-<span class="p">}</span>
-</code></pre>
+    ```
+// Returns true if |error_code| is an error for which we give the server a
+// chance to send a body containing error information, if the error was received
+// while trying to upload a request body.
+bool ShouldTryReadingOnUploadError(int error_code) {
+  return (error_code == ERR_CONNECTION_RESET);
+}
+
+```
   </div>
 </div>
 
-这里定义了一个<code class="highlighter-rouge">ShouldTryReadingOnUploadError</code> 的方法，注释耐人寻味，这个时候，这样的情景，能否正确解读注释成为了比读懂代码更重要（这是我在看JS代码时永远无法体味到的感觉），下面尽可能对它进行理解：
+这里定义了一个ShouldTryReadingOnUploadError 的方法，注释耐人寻味，这个时候，这样的情景，能否正确解读注释成为了比读懂代码更重要（这是我在看JS代码时永远无法体味到的感觉），下面尽可能对它进行理解：
 
-> 在尝试发送一个请求体的时候，让服务器尝试发送一个带错误的响应体，如果[我们](https://www.w3cdoc.com)接收到了该错误则返回<code class="highlighter-rouge">true</code>
+> 在尝试发送一个请求体的时候，让服务器尝试发送一个带错误的响应体，如果[我们](https://www.w3cdoc.com)接收到了该错误则返回true
 
 我承认被上面的复杂从句打败！
 
 那么[我们](https://www.w3cdoc.com)来看这个方法被调用的场景。
 
-现在[我们](https://www.w3cdoc.com)点击上面的<code class="highlighter-rouge">ShouldTryReadingOnUploadError</code>方法，代码下方出现调用了该方法的地方，一共有两处。
+现在[我们](https://www.w3cdoc.com)点击上面的ShouldTryReadingOnUploadError方法，代码下方出现调用了该方法的地方，一共有两处。
 
 <img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/call.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/03/call.jpg?x-oss-process=image/format,webp" alt="" />
 
@@ -454,58 +464,64 @@ t=1728 [st=172] -REQUEST_ALIVE
 
 <div class="language-cpp highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code><span class="kt">int</span> <span class="n">HttpStreamParser</span><span class="o">::</span><span class="n">DoSendHeadersComplete</span><span class="p">(</span><span class="kt">int</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o"><</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// In the unlikely case that the headers and body were merged, all the</span>
-    <span class="c1">// the headers were sent, but not all of the body way, and |result| is</span>
-    <span class="c1">// an error that this should try reading after, stash the error for now and</span>
-    <span class="c1">// act like the request was successfully sent.</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">request_headers_</span><span class="o">-></span><span class="n">BytesConsumed</span><span class="p">()</span> <span class="o">>=</span> <span class="n">request_headers_length_</span> <span class="o">&&</span>
-        <span class="n">ShouldTryReadingOnUploadError</span><span class="p">(</span><span class="n">result</span><span class="p">))</span> <span class="p">{</span>
-      <span class="n">upload_error_</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
-      <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-  <span class="p">}</span>
-</code></pre>
+    ```
+int HttpStreamParser::DoSendHeadersComplete(int result) {
+  if (result < 0) {
+    // In the unlikely case that the headers and body were merged, all the
+    // the headers were sent, but not all of the body way, and |result| is
+    // an error that this should try reading after, stash the error for now and
+    // act like the request was successfully sent.
+    if (request_headers_->BytesConsumed() >= request_headers_length_ &&
+        ShouldTryReadingOnUploadError(result)) {
+      upload_error_ = result;
+      return OK;
+    }
+    return result;
+  }
+
+```
   </div>
 </div>
 
-> 虽然不太可能，但也不排除头部和请求体合并的情况，当所有头部发送完毕，请求体不一定，此时<code class="highlighter-rouge">result</code>便是需要稍后处理的一种错误，这里暂且先返回<code class="highlighter-rouge">OK</code>。
+> 虽然不太可能，但也不排除头部和请求体合并的情况，当所有头部发送完毕，请求体不一定，此时result便是需要稍后处理的一种错误，这里暂且先返回OK。
 
 516行另一个DoSendBodyComplete方法里进行了调用:
 
 <div class="language-cpp highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code><span class="kt">int</span> <span class="n">HttpStreamParser</span><span class="o">::</span><span class="n">DoSendBodyComplete</span><span class="p">(</span><span class="kt">int</span> <span class="n">result</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">result</span> <span class="o"><</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// If |result| is an error that this should try reading after, stash the</span>
-    <span class="c1">// error for now and act like the request was successfully sent.</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">ShouldTryReadingOnUploadError</span><span class="p">(</span><span class="n">result</span><span class="p">))</span> <span class="p">{</span>
-      <span class="n">upload_error_</span> <span class="o">=</span> <span class="n">result</span><span class="p">;</span>
-      <span class="k">return</span> <span class="n">OK</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-  <span class="p">}</span>
-</code></pre>
+    ```
+int HttpStreamParser::DoSendBodyComplete(int result) {
+  if (result < 0) {
+    // If |result| is an error that this should try reading after, stash the
+    // error for now and act like the request was successfully sent.
+    if (ShouldTryReadingOnUploadError(result)) {
+      upload_error_ = result;
+      return OK;
+    }
+    return result;
+  }
+
+```
   </div>
 </div>
 
-> 跟上面类似，如果<code class="highlighter-rouge">result</code>出错，稍后处理，先返回正常
+> 跟上面类似，如果result出错，稍后处理，先返回正常
 
 这也与[我们](https://www.w3cdoc.com)在日志中看到的情况相符，在前面再次错误后，这次请求并没有终止结束，而是尝试到了第三次并且以成功结束的。
 
-但不管怎样，从这两个方法，一个<code class="highlighter-rouge">DoSendHeadersComplete</code>， 另一个<code class="highlighter-rouge">DoSendBodyComplete</code>，身上能体现出请求确实已经发出去。
+但不管怎样，从这两个方法，一个DoSendHeadersComplete， 另一个DoSendBodyComplete，身上能体现出请求确实已经发出去。
 
 ### TCP RST {#tcp-rst}
 
-另外，在<a href="https://code.google.com/p/chromium/codesearch#chromium/src/net/base/net_error_list.h" target="_blank" rel="noopener noreferrer"><code class="highlighter-rouge">net_error_list.h</code></a>这个文件的109行，可以准确找到[我们](https://www.w3cdoc.com)在日志中得到的101号错误。它的定义如下：
+另外，在<a href="https://code.google.com/p/chromium/codesearch#chromium/src/net/base/net_error_list.h" target="_blank" rel="noopener noreferrer">net_error_list.h</a>这个文件的109行，可以准确找到[我们](https://www.w3cdoc.com)在日志中得到的101号错误。它的定义如下：
 
 <div class="language-cpp highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code><span class="c1">// A connection was reset (corresponding to a TCP RST).</span>
-<span class="n">NET_ERROR</span><span class="p">(</span><span class="n">CONNECTION_RESET</span><span class="p">,</span> <span class="o">-</span><span class="mi">101</span><span class="p">)</span>
-</code></pre>
+    ```
+// A connection was reset (corresponding to a TCP RST).
+NET_ERROR(CONNECTION_RESET, -101)
+
+```
   </div>
 </div>
 

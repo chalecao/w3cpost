@@ -24,15 +24,18 @@ title: 异步回调之Promise对象
 这是异步编程最基本的方法。  
 假定有两个函数f1和f2，后者等待前者的执行结果。
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 f1();
 f2();
 
-</code></pre>
+
+```
 
 如果f1是一个很耗时的任务，可以考虑改写f1，把f2写成f1的回调函数。
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 function f1(callback){
 　　　　setTimeout(function () {
 　　　　　　// f1的任务代码
@@ -40,14 +43,17 @@ function f1(callback){
 　　　　}, 1000);
 　　}
 
-</code></pre>
+
+```
 
 执行代码就变成下面这样：
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 f1(f2);
 
-</code></pre>
+
+```
 
 采用这种方式，[我们](https://www.w3cdoc.com)把同步操作变成了异步操作，f1不会堵塞程序运行，相当于先执行程序的主要逻辑，将耗时的操作推迟执行。  
 回调函数的优点是简单、容易理解和部署，缺点是不利于代码的阅读和维护，各个部分之间高度耦合（Coupling），流程会很混乱，而且每个任务只能指定一个回调函数。
@@ -57,14 +63,17 @@ f1(f2);
 另一种思路是采用事件驱动模式。任务的执行不取决于代码的顺序，而取决于某个事件是否发生。  
 还是以f1和f2为例。首先，为f1绑定一个事件（这里采用的jQuery的写法）。
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 f1.on('done', f2);
 
-</code></pre>
+
+```
 
 上面这行代码的意思是，当f1发生done事件，就执行f2。然后，对f1进行改写：
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 function f1(){
 　　　　setTimeout(function () {
 　　　　　　// f1的任务代码
@@ -72,7 +81,8 @@ function f1(){
 　　　　}, 1000);
 　　}
 
-</code></pre>
+
+```
 
 f1.trigger(‘done’)表示，执行完成后，立即触发done事件，从而开始执行f2。  
 这种方法的优点是比较容易理解，可以绑定多个事件，每个事件可以指定多个回调函数，而且可以”去耦合”（Decoupling），有利于实现模块化。缺点是整个程序都要变成事件驱动型，运行流程会变得很不清晰。
@@ -84,14 +94,17 @@ f1.trigger(‘done’)表示，执行完成后，立即触发done事件，从而
 这个模式有多种实现，下面采用的是Ben Alman的Tiny Pub/Sub，这是jQuery的一个插件。  
 首先，f2向”信号中心”jQuery订阅”done”信号。
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 jQuery.subscribe("done", f2);
 
-</code></pre>
+
+```
 
 然后，f1进行如下改写：
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 　function f1(){
 　　　　setTimeout(function () {
 　　　　　　// f1的任务代码
@@ -99,15 +112,18 @@ jQuery.subscribe("done", f2);
 　　　　}, 1000);
 　　}
 
-</code></pre>
+
+```
 
 jQuery.publish(“done”)的意思是，f1执行完成后，向”信号中心”jQuery发布”done”信号，从而引发f2的执行。  
 此外，f2完成执行后，也可以取消订阅（unsubscribe）。
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 　jQuery.unsubscribe("done", f2);
 
-</code></pre>
+
+```
 
 这种方法的性质与”事件监听”类似，但是明显优于后者。因为[我们](https://www.w3cdoc.com)可以通过查看”消息中心”，了解存在多少信号、每个信号有多少订阅者，从而监控程序的运行。
 
@@ -116,14 +132,17 @@ jQuery.publish(“done”)的意思是，f1执行完成后，向”信号中心�
 Promises对象是CommonJS工作组提出的一种规范，目的是为异步编程提供统一接口。  
 简单说，它的思想是，每一个异步任务返回一个Promise对象，该对象有一个then方法，允许指定回调函数。比如，f1的回调函数f2,可以写成：
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 f1().then(f2);
 
-</code></pre>
+
+```
 
 f1要进行如下改写（这里使用的是jQuery的实现）：
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 function f1(){
 　　　　var dfd = $.Deferred();
 　　　　setTimeout(function () {
@@ -133,22 +152,27 @@ function f1(){
 　　　　return dfd.promise;
 　　}
 
-</code></pre>
+
+```
 
 这样写的优点在于，回调函数变成了链式写法，程序的流程可以看得很清楚，而且有一整套的配套方法，可以实现许多强大的功能。  
 比如，指定多个回调函数：
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 f1().then(f2).then(f3);
 
-</code></pre>
+
+```
 
 再比如，指定发生错误时的回调函数：
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 f1().then(f2).fail(f3);
 
-</code></pre>
+
+```
 
 而且，它还有一个前面三种方法都没有的好处：如果一个任务已经完成，再添加回调函数，该回调函数会立即执行。所以，你不用担心是否错过了某个事件或信号。这种方法的缺点就是编写和理解，都相对比较难。下面[我们](https://www.w3cdoc.com)详细介绍promise对象。
 
@@ -156,7 +180,8 @@ f1().then(f2).fail(f3);
 
 其实 Promise 这个东西提出来也挺久时间了，它是一种解决复杂异步回调逻辑的方法。大部分人类的正常思维方式都是线性连贯的，但是在 JavaScript 中，异步却是主流。所以，在遇到复杂逻辑时，[我们](https://www.w3cdoc.com)往往会写成这样：
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 // Code uses jQuery to illustrate the Pyramid of Doom
 (function($) {
 $(function(){
@@ -174,7 +199,8 @@ alert("Hello World!");
 });
 })(jQuery);
 
-</code></pre>
+
+```
 
 这就是所谓的「回调金字塔」,解决这个方法最简单的方法，就是把匿名函数取个名字，单独提取出来定义。但是当遇到多变的业务场景时，具名函数的方法也不太管用，于是便有了各种高级的碾平异步回调的解决方案，Promise 就是其中一种。
 
@@ -184,7 +210,8 @@ alert("Hello World!");
 
 为了简化各种各样的异步逻辑，[我们](https://www.w3cdoc.com)先假设有一个会花一些时间来完成的 JS 函数。它的功能很简单，就是过一段时间以后调用传入的回调函数。
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 var wait = function(callback, param) {
 setTimeout(function() {
 callback(param)
@@ -192,11 +219,13 @@ callback(param)
 }
 wait(console.log.bind(console), 'test');
 
-</code></pre>
+
+```
 
 你可以想象多层嵌套的时候大概是什么样子：
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 wait(function() {
 console.log('如果你愿意');
 wait(function() {
@@ -211,24 +240,28 @@ wait(console.log.bind(console), '剥开我的心');
 });
 });
 
-</code></pre>
+
+```
 
 那么，在 Promise 的世界里是什么样的呢？这就不得不先枯燥地解释一些东西了。首先，什么叫做一个「promise」？一个 promise 可以是一个对象或者函数，它包含一个 then 接口并且符合相应的规范。使用一个 promise 的方法就是这样：
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 promise.then(function(response) {
 // onFulfilled 时执行
 }, function(error) {
 // onRejected 时执行
 });
 
-</code></pre>
+
+```
 
 于是问题又来了，什么叫做 fulfilled 和 rejected 呢？一个 promise 会有三种状态，大致可以理解为执行成功（fulfilled）、执行失败（rejected）和正在执行中（pending）。Promise 包含一个状态机，它内部的状态转换，只允许从 pending 到 fulfilled 或者 rejected 一次，不允许更多了。如果用[大家](https://www.w3cdoc.com)喜闻乐见的薛定谔的猫来解释，就是打开盒子的时候，[我们](https://www.w3cdoc.com)的猫要么死了，要么没死，要么不确定死没死，死的的猫无法复活，活猫也一定不会死:D
 
 新建一个 promise 的时候，[我们](https://www.w3cdoc.com)需要在代码中定义什么时候算成功了，什么时候算失败了。于是上面 wait 的例子便可以改写这样了：
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 function waitPromise(param) {
 return new Promise(function(resolve, reject) {
 setTimeout(function() {
@@ -250,7 +283,8 @@ console.log(response);
 return waitPromise('剥开我的心');
 }).then(console.log.bind(console));
 
-</code></pre>
+
+```
 
 从上面的例子中，[我们](https://www.w3cdoc.com)可以看出几点：
 
@@ -271,17 +305,20 @@ Promises/A+
 之前说了那么多关于 Promise 的这个规定，那个规定，其实它是有一个统一的名称的，就叫做 Promises/A+。在它的网站上，你可以阅读到完整的规范文档。  
 基于这个标准，除了 ECMAScript 6 中比较简易的 Promise 以外，还有很多实现各不相同，功能各有千秋的实现，比较有名的有（按现有 Github Star 数排列）：
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 Q
 Bluebird
 when
 rsvp.js
 
-</code></pre>
+
+```
 
 例如，Q 支持进度查询功能，执行时间较长的异步操作（例如文件上传）可以即时获取进度信息：
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 return uploadFile()
 .then(function () {
 // Success uploading the file
@@ -290,7 +327,8 @@ return uploadFile()
 }, function (progress) {
 // We get notified of the upload's progress as it is executed
 });
- </code></pre>
+ 
+```
 
 ### 重新发明轮子
 
@@ -298,7 +336,8 @@ return uploadFile()
 
 首先当然要创建一个 Promise 对象的构造函数，它接受一个函数作为参数，调用这个函数的时候，会传入 resolve 和 reject 方法。
 
-<pre class="hljs javascript"><code class="javascript">function MyPromise(resolver) {
+```
+function MyPromise(resolver) {
   // 简单起见就不做类型检查了，假定 resolver 一定为函数
   this.status = 0; // 0: pending, 1: fulfilled, 2: rejected
   this.value = null;
@@ -328,11 +367,13 @@ function doResolve(resolver) {
   } catch(e) {
     rejectPromise(e);
   }
-}</code></pre>
+}
+```
 
 这样，当使用 new Promise(function(resolve, reject) {…}); 构造时，就会进入 doResolve，这时会执行传入给 new Promise 的参数，并给出 resolve 和 reject 的实现。可以看到为了保证 resolve 或 reject 总共只能被调用一次，这里用到了一个闭包。接下来来看具体的 resolve 和 reject 是怎么实现的。
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 function resolve(value) {
   try {
     if (this === value) {
@@ -357,7 +398,8 @@ function reject(reason) {
   this.value = reason;
   dequeue.call(this);
 }
-</code></pre>
+
+```
 
 具体的 resolve 实现中，[我们](https://www.w3cdoc.com)会判断解决的值是否是一个 thenable，如果是的话，就会去执行这个 then 函数，并且接受它的状态和返回值。如果不是，就直接使用该值解决这个 promise。
 
@@ -365,7 +407,8 @@ function reject(reason) {
 
 在这里，[我们](https://www.w3cdoc.com)使用了 this.handlers 数组来暂存 then 的回调函数，当状态改变时，会调用 dequeue 方法来处理队列。
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 function dequeue() {
   var handler;
   while (this.handlers.length) {
@@ -373,11 +416,13 @@ function dequeue() {
     handle.call(this, handler.thenPromise, handler.onFulfilled, handler.onRejected);
   }
 }
-</code></pre>
+
+```
 
 最后便是核心方法 then 的实现了。根据规范，它必须返回一个 promise，并根据 onFulfilled 或 onRejected 回调的返回值来决定是将它标记为完成还是失败。
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 MyPromise.prototype.then = function(onFulfilled, onRejected) {
   var self = this;
   var thenPromise = new MyPromise(function() {});
@@ -417,7 +462,8 @@ function handle(thenPromise, onFulfilled, onRejected) {
     }
   }, 1);
 }
-</code></pre>
+
+```
 
 在上面的 handle 函数中，[我们](https://www.w3cdoc.com)立即调用回调函数，并且根据回调函数的类型来改变 then 方法返回的 promise 的状态，这样就形成了一个 promise 链条。
 
@@ -428,7 +474,8 @@ function handle(thenPromise, onFulfilled, onRejected) {
 
 [我们](https://www.w3cdoc.com)回到文章开头的例子，使用[我们](https://www.w3cdoc.com)自己的 MyPromise 试验一下。简单起见，就不写那么多层了。
 
-<pre class="hljs javascript"><code class="javascript">
+```
+
 function waitPromise(param) {
   return new Promise(function(resolve, reject) {
     setTimeout(function() {
@@ -441,7 +488,8 @@ waitPromise('如果你愿意').then(function(response) {
   return waitPromise('一层');
 }).then(console.log.bind(console));
 
-</code></pre>
+
+```
 
 可以看到[我们](https://www.w3cdoc.com)可以成功输出两行文字。你能根据上面的实现，看出这次调用事实上一共产生了多少个 promise 对象吗？
 
@@ -453,7 +501,7 @@ P2：第二个 then 返回的
 P3：第一个 then 里，通过 return waitPromise(‘一层’) 返回的  
 P4：在处理 P1 时，会调用 P3 的 then 方法，这时候又会返回一个 promise
 
-&nbsp;
+
 
 # Pomise.all与Promise.race举例
 
@@ -463,50 +511,54 @@ Promise.all可以将多个Promise实例包装成一个新的Promise实例。同�
 
 具体代码如下：
 
-<pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-keyword">let&lt;/span> p1 = &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">(&lt;span class="hljs-params">resolve, reject&lt;/span>) =>&lt;/span> {
-  resolve(&lt;span class="hljs-string">'成功了'&lt;/span>)
+```
+let p1 = new Promise((resolve, reject) => {
+  resolve('成功了')
 })
 
-&lt;span class="hljs-keyword">let&lt;/span> p2 = &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">(&lt;span class="hljs-params">resolve, reject&lt;/span>) =>&lt;/span> {
-  resolve(&lt;span class="hljs-string">'success'&lt;/span>)
+let p2 = new Promise((resolve, reject) => {
+  resolve('success')
 })
 
-&lt;span class="hljs-keyword">let&lt;/span> p3 = Promse.reject(&lt;span class="hljs-string">'失败'&lt;/span>)
+let p3 = Promse.reject('失败')
 
-&lt;span class="hljs-built_in">Promise&lt;/span>.all([p1, p2]).then(&lt;span class="hljs-function">(&lt;span class="hljs-params">result&lt;/span>) =>&lt;/span> {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(result)               &lt;span class="hljs-comment">//['成功了', 'success']&lt;/span>
-}).catch(&lt;span class="hljs-function">(&lt;span class="hljs-params">error&lt;/span>) =>&lt;/span> {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(error)
+Promise.all([p1, p2]).then((result) => {
+  console.log(result)               //['成功了', 'success']
+}).catch((error) => {
+  console.log(error)
 })
 
-&lt;span class="hljs-built_in">Promise&lt;/span>.all([p1,p3,p2]).then(&lt;span class="hljs-function">(&lt;span class="hljs-params">result&lt;/span>) =>&lt;/span> {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(result)
-}).catch(&lt;span class="hljs-function">(&lt;span class="hljs-params">error&lt;/span>) =>&lt;/span> {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(error)      &lt;span class="hljs-comment">// 失败了，打出 '失败'&lt;/span>
+Promise.all([p1,p3,p2]).then((result) => {
+  console.log(result)
+}).catch((error) => {
+  console.log(error)      // 失败了，打出 '失败'
 })
-</code></pre>
+
+```
 
 Promse.all在处理多个异步处理时非常有用，比如说一个页面上需要等两个或多个ajax的数据回来以后才正常显示，在此之前只显示loading图标。
 
 代码模拟：
 
-<pre class="hljs php"><code class="php">let wake = (time) => {
-  &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-keyword">new&lt;/span> Promise((resolve, reject) => {
+```
+let wake = (time) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve(`${time / &lt;span class="hljs-number">1000&lt;/span>}秒后醒来`)
+      resolve(`${time / 1000}秒后醒来`)
     }, time)
   })
 }
 
-let p1 = wake(&lt;span class="hljs-number">3000&lt;/span>)
-let p2 = wake(&lt;span class="hljs-number">2000&lt;/span>)
+let p1 = wake(3000)
+let p2 = wake(2000)
 
 Promise.all([p1, p2]).then((result) => {
-  console.log(result)       &lt;span class="hljs-comment">// [ '3秒后醒来', '2秒后醒来' ]&lt;/span>
-}).&lt;span class="hljs-keyword">catch&lt;/span>((error) => {
+  console.log(result)       // [ '3秒后醒来', '2秒后醒来' ]
+}).catch((error) => {
   console.log(error)
 })
-</code></pre>
+
+```
 
 需要特别注意的是，Promise.all获得的成功结果的数组里面的数据顺序和Promise.all接收到的数组顺序是一致的，即p1的结果在前，即便p1的结果获取的比p2要晚。这带来了一个绝大的好处：在[前端](https://www.w3cdoc.com)开发请求数据的过程中，偶尔会遇到发送多个请求并根据请求顺序获取和使用数据的场景，使用Promise.all毫无疑问可以解决这个问题。
 
@@ -514,24 +566,26 @@ Promise.all([p1, p2]).then((result) => {
 
 顾名思义，Promse.race就是赛跑的意思，意思就是说，Promise.race([p1, p2, p3])里面哪个结果获得的快，就返回那个结果，不管结果本身是成功状态还是失败状态。
 
-<pre class="hljs javascript"><code class="javascript">&lt;span class="hljs-keyword">let&lt;/span> p1 = &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">(&lt;span class="hljs-params">resolve, reject&lt;/span>) =>&lt;/span> {
-  setTimeout(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
-    resolve(&lt;span class="hljs-string">'success'&lt;/span>)
-  },&lt;span class="hljs-number">1000&lt;/span>)
+```
+let p1 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve('success')
+  },1000)
 })
 
-&lt;span class="hljs-keyword">let&lt;/span> p2 = &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">(&lt;span class="hljs-params">resolve, reject&lt;/span>) =>&lt;/span> {
-  setTimeout(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
-    reject(&lt;span class="hljs-string">'failed'&lt;/span>)
-  }, &lt;span class="hljs-number">500&lt;/span>)
+let p2 = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    reject('failed')
+  }, 500)
 })
 
-&lt;span class="hljs-built_in">Promise&lt;/span>.race([p1, p2]).then(&lt;span class="hljs-function">(&lt;span class="hljs-params">result&lt;/span>) =>&lt;/span> {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(result)
-}).catch(&lt;span class="hljs-function">(&lt;span class="hljs-params">error&lt;/span>) =>&lt;/span> {
-  &lt;span class="hljs-built_in">console&lt;/span>.log(error)  &lt;span class="hljs-comment">// 打开的是 'failed'&lt;/span>
+Promise.race([p1, p2]).then((result) => {
+  console.log(result)
+}).catch((error) => {
+  console.log(error)  // 打开的是 'failed'
 })
-</code></pre>
+
+```
 
 原理是挺简单的，但是在实际运用中还没有想到什么的使用场景会使用到。
 

@@ -37,11 +37,13 @@ Beats可以直接（或者通过Logstash）将数据发送到Elasticsearch，在
 对于最基本的Filebeat配置，你可以使用单个路径。例如：
 
 <div class="cnblogs_code">
-  <pre>filebeat.inputs:
+  ```
+filebeat.inputs:
 - type: log
   enabled: true
   paths:
-    - /var/log/*.log</pre>
+    - /var/log/*.log
+```
 </div>
 
 在这个例子中，获取在/var/log/*.log路径下的所有文件作为输入，这就意味着Filebeat将获取/var/log目录下所有以.log结尾的文件。
@@ -61,33 +63,39 @@ Beats可以直接（或者通过Logstash）将数据发送到Elasticsearch，在
 **2. 如果你发送输出目录到Elasticsearch（并且不用Logstash），那么设置IP地址和端口以便能够找到Elasticsearch：**
 
 <div class="cnblogs_code">
-  <pre>output.elasticsearch:
-    hosts: ["192.168.1.42:9200"]</pre>
+  ```
+output.elasticsearch:
+    hosts: ["192.168.1.42:9200"]
+```
 </div>
 
 **3. 如果你打算用Kibana仪表盘，可以这样配置Kibana端点：**
 
 <div class="cnblogs_code">
-  <pre>setup.kibana:
-      host: "localhost:5601"</pre>
+  ```
+setup.kibana:
+      host: "localhost:5601"
+```
 </div>
 
 **4. 如果你的Elasticsearch和Kibana配置了安全策略，那么在你启动Filebeat之前需要在配置文件中指定访问凭据。例如：**
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>output.elasticsearch:
+  ```
+output.elasticsearch:
       hosts: ["myEShost:9200"]
       username: "filebeat_internal"
       password: "{pwd}"
 setup.kibana:
       host: "mykibanahost:5601"
       username: "my_kibana_user"  
-      password: "{pwd}"</pre>
+      password: "{pwd}"
+```
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
 </div>
 
@@ -96,8 +104,10 @@ setup.kibana:
 如果你想使用Logstash对Filebeat收集的数据执行额外的处理，那么你需要将Filebeat配置为使用Logstash。
 
 <div class="cnblogs_code">
-  <pre>output.logstash:
-      hosts: ["127.0.0.1:5044"]</pre>
+  ```
+output.logstash:
+      hosts: ["127.0.0.1:5044"]
+```
 </div>
 
 ### 第4步：在Elasticsearch中加载索引模板
@@ -114,37 +124,47 @@ Filebeat包已经安装了推荐的索引模板。如果你接受filebeat.yml中
 
 * 加载不同的模板
 * <div class="cnblogs_code">
-      <pre>setup.template.name: "your_template_name"
+      ```
+setup.template.name: "your_template_name"
 
-setup.template.fields: "path/to/fields.yml"</pre>
+setup.template.fields: "path/to/fields.yml"
+```
     </div>
 
     覆盖一个已存在的模板 
     
       * <div class="cnblogs_code">
-          <pre>setup.template.overwrite: true</pre>
+          ```
+setup.template.overwrite: true
+```
         </div>
         
         禁用自动加载模板 
         
           * <div class="cnblogs_code">
-              <pre>setup.template.enabled: false</pre>
+              ```
+setup.template.enabled: false
+```
             </div>
             
             修改索引名称 
             
               * <div class="cnblogs_code">
-                  <pre># 默认情况下，Filebeat写事件到名为filebeat-6.3.2-yyyy.MM.dd的索引，其中yyyy.MM.dd是事件被索引的日期。为了用一个不同的名字，你可以在Elasticsearch输出中设置index选项。例如：
+                  ```
+# 默认情况下，Filebeat写事件到名为filebeat-6.3.2-yyyy.MM.dd的索引，其中yyyy.MM.dd是事件被索引的日期。为了用一个不同的名字，你可以在Elasticsearch输出中设置index选项。例如：
 output.elasticsearch.index: "customname-%{[beat.version]}-%{+yyyy.MM.dd}"
 setup.template.name: "customname"
 setup.template.pattern: "customname-*"
-setup.dashboards.index: "customname-*"</pre>
+setup.dashboards.index: "customname-*"
+```
                 </div>
 
             **手动加载模板**
             
             <div class="cnblogs_code">
-              <pre>./filebeat setup --template -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["localhost:9200"]'</pre>
+              ```
+./filebeat setup --template -E output.logstash.enabled=false -E 'output.elasticsearch.hosts=["localhost:9200"]'
+```
             </div>
             
             ### 第5步：设置Kibana dashboards
@@ -152,29 +172,36 @@ setup.dashboards.index: "customname-*"</pre>
             Filebeat附带了Kibana仪表盘、可视化示例。在你用dashboards之前，你需要创建索引模式，filebeat-*，并且加载dashboards到Kibana中。为此，你可以运行setup命令或者在filebeat.yml配置文件中配置dashboard加载。
             
             <div class="cnblogs_code">
-              <pre>./filebeat setup --dashboards</pre>
+              ```
+./filebeat setup --dashboards
+```
             </div>
             
             ### 第6步：启动Filebeat
             
             <div class="cnblogs_code">
-              <pre>./filebeat -e -c filebeat.yml -d "publish"</pre>
+              ```
+./filebeat -e -c filebeat.yml -d "publish"
+```
             </div>
             
             ### 第7步：查看Kibana仪表板示例
             
             <div class="cnblogs_code">
-              <pre>http://127.0.0.1:5601</pre>
+              ```
+http://127.0.0.1:5601
+```
             </div>
             
             ## 完整的配置
             
             <div class="cnblogs_code">
               <div class="cnblogs_code_toolbar">
-                <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+                <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
               </div>
               
-              <pre>#=========================== Filebeat inputs ==============
+              ```
+#=========================== Filebeat inputs ==============
 filebeat.inputs:
 
 * type: log
@@ -196,10 +223,11 @@ setup.kibana:
 # -------------------------- Elasticsearch output ---------
 
 output.elasticsearch:
-   hosts: ["localhost:9200"]</pre>
+   hosts: ["localhost:9200"]
+```
 
               <div class="cnblogs_code_toolbar">
-                <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+                <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
               </div>
             </div>
             
@@ -228,17 +256,21 @@ output.elasticsearch:
             请求：
             
             <div class="cnblogs_code">
-              <pre>curl -X GET "localhost:9200/_cat/indices?v"</pre>
+              ```
+curl -X GET "localhost:9200/_cat/indices?v"
+```
             </div>
             
             响应：
             
             <div class="cnblogs_code">
-              <pre>health status index                     uuid                   pri rep docs.count docs.deleted store.size pri.store.size
+              ```
+health status index                     uuid                   pri rep docs.count docs.deleted store.size pri.store.size
 yellow open   bank                      59jD3B4FR8iifWWjrdMzUg   5   1       1000            0    475.1kb        475.1kb
 green  open   .kibana                   DzGTSDo9SHSHcNH6rxYHHA   1   0        153           23    216.8kb        216.8kb
 yellow open   filebeat-6.3.2-2018.08.08 otgYPvsgR3Ot-2GDcw_Upg   3   1        255            0     63.7kb         63.7kb
-yellow open   customer                  DoM-O7QmRk-6f3Iuls7X6Q   5   1          1            0      4.5kb          4.5kb</pre>
+yellow open   customer                  DoM-O7QmRk-6f3Iuls7X6Q   5   1          1            0      4.5kb          4.5kb
+```
             </div>
 
             ## 其它相关

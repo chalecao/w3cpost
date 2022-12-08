@@ -29,7 +29,7 @@ title: 浏览器线程理解与microtask与macrotask
  写在最后的话
 
 
-&nbsp;
+
 
 # 区分进程和线程
 
@@ -355,10 +355,10 @@ MDN的官方解释是：
 将该元素变成一个复合图层，就是传说中的硬件加速技术
 
 
- 最常用的方式：<code>translate3d</code>、<code>translateZ</code>
- <code>opacity</code>属性/过渡动画（需要动画执行的过程中才会创建合成层，动画没有开始或结束后元素还会回到之前的状态）
- <code>will-chang</code>属性（这个比较偏僻），一般配合opacity与translate使用（而且经测试，除了上述可以引发硬件加速的属性外，其它属性并不会变成复合层），作用是提前告诉[浏览器](https://www.w3cdoc.com)要变化，这样[浏览器](https://www.w3cdoc.com)会开始做一些优化工作（这个最好用完后就释放）
- <code><video><iframe><canvas><webgl></code>等元素
+ 最常用的方式：translate3d、translateZ
+ opacity属性/过渡动画（需要动画执行的过程中才会创建合成层，动画没有开始或结束后元素还会回到之前的状态）
+ will-chang属性（这个比较偏僻），一般配合opacity与translate使用（而且经测试，除了上述可以引发硬件加速的属性外，其它属性并不会变成复合层），作用是提前告诉[浏览器](https://www.w3cdoc.com)要变化，这样[浏览器](https://www.w3cdoc.com)会开始做一些优化工作（这个最好用完后就释放）
+ <video><iframe><canvas><webgl>等元素
  其它，譬如以前的flash插件
 
 
@@ -407,9 +407,9 @@ webkit CSS3中，如果这个元素添加了硬件加速，并且index层级比�
 
 
  JS分为同步任务和异步任务
- 同步任务都在主线程上执行，形成一个<code>执行栈</code>
- 主线程之外，事件触发线程管理着一个<code>任务队列</code>，只要异步任务有了运行结果，就在<code>任务队列</code>之中放置一个事件。
- 一旦<code>执行栈</code>中的所有同步任务执行完毕（此时JS引擎空闲），系统就会读取<code>任务队列</code>，将可运行的异步任务添加到可执行栈中，开始执行。
+ 同步任务都在主线程上执行，形成一个执行栈
+ 主线程之外，事件触发线程管理着一个任务队列，只要异步任务有了运行结果，就在任务队列之中放置一个事件。
+ 一旦执行栈中的所有同步任务执行完毕（此时JS引擎空闲），系统就会读取任务队列，将可运行的异步任务添加到可执行栈中，开始执行。
 
 
 看图：
@@ -449,20 +449,24 @@ webkit CSS3中，如果这个元素添加了硬件加速，并且index层级比�
 
 譬如:
 
-<pre class=""><code><span class="">setTimeout</span><span class="">(</span><span class="">function</span><span class="">(){</span><span class="">console</span><span class="">.</span><span class="">log</span><span class="">(</span><span class="">'hello!'</span><span class="">);},</span><span class="">1000</span><span class="">);</span></code></pre>
+```
+setTimeout(function(){console.log('hello!');},1000);
+```
 
 这段代码的作用是当`1000`毫秒计时完毕后（由定时器线程计时），将回调函数推入事件队列中，等待主线程执行
 
-<pre class=""><code><span class="">setTimeout</span><span class="">(</span><span class="">function</span><span class="">(){</span><span class="">console</span><span class="">.</span><span class="">log</span><span class="">(</span><span class="">'hello!'</span><span class="">);},</span><span class="">0</span><span class="">);</span><span class="">console</span><span class="">.</span><span class="">log</span><span class="">(</span><span class="">'begin'</span><span class="">);</span></code></pre>
+```
+setTimeout(function(){console.log('hello!');},0);console.log('begin');
+```
 
 这段代码的效果是最快的时间内将回调函数推入事件队列中，等待主线程执行
 
 注意：
 
 
- 执行结果是：先<code>begin</code>后<code>hello!</code>
+ 执行结果是：先begin后hello!
  虽然代码的本意是0毫秒后就推入事件队列，但是W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。<br /> (不过也有一说是不同[浏览器](https://www.w3cdoc.com)有不同的最小时间设定)
- 就算不等待4ms，就算假设0毫秒就推入事件队列，也会先执行<code>begin</code>（因为只有可执行栈内空了后才会主动读取事件队列）
+ 就算不等待4ms，就算假设0毫秒就推入事件队列，也会先执行begin（因为只有可执行栈内空了后才会主动读取事件队列）
 
 
 ## setTimeout而不是setInterval
@@ -495,18 +499,22 @@ https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
 
 上文中将JS事件循环机制梳理了一遍，在ES5的情况是够用了，但是在ES6盛行的现在，仍然会遇到一些问题，譬如下面这题：
 
-<pre class=""><code><span class="">console</span><span class="">.</span><span class="">log</span><span class="">(</span><span class="">'script start'</span><span class="">);
-</span><span class="">setTimeout</span><span class="">(</span><span class="">function</span><span class="">(){</span><span class="">console</span><span class="">.</span><span class="">log</span><span class="">(</span><span class="">'setTimeout'</span><span class="">);},</span><span class="">0</span><span class="">);
-</span><span class="">Promise</span><span class="">.</span><span class="">resolve</span><span class="">().</span><span class="">then</span><span class="">(</span><span class="">function</span><span class="">(){</span><span class="">console</span><span class="">.</span><span class="">log</span><span class="">(</span><span class="">'promise1'</span><span class="">);}).</span><span class="">then</span><span class="">(</span><span class="">function</span><span class="">(){</span><span class="">console</span><span class="">.</span><span class="">log</span><span class="">(</span><span class="">'promise2'</span><span class="">);});
-</span><span class="">console</span><span class="">.</span><span class="">log</span><span class="">(</span><span class="">'script end'</span><span class="">);</span></code></pre>
+```
+console.log('script start');
+setTimeout(function(){console.log('setTimeout');},0);
+Promise.resolve().then(function(){console.log('promise1');}).then(function(){console.log('promise2');});
+console.log('script end');
+```
 
 嗯哼，它的正确执行顺序是这样子的：
 
-<pre class=""><code><span class="">script start
+```
+script start
 script end
 promise1
 promise2
-setTimeout</span></code></pre>
+setTimeout
+```
 
 为什么呢？因为Promise里有了一个一个新的概念：`microtask`
 
@@ -517,7 +525,7 @@ setTimeout</span></code></pre>
 
  macrotask（又称之为宏任务），可以理解是每次执行栈执行的代码就是一个宏任务（包括每次从事件队列中获取一个事件回调并放到执行栈中执行）
  每一个task会从头到尾将这个任务执行完毕，不会执行其它
- [浏览器](https://www.w3cdoc.com)为了能够使得JS内部task与DOM任务能够有序的执行，会在一个task执行结束后，在下一个 task 执行开始前，对页面进行重新渲染<br /> （<code>task->渲染->task->...</code>）
+ [浏览器](https://www.w3cdoc.com)为了能够使得JS内部task与DOM任务能够有序的执行，会在一个task执行结束后，在下一个 task 执行开始前，对页面进行重新渲染<br /> （task->渲染->task->...）
  microtask（又称为微任务），可以理解是在当前 task 执行结束后立即执行的任务
  也就是说，在当前task任务后，下一个task之前，在渲染之前
  所以它的响应速度相比setTimeout（setTimeout是task）会更快，因为无需等渲染
@@ -575,14 +583,16 @@ MutationObserver可以用来实现microtask（它属于microtask，优先级小�
 
 像以前的Vue源码中就是利用它来模拟nextTick的，具体原理是，创建一个TextNode并监听内容变化，然后要nextTick的时候去改一下这个节点的文本内容，如下：（Vue的源码，未修改）
 
-<pre class=""><code><span class="">var</span><span class=""> counter</span><span class="">=</span><span class="">1</span>
-<span class="">var</span><span class=""> observer</span><span class="">=</span><span class="">newMutationObserver</span><span class="">(</span><span class="">nextTickHandler</span><span class="">)</span>
-<span class="">var</span><span class=""> textNode</span><span class="">=</span><span class="">document</span><span class="">.</span><span class="">createTextNode</span><span class="">(</span><span class="">String</span><span class="">(</span><span class="">counter</span><span class="">))</span><span class="">
-observer</span><span class="">.</span><span class="">observe</span><span class="">(</span><span class="">textNode</span><span class="">,{</span><span class="">characterData</span><span class="">:</span><span class="">true</span><span class="">})</span><span class="">
-timerFunc</span><span class="">=()=>{</span><span class="">
-    counter</span><span class="">=(</span><span class="">counter</span><span class="">+</span><span class="">1</span><span class="">)%</span><span class="">2</span><span class="">
-    textNode</span><span class="">.</span><span class="">data</span><span class="">=</span><span class="">String</span><span class="">(</span><span class="">counter</span><span class="">)</span>
-<span class="">}</span></code></pre>
+```
+var counter=1
+var observer=newMutationObserver(nextTickHandler)
+var textNode=document.createTextNode(String(counter))
+observer.observe(textNode,{characterData:true})
+timerFunc=()=>{
+    counter=(counter+1)%2
+    textNode.data=String(counter)
+}
+```
 
 对应Vue源码链接
 

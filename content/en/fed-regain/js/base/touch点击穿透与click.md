@@ -46,34 +46,38 @@ PC网页上的大部分操作都是用鼠标的，即响应的是鼠标事件，
 
   <img loading="lazy" width="313" height="543" class="alignnone size-full wp-image-3100 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01601fc0957.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01601fc0957.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01601fc0957.png?x-oss-process=image/format,webp 313w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c01601fc0957.png?x-oss-process=image/quality,q_50/resize,m_fill,w_173,h_300/format,webp 173w" sizes="(max-width: 313px) 100vw, 313px" />
 
-&nbsp;
+
 
 整个容器里有一个底层元素的div，和一个弹出层div，为了让弹出层有模态框的效果，我又加了一个遮罩层。
 
-<pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"container"&lt;/span>>&lt;/span>
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"underLayer"&lt;/span>>&lt;/span>底层元素&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+```
+<div class="container">
+    <div id="underLayer">底层元素</div>
 
-    &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"popupLayer"&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"layer-title"&lt;/span>>&lt;/span>弹出层&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"layer-action"&lt;/span>>&lt;/span>
-            &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">button&lt;/span> &lt;span class="hljs-attr">class&lt;/span>=&lt;span class="hljs-string">"btn"&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"closePopup"&lt;/span>>&lt;/span>关闭&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">button&lt;/span>>&lt;/span>
-        &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
-    &lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"bgMask"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
-</code></pre>
+    <div id="popupLayer">
+        <div class="layer-title">弹出层</div>
+        <div class="layer-action">
+            <button class="btn" id="closePopup">关闭</button>
+        </div>
+    </div>
+</div>
+<div id="bgMask"></div>
+
+```
 
 然后为底层元素绑定 click 事件，而弹出层的关闭按钮绑定 tap 事件。
 
-<pre class="hljs javascript"><code>$(&lt;span class="hljs-string">'#closePopup'&lt;/span>).on(&lt;span class="hljs-string">'tap'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">e&lt;/span>)&lt;/span>{
-    $(&lt;span class="hljs-string">'#popupLayer'&lt;/span>).hide();
-    $(&lt;span class="hljs-string">'#bgMask'&lt;/span>).hide();
+```
+$('#closePopup').on('tap', function(e){
+    $('#popupLayer').hide();
+    $('#bgMask').hide();
 });
 
-$(&lt;span class="hljs-string">'#underLayer'&lt;/span>).on(&lt;span class="hljs-string">'click'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>()&lt;/span>{
-    alert(&lt;span class="hljs-string">'underLayer clicked'&lt;/span>);
+$('#underLayer').on('click', function(){
+    alert('underLayer clicked');
 });
-</code></pre>
+
+```
 
 点击关闭按钮，touchend首先触发tap，弹出层和遮罩就被隐藏了。touchend后继续等待300ms发现没有其他行为了，则继续触发click，由于这时弹出层已经消失，所以当前click事件的target就在底层元素上，于是就alert内容。整个事件触发过程为 touchend -> tap -> click。
 
@@ -139,24 +143,28 @@ _下下策_ ，因为会带来300ms延迟，页面内任何一个自定义交�
 
 因此解决“穿透”的办法就很简单，<a href="https://jsorz.cn/demo/touch-event/solution2.html" target="_blank" rel="nofollow noopener noreferrer">demo如下</a>
 
-<pre class="hljs javascript"><code>$(&lt;span class="hljs-string">'#closePopup'&lt;/span>).on(&lt;span class="hljs-string">'tap'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">e&lt;/span>)&lt;/span>{
-    $(&lt;span class="hljs-string">'#popupLayer'&lt;/span>).hide();
-    $(&lt;span class="hljs-string">'#bgMask'&lt;/span>).hide();
+```
+$('#closePopup').on('tap', function(e){
+    $('#popupLayer').hide();
+    $('#bgMask').hide();
 
-    $(&lt;span class="hljs-string">'#underLayer'&lt;/span>).css(&lt;span class="hljs-string">'pointer-events'&lt;/span>, &lt;span class="hljs-string">'none'&lt;/span>);
+    $('#underLayer').css('pointer-events', 'none');
 
-    setTimeout(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>()&lt;/span>{
-        $(&lt;span class="hljs-string">'#underLayer'&lt;/span>).css(&lt;span class="hljs-string">'pointer-events'&lt;/span>, &lt;span class="hljs-string">'auto'&lt;/span>);
-    }, &lt;span class="hljs-number">400&lt;/span>);
+    setTimeout(function(){
+        $('#underLayer').css('pointer-events', 'auto');
+    }, 400);
 });
-</code></pre>
+
+```
 
 ### 3. fastclick {#articleHeader9}
 
 使用<a href="https://github.com/ftlabs/fastclick" target="_blank" rel="nofollow noopener noreferrer">fastclick</a>库，其实现思路是，取消 click 事件（<a href="https://github.com/ftlabs/fastclick/blob/master/lib/fastclick.js#L164-L173" target="_blank" rel="nofollow noopener noreferrer">参看源码 164-173 行</a>），用 touchend 模拟快速点击行为（<a href="https://github.com/ftlabs/fastclick/blob/master/lib/fastclick.js#L521-L610" target="_blank" rel="nofollow noopener noreferrer">参看源码 521-610 行</a>）。
 
-<pre class="hljs css"><code>&lt;span class="hljs-selector-tag">FastClick&lt;/span>&lt;span class="hljs-selector-class">.attach&lt;/span>(&lt;span class="hljs-selector-tag">document&lt;/span>&lt;span class="hljs-selector-class">.body&lt;/span>);
-</code></pre>
+```
+FastClick.attach(document.body);
+
+```
 
 从此所有点击事件都使用`click`，不会出现“穿透”的问题，并且没有300ms的延迟。<a href="https://jsorz.cn/demo/touch-event/solution3.html" target="_blank" rel="nofollow noopener noreferrer">解决穿透的demo</a>
 

@@ -17,24 +17,26 @@ title: JS中浮点数精度问题
       在计算商品价格加减乘除时，偶尔## 会出现精度问题，一些常见的例子如下：
     
     
-    <pre><code class="hljs javascript copyable" lang="javascript">&lt;span class="hljs-comment">// 加法 =====================&lt;/span>
-&lt;span class="hljs-number">0.1&lt;/span> + &lt;span class="hljs-number">0.2&lt;/span> = &lt;span class="hljs-number">0.30000000000000004&lt;/span>
-&lt;span class="hljs-number">0.7&lt;/span> + &lt;span class="hljs-number">0.1&lt;/span> = &lt;span class="hljs-number">0.7999999999999999&lt;/span>
-&lt;span class="hljs-number">0.2&lt;/span> + &lt;span class="hljs-number">0.4&lt;/span> = &lt;span class="hljs-number">0.6000000000000001&lt;/span>
+    ```
+// 加法 =====================
+0.1 + 0.2 = 0.30000000000000004
+0.7 + 0.1 = 0.7999999999999999
+0.2 + 0.4 = 0.6000000000000001
 
-&lt;span class="hljs-comment">// 减法 =====================&lt;/span>
-&lt;span class="hljs-number">1.5&lt;/span> - &lt;span class="hljs-number">1.2&lt;/span> = &lt;span class="hljs-number">0.30000000000000004&lt;/span>
-&lt;span class="hljs-number">0.3&lt;/span> - &lt;span class="hljs-number">0.2&lt;/span> = &lt;span class="hljs-number">0.09999999999999998&lt;/span>
+// 减法 =====================
+1.5 - 1.2 = 0.30000000000000004
+0.3 - 0.2 = 0.09999999999999998
 
-&lt;span class="hljs-comment">// 乘法 =====================&lt;/span>
-&lt;span class="hljs-number">19.9&lt;/span> *&lt;span class="hljs-number">100&lt;/span> = &lt;span class="hljs-number">1989.9999999999998&lt;/span>
-&lt;span class="hljs-number">0.8&lt;/span>* &lt;span class="hljs-number">3&lt;/span> = &lt;span class="hljs-number">2.4000000000000004&lt;/span>
-&lt;span class="hljs-number">35.41&lt;/span> * &lt;span class="hljs-number">100&lt;/span> = &lt;span class="hljs-number">3540.9999999999995&lt;/span>
+// 乘法 =====================
+19.9 *100 = 1989.9999999999998
+0.8* 3 = 2.4000000000000004
+35.41 * 100 = 3540.9999999999995
 
-&lt;span class="hljs-comment">// 除法 =====================&lt;/span>
-&lt;span class="hljs-number">0.3&lt;/span> / &lt;span class="hljs-number">0.1&lt;/span> = &lt;span class="hljs-number">2.9999999999999996&lt;/span>
-&lt;span class="hljs-number">0.69&lt;/span> / &lt;span class="hljs-number">10&lt;/span> = &lt;span class="hljs-number">0.06899999999999999&lt;/span>
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+// 除法 =====================
+0.3 / 0.1 = 2.9999999999999996
+0.69 / 10 = 0.06899999999999999
+复制代码
+```
 
     <h2 class="heading" data-id="heading-2">
       toFixed奇葩问题
@@ -49,13 +51,15 @@ title: JS中浮点数精度问题
       但是在chrome下测试结果不太令人满意：
     
     
-    <pre><code class="hljs javascript copyable" lang="javascript">&lt;span class="hljs-number">1.35&lt;/span>.toFixed(&lt;span class="hljs-number">1&lt;/span>) &lt;span class="hljs-comment">// 1.4 正确&lt;/span>
-&lt;span class="hljs-number">1.335&lt;/span>.toFixed(&lt;span class="hljs-number">2&lt;/span>) &lt;span class="hljs-comment">// 1.33  错误&lt;/span>
-&lt;span class="hljs-number">1.3335&lt;/span>.toFixed(&lt;span class="hljs-number">3&lt;/span>) &lt;span class="hljs-comment">// 1.333 错误&lt;/span>
-&lt;span class="hljs-number">1.33335&lt;/span>.toFixed(&lt;span class="hljs-number">4&lt;/span>) &lt;span class="hljs-comment">// 1.3334 正确&lt;/span>
-&lt;span class="hljs-number">1.333335&lt;/span>.toFixed(&lt;span class="hljs-number">5&lt;/span>)  &lt;span class="hljs-comment">// 1.33333 错误&lt;/span>
-&lt;span class="hljs-number">1.3333335&lt;/span>.toFixed(&lt;span class="hljs-number">6&lt;/span>) &lt;span class="hljs-comment">// 1.333333 错误&lt;/span>
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+    ```
+1.35.toFixed(1) // 1.4 正确
+1.335.toFixed(2) // 1.33  错误
+1.3335.toFixed(3) // 1.333 错误
+1.33335.toFixed(4) // 1.3334 正确
+1.333335.toFixed(5)  // 1.33333 错误
+1.3333335.toFixed(6) // 1.333333 错误
+复制代码
+```
 
     
       使用IETester在IE下面测试的结果却是正确的。
@@ -110,12 +114,14 @@ title: JS中浮点数精度问题
 计算步骤为：
 
 <div class="highlight highlight-source-js">
-  <pre><span class="pl-c">// 0.1 和 0.2 都转化成二进制后再进行运算</span>
-<span class="pl-c1">0.00011001100110011001100110011001100110011001100110011010</span> <span class="pl-k">+</span>
-<span class="pl-c1">0.0011001100110011001100110011001100110011001100110011010</span> <span class="pl-k">=</span>
-<span class="pl-c1">0.0100110011001100110011001100110011001100110011001100111</span>
+  ```
+// 0.1 和 0.2 都转化成二进制后再进行运算
+0.00011001100110011001100110011001100110011001100110011010 +
+0.0011001100110011001100110011001100110011001100110011010 =
+0.0100110011001100110011001100110011001100110011001100111
 
-<span class="pl-c">// 转成十进制正好是 0.30000000000000004</span></pre>
+// 转成十进制正好是 0.30000000000000004
+```
 </div>
 
 ### 为什么 `x=0.1` 能得到 `0.1`？
@@ -123,11 +129,13 @@ title: JS中浮点数精度问题
 恭喜你到了看山不是山的境界。因为 mantissa 固定长度是 52 位，再加上省略的一位，最多可以表示的数是 `2^53=9007199254740992`，对应科学计数尾数是 `9.007199254740992`，这也是 JS 最多能表示的精度。它的长度是 16，所以可以使用 `toPrecision(16)` 来做精度运算，超过的精度会自动做凑整处理。于是就有：
 
 <div class="highlight highlight-source-js">
-  <pre><span class="pl-c1">0.10000000000000000555</span>.<span class="pl-en">toPrecision</span>(<span class="pl-c1">16</span>)
-<span class="pl-c">// 返回 0.1000000000000000，去掉末尾的零后正好为 0.1</span>
+  ```
+0.10000000000000000555.toPrecision(16)
+// 返回 0.1000000000000000，去掉末尾的零后正好为 0.1
 
-<span class="pl-c">// 但你看到的 `0.1` 实际上并不是 `0.1`。不信你可用更高的精度试试：</span>
-<span class="pl-c1">0.1</span>.<span class="pl-en">toPrecision</span>(<span class="pl-c1">21</span>) <span class="pl-k">=</span> <span class="pl-c1">0.100000000000000005551</span></pre>
+// 但你看到的 `0.1` 实际上并不是 `0.1`。不信你可用更高的精度试试：
+0.1.toPrecision(21) = 0.100000000000000005551
+```
 </div>
 
 ### 大数危机
@@ -136,11 +144,13 @@ title: JS中浮点数精度问题
 由于 E 最大值是 1023，所以最大可以表示的整数是 `2^1024 - 1`，这就是能表示的最大整数。但你并不能这样计算这个数字，因为从 `2^1024` 开始就变成了 `Infinity`
 
 <div class="highlight highlight-source-js">
-  <pre><span class="pl-k">></span> <span class="pl-c1">Math</span>.<span class="pl-c1">pow</span>(<span class="pl-c1">2</span>, <span class="pl-c1">1023</span>)
-<span class="pl-c1">8.98846567431158e+307</span>
+  ```
+> Math.pow(2, 1023)
+8.98846567431158e+307
 
-<span class="pl-k">></span> <span class="pl-c1">Math</span>.<span class="pl-c1">pow</span>(<span class="pl-c1">2</span>, <span class="pl-c1">1024</span>)
-<span class="pl-c1">Infinity</span></pre>
+> Math.pow(2, 1024)
+Infinity
+```
 </div>
 
 那么对于 `(2^53, 2^63)` 之间的数会出现什么情况呢？
@@ -187,9 +197,11 @@ title: JS中浮点数精度问题
 封装成方法就是：
 
 <div class="highlight highlight-source-js">
-  <pre><span class="pl-k">function</span> <span class="pl-en">strip</span>(<span class="pl-smi">num</span>, <span class="pl-smi">precision</span> <span class="pl-k">=</span> <span class="pl-c1">12</span>) {
-  <span class="pl-k">return</span> <span class="pl-k">+</span><span class="pl-c1">parseFloat</span>(<span class="pl-smi">num</span>.<span class="pl-en">toPrecision</span>(precision));
-}</pre>
+  ```
+function strip(num, precision = 12) {
+  return +parseFloat(num.toPrecision(precision));
+}
+```
 </div>
 
 为什么选择 `12` 做为默认精度？这是一个经验的选择，一般选12就能解决掉大部分0001和0009问题，而且大部分情况下也够用了，如果你需要更精确可以调高。
@@ -199,15 +211,17 @@ title: JS中浮点数精度问题
 对于运算类操作，如 `+-*/`，就不能使用 `toPrecision` 了。正确的做法是把小数转成整数后再运算。以加法为例：
 
 <div class="highlight highlight-source-js">
-  <pre><span class="pl-c">/**</span>
-<span class="pl-c"> * 精确加法</span>
-<span class="pl-c"> */</span>
-<span class="pl-k">function</span> <span class="pl-en">add</span>(<span class="pl-smi">num1</span>, <span class="pl-smi">num2</span>) {
-  <span class="pl-k">const</span> <span class="pl-c1">num1Digits</span> <span class="pl-k">=</span> (<span class="pl-smi">num1</span>.<span class="pl-c1">toString</span>().<span class="pl-c1">split</span>[<span class="pl-s"><span class="pl-pds">'</span>.<span class="pl-pds">'</span></span>](<span class="pl-c1">1</span>) <span class="pl-k">||</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>).<span class="pl-c1">length</span>;
-  <span class="pl-k">const</span> <span class="pl-c1">num2Digits</span> <span class="pl-k">=</span> (<span class="pl-smi">num2</span>.<span class="pl-c1">toString</span>().<span class="pl-c1">split</span>[<span class="pl-s"><span class="pl-pds">'</span>.<span class="pl-pds">'</span></span>](<span class="pl-c1">1</span>) <span class="pl-k">||</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>).<span class="pl-c1">length</span>;
-  <span class="pl-k">const</span> <span class="pl-c1">baseNum</span> <span class="pl-k">=</span> <span class="pl-c1">Math</span>.<span class="pl-c1">pow</span>(<span class="pl-c1">10</span>, <span class="pl-c1">Math</span>.<span class="pl-c1">max</span>(num1Digits, num2Digits));
-  <span class="pl-k">return</span> (num1 <span class="pl-k">*</span> baseNum <span class="pl-k">+</span> num2 <span class="pl-k">*</span> baseNum) <span class="pl-k">/</span> baseNum;
-}</pre>
+  ```
+/**
+ * 精确加法
+ */
+function add(num1, num2) {
+  const num1Digits = (num1.toString().split['.'](1) || '').length;
+  const num2Digits = (num2.toString().split['.'](1) || '').length;
+  const baseNum = Math.pow(10, Math.max(num1Digits, num2Digits));
+  return (num1 * baseNum + num2 * baseNum) / baseNum;
+}
+```
 </div>
 
 以上方法能适用于大部分场景。遇到科学计数法如 `2.3e+1`（当数字精度大于21时，数字会强制转为科学计数法形式显示）时还需要特别处理一下。

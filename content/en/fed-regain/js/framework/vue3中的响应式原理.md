@@ -16,7 +16,8 @@ Vue 最巧妙的特性之一是其响应式系统，而[我们](https://www.w3cd
 Vue 3.0 的响应式系统是独立的模块，可以完全脱离 Vue 而使用，所以[我们](https://www.w3cdoc.com)在 clone 了源码下来以后，可以直接在 packages/reactivity 模块下调试。
 
   1. 在项目根目录运行 `yarn dev reactivity`，然后进入 `packages/reactivity` 目录找到产出的 `dist/reactivity.global.js` 文件。
-  2. 新建一个 `index.html`，写入如下代码： <pre class="xml hljs"><code class="html">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">"./dist/reactivity.global.js"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
+  2. 新建一个 `index.html`，写入如下代码： ```
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">"./dist/reactivity.global.js"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
 &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
 &lt;span class="hljs-keyword">const&lt;/span> { reactive, effect } = VueObserver
 
@@ -30,7 +31,8 @@ Vue 3.0 的响应式系统是独立的模块，可以完全脱离 Vue 而使用�
   &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">`set count to &lt;span class="hljs-subst">${count}&lt;/span>`&lt;/span>)
 }
 effect(fn)
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span></code></pre>
+&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
+```
 
   3. 在[浏览器](https://www.w3cdoc.com)打开该文件，于控制台执行 `state.count++`，便可看到输出 `set count to 1`。
 
@@ -50,10 +52,12 @@ effect(fn)
 
 [大家](https://www.w3cdoc.com)都知道，Vue 3.0 使用了 Proxy 来代替之前的 `Object.defineProperty()`，改写了对象的 getter/setter，完成依赖收集和响应触发。但是在这一阶段中，[我们](https://www.w3cdoc.com)暂时先不管它是如何改写对象的 getter/setter 的，这个在后续的”依赖收集阶段“会详细说明。为了简单起见，[我们](https://www.w3cdoc.com)可以把这部分的内容浓缩成一个只有两行代码的 `reactive()` 函数：
 
-<pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">reactive&lt;/span>(&lt;span class="hljs-params">target&lt;/span>) &lt;/span>{
+```
+&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">reactive&lt;/span>(&lt;span class="hljs-params">target&lt;/span>) &lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> observed = &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Proxy&lt;/span>(target, handler)
   &lt;span class="hljs-keyword">return&lt;/span> observed
-}</code></pre>
+}
+```
 
 > 完整代码在 <a href="https://github.com/jrainlau/tiny-reactive/blob/master/src/reactive.js" rel="nofollow">reactive.js</a>。这里的 `handler` 就是改造 getter/setter 的关键，[我们](https://www.w3cdoc.com)放到后文讲解。
 
@@ -67,7 +71,8 @@ effect(fn)
 
 来看看代码（完成代码请看 <a href="https://github.com/jrainlau/tiny-reactive/blob/master/src/effect.js#L47-L65" rel="nofollow">effect.js</a>）：
 
-<pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">effect&lt;/span> (&lt;span class="hljs-params">fn&lt;/span>) &lt;/span>{
+```
+&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">effect&lt;/span> (&lt;span class="hljs-params">fn&lt;/span>) &lt;/span>{
   &lt;span class="hljs-comment">// 构造一个 effect&lt;/span>
   &lt;span class="hljs-keyword">const&lt;/span> effect = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">effect&lt;/span>(&lt;span class="hljs-params">...args&lt;/span>) &lt;/span>{
     &lt;span class="hljs-keyword">return&lt;/span> run(effect, fn, args)
@@ -90,7 +95,8 @@ effect(fn)
       effectStack.pop()
     }
   }
-}</code></pre>
+}
+```
 
 至此，初始化阶段已经完成。接下来就是整个系统最关键的一步——依赖收集阶段。
 
@@ -101,13 +107,14 @@ effect(fn)
 
 这个阶段的触发时机，就是在 effect 被立即执行，其内部的 `fn()` 触发了 Proxy 对象的 getter 的时候。简单来说，只要执行到类似 `state.count` 的语句，就会触发 state 的 getter。
 
-依赖收集阶段最重要的目的，就是建立一份”依赖收集表“，也就是图示的”targetMap&#8221;。targetMap 是一个 WeakMap，其 key 值是<del>当前的 Proxy 对象 <code>state</code></del>代理前的对象`origin`，而 value 则是该对象所对应的 depsMap。
+依赖收集阶段最重要的目的，就是建立一份”依赖收集表“，也就是图示的”targetMap&#8221;。targetMap 是一个 WeakMap，其 key 值是<del>当前的 Proxy 对象 state</del>代理前的对象`origin`，而 value 则是该对象所对应的 depsMap。
 
 depsMap 是一个 Map，key 值为触发 getter 时的属性值（此处为 `count`），而 value 则是**触发过该属性值**所对应的各个 effect。
 
 还是有点绕？那么[我们](https://www.w3cdoc.com)再举个例子。假设有个 Proxy 对象和 effect 如下：
 
-<pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-keyword">const&lt;/span> state = reactive({
+```
+&lt;span class="hljs-keyword">const&lt;/span> state = reactive({
   &lt;span class="hljs-attr">count&lt;/span>: &lt;span class="hljs-number">0&lt;/span>,
   &lt;span class="hljs-attr">age&lt;/span>: &lt;span class="hljs-number">18&lt;/span>
 })
@@ -122,7 +129,8 @@ depsMap 是一个 Map，key 值为触发 getter 时的属性值（此处为 `cou
 
 &lt;span class="hljs-keyword">const&lt;/span> effect3 = effect(&lt;span class="hljs-function">() =>&lt;/span> {
   &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">'effect3: '&lt;/span> + state.count, state.age)
-})</code></pre>
+})
+```
 
 那么这里的 targetMap 应该为这个样子：<span class="img-wrap"><br /> </span>
 
@@ -131,7 +139,8 @@ depsMap 是一个 Map，key 值为触发 getter 时的属性值（此处为 `cou
 
 这样，`{ target -> key -> dep }` 的对应关系就建立起来了，依赖收集也就完成了。<a href="https://github.com/jrainlau/tiny-reactive/blob/master/src/effect.js#L4-L21" rel="nofollow">代码</a>如下：
 
-<pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">track&lt;/span> (&lt;span class="hljs-params">target, operationType, key&lt;/span>) &lt;/span>{
+```
+&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">track&lt;/span> (&lt;span class="hljs-params">target, operationType, key&lt;/span>) &lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> effect = effectStack[effectStack.length - &lt;span class="hljs-number">1&lt;/span>]
   &lt;span class="hljs-keyword">if&lt;/span> (effect) {
     &lt;span class="hljs-keyword">let&lt;/span> depsMap = targetMap.get(target)
@@ -149,7 +158,8 @@ depsMap 是一个 Map，key 值为触发 getter 时的属性值（此处为 `cou
     }
   }
 }
-</code></pre>
+
+```
 
 弄明白依赖收集表 targetMap 是非常重要的，因为这是整个响应式系统核心中的核心。
 
@@ -171,7 +181,8 @@ setter 里面的 trigger() 函数会从依赖收集表里找到当前属性对�
 
 由于已经建立了依赖收集表，所以要找到属性所对应的 dep 也就轻而易举了，可以看看具体的<a href="https://github.com/jrainlau/tiny-reactive/blob/master/src/effect.js#L23-L45" rel="nofollow">代码实现</a>：
 
-<pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">trigger&lt;/span> (&lt;span class="hljs-params">target, operationType, key&lt;/span>) &lt;/span>{
+```
+&lt;span class="hljs-keyword">export&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">trigger&lt;/span> (&lt;span class="hljs-params">target, operationType, key&lt;/span>) &lt;/span>{
   &lt;span class="hljs-comment">// 取得对应的 depsMap&lt;/span>
   &lt;span class="hljs-keyword">const&lt;/span> depsMap = targetMap.get(target)
   &lt;span class="hljs-keyword">if&lt;/span> (depsMap === &lt;span class="hljs-keyword">void&lt;/span> &lt;span class="hljs-number">0&lt;/span>) {
@@ -189,7 +200,8 @@ setter 里面的 trigger() 函数会从依赖收集表里找到当前属性对�
   effects.forEach(&lt;span class="hljs-function">&lt;span class="hljs-params">effect&lt;/span> =>&lt;/span> {
     effect()
   })
-}</code></pre>
+}
+```
 
 > 这里的代码没有处理诸如数组的 length 被修改的一些特殊情况，感兴趣的读者可以查看 <a href="https://github.com/vuejs/vue-next/blob/master/packages/reactivity/src/effect.ts#L152-L188" rel="nofollow">vue-next 对应的源码</a>，或者<a href="https://juejin.im/post/5d99be7c6fb9a04e1e7baa34?utm_source=gold_browser_extension#heading-2" rel="nofollow">这篇文章</a>，看看这些情况都是怎么处理的。
 

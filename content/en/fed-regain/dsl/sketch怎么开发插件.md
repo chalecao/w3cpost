@@ -23,29 +23,33 @@ Bundles 包含一个 `manifest.json` 文件，一个或多个 **scripts** �
 <table>
   <tr>
     <td class="gutter">
-      <pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span></pre>
+      ```
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+```
     </td>
 
     <td class="code">
-      <pre><span class="line">mrwalker.sketchplugin</span>
-<span class="line">  Contents/</span>
-<span class="line">    Sketch/</span>
-<span class="line">      manifest.json</span>
-<span class="line">      shared.js</span>
-<span class="line">      Select Circles.cocoascript</span>
-<span class="line">      Select Rectangles.cocoascript</span>
-<span class="line">    Resources/</span>
-<span class="line">      Screenshot.png</span>
-<span class="line">      Icon.png</span></pre>
+      ```
+mrwalker.sketchplugin
+  Contents/
+    Sketch/
+      manifest.json
+      shared.js
+      Select Circles.cocoascript
+      Select Rectangles.cocoascript
+    Resources/
+      Screenshot.png
+      Icon.png
+```
     </td>
   </tr>
 </table></figure>
@@ -56,10 +60,10 @@ Bundles 包含一个 `manifest.json` 文件，一个或多个 **scripts** �
 >
 > Sketch 插件包可以使用 <a href="https://skpm.io/" target="_blank" rel="noopener noreferrer">skpm</a> 在构建过程中生成，skpm 提供 Sketch 官方插件模版:
 >
-> * <a href="https://github.com/skpm/skpm/tree/master/template" target="_blank" rel="noopener noreferrer"><code>skpm/skpm</code></a> &#8211; The simplest possible plugin setup. (_default_)
-> * <a href="https://github.com/skpm/with-prettier" target="_blank" rel="noopener noreferrer"><code>skpm/with-prettier</code></a> &#8211; A plugin setup featuring linting with ESLint and code formatting with Prettier.
-> * <a href="https://github.com/skpm/with-datasupplier" target="_blank" rel="noopener noreferrer"><code>skpm/with-datasupplier</code></a> &#8211; A template to create DataSupplier plugins (check <a href="https://blog.sketchapp.com/do-more-with-data-2b765e870e4f" target="_blank" rel="noopener noreferrer">our blog</a> for more info)
-> * <a href="https://github.com/skpm/with-webview" target="_blank" rel="noopener noreferrer"><code>skpm/with-webview</code></a> &#8211; A template to create plugins displaying some rich UI in a WebView (check <a href="https://github.com/skpm/sketch-module-web-view" target="_blank" rel="noopener noreferrer">sketch-module-web-view</a> for more info)
+> * <a href="https://github.com/skpm/skpm/tree/master/template" target="_blank" rel="noopener noreferrer">skpm/skpm</a> &#8211; The simplest possible plugin setup. (_default_)
+> * <a href="https://github.com/skpm/with-prettier" target="_blank" rel="noopener noreferrer">skpm/with-prettier</a> &#8211; A plugin setup featuring linting with ESLint and code formatting with Prettier.
+> * <a href="https://github.com/skpm/with-datasupplier" target="_blank" rel="noopener noreferrer">skpm/with-datasupplier</a> &#8211; A template to create DataSupplier plugins (check <a href="https://blog.sketchapp.com/do-more-with-data-2b765e870e4f" target="_blank" rel="noopener noreferrer">our blog</a> for more info)
+> * <a href="https://github.com/skpm/with-webview" target="_blank" rel="noopener noreferrer">skpm/with-webview</a> &#8211; A template to create plugins displaying some rich UI in a WebView (check <a href="https://github.com/skpm/sketch-module-web-view" target="_blank" rel="noopener noreferrer">sketch-module-web-view</a> for more info)
 >
 > &#x1f481; Tip: Any Github repo with a ‘template’ folder can be used as a custom template:
 >
@@ -72,75 +76,79 @@ Bundles 包含一个 `manifest.json` 文件，一个或多个 **scripts** �
 <table>
   <tr>
     <td class="gutter">
-      <pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span>
-<span class="line">24</span>
-<span class="line">25</span>
-<span class="line">26</span>
-<span class="line">27</span>
-<span class="line">28</span>
-<span class="line">29</span>
-<span class="line">30</span>
-<span class="line">31</span>
-<span class="line">32</span>
-<span class="line">33</span></pre>
+      ```
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+```
     </td>
 
     <td class="code">
-      <pre><span class="line">{</span>
-<span class="line">  <span class="attr">"name"</span>: <span class="string">"Select Shapes"</span>,</span>
-<span class="line">  <span class="attr">"description"</span>: <span class="string">"Plugins to select and deselect shapes"</span>,</span>
-<span class="line">  <span class="attr">"author"</span>: <span class="string">"Joe Bloggs"</span>,</span>
-<span class="line">  <span class="attr">"homepage"</span>: <span class="string">"https://github.com/example/sketchplugins"</span>,</span>
-<span class="line">  <span class="attr">"version"</span>: <span class="string">"1.0"</span>,</span>
-<span class="line">  <span class="attr">"identifier"</span>: <span class="string">"com.example.sketch.shape-plugins"</span>,</span>
-<span class="line">  <span class="attr">"appcast"</span>: <span class="string">"https://excellent.sketchplugin.com/excellent-plugin-appcast.xml"</span>,</span>
-<span class="line">  <span class="attr">"compatibleVersion"</span>: <span class="string">"3"</span>,</span>
-<span class="line">  <span class="attr">"bundleVersion"</span>: <span class="number">1</span>,</span>
-<span class="line">  <span class="attr">"commands"</span>: [</span>
-<span class="line">    {</span>
-<span class="line">      <span class="attr">"name"</span>: <span class="string">"All"</span>,</span>
-<span class="line">      <span class="attr">"identifier"</span>: <span class="string">"all"</span>,</span>
-<span class="line">      <span class="attr">"shortcut"</span>: <span class="string">"ctrl shift a"</span>,</span>
-<span class="line">      <span class="attr">"script"</span>: <span class="string">"shared.js"</span>,</span>
-<span class="line">      <span class="attr">"handler"</span>: <span class="string">"selectAll"</span></span>
-<span class="line">    },</span>
-<span class="line">    {</span>
-<span class="line">      <span class="attr">"name"</span>: <span class="string">"Circles"</span>,</span>
-<span class="line">      <span class="attr">"identifier"</span>: <span class="string">"circles"</span>,</span>
-<span class="line">      <span class="attr">"script"</span>: <span class="string">"Select Circles.cocoascript"</span></span>
-<span class="line">    },</span>
-<span class="line">    {</span>
-<span class="line">      <span class="attr">"name"</span>: <span class="string">"Rectangles"</span>,</span>
-<span class="line">      <span class="attr">"identifier"</span>: <span class="string">"rectangles"</span>,</span>
-<span class="line">      <span class="attr">"script"</span>: <span class="string">"Select Rectangles.cocoascript"</span></span>
-<span class="line">    }</span>
-<span class="line">  ],</span>
-<span class="line">  <span class="attr">"menu"</span>: {</span>
-<span class="line">    <span class="attr">"items"</span>: [<span class="string">"all"</span>, <span class="string">"circles"</span>, <span class="string">"rectangles"</span>]</span>
-<span class="line">  }</span>
-<span class="line">}</span></pre>
+      ```
+{
+  "name": "Select Shapes",
+  "description": "Plugins to select and deselect shapes",
+  "author": "Joe Bloggs",
+  "homepage": "https://github.com/example/sketchplugins",
+  "version": "1.0",
+  "identifier": "com.example.sketch.shape-plugins",
+  "appcast": "https://excellent.sketchplugin.com/excellent-plugin-appcast.xml",
+  "compatibleVersion": "3",
+  "bundleVersion": 1,
+  "commands": [
+    {
+      "name": "All",
+      "identifier": "all",
+      "shortcut": "ctrl shift a",
+      "script": "shared.js",
+      "handler": "selectAll"
+    },
+    {
+      "name": "Circles",
+      "identifier": "circles",
+      "script": "Select Circles.cocoascript"
+    },
+    {
+      "name": "Rectangles",
+      "identifier": "rectangles",
+      "script": "Select Rectangles.cocoascript"
+    }
+  ],
+  "menu": {
+    "items": ["all", "circles", "rectangles"]
+  }
+}
+```
     </td>
   </tr>
 </table></figure>
@@ -174,37 +182,41 @@ manifest.json 文件，配置相应 handlers。
 <table>
   <tr>
     <td class="gutter">
-      <pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span></pre>
+      ```
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+```
     </td>
 
     <td class="code">
-      <pre><span class="line"><span class="string">"commands"</span> : [</span>
-<span class="line">  ...</span>
-<span class="line">  {</span>
-<span class="line">    <span class="string">"script"</span> : <span class="string">"my-action-listener.js"</span>,</span>
-<span class="line">    <span class="string">"name"</span> : <span class="string">"My Action Listener"</span>,</span>
-<span class="line">    <span class="string">"handlers"</span> : {</span>
-<span class="line">      <span class="string">"actions"</span>: {</span>
-<span class="line">        <span class="string">"OpenDocument"</span>: <span class="string">"onOpenDocument"</span></span>
-<span class="line">      }</span>
-<span class="line">    },</span>
-<span class="line">    <span class="string">"identifier"</span> : <span class="string">"my-action-listener-identifier"</span></span>
-<span class="line">  }</span>
-<span class="line">  ...</span>
-<span class="line">],</span></pre>
+      ```
+"commands" : [
+  ...
+  {
+    "script" : "my-action-listener.js",
+    "name" : "My Action Listener",
+    "handlers" : {
+      "actions": {
+        "OpenDocument": "onOpenDocument"
+      }
+    },
+    "identifier" : "my-action-listener-identifier"
+  }
+  ...
+],
+```
     </td>
   </tr>
 </table></figure>
@@ -214,15 +226,19 @@ manifest.json 文件，配置相应 handlers。
 <table>
   <tr>
     <td class="gutter">
-      <pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span></pre>
+      ```
+1
+2
+3
+```
     </td>
 
     <td class="code">
-      <pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">onOpenDocument</span>(<span class="params">context</span>) </span>{       </span>
-<span class="line">  context.actionContext.document.showMessage(<span class="string">'Document Opened'</span>)</span>
-<span class="line">}</span></pre>
+      ```
+export function onOpenDocument(context) {       
+  context.actionContext.document.showMessage('Document Opened')
+}
+```
     </td>
   </tr>
 </table></figure>
@@ -264,55 +280,59 @@ Sketch 插件开发大概有如下三种方式：① 纯使用 CocoaScript 脚�
 <table>
   <tr>
     <td class="gutter">
-      <pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span></pre>
+      ```
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+```
     </td>
 
     <td class="code">
-      <pre><span class="line"><span class="comment">// oc: MSPlugin 的接口 valueForKey:onLayer:</span></span>
-<span class="line">NSString * value = [command valueForKey:kAutoresizingMask onLayer:currentLayer];</span>
+      ```
+// oc: MSPlugin 的接口 valueForKey:onLayer:
+NSString * value = [command valueForKey:kAutoresizingMask onLayer:currentLayer];
 
-<span class="line"><span class="comment">// cocoascript:</span></span>
-<span class="line"><span class="keyword">const</span> value = command.valueForKey_onLayer(kAutoresizingMask, currentLayer);</span>
+// cocoascript:
+const value = command.valueForKey_onLayer(kAutoresizingMask, currentLayer);
 
-<span class="line"><span class="comment">// oc:</span></span>
-<span class="line"><span class="keyword">const</span> app = [NSApplication sharedApplication];</span>
-<span class="line">[app displayDialog:msg withTitle:title];</span>
+// oc:
+const app = [NSApplication sharedApplication];
+[app displayDialog:msg withTitle:title];
 
-<span class="line"><span class="comment">// cocoascript:</span></span>
-<span class="line"><span class="keyword">const</span> app = NSApplication.sharedApplication();</span>
-<span class="line">app.displayDialog_withTitle(msg, title)</span>
+// cocoascript:
+const app = NSApplication.sharedApplication();
+app.displayDialog_withTitle(msg, title)
 
-<span class="line"><span class="comment">// oc:</span></span>
-<span class="line"><span class="keyword">const</span> openPanel = [NSOpenPanel openPanel]</span>
-<span class="line">[openPanel setTitle: <span class="string">"Choose a location…"</span>]</span>
-<span class="line">[openPanel setPrompt: <span class="string">"Export"</span>];</span>
+// oc:
+const openPanel = [NSOpenPanel openPanel]
+[openPanel setTitle: "Choose a location…"]
+[openPanel setPrompt: "Export"];
 
-<span class="line"><span class="comment">// cocoascript:</span></span>
-<span class="line"><span class="keyword">const</span> openPanel = NSOpenPanel.openPanel</span>
-<span class="line">openPanel.setTitle(<span class="string">"Choose a location…"</span>)</span>
-<span class="line">openPanel.setPrompt(<span class="string">"Export"</span>)</span></pre>
+// cocoascript:
+const openPanel = NSOpenPanel.openPanel
+openPanel.setTitle("Choose a location…")
+openPanel.setPrompt("Export")
+```
     </td>
   </tr>
 </table></figure>
@@ -326,39 +346,43 @@ Sketch 插件系统可以完全访问应用程序的内部结构和 macOS 中的
 <table>
   <tr>
     <td class="gutter">
-      <pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span></pre>
+      ```
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+```
     </td>
 
     <td class="code">
-      <pre><span class="line"><span class="built_in">String</span>(context.document.class()) <span class="comment">// MSDocument</span></span>
+      ```
+String(context.document.class()) // MSDocument
 
-<span class="line"><span class="keyword">const</span> mocha = context.document.class().mocha()</span>
+const mocha = context.document.class().mocha()
 
-<span class="line">mocha.properties() <span class="comment">// array of MSDocument specific properties defined on a MSDocument instance</span></span>
-<span class="line">mocha.propertiesWithAncestors() <span class="comment">// array of all the properties defined on a MSDocument instance</span></span>
+mocha.properties() // array of MSDocument specific properties defined on a MSDocument instance
+mocha.propertiesWithAncestors() // array of all the properties defined on a MSDocument instance
 
-<span class="line">mocha.instanceMethods() <span class="comment">// array of methods defined on a MSDocument instance</span></span>
-<span class="line">mocha.instanceMethodsWithAncestors()</span>
+mocha.instanceMethods() // array of methods defined on a MSDocument instance
+mocha.instanceMethodsWithAncestors()
 
-<span class="line">mocha.classMethods() <span class="comment">// array of methods defined on the MSDocument class</span></span>
-<span class="line">mocha.classMethodsWithAncestors()</span>
+mocha.classMethods() // array of methods defined on the MSDocument class
+mocha.classMethodsWithAncestors()
 
-<span class="line">mocha.protocols() <span class="comment">// array of protocols the MSDocument class inherits from</span></span>
-<span class="line">mocha.protocolsWithAncestors()</span></pre>
+mocha.protocols() // array of protocols the MSDocument class inherits from
+mocha.protocolsWithAncestors()
+```
     </td>
   </tr>
 </table></figure>
@@ -367,52 +391,56 @@ Sketch 插件系统可以完全访问应用程序的内部结构和 macOS 中的
 
 当输入插件定制的命令时，Sketch 会去寻找改命令对应的实现函数， 并传入 `context` 变量。`context`包含以下变量：
 
-* **command**: <a href="https://link.jianshu.com/?t=http://developer.sketchapp.com/reference/MSPluginCommand/" target="_blank" rel="noopener noreferrer"><code>MSPluginCommand</code></a> 对象，当前执行命令
-* **document**: <a href="https://link.jianshu.com/?t=http://developer.sketchapp.com/reference/MSDocument/" target="_blank" rel="noopener noreferrer"><code>MSDocument</code></a> 对象 ，当前文档
-* **plugin**: <a href="https://link.jianshu.com/?t=http://developer.sketchapp.com/reference/MSPluginBundle/" target="_blank" rel="noopener noreferrer"><code>MSPluginBundle</code></a> 对象，当前的插件 bundle，包含当前运行的脚本
+* **command**: <a href="https://link.jianshu.com/?t=http://developer.sketchapp.com/reference/MSPluginCommand/" target="_blank" rel="noopener noreferrer">MSPluginCommand</a> 对象，当前执行命令
+* **document**: <a href="https://link.jianshu.com/?t=http://developer.sketchapp.com/reference/MSDocument/" target="_blank" rel="noopener noreferrer">MSDocument</a> 对象 ，当前文档
+* **plugin**: <a href="https://link.jianshu.com/?t=http://developer.sketchapp.com/reference/MSPluginBundle/" target="_blank" rel="noopener noreferrer">MSPluginBundle</a> 对象，当前的插件 bundle，包含当前运行的脚本
 * **scriptPath**: `NSString` 当前执行脚本的绝对路径
 * **scriptURL**: 当前执行脚本的绝对路径，跟 **scriptPath**不同的是它是个 `NSURL` 对象
-* **selection**: 一个 `NSArray` 对象，包含了当前选择的所有图层。数组中的每一个元素都是 <a href="https://link.jianshu.com/?t=http://developer.sketchapp.com/reference/MSLayer/" target="_blank" rel="noopener noreferrer"><code>MSLayer</code></a> 对象
+* **selection**: 一个 `NSArray` 对象，包含了当前选择的所有图层。数组中的每一个元素都是 <a href="https://link.jianshu.com/?t=http://developer.sketchapp.com/reference/MSLayer/" target="_blank" rel="noopener noreferrer">MSLayer</a> 对象
 
 > 小贴士：MS 打头类名为 Sketch 封装类如图层基类 [MSLayer][1])、文本层基类 [MSTextLayer][2]) 、位图层基类 <a href="https://github.com/abynim/Sketch-Headers/blob/master/Headers/MSBitmapLayer.h" target="_blank" rel="noopener noreferrer">MSBitmapLayer</a>，NS 打头为 AppKit 中含有的类<figure class="highlight js">
 
 <table>
   <tr>
     <td class="gutter">
-      <pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span></pre>
+      ```
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+```
     </td>
 
     <td class="code">
-      <pre><span class="line"><span class="keyword">const</span> app = NSApplication.sharedApplication()</span>
+      ```
+const app = NSApplication.sharedApplication()
 
-<span class="line"><span class="function"><span class="keyword">function</span> <span class="title">initContext</span>(<span class="params">context</span>) </span>{</span>
-<span class="line">  context.document.showMessage(<span class="string">'初始执行脚本'</span>)</span>
-<span class="line">    <span class="keyword">const</span> doc = context.document</span>
-<span class="line">    <span class="keyword">const</span> page = doc.currentPage()</span>
-<span class="line">    <span class="keyword">const</span> artboards = page.artboards()</span>
-<span class="line">    <span class="keyword">const</span> selectedArtboard = page.currentArtboard() <span class="comment">// 当前被选择的画板</span></span>
+function initContext(context) {
+  context.document.showMessage('初始执行脚本')
+    const doc = context.document
+    const page = doc.currentPage()
+    const artboards = page.artboards()
+    const selectedArtboard = page.currentArtboard() // 当前被选择的画板
 
-<span class="line">    <span class="keyword">const</span> plugin = context.plugin</span>
-<span class="line">    <span class="keyword">const</span> command = context.command</span>
-<span class="line">    <span class="keyword">const</span> scriptPath = context.scriptPath</span>
-<span class="line">    <span class="keyword">const</span> scriptURL = context.scriptURL</span>
-<span class="line">    <span class="keyword">const</span> selection = context.selection <span class="comment">// 被选择的图层</span></span>
-<span class="line">}</span></pre>
+    const plugin = context.plugin
+    const command = context.command
+    const scriptPath = context.scriptPath
+    const scriptURL = context.scriptURL
+    const selection = context.selection // 被选择的图层
+}
+```
     </td>
   </tr>
 </table></figure>
@@ -428,11 +456,15 @@ Sketch 插件系统可以完全访问应用程序的内部结构和 macOS 中的
 <table>
   <tr>
     <td class="gutter">
-      <pre><span class="line">1</span></pre>
+      ```
+1
+```
     </td>
 
     <td class="code">
-      <pre><span class="line">defaults write com.bohemiancoding.sketch3 disableAutomaticSafeMode <span class="literal">true</span></span></pre>
+      ```
+defaults write com.bohemiancoding.sketch3 disableAutomaticSafeMode true
+```
     </td>
   </tr>
 </table></figure>
@@ -444,11 +476,15 @@ Sketch 插件系统可以完全访问应用程序的内部结构和 macOS 中的
 <table>
   <tr>
     <td class="gutter">
-      <pre><span class="line">1</span></pre>
+      ```
+1
+```
     </td>
 
     <td class="code">
-      <pre><span class="line">defaults write com.bohemiancoding.sketch3 AlwaysReloadScript -bool YES</span></pre>
+      ```
+defaults write com.bohemiancoding.sketch3 AlwaysReloadScript -bool YES
+```
     </td>
   </tr>
 </table></figure>
@@ -462,11 +498,15 @@ Sketch 插件系统可以完全访问应用程序的内部结构和 macOS 中的
 <table>
   <tr>
     <td class="gutter">
-      <pre><span class="line">1</span></pre>
+      ```
+1
+```
     </td>
 
     <td class="code">
-      <pre><span class="line">defaults write com.bohemiancoding.sketch3 WebKitDeveloperExtras -bool YES</span></pre>
+      ```
+defaults write com.bohemiancoding.sketch3 WebKitDeveloperExtras -bool YES
+```
     </td>
   </tr>
 </table></figure>
@@ -484,57 +524,61 @@ Sketch 中要创建如下内容面板，需要使用 macOS 下 `AppKit` 框架
 <table>
   <tr>
     <td class="gutter">
-      <pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span>
-<span class="line">24</span></pre>
+      ```
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+```
     </td>
 
     <td class="code">
-      <pre><span class="line"><span class="keyword">const</span> panelWidth = <span class="number">80</span>;</span>
-<span class="line"><span class="keyword">const</span> panelHeight = <span class="number">240</span>;</span>
+      ```
+const panelWidth = 80;
+const panelHeight = 240;
 
-<span class="line"><span class="comment">// Create the panel and set its appearance</span></span>
-<span class="line"><span class="keyword">const</span> panel = NSPanel.alloc().init();</span>
-<span class="line">panel.setFrame_display(NSMakeRect(<span class="number"></span>, <span class="number"></span>, panelWidth, panelHeight), <span class="literal">true</span>);</span>
-<span class="line">panel.setStyleMask(NSTexturedBackgroundWindowMask | NSTitledWindowMask | NSClosableWindowMask | NSFullSizeContentViewWindowMask);</span>
-<span class="line">panel.setBackgroundColor(NSColor.whiteColor());</span>
+// Create the panel and set its appearance
+const panel = NSPanel.alloc().init();
+panel.setFrame_display(NSMakeRect(, , panelWidth, panelHeight), true);
+panel.setStyleMask(NSTexturedBackgroundWindowMask | NSTitledWindowMask | NSClosableWindowMask | NSFullSizeContentViewWindowMask);
+panel.setBackgroundColor(NSColor.whiteColor());
 
-<span class="line"><span class="comment">// Set the panel's title and title bar appearance</span></span>
-<span class="line">panel.title = <span class="string">""</span>;</span>
-<span class="line">panel.titlebarAppearsTransparent = <span class="literal">true</span>;</span>
+// Set the panel's title and title bar appearance
+panel.title = "";
+panel.titlebarAppearsTransparent = true;
 
-<span class="line"><span class="comment">// Center and focus the panel</span></span>
-<span class="line">panel.center();</span>
-<span class="line">panel.makeKeyAndOrderFront(<span class="literal">null</span>);</span>
-<span class="line">panel.setLevel(NSFloatingWindowLevel);</span>
+// Center and focus the panel
+panel.center();
+panel.makeKeyAndOrderFront(null);
+panel.setLevel(NSFloatingWindowLevel);
 
-<span class="line"><span class="comment">// Make the plugin's code stick around (since it's a floating panel)</span></span>
-<span class="line">COScript.currentCOScript().setShouldKeepAround(<span class="literal">true</span>);</span>
+// Make the plugin's code stick around (since it's a floating panel)
+COScript.currentCOScript().setShouldKeepAround(true);
 
-<span class="line"><span class="comment">// Hide the Minimize and Zoom button</span></span>
-<span class="line">panel.standardWindowButton(NSWindowMiniaturizeButton).setHidden(<span class="literal">true</span>);</span>
-<span class="line">panel.standardWindowButton(NSWindowZoomButton).setHidden(<span class="literal">true</span>);</span></pre>
+// Hide the Minimize and Zoom button
+panel.standardWindowButton(NSWindowMiniaturizeButton).setHidden(true);
+panel.standardWindowButton(NSWindowZoomButton).setHidden(true);
+```
     </td>
   </tr>
 </table></figure>
@@ -544,23 +588,27 @@ Sketch 中要创建如下内容面板，需要使用 macOS 下 `AppKit` 框架
 <table>
   <tr>
     <td class="gutter">
-      <pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span></pre>
+      ```
+1
+2
+3
+4
+5
+6
+7
+```
     </td>
 
     <td class="code">
-      <pre><span class="line"><span class="comment">// Create the blurred background</span></span>
-<span class="line"><span class="keyword">const</span> vibrancy = NSVisualEffectView.alloc().initWithFrame(NSMakeRect(<span class="number"></span>, <span class="number"></span>, panelWidth, panelHeight));</span>
-<span class="line">vibrancy.setAppearance(NSAppearance.appearanceNamed(NSAppearanceNameVibrantLight));</span>
-<span class="line">vibrancy.setBlendingMode(NSVisualEffectBlendingModeBehindWindow);</span>
+      ```
+// Create the blurred background
+const vibrancy = NSVisualEffectView.alloc().initWithFrame(NSMakeRect(, , panelWidth, panelHeight));
+vibrancy.setAppearance(NSAppearance.appearanceNamed(NSAppearanceNameVibrantLight));
+vibrancy.setBlendingMode(NSVisualEffectBlendingModeBehindWindow);
 
-<span class="line"><span class="comment">// Add it to the panel</span></span>
-<span class="line">panel.contentView().addSubview(vibrancy);</span></pre>
+// Add it to the panel
+panel.contentView().addSubview(vibrancy);
+```
     </td>
   </tr>
 </table></figure>
@@ -570,37 +618,41 @@ Sketch 中要创建如下内容面板，需要使用 macOS 下 `AppKit` 框架
 <table>
   <tr>
     <td class="gutter">
-      <pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span></pre>
+      ```
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+```
     </td>
 
     <td class="code">
-      <pre><span class="line"><span class="keyword">const</span> wkwebviewConfig = WKWebViewConfiguration.alloc().init()</span>
-<span class="line"><span class="keyword">const</span> webView = WKWebView.alloc().initWithFrame_configuration(</span>
-<span class="line">  CGRectMake(<span class="number"></span>, <span class="number"></span>, panelWidth, panelWidth),</span>
-<span class="line">  wkwebviewConfig</span>
-<span class="line">)</span>
+      ```
+const wkwebviewConfig = WKWebViewConfiguration.alloc().init()
+const webView = WKWebView.alloc().initWithFrame_configuration(
+  CGRectMake(, , panelWidth, panelWidth),
+  wkwebviewConfig
+)
 
-<span class="line"><span class="comment">// Add it to the panel</span></span>
-<span class="line">panel.contentView().addSubview(webView);</span>
+// Add it to the panel
+panel.contentView().addSubview(webView);
 
-<span class="line"><span class="comment">// load file URL</span></span>
-<span class="line">webview.loadFileURL_allowingReadAccessToURL(</span>
-<span class="line">  NSURL.URLWithString(url),</span>
-<span class="line">  NSURL.URLWithString(<span class="string">'file:///'</span>)</span>
-<span class="line">)</span></pre>
+// load file URL
+webview.loadFileURL_allowingReadAccessToURL(
+  NSURL.URLWithString(url),
+  NSURL.URLWithString('file:///')
+)
+```
     </td>
   </tr>
 </table></figure>
@@ -612,83 +664,87 @@ Sketch 中要创建如下内容面板，需要使用 macOS 下 `AppKit` 框架
 <table>
   <tr>
     <td class="gutter">
-      <pre><span class="line">1</span>
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span>
-<span class="line">6</span>
-<span class="line">7</span>
-<span class="line">8</span>
-<span class="line">9</span>
-<span class="line">10</span>
-<span class="line">11</span>
-<span class="line">12</span>
-<span class="line">13</span>
-<span class="line">14</span>
-<span class="line">15</span>
-<span class="line">16</span>
-<span class="line">17</span>
-<span class="line">18</span>
-<span class="line">19</span>
-<span class="line">20</span>
-<span class="line">21</span>
-<span class="line">22</span>
-<span class="line">23</span>
-<span class="line">24</span>
-<span class="line">25</span>
-<span class="line">26</span>
-<span class="line">27</span>
-<span class="line">28</span>
-<span class="line">29</span>
-<span class="line">30</span>
-<span class="line">31</span>
-<span class="line">32</span>
-<span class="line">33</span>
-<span class="line">34</span>
-<span class="line">35</span>
-<span class="line">36</span>
-<span class="line">37</span></pre>
+      ```
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+```
     </td>
 
     <td class="code">
-      <pre><span class="line"> <span class="comment">// create toolbar</span></span>
-<span class="line"> <span class="keyword">const</span> toolbar = NSStackView.alloc().initWithFrame(NSMakeRect(<span class="number"></span>, <span class="number"></span>, <span class="number">40</span>, <span class="number">400</span>))</span>
-<span class="line"> threadDictionary[SidePanelIdentifier] = toolbar</span>
-<span class="line"> toolbar.identifier = SidePanelIdentifier</span>
-<span class="line"> toolbar.setSpacing(<span class="number">8</span>)</span>
-<span class="line"> toolbar.setFlipped(<span class="literal">true</span>)</span>
-<span class="line"> toolbar.setBackgroundColor(NSColor.windowBackgroundColor())</span>
-<span class="line"> toolbar.orientation = <span class="number">1</span></span>
+      ```
+ // create toolbar
+ const toolbar = NSStackView.alloc().initWithFrame(NSMakeRect(, , 40, 400))
+ threadDictionary[SidePanelIdentifier] = toolbar
+ toolbar.identifier = SidePanelIdentifier
+ toolbar.setSpacing(8)
+ toolbar.setFlipped(true)
+ toolbar.setBackgroundColor(NSColor.windowBackgroundColor())
+ toolbar.orientation = 1
 
-<span class="line"> <span class="comment">// add element</span></span>
-<span class="line"> toolbar.addView_inGravity(createImageView(NSMakeRect(<span class="number"></span>, <span class="number"></span>, <span class="number">40</span>, <span class="number">22</span>), <span class="string">'transparent'</span>, NSMakeSize(<span class="number">40</span>, <span class="number">22</span>)), <span class="number">1</span>)</span>
-<span class="line"> <span class="keyword">const</span> Logo = createImageView(NSMakeRect(<span class="number"></span>, <span class="number"></span>, <span class="number">40</span>, <span class="number">30</span>), <span class="string">'logo'</span>, NSMakeSize(<span class="number">40</span>, <span class="number">28</span>))</span>
-<span class="line"> toolbar.addSubview(Logo)</span>
+ // add element
+ toolbar.addView_inGravity(createImageView(NSMakeRect(, , 40, 22), 'transparent', NSMakeSize(40, 22)), 1)
+ const Logo = createImageView(NSMakeRect(, , 40, 30), 'logo', NSMakeSize(40, 28))
+ toolbar.addSubview(Logo)
 
-<span class="line"> <span class="keyword">const</span> contentView = context.document.documentWindow().contentView()</span>
-<span class="line"> <span class="keyword">const</span> stageView = contentView.subviews().objectAtIndex(<span class="number"></span>)</span>
+ const contentView = context.document.documentWindow().contentView()
+ const stageView = contentView.subviews().objectAtIndex()
 
-<span class="line"> <span class="keyword">const</span> views = stageView.subviews()</span>
-<span class="line"> <span class="keyword">const</span> existId = views.find(<span class="function"><span class="params">d</span> =></span> <span class="string">''</span>.concat(d.identifier()) === identifier)</span>
+ const views = stageView.subviews()
+ const existId = views.find(d => ''.concat(d.identifier()) === identifier)
 
-<span class="line"> <span class="keyword">const</span> finalViews = []</span>
+ const finalViews = []
 
-<span class="line"> <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number"></span>; i < views.count(); i++) {</span>
-<span class="line">   <span class="keyword">const</span> view = views[i]</span>
-<span class="line">   <span class="keyword">if</span> (existId) {</span>
-<span class="line">     <span class="keyword">if</span> (<span class="string">''</span>.concat(view.identifier()) !== identifier) finalViews.push(view)</span>
-<span class="line">   } <span class="keyword">else</span> {</span>
-<span class="line">     finalViews.push(view)</span>
-<span class="line">     <span class="keyword">if</span> (<span class="string">''</span>.concat(view.identifier()) === <span class="string">'view_canvas'</span>) {</span>
-<span class="line">       finalViews.push(toolbar)</span>
-<span class="line">     }</span>
-<span class="line">   }</span>
-<span class="line"> }</span>
+ for (let i = ; i < views.count(); i++) {
+   const view = views[i]
+   if (existId) {
+     if (''.concat(view.identifier()) !== identifier) finalViews.push(view)
+   } else {
+     finalViews.push(view)
+     if (''.concat(view.identifier()) === 'view_canvas') {
+       finalViews.push(toolbar)
+     }
+   }
+ }
 
-<span class="line"><span class="comment">// add to main Window</span></span>
-<span class="line"> stageView.subviews = finalViews</span>
-<span class="line"> stageView.adjustSubviews()</span></pre>
+// add to main Window
+ stageView.subviews = finalViews
+ stageView.adjustSubviews()
+```
     </td>
   </tr>
 </table></figure>
@@ -729,11 +785,15 @@ JavaScriptCore <a href="https://developer.sketchapp.com/guides/cocoascript/" ta
     <table>
       <tr>
         <td class="gutter">
-          <pre><span class="line">1</span></pre>
+          ```
+1
+```
         </td>
 
         <td class="code">
-          <pre><span class="line">Sketch.app<span class="regexp">/Contents/</span>Resources<span class="regexp">/sketchtool/</span>bin<span class="regexp">/sketchtool</span></span></pre>
+          ```
+Sketch.app/Contents/Resources/sketchtool/bin/sketchtool
+```
         </td>
       </tr>
     </table></figure>
@@ -743,11 +803,15 @@ JavaScriptCore <a href="https://developer.sketchapp.com/guides/cocoascript/" ta
     <table>
       <tr>
         <td class="gutter">
-          <pre><span class="line">1</span></pre>
+          ```
+1
+```
         </td>
 
         <td class="code">
-          <pre><span class="line"><span class="built_in">alias</span> sketchtool=<span class="string">"/Applications/Sketch.app/Contents/Resources/sketchtool/bin/sketchtool"</span></span></pre>
+          ```
+alias sketchtool="/Applications/Sketch.app/Contents/Resources/sketchtool/bin/sketchtool"
+```
         </td>
       </tr>
     </table></figure>
@@ -757,20 +821,24 @@ JavaScriptCore <a href="https://developer.sketchapp.com/guides/cocoascript/" ta
     <table>
       <tr>
         <td class="gutter">
-          <pre><span class="line">1</span>
+          ```
+1
 
-<span class="line">2</span>
-<span class="line">3</span>
-<span class="line">4</span>
-<span class="line">5</span></pre>
+2
+3
+4
+5
+```
         </td>
 
         <td class="code">
-          <pre><span class="line">sketchtool -h  <span class="comment"># 查看帮助</span></span>
-<span class="line">sketchtool <span class="built_in">export</span> artboards path/to/document.sketch  <span class="comment"># 导出画板</span></span>
-<span class="line">sketchtool dump path/to/document.sketch <span class="comment"># 导出 Sketch 文档 JSON data</span></span>
-<span class="line">sketchtool metadata path/to/document.sketch <span class="comment"># 查看 Sketch 文档元数据</span></span>
-<span class="line">sketchtool run [Plugin path] <span class="comment"># 运行插件</span></span></pre>
+          ```
+sketchtool -h  # 查看帮助
+sketchtool export artboards path/to/document.sketch  # 导出画板
+sketchtool dump path/to/document.sketch # 导出 Sketch 文档 JSON data
+sketchtool metadata path/to/document.sketch # 查看 Sketch 文档元数据
+sketchtool run [Plugin path] # 运行插件
+```
         </td>
       </tr>
     </table></figure>

@@ -14,7 +14,7 @@ title: “总阻塞时间”（TBT）
 
 如果任务足够长（例如，超过50毫秒的任何时间），则用户很可能会注意到延迟，并感觉页面缓慢或过时。
 
-给定的长任务的_阻塞时间_是其持续时间超过50毫秒。<span style="color: #ff0000;">页面的</span><span style="color: #ff0000;"><em>总阻塞时间</em>是FCP和TTI之间发生的每个长任务的<em>阻塞时间之</em>和。</span>
+给定的长任务的_阻塞时间_是其持续时间超过50毫秒。页面的<em>总阻塞时间</em>是FCP和TTI之间发生的每个长任务的<em>阻塞时间之</em>和。
 
 例如，考虑页面加载期间[浏览器](https://www.w3cdoc.com)主线程的下图：
 
@@ -143,7 +143,7 @@ TBT是应该[在实验室中][4]测量的指标。衡量TBT的最佳方法是在
 
 ## 良好的TBT分数是多少？<a class="w-headline-link" href="https://web.dev/tbt/#what-is-a-good-tbt-score" aria-hidden="true">＃</a> {#what-is-a-good-tbt-score}
 
-为了提供<span style="color: #ff0000;">良好的用户体验</span>，在**一般的移动硬件**上进行测试时，站点应努力使<span style="color: #ff0000;">总阻止时间小于300毫秒。</span>
+为了提供良好的用户体验，在**一般的移动硬件**上进行测试时，站点应努力使总阻止时间小于300毫秒。
 
 有关页面的TBT怎样影响您的Lighthouse性能得分的详细信息，请参阅[Lighthouse如何确定您的TBT得分][10]
 

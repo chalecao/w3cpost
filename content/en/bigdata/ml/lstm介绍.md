@@ -16,7 +16,7 @@ title: LSTM介绍
 
 **Long short-termmemory** (**LSTM**)is a <a class="outlink" title="Recurrent neural network" target="_blank" rel="nofollow noopener noreferrer">recurrent neuralnetwork</a> (RNN)architecture (an <a class="outlink" title="Artificial neural network" target="_blank" rel="nofollow noopener noreferrer">artificialneural network</a>)published<a class="outlink" target="_blank" rel="nofollow noopener noreferrer"><sup>[1]</sup></a> in 1997 by <a class="outlink" title="Sepp Hochreiter" target="_blank" rel="nofollow noopener noreferrer">Sepp Hochreiter</a> and <a class="outlink" title="Jürgen Schmidhuber" target="_blank" rel="nofollow noopener noreferrer">Jürgen Schmidhuber</a>. Like most RNNs, an LSTM network is universalin the sense that given enough network units it can compute anything aconventional computer can compute, provided it has the proper <a class="outlink" title="Weight" target="_blank" rel="nofollow noopener noreferrer">weight</a> <a class="outlink" title="Matrix (mathematics)" target="_blank" rel="nofollow noopener noreferrer">matrix</a>, which may be viewed as its program. Unliketraditional RNNs, an LSTM network is well-suited to learn from experience to <a class="outlink" title="Classification in machine learning" target="_blank" rel="nofollow noopener noreferrer">classify</a>, <a class="outlink" title="Computer data processing" target="_blank" rel="nofollow noopener noreferrer">process</a> and <a class="outlink" title="Predict" target="_blank" rel="nofollow noopener noreferrer">predict</a> <a class="outlink" title="Time series" target="_blank" rel="nofollow noopener noreferrer">time series</a> when there are very long time lags of unknownsize between important events. This is one of the main reasons why LSTMoutperforms alternative RNNs and <a class="outlink" title="Hidden Markov Models" target="_blank" rel="nofollow noopener noreferrer">Hidden Markov Models</a> and other sequence learning methods in numerousapplications.
 
-&nbsp;
+
 
 # 2.类属
 
@@ -35,7 +35,7 @@ title: LSTM介绍
 
 尽管如此，大多数专家还是会达成共识：FNN可以实现的功能仍然相当有限。究其原因，人类的大脑有着惊人的计算功能，而“分类”任务仅仅是其中很小的一个组成部分。[我们](https://www.w3cdoc.com)不仅能够识别个体案例，更能分析输入信息之间的整体逻辑序列。这些信息序列富含有大量的内容，信息彼此间有着复杂的时间关联性，并且信息长度各种各样。例如视觉、开车、演讲还有理解能力，这些都需要[我们](https://www.w3cdoc.com)同时处理高维度的多种输入信息，因为它们时时都在变化，而这是FNN在建模时就极为匮乏的。
 
-&nbsp;
+
 
 ## 3.2 CNN vs RNN
 
@@ -46,9 +46,9 @@ title: LSTM介绍
 While characters or short spoken words can besize-normalized and fed to a fixed-size network, more complex objects such aswritten or spoken words and sentences have inherently variable size. One way ofhandling such a composite object is to segment it heuristically into simplerobjects that can be recognized individually, e.g. characters phonemes. However,reliable segmentation heuristics do not exist for speech or cursivehandwriting. A bruteforce solution&#8230;..  
 简单的说，CNN并不完全适用于学习时间序列，因此会需要各种辅助性处理，且效果也不一定好。面对对时间序列敏感的问题赫和任务，RNN(如LSTM)通常会比较合适。
 
-&nbsp;
 
-&nbsp;
+
+
 
 一个例子：
 
@@ -66,27 +66,27 @@ For task 1, however, you can use RNN if you have a lot of data. But you canalso 
 RNN回归型网络，用于序列数据，并且有了一定的记忆效应，辅之以lstm。  
 CNN应该侧重空间映射，图像数据尤为贴合此场景。
 
-&nbsp;
+
 
 ## 3.3 LSTM vs (传统)RNNs
 
 两篇文章的描述：
 
-&nbsp;
+
 
 **1.     AlexGraves. 《SupervisedSequence Labelling with Recurrent Neural Networks》. Textbook, Studies inComputational Intelligence, Springer, 2012.**
 
-&nbsp;
+
 
 “Long Short-term Memory (LSTM) is an RNN architecture designed to be better at storing and accessing informationthanstandard RNNs. LSTM has recently given state-of-the-art results in a variety ofsequenceprocessing tasks, including speech andhandwriting recognition .”
 
-&nbsp;
 
-&nbsp;
+
+
 
 **2.    Yann LeCun、Yoshua Bengio和Geoffrey Hinton合作的这篇综述文章《**<a class="outlink" target="_blank" rel="nofollow noopener noreferrer">Deep Learning</a>**》**
 
-&nbsp;
+
 
 “RNNs一旦展开（如图5），可以将之视为一个所有层共享同样权值的深度前馈神经网络。虽然它们的目的是学习长期的依赖性，但理论的和经验的证据表明很难学习并长期保存信息。
 
@@ -94,7 +94,7 @@ CNN应该侧重空间映射，图像数据尤为贴合此场景。
 
 LSTM网络随后被证明比传统的RNNs更加有效，尤其当每一个时间步长内有若干层时，整个语音识别系统能够完全一致的将声学转录为字符序列。目前LSTM网络或者相关的门控单元同样用于编码和解码网络，并且在机器翻译中表现良好。”
 
-&nbsp;
+
 
 # 4.在不同任务上的数据对比
 
@@ -361,7 +361,7 @@ LSTM网络随后被证明比传统的RNNs更加有效，尤其当每一个时间
   </table>
 </div>
 
-&nbsp;
+
 
 数据尽管在检索上还有一些问题，尤其是 WOS数据库上涵盖的文章可能代表了一部分水平比较高的论文，在数量上并不完全按与研究的力度划等号，但还是可以看出一些端倪。
 

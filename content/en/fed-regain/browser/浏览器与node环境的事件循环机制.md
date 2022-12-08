@@ -70,7 +70,8 @@ js引擎遇到一个异步事件后并不会一直等待其返回结果，而是
 这样就能解释下面这段代码的结果：
 
 <div class="highlight">
-  <pre><code class="language-text">setTimeout(function () {
+  ```
+setTimeout(function () {
     console.log(1);
 });
 
@@ -80,15 +81,18 @@ new Promise(function(resolve,reject){
 }).then(function(val){
     console.log(val);
 })
-</code></pre>
+
+```
 </div>
 
 结果为：
 
 <div class="highlight">
-  <pre><code class="language-text">2
+  ```
+2
 3
-1</code></pre>
+1
+```
 </div>
 
 # node环境下的事件循环机制
@@ -158,10 +162,12 @@ check阶段专门用来执行`setImmediate()`方法的回调，当poll阶段进�
 那么合适使用这个方法比较合适呢？下面有一个例子：
 
 <div class="highlight">
-  <pre><code class="language-text">const server = net.createServer(() => {}).listen(8080);
+  ```
+const server = net.createServer(() => {}).listen(8080);
 
 server.on('listening', () => {});
-</code></pre>
+
+```
 </div>
 
 这个例子中当，当listen方法被调用时，除非端口被占用，否则会立刻绑定在对应的端口上。这意味着此时这个端口可以立刻触发listening事件并执行其回调。然而，这时候`on('listening)`还没有将callback设置好，自然没有callback可以执行。为了避免出现这种情况，node会在listen事件中使用`process.nextTick()`方法，确保事件在回调函数绑定后被触发。
@@ -177,20 +183,23 @@ server.on('listening', () => {});
 `setTimeout()`和不设置时间间隔的`setImmediate()`表现上及其相似。猜猜下面这段代码的结果是什么？
 
 <div class="highlight">
-  <pre><code class="language-text">setTimeout(() => {
+  ```
+setTimeout(() => {
     console.log('timeout');
 }, 0);
 
 setImmediate(() => {
     console.log('immediate');
 });
-</code></pre>
+
+```
 </div>
 
 实际上，答案是不一定。没错，就连node的开发者都无法准确的判断这两者的顺序谁前谁后。这取决于这段代码的运行环境。运行环境中的各种复杂的情况会导致在同步队列里两个方法的顺序随机决定。但是，在一种情况下可以准确判断两个方法回调的执行顺序，那就是在一个I/O事件的回调中。下面这段代码的顺序永远是固定的：
 
 <div class="highlight">
-  <pre><code class="language-text">const fs = require('fs');
+  ```
+const fs = require('fs');
 
 fs.readFile(__filename, () => {
     setTimeout(() => {
@@ -200,15 +209,18 @@ fs.readFile(__filename, () => {
         console.log('immediate');
     });
 });
-</code></pre>
+
+```
 </div>
 
 答案永远是：
 
 <div class="highlight">
-  <pre><code class="language-text">immediate
+  ```
+immediate
 timeout
-</code></pre>
+
+```
 </div>
 
 因为在I/O事件的回调中，setImmediate方法的回调永远在timer的回调前执行。

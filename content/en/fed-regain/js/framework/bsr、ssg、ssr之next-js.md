@@ -60,7 +60,8 @@ title: BSR、SSG、SSR之next.js
 代码
 
 <div class="highlight">
-  <pre><code class="language-js">&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nx">NextPage&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">'next'&lt;/span>&lt;span class="p">;&lt;/span>
+  ```
+&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nx">NextPage&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">'next'&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="kr">import&lt;/span> &lt;span class="nx">axios&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">'axios'&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nx">useEffect&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">useState&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s2">"react"&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="kr">import&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="nx">as&lt;/span> &lt;span class="nx">React&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s2">"react"&lt;/span>&lt;span class="p">;&lt;/span>
@@ -96,7 +97,8 @@ title: BSR、SSG、SSR之next.js
 &lt;span class="p">};&lt;/span>
 
 &lt;span class="kr">export&lt;/span> &lt;span class="k">default&lt;/span> &lt;span class="nx">PostsIndex&lt;/span>&lt;span class="p">;&lt;/span>
-</code></pre>
+
+```
 </div>
 
 
@@ -149,16 +151,17 @@ title: BSR、SSG、SSR之next.js
   该如何获取 posts 呢？ 因为加载数据的操作在后端，想通过 AJAX 获取 posts 显然不合适
 
 
-  答案是： 通过 <code>getStaticProps</code> 获取 posts
+  答案是： 通过 getStaticProps 获取 posts
 
 
-  <code>getStaticProps</code> 是 Next.js 提供的一个方法，会在后端执行，返回一个 props，NextPage 在渲染的时候可以使用这个 props
+  getStaticProps 是 Next.js 提供的一个方法，会在后端执行，返回一个 props，NextPage 在渲染的时候可以使用这个 props
 
 
 代码
 
 <div class="highlight">
-  <pre><code class="language-js">&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nx">GetStaticProps&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">NextPage&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">'next'&lt;/span>&lt;span class="p">;&lt;/span>
+  ```
+&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nx">GetStaticProps&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">NextPage&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">'next'&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nx">getPosts&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">'../../lib/posts'&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="kr">import&lt;/span> &lt;span class="nx">Link&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">'next/link'&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="kr">import&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="nx">as&lt;/span> &lt;span class="nx">React&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">'react'&lt;/span>&lt;span class="p">;&lt;/span>
@@ -200,7 +203,8 @@ title: BSR、SSG、SSR之next.js
     &lt;span class="p">}&lt;/span>
   &lt;span class="p">};&lt;/span>
 &lt;span class="p">};&lt;/span>
-</code></pre>
+
+```
 </div>
 
 ## [前端](https://www.w3cdoc.com)是怎么不通过 AJAX 获取到数据的
@@ -217,7 +221,7 @@ title: BSR、SSG、SSR之next.js
 </figure>
 
 
-  [我们](https://www.w3cdoc.com)可以看到玄机就藏在 id 为 <i><code>_NEXT_DATA__</code></i> 的 script 标签中，里面储存了传给[前端](https://www.w3cdoc.com)的 props 数据
+  [我们](https://www.w3cdoc.com)可以看到玄机就藏在 id 为 <i>_NEXT_DATA__</i> 的 script 标签中，里面储存了传给[前端](https://www.w3cdoc.com)的 props 数据
 
 
   这就是同构 SSR 的好处，后端可以将数据直接传给[前端](https://www.w3cdoc.com)，而不需要 AJAX 异步获取
@@ -237,8 +241,10 @@ title: BSR、SSG、SSR之next.js
 如何体验生成环境
 
 <div class="highlight">
-  <pre><code class="language-text">yarn build
-yarn start</code></pre>
+  ```
+yarn build
+yarn start
+```
 </div>
 
 
@@ -339,7 +345,8 @@ yarn start</code></pre>
   这段代码实现的时，服务器响应请求后获取[浏览器](https://www.w3cdoc.com)信息，返回给[前端](https://www.w3cdoc.com)展示
 
 <div class="highlight">
-  <pre><code class="language-js">&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nx">GetServerSideProps&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">NextPage&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">'next'&lt;/span>&lt;span class="p">;&lt;/span>
+  ```
+&lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nx">GetServerSideProps&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">NextPage&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">'next'&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="kr">import&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="nx">as&lt;/span> &lt;span class="nx">React&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">'react'&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;span class="kr">import&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="nx">IncomingHttpHeaders&lt;/span>&lt;span class="p">}&lt;/span> &lt;span class="nx">from&lt;/span> &lt;span class="s1">'http'&lt;/span>&lt;span class="p">;&lt;/span>
 
@@ -364,7 +371,8 @@ yarn start</code></pre>
     &lt;span class="p">}&lt;/span>
   &lt;span class="p">};&lt;/span>
 &lt;span class="p">};&lt;/span>
-</code></pre>
+
+```
 </div>
 
 

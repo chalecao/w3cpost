@@ -29,74 +29,76 @@ homepage: false
 <div id="wJRum" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22json%22%2C%22code%22%3A%22%7B%5Cn%20%20%5C%22root%5C%22%3A%20true%2C%5Cn%20%20%5C%22parser%5C%22%3A%20%5C%22babel-eslint%5C%22%2C%5Cn%20%20%5C%22extends%5C%22%3A%20%5C%22eslint-config-airbnb%5C%22%2C%5Cn%20%20%5C%22parserOptions%5C%22%3A%20%7B%5Cn%20%20%20%20%5C%22ecmaVersion%5C%22%3A%206%2C%5Cn%20%20%20%20%5C%22ecmaFeatures%5C%22%3A%20%7B%5Cn%20%20%20%20%20%20%5C%22jsx%5C%22%3A%20true%2C%5Cn%20%20%20%20%20%20%5C%22experimentalObjectRestSpread%5C%22%3A%20true%5Cn%20%20%20%20%7D%5Cn%20%20%7D%2C%5Cn%20%20%5C%22env%5C%22%3A%20%7B%5Cn%20%20%20%20%5C%22browser%5C%22%3A%20true%2C%5Cn%20%20%20%20%5C%22mocha%5C%22%3A%20true%5Cn%20%20%7D%2C%5Cn%20%20%5C%22plugins%5C%22%3A%20%5B%5Cn%20%20%20%20%5C%22react%5C%22%2C%5Cn%20%20%20%20%5C%22babel%5C%22%5Cn%20%20%5D%2C%5Cn%20%20%5C%22rules%5C%22%3A%20%7B%5Cn%20%20%20%20%5C%22react%2Fprefer-stateless-function%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22no-console%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22no-use-before-define%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22jsx-a11y%2Flabel-has-for%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22jsx-a11y%2Fno-static-element-interactions%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22jsx-a11y%2Fanchor-has-content%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22jsx-a11y%2Fclick-events-have-key-events%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22jsx-a11y%2Fanchor-is-valid%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22react%2Fno-array-index-key%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22func-names%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22arrow-body-style%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22react%2Fsort-comp%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22react%2Fprop-types%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22react%2Fjsx-first-prop-new-line%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22react%2Fjsx-filename-extension%5C%22%3A%20%5B%5Cn%20%20%20%20%20%201%2C%5Cn%20%20%20%20%20%20%7B%5Cn%20%20%20%20%20%20%20%20%5C%22extensions%5C%22%3A%20%5B%5Cn%20%20%20%20%20%20%20%20%20%20%5C%22.js%5C%22%2C%5Cn%20%20%20%20%20%20%20%20%20%20%5C%22.jsx%5C%22%5Cn%20%20%20%20%20%20%20%20%5D%5Cn%20%20%20%20%20%20%7D%5Cn%20%20%20%20%5D%2C%5Cn%20%20%20%20%5C%22import%2Fextensions%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22import%2Fno-unresolved%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22import%2Fno-extraneous-dependencies%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22prefer-destructuring%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22no-param-reassign%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22no-return-assign%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22max-len%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22consistent-return%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22no-redeclare%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22react%2Frequire-extension%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22react%2Fno-danger%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22comma-dangle%5C%22%3A%20%5B%5Cn%20%20%20%20%20%20%5C%22error%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22always-multiline%5C%22%5Cn%20%20%20%20%5D%2C%5Cn%20%20%20%20%5C%22function-paren-newline%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22object-curly-newline%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22no-restricted-globals%5C%22%3A%200%2C%5Cn%20%20%20%20%5C%22linebreak-style%5C%22%3A%20%5B%5Cn%20%20%20%20%20%20%5C%22error%5C%22%2C%5Cn%20%20%20%20%20%20%5C%22unix%5C%22%5Cn%20%20%20%20%5D%2C%5Cn%20%20%20%20%5C%22no-restricted-syntax%5C%22%3A%200%5Cn%20%20%7D%5Cn%7D%22%2C%22id%22%3A%22wJRum%22%2C%22height%22%3A298.764%7D" data-language="json">
   <div class="lake-codeblock-content">
     <div class="CodeMirror-sizer">
-      <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content">{
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-string cm-property">"root"</span>: <span class="cm-atom">true</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-string cm-property">"parser"</span>: <span class="cm-string">"babel-eslint"</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-string cm-property">"extends"</span>: <span class="cm-string">"eslint-config-airbnb"</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-string cm-property">"parserOptions"</span>: {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"ecmaVersion"</span>: <span class="cm-number">6</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"ecmaFeatures"</span>: {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-string cm-property">"jsx"</span>: <span class="cm-atom">true</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-string cm-property">"experimentalObjectRestSpread"</span>: <span class="cm-atom">true</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    }
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  },
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-string cm-property">"env"</span>: {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"browser"</span>: <span class="cm-atom">true</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"mocha"</span>: <span class="cm-atom">true</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  },
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-string cm-property">"plugins"</span>: [
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string">"react"</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string">"babel"</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  ],
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-string cm-property">"rules"</span>: {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"react/prefer-stateless-function"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"no-console"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"no-use-before-define"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"jsx-a11y/label-has-for"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"jsx-a11y/no-static-element-interactions"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"jsx-a11y/anchor-has-content"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"jsx-a11y/click-events-have-key-events"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"jsx-a11y/anchor-is-valid"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"react/no-array-index-key"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"func-names"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"arrow-body-style"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"react/sort-comp"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"react/prop-types"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"react/jsx-first-prop-new-line"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"react/jsx-filename-extension"</span>: [
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-number">1</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">        <span class="cm-string cm-property">"extensions"</span>: [
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">          <span class="cm-string">".js"</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">          <span class="cm-string">".jsx"</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">        ]
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      }
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    ],
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"import/extensions"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"import/no-unresolved"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"import/no-extraneous-dependencies"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"prefer-destructuring"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"no-param-reassign"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"no-return-assign"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"max-len"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"consistent-return"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"no-redeclare"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"react/require-extension"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"react/no-danger"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"comma-dangle"</span>: [
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-string">"error"</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-string">"always-multiline"</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    ],
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"function-paren-newline"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"object-curly-newline"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"no-restricted-globals"</span>: <span class="cm-number"></span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"linebreak-style"</span>: [
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-string">"error"</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-string">"unix"</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    ],
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"no-restricted-syntax"</span>: <span class="cm-number"></span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  }
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}</span></span></pre>
+      ```
+{
+  "root": true,
+  "parser": "babel-eslint",
+  "extends": "eslint-config-airbnb",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "mocha": true
+  },
+  "plugins": [
+    "react",
+    "babel"
+  ],
+  "rules": {
+    "react/prefer-stateless-function": ,
+    "no-console": ,
+    "no-use-before-define": ,
+    "jsx-a11y/label-has-for": ,
+    "jsx-a11y/no-static-element-interactions": ,
+    "jsx-a11y/anchor-has-content": ,
+    "jsx-a11y/click-events-have-key-events": ,
+    "jsx-a11y/anchor-is-valid": ,
+    "react/no-array-index-key": ,
+    "func-names": ,
+    "arrow-body-style": ,
+    "react/sort-comp": ,
+    "react/prop-types": ,
+    "react/jsx-first-prop-new-line": ,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "import/extensions": ,
+    "import/no-unresolved": ,
+    "import/no-extraneous-dependencies": ,
+    "prefer-destructuring": ,
+    "no-param-reassign": ,
+    "no-return-assign": ,
+    "max-len": ,
+    "consistent-return": ,
+    "no-redeclare": ,
+    "react/require-extension": ,
+    "react/no-danger": ,
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "function-paren-newline": ,
+    "object-curly-newline": ,
+    "no-restricted-globals": ,
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "no-restricted-syntax": 
+  }
+}
+```
     </div>
   </div>
 </div>
@@ -179,9 +181,11 @@ homepage: false
 <div id="6781d28a" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22id%22%3A%226781d28a%22%2C%22mode%22%3A%22javascript%22%2C%22code%22%3A%22const%20func%20%3D%20(obj)%3D%3E%7B%5Cn%20%20%20return%20%7B...obj%7D%5Cn%7D%22%7D" data-language="javascript">
   <div class="lake-codeblock-content">
     <div class="CodeMirror-sizer">
-      <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">func</span> <span class="cm-operator">=</span> (<span class="cm-def">obj</span>)<span class="cm-operator">=></span>{
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">return</span> {<span class="cm-meta">...</span><span class="cm-variable-2">obj</span>}
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}</span></span></pre>
+      ```
+const func = (obj)=>{
+   return {...obj}
+}
+```
     </div>
   </div>
 </div>
@@ -215,15 +219,17 @@ homepage: false
 <div id="e03169ec" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22id%22%3A%22e03169ec%22%2C%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20bad%5Cnconst%20result%20%3D%20arr.map((item)%3D%3E%7B%5Cn%20%20return%20item.age%5Cn%7D).filter(item%3D%3Eitem%20%3E%2018)%5Cn%5Cn%2F%2F%20good%5Cnconst%20result%20%3D%20arr.reduce((buf%2Citem)%3D%3E%7B%5Cn%20%20%20return%20item.age%20%3E%2018%20%3F%20buf.concat(item.age)%20%3A%20buf%5Cn%7D%2C%5B%5D)%22%7D" data-language="javascript">
   <div class="lake-codeblock-content">
     <div class="CodeMirror-sizer">
-      <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// bad</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">result</span> <span class="cm-operator">=</span> <span class="cm-variable">arr</span>.<span class="cm-property">map</span>((<span class="cm-def">item</span>)<span class="cm-operator">=></span>{
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-keyword">return</span> <span class="cm-variable-2">item</span>.<span class="cm-property">age</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}).<span class="cm-property">filter</span>(<span class="cm-def">item</span><span class="cm-operator">=></span><span class="cm-variable-2">item</span> <span class="cm-operator">></span> <span class="cm-number">18</span>)
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// good</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">result</span> <span class="cm-operator">=</span> <span class="cm-variable">arr</span>.<span class="cm-property">reduce</span>((<span class="cm-def">buf</span>,<span class="cm-def">item</span>)<span class="cm-operator">=></span>{
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">return</span> <span class="cm-variable-2">item</span>.<span class="cm-property">age</span> <span class="cm-operator">></span> <span class="cm-number">18</span> <span class="cm-operator">?</span> <span class="cm-variable-2">buf</span>.<span class="cm-property">concat</span>(<span class="cm-variable-2">item</span>.<span class="cm-property">age</span>) : <span class="cm-variable-2">buf</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">},[])</span></span></pre>
+      ```
+// bad
+const result = arr.map((item)=>{
+  return item.age
+}).filter(item=>item > 18)
+
+// good
+const result = arr.reduce((buf,item)=>{
+   return item.age > 18 ? buf.concat(item.age) : buf
+},[])
+```
     </div>
   </div>
 </div>
@@ -245,25 +251,27 @@ homepage: false
 <div id="7e320a07" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22id%22%3A%227e320a07%22%2C%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20bad%5Cnconst%20handler%20%3D%20(data%2Coptions)%3D%3E%7B%5Cn%20%20%20....default%20handler%5Cn%20%20%20if(options.ext1)%7B%5Cn%20%20%20%20%20%20....%20extension%201%20handler%5Cn%20%20%20%7D%5Cn%20%20%20%5Cn%20%20%20if(options.ext2)%7B%5Cn%20%20%20%20%20%20....%20extension%202%20handler%5Cn%20%20%20%7D%5Cn%7D%5Cn%5Cn%2F%2F%20good%5Cnconst%20handler%20%3D%20(data%2Cfunc)%3D%3E%7B%5Cn%20%20%20....default%20handler%5Cn%20%20%20if(isFn(func))%7B%5Cn%20%20%20%20%20%20....%20func(data)%5Cn%20%20%20%7D%5Cn%7D%22%7D" data-language="javascript">
   <div class="lake-codeblock-content">
     <div class="CodeMirror-sizer">
-      <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// bad</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">handler</span> <span class="cm-operator">=</span> (<span class="cm-def">data</span>,<span class="cm-def">options</span>)<span class="cm-operator">=></span>{
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-meta">...</span>.<span class="cm-variable">default</span> <span class="cm-variable">handler</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">if</span>(<span class="cm-variable-2">options</span>.<span class="cm-property">ext1</span>){
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-meta">...</span>. <span class="cm-variable">extension</span> <span class="cm-number">1</span> <span class="cm-variable">handler</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   }
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">if</span>(<span class="cm-variable-2">options</span>.<span class="cm-property">ext2</span>){
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-meta">...</span>. <span class="cm-variable">extension</span> <span class="cm-number">2</span> <span class="cm-variable">handler</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   }
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// good</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">handler</span> <span class="cm-operator">=</span> (<span class="cm-def">data</span>,<span class="cm-def">func</span>)<span class="cm-operator">=></span>{
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-meta">...</span>.<span class="cm-variable">default</span> <span class="cm-variable">handler</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">if</span>(<span class="cm-variable">isFn</span>(<span class="cm-variable-2">func</span>)){
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-meta">...</span>. <span class="cm-variable-2">func</span>(<span class="cm-variable-2">data</span>)
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   }
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}</span></span></pre>
+      ```
+// bad
+const handler = (data,options)=>{
+   ....default handler
+   if(options.ext1){
+      .... extension 1 handler
+   }
+
+   if(options.ext2){
+      .... extension 2 handler
+   }
+}
+
+// good
+const handler = (data,func)=>{
+   ....default handler
+   if(isFn(func)){
+      .... func(data)
+   }
+}
+```
     </div>
   </div>
 </div>
@@ -278,20 +286,22 @@ homepage: false
 <div id="a4a06213" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22id%22%3A%22a4a06213%22%2C%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%E8%BF%87%E5%8E%BB%5Cnconst%20isType%20%3D%20(value%2Ctype)%3D%3E%7B%5Cn%20%20%20return%20value%20!%3D%20null%20%26%26%20Object.prototype.toString.call(value)%20%3D%3D%3D%20%60%5Bobject%20%24%7Btype%7D%5D%60%5Cn%7D%5Cn%2F%2F%E4%BD%BF%E7%94%A8%E7%9A%84%E6%97%B6%E5%80%99%E5%BE%88%E9%BA%BB%E7%83%A6%EF%BC%8C%E6%AF%8F%E6%AC%A1%E9%83%BD%E9%9C%80%E8%A6%81%E4%BC%A0%E4%B8%A4%E4%B8%AA%E5%8F%82%E6%95%B0%5Cnif(isType(%7B%7D%2C%5C%22Array%5C%22))%7B....%7D%5Cn%5Cn%2F%2F%E7%8E%B0%E5%9C%A8%5Cnconst%20isType%20%3D%20type%20%3D%3E%20obj%20%3D%3E%5Cn%20%20%20%20obj%20!%3D%20null%20%26%26%20Object.prototype.toString.call(obj)%20%3D%3D%3D%20%60%5Bobject%20%24%7Btype%7D%5D%60%5Cnconst%20isFn%20%3D%20isType(%5C%22Function%5C%22)%5Cnconst%20isArr%20%3D%20isType('Array')%5Cn%5Cnif(isFn(%7B%7D))%7B...%7D%22%7D" data-language="javascript">
   <div class="lake-codeblock-content">
     <div class="CodeMirror-sizer">
-      <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">//过去</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isType</span> <span class="cm-operator">=</span> (<span class="cm-def">value</span>,<span class="cm-def">type</span>)<span class="cm-operator">=></span>{
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">return</span> <span class="cm-variable-2">value</span> <span class="cm-operator">!=</span> <span class="cm-atom">null</span> <span class="cm-operator">&</span><span class="cm-operator">&</span> <span class="cm-variable">Object</span>.<span class="cm-property">prototype</span>.<span class="cm-property">toString</span>.<span class="cm-property">call</span>(<span class="cm-variable-2">value</span>) <span class="cm-operator">===</span> <span class="cm-string-2">`[object ${</span><span class="cm-variable-2">type</span><span class="cm-string-2">}</span><span class="cm-string-2">]`</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">//使用的时候很麻烦，每次都需要传两个参数</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">if</span>(<span class="cm-variable">isType</span>({},<span class="cm-string">"Array"</span>)){<span class="cm-meta">...</span>.}
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">//现在</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isType</span> <span class="cm-operator">=</span> <span class="cm-def">type</span> <span class="cm-operator">=></span> <span class="cm-def">obj</span> <span class="cm-operator">=></span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-variable-2">obj</span> <span class="cm-operator">!=</span> <span class="cm-atom">null</span> <span class="cm-operator">&</span><span class="cm-operator">&</span> <span class="cm-variable">Object</span>.<span class="cm-property">prototype</span>.<span class="cm-property">toString</span>.<span class="cm-property">call</span>(<span class="cm-variable-2">obj</span>) <span class="cm-operator">===</span> <span class="cm-string-2">`[object ${</span><span class="cm-variable-2">type</span><span class="cm-string-2">}</span><span class="cm-string-2">]`</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isFn</span> <span class="cm-operator">=</span> <span class="cm-variable">isType</span>(<span class="cm-string">"Function"</span>)
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isArr</span> <span class="cm-operator">=</span> <span class="cm-variable">isType</span>(<span class="cm-string">'Array'</span>)
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">if</span>(<span class="cm-variable">isFn</span>({})){<span class="cm-meta">...</span>}</span></span></pre>
+      ```
+//过去
+const isType = (value,type)=>{
+   return value != null && Object.prototype.toString.call(value) === `[object ${type}]`
+}
+//使用的时候很麻烦，每次都需要传两个参数
+if(isType({},"Array")){....}
+
+//现在
+const isType = type => obj =>
+    obj != null && Object.prototype.toString.call(obj) === `[object ${type}]`
+const isFn = isType("Function")
+const isArr = isType('Array')
+
+if(isFn({})){...}
+```
     </div>
   </div>
 </div>
@@ -307,18 +317,20 @@ homepage: false
 <div id="YS8w1" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22css%22%2C%22code%22%3A%22%2F*%20bad%20*%2F%5Cn.mod_example%20%7B%5Cn%20%20padding-left%3A%2015px%3B%5Cn%7D%5Cn.modExample%20%7B%5Cn%20%20padding-left%3A%2015px%3B%5Cn%7D%5Cn%5Cn%2F*%20good%20*%2F%5Cn.mod-example%20%7B%5Cn%20%20padding-left%3A%2015px%3B%5Cn%7D%22%2C%22id%22%3A%22YS8w1%22%7D" data-language="css">
   <div class="lake-codeblock-content">
     <div class="CodeMirror-sizer">
-      <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">/*bad*/</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-qualifier">.mod_example</span> {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-property">padding-left</span>: <span class="cm-number">15px</span>;
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-qualifier">.modExample</span> {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-property">padding-left</span>: <span class="cm-number">15px</span>;
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">/*good*/</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-qualifier">.mod-example</span> {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-property">padding-left</span>: <span class="cm-number">15px</span>;
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}</span></span></pre>
+      ```
+/*bad*/
+.mod_example {
+  padding-left: 15px;
+}
+.modExample {
+  padding-left: 15px;
+}
+
+/*good*/
+.mod-example {
+  padding-left: 15px;
+}
+```
     </div>
   </div>
 </div>
@@ -388,9 +400,11 @@ homepage: false
 <div id="6781d28a" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22id%22%3A%226781d28a%22%2C%22mode%22%3A%22javascript%22%2C%22code%22%3A%22const%20func%20%3D%20(obj)%3D%3E%7B%5Cn%20%20%20return%20%7B...obj%7D%5Cn%7D%22%7D" data-language="javascript">
   <div class="lake-codeblock-content">
     <div class="">
-      <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">func</span> <span class="cm-operator">=</span> (<span class="cm-def">obj</span>)<span class="cm-operator">=></span>{
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">return</span> {<span class="cm-meta">...</span><span class="cm-variable-2">obj</span>}
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}</span></span></pre>
+      ```
+const func = (obj)=>{
+   return {...obj}
+}
+```
     </div>
   </div>
 </div>
@@ -424,15 +438,17 @@ homepage: false
 <div id="e03169ec" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22id%22%3A%22e03169ec%22%2C%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20bad%5Cnconst%20result%20%3D%20arr.map((item)%3D%3E%7B%5Cn%20%20return%20item.age%5Cn%7D).filter(item%3D%3Eitem%20%3E%2018)%5Cn%5Cn%2F%2F%20good%5Cnconst%20result%20%3D%20arr.reduce((buf%2Citem)%3D%3E%7B%5Cn%20%20%20return%20item.age%20%3E%2018%20%3F%20buf.concat(item.age)%20%3A%20buf%5Cn%7D%2C%5B%5D)%22%7D" data-language="javascript">
   <div class="lake-codeblock-content">
     <div class="">
-      <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// bad</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">result</span> <span class="cm-operator">=</span> <span class="cm-variable">arr</span>.<span class="cm-property">map</span>((<span class="cm-def">item</span>)<span class="cm-operator">=></span>{
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-keyword">return</span> <span class="cm-variable-2">item</span>.<span class="cm-property">age</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}).<span class="cm-property">filter</span>(<span class="cm-def">item</span><span class="cm-operator">=></span><span class="cm-variable-2">item</span> <span class="cm-operator">></span> <span class="cm-number">18</span>)
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// good</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">result</span> <span class="cm-operator">=</span> <span class="cm-variable">arr</span>.<span class="cm-property">reduce</span>((<span class="cm-def">buf</span>,<span class="cm-def">item</span>)<span class="cm-operator">=></span>{
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">return</span> <span class="cm-variable-2">item</span>.<span class="cm-property">age</span> <span class="cm-operator">></span> <span class="cm-number">18</span> <span class="cm-operator">?</span> <span class="cm-variable-2">buf</span>.<span class="cm-property">concat</span>(<span class="cm-variable-2">item</span>.<span class="cm-property">age</span>) : <span class="cm-variable-2">buf</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">},[])</span></span></pre>
+      ```
+// bad
+const result = arr.map((item)=>{
+  return item.age
+}).filter(item=>item > 18)
+
+// good
+const result = arr.reduce((buf,item)=>{
+   return item.age > 18 ? buf.concat(item.age) : buf
+},[])
+```
     </div>
   </div>
 </div>
@@ -454,25 +470,27 @@ homepage: false
 <div id="7e320a07" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22id%22%3A%227e320a07%22%2C%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20bad%5Cnconst%20handler%20%3D%20(data%2Coptions)%3D%3E%7B%5Cn%20%20%20....default%20handler%5Cn%20%20%20if(options.ext1)%7B%5Cn%20%20%20%20%20%20....%20extension%201%20handler%5Cn%20%20%20%7D%5Cn%20%20%20%5Cn%20%20%20if(options.ext2)%7B%5Cn%20%20%20%20%20%20....%20extension%202%20handler%5Cn%20%20%20%7D%5Cn%7D%5Cn%5Cn%2F%2F%20good%5Cnconst%20handler%20%3D%20(data%2Cfunc)%3D%3E%7B%5Cn%20%20%20....default%20handler%5Cn%20%20%20if(isFn(func))%7B%5Cn%20%20%20%20%20%20....%20func(data)%5Cn%20%20%20%7D%5Cn%7D%22%7D" data-language="javascript">
   <div class="lake-codeblock-content">
     <div class="">
-      <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// bad</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">handler</span> <span class="cm-operator">=</span> (<span class="cm-def">data</span>,<span class="cm-def">options</span>)<span class="cm-operator">=></span>{
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-meta">...</span>.<span class="cm-variable">default</span> <span class="cm-variable">handler</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">if</span>(<span class="cm-variable-2">options</span>.<span class="cm-property">ext1</span>){
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-meta">...</span>. <span class="cm-variable">extension</span> <span class="cm-number">1</span> <span class="cm-variable">handler</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   }
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">if</span>(<span class="cm-variable-2">options</span>.<span class="cm-property">ext2</span>){
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-meta">...</span>. <span class="cm-variable">extension</span> <span class="cm-number">2</span> <span class="cm-variable">handler</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   }
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// good</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">handler</span> <span class="cm-operator">=</span> (<span class="cm-def">data</span>,<span class="cm-def">func</span>)<span class="cm-operator">=></span>{
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-meta">...</span>.<span class="cm-variable">default</span> <span class="cm-variable">handler</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">if</span>(<span class="cm-variable">isFn</span>(<span class="cm-variable-2">func</span>)){
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-meta">...</span>. <span class="cm-variable-2">func</span>(<span class="cm-variable-2">data</span>)
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   }
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}</span></span></pre>
+      ```
+// bad
+const handler = (data,options)=>{
+   ....default handler
+   if(options.ext1){
+      .... extension 1 handler
+   }
+
+   if(options.ext2){
+      .... extension 2 handler
+   }
+}
+
+// good
+const handler = (data,func)=>{
+   ....default handler
+   if(isFn(func)){
+      .... func(data)
+   }
+}
+```
     </div>
   </div>
 </div>
@@ -487,20 +505,22 @@ homepage: false
 <div id="a4a06213" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22id%22%3A%22a4a06213%22%2C%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%E8%BF%87%E5%8E%BB%5Cnconst%20isType%20%3D%20(value%2Ctype)%3D%3E%7B%5Cn%20%20%20return%20value%20!%3D%20null%20%26%26%20Object.prototype.toString.call(value)%20%3D%3D%3D%20%60%5Bobject%20%24%7Btype%7D%5D%60%5Cn%7D%5Cn%2F%2F%E4%BD%BF%E7%94%A8%E7%9A%84%E6%97%B6%E5%80%99%E5%BE%88%E9%BA%BB%E7%83%A6%EF%BC%8C%E6%AF%8F%E6%AC%A1%E9%83%BD%E9%9C%80%E8%A6%81%E4%BC%A0%E4%B8%A4%E4%B8%AA%E5%8F%82%E6%95%B0%5Cnif(isType(%7B%7D%2C%5C%22Array%5C%22))%7B....%7D%5Cn%5Cn%2F%2F%E7%8E%B0%E5%9C%A8%5Cnconst%20isType%20%3D%20type%20%3D%3E%20obj%20%3D%3E%5Cn%20%20%20%20obj%20!%3D%20null%20%26%26%20Object.prototype.toString.call(obj)%20%3D%3D%3D%20%60%5Bobject%20%24%7Btype%7D%5D%60%5Cnconst%20isFn%20%3D%20isType(%5C%22Function%5C%22)%5Cnconst%20isArr%20%3D%20isType('Array')%5Cn%5Cnif(isFn(%7B%7D))%7B...%7D%22%7D" data-language="javascript">
   <div class="lake-codeblock-content">
     <div class="">
-      <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">//过去</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isType</span> <span class="cm-operator">=</span> (<span class="cm-def">value</span>,<span class="cm-def">type</span>)<span class="cm-operator">=></span>{
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">   <span class="cm-keyword">return</span> <span class="cm-variable-2">value</span> <span class="cm-operator">!=</span> <span class="cm-atom">null</span> <span class="cm-operator">&</span><span class="cm-operator">&</span> <span class="cm-variable">Object</span>.<span class="cm-property">prototype</span>.<span class="cm-property">toString</span>.<span class="cm-property">call</span>(<span class="cm-variable-2">value</span>) <span class="cm-operator">===</span> <span class="cm-string-2">`[object ${</span><span class="cm-variable-2">type</span><span class="cm-string-2">}</span><span class="cm-string-2">]`</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">//使用的时候很麻烦，每次都需要传两个参数</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">if</span>(<span class="cm-variable">isType</span>({},<span class="cm-string">"Array"</span>)){<span class="cm-meta">...</span>.}
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">//现在</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isType</span> <span class="cm-operator">=</span> <span class="cm-def">type</span> <span class="cm-operator">=></span> <span class="cm-def">obj</span> <span class="cm-operator">=></span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-variable-2">obj</span> <span class="cm-operator">!=</span> <span class="cm-atom">null</span> <span class="cm-operator">&</span><span class="cm-operator">&</span> <span class="cm-variable">Object</span>.<span class="cm-property">prototype</span>.<span class="cm-property">toString</span>.<span class="cm-property">call</span>(<span class="cm-variable-2">obj</span>) <span class="cm-operator">===</span> <span class="cm-string-2">`[object ${</span><span class="cm-variable-2">type</span><span class="cm-string-2">}</span><span class="cm-string-2">]`</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isFn</span> <span class="cm-operator">=</span> <span class="cm-variable">isType</span>(<span class="cm-string">"Function"</span>)
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">isArr</span> <span class="cm-operator">=</span> <span class="cm-variable">isType</span>(<span class="cm-string">'Array'</span>)
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">if</span>(<span class="cm-variable">isFn</span>({})){<span class="cm-meta">...</span>}</span></span></pre>
+      ```
+//过去
+const isType = (value,type)=>{
+   return value != null && Object.prototype.toString.call(value) === `[object ${type}]`
+}
+//使用的时候很麻烦，每次都需要传两个参数
+if(isType({},"Array")){....}
+
+//现在
+const isType = type => obj =>
+    obj != null && Object.prototype.toString.call(obj) === `[object ${type}]`
+const isFn = isType("Function")
+const isArr = isType('Array')
+
+if(isFn({})){...}
+```
     </div>
   </div>
 </div>

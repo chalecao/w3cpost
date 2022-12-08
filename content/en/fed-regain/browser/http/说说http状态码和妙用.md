@@ -6,7 +6,7 @@ title: 说说http状态码和妙用
 ---
 <img loading="lazy" width="310" height="163" class="alignnone size-full wp-image-4449 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf9f88b1376f.jpeg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf9f88b1376f.jpeg?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf9f88b1376f.jpeg?x-oss-process=image/format,webp 310w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5cf9f88b1376f.jpeg?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_158/format,webp 300w" sizes="(max-width: 310px) 100vw, 310px" />
 
-&nbsp;
+
 
 # 一些常见的状态码
 
@@ -109,7 +109,7 @@ title: 说说http状态码和妙用
 
 505 (HTTP 版本不受支持) 服务器不支持请求中所用的 HTTP 协议版本。
 
-&nbsp;
+
 
 # 状态码妙用
 

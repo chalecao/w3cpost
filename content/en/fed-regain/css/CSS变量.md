@@ -19,7 +19,7 @@ weight: 3
 }
 ```
 
-> 这里[我们](https://www.w3cdoc.com)借助了上篇文章 <a href="https://www.cnblogs.com/coco1s/p/6067305.html" target="_blank" rel="noopener"><code>结构性伪类</code></a> 中的 `:root{ }` 伪类，在全局 `:root{ }` 伪类中定义了一个 CSS 变量，取名为 `--bgColor` 。
+> 这里[我们](https://www.w3cdoc.com)借助了上篇文章 <a href="https://www.cnblogs.com/coco1s/p/6067305.html" target="_blank" rel="noopener">结构性伪类</a> 中的 `:root{ }` 伪类，在全局 `:root{ }` 伪类中定义了一个 CSS 变量，取名为 `--bgColor` 。
 
 定义完了之后则是使用，假设我要设置一个 div 的背景色为黑色：
 

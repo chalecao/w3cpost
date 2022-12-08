@@ -31,7 +31,8 @@ react官方给出的动机是用来解决长时间使用和维护react过程中�
 
 Hooks让[我们](https://www.w3cdoc.com)的函数组件拥有了类似类组件的特性，比如local state、lifecycle，而且还解决了上面提到的一系列问题，它是如何解决这些问题的，下面会在一一指出。首先来快速的看看Hoos的使用，这里讲最主要的两个 Hooks ：useState 和 useEffect。先看一个你可能看过很多遍的例子
 
-<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">import&lt;/span> { useState, useEffect } &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react'&lt;/span>;
+```
+&lt;span class="hljs-keyword">import&lt;/span> { useState, useEffect } &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react'&lt;/span>;
 
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">Example&lt;/span>() &lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> [count, setCount] = useState(&lt;span class="hljs-number">0&lt;/span>);
@@ -44,40 +45,49 @@ Hooks让[我们](https://www.w3cdoc.com)的函数组件拥有了类似类组件�
         Click me
       &lt;&lt;span class="hljs-regexp">/button>
   );
-}&lt;/span></code></pre>
+}&lt;/span>
+```
 
 ### useState {#articleHeader2}
 
 useState 这个方法可以为[我们](https://www.w3cdoc.com)的函数组件带来 local state，它接收一个用于初始 state 的值，返回一对变量
 
-<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">const&lt;/span> [count, setCount] = useState(&lt;span class="hljs-number">0&lt;/span>);
+```
+&lt;span class="hljs-keyword">const&lt;/span> [count, setCount] = useState(&lt;span class="hljs-number">0&lt;/span>);
 
 &lt;span class="hljs-comment">// 等价于&lt;/span>
 &lt;span class="hljs-keyword">var&lt;/span> &lt;span class="hljs-keyword">const&lt;/span> = useState[&lt;span class="hljs-number">0&lt;/span>](&lt;span class="hljs-number">0&lt;/span>); &lt;span class="hljs-comment">// 该state&lt;/span>
-&lt;span class="hljs-keyword">var&lt;/span> setConst = useState[&lt;span class="hljs-number">0&lt;/span>](&lt;span class="hljs-number">1&lt;/span>); &lt;span class="hljs-comment">// 修改该state的方法&lt;/span></code></pre>
+&lt;span class="hljs-keyword">var&lt;/span> setConst = useState[&lt;span class="hljs-number">0&lt;/span>](&lt;span class="hljs-number">1&lt;/span>); &lt;span class="hljs-comment">// 修改该state的方法&lt;/span>
+```
 
 ### useEffect {#articleHeader3}
 
 useEffect 可以利用[我们](https://www.w3cdoc.com)组件中的 local state 进行一些带有副作用的操作
 
-<pre class="javascript hljs"><code class="js">useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
+```
+useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
   &lt;span class="hljs-built_in">document&lt;/span>.title = &lt;span class="hljs-string">`You clicked &lt;span class="hljs-subst">${count}&lt;/span> times`&lt;/span>;
-});</code></pre>
+});
+```
 
 useEffect 中还可以通过传入第二个参数来决定是否执行里面的操作来避免一些不必要的性能损失，只要第二个参数数组中的成员的值没有改变，就会跳过此次执行。如果传入一个空数组 [ ]，那么该 effect 只会在组件 mount 和 unmount 时期执行。
 
-<pre class="javascript hljs"><code class="js">useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
+```
+useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
   &lt;span class="hljs-built_in">document&lt;/span>.title = &lt;span class="hljs-string">`You clicked &lt;span class="hljs-subst">${count}&lt;/span> times`&lt;/span>;
-}, [count]); &lt;span class="hljs-comment">// 如果count没有改变，就跳过此次执行&lt;/span></code></pre>
+}, [count]); &lt;span class="hljs-comment">// 如果count没有改变，就跳过此次执行&lt;/span>
+```
 
 useEffect 中还可以通过让函数返回一个函数来进行一些清理操作（clean up），比如取消订阅等
 
-<pre class="javascript hljs"><code class="js">useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
+```
+useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
   api.subscribe(theId);
   &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
       api.unsubscribe(theId)    &lt;span class="hljs-comment">//clean up&lt;/span>
   }
-});</code></pre>
+});
+```
 
 **useEffect 什么时候执行？** 它会在组件 mount 和 unmount 以及每次重新渲染的时候都会执行，也就是会在 componentDidMount、componentDidUpdate、componentWillUnmount 这三个时期执行。
 
@@ -87,7 +97,8 @@ useEffect 中还可以通过让函数返回一个函数来进行一些清理操�
 
 [我们](https://www.w3cdoc.com)只能在 _函数组件_ 中使用 Hooks，[我们](https://www.w3cdoc.com)也可以在一个组件中使用多组 Hooks。比如：
 
-<pre class="javascript hljs"><code class="js">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">FriendStatusWithCounter&lt;/span>(&lt;span class="hljs-params">props&lt;/span>) &lt;/span>{
+```
+&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">FriendStatusWithCounter&lt;/span>(&lt;span class="hljs-params">props&lt;/span>) &lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> [count, setCount] = useState(&lt;span class="hljs-number">0&lt;/span>);
   useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
     &lt;span class="hljs-built_in">document&lt;/span>.title = &lt;span class="hljs-string">`You clicked &lt;span class="hljs-subst">${count}&lt;/span> times`&lt;/span>;
@@ -102,7 +113,8 @@ useEffect 中还可以通过让函数返回一个函数来进行一些清理操�
   });
 
   &lt;span class="hljs-keyword">return&lt;/span> isOnline
-}</code></pre>
+}
+```
 
 但是这里有一点需要[我们](https://www.w3cdoc.com)注意的就是 **[我们](https://www.w3cdoc.com)只能在顶层代码(Top Level)中调用 Hooks**，不能在循环或判断语句等里面调用，这样是为了让[我们](https://www.w3cdoc.com)的 Hooks 在每次渲染的时候都会按照 **相同的顺序** 调用，因为这里有一个跟关键的问题，那就是 **useState 需要依赖参照第一次渲染的调用顺序来匹配对于的state**，否则 useState 会无法正确返回它对于的state。
 
@@ -116,13 +128,16 @@ useEffect 中还可以通过让函数返回一个函数来进行一些清理操�
 
 * <a href="https://reactjs.org/docs/render-props.html" target="_blank" rel="nofollow noopener noreferrer">Render Props</a> 通过props接受一个返回react element的函数，来动态决定自己要渲染的结果；
 
-<pre class="hljs xml"><code>&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">DataProvider&lt;/span> &lt;span class="hljs-attr">render&lt;/span>=&lt;span class="hljs-string">{data&lt;/span> =>&lt;/span> (
+```
+&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">DataProvider&lt;/span> &lt;span class="hljs-attr">render&lt;/span>=&lt;span class="hljs-string">{data&lt;/span> =>&lt;/span> (
   &lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">h1&lt;/span>>&lt;/span>Hello {data.target}&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">h1&lt;/span>>&lt;/span>
-)}/></code></pre>
+)}/>
+```
 
 * 还有就是<a href="https://reactjs.org/docs/higher-order-components.html" target="_blank" rel="nofollow noopener noreferrer">Higher-Order Components</a> 以一种类似 **工厂模式** 的方式去生产出具有相同或类似逻辑的组件。
 
-<pre class="javascript hljs"><code class="js">&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">getComponent&lt;/span>(&lt;span class="hljs-params">WrappedComponent&lt;/span>) &lt;/span>{
+```
+&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">getComponent&lt;/span>(&lt;span class="hljs-params">WrappedComponent&lt;/span>) &lt;/span>{
 
   &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-class">&lt;span class="hljs-keyword">class&lt;/span> &lt;span class="hljs-keyword">extends&lt;/span> &lt;span class="hljs-title">React&lt;/span>.&lt;span class="hljs-title">Component&lt;/span> &lt;/span>{
     &lt;span class="hljs-keyword">constructor&lt;/span>(props) {
@@ -138,7 +153,8 @@ useEffect 中还可以通过让函数返回一个函数来进行一些清理操�
       &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="xml">&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">WrappedComponent&lt;/span> {&lt;span class="hljs-attr">...this.props&lt;/span>} />&lt;/span>;
     }
   };
-}&lt;/span></code></pre>
+}&lt;/span>
+```
 
 但是无论是哪一种方法都会造成组件数量增多，组件树结构的修改，而且有可能出现组件嵌套地狱(wrapper hell)的情况。现在 **React 通过 custom Hooks 来解决这个问题**。
 
@@ -146,7 +162,8 @@ useEffect 中还可以通过让函数返回一个函数来进行一些清理操�
 
 custom Hooks 并不是一个api，而是一个规则。具体实现就是通过一个函数来封装跟状态有关的逻辑(stateful logic)，将这些逻辑从组件中抽取出来。在这个函数中[我们](https://www.w3cdoc.com)可以使用其他的 Hooks，也可以单独进行测试，甚至将它贡献给社区。
 
-<pre class="javascript hljs"><code class="js">&lt;span class="hljs-keyword">import&lt;/span> { useState, useEffect } &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react'&lt;/span>;
+```
+&lt;span class="hljs-keyword">import&lt;/span> { useState, useEffect } &lt;span class="hljs-keyword">from&lt;/span> &lt;span class="hljs-string">'react'&lt;/span>;
 
 &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">useCount&lt;/span>() &lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> [count, setCount] = useState(&lt;span class="hljs-number">0&lt;/span>);
@@ -154,14 +171,17 @@ custom Hooks 并不是一个api，而是一个规则。具体实现就是通过�
     &lt;span class="hljs-built_in">document&lt;/span>.title = &lt;span class="hljs-string">`You clicked &lt;span class="hljs-subst">${count}&lt;/span> times`&lt;/span>;
   });
   &lt;span class="hljs-keyword">return&lt;/span> count
-}</code></pre>
+}
+```
 
 比如上面的一个例子，他就是一个 custom Hooks，提取了对 count 的操作。这里需要遵循一个约定，命名要用 `use*`，这是为了方便[我们](https://www.w3cdoc.com)区分，利于[我们](https://www.w3cdoc.com)维护。可以看到他其实就是一个函数，**[我们](https://www.w3cdoc.com)可以在现有的所有其他组件中引用它**
 
-<pre class="hljs actionscript"><code>&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">CountStatus&lt;/span>&lt;span class="hljs-params">()&lt;/span> &lt;/span>{
+```
+&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">CountStatus&lt;/span>&lt;span class="hljs-params">()&lt;/span> &lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> count = useCount();
   &lt;span class="hljs-keyword">return&lt;/span> count;
-}</code></pre>
+}
+```
 
 这里的核心概念就是将逻辑提取出来封装在 custom Hooks，然后可以在任何的其他组件中共享这部分逻辑，也可以贡献给社区。所以我也预测在不久的将来，会出现很多的充满想象力的各种用途的 custom Hooks 在社区中出现，极大的提高[我们](https://www.w3cdoc.com)的开发效率。
 
@@ -169,7 +189,8 @@ custom Hooks 并不是一个api，而是一个规则。具体实现就是通过�
 
 前面[我们](https://www.w3cdoc.com)也提到，[我们](https://www.w3cdoc.com)的组件可能会随着开发的进行变得越来越复杂，要处理越来越多的 local State，那么在组件的生命周期函数中就会充斥着各种互不相关的逻辑，这里需要引入官方的比较复杂的例子，先看基于以前类组件的情况：
 
-<pre class="javascript hljs"><code class="js">&lt;span class="hljs-class">&lt;span class="hljs-keyword">class&lt;/span> &lt;span class="hljs-title">FriendStatusWithCounter&lt;/span> &lt;span class="hljs-keyword">extends&lt;/span> &lt;span class="hljs-title">React&lt;/span>.&lt;span class="hljs-title">Component&lt;/span> &lt;/span>{
+```
+&lt;span class="hljs-class">&lt;span class="hljs-keyword">class&lt;/span> &lt;span class="hljs-title">FriendStatusWithCounter&lt;/span> &lt;span class="hljs-keyword">extends&lt;/span> &lt;span class="hljs-title">React&lt;/span>.&lt;span class="hljs-title">Component&lt;/span> &lt;/span>{
   &lt;span class="hljs-keyword">constructor&lt;/span>(props) {
     &lt;span class="hljs-keyword">super&lt;/span>(props);
     &lt;span class="hljs-keyword">this&lt;/span>.state = { &lt;span class="hljs-attr">count&lt;/span>: &lt;span class="hljs-number">0&lt;/span>, &lt;span class="hljs-attr">isOnline&lt;/span>: &lt;span class="hljs-literal">null&lt;/span> };
@@ -200,11 +221,13 @@ custom Hooks 并不是一个api，而是一个规则。具体实现就是通过�
       &lt;span class="hljs-attr">isOnline&lt;/span>: status.isOnline
     });
   }
-  &lt;span class="hljs-comment">// ...&lt;/span></code></pre>
+  &lt;span class="hljs-comment">// ...&lt;/span>
+```
 
 经过 Hook 改造后：
 
-<pre class="hljs javascript"><code>&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">FriendStatusWithCounter&lt;/span>(&lt;span class="hljs-params">props&lt;/span>) &lt;/span>{
+```
+&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">FriendStatusWithCounter&lt;/span>(&lt;span class="hljs-params">props&lt;/span>) &lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> [count, setCount] = useState(&lt;span class="hljs-number">0&lt;/span>);
   useEffect(&lt;span class="hljs-function">&lt;span class="hljs-params">()&lt;/span> =>&lt;/span> {
     &lt;span class="hljs-built_in">document&lt;/span>.title = &lt;span class="hljs-string">`You clicked &lt;span class="hljs-subst">${count}&lt;/span> times`&lt;/span>;
@@ -222,7 +245,8 @@ custom Hooks 并不是一个api，而是一个规则。具体实现就是通过�
     setIsOnline(status.isOnline);
   }
   &lt;span class="hljs-comment">// ...&lt;/span>
-}</code></pre>
+}
+```
 
 状态和相关的处理逻辑可以按照功能进行划分，不必散落在各个生命周期中，大大降低了开发和维护的难度。除了这几个hooks还有其他额外的hooks，在此继续了解 <a href="https://reactjs.org/docs/hooks-reference.html" target="_blank" rel="nofollow noopener noreferrer">Hooks API Reference</a>
 

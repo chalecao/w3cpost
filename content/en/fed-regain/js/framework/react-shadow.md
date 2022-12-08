@@ -13,7 +13,7 @@ Shadow DOM 是什么？[我们](https://www.w3cdoc.com)先来打开 Chrome 的 D
 
 可以看到 `video` 内部有一个 `#shadow-root` ，在 ShadowRoot 之下还能看到 `div` 这样的普通 HTML 标签。[我们](https://www.w3cdoc.com)能知道 `video` 会有「播放/暂停按钮、进度条、视频时间显示、音量控制」等控件，那其实，就是由 ShadowRoot 中的这些子元素构成的。而[我们](https://www.w3cdoc.com)最常用的 `input` 其实也附加了 Shadow DOM，比如，[我们](https://www.w3cdoc.com)在 Chrome 中尝试给一个 Input 加上 `placeholder` ，通过 DevTools 便能看到，其实文字是在 ShadowRoot 下的一个 Id 为 `palcehoder` 的 div 中。
 
-&nbsp;
+
 
 
   <img loading="lazy" width="2624" height="1706" class="alignnone size-full wp-image-5112 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png?x-oss-process=image/format,webp 2624w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_195/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_499/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa04f0591.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_520/format,webp 800w" sizes="(max-width: 2624px) 100vw, 2624px" />
@@ -79,12 +79,14 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
   <h1 id="6">
     4. 如何创建 Shadow DOM
   </h1>
- Shadow DOM 必须附加在一个元素上，可以是通过 HTML 声明的一个元素，也可以是通过脚本动态创建的元素。可以是原生的元素，如 <code>div、p</code> ，也可以是「自定义元素」如 <code>my-element</code> ，语法如下：
+ Shadow DOM 必须附加在一个元素上，可以是通过 HTML 声明的一个元素，也可以是通过脚本动态创建的元素。可以是原生的元素，如 div、p ，也可以是「自定义元素」如 my-element ，语法如下：
   
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
-      <pre class=" language-javascript"><code class=" language-javascript">&lt;span class="token keyword">const&lt;/span> shadowroot &lt;span class="token operator">=&lt;/span> element&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">attachShadow&lt;/span>&lt;span class="token punctuation">(&lt;/span>shadowRootInit&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-</code></pre>
+      ```
+&lt;span class="token keyword">const&lt;/span> shadowroot &lt;span class="token operator">=&lt;/span> element&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">attachShadow&lt;/span>&lt;span class="token punctuation">(&lt;/span>shadowRootInit&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+
+```
 
       
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
@@ -95,7 +97,8 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
   
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
-      <pre class=" language-html"><code class=" language-html">&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>html&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
+      ```
+&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>html&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
   &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>head&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
     &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>title&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>Shadow Demo&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>title&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
   &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>head&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
@@ -111,7 +114,8 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
     &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>script&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
   &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>body&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
 &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>html&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-</code></pre>
+
+```
 
       
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
@@ -122,16 +126,16 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
   
  <img loading="lazy" width="2206" height="1356" class="alignnone size-full wp-image-5118 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/format,webp 2206w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_184/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_472/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_492/format,webp 800w" sizes="(max-width: 2206px) 100vw, 2206px" />
   
- <code>Element.attachShadow</code>  的参数 <code>shadowRootInit</code>  的 <code>mode</code>  选项用于设定「封装模式」。它有两个可选的值 ：
+ Element.attachShadow  的参数 shadowRootInit  的 mode  选项用于设定「封装模式」。它有两个可选的值 ：
   
- &nbsp;
+ 
   
   <ul>
     
-     &#8220;open&#8221; ：可 Host 元素上通过 <code>host.shadowRoot</code>  获取 shadowRoot 引用，这样任何代码都可以通过 shadowRoot 来访问的子 DOM 树。
+     &#8220;open&#8221; ：可 Host 元素上通过 host.shadowRoot  获取 shadowRoot 引用，这样任何代码都可以通过 shadowRoot 来访问的子 DOM 树。
     
     
-     &#8220;closed&#8221;：在 Host 元素上通过 <code>host.shadowRoot</code>  获取的是 null，[我们](https://www.w3cdoc.com)只能通过 <code>Element.attachShadow</code> 的返回值拿到 shadowRoot 的引用（通常可能隐藏在类中）。例如，[浏览器](https://www.w3cdoc.com)内建的 input、video 等就是关闭的，[我们](https://www.w3cdoc.com)没有办法访问它们。
+     &#8220;closed&#8221;：在 Host 元素上通过 host.shadowRoot  获取的是 null，[我们](https://www.w3cdoc.com)只能通过 Element.attachShadow 的返回值拿到 shadowRoot 的引用（通常可能隐藏在类中）。例如，[浏览器](https://www.w3cdoc.com)内建的 input、video 等就是关闭的，[我们](https://www.w3cdoc.com)没有办法访问它们。
     
   
  <a name="BDGQB"></a>
@@ -139,26 +143,29 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
   <h1 id="7">
     5. 哪些元素可以附加 Shadow DOM
   </h1>
- 并非所有 HTML 元素都可以开启 Shadow DOM 的，只有一组有限的元素可以附加 Shadow DOM。有时尝试将 Shadow DOM 树附加到某些元素将会导致 <code>DOMException</code> 错误，例如：
+ 并非所有 HTML 元素都可以开启 Shadow DOM 的，只有一组有限的元素可以附加 Shadow DOM。有时尝试将 Shadow DOM 树附加到某些元素将会导致 DOMException 错误，例如：
   
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
-      <pre class=" language-javascript"><code class=" language-javascript">document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createElement&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'img'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">attachShadow&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span>mode&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'open'&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+      ```
+document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createElement&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'img'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">attachShadow&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span>mode&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'open'&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token comment" spellcheck="true">// => DOMException&lt;/span>
-</code></pre>
+
+```
 
       
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
       
     </div>
   </div>
- 用 <code>&lt;img></code> 这样的非容器素作为 Shadow Host 是不合理的，因此这段代码将抛出 <code>DOMException</code> 错误。此外因为安全原因一些元素也不能附加 Shadow DOM（比如 A 元素），会出现错误的另一个原因是[浏览器](https://www.w3cdoc.com)已经用该元素附加了 Shadow DOM，比如 Input 等。
+ 用 &lt;img> 这样的非容器素作为 Shadow Host 是不合理的，因此这段代码将抛出 DOMException 错误。此外因为安全原因一些元素也不能附加 Shadow DOM（比如 A 元素），会出现错误的另一个原因是[浏览器](https://www.w3cdoc.com)已经用该元素附加了 Shadow DOM，比如 Input 等。
   
  下表列出了所有支持的元素：
   
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
-      <pre class=" language-markdown"><code class=" language-markdown">&lt;span class="token code keyword">                +----------------+----------------+----------------+&lt;/span>
+      ```
+&lt;span class="token code keyword">                +----------------+----------------+----------------+&lt;/span>
 &lt;span class="token code keyword">                |    article     |      aside     |   blockquote   |&lt;/span>
 &lt;span class="token code keyword">                +----------------+----------------+----------------+&lt;/span>
 &lt;span class="token code keyword">                |     body       |       div      |     footer     |&lt;/span>
@@ -171,7 +178,8 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
 &lt;span class="token code keyword">                +----------------+----------------+----------------+&lt;/span>
 &lt;span class="token code keyword">                |      p         |     section    |      span      |&lt;/span>
 &lt;span class="token code keyword">                +----------------+----------------+----------------+&lt;/span>
-</code></pre>
+
+```
 
       
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
@@ -195,7 +203,8 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
 
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
-      <pre class=" language-javascript"><code class=" language-javascript">&lt;span class="token keyword">import&lt;/span> React &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+      ```
+&lt;span class="token keyword">import&lt;/span> React &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token keyword">import&lt;/span> ReactDOM &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react-dom"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 
 &lt;span class="token keyword">export&lt;/span> &lt;span class="token keyword">class&lt;/span> &lt;span class="token class-name">ShadowView&lt;/span> &lt;span class="token keyword">extends&lt;/span> &lt;span class="token class-name">React&lt;span class="token punctuation">.&lt;/span>Component&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -217,7 +226,8 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
 &lt;span class="token punctuation">}&lt;/span>
 
 ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App &lt;span class="token operator">/&lt;/span>&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"root"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-</code></pre>
+
+```
 
       
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
@@ -228,11 +238,11 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
   
  <img loading="lazy" width="2096" height="1174" class="alignnone size-full wp-image-5119 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/format,webp 2096w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_168/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_430/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_448/format,webp 800w" sizes="(max-width: 2096px) 100vw, 2096px" />
   
- 在这里需要稍注意一下，在一个元素上附加了 Shadow DOM 后，元素原本的「子元素」将不会再显示，并且这些子元素也不在 Shadow DOM 中，只有 <code>host.shadowRoot</code>  的子元素才是「子 DOM 树」中一部分。也就是说这个「子 DOM 树」的「根节点」是 <code>host.shadowRoot</code> 而非 host。 <code>host.shadowRoot</code> 是 ShadowRoot 的实例，而 ShadowRoot 则继承于 DocumentFragment，可通过原生 DOM API 操作其子元素。
+ 在这里需要稍注意一下，在一个元素上附加了 Shadow DOM 后，元素原本的「子元素」将不会再显示，并且这些子元素也不在 Shadow DOM 中，只有 host.shadowRoot  的子元素才是「子 DOM 树」中一部分。也就是说这个「子 DOM 树」的「根节点」是 host.shadowRoot 而非 host。 host.shadowRoot 是 ShadowRoot 的实例，而 ShadowRoot 则继承于 DocumentFragment，可通过原生 DOM API 操作其子元素。
   
- &nbsp;
+ 
   
- [我们](https://www.w3cdoc.com)需通过 <code>Element.attachShadow</code> 附加到元素，然后就能拿到附加后的 ShadowRoot 实例。 针对 ShadowRoot 这样一个原生 DOM Node 的的引用，除了利用 <code>ReactDOM.render</code> 或 <code>ReactDOM.createPortal</code>  ，[我们](https://www.w3cdoc.com)并不能轻易的将 React.Element 渲染到其中，除非直接接操作 DOM。
+ [我们](https://www.w3cdoc.com)需通过 Element.attachShadow 附加到元素，然后就能拿到附加后的 ShadowRoot 实例。 针对 ShadowRoot 这样一个原生 DOM Node 的的引用，除了利用 ReactDOM.render 或 ReactDOM.createPortal  ，[我们](https://www.w3cdoc.com)并不能轻易的将 React.Element 渲染到其中，除非直接接操作 DOM。
   
  <a name="CvZo0"></a>
   
@@ -244,7 +254,8 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
   
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
-      <pre class=" language-javascript"><code class=" language-javascript">&lt;span class="token keyword">import&lt;/span> React &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+      ```
+&lt;span class="token keyword">import&lt;/span> React &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token keyword">import&lt;/span> ReactDOM &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react-dom"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 
 &lt;span class="token comment" spellcheck="true">// 基于直接操作 DOM 的方式改造的一版&lt;/span>
@@ -283,7 +294,8 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 &lt;span class="token punctuation">}&lt;/span>
 
 ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App &lt;span class="token operator">/&lt;/span>&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"root"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-</code></pre>
+
+```
 
       
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
@@ -298,7 +310,7 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
   
  <img loading="lazy" width="2164" height="1406" class="alignnone size-full wp-image-5122 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png?x-oss-process=image/format,webp 2164w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_195/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_499/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7faa1856f7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_520/format,webp 800w" sizes="(max-width: 2164px) 100vw, 2164px" />
   
- &nbsp;
+ 
   
  <a name="uMiat"></a>
   
@@ -310,7 +322,8 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
   
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
-      <pre class=" language-javascript"><code class=" language-javascript" data-spm-anchor-id="ata.13261165.0.i2.703736d0HVWJkY">&lt;span class="token keyword">import&lt;/span> React &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+      ```
+&lt;span class="token keyword">import&lt;/span> React &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token keyword">import&lt;/span> ReactDOM &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react-dom"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 
 &lt;span class="token comment" spellcheck="true">// 换用 ReactDOM.render 实现&lt;/span>
@@ -342,7 +355,8 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 &lt;span class="token punctuation">}&lt;/span>
 
 ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App &lt;span class="token operator">/&lt;/span>&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"root"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-</code></pre>
+
+```
 
       
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
@@ -369,7 +383,8 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
   
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
-      <pre class=" language-javascript"><code class=" language-javascript">&lt;span class="token keyword">import&lt;/span> React &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+      ```
+&lt;span class="token keyword">import&lt;/span> React &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token keyword">import&lt;/span> ReactDOM &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react-dom"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 
 &lt;span class="token comment" spellcheck="true">// 利用 ReactDOM.createPortal 的实现&lt;/span>
@@ -410,7 +425,8 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 &lt;span class="token punctuation">}&lt;/span>
 
 ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App &lt;span class="token operator">/&lt;/span>&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"root"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-</code></pre>
+
+```
 
       
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
@@ -440,8 +456,10 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
-      <pre class=" language-bash"><code class=" language-bash">&lt;span class="token function">npm&lt;/span> i shadow-view --save
-</code></pre>
+      ```
+&lt;span class="token function">npm&lt;/span> i shadow-view --save
+
+```
 
       
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
@@ -456,7 +474,8 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
   <div class="highlight">
     <div class="copytoclipboard-wrapper" style="position: relative;">
-      <pre class=" language-javascript"><code class=" language-javascript">&lt;span class="token keyword">import&lt;/span> &lt;span class="token operator">*&lt;/span> &lt;span class="token keyword">as&lt;/span> React &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+      ```
+&lt;span class="token keyword">import&lt;/span> &lt;span class="token operator">*&lt;/span> &lt;span class="token keyword">as&lt;/span> React &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token keyword">import&lt;/span> &lt;span class="token operator">*&lt;/span> &lt;span class="token keyword">as&lt;/span> ReactDOM &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react-dom"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 &lt;span class="token keyword">import&lt;/span> &lt;span class="token punctuation">{&lt;/span> ShadowView &lt;span class="token punctuation">}&lt;/span> &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"shadow-view"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 
@@ -476,7 +495,8 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 &lt;span class="token punctuation">}&lt;/span>
 
 ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App&lt;span class="token operator">/&lt;/span>&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'root'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-</code></pre>
+
+```
 
       
         <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>

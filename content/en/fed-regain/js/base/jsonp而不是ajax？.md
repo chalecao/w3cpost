@@ -19,7 +19,7 @@ title: jsonp而不是AJAX？
 
 这里要说明的是：AJAX请求本质上是基于HTTP的，只是[浏览器](https://www.w3cdoc.com)包装了一层，当然也就增加了成本，需要维护XMLHttpRequest对象以及各种状态。但是发JSONP请求就没有这么繁琐，直接是http请求加载资源，相比较AJAX更轻量。所以JSONP的效率也更高，更方便。
 
-&nbsp;
+
 
 # 同步JSONP
 

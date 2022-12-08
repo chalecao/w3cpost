@@ -2,7 +2,7 @@
 title: 基于rem方案实现自适应布局
 ---
 
-<span class="wp_keywordlink">rem</span>是相对于根元素<html>，这样就意味着，[我们](https://www.w3cdoc.com)只需要在根元素确定一个px字号，则可以来算出元素的宽高。本文讲的是如何使用<span class="wp_keywordlink_affiliate"><a title="View all posts in rem" href="https://caibaojian.com/t/rem" target="_blank" rel="noopener">rem</a></span>实现自适应。rem这是个低调的css单位，近一两年开始崭露头角，有许多同学对rem的评价不一，有的在尝试使用，有的在使用过程中遇到坑就弃用了。但是我对rem综合评价是用来做<span class="wp_keywordlink"><a title="网站建设" href="https://caibaojian.com/c/web">web</a></span> app它绝对是最合适的人选之一。
+rem是相对于根元素<html>，这样就意味着，[我们](https://www.w3cdoc.com)只需要在根元素确定一个px字号，则可以来算出元素的宽高。本文讲的是如何使用<a title="View all posts in rem" href="https://caibaojian.com/t/rem" target="_blank" rel="noopener">rem</a>实现自适应。rem这是个低调的css单位，近一两年开始崭露头角，有许多同学对rem的评价不一，有的在尝试使用，有的在使用过程中遇到坑就弃用了。但是我对rem综合评价是用来做<a title="网站建设" href="https://caibaojian.com/c/web">web</a> app它绝对是最合适的人选之一。
 
 ## <a name="t1"></a>rem是什么？ {#t1}
 
@@ -16,7 +16,7 @@ rem（font size of the root element）是指相对于根元素的字体大�
 
 最近iphone6一下出了两款尺寸的手机，导致的移动端的屏幕种类更加的混乱，记得一两年前做web app有一种做法是以320宽度为标准去做适配，超过320的大小还是以320的规格去展示，这种实现方式以淘宝web app为代表作，但是近期手机淘宝首页进行了改版，采用了rem这个单位，首页以内依旧是和以前一样各种混乱，有定死宽度的页面，也有那种流式布局的页面。
 
-[我们](https://www.w3cdoc.com)现在在切页面布局的使用常用的单位是px，这是一个绝对单位，web app的屏幕适配有很多中做法，例如：流式布局、限死宽度，还有就是通过<span class="wp_keywordlink"><a title="响应式布局" href="https://caibaojian.com/356.html">响应式</a></span>来做，但是这些方案都不是最佳的解决方法。
+[我们](https://www.w3cdoc.com)现在在切页面布局的使用常用的单位是px，这是一个绝对单位，web app的屏幕适配有很多中做法，例如：流式布局、限死宽度，还有就是通过<a title="响应式布局" href="https://caibaojian.com/356.html">响应式</a>来做，但是这些方案都不是最佳的解决方法。
 
 例如流式布局的解决方案有不少弊端，它虽然可以让各种屏幕都适配，但是显示的效果极其的不好，因为只有几个尺寸的手机能够完美的显示出视觉设计师和交互最想要的效果，但是目前行业里用流式布局切web app的公司还是挺多的，看看下面我收集的一些案例：
 
@@ -44,7 +44,9 @@ rem（font size of the root element）是指相对于根元素的字体大�
 
 天猫的web app的首页就是采用这种方式去做的，以320宽度为基准，进行缩放，最大缩放为320*1.3 = 416，基本缩放到416都就可以兼容iphone6 plus的屏幕了，这个方法简单粗暴，又高效。说实话我觉得他和用接下去[我们](https://www.w3cdoc.com)要讲的rem都非常高效，不过有部分同学使用过程中反应缩放会导致有些页面元素会糊的情况。
 
-<pre class="html"><meta name="viewport" content="width=320,maximum-scale=1.3,user-scalable=no"></pre>
+```
+<meta name="viewport" content="width=320,maximum-scale=1.3,user-scalable=no">
+```
 
 ## <a name="t7"></a>rem能等比例适配所有屏幕 {#t7}
 
@@ -52,7 +54,8 @@ rem（font size of the root element）是指相对于根元素的字体大�
 
 上面说过rem是通过根元素进行适配的，网页中的根元素指的是html[我们](https://www.w3cdoc.com)通过设置html的字体大小就可以控制rem的大小。举个例子：
 
-<pre class="css">html{
+```
+html{
     font-size:20px;
 }
 .btn {
@@ -66,7 +69,8 @@ rem（font size of the root element）是指相对于根元素的字体大�
     border-radius: .5rem;
     text-decoration: none;
     text-align: center;
-}</pre>
+}
+```
 
 Demo 上面代码结果按钮大小如下图：
 
@@ -74,9 +78,11 @@ Demo 上面代码结果按钮大小如下图：
 
 我把html设置成10px是为了方便[我们](https://www.w3cdoc.com)计算，为什么6rem等于60px。如果这个时候[我们](https://www.w3cdoc.com)的.btn的样式不变，[我们](https://www.w3cdoc.com)再改变html的font-size的值，看看按钮发生上面变化:
 
-<pre class="css">html{
+```
+html{
     font-size:40px;
-}</pre>
+}
+```
 
 Demo
 
@@ -116,9 +122,10 @@ Demo
 
 上面的表格蓝色一列是Demo3中页面的尺寸，页面是以640的宽度去切的，怎么计算不同宽度下font-site的值，[大家](https://www.w3cdoc.com)看表格上面的数值变化应该能明白。举个例子：384/640 = 0.6，384是640的0.6倍，所以384页面宽度下的font-size也等于它的0.6倍，这时384的font-size就等于12px。在不同设备的宽度计算方式以此类推。
 
-Demo3中我是通过<span class="wp_keywordlink"><a title="js" href="https://caibaojian.com/javascript/">JS</a></span>去动态计算根元素的font-size，这样的好处是所有设备分辨率都能兼容适配，淘宝首页目前就是用的JS计算。但其实不用JS[我们](https://www.w3cdoc.com)也可以做适配，一般[我们](https://www.w3cdoc.com)在做web app都会先统计自己网站有哪些主流的屏幕设备，然后去针对那些设备去做media query设置也可以实现适配，例如下面这样：
+Demo3中我是通过<a title="js" href="https://caibaojian.com/javascript/">JS</a>去动态计算根元素的font-size，这样的好处是所有设备分辨率都能兼容适配，淘宝首页目前就是用的JS计算。但其实不用JS[我们](https://www.w3cdoc.com)也可以做适配，一般[我们](https://www.w3cdoc.com)在做web app都会先统计自己网站有哪些主流的屏幕设备，然后去针对那些设备去做media query设置也可以实现适配，例如下面这样：
 
-<pre class="css">//code from https://caibaojian.com/web-app-rem.html
+```
+//code from https://caibaojian.com/web-app-rem.html
 html {
     font-size : 20px;
 }
@@ -146,7 +153,8 @@ html {
     html {
         font-size: 40px !important;
     }
-}</pre>
+}
+```
 
 上面的做的设置当然是不能所有设备全适配，但是用JS是可以实现全适配。具体用哪个就要根据自己的实际工作场景去定了。
 
@@ -164,11 +172,12 @@ html {
 
 @blinkcat，rem是可以合并雪碧图的，viewport设置确实简洁，但是过于粗暴，全局都进行缩放，有时候我布局并不希望全局缩放，部分布局希望不用缩放，所以使用rem，不过具体使用什么方法[大家](https://www.w3cdoc.com)都可以根据实际情况衡量。并不是每个人都喜欢使用sass，所以在px转rem这块我做了一个在线转换工具：https://520ued.com/tools/rem
 
-### <a name="t10"></a>REM<span class="wp_keywordlink"><a title="自适应" href="https://caibaojian.com/t/自适应">自适应</a></span>JS {#t10}
+### <a name="t10"></a>REM<a title="自适应" href="https://caibaojian.com/t/自适应">自适应</a>JS {#t10}
 
 具体使用方法请参考这篇文章：<a href="https://caibaojian.com/simple-flexible.html" rel="bookmark">Rem精简版实现自适应-优化flexible.js</a>
 
-<pre class="pure-highlightjs"><code class="">//designWidth:设计稿的实际宽度值，需要根据实际设置
+```
+//designWidth:设计稿的实际宽度值，需要根据实际设置
 //maxWidth:制作稿的最大宽度值，需要根据实际设置
 //这段js的最后面有两个参数记得要设置，一个为设计稿实际宽度，一个为制作稿最大宽度，例如设计稿为750，最大宽度为750，则为(750,750)
 ;(function(designWidth, maxWidth) {
@@ -217,7 +226,8 @@ html {
   }, false);
  }
 })(750, 750);
-</code></pre>
+
+```
 
 原文链接：<https://caibaojian.com/web-app-rem.html>
 

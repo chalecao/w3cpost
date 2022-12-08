@@ -15,7 +15,8 @@ JOIN的含义就如英文单词“join”一样，连接两张表，大致分为
 
 ## 示例
 
-<pre class="EnlighterJSRAW" data-enlighter-language="sql" data-enlighter-theme="godzilla">CREATE TABLE t_blog(
+```
+CREATE TABLE t_blog(
         id INT PRIMARY KEY AUTO_INCREMENT,
         title VARCHAR(50),
         typeId INT
@@ -50,7 +51,8 @@ SELECT * FROM t_blog;
     |  3 | Java       |
     |  4 | C#         |
     |  5 | Javascript |
-    +----+------------+</pre>
+    +----+------------+
+```
 
 <h2 data-anchor-id="o4rx">
   CROSS JOIN：笛卡尔积
@@ -60,7 +62,8 @@ SELECT * FROM t_blog;
 
   要理解各种JOIN首先要理解笛卡尔积。笛卡尔积就是将A表的每一条记录与B表的每一条记录强行拼在一起。所以，如果A表有n条记录，B表有m条记录，笛卡尔积产生的结果就会产生n*m条记录。下面的例子，t_blog有10条记录，t_type有5条记录，所有他们俩的笛卡尔积有50条记录。有五种产生笛卡尔积的方式如下。
 
-<pre class="EnlighterJSRAW" data-enlighter-language="sql" data-enlighter-theme="godzilla">SELECT *FROM t_blog CROSS JOIN t_type;
+```
+SELECT *FROM t_blog CROSS JOIN t_type;
 SELECT* FROM t_blog INNER JOIN t_type;
     SELECT *FROM t_blog,t_type;
 SELECT* FROM t_blog NATURE JOIN t_type;
@@ -118,7 +121,8 @@ SELECT* FROM t_blog NATURE JOIN t_type;
     | 10 | jjj   |   NULL |  3 | Java       |
     | 10 | jjj   |   NULL |  4 | C#         |
     | 10 | jjj   |   NULL |  5 | Javascript |
-    +----+-------+--------+----+------------+</pre>
+    +----+-------+--------+----+------------+
+```
 
 <h2 id="内连接inner-join" data-anchor-id="9wdp">
   内连接：INNER JOIN
@@ -129,7 +133,8 @@ SELECT* FROM t_blog NATURE JOIN t_type;
   内连接INNER JOIN是最常用的连接操作。从数学的角度讲就是求两个表的交集，从笛卡尔积的角度讲就是从笛卡尔积中挑出ON子句条件成立的记录。有INNER JOIN，WHERE（等值连接），STRAIGHT_JOIN,JOIN(省略INNER)四种写法。至于哪种好我会在MySQL的JOIN（二）：优化讲述。示例如下。
 
 <div class="cnblogs_code">
-  <pre><code>    SELECT *FROM t_blog INNER JOIN t_type ON t_blog.typeId=t_type.id;
+  ```
+    SELECT *FROM t_blog INNER JOIN t_type ON t_blog.typeId=t_type.id;
 SELECT* FROM t_blog,t_type WHERE t_blog.typeId=t_type.id;
     SELECT *FROM t_blog STRAIGHT_JOIN t_type ON t_blog.typeId=t_type.id; --注意STRIGHT_JOIN有个下划线
 SELECT* FROM t_blog JOIN t_type ON t_blog.typeId=t_type.id;
@@ -143,10 +148,11 @@ SELECT* FROM t_blog JOIN t_type ON t_blog.typeId=t_type.id;
     |  6 | fff   |      3 |  3 | Java |
     |  4 | ddd   |      4 |  4 | C#   |
     |  5 | eee   |      4 |  4 | C#   |
-    +----+-------+--------+----+------+</code></pre>
+    +----+-------+--------+----+------+
+```
 </div>
 
-&nbsp;
+
 
 <h2 id="左连接left-join" data-anchor-id="msqb">
   左连接：LEFT JOIN
@@ -157,7 +163,8 @@ SELECT* FROM t_blog JOIN t_type ON t_blog.typeId=t_type.id;
   左连接LEFT JOIN的含义就是求两个表的交集外加左表剩下的数据。依旧从笛卡尔积的角度讲，就是先从笛卡尔积中挑出ON子句条件成立的记录，然后加上左表中剩余的记录（见最后三条）。
 
 <div class="cnblogs_code">
-  <pre><code>    SELECT * FROM t_blog LEFT JOIN t_type ON t_blog.typeId=t_type.id;
+  ```
+    SELECT * FROM t_blog LEFT JOIN t_type ON t_blog.typeId=t_type.id;
     +----+-------+--------+------+------+
     | id | title | typeId | id   | name |
     +----+-------+--------+------+------+
@@ -171,10 +178,11 @@ SELECT* FROM t_blog JOIN t_type ON t_blog.typeId=t_type.id;
     |  8 | hhh   |   NULL | NULL | NULL |
     |  9 | iii   |   NULL | NULL | NULL |
     | 10 | jjj   |   NULL | NULL | NULL |
-    +----+-------+--------+------+------+</code></pre>
+    +----+-------+--------+------+------+
+```
 </div>
 
-&nbsp;
+
 
 <h2 id="右连接right-join" data-anchor-id="fs75">
   右连接：RIGHT JOIN
@@ -185,7 +193,8 @@ SELECT* FROM t_blog JOIN t_type ON t_blog.typeId=t_type.id;
   同理右连接RIGHT JOIN就是求两个表的交集外加右表剩下的数据。再次从笛卡尔积的角度描述，右连接就是从笛卡尔积中挑出ON子句条件成立的记录，然后加上右表中剩余的记录（见最后一条）。
 
 <div class="cnblogs_code">
-  <pre><code>    SELECT * FROM t_blog RIGHT JOIN t_type ON t_blog.typeId=t_type.id;
+  ```
+    SELECT * FROM t_blog RIGHT JOIN t_type ON t_blog.typeId=t_type.id;
     +------+-------+--------+----+------------+
     | id   | title | typeId | id | name       |
     +------+-------+--------+----+------------+
@@ -197,7 +206,8 @@ SELECT* FROM t_blog JOIN t_type ON t_blog.typeId=t_type.id;
     |    6 | fff   |      3 |  3 | Java       |
     |    7 | ggg   |      2 |  2 | C          |
     | NULL | NULL  |   NULL |  5 | Javascript |
-    +------+-------+--------+----+------------+</code></pre>
+    +------+-------+--------+----+------------+
+```
 </div>
 
 <h2 id="外连接outer-join" data-anchor-id="fx7n">
@@ -209,7 +219,8 @@ SELECT* FROM t_blog JOIN t_type ON t_blog.typeId=t_type.id;
   外连接就是求两个集合的并集。从笛卡尔积的角度讲就是从笛卡尔积中挑出ON子句条件成立的记录，然后加上左表中剩余的记录，最后加上右表中剩余的记录。另外MySQL不支持OUTER JOIN，但是[我们](https://www.w3cdoc.com)可以对左连接和右连接的结果做UNION操作来实现。
 
 <div class="cnblogs_code">
-  <pre><code>    SELECT *FROM t_blog LEFT JOIN t_type ON t_blog.typeId=t_type.id
+  ```
+    SELECT *FROM t_blog LEFT JOIN t_type ON t_blog.typeId=t_type.id
     UNION
 SELECT* FROM t_blog RIGHT JOIN t_type ON t_blog.typeId=t_type.id;
     +------+-------+--------+------+------------+
@@ -226,7 +237,8 @@ SELECT* FROM t_blog RIGHT JOIN t_type ON t_blog.typeId=t_type.id;
     |    9 | iii   |   NULL | NULL | NULL       |
     |   10 | jjj   |   NULL | NULL | NULL       |
     | NULL | NULL  |   NULL |    5 | Javascript |
-    +------+-------+--------+------+------------+</code></pre>
+    +------+-------+--------+------+------------+
+```
 </div>
 
 <h2 id="using子句" data-anchor-id="3uls">
@@ -238,7 +250,8 @@ SELECT* FROM t_blog RIGHT JOIN t_type ON t_blog.typeId=t_type.id;
   MySQL中连接SQL语句中，ON子句的语法格式为：table1.column_name = table2.column_name。当模式设计对联接表的列采用了相同的命名样式时，就可以使用 USING 语法来简化 ON 语法，格式为：USING(column_name)。<br /> 所以，USING的功能相当于ON，区别在于USING指定一个属性名用于连接两个表，而ON指定一个条件。另外，SELECT *时，USING会去除USING指定的列，而ON不会。实例如下。
 
 <div class="cnblogs_code">
-  <pre><code>    SELECT * FROM t_blog INNER JOIN t_type ON t_blog.typeId =t_type.id;
+  ```
+    SELECT * FROM t_blog INNER JOIN t_type ON t_blog.typeId =t_type.id;
     +----+-------+--------+----+------+
     | id | title | typeId | id | name |
     +----+-------+--------+----+------+
@@ -262,7 +275,8 @@ SELECT* FROM t_blog RIGHT JOIN t_type ON t_blog.typeId=t_type.id;
     |  3 | ccc   |      3 | Java       |
     |  4 | ddd   |      4 | C#         |
     |  5 | eee   |      4 | Javascript |
-    +----+-------+--------+------------+</code></pre>
+    +----+-------+--------+------------+
+```
 </div>
 
 <h2 id="自然连接nature-join" data-anchor-id="y5if">
@@ -275,7 +289,8 @@ SELECT* FROM t_blog RIGHT JOIN t_type ON t_blog.typeId=t_type.id;
 
 <div class="cnblogs_code">
   <div id="cnblogs_code_open_b28b36b5-b8c4-4651-af0c-e786640876c3" class="cnblogs_code_hide">
-    <pre><code> SELECT * FROM t_blog NATURAL JOIN t_type;
+    ```
+ SELECT * FROM t_blog NATURAL JOIN t_type;
     SELECT t_blog.id,title,typeId,t_type.name FROM t_blog,t_type WHERE t_blog.id=t_type.id;
     SELECT t_blog.id,title,typeId,t_type.name FROM t_blog INNER JOIN t_type ON t_blog.id=t_type.id;
     SELECT t_blog.id,title,typeId,t_type.name FROM t_blog INNER JOIN t_type USING(id);
@@ -321,7 +336,8 @@ SELECT* FROM t_blog RIGHT JOIN t_type ON t_blog.typeId=t_type.id;
     |  3 | Java       | ccc   |      3 |
     |  4 | C#         | ddd   |      4 |
     |  5 | Javascript | eee   |      4 |
-    +----+------------+-------+--------+</code></pre>
+    +----+------------+-------+--------+
+```
   </div>
 </div>
 
@@ -334,7 +350,8 @@ SELECT* FROM t_blog RIGHT JOIN t_type ON t_blog.typeId=t_type.id;
  <img id="code_img_opened_17522636-4378-4994-8fac-9798b92eb527" class="code_img_opened" src="https://images.cnblogs.com/OutliningIndicators/ExpandedBlockStart.gif" alt="" />
   
   <div id="cnblogs_code_open_17522636-4378-4994-8fac-9798b92eb527" class="cnblogs_code_hide">
-    <pre><code>    SELECT *FROM t_blog LEFT JOIN t_type ON t_blog.typeId=t_type.id
+    ```
+    SELECT *FROM t_blog LEFT JOIN t_type ON t_blog.typeId=t_type.id
     WHERE t_type.id IS NULL;
     +----+-------+--------+------+------+
     | id | title | typeId | id   | name |
@@ -362,7 +379,8 @@ SELECT* FROM t_blog RIGHT JOIN t_type ON t_blog.typeId=t_type.id
     |    9 | iii   |   NULL | NULL | NULL       |
     |   10 | jjj   |   NULL | NULL | NULL       |
     | NULL | NULL  |   NULL |    5 | Javascript |
-    +------+-------+--------+------+------------+</code></pre>
+    +------+-------+--------+------+------------+
+```
 
     <h2 class="cnblogs_code_toolbar">
       单表自身join
@@ -370,7 +388,8 @@ SELECT* FROM t_blog RIGHT JOIN t_type ON t_blog.typeId=t_type.id
 
     
     <div>
-      <pre class="EnlighterJSRAW" data-enlighter-language="sql">SELECT a.*
+      ```
+SELECT a.*
 FROM t_blog a
 LEFT JOIN t_blog b
     ON a.name = b.name
@@ -378,7 +397,8 @@ WHERE
 b.typeId = 2
 AND a.typeId =1
 ORDER BY a.typeId desc
-;</pre>
+;
+```
 
       
         注意On和Where的使用。ON用于选择表连接之间的条件，where则用于筛选左表和右表的数据。

@@ -25,7 +25,7 @@ juputer，想起来丘比特。哈哈
 
 不能翻墙的就推荐百度的[AI studio][4]，用起来还是很不错的。我这有个 [示例项目][5]
 
-&nbsp;
+
 
  [1]: https://www.f2e123.com/aistack/2725.html#toc-6
  [2]: https://colab.research.google.com/notebooks/welcome.ipynb?hl=zh-cn#scrollTo=9J7p406abzgl

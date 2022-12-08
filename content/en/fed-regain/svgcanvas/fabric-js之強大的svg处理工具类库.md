@@ -92,8 +92,8 @@ newfabric.Color(‘rgb(100,0,100)’);
 
 扩展：
 
-    <code>其中第二个参数可选，可以为left, top, fill, opacity,fontFamily ,fontSize  fontWeight textShadow, fontStyle  strokeStyle strokeWidth textBackgroundColor lineHeight   textAlign. 
-    </code>
+    其中第二个参数可选，可以为left, top, fill, opacity,fontFamily ,fontSize  fontWeight textShadow, fontStyle  strokeStyle strokeWidth textBackgroundColor lineHeight   textAlign. 
+    
 
 #### [][13]Events
 
@@ -101,8 +101,8 @@ newfabric.Color(‘rgb(100,0,100)’);
 
 使用 on 监听事件，off 移除监听器
 
-    <code>Note that eventslike "object:moving" (or "object:scaling") are fired continuouslyevery time an object is moved (or scaled) even by one pixel. On the other hand,events like "object:modified" or "selection:created" arefired only at the end of the action (object modification or selectioncreation).  也可以直接给 model object 添加事件  canvas.on(';mouse:down';, function(options){console.log(options.e.clientX, options.e.clientY); });    其中options有两个属性，一个e 代表事件，target 代表事件发出的对象 
-    </code>
+    Note that eventslike "object:moving" (or "object:scaling") are fired continuouslyevery time an object is moved (or scaled) even by one pixel. On the other hand,events like "object:modified" or "selection:created" arefired only at the end of the action (object modification or selectioncreation).  也可以直接给 model object 添加事件  canvas.on(';mouse:down';, function(options){console.log(options.e.clientX, options.e.clientY); });    其中options有两个属性，一个e 代表事件，target 代表事件发出的对象 
+    
 
 #### [][14]Groups
 
@@ -120,8 +120,8 @@ group中item默认布局在group中央，通过给每个item设置left和top属�
 
 其中 toObject 转化为object格式，toJSON转换为json 字符串
 
-    <code>实例： 
-    </code>
+    实例： 
+    
 
 对于自定义类，只要定义 toObject函数，当使用 canvas.toObject()时就可以递归调用，类似于java的toString。
 

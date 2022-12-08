@@ -25,39 +25,39 @@ title: 关于node编程异常处理
         <td class="code">
           <div class="container">
             <div class="line number1 index0 alt2">
-              <code class="javascript plain">1</code>
+              1
             </div>
 
             <div class="line number2 index1 alt1">
-              <code class="javascript keyword">try</code> <code class="javascript plain">{</code>
+              try {
             </div>
             
             <div class="line number3 index2 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">process.nextTick(</code><code class="javascript keyword">function</code> <code class="javascript plain">() {</code>
+                  process.nextTick(function () {
             </div>
             
             <div class="line number4 index3 alt1">
-              <code class="javascript spaces">        </code><code class="javascript keyword">throw</code> <code class="javascript keyword">new</code> <code class="javascript plain">Error(</code><code class="javascript string">"error"</code><code class="javascript plain">);</code>
+                      throw new Error("error");
             </div>
             
             <div class="line number5 index4 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">});</code>
+                  });
             </div>
             
             <div class="line number6 index5 alt1">
-              <code class="javascript plain">} </code><code class="javascript keyword">catch</code> <code class="javascript plain">(err) {</code>
+              } catch (err) {
             </div>
             
             <div class="line number7 index6 alt2">
-              <code class="javascript spaces">    </code><code class="javascript comments">//can not catch it</code>
+                  //can not catch it
             </div>
             
             <div class="line number8 index7 alt1">
-              <code class="javascript spaces">    </code><code class="javascript plain">console.log(err);</code>
+                  console.log(err);
             </div>
             
             <div class="line number9 index8 alt2">
-              <code class="javascript plain">}</code>
+              }
             </div>
             
             <div class="line number10 index9 alt1">
@@ -67,35 +67,35 @@ title: 关于node编程异常处理
             </div>
             
             <div class="line number12 index11 alt1">
-              <code class="javascript keyword">try</code> <code class="javascript plain">{</code>
+              try {
             </div>
             
             <div class="line number13 index12 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">setTimeout(</code><code class="javascript keyword">function</code><code class="javascript plain">(){</code>
+                  setTimeout(function(){
             </div>
             
             <div class="line number14 index13 alt1">
-              <code class="javascript spaces">        </code><code class="javascript keyword">throw</code> <code class="javascript keyword">new</code> <code class="javascript plain">Error(</code><code class="javascript string">"error"</code><code class="javascript plain">);</code>
+                      throw new Error("error");
             </div>
             
             <div class="line number15 index14 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">},1)</code>
+                  },1)
             </div>
             
             <div class="line number16 index15 alt1">
-              <code class="javascript plain">} </code><code class="javascript keyword">catch</code> <code class="javascript plain">(err) {</code>
+              } catch (err) {
             </div>
             
             <div class="line number17 index16 alt2">
-              <code class="javascript spaces">    </code><code class="javascript comments">//can not catch it</code>
+                  //can not catch it
             </div>
             
             <div class="line number18 index17 alt1">
-              <code class="javascript spaces">    </code><code class="javascript plain">console.log(err);</code>
+                  console.log(err);
             </div>
             
             <div class="line number19 index18 alt2">
-              <code class="javascript plain">}</code>
+              }
             </div>
           </div>
         </td>
@@ -118,19 +118,19 @@ title: 关于node编程异常处理
         <td class="code">
           <div class="container">
             <div class="line number1 index0 alt2">
-              <code class="javascript plain">1</code>
+              1
             </div>
 
             <div class="line number2 index1 alt1">
-              <code class="javascript plain">process.on(</code><code class="javascript string">'uncaughtException'</code><code class="javascript plain">, </code><code class="javascript keyword">function</code><code class="javascript plain">(err) {</code>
+              process.on('uncaughtException', function(err) {
             </div>
             
             <div class="line number3 index2 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">console.error(</code><code class="javascript string">'Error caught in uncaughtException event:'</code><code class="javascript plain">, err);</code>
+                  console.error('Error caught in uncaughtException event:', err);
             </div>
             
             <div class="line number4 index3 alt1">
-              <code class="javascript plain">});</code>
+              });
             </div>
             
             <div class="line number5 index4 alt2">
@@ -140,35 +140,35 @@ title: 关于node编程异常处理
             </div>
             
             <div class="line number7 index6 alt2">
-              <code class="javascript keyword">try</code> <code class="javascript plain">{</code>
+              try {
             </div>
             
             <div class="line number8 index7 alt1">
-              <code class="javascript spaces">    </code><code class="javascript plain">setTimeout(</code><code class="javascript keyword">function</code><code class="javascript plain">(){</code>
+                  setTimeout(function(){
             </div>
             
             <div class="line number9 index8 alt2">
-              <code class="javascript spaces">        </code><code class="javascript keyword">throw</code> <code class="javascript keyword">new</code> <code class="javascript plain">Error(</code><code class="javascript string">"error"</code><code class="javascript plain">);</code>
+                      throw new Error("error");
             </div>
             
             <div class="line number10 index9 alt1">
-              <code class="javascript spaces">    </code><code class="javascript plain">},1)</code>
+                  },1)
             </div>
             
             <div class="line number11 index10 alt2">
-              <code class="javascript plain">} </code><code class="javascript keyword">catch</code> <code class="javascript plain">(err) {</code>
+              } catch (err) {
             </div>
             
             <div class="line number12 index11 alt1">
-              <code class="javascript spaces">    </code><code class="javascript comments">//can not catch it</code>
+                  //can not catch it
             </div>
             
             <div class="line number13 index12 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">console.log(err);</code>
+                  console.log(err);
             </div>
             
             <div class="line number14 index13 alt1">
-              <code class="javascript plain">}</code>
+              }
             </div>
           </div>
         </td>
@@ -186,31 +186,31 @@ title: 关于node编程异常处理
         <td class="code">
           <div class="container">
             <div class="line number1 index0 alt2">
-              <code class="javascript plain">1</code>
+              1
             </div>
 
             <div class="line number2 index1 alt1">
-              <code class="javascript plain">process.on(</code><code class="javascript string">'uncaughtException'</code><code class="javascript plain">, </code><code class="javascript keyword">function</code><code class="javascript plain">(err) {</code>
+              process.on('uncaughtException', function(err) {
             </div>
             
             <div class="line number3 index2 alt2">
-              <code class="javascript spaces">    </code><code class="javascript comments">// 记录日志</code>
+                  // 记录日志
             </div>
             
             <div class="line number4 index3 alt1">
-              <code class="javascript spaces">    </code><code class="javascript plain">logger(err);</code>
+                  logger(err);
             </div>
             
             <div class="line number5 index4 alt2">
-              <code class="javascript spaces">    </code><code class="javascript comments">// 结束进程</code>
+                  // 结束进程
             </div>
             
             <div class="line number6 index5 alt1">
-              <code class="javascript spaces">    </code><code class="javascript plain">process.exit(1);</code>
+                  process.exit(1);
             </div>
             
             <div class="line number7 index6 alt2">
-              <code class="javascript plain">});</code>
+              });
             </div>
           </div>
         </td>
@@ -231,64 +231,64 @@ title: 关于node编程异常处理
         <td class="code">
           <div class="container">
             <div class="line number1 index0 alt2">
-              <code class="javascript plain">1</code>
+              1
             </div>
 
             <div class="line number2 index1 alt1">
-              <code class="javascript keyword">var</code> <code class="javascript plain">d = domain.create();</code>
+              var d = domain.create();
             </div>
             
             <div class="line number3 index2 alt2">
             </div>
             
             <div class="line number4 index3 alt1">
-              <code class="javascript plain">process.on(</code><code class="javascript string">'uncaughtException'</code><code class="javascript plain">, </code><code class="javascript keyword">function</code><code class="javascript plain">(err) {</code>
+              process.on('uncaughtException', function(err) {
             </div>
             
             <div class="line number5 index4 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">console.error(err);</code>
+                  console.error(err);
             </div>
             
             <div class="line number6 index5 alt1">
-              <code class="javascript plain">});</code>
+              });
             </div>
             
             <div class="line number7 index6 alt2">
             </div>
             
             <div class="line number8 index7 alt1">
-              <code class="javascript plain">d.on(</code><code class="javascript string">'error'</code><code class="javascript plain">, </code><code class="javascript keyword">function</code><code class="javascript plain">(err) {</code>
+              d.on('error', function(err) {
             </div>
             
             <div class="line number9 index8 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">console.error(</code><code class="javascript string">'Error caught by domain:'</code><code class="javascript plain">, err);</code>
+                  console.error('Error caught by domain:', err);
             </div>
             
             <div class="line number10 index9 alt1">
-              <code class="javascript plain">});</code>
+              });
             </div>
             
             <div class="line number11 index10 alt2">
             </div>
             
             <div class="line number12 index11 alt1">
-              <code class="javascript plain">d.run(</code><code class="javascript keyword">function</code><code class="javascript plain">() {</code>
+              d.run(function() {
             </div>
             
             <div class="line number13 index12 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">process.nextTick(</code><code class="javascript keyword">function</code><code class="javascript plain">() {</code>
+                  process.nextTick(function() {
             </div>
             
             <div class="line number14 index13 alt1">
-              <code class="javascript spaces">        </code><code class="javascript keyword">throw</code> <code class="javascript keyword">new</code> <code class="javascript plain">Error(</code><code class="javascript string">"test domain"</code><code class="javascript plain">);</code>
+                      throw new Error("test domain");
             </div>
             
             <div class="line number15 index14 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">});</code>
+                  });
             </div>
             
             <div class="line number16 index15 alt1">
-              <code class="javascript plain">});</code>
+              });
             </div>
           </div>
         </td>
@@ -319,23 +319,23 @@ title: 关于node编程异常处理
         <td class="code">
           <div class="container">
             <div class="line number1 index0 alt2">
-              <code class="javascript plain">1</code>
+              1
             </div>
 
             <div class="line number2 index1 alt1">
-              <code class="javascript plain">fs.readFile(</code><code class="javascript string">'/t.txt'</code><code class="javascript plain">, </code><code class="javascript keyword">function</code> <code class="javascript plain">(err, data) {</code>
+              fs.readFile('/t.txt', function (err, data) {
             </div>
             
             <div class="line number3 index2 alt2">
-              <code class="javascript spaces">  </code><code class="javascript keyword">if</code> <code class="javascript plain">(err) </code><code class="javascript keyword">throw</code> <code class="javascript plain">err;</code>
+                if (err) throw err;
             </div>
             
             <div class="line number4 index3 alt1">
-              <code class="javascript spaces">  </code><code class="javascript plain">console.log(data);</code>
+                console.log(data);
             </div>
             
             <div class="line number5 index4 alt2">
-              <code class="javascript plain">});</code>
+              });
             </div>
             
             <div class="line number6 index5 alt1">
@@ -345,54 +345,54 @@ title: 关于node编程异常处理
             </div>
             
             <div class="line number8 index7 alt1">
-              <code class="javascript comments">// 不推荐的做法</code>
+              // 不推荐的做法
             </div>
             
             <div class="line number9 index8 alt2">
-              <code class="javascript keyword">function</code> <code class="javascript plain">fun(options,callback){</code>
+              function fun(options,callback){
             </div>
             
             <div class="line number10 index9 alt1">
-              <code class="javascript spaces">    </code><code class="javascript keyword">if</code><code class="javascript plain">(!options{</code>
+                  if(!options{
             </div>
             
             <div class="line number11 index10 alt2">
-              <code class="javascript spaces">        </code><code class="javascript keyword">throw</code> <code class="javascript keyword">new</code> <code class="javascript plain">Error(</code><code class="javascript string">".."</code><code class="javascript plain">)</code>
+                      throw new Error("..")
             </div>
             
             <div class="line number12 index11 alt1">
-              <code class="javascript spaces">    </code><code class="javascript plain">}</code>
+                  }
             </div>
             
             <div class="line number13 index12 alt2">
-              <code class="javascript plain">}</code>
+              }
             </div>
             
             <div class="line number14 index13 alt1">
             </div>
             
             <div class="line number15 index14 alt2">
-              <code class="javascript comments">// 推荐的做法</code>
+              // 推荐的做法
             </div>
             
             <div class="line number16 index15 alt1">
-              <code class="javascript keyword">function</code> <code class="javascript plain">fun(options,callback){</code>
+              function fun(options,callback){
             </div>
             
             <div class="line number17 index16 alt2">
-              <code class="javascript spaces">    </code><code class="javascript keyword">if</code><code class="javascript plain">(!options){</code>
+                  if(!options){
             </div>
             
             <div class="line number18 index17 alt1">
-              <code class="javascript spaces">        </code><code class="javascript plain">callback(err,</code><code class="javascript keyword">null</code><code class="javascript plain">)</code>
+                      callback(err,null)
             </div>
             
             <div class="line number19 index18 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">}</code>
+                  }
             </div>
             
             <div class="line number20 index19 alt1">
-              <code class="javascript plain">}</code>
+              }
             </div>
           </div>
         </td>
@@ -410,27 +410,27 @@ title: 关于node编程异常处理
         <td class="code">
           <div class="container">
             <div class="line number1 index0 alt2">
-              <code class="javascript plain">1</code>
+              1
             </div>
 
             <div class="line number2 index1 alt1">
-              <code class="javascript keyword">function</code> <code class="javascript plain">doSth(cb){</code>
+              function doSth(cb){
             </div>
             
             <div class="line number3 index2 alt2">
-              <code class="javascript spaces">    </code><code class="javascript keyword">if</code><code class="javascript plain">(</code><code class="javascript keyword">typeof</code> <code class="javascript plain">cb === </code><code class="javascript string">'function'</code><code class="javascript plain">){</code>
+                  if(typeof cb === 'function'){
             </div>
             
             <div class="line number4 index3 alt1">
-              <code class="javascript spaces">        </code><code class="javascript plain">cb();</code>
+                      cb();
             </div>
             
             <div class="line number5 index4 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">}</code>
+                  }
             </div>
             
             <div class="line number6 index5 alt1">
-              <code class="javascript plain">}</code>
+              }
             </div>
           </div>
         </td>
@@ -448,31 +448,31 @@ title: 关于node编程异常处理
         <td class="code">
           <div class="container">
             <div class="line number1 index0 alt2">
-              <code class="javascript plain">1</code>
+              1
             </div>
 
             <div class="line number2 index1 alt1">
-              <code class="javascript keyword">var</code> <code class="javascript plain">obj;</code>
+              var obj;
             </div>
             
             <div class="line number3 index2 alt2">
-              <code class="javascript keyword">try</code><code class="javascript plain">{</code>
+              try{
             </div>
             
             <div class="line number4 index3 alt1">
-              <code class="javascript spaces">    </code><code class="javascript plain">obj = JSON.parse(</code><code class="javascript string">''</code><code class="javascript plain">)</code>
+                  obj = JSON.parse('')
             </div>
             
             <div class="line number5 index4 alt2">
-              <code class="javascript plain">}</code><code class="javascript keyword">catch</code><code class="javascript plain">(e){</code>
+              }catch(e){
             </div>
             
             <div class="line number6 index5 alt1">
-              <code class="javascript spaces">    </code><code class="javascript plain">obj = {};</code>
+                  obj = {};
             </div>
             
             <div class="line number7 index6 alt2">
-              <code class="javascript plain">}</code>
+              }
             </div>
           </div>
         </td>
@@ -490,58 +490,58 @@ title: 关于node编程异常处理
         <td class="code">
           <div class="container">
             <div class="line number1 index0 alt2">
-              <code class="javascript plain">1</code>
+              1
             </div>
 
             <div class="line number2 index1 alt1">
-              <code class="javascript comments">// 不推荐的做法</code>
+              // 不推荐的做法
             </div>
             
             <div class="line number3 index2 alt2">
-              <code class="javascript plain">app.get(</code><code class="javascript string">'/item.html'</code><code class="javascript plain">, </code><code class="javascript keyword">function</code> <code class="javascript plain">(req, res, next) {</code>
+              app.get('/item.html', function (req, res, next) {
             </div>
             
             <div class="line number4 index3 alt1">
-              <code class="javascript spaces">    </code><code class="javascript keyword">if</code><code class="javascript plain">(!query[</code><code class="javascript string">"id"</code><code class="javascript plain">]){</code>
+                  if(!query["id"]){
             </div>
             
             <div class="line number5 index4 alt2">
-              <code class="javascript spaces">        </code><code class="javascript keyword">throw</code> <code class="javascript keyword">new</code> <code class="javascript plain">Error(</code><code class="javascript string">'no item id'</code><code class="javascript plain">);</code>
+                      throw new Error('no item id');
             </div>
             
             <div class="line number6 index5 alt1">
-              <code class="javascript spaces">    </code><code class="javascript plain">}</code>
+                  }
             </div>
             
             <div class="line number7 index6 alt2">
-              <code class="javascript plain">});</code>
+              });
             </div>
             
             <div class="line number8 index7 alt1">
             </div>
             
             <div class="line number9 index8 alt2">
-              <code class="javascript comments">// 推荐的做法</code>
+              // 推荐的做法
             </div>
             
             <div class="line number10 index9 alt1">
-              <code class="javascript plain">app.get(</code><code class="javascript string">'/item.html'</code><code class="javascript plain">, </code><code class="javascript keyword">function</code> <code class="javascript plain">(req, res, next) {</code>
+              app.get('/item.html', function (req, res, next) {
             </div>
             
             <div class="line number11 index10 alt2">
-              <code class="javascript spaces">    </code><code class="javascript keyword">if</code><code class="javascript plain">(!query[</code><code class="javascript string">"id"</code><code class="javascript plain">]){</code>
+                  if(!query["id"]){
             </div>
             
             <div class="line number12 index11 alt1">
-              <code class="javascript spaces">        </code><code class="javascript plain">next();</code>
+                      next();
             </div>
             
             <div class="line number13 index12 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">}</code>
+                  }
             </div>
             
             <div class="line number14 index13 alt1">
-              <code class="javascript plain">});</code>
+              });
             </div>
           </div>
         </td>
@@ -580,89 +580,89 @@ cluster模块用于创建共享端口的多进程模式,这种模式使多个进
         <td class="code">
           <div class="container">
             <div class="line number1 index0 alt2">
-              <code class="javascript plain">1</code>
+              1
             </div>
 
             <div class="line number2 index1 alt1">
-              <code class="javascript keyword">var</code> <code class="javascript plain">cluster = require(</code><code class="javascript string">'cluster'</code><code class="javascript plain">);</code>
+              var cluster = require('cluster');
             </div>
             
             <div class="line number3 index2 alt2">
-              <code class="javascript keyword">var</code> <code class="javascript plain">http = require(</code><code class="javascript string">'http'</code><code class="javascript plain">);</code>
+              var http = require('http');
             </div>
             
             <div class="line number4 index3 alt1">
-              <code class="javascript keyword">var</code> <code class="javascript plain">numCPUs = require(</code><code class="javascript string">'os'</code><code class="javascript plain">).cpus().length;</code>
+              var numCPUs = require('os').cpus().length;
             </div>
             
             <div class="line number5 index4 alt2">
             </div>
             
             <div class="line number6 index5 alt1">
-              <code class="javascript keyword">if</code> <code class="javascript plain">(cluster.isMaster) {</code>
+              if (cluster.isMaster) {
             </div>
             
             <div class="line number7 index6 alt2">
-              <code class="javascript spaces">  </code><code class="javascript comments">// Fork workers.</code>
+                // Fork workers.
             </div>
             
             <div class="line number8 index7 alt1">
-              <code class="javascript spaces">  </code><code class="javascript keyword">for</code> <code class="javascript plain">(</code><code class="javascript keyword">var</code> <code class="javascript plain">i = 0; i < numCPUs; i++) {</code>
+                for (var i = 0; i < numCPUs; i++) {
             </div>
             
             <div class="line number9 index8 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">cluster.fork();</code>
+                  cluster.fork();
             </div>
             
             <div class="line number10 index9 alt1">
-              <code class="javascript spaces">  </code><code class="javascript plain">}</code>
+                }
             </div>
             
             <div class="line number11 index10 alt2">
             </div>
             
             <div class="line number12 index11 alt1">
-              <code class="javascript spaces">  </code><code class="javascript plain">cluster.on(</code><code class="javascript string">'exit'</code><code class="javascript plain">, </code><code class="javascript keyword">function</code><code class="javascript plain">(worker, code, signal) {</code>
+                cluster.on('exit', function(worker, code, signal) {
             </div>
             
             <div class="line number13 index12 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">console.log(</code><code class="javascript string">'worker '</code> <code class="javascript plain">+ worker.process.pid + </code><code class="javascript string">' died'</code><code class="javascript plain">);</code>
+                  console.log('worker ' + worker.process.pid + ' died');
             </div>
             
             <div class="line number14 index13 alt1">
-              <code class="javascript spaces">  </code><code class="javascript plain">});</code>
+                });
             </div>
             
             <div class="line number15 index14 alt2">
-              <code class="javascript plain">} </code><code class="javascript keyword">else</code> <code class="javascript plain">{</code>
+              } else {
             </div>
             
             <div class="line number16 index15 alt1">
-              <code class="javascript spaces">  </code><code class="javascript comments">// Workers can share any TCP connection</code>
+                // Workers can share any TCP connection
             </div>
             
             <div class="line number17 index16 alt2">
-              <code class="javascript spaces">  </code><code class="javascript comments">// In this case its a HTTP server</code>
+                // In this case its a HTTP server
             </div>
             
             <div class="line number18 index17 alt1">
-              <code class="javascript spaces">  </code><code class="javascript plain">http.createServer(</code><code class="javascript keyword">function</code><code class="javascript plain">(req, res) {</code>
+                http.createServer(function(req, res) {
             </div>
             
             <div class="line number19 index18 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">res.writeHead(200);</code>
+                  res.writeHead(200);
             </div>
             
             <div class="line number20 index19 alt1">
-              <code class="javascript spaces">    </code><code class="javascript plain">res.end(</code><code class="javascript string">"hello world\n"</code><code class="javascript plain">);</code>
+                  res.end("hello world\n");
             </div>
             
             <div class="line number21 index20 alt2">
-              <code class="javascript spaces">  </code><code class="javascript plain">}).listen(8000);</code>
+                }).listen(8000);
             </div>
             
             <div class="line number22 index21 alt1">
-              <code class="javascript plain">}</code>
+              }
             </div>
           </div>
         </td>
@@ -690,61 +690,61 @@ cluster模块用于创建共享端口的多进程模式,这种模式使多个进
         <td class="code">
           <div class="container">
             <div class="line number1 index0 alt2">
-              <code class="javascript plain">1</code>
+              1
             </div>
 
             <div class="line number2 index1 alt1">
-              <code class="javascript keyword">var</code> <code class="javascript plain">app = require(</code><code class="javascript string">'../app'</code><code class="javascript plain">);</code>
+              var app = require('../app');
             </div>
             
             <div class="line number3 index2 alt2">
-              <code class="javascript keyword">var</code> <code class="javascript plain">graceful = require(</code><code class="javascript string">'graceful'</code><code class="javascript plain">);</code>
+              var graceful = require('graceful');
             </div>
             
             <div class="line number4 index3 alt1">
             </div>
             
             <div class="line number5 index4 alt2">
-              <code class="javascript keyword">var</code> <code class="javascript plain">server = app.listen(app.get(</code><code class="javascript string">'port'</code><code class="javascript plain">), </code><code class="javascript keyword">function</code><code class="javascript plain">() {</code>
+              var server = app.listen(app.get('port'), function() {
             </div>
             
             <div class="line number6 index5 alt1">
-              <code class="javascript spaces">    </code><code class="javascript plain">debug(</code><code class="javascript string">'Express server listening on port '</code> <code class="javascript plain">+ server.address().port);</code>
+                  debug('Express server listening on port ' + server.address().port);
             </div>
             
             <div class="line number7 index6 alt2">
-              <code class="javascript plain">});</code>
+              });
             </div>
             
             <div class="line number8 index7 alt1">
             </div>
             
             <div class="line number9 index8 alt2">
-              <code class="javascript plain">graceful({</code>
+              graceful({
             </div>
             
             <div class="line number10 index9 alt1">
-              <code class="javascript spaces">    </code><code class="javascript plain">server: server,</code>
+                  server: server,
             </div>
             
             <div class="line number11 index10 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">killTimeout: 30000,</code>
+                  killTimeout: 30000,
             </div>
             
             <div class="line number12 index11 alt1">
-              <code class="javascript spaces">    </code><code class="javascript plain">error:</code><code class="javascript keyword">function</code><code class="javascript plain">(e){</code>
+                  error:function(e){
             </div>
             
             <div class="line number13 index12 alt2">
-              <code class="javascript spaces">        </code><code class="javascript plain">logger.error(e);</code>
+                      logger.error(e);
             </div>
             
             <div class="line number14 index13 alt1">
-              <code class="javascript spaces">    </code><code class="javascript plain">}</code>
+                  }
             </div>
             
             <div class="line number15 index14 alt2">
-              <code class="javascript plain">});</code>
+              });
             </div>
           </div>
         </td>
@@ -762,48 +762,48 @@ cluster模块用于创建共享端口的多进程模式,这种模式使多个进
         <td class="code">
           <div class="container">
             <div class="line number1 index0 alt2">
-              <code class="javascript keyword">var</code> <code class="javascript plain">recluster = require(</code><code class="javascript string">'recluster'</code><code class="javascript plain">),</code>
+              var recluster = require('recluster'),
             </div>
 
             <div class="line number2 index1 alt1">
-              <code class="javascript spaces">    </code><code class="javascript plain">path = require(</code><code class="javascript string">'path'</code><code class="javascript plain">);</code>
+                  path = require('path');
             </div>
             
             <div class="line number3 index2 alt2">
             </div>
             
             <div class="line number4 index3 alt1">
-              <code class="javascript keyword">var</code> <code class="javascript plain">cluster = recluster(path.join(__dirname, </code><code class="javascript string">'app.js'</code><code class="javascript plain">));</code>
+              var cluster = recluster(path.join(__dirname, 'app.js'));
             </div>
             
             <div class="line number5 index4 alt2">
-              <code class="javascript plain">cluster.run();</code>
+              cluster.run();
             </div>
             
             <div class="line number6 index5 alt1">
             </div>
             
             <div class="line number7 index6 alt2">
-              <code class="javascript plain">process.on(</code><code class="javascript string">'SIGUSR2'</code><code class="javascript plain">, </code><code class="javascript keyword">function</code><code class="javascript plain">() {</code>
+              process.on('SIGUSR2', function() {
             </div>
             
             <div class="line number8 index7 alt1">
-              <code class="javascript spaces">    </code><code class="javascript plain">console.log(</code><code class="javascript string">'Got SIGUSR2, reloading cluster...'</code><code class="javascript plain">);</code>
+                  console.log('Got SIGUSR2, reloading cluster...');
             </div>
             
             <div class="line number9 index8 alt2">
-              <code class="javascript spaces">    </code><code class="javascript plain">cluster.reload();</code>
+                  cluster.reload();
             </div>
             
             <div class="line number10 index9 alt1">
-              <code class="javascript plain">});</code>
+              });
             </div>
             
             <div class="line number11 index10 alt2">
             </div>
             
             <div class="line number12 index11 alt1">
-              <code class="javascript plain">console.log(</code><code class="javascript string">"spawned cluster, kill -s SIGUSR2"</code><code class="javascript plain">, process.pid, </code><code class="javascript string">"to reload"</code><code class="javascript plain">);</code>
+              console.log("spawned cluster, kill -s SIGUSR2", process.pid, "to reload");
             </div>
           </div>
         </td>
@@ -821,7 +821,7 @@ cluster模块用于创建共享端口的多进程模式,这种模式使多个进
         <td class="code">
           <div class="container">
             <div class="line number1 index0 alt2">
-              <code class="javascript plain">$ node server.js</code>
+              $ node server.js
             </div>
           </div>
         </td>
@@ -839,7 +839,7 @@ cluster模块用于创建共享端口的多进程模式,这种模式使多个进
         <td class="code">
           <div class="container">
             <div class="line number1 index0 alt2">
-              <code class="javascript plain">$ node server.js</code>
+              $ node server.js
             </div>
           </div>
         </td>
@@ -862,21 +862,21 @@ pm2使用非常简单：
         <td class="code">
           <div class="container">
             <div class="line number1 index0 alt2">
-              <code class="javascript plain">$ npm install pm2@latest -g</code>
+              $ npm install pm2@latest -g
             </div>
 
             <div class="line number2 index1 alt1">
             </div>
             
             <div class="line number3 index2 alt2">
-              <code class="javascript plain">$ pm2 start app.js</code>
+              $ pm2 start app.js
             </div>
             
             <div class="line number4 index3 alt1">
             </div>
             
             <div class="line number5 index4 alt2">
-              <code class="javascript plain">$ pm2 list</code>
+              $ pm2 list
             </div>
           </div>
         </td>

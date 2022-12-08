@@ -48,8 +48,10 @@ title: 转:react-redux原理介绍，最易懂的说明
       3. 安装
     </h4>
     
-    <pre><code class="hljs bash copyable" lang="bash">npm install --save redux
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+    ```
+npm install --save redux
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
     <h4 class="heading" data-id="heading-3">
       4. redux核心
@@ -99,19 +101,23 @@ title: 转:react-redux原理介绍，最易懂的说明
      store 可以理解为有多个加工机器的总工厂
     
     
-    <pre><code class="hljs bash copyable" lang="bash">&lt;span class="hljs-built_in">let&lt;/span> store = createStore(reducers);
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+    ```
+&lt;span class="hljs-built_in">let&lt;/span> store = createStore(reducers);
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
     
       Store 就是把它们联系到一起的对象。Store 有以下职责：
     
     
-    <pre><code class="hljs bash copyable" lang="bash">维持应用的 state；
+    ```
+维持应用的 state；
 提供 getState() 方法获取 state；
 提供 dispatch(action) 方法更新 state；
 通过 subscribe(listener) 注册监听器;
 通过 subscribe(listener) 返回的函数注销监听器。
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
     
       [我们](https://www.w3cdoc.com)可以通过store.getState()来了解工厂中商品的状态， 使用store.dispatch发送action指令。
@@ -140,7 +146,8 @@ title: 转:react-redux原理介绍，最易懂的说明
       
     
     
-    <pre><code class="hljs bash copyable" lang="bash">import { createStore } from &lt;span class="hljs-string">'redux'&lt;/span>
+    ```
+import { createStore } from &lt;span class="hljs-string">'redux'&lt;/span>
 
 const reducer = (state = {count: 0}, action) => {
   switch (action.type){
@@ -165,20 +172,23 @@ store.dispatch(actions.increase()) // {count: 1}
 store.dispatch(actions.increase()) // {count: 2}
 store.dispatch(actions.increase()) // {count: 3}
 
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
     
      [我们](https://www.w3cdoc.com)可以直接在react component上使用store.dispatch，但是这样不太方便，这个时候[我们](https://www.w3cdoc.com)需要react-redux
     
     
-    <pre><code class="hljs bash copyable" lang="bash">class Todos extends Component {
+    ```
+class Todos extends Component {
     &lt;span class="hljs-function">&lt;span class="hljs-title">render&lt;/span>&lt;/span>(){
         &lt;span class="hljs-built_in">return&lt;/span>(
             &lt;div onCLick={()=>store.dispatch(actions.delTodo()) }>&lt;span class="hljs-built_in">test&lt;/span>&lt;/div>
         )
     }
 }
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
     <h4 class="heading" data-id="heading-5">
       6. react-redux
@@ -192,8 +202,10 @@ store.dispatch(actions.increase()) // {count: 3}
       6.1 安装
     
     
-    <pre><code class="hljs bash copyable" lang="bash">npm install --save react-redux
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+    ```
+npm install --save react-redux
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
     
       6.2 核心
@@ -236,7 +248,8 @@ store.dispatch(actions.increase()) // {count: 3}
       index.js
     
     
-    <pre><code class="hljs bash copyable" lang="bash">import React, { Component } from &lt;span class="hljs-string">'react'&lt;/span>;
+    ```
+import React, { Component } from &lt;span class="hljs-string">'react'&lt;/span>;
 import store from &lt;span class="hljs-string">'../store'&lt;/span>;
 import actions from &lt;span class="hljs-string">'../store/actions/list'&lt;/span>;
 import {connect} from &lt;span class="hljs-string">'react-redux'&lt;/span>;
@@ -253,7 +266,8 @@ class Todos extends Component {
     state=>state,
     actions
 )(Todos);
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
     
       Provider 能拿到关键的store并传递给每个子组件
@@ -268,14 +282,15 @@ class Todos extends Component {
     
     
     
-      7.1 <code>mapStateToProps这个函数允许[我们](https://www.w3cdoc.com)将 store 中的数据作为 props 绑定到组件上。</code>
+      7.1 mapStateToProps这个函数允许[我们](https://www.w3cdoc.com)将 store 中的数据作为 props 绑定到组件上。
     
     
     
      reducer.js
     
     
-    <pre><code class="hljs bash copyable" lang="bash">&lt;span class="hljs-built_in">export&lt;/span> default &lt;span class="hljs-keyword">function&lt;/span> (state = { lists: [{text:&lt;span class="hljs-string">'移动端计划'&lt;/span>}],newType:&lt;span class="hljs-string">'all'&lt;/span>}, action) {
+    ```
+&lt;span class="hljs-built_in">export&lt;/span> default &lt;span class="hljs-keyword">function&lt;/span> (state = { lists: [{text:&lt;span class="hljs-string">'移动端计划'&lt;/span>}],newType:&lt;span class="hljs-string">'all'&lt;/span>}, action) {
     switch (action.type) {
         &lt;span class="hljs-keyword">case&lt;/span> types.ADD_TODO:
             &lt;span class="hljs-built_in">return&lt;/span> {...state,lists:[...state.lists,{text:action.text}]}
@@ -295,13 +310,15 @@ class Todos extends Component {
             &lt;span class="hljs-built_in">return&lt;/span> state;
     }
 }
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
     
       在reducer.js中，定义了初始化的state，通过connect方法，[我们](https://www.w3cdoc.com)就能使用this.props.lists拿到初始化的state。
     
     
-    <pre><code class="hljs bash copyable" lang="bash">import React, { Component } from &lt;span class="hljs-string">'react'&lt;/span>;
+    ```
+import React, { Component } from &lt;span class="hljs-string">'react'&lt;/span>;
 import store from &lt;span class="hljs-string">'../store'&lt;/span>;
 import actions from &lt;span class="hljs-string">'../store/actions/list'&lt;/span>;
 import {connect} from &lt;span class="hljs-string">'react-redux'&lt;/span>;
@@ -325,21 +342,23 @@ class Todos extends Component {
     state=>state,
     actions
 )(Todos);
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
     
       当 state 变化，或者 ownProps 变化的时候，mapStateToProps 都会被调用，计算出一个新的 stateProps，（在与 ownProps merge 后）更新给 MyComp。
     
     
     
-      7.2 <code>mapDispatchToProps(dispatch, ownProps): dispatchProps connect 的第二个参数是 mapDispatchToProps，它的功能是，将 action 作为 props 绑定到 MyComp 上。</code>
+      7.2 mapDispatchToProps(dispatch, ownProps): dispatchProps connect 的第二个参数是 mapDispatchToProps，它的功能是，将 action 作为 props 绑定到 MyComp 上。
     
     
     
      action.js
     
     
-    <pre><code class="hljs bash copyable" lang="bash">import * as types from &lt;span class="hljs-string">"../action-types"&lt;/span>;
+    ```
+import * as types from &lt;span class="hljs-string">"../action-types"&lt;/span>;
 
 &lt;span class="hljs-built_in">export&lt;/span> default{
     add_todo(text){
@@ -358,7 +377,8 @@ class Todos extends Component {
         &lt;span class="hljs-built_in">return&lt;/span> {&lt;span class="hljs-built_in">type&lt;/span>:types.SWITCH_TYPE, newType}
     }
 }
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
     
       我在action.js中定义的修改状态的命令，会通过connect 的 mapDispatchToProps方法变为props绑定在reac组件上。
@@ -368,8 +388,10 @@ class Todos extends Component {
       [我们](https://www.w3cdoc.com)可以方便得使用去调用
     
     
-    <pre><code class="hljs bash copyable" lang="bash">    &lt;div onCLick={()=>this.props.del_todo() }>&lt;span class="hljs-built_in">test&lt;/span>&lt;/div>
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+    ```
+    &lt;div onCLick={()=>this.props.del_todo() }>&lt;span class="hljs-built_in">test&lt;/span>&lt;/div>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
     <h4 class="heading" data-id="heading-7">
       8. 深入
@@ -379,8 +401,10 @@ class Todos extends Component {
       了解到这里，[我们](https://www.w3cdoc.com)会发现并没有使用store.dispatch方法去发出命令，但是state已经修改，view也变化了，那么到底发生了什么？
     
     
-    <pre><code class="hljs bash copyable" lang="bash">store.dispatch(actions.increase())
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+    ```
+store.dispatch(actions.increase())
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
     
      关键的是connect()
@@ -390,7 +414,8 @@ class Todos extends Component {
       connect原理简化版
     
     
-    <pre><code class="hljs bash copyable" lang="bash">import React,{Component} from &lt;span class="hljs-string">'react'&lt;/span>;
+    ```
+import React,{Component} from &lt;span class="hljs-string">'react'&lt;/span>;
 import {&lt;span class="hljs-built_in">bind&lt;/span>ActionCreators} from &lt;span class="hljs-string">'redux'&lt;/span>;
 import propTypes from &lt;span class="hljs-string">'prop-types'&lt;/span>;
 
@@ -427,21 +452,26 @@ import propTypes from &lt;span class="hljs-string">'prop-types'&lt;/span>;
       &lt;span class="hljs-built_in">return&lt;/span> ProxyComponent;
    }
 }
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
     
       1.state的返回 connect中对于Provided父组件上传来的store,通过将状态返回
     
     
-    <pre><code class="hljs bash copyable" lang="bash">mapStateToProps(this.store.getState());
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+    ```
+mapStateToProps(this.store.getState());
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
     
       通过 Redux 的辅助函数 bindActionCreators()，用dispatch监听每一个action。
     
     
-    <pre><code class="hljs bash copyable" lang="bash"> &lt;span class="hljs-built_in">bind&lt;/span>ActionCreators(mapDispatchToProps,this.store.dispatch);
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+    ```
+ &lt;span class="hljs-built_in">bind&lt;/span>ActionCreators(mapDispatchToProps,this.store.dispatch);
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 
     
       所以调用props上的方法时，会自动发起store.dispach（XXX）事件，发出命令

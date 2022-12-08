@@ -10,7 +10,7 @@ title: 程序语言进阶之DSL与AST实战解析
 
   GIT代码： <a href="https://github.com/chalecao/parse_css_in_js">https://github.com/chalecao/parse_css_in_js</a>
 
-&nbsp;
+
 
 ## [前端](https://www.w3cdoc.com)进阶系列课程
 
@@ -159,7 +159,9 @@ peg.js是基于javascript实现的peg语法格式分析器，[我们](https://ww
 
 输出的结果是：
 
-<pre id="output" class="">"function test{ let a = 1; (a == 1)?(a = 2):'';a = 5; }"</pre>
+```
+"function test{ let a = 1; (a == 1)?(a = 2):'';a = 5; }"
+```
 
 [我们](https://www.w3cdoc.com)可以看到，已经达到了[我们](https://www.w3cdoc.com)的要求。聪明的你可能已经想到了，这样的代码可以用于代码压缩工具。是的，[我们](https://www.w3cdoc.com)常用的代码压缩工具就是这么做的。<strong style="color: #000000;">在线视频课程地址：[DSL与AST实战][3]   <span style="color: #ff0000;">题目2，</span>四算法则计算器 这个例子是官网默认的例子，[我们](https://www.w3cdoc.com)直接解析一下，代码如下：
 
@@ -252,7 +254,8 @@ peg.js是基于javascript实现的peg语法格式分析器，[我们](https://ww
 
 得到解析的结果是：
 
-<pre id="output" class="">[
+```
+[
    {
       "funName": "addTextToBody",
       "content": "const div = document.createElement('div');
@@ -265,7 +268,8 @@ peg.js是基于javascript实现的peg语法格式分析器，[我们](https://ww
       "content": "const div = document.createElement('div');
   div.textContent = text;
   document.body.appendChild(div);
-"</pre>
+"
+```
 
 可以满足[我们](https://www.w3cdoc.com)的需求。<strong style="color: #000000;">在线视频课程地址：[DSL与AST实战][3] <span style="color: #ff0000;">step2.</span> 解析import module脚本 要解析的脚本如下：
 
@@ -293,7 +297,8 @@ peg.js是基于javascript实现的peg语法格式分析器，[我们](https://ww
 
 输出的结果：
 
-<pre id="output" class="">[
+```
+[
    [
       {
          "fun": [
@@ -304,17 +309,20 @@ peg.js是基于javascript实现的peg语法格式分析器，[我们](https://ww
       }
    ],
    "addTextToBody(\"fed123.com\")"
-]</pre>
+]
+```
 
 已经满足[我们](https://www.w3cdoc.com)的需求。 <span style="color: #ff0000;">step3.</span> 实现http加载模块，并结合step1解析模块函数，同时调用step2解析出来的函数。 先介绍下fetch函数（兼容性自己查一下，还可以的），
 
-<pre class="language-javascript" data-title="javascript"><code class="language-javascript"> &lt;span class="token function">fetch&lt;/span>&lt;span class="token punctuation">(&lt;/span>url&lt;span class="token punctuation">)&lt;/span>
-  &lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">then&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>resp&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> resp&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">json&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token comment">// Transform the data into json&lt;/span>
-  &lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">then&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token keyword">function&lt;/span>&lt;span class="token punctuation">(&lt;/span>data&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token comment">// Create and append the li's to the ul&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-</code></pre>
+```
+ <span class="token function">fetch</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span>resp<span class="token punctuation">)</span> <span class="token operator">=></span> resp<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// Transform the data into json</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Create and append the li's to the ul</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+```
 
 [我们](https://www.w3cdoc.com)基于fetch函数通过http请求动态获取模块脚本内容。 所以<span style="color: #ff0000;">最后的结果</span>就是这样：你可以复制到https://pegjs.org/online 上面看下结果。
 

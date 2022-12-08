@@ -63,48 +63,54 @@ Transfer Demo 运行流程大致如下：
 **在 Worker 线程创建 OffscreenCanvas**
 
 <div class="highlight">
-  <pre><code class="language-js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">Init&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">mode&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">data&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">mode&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="s2">"transfer"&lt;/span>&lt;span class="p">)&lt;/span>
-    &lt;span class="nx">canvas&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">OffscreenCanvas&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">data&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">width&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">data&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">height&lt;/span>&lt;span class="p">);&lt;/span>
-  &lt;span class="p">...&lt;/span>
-&lt;span class="p">}&lt;/span>
-</code></pre>
+  ```
+<span class="kd">function</span> <span class="nx">Init</span><span class="p">(</span><span class="nx">mode</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">mode</span> <span class="o">===</span> <span class="s2">"transfer"</span><span class="p">)</span>
+    <span class="nx">canvas</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OffscreenCanvas</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">data</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+
+```
 </div>
 
 **获取 OffscreenCanvas 的缓冲区并回传**
 
 <div class="highlight">
-  <pre><code class="language-js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">TransferBuffer&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="kd">let&lt;/span> &lt;span class="nx">image_bitmap&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">canvas&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">transferToImageBitmap&lt;/span>&lt;span class="p">();&lt;/span>
-  &lt;span class="nx">postMessage&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="nx">name&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="s2">"TransferBuffer"&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">buffer&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="nx">image_bitmap&lt;/span>&lt;span class="p">},&lt;/span>
-    &lt;span class="p">[&lt;/span>&lt;span class="nx">image_bitmap&lt;/span>&lt;span class="p">]);&lt;/span>
-&lt;span class="p">}&lt;/span>
-</code></pre>
+  ```
+<span class="kd">function</span> <span class="nx">TransferBuffer</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">image_bitmap</span> <span class="o">=</span> <span class="nx">canvas</span><span class="p">.</span><span class="nx">transferToImageBitmap</span><span class="p">();</span>
+  <span class="nx">postMessage</span><span class="p">({</span><span class="nx">name</span><span class="o">:</span><span class="s2">"TransferBuffer"</span><span class="p">,</span> <span class="nx">buffer</span><span class="o">:</span><span class="nx">image_bitmap</span><span class="p">},</span>
+    <span class="p">[</span><span class="nx">image_bitmap</span><span class="p">]);</span>
+<span class="p">}</span>
+
+```
 </div>
 
 **主线程接收回传的缓冲区并绘制**
 
 <div class="highlight">
-  <pre><code class="language-js">&lt;span class="nx">g_render_worker&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">onmessage&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="kd">function&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">msg&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">msg&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">data&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">name&lt;/span> &lt;span class="o">===&lt;/span> &lt;span class="s2">"TransferBuffer"&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-    &lt;span class="nx">GetTransferBuffer&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">msg&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">data&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">buffer&lt;/span>&lt;span class="p">);&lt;/span>
-  &lt;span class="p">}&lt;/span>
-&lt;span class="p">}&lt;/span>
+  ```
+<span class="nx">g_render_worker</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span> <span class="o">===</span> <span class="s2">"TransferBuffer"</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">GetTransferBuffer</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">buffer</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-&lt;span class="kd">function&lt;/span> &lt;span class="nx">GetTransferBuffer&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">buffer&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="kd">let&lt;/span> &lt;span class="nx">context_2d&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">g_2d_canvas&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getContext&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"2d"&lt;/span>&lt;span class="p">);&lt;/span>
-  &lt;span class="nx">context_2d&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">clearRect&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">g_2d_canvas&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">width&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">g_2d_canvas&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">height&lt;/span>&lt;span class="p">);&lt;/span>
-  &lt;span class="nx">context_2d&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">save&lt;/span>&lt;span class="p">();&lt;/span>
-  &lt;span class="p">...&lt;/span>
-  &lt;span class="nx">context_2d&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">drawImage&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">buffer&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">);&lt;/span>
-  &lt;span class="nx">context_2d&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">restore&lt;/span>&lt;span class="p">();&lt;/span>
+<span class="kd">function</span> <span class="nx">GetTransferBuffer</span><span class="p">(</span><span class="nx">buffer</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">context_2d</span> <span class="o">=</span> <span class="nx">g_2d_canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s2">"2d"</span><span class="p">);</span>
+  <span class="nx">context_2d</span><span class="p">.</span><span class="nx">clearRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">g_2d_canvas</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">g_2d_canvas</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+  <span class="nx">context_2d</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+  <span class="p">...</span>
+  <span class="nx">context_2d</span><span class="p">.</span><span class="nx">drawImage</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="nx">context_2d</span><span class="p">.</span><span class="nx">restore</span><span class="p">();</span>
 
-  &lt;span class="p">...&lt;/span>
+  <span class="p">...</span>
 
-  &lt;span class="kd">let&lt;/span> &lt;span class="nx">bitmap_context&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">g_bitmap_canvas&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">getContext&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"bitmaprenderer"&lt;/span>&lt;span class="p">);&lt;/span>
-  &lt;span class="nx">bitmap_context&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">transferFromImageBitmap&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">buffer&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="p">}&lt;/span>
-</code></pre>
+  <span class="kd">let</span> <span class="nx">bitmap_context</span> <span class="o">=</span> <span class="nx">g_bitmap_canvas</span><span class="p">.</span><span class="nx">getContext</span><span class="p">(</span><span class="s2">"bitmaprenderer"</span><span class="p">);</span>
+  <span class="nx">bitmap_context</span><span class="p">.</span><span class="nx">transferFromImageBitmap</span><span class="p">(</span><span class="nx">buffer</span><span class="p">);</span>
+<span class="p">}</span>
+
+```
 </div>
 
 ## ImageBitmap 和 ImageBitmapRenderingContext
@@ -162,26 +168,30 @@ Commit Demo 的运行流程大致如下：
 **启动 Worker 线程并初始化**
 
 <div class="highlight">
-  <pre><code class="language-js">&lt;span class="nx">g_render_worker&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="nx">Worker&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">"../common/render.js"&lt;/span>&lt;span class="p">);&lt;/span>
+  ```
+<span class="nx">g_render_worker</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Worker</span><span class="p">(</span><span class="s2">"../common/render.js"</span><span class="p">);</span>
 
-&lt;span class="kd">let&lt;/span> &lt;span class="nx">offscreen&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">g_offscreen_canvas&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">transferControlToOffscreen&lt;/span>&lt;span class="p">();&lt;/span>
-&lt;span class="nx">g_render_worker&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">postMessage&lt;/span>&lt;span class="p">(&lt;/span>
-  &lt;span class="p">{&lt;/span>&lt;span class="nx">name&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="s2">"Init"&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">mode&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="s2">"commit"&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">canvas&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="nx">offscreen&lt;/span>&lt;span class="p">},&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nx">offscreen&lt;/span>&lt;span class="p">]);&lt;/span>
-</code></pre>
+<span class="kd">let</span> <span class="nx">offscreen</span> <span class="o">=</span> <span class="nx">g_offscreen_canvas</span><span class="p">.</span><span class="nx">transferControlToOffscreen</span><span class="p">();</span>
+<span class="nx">g_render_worker</span><span class="p">.</span><span class="nx">postMessage</span><span class="p">(</span>
+  <span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="s2">"Init"</span><span class="p">,</span> <span class="nx">mode</span><span class="o">:</span><span class="s2">"commit"</span><span class="p">,</span> <span class="nx">canvas</span><span class="o">:</span><span class="nx">offscreen</span><span class="p">},</span> <span class="p">[</span><span class="nx">offscreen</span><span class="p">]);</span>
+
+```
 </div>
 
 **Commit 然后等待回调**
 
 <div class="highlight">
-  <pre><code class="language-js">&lt;span class="kd">function&lt;/span> &lt;span class="nx">renderloop&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="c1">// Render buffer first
-&lt;/span>  &lt;span class="nx">render&lt;/span>&lt;span class="p">();&lt;/span>
-  &lt;span class="c1">// Wait next begin frame to loop
-&lt;/span>  &lt;span class="nx">gl&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">commit&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="nx">then&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">renderloop&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="p">}&lt;/span>
+  ```
+<span class="kd">function</span> <span class="nx">renderloop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Render buffer first
+</span>  <span class="nx">render</span><span class="p">();</span>
+  <span class="c1">// Wait next begin frame to loop
+</span>  <span class="nx">gl</span><span class="p">.</span><span class="nx">commit</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">renderloop</span><span class="p">);</span>
+<span class="p">}</span>
 
-&lt;span class="nx">renderloop&lt;/span>&lt;span class="p">();&lt;/span>
-</code></pre>
+<span class="nx">renderloop</span><span class="p">();</span>
+
+```
 </div>
 
 ## 动画驱动

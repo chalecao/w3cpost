@@ -42,7 +42,9 @@ title: 浏览器JS引擎工作原理
       <div class="lake-codeblock lake-codeblock-javascript height-limit">
         <div class="lake-codeblock-content">
           <div class="CodeMirror CodeMirror-sizer">
-            <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">a</span> <span class="cm-operator">=</span> <span class="cm-number">20</span></span></span></pre>
+            ```
+const a = 20
+```
           </div>
         </div>
       </div>
@@ -50,7 +52,7 @@ title: 浏览器JS引擎工作原理
   </div>
 </div>
 
-&nbsp;
+
 
 
   上面的代码的 token 集合如下
@@ -61,24 +63,26 @@ title: 浏览器JS引擎工作原理
       <div class="lake-codeblock lake-codeblock-javascript height-limit">
         <div class="lake-codeblock-content">
           <div class="CodeMirror CodeMirror-sizer">
-            <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content">[
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"type"</span>: <span class="cm-string">"Keyword"</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"value"</span>: <span class="cm-string">"const"</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  },
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"type"</span>: <span class="cm-string">"Identifier"</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"value"</span>: <span class="cm-string">"a"</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  },
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"type"</span>: <span class="cm-string">"Punctuator"</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"value"</span>: <span class="cm-string">"="</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  },
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"type"</span>: <span class="cm-string">"Numeric"</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    <span class="cm-string cm-property">"value"</span>: <span class="cm-string">"20"</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  }
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">]</span></span></pre>
+            ```
+[
+  {
+    "type": "Keyword",
+    "value": "const"
+  },
+  {
+    "type": "Identifier",
+    "value": "a"
+  },
+  {
+    "type": "Punctuator",
+    "value": "="
+  },
+  {
+    "type": "Numeric",
+    "value": "20"
+  }
+]
+```
           </div>
         </div>
       </div>
@@ -102,7 +106,9 @@ title: 浏览器JS引擎工作原理
       <div class="lake-codeblock lake-codeblock-javascript height-limit">
         <div class="lake-codeblock-content">
           <div class="CodeMirror CodeMirror-sizer">
-            <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">const</span> <span class="cm-def">a</span> <span class="cm-operator">=</span> <span class="cm-number">20</span></span></span></pre>
+            ```
+const a = 20
+```
           </div>
         </div>
       </div>
@@ -119,30 +125,32 @@ title: 浏览器JS引擎工作原理
       <div class="lake-codeblock lake-codeblock-javascript height-limit">
         <div class="lake-codeblock-content">
           <div class="CodeMirror CodeMirror-sizer">
-            <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content">{
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-string">"type"</span>: <span class="cm-string">"Program"</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-string">"body"</span>: [
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-string cm-property">"type"</span>: <span class="cm-string">"VariableDeclaration"</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-string cm-property">"declarations"</span>: [
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">        {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">          <span class="cm-string cm-property">"type"</span>: <span class="cm-string">"VariableDeclarator"</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">          <span class="cm-string cm-property">"id"</span>: {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">            <span class="cm-string cm-property">"type"</span>: <span class="cm-string">"Identifier"</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">            <span class="cm-string cm-property">"name"</span>: <span class="cm-string">"a"</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">          },
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">          <span class="cm-string cm-property">"init"</span>: {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">            <span class="cm-string cm-property">"type"</span>: <span class="cm-string">"Literal"</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">            <span class="cm-string cm-property">"value"</span>: <span class="cm-number">20</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">            <span class="cm-string cm-property">"raw"</span>: <span class="cm-string">"20"</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">          }
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">        }
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      ],
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">      <span class="cm-string cm-property">"kind"</span>: <span class="cm-string">"const"</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">    }
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  ],
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-string">"sourceType"</span>: <span class="cm-string">"script"</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}</span></span></pre>
+            ```
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "VariableDeclaration",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "a"
+          },
+          "init": {
+            "type": "Literal",
+            "value": 20,
+            "raw": "20"
+          }
+        }
+      ],
+      "kind": "const"
+    }
+  ],
+  "sourceType": "script"
+}
+```
           </div>
         </div>
       </div>
@@ -186,14 +194,16 @@ title: 浏览器JS引擎工作原理
       <div class="lake-codeblock lake-codeblock-javascript height-limit">
         <div class="lake-codeblock-content">
           <div class="CodeMirror CodeMirror-sizer">
-            <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">function</span> <span class="cm-def">foo1</span>() {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'foo1'</span>)
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">function</span> <span class="cm-def">foo2</span>() {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'foo2'</span>)
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-variable">foo2</span>();</span></span></pre>
+            ```
+function foo1() {
+  console.log('foo1')
+}
+function foo2() {
+  console.log('foo2')
+}
+
+foo2();
+```
           </div>
         </div>
       </div>
@@ -235,21 +245,23 @@ title: 浏览器JS引擎工作原理
       <div class="lake-codeblock lake-codeblock-javascript height-limit">
         <div class="lake-codeblock-content">
           <div class="CodeMirror CodeMirror-sizer">
-            <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// 声明时未调用，因此会被认为是不被执行的代码，进行预解析</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">function</span> <span class="cm-def">foo</span>() {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'foo'</span>)
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// 声明时未调用，因此会被认为是不被执行的代码，进行预解析</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">function</span> <span class="cm-def">fn</span>() {}
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// 函数立即执行，只进行一次全量解析</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">(<span class="cm-keyword">function</span> <span class="cm-def">bar</span>() {
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content">})()
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-comment">// 执行 foo，那么需要重新对 foo 函数进行全量解析，此时 foo 函数被解析了两次 </span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-variable">foo</span>();</span></span></pre>
+            ```
+// 声明时未调用，因此会被认为是不被执行的代码，进行预解析
+function foo() {
+  console.log('foo')
+}
+
+// 声明时未调用，因此会被认为是不被执行的代码，进行预解析
+function fn() {}
+
+// 函数立即执行，只进行一次全量解析
+(function bar() {
+
+})()
+
+// 执行 foo，那么需要重新对 foo 函数进行全量解析，此时 foo 函数被解析了两次 
+foo();
+```
           </div>
         </div>
       </div>
@@ -296,9 +308,11 @@ Ignition 是 v8 提供的一个解释器。他的作用是负责将抽象语法�
       <div class="lake-codeblock lake-codeblock-javascript height-limit">
         <div class="lake-codeblock-content">
           <div class="CodeMirror CodeMirror-sizer">
-            <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-keyword">function</span> <span class="cm-def">foo</span>(<span class="cm-def">obj</span>) {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-keyword">return</span> <span class="cm-variable-2">obj</span>.<span class="cm-property">name</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}</span></span></pre>
+            ```
+function foo(obj) {
+  return obj.name
+}
+```
           </div>
         </div>
       </div>
@@ -315,20 +329,22 @@ Ignition 是 v8 提供的一个解释器。他的作用是负责将抽象语法�
       <div class="lake-codeblock lake-codeblock-javascript height-limit">
         <div class="lake-codeblock-content">
           <div class="CodeMirror CodeMirror-sizer">
-            <pre class="cm-s-default"><span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-variable">obj0</span> <span class="cm-operator">=</span> {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-property">name</span>: <span class="cm-string">'Alex'</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-variable">obj1</span> <span class="cm-operator">=</span> {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-property">name</span>: <span class="cm-string">'tom'</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-property">age</span>: <span class="cm-number">1</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}
-</span></span>
-<span class="lake-preview-line"><span class="lake-preview-codeblock-content"><span class="cm-variable">obj2</span> <span class="cm-operator">=</span> {
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-property">name</span>: <span class="cm-string">'Jake'</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-property">age</span>: <span class="cm-number">1</span>,
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">  <span class="cm-property">gender</span>: <span class="cm-number">1</span>
-</span></span><span class="lake-preview-line"><span class="lake-preview-codeblock-content">}</span></span></pre>
+            ```
+obj0 = {
+  name: 'Alex'
+}
+
+obj1 = {
+  name: 'tom',
+  age: 1
+}
+
+obj2 = {
+  name: 'Jake',
+  age: 1,
+  gender: 1
+}
+```
           </div>
         </div>
       </div>
@@ -375,7 +391,7 @@ Ignition 是 v8 提供的一个解释器。他的作用是负责将抽象语法�
 
 上面讲到了档字节码编译器TurboFan无法确定优化代码编译时会触发代码去优化操作，变成低效率执行（每次执行都需要重新编译，而不能复用上次编译的记过）。其中一个重要原因是js弱类型语言导致的，那么编译器一般是怎么做类型推断的呢？见上图。
 
-&nbsp;
+
 
 # 对象访问优化机制
 
@@ -388,7 +404,7 @@ Ignition 是 v8 提供的一个解释器。他的作用是负责将抽象语法�
 
 在线视频课程：<a href="https://study.163.com/course/courseMain.htm?share=2&shareId=400000000351011&courseId=1209400904&_trace_c_p_k2_=d5106aa1758748cea6e733c4b1f29bbe" target="_blank" rel="noopener noreferrer">网易云课堂课程</a>      <a href="https://segmentfault.com/ls/1650000019681091" target="_blank" rel="noopener noreferrer">思否课堂</a>
 
-&nbsp;
+
 
 # 参考：
 
@@ -402,7 +418,7 @@ Ignition 是 v8 提供的一个解释器。他的作用是负责将抽象语法�
 
 [关于对象的访问优化][4]
 
-&nbsp;
+
 
  [1]: https://www.f2e123.com/html5css3/6194.html
  [2]: https://www.f2e123.com/fed-regain/1867.html

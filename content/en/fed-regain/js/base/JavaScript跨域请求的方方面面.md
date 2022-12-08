@@ -9,32 +9,32 @@ JavaScript出于安全方面的考虑，不允许跨域调用其他页面的对�
 ![JavaScript跨域请求的方方面面][1]
 
 更详细的跨域说明可以看下表：
+```
+URL 说明 是否允许通信
+https://www.a.com/a.js
+https://www.a.com/b.js 同一域名下 允许
 
-    <code>URL 说明 是否允许通信
-    https://www.a.com/a.js
-    https://www.a.com/b.js 同一域名下 允许
-    
-    https://www.a.com/lab/a.js
-    https://www.a.com/script/b.js 同一域名下不同文件夹 允许
-    
-    https://www.a.com:8000/a.js
-    https://www.a.com/b.js 同一域名，不同端口 不允许
-    
-    https://www.a.com/a.js
-    https://www.a.com/b.js 同一域名，不同协议 不允许
-    
-    https://www.a.com/a.js
-    https://70.32.92.74/b.js 域名和域名对应ip 不允许
-    
-    https://www.a.com/a.js
-    https://script.a.com/b.js 主域相同，子域不同 不允许
-    
-    https://www.a.com/a.js
-    https://a.com/b.js 同一域名，不同二级域名（同上） 不允许（cookie这种情况下也不允许访问）
-    
-    https://www.cnblogs.com/a.js
-    https://www.a.com/b.js 不同域名 不允许
-    </code>
+https://www.a.com/lab/a.js
+https://www.a.com/script/b.js 同一域名下不同文件夹 允许
+
+https://www.a.com:8000/a.js
+https://www.a.com/b.js 同一域名，不同端口 不允许
+
+https://www.a.com/a.js
+https://www.a.com/b.js 同一域名，不同协议 不允许
+
+https://www.a.com/a.js
+https://70.32.92.74/b.js 域名和域名对应ip 不允许
+
+https://www.a.com/a.js
+https://script.a.com/b.js 主域相同，子域不同 不允许
+
+https://www.a.com/a.js
+https://a.com/b.js 同一域名，不同二级域名（同上） 不允许（cookie这种情况下也不允许访问）
+
+https://www.cnblogs.com/a.js
+https://www.a.com/b.js 不同域名 不允许
+```
 
 特别注意两点：  
 第一，如果是协议和端口造成的跨域问题“前台”是无能为力的，  
@@ -46,7 +46,7 @@ JavaScript出于安全方面的考虑，不允许跨域调用其他页面的对�
 
 对于主域相同而子域不同的例子，可以通过设置document.domain的办法来解决。具体的做法是可以在<a href="https://www.a.com/a.html和https://script.a.com/b.html两个文件中分别加上document.domain" target="_blank" rel="external noopener">https://www.a.com/a.html和https://script.a.com/b.html两个文件中分别加上document.domain</a> = ‘a.com’；然后通过a.html文件中创建一个iframe，去控制iframe的contentDocument，这样两个js文件之间就可以“交互”了。当然这种办法只能解决主域相同而二级域名不同的情况，如果你异想天开的把script.a.com的domian设为alibaba.com那显然是会报错地！代码如下：
 
-    <code>
+    
     www.a.com上的a.html
     
     document.domain = 'a.com';
@@ -62,7 +62,7 @@ JavaScript出于安全方面的考虑，不允许跨域调用其他页面的对�
     script.a.com上的b.html
     
     document.domain = 'a.com';
-    </code>
+    
 
 这种方式适用于{www.kuqin.com, kuqin.com, script.kuqin.com, css.kuqin.com}中的任何页面相互通信。
 
@@ -189,7 +189,7 @@ JavaScript出于安全方面的考虑，不允许跨域调用其他页面的对�
 
 文章较长列在此处不便于阅读，详细请看 <a href="https://developer.mozilla.org/en/DOM/window.frames" target="_blank" rel="external noopener">window.name实现的跨域数据传输</a>。
 
-&nbsp;
+
 
 ## 使用HTML5 postMessage
 
@@ -205,22 +205,24 @@ HTML5中最酷的新功能之一就是 <a href="https://www.whatwg.org/specs/web
 
   a.com/index.html中的代码：
 
-<div>
-  <pre><code>&lt;code>&lt;iframe id="ifr" src="b.com/index.html">
-&lt;script type="text/javascript">
+
+```
+<iframe id="ifr" src="b.com/index.html">
+<script type="text/javascript">
 window.onload = function() {
 var ifr = document.getElementById('ifr');
 var targetOrigin = 'https://b.com'; // 若写成'https://b.com/c/proxy.html'效果一样
 // 若写成'https://c.com'就不会执行postMessage了
 ifr.contentWindow.postMessage('I was there!', targetOrigin);
 };
-</code>&lt;/code></pre>
-</div>
+
+```
+
 
   b.com/index.html中的代码：
 
-<div>
-  <pre><code>&lt;code>&lt;script type="text/javascript">
+```
+<script type="text/javascript">
 window.addEventListener('message', function(event){
 // 通过origin属性判断消息来源地址
 if (event.origin == 'https://a.com') {
@@ -229,7 +231,8 @@ alert(event.source); // 对a.com、index.html中window对象的引用
 // 但由于同源策略，这里event.source不可以访问window对象
 }
 }, false);
-</code>&lt;/code></pre>
+
+```
 </div>
 
 参考文章：<a href="https://developer.mozilla.org/en/dom/window.postmessage" target="_blank" rel="external noopener">精通HTML5编程》第五章——跨文档消息机制</a>

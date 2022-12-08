@@ -160,8 +160,8 @@ module.exports 当前模块对外提供的接口。
 API快速参考 <a href="https://github.com/seajs/seajs/issues/266" target="_blank" rel="external">https://github.com/seajs/seajs/issues/266</a>  
 sea.js 核心特征：
 
-    <code>1. 遵循CMD规范，与NodeJS般的书写模块代码。 2. 依赖自动加载，配置清晰简洁。 
-    </code>
+    1. 遵循CMD规范，与NodeJS般的书写模块代码。 2. 依赖自动加载，配置清晰简洁。 
+    
 
 兼容 Chrome 3+，Firefox 2+，Safari 3.2+，Opera 10+，IE 5.5+。  
 seajs.use ，用来在页面中加载一个或者多个模块

@@ -41,7 +41,8 @@ config-component中提供了config-form组件，主要用于解决中后台的fo
 
 比较一下传统的写法：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null"><div className={`step-1 ${step}`}>
+```
+<div className={`step-1 ${step}`}>
         <div>
           任务类型： <Select
             className="select-type"
@@ -67,11 +68,13 @@ config-component中提供了config-form组件，主要用于解决中后台的fo
             awardGetWayList.splice(1)
           }
         }}>创建任务</Button>
-      </div></pre>
+      </div>
+```
 
 下面是基于config-form写法
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">const schema = yup.object().shape({
+```
+const schema = yup.object().shape({
     outerTaskId: yup.string().required(),
     activityName: yup.string().required('请填写任务名称').max(12, '活动名称最长12个字符'),
     taskTime: yup.array().required('请填写任务时间').test(
@@ -185,8 +188,9 @@ uiConfig={{
           },
         }],
       props: {},
-    },</pre>
+    },
+```
 
 上面[我们](https://www.w3cdoc.com)只是截取了片段。
 
- [1]: https://www.f2e123.com/javascriptnodejs/5000.html
+[1]: https://www.f2e123.com/javascriptnodejs/5000.html

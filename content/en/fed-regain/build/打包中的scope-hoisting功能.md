@@ -5,12 +5,14 @@ title: 打包中的Scope Hoisting功能
 不久前，Webpack 正式发布了它的第三个版本，这个版本提供了一个新的功能：Scope Hoisting，又译作“作用域提升”。只需在配置文件中添加一个新的插件，就可以让 Webpack 打包出来的代码文件更小、运行的更快：
 
 <div class="highlight">
-  <pre><code class="language-js"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
-    <span class="k">new</span> <span class="nx">webpack</span><span class="p">.</span><span class="nx">optimize</span><span class="p">.</span><span class="nx">ModuleConcatenationPlugin</span><span class="p">()</span>
-  <span class="p">]</span>
-<span class="p">}</span>
-</code></pre>
+  ```
+module.exports = {
+  plugins: [
+    new webpack.optimize.ModuleConcatenationPlugin()
+  ]
+}
+
+```
 </div>
 
 这篇文章将会从多个方面详细介绍这项新功能，在这之前，[我们](https://www.w3cdoc.com)先来看看 Webpack 是如何将多个模块打包在一起的。
@@ -20,31 +22,35 @@ title: 打包中的Scope Hoisting功能
 现在假设[我们](https://www.w3cdoc.com)的项目有这样两个文件：
 
 <div class="highlight">
-  <pre><code class="language-js"><span class="c1">// module-a.js
-</span><span class="k">export</span> <span class="k">default</span> <span class="s1">'module A'</span>
-<span class="c1">// entry.js
-</span><span class="k">import</span> <span class="nx">a</span> <span class="nx">from</span> <span class="s1">'./module-a'</span>
-<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
-</code></pre>
+  ```
+// module-a.js
+export default 'module A'
+// entry.js
+import a from './module-a'
+console.log(a)
+
+```
 </div>
 
 现在[我们](https://www.w3cdoc.com)用 Webpack 打包一下，得到的文件大致像这样：
 
 <div class="highlight">
-  <pre><code class="language-js"><span class="c1">// bundle.js
-</span><span class="c1">// 最前面的一段代码实现了模块的加载、执行和缓存的逻辑，这里直接略过
-</span><span class="p">[</span>
-  <span class="cm">/*0*/</span>
-  <span class="kd">function</span> <span class="p">(</span><span class="nx">module</span><span class="p">,</span> <span class="nx">exports</span><span class="p">,</span> <span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">module_a</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">module_a</span><span class="p">[</span><span class="s1">'default'</span><span class="p">])</span>
-  <span class="p">},</span>
-  <span class="cm">/*1*/</span>
-  <span class="kd">function</span> <span class="p">(</span><span class="nx">module</span><span class="p">,</span> <span class="nx">exports</span><span class="p">,</span> <span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">exports</span><span class="p">[</span><span class="s1">'default'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'module A'</span>
-  <span class="p">}</span>
-<span class="p">]</span>
-</code></pre>
+  ```
+// bundle.js
+// 最前面的一段代码实现了模块的加载、执行和缓存的逻辑，这里直接略过
+[
+  /*0*/
+  function (module, exports, require) {
+    var module_a = require(1)
+    console.log(module_a['default'])
+  },
+  /*1*/
+  function (module, exports, require) {
+    exports['default'] = 'module A'
+  }
+]
+
+```
 </div>
 
 更深入的分析可以看这篇文章：<a class="internal" href="https://zhuanlan.zhihu.com/p/25954788" data-za-detail-view-id="1043">从 Bundle 文件看 Webpack 模块机制</a>。
@@ -58,17 +64,19 @@ title: 打包中的Scope Hoisting功能
 同样的源文件在使用了 ModuleConcatenationPlugin 之后，打包出来的文件会变成下面这样：
 
 <div class="highlight">
-  <pre><code class="language-js"><span class="c1">// bundle.js
-</span><span class="p">[</span>
-  <span class="kd">function</span> <span class="p">(</span><span class="nx">module</span><span class="p">,</span> <span class="nx">exports</span><span class="p">,</span> <span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// CONCATENATED MODULE: ./module-a.js
-</span>    <span class="kd">var</span> <span class="nx">module_a_defaultExport</span> <span class="o">=</span> <span class="s1">'module A'</span>
+  ```
+// bundle.js
+[
+  function (module, exports, require) {
+    // CONCATENATED MODULE: ./module-a.js
+    var module_a_defaultExport = 'module A'
 
-    <span class="c1">// CONCATENATED MODULE: ./index.js
-</span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">module_a_defaultExport</span><span class="p">)</span>
-  <span class="p">}</span>
-<span class="p">]</span>
-</code></pre>
+    // CONCATENATED MODULE: ./index.js
+    console.log(module_a_defaultExport)
+  }
+]
+
+```
 </div>
 
 显而易见，这次 Webpack 将所有模块都放在了一个函数里，直观感受就是——**函数声明少了很多**，因此而带来的好处有：
@@ -87,13 +95,15 @@ title: 打包中的Scope Hoisting功能
 暂不支持 CommonJS 模块语法的原因是，这种模块语法中的模块是可以动态加载的，例如下面这段代码：
 
 <div class="highlight">
-  <pre><code class="language-js"><span class="kd">var</span> <span class="nx">directory</span> <span class="o">=</span> <span class="s1">'./modules/'</span>
-<span class="k">if</span> <span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">></span> <span class="mf">0.5</span><span class="p">)</span> <span class="p">{</span>
-  <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="nx">directory</span> <span class="o">+</span> <span class="s1">'foo.js'</span><span class="p">)</span>
-<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-  <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="nx">directory</span> <span class="o">+</span> <span class="s1">'bar.js'</span><span class="p">)</span>
-<span class="p">}</span>
-</code></pre>
+  ```
+var directory = './modules/'
+if (Math.random() > 0.5) {
+  module.exports = require(directory + 'foo.js')
+} else {
+  module.exports = require(directory + 'bar.js')
+}
+
+```
 </div>
 
 这种情况很难分析出模块之间的依赖关系及输出的变量。
@@ -117,7 +127,9 @@ title: 打包中的Scope Hoisting功能
 运行 Webpack 时加上 _&#8211;display-optimization-bailout_ 参数可以得知为什么你的项目无法使用 Scope Hoisting：
 
 <div class="highlight">
-  <pre><code class="language-text">webpack --display-optimization-bailout</code></pre>
+  ```
+webpack --display-optimization-bailout
+```
 </div>
 
 另外，当你使用这个插件的时候，<a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//webpack.js.org/concepts/hot-module-replacement/" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">模块热替换</a>将不起作用，所以最好只在代码优化的时候才使用这个插件。

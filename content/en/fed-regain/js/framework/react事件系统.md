@@ -76,21 +76,24 @@ React 合成事件与原生事件执行顺序图：
 （2）阻止合成事件与最外层document上的事件间的冒泡，用e.nativeEvent.stopImmediatePropagation();  
 （3）阻止合成事件与除最外层document上的原生事件上的冒泡，通过判断e.target来避免，代码如下：
 
-<pre class="hljs typescript"><code>componentDidMount() {
+```
+componentDidMount() {
 &lt;span class="hljs-built_in">document&lt;/span>.body.addEventListener(&lt;span class="hljs-string">'click'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-params">e&lt;/span> =>&lt;/span> {
  &lt;span class="hljs-keyword">if&lt;/span> (e.target && e.target.matches(&lt;span class="hljs-string">'div.code'&lt;/span>)) {  
       &lt;span class="hljs-keyword">return&lt;/span>;
   }
   &lt;span class="hljs-keyword">this&lt;/span>.setState({   active: &lt;span class="hljs-literal">false&lt;/span>,    });   });
  }
-</code></pre>
+
+```
 
 ### 7.通过源码看本质 {#item-2-7}
 
 7-1 事件注册  
 事件注册即在 document 节点，将 React 事件转化为 DOM 原生事件，并注册回调。
 
-<pre class="hljs actionscript"><code>&lt;span class="hljs-comment">// enqueuePutListener 负责事件注册。&lt;/span>
+```
+&lt;span class="hljs-comment">// enqueuePutListener 负责事件注册。&lt;/span>
 &lt;span class="hljs-comment">// inst：注册事件的 React 组件实例&lt;/span>
 &lt;span class="hljs-comment">// registrationName：React 事件，如：onClick、onChange&lt;/span>
 &lt;span class="hljs-comment">// listener：和事件绑定的 React 回调方法，如：handleClick、handleChange&lt;/span>
@@ -107,11 +110,13 @@ React 合成事件与原生事件执行顺序图：
         registrationName: registrationName,
         listener: listener
     });
-}</code></pre>
+}
+```
 
 来看事件注册的具体代码，如何在 document 上绑定 DOM 原生事件。
 
-<pre class="hljs actionscript"><code>&lt;span class="hljs-comment">// 事件注册&lt;/span>
+```
+&lt;span class="hljs-comment">// 事件注册&lt;/span>
 &lt;span class="hljs-comment">// registrationName：React 事件名，如：onClick、onChange&lt;/span>
 &lt;span class="hljs-comment">// contentDocumentHandle：要将事件绑定到的 DOM 节点&lt;/span>
 listenTo: &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-params">(registrationName, contentDocumentHandle)&lt;/span> &lt;/span>{
@@ -132,11 +137,13 @@ listenTo: &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&
         }
     }
 }
-</code></pre>
+
+```
 
 来看将事件绑定到冒泡阶段的具体代码：
 
-<pre class="hljs actionscript"><code>&lt;span class="hljs-comment">// 三个参数为 topEvent、原生 DOM Event、Document（挂载节点）&lt;/span>
+```
+&lt;span class="hljs-comment">// 三个参数为 topEvent、原生 DOM Event、Document（挂载节点）&lt;/span>
 trapBubbledEvent: &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-params">(topLevelType, handlerBaseName, element)&lt;/span> &lt;/span>{
     &lt;span class="hljs-keyword">if&lt;/span> (!element) {
         &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-literal">null&lt;/span>;
@@ -155,14 +162,16 @@ listen: &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt
         }
     }
 }
-</code></pre>
+
+```
 
 在 listen 方法中，[我们](https://www.w3cdoc.com)终于发现了熟悉的 addEventListener 这个原生事件注册方法。只有 document 节点才会调用这个方法，故仅仅只有 document 节点上才有 DOM 事件。这大大简化了 DOM 事件逻辑，也节约了内存。
 
 7-2.事件存储  
 事件注册之后，还需要将事件绑定的回调函数存储下来。这样，在触发事件后才能去寻找相应回调来触发。在一开始的代码中，[我们](https://www.w3cdoc.com)已经看到，是使用 putListener 方法来进行事件回调存储。
 
-<pre class="hljs actionscript"><code>&lt;span class="hljs-comment">// inst：注册事件的 React 组件实例&lt;/span>
+```
+&lt;span class="hljs-comment">// inst：注册事件的 React 组件实例&lt;/span>
 &lt;span class="hljs-comment">// registrationName：React 事件，如：onClick、onChange&lt;/span>
 &lt;span class="hljs-comment">// listener：和事件绑定的 React 回调方法，如：handleClick、handleChange&lt;/span>
 putListener: &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-params">(inst, registrationName, listener)&lt;/span> &lt;/span>{
@@ -173,7 +182,8 @@ putListener: &lt;span class="hljs-function">&lt;span class="hljs-keyword">functi
     &lt;span class="hljs-keyword">var&lt;/span> bankForRegistrationName = listenerBank[registrationName] || (listenerBank[registrationName] = {});
     bankForRegistrationName[key] = listener;
 }
-</code></pre>
+
+```
 
 7-3.事件执行
 
@@ -191,10 +201,12 @@ React合成事件的冒泡并不是真的冒泡，而是节点的遍历。
 
 个人觉得stopImmediatePropagation非常有用，很有必要阻止合成事件冒泡到DOM document上，原因是：
 
-<pre class="hljs javascript"><code>&lt;span class="hljs-number">1.&lt;/span>合成事件本来就绑定在&lt;span class="hljs-built_in">document&lt;/span>上，完全可以获取这个&lt;span class="hljs-built_in">document&lt;/span>
+```
+&lt;span class="hljs-number">1.&lt;/span>合成事件本来就绑定在&lt;span class="hljs-built_in">document&lt;/span>上，完全可以获取这个&lt;span class="hljs-built_in">document&lt;/span>
 &lt;span class="hljs-number">2.&lt;/span>stopImmediatePropagation可以阻止触发的&lt;span class="hljs-built_in">document&lt;/span> DOM上的事件，这十分有必要
 &lt;span class="hljs-number">3.&lt;/span>不会阻止DOM 上的事件冒泡到&lt;span class="hljs-built_in">document&lt;/span> DOM
-</code></pre>
+
+```
 
 参考资料：《深入React技术栈》@陈屹著  
 参考链接：  

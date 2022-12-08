@@ -22,21 +22,23 @@ AST 不止应用于语言解释器和编译器，在计算机世界中，还有�
 
 让[我们](https://www.w3cdoc.com)看一下 AST 的构造。以如下一个简单 JavaScript 函数为例子：
 
-<pre class="hljs actionscript"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span><span class="hljs-params">(x)</span> </span>{
-    <span class="hljs-keyword">if</span> (x > <span class="hljs-number">10</span>) {
-        <span class="hljs-keyword">var</span> a = <span class="hljs-number">2</span>;
-        <span class="hljs-keyword">return</span> a * x;
+```
+function foo(x) {
+    if (x > 10) {
+        var a = 2;
+        return a * x;
     }
 
-    <span class="hljs-keyword">return</span> x + <span class="hljs-number">10</span>;
-}</code></pre>
+    return x + 10;
+}
+```
 
 解析器会产生如下的 AST。
 
 
   <img loading="lazy" class="alignnone wp-image-3449 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png?x-oss-process=image/format,webp" alt="" width="497" height="514" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png?x-oss-process=image/format,webp 772w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png?x-oss-process=image/quality,q_50/resize,m_fill,w_290,h_300/format,webp 290w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_796/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d411db1657.png?x-oss-process=image/quality,q_50/resize,m_fill,w_579,h_600/format,webp 579w" sizes="(max-width: 497px) 100vw, 497px" />
 
-<span class="img-wrap"></span>
+
 
 请注意，这里为了展示用只是解析器输出的简化版本。实际的 AST 要更加复杂。然而，这里的意思即了解一下运行源码之前的第一个步骤。可以访问 <a href="https://astexplorer.net/" target="_blank" rel="nofollow noopener noreferrer">AST Explorer</a> 来查看实际的 AST 树。这是一个在线工具，你可以在上面写 JavaScript 代码，然后网站会输出目标代码的 AST。
 
@@ -45,14 +47,14 @@ AST 不止应用于语言解释器和编译器，在计算机世界中，还有�
 
   <img loading="lazy" class="alignnone wp-image-3450 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/format,webp" alt="" width="709" height="289" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_122/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4134d6038.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_313/format,webp 768w" sizes="(max-width: 709px) 100vw, 709px" />
 
-<span class="img-wrap"></span>
+
 
 发现没？通常情况下，[浏览器](https://www.w3cdoc.com)大概消耗了 15% 到 20% 的总运行时间来解析 JavaScript.我没有具体统计过这些数值。这些统计数据来自于现实世界中程序和网站的各种 JavaScript 使用姿势。 现在也许 15% 看起来不是很多，但相信我，很多的。一个典型的单页程序会加载大约 0.4M 的 JavaScript 代码，然后消耗掉[浏览器](https://www.w3cdoc.com)大概 370ms 的时间来进行解析。也许你会又说，这也不是很多嘛。本身花费的时间并不多。但记住了，这只是把 JavaScript 代码转化为 ASTs 所消耗的时间。其中不包含运行本身的时间或者页面加载期间其它诸如 <a href="https://blog.sessionstack.com/how-javascript-works-the-rendering-engine-and-tips-to-optimize-its-performance-7b95553baeda" target="_blank" rel="nofollow noopener noreferrer">CSS 和 HTML</a> 渲染的过程的耗时。这仅仅只是桌面[浏览器](https://www.w3cdoc.com)所面临的问题。移动[浏览器](https://www.w3cdoc.com)的情况会更加复杂。一般情况下，手机移动[浏览器](https://www.w3cdoc.com)解析代码的时间是桌面[浏览器](https://www.w3cdoc.com)的 2-5 倍。
 
 
   <img loading="lazy" class="alignnone wp-image-3451 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/format,webp" alt="" width="489" height="321" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_197/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d414f78b6f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_504/format,webp 768w" sizes="(max-width: 489px) 100vw, 489px" />
 
-<span class="img-wrap"></span>
+
 
 以上图表展示了不同移动和桌面[浏览器](https://www.w3cdoc.com)解析 1MB JavaScript 代码所消耗的时间。
 
@@ -61,7 +63,7 @@ AST 不止应用于语言解释器和编译器，在计算机世界中，还有�
 
   <img loading="lazy" width="800" height="334" class="alignnone size-full wp-image-3452 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_125/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d4160dce75.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_321/format,webp 768w" sizes="(max-width: 800px) 100vw, 800px" />
 
-<span class="img-wrap"></span>
+
 
 不幸的是，移动[浏览器](https://www.w3cdoc.com)没有开发者工具来进行性能检测。不用担心。因为有 <a href="https://github.com/danielmendel/DeviceTiming" target="_blank" rel="nofollow noopener noreferrer">DeviceTiming</a> 工具。它可以用来帮助检测受控环境中脚本的解析和运行时间。它通过插入代码来封装本地代码，这样每当从不同设备访问的时候，可以本地测量解析和运行时间。
 
@@ -87,17 +89,19 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 举个栗子吧。假设有如下代码片段：
 
-<pre class="hljs lua"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span></span> {
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span><span class="hljs-params">(x)</span></span> {
-        <span class="hljs-keyword">return</span> x + <span class="hljs-number">10</span>;
+```
+function foo() {
+    function bar(x) {
+        return x + 10;
     }
 
-    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">baz</span><span class="hljs-params">(x, y)</span></span> {
-        <span class="hljs-keyword">return</span> x + y;
+    function baz(x, y) {
+        return x + y;
     }
 
-    console.<span class="hljs-built_in">log</span>(baz(<span class="hljs-number">100</span>, <span class="hljs-number">200</span>));
-}</code></pre>
+    console.log(baz(100, 200));
+}
+```
 
 和之前代码类似，把代码输入解析器进行语法分析然后输出 AST。这样表述如下：
 
@@ -112,7 +116,7 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
   <img loading="lazy" class="alignnone wp-image-3453 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d417a207b2.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d417a207b2.png?x-oss-process=image/format,webp" alt="" width="671" height="407" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d417a207b2.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d417a207b2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_182/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d417a207b2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_466/format,webp 768w" sizes="(max-width: 671px) 100vw, 671px" />
 
-<span class="img-wrap"></span>
+
 
 那么期间发生了什么呢？解析器发现了 bar 函数声明， baz 函数声明，调用 bar 函数及调用 console.log 函数。然而，解析器做了完全不相关的额外无用功即解析 bar 函数。为何不相关？因为函数 bar 从未被调用(或者至少不是在对应时间点上)。这只是一个简单示例及可能有些不同寻常，但是在现实生活的许多程序中，许多函数声明从未被调用过。
 
@@ -123,7 +127,7 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
   <img loading="lazy" class="alignnone wp-image-3454 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d418c391e8.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d418c391e8.png?x-oss-process=image/format,webp" alt="" width="637" height="386" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d418c391e8.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d418c391e8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_182/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c3d418c391e8.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_466/format,webp 768w" sizes="(max-width: 637px) 100vw, 637px" />
 
-<span class="img-wrap"></span>
+
 
 注意到这里仅仅只是确认函数 bar 声明。没有进入 bar 函数体。当前情况下，函数体只有一句简单的返回语句。然而，正如现代世界中的大多数程序那样，函数体可能会更加庞大，包含多个返回语句，条件语句，循环，变量声明甚至嵌套函数声明。由于函数从未被调用，这完全是在浪费时间和系统资源。
 
@@ -131,10 +135,12 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 例如，以下是一个实现 JavaScript 模块的相当常见的模式。
 
-<pre class="hljs actionscript"><code><span class="hljs-keyword">var</span> myModule = (<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
-  <span class="hljs-comment">// 整个模块的逻辑</span>
-  <span class="hljs-comment">// 返回模块对象</span>
-})();</code></pre>
+```
+var myModule = (function() {
+  // 整个模块的逻辑
+  // 返回模块对象
+})();
+```
 
 该模式可以被大多数现代 JavaScript 解析器识别且标识里面的代码需要立即解析。
 
@@ -144,25 +150,31 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 假设有一个 foo 函数
 
-<pre class="hljs actionscript"><code><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span><span class="hljs-params">(x)</span> </span>{
-    <span class="hljs-keyword">return</span> x * <span class="hljs-number">10</span>;
-}</code></pre>
+```
+function foo(x) {
+    return x * 10;
+}
+```
 
 因为没有明显地标识表明需要立即运行该函数所以[浏览器](https://www.w3cdoc.com)会进行懒解析。然而，[我们](https://www.w3cdoc.com)确定这是不对的，那么可以运行两个步骤。
 
 首先，把函数存储为一变量。
 
-<pre class="hljs actionscript"><code><span class="hljs-keyword">var</span> foo = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span><span class="hljs-params">(x)</span> </span>{
-    <span class="hljs-keyword">return</span> x * <span class="hljs-number">10</span>;
-};</code></pre>
+```
+var foo = function foo(x) {
+    return x * 10;
+};
+```
 
 注意，在 function 关键字和函数参数的左括号之间的函数名。这并不是必要的，但推荐这样做，因为当抛出异常错误的时候，堆栈追踪会包含实际的函数名而不是 <anonymous>。
 
 解析器仍然会做懒解析。可以做一个微小的改动来解决这一问题：用括号封装函数。
 
-<pre class="hljs actionscript"><code><span class="hljs-keyword">var</span> foo = (<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span><span class="hljs-params">(x)</span> </span>{
-    <span class="hljs-keyword">return</span> x * <span class="hljs-number">10</span>;
-});</code></pre>
+```
+var foo = (function foo(x) {
+    return x * 10;
+});
+```
 
 现在，解析器看见 function 关键字前的左括号便会立即进行解析。
 
@@ -170,17 +182,23 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 那么，可以如平常杂编码然后一小段代码如下：
 
-<pre class="hljs clojure"><code>(<span class="hljs-name">function</span>() {
-    console.log(<span class="hljs-name">'Hello</span>, World!')<span class="hljs-comment">;</span>
-})()<span class="hljs-comment">;</span></code></pre>
+```
+(function() {
+    console.log('Hello, World!');
+})();
+```
 
 一切看起来很美好，因为在函数声明前添加了左括号。当然，在进入生产环境之前需要进行代码压缩。以下为压缩工具的输出：
 
-<pre class="hljs lua"><code>!<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{console.<span class="hljs-built_in">log</span>(<span class="hljs-string">'Hello, World!'</span>)}();</code></pre>
+```
+!function(){console.log('Hello, World!')}();
+```
 
 看起来一切正常。代码如期运行。然而好像少了什么。压缩工具移除了封装函数的括号代之以一个感叹号。这意味着解析器会跳过该代码且将会运行懒解析。总之，为了运行该函数解析器会在懒解析之后进行立即解析。这会导致代码运行变慢。幸运的是，可以利用 Optimize.js 来解决此类问题。传给 Optimize.js 压缩过的代码会输出如下代码：
 
-<pre class="hljs lua"><code>!(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{console.<span class="hljs-built_in">log</span>(<span class="hljs-string">'Hello, World!'</span>)})();</code></pre>
+```
+!(function(){console.log('Hello, World!')})();
+```
 
 现在，充分利用了各自的优势：压缩代码且解析器正确地识别懒解析和立即解析的函数。
 
@@ -203,13 +221,15 @@ Firefox 使用的 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Pro
 
 有时候，特别是手机端[浏览器](https://www.w3cdoc.com)，比如当你点击前进/后退按钮的时候，[浏览器](https://www.w3cdoc.com)会进行缓存。但是在有些场景下，你可能不需要[浏览器](https://www.w3cdoc.com)的这种功能。有如下解决办法：
 
-<pre class="hljs typescript"><code><span class="hljs-built_in">window</span>.addEventListener(<span class="hljs-string">'pageshow'</span>, <span class="hljs-function">(<span class="hljs-params">event</span>) =></span> {
-  <span class="hljs-comment">// 检查前进/后退缓存，是否从缓存加载页面</span>
-  <span class="hljs-keyword">if</span> (event.persisted || <span class="hljs-built_in">window</span>.performance &&
-    <span class="hljs-built_in">window</span>.performance.navigation.type === <span class="hljs-number">2</span>) {
-    <span class="hljs-comment">// 进行相应的逻辑处理</span>
+```
+window.addEventListener('pageshow', (event) => {
+  // 检查前进/后退缓存，是否从缓存加载页面
+  if (event.persisted || window.performance &&
+    window.performance.navigation.type === 2) {
+    // 进行相应的逻辑处理
   }
-};</code></pre>
+};
+```
 
 # 参考
 

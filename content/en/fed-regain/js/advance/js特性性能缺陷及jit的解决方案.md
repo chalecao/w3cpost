@@ -50,9 +50,11 @@ Javascript是个无类型的语言，这导致了 x = y +ｚ这种表达式，�
  二. 对象属性
   
   <blockquote>
-    <pre class="csharpcode"><span class="kwrd">function</span> f(obj) {
+    ```
+<span class="kwrd">function</span> f(obj) {
         <span class="kwrd">return</span> obj.a + 1;
-}</pre>
+}
+```
   </blockquote>
  在Js里，对象属性的访问是比较慢的。至于原因，要从Javascript对象存储说起，这里借用其他文章的一个图：
   
@@ -60,7 +62,7 @@ Javascript是个无类型的语言，这导致了 x = y +ｚ这种表达式，�
   
          如上图，访问对象属性，需要先从本地变量表找到对象，然后遍历属性，如果在本对象的属性列表里没找到，再得从prototype里面一层层的找。不能直接索引，只能遍历，这就慢的原因。
   
- &nbsp;
+ 
   
  二. 2006版-Javascript引擎
   
@@ -68,7 +70,7 @@ Javascript是个无类型的语言，这导致了 x = y +ｚ这种表达式，�
   
  <img loading="lazy" width="518" height="207" class="alignnone size-full wp-image-4975 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca18406c71.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca18406c71.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca18406c71.png?x-oss-process=image/format,webp 518w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca18406c71.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_120/format,webp 300w" sizes="(max-width: 518px) 100vw, 518px" />
   
- &nbsp;
+ 
   
  三. 2011新版-Javascript引擎
   
@@ -78,7 +80,7 @@ Javascript是个无类型的语言，这导致了 x = y +ｚ这种表达式，�
   
          可以看到，除了老版的解析器外，新引擎增加了JIT，以及Type-specializing JIT。
   
- &nbsp;
+ 
   
  1. JIT
   
@@ -102,7 +104,7 @@ Javascript是个无类型的语言，这导致了 x = y +ｚ这种表达式，�
   
  但可惜不是所有情况都能使用JIT，上面看到，Front-end有3条分支，“一般的情况”可以走JIT分支，比如：number + number；string + string …，但特殊情况，比如：number + undefined就不行了，只能走旧解析器。
   
- &nbsp;
+ 
   
  除了针对untyped的优化，新引擎还对“对象属性”访问做了优化，解决方案叫：inline caching，俗称：IC。简单的说，就是做cache。优化流程直接看图：
   
@@ -124,7 +126,7 @@ Javascript是个无类型的语言，这导致了 x = y +ｚ这种表达式，�
   
  （3）再做后续计算。
   
- &nbsp;
+ 
   
  来看看Type-specializing JIT的执行x = y + z流程吧：
   
@@ -148,7 +150,7 @@ Javascript是个无类型的语言，这导致了 x = y +ｚ这种表达式，�
   
  （2）通过启发式算法估算出来的有价值的代码……
   
- &nbsp;
+ 
   
  另外，有2点也需要注意：
   
@@ -160,7 +162,7 @@ Javascript是个无类型的语言，这导致了 x = y +ｚ这种表达式，�
   
  （2）数组，object properties，闭包变量不在优化范畴之列。
   
- &nbsp;
+ 
   
  本文主要整理了JIT针对Javascript某些语言特性的优化方案，至于GC，以及更多Js代码优化建议，可查阅原文。
   

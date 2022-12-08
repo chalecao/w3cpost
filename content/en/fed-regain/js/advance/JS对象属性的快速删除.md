@@ -29,26 +29,28 @@ title: JS对象属性的快速删除
 [我们](https://www.w3cdoc.com)来举个例子：
 
 <div class="highlight">
-  <pre><code class="language-js">&lt;span class="c1">// flags: --allow-natives-syntax
-&lt;/span>&lt;span class="kd">var&lt;/span> &lt;span class="nx">obj&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="s2">"a"&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>
-  &lt;span class="s2">"b"&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">,&lt;/span>
-  &lt;span class="s2">"c"&lt;/span> &lt;span class="o">:&lt;/span> &lt;span class="mi">3&lt;/span>
-&lt;span class="p">};&lt;/span>
-&lt;span class="nx">obj&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">d&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">4&lt;/span>&lt;span class="p">;&lt;/span>
+  ```
+<span class="c1">// flags: --allow-natives-syntax
+</span><span class="kd">var</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s2">"a"</span> <span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+  <span class="s2">"b"</span> <span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+  <span class="s2">"c"</span> <span class="o">:</span> <span class="mi">3</span>
+<span class="p">};</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">d</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
 
-&lt;span class="k">delete&lt;/span> &lt;span class="nx">obj&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">d&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="o">%&lt;/span>&lt;span class="nx">HasFastProperties&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">obj&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">// true:  删除的属性 "d" 是最后添加进对象内的
-&lt;/span>
-&lt;span class="k">delete&lt;/span> &lt;span class="nx">obj&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">c&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="o">%&lt;/span>&lt;span class="nx">HasFastProperties&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">obj&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">// true:  删除的属性 "c" 是最后添加进删掉了属性 "d" 的对象内的
-&lt;/span>
-&lt;span class="k">delete&lt;/span> &lt;span class="nx">obj&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">a&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="o">%&lt;/span>&lt;span class="nx">HasFastProperties&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">obj&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="c1">// false: 删除的属性 "a" 不是最后添加进删掉了属性 "d", "c" 的对象内的
-&lt;/span></code></pre>
+<span class="k">delete</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">d</span><span class="p">;</span>
+<span class="o">%</span><span class="nx">HasFastProperties</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+<span class="c1">// true:  删除的属性 "d" 是最后添加进对象内的
+</span>
+<span class="k">delete</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">c</span><span class="p">;</span>
+<span class="o">%</span><span class="nx">HasFastProperties</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+<span class="c1">// true:  删除的属性 "c" 是最后添加进删掉了属性 "d" 的对象内的
+</span>
+<span class="k">delete</span> <span class="nx">obj</span><span class="p">.</span><span class="nx">a</span><span class="p">;</span>
+<span class="o">%</span><span class="nx">HasFastProperties</span><span class="p">(</span><span class="nx">obj</span><span class="p">);</span>
+<span class="c1">// false: 删除的属性 "a" 不是最后添加进删掉了属性 "d", "c" 的对象内的
+</span>
+```
 </div>
 
 通过例子[我们](https://www.w3cdoc.com)可以看出，**当沿着属性添加的反方向删除属性时，对象不会退化为字典模式**。

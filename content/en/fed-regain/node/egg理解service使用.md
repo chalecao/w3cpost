@@ -5,7 +5,8 @@ title: egg理解service使用
 这篇文章[我们](https://www.w3cdoc.com)首先来看看官网对Egg的整个框架的约定如下，及约定对应的目录是做什么的，来有个简单的理解，注意：我也是按照官网的来理解的。
 
 <div class="cnblogs_code">
-  <pre>egg-project
+  ```
+egg-project
 ├── package.json
 ├── app.js (可选)
 ├── app
@@ -40,7 +41,8 @@ title: egg理解service使用
     ├── middleware
     |   └── response_time.test.js
     └── controller
-        └── home.test.js</pre>
+        └── home.test.js
+```
 </div>
 
 **app/router.js** 是使用与配置url的路由规则的。  
@@ -82,7 +84,8 @@ test/** 一般用于单元测试。<br />app.js 一般用于启动时候的初
 在上一篇Egg入门学习中,[我们](https://www.w3cdoc.com)项目渲染整个目录结构如下：
 
 <div class="cnblogs_code">
-  <pre>egg-demo2
+  ```
+egg-demo2
 ├── app
 │   ├── controller
 │   │   └── home.js
@@ -98,26 +101,30 @@ test/** 一般用于单元测试。<br />app.js 一般用于启动时候的初
 |   | | |-- list.tpl（模板文件list）
 ├── config
 │   └── config.default.js
-└── package.json</pre>
+└── package.json
+```
 </div>
 
 app/controller/home.js 代码如下：
 
 <div class="cnblogs_code">
-  <pre>const Controller = require('egg').Controller;
+  ```
+const Controller = require('egg').Controller;
 
 class HomeController extends Controller {
   async index() {
     this.ctx.body = 'Hello world';
   }
 }
-module.exports = HomeController;</pre>
+module.exports = HomeController;
+```
 </div>
 
 app/controller/index.js 代码如下：
 
 <div class="cnblogs_code">
-  <pre>// app/controller/index.js
+  ```
+// app/controller/index.js
 const Controller = require('egg').Controller;
 
 class IndexController extends Controller {
@@ -131,7 +138,8 @@ class IndexController extends Controller {
     await this.ctx.render('index/list.tpl', dataList);
   }
 }
-module.exports = IndexController;</pre>
+module.exports = IndexController;
+```
 </div>
 
 **app/controller/** 用于解析用户的输入，处理后返回响应的结果。**如上 home.js 和 index.js 使用是Es6的类来编写代码，它都继承了 egg中的Controller，其中index.js 定义了 dataList 对象数据，然后使用ctx.render把数据渲染到 模板里面去。
@@ -142,9 +150,11 @@ module.exports = IndexController;</pre>
 
 **app/view/** 文件的作用是用于放置模板文件，具体是做模板渲染的**。[我们](https://www.w3cdoc.com)在 app/view/index/list.tpl 的代码如下：
 
-<pre><!-- app/view/index/list.tpl -->
+```
+<!-- app/view/index/list.tpl -->
 
-</pre>
+
+```
 
 
  
@@ -158,7 +168,9 @@ module.exports = IndexController;</pre>
 
 {% endfor %}
 
-<pre></pre>
+```
+
+```
 
 如上，在app/controller/index.js 中，[我们](https://www.w3cdoc.com)把 dataList 对象渲染到该模板中，其中 dataList 对象中有一个list数组。  
 因此在该模板中，[我们](https://www.w3cdoc.com)直接使用 egg-view-nunjucks 模板引擎的语法来循环遍历即可把数据渲染出来。
@@ -166,11 +178,13 @@ module.exports = IndexController;</pre>
 app/router.js 的作用是配置url路由规则的，代码如下：
 
 <div class="cnblogs_code">
-  <pre>module.exports = app => {
+  ```
+module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
   router.get('/index', controller.index.list);
-}</pre>
+}
+```
 </div>
 
 在如上参数 app 可能会把 router, controller 等等都挂载该对象上面，因此也是使用es6语法把它导入进来，然后使用router路由get请求，当[我们](https://www.w3cdoc.com)访问：http://127.0.0.1:7001/ 的时候，[我们](https://www.w3cdoc.com)就会调用 controller.home.index 模板，也就是会找到app/controller/home.js 的文件，然后调用里面的 index()方法。即可执行。
@@ -180,7 +194,8 @@ app/router.js 的作用是配置url路由规则的，代码如下：
 在项目中 会有一个config配置文件，所有的配置写在该 config/config.default.js 中，当然官网还有其他的配置文件，比如叫：config.prod.js，config.local.js 等等。config/config.default.js 代码配置如下：
 
 <div class="cnblogs_code">
-  <pre>// 下面是我自己的 Cookie 安全字符串密钥
+  ```
+// 下面是我自己的 Cookie 安全字符串密钥
 exports.keys = '123456';
 
 // 添加view配置
@@ -189,7 +204,8 @@ exports.view = {
   mapping: {
     '.tpl': 'nunjucks'
   }
-};</pre>
+};
+```
 </div>
 
 比如上面叫 export.view 是对 view下的模板文件配置默认的模板引擎。其中mapping含义应该是映射的含义吧，应该是把模板引擎映射到有关 .tpl后缀的文件中。
@@ -202,7 +218,8 @@ exports.view = {
 业务代码如下：
 
 <div class="cnblogs_code">
-  <pre>// app/service/index.js
+  ```
+// app/service/index.js
 
 const Service = require('egg').Service;
 class IndexService extends Service {
@@ -229,13 +246,15 @@ class IndexService extends Service {
   }
 };
 
-module.exports = IndexService;</pre>
+module.exports = IndexService;
+```
 </div>
 
 [我们](https://www.w3cdoc.com)现在需要把 app/controller/index.js 代码改成如下：
 
 <div class="cnblogs_code">
-  <pre>// app/controller/index.js
+  ```
+// app/controller/index.js
 const Controller = require('egg').Controller;
 
 class IndexController extends Controller {
@@ -256,13 +275,15 @@ class IndexController extends Controller {
   }
 }
 
-module.exports = IndexController;</pre>
+module.exports = IndexController;
+```
 </div>
 
 然后在 config/config.default.js 配置中添加对应的请求 url 和 页码大小配置如下：
 
 <div class="cnblogs_code">
-  <pre>// 下面是我自己的 Cookie 安全字符串密钥
+  ```
+// 下面是我自己的 Cookie 安全字符串密钥
 
 exports.keys = '123456';
 
@@ -278,7 +299,8 @@ exports.view = {
 exports.index = {
   pageSize: 10,
   serverUrl: 'https://hacker-news.firebaseio.com/v0'
-};</pre>
+};
+```
 </div>
 
 然后[我们](https://www.w3cdoc.com)在 [浏览器](https://www.w3cdoc.com)访问 http://127.0.0.1:7001/index 后，在页面中返回如下页面：
@@ -315,7 +337,8 @@ exports.index = {
 因此现在项目目录结构就变成如下了：
 
 <div class="cnblogs_code">
-  <pre>egg-demo2
+  ```
+egg-demo2
 ├── app
 │   ├── controller
 │   │   └── home.js
@@ -333,7 +356,8 @@ exports.index = {
 |   | |--- index.js
 ├── config
 │   └── config.default.js
-└── package.json</pre>
+└── package.json
+```
 </div>
 
 其他有关Egg相关的文章下篇待续，继续来了解下egg相关的知识点。

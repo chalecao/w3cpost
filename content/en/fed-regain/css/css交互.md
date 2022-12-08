@@ -6,7 +6,7 @@ weight: 3
 # Pointer Events {.p1}
 ![](/images/posts/img_5fb3ff6e1daee.webp)
 
-&nbsp;
+
 
 # touch event
 ![](/images/posts/img_5fb40000c7ebe.webp)

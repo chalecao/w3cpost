@@ -10,7 +10,8 @@ title: react hook的初步研究前言renderWithHooks的整个过程
 
 在源码里面，renderWithHooks函数是渲染一个组件会调用的，跟hook相关的操作都在这里之后。 比如这段代码：
 
-<pre class="prism-token token  language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+```
+<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
     <span class="token keyword">const</span> <span class="token punctuation">[</span>n<span class="token punctuation">,</span> setn<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> <span class="token punctuation">[</span>age<span class="token punctuation">,</span> setAge<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> <span class="token punctuation">[</span>man<span class="token punctuation">,</span> setSex<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -22,7 +23,8 @@ title: react hook的初步研究前言renderWithHooks的整个过程
         <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
     <span class="token punctuation">)</span>
 <span class="token punctuation">}</span>
-复制代码</pre>
+复制代码
+```
 
 第一次挂载组件的时候，会给对应的state留下一个dispatch接口，这个接口是操作对应的state的，也就是setn、setAge、setSex，以`return [initState, dispatch]`这种形式返回。后面的更新，每次点击都会让整个组件函数重新执行，3次useState，源码内部的实现是维护一个队列，setter和对应的state是一一对应的：
 
@@ -142,7 +144,8 @@ title: react hook的初步研究前言renderWithHooks的整个过程
 
 如果[我们](https://www.w3cdoc.com)就是这样不按照套路使用的话，比如代码里面由于某种条件判断，使得[我们](https://www.w3cdoc.com)第二次调用组件函数的时候usestate的顺序不一样，伪代码：
 
-<pre class="prism-token token  language-javascript"><span class="token comment">// 第一次</span>
+```
+<span class="token comment">// 第一次</span>
     <span class="token keyword">const</span> <span class="token punctuation">[</span>n<span class="token punctuation">,</span> setn<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> <span class="token punctuation">[</span>age<span class="token punctuation">,</span> setAge<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> <span class="token punctuation">[</span>man<span class="token punctuation">,</span> setSex<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -151,7 +154,8 @@ title: react hook的初步研究前言renderWithHooks的整个过程
     <span class="token keyword">const</span> <span class="token punctuation">[</span>age<span class="token punctuation">,</span> setAge<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> <span class="token punctuation">[</span>n<span class="token punctuation">,</span> setn<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">const</span> <span class="token punctuation">[</span>man<span class="token punctuation">,</span> setSex<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-复制代码</pre>
+复制代码
+```
 
 第一次：
 
@@ -441,7 +445,8 @@ title: react hook的初步研究前言renderWithHooks的整个过程
 
 这下问题来了：
 
-<pre class="prism-token token  language-javascript"><span class="token keyword">return</span> <span class="token punctuation">(</span>
+```
+<span class="token keyword">return</span> <span class="token punctuation">(</span>
         <span class="token operator">&lt;</span>div<span class="token operator">></span>
             <span class="token punctuation">{</span><span class="token comment">/*setn指的是setAge_function，点了会改变_age。这里的n展示的是_age*/</span><span class="token punctuation">}</span>
             这是n<span class="token punctuation">:</span><span class="token punctuation">{</span>n<span class="token punctuation">}</span><span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setn</span><span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">></span>n<span class="token operator">++</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
@@ -450,7 +455,8 @@ title: react hook的初步研究前言renderWithHooks的整个过程
             变性：<span class="token punctuation">{</span>man <span class="token operator">?</span> <span class="token string">'man'</span> <span class="token punctuation">:</span> <span class="token string">'gay'</span><span class="token punctuation">}</span><span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setSex</span><span class="token punctuation">(</span><span class="token operator">!</span>man<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">></span>change<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
         <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
     <span class="token punctuation">)</span>
-复制代码</pre>
+复制代码
+```
 
 点了一次后，n展示了age，age展示了n，但是他们逻辑就正常，该+1就+1，该+2就+2。其实，可以通过代码让这种情况不出现bug，只是，为了让一个不合法操作正常，加上hack代码，同事两行泪啊。
 
@@ -568,7 +574,8 @@ title: react hook的初步研究前言renderWithHooks的整个过程
 
 来到react-dom源码里面，crtl+f找到renderWithHooks：
 
-<pre class="prism-token token  language-javascript"><span class="token keyword">function</span> <span class="token function">renderWithHooks</span><span class="token punctuation">(</span>current<span class="token punctuation">,</span> workInProgress<span class="token punctuation">,</span> Component<span class="token punctuation">,</span> props<span class="token punctuation">,</span> refOrContext<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+```
+<span class="token keyword">function</span> <span class="token function">renderWithHooks</span><span class="token punctuation">(</span>current<span class="token punctuation">,</span> workInProgress<span class="token punctuation">,</span> Component<span class="token punctuation">,</span> props<span class="token punctuation">,</span> refOrContext<span class="token punctuation">)</span> <span class="token punctuation">{</span>
   currentlyRenderingFiber$<span class="token number">1</span> <span class="token operator">=</span> workInProgress<span class="token punctuation">;</span>
   <span class="token comment">// 第一次的状态</span>
   firstCurrentHook <span class="token operator">=</span> nextCurrentHook <span class="token operator">=</span> current <span class="token operator">!==</span> <span class="token keyword">null</span> <span class="token operator">?</span> current<span class="token punctuation">.</span>memoizedState <span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
@@ -603,7 +610,8 @@ title: react hook的初步研究前言renderWithHooks的整个过程
   <span class="token punctuation">}</span>
   <span class="token keyword">return</span> children<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-复制代码</pre>
+复制代码
+```
 
 可以看见，renderWithHooks对于首次挂载组件走的是HooksDispatcherOnMountInDEV相关的逻辑，以后的更新重新渲染走的是HooksDispatcherOnUpdateInDEV里面的逻辑
 
@@ -611,7 +619,8 @@ title: react hook的初步研究前言renderWithHooks的整个过程
 
 ReactCurrentDispatcher$1.current会是HooksDispatcherOnMountInDEV和HooksDispatcherOnUpdateInDEV其中一个，它们都是一个存放所有的hook函数的对象。首先，[我们](https://www.w3cdoc.com)看一下第一次挂载的时候使用的HooksDispatcherOnMountInDEV里面的useState:
 
-<pre class="prism-token token  language-javascript">HooksDispatcherOnMountInDEV <span class="token operator">=</span> <span class="token punctuation">{</span>
+```
+HooksDispatcherOnMountInDEV <span class="token operator">=</span> <span class="token punctuation">{</span>
     <span class="token comment">// ....</span>
     useState<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>initialState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token comment">// ...已省略了容错代码</span>
@@ -638,11 +647,13 @@ ReactCurrentDispatcher$1.current会是HooksDispatcherOnMountInDEV和HooksDispatc
   currentlyRenderingFiber$<span class="token number">1</span><span class="token punctuation">,</span> queue<span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token punctuation">[</span>hook<span class="token punctuation">.</span>memoizedState<span class="token punctuation">,</span> dispatch<span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-复制代码</pre>
+复制代码
+```
 
 这就是第一步了，把初始状态和dispatch存进去。后面的更新，当前的dispatcher用的是HooksDispatcherOnUpdateInDEV里面的hook：
 
-<pre class="prism-token token  language-javascript">HooksDispatcherOnMountInDEV <span class="token operator">=</span> <span class="token punctuation">{</span>
+```
+HooksDispatcherOnMountInDEV <span class="token operator">=</span> <span class="token punctuation">{</span>
     <span class="token comment">// ....</span>
     useState<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>initialState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
       <span class="token comment">// ...</span>
@@ -665,7 +676,8 @@ ReactCurrentDispatcher$1.current会是HooksDispatcherOnMountInDEV和HooksDispatc
     <span class="token keyword">var</span> _dispatch <span class="token operator">=</span> queue<span class="token punctuation">.</span>dispatch<span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token punctuation">[</span>hook<span class="token punctuation">.</span>memoizedState<span class="token punctuation">,</span> _dispatch<span class="token punctuation">]</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span>
-复制代码</pre>
+复制代码
+```
 
 # updateWorkInProgressHook如何进行
 
@@ -677,7 +689,8 @@ ReactCurrentDispatcher$1.current会是HooksDispatcherOnMountInDEV和HooksDispatc
 
 每一次hook都是用updateWorkInProgressHook获取的。也是这个函数的实现，让[我们](https://www.w3cdoc.com)看起来react内部是用一个数组维护了hook
 
-<pre class="prism-token token  language-javascript"><span class="token keyword">function</span> <span class="token function">updateWorkInProgressHook</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+```
+<span class="token keyword">function</span> <span class="token function">updateWorkInProgressHook</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment">// nextCurrentHook是前面的renderWithHooks赋值的</span>
     currentHook <span class="token operator">=</span> nextCurrentHook<span class="token punctuation">;</span>
 
@@ -700,13 +713,15 @@ ReactCurrentDispatcher$1.current会是HooksDispatcherOnMountInDEV和HooksDispatc
     nextCurrentHook <span class="token operator">=</span> currentHook<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
     <span class="token keyword">return</span> workInProgressHook<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-复制代码</pre>
+复制代码
+```
 
 # 手动模拟更新还原过程
 
 [我们](https://www.w3cdoc.com)还是继续在[我们](https://www.w3cdoc.com)的例子上面改。首先，先用最简单的方法实现一个low一点的hook：
 
-<pre class="prism-token token  language-javascript"><span class="token keyword">let</span> state <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// 存放useState的第一个返回值，状态</span>
+```
+<span class="token keyword">let</span> state <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// 存放useState的第一个返回值，状态</span>
 <span class="token keyword">let</span> dispatchers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  <span class="token comment">// 存放useState的第二个返回值，dispatch函数</span>
 <span class="token keyword">let</span> cursor <span class="token operator">=</span> <span class="token number"></span><span class="token punctuation">;</span>  <span class="token comment">// 遍历用的游标，替代next方便理解</span>
 
@@ -727,19 +742,23 @@ ReactCurrentDispatcher$1.current会是HooksDispatcherOnMountInDEV和HooksDispatc
   cursor<span class="token operator">++</span><span class="token punctuation">;</span>
   <span class="token keyword">return</span> <span class="token punctuation">[</span>value<span class="token punctuation">,</span> dispatcher<span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-复制代码</pre>
+复制代码
+```
 
 就这么简单，极其简单版本hook。但是[我们](https://www.w3cdoc.com)要模拟react里面的重新渲染更新，需要动一点手脚：
 
-<pre class="prism-token token  language-javascript">根组件就是HookIsHere组件
+```
+根组件就是HookIsHere组件
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token operator">&lt;</span>HookIsHere <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-复制代码</pre>
+复制代码
+```
 
 脱离了react环境的简易hook，如果用在HookIsHere组件中，需要手动模拟更新过程：
 
-<pre class="prism-token token  language-javascript"><span class="token keyword">function</span> <span class="token function">HookIsHere</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+```
+<span class="token keyword">function</span> <span class="token function">HookIsHere</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
   <span class="token function">updateHooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// react每次更新，都会跑完全部hook，[我们](https://www.w3cdoc.com)用这个函数模拟</span>
   <span class="token keyword">return</span> <span class="token punctuation">(</span>
     <span class="token operator">&lt;</span>div<span class="token operator">></span>
@@ -788,13 +807,15 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// react有异步渲染的，现在可以看见初始状态</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-复制代码</pre>
+复制代码
+```
 
 打开控制台，可以看见[我们](https://www.w3cdoc.com)的自己造的hook跑起来了的console
 
 全部代码：
 
-<pre class="prism-token token  language-javascript"><span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+```
+<span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
 
 <span class="token keyword">let</span> state <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token keyword">let</span> dispatchers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
@@ -865,4 +886,5 @@ console<span class="token punctuation">.</span><span class="token function">log<
 <span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
   <span class="token keyword">return</span> <span class="token operator">&lt;</span>HookIsHere <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-复制代码</pre>
+复制代码
+```

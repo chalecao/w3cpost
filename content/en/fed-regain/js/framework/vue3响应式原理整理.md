@@ -19,51 +19,55 @@ title: Vue3响应式原理整理
 
 * 对象响应化：遍历每个key，通过 `Object.defineProperty` API定义getter，setter
 
-<pre class="hljs javascript"><code class="jsx">&lt;span class="hljs-comment">// 伪代码&lt;/span>
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">observe&lt;/span>()&lt;/span>{
-    &lt;span class="hljs-keyword">if&lt;/span>(&lt;span class="hljs-keyword">typeof&lt;/span> obj !=&lt;span class="hljs-string">'object'&lt;/span> || obj == &lt;span class="hljs-literal">null&lt;/span>){
-        &lt;span class="hljs-keyword">return&lt;/span>
+```
+// 伪代码
+function observe(){
+    if(typeof obj !='object' || obj == null){
+        return
     }
-    &lt;span class="hljs-keyword">if&lt;/span>(&lt;span class="hljs-built_in">Array&lt;/span>.isArray(obj)){
-        &lt;span class="hljs-built_in">Object&lt;/span>.setPrototypeOf(obj,arrayProto)
-    }&lt;span class="hljs-keyword">else&lt;/span>{
-    &lt;span class="hljs-keyword">const&lt;/span> keys = &lt;span class="hljs-built_in">Object&lt;/span>.keys()
-    &lt;span class="hljs-keyword">for&lt;/span>(&lt;span class="hljs-keyword">let&lt;/span> i=&lt;span class="hljs-number">0&lt;/span>;i&lt;keys.length;i++){
-      &lt;span class="hljs-keyword">const&lt;/span> key = keys[i]
+    if(Array.isArray(obj)){
+        Object.setPrototypeOf(obj,arrayProto)
+    }else{
+    const keys = Object.keys()
+    for(let i=0;i<keys.length;i++){
+      const key = keys[i]
       defineReactive(obj,key,obj[key])
     }
     }
 }
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">defineReactive&lt;/span>(&lt;span class="hljs-params">target, key, val&lt;/span>)&lt;/span>{
+function defineReactive(target, key, val){
   observe(val)
-  &lt;span class="hljs-built_in">Object&lt;/span>.defineProperty(obj, key, {
-    &lt;span class="hljs-function">&lt;span class="hljs-title">get&lt;/span>()&lt;/span>{
-      &lt;span class="hljs-comment">// 依赖收集&lt;/span>
+  Object.defineProperty(obj, key, {
+    get(){
+      // 依赖收集
       dep.depend()
-      &lt;span class="hljs-keyword">return&lt;/span> val
+      return val
     },
-    &lt;span class="hljs-function">&lt;span class="hljs-title">set&lt;/span>(&lt;span class="hljs-params">newVal&lt;/span>)&lt;/span>{
-      &lt;span class="hljs-keyword">if&lt;/span>(newVal !== val){
+    set(newVal){
+      if(newVal !== val){
         observe(newVal)
         val = newVal
-        &lt;span class="hljs-comment">// 通知更新&lt;/span>
+        // 通知更新
         dep.notify()
       }
     }
   })
-}</code></pre>
+}
+```
 
 * 数组响应化：覆盖数组的原型方法，增加通知变更的逻辑
 
-<pre class="hljs javascript"><code class="jsx">&lt;span class="hljs-comment">// 伪代码&lt;/span>
-&lt;span class="hljs-keyword">const&lt;/span> originalProto = &lt;span class="hljs-built_in">Array&lt;/span>.prototype
-&lt;span class="hljs-keyword">const&lt;/span> arrayProto = &lt;span class="hljs-built_in">Object&lt;/span>.create(originalProto)
-[&lt;span class="hljs-string">'push'&lt;/span>,&lt;span class="hljs-string">'pop'&lt;/span>,&lt;span class="hljs-string">'shift'&lt;/span>,&lt;span class="hljs-string">'unshift'&lt;/span>,&lt;span class="hljs-string">'splice'&lt;/span>,&lt;span class="hljs-string">'reverse'&lt;/span>,&lt;span class="hljs-string">'sort'&lt;/span>].forEach(&lt;span class="hljs-function">&lt;span class="hljs-params">key&lt;/span>=>&lt;/span>{
-    arrayProto[key] = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>()&lt;/span>{
-        originalProto[key].apply(&lt;span class="hljs-built_in">this&lt;/span>.arguments)
+```
+// 伪代码
+const originalProto = Array.prototype
+const arrayProto = Object.create(originalProto)
+['push','pop','shift','unshift','splice','reverse','sort'].forEach(key=>{
+    arrayProto[key] = function(){
+        originalProto[key].apply(this.arguments)
         notifyUpdate()
     }
-})</code></pre>
+})
+```
 
 ## vue2响应式痛点 {#item-2}
 
@@ -75,191 +79,207 @@ title: Vue3响应式原理整理
 
 ## vue3响应式方案 {#item-3}
 
-使用ES6的 **<a href="https://es6.ruanyifeng.com/#docs/proxy" rel="nofollow"><code>Proxy</code></a>** 进行数据响应化，解决上述Vue2所有痛点
+使用ES6的 **<a href="https://es6.ruanyifeng.com/#docs/proxy" rel="nofollow">Proxy</a>** 进行数据响应化，解决上述Vue2所有痛点
 
 Proxy可以在目标对象上加一层拦截/代理，外界对目标对象的操作，都会经过这层拦截
 
 相比 `Object.defineProperty` ，Proxy支持的对象操作十分全面：get、set、has、deleteProperty、ownKeys、defineProperty&#8230;&#8230;等等
 
-<pre class="hljs javascript"><code class="jsx">&lt;span class="hljs-comment">// reactive 伪代码&lt;/span>
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">reactice&lt;/span>(&lt;span class="hljs-params">obj&lt;/span>)&lt;/span>{
-  &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Proxy&lt;/span>(obj,{
-    &lt;span class="hljs-function">&lt;span class="hljs-title">get&lt;/span>(&lt;span class="hljs-params">target, key, receiver&lt;/span>)&lt;/span>{
-      &lt;span class="hljs-keyword">const&lt;/span> ret = &lt;span class="hljs-built_in">Reflect&lt;/span>.get(target, key, receiver)
-      &lt;span class="hljs-keyword">return&lt;/span> isObject(ret) ? reactice(ret) : ret
+```
+// reactive 伪代码
+function reactice(obj){
+  return new Proxy(obj,{
+    get(target, key, receiver){
+      const ret = Reflect.get(target, key, receiver)
+      return isObject(ret) ? reactice(ret) : ret
     },
-    &lt;span class="hljs-function">&lt;span class="hljs-title">set&lt;/span>(&lt;span class="hljs-params">target, key, val, receiver&lt;/span>)&lt;/span>{
-      &lt;span class="hljs-keyword">const&lt;/span> ret = &lt;span class="hljs-built_in">Reflect&lt;/span>.set(target, key, val, receiver)
-      &lt;span class="hljs-keyword">return&lt;/span> ret
+    set(target, key, val, receiver){
+      const ret = Reflect.set(target, key, val, receiver)
+      return ret
     },
-    &lt;span class="hljs-function">&lt;span class="hljs-title">deleteProperty&lt;/span>(&lt;span class="hljs-params">target, key&lt;/span>)&lt;/span>{
-      &lt;span class="hljs-keyword">const&lt;/span> ret = &lt;span class="hljs-built_in">Reflect&lt;/span>.deleteProperty(target, key)
-      &lt;span class="hljs-keyword">return&lt;/span> ret
+    deleteProperty(target, key){
+      const ret = Reflect.deleteProperty(target, key)
+      return ret
     },
   })
-}</code></pre>
+}
+```
 
 ## 响应式原理 {#item-4}
 
 
   <img loading="lazy" width="807" height="1093" class="alignnone size-full wp-image-6579 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/format,webp 807w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/quality,q_50/resize,m_fill,w_222,h_300/format,webp 222w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/quality,q_50/resize,m_fill,w_443,h_600/format,webp 443w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_1040/format,webp 768w" sizes="(max-width: 807px) 100vw, 807px" />
 
-&nbsp;
+
 
 * 通过 **`effect`** 声明依赖响应式数据的函数cb ( 例如视图渲染函数render函数)，并执行cb函数，执行过程中，会触发响应式数据 `getter`
 * 在响应式数据 `getter`中进行 `track`依赖收集：建立 **数据&cb** 的映射关系存储于 `targetMap`
 * 当变更响应式数据时，触发 `trigger` **，**根据 `targetMap` 找到关联的cb执行
 * 映射关系 `targetMap` 结构：
 
-<pre class="hljs coffeescript"><code class="jsx">targetMap: &lt;span class="hljs-built_in">WeakMap&lt;/span>{
-    target:&lt;span class="hljs-built_in">Map&lt;/span>{
-        key: &lt;span class="hljs-built_in">Set&lt;/span>[cb1,cb2...]
+```
+targetMap: WeakMap{
+    target:Map{
+        key: Set[cb1,cb2...]
     }
-}</code></pre>
+}
+```
 
 ## 手写vue3响应式 {#item-5}
 
 大致结构
 
-<pre class="hljs awk"><code class="jsx">&lt;span class="hljs-regexp">//&lt;/span> mini-vue3.js
+```
+// mini-vue3.js
 
-&lt;span class="hljs-regexp">/*建立响应式数据*/&lt;/span>
-&lt;span class="hljs-keyword">function&lt;/span> reactice(obj){}
+/*建立响应式数据*/
+function reactice(obj){}
 
-&lt;span class="hljs-regexp">/*声明响应函数cb(依赖响应式数据)*/&lt;/span>
-&lt;span class="hljs-keyword">function&lt;/span> effect(cb){}
+/*声明响应函数cb(依赖响应式数据)*/
+function effect(cb){}
 
-&lt;span class="hljs-regexp">/*依赖收集：建立 数据&cb 映射关系*/&lt;/span>
-&lt;span class="hljs-keyword">function&lt;/span> track(target,key){}
+/*依赖收集：建立 数据&cb 映射关系*/
+function track(target,key){}
 
-&lt;span class="hljs-regexp">/*触发更新：根据映射关系，执行cb*/&lt;/span>
-&lt;span class="hljs-keyword">function&lt;/span> trigger(target,key){}</code></pre>
+/*触发更新：根据映射关系，执行cb*/
+function trigger(target,key){}
+```
 
 ### reactive {#item-5-1}
 
-<pre class="hljs processing"><code class="jsx">&lt;span class="hljs-comment">/*建立响应式数据*/&lt;/span>
+```
+/*建立响应式数据*/
 function reactive(obj){
-  &lt;span class="hljs-comment">// Proxy:http://es6.ruanyifeng.com/#docs/proxy&lt;/span>
-  &lt;span class="hljs-comment">// Proxy相当于在对象外层加拦截&lt;/span>
-  &lt;span class="hljs-comment">// Proxy递归是惰性的,需要添加递归的逻辑&lt;/span>
-  &lt;span class="hljs-comment">// Reflect:http://es6.ruanyifeng.com/#docs/reflect&lt;/span>
-  &lt;span class="hljs-comment">// Reflect:用于执行对象默认操作，更规范、更友好,可以理解成操作对象的合集&lt;/span>
-  &lt;span class="hljs-comment">// Proxy和Object的方法Reflect都有对应&lt;/span>
-  &lt;span class="hljs-keyword">if&lt;/span>(!isObject(obj)) &lt;span class="hljs-keyword">return&lt;/span> obj
-  &lt;span class="hljs-keyword">const&lt;/span> observed = &lt;span class="hljs-keyword">new&lt;/span> Proxy(obj,{
-    &lt;span class="hljs-built_in">get&lt;/span>(target, &lt;span class="hljs-built_in">key&lt;/span>, receiver){
-      &lt;span class="hljs-keyword">const&lt;/span> ret = Reflect.&lt;span class="hljs-built_in">get&lt;/span>(target, &lt;span class="hljs-built_in">key&lt;/span>, receiver)
-      console.&lt;span class="hljs-built_in">log&lt;/span>(&lt;span class="hljs-string">'getter '&lt;/span>+ret)
-      &lt;span class="hljs-comment">// 跟踪 收集依赖&lt;/span>
-      track(target, &lt;span class="hljs-built_in">key&lt;/span>)
-      &lt;span class="hljs-keyword">return&lt;/span> reactive(ret)
+  // Proxy:http://es6.ruanyifeng.com/#docs/proxy
+  // Proxy相当于在对象外层加拦截
+  // Proxy递归是惰性的,需要添加递归的逻辑
+  // Reflect:http://es6.ruanyifeng.com/#docs/reflect
+  // Reflect:用于执行对象默认操作，更规范、更友好,可以理解成操作对象的合集
+  // Proxy和Object的方法Reflect都有对应
+  if(!isObject(obj)) return obj
+  const observed = new Proxy(obj,{
+    get(target, key, receiver){
+      const ret = Reflect.get(target, key, receiver)
+      console.log('getter '+ret)
+      // 跟踪 收集依赖
+      track(target, key)
+      return reactive(ret)
     },
-    &lt;span class="hljs-built_in">set&lt;/span>(target, &lt;span class="hljs-built_in">key&lt;/span>, val, receiver){
-      &lt;span class="hljs-keyword">const&lt;/span> ret = Reflect.&lt;span class="hljs-built_in">set&lt;/span>(target, &lt;span class="hljs-built_in">key&lt;/span>, val, receiver)
-      console.&lt;span class="hljs-built_in">log&lt;/span>(&lt;span class="hljs-string">'setter '&lt;/span>+&lt;span class="hljs-built_in">key&lt;/span>+&lt;span class="hljs-string">':'&lt;/span>+val + &lt;span class="hljs-string">'=>'&lt;/span> + ret)
-      &lt;span class="hljs-comment">// 触发更新&lt;/span>
-      trigger(target, &lt;span class="hljs-built_in">key&lt;/span>)
-      &lt;span class="hljs-keyword">return&lt;/span> ret
+    set(target, key, val, receiver){
+      const ret = Reflect.set(target, key, val, receiver)
+      console.log('setter '+key+':'+val + '=>' + ret)
+      // 触发更新
+      trigger(target, key)
+      return ret
     },
-    deleteProperty(target, &lt;span class="hljs-built_in">key&lt;/span>){
-      &lt;span class="hljs-keyword">const&lt;/span> ret = Reflect.deleteProperty(target, &lt;span class="hljs-built_in">key&lt;/span>)
-      console.&lt;span class="hljs-built_in">log&lt;/span>(&lt;span class="hljs-string">'delete '&lt;/span>+&lt;span class="hljs-built_in">key&lt;/span>+&lt;span class="hljs-string">':'&lt;/span>+ret)
-      &lt;span class="hljs-comment">// 触发更新&lt;/span>
-      trigger(target, &lt;span class="hljs-built_in">key&lt;/span>)
-      &lt;span class="hljs-keyword">return&lt;/span> ret
+    deleteProperty(target, key){
+      const ret = Reflect.deleteProperty(target, key)
+      console.log('delete '+key+':'+ret)
+      // 触发更新
+      trigger(target, key)
+      return ret
     },
   })
-  &lt;span class="hljs-keyword">return&lt;/span> observed
-}</code></pre>
+  return observed
+}
+```
 
 ### effect {#item-5-2}
 
-<pre class="hljs actionscript"><code class="jsx">&lt;span class="hljs-comment">/*声明响应函数cb*/&lt;/span>
-&lt;span class="hljs-keyword">const&lt;/span> effectStack = []
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">effect&lt;/span>&lt;span class="hljs-params">(cb)&lt;/span>&lt;/span>{
+```
+/*声明响应函数cb*/
+const effectStack = []
+function effect(cb){
 
-  &lt;span class="hljs-comment">// 对函数进行高阶封装&lt;/span>
-  &lt;span class="hljs-keyword">const&lt;/span> rxEffect = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>&lt;span class="hljs-params">()&lt;/span>&lt;/span>{
-    &lt;span class="hljs-comment">// 1.捕获异常&lt;/span>
-    &lt;span class="hljs-comment">// 2.fn出栈入栈&lt;/span>
-    &lt;span class="hljs-comment">// 3.执行fn&lt;/span>
-    &lt;span class="hljs-keyword">try&lt;/span>{
+  // 对函数进行高阶封装
+  const rxEffect = function(){
+    // 1.捕获异常
+    // 2.fn出栈入栈
+    // 3.执行fn
+    try{
       effectStack.push(rxEffect)
-      &lt;span class="hljs-keyword">return&lt;/span> cb()
-    }&lt;span class="hljs-keyword">finally&lt;/span>{
+      return cb()
+    }finally{
       effectStack.pop()
     }
   }
 
-  &lt;span class="hljs-comment">// 最初要执行一次,进行最初的依赖收集&lt;/span>
+  // 最初要执行一次,进行最初的依赖收集
   rxEffect()
 
-  &lt;span class="hljs-keyword">return&lt;/span> rxEffect
-}</code></pre>
+  return rxEffect
+}
+```
 
 ### track {#item-5-3}
 
-<pre class="hljs csharp"><code class="jsx">&lt;span class="hljs-comment">/*依赖收集：建立 数据&cb 映射关系*/&lt;/span>
-&lt;span class="hljs-keyword">const&lt;/span> targetMap = &lt;span class="hljs-keyword">new&lt;/span> WeakMap()
-&lt;span class="hljs-function">function &lt;span class="hljs-title">track&lt;/span>(&lt;span class="hljs-params">target,key&lt;/span>)&lt;/span>{
-  &lt;span class="hljs-comment">// 存入映射关系&lt;/span>
-  &lt;span class="hljs-keyword">const&lt;/span> effectFn = effectStack[effectStack.length - &lt;span class="hljs-number">1&lt;/span>]  &lt;span class="hljs-comment">// 拿出栈顶函数&lt;/span>
-  &lt;span class="hljs-keyword">if&lt;/span>(effectFn){
-    &lt;span class="hljs-keyword">let&lt;/span> depsMap = targetMap.&lt;span class="hljs-keyword">get&lt;/span>(target)
-    &lt;span class="hljs-keyword">if&lt;/span>(!depsMap){
-      depsMap = &lt;span class="hljs-keyword">new&lt;/span> Map()
-      targetMap.&lt;span class="hljs-keyword">set&lt;/span>(target, depsMap)
+```
+/*依赖收集：建立 数据&cb 映射关系*/
+const targetMap = new WeakMap()
+function track(target,key){
+  // 存入映射关系
+  const effectFn = effectStack[effectStack.length - 1]  // 拿出栈顶函数
+  if(effectFn){
+    let depsMap = targetMap.get(target)
+    if(!depsMap){
+      depsMap = new Map()
+      targetMap.set(target, depsMap)
     }
-    &lt;span class="hljs-keyword">let&lt;/span> deps = depsMap.&lt;span class="hljs-keyword">get&lt;/span>(key)
-    &lt;span class="hljs-keyword">if&lt;/span>(!deps){
-      deps = &lt;span class="hljs-keyword">new&lt;/span> Set()
-      depsMap.&lt;span class="hljs-keyword">set&lt;/span>(key, deps)
+    let deps = depsMap.get(key)
+    if(!deps){
+      deps = new Set()
+      depsMap.set(key, deps)
     }
-    deps.&lt;span class="hljs-keyword">add&lt;/span>(effectFn)
+    deps.add(effectFn)
   }
-}</code></pre>
+}
+```
 
 ### trigger {#item-5-4}
 
-<pre class="hljs processing"><code class="jsx">&lt;span class="hljs-comment">/*触发更新：根据映射关系，执行cb*/&lt;/span>
-function trigger(target, &lt;span class="hljs-built_in">key&lt;/span>){
-  &lt;span class="hljs-keyword">const&lt;/span> depsMap = targetMap.&lt;span class="hljs-built_in">get&lt;/span>(target)
-  &lt;span class="hljs-keyword">if&lt;/span>(depsMap){
-    &lt;span class="hljs-keyword">const&lt;/span> deps = depsMap.&lt;span class="hljs-built_in">get&lt;/span>(&lt;span class="hljs-built_in">key&lt;/span>)
-    &lt;span class="hljs-keyword">if&lt;/span>(deps){
+```
+/*触发更新：根据映射关系，执行cb*/
+function trigger(target, key){
+  const depsMap = targetMap.get(target)
+  if(depsMap){
+    const deps = depsMap.get(key)
+    if(deps){
       deps.forEach(effect=>effect())
     }
   }
-}</code></pre>
+}
+```
 
 ### 测试demo {#item-5-5}
 
-<pre class="hljs handlebars"><code class="jsx">&lt;span class="xml">&lt;span class="hljs-comment">&lt;!-- test.html -->&lt;/span>
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">div&lt;/span> &lt;span class="hljs-attr">id&lt;/span>=&lt;span class="hljs-string">"app"&lt;/span>>&lt;/span>
- &lt;/span>&lt;span class="hljs-template-variable">{{&lt;span class="hljs-name">msg&lt;/span>}}&lt;/span>&lt;span class="xml">
-&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">div&lt;/span>>&lt;/span>
+```
+<!-- test.html -->
+<div id="app">
+ {{msg}}
+</div>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span> &lt;span class="hljs-attr">src&lt;/span>=&lt;span class="hljs-string">"./mini-vue3.js"&lt;/span>>&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>
+<script src="./mini-vue3.js"></script>
 
-&lt;span class="hljs-tag">&lt;&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;span class="javascript">
-  &lt;span class="hljs-comment">// 定义一个响应式数据&lt;/span>
-  &lt;span class="hljs-keyword">const&lt;/span> state = reactive({
-    &lt;span class="hljs-attr">msg&lt;/span>:&lt;span class="hljs-string">'message'&lt;/span>
+<script>
+  // 定义一个响应式数据
+  const state = reactive({
+    msg:'message'
   })
 
-  &lt;span class="hljs-comment">// 定义一个使用到响应式数据的 dom更新函数&lt;/span>
-    &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">updateDom&lt;/span>()&lt;/span>{
-        &lt;span class="hljs-built_in">document&lt;/span>.getElementById(&lt;span class="hljs-string">'app'&lt;/span>).innerText = state.msg
+  // 定义一个使用到响应式数据的 dom更新函数
+    function updateDom(){
+        document.getElementById('app').innerText = state.msg
     }
 
-    &lt;span class="hljs-comment">// 用effect声明更新函数&lt;/span>
+    // 用effect声明更新函数
   effect(updateDom)
 
-  &lt;span class="hljs-comment">// 定时变更响应式数据&lt;/span>
-  &lt;span class="hljs-built_in">setInterval&lt;/span>(&lt;span class="hljs-function">()=>&lt;/span>{
-    state.msg = &lt;span class="hljs-string">'message'&lt;/span> + &lt;span class="hljs-built_in">Math&lt;/span>.random()
-  },&lt;span class="hljs-number">1000&lt;/span>)
-&lt;/span>&lt;span class="hljs-tag">&lt;/&lt;span class="hljs-name">script&lt;/span>>&lt;/span>&lt;/span></code></pre>
+  // 定时变更响应式数据
+  setInterval(()=>{
+    state.msg = 'message' + Math.random()
+  },1000)
+</script>
+```
 
 效果：
 

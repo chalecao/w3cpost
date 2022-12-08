@@ -63,7 +63,7 @@ title: 最大内容绘画（LCP）
 
 网页通常是分阶段加载的，因此，页面上最大的元素可能会发生变化。
 
-为了处理这种潜在的变化，[浏览器](https://www.w3cdoc.com)会在绘制<span style="color: #ff0000;">第一帧</span>后立即派出一个 [`PerformanceEntry`][11] 类型，`largest-contentful-paint`该类型标识最大的内容元素。但是，在<span style="color: #ff0000;">渲染后续帧时</span>， 在最大内容元素<span style="color: #ff0000;">发生更改</span>时再次发出 [`PerformanceEntry`][11] 。
+为了处理这种潜在的变化，[浏览器](https://www.w3cdoc.com)会在绘制第一帧后立即派出一个 [`PerformanceEntry`][11] 类型，`largest-contentful-paint`该类型标识最大的内容元素。但是，在渲染后续帧时， 在最大内容元素发生更改时再次发出 [`PerformanceEntry`][11] 。
 
 例如，在带有文本和hero 图像的页面上，[浏览器](https://www.w3cdoc.com)可能最初只是呈现文本-此时，[浏览器](https://www.w3cdoc.com)将调度一个`largest-contentful-paint`条目，该条目可能指向的`element`是文本。之后，一旦英雄图片加载完成，`largest-contentful-paint`便会分派第二个条目，并且其`element`属性将引用`<img />`重要的是要注意，一个元素一旦呈现并对用户可见，就只能被认为是最大的内容元素。尚未加载的图像不被视为“已渲染”。在[字体块期间，][12]文本节点也不使用Web字体。在这种情况下，较小的元素可能会报告为最大的内容元素，但是较大的元素一旦完成渲染，就会通过另一个`PerformanceEntry`对象进行报告 。
 
@@ -75,7 +75,7 @@ title: 最大内容绘画（LCP）
  将来，从DOM中删除的元素仍可以视为LCP候选对象。<a href="https://github.com/WICG/largest-contentful-paint/issues/41#issuecomment-583589387">目前正在进行研究</a> 以评估此更改的影响。您可以遵循<a href="http://bit.ly/chrome-speed-metrics-changelog">CHANGELOG</a>指标 以保持最新。
 </div>
 
-<span style="color: #ff0000;">一旦用户与页面进行交互（通过轻击，滚动或按键），[浏览器](https://www.w3cdoc.com)将停止报告新条目</span>，因为用户交互通常会改变用户可见的内容（滚动时尤为如此）。
+一旦用户与页面进行交互（通过轻击，滚动或按键），[浏览器](https://www.w3cdoc.com)将停止报告新条目，因为用户交互通常会改变用户可见的内容（滚动时尤为如此）。
 
 出于分析目的，您应仅报告最近分 `PerformanceEntry`发给您的分析服务的信息。
 
@@ -120,7 +120,7 @@ title: 最大内容绘画（LCP）
 在第一个示例中，Instagram徽标相对较早地加载，即使逐渐显示其他内容，它仍然是最大的元素。在Google搜索结果页面示例中，最大的元素是一段文本，该文本在任何图像或徽标加载完成之前显示。由于所有单个图像均小于此段，因此在整个加载过程中，它始终是最大的元素。
 
 <div class="w-aside w-aside--note">
- 在Instagram时间轴的第一帧中，您可能会注意到相机徽标周围没有绿色框。这是因为它是一个<code></code>元素，并且<code></code>元素当前不被视为LCP候选对象。第一个LCP候选对象是第二个框架中的文本。
+ 在Instagram时间轴的第一帧中，您可能会注意到相机徽标周围没有绿色框。这是因为它是一个元素，并且元素当前不被视为LCP候选对象。第一个LCP候选对象是第二个框架中的文本。
 </div>
 
 ## 如何测量LCP <a class="w-headline-link" href="https://web.dev/lcp/#how-to-measure-lcp" aria-hidden="true">＃</a> {#how-to-measure-lcp}
@@ -147,11 +147,13 @@ LCP可以[在实验室][15] 或[现场][16]进行测量，并且可以在以下
 
 <div class="w-aside w-aside--note">
   <div>
-    <pre>const entryType = 'largest-contentful-paint'
+    ```
+const entryType = 'largest-contentful-paint'
 constobserver=newPerformanceObserver((list) => {
     list.getEntries().forEach(console.log);
 })
-observer.observe({ entryTypes: [entryType] });</pre>
+observer.observe({ entryTypes: [entryType] });
+```
   </div>
 </div>
 

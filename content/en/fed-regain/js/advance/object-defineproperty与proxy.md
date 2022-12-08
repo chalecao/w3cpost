@@ -27,7 +27,8 @@ title: Object.defineProperty与Proxy
   
 
   <div>
-    <pre class="EnlighterJSRAW" data-enlighter-language="null">/**
+    ```
+/**
  * 使用 Proxy 来说实现被废弃的 Object.observe()
  *
  * @param {any} target
@@ -58,10 +59,11 @@ console.log( child )
 
 child.name = {aa:11}
 
-child.name = {aa:22} //可以监听到</pre>
+child.name = {aa:22} //可以监听到
+```
 
     
-      &nbsp;
+      
     
   </div>
 </div>
@@ -69,7 +71,8 @@ child.name = {aa:22} //可以监听到</pre>
 ## 使用Obeject.defineProperty
 
 <div>
-  <pre class="EnlighterJSRAW" data-enlighter-language="null">/**
+  ```
+/**
  * 使用 es5 的 Object.defineProperty 特性 来实现 Object.observe()
  *
  * @param {any} target
@@ -98,7 +101,7 @@ var bind = function ( target, fnBind ) {
         Object.defineProperty( target, prop, {
             set: function ( val ) {
                 closeTargets[index][prop] = val
-                for( var i = 0; i &lt; targetFnBinds.length; i ++ ) {
+                for( var i = 0; i < targetFnBinds.length; i ++ ) {
                     targetFnBinds[i].call( target )
                 }
             },
@@ -126,11 +129,12 @@ console.log( child )
 
 person.name = {aa:11}
 
-person.name = {aa:22} //注意这里的修改监听不到</pre>
+person.name = {aa:22} //注意这里的修改监听不到
+```
  上面已经提到了如果对象的属性还是个对象，就无法监听到变化。同样，如果属性是个数组，也无法监听到数组的变化。Vue2中是自己hack实现了Array的一些方法，让其可以被监听，后面Vue3会切换使用Proxy
 </div>
 
-&nbsp;
+
 
 扩展阅读：[实现双向绑定Proxy比defineproperty优劣如何?][3]
 

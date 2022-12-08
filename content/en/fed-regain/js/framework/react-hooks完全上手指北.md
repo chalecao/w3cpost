@@ -19,7 +19,8 @@ React以一种全新的编程范式定义了[前端](https://www.w3cdoc.com)开�
 <div id="8zdrB" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20React%E5%9F%BA%E4%BA%8EClass%E8%AE%BE%E8%AE%A1%E7%BB%84%E4%BB%B6%5Cnclass%20MyConponent%20extends%20React.Component%20%7B%5Cn%20%20%2F%2F%20%E7%BB%84%E4%BB%B6%E8%87%AA%E8%BA%AB%E4%BA%A7%E7%94%9F%E7%9A%84%E6%95%B0%E6%8D%AE%5Cn%5Ctstate%20%3D%20%7B%5Cn%20%20%5Ctcounts%3A%200%5Cn%20%20%7D%5Cn%5Ct%5Cn%5Ct%2F%2F%20%E5%93%8D%E5%BA%94%E6%95%B0%E6%8D%AE%E5%8F%98%E6%9B%B4%5Cn%5CtclickHandle%20%3D%20()%20%3D%3E%20%7B%5Cn%20%20%5Ctthis.setState(%7B%20counts%3A%20this.state.counts%2B%2B%20%7D)%3B%5Cn%20%20%20%20if%20(this.props.onClick)%20this.props.onClick()%3B%5Cn%20%20%7D%5Cn%20%20%5Cn%20%20%2F%2F%20lifecycle%20API%5Cn%20%20componentWillUnmount()%20%7B%5Cn%20%20%5Ctconsole.log('Will%20mouned!')%3B%5Cn%20%20%7D%5Cn%20%20%5Ct%5Cn%5Ct%2F%2F%20lifecycle%20API%5Cn%20%20componentDidMount()%20%7B%5Cn%20%20%5Ctconsole.log('Did%20mouned!')%3B%5Cn%20%20%7D%5Cn%5Ct%5Cn%5Ct%2F%2F%20%E6%8E%A5%E6%94%B6%E5%A4%96%E6%9D%A5%E6%95%B0%E6%8D%AE%EF%BC%88%E6%88%96%E5%8A%A0%E5%B7%A5%E5%A4%84%E7%90%86%EF%BC%89%EF%BC%8C%E5%B9%B6%E7%BC%96%E6%8E%92%E6%95%B0%E6%8D%AE%E5%9C%A8%E8%A7%86%E8%A7%89%E4%B8%8A%E7%9A%84%E5%91%88%E7%8E%B0%5Cn%5Ctrender(props)%20%7B%5Cn%20%20%20%20return%20(%5Cn%20%20%20%20%5Ct%3C%3E%5Cn%20%20%20%20%20%20%5Ct%3Cdiv%3EInput%20content%3A%20%7Bprops.content%7D%2C%20btn%20click%20counts%3A%20%7Bthis.state.counts%7D%3C%2Fdiv%3E%5Cn%5Ct%5Ct%5Ct%5Ct%3Cbutton%20onClick%3D%7Bthis.clickHandle%7D%3EAdd%3C%2Fbutton%3E%5Cn%20%20%20%20%20%20%3C%2F%3E%5Cn%20%20%20%20)%3B%5Cn%20%20%7D%5Cn%7D%22%2C%22id%22%3A%228zdrB%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-comment">// React基于Class设计组件</span>
+      ```
+<span class="cm-comment">// React基于Class设计组件</span>
 <span class="cm-keyword">class</span> <span class="cm-def">MyConponent</span> <span class="cm-keyword">extends</span> <span class="cm-variable">React</span>.<span class="cm-property">Component</span> {
   <span class="cm-comment">// 组件自身产生的数据</span>
   <span class="cm-property">state</span> <span class="cm-operator">=</span> {
@@ -48,7 +49,8 @@ React以一种全新的编程范式定义了[前端](https://www.w3cdoc.com)开�
       <span class="cm-operator">&lt;</span><span class="cm-string-2">/></span>
     );
   }
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -86,7 +88,8 @@ renderProps的问题：
 <div id="lxAgj" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22class%20People%20extends%20Component%20%7B%5Cn%5Ctstate%20%3D%20%7B%5Cn%20%20%5Ctname%3A%20'dm'%2C%5Cn%20%20%20%20age%3A%2018%2C%5Cn%20%20%7D%5Cn%5Cn%5CthandleClick(e)%20%7B%5Cn%20%20%20%20%2F%2F%20%E6%8A%A5%E9%94%99%EF%BC%81%5Cn%20%20%5Ctconsole.log(this.state)%3B%5Cn%20%20%7D%5Cn%5Cn%5Ctrender()%20%7B%5Cn%20%20%20%20const%20%7B%20name%2C%20age%20%7D%20%3D%20this.state%3B%5Cn%20%20%5Ctreturn%20(%3Cdiv%20onClick%3D%7Bthis.handleClick%7D%3EMy%20name%20is%20%7Bname%7D%2C%20i%20am%20%7Bage%7D%20years%20old.%3C%2Fdiv%3E)%3B%5Cn%20%20%7D%5Cn%7D%22%2C%22id%22%3A%22lxAgj%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">class</span> <span class="cm-def">People</span> <span class="cm-keyword">extends</span> <span class="cm-variable">Component</span> {
+      ```
+<span class="cm-keyword">class</span> <span class="cm-def">People</span> <span class="cm-keyword">extends</span> <span class="cm-variable">Component</span> {
   <span class="cm-property">state</span> <span class="cm-operator">=</span> {
     <span class="cm-property">name</span>: <span class="cm-string">'dm'</span>,
     <span class="cm-property">age</span>: <span class="cm-number">18</span>,
@@ -101,7 +104,8 @@ renderProps的问题：
     <span class="cm-keyword">const</span> { <span class="cm-def">name</span>, <span class="cm-def">age</span> } <span class="cm-operator">=</span> <span class="cm-keyword">this</span>.<span class="cm-property">state</span>;
     <span class="cm-keyword">return</span> (<span class="cm-operator">&lt;</span><span class="cm-variable">div</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{<span class="cm-keyword">this</span>.<span class="cm-variable">handleClick</span>}<span class="cm-operator">></span><span class="cm-variable">My</span> <span class="cm-variable">name</span> <span class="cm-variable">is</span> {<span class="cm-variable">name</span>}, <span class="cm-variable">i</span> <span class="cm-variable">am</span> {<span class="cm-variable">age</span>} <span class="cm-variable">years</span> <span class="cm-variable">old</span>.<span class="cm-operator">&lt;</span><span class="cm-string-2">/div>);</span>
   }
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -113,7 +117,8 @@ createClass不需要处理this的指向，到了Class Component稍微不慎就�
 <div id="MlciC" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20Class%20Component%5Cnclass%20App%20extends%20Component%20%7B%5Cn%20%20state%20%3D%20%7B%5Cn%20%20%20%20count%3A%200%5Cn%20%20%7D%5Cn%5Cn%20%20componentDidMount()%20%7B%5Cn%20%20%20%20console.log('Did%20mount!')%3B%5Cn%20%20%7D%5Cn%5Cn%20%20increaseCount%20%3D%20()%20%3D%3E%20%7B%5Cn%20%20%20%20this.setState(%7B%20count%3A%20this.state.count%20%2B%201%20%7D)%3B%5Cn%20%20%7D%5Cn%5Cn%20%20decreaseCount%20%3D%20()%20%3D%3E%20%7B%5Cn%20%20%20%20this.setState(%7B%20count%3A%20this.state.count%20-%201%20%7D)%3B%5Cn%20%20%7D%5Cn%5Cn%20%20render()%20%7B%5Cn%20%20%20%20return%20(%5Cn%20%20%20%20%20%20%3C%3E%5Cn%20%20%20%20%20%20%20%20%3Ch1%3ECounter%3C%2Fh1%3E%5Cn%20%20%20%20%20%20%20%20%3Cdiv%3ECurrent%20count%3A%20%7Bthis.state.count%7D%3C%2Fdiv%3E%5Cn%20%20%20%20%20%20%20%20%3Cp%3E%5Cn%20%20%20%20%20%20%20%20%20%20%3Cbutton%20onClick%3D%7Bthis.increaseCount%7D%3EIncrease%3C%2Fbutton%3E%5Cn%20%20%20%20%20%20%20%20%20%20%3Cbutton%20onClick%3D%7Bthis.decreaseCount%7D%3EDecrease%3C%2Fbutton%3E%5Cn%20%20%20%20%20%20%20%20%3C%2Fp%3E%5Cn%20%20%20%20%20%20%3C%2F%3E%5Cn%20%20%20%20)%3B%5Cn%20%20%7D%5Cn%7D%5Cn%5Cn%2F%2F%20Function%20Component%5Cnfunction%20App()%20%7B%5Cn%20%20const%20%5B%20count%2C%20setCount%20%5D%20%3D%20useState(0)%3B%5Cn%20%20const%20increaseCount%20%3D%20()%20%3D%3E%20setCount(count%20%2B%201)%3B%5Cn%20%20const%20decreaseCount%20%3D%20()%20%3D%3E%20setCount(count%20-%201)%3B%5Cn%5Cn%20%20useEffect(()%20%3D%3E%20%7B%5Cn%20%20%20%20console.log('Did%20mount!')%3B%5Cn%20%20%7D%2C%20%5B%5D)%3B%5Cn%5Cn%20%20return%20(%5Cn%20%20%20%20%3C%3E%5Cn%20%20%20%20%20%20%3Ch1%3ECounter%3C%2Fh1%3E%5Cn%20%20%20%20%20%20%3Cdiv%3ECurrent%20count%3A%20%7Bcount%7D%3C%2Fdiv%3E%5Cn%20%20%20%20%20%20%3Cp%3E%5Cn%20%20%20%20%20%20%20%20%3Cbutton%20onClick%3D%7BincreaseCount%7D%3EIncrease%3C%2Fbutton%3E%5Cn%20%20%20%20%20%20%20%20%3Cbutton%20onClick%3D%7BdecreaseCount%7D%3EDecrease%3C%2Fbutton%3E%5Cn%20%20%20%20%20%20%3C%2Fp%3E%5Cn%20%20%20%20%3C%2F%3E%5Cn%20%20)%3B%5Cn%7D%22%2C%22id%22%3A%22MlciC%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-comment">// Class Component</span>
+      ```
+<span class="cm-comment">// Class Component</span>
 <span class="cm-keyword">class</span> <span class="cm-def">App</span> <span class="cm-keyword">extends</span> <span class="cm-variable">Component</span> {
   <span class="cm-property">state</span> <span class="cm-operator">=</span> {
     <span class="cm-property">count</span>: <span class="cm-number"></span>
@@ -165,7 +170,8 @@ createClass不需要处理this的指向，到了Class Component稍微不慎就�
       <span class="cm-operator">&lt;</span><span class="cm-string-2">/p></span>
     <span class="cm-operator">&lt;</span><span class="cm-string-2">/></span>
   );
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -175,7 +181,8 @@ Class Component编译结果：
 <div id="yHTzM" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22var%20App_App%20%3D%20function%20(_Component)%20%7B%5Cn%20%20Object(inherits%5B%5C%22a%5C%22%5D)(App%2C%20_Component)%3B%5Cn%5Cn%20%20function%20App()%20%7B%5Cn%20%20%20%20var%20_getPrototypeOf2%3B%5Cn%20%20%20%20var%20_this%3B%5Cn%20%20%20%20Object(classCallCheck%5B%5C%22a%5C%22%5D)(this%2C%20App)%3B%5Cn%20%20%20%20for%20(var%20_len%20%3D%20arguments.length%2C%20args%20%3D%20new%20Array(_len)%2C%20_key%20%3D%200%3B%20_key%20%3C%20_len%3B%20_key%2B%2B)%20%7B%5Cn%20%20%20%20%20%20args%5B_key%5D%20%3D%20arguments%5B_key%5D%3B%5Cn%20%20%20%20%7D%5Cn%20%20%20%20_this%20%3D%20Object(possibleConstructorReturn%5B%5C%22a%5C%22%5D)(this%2C%20(_getPrototypeOf2%20%3D%20Object(getPrototypeOf%5B%5C%22a%5C%22%5D)(App)).call.apply(_getPrototypeOf2%2C%20%5Bthis%5D.concat(args)))%3B%5Cn%20%20%20%20_this.state%20%3D%20%7B%5Cn%20%20%20%20%20%20count%3A%200%5Cn%20%20%20%20%7D%3B%5Cn%20%20%20%20_this.increaseCount%20%3D%20function%20()%20%7B%5Cn%20%20%20%20%20%20_this.setState(%7B%5Cn%20%20%20%20%20%20%20%20count%3A%20_this.state.count%20%2B%201%5Cn%20%20%20%20%20%20%7D)%3B%5Cn%20%20%20%20%7D%3B%5Cn%20%20%20%20_this.decreaseCount%20%3D%20function%20()%20%7B%5Cn%20%20%20%20%20%20_this.setState(%7B%5Cn%20%20%20%20%20%20%20%20count%3A%20_this.state.count%20-%201%5Cn%20%20%20%20%20%20%7D)%3B%5Cn%20%20%20%20%7D%3B%5Cn%20%20%20%20return%20_this%3B%5Cn%20%20%7D%5Cn%20%20Object(createClass%5B%5C%22a%5C%22%5D)(App%2C%20%5B%7B%5Cn%20%20%20%20key%3A%20%5C%22componentDidMount%5C%22%2C%5Cn%20%20%20%20value%3A%20function%20componentDidMount()%20%7B%5Cn%20%20%20%20%20%20console.log('Did%20mount!')%3B%5Cn%20%20%20%20%7D%5Cn%20%20%7D%2C%20%7B%5Cn%20%20%20%20key%3A%20%5C%22render%5C%22%2C%5Cn%20%20%20%20value%3A%20function%20render()%20%7B%5Cn%20%20%20%20%20%20return%20react_default.a.createElement(%2F*...*%2F)%3B%5Cn%20%20%20%20%7D%5Cn%20%20%7D%5D)%3B%5Cn%20%20return%20App%3B%5Cn%7D(react%5B%5C%22Component%5C%22%5D)%3B%22%2C%22id%22%3A%22yHTzM%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">var</span> <span class="cm-def">App_App</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span> (<span class="cm-def">_Component</span>) {
+      ```
+<span class="cm-keyword">var</span> <span class="cm-def">App_App</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span> (<span class="cm-def">_Component</span>) {
   <span class="cm-variable">Object</span>(<span class="cm-variable">inherits</span>[<span class="cm-string">"a"</span>])(<span class="cm-variable">App</span>, <span class="cm-variable-2">_Component</span>);
 
   <span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
@@ -213,7 +220,8 @@ Class Component编译结果：
     }
   }]);
   <span class="cm-keyword">return</span> <span class="cm-variable-2">App</span>;
-}(<span class="cm-variable">react</span>[<span class="cm-string">"Component"</span>]);</pre>
+}(<span class="cm-variable">react</span>[<span class="cm-string">"Component"</span>]);
+```
     </div>
   </div>
 </div>
@@ -223,7 +231,8 @@ Function Component编译结果：
 <div id="6h1xb" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22function%20App()%20%7B%5Cn%20%20var%20_useState%20%3D%20Object(react%5B%5C%22useState%5C%22%5D)(0)%2C%5Cn%20%20%20%20_useState2%20%3D%20Object(slicedToArray%5B%5C%22a%5C%22%20%2F*%20default%20*%2F%20%5D)(_useState%2C%202)%2C%5Cn%20%20%20%20count%20%3D%20_useState2%5B0%5D%2C%5Cn%20%20%20%20setCount%20%3D%20_useState2%5B1%5D%3B%5Cn%20%20var%20increaseCount%20%3D%20function%20increaseCount()%20%7B%5Cn%20%20%20%20return%20setCount(count%20%2B%201)%3B%5Cn%20%20%7D%3B%5Cn%20%20var%20decreaseCount%20%3D%20function%20decreaseCount()%20%7B%5Cn%20%20%20%20return%20setCount(count%20-%201)%3B%5Cn%20%20%7D%3B%5Cn%20%20Object(react%5B%5C%22useEffect%5C%22%5D)(function%20()%20%7B%5Cn%20%20%20%20console.log('Did%20mount!')%3B%5Cn%20%20%7D%2C%20%5B%5D)%3B%5Cn%20%20return%20react_default.a.createElement()%3B%5Cn%7D%22%2C%22id%22%3A%226h1xb%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
+      ```
+<span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
   <span class="cm-keyword">var</span> <span class="cm-def">_useState</span> <span class="cm-operator">=</span> <span class="cm-variable">Object</span>(<span class="cm-variable">react</span>[<span class="cm-string">"useState"</span>])(<span class="cm-number"></span>),
     <span class="cm-def">_useState2</span> <span class="cm-operator">=</span> <span class="cm-variable">Object</span>(<span class="cm-variable">slicedToArray</span>[<span class="cm-string">"a"</span> <span class="cm-comment">/* default */</span> ])(<span class="cm-variable-2">_useState</span>, <span class="cm-number">2</span>),
     <span class="cm-def">count</span> <span class="cm-operator">=</span> <span class="cm-variable-2">_useState2</span>[<span class="cm-number"></span>],
@@ -238,7 +247,8 @@ Function Component编译结果：
     <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'Did mount!'</span>);
   }, []);
   <span class="cm-keyword">return</span> <span class="cm-variable">react_default</span>.<span class="cm-property">a</span>.<span class="cm-property">createElement</span>();
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -258,7 +268,8 @@ Function Component编译结果：
 <div id="LTBtF" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22function%20Child(props)%20%7B%5Cn%20%20const%20handleClick%20%3D%20()%20%3D%3E%20%7B%5Cn%20%20%5Ctthis.props.setCounts(this.props.counts)%3B%5Cn%20%20%7D%3B%5Cn%20%20%5Cn%20%20%2F%2F%20UI%E7%9A%84%E5%8F%98%E6%9B%B4%E5%8F%AA%E8%83%BD%E9%80%9A%E8%BF%87Parent%20Component%E6%9B%B4%E6%96%B0props%E6%9D%A5%E5%81%9A%E5%88%B0%EF%BC%81!%5Cn%5Ctreturn%20(%5Cn%20%20%5Ct%3C%3E%5Cn%20%20%20%20%5Ct%3Cdiv%3E%7Bthis.props.counts%7D%3C%2Fdiv%3E%5Cn%20%20%20%20%5Ct%3Cbutton%20onClick%3D%7BhandleClick%7D%3Eincrease%20counts%3C%2Fbutton%3E%5Cn%20%20%20%20%3C%2F%3E%5Cn%20%20)%3B%5Cn%7D%5Cn%5Cnclass%20Parent%20extends%20Component()%20%7B%5Cn%20%20%2F%2F%20%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E8%BF%98%E6%98%AF%E5%BE%97%E4%BE%9D%E8%B5%96Class%20Component%5Cn%20%20counts%20%3D%200%5Cn%20%20%5Cn%5Ctrender%20()%20%7B%5Cn%20%20%20%20const%20counts%20%3D%20this.state.counts%3B%5Cn%20%20%5Ctreturn%20(%5Cn%20%20%20%20%5Ct%3C%3E%5Cn%20%20%20%20%20%20%20%20%3Cdiv%3Esth...%3C%2Fdiv%3E%5Cn%20%20%20%20%20%20%20%20%3CChild%20counts%3D%7Bcounts%7D%20setCounts%3D%7B(x)%20%3D%3E%20this.setState(%7Bcounts%3A%20counts%2B%2B%7D)%7D%20%2F%3E%5Cn%20%20%20%20%20%20%3C%2F%3E%5Cn%20%20%20%20)%3B%5Cn%20%20%7D%5Cn%7D%22%2C%22id%22%3A%22LTBtF%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">Child</span>(<span class="cm-def">props</span>) {
+      ```
+<span class="cm-keyword">function</span> <span class="cm-def">Child</span>(<span class="cm-def">props</span>) {
   <span class="cm-keyword">const</span> <span class="cm-def">handleClick</span> <span class="cm-operator">=</span> () <span class="cm-operator">=></span> {
     <span class="cm-keyword">this</span>.<span class="cm-property">props</span>.<span class="cm-property">setCounts</span>(<span class="cm-keyword">this</span>.<span class="cm-property">props</span>.<span class="cm-property">counts</span>);
   };
@@ -283,7 +294,8 @@ Function Component编译结果：
       <span class="cm-operator">&lt;</span><span class="cm-string-2">/></span>
     );
   }
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -303,7 +315,8 @@ case：Popup组件依赖视窗宽度适配自身显示宽度、相册组件依�
 <div id="P1Tak" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22function%20useWinSize()%20%7B%5Cn%20%20const%20html%20%3D%20document.documentElement%3B%5Cn%20%20const%20%5B%20size%2C%20setSize%20%5D%20%3D%20useState(%7B%20width%3A%20html.clientWidth%2C%20height%3A%20html.clientHeight%20%7D)%3B%5Cn%20%20%5Cn%20%20useEffect(()%20%3D%3E%20%7B%5Cn%20%20%20%20const%20onSize%20%3D%20e%20%3D%3E%20%7B%5Cn%20%20%20%20%20%20setSize(%7B%20width%3A%20html.clientWidth%2C%20height%3A%20html.clientHeight%20%7D)%3B%5Cn%20%20%20%20%7D%3B%5Cn%20%20%20%20%5Cn%20%20%20%20window.addEventListener('resize'%2C%20onSize)%3B%5Cn%20%20%20%20%5Cn%20%20%20%20return%20()%20%3D%3E%20%7B%5Cn%20%20%20%20%20%20window.removeEventListener('resize'%2C%20onSize)%3B%5Cn%20%20%20%20%7D%3B%5Cn%20%20%7D%2C%20%5B%20html%20%5D)%3B%5Cn%20%20%5Cn%20%20return%20size%3B%5Cn%7D%5Cn%5Cn%2F%2F%20%E4%BE%9D%E8%B5%96win%E5%AE%BD%E5%BA%A6%EF%BC%8C%E9%80%82%E9%85%8D%E5%9B%BE%E7%89%87%E5%B8%83%E5%B1%80%5Cnfunction%20Article(props)%20%7B%5Cn%20%20const%20%7B%20width%20%7D%20%3D%20useWinSize()%3B%5Cn%20%20const%20cls%20%3D%20%60layout-%24%7Bwidth%20%3E%3D%20540%20%3F%20'muti'%20%3A%20'single'%7D%60%3B%5Cn%20%20return%20(%5Cn%20%20%20%20%3C%3E%5Cn%20%20%20%20%5Ct%3Carticle%3E%7Bprops.content%7D%3Carticle%3E%5Cn%20%20%20%20%5Ct%3Cdiv%20className%3D%7Bcls%7D%3Erecommended%20thumb%20list%3C%2Fdiv%3E%5Cn%20%20%20%20%3C%2F%3E%5Cn%20%20)%3B%5Cn%7D%5Cn%5Cn%2F%2F%20%E5%BC%B9%E5%B1%82%E5%AE%BD%E5%BA%A6%E6%A0%B9%E6%8D%AEwin%E5%AE%BD%E9%AB%98%E5%81%9A%E9%80%82%E9%85%8D%5Cnfunction%20Popup(props)%20%7B%5Cn%20%20const%20%7B%20width%2C%20height%20%7D%20%3D%20useWinSize()%3B%5Cn%20%20const%20style%20%3D%20%7B%5Cn%20%20%5Ctwidth%3A%20width%20-%20200%2C%5Cn%20%20%20%20height%3A%20height%20-%20300%2C%5Cn%20%20%7D%3B%5Cn%20%20return%20(%3Cdiv%20style%3D%7Bstyle%7D%3E%7Bprops.content%7D%3C%2Fdiv%3E)%3B%5Cn%7D%22%2C%22id%22%3A%22P1Tak%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">useWinSize</span>() {
+      ```
+<span class="cm-keyword">function</span> <span class="cm-def">useWinSize</span>() {
   <span class="cm-keyword">const</span> <span class="cm-def">html</span> <span class="cm-operator">=</span> <span class="cm-variable">document</span>.<span class="cm-property">documentElement</span>;
   <span class="cm-keyword">const</span> [ <span class="cm-def">size</span>, <span class="cm-def">setSize</span> ] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>({ <span class="cm-property">width</span>: <span class="cm-variable-2">html</span>.<span class="cm-property">clientWidth</span>, <span class="cm-property">height</span>: <span class="cm-variable-2">html</span>.<span class="cm-property">clientHeight</span> });
   <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=></span> {
@@ -340,7 +353,8 @@ case：Popup组件依赖视窗宽度适配自身显示宽度、相册组件依�
     <span class="cm-property">height</span>: <span class="cm-variable-2">height</span> <span class="cm-operator">-</span> <span class="cm-number">300</span>,
   };
   <span class="cm-keyword">return</span> (<span class="cm-operator">&lt;</span><span class="cm-variable">div</span> <span class="cm-variable-2">style</span><span class="cm-operator">=</span>{<span class="cm-variable-2">style</span>}<span class="cm-operator">></span>{<span class="cm-property">props</span>.<span class="cm-variable">content</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div>);</span>
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -352,7 +366,8 @@ case：表单验证
 <div id="HNL0r" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22function%20App()%20%7B%5Cn%20%20const%20%7B%20waiting%2C%20errText%2C%20name%2C%20onChange%20%7D%20%3D%20useName()%3B%5Cn%20%20const%20handleSubmit%20%3D%20e%20%3D%3E%20%7B%5Cn%20%20%20%20console.log(%60current%20name%3A%20%24%7Bname%7D%60)%3B%5Cn%20%20%7D%3B%5Cn%5Cn%20%20return%20(%5Cn%20%20%20%20%3Cform%20onSubmit%3D%7BhandleSubmit%7D%3E%5Cn%20%20%20%20%20%20%3C%3E%5Cn%20%20%20%20%20%20%20%20Name%3A%20%3Cinput%20onChange%3D%7BonChange%7D%20%2F%3E%5Cn%20%20%20%20%20%20%20%20%3Cspan%3E%7Bwaiting%20%3F%20%5C%22waiting...%5C%22%20%3A%20errText%20%7C%7C%20%5C%22%5C%22%7D%3C%2Fspan%3E%5Cn%20%20%20%20%20%20%3C%2F%3E%5Cn%20%20%20%20%20%20%3Cp%3E%5Cn%20%20%20%20%20%20%20%20%3Cbutton%3Esubmit%3C%2Fbutton%3E%5Cn%20%20%20%20%20%20%3C%2Fp%3E%5Cn%20%20%20%20%3C%2Fform%3E%5Cn%20%20)%3B%5Cn%7D%22%2C%22id%22%3A%22HNL0r%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
+      ```
+<span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
   <span class="cm-keyword">const</span> { <span class="cm-def">waiting</span>, <span class="cm-def">errText</span>, <span class="cm-def">name</span>, <span class="cm-def">onChange</span> } <span class="cm-operator">=</span> <span class="cm-variable">useName</span>();
   <span class="cm-keyword">const</span> <span class="cm-def">handleSubmit</span> <span class="cm-operator">=</span> <span class="cm-def">e</span> <span class="cm-operator">=></span> {
     <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string-2">`current name: ${</span><span class="cm-variable-2">name</span><span class="cm-string-2">}</span><span class="cm-string-2">`</span>);
@@ -369,7 +384,8 @@ case：表单验证
       <span class="cm-operator">&lt;</span><span class="cm-string-2">/p></span>
     <span class="cm-operator">&lt;</span><span class="cm-string-2">/form></span>
   );
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -381,7 +397,9 @@ case：表单验证
 <div id="rWl1H" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22useState%3CS%3E(initialState%3A%20(()%20%3D%3E%20S)%20%7C%20S)%3A%20%5BS%2C%20Dispatch%3CBasicStateAction%3CS%3E%3E%5D%22%2C%22id%22%3A%22rWl1H%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-variable">useState</span><span class="cm-operator">&lt;</span><span class="cm-variable">S</span><span class="cm-operator">></span>(<span class="cm-variable">initialState</span>: (() <span class="cm-operator">=></span> <span class="cm-variable">S</span>) <span class="cm-operator">|</span> <span class="cm-variable">S</span>): [<span class="cm-variable">S</span>, <span class="cm-variable">Dispatch</span><span class="cm-operator">&lt;</span><span class="cm-variable">BasicStateAction</span><span class="cm-operator">&lt;</span><span class="cm-variable">S</span><span class="cm-operator">>></span>]</pre>
+      ```
+<span class="cm-variable">useState</span><span class="cm-operator">&lt;</span><span class="cm-variable">S</span><span class="cm-operator">></span>(<span class="cm-variable">initialState</span>: (() <span class="cm-operator">=></span> <span class="cm-variable">S</span>) <span class="cm-operator">|</span> <span class="cm-variable">S</span>): [<span class="cm-variable">S</span>, <span class="cm-variable">Dispatch</span><span class="cm-operator">&lt;</span><span class="cm-variable">BasicStateAction</span><span class="cm-operator">&lt;</span><span class="cm-variable">S</span><span class="cm-operator">>></span>]
+```
     </div>
   </div>
 </div>
@@ -403,7 +421,8 @@ Hook API的默认实现：
 <div id="wbPkW" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22function%20throwInvalidHookError()%20%7B%5Cn%20%20invariant(false%2C%20'Invalid%20hook%20call.%20Hooks%20can%20only%20be%20called%20inside%20of%20the%20body%20of%20a%20function%20component.%20This%20could%20happen%20for%20one%20of%20the%20following%20reasons%3A%5C%5Cn1.%20You%20might%20have%20mismatching%20versions%20of%20React%20and%20the%20renderer%20(such%20as%20React%20DOM)%5C%5Cn2.%20You%20might%20be%20breaking%20the%20Rules%20of%20Hooks%5C%5Cn3.%20You%20might%20have%20more%20than%20one%20copy%20of%20React%20in%20the%20same%20app%5C%5CnSee%20https%3A%2F%2Ffb.me%2Freact-invalid-hook-call%20for%20tips%20about%20how%20to%20debug%20and%20fix%20this%20problem.')%3B%5Cn%7D%5Cn%5Cnvar%20ContextOnlyDispatcher%20%3D%20%7B%5Cn%5Ct...%5Cn%20%20useEffect%3A%20throwInvalidHookError%2C%5Cn%20%20useState%3A%20throwInvalidHookError%2C%5Cn%20%20...%5Cn%7D%3B%22%2C%22id%22%3A%22wbPkW%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">throwInvalidHookError</span>() {
+      ```
+<span class="cm-keyword">function</span> <span class="cm-def">throwInvalidHookError</span>() {
   <span class="cm-variable">invariant</span>(<span class="cm-atom">false</span>, <span class="cm-string">'Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:\n1. You might have mismatching versions of React and the renderer (such as React DOM)\n2. You might be breaking the Rules of Hooks\n3. You might have more than one copy of React in the same app\nSee https://fb.me/react-invalid-hook-call for tips about how to debug and fix this problem.'</span>);
 }
 
@@ -412,7 +431,8 @@ Hook API的默认实现：
   <span class="cm-variable">useEffect</span>: <span class="cm-variable">throwInvalidHookError</span>,
   <span class="cm-property">useState</span>: <span class="cm-variable">throwInvalidHookError</span>,
   <span class="cm-meta">...</span>
-};</pre>
+};
+```
     </div>
   </div>
 </div>
@@ -422,7 +442,8 @@ Hook API的默认实现：
 <div id="xJ5wa" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22function%20renderWithHooks(current%2C%20workInProgress%2C%20Component%2C%20props%2C%20refOrContext%2C%20nextRenderExpirationTime)%20%7B%5Cn%20%20currentlyRenderingFiber%241%20%3D%20workInProgress%3B%20%2F%2F%20%E6%8C%87%E9%92%88%E6%8C%87%E5%90%91%E5%BD%93%E5%89%8D%E6%AD%A3%E5%9C%A8render%E7%9A%84fiber%E8%8A%82%E7%82%B9%5Cn%20%20....%5Cn%20%20if%20(nextCurrentHook%20!%3D%3D%20null)%20%7B%5Cn%20%20%20%20%2F%2F%20%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%5Cn%20%20%20%20ReactCurrentDispatcher%241.current%20%3D%20HooksDispatcherOnUpdateInDEV%3B%5Cn%20%20%7D%20else%20%7B%5Cn%20%20%20%20%2F%2F%20%E9%A6%96%E6%AC%A1render%5Cn%20%20%5CtReactCurrentDispatcher%241.current%20%3D%20HooksDispatcherOnMountInDEV%3B%5Cn%20%20%7D%5Cn%7D%5Cn%5Cn%2F%2F%2F%20hook%20api%E7%9A%84%E5%AE%9E%E7%8E%B0%5CnHooksDispatcherOnMountInDEV%20%3D%20%7B%5Cn%5Ct...%5Cn%20%20useState%3A%20function%20(initialState)%20%7B%5Cn%20%20%20%20currentHookNameInDev%20%3D%20'useState'%3B%5Cn%20%20%20%20...%5Cn%20%20%20%20return%20mountState(initialState)%3B%5Cn%20%20%7D%2C%5Cn%7D%3B%22%2C%22id%22%3A%22xJ5wa%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">renderWithHooks</span>(<span class="cm-def">current</span>, <span class="cm-def">workInProgress</span>, <span class="cm-def">Component</span>, <span class="cm-def">props</span>, <span class="cm-def">refOrContext</span>, <span class="cm-def">nextRenderExpirationTime</span>) {
+      ```
+<span class="cm-keyword">function</span> <span class="cm-def">renderWithHooks</span>(<span class="cm-def">current</span>, <span class="cm-def">workInProgress</span>, <span class="cm-def">Component</span>, <span class="cm-def">props</span>, <span class="cm-def">refOrContext</span>, <span class="cm-def">nextRenderExpirationTime</span>) {
   <span class="cm-variable">currentlyRenderingFiber$1</span> <span class="cm-operator">=</span> <span class="cm-variable-2">workInProgress</span>; <span class="cm-comment">// 指针指向当前正在render的fiber节点</span>
   <span class="cm-meta">...</span>.
   <span class="cm-variable">if</span> (<span class="cm-variable">nextCurrentHook</span> <span class="cm-operator">!==</span> <span class="cm-atom">null</span>) {
@@ -442,7 +463,8 @@ Hook API的默认实现：
     <span class="cm-meta">...</span>
     <span class="cm-keyword">return</span> <span class="cm-variable">mountState</span>(<span class="cm-variable-2">initialState</span>);
   },
-};</pre>
+};
+```
     </div>
   </div>
 </div>
@@ -454,7 +476,8 @@ Hook API的默认实现：
 <div id="5AFoX" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22typescript%22%2C%22code%22%3A%22type%20Hook%20%3D%20%7B%5Cn%20%20memoizedState%3A%20any%2C%20%2F%2F%20%E5%AD%98%E5%82%A8%E6%9C%80%E6%96%B0%E7%9A%84state%5Cn%20%20baseState%3A%20any%2C%5Cn%20%20baseUpdate%3A%20Update%3Cany%2C%20any%3E%20%7C%20null%2C%5Cn%20%20queue%3A%20UpdateQueue%3Cany%2C%20any%3E%20%7C%20null%2C%20%2F%2F%20%E6%9B%B4%E6%96%B0%E9%98%9F%E5%88%97%5Cn%20%20next%3A%20Hook%20%7C%20null%2C%20%2F%2F%20%E4%B8%8B%E4%B8%80%E4%B8%AAhook%5Cn%7D%5Cn%5Cntype%20UpdateQueue%3CS%2C%20A%3E%20%3D%20%7B%5Cn%20%20last%3A%20Update%3CS%2C%20A%3E%20%7C%20null%2C%20%2F%2F%20%E6%9C%80%E5%90%8E%E4%B8%80%E6%AC%A1%E6%9B%B4%E6%96%B0%E6%93%8D%E4%BD%9C%5Cn%20%20dispatch%3A%20(A%20%3D%3E%20mixed)%20%7C%20null%2C%5Cn%20%20lastRenderedReducer%3A%20((S%2C%20A)%20%3D%3E%20S)%20%7C%20null%2C%20%2F%2F%20%E6%9C%80%E6%96%B0%E5%A4%84%E7%90%86%E5%A4%84%E7%90%86state%E7%9A%84reducer%5Cn%20%20lastRenderedState%3A%20S%20%7C%20null%2C%20%2F%2F%20%E6%9C%80%E6%96%B0%E6%B8%B2%E6%9F%93%E5%90%8E%E7%8A%B6%E6%80%81%5Cn%7D%3B%5Cn%5Cntype%20Update%3CS%2C%20A%3E%20%3D%20%7B%5Cn%20%20...%5Cn%20%20action%3A%20A%2C%5Cn%20%20eagerReducer%3A%20((S%2C%20A)%20%3D%3E%20S)%20%7C%20null%2C%5Cn%20%20eagerState%3A%20S%20%7C%20null%2C%20%2F%2F%20%E5%BE%85%E6%9B%B4%E6%96%B0%E7%8A%B6%E6%80%81%E5%80%BC%5Cn%20%20next%3A%20Update%3CS%2C%20A%3E%20%7C%20null%2C%5Cn%20%20...%5Cn%7D%3B%22%2C%22id%22%3A%225AFoX%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">type</span> <span class="cm-type">Hook</span> <span class="cm-operator">=</span> {
+      ```
+<span class="cm-keyword">type</span> <span class="cm-type">Hook</span> <span class="cm-operator">=</span> {
   <span class="cm-property">memoizedState</span>: <span class="cm-type">any</span>, <span class="cm-comment">// 存储最新的state</span>
   <span class="cm-property">baseState</span>: <span class="cm-type">any</span>,
   <span class="cm-property">baseUpdate</span>: <span class="cm-type">Update</span><span class="cm-operator">&lt;</span><span class="cm-type">any</span>, <span class="cm-type">any</span><span class="cm-operator">></span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>,
@@ -476,7 +499,8 @@ Hook API的默认实现：
   <span class="cm-variable">eagerState</span>: <span class="cm-variable">S</span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>, <span class="cm-comment">// 待更新状态值</span>
   <span class="cm-variable">next</span>: <span class="cm-variable">Update</span><span class="cm-operator">&lt;</span><span class="cm-variable">S</span>, <span class="cm-variable">A</span><span class="cm-operator">></span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>,
   <span class="cm-meta">...</span>
-};</pre>
+};
+```
     </div>
   </div>
 </div>
@@ -486,7 +510,8 @@ Hook API的默认实现：
 <div id="7lHAo" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22function%20App()%20%7B%5Cn%5Ctconst%20%5B%20n1%2C%20setN1%20%5D%20%3D%20useState(1)%3B%5Cn%20%20const%20%5B%20n2%2C%20setN2%20%5D%20%3D%20useState(2)%3B%5Cn%20%20%5Cn%20%20%2F%2F%20if%20(sth)%20%7B%5Cn%20%20%2F%2F%20%5Ctconst%20%5B%20n4%2C%20setN4%20%5D%20%3D%20useState(4)%3B%5Cn%20%20%2F%2F%20%7D%20else%20%7B%5Cn%20%20%2F%2F%20%5Ctconst%20%5B%20n5%2C%20setN5%20%5D%20%3D%20useState(5)%3B%5Cn%20%20%2F%2F%20%7D%5Cn%20%20%5Cn%20%20const%20%5B%20n3%2C%20setN3%20%5D%20%3D%20useState(3)%3B%5Cn%7D%22%2C%22id%22%3A%227lHAo%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
+      ```
+<span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
   <span class="cm-keyword">const</span> [ <span class="cm-def">n1</span>, <span class="cm-def">setN1</span> ] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number">1</span>);
   <span class="cm-keyword">const</span> [ <span class="cm-def">n2</span>, <span class="cm-def">setN2</span> ] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number">2</span>);
   <span class="cm-comment">// if (sth) {</span>
@@ -495,7 +520,8 @@ Hook API的默认实现：
   <span class="cm-comment">//  const [ n5, setN5 ] = useState(5);</span>
   <span class="cm-comment">// }</span>
   <span class="cm-keyword">const</span> [ <span class="cm-def">n3</span>, <span class="cm-def">setN3</span> ] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number">3</span>);
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -515,7 +541,8 @@ useState() mount阶段：
 <div id="FPDN2" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20useState()%20%E9%A6%96%E6%AC%A1render%E6%97%B6%E6%89%A7%E8%A1%8CmountState%5Cnfunction%20mountState(initialState)%20%7B%5Cn%20%20%2F%2F%20%E4%BB%8E%E5%BD%93%E5%89%8DFiber%E7%94%9F%E6%88%90%E4%B8%80%E4%B8%AA%E6%96%B0%E7%9A%84hook%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%B0%86%E6%AD%A4hook%E6%8C%82%E8%BD%BD%E5%88%B0Fiber%E7%9A%84hook%E9%93%BE%E5%B0%BE%EF%BC%8C%E5%B9%B6%E8%BF%94%E5%9B%9E%E8%BF%99%E4%B8%AAhook%5Cn%20%20var%20hook%20%3D%20mountWorkInProgressHook()%3B%5Cn%20%20%5Cn%20%20hook.memoizedState%20%3D%20hook.baseState%20%3D%20initialState%3B%5Cn%20%20%5Cn%20%20var%20queue%20%3D%20hook.queue%20%3D%20%7B%5Cn%20%20%20%20last%3A%20null%2C%5Cn%20%20%20%20dispatch%3A%20null%2C%5Cn%20%20%20%20lastRenderedReducer%3A%20(state%2C%20action)%20%3D%3E%20isFn(state)%20%3F%20action(state)%20%3A%20action%2C%5Cn%20%20%20%20lastRenderedState%3A%20initialState%5Cn%20%20%7D%3B%5Cn%20%20%2F%2F%20currentlyRenderingFiber%241%E4%BF%9D%E5%AD%98%E5%BD%93%E5%89%8D%E6%AD%A3%E5%9C%A8%E6%B8%B2%E6%9F%93%E7%9A%84Fiber%E8%8A%82%E7%82%B9%5Cn%20%20%2F%2F%20%E5%B0%86%E8%BF%94%E5%9B%9E%E7%9A%84dispatch%E5%92%8C%E8%B0%83%E7%94%A8hook%E7%9A%84%E8%8A%82%E7%82%B9%E5%BB%BA%E7%AB%8B%E8%B5%B7%E4%BA%86%E8%BF%9E%E6%8E%A5%EF%BC%8C%E5%90%8C%E6%97%B6%E5%9C%A8dispatch%E9%87%8C%E8%BE%B9%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AEqueue%E5%AF%B9%E8%B1%A1%5Cn%20%20var%20dispatch%20%3D%20queue.dispatch%20%3D%20dispatchAction.bind(null%2C%20currentlyRenderingFiber%241%2C%20queue)%3B%5Cn%20%20return%20%5Bhook.memoizedState%2C%20dispatch%5D%3B%5Cn%7D%5Cn%5Cn%2F%2F%2F%2F%20%E5%8A%9F%E8%83%BD%E7%9B%B8%E5%BD%93%E4%BA%8EsetState%EF%BC%81%5Cnfunction%20dispatchAction(fiber%2C%20queue%2C%20action)%20%7B%5Cn%20%20...%5Cn%20%20var%20update%20%3D%20%7B%5Cn%20%20%20%20action%2C%20%2F%2F%20%E6%8E%A5%E5%8F%97%E6%99%AE%E9%80%9A%E5%80%BC%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%87%BD%E6%95%B0%5Cn%20%20%20%20next%3A%20null%2C%5Cn%20%20%7D%3B%5Cn%20%20var%20last%20%3D%20queue.last%3B%5Cn%5Cn%20%20if%20(last%20%3D%3D%3D%20null)%20%7B%5Cn%20%20%20%20update.next%20%3D%20update%3B%5Cn%20%20%7D%20else%20%7B%5Cn%20%20%20%20last.next%20%3D%20update%3B%5Cn%20%20%7D%5Cn%5Cn%20%20%2F%2F%20%E7%95%A5%E5%8E%BB%E8%AE%A1%E7%AE%97update%E7%9A%84state%E8%BF%87%E7%A8%8B%5Cn%20%20queue.last%20%3D%20update%3B%5Cn%20%20...%5Cn%20%20%2F%2F%20%E8%A7%A6%E5%8F%91React%E7%9A%84%E6%9B%B4%E6%96%B0%E8%B0%83%E5%BA%A6%EF%BC%8CscheduleWork%E6%98%AFschedule%E9%98%B6%E6%AE%B5%E7%9A%84%E8%B5%B7%E7%82%B9%5Cn%20%20scheduleWork(fiber%2C%20expirationTime)%3B%5Cn%7D%22%2C%22id%22%3A%22FPDN2%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-comment">// useState() 首次render时执行mountState</span>
+      ```
+<span class="cm-comment">// useState() 首次render时执行mountState</span>
 <span class="cm-keyword">function</span> <span class="cm-def">mountState</span>(<span class="cm-def">initialState</span>) {
   <span class="cm-comment">// 从当前Fiber生成一个新的hook对象，将此hook挂载到Fiber的hook链尾，并返回这个hook</span>
   <span class="cm-keyword">var</span> <span class="cm-def">hook</span> <span class="cm-operator">=</span> <span class="cm-variable">mountWorkInProgressHook</span>();
@@ -552,7 +579,8 @@ useState() mount阶段：
   <span class="cm-meta">...</span>
   <span class="cm-comment">// 触发React的更新调度，scheduleWork是schedule阶段的起点</span>
   <span class="cm-variable">scheduleWork</span>(<span class="cm-variable-2">fiber</span>, <span class="cm-variable">expirationTime</span>);
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -570,7 +598,8 @@ update阶段useState()更新状态：
 <div id="hBZt6" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22typescript%22%2C%22code%22%3A%22function%20updateState(initialState)%20%7B%5Cn%5Ctvar%20hook%20%3D%20updateWorkInProgressHook()%3B%5Cn%20%20var%20queue%20%3D%20hook.queue%3B%5Cn%20%20var%20newState%3B%5Cn%20%20var%20update%3B%5Cn%20%20%5Cn%20%20if%20(numberOfReRenders%20%3E%200)%20%7B%5Cn%20%20%20%20%2F%2F%20%E7%BB%84%E4%BB%B6%E8%87%AA%E5%B7%B1re-render%5Cn%20%20%20%20newState%20%3D%20hook.memoizedState%3B%5Cn%20%20%20%20%2F%2F%20renderPhaseUpdates%E6%98%AF%E4%B8%80%E4%B8%AA%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%EF%BC%8C%E6%98%AF%E4%B8%80%E4%B8%AA%E7%9A%84HashMap%E7%BB%93%E6%9E%84%EF%BC%9AHashMap%3C(Queue%3A%20Update)%3E%5Cn%20%20%20%20update%20%3D%20renderPhaseUpdates.get(queue)%3B%5Cn%20%20%7D%20else%20%7B%5Cn%20%20%20%20%2F%2F%20update%5Cn%20%20%5CtnewState%20%3D%20hook.baseState%3B%5Cn%20%20%20%20update%20%3D%20hook.baseUpdate%20%7C%7C%20queue.last%3B%5Cn%20%20%7D%5Cn%20%20%5Cn%20%20do%20%7B%5Cn%20%20%20%20newState%20%3D%20update.action%3B%20%2F%2F%20action%E5%8F%AF%E8%83%BD%E6%98%AF%E5%87%BD%E6%95%B0%EF%BC%8C%E8%BF%99%E9%87%8C%E7%95%A5%E5%8E%BB%E4%BA%86%E7%BB%86%E8%8A%82%5Cn%20%20%20%20update%20%3D%20update.next%3B%5Cn%20%20%7D%20while(update%20!%3D%3D%20null)%5Cn%20%20%5Cn%20%5Cthook.memoizedState%20%3D%20newState%3B%5Cn%20%20return%20%5Bhook.memoizedState%2C%20queue.dispatch%5D%3B%5Cn%7D%22%2C%22id%22%3A%22hBZt6%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">updateState</span>(<span class="cm-def">initialState</span>) {
+      ```
+<span class="cm-keyword">function</span> <span class="cm-def">updateState</span>(<span class="cm-def">initialState</span>) {
   <span class="cm-keyword">var</span> <span class="cm-def">hook</span> <span class="cm-operator">=</span> <span class="cm-variable">updateWorkInProgressHook</span>();
   <span class="cm-keyword">var</span> <span class="cm-def">queue</span> <span class="cm-operator">=</span> <span class="cm-variable-2">hook</span>.<span class="cm-property">queue</span>;
   <span class="cm-keyword">var</span> <span class="cm-def">newState</span>;
@@ -591,7 +620,8 @@ update阶段useState()更新状态：
   } <span class="cm-keyword">while</span>(<span class="cm-variable-2">update</span> <span class="cm-operator">!==</span> <span class="cm-atom">null</span>)
   <span class="cm-variable-2">hook</span>.<span class="cm-property">memoizedState</span> <span class="cm-operator">=</span> <span class="cm-variable-2">newState</span>;
   <span class="cm-keyword">return</span> [<span class="cm-variable-2">hook</span>.<span class="cm-property">memoizedState</span>, <span class="cm-variable-2">queue</span>.<span class="cm-property">dispatch</span>];
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -604,7 +634,8 @@ update阶段useState()更新状态：
 <div id="NmPvG" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22function%20App()%20%7B%5Cn%5Ctconst%20%5Bn1%2C%20setN1%5D%20%3D%20useState(1)%3B%5Cn%20%20const%20%5Bn2%2C%20setN2%5D%20%3D%20useState(2)%3B%5Cn%20%20const%20%5Bn3%2C%20setN3%5D%20%3D%20useState(3)%3B%5Cn%20%20%5Cn%20%20useEffect(()%20%3D%3E%20%7B%5Cn%20%20%5CtsetN1(10)%3B%5Cn%20%20%20%20setN1(100)%3B%5Cn%20%20%7D%2C%20%5B%5D)%3B%5Cn%20%20%5Cn%20%20return%20(%3Cbutton%20onClick%3D%7B()%20%3D%3E%20setN2(20)%7D%3Eclick%3C%2Fbutton%3E)%3B%5Cn%7D%22%2C%22id%22%3A%22NmPvG%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
+      ```
+<span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
   <span class="cm-keyword">const</span> [<span class="cm-def">n1</span>, <span class="cm-def">setN1</span>] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number">1</span>);
   <span class="cm-keyword">const</span> [<span class="cm-def">n2</span>, <span class="cm-def">setN2</span>] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number">2</span>);
   <span class="cm-keyword">const</span> [<span class="cm-def">n3</span>, <span class="cm-def">setN3</span>] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number">3</span>);
@@ -613,7 +644,8 @@ update阶段useState()更新状态：
     <span class="cm-variable-2">setN1</span>(<span class="cm-number">100</span>);
   }, []);
   <span class="cm-keyword">return</span> (<span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{() <span class="cm-operator">=></span> <span class="cm-variable-2">setN2</span>(<span class="cm-number">20</span>)}<span class="cm-operator">></span><span class="cm-variable">click</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button>);</span>
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -631,7 +663,9 @@ update阶段useState()更新状态：
 <div id="rCFHl" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22typescript%22%2C%22code%22%3A%22useEffect(effect%3A%20React.EffectCallback%2C%20deps%3F%3A%20ReadonlyArray%3Cany%3E%20%7C%20undefined)%22%2C%22id%22%3A%22rCFHl%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-variable">useEffect</span>(<span class="cm-variable">effect</span>: <span class="cm-variable">React</span>.<span class="cm-variable">EffectCallback</span>, <span class="cm-variable">deps</span><span class="cm-operator">?</span>: <span class="cm-variable">ReadonlyArray</span><span class="cm-operator">&lt;</span><span class="cm-variable">any</span><span class="cm-operator">></span> <span class="cm-operator">|</span> <span class="cm-atom">undefined</span>)</pre>
+      ```
+<span class="cm-variable">useEffect</span>(<span class="cm-variable">effect</span>: <span class="cm-variable">React</span>.<span class="cm-variable">EffectCallback</span>, <span class="cm-variable">deps</span><span class="cm-operator">?</span>: <span class="cm-variable">ReadonlyArray</span><span class="cm-operator">&lt;</span><span class="cm-variable">any</span><span class="cm-operator">></span> <span class="cm-operator">|</span> <span class="cm-atom">undefined</span>)
+```
     </div>
   </div>
 </div>
@@ -643,7 +677,8 @@ update阶段useState()更新状态：
 <div id="gwrwb" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22HooksDispatcherOnMountInDEV%20%3D%20%7B%5Cn%5CtuseEffect%3A%20function()%20%7B%5Cn%20%20%5CtcurrentHookNameInDev%20%3D%20'useEffect'%3B%5Cn%20%20%20%20...%5Cn%20%20%20%20return%20mountEffectImpl(Update%20%7C%20Passive%2C%20UnmountPassive%20%7C%20MountPassive%2C%20create%2C%20deps)%3B%5Cn%20%20%7D%2C%5Cn%7D%3B%5Cn%5Cnfunction%20mountEffectImpl(fiberEffectTag%2C%20hookEffectTag%2C%20create%2C%20deps)%20%7B%5Cn%20%20var%20hook%20%3D%20mountWorkInProgressHook()%3B%5Cn%20%20var%20nextDeps%20%3D%20deps%20%3D%3D%3D%20undefined%20%3F%20null%20%3A%20deps%3B%5Cn%20%20return%20hook.memoizedState%20%3D%20pushEffect(hookEffectTag%2C%20create%2C%20undefined%2C%20nextDeps)%3B%5Cn%7D%5Cn%5Cnfunction%20pushEffect(tag%2C%20create%2C%20destroy%2C%20deps)%20%7B%5Cn%20%20var%20effect%20%3D%20%7B%5Cn%20%20%20%20tag%3A%20tag%2C%5Cn%20%20%20%20create%3A%20create%2C%20%2F%2F%20%E5%AD%98%E5%82%A8useEffect%E4%BC%A0%E5%85%A5%E7%9A%84callback%5Cn%20%20%20%20destroy%3A%20destroy%2C%5Cn%20%20%20%20deps%3A%20deps%2C%5Cn%20%20%20%20next%3A%20null%5Cn%20%20%7D%3B%5Cn%20%20.....%5Cn%20%20componentUpdateQueue%20%3D%20createFunctionComponentUpdateQueue()%3B%5Cn%20%20componentUpdateQueue.lastEffect%20%3D%20effect.next%20%3D%20effect%3B%5Cn%20%20....%5Cn%20%20return%20effect%3B%5Cn%7D%5Cn%5Cnfunction%20renderWithHooks()%20%7B%5Cn%5Ct....%5Cn%20%20currentlyRenderingFiber%241.updateQueue%20%3D%20componentUpdateQueue%3B%5Cn%20%20....%5Cn%7D%22%2C%22id%22%3A%22gwrwb%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-variable">HooksDispatcherOnMountInDEV</span> <span class="cm-operator">=</span> {
+      ```
+<span class="cm-variable">HooksDispatcherOnMountInDEV</span> <span class="cm-operator">=</span> {
   <span class="cm-property">useEffect</span>: <span class="cm-keyword">function</span>() {
     <span class="cm-variable">currentHookNameInDev</span> <span class="cm-operator">=</span> <span class="cm-string">'useEffect'</span>;
     <span class="cm-meta">...</span>
@@ -676,7 +711,8 @@ update阶段useState()更新状态：
   <span class="cm-meta">...</span>.
   <span class="cm-variable">currentlyRenderingFiber$1</span>.<span class="cm-property">updateQueue</span> <span class="cm-operator">=</span> <span class="cm-variable">componentUpdateQueue</span>;
   <span class="cm-meta">...</span>.
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -690,7 +726,8 @@ update阶段useState()更新状态：
 <div id="iR2KC" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20%E7%94%A8Hook%E5%86%99%5Cnfunction%20App()%20%7B%5Cn%5Ctconst%20%5Bdata%2C%20setData%5D%20%3D%20useState('')%3B%5Cn%5Cn%20%20useEffect(()%20%3D%3E%20%7B%5Cn%20%20%20%20setTimeout(()%20%3D%3E%20%7B%5Cn%20%20%20%20%20%20setData(%60current%20data%3A%20%24%7BDate.now()%7D%60)%3B%5Cn%20%20%20%20%7D%2C%203000)%3B%5Cn%20%20%7D)%3B%5Cn%20%20%5Cn%20%20return%20%3Cdiv%3E%7Bdata%7D%3C%2Fdiv%3E%3B%5Cn%7D%5Cn%2F%2F%20%E7%AD%89%E4%BB%B7%E4%BB%A3%E7%A0%81%5Cnclass%20App%20extends%20Component%20%7B%5Cn%5Ctstate%20%3D%20%7Bdata%20%3D%20''%7D%5Cn%5Cn%5CtcomponentDidMount()%20%7B%5Cn%20%20%5CtsetTimeout(()%20%3D%3E%20%7B%5Cn%20%20%20%20%20%20this.setState(%7B%20data%3A%20%60current%20data%3A%20%24%7BDate.now()%7D%60%20%7D)%3B%5Cn%20%20%20%20%7D%2C%203000)%3B%5Cn%20%20%7D%5Cn%5Ct%5Cn%5Ctrender()%20%7B%5Cn%20%20%5Ctreturn%20%3Cdiv%3E%7Bthis.state.data%7D%3C%2Fdiv%3E%3B%5Cn%20%20%7D%5Cn%7D%22%2C%22id%22%3A%22iR2KC%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-comment">// 用Hook写</span>
+      ```
+<span class="cm-comment">// 用Hook写</span>
 <span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
   <span class="cm-keyword">const</span> [<span class="cm-def">data</span>, <span class="cm-def">setData</span>] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-string">''</span>);
 
@@ -713,7 +750,8 @@ update阶段useState()更新状态：
   <span class="cm-variable">render</span>() {
     <span class="cm-keyword">return</span> <span class="cm-operator">&lt;</span><span class="cm-variable">div</span><span class="cm-operator">></span>{<span class="cm-property">this</span>.<span class="cm-variable">state</span>.<span class="cm-variable">data</span>}<span class="cm-operator">&lt;</span><span class="cm-string-2">/div>;</span>
   }
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -729,7 +767,8 @@ Hook接受useEffect传入的callback返回一个函数，在Fiber的清理阶段
 <div id="n78kh" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22function%20App()%20%7B%5Cn%5CtuseEffect(()%20%3D%3E%20%7B%5Cn%20%20%5Ctconst%20timer%20%3D%20setTimeout(()%20%3D%3E%20%7B%5Cn%20%20%20%20%5Ctconsole.log('print%20log%20after%201s!')%3B%5Cn%20%20%20%20%7D%2C%201000)%3B%5Cn%20%20%20%20window.addEventListener('load'%2C%20loadHandle)%3B%5Cn%20%20%20%20%5Cn%20%20%20%20return%20()%20%3D%3E%20window.removeEventListener('load'%2C%20loadHandle)%3B%20%2F%2F%20%E6%89%A7%E8%A1%8C%E6%B8%85%E7%90%86%5Cn%20%20%7D%2C%20%5B%5D)%3B%5Cn%7D%5Cn%5Cn%2F%2F%20%E5%90%8C%E7%AD%89%E5%AE%9E%E7%8E%B0%5Cnclass%20App%20extends%20Component%20%7B%5Cn%5CtcomponentDidMount()%20%7B%5Cn%20%20%5Ctconst%20timer%20%3D%20setTimeout(()%20%3D%3E%20%7B%5Cn%20%20%20%20%5Ctconsole.log('print%20log%20after%201s!')%3B%5Cn%20%20%20%20%7D%2C%201000)%3B%5Cn%20%20%20%20window.addEventListener('load'%2C%20loadHandle)%3B%5Cn%20%20%7D%5Cn%20%20%5Cn%20%20componentDidUnmount()%20%7B%5Cn%20%20%5Ctwindow.removeEventListener('load'%2C%20loadHandle)%3B%5Cn%20%20%7D%5Cn%7D%22%2C%22id%22%3A%22n78kh%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
+      ```
+<span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
   <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=></span> {
     <span class="cm-keyword">const</span> <span class="cm-def">timer</span> <span class="cm-operator">=</span> <span class="cm-variable">setTimeout</span>(() <span class="cm-operator">=></span> {
       <span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">'print log after 1s!'</span>);
@@ -751,7 +790,8 @@ Hook接受useEffect传入的callback返回一个函数，在Fiber的清理阶段
   <span class="cm-property">componentDidUnmount</span>() {
     <span class="cm-variable">window</span>.<span class="cm-property">removeEventListener</span>(<span class="cm-string">'load'</span>, <span class="cm-variable">loadHandle</span>);
   }
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -761,7 +801,9 @@ Hook接受useEffect传入的callback返回一个函数，在Fiber的清理阶段
 <div id="dFs5j" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22typescript%22%2C%22code%22%3A%22useReducer%3CS%2C%20I%2C%20A%3E(reducer%3A%20(S%2C%20A)%20%3D%3E%20S%2C%20initialArg%3A%20I%2C%20init%3F%3A%20I%20%3D%3E%20S%2C%20)%3A%20%5BS%2C%20Dispatch%3CA%3E%5D%22%2C%22id%22%3A%22dFs5j%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-variable">useReducer</span><span class="cm-operator">&lt;</span><span class="cm-type">S</span>, <span class="cm-type">I</span>, <span class="cm-type">A</span><span class="cm-operator">></span>(<span class="cm-variable">reducer</span>: (<span class="cm-variable">S</span>, <span class="cm-variable">A</span>) <span class="cm-operator">=></span> <span class="cm-variable">S</span>, <span class="cm-variable">initialArg</span>: <span class="cm-variable">I</span>, <span class="cm-variable">init</span><span class="cm-operator">?</span>: <span class="cm-variable">I</span> <span class="cm-operator">=></span> <span class="cm-variable">S</span>, ): [<span class="cm-variable">S</span>, <span class="cm-variable">Dispatch</span><span class="cm-operator">&lt;</span><span class="cm-variable">A</span><span class="cm-operator">></span>]</pre>
+      ```
+<span class="cm-variable">useReducer</span><span class="cm-operator">&lt;</span><span class="cm-type">S</span>, <span class="cm-type">I</span>, <span class="cm-type">A</span><span class="cm-operator">></span>(<span class="cm-variable">reducer</span>: (<span class="cm-variable">S</span>, <span class="cm-variable">A</span>) <span class="cm-operator">=></span> <span class="cm-variable">S</span>, <span class="cm-variable">initialArg</span>: <span class="cm-variable">I</span>, <span class="cm-variable">init</span><span class="cm-operator">?</span>: <span class="cm-variable">I</span> <span class="cm-operator">=></span> <span class="cm-variable">S</span>, ): [<span class="cm-variable">S</span>, <span class="cm-variable">Dispatch</span><span class="cm-operator">&lt;</span><span class="cm-variable">A</span><span class="cm-operator">></span>]
+```
     </div>
   </div>
 </div>
@@ -771,9 +813,11 @@ Hook接受useEffect传入的callback返回一个函数，在Fiber的清理阶段
 <div id="uochT" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22typescript%22%2C%22code%22%3A%22const%20%5Bstate%2C%20dispatch%5D%20%3D%20useReducer(reducer%2C%20%7Bcount%3A%20initialCount%2C%20step%3A%2010%7D)%3B%5Cn%2F%2F%20%3Cbutton%20onClick%3D%7B()%20%3D%3E%20dispatch(%7Btype%3A%20'increment'%7D)%7D%3E%2B%3C%2Fbutton%3E%5Cn%2F%2F%20%3Cbutton%20onClick%3D%7B()%20%3D%3E%20dispatch(%7Btype%3A%20'decrement'%7D)%7D%3E-%3C%2Fbutton%3E%22%2C%22id%22%3A%22uochT%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">const</span> [<span class="cm-def">state</span>, <span class="cm-def">dispatch</span>] <span class="cm-operator">=</span> <span class="cm-variable">useReducer</span>(<span class="cm-variable">reducer</span>, {<span class="cm-property">count</span>: <span class="cm-variable">initialCount</span>, <span class="cm-property">step</span>: <span class="cm-number">10</span>});
+      ```
+<span class="cm-keyword">const</span> [<span class="cm-def">state</span>, <span class="cm-def">dispatch</span>] <span class="cm-operator">=</span> <span class="cm-variable">useReducer</span>(<span class="cm-variable">reducer</span>, {<span class="cm-property">count</span>: <span class="cm-variable">initialCount</span>, <span class="cm-property">step</span>: <span class="cm-number">10</span>});
 <span class="cm-comment">// &lt;button onClick={() => dispatch({type: 'increment'})}>+&lt;/button></span>
-<span class="cm-comment">// &lt;button onClick={() => dispatch({type: 'decrement'})}>-&lt;/button></span></pre>
+<span class="cm-comment">// &lt;button onClick={() => dispatch({type: 'decrement'})}>-&lt;/button></span>
+```
     </div>
   </div>
 </div>
@@ -783,7 +827,8 @@ reducer提供了一种可以在组件外重新编排state的能力，而useReduc
 <div id="wPoXH" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22typescript%22%2C%22code%22%3A%22function%20reducer(state%2C%20action)%20%7B%5Cn%20%20%2F%2F%20%E8%BF%99%E9%87%8C%E8%83%BD%E5%A4%9F%E6%8B%BF%E5%88%B0%E7%BB%84%E4%BB%B6%E7%9A%84%E5%85%A8%E9%83%A8state%EF%BC%81%EF%BC%81%5Cn%20%20switch%20(action.type)%20%7B%5Cn%20%20%20%20case%20%5C%22increment%5C%22%3A%5Cn%20%20%20%20%20%20return%20%7B%5Cn%20%20%20%20%20%20%20%20...state%2C%5Cn%20%20%20%20%20%20%20%20count%3A%20state.count%20%2B%20state.step%5Cn%20%20%20%20%20%20%7D%3B%5Cn%20%20%20%20...%5Cn%20%20%7D%5Cn%7D%22%2C%22id%22%3A%22wPoXH%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">reducer</span>(<span class="cm-def">state</span>, <span class="cm-def">action</span>) {
+      ```
+<span class="cm-keyword">function</span> <span class="cm-def">reducer</span>(<span class="cm-def">state</span>, <span class="cm-def">action</span>) {
   <span class="cm-comment">// 这里能够拿到组件的全部state！！</span>
   <span class="cm-keyword">switch</span> (<span class="cm-variable-2">action</span>.<span class="cm-property">type</span>) {
     <span class="cm-keyword">case</span> <span class="cm-string">"increment"</span>:
@@ -793,7 +838,8 @@ reducer提供了一种可以在组件外重新编排state的能力，而useReduc
       };
     <span class="cm-meta">...</span>
   }
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -808,7 +854,9 @@ reducer提供了一种可以在组件外重新编排state的能力，而useReduc
 <div id="dEG7F" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%20useCallback%3CT%3E(callback%3A%20T%2C%20deps%3A%20Array%3Cmixed%3E%20%7C%20void%20%7C%20null)%3A%20T%22%2C%22id%22%3A%22dEG7F%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"> <span class="cm-variable">useCallback</span><span class="cm-operator">&lt;</span><span class="cm-variable">T</span><span class="cm-operator">></span>(<span class="cm-variable">callback</span>: <span class="cm-variable">T</span>, <span class="cm-variable">deps</span>: <span class="cm-variable">Array</span><span class="cm-operator">&lt;</span><span class="cm-variable">mixed</span><span class="cm-operator">></span> <span class="cm-operator">|</span> <span class="cm-keyword">void</span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>): <span class="cm-variable">T</span></pre>
+      ```
+ <span class="cm-variable">useCallback</span><span class="cm-operator">&lt;</span><span class="cm-variable">T</span><span class="cm-operator">></span>(<span class="cm-variable">callback</span>: <span class="cm-variable">T</span>, <span class="cm-variable">deps</span>: <span class="cm-variable">Array</span><span class="cm-operator">&lt;</span><span class="cm-variable">mixed</span><span class="cm-operator">></span> <span class="cm-operator">|</span> <span class="cm-keyword">void</span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>): <span class="cm-variable">T</span>
+```
     </div>
   </div>
 </div>
@@ -818,7 +866,8 @@ reducer提供了一种可以在组件外重新编排state的能力，而useReduc
 <div id="Xxn19" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20%E5%BD%93Parent%E7%BB%84%E4%BB%B6re-render%E6%97%B6%EF%BC%8CChild%E7%BB%84%E4%BB%B6%E4%B9%9F%E4%BC%9Are-render%5Cnclass%20Parent%20extends%20Component%20%7B%5Cn%5Ctrender()%20%7B%5Cn%20%20%20%20const%20someFn%20%3D%20()%20%3D%3E%20%7B%7D%3B%20%2F%2F%20re-render%E6%97%B6%EF%BC%8CsomeFn%E5%87%BD%E6%95%B0%E4%BC%9A%E9%87%8D%E6%96%B0%E5%AE%9E%E4%BE%8B%E5%8C%96%5Cn%20%20%20%20%5Cn%20%20%5Ctreturn%20(%5Cn%20%20%20%20%5Ct%3C%3E%5Cn%20%20%20%20%20%20%5Ct%3CChild%20someFn%3D%7BsomeFn%7D%20%2F%3E%5Cn%5Ct%5Ct%5Ct%5Ct%3COther%20%2F%3E%5Cn%20%20%20%20%20%20%3C%2F%3E%5Cn%20%20%20%20)%3B%5Cn%20%20%7D%5Cn%7D%5Cn%5Cnclass%20Child%20extends%20Component%20%7B%5Cn%5CtcomponentShouldUpdate(prevProps%2C%20nextProps)%20%7B%5Cn%20%20%5Ctreturn%20prevProps.someFn%20!%3D%3D%20nextProps.someFn%3B%20%2F%2F%20%E5%87%BD%E6%95%B0%E6%AF%94%E8%BE%83%E5%B0%86%E6%B0%B8%E8%BF%9C%E8%BF%94%E5%9B%9Efalse%5Cn%20%20%7D%5Cn%7D%22%2C%22id%22%3A%22Xxn19%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-comment">// 当Parent组件re-render时，Child组件也会re-render</span>
+      ```
+<span class="cm-comment">// 当Parent组件re-render时，Child组件也会re-render</span>
 <span class="cm-keyword">class</span> <span class="cm-def">Parent</span> <span class="cm-keyword">extends</span> <span class="cm-variable">Component</span> {
   <span class="cm-property">render</span>() {
     <span class="cm-keyword">const</span> <span class="cm-def">someFn</span> <span class="cm-operator">=</span> () <span class="cm-operator">=></span> {}; <span class="cm-comment">// re-render时，someFn函数会重新实例化</span>
@@ -836,7 +885,8 @@ reducer提供了一种可以在组件外重新编排state的能力，而useReduc
   <span class="cm-property">componentShouldUpdate</span>(<span class="cm-def">prevProps</span>, <span class="cm-def">nextProps</span>) {
     <span class="cm-keyword">return</span> <span class="cm-variable-2">prevProps</span>.<span class="cm-property">someFn</span> <span class="cm-operator">!==</span> <span class="cm-variable-2">nextProps</span>.<span class="cm-property">someFn</span>; <span class="cm-comment">// 函数比较将永远返回false</span>
   }
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -846,7 +896,8 @@ Function Component（查看<a href="https://codesandbox.io/s/memoization-lbgob" 
 <div id="vpSUK" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22function%20App()%20%7B%5Cn%20%20const%20%5Bcount%2C%20setCount%5D%20%3D%20useState(0)%3B%5Cn%20%20const%20%5Blist%2C%20setList%5D%20%3D%20useState(%5B%5D)%3B%5Cn%20%20const%20fetchData%20%3D%20async%20()%20%3D%3E%20%7B%5Cn%20%20%20%20setTimeout(()%20%3D%3E%20%7B%5Cn%20%20%20%20%20%20setList(initList)%3B%5Cn%20%20%20%20%7D%2C%203000)%3B%5Cn%20%20%7D%3B%5Cn%5Cn%20%20useEffect(()%20%3D%3E%20%7B%5Cn%20%20%20%20fetchData()%3B%5Cn%20%20%7D%2C%20%5BfetchData%5D)%3B%5Cn%5Cn%20%20return%20(%5Cn%20%20%20%20%3C%3E%5Cn%20%20%20%20%20%20%3Cdiv%3Eclick%20%7Bcount%7D%20times%3C%2Fdiv%3E%5Cn%20%20%20%20%20%20%3Cbutton%20onClick%3D%7B()%20%3D%3E%20setCount(count%20%2B%201)%7D%3EAdd%20count%3C%2Fbutton%3E%5Cn%20%20%20%20%20%20%3CList%20list%3D%7Blist%7D%20%2F%3E%5Cn%20%20%20%20%3C%2F%3E%5Cn%20%20)%3B%5Cn%7D%22%2C%22id%22%3A%22vpSUK%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
+      ```
+<span class="cm-keyword">function</span> <span class="cm-def">App</span>() {
   <span class="cm-keyword">const</span> [<span class="cm-def">count</span>, <span class="cm-def">setCount</span>] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number"></span>);
   <span class="cm-keyword">const</span> [<span class="cm-def">list</span>, <span class="cm-def">setList</span>] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>([]);
   <span class="cm-keyword">const</span> <span class="cm-def">fetchData</span> <span class="cm-operator">=</span> <span class="cm-keyword">async</span> () <span class="cm-operator">=></span> {
@@ -866,7 +917,8 @@ Function Component（查看<a href="https://codesandbox.io/s/memoization-lbgob" 
       <span class="cm-operator">&lt;</span><span class="cm-variable">List</span> <span class="cm-variable">list</span><span class="cm-operator">=</span>{<span class="cm-property">list</span>} <span class="cm-operator">/</span><span class="cm-operator">></span>
     <span class="cm-operator">&lt;</span><span class="cm-string-2">/></span>
   );
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -882,7 +934,9 @@ Function Component（查看<a href="https://codesandbox.io/s/memoization-lbgob" 
 <div id="OQ1C2" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22useMemo%3CT%3E(create%3A%20()%20%3D%3E%20T%2C%20deps%3A%20Array%3Cmixed%3E%20%7C%20void%20%7C%20null)%3A%20T%22%2C%22id%22%3A%22OQ1C2%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-variable">useMemo</span><span class="cm-operator">&lt;</span><span class="cm-variable">T</span><span class="cm-operator">></span>(<span class="cm-variable">create</span>: () <span class="cm-operator">=></span> <span class="cm-variable">T</span>, <span class="cm-variable">deps</span>: <span class="cm-variable">Array</span><span class="cm-operator">&lt;</span><span class="cm-variable">mixed</span><span class="cm-operator">></span> <span class="cm-operator">|</span> <span class="cm-keyword">void</span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>): <span class="cm-variable">T</span></pre>
+      ```
+<span class="cm-variable">useMemo</span><span class="cm-operator">&lt;</span><span class="cm-variable">T</span><span class="cm-operator">></span>(<span class="cm-variable">create</span>: () <span class="cm-operator">=></span> <span class="cm-variable">T</span>, <span class="cm-variable">deps</span>: <span class="cm-variable">Array</span><span class="cm-operator">&lt;</span><span class="cm-variable">mixed</span><span class="cm-operator">></span> <span class="cm-operator">|</span> <span class="cm-keyword">void</span> <span class="cm-operator">|</span> <span class="cm-atom">null</span>): <span class="cm-variable">T</span>
+```
     </div>
   </div>
 </div>
@@ -892,7 +946,8 @@ useMemo用于缓存一些耗时的计算结果，只有当依赖参数改变时�
 <div id="2XaIo" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22function%20App(props)%20%7B%5Cn%20%20const%20start%20%3D%20props.start%3B%5Cn%20%20const%20list%20%3D%20props.list%3B%5Cn%20%20const%20fibValue%20%3D%20useMemo(()%20%3D%3E%20fibonacci(start)%2C%20%5Bstart%5D)%3B%20%2F%2F%20%E7%BC%93%E5%AD%98%E8%80%97%E6%97%B6%E6%93%8D%E4%BD%9C%5Cn%20%20const%20MemoList%20%3D%20useMemo(()%20%3D%3E%20%3CList%20list%3D%7Blist%7D%20%2F%3E%2C%20%5Blist%5D)%3B%5Cn%5Cn%20%20return%20(%5Cn%20%20%5Ct%3C%3E%5Cn%20%20%20%20%5Ct%3Cdiv%3EDo%20some%20expensive%20calculation%3A%20%7BfibValue%7D%3C%2Fdiv%3E%5Cn%5Ct%5Ct%5Ct%7BMemoList%7D%5Cn%5Ct%5Ct%5Ct%3COther%20%2F%3E%5Cn%20%20%20%20%3C%2F%3E%5Cn%20%20)%3B%5Cn%7D%22%2C%22id%22%3A%222XaIo%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">App</span>(<span class="cm-def">props</span>) {
+      ```
+<span class="cm-keyword">function</span> <span class="cm-def">App</span>(<span class="cm-def">props</span>) {
   <span class="cm-keyword">const</span> <span class="cm-def">start</span> <span class="cm-operator">=</span> <span class="cm-variable-2">props</span>.<span class="cm-property">start</span>;
   <span class="cm-keyword">const</span> <span class="cm-def">list</span> <span class="cm-operator">=</span> <span class="cm-variable-2">props</span>.<span class="cm-property">list</span>;
   <span class="cm-keyword">const</span> <span class="cm-def">fibValue</span> <span class="cm-operator">=</span> <span class="cm-variable">useMemo</span>(() <span class="cm-operator">=></span> <span class="cm-variable">fibonacci</span>(<span class="cm-variable-2">start</span>), [<span class="cm-variable-2">start</span>]); <span class="cm-comment">// 缓存耗时操作</span>
@@ -909,19 +964,21 @@ useMemo用于缓存一些耗时的计算结果，只有当依赖参数改变时�
       <span class="cm-operator">&lt;</span><span class="cm-variable">Other</span> <span class="cm-operator">/</span><span class="cm-operator">></span>
     <span class="cm-operator">&lt;</span><span class="cm-string-2">/></span>
   );
-}</pre>
+}
+```
     </div>
   </div>
 </div>
 
 > 简单理解：`useCallback(fn, deps) === useMemo(() => fn, deps)`
 
-在函数组件中，React提供了一个和类组件中和`PureComponent`相同功能的API `React.memo`，<span class="lake-fontsize-11" style="font-size: 11px;">会在自身re-render时，对每一个 </span><span class="lake-fontsize-11" style="font-size: 11px;"><code>props</code></span><span class="lake-fontsize-11" style="font-size: 11px;"> 项进行浅对比，如果引用没有变化，就不会触发重渲染。</span>
+在函数组件中，React提供了一个和类组件中和`PureComponent`相同功能的API `React.memo`，<span class="lake-fontsize-11" style="font-size: 11px;">会在自身re-render时，对每一个 </span><span class="lake-fontsize-11" style="font-size: 11px;">props</span><span class="lake-fontsize-11" style="font-size: 11px;"> 项进行浅对比，如果引用没有变化，就不会触发重渲染。</span>
 
 <div id="cr4AF" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20%E5%8F%AA%E6%9C%89%E5%88%97%E8%A1%A8%E9%A1%B9%E6%94%B9%E5%8F%98%E6%97%B6%E7%BB%84%E4%BB%B6%E6%89%8D%E4%BC%9Are-render%5Cnconst%20MemoList%20%3D%20React.memo((%7B%20list%20%7D)%20%3D%3E%20%7B%5Cn%20%20return%20(%5Cn%20%20%20%20%3Cul%3E%5Cn%20%20%20%20%20%20%7Blist.map(item%20%3D%3E%20(%5Cn%20%20%20%20%20%20%20%20%3Cli%20key%3D%7Bitem.id%7D%3E%7Bitem.content%7D%3C%2Fli%3E%5Cn%20%20%20%20%20%20))%7D%5Cn%20%20%20%20%3C%2Ful%3E%5Cn%20%20)%3B%5Cn%7D)%3B%22%2C%22id%22%3A%22cr4AF%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-comment">// 只有列表项改变时组件才会re-render</span>
+      ```
+<span class="cm-comment">// 只有列表项改变时组件才会re-render</span>
 <span class="cm-keyword">const</span> <span class="cm-def">MemoList</span> <span class="cm-operator">=</span> <span class="cm-variable">React</span>.<span class="cm-property">memo</span>(({ <span class="cm-def">list</span> }) <span class="cm-operator">=></span> {
   <span class="cm-keyword">return</span> (
     <span class="cm-operator">&lt;</span><span class="cm-variable">ul</span><span class="cm-operator">></span>
@@ -930,7 +987,8 @@ useMemo用于缓存一些耗时的计算结果，只有当依赖参数改变时�
       ))}
     <span class="cm-operator">&lt;</span><span class="cm-string-2">/ul></span>
   );
-});</pre>
+});
+```
     </div>
   </div>
 </div>
@@ -957,7 +1015,9 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
 <div id="z4QPG" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22typescript%22%2C%22code%22%3A%22useContext%3CT%3E(context%3A%20ReactContext%3CT%3E%2C%20observedBits%3A%20void%20%7C%20number%20%7C%20boolean)%3A%20T%22%2C%22id%22%3A%22z4QPG%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-variable">useContext</span><span class="cm-operator">&lt;</span><span class="cm-type">T</span><span class="cm-operator">></span>(<span class="cm-variable">context</span>: <span class="cm-variable">ReactContext</span><span class="cm-operator">&lt;</span><span class="cm-variable">T</span><span class="cm-operator">></span>, <span class="cm-variable">observedBits</span>: <span class="cm-keyword">void</span> <span class="cm-operator">|</span> <span class="cm-variable">number</span> <span class="cm-operator">|</span> <span class="cm-variable">boolean</span>): <span class="cm-variable">T</span></pre>
+      ```
+<span class="cm-variable">useContext</span><span class="cm-operator">&lt;</span><span class="cm-type">T</span><span class="cm-operator">></span>(<span class="cm-variable">context</span>: <span class="cm-variable">ReactContext</span><span class="cm-operator">&lt;</span><span class="cm-variable">T</span><span class="cm-operator">></span>, <span class="cm-variable">observedBits</span>: <span class="cm-keyword">void</span> <span class="cm-operator">|</span> <span class="cm-variable">number</span> <span class="cm-operator">|</span> <span class="cm-variable">boolean</span>): <span class="cm-variable">T</span>
+```
     </div>
   </div>
 </div>
@@ -967,7 +1027,8 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
 <div id="sq3oU" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22typescript%22%2C%22code%22%3A%22const%20Context%20%3D%20createContext()%3B%5Cnconst%20reducer%20%3D%20(state%2C%20action)%20%3D%3E%20%7B%5Cn%20%20switch%20(action.type)%20%7B%5Cn%20%20%20%20case%20%5C%22increase%5C%22%3A%5Cn%20%20%20%20%20%20return%20%7B%5Cn%20%20%20%20%20%20%20%20...state%2C%5Cn%20%20%20%20%20%20%20%20count%3A%20state.count%20%2B%201%5Cn%20%20%20%20%20%20%7D%3B%5Cn%20%20%20%20case%20%5C%22decrease%5C%22%3A%5Cn%20%20%20%20%20%20return%20%7B%5Cn%20%20%20%20%20%20%20%20...state%2C%5Cn%20%20%20%20%20%20%20%20count%3A%20state.count%20-%201%5Cn%20%20%20%20%20%20%7D%3B%5Cn%20%20%20%20default%3A%5Cn%20%20%20%20%20%20throw%20Error(%5C%22unknown%20action%5C%22)%3B%5Cn%20%20%7D%5Cn%7D%3B%5Cn%5Cnfunction%20App()%20%7B%5Cn%20%20const%20%5Bstate%2C%20dispatch%5D%20%3D%20useReducer(reducer%2C%20%7B%20count%3A%200%20%7D)%3B%5Cn%20%20const%20value%20%3D%20useMemo(()%20%3D%3E%20%5Bstate%2C%20dispatch%5D%2C%20%5Bstate%5D)%3B%5Cn%5Cn%20%20return%20(%5Cn%20%20%20%20%3CContext.Provider%20value%3D%7Bvalue%7D%3E%5Cn%20%20%20%20%20%20%3Cdiv%3EApp%20count%3A%20%7Bstate.count%7D%3C%2Fdiv%3E%5Cn%20%20%20%20%20%20%3CChild1%20%2F%3E%5Cn%20%20%20%20%20%20%3CChild2%20%2F%3E%5Cn%20%20%20%20%3C%2FContext.Provider%3E%5Cn%20%20)%3B%5Cn%7D%5Cn%5Cnfunction%20Child1()%20%7B%5Cn%20%20const%20%5Bstate%2C%20dispatch%5D%20%3D%20useContext(Context)%3B%5Cn%5Cn%20%20return%20(%5Cn%20%20%20%20%3Cdiv%3E%5Cn%20%20%20%20%20%20%3Cspan%3EChild1%20count%3A%20%7Bstate.count%7D%3C%2Fspan%3E%5Cn%20%20%20%20%20%20%3Cbutton%20onClick%3D%7B()%20%3D%3E%20dispatch(%7B%20type%3A%20%5C%22increase%5C%22%20%7D)%7D%3Eincrease%3C%2Fbutton%3E%5Cn%20%20%20%20%3C%2Fdiv%3E%5Cn%20%20)%3B%5Cn%7D%5Cn%5Cnfunction%20Child2()%20%7B%5Cn%20%20const%20%5Bstate%2C%20dispatch%5D%20%3D%20useContext(Context)%3B%5Cn%5Cn%20%20return%20(%5Cn%20%20%20%20%3Cdiv%3E%5Cn%20%20%20%20%20%20%3Cspan%3EChild2%20count%3A%20%7Bstate.count%7D%3C%2Fspan%3E%5Cn%20%20%20%20%20%20%3Cbutton%20onClick%3D%7B()%20%3D%3E%20dispatch(%7B%20type%3A%20%5C%22decrease%5C%22%20%7D)%7D%3Edecrease%3C%2Fbutton%3E%5Cn%20%20%20%20%3C%2Fdiv%3E%5Cn%20%20)%3B%5Cn%7D%22%2C%22id%22%3A%22sq3oU%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">const</span> <span class="cm-def">Context</span> <span class="cm-operator">=</span> <span class="cm-variable">createContext</span>();
+      ```
+<span class="cm-keyword">const</span> <span class="cm-def">Context</span> <span class="cm-operator">=</span> <span class="cm-variable">createContext</span>();
 <span class="cm-keyword">const</span> <span class="cm-def">reducer</span> <span class="cm-operator">=</span> (<span class="cm-def">state</span>, <span class="cm-def">action</span>) <span class="cm-operator">=></span> {
   <span class="cm-keyword">switch</span> (<span class="cm-variable-2">action</span>.<span class="cm-property">type</span>) {
     <span class="cm-keyword">case</span> <span class="cm-string">"increase"</span>:
@@ -1018,7 +1079,8 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
       <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{() <span class="cm-operator">=></span> <span class="cm-variable">dispatch</span>({ <span class="cm-property">type</span>: <span class="cm-string">"decrease"</span> })}<span class="cm-operator">></span><span class="cm-variable">decrease</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button></span>
     <span class="cm-operator">&lt;</span><span class="cm-string-2">/div></span>
   );
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -1032,7 +1094,8 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
 <div id="c7nDT" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22function%20Counter()%20%7B%5Cn%20%20const%20%5Bcount%2C%20setCount%5D%20%3D%20useState(0)%3B%5Cn%5Cn%20%20useEffect(()%20%3D%3E%20%7B%5Cn%20%20%20%20document.title%20%3D%20%60You%20clicked%20%24%7Bcount%7D%20times%60%3B%5Cn%20%20%7D)%3B%5Cn%5Ct%2F%2F%20%E8%BF%9E%E7%BB%AD%E7%82%B9%E5%87%BB%E4%B8%89%E6%AC%A1button%EF%BC%8C%E9%A1%B5%E9%9D%A2%E7%9A%84title%E5%B0%86%E4%BE%9D%E6%AC%A1%E6%94%B9%E4%B8%BA1%E3%80%812%E3%80%813%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF3%E3%80%813%E3%80%813%5Cn%20%20return%20(%5Cn%20%20%20%20%3Cdiv%3E%5Cn%20%20%20%20%20%20%3Cp%3EYou%20clicked%20%7Bcount%7D%20times%3C%2Fp%3E%5Cn%20%20%20%20%20%20%3Cbutton%20onClick%3D%7B()%20%3D%3E%20setCount(count%20%2B%201)%7D%3EClick%20me%3C%2Fbutton%3E%5Cn%20%20%20%20%3C%2Fdiv%3E%5Cn%20%20)%3B%5Cn%7D%22%2C%22id%22%3A%22c7nDT%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">Counter</span>() {
+      ```
+<span class="cm-keyword">function</span> <span class="cm-def">Counter</span>() {
   <span class="cm-keyword">const</span> [<span class="cm-def">count</span>, <span class="cm-def">setCount</span>] <span class="cm-operator">=</span> <span class="cm-variable">useState</span>(<span class="cm-number"></span>);
 
   <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=></span> {
@@ -1045,7 +1108,8 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
       <span class="cm-operator">&lt;</span><span class="cm-variable">button</span> <span class="cm-variable">onClick</span><span class="cm-operator">=</span>{() <span class="cm-operator">=></span> <span class="cm-variable">setCount</span>(<span class="cm-variable">count</span> <span class="cm-operator">+</span> <span class="cm-number">1</span>)}<span class="cm-operator">></span><span class="cm-variable">Click</span> <span class="cm-variable">me</span><span class="cm-operator">&lt;</span><span class="cm-string-2">/button></span>
     <span class="cm-operator">&lt;</span><span class="cm-string-2">/div></span>
   );
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -1057,7 +1121,8 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
 <div id="7McZL" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22function%20mountRef(initialValue)%20%7B%5Cn%20%20var%20hook%20%3D%20mountWorkInProgressHook()%3B%5Cn%20%20var%20ref%20%3D%20%7B%20current%3A%20initialValue%20%7D%3B%20%2F%2F%20ref%E5%B0%B1%E6%98%AF%E4%B8%80%E4%B8%AA%E6%99%AE%E9%80%9Aobject%E7%9A%84%E5%BC%95%E7%94%A8%EF%BC%8C%E6%B2%A1%E6%9C%89%E9%97%AD%E5%8C%85%5Cn%20%20%7B%5Cn%20%20%20%20Object.seal(ref)%3B%5Cn%20%20%7D%5Cn%20%20hook.memoizedState%20%3D%20ref%3B%5Cn%20%20return%20ref%3B%5Cn%7D%22%2C%22id%22%3A%227McZL%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-keyword">function</span> <span class="cm-def">mountRef</span>(<span class="cm-def">initialValue</span>) {
+      ```
+<span class="cm-keyword">function</span> <span class="cm-def">mountRef</span>(<span class="cm-def">initialValue</span>) {
   <span class="cm-keyword">var</span> <span class="cm-def">hook</span> <span class="cm-operator">=</span> <span class="cm-variable">mountWorkInProgressHook</span>();
   <span class="cm-keyword">var</span> <span class="cm-def">ref</span> <span class="cm-operator">=</span> { <span class="cm-property">current</span>: <span class="cm-variable-2">initialValue</span> }; <span class="cm-comment">// ref就是一个普通object的引用，没有闭包</span>
   {
@@ -1065,7 +1130,8 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
   }
   <span class="cm-variable-2">hook</span>.<span class="cm-property">memoizedState</span> <span class="cm-operator">=</span> <span class="cm-variable-2">ref</span>;
   <span class="cm-keyword">return</span> <span class="cm-variable-2">ref</span>;
-}</pre>
+}
+```
     </div>
   </div>
 </div>
@@ -1079,10 +1145,12 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
 <div id="HZwjv" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20mount%E7%BB%93%E6%9D%9F%5CncomponentDidMount%20%3D%20function%20useDidMount(effect)%20%3D%3E%20%7B%5Cn%5CtuseEffect(effect%2C%20%5B%5D)%3B%5Cn%7D%3B%22%2C%22id%22%3A%22HZwjv%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-comment">// mount结束</span>
+      ```
+<span class="cm-comment">// mount结束</span>
 <span class="cm-variable">componentDidMount</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span> <span class="cm-def">useDidMount</span>(<span class="cm-def">effect</span>) <span class="cm-operator">=></span> {
   <span class="cm-variable">useEffect</span>(<span class="cm-variable">effect</span>, []);
-};</pre>
+};
+```
     </div>
   </div>
 </div>
@@ -1092,10 +1160,12 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
 <div id="stebl" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20render%E7%BB%93%E6%9D%9F%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%89%A7%E8%A1%8CDOM%E6%93%8D%E4%BD%9C%5CncomponentDidUpdate%20%3D%20function%20useDomDidMount(effect)%20%3D%3E%20%7B%5Cn%5CtuseLayoutEffect(effect%2C%20%5B%5D)%3B%5Cn%7D%3B%22%2C%22id%22%3A%22stebl%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-comment">// render结束，可以执行DOM操作</span>
+      ```
+<span class="cm-comment">// render结束，可以执行DOM操作</span>
 <span class="cm-variable">componentDidUpdate</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span> <span class="cm-def">useDomDidMount</span>(<span class="cm-def">effect</span>) <span class="cm-operator">=></span> {
   <span class="cm-variable">useLayoutEffect</span>(<span class="cm-variable">effect</span>, []);
-};</pre>
+};
+```
     </div>
   </div>
 </div>
@@ -1105,9 +1175,11 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
 <div id="QM8xf" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22componentWillUnMount%20%3D%20function%20useWillUnMount(effect)%20%3D%3E%20%7B%5Cn%5CtuseEffect(()%20%3D%3E%20effect%2C%20%5B%5D)%3B%5Cn%7D%3B%22%2C%22id%22%3A%22QM8xf%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-variable">componentWillUnMount</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span> <span class="cm-def">useWillUnMount</span>(<span class="cm-def">effect</span>) <span class="cm-operator">=></span> {
+      ```
+<span class="cm-variable">componentWillUnMount</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span> <span class="cm-def">useWillUnMount</span>(<span class="cm-def">effect</span>) <span class="cm-operator">=></span> {
   <span class="cm-variable">useEffect</span>(() <span class="cm-operator">=></span> <span class="cm-variable">effect</span>, []);
-};</pre>
+};
+```
     </div>
   </div>
 </div>
@@ -1117,7 +1189,8 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
 <div id="bITaw" contenteditable="false" data-card-type="block" data-lake-card="codeblock" data-card-value="data:%7B%22mode%22%3A%22javascript%22%2C%22code%22%3A%22%2F%2F%20%E4%BD%BF%E7%94%A8React.memo%E5%8C%85%E8%A3%B9%E7%BB%84%E4%BB%B6%5Cnconst%20MyComponent%20%3D%20React.memo(()%20%3D%3E%20%7B%5Cn%5Ctreturn%20%3CChild%20prop%3D%7Bprop%7D%20%2F%3E%5Cn%7D%2C%20%5Bprop%5D)%3B%5Cn%20%20%5Cn%2F%2F%20or%5Cnfunction%20A(%7B%20a%2C%20b%20%7D)%20%7B%5Cn%20%20const%20B%20%3D%20useMemo(()%20%3D%3E%20%3CB1%20a%3D%7Ba%7D%20%2F%3E%2C%20%5Ba%5D)%3B%5Cn%20%20const%20C%20%3D%20useMemo(()%20%3D%3E%20%3CC1%20b%3D%7Bb%7D%20%2F%3E%2C%20%5Bb%5D)%3B%5Cn%20%20return%20(%5Cn%20%20%20%20%3C%3E%5Cn%20%20%20%20%20%20%7BB%7D%5Cn%20%20%20%20%20%20%7BC%7D%5Cn%20%20%20%20%3C%2F%3E%5Cn%20%20)%3B%5Cn%7D%22%2C%22id%22%3A%22bITaw%22%7D">
   <div class="lake-codeblock-content">
     <div class="CodeMirror">
-      <pre class="cm-s-default"><span class="cm-comment">// 使用React.memo包裹组件</span>
+      ```
+<span class="cm-comment">// 使用React.memo包裹组件</span>
 <span class="cm-keyword">const</span> <span class="cm-def">MyComponent</span> <span class="cm-operator">=</span> <span class="cm-variable">React</span>.<span class="cm-property">memo</span>(() <span class="cm-operator">=></span> {
   <span class="cm-keyword">return</span> <span class="cm-operator">&lt;</span><span class="cm-variable">Child</span> <span class="cm-variable">prop</span><span class="cm-operator">=</span>{<span class="cm-property">prop</span>} <span class="cm-operator">/</span><span class="cm-operator">></span>
 }, [<span class="cm-variable">prop</span>]);
@@ -1131,7 +1204,8 @@ React团队为函数组件提供了`useContext` API，功能上约等于`<MyCont
       {<span class="cm-variable">C</span>}
     <span class="cm-operator">&lt;</span><span class="cm-string-2">/></span>
   );
-}</pre>
+}
+```
     </div>
   </div>
 </div>

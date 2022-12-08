@@ -27,13 +27,14 @@ title: script标签的defer与async
 
   <img loading="lazy" class="alignnone wp-image-3799 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png?x-oss-process=image/format,webp" alt="" width="791" height="461" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png?x-oss-process=image/format,webp 1760w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_175/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_447/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7f2464759e6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_466/format,webp 800w" sizes="(max-width: 791px) 100vw, 791px" />
 
-&nbsp;
+
 
 ## 特别注意
 
 需要特别注意的是，通过动态插入标签添加defer和async都没有意义，都是先加载完，先执行
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">(function () {
+```
+(function () {
       var getAssets = function (url, callback) {
         var element = document.createElement("script");
         element.type = 'text/javascript';
@@ -46,6 +47,7 @@ title: script标签的defer与async
       getAssets(react);
       getAssets(reactP);
 
-    })();</pre>
+    })();
+```
 
-&nbsp;
+

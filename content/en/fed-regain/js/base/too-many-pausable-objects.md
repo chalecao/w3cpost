@@ -4,7 +4,9 @@ title: Too many Pausable Objects
 ---
 业务[前端](https://www.w3cdoc.com)监控JS报错偶尔会看到这个错误
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">Too many Pausable Objects</pre>
+```
+Too many Pausable Objects
+```
 
 查了下没查到什么资料，仔细想了想， 应该是：Pausable Objects = Pause-able Objects
 

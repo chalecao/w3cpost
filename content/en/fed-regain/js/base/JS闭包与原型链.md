@@ -18,7 +18,8 @@ title: JS闭包与原型链
 
 一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中。举例如下：Js代码
 
-<pre class="pure-highlightjs"><code class="">function f1(){
+```
+function f1(){
 　　　　var n=999;
 　　　　nAdd=function(){n+=1}
 　　　　function f2(){
@@ -30,7 +31,8 @@ title: JS闭包与原型链
 　　result(); // 999
 　　nAdd();
 　　result(); // 1000
-</code>&lt;/code></pre>
+</code>
+```
 
 在这段代码中，result实际上就是闭包f2函数。它一共运行了两次，第一次的值是999，第二次的值是1000。这证明了，函数f1中的局部变量n一直保存在内存中，并没有在f1调用后被自动清除。  
 为什么会这样呢？原因就在于f1是f2的父函数，而f2被赋给了一个全局变量，这导致f2始终在内存中，而f2的存在依赖于f1，因此f1也始终在内存中，不会在调用结束后，被垃圾回收机制（garbage collection）回收。  
@@ -41,19 +43,23 @@ title: JS闭包与原型链
 
 Js所有的函数都有一个prototype属性，这个属性引用了一个对象，即原型对象，也简称原型。这个函数包括构造函数和普通函数，[我们](https://www.w3cdoc.com)讲的更多是构造函数的原型，但是也不能否定普通函数也有原型。譬如普通函数：
 
-<pre class="pure-highlightjs"><code class="">function F(){
+```
+function F(){
 　　;
 }
 alert(F.prototype instanceof Object) //true
-</code>&lt;/code></pre>
+</code>
+```
 
 构造函数，也即构造对象。首先了解下通过构造函数实例化对象的过程。
 
-<pre class="pure-highlightjs"><code class="">function A(x){
+```
+function A(x){
 　　this.x=x;
 }
 var obj=new A(1);
-</code>&lt;/code></pre>
+</code>
+```
 
 实例化obj对象有三步：
 
@@ -65,18 +71,22 @@ var obj=new A(1);
 
 原型对象初始是空的，也就是没有一个成员（即原型属性和原型方法）。可以通过如下方法验证原型对象具有多少成员。
 
-<pre class="pure-highlightjs"><code class="">var num=0;
+```
+var num=0;
 for(o in A.prototype) {
 　　alert(o);//alert出原型属性名字
 　　num++;
 }
 alert("member: " + num);//alert出原型所有成员个数。
-</code>&lt;/code></pre>
+</code>
+```
 
 但是，一旦定义了原型属性或原型方法，则所有通过该构造函数实例化出来的所有对象，都继承了这些原型属性和原型方法，这是通过内部的_\_proto\__链来实现的。譬如
 
-<pre class="pure-highlightjs"><code class="">A.prototype.say=function(){alert("Hi")};
-</code>&lt;/code></pre>
+```
+A.prototype.say=function(){alert("Hi")};
+</code>
+```
 
 那所有的A的对象都具有了say方法，这个原型对象的say方法是唯一的副本给[大家](https://www.w3cdoc.com)共享的，而不是每一个对象都有关于say方法的一个副本。
 
@@ -84,7 +94,8 @@ alert("member: " + num);//alert出原型所有成员个数。
 
 首先，看个简单的继承实现。
 
-<pre class="pure-highlightjs"><code class="">function A(x){
+```
+function A(x){
 　　this.x=x;
 }
 function B(x,y){
@@ -93,7 +104,8 @@ function B(x,y){
 　　delete this.tmpObj;
 　　this.y=y;
 }
-</code>&lt;/code></pre>
+</code>
+```
 
 第5、6、7行：创建临时属性tmpObj引用构造函数A，然后在B内部执行，执行完后删除。当在B内部执行了this.x=x后（这里的this是B的对象），B当然就拥有了x属性，当然B的x属性和A的x属性两者是独立，所以并不能算严格的继承。第5、6、7行有更简单的实现，就是通过call(apply)方法：A.call(this,x);
 
@@ -101,7 +113,8 @@ function B(x,y){
 
 通过下面的例子，就能很深入地了解原型，以及原型参与实现的完美继承。（本文核心在此^_^）
 
-<pre class="pure-highlightjs"><code class="">function A(x){
+```
+function A(x){
 　　this.x = x;
 }
 A.prototype.a = "a";
@@ -118,7 +131,8 @@ B.prototype.b2 = function(){
 }
 B.prototype.constructor = B;
 var obj = new B(1,3);
-</code>&lt;/code></pre>
+</code>
+```
 
 这个例子讲的就是B继承A。第7行类继承：A.call(this.x);上面已讲过。实现原型继承的是第12行：B.prototype = new A();
 
@@ -136,7 +150,8 @@ alert(B.prototype.constructor)出来后就是”function A(x){…}” 。同样�
 
 原型使用方式1, 个人理解，之前写JS都是这样:
 
-<pre class="pure-highlightjs"><code class="">var decimalDigits = 2,
+```
+var decimalDigits = 2,
 tax = 5;
 
 function add(x, y) {
@@ -148,19 +163,23 @@ return x - y;
 }
 
 //alert(add(1, 3));
-</code>&lt;/code></pre>
+</code>
+```
 
 但是，这个并不能体现OOP思想，看了原型与原型链之后觉得OOP一目了然:
 
-<pre class="pure-highlightjs"><code class="">var Calculator = function (decimalDigits, tax) {
+```
+var Calculator = function (decimalDigits, tax) {
 this.decimalDigits = decimalDigits;
 this.tax = tax;
 };
-</code>&lt;/code></pre>
+</code>
+```
 
 然后给Calculator的prototype属性赋值对象字面量来设定Calculator对象的原型。
 
-<pre class="pure-highlightjs"><code class="">Calculator.prototype = {
+```
+Calculator.prototype = {
 add: function (x, y) {
 return x + y;
 },
@@ -170,9 +189,10 @@ return x - y;
 }
 };
 //alert((new Calculator()).add(1, 3));
-</code>&lt;/code></pre>
+</code>
+```
 
-&nbsp;
+
 
 这样，通过new 一个对象就可以调用里面的公开的方法，属性。
 

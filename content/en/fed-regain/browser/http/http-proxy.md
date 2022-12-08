@@ -9,11 +9,13 @@ title: 基于正向代理解决方案实现的万能代理接口代理转发服�
 
 使用方法：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">npm install fedp -g
+```
+npm install fedp -g
 
 fedp init  // 会提示你在那种场景使用，自动生成配置文件
 
-fedp -c config.js // 会提示你在那种场景使用，自定义配置文件</pre>
+fedp -c config.js // 会提示你在那种场景使用，自定义配置文件
+```
 
 github： <https://github.com/chalecao/fedp>     请帮我点亮小星星，感谢star
 
@@ -22,7 +24,8 @@ github： <https://github.com/chalecao/fedp>     请帮我点亮小星星，�
 * 根据配置会自动代理静态资源，包括css，图片，可以代理到本地或者远程
 * 自定义接口，根据匹配关键字，返回指定的数据结构
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">/**
+```
+/**
  * fedp配置文件
  */
 
@@ -97,9 +100,10 @@ module.exports = {
       routeTo: targetMockServer,
     }],
 }
-</pre>
 
-&nbsp;
+```
+
+
 
 ## 反向代理与正向代理
 
@@ -121,7 +125,8 @@ module.exports = {
 
 第一种方式，代理就是拿到源请求的请求数据，然后代理请求目的资源，最后代理将请求的结果返回到源请求。
 
-<pre class="pure-highlightjs"><code class="">var http = require('http');
+```
+var http = require('http');
 var net = require('net');
 var url = require('url');
 
@@ -147,11 +152,13 @@ function request(cReq, cRes) {
 }
 
 http.createServer().on('request', request).listen(8888, '0.0.0.0');
-</code></pre>
+
+```
 
 上面这种方式只适合普通的http请求，对于https请求就不行了，因为无法解析出请求的具体路径和参数，所以自然也不能使用上面的方法。那么[我们](https://www.w3cdoc.com)只能采用第二种方式，隧道代理。其实在node中已经在net包中封装好了对应的方法。
 
-<pre class="pure-highlightjs"><code class="">var http = require('http');
+```
+var http = require('http');
 var net = require('net');
 var url = require('url');
 
@@ -169,7 +176,8 @@ function connect(cReq, cSock) {
 }
 
 http.createServer().on('connect', connect).listen(8888, '0.0.0.0');
-</code></pre>
+
+```
 
 从原理上讲，如下图：
 
@@ -181,7 +189,8 @@ http.createServer().on('connect', connect).listen(8888, '0.0.0.0');
 
 反向代理实现起来就比较复杂了，对于客户端来说反向代理更像是一个服务器。他可以代理一个具体的请求到另外一个目的地址，然后返回响应，也可以根据指定规则返回指定数据。
 
-<pre class="pure-highlightjs"><code class="">require('http').createServer(function (req, res) {
+```
+require('http').createServer(function (req, res) {
 
         // 在这里可以自定义你的路由分发
         var host = req.headers.host,
@@ -238,7 +247,8 @@ http.createServer().on('connect', connect).listen(8888, '0.0.0.0');
 
     });
     server.listen((port || proxyConfig.port));
-</code></pre>
+
+```
 
 上面给出了部分代码实现逻辑。反向代理主要走两个逻辑：
 
@@ -249,7 +259,8 @@ http.createServer().on('connect', connect).listen(8888, '0.0.0.0');
 
 这里顺带介绍一下这个知识点，跨域请求常用的方案是CORS，经常会遇到跨域请求带cookie的情况，默认ajax跨域请求是不带cookie的。如果需要带cookie，需要这样写：
 
-<pre class="pure-highlightjs"><code class="">原生ajax请求方式：
+```
+原生ajax请求方式：
 
 var xhr = new XMLHttpRequest();
 xhr.open("POST", "https://xxxx.com/demo/b/index.php", true);
@@ -270,7 +281,8 @@ $.ajax({
     error:function(){
     }
 })
-</code></pre>
+
+```
 
 服务端CORS配置：<figure>
 

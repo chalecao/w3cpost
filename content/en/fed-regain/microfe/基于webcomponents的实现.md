@@ -41,7 +41,7 @@ Micro Frontends背后的想法是将网站或Web应用程序视为**独立团队
 
 ## DOM是API {#the-dom-is-the-api}
 
-[自定义元素][17]（Web Components Spec的互操作性方面）是在[浏览器](https://www.w3cdoc.com)中集成的良好原语。每个团队建立他们的组件**使用他们所选择的网络技术**，并**把它包装自定义元素中**（如<code class="highlighter-rouge"><order-minicart></order-minicart></code>）。此特定元素的DOM规范（标记名称，属性和事件）充当其他团队的合同或公共API。优点是他们可以使用组件及其功能，而无需了解实现。他们只需要能够与DOM交互。
+[自定义元素][17]（Web Components Spec的互操作性方面）是在[浏览器](https://www.w3cdoc.com)中集成的良好原语。每个团队建立他们的组件**使用他们所选择的网络技术**，并**把它包装自定义元素中**（如<order-minicart></order-minicart>）。此特定元素的DOM规范（标记名称，属性和事件）充当其他团队的合同或公共API。优点是他们可以使用组件及其功能，而无需了解实现。他们只需要能够与DOM交互。
 
 但仅限定制元素并不是[我们](https://www.w3cdoc.com)所有需求的解决方案。为了解决渐进增强，通用渲染或路由问题，[我们](https://www.w3cdoc.com)需要额外的软件。
 
@@ -75,11 +75,12 @@ Micro Frontends背后的想法是将网站或Web应用程序视为**独立团队
 
 ### 如何创建自定义元素？ {#how-to-create-a-custom-element}
 
-让[我们](https://www.w3cdoc.com)以**购买按钮**为例。团队产品包括简单地添加<code class="highlighter-rouge"><blue-buy sku="t_porsche"></blue-buy></code>到标记中所需位置的按钮。为此，Team Checkout必须<code class="highlighter-rouge">blue-buy</code>在页面上注册元素。
+让[我们](https://www.w3cdoc.com)以**购买按钮**为例。团队产品包括简单地添加<blue-buy sku="t_porsche"></blue-buy>到标记中所需位置的按钮。为此，Team Checkout必须blue-buy在页面上注册元素。
 
 <div class="highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>class BlueBuy extends HTMLElement {
+    ```
+class BlueBuy extends HTMLElement {
   constructor() {
     super();
     this.innerHTML = `<button type="button">buy for 66,00 €</button>`;
@@ -87,15 +88,16 @@ Micro Frontends背后的想法是将网站或Web应用程序视为**独立团队
   disconnectedCallback() { ... }
 }
 window.customElements.define('blue-buy', BlueBuy);
-</code></pre>
+
+```
   </div>
 </div>
 
-现在，每次[浏览器](https://www.w3cdoc.com)遇到新<code class="highlighter-rouge">blue-buy</code>标记时，都会调用构造函数。<code class="highlighter-rouge">this</code>是对自定义元素的根DOM节点的引用。所有属性和一个标准的DOM元素的方法等<code class="highlighter-rouge">innerHTML</code>或<code class="highlighter-rouge">getAttribute()</code>可被使用。
+现在，每次[浏览器](https://www.w3cdoc.com)遇到新blue-buy标记时，都会调用构造函数。this是对自定义元素的根DOM节点的引用。所有属性和一个标准的DOM元素的方法等innerHTML或getAttribute()可被使用。
 
 ![行动中的自定义元素][26]
 
-在命名元素时，规范定义的唯一要求是名称必须**包含短划线（ &#8211; ）**以保持与即将推出的新HTML标记的兼容性。在即将到来的示例中，使用命名约定<code class="highlighter-rouge">[team_color]-[feature]</code>。团队命名空间可以防止冲突，这样，只需查看DOM，就可以明显看出功能的所有权。
+在命名元素时，规范定义的唯一要求是名称必须**包含短划线（ &#8211; ）**以保持与即将推出的新HTML标记的兼容性。在即将到来的示例中，使用命名约定[team_color]-[feature]。团队命名空间可以防止冲突，这样，只需查看DOM，就可以明显看出功能的所有权。
 
 ### 亲子沟通/ DOM修改 {#parent-child-communication--dom-modification}
 
@@ -103,21 +105,25 @@ window.customElements.define('blue-buy', BlueBuy);
 
 <div class="highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>container.innerHTML;
+    ```
+container.innerHTML;
 // => <blue-buy sku="t_porsche">...</blue-buy>
 container.innerHTML = '<blue-buy sku="t_fendt"></blue-buy>';
-</code></pre>
+
+```
   </div>
 </div>
 
-在<code class="highlighter-rouge">disconnectedCallback</code>旧元素被同步调用提供的元素与收拾东西像事件侦听器的机会。之后，调用<code class="highlighter-rouge">constructor</code>新创建的<code class="highlighter-rouge">t_fendt</code>元素。
+在disconnectedCallback旧元素被同步调用提供的元素与收拾东西像事件侦听器的机会。之后，调用constructor新创建的t_fendt元素。
 
-另一个更高性能的选项是更新<code class="highlighter-rouge">sku</code>现有元素的属性。
+另一个更高性能的选项是更新sku现有元素的属性。
 
 <div class="highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>document.querySelector('blue-buy').setAttribute('sku', 't_fendt');
-</code></pre>
+    ```
+document.querySelector('blue-buy').setAttribute('sku', 't_fendt');
+
+```
   </div>
 </div>
 
@@ -125,11 +131,12 @@ container.innerHTML = '<blue-buy sku="t_fendt"></blue-buy>';
 
 ![自定义元素属性更改][27]
 
-为了支持这一点，Custom Element可以实现<code class="highlighter-rouge">attributeChangedCallback</code>并指定<code class="highlighter-rouge">observedAttributes</code>应该触发此回调的列表。
+为了支持这一点，Custom Element可以实现attributeChangedCallback并指定observedAttributes应该触发此回调的列表。
 
 <div class="highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>const prices = {
+    ```
+const prices = {
   t_porsche: '66,00 €',
   t_fendt: '54,00 €',
   t_eicher: '58,00 €',
@@ -154,11 +161,12 @@ class BlueBuy extends HTMLElement {
   disconnectedCallback() {...}
 }
 window.customElements.define('blue-buy', BlueBuy);
-</code></pre>
+
+```
   </div>
 </div>
 
-为避免重复，<code class="highlighter-rouge">render()</code>引入了一个从<code class="highlighter-rouge">constructor</code>和调用的方法<code class="highlighter-rouge">attributeChangedCallback</code>。此方法收集所需数据，innerHTML收集新标记。当决定在Custom Element中使用更复杂的模板引擎或框架时，这就是它的初始化代码所在的位置。
+为避免重复，render()引入了一个从constructor和调用的方法attributeChangedCallback。此方法收集所需数据，innerHTML收集新标记。当决定在Custom Element中使用更复杂的模板引擎或框架时，这就是它的初始化代码所在的位置。
 
 ### [浏览器](https://www.w3cdoc.com)支持 {#browser-support}
 
@@ -174,11 +182,12 @@ window.customElements.define('blue-buy', BlueBuy);
 
 这两个片段都由Team Checkout（蓝色）拥有，因此他们可以构建某种内部JavaScript API，让迷你篮子知道按下按钮的时间。但这需要组件实例相互了解，并且也会违反隔离。
 
-更简洁的方法是使用PubSub机制，其中组件可以发布消息，而其他组件可以订阅特定主题。幸运的是，[浏览器](https://www.w3cdoc.com)内置了此功能。这是[浏览器](https://www.w3cdoc.com)究竟是如何的事件，如<code class="highlighter-rouge">click</code>，<code class="highlighter-rouge">select</code>或<code class="highlighter-rouge">mouseover</code>工作。除了本地事件之外，还可以创建更高级别的事件<code class="highlighter-rouge">new CustomEvent(...)</code>。事件始终与创建/分派的DOM节点相关联。大多数原生活动也有冒泡。这使得可以监听DOM的特定子树上的所有事件。如果要监听页面上的所有事件，请将事件侦听器附加到window元素。以下是<code class="highlighter-rouge">blue:basket:changed</code>示例中-event 的创建方式：
+更简洁的方法是使用PubSub机制，其中组件可以发布消息，而其他组件可以订阅特定主题。幸运的是，[浏览器](https://www.w3cdoc.com)内置了此功能。这是[浏览器](https://www.w3cdoc.com)究竟是如何的事件，如click，select或mouseover工作。除了本地事件之外，还可以创建更高级别的事件new CustomEvent(...)。事件始终与创建/分派的DOM节点相关联。大多数原生活动也有冒泡。这使得可以监听DOM的特定子树上的所有事件。如果要监听页面上的所有事件，请将事件侦听器附加到window元素。以下是blue:basket:changed示例中-event 的创建方式：
 
 <div class="highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>class BlueBuy extends HTMLElement {
+    ```
+class BlueBuy extends HTMLElement {
   [...]
   connectedCallback() {
     [...]
@@ -198,15 +207,17 @@ window.customElements.define('blue-buy', BlueBuy);
     this.firstChild.removeEventListener('click', this.addToCart);
   }
 }
-</code></pre>
+
+```
   </div>
 </div>
 
-迷你篮子现在可以订阅此活动，<code class="highlighter-rouge">window</code>并在刷新数据时收到通知。
+迷你篮子现在可以订阅此活动，window并在刷新数据时收到通知。
 
 <div class="highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>class BlueBasket extends HTMLElement {
+    ```
+class BlueBasket extends HTMLElement {
   connectedCallback() {
     [...]
     window.addEventListener('blue:basket:changed', this.refresh);
@@ -218,21 +229,24 @@ window.customElements.define('blue-buy', BlueBuy);
     window.removeEventListener('blue:basket:changed', this.refresh);
   }
 }
-</code></pre>
+
+```
   </div>
 </div>
 
-通过这种方法，迷你篮子片段为DOM元素添加了一个监听器，该元素超出了其范围（<code class="highlighter-rouge">window</code>）。这应该适用于许多应用程序，但如果您对此感到不舒服，您还可以实现一种方法，其中页面本身（Team Product）侦听事件并通过调用<code class="highlighter-rouge">refresh()</code>DOM元素通知迷你篮子。
+通过这种方法，迷你篮子片段为DOM元素添加了一个监听器，该元素超出了其范围（window）。这应该适用于许多应用程序，但如果您对此感到不舒服，您还可以实现一种方法，其中页面本身（Team Product）侦听事件并通过调用refresh()DOM元素通知迷你篮子。
 
 <div class="highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>// page.js
+    ```
+// page.js
 const $ = document.getElementsByTagName;
 
 $['blue-buy'](0).addEventListener('blue:basket:changed', function() {
   $['blue-basket'](0).refresh();
 });
-</code></pre>
+
+```
   </div>
 </div>
 
@@ -244,34 +258,39 @@ $['blue-buy'](0).addEventListener('blue:basket:changed', function() {
 
 ### 自定义元素+服务器端包含=&#x2764;&#xfe0f; {#custom-elements--server-side-includes--&#xfe0f;}
 
-要使服务器呈现工作，前面的示例将被重构。每个团队都有自己的快速服务器，<code class="highlighter-rouge">render()</code>也可以通过URL访问自定义元素的方法。
+要使服务器呈现工作，前面的示例将被重构。每个团队都有自己的快速服务器，render()也可以通过URL访问自定义元素的方法。
 
 <div class="highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>$ curl http://127.0.0.1:3000/blue-buy?sku=t_porsche
+    ```
+$ curl http://127.0.0.1:3000/blue-buy?sku=t_porsche
 <button type="button">buy for 66,00 €</button>
-</code></pre>
+
+```
   </div>
 </div>
 
-自定义元素标记名称用作路径名称 &#8211; 属性成为查询参数。现在有一种方法来服务器呈现每个组件的内容。与<code class="highlighter-rouge"><blue-buy></code>-Custom Elements 结合使用可以实现与**Universal Web Component**非常接近的东西：
+自定义元素标记名称用作路径名称 &#8211; 属性成为查询参数。现在有一种方法来服务器呈现每个组件的内容。与<blue-buy>-Custom Elements 结合使用可以实现与**Universal Web Component**非常接近的东西：
 
 <div class="highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code><blue-buy sku="t_porsche">
+    ```
+<blue-buy sku="t_porsche">
   <!--#include virtual="/blue-buy?sku=t_porsche" -->
 </blue-buy>
-</code></pre>
+
+```
   </div>
 </div>
 
-该<code class="highlighter-rouge">#include</code>注释是[Server Side Includes的][36]一部分，这是大多数Web服务器中都可用的功能。是的，这与将当前日期嵌入[我们](https://www.w3cdoc.com)网站的日子所使用的技术相同。还有一些替代技术，如[ESI][37]，[nodesi][38]，[compoxure][39]和[tailor][40]，但对于[我们](https://www.w3cdoc.com)的项目，SSI已经证明自己是一个简单且非常稳定的解决方案。
+该#include注释是[Server Side Includes的][36]一部分，这是大多数Web服务器中都可用的功能。是的，这与将当前日期嵌入[我们](https://www.w3cdoc.com)网站的日子所使用的技术相同。还有一些替代技术，如[ESI][37]，[nodesi][38]，[compoxure][39]和[tailor][40]，但对于[我们](https://www.w3cdoc.com)的项目，SSI已经证明自己是一个简单且非常稳定的解决方案。
 
-该<code class="highlighter-rouge">#include</code>评论被替换的响应<code class="highlighter-rouge">/blue-buy?sku=t_porsche</code>之前，Web服务器发送完整的网页[浏览器](https://www.w3cdoc.com)。nginx中的配置如下所示：
+该#include评论被替换的响应/blue-buy?sku=t_porsche之前，Web服务器发送完整的网页[浏览器](https://www.w3cdoc.com)。nginx中的配置如下所示：
 
 <div class="highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>upstream team_blue {
+    ```
+upstream team_blue {
   server team_blue:3001;
 }
 upstream team_green {
@@ -298,11 +317,12 @@ server {
     proxy_pass  http://team_red;
   }
 }
-</code></pre>
+
+```
   </div>
 </div>
 
-该指令<code class="highlighter-rouge">ssi: on;</code>启用S​​SI功能，<code class="highlighter-rouge">upstream</code>并<code class="highlighter-rouge">location</code>为每个团队添加一个和块，以确保所有以其开头的URL <code class="highlighter-rouge">/blue</code>将路由到正确的应用程序（<code class="highlighter-rouge">team_blue:3001</code>）。此外，<code class="highlighter-rouge">/</code>路线映射到团队红色，这是控制主页/产品页面。
+该指令ssi: on;启用S​​SI功能，upstream并location为每个团队添加一个和块，以确保所有以其开头的URL /blue将路由到正确的应用程序（team_blue:3001）。此外，/路线映射到团队红色，这是控制主页/产品页面。
 
 此动画在**禁用了JavaScript**的[浏览器](https://www.w3cdoc.com)中显示拖拉机商店。
 
@@ -318,20 +338,22 @@ server {
 
 <div class="highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code>git clone https://github.com/neuland/micro-frontends.git
+    ```
+git clone https://github.com/neuland/micro-frontends.git
 cd micro-frontends/2-composition-universal
 docker-compose up --build
-</code></pre>
+
+```
   </div>
 </div>
 
-Docker然后在端口3000上启动nginx并为每个团队构建node.js映像。当您在[浏览器](https://www.w3cdoc.com)中打开[http://127.0.0.1:3000/时][45]，您会看到一个红色拖拉机。组合日志<code class="highlighter-rouge">docker-compose</code>可以轻松查看网络中发生的情况。可悲的是，没有办法控制输出颜色，所以你必须忍受团队蓝色可能以绿色突出显示的事实:)
+Docker然后在端口3000上启动nginx并为每个团队构建node.js映像。当您在[浏览器](https://www.w3cdoc.com)中打开[http://127.0.0.1:3000/时][45]，您会看到一个红色拖拉机。组合日志docker-compose可以轻松查看网络中发生的情况。可悲的是，没有办法控制输出颜色，所以你必须忍受团队蓝色可能以绿色突出显示的事实:)
 
-这些<code class="highlighter-rouge">src</code>文件将映射到各个容器中，当您进行代码更改时，节点应用程序将重新启动。更改<code class="highlighter-rouge">nginx.conf</code>需要重新启动<code class="highlighter-rouge">docker-compose</code>才能生效。所以随意摆弄并提供反馈。
+这些src文件将映射到各个容器中，当您进行代码更改时，节点应用程序将重新启动。更改nginx.conf需要重新启动docker-compose才能生效。所以随意摆弄并提供反馈。
 
 ### 数据获取和加载状态 {#data-fetching--loading-states}
 
-SSI / ESI方法的缺点是，**最慢的片段决定**了整个页面**的响应时间**。因此，当片段的响应可以被缓存时，它是好的。对于生产成本高且难以缓存的片段，通常最好将它们从初始渲染中排除。它们可以在[浏览器](https://www.w3cdoc.com)中异步加载。在[我们](https://www.w3cdoc.com)的示例中<code class="highlighter-rouge">green-recos</code>，显示个性化推荐的片段是此的候选者。
+SSI / ESI方法的缺点是，**最慢的片段决定**了整个页面**的响应时间**。因此，当片段的响应可以被缓存时，它是好的。对于生产成本高且难以缓存的片段，通常最好将它们从初始渲染中排除。它们可以在[浏览器](https://www.w3cdoc.com)中异步加载。在[我们](https://www.w3cdoc.com)的示例中green-recos，显示个性化推荐的片段是此的候选者。
 
 一个可能的解决方案是红队刚刚跳过SSI Include。
 
@@ -339,10 +361,12 @@ SSI / ESI方法的缺点是，**最慢的片段决定**了整个页面**的响�
 
 <div class="highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code><green-recos sku="t_porsche">
+    ```
+<green-recos sku="t_porsche">
   <!--#include virtual="/green-recos?sku=t_porsche" -->
 </green-recos>
-</code></pre>
+
+```
   </div>
 </div>
 
@@ -350,12 +374,14 @@ SSI / ESI方法的缺点是，**最慢的片段决定**了整个页面**的响�
 
 <div class="highlighter-rouge">
   <div class="highlight">
-    <pre class="highlight"><code><green-recos sku="t_porsche"></green-recos>
-</code></pre>
+    ```
+<green-recos sku="t_porsche"></green-recos>
+
+```
   </div>
 </div>
 
-_重要说明：自定义元素[不能自动关闭][46]，因此写入<code class="highlighter-rouge"><green-recos sku="t_porsche" /></code>无法正常工作。_
+_重要说明：自定义元素[不能自动关闭][46]，因此写入<green-recos sku="t_porsche" />无法正常工作。_
 
 ![回流][47]
 
@@ -363,7 +389,7 @@ _重要说明：自定义元素[不能自动关闭][46]，因此写入<code clas
 
 有不同的选择可以避免像这样烦人的回流。控制页面的团队红色可以**固定推荐容器的高度**。在响应式网站上，确定高度通常很棘手，因为不同屏幕尺寸可能会有所不同。但更重要的问题是，**这种团队间协议**在红色和绿色团队之间**产生紧密联系**。如果团队绿色想要在reco元素中引入额外的子标题，则必须在新高度上与团队红色协调。两个团队都必须同时推出他们的更改，以避免布局中断。
 
-更好的方法是使用称为[Skeleton Screens][48]的技术。红队留下<code class="highlighter-rouge">green-recos</code>SSI包含在标记中。另外，team green更改其片段的**服务器端呈现方法**，以便生成内容的**原理图版本**。该**骷髅标记**可以重用的实际内容的布局样式的部分。这样它就可以**保留所需的空间**，实际内容的填充不会导致跳跃。
+更好的方法是使用称为[Skeleton Screens][48]的技术。红队留下green-recosSSI包含在标记中。另外，team green更改其片段的**服务器端呈现方法**，以便生成内容的**原理图版本**。该**骷髅标记**可以重用的实际内容的布局样式的部分。这样它就可以**保留所需的空间**，实际内容的填充不会导致跳跃。
 
 ![骨架屏幕][49]
 

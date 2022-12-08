@@ -67,7 +67,8 @@ weight: 8
 
   1. python基本操作，参考百度AI Studio [在线地址][34]
 
-<pre class="EnlighterJSRAW" data-enlighter-language="python">data = [0.0 for _ in range(7)]
+```
+data = [0.0 for _ in range(7)]
 print data
 tel = {'jack': 4098, 'sape': 4139}
 print list(tel)
@@ -95,7 +96,8 @@ def fib(n):
      while a<n:
          print(a),
          a,b=b,a+b
-fib(20)</pre>
+fib(20)
+```
 
 
   2. <a href="https://aistudio.baidu.com/#/projectDetail/33836">pyplot绘制图表</a>

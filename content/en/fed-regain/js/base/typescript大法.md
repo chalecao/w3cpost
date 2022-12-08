@@ -8,8 +8,10 @@ title: typescript大法
 开始使用 `tsconfig.json` 是一件比较容易的事，你仅仅需要写下：
 
 <div class="language-json extra-class">
-  <pre class="language-json"><code>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+  ```
+{}
+
+```
 </div>
 
 例如，在项目的根目录下创建一个空 JSON 文件。通过这种方式，TypeScript 将 会把此目录和子目录下的所有 .ts 文件作为编译上下文的一部分，它还会包含一部分默认的编译选项。
@@ -19,60 +21,62 @@ title: typescript大法
 你可以通过 `compilerOptions` 来定制你的编译选项：
 
 <div class="language-js extra-class">
-  <pre class="language-js"><code>&lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token string">"compilerOptions"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">{&lt;/span>
+  ```
+{
+  "compilerOptions": {
 
-    &lt;span class="token comment">/* 基本选项 */&lt;/span>
-    &lt;span class="token string">"target"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"es5"&lt;/span>&lt;span class="token punctuation">,&lt;/span>                       &lt;span class="token comment">// 指定 ECMAScript 目标版本: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'&lt;/span>
-    &lt;span class="token string">"module"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"commonjs"&lt;/span>&lt;span class="token punctuation">,&lt;/span>                  &lt;span class="token comment">// 指定使用模块: 'commonjs', 'amd', 'system', 'umd' or 'es2015'&lt;/span>
-    &lt;span class="token string">"lib"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">[&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">,&lt;/span>                             &lt;span class="token comment">// 指定要包含在编译中的库文件&lt;/span>
-    &lt;span class="token string">"allowJs"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>                       &lt;span class="token comment">// 允许编译 javascript 文件&lt;/span>
-    &lt;span class="token string">"checkJs"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>                       &lt;span class="token comment">// 报告 javascript 文件中的错误&lt;/span>
-    &lt;span class="token string">"jsx"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"preserve"&lt;/span>&lt;span class="token punctuation">,&lt;/span>                     &lt;span class="token comment">// 指定 jsx 代码的生成: 'preserve', 'react-native', or 'react'&lt;/span>
-    &lt;span class="token string">"declaration"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>                   &lt;span class="token comment">// 生成相应的 '.d.ts' 文件&lt;/span>
-    &lt;span class="token string">"sourceMap"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>                     &lt;span class="token comment">// 生成相应的 '.map' 文件&lt;/span>
-    &lt;span class="token string">"outFile"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"./"&lt;/span>&lt;span class="token punctuation">,&lt;/span>                       &lt;span class="token comment">// 将输出文件合并为一个文件&lt;/span>
-    &lt;span class="token string">"outDir"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"./"&lt;/span>&lt;span class="token punctuation">,&lt;/span>                        &lt;span class="token comment">// 指定输出目录&lt;/span>
-    &lt;span class="token string">"rootDir"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"./"&lt;/span>&lt;span class="token punctuation">,&lt;/span>                       &lt;span class="token comment">// 用来控制输出目录结构 --outDir.&lt;/span>
-    &lt;span class="token string">"removeComments"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>                &lt;span class="token comment">// 删除编译后的所有的注释&lt;/span>
-    &lt;span class="token string">"noEmit"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>                        &lt;span class="token comment">// 不生成输出文件&lt;/span>
-    &lt;span class="token string">"importHelpers"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>                 &lt;span class="token comment">// 从 tslib 导入辅助工具函数&lt;/span>
-    &lt;span class="token string">"isolatedModules"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>               &lt;span class="token comment">// 将每个文件做为单独的模块 （与 'ts.transpileModule' 类似）.&lt;/span>
+    /* 基本选项 */
+    "target": "es5",                       // 指定 ECMAScript 目标版本: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', or 'ESNEXT'
+    "module": "commonjs",                  // 指定使用模块: 'commonjs', 'amd', 'system', 'umd' or 'es2015'
+    "lib": [],                             // 指定要包含在编译中的库文件
+    "allowJs": true,                       // 允许编译 javascript 文件
+    "checkJs": true,                       // 报告 javascript 文件中的错误
+    "jsx": "preserve",                     // 指定 jsx 代码的生成: 'preserve', 'react-native', or 'react'
+    "declaration": true,                   // 生成相应的 '.d.ts' 文件
+    "sourceMap": true,                     // 生成相应的 '.map' 文件
+    "outFile": "./",                       // 将输出文件合并为一个文件
+    "outDir": "./",                        // 指定输出目录
+    "rootDir": "./",                       // 用来控制输出目录结构 --outDir.
+    "removeComments": true,                // 删除编译后的所有的注释
+    "noEmit": true,                        // 不生成输出文件
+    "importHelpers": true,                 // 从 tslib 导入辅助工具函数
+    "isolatedModules": true,               // 将每个文件做为单独的模块 （与 'ts.transpileModule' 类似）.
 
-    &lt;span class="token comment">/* 严格的类型检查选项 */&lt;/span>
-    &lt;span class="token string">"strict"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>                        &lt;span class="token comment">// 启用所有严格类型检查选项&lt;/span>
-    &lt;span class="token string">"noImplicitAny"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>                 &lt;span class="token comment">// 在表达式和声明上有隐含的 any类型时报错&lt;/span>
-    &lt;span class="token string">"strictNullChecks"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>              &lt;span class="token comment">// 启用严格的 null 检查&lt;/span>
-    &lt;span class="token string">"noImplicitThis"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>                &lt;span class="token comment">// 当 this 表达式值为 any 类型的时候，生成一个错误&lt;/span>
-    &lt;span class="token string">"alwaysStrict"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>                  &lt;span class="token comment">// 以严格模式检查每个模块，并在每个文件里加入 'use strict'&lt;/span>
+    /* 严格的类型检查选项 */
+    "strict": true,                        // 启用所有严格类型检查选项
+    "noImplicitAny": true,                 // 在表达式和声明上有隐含的 any类型时报错
+    "strictNullChecks": true,              // 启用严格的 null 检查
+    "noImplicitThis": true,                // 当 this 表达式值为 any 类型的时候，生成一个错误
+    "alwaysStrict": true,                  // 以严格模式检查每个模块，并在每个文件里加入 'use strict'
 
-    &lt;span class="token comment">/* 额外的检查 */&lt;/span>
-    &lt;span class="token string">"noUnusedLocals"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>                &lt;span class="token comment">// 有未使用的变量时，抛出错误&lt;/span>
-    &lt;span class="token string">"noUnusedParameters"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>            &lt;span class="token comment">// 有未使用的参数时，抛出错误&lt;/span>
-    &lt;span class="token string">"noImplicitReturns"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>             &lt;span class="token comment">// 并不是所有函数里的代码都有返回值时，抛出错误&lt;/span>
-    &lt;span class="token string">"noFallthroughCasesInSwitch"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>    &lt;span class="token comment">// 报告 switch 语句的 fallthrough 错误。（即，不允许 switch 的 case 语句贯穿）&lt;/span>
+    /* 额外的检查 */
+    "noUnusedLocals": true,                // 有未使用的变量时，抛出错误
+    "noUnusedParameters": true,            // 有未使用的参数时，抛出错误
+    "noImplicitReturns": true,             // 并不是所有函数里的代码都有返回值时，抛出错误
+    "noFallthroughCasesInSwitch": true,    // 报告 switch 语句的 fallthrough 错误。（即，不允许 switch 的 case 语句贯穿）
 
-    &lt;span class="token comment">/* 模块解析选项 */&lt;/span>
-    &lt;span class="token string">"moduleResolution"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"node"&lt;/span>&lt;span class="token punctuation">,&lt;/span>            &lt;span class="token comment">// 选择模块解析策略： 'node' (Node.js) or 'classic' (TypeScript pre-1.6)&lt;/span>
-    &lt;span class="token string">"baseUrl"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"./"&lt;/span>&lt;span class="token punctuation">,&lt;/span>                       &lt;span class="token comment">// 用于解析非相对模块名称的基目录&lt;/span>
-    &lt;span class="token string">"paths"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span>                           &lt;span class="token comment">// 模块名到基于 baseUrl 的路径映射的列表&lt;/span>
-    &lt;span class="token string">"rootDirs"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">[&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">,&lt;/span>                        &lt;span class="token comment">// 根文件夹列表，其组合内容表示项目运行时的结构内容&lt;/span>
-    &lt;span class="token string">"typeRoots"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">[&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">,&lt;/span>                       &lt;span class="token comment">// 包含类型声明的文件列表&lt;/span>
-    &lt;span class="token string">"types"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">[&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">,&lt;/span>                           &lt;span class="token comment">// 需要包含的类型声明文件名列表&lt;/span>
-    &lt;span class="token string">"allowSyntheticDefaultImports"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>  &lt;span class="token comment">// 允许从没有设置默认导出的模块中默认导入。&lt;/span>
+    /* 模块解析选项 */
+    "moduleResolution": "node",            // 选择模块解析策略： 'node' (Node.js) or 'classic' (TypeScript pre-1.6)
+    "baseUrl": "./",                       // 用于解析非相对模块名称的基目录
+    "paths": {},                           // 模块名到基于 baseUrl 的路径映射的列表
+    "rootDirs": [],                        // 根文件夹列表，其组合内容表示项目运行时的结构内容
+    "typeRoots": [],                       // 包含类型声明的文件列表
+    "types": [],                           // 需要包含的类型声明文件名列表
+    "allowSyntheticDefaultImports": true,  // 允许从没有设置默认导出的模块中默认导入。
 
-    &lt;span class="token comment">/* Source Map Options */&lt;/span>
-    &lt;span class="token string">"sourceRoot"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"./"&lt;/span>&lt;span class="token punctuation">,&lt;/span>                    &lt;span class="token comment">// 指定调试器应该找到 TypeScript 文件而不是源文件的位置&lt;/span>
-    &lt;span class="token string">"mapRoot"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"./"&lt;/span>&lt;span class="token punctuation">,&lt;/span>                       &lt;span class="token comment">// 指定调试器应该找到映射文件而不是生成文件的位置&lt;/span>
-    &lt;span class="token string">"inlineSourceMap"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>               &lt;span class="token comment">// 生成单个 soucemaps 文件，而不是将 sourcemaps 生成不同的文件&lt;/span>
-    &lt;span class="token string">"inlineSources"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>                 &lt;span class="token comment">// 将代码与 sourcemaps 生成到一个文件中，要求同时设置了 --inlineSourceMap 或 --sourceMap 属性&lt;/span>
+    /* Source Map Options */
+    "sourceRoot": "./",                    // 指定调试器应该找到 TypeScript 文件而不是源文件的位置
+    "mapRoot": "./",                       // 指定调试器应该找到映射文件而不是生成文件的位置
+    "inlineSourceMap": true,               // 生成单个 soucemaps 文件，而不是将 sourcemaps 生成不同的文件
+    "inlineSources": true,                 // 将代码与 sourcemaps 生成到一个文件中，要求同时设置了 --inlineSourceMap 或 --sourceMap 属性
 
-    &lt;span class="token comment">/* 其他选项 */&lt;/span>
-    &lt;span class="token string">"experimentalDecorators"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">,&lt;/span>        &lt;span class="token comment">// 启用装饰器&lt;/span>
-    &lt;span class="token string">"emitDecoratorMetadata"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span>          &lt;span class="token comment">// 为装饰器提供元数据的支持&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+    /* 其他选项 */
+    "experimentalDecorators": true,        // 启用装饰器
+    "emitDecoratorMetadata": true          // 为装饰器提供元数据的支持
+  }
+}
+
+```
 </div>
 
 关于这些（或者更多）编译选项，稍后将会讨论。
@@ -93,33 +97,37 @@ title: typescript大法
 你也可以显式指定需要编译的文件：
 
 <div class="language-js extra-class">
-  <pre class="language-js"><code>&lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token string">"files"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">[&lt;/span>
-    &lt;span class="token string">"./some/file.ts"&lt;/span>
-  &lt;span class="token punctuation">]&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+  ```
+{
+  "files": [
+    "./some/file.ts"
+  ]
+}
+
+```
 </div>
 
 你还可以使用 `include` 和 `exclude` 选项来指定需要包含的文件和排除的文件：
 
 <div class="language-js extra-class">
-  <pre class="language-js"><code>&lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token string">"include"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">[&lt;/span>
-    &lt;span class="token string">"./folder"&lt;/span>
-  &lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-  &lt;span class="token string">"exclude"&lt;/span>&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">[&lt;/span>
-    &lt;span class="token string">"./folder/**/*.spec.ts"&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-    &lt;span class="token string">"./folder/someSubFolder"&lt;/span>
-  &lt;span class="token punctuation">]&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+  ```
+{
+  "include": [
+    "./folder"
+  ],
+  "exclude": [
+    "./folder/**/*.spec.ts",
+    "./folder/someSubFolder"
+  ]
+}
+
+```
 </div>
 
 <div class="tip custom-block">
  注意
   
- 使用 <code>globs</code>：<code>**/*</code> （一个示例用法：<code>some/folder/**/*</code>）意味着匹配所有的文件夹和所有文件（扩展名为 <code>.ts/.tsx</code>，当开启了 <code>allowJs: true</code> 选项时，扩展名可以是 <code>.js/.jsx</code>）。
+ 使用 globs：**/* （一个示例用法：some/folder/**/*）意味着匹配所有的文件夹和所有文件（扩展名为 .ts/.tsx，当开启了 allowJs: true 选项时，扩展名可以是 .js/.jsx）。
   
   ##   参考：
   

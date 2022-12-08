@@ -41,7 +41,7 @@ weight: 3
 # 构建RenderTree
   ![](/images/posts/2022-11-24-23-58-03.png)
 
-DOM树从根节点开始遍历可见节点，这里之所以强调了“可见”，是因为如果遇到设置了类似<code>display: none;</code>的不可见节点，在render过程中是会被跳过的（但<code>visibility: hidden; opacity: 0</code>这种仍旧占据空间的节点不会被跳过render），保存各个节点的样式信息及其余节点的从属关系。
+DOM树从根节点开始遍历可见节点，这里之所以强调了“可见”，是因为如果遇到设置了类似display: none;的不可见节点，在render过程中是会被跳过的（但visibility: hidden; opacity: 0这种仍旧占据空间的节点不会被跳过render），保存各个节点的样式信息及其余节点的从属关系。
 
 ![](/images/posts/2022-11-24-23-59-20.png)
 # 串起来
@@ -78,7 +78,7 @@ ayout的基本单位是BFC（块格式化上下文，Block Format Context）和I
 避免回流和重绘的方法：
 - 避免逐个修改节点样式，尽量一次性修改
   - 使用DocumentFragment将需要多次修改的DOM元素缓存，最后一次性append到真实DOM中渲染
-- 可以将需要多次修改的DOM元素设置<code>display: none</code>，操作完再显示。（因为隐藏元素不在render树内，因此修改隐藏元素不会触发回流重绘）
+- 可以将需要多次修改的DOM元素设置display: none，操作完再显示。（因为隐藏元素不在render树内，因此修改隐藏元素不会触发回流重绘）
 - 避免多次读取某些属性（见上）
 - 将复杂的节点元素脱离文档流，降低回流成本
 

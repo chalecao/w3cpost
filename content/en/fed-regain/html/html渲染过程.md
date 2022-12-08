@@ -24,7 +24,7 @@ Chromium拥有一套多进程架构。Chromium有一个[浏览器](https://www.w
 - 一个Document代表JavaScript中的window.document对象，每个框只有一个Document。
 - 一个ExecutionContext在主线程中抽象一个Document，在worker线程中抽象WorkerGlobalScope。
 
-渲染进程 ：页面  <span style="color: #ff0000;">= </span> 1 ：N 页面 ：框  <span style="color: #ff0000;">= </span> 1 ：M Frame : DOMWindow : Document (或ExecutionContext) 在任何情况下都是 1 : 1 : 1 ，但有时引用关系会变化。
+渲染进程 ：页面  =  1 ：N 页面 ：框  =  1 ：M Frame : DOMWindow : Document (或ExecutionContext) 在任何情况下都是 1 : 1 : 1 ，但有时引用关系会变化。
   
 由于Blink运行在渲染进程中的沙盒中，当Blink需要访问文件或播放视频或者访问用户信息（cookie、password等）时必须与[浏览器](https://www.w3cdoc.com)进程通信。这种不同进程间的通信方式被Mojo实现。随着Chromium不断向服务化架构演进，Blink可以通过Mojo来降低消息传递过程中对发送方和接收方对于具体实现的依赖（服务可能在多个进程中，也可能在同一个进程中，消息传递方式不同）
   

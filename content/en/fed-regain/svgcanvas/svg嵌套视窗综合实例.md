@@ -16,12 +16,14 @@ title: SVG嵌套视窗综合实例
 
 例如，试想有一个svg以及里面的内容：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-    &lt;!-- some SVG content -->
-    &lt;svg>
-    &lt;!-- some inner SVG content -->
-    &lt;/svg>
-&lt;/svg></pre>
+```
+<svg xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+    <!-- some SVG content -->
+    <svg>
+    <!-- some inner SVG content -->
+    </svg>
+</svg>
+```
 
 第一件需要注意的是内容svg元素不需要声明一个命名空间xmlns因为默认和外层svg的命名空间相同。当然，如果在HTML5文档中外层svg也不需要命名空间。
 
@@ -35,10 +37,12 @@ title: SVG嵌套视窗综合实例
 
 给svg内的元素百分比值的声明会根据svg计算，而不是外层svg。例如，下面的代码会导致内层SVG等于400单位，里面的长方形是200个单位：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;svg width="800" height="600">
-    &lt;svg width="50%" ..>&lt;rect width="50%" ... />
-    &lt;/svg>
-&lt;/svg></pre>
+```
+<svg width="800" height="600">
+    <svg width="50%" ..><rect width="50%" ... />
+    </svg>
+</svg>
+```
 
 如果最外层svg的宽度为100%（例如，如果它在一个文档中内联或者你想要它可以流动），内层SVG会扩展拉伸来保持宽度为外层SVG的一半-这是强制的。
 
@@ -66,20 +70,22 @@ svg元素有独立于它父元素的坐标系，它可以有独立的viewBox和p
 
 SVG图形的代码如下：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;svg version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-&lt;!-- ... -->
-    &lt;svg viewBox="0 0 315 385" preserveAspectRatio="xMidYMid meet">
-    &lt;!-- the chicken illustration -->
-        &lt;g id="chicken">
-        &lt;!-- ... -->&lt;/g>
-        &lt;!-- path forming the lower shell -->
-        &lt;path id="lower-shell" fill="url(#gradient)" stroke="#000000" stroke-width="1.5003" d="..."/>
-    &lt;/svg>
-    &lt;svg id="upper-shell" viewBox="0 0 315 385" preserveAspectRatio="xMidYMin meet">
-     &lt;!-- path forming the upper shell -->
-     &lt;path id="the-upper-shell" fill="url(#gradient)" stroke="#000000" stroke-width="1.5003" d="..."/>
-    &lt;/svg>
-&lt;/svg></pre>
+```
+<svg version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+<!-- ... -->
+    <svg viewBox="0 0 315 385" preserveAspectRatio="xMidYMid meet">
+    <!-- the chicken illustration -->
+        <g id="chicken">
+        <!-- ... --></g>
+        <!-- path forming the lower shell -->
+        <path id="lower-shell" fill="url(#gradient)" stroke="#000000" stroke-width="1.5003" d="..."/>
+    </svg>
+    <svg id="upper-shell" viewBox="0 0 315 385" preserveAspectRatio="xMidYMin meet">
+     <!-- path forming the upper shell -->
+     <path id="the-upper-shell" fill="url(#gradient)" stroke="#000000" stroke-width="1.5003" d="..."/>
+    </svg>
+</svg>
+```
 
 这个时候，注意在嵌套svg#upper-shell上声明的viewBox和最外层svg有相同的值（在它被移除之前）。[我们](https://www.w3cdoc.com)用相同的viewBox值我原因就是这样，SVG在大屏幕上保持最初的样子。
 
@@ -94,20 +100,22 @@ SVG图形的代码如下：
 
 如果[我们](https://www.w3cdoc.com)想要整个鸡蛋剥离显示出小鸡，[我们](https://www.w3cdoc.com)可以单独用一个svg层包含下部分壳，viewBox也相同。确保下部分壳向下移动并固定在视窗的底部中心，[我们](https://www.w3cdoc.com)使用preserveAspectRatio=”xMidYMax meet”来定位。代码如下：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;svg version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
-    &lt;svg id="chick" viewBox="0 0 315 385" preserveAspectRatio="xMidYMid meet">
-    &lt;!-- the chicken illustration -->
-    &lt;g id="chick">&lt;!-- ... -->&lt;/g>
-    &lt;/svg>
-&lt;svg id="upper-shell" viewBox="0 0 315 385" preserveAspectRatio="xMidYMid meet">
-&lt;!-- path forming the upper shell -->
-&lt;path id="the-upper-shell" fill="url(#gradient)" stroke="#000000" stroke-width="1.5003" d="..."/>
-&lt;/svg>
-&lt;svg id="lower-shell" viewBox="0 0 315 385" preserveAspectRatio="xMidYMax meet">
-    &lt;!-- path forming the lower shell -->
-    &lt;path id="the-lower-shell" fill="url(#gradient)" stroke="#000000" stroke-width="1.5003" d="..."/>
-&lt;/svg>
-&lt;/svg></pre>
+```
+<svg version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
+    <svg id="chick" viewBox="0 0 315 385" preserveAspectRatio="xMidYMid meet">
+    <!-- the chicken illustration -->
+    <g id="chick"><!-- ... --></g>
+    </svg>
+<svg id="upper-shell" viewBox="0 0 315 385" preserveAspectRatio="xMidYMid meet">
+<!-- path forming the upper shell -->
+<path id="the-upper-shell" fill="url(#gradient)" stroke="#000000" stroke-width="1.5003" d="..."/>
+</svg>
+<svg id="lower-shell" viewBox="0 0 315 385" preserveAspectRatio="xMidYMax meet">
+    <!-- path forming the lower shell -->
+    <path id="the-lower-shell" fill="url(#gradient)" stroke="#000000" stroke-width="1.5003" d="..."/>
+</svg>
+</svg>
+```
 
 每个svg层/viewport等于最外层svg宽高的100%。所以[我们](https://www.w3cdoc.com)基本有了三个副本。每层包含一个元素-上部分壳，下部分壳，或小鸡。三层的viewBox是相同的，只有preserveAspectRatio不同。  
 ![SVG嵌套视窗综合实例][7]  
@@ -123,12 +131,14 @@ SVG图形的代码如下：
 
 例如，如果你只想SVG中的一个元素流动，你可以把它包含在一个svg中，并且使用preserveAspectRatio=”none”来让这个元素扩展始终撑满这个视窗的宽，并且保持宽高比和像[我们](https://www.w3cdoc.com)在之前例子中做的一样定位其他元素。
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;svg>&lt;!-- ... -->
-&lt;svg viewBox=".." preserveAspectRatio="none">
-&lt;!-- this content will be fluid -->&lt;/svg>&lt;svg viewBox=".." preserveAspectRatio="..">
-&lt;!-- content positioned somewhere in the viewport -->
-&lt;/svg>
-&lt;!-- ... -->&lt;/svg></pre>
+```
+<svg><!-- ... -->
+<svg viewBox=".." preserveAspectRatio="none">
+<!-- this content will be fluid --></svg><svg viewBox=".." preserveAspectRatio="..">
+<!-- content positioned somewhere in the viewport -->
+</svg>
+<!-- ... --></svg>
+```
 
 Jake Archibald创建了一个简单实用的嵌套SVG使用案例：一个简单的UI可以包含定位在最外层svg角落的元素，并且保持宽高比，UI的中间部分浮动并且根据svg宽度改变进行拉伸。你可以在这里查看。确保你在开发工具里检查代码来选取和想象不同viewbox和svg使用的效果。
 
@@ -142,11 +152,13 @@ symbol元素会定义新视窗，无论它什么时候被use元素实例化。
 
 symbol元素的使用可以参考use元素中的xlink:href属性：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;svg>
-  &lt;symbol id="my-symbol" viewBox="0 0 300 200">
-  &lt;!-- contents of the symbol -->&lt;!-- this content is only rendered when `use`d -->
-  &lt;/symbol>&lt;use xlink:href="#my-symbol" x="?" y="?" width="?" height="?">
-&lt;/svg></pre>
+```
+<svg>
+  <symbol id="my-symbol" viewBox="0 0 300 200">
+  <!-- contents of the symbol --><!-- this content is only rendered when `use`d -->
+  </symbol><use xlink:href="#my-symbol" x="?" y="?" width="?" height="?">
+</svg>
+```
 
 上面值中的问号表示这些值也许没有声明-如果x和y没有声明，默认值为0，也不需要声明宽高。
 
@@ -168,7 +180,9 @@ images元素表明整个文件的内容被渲染到一个当前用户坐标系�
 
 代表SVG文件的image元素会导致建立一个临时新视窗因为定义相关资源有svg元素。
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">&lt;image xlink:href="myGraphic.svg" x="?" y="?" width="?" height="?" preserveAspectRatio="?" /></pre>
+```
+<image xlink:href="myGraphic.svg" x="?" y="?" width="?" height="?" preserveAspectRatio="?" />
+```
 
   <image>元素接收许多属性，其中一些属性-和这篇文章有关的-是x和y位置属性，width和height属性以及preserveAspectratio。
 

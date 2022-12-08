@@ -7,12 +7,12 @@ title: 使用注释和JSDOC让代码更规范
 首先，JSDoc 并不会对源码产生任何的影响，所有的内容都是写在注释里边的。  
 所以并不需要担心 JSDoc 会对你的程序造成什么负面影响。
 
-可以先来看一个普通的 JavaScript 文件在编辑器中的展示效果：<img loading="lazy" width="656" height="244" class="alignnone size-full wp-image-4522 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ed723a45.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ed723a45.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ed723a45.png?x-oss-process=image/format,webp 656w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ed723a45.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_112/format,webp 300w" sizes="(max-width: 656px) 100vw, 656px" /><span class="img-wrap"></span>
+可以先来看一个普通的 JavaScript 文件在编辑器中的展示效果：<img loading="lazy" width="656" height="244" class="alignnone size-full wp-image-4522 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ed723a45.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ed723a45.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ed723a45.png?x-oss-process=image/format,webp 656w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ed723a45.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_112/format,webp 300w" sizes="(max-width: 656px) 100vw, 656px" />
 
 很显而易见的，编辑器也不能够确定这个函数究竟是什么含义，因为任何类型的两个参数都可以进行相加。  
 所以编辑器就会使用一个在 TypeScript 中经常出现用来标识任意类型的 `any` 关键字来描述函数的参数以及返回值。
 
-而这种情况下[我们](https://www.w3cdoc.com)可以很简单的使用 JSDoc 来手动描述这个函数的作用：<img loading="lazy" width="800" height="622" class="alignnone size-full wp-image-4523 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_233/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_597/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/quality,q_50/resize,m_fill,w_772,h_600/format,webp 772w" sizes="(max-width: 800px) 100vw, 800px" /><span class="img-wrap"><br /> </span>
+而这种情况下[我们](https://www.w3cdoc.com)可以很简单的使用 JSDoc 来手动描述这个函数的作用：<img loading="lazy" width="800" height="622" class="alignnone size-full wp-image-4523 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_233/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_597/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2ee8a8949.png?x-oss-process=image/quality,q_50/resize,m_fill,w_772,h_600/format,webp 772w" sizes="(max-width: 800px) 100vw, 800px" /><br /> 
 
 > 实际上有些函数是需要手动指定`@return {TYPE}`来确定函数返回值类型的，但因为[我们](https://www.w3cdoc.com)函数的作用就是通过两个参数相加并返回，所以编辑器推算出了函数返回值的类型。
 
@@ -21,7 +21,7 @@ title: 使用注释和JSDOC让代码更规范
 
 亦或者[我们](https://www.w3cdoc.com)来放出一个稍微复杂一些的例子：<img loading="lazy" width="1722" height="1558" class="alignnone size-full wp-image-4524 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png?x-oss-process=image/format,webp 1722w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_271/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_695/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d0c2efb55917.png?x-oss-process=image/quality,q_50/resize,m_fill,w_663,h_600/format,webp 663w" sizes="(max-width: 1722px) 100vw, 1722px" />
 
-<span class="img-wrap"></span>
+
 
 看似清晰、简洁的一个示例，完全看不出什么毛病 _除了两个异步`await`可以合并成一个_。  
 确实，如果这段代码就这么一直躺在项目中，也不去改需求，那么这段代码可以说是很完美的存在了。  
@@ -68,22 +68,24 @@ JSDoc 在写法上有着特定的要求，比如说行内也必须要是这样�
 
 首先，在 JSDoc 中是支持所有的基本类型的，包括数字、字符串、布尔值之类的。
 
-<pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">/**@type {number} */&lt;/span>
-&lt;span class="hljs-comment">/** @type {string}*/&lt;/span>
-&lt;span class="hljs-comment">/**@type {boolean} */&lt;/span>
-&lt;span class="hljs-comment">/** @type {RegExp}*/&lt;/span>
+```
+/**@type {number} */
+/** @type {string}*/
+/**@type {boolean} */
+/** @type {RegExp}*/
 
-&lt;span class="hljs-comment">// 或者是一个函数&lt;/span>
-&lt;span class="hljs-comment">/** @type {function} */&lt;/span>
+// 或者是一个函数
+/** @type {function} */
 
-&lt;span class="hljs-comment">// 一个包含参数的函数&lt;/span>
-&lt;span class="hljs-comment">/** @type {function(number, string)} */&lt;/span>
+// 一个包含参数的函数
+/** @type {function(number, string)} */
 
-&lt;span class="hljs-comment">// Object结构的参数&lt;/span>
-&lt;span class="hljs-comment">/** @type {function({ arg1: number, arg2: string })} */&lt;/span>
+// Object结构的参数
+/** @type {function({ arg1: number, arg2: string })} */
 
-&lt;span class="hljs-comment">// 一个包涵参数和返回值的函数&lt;/span>
-&lt;span class="hljs-comment">/** @type {function(number, string): boolean} */&lt;/span></code></pre>
+// 一个包涵参数和返回值的函数
+/** @type {function(number, string): boolean} */
+```
 
 > 在 vscode 中键入以上的注释，都可以很方便的得到动态提示。  
 > 当然了，关于函数的，还是推荐使用 @param 和 @return 来实现，效果更好一些
@@ -105,40 +107,46 @@ JSDoc 在写法上有着特定的要求，比如说行内也必须要是这样�
 这个算是比较重要的一个标记了，用来标记函数参数的相关信息。  
 具体的格式是这样的（切换到 TypeScript 后一般会移除类型的定义，改用代码中的类型定义）：
 
-<pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">/**
+```
+/**
  * @param {number} param 描述
- */&lt;/span>
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">test&lt;/span> (&lt;span class="hljs-params">param&lt;/span>) &lt;/span>{ }
+ */
+function test (param) { }
 
-&lt;span class="hljs-comment">// 或者可以结合着 @type 来写（虽说很少会这么写）&lt;/span>
+// 或者可以结合着 @type 来写（虽说很少会这么写）
 
-&lt;span class="hljs-comment">/**
+/**
  * @param param 描述
- */&lt;/span>
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">test&lt;/span> (&lt;span class="hljs-params">&lt;span class="hljs-regexp">/** @type number */&lt;/span> param&lt;/span>) &lt;/span>{ }</code></pre>
+ */
+function test (/** @type number */ param) { }
+```
 
 #### 可选参数
 
 如果[我们](https://www.w3cdoc.com)想要表示一个参数为可选的参数，可以的在参数名上包一个`[]`即可。
 
-<pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">/**
+```
+/**
  * @param {number} [param] 描述
- */&lt;/span>
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">test&lt;/span> (&lt;span class="hljs-params">param&lt;/span>) &lt;/span>{ }</code></pre>
+ */
+function test (param) { }
+```
 
 同事在文档中还提到了关于默认值的写法，实际上如果你的可选参数在参数位已经有了默认值的处理，那么就不再需要额外的添加`[]`来表示了，vscode 会帮助你标记。
 
-<pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">// 文档中提到的默认值写法&lt;/span>
-&lt;span class="hljs-comment">/**
+```
+// 文档中提到的默认值写法
+/**
  * @param {number} [param=123] 描述
- */&lt;/span>
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">test&lt;/span> (&lt;span class="hljs-params">param = &lt;span class="hljs-number">123&lt;/span>&lt;/span>) &lt;/span>{ }
+ */
+function test (param = 123) { }
 
-&lt;span class="hljs-comment">// 而实际上使用 vscode 以后就可以简化为&lt;/span>
-&lt;span class="hljs-comment">/**
+// 而实际上使用 vscode 以后就可以简化为
+/**
  * @param param 描述
- */&lt;/span>
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">test&lt;/span> (&lt;span class="hljs-params">param = &lt;span class="hljs-number">123&lt;/span>&lt;/span>) &lt;/span>{ }</code></pre>
+ */
+function test (param = 123) { }
+```
 
 两者效果是一样的，并且由于[我们](https://www.w3cdoc.com)手动指定了一个基础类型的值，那么[我们](https://www.w3cdoc.com)连类型的指定都可以省去了，简单的定义一下参数的描述即可。
 
@@ -146,44 +154,49 @@ JSDoc 在写法上有着特定的要求，比如说行内也必须要是这样�
 
 该标记就是用来指定函数的返回值，用法与`@param`类型，并且基本上这两个都会同时出现，与`@param`的区别在于，因为`@return`只会有一个，所以不会像前者一样还需要指定参数名。
 
-<pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">/**
+```
+/**
  * @return {number} 描述
- */&lt;/span>
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">test&lt;/span> () &lt;/span>{ }</code></pre>
+ */
+function test () { }
+```
 
 #### Promise 类型的返回值处理
 
 现在这个年代，基本上`Promise`已经普及开来，所以很多函数的返回值可能并不是结果，而是一个`Promise`。  
 所以在vscode中，基于`Promise`去使用`@return`，有两种写法可以使用：
 
-<pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">// 函数返回 Promise 实例的情况可以这么指定类型&lt;/span>
-&lt;span class="hljs-comment">/**
- * @return {Promise&lt;number>}
- */&lt;/span>
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">test&lt;/span> () &lt;/span>{
-  &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Promise&lt;/span>(&lt;span class="hljs-function">(&lt;span class="hljs-params">res&lt;/span>) =>&lt;/span> {
-    res(&lt;span class="hljs-number">1&lt;/span>)
+```
+// 函数返回 Promise 实例的情况可以这么指定类型
+/**
+ * @return {Promise<number>}
+ */
+function test () {
+  return new Promise((res) => {
+    res(1)
   })
 }
 
-&lt;span class="hljs-comment">// 或者使用 async 函数定义的情况下可以省略 @return 的声明&lt;/span>
-&lt;span class="hljs-keyword">async&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">test&lt;/span> () &lt;/span>{
-  &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-number">1&lt;/span>
+// 或者使用 async 函数定义的情况下可以省略 @return 的声明
+async function test () {
+  return 1
 }
 
-  &lt;span class="hljs-comment">// 如果返回值是一个其他定义了类型的函数 or 变量，那么效果一样&lt;/span>
-&lt;span class="hljs-keyword">async&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">test&lt;/span> () &lt;/span>{
-  &lt;span class="hljs-keyword">return&lt;/span> returnVal()
+  // 如果返回值是一个其他定义了类型的函数 or 变量，那么效果一样
+async function test () {
+  return returnVal()
 }
 
-&lt;span class="hljs-comment">/** @return {string} */&lt;/span>
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">returnVal&lt;/span> () &lt;/span>{}</code></pre>
+/** @return {string} */
+function returnVal () {}
+```
 
 ## 小结 {#articleHeader5}
 
 再回到[我们](https://www.w3cdoc.com)最初的那个代码片段上，将其修改为添加了 JSDoc 版本的样子：
 
-<pre class="javascript hljs"><code class="javascript">&lt;span class="hljs-comment">/**
+```
+/**
  * @typedef   {Object} UserInfo
  * @property  {number} uid  用户UID
  * @property  {string} name 昵称
@@ -191,37 +204,38 @@ JSDoc 在写法上有着特定的要求，比如说行内也必须要是这样�
  * @typedef   {Object} Order
  * @property  {number} orderId 订单ID
  * @property  {number} price   订单价格
- */&lt;/span>
-&lt;span class="hljs-keyword">async&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">main&lt;/span> () &lt;/span>{
-  &lt;span class="hljs-keyword">const&lt;/span> uid = &lt;span class="hljs-number">1&lt;/span>
+ */
+async function main () {
+  const uid = 1
 
-  &lt;span class="hljs-keyword">const&lt;/span> orders = &lt;span class="hljs-keyword">await&lt;/span> createOrder(uid)
+  const orders = await createOrder(uid)
 
-  &lt;span class="hljs-keyword">const&lt;/span> userInfo = &lt;span class="hljs-keyword">await&lt;/span> getUserInfo(uid)
+  const userInfo = await getUserInfo(uid)
 
-  &lt;span class="hljs-keyword">await&lt;/span> notify(userInfo, orders)
+  await notify(userInfo, orders)
 }
 
-&lt;span class="hljs-comment">/**
+/**
  * 获取用户信息
  * @param   {number} uid 用户UID
- * @return  {Promise&lt;UserInfo>}
- */&lt;/span>
-&lt;span class="hljs-keyword">async&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">getUserInfo&lt;/span> (&lt;span class="hljs-params">uid&lt;/span>) &lt;/span>{ }
+ * @return  {Promise<UserInfo>}
+ */
+async function getUserInfo (uid) { }
 
-&lt;span class="hljs-comment">/**
+/**
  * 创建订单
  * @param  {number} uid 用户UID
- * @return {Promise&lt;Order>}
- */&lt;/span>
-&lt;span class="hljs-keyword">async&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">createOrder&lt;/span> (&lt;span class="hljs-params">uid&lt;/span>) &lt;/span>{ }
+ * @return {Promise<Order>}
+ */
+async function createOrder (uid) { }
 
-&lt;span class="hljs-comment">/**
+/**
  * 发送通知
  * @param {UserInfo} userInfo
  * @param {Order}    orders
- */&lt;/span>
-&lt;span class="hljs-keyword">async&lt;/span> &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">notify&lt;/span> (&lt;span class="hljs-params">userInfo, orders&lt;/span>) &lt;/span>{ }</code></pre>
+ */
+async function notify (userInfo, orders) { }
+```
 
 实际上并没有添加几行文本，在切换到 TypeScript 之前，使用 JSDoc 能够在一定程度上降低维护成本，尤其是使用 vscode 以后，要手动编写的注释实际上是没有多少的。  
 但是带来的好处就是，维护者能够很清晰的看出函数的作用，变量的类型。代码即文档。  

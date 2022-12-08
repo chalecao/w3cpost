@@ -24,20 +24,23 @@ Chrome扩展开发常见问题汇总：<https://www.cnblogs.com/slmk/archive/201
 
   chrome开发-extension：<a href="https://www.jianshu.com/p/38725b874472">https://www.jianshu.com/p/38725b874472</a>
 
-&nbsp;
+
 
 ## 一些经验
 
   1. 比如需要在background中动态注入content js时候，需要注意manifest配置，需要有browser\_action配置项，但是里面不能有&#8221;default\_popup&#8221;
 
-<pre class="pure-highlightjs"><code class="">background.js----------
+```
+background.js----------
 chrome.browserAction.onClicked.addListener(function (tab) {
     // console.log(tab)
     chrome.tabs.executeScript({ file: "js/invalid-click.js" });//通过JS文件
 });
-</code></pre>
 
-<pre class="pure-highlightjs"><code class="">manifest.json-----------
+```
+
+```
+manifest.json-----------
 "browser_action": {
         "default_icon": "icon.png",
         "default_title": "default title"
@@ -48,7 +51,8 @@ chrome.browserAction.onClicked.addListener(function (tab) {
         ],
         "persistent": false
     },
-</code></pre>
+
+```
 
 2. 是的chrome安装ID不变的技巧，但是如果发布到chrome 插件商店就不行了，有限制
 
@@ -74,11 +78,14 @@ Ok，依据下面几步，你将能够快速地完成这一目的。
 
 这个文件的位置：
 
-<pre class="prettyprint lang-bsh">Default/Extensions/&lt;extensionId>/&lt;versionString>/manifest.json</pre>
+```
+Default/Extensions/<extensionId>/<versionString>/manifest.json
+```
 
 注意，不同的操作系统，userdata的目录不一样，不同系统的目录位置不同
 
-<pre class="prettyprint">Windows XP
+```
+Windows XP
 Google Chrome: C:\Documents and Settings\%USERNAME%\Local Settings\Application Data\Google\Chrome\User Data\Default
 Chromium: C:\Documents and Settings\%USERNAME%\Local Settings\Application Data\Chromium\User Data\Default
 
@@ -95,11 +102,14 @@ Google Chrome: ~/.config/google-chrome/Default
 Chromium: ~/.config/chromium/Default
 
 Chrome OS
-/home/chronos/</pre>
+/home/chronos/
+```
 
 3. 打开该目录下的manifest.json文件，找到
 
-<pre class="prettyprint lang-js">"key": "eYxnPzfSPtfL3ji4nQX3ujTXpzz3YQ6dVlvHWf1gvW8=",</pre>
+```
+"key": "eYxnPzfSPtfL3ji4nQX3ujTXpzz3YQ6dVlvHWf1gvW8=",
+```
 
 “key”属性这一行，把后面一长串加密的字符串拷贝出来。
 

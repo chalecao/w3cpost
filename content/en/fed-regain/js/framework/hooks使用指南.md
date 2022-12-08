@@ -22,29 +22,31 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-        &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+      ```
+    <span class="token keyword">function</span> <span class="token function">Counter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token punctuation">[</span>count<span class="token punctuation">,</span> setCount<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">handleAlertClick&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-            &lt;span class="token function">setTimeout&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-            &lt;span class="token function">alert&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'You clicked on: '&lt;/span> &lt;span class="token operator">+&lt;/span> count&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-            &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token number">3000&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-        &lt;span class="token punctuation">}&lt;/span>
-        &lt;span class="token comment">// 多次点击click me按钮，然后点击一下show alert按钮，然后又快速点击多次click me按钮，alert出来的count是点击该按钮时的count还是最新的count？？&lt;/span>
-        &lt;span class="token comment">// 实验表明，显示的是点击时的按钮，这就意味着handleAlertClick这个函数capture了被点击时的那个count，这也就是说每一轮的count都是不一样的&lt;/span>
-        &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-            &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>div&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-                &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">You clicked &lt;/span>&lt;span class="token punctuation">{&lt;/span>count&lt;span class="token punctuation">}&lt;/span>&lt;span class="token plain-text"> times&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-                &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>button &lt;span class="token attr-name">onClick&lt;/span>&lt;span class="token script language-javascript">&lt;span class="token script-punctuation punctuation">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token function">setCount&lt;/span>&lt;span class="token punctuation">(&lt;/span>count &lt;span class="token operator">+&lt;/span> &lt;span class="token number">1&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">
+        <span class="token keyword">function</span> <span class="token function">handleAlertClick</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'You clicked on: '</span> <span class="token operator">+</span> count<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 多次点击click me按钮，然后点击一下show alert按钮，然后又快速点击多次click me按钮，alert出来的count是点击该按钮时的count还是最新的count？？</span>
+        <span class="token comment">// 实验表明，显示的是点击时的按钮，这就意味着handleAlertClick这个函数capture了被点击时的那个count，这也就是说每一轮的count都是不一样的</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>
+            <span class="token tag"><span class="token punctuation"><</span>div<span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token punctuation"><</span>p<span class="token punctuation">></span></span><span class="token plain-text">You clicked </span><span class="token punctuation">{</span>count<span class="token punctuation">}</span><span class="token plain-text"> times</span><span class="token tag"><span class="token punctuation"></</span>p<span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token punctuation"><</span>button <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setCount</span><span class="token punctuation">(</span>count <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token plain-text">
                     Click me
-                &lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>button&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-                &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>button &lt;span class="token attr-name">onClick&lt;/span>&lt;span class="token script language-javascript">&lt;span class="token script-punctuation punctuation">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>handleAlertClick&lt;span class="token punctuation">}&lt;/span>&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">
+                </span><span class="token tag"><span class="token punctuation"></</span>button<span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token punctuation"><</span>button <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>handleAlertClick<span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token plain-text">
                     Show alert
-                &lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>button&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-            &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>div&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-        &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+                </span><span class="token tag"><span class="token punctuation"></</span>button<span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token punctuation"></</span>div<span class="token punctuation">></span></span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+```
     </div>
 
     
@@ -54,26 +56,28 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-        &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+      ```
+    <span class="token keyword">function</span> <span class="token function">Counter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token punctuation">[</span>count<span class="token punctuation">,</span> setCount<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
-        &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-            &lt;span class="token function">setTimeout&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-                console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>count&lt;span class="token punctuation">)&lt;/span>
-            &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token number">3000&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-        &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-        &lt;span class="token comment">// 在3秒内快速点击5次按钮，控制台打出的结果是什么样的？&lt;/span>
-        &lt;span class="token comment">// 0 1 2 3 4 5&lt;/span>
-        &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-            &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>div&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-                &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">You clicked &lt;/span>&lt;span class="token punctuation">{&lt;/span>count&lt;span class="token punctuation">}&lt;/span>&lt;span class="token plain-text"> times&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-                &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>button &lt;span class="token attr-name">onClick&lt;/span>&lt;span class="token script language-javascript">&lt;span class="token script-punctuation punctuation">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token function">setCount&lt;/span>&lt;span class="token punctuation">(&lt;/span>count &lt;span class="token operator">+&lt;/span> &lt;span class="token number">1&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">
+        <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token comment">// 在3秒内快速点击5次按钮，控制台打出的结果是什么样的？</span>
+        <span class="token comment">// 0 1 2 3 4 5</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>
+            <span class="token tag"><span class="token punctuation"><</span>div<span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token punctuation"><</span>p<span class="token punctuation">></span></span><span class="token plain-text">You clicked </span><span class="token punctuation">{</span>count<span class="token punctuation">}</span><span class="token plain-text"> times</span><span class="token tag"><span class="token punctuation"></</span>p<span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token punctuation"><</span>button <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setCount</span><span class="token punctuation">(</span>count <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token plain-text">
                     Click me
-                &lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>button&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-            &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>div&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-        &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+                </span><span class="token tag"><span class="token punctuation"></</span>button<span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token punctuation"></</span>div<span class="token punctuation">></span></span>
+        <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+```
     </div>
 
     
@@ -83,37 +87,39 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">class&lt;/span> &lt;span class="token class-name">Example&lt;/span> &lt;span class="token keyword">extends&lt;/span> &lt;span class="token class-name">React&lt;span class="token punctuation">.&lt;/span>Component&lt;/span>&lt;span class="token punctuation">{&lt;/span>
+      ```
+    <span class="token keyword">class</span> <span class="token class-name">Example</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span><span class="token punctuation">{</span>
 
-        &lt;span class="token function">constructor&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">props&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-            &lt;span class="token keyword">super&lt;/span>&lt;span class="token punctuation">(&lt;/span>props&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-                &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>state &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-                count&lt;span class="token punctuation">:&lt;/span> &lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-            &lt;span class="token punctuation">}&lt;/span>
-        &lt;span class="token punctuation">}&lt;/span>
+        <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">super</span><span class="token punctuation">(</span>props<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>state <span class="token operator">=</span> <span class="token punctuation">{</span>
+                count<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
 
-        &lt;span class="token function">componentDidUpdate&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-            &lt;span class="token function">setTimeout&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-                console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>state&lt;span class="token punctuation">.&lt;/span>count&lt;span class="token punctuation">)&lt;/span>
-            &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token number">3000&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-        &lt;span class="token punctuation">}&lt;/span>
+        <span class="token function">componentDidUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+                console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>count<span class="token punctuation">)</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
 
-        &lt;span class="token function-variable function">add&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-            &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">{&lt;/span>count&lt;span class="token punctuation">}&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>state&lt;span class="token punctuation">;&lt;/span>
-            &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">setState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span>count&lt;span class="token punctuation">:&lt;/span> count &lt;span class="token operator">+&lt;/span> &lt;span class="token number">1&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-        &lt;span class="token punctuation">}&lt;/span>
+        <span class="token function-variable function">add</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            <span class="token keyword">const</span> <span class="token punctuation">{</span>count<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>count<span class="token punctuation">:</span> count <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
 
-        &lt;span class="token comment">// 同样的操作，打印出的结果是 5 5 5 5 5&lt;/span>
+        <span class="token comment">// 同样的操作，打印出的结果是 5 5 5 5 5</span>
 
-        &lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-            &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-                &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>div&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-                    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>button &lt;span class="token attr-name">onClick&lt;/span>&lt;span class="token script language-javascript">&lt;span class="token script-punctuation punctuation">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>add&lt;span class="token punctuation">}&lt;/span>&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">click me&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>button&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-                &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>div&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-            &lt;span class="token punctuation">)&lt;/span>
-        &lt;span class="token punctuation">}&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+        <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token punctuation">(</span>
+                <span class="token tag"><span class="token punctuation"><</span>div<span class="token punctuation">></span></span>
+                    <span class="token tag"><span class="token punctuation"><</span>button <span class="token attr-name">onClick</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>add<span class="token punctuation">}</span></span><span class="token punctuation">></span></span><span class="token plain-text">click me</span><span class="token tag"><span class="token punctuation"></</span>button<span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token punctuation"></</span>div<span class="token punctuation">></span></span>
+            <span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+```
     </div>
 
     
@@ -123,28 +129,32 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token function">componentDidUpdate&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-        &lt;span class="token comment">// 在class component中必须每次把count取出来&lt;/span>
-        &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">{&lt;/span> count &lt;span class="token punctuation">}&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>state&lt;span class="token punctuation">;&lt;/span>
-        &lt;span class="token function">setTimeout&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-            console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>count&lt;span class="token punctuation">)&lt;/span>
-        &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token number">3000&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+      ```
+    <span class="token function">componentDidUpdate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 在class component中必须每次把count取出来</span>
+        <span class="token keyword">const</span> <span class="token punctuation">{</span> count <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">;</span>
+        <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+```
     </div>
 
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Example&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">props&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-        &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-            &lt;span class="token function">setTimeout&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-            console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>props&lt;span class="token punctuation">.&lt;/span>counter&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-            &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token number">1000&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-        &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-        &lt;span class="token comment">// 在useEffect中不需要先把count从props里面取出来，每次依然是独立的&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+      ```
+    <span class="token keyword">function</span> <span class="token function">Example</span><span class="token punctuation">(</span><span class="token parameter">props</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">useEffect</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>props<span class="token punctuation">.</span>counter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 在useEffect中不需要先把count从props里面取出来，每次依然是独立的</span>
+    <span class="token punctuation">}</span>
+
+```
     </div>
 
     
@@ -154,19 +164,20 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token comment">// During first render&lt;/span>
-    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-        &lt;span class="token keyword">const&lt;/span> count &lt;span class="token operator">=&lt;/span> &lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">// Returned by useState()&lt;/span>
-        &lt;span class="token comment">// ...&lt;/span>
-        &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">You clicked &lt;/span>&lt;span class="token punctuation">{&lt;/span>count&lt;span class="token punctuation">}&lt;/span>&lt;span class="token plain-text"> times&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-        &lt;span class="token comment">// ...&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>
+      ```
+    <span class="token comment">// During first render</span>
+    <span class="token keyword">function</span> <span class="token function">Counter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> count <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// Returned by useState()</span>
+        <span class="token comment">// ...</span>
+        <span class="token tag"><span class="token punctuation"><</span>p<span class="token punctuation">></span></span><span class="token plain-text">You clicked </span><span class="token punctuation">{</span>count<span class="token punctuation">}</span><span class="token plain-text"> times</span><span class="token tag"><span class="token punctuation"></</span>p<span class="token punctuation">></span></span>
+        <span class="token comment">// ...</span>
+    <span class="token punctuation">}</span>
 
-    &lt;span class="token comment">// After a click, our function is called again&lt;/span>
-    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-        &lt;span class="token keyword">const&lt;/span> count &lt;span class="token operator">=&lt;/span> &lt;span class="token number">1&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">// Returned by useState()&lt;/span>
-        &lt;span class="token comment">// ...&lt;/span>
-        &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">You clicked &lt;/span>&lt;span class="token punctuation">{&lt;/span>count&lt;span class="token punctuation">}&lt;/span>&lt;span class="token plain-text"> times&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>
+    <span class="token comment">// After a click, our function is called again</span>
+    <span class="token keyword">function</span> <span class="token function">Counter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> count <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// Returned by useState()</span>
+        <span class="token comment">// ...</span>
+        <span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">You clicked &lt;/span>&lt;span class="token punctuation">{&lt;/span>count&lt;span class="token punctuation">}&lt;/span>&lt;span class="token plain-text"> times&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>
         &lt;span class="token comment">// ...&lt;/span>
     &lt;span class="token punctuation">}&lt;/span>
 
@@ -177,7 +188,8 @@ title: hooks使用指南
         &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">You clicked &lt;/span>&lt;span class="token punctuation">{&lt;/span>count&lt;span class="token punctuation">}&lt;/span>&lt;span class="token plain-text"> times&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>
         &lt;span class="token comment">// ...&lt;/span>
     &lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+
+```
     </div>
 
     
@@ -201,7 +213,8 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Example&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">props&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
+      ```
+    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Example&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">props&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
             ChatAPI&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">subscribeToFriendStatus&lt;/span>&lt;span class="token punctuation">(&lt;/span>props&lt;span class="token punctuation">.&lt;/span>id&lt;span class="token punctuation">,&lt;/span>       handleStatusChange&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
             &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -209,7 +222,8 @@ title: hooks使用指南
             &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">;&lt;/span>
         &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
     &lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+
+```
     </div>
 
     
@@ -223,10 +237,12 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-css"><code class="  language-css">    &lt;span class="token selector">React cleans up the effect for&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token property">id&lt;/span>&lt;span class="token punctuation">:&lt;/span> 10&lt;span class="token punctuation">}&lt;/span>&lt;span class="token selector">.
+      ```
+    &lt;span class="token selector">React cleans up the effect for&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token property">id&lt;/span>&lt;span class="token punctuation">:&lt;/span> 10&lt;span class="token punctuation">}&lt;/span>&lt;span class="token selector">.
     React renders UI for&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token property">id&lt;/span>&lt;span class="token punctuation">:&lt;/span> 20&lt;span class="token punctuation">}&lt;/span>&lt;span class="token selector">.
     React runs the effect for&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token property">id&lt;/span>&lt;span class="token punctuation">:&lt;/span> 20&lt;span class="token punctuation">}&lt;/span>.
-</code></pre>
+
+```
     </div>
 
     
@@ -236,11 +252,13 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-css"><code class="  language-css">    &lt;span class="token selector">React renders UI for&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token property">id&lt;/span>&lt;span class="token punctuation">:&lt;/span> 20&lt;span class="token punctuation">}&lt;/span>&lt;span class="token selector">.
+      ```
+    &lt;span class="token selector">React renders UI for&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token property">id&lt;/span>&lt;span class="token punctuation">:&lt;/span> 20&lt;span class="token punctuation">}&lt;/span>&lt;span class="token selector">.
     The browser paints. We see the UI for&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token property">id&lt;/span>&lt;span class="token punctuation">:&lt;/span> 20&lt;span class="token punctuation">}&lt;/span> &lt;span class="token selector">on the screen.
     React cleans up the effect for&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token property">id&lt;/span>&lt;span class="token punctuation">:&lt;/span> 10&lt;span class="token punctuation">}&lt;/span>&lt;span class="token selector">.
     React runs the effect for&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token property">id&lt;/span>&lt;span class="token punctuation">:&lt;/span> 20&lt;span class="token punctuation">}&lt;/span>.
-</code></pre>
+
+```
     </div>
 
     
@@ -250,7 +268,8 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token comment">// First render, props are {id: 10}&lt;/span>
+      ```
+    &lt;span class="token comment">// First render, props are {id: 10}&lt;/span>
     &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Example&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token comment">// ...&lt;/span>
         &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>
@@ -281,7 +300,8 @@ title: hooks使用指南
         &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
         &lt;span class="token comment">// ...&lt;/span>
     &lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+
+```
     </div>
 
     ##     忘记lifecycle的观念，拥抱synchronization
@@ -307,10 +327,12 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">     &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
+      ```
+     &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         document&lt;span class="token punctuation">.&lt;/span>title &lt;span class="token operator">=&lt;/span> &lt;span class="token string">'Hello, '&lt;/span> &lt;span class="token operator">+&lt;/span> name&lt;span class="token punctuation">;&lt;/span>
     &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">[&lt;/span>name&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">// Our deps&lt;/span>
-</code></pre>
+
+```
     </div>
 
     
@@ -328,7 +350,8 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Example&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
+      ```
+    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Example&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span>a&lt;span class="token punctuation">:&lt;/span> &lt;span class="token number">12&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 
         &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -354,7 +377,8 @@ title: hooks使用指南
             &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>div&lt;span class="token punctuation">>&lt;/span>&lt;/span>
         &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
     &lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+
+```
     </div>
 
     <h3>
@@ -372,7 +396,8 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
+      ```
+    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 
         &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -385,7 +410,8 @@ title: hooks使用指南
 
         &lt;span class="token keyword">return&lt;/span> &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>h1&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token punctuation">{&lt;/span>count&lt;span class="token punctuation">}&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>h1&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token punctuation">;&lt;/span>
     &lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+
+```
     </div>
 
     
@@ -395,7 +421,8 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
+      ```
+    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 
         &lt;span class="token function">setInterval&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -405,7 +432,8 @@ title: hooks使用指南
         &lt;span class="token keyword">return&lt;/span> &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>h1&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token punctuation">{&lt;/span>count&lt;span class="token punctuation">}&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>h1&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token punctuation">;&lt;/span>
     &lt;span class="token punctuation">}&lt;/span>
 
-</code></pre>
+
+```
     </div>
 
     
@@ -423,14 +451,16 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
+      ```
+    &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> id &lt;span class="token operator">=&lt;/span> &lt;span class="token function">setInterval&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
             &lt;span class="token function">setCount&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">preCount&lt;/span> &lt;span class="token operator">=>&lt;/span> preCount &lt;span class="token operator">+&lt;/span> &lt;span class="token number">1&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
             &lt;span class="token comment">// 此时setCount里面的函数的入参是前一次render之后的count值，所以这样的情况下计时器可以work&lt;/span>
         &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token number">1000&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
         &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token function">clearInterval&lt;/span>&lt;span class="token punctuation">(&lt;/span>id&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
     &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">[&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-</code></pre>
+
+```
     </div>
 
     ##     其他hooks
@@ -448,8 +478,10 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-csharp"><code class="  language-csharp">    &lt;span class="token keyword">const&lt;/span> &lt;span class="token keyword">value&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useContext&lt;/span>&lt;span class="token punctuation">(&lt;/span>myContext&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-</code></pre>
+      ```
+    &lt;span class="token keyword">const&lt;/span> &lt;span class="token keyword">value&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useContext&lt;/span>&lt;span class="token punctuation">(&lt;/span>myContext&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+
+```
     </div>
 
     
@@ -463,7 +495,8 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    
+      ```
+    
     &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">reducer&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">state&lt;span class="token punctuation">,&lt;/span> action&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">switch&lt;/span> &lt;span class="token punctuation">(&lt;/span>action&lt;span class="token punctuation">.&lt;/span>type&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
             &lt;span class="token keyword">case&lt;/span> &lt;span class="token string">'increment'&lt;/span>&lt;span class="token punctuation">:&lt;/span>
@@ -487,7 +520,8 @@ title: hooks使用指南
             &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
         &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
     &lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+
+```
     </div>
 
     
@@ -497,7 +531,8 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-php"><code class="  language-php">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
+      ```
+    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>state&lt;span class="token punctuation">,&lt;/span> dispatch&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useReducer&lt;/span>&lt;span class="token punctuation">(&lt;/span>reducer&lt;span class="token punctuation">,&lt;/span> initialState&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">{&lt;/span> count&lt;span class="token punctuation">,&lt;/span> step &lt;span class="token punctuation">}&lt;/span> &lt;span class="token operator">=&lt;/span> state&lt;span class="token punctuation">;&lt;/span>
 
@@ -539,7 +574,8 @@ title: hooks使用指南
         &lt;span class="token punctuation">}&lt;/span>
     &lt;span class="token punctuation">}&lt;/span>
 
-</code></pre>
+
+```
     </div>
 
     <h3>
@@ -549,14 +585,16 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">const&lt;/span> memoizedCallback &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useCallback&lt;/span>&lt;span class="token punctuation">(&lt;/span>
+      ```
+    &lt;span class="token keyword">const&lt;/span> memoizedCallback &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useCallback&lt;/span>&lt;span class="token punctuation">(&lt;/span>
         &lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
             &lt;span class="token function">doSomething&lt;/span>&lt;span class="token punctuation">(&lt;/span>a&lt;span class="token punctuation">,&lt;/span> b&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
         &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span>
         &lt;span class="token punctuation">[&lt;/span>a&lt;span class="token punctuation">,&lt;/span> b&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">,&lt;/span>
     &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
     &lt;span class="token comment">// 返回的memoizedCallback只有当a、b发生变化时才会变化，可以把这样一个memoizedCallback作为dependency数组的内容给useEffect&lt;/span>
-</code></pre>
+
+```
     </div>
 
     
@@ -566,7 +604,8 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
+      ```
+    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Counter&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>a&lt;span class="token punctuation">,&lt;/span> setA&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">100&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 
@@ -597,7 +636,8 @@ title: hooks使用指南
         &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
     &lt;span class="token punctuation">}&lt;/span>
 
-</code></pre>
+
+```
     </div>
 
     <h3>
@@ -607,8 +647,10 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">const&lt;/span> memoizedValue &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useMemo&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token function">computeExpensiveValue&lt;/span>&lt;span class="token punctuation">(&lt;/span>a&lt;span class="token punctuation">,&lt;/span> b&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">[&lt;/span>a&lt;span class="token punctuation">,&lt;/span> b&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-</code></pre>
+      ```
+    &lt;span class="token keyword">const&lt;/span> memoizedValue &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useMemo&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token function">computeExpensiveValue&lt;/span>&lt;span class="token punctuation">(&lt;/span>a&lt;span class="token punctuation">,&lt;/span> b&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">[&lt;/span>a&lt;span class="token punctuation">,&lt;/span> b&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+
+```
     </div>
 
     <h3>
@@ -618,8 +660,10 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-cpp"><code class="  language-cpp">    &lt;span class="token keyword">const&lt;/span> refContainer &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useRef&lt;/span>&lt;span class="token punctuation">(&lt;/span>initialValue&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-</code></pre>
+      ```
+    &lt;span class="token keyword">const&lt;/span> refContainer &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useRef&lt;/span>&lt;span class="token punctuation">(&lt;/span>initialValue&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+
+```
     </div>
 
     
@@ -641,7 +685,8 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">SearchResults&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
+      ```
+    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">SearchResults&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>query&lt;span class="token punctuation">,&lt;/span> setQuery&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'react'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 
         &lt;span class="token comment">// Imagine this function is also long&lt;/span>
@@ -662,7 +707,8 @@ title: hooks使用指南
 
         &lt;span class="token comment">// ...&lt;/span>
     &lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+
+```
     </div>
 
     
@@ -672,7 +718,8 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">SearchResults&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
+      ```
+    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">SearchResults&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token comment">// &#x1f534; Re-triggers all effects on every render&lt;/span>
         &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">getFetchUrl&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">query&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
             &lt;span class="token keyword">return&lt;/span> &lt;span class="token string">'https://hn.algolia.com/api/v1/search?query='&lt;/span> &lt;span class="token operator">+&lt;/span> query&lt;span class="token punctuation">;&lt;/span>
@@ -690,7 +737,8 @@ title: hooks使用指南
 
         &lt;span class="token comment">// ...&lt;/span>
     &lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+
+```
     </div>
 
     
@@ -700,7 +748,8 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">SearchResults&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
+      ```
+    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">SearchResults&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>query&lt;span class="token punctuation">,&lt;/span> setQuery&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'react'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 
         &lt;span class="token comment">// &#x2705; Preserves identity until query changes&lt;/span>
@@ -715,7 +764,8 @@ title: hooks使用指南
 
         &lt;span class="token comment">// ...&lt;/span>
     &lt;span class="token punctuation">}&lt;/span>
-</code></pre>
+
+```
     </div>
 
     
@@ -733,7 +783,8 @@ title: hooks使用指南
     <div class="_2Uzcx_">
       <button class="VJbwyy" type="button" aria-label="复制代码"><i class="anticon anticon-copy" aria-label="icon: copy"></i></button> 
       
-      <pre class="line-numbers  language-jsx"><code class="  language-jsx">    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Article&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">&lt;span class="token punctuation">{&lt;/span> id &lt;span class="token punctuation">}&lt;/span>&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
+      ```
+    &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Article&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token parameter">&lt;span class="token punctuation">{&lt;/span> id &lt;span class="token punctuation">}&lt;/span>&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
         &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>article&lt;span class="token punctuation">,&lt;/span> setArticle&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token keyword">null&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 
         &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
@@ -754,7 +805,8 @@ title: hooks使用指南
         &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">[&lt;/span>id&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
 
         &lt;span class="token comment">// ...&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span></code></pre>
+    &lt;span class="token punctuation">}&lt;/span>
+```
     </div></article>
   </div>
 </div>

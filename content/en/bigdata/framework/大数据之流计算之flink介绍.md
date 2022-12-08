@@ -73,11 +73,13 @@ Flink 有三种部署模式，分别是 Local、Standalone Cluster 和 Yarn Clus
 
 [我们](https://www.w3cdoc.com)需要指定 Master 和 Worker。Master 机器会启动 JobManager，Worker 则会启动 TaskManager。因此，[我们](https://www.w3cdoc.com)需要修改 conf 目录中的 master 和 slaves。在配置 master 文件时，需要指定 JobManager 的 UI 监听端口。一般情况下，JobManager 只需配置一个，Worker 则须配置一个或多个（以行为单位）。示例如下：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="shell">micledeMacBook-Pro:conf micle$ cat masters
+```
+micledeMacBook-Pro:conf micle$ cat masters
 localhost:8081
 
 micledeMacBook-Pro:conf micle$ cat slaves
-localhost</pre>
+localhost
+```
 
 在 conf 目录中找到文件 flink-conf.yaml。在这个文件中定义了 Flink 各个模块的基本属性，如 RPC 的端口，JobManager 和 TaskManager 堆的大小等。在不考虑 HA 的情况下，一般只需要修改属性 taskmanager.numberOfTaskSlots，也就是每个 Task Manager 所拥有的 Slot 个数。这个属性，一般设置成机器 CPU 的 core 数，用来平衡机器之间的运算性能。其默认值为 1。配置完成后，使用下图中的命令启动 JobManager 和 TaskManager（启动之前，需要确认 Java 的环境是否已经就绪）。
 
@@ -112,17 +114,23 @@ localhost</pre>
 
 了解了 Flink 与 Yarn 的关系，[我们](https://www.w3cdoc.com)就简单看下部署的步骤。在这之前需要先部署好 Yarn 的集群，这里我就不做介绍了。[我们](https://www.w3cdoc.com)可以通过以下的命令查看 Yarn 中现有的 Application，并且来检查 Yarn 的状态。
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">yarn application –list</pre>
+```
+yarn application –list
+```
 
 如果命令正确返回了，就说明 Yarn 的 RM 目前已经在启动状态。针对不同的 Yarn 版本，Flink 有不同的安装包。[我们](https://www.w3cdoc.com)可以在 Apache Flink 的下载页中找到对应的安装包。我的 Yarn 版本为 2.7.1。再介绍具体的步骤之前，[我们](https://www.w3cdoc.com)需要先了解 Flink 有两种在 Yarn 上面的运行模式。一种是让 Yarn 直接启动 JobManager 和 TaskManager，另一种是在运行 Flink Workload 的时候启动 Flink 的模块。前者相当于让 Flink 的模块处于 Standby 的状态。这里，我也主要介绍下前者。
 
 在下载和解压 Flink 的安装包之后，需要在环境中增加环境变量 HADOOP\_CONF\_DIR 或者 YARN\_CONF\_DIR，其指向 Yarn 的配置目录。如运行下面的命令：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="shell">export HADOOP_CONF_DIR=/etc/hadoop/conf</pre>
+```
+export HADOOP_CONF_DIR=/etc/hadoop/conf
+```
 
 这是因为 Flink 实现了 Yarn 的 Client，因此需要 Yarn 的一些配置和 Jar 包。在配置好环境变量后，只需简单的运行如下的脚本，Yarn 就会启动 Flink 的 JobManager 和 TaskManager。
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">yarn-session.sh –d –s 2 –tm 800 –n 2</pre>
+```
+yarn-session.sh –d –s 2 –tm 800 –n 2
+```
 
 上面的命令的意思是，向 Yarn 申请 2 个 Container 启动 TaskManager（-n 2），每个 TaskManager 拥有两个 Task Slot（-s 2），并且向每个 TaskManager 的 Container 申请 800M 的内存。在上面的命令成功后，[我们](https://www.w3cdoc.com)就可以在 Yarn Application 页面看到 Flink 的纪录。如下图。
 
@@ -151,13 +159,17 @@ Flink 和其他大多开源的框架一样，提供了很多有用的 Rest API�
 
 1.查询 Flink 集群的基本信息: /overview。示例命令行格式以及返回结果如下：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">$ c
-"slots-available":16,"jobs-running":0,"jobs-finished":0,"jobs-cancelled":0,"jobs-failed":0}</pre>
+```
+$ c
+"slots-available":16,"jobs-running":0,"jobs-finished":0,"jobs-cancelled":0,"jobs-failed":0}
+```
 
 2.查询当前 Flink 集群中的 Job 信息：/jobs。示例命令行格式以及返回结果如下：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">$ c
-["f91d4dd4fdf99313d849c9c4d29f8977"],"jobs-cancelled":[],"jobs-failed":[]}</pre>
+```
+$ c
+["f91d4dd4fdf99313d849c9c4d29f8977"],"jobs-cancelled":[],"jobs-failed":[]}
+```
 
 3.查询一个指定的 Job 信息: /jobs/jobid。这个查询的结果会返回特别多的详细的内容，这是我在[浏览器](https://www.w3cdoc.com)中进行的测试，如下图：
 
@@ -176,7 +188,9 @@ WordCount 的例子，就像是计算框架的 helloworld。这里我就以 Word
 
 在安装好 Flink 的环境中，找到 Flink 的目录。然后找到 bin/flink，它就是用来提交 Flink workload 的工具。对于 WordCount，[我们](https://www.w3cdoc.com)可以直接使用已有的示例 jar 包。如运行如下的命令：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">./bin/flink run ./examples/WordCount.jar hdfs://user/root/test hdfs://user/root/out</pre>
+```
+./bin/flink run ./examples/WordCount.jar hdfs://user/root/test hdfs://user/root/out
+```
 
 上面的命令是在 HDFS 中运行 WordCount，如果没有 HDFS 用本地的文件系统也是可以的，只需要将“hdfs://”换成“file://”。这里[我们](https://www.w3cdoc.com)需要强调一种部署关系，就是 StandAlone 模式的 Flink，也是可以直接访问 HDFS 等分布式文件系统的。
 

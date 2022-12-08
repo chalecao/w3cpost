@@ -23,7 +23,7 @@ Vue
       如果项目够复杂,可能需要Vuex等全局状态管理库通信
     
     
-      <code>$dispatch</code>(已经废除)和<code>$broadcast</code>(已经废除)
+      $dispatch(已经废除)和$broadcast(已经废除)
     
   </ol>
 React
@@ -42,7 +42,7 @@ React
       用新的<a href="https://juejin.im/post/5a7b41605188257a6310fbec" target="_blank" rel="noopener noreferrer">Context Api</a>
     
   </ol>
- [我们](https://www.w3cdoc.com)大体上都会有以上回答,接下来很可能会问到如何实现<code>Event(Bus)</code>,因为这个东西太重要了,几乎所有的模块通信都是基于类似的模式,包括安卓开发中的<code>Event Bus</code>,Node.js中的<code>Event</code>模块(Node中几乎所有的模块都依赖于Event,包括不限于<code>http、stream、buffer、fs</code>等).
+ [我们](https://www.w3cdoc.com)大体上都会有以上回答,接下来很可能会问到如何实现Event(Bus),因为这个东西太重要了,几乎所有的模块通信都是基于类似的模式,包括安卓开发中的Event Bus,Node.js中的Event模块(Node中几乎所有的模块都依赖于Event,包括不限于http、stream、buffer、fs等).
   
  [我们](https://www.w3cdoc.com)仿照Node中<a href="https://link.juejin.im?target=http%3A%2F%2Fnodejs.cn%2Fapi%2Fevents.html" target="_blank" rel="nofollow noopener noreferrer">Event API</a>实现一个简单的Event库,他是发布订阅模式的典型应用.
   
@@ -61,24 +61,27 @@ React
   </h3>
 1.1初始化class
   
- [我们](https://www.w3cdoc.com)利用ES6的<code>class</code>关键字对<code>Event</code>进行初始化,包括<code>Event</code>的事件清单和监听者上限.
+ [我们](https://www.w3cdoc.com)利用ES6的class关键字对Event进行初始化,包括Event的事件清单和监听者上限.
   
- [我们](https://www.w3cdoc.com)选择了<code>Map</code>作为储存事件的结构,因为作为键值对的储存方式<code>Map</code>比一般对象更加适合,[我们](https://www.w3cdoc.com)操作起来也更加简洁,可以先看一下Map的<a href="https://link.juejin.im?target=http%3A%2F%2Fes6.ruanyifeng.com%2F%23docs%2Fset-map%23Map" target="_blank" rel="nofollow noopener noreferrer">基本用法与特点</a>.
+ [我们](https://www.w3cdoc.com)选择了Map作为储存事件的结构,因为作为键值对的储存方式Map比一般对象更加适合,[我们](https://www.w3cdoc.com)操作起来也更加简洁,可以先看一下Map的<a href="https://link.juejin.im?target=http%3A%2F%2Fes6.ruanyifeng.com%2F%23docs%2Fset-map%23Map" target="_blank" rel="nofollow noopener noreferrer">基本用法与特点</a>.
   
-  <pre><code class="hljs javascript copyable" lang="javascript">&lt;span class="hljs-class">&lt;span class="hljs-keyword">class&lt;/span> &lt;span class="hljs-title">EventEmeitter&lt;/span> &lt;/span>{
+  ```
+&lt;span class="hljs-class">&lt;span class="hljs-keyword">class&lt;/span> &lt;span class="hljs-title">EventEmeitter&lt;/span> &lt;/span>{
   &lt;span class="hljs-keyword">constructor&lt;/span>() {
     &lt;span class="hljs-keyword">this&lt;/span>._events = &lt;span class="hljs-keyword">this&lt;/span>._events || &lt;span class="hljs-keyword">new&lt;/span> &lt;span class="hljs-built_in">Map&lt;/span>(); &lt;span class="hljs-comment">// 储存事件/回调键值对&lt;/span>
     &lt;span class="hljs-keyword">this&lt;/span>._maxListeners = &lt;span class="hljs-keyword">this&lt;/span>._maxListeners || &lt;span class="hljs-number">10&lt;/span>; &lt;span class="hljs-comment">// 设立监听上限&lt;/span>
   }
 }
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 1.2 监听与触发
   
- 触发监听函数[我们](https://www.w3cdoc.com)可以用<code>apply</code>与<code>call</code>两种方法,在少数参数时<code>call</code>的性能更好,多个参数时<code>apply</code>性能更好,当年Node的Event模块就在三个参数以下用<code>call</code>否则用<code>apply</code>.
+ 触发监听函数[我们](https://www.w3cdoc.com)可以用apply与call两种方法,在少数参数时call的性能更好,多个参数时apply性能更好,当年Node的Event模块就在三个参数以下用call否则用apply.
   
- 当然当Node全面拥抱ES6+之后,相应的<code>call/apply</code>操作用<code>Reflect</code>新关键字重写了,但是[我们](https://www.w3cdoc.com)不想写的那么复杂,就做了一个简化版.
+ 当然当Node全面拥抱ES6+之后,相应的call/apply操作用Reflect新关键字重写了,但是[我们](https://www.w3cdoc.com)不想写的那么复杂,就做了一个简化版.
   
-  <pre><code class="hljs javascript copyable" lang="javascript">
+  ```
+
 &lt;span class="hljs-comment">// 触发名为type的事件&lt;/span>
 EventEmeitter.prototype.emit = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">type, ...args&lt;/span>) &lt;/span>{
   &lt;span class="hljs-keyword">let&lt;/span> handler;
@@ -100,10 +103,12 @@ EventEmeitter.prototype.addListener = &lt;span class="hljs-function">&lt;span cl
   }
 };
 
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
- [我们](https://www.w3cdoc.com)实现了触发事件的<code>emit</code>方法和监听事件的<code>addListener</code>方法,至此[我们](https://www.w3cdoc.com)就可以进行简单的实践了.
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
+ [我们](https://www.w3cdoc.com)实现了触发事件的emit方法和监听事件的addListener方法,至此[我们](https://www.w3cdoc.com)就可以进行简单的实践了.
   
-  <pre><code class="hljs javascript copyable" lang="javascript">&lt;span class="hljs-comment">// 实例化&lt;/span>
+  ```
+&lt;span class="hljs-comment">// 实例化&lt;/span>
 &lt;span class="hljs-keyword">const&lt;/span> emitter = &lt;span class="hljs-keyword">new&lt;/span> EventEmeitter();
 
 &lt;span class="hljs-comment">// 监听一个名为arson的事件对应一个回调函数&lt;/span>
@@ -113,10 +118,12 @@ emitter.addListener(&lt;span class="hljs-string">'arson'&lt;/span>, man => {
 
 &lt;span class="hljs-comment">// [我们](https://www.w3cdoc.com)触发arson事件,发现回调成功执行&lt;/span>
 emitter.emit(&lt;span class="hljs-string">'arson'&lt;/span>, &lt;span class="hljs-string">'low-end'&lt;/span>); &lt;span class="hljs-comment">// expel low-end&lt;/span>
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
  似乎不错,[我们](https://www.w3cdoc.com)实现了基本的触发/监听,但是如果有多个监听者呢?
   
-  <pre><code class="hljs javascript copyable" lang="javascript">&lt;span class="hljs-comment">// 重复监听同一个事件名&lt;/span>
+  ```
+&lt;span class="hljs-comment">// 重复监听同一个事件名&lt;/span>
 emitter.addListener(&lt;span class="hljs-string">'arson'&lt;/span>, man => {
   &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">`expel &lt;span class="hljs-subst">${man}&lt;/span>`&lt;/span>);
 });
@@ -125,7 +132,8 @@ emitter.addListener(&lt;span class="hljs-string">'arson'&lt;/span>, man => {
 });
 
 emitter.emit(&lt;span class="hljs-string">'arson'&lt;/span>, &lt;span class="hljs-string">'low-end'&lt;/span>); &lt;span class="hljs-comment">// expel low-end&lt;/span>
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
  是的,只会触发第一个,因此[我们](https://www.w3cdoc.com)需要进行改造.
   
   <hr />
@@ -134,9 +142,10 @@ emitter.emit(&lt;span class="hljs-string">'arson'&lt;/span>, &lt;span class="hlj
   </h3>
 2.1 监听/触发器升级
   
- [我们](https://www.w3cdoc.com)的<code>addListener</code>实现方法还不够健全,在绑定第一个监听者之后,[我们](https://www.w3cdoc.com)就无法对后续监听者进行绑定了,因此[我们](https://www.w3cdoc.com)需要将后续监听者与第一个监听者函数放到一个数组里.
+ [我们](https://www.w3cdoc.com)的addListener实现方法还不够健全,在绑定第一个监听者之后,[我们](https://www.w3cdoc.com)就无法对后续监听者进行绑定了,因此[我们](https://www.w3cdoc.com)需要将后续监听者与第一个监听者函数放到一个数组里.
   
-  <pre><code class="hljs javascript copyable" lang="javascript">
+  ```
+
 &lt;span class="hljs-comment">// 触发名为type的事件&lt;/span>
 EventEmeitter.prototype.emit = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">type, ...args&lt;/span>) &lt;/span>{
   &lt;span class="hljs-keyword">let&lt;/span> handler;
@@ -173,10 +182,12 @@ EventEmeitter.prototype.addListener = &lt;span class="hljs-function">&lt;span cl
     handler.push(fn); &lt;span class="hljs-comment">// 已经有多个监听者,那么直接往数组里push函数即可&lt;/span>
   }
 };
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
  是的,从此以后可以愉快的触发多个监听者的函数了.
   
-  <pre><code class="hljs javascript copyable" lang="javascript">&lt;span class="hljs-comment">// 监听同一个事件名&lt;/span>
+  ```
+&lt;span class="hljs-comment">// 监听同一个事件名&lt;/span>
 emitter.addListener(&lt;span class="hljs-string">'arson'&lt;/span>, man => {
   &lt;span class="hljs-built_in">console&lt;/span>.log(&lt;span class="hljs-string">`expel &lt;span class="hljs-subst">${man}&lt;/span>`&lt;/span>);
 });
@@ -193,12 +204,14 @@ emitter.emit(&lt;span class="hljs-string">'arson'&lt;/span>, &lt;span class="hlj
 &lt;span class="hljs-comment">//expel low-end&lt;/span>
 &lt;span class="hljs-comment">//save low-end&lt;/span>
 &lt;span class="hljs-comment">//kill low-end&lt;/span>
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
 2.2 移除监听
   
- [我们](https://www.w3cdoc.com)会用<code>removeListener</code>函数移除监听函数,但是匿名函数是无法移除的.
+ [我们](https://www.w3cdoc.com)会用removeListener函数移除监听函数,但是匿名函数是无法移除的.
   
-  <pre><code class="hljs javascript copyable" lang="javascript">EventEmeitter.prototype.removeListener = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">type, fn&lt;/span>) &lt;/span>{
+  ```
+EventEmeitter.prototype.removeListener = &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">type, fn&lt;/span>) &lt;/span>{
   &lt;span class="hljs-keyword">const&lt;/span> handler = &lt;span class="hljs-keyword">this&lt;/span>._events.get(type); &lt;span class="hljs-comment">// 获取对应事件名称的函数清单&lt;/span>
 
   &lt;span class="hljs-comment">// 如果是函数,说明只被监听了一次&lt;/span>
@@ -227,12 +240,13 @@ emitter.emit(&lt;span class="hljs-string">'arson'&lt;/span>, &lt;span class="hlj
     }
   }
 };
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+&lt;span class="copy-code-btn">复制代码&lt;/span>
+```
   <hr />
   <h4 class="heading" data-id="heading-5">
     3.发现问题
   </h4>
- [我们](https://www.w3cdoc.com)已经基本完成了<code>Event</code>最重要的几个方法,也完成了升级改造,可以说一个<code>Event</code>的骨架是被[我们](https://www.w3cdoc.com)开发出来了,但是它仍然有不足和需要补充的地方.
+ [我们](https://www.w3cdoc.com)已经基本完成了Event最重要的几个方法,也完成了升级改造,可以说一个Event的骨架是被[我们](https://www.w3cdoc.com)开发出来了,但是它仍然有不足和需要补充的地方.
   
   <blockquote>
     <ol>
@@ -240,7 +254,7 @@ emitter.emit(&lt;span class="hljs-string">'arson'&lt;/span>, &lt;span class="hlj
         鲁棒性不足: [我们](https://www.w3cdoc.com)没有对参数进行充分的判断,没有完善的报错机制.
       
       
-        模拟不够充分: 除了<code>removeAllListeners</code>这些方法没有实现以外,例如监听时间后会触发<code>newListener</code>事件,[我们](https://www.w3cdoc.com)也没有实现,另外最开始的监听者上限[我们](https://www.w3cdoc.com)也没有利用到.
+        模拟不够充分: 除了removeAllListeners这些方法没有实现以外,例如监听时间后会触发newListener事件,[我们](https://www.w3cdoc.com)也没有实现,另外最开始的监听者上限[我们](https://www.w3cdoc.com)也没有利用到.
       
     </ol>
   </blockquote>

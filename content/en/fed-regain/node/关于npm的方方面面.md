@@ -8,7 +8,7 @@ title: 关于NPM的方方面面
 <div>
   <div>
     
-      <img loading="lazy" width="500" height="300" class="alignnone size-full wp-image-3790 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7b7a5241b33.jpeg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7b7a5241b33.jpeg?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7b7a5241b33.jpeg?x-oss-process=image/format,webp 500w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7b7a5241b33.jpeg?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_180/format,webp 300w" sizes="(max-width: 500px) 100vw, 500px" />nodejs 社区乃至 Web [前端](https://www.w3cdoc.com)工程化领域发展到今天，作为 node 自带的包管理工具的 npm 已经成为每个[前端](https://www.w3cdoc.com)开发者必备的工具。但是现实状况是，[我们](https://www.w3cdoc.com)很多人对这个nodejs基础设施的使用和了解还停留在: 会用 <code>npm install</code> 这里（一言不合就删除整个 node_modules 目录然后重新 install 这种事你没做过吗？）
+      <img loading="lazy" width="500" height="300" class="alignnone size-full wp-image-3790 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7b7a5241b33.jpeg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7b7a5241b33.jpeg?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7b7a5241b33.jpeg?x-oss-process=image/format,webp 500w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/img_5c7b7a5241b33.jpeg?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_180/format,webp 300w" sizes="(max-width: 500px) 100vw, 500px" />nodejs 社区乃至 Web [前端](https://www.w3cdoc.com)工程化领域发展到今天，作为 node 自带的包管理工具的 npm 已经成为每个[前端](https://www.w3cdoc.com)开发者必备的工具。但是现实状况是，[我们](https://www.w3cdoc.com)很多人对这个nodejs基础设施的使用和了解还停留在: 会用 npm install 这里（一言不合就删除整个 node_modules 目录然后重新 install 这种事你没做过吗？）
     
 
     
@@ -25,7 +25,7 @@ title: 关于NPM的方方面面
 
     
     
-      [我们](https://www.w3cdoc.com)都知道 package.json 文件是用来定义一个 package 的描述文件, 也知道<code>npm init</code> 命令用来初始化一个简单的 package.json 文件，执行该命令后终端会依次询问 name, version, description 等字段。
+      [我们](https://www.w3cdoc.com)都知道 package.json 文件是用来定义一个 package 的描述文件, 也知道npm init 命令用来初始化一个简单的 package.json 文件，执行该命令后终端会依次询问 name, version, description 等字段。
     
     
     <h3 class="heading" data-id="heading-1">
@@ -37,7 +37,7 @@ title: 关于NPM的方方面面
     
     
     
-      <code>npm init --yes</code>
+      npm init --yes
     
     
     <h3 class="heading" data-id="heading-2">
@@ -45,46 +45,50 @@ title: 关于NPM的方方面面
     </h3>
     
     
-      npm init 命令的原理并不复杂，调用脚本，输出一个初始化的 package.json 文件就是了。所以相应地，定制 npm init 命令的实现方式也很简单，在 Home 目录创建一个 <code>.npm-init.js</code> 即可，该文件的 module.exports 即为 package.json 配置内容，需要获取用户输入时候，使用 <code>prompt()</code> 方法即可。
+      npm init 命令的原理并不复杂，调用脚本，输出一个初始化的 package.json 文件就是了。所以相应地，定制 npm init 命令的实现方式也很简单，在 Home 目录创建一个 .npm-init.js 即可，该文件的 module.exports 即为 package.json 配置内容，需要获取用户输入时候，使用 prompt() 方法即可。
     
     
     
       例如编写这样的 ~/.npm-init.js
     
     
-    <pre><code class="hljs js copyable" lang="js"><span class="hljs-keyword">const</span> desc = prompt(<span class="hljs-string">'description?'</span>, <span class="hljs-string">'A new package...'</span>)
-<span class="hljs-keyword">const</span> bar = prompt(<span class="hljs-string">'bar?'</span>, <span class="hljs-string">''</span>)
-<span class="hljs-keyword">const</span> count = prompt(<span class="hljs-string">'count?'</span>, <span class="hljs-string">'42'</span>)
+    ```
+const desc = prompt('description?', 'A new package...')
+const bar = prompt('bar?', '')
+const count = prompt('count?', '42')
 
-<span class="hljs-built_in">module</span>.exports = {
-  <span class="hljs-attr">key</span>: <span class="hljs-string">'value'</span>,
-  <span class="hljs-attr">foo</span>: {
-    <span class="hljs-attr">bar</span>: bar,
-    <span class="hljs-attr">count</span>: count
+module.exports = {
+  key: 'value',
+  foo: {
+    bar: bar,
+    count: count
   },
-  <span class="hljs-attr">name</span>: prompt(<span class="hljs-string">'name?'</span>, process.cwd().split(<span class="hljs-string">'/'</span>).pop()),
-  <span class="hljs-attr">version</span>: prompt(<span class="hljs-string">'version?'</span>, <span class="hljs-string">'0.1.0'</span>),
-  <span class="hljs-attr">description</span>: desc,
-  <span class="hljs-attr">main</span>: <span class="hljs-string">'index.js'</span>,
+  name: prompt('name?', process.cwd().split('/').pop()),
+  version: prompt('version?', '0.1.0'),
+  description: desc,
+  main: 'index.js',
 }
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
 
     
-      此时在 ~/hello 目录下执行 <code>npm init</code> 将会得到这样的 package.json:
+      此时在 ~/hello 目录下执行 npm init 将会得到这样的 package.json:
     
     
-    <pre><code class="hljs json copyable" lang="json">{
-  <span class="hljs-attr">"key"</span>: <span class="hljs-string">"value"</span>,
-  <span class="hljs-attr">"foo"</span>: {
-    <span class="hljs-attr">"bar"</span>: <span class="hljs-string">""</span>,
-    <span class="hljs-attr">"count"</span>: <span class="hljs-string">"42"</span>
+    ```
+{
+  "key": "value",
+  "foo": {
+    "bar": "",
+    "count": "42"
   },
-  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"hello"</span>,
-  <span class="hljs-attr">"version"</span>: <span class="hljs-string">"0.1.0"</span>,
-  <span class="hljs-attr">"description"</span>: <span class="hljs-string">"A new package..."</span>,
-  <span class="hljs-attr">"main"</span>: <span class="hljs-string">"index.js"</span>
+  "name": "hello",
+  "version": "0.1.0",
+  "description": "A new package...",
+  "main": "index.js"
 }
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
 
     
       除了生成 package.json, 因为 .npm-init.js 是一个常规的模块，意味着[我们](https://www.w3cdoc.com)可以执行随便什么 node 脚本可以执行的任务。例如通过 fs 创建 README, .eslintrc 等项目必需文件，实现项目脚手架的作用。
@@ -96,7 +100,7 @@ title: 关于NPM的方方面面
 
     
     
-      依赖管理是 npm 的核心功能，原理就是执行 <code>npm install</code> 从 package.json 中的 dependencies, devDependencies 将依赖包安装到当前目录的 ./node_modules 文件夹中。
+      依赖管理是 npm 的核心功能，原理就是执行 npm install 从 package.json 中的 dependencies, devDependencies 将依赖包安装到当前目录的 ./node_modules 文件夹中。
     
     
     <h3 class="heading" data-id="heading-4">
@@ -104,7 +108,7 @@ title: 关于NPM的方方面面
     </h3>
     
     
-      [我们](https://www.w3cdoc.com)都知道要手动安装一个包时，执行 <code>npm install <package></code> 命令即可。这里的第三个参数 package 通常就是[我们](https://www.w3cdoc.com)所要安装的包名，默认配置下 npm 会从默认的源 (Registry) 中查找该包名对应的包地址，并下载安装。但在 npm 的世界里，除了简单的指定包名, package 还可以是一个指向有效包名的 http url/git url/文件夹路径。
+      [我们](https://www.w3cdoc.com)都知道要手动安装一个包时，执行 npm install <package> 命令即可。这里的第三个参数 package 通常就是[我们](https://www.w3cdoc.com)所要安装的包名，默认配置下 npm 会从默认的源 (Registry) 中查找该包名对应的包地址，并下载安装。但在 npm 的世界里，除了简单的指定包名, package 还可以是一个指向有效包名的 http url/git url/文件夹路径。
     
     
     
@@ -174,7 +178,7 @@ title: 关于NPM的方方面面
         </td>
         
         <td>
-          一个格式为 <code><name>@<version></code> 的字符串，可指向 npm 源(通常是官方源 npmjs.org)上已发布的可访问 url，且该 url 满足条件 (c)
+          一个格式为 <name>@<version> 的字符串，可指向 npm 源(通常是官方源 npmjs.org)上已发布的可访问 url，且该 url 满足条件 (c)
         </td>
         
         <td>
@@ -188,7 +192,7 @@ title: 关于NPM的方方面面
         </td>
         
         <td>
-          一个格式为 <code><name>@<tag></code> 的字符串，在 npm 源上该<code><tag></code>指向某 <code><version></code> 得到 <code><name>@<version></code>，后者满足条件 (d)
+          一个格式为 <name>@<tag> 的字符串，在 npm 源上该<tag>指向某 <version> 得到 <name>@<version>，后者满足条件 (d)
         </td>
         
         <td>
@@ -202,7 +206,7 @@ title: 关于NPM的方方面面
         </td>
         
         <td>
-          一个格式为 <code><name></code> 的字符串，默认添加 <code>latest</code> 标签所得到的 <code><name>@latest</code> 满足条件 (e)
+          一个格式为 <name> 的字符串，默认添加 latest 标签所得到的 <name>@latest 满足条件 (e)
         </td>
         
         <td>
@@ -241,8 +245,10 @@ title: 关于NPM的方方面面
       nodejs 应用开发中不可避免有模块间调用，例如在实践中经常会把需要被频繁引用的配置模块放到应用根目录；于是在创建了很多层级的目录、文件后，很可能会遇到这样的代码:
     
     
-    <pre><code class="hljs js copyable" lang="js"><span class="hljs-keyword">const</span> config = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../../../config.js'</span>);
-<span class="copy-code-btn">复制代码</span></code></pre>
+    ```
+const config = require('../../../../config.js');
+复制代码
+```
 
     
       除了看上去很丑以外，这样的路径引用也不利于代码的重构。并且身为程序员的自我修养告诉[我们](https://www.w3cdoc.com)，这样重复的代码多了也就意味着是时候把这个模块分离出来供应用内其他模块共享了。例如这个例子里的 config.js 非常适合封装为 package 放到 node_modules 目录下，共享给同应用内其他模块。
@@ -258,25 +264,29 @@ title: 关于NPM的方方面面
     
     <ol>
       
-        创建 config 包:<br /> 新增 config 文件夹; 重命名 config.js 为 config/index.js 文件; 创建 package.json 定义 config 包 <pre><code class="hljs json copyable" lang="json">{
-    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"config"</span>,
-    <span class="hljs-attr">"main"</span>: <span class="hljs-string">"index.js"</span>,
-    <span class="hljs-attr">"version"</span>: <span class="hljs-string">"0.1.0"</span>
+        创建 config 包:<br /> 新增 config 文件夹; 重命名 config.js 为 config/index.js 文件; 创建 package.json 定义 config 包 ```
+{
+    "name": "config",
+    "main": "index.js",
+    "version": "0.1.0"
 }
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
       
 
       
-        在应用层 package.json 文件中新增依赖项，然后执行 <code>npm install</code>; 或直接执行第 3 步 <pre><code class="hljs json copyable" lang="json">{
-    <span class="hljs-attr">"dependencies"</span>: {
-        <span class="hljs-attr">"config"</span>: <span class="hljs-string">"file:./config"</span>
+        在应用层 package.json 文件中新增依赖项，然后执行 npm install; 或直接执行第 3 步 ```
+{
+    "dependencies": {
+        "config": "file:./config"
     }
 }
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
       
 
       
-        （等价于第 2 步）直接在应用目录执行 <code>npm install file:./config</code>此时，查看 <code>node_modules</code> 目录[我们](https://www.w3cdoc.com)会发现多出来一个名为 <code>config</code>，指向上层 <code>config/</code> 文件夹的软链接。这是因为 npm 识别 <code>file:</code> 协议的url，得知这个包需要直接从文件系统中获取，会自动创建软链接到 node_modules 中，完成“安装”过程。相比手动软链，[我们](https://www.w3cdoc.com)既不需要关心 windows 和 linux 命令差异，又可以显式地将依赖信息固化到 dependencies 字段中，开发团队其他成员可以执行 <code>npm install</code> 后直接使用。
+        （等价于第 2 步）直接在应用目录执行 npm install file:./config此时，查看 node_modules 目录[我们](https://www.w3cdoc.com)会发现多出来一个名为 config，指向上层 config/ 文件夹的软链接。这是因为 npm 识别 file: 协议的url，得知这个包需要直接从文件系统中获取，会自动创建软链接到 node_modules 中，完成“安装”过程。相比手动软链，[我们](https://www.w3cdoc.com)既不需要关心 windows 和 linux 命令差异，又可以显式地将依赖信息固化到 dependencies 字段中，开发团队其他成员可以执行 npm install 后直接使用。
       
     </ol>
     
@@ -296,8 +306,10 @@ title: 关于NPM的方方面面
       <a href="https://link.juejin.im?target=https%3A%2F%2Fdocs.npmjs.com%2Ffiles%2Fpackage.json%23git-urls-as-dependencies" target="_blank" rel="nofollow noopener noreferrer">npm 支持的 git url 格式</a>:
     
     
-    <pre><code class="hljs bash copyable" lang="bash"><protocol>://[<user>[:<password>]@]<hostname>[:<port>][:][/]<path>[<span class="hljs-comment">#<commit-ish> | #semver:<semver>]</span>
-<span class="copy-code-btn">复制代码</span></code></pre>
+    ```
+<protocol>://[<user>[:<password>]@]<hostname>[:<port>][:][/]<path>[#<commit-ish> | #semver:<semver>]
+复制代码
+```
 
     
       git 路径后可以使用 # 指定特定的 git branch/commit/tag, 也可以 #semver: 指定特定的 semver range.
@@ -307,11 +319,13 @@ title: 关于NPM的方方面面
       例如：
     
     
-    <pre><code class="hljs bash copyable" lang="bash">git+ssh://git@github.com:npm/npm.git<span class="hljs-comment">#v1.0.27</span>
-git+ssh://git@github.com:npm/npm<span class="hljs-comment">#semver:^5.0</span>
+    ```
+git+ssh://git@github.com:npm/npm.git#v1.0.27
+git+ssh://git@github.com:npm/npm#semver:^5.0
 git+https://isaacs@github.com/npm/npm.git
-git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
-<span class="copy-code-btn">复制代码</span></code></pre>
+git://github.com/npm/npm.git#v1.0.27
+复制代码
+```
 
     
      场景3: 开源 package 问题修复
@@ -326,7 +340,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     
     
     
-      首先 node_modules 本身不应该放进版本控制系统，对 node_modules 文件夹中内容的修改不会被记录进 git 提交记录；其次，就算[我们](https://www.w3cdoc.com)非要反模式，把 node_modules 放进版本控制中，你的修改内容也很容易在下次 team 中某位成员执行 <code>npm install</code> 或 <code>npm update</code> 时被覆盖，而这样的一次提交很可能包含了几十几百个包的更新，你自己所做的修改很容易就被淹没在庞大的 diff 文件列表中了。
+      首先 node_modules 本身不应该放进版本控制系统，对 node_modules 文件夹中内容的修改不会被记录进 git 提交记录；其次，就算[我们](https://www.w3cdoc.com)非要反模式，把 node_modules 放进版本控制中，你的修改内容也很容易在下次 team 中某位成员执行 npm install 或 npm update 时被覆盖，而这样的一次提交很可能包含了几十几百个包的更新，你自己所做的修改很容易就被淹没在庞大的 diff 文件列表中了。
     
     
     
@@ -347,7 +361,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     
     
     
-      为简单起见，[我们](https://www.w3cdoc.com)假设应用目录为 app, 用两个流行的包 <code>webpack</code>, <code>nconf</code> 作为依赖包做示例说明。并且为了正常安装，使用了“上古” npm 2 时期的版本 <code>webpack@1.15.0</code>, <code>nconf@0.8.5</code>.
+      为简单起见，[我们](https://www.w3cdoc.com)假设应用目录为 app, 用两个流行的包 webpack, nconf 作为依赖包做示例说明。并且为了正常安装，使用了“上古” npm 2 时期的版本 webpack@1.15.0, nconf@0.8.5.
     
     
     <h3 class="heading" data-id="heading-7">
@@ -355,23 +369,26 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     </h3>
     
     
-      npm 2 在安装依赖包时，采用简单的递归安装方法。执行 <code>npm install</code> 后，npm 2 依次递归安装 <code>webpack</code> 和 <code>nconf</code> 两个包到 node_modules 中。执行完毕后，[我们](https://www.w3cdoc.com)会看到 ./node_modules 这层目录只含有这两个子目录。
+      npm 2 在安装依赖包时，采用简单的递归安装方法。执行 npm install 后，npm 2 依次递归安装 webpack 和 nconf 两个包到 node_modules 中。执行完毕后，[我们](https://www.w3cdoc.com)会看到 ./node_modules 这层目录只含有这两个子目录。
     
     
-    <pre><code class="hljs bash copyable" lang="bash">node_modules/
+    ```
+node_modules/
 ├── nconf/
 └── webpack/
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
 
     
-      进入更深一层 nconf 或 webpack 目录，将看到这两个包各自的 node_modules 中，已经由 npm 递归地安装好自身的依赖包。包括 <code>./node_modules/webpack/node_modules/webpack-core</code> , <code>./node_modules/conf/node_modules/async</code> 等等。而每一个包都有自己的依赖包，每个包自己的依赖都安装在了自己的 node_modules 中。依赖关系层层递进，构成了一整个依赖树，这个依赖树与文件系统中的文件结构树刚好层层对应。
+      进入更深一层 nconf 或 webpack 目录，将看到这两个包各自的 node_modules 中，已经由 npm 递归地安装好自身的依赖包。包括 ./node_modules/webpack/node_modules/webpack-core , ./node_modules/conf/node_modules/async 等等。而每一个包都有自己的依赖包，每个包自己的依赖都安装在了自己的 node_modules 中。依赖关系层层递进，构成了一整个依赖树，这个依赖树与文件系统中的文件结构树刚好层层对应。
     
     
     
-      最方便的查看依赖树的方式是直接在 app 目录下执行 <code>npm ls</code> 命令。
+      最方便的查看依赖树的方式是直接在 app 目录下执行 npm ls 命令。
     
     
-    <pre><code class="hljs bash copyable" lang="bash">app@0.1.0
+    ```
+app@0.1.0
 ├─┬ nconf@0.8.5
 │ ├── async@1.5.2
 │ ├── ini@1.3.5
@@ -380,7 +397,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
 └─┬ webpack@1.15.0
   ├── acorn@3.3.0
   ├── async@1.5.2
-  ├── <span class="hljs-built_in">clone</span>@1.0.3
+  ├── clone@1.0.3
   ├── ...
   ├── optimist@0.6.1
   ├── supports-color@3.2.3
@@ -388,9 +405,10 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
   ├── uglify-js@2.7.5
   ├── watchpack@0.2.9
   └─┬ webpack-core@0.6.9
-    ├── <span class="hljs-built_in">source</span>-list-map@0.1.8
-    └── <span class="hljs-built_in">source</span>-map@0.4.4
-<span class="copy-code-btn">复制代码</span></code></pre>
+    ├── source-list-map@0.1.8
+    └── source-map@0.4.4
+复制代码
+```
 
     
       这样的目录结构优点在于层级结构明显，便于进行傻瓜式的管理:
@@ -426,10 +444,11 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     </ol>
     
     
-      ——在[我们](https://www.w3cdoc.com)的示例中就有这个问题，<code>webpack</code> 和 <code>nconf</code> 都依赖 <code>async</code> 这个包，所以在文件系统中，webpack 和 nconf 的 node_modules 子目录中都安装了相同的 async 包，并且是相同的版本。
+      ——在[我们](https://www.w3cdoc.com)的示例中就有这个问题，webpack 和 nconf 都依赖 async 这个包，所以在文件系统中，webpack 和 nconf 的 node_modules 子目录中都安装了相同的 async 包，并且是相同的版本。
     
     
-    <pre><code class="hljs bash copyable" lang="bash">+-------------------------------------------+
+    ```
++-------------------------------------------+
 |                   app/                    |
 +----------+------------------------+-------+
            |                        |
@@ -443,17 +462,19 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
    +-----v-----+             +-----v-----+
    |async@1.5.2|             |async@1.5.2|
    +-----------+             +-----------+
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
 
     <h3 class="heading" data-id="heading-8">
       3.2 npm 3 &#8211; 扁平结构
     </h3>
     
     
-      主要为了解决以上问题，npm 3 的 node_modules 目录改成了更加扁平状的层级结构。文件系统中 <code>webpack</code>, <code>nconf</code>, <code>async</code> 的层级关系变成了平级关系，处于同一级目录中。
+      主要为了解决以上问题，npm 3 的 node_modules 目录改成了更加扁平状的层级结构。文件系统中 webpack, nconf, async 的层级关系变成了平级关系，处于同一级目录中。
     
     
-    <pre><code class="hljs bash copyable" lang="bash">         +-------------------------------------------+
+    ```
+         +-------------------------------------------+
          |                   app/                    |
          +-+---------------------------------------+-+
            |                                       |
@@ -463,10 +484,11 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
 |  webpack@1.15.0 |    | async@1.5.2 |   |  nconf@0.8.5    |
 |                 |    |             |   |                 |
 +-----------------+    +-------------+   +-----------------+
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
 
     
-      虽然这样一来 webpack/node_modules 和 nconf/node_modules 中都不再有 async 文件夹，但得益于 node 的模块加载机制，他们都可以在上一级 node_modules 目录中找到 async 库。所以 webpack 和 nconf 的库代码中 <code>require('async')</code> 语句的执行都不会有任何问题。
+      虽然这样一来 webpack/node_modules 和 nconf/node_modules 中都不再有 async 文件夹，但得益于 node 的模块加载机制，他们都可以在上一级 node_modules 目录中找到 async 库。所以 webpack 和 nconf 的库代码中 require('async') 语句的执行都不会有任何问题。
     
     
     
@@ -479,15 +501,17 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     
     <blockquote>
       
-        假如 <code>package{dep}</code> 写法代表包和包的依赖，那么 <code>A{B,C}</code>, <code>B{C}</code>, <code>C{D}</code> 的依赖结构在安装之后的 node_modules 是这样的结构：
+        假如 package{dep} 写法代表包和包的依赖，那么 A{B,C}, B{C}, C{D} 的依赖结构在安装之后的 node_modules 是这样的结构：
       
     </blockquote>
     
-    <pre><code class="hljs bash copyable" lang="bash">A
+    ```
+A
 +-- B
 +-- C
 +-- D
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
 
     
       这里之所以 D 也安装到了与 B C 同一级目录，是因为 npm 会默认会在无冲突的前提下，尽可能将包安装到较高的层级。
@@ -495,31 +519,35 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     
     <blockquote>
       
-        如果是 <code>A{B,C}</code>, <code>B{C,D@1}</code>, <code>C{D@2}</code> 的依赖关系，得到的安装后结构是：
+        如果是 A{B,C}, B{C,D@1}, C{D@2} 的依赖关系，得到的安装后结构是：
       
     </blockquote>
     
-    <pre><code class="hljs bash copyable" lang="bash">A
+    ```
+A
 +-- B
 +-- C
    `-- D@2
 +-- D@1
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
 
     
       这里是因为，对于 npm 来说同名但不同版本的包是两个独立的包，而同层不能有两个同名子目录，所以其中的 D@2 放到了 C 的子目录而另一个 D@1 被放到了再上一层目录。
     
     
     
-      很明显在 npm 3 之后 npm 的依赖树结构不再与文件夹层级一一对应了。想要查看 app 的直接依赖项，要通过 <code>npm ls</code> 命令指定 <code>--depth</code> 参数来查看：
+      很明显在 npm 3 之后 npm 的依赖树结构不再与文件夹层级一一对应了。想要查看 app 的直接依赖项，要通过 npm ls 命令指定 --depth 参数来查看：
     
     
-    <pre><code class="hljs bash copyable" lang="bash">npm ls --depth 1
-<span class="copy-code-btn">复制代码</span></code></pre>
+    ```
+npm ls --depth 1
+复制代码
+```
 
     <blockquote>
       
-        PS: 与本地依赖包不同，如果[我们](https://www.w3cdoc.com)通过 <code>npm install --global</code> 全局安装包到全局目录时，得到的目录依然是“传统的”目录结构。而如果使用 npm 3 想要得到“传统”形式的本地 node_modules 目录，使用 <code>npm install --global-style</code> 命令即可。
+        PS: 与本地依赖包不同，如果[我们](https://www.w3cdoc.com)通过 npm install --global 全局安装包到全局目录时，得到的目录依然是“传统的”目录结构。而如果使用 npm 3 想要得到“传统”形式的本地 node_modules 目录，使用 npm install --global-style 命令即可。
       
     </blockquote>
     
@@ -528,7 +556,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     </h3>
     
     
-      npm 5 发布于 2017 年也是目前最新的 npm 版本，这一版本依然沿用 npm 3 之后扁平化的依赖包安装方式，此外最大的变化是增加了 <code>package-lock.json</code> 文件。
+      npm 5 发布于 2017 年也是目前最新的 npm 版本，这一版本依然沿用 npm 3 之后扁平化的依赖包安装方式，此外最大的变化是增加了 package-lock.json 文件。
     
     
     
@@ -536,10 +564,11 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     
     
     
-      以依赖关系为: <code>app{webpack}</code> 的 &#8216;app&#8217; 项目为例, 其 package-lock 文件包含了这样的片段。
+      以依赖关系为: app{webpack} 的 &#8216;app&#8217; 项目为例, 其 package-lock 文件包含了这样的片段。
     
     
-    <pre><code class="hljs json copyable" lang="json">{
+    ```
+{
     "name":  "app",
     "version":  "0.1.0",
     "lockfileVersion":  1,
@@ -589,21 +618,22 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         //... 其他依赖包
     }
 }
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
 
     
-      看懂 package-lock 文件并不难，其结构是同样类型的几个字段嵌套起来的，主要是 <code>version</code>, <code>resolved</code>, <code>integrity</code>, <code>requires</code>, <code>dependencies</code> 这几个字段而已。
+      看懂 package-lock 文件并不难，其结构是同样类型的几个字段嵌套起来的，主要是 version, resolved, integrity, requires, dependencies 这几个字段而已。
     
     
     <ul>
       
-        <code>version</code>, <code>resolved</code>, <code>integrity</code> 用来记录包的准确版本号、内容hash、安装源的，决定了要安装的包的准确“身份”信息
+        version, resolved, integrity 用来记录包的准确版本号、内容hash、安装源的，决定了要安装的包的准确“身份”信息
       
       
-        假设盖住其他字段，只关注文件中的 <code>dependencies: {}</code> [我们](https://www.w3cdoc.com)会发现，整个文件的 JSON 配置里的 dependencies 层次结构与文件系统中 node_modules 的文件夹层次结构是完全对照的
+        假设盖住其他字段，只关注文件中的 dependencies: {} [我们](https://www.w3cdoc.com)会发现，整个文件的 JSON 配置里的 dependencies 层次结构与文件系统中 node_modules 的文件夹层次结构是完全对照的
       
       
-        只关注 <code>requires: {}</code> 字段又会发现，除最外层的 <code>requires</code> 属性为 true 以外, 其他层的 requires 属性都对应着这个包的 package.json 里记录的自己的依赖项
+        只关注 requires: {} 字段又会发现，除最外层的 requires 属性为 true 以外, 其他层的 requires 属性都对应着这个包的 package.json 里记录的自己的依赖项
       
     
     
@@ -627,8 +657,10 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
       ——但依然有反对的声音认为 package-lock 太复杂，对此 npm 也提供了禁用配置：
     
     
-    <pre><code class="hljs bash copyable" lang="bash">npm config <span class="hljs-built_in">set</span> package-lock <span class="hljs-literal">false</span>
-<span class="copy-code-btn">复制代码</span></code></pre>
+    ```
+npm config set package-lock false
+复制代码
+```
 
     <h2 class="heading" data-id="heading-10">
       4. 依赖包版本管理
@@ -648,7 +680,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     
     
     
-      semver 约定一个包的版本号必须包含3个数字，格式必须为 <code>MAJOR.MINOR.PATCH</code>, 意为 <code>主版本号.小版本号.修订版本号</code>.
+      semver 约定一个包的版本号必须包含3个数字，格式必须为 MAJOR.MINOR.PATCH, 意为 主版本号.小版本号.修订版本号.
     
     
     <ul>
@@ -664,12 +696,12 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     
     
     
-      对于包作者（发布者），npm 要求在 publish 之前，必须更新版本号。npm 提供了 <code>npm version</code> 工具，执行 <code>npm version major|minor|patch</code> 可以简单地将版本号中相应的数字加1.
+      对于包作者（发布者），npm 要求在 publish 之前，必须更新版本号。npm 提供了 npm version 工具，执行 npm version major|minor|patch 可以简单地将版本号中相应的数字加1.
     
     
     <blockquote>
       
-        如果包是一个 git 仓库，<code>npm version</code> 还会自动创建一条注释为更新后版本号的 git commit 和名为该版本号的 tag
+        如果包是一个 git 仓库，npm version 还会自动创建一条注释为更新后版本号的 git commit 和名为该版本号的 tag
       
     </blockquote>
     
@@ -694,7 +726,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
       
       <tr>
         <td>
-          <code>^2.2.1</code>
+          ^2.2.1
         </td>
         
         <td>
@@ -702,13 +734,13 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          匹配 <code>2.2.3</code>, <code>2.3.0</code>; 不匹配 <code>1.0.3</code>, <code>3.0.1</code>
+          匹配 2.2.3, 2.3.0; 不匹配 1.0.3, 3.0.1
         </td>
       </tr>
       
       <tr>
         <td>
-          <code>~2.2.1</code>
+          ~2.2.1
         </td>
         
         <td>
@@ -716,41 +748,41 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          匹配 <code>2.2.3</code>, <code>2.2.9</code> ; 不匹配 <code>2.3.0</code>, <code>2.4.5</code>
+          匹配 2.2.3, 2.2.9 ; 不匹配 2.3.0, 2.4.5
         </td>
       </tr>
       
       <tr>
         <td>
-          <code>>=2.1</code>
+          >=2.1
         </td>
         
         <td>
-          版本号大于或等于 <code>2.1.0</code>
+          版本号大于或等于 2.1.0
         </td>
         
         <td>
-          匹配 <code>2.1.2</code>, <code>3.1</code>
+          匹配 2.1.2, 3.1
         </td>
       </tr>
       
       <tr>
         <td>
-          <code><=2.2</code>
+          <=2.2
         </td>
         
         <td>
-          版本号小于或等于 <code>2.2</code>
+          版本号小于或等于 2.2
         </td>
         
         <td>
-          匹配 <code>1.0.0</code>, <code>2.2.1</code>, <code>2.2.11</code>
+          匹配 1.0.0, 2.2.1, 2.2.11
         </td>
       </tr>
       
       <tr>
         <td>
-          <code>1.0.0 - 2.0.0</code>
+          1.0.0 - 2.0.0
         </td>
         
         <td>
@@ -758,7 +790,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          匹配 <code>1.0.0</code>, <code>1.3.4</code>, <code>2.0.0</code>
+          匹配 1.0.0, 1.3.4, 2.0.0
         </td>
       </tr>
     </table>
@@ -768,32 +800,32 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     
     
     
-      如 <code>>=2.3.1 <=2.8.0</code> 可以解读为: <code>>=2.3.1</code> 且 <code><=2.8.0</code>
+      如 >=2.3.1 <=2.8.0 可以解读为: >=2.3.1 且 <=2.8.0
     
     
     <ul>
       
-        可以匹配 <code>2.3.1</code>, <code>2.4.5</code>, <code>2.8.0</code>
+        可以匹配 2.3.1, 2.4.5, 2.8.0
       
       
-        但不匹配 <code>1.0.0</code>, <code>2.3.0</code>, <code>2.8.1</code>, <code>3.0.0</code>
+        但不匹配 1.0.0, 2.3.0, 2.8.1, 3.0.0
       
     
     
     
-      任意两条规则，通过 <code>||</code> 连接起来，表示“或”逻辑，即两条规则的并集:
+      任意两条规则，通过 || 连接起来，表示“或”逻辑，即两条规则的并集:
     
     
     
-      如 <code>^2 >=2.3.1 || ^3 >3.2</code>
+      如 ^2 >=2.3.1 || ^3 >3.2
     
     
     <ul>
       
-        可以匹配 <code>2.3.1</code>, <code>2,8.1</code>, <code>3.3.1</code>
+        可以匹配 2.3.1, 2,8.1, 3.3.1
       
       
-        但不匹配 <code>1.0.0</code>, <code>2.2.0</code>, <code>3.1.0</code>, <code>4.0.0</code>
+        但不匹配 1.0.0, 2.2.0, 3.1.0, 4.0.0
       
     
     
@@ -803,34 +835,34 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     
     <ul>
       
-        <code>*</code> 或 <code>x</code> 匹配所有主版本
+        * 或 x 匹配所有主版本
       
       
-        <code>1</code> 或 <code>1.x</code> 匹配 主版本号为 1 的所有版本
+        1 或 1.x 匹配 主版本号为 1 的所有版本
       
       
-        <code>1.2</code> 或 <code>1.2.x</code> 匹配 版本号为 1.2 开头的所有版本
+        1.2 或 1.2.x 匹配 版本号为 1.2 开头的所有版本
       
     
     
     
-      PPS: 在常规仅包含数字的版本号之外，semver 还允许在 <code>MAJOR.MINOR.PATCH</code> 后追加 <code>-</code> 后跟点号分隔的标签，作为预发布版本标签 &#8211; <a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fnpm%2Fnode-semver%23prerelease-tags" target="_blank" rel="nofollow noopener noreferrer">Prerelese Tags</a>，通常被视为不稳定、不建议生产使用的版本。例如：
+      PPS: 在常规仅包含数字的版本号之外，semver 还允许在 MAJOR.MINOR.PATCH 后追加 - 后跟点号分隔的标签，作为预发布版本标签 &#8211; <a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fnpm%2Fnode-semver%23prerelease-tags" target="_blank" rel="nofollow noopener noreferrer">Prerelese Tags</a>，通常被视为不稳定、不建议生产使用的版本。例如：
     
     
     <ul>
       
-        <code>1.0.0-alpha</code>
+        1.0.0-alpha
       
       
-        <code>1.0.0-beta.1</code>
+        1.0.0-beta.1
       
       
-        <code>1.0.0-rc.3</code>
+        1.0.0-rc.3
       
     
     
     
-      上表中[我们](https://www.w3cdoc.com)最常见的是 <code>^1.8.11</code> 这种格式的 range, 因为[我们](https://www.w3cdoc.com)在使用 <code>npm install <package name></code> 安装包时，npm 默认安装当前最新版本，例如 <code>1.8.11</code>, 然后在所安装的版本号前加<code>^</code>号, 将 <code>^1.8.11</code> 写入 package.json 依赖配置，意味着可以匹配 1.8.11 以上，2.0.0 以下的所有版本。
+      上表中[我们](https://www.w3cdoc.com)最常见的是 ^1.8.11 这种格式的 range, 因为[我们](https://www.w3cdoc.com)在使用 npm install <package name> 安装包时，npm 默认安装当前最新版本，例如 1.8.11, 然后在所安装的版本号前加^号, 将 ^1.8.11 写入 package.json 依赖配置，意味着可以匹配 1.8.11 以上，2.0.0 以下的所有版本。
     
     
     <h3 class="heading" data-id="heading-12">
@@ -838,7 +870,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     </h3>
     
     
-      问题来了，在安装完一个依赖包之后有新版本发布了，如何使用 npm 进行版本升级呢？——答案是简单的 <code>npm install</code> 或 <code>npm update</code>，但在不同的 npm 版本，不同的 package.json, package-lock.json 文件，安装/升级的表现也不同。
+      问题来了，在安装完一个依赖包之后有新版本发布了，如何使用 npm 进行版本升级呢？——答案是简单的 npm install 或 npm update，但在不同的 npm 版本，不同的 package.json, package-lock.json 文件，安装/升级的表现也不同。
     
     
     
@@ -847,13 +879,13 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     
     <ul>
       
-        [我们](https://www.w3cdoc.com)的工程项目 <code>app</code> 依赖 webpack
+        [我们](https://www.w3cdoc.com)的工程项目 app 依赖 webpack
       
       
-        项目最初初始化时，安装了当时最新的包 webpack@1.8.0，并且 package.json 中的依赖配置为: <code>"webpack": "^1.8.0"</code>
+        项目最初初始化时，安装了当时最新的包 webpack@1.8.0，并且 package.json 中的依赖配置为: "webpack": "^1.8.0"
       
       
-        当前（2018年3月） webpack 最新版本为 <code>4.2.0</code>, webpack 1.x 最新子版本为 <code>1.15.0</code>
+        当前（2018年3月） webpack 最新版本为 4.2.0, webpack 1.x 最新子版本为 1.15.0
       
     
     
@@ -894,7 +926,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          <code>webpack: ^1.8.0</code>
+          webpack: ^1.8.0
         </td>
         
         <td>
@@ -902,11 +934,11 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          <code>install</code>
+          install
         </td>
         
         <td>
-          <code>webpack: ^1.8.0</code>
+          webpack: ^1.8.0
         </td>
         
         <td>
@@ -920,7 +952,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          <code>webpack: ^1.8.0</code>
+          webpack: ^1.8.0
         </td>
         
         <td>
@@ -928,11 +960,11 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          <code>install</code>
+          install
         </td>
         
         <td>
-          <code>webpack: ^1.8.0</code>
+          webpack: ^1.8.0
         </td>
         
         <td>
@@ -946,7 +978,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          <code>webpack: ^1.8.0</code>
+          webpack: ^1.8.0
         </td>
         
         <td>
@@ -954,11 +986,11 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          <code>update</code>
+          update
         </td>
         
         <td>
-          <code>webpack: ^1.8.0</code>
+          webpack: ^1.8.0
         </td>
         
         <td>
@@ -972,7 +1004,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          <code>webpack: ^1.8.0</code>
+          webpack: ^1.8.0
         </td>
         
         <td>
@@ -980,11 +1012,11 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          <code>update</code>
+          update
         </td>
         
         <td>
-          <code>webpack: ^1.8.0</code>
+          webpack: ^1.8.0
         </td>
         
         <td>
@@ -1002,15 +1034,15 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         如果本地 node_modules 已安装，再次执行 install 不会更新包版本, 执行 update 才会更新; 而如果本地 node_modules 为空时，执行 install/update 都会直接安装更新包;
       
       
-        npm update 总是会把包更新到符合 package.json 中指定的 semver 的最新版本号——本例中符合 <code>^1.8.0</code> 的最新版本为 <code>1.15.0</code>
+        npm update 总是会把包更新到符合 package.json 中指定的 semver 的最新版本号——本例中符合 ^1.8.0 的最新版本为 1.15.0
       
       
-        一旦给定 package.json, 无论后面执行 npm install 还是 update, package.json 中的 webpack 版本一直顽固地保持 一开始的 <code>^1.8.0</code> 岿然不动
+        一旦给定 package.json, 无论后面执行 npm install 还是 update, package.json 中的 webpack 版本一直顽固地保持 一开始的 ^1.8.0 岿然不动
       
     
     
     
-      这里不合理的地方在于，如果最开始团队中第一个人安装了 <code>webpack@1.8.0</code>, 而新加入项目的成员, checkout 工程代码后执行 <code>npm install</code> 会安装得到不太一样的 <code>1.15.0</code> 版本。虽然 semver 约定了小版本号应当保持向下兼容（相同大版本号下的小版本号）兼容，但万一有不熟悉不遵循此约定的包发布者，发布了不兼容的包，此时就可能出现因依赖环境不同导致的 bug。
+      这里不合理的地方在于，如果最开始团队中第一个人安装了 webpack@1.8.0, 而新加入项目的成员, checkout 工程代码后执行 npm install 会安装得到不太一样的 1.15.0 版本。虽然 semver 约定了小版本号应当保持向下兼容（相同大版本号下的小版本号）兼容，但万一有不熟悉不遵循此约定的包发布者，发布了不兼容的包，此时就可能出现因依赖环境不同导致的 bug。
     
     
     
@@ -1060,7 +1092,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          <code>^1.8.0</code>
+          ^1.8.0
         </td>
         
         <td>
@@ -1072,11 +1104,11 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          <code>i</code>
+          i
         </td>
         
         <td>
-          <code>^1.8.0</code>
+          ^1.8.0
         </td>
         
         <td>
@@ -1090,7 +1122,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          <code>^1.8.0</code>
+          ^1.8.0
         </td>
         
         <td>
@@ -1102,11 +1134,11 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          <code>i</code>
+          i
         </td>
         
         <td>
-          <code>^1.8.0</code>
+          ^1.8.0
         </td>
         
         <td>
@@ -1120,7 +1152,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          <code>^1.8.0</code>
+          ^1.8.0
         </td>
         
         <td>
@@ -1132,11 +1164,11 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-         <code>up</code>
+         up
         </td>
         
         <td>
-         <code>^1.15.0</code>
+         ^1.15.0
         </td>
         
         <td>
@@ -1150,7 +1182,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          <code>^1.8.0</code>
+          ^1.8.0
         </td>
         
         <td>
@@ -1162,11 +1194,11 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          <code>up</code>
+          up
         </td>
         
         <td>
-          <code>^1.8.0</code>
+          ^1.8.0
         </td>
         
         <td>
@@ -1180,7 +1212,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          <code>^1.15.0</code>
+          ^1.15.0
         </td>
         
         <td>
@@ -1192,11 +1224,11 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-         <code>i</code>
+         i
         </td>
         
         <td>
-         <code>^1.15.0</code>
+         ^1.15.0
         </td>
         
         <td>
@@ -1210,7 +1242,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-          <code>^1.15.0</code>
+          ^1.15.0
         </td>
         
         <td>
@@ -1222,11 +1254,11 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         </td>
         
         <td>
-         <code>up</code>
+         up
         </td>
         
         <td>
-         <code>^1.15.0</code>
+         ^1.15.0
         </td>
         
         <td>
@@ -1247,7 +1279,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
         无论何时完成安装/更新, package-lock 文件总会跟着 node_modules 更新 —— (因此可以视 package-lock 文件为 node_modules 的 JSON 表述)
       
       
-        已安装 node_modules 后若执行 npm update，package.json 中的版本号也会随之更改为 <code>^1.15.0</code>
+        已安装 node_modules 后若执行 npm update，package.json 中的版本号也会随之更改为 ^1.15.0
       
     
     
@@ -1269,13 +1301,13 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     
     <ul>
       
-        使用 npm: <code>>=5.1</code> 版本, 保持 <code>package-lock.json</code> 文件默认开启配置
+        使用 npm: >=5.1 版本, 保持 package-lock.json 文件默认开启配置
       
       
-        初始化：第一作者初始化项目时使用 <code>npm install <package></code> 安装依赖包, 默认保存 <code>^X.Y.Z</code> 依赖 range 到 package.json中; 提交 <code>package.json</code>, <code>package-lock.json</code>,不要提交 <code>node_modules</code> 目录
+        初始化：第一作者初始化项目时使用 npm install <package> 安装依赖包, 默认保存 ^X.Y.Z 依赖 range 到 package.json中; 提交 package.json, package-lock.json,不要提交 node_modules 目录
       
       
-        初始化：项目成员首次 checkout/clone 项目代码后，执行一次 <code>npm install</code> 安装依赖包
+        初始化：项目成员首次 checkout/clone 项目代码后，执行一次 npm install 安装依赖包
       
       
        不要手动修改 package-lock.json
@@ -1283,16 +1315,16 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
       
         升级依赖包: <ul>
           
-            升级小版本: 本地执行 <code>npm update</code> 升级到新的小版本
+            升级小版本: 本地执行 npm update 升级到新的小版本
           
           
-            升级大版本: 本地执行 <code>npm install <package-name>@<version></code> 升级到新的大版本
+            升级大版本: 本地执行 npm install <package-name>@<version> 升级到新的大版本
           
           
-            也可手动修改 package.json 中版本号为要升级的版本(大于现有版本号)并指定所需的 semver, 然后执行 <code>npm install</code>
+            也可手动修改 package.json 中版本号为要升级的版本(大于现有版本号)并指定所需的 semver, 然后执行 npm install
           
           
-            本地验证升级后新版本无问题后，提交新的 <code>package.json</code>, <code>package-lock.json</code> 文件
+            本地验证升级后新版本无问题后，提交新的 package.json, package-lock.json 文件
           
         
       
@@ -1300,10 +1332,10 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
       
         降级依赖包: <ul>
           
-           正确: <code>npm install <package-name>@<old-version></code> 验证无问题后，提交 package.json 和 package-lock.json 文件
+           正确: npm install <package-name>@<old-version> 验证无问题后，提交 package.json 和 package-lock.json 文件
           
           
-           错误: 手动修改 <code>package.json</code> 中的版本号为更低版本的 semver, 这样修改并不会生效，因为再次执行 <code>npm install</code> 依然会安装 <code>package-lock.json</code> 中的锁定版本
+           错误: 手动修改 package.json 中的版本号为更低版本的 semver, 这样修改并不会生效，因为再次执行 npm install 依然会安装 package-lock.json 中的锁定版本
           
         
       
@@ -1311,21 +1343,21 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
       
         删除依赖包: <ul>
           
-            Plan A: <code>npm uninstall <package></code> 并提交 <code>package.json</code> 和 <code>package-lock.json</code>
+            Plan A: npm uninstall <package> 并提交 package.json 和 package-lock.json
           
           
-            Plan B: 把要卸载的包从 package.json 中 dependencies 字段删除, 然后执行 <code>npm install</code> 并提交 <code>package.json</code> 和 <code>package-lock.json</code>
+            Plan B: 把要卸载的包从 package.json 中 dependencies 字段删除, 然后执行 npm install 并提交 package.json 和 package-lock.json
           
         
       
       
       
-        任何时候有人提交了 package.json, package-lock.json 更新后，团队其他成员应在 svn update/git pull 拉取更新后执行 <code>npm install</code> 脚本安装更新后的依赖包
+        任何时候有人提交了 package.json, package-lock.json 更新后，团队其他成员应在 svn update/git pull 拉取更新后执行 npm install 脚本安装更新后的依赖包
       
     
     
     
-      <s>恭喜你终于可以跟<code>rm -rf node_modules</code> && <code>npm install</code> 这波操作说拜拜了（其实并不会）</s>
+      <s>恭喜你终于可以跟rm -rf node_modules && npm install 这波操作说拜拜了（其实并不会）</s>
     
     
     <h2 class="heading" data-id="heading-14">
@@ -1341,15 +1373,17 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
       npm scripts 是 npm 另一个很重要的特性。通过在 package.json 中 scripts 字段定义一个脚本，例如：
     
     
-    <pre><code class="hljs json copyable" lang="json">{
-    <span class="hljs-attr">"scripts"</span>: {
-        <span class="hljs-attr">"echo"</span>: <span class="hljs-string">"echo HELLO WORLD"</span>
+    ```
+{
+    "scripts": {
+        "echo": "echo HELLO WORLD"
     }
 }
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
 
     
-      [我们](https://www.w3cdoc.com)就可以通过 <code>npm run echo</code> 命令来执行这段脚本，像在 shell 中执行该命令 <code>echo HELLO WORLD</code> 一样，看到终端输出 <code>HELLO WORLD</code>.
+      [我们](https://www.w3cdoc.com)就可以通过 npm run echo 命令来执行这段脚本，像在 shell 中执行该命令 echo HELLO WORLD 一样，看到终端输出 HELLO WORLD.
     
     
     
@@ -1362,24 +1396,24 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     
     <ol>
       
-        <code>npm run</code> 命令执行时，会把 <code>./node_modules/.bin/</code> 目录添加到执行环境的 <code>PATH</code> 变量中，因此如果某个命令行包未全局安装，而只安装在了当前项目的 node_modules 中，通过 <code>npm run</code> 一样可以调用该命令。
+        npm run 命令执行时，会把 ./node_modules/.bin/ 目录添加到执行环境的 PATH 变量中，因此如果某个命令行包未全局安装，而只安装在了当前项目的 node_modules 中，通过 npm run 一样可以调用该命令。
       
       
-        执行 npm 脚本时要传入参数，需要在命令后加 <code>--</code> 标明, 如 <code>npm run test -- --grep="pattern"</code> 可以将 <code>--grep="pattern"</code> 参数传给 <code>test</code> 命令
+        执行 npm 脚本时要传入参数，需要在命令后加 -- 标明, 如 npm run test -- --grep="pattern" 可以将 --grep="pattern" 参数传给 test 命令
       
       
         npm 提供了 pre 和 post 两种钩子机制，可以定义某个脚本前后的执行脚本
       
       
-        运行时变量：在 <code>npm run</code> 的脚本执行环境内，可以通过环境变量的方式获取许多运行时相关信息，以下都可以通过 <code>process.env</code> 对象访问获得： <ul>
+        运行时变量：在 npm run 的脚本执行环境内，可以通过环境变量的方式获取许多运行时相关信息，以下都可以通过 process.env 对象访问获得： <ul>
           
-            <code>npm_lifecycle_event</code> &#8211; 正在运行的脚本名称
-          
-          
-            <code>npm_package_<key></code> &#8211; 获取当前包 package.json 中某个字段的配置值：如 <code>npm_package_name</code> 获取包名
+            npm_lifecycle_event &#8211; 正在运行的脚本名称
           
           
-            <code>npm_package_<key>_<sub-key></code> &#8211; package.json 中嵌套字段属性：如 <code>npm_pacakge_dependencies_webpack</code> 可以获取到 package.json 中的 <code>dependencies.webpack</code> 字段的值，即 webpack 的版本号
+            npm_package_<key> &#8211; 获取当前包 package.json 中某个字段的配置值：如 npm_package_name 获取包名
+          
+          
+            npm_package_<key>_<sub-key> &#8211; package.json 中嵌套字段属性：如 npm_pacakge_dependencies_webpack 可以获取到 package.json 中的 dependencies.webpack 字段的值，即 webpack 的版本号
           
         
       
@@ -1390,30 +1424,32 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     </h3>
     
     
-      上面所说的 <code>node_modules/.bin</code> 目录，保存了依赖目录中所安装的可供调用的命令行包。
+      上面所说的 node_modules/.bin 目录，保存了依赖目录中所安装的可供调用的命令行包。
     
     
     
-      何谓命令行包？例如 <code>webpack</code> 就属于一个命令行包。如果[我们](https://www.w3cdoc.com)在安装 webpack 时添加 <code>--global</code> 参数，就可以在终端直接输入 <code>webpack</code> 进行调用。但如果不加 <code>--global</code> 参数，[我们](https://www.w3cdoc.com)会在 <code>node_modules/.bin</code> 目录里看到名为 webpack 的文件，如果在终端直接输入 <code>./node_modules/.bin/webpack</code> 命令，一样可以执行。
+      何谓命令行包？例如 webpack 就属于一个命令行包。如果[我们](https://www.w3cdoc.com)在安装 webpack 时添加 --global 参数，就可以在终端直接输入 webpack 进行调用。但如果不加 --global 参数，[我们](https://www.w3cdoc.com)会在 node_modules/.bin 目录里看到名为 webpack 的文件，如果在终端直接输入 ./node_modules/.bin/webpack 命令，一样可以执行。
     
     
     
-      这是因为 <code>webpack</code> 在 <code>package.json</code> 文件中定义了 <code>bin</code> 字段为:
+      这是因为 webpack 在 package.json 文件中定义了 bin 字段为:
     
     
-    <pre><code class="hljs bash copyable" lang="bash">{
-    <span class="hljs-string">"bin"</span>: {
-        <span class="hljs-string">"webpack"</span>: <span class="hljs-string">"./bin/webpack.js"</span>
+    ```
+{
+    "bin": {
+        "webpack": "./bin/webpack.js"
     }
 }
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
 
     
-      bin 字段的配置格式为: <code><command>: <file></code>, 即 <code>命令名: 可执行文件</code>. npm 执行 install 时，会分析每个依赖包的 package.json 中的 <code>bin</code> 字段，并将其包含的条目安装到 <code>./node_modules/.bin</code> 目录中，文件名为 <code><command></code>。而如果是全局模式安装，则会在 npm 全局安装路径的 bin 目录下创建指向 <code><file></code> 名为 <code><command></code> 的软链。因此，<code>./node_modules/.bin/webpack</code> 文件在通过命令行调用时，实际上就是在执行 <code>node ./node_modules/.bin/webpack.js</code> 命令。
+      bin 字段的配置格式为: <command>: <file>, 即 命令名: 可执行文件. npm 执行 install 时，会分析每个依赖包的 package.json 中的 bin 字段，并将其包含的条目安装到 ./node_modules/.bin 目录中，文件名为 <command>。而如果是全局模式安装，则会在 npm 全局安装路径的 bin 目录下创建指向 <file> 名为 <command> 的软链。因此，./node_modules/.bin/webpack 文件在通过命令行调用时，实际上就是在执行 node ./node_modules/.bin/webpack.js 命令。
     
     
     
-      正如上一节所说，<code>npm run</code> 命令在执行时会把 <code>./node_modules/.bin</code> 加入到 <code>PATH</code> 中，使[我们](https://www.w3cdoc.com)可直接调用所有提供了命令行调用接口的依赖包。所以这里就引出了一个最佳实践：
+      正如上一节所说，npm run 命令在执行时会把 ./node_modules/.bin 加入到 PATH 中，使[我们](https://www.w3cdoc.com)可直接调用所有提供了命令行调用接口的依赖包。所以这里就引出了一个最佳实践：
     
     
     <blockquote>
@@ -1423,11 +1459,11 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     </blockquote>
     
     
-      举例而言 <code>webpack</code> 作为[前端](https://www.w3cdoc.com)工程标配的构建工具，虽然[我们](https://www.w3cdoc.com)都习惯了全局安装并直接使用命令行调用，但不同的项目依赖的 webpack 版本可能不同，相应的 <code>webpack.config.js</code> 配置文件也可能只兼容了特定版本的 webpack. 如果[我们](https://www.w3cdoc.com)仅全局安装了最新的 webpack 4.x 并使用 webpack 命令调用，在一个依赖 webpack 3.x 的工程中就会无法成功执行构建。
+      举例而言 webpack 作为[前端](https://www.w3cdoc.com)工程标配的构建工具，虽然[我们](https://www.w3cdoc.com)都习惯了全局安装并直接使用命令行调用，但不同的项目依赖的 webpack 版本可能不同，相应的 webpack.config.js 配置文件也可能只兼容了特定版本的 webpack. 如果[我们](https://www.w3cdoc.com)仅全局安装了最新的 webpack 4.x 并使用 webpack 命令调用，在一个依赖 webpack 3.x 的工程中就会无法成功执行构建。
     
     
     
-      但如果这类工具总是本地安装，[我们](https://www.w3cdoc.com)要调用一个命令，要手动添加 <code>./node_modules/.bin</code> 这个长长的前缀，未免也太麻烦了，[我们](https://www.w3cdoc.com) nodejs 开发者都很懒的。于是 npm 从5.2 开始自带了一个新的工具 <code>npx</code>.
+      但如果这类工具总是本地安装，[我们](https://www.w3cdoc.com)要调用一个命令，要手动添加 ./node_modules/.bin 这个长长的前缀，未免也太麻烦了，[我们](https://www.w3cdoc.com) nodejs 开发者都很懒的。于是 npm 从5.2 开始自带了一个新的工具 npx.
     
     
     <h3 class="heading" data-id="heading-17">
@@ -1435,7 +1471,7 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     </h3>
     
     
-      npx 的使用很简单，就是执行 <code>npx <command></code> 即可，这里的 <code><command></code> 默认就是 <code>./node_modules</code> 目录中安装的可执行脚本名。例如上面本地安装好的 webpack 包，[我们](https://www.w3cdoc.com)可以直接使用 <code>npx webpack</code> 执行即可。
+      npx 的使用很简单，就是执行 npx <command> 即可，这里的 <command> 默认就是 ./node_modules 目录中安装的可执行脚本名。例如上面本地安装好的 webpack 包，[我们](https://www.w3cdoc.com)可以直接使用 npx webpack 执行即可。
     
     
     
@@ -1454,14 +1490,17 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
       除了在 package 中执行 ./node_modules/.bin 中已安装的命令, 还可以直接指定未安装的二进制包名执行。例如[我们](https://www.w3cdoc.com)在一个没有 package.json 也没有 node_modules 的目录下，执行:
     
     
-    <pre><code class="hljs bash copyable" lang="bash">npx cowsay hello
-<span class="copy-code-btn">复制代码</span></code></pre>
+    ```
+npx cowsay hello
+复制代码
+```
 
     
-      npx 将会从 npm 源下载 <code>cowsay</code> 这个包（但并不安装）并执行：
+      npx 将会从 npm 源下载 cowsay 这个包（但并不安装）并执行：
     
     
-    <pre><code class="hljs bash copyable" lang="bash"> _______ 
+    ```
+ _______ 
 
 < hello >
  -------
@@ -1471,7 +1510,8 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
             (__)\       )\/\
                 ||----w |
                 ||     ||
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
 
     
       这种用途非常适合 1. 在本地简单测试或调试 npm 源上这些二进制包的功能；2. 调用 create-react-app 或 yeoman 这类往往每个项目只需要使用一次的脚手架工具
@@ -1481,27 +1521,31 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
       PS: 此处有彩蛋，执行这条命令试试:
     
     
-    <pre><code class="hljs bash copyable" lang="bash">npx workin-hard
-<span class="copy-code-btn">复制代码</span></code></pre>
+    ```
+npx workin-hard
+复制代码
+```
 
     <h4 class="heading" data-id="heading-19">
       场景b) 一键执行 GitHub Gist
     </h4>
     
     
-      还记得前面提到的 [2.1 package定义] 么，<code>npm install <package></code> 可以是包含了有效 package.json 的 git url.
+      还记得前面提到的 [2.1 package定义] 么，npm install <package> 可以是包含了有效 package.json 的 git url.
     
     
     
-      刚好 GitHub Gist 也是 git 仓库 的一种，集合 npx 就可以方便地将简单的脚本共享给其他人，拥有该链接的人无需将脚本安装到本地工作目录即可执行。将 package.json 和 需执行的二进制脚本上传至 gist, 在运行 <code>npx <gist url></code> 就可以方便地执行该 gist 定义的命令。
+      刚好 GitHub Gist 也是 git 仓库 的一种，集合 npx 就可以方便地将简单的脚本共享给其他人，拥有该链接的人无需将脚本安装到本地工作目录即可执行。将 package.json 和 需执行的二进制脚本上传至 gist, 在运行 npx <gist url> 就可以方便地执行该 gist 定义的命令。
     
     
     
       原文作者 Kat Marchán 提供了<a href="https://link.juejin.im?target=https%3A%2F%2Fgist.github.com%2Fzkat%2F4bc19503fe9e9309e2bfaa2c58074d32" target="_blank" rel="nofollow noopener noreferrer">这个</a>示例 gist, 执行：
     
     
-    <pre><code class="hljs bash copyable" lang="bash">npx https://gist.github.com/zkat/4bc19503fe9e9309e2bfaa2c58074d32
-<span class="copy-code-btn">复制代码</span></code></pre>
+    ```
+npx https://gist.github.com/zkat/4bc19503fe9e9309e2bfaa2c58074d32
+复制代码
+```
 
     
       可得到一个来自 GitHubGist 的 hello world 问候。
@@ -1512,23 +1556,25 @@ git://github.com/npm/npm.git<span class="hljs-comment">#v1.0.27</span>
     </h4>
     
     
-      将 npx 与 Aria Stewart 创建的 <code>node</code> 包 (https://www.npmjs.com/package/node) 结合，可以实现在一行命令中使用指定版本的 node 执行命令。
+      将 npx 与 Aria Stewart 创建的 node 包 (https://www.npmjs.com/package/node) 结合，可以实现在一行命令中使用指定版本的 node 执行命令。
     
     
     
       例如先后执行：
     
     
-    <pre><code class="hljs bash copyable" lang="bash">npx node@4 <span class="hljs-_">-e</span> <span class="hljs-string">"console.log(process.version)"</span>
-npx node@6 <span class="hljs-_">-e</span> <span class="hljs-string">"console.log(process.version)"</span>
-<span class="copy-code-btn">复制代码</span></code></pre>
+    ```
+npx node@4 -e "console.log(process.version)"
+npx node@6 -e "console.log(process.version)"
+复制代码
+```
 
     
-      将分别输出 <code>v4.8.7</code> 和 <code>v6.13.0</code>.
+      将分别输出 v4.8.7 和 v6.13.0.
     
     
     
-      往常这种工作是由 <code>nvm</code> 这类 node 版本管理工具来做的，但 <code>npx node@4</code> 这种方式免去 nvm 手动切换配置的步骤，更加简洁简单。
+      往常这种工作是由 nvm 这类 node 版本管理工具来做的，但 npx node@4 这种方式免去 nvm 手动切换配置的步骤，更加简洁简单。
     
     
     <h2 class="heading" data-id="heading-21">
@@ -1541,30 +1587,30 @@ npx node@6 <span class="hljs-_">-e</span> <span class="hljs-string">"console.log
     </h3>
     
     
-      npm cli 提供了 <code>npm config</code> 命令进行 npm 相关配置，通过 <code>npm config ls -l</code> 可查看 npm 的所有配置，包括默认配置。npm 文档页为每个配置项提供了详细的说明 https://docs.npmjs.com/misc/config .
+      npm cli 提供了 npm config 命令进行 npm 相关配置，通过 npm config ls -l 可查看 npm 的所有配置，包括默认配置。npm 文档页为每个配置项提供了详细的说明 https://docs.npmjs.com/misc/config .
     
     
     
-      修改配置的命令为 <code>npm config set <key> <value></code>, [我们](https://www.w3cdoc.com)使用相关的常见重要配置:
+      修改配置的命令为 npm config set <key> <value>, [我们](https://www.w3cdoc.com)使用相关的常见重要配置:
     
     
     <ul>
       
-        <code>proxy</code>, <code>https-proxy</code>: 指定 npm 使用的代理
+        proxy, https-proxy: 指定 npm 使用的代理
       
       
-        <code>registry</code> 指定 npm 下载安装包时的源，默认为 <code>https://registry.npmjs.org/</code> 可以指定为私有 Registry 源
+        registry 指定 npm 下载安装包时的源，默认为 https://registry.npmjs.org/ 可以指定为私有 Registry 源
       
       
-        <code>package-lock</code> 指定是否默认生成 package-lock 文件，建议保持默认 true
+        package-lock 指定是否默认生成 package-lock 文件，建议保持默认 true
       
       
-        <code>save</code> true/false 指定是否在 npm install 后保存包为 dependencies, npm 5 起默认为 true
+        save true/false 指定是否在 npm install 后保存包为 dependencies, npm 5 起默认为 true
       
     
     
     
-      删除指定的配置项命令为 <code>npm config delete <key></code>.
+      删除指定的配置项命令为 npm config delete <key>.
     
     
     <h3 class="heading" data-id="heading-23">
@@ -1572,7 +1618,7 @@ npx node@6 <span class="hljs-_">-e</span> <span class="hljs-string">"console.log
     </h3>
     
     
-      除了使用 CLI 的 <code>npm config</code> 命令显示更改 npm 配置，还可以通过 npmrc 文件直接修改配置。
+      除了使用 CLI 的 npm config 命令显示更改 npm 配置，还可以通过 npmrc 文件直接修改配置。
     
     
     
@@ -1581,34 +1627,36 @@ npx node@6 <span class="hljs-_">-e</span> <span class="hljs-string">"console.log
     
     <ul>
       
-        工程内配置文件: <code>/path/to/my/project/.npmrc</code>
+        工程内配置文件: /path/to/my/project/.npmrc
       
       
-        用户级配置文件: <code>~/.npmrc</code>
+        用户级配置文件: ~/.npmrc
       
       
-        全局配置文件: <code>$PREFIX/etc/npmrc</code> (即<code>npm config get globalconfig</code> 输出的路径)
+        全局配置文件: $PREFIX/etc/npmrc (即npm config get globalconfig 输出的路径)
       
       
-        npm内置配置文件: <code>/path/to/npm/npmrc</code>
+        npm内置配置文件: /path/to/npm/npmrc
       
     
     
     
-      通过这个机制，[我们](https://www.w3cdoc.com)可以方便地在工程跟目录创建一个 <code>.npmrc</code> 文件来共享需要在团队间共享的 npm 运行相关配置。比如如果[我们](https://www.w3cdoc.com)在公司内网环境下需通过代理才可访问 registry.npmjs.org 源，或需访问内网的 registry, 就可以在工作项目下新增 .npmrc 文件并提交代码库。
+      通过这个机制，[我们](https://www.w3cdoc.com)可以方便地在工程跟目录创建一个 .npmrc 文件来共享需要在团队间共享的 npm 运行相关配置。比如如果[我们](https://www.w3cdoc.com)在公司内网环境下需通过代理才可访问 registry.npmjs.org 源，或需访问内网的 registry, 就可以在工作项目下新增 .npmrc 文件并提交代码库。
     
     
-    <pre><code class="hljs bash copyable" lang="bash">proxy = https://proxy.example.com/
+    ```
+proxy = https://proxy.example.com/
 https-proxy = https://proxy.example.com/
 registry = https://registry.example.com/
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
 
     
       因为项目级 .npmrc 文件的作用域只在本项目下，所以在非本目录下，这些配置并不生效。对于使用笔记本工作的开发者，可以很好地隔离公司的工作项目、在家学习研究项目两种不同的环境。
     
     
     
-      将这个功能与 <code>~/.npm-init.js</code> 配置相结合，可以将特定配置的 .npmrc 跟 .gitignore, README 之类文件一起做到 npm init 脚手架中，进一步减少手动配置。
+      将这个功能与 ~/.npm-init.js 配置相结合，可以将特定配置的 .npmrc 跟 .gitignore, README 之类文件一起做到 npm init 脚手架中，进一步减少手动配置。
     
     
     <h3 class="heading" data-id="heading-24">
@@ -1624,13 +1672,15 @@ registry = https://registry.example.com/
     
     
     
-     声明：通过 <code>package.json</code> 的 <code>engines</code> 属性声明应用运行所需的版本运行时要求。例如[我们](https://www.w3cdoc.com)的项目中使用了 <code>async</code>, <code>await</code> 特性，<a href="https://link.juejin.im?target=https%3A%2F%2Fnode.green" target="_blank" rel="nofollow noopener noreferrer">查阅兼容性表格</a>得知最低支持版本为 7.6.0，因此指定 engines 配置为:
+     声明：通过 package.json 的 engines 属性声明应用运行所需的版本运行时要求。例如[我们](https://www.w3cdoc.com)的项目中使用了 async, await 特性，<a href="https://link.juejin.im?target=https%3A%2F%2Fnode.green" target="_blank" rel="nofollow noopener noreferrer">查阅兼容性表格</a>得知最低支持版本为 7.6.0，因此指定 engines 配置为:
     
     
-    <pre><code class="hljs json copyable" lang="json">{
-    <span class="hljs-attr">"engines"</span>: { <span class="hljs-attr">"node"</span>: <span class="hljs-string">">=7.6.0"</span>}
+    ```
+{
+    "engines": { "node": ">=7.6.0"}
 }
-<span class="copy-code-btn">复制代码</span></code></pre>
+复制代码
+```
 
     
      强约束(可选)：在 npm 中以上字段内容仅作为建议字段使用，若要在私有项目中添加强约束，需要自己写脚本钩子，读取并解析 engines 字段的 semver range 并与运行时环境做对比校验并适当提醒。
@@ -1652,7 +1702,7 @@ registry = https://registry.example.com/
         统一运行环境，统一 package.json，统一 package-lock 文件
       
       
-        合理使用多样化的源安装依赖包: <code>npm install <git url>|<local file></code>
+        合理使用多样化的源安装依赖包: npm install <git url>|<local file>
       
       
         使用 npm: >=5.2 版本

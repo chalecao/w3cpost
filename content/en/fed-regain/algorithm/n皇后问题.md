@@ -13,7 +13,8 @@ title: n皇后问题
 
 代码：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">// n queens problem
+```
+// n queens problem
 function nQueens(n) {
     var result = [];
     var k = 0;
@@ -50,6 +51,7 @@ function place(res, k) {
 var start = Date.now();
 var result = nQueens(30);
 var end = Date.now();
-console.log(result, end - start);</pre>
+console.log(result, end - start);
+```
 
-&nbsp;
+

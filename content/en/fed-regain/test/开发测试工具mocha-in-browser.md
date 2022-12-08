@@ -13,12 +13,12 @@ GIT:[https://github.com/chalecao/mocha-in-browser][1]
 
 install mocha-in-browser
 
-    <code>npm install mocha-in-browser --save-dev
-    </code>
+    npm install mocha-in-browser --save-dev
+    
 
 mocha-in-browser 是问了方便你更好的编写mocha测试代码，如果在项目中使用，你还需要安装mocha， package.json中的配置参考：
 
-    <code>...
+    ...
     "scripts": {
         "test": "./node_modules/.bin/mocha ./test/main.spec.js",
     },
@@ -28,7 +28,7 @@ mocha-in-browser 是问了方便你更好的编写mocha测试代码，如果在�
          "mocha-in-browser": "^1.0.0",
       ....
     
-    </code>
+    
 
 ## <a id="user-content-write-test-cases" class="anchor" href="https://github.com/chalecao/mocha-in-browser#write-test-cases" aria-hidden="true"></a>write test cases
 
@@ -38,7 +38,7 @@ mocha-in-browser 是问了方便你更好的编写mocha测试代码，如果在�
   2. UI测试，这里指的也是通用UI，基本也是可以单独运行测试的。
   3. E2E测试，在测试体系中，这部分属于集成测试，主要从整体效果上保证页面展示不会出现什么大问题（比如图片不展示、页面空白等）。 附上main.spec.js的例子：
 
-    <code>//本项目提供的测试用例基类
+    //本项目提供的测试用例基类
     let specBase = require('mocha-in-browser/lib/base.spec')
     class mainSpec extends specBase {
        constructor(config) {
@@ -206,11 +206,11 @@ mocha-in-browser 是问了方便你更好的编写mocha测试代码，如果在�
     
     }
     new mainSpec();
-    </code>
+    
 
 其中关于配置项如下：
 
-    <code>{
+    {
        configPath: 配置文件路径，默认"./test/inject.conf.js", 
        utilPath: 导入util,方便测试的js纯函数,
        addr:  需要打开的测试页面，默认"", 
@@ -220,11 +220,11 @@ mocha-in-browser 是问了方便你更好的编写mocha测试代码，如果在�
        headless: 是否采用无头[浏览器](https://www.w3cdoc.com)，默认true,
        closeAfter: 执行完一个用例后是否关闭
     }
-    </code>
+    
 
 下面再给个配置文件inject.conf.js的示例：
 
-    <code>window.testConfig = {
+    window.testConfig = {
        coverage: false,
        coverageOptions: {
            reporters: 'icov'
@@ -265,7 +265,7 @@ mocha-in-browser 是问了方便你更好的编写mocha测试代码，如果在�
            loadScript(item);
        })
     }
-    </code>
+    
 
 建议配合另外一个项目使用： proxy-ajax： <https://github.com/chalecao/proxy-ajax>
 

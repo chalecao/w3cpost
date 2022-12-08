@@ -38,8 +38,10 @@ JS 中的内存管理, 我的感觉就像 JS 中的一门副科, [我们](https:
 示例:
 
 <div class="highlight">
-  <pre><code class="language-text">let arr = [1, 2, 3, 4];
-arr = null; // [1,2,3,4]这时没有被引用, 会被自动回收</code></pre>
+  ```
+let arr = [1, 2, 3, 4];
+arr = null; // [1,2,3,4]这时没有被引用, 会被自动回收
+```
 </div>
 
 2.2.3 限制: 循环引用
@@ -47,13 +49,15 @@ arr = null; // [1,2,3,4]这时没有被引用, 会被自动回收</code></pre>
 在下面的例子中, 两个对象对象被创建并互相引用, 就造成了循环引用. 它们被调用之后不会离开函数作用域, 所以它们已经没有用了, 可以被回收了. 然而, 引用计数算法考虑到它们互相都有至少一次引用, 所以它们不会被回收.
 
 <div class="highlight">
-  <pre><code class="language-text">function f() {
+  ```
+function f() {
   var o1 = {};
   var o2 = {};
   o1.p = o2; // o1 引用 o2
   o2.p = o1; // o2 引用 o1. 这里会形成一个循环引用
 }
-f();</code></pre>
+f();
+```
 </div><figure>
 
 
@@ -63,12 +67,14 @@ f();</code></pre>
 实际例子:
 
 <div class="highlight">
-  <pre><code class="language-text">var div;
+  ```
+var div;
 window.onload = function(){
   div = document.getElementById("myDivElement");
   div.circularReference = div;
   div.lotsOfData = new Array(10000).join("*");
-};</code></pre>
+};
+```
 </div>
 
 在上面的例子里, myDivElement 这个 DOM 元素里的 circularReference 属性引用了 myDivElement, 造成了循环引用. IE 6, 7 使用引用计数方式对 DOM 对象进行垃圾回收. 该方式常常造成对象被循环引用时内存发生泄漏. 现代[浏览器](https://www.w3cdoc.com)通过使用标记-清除内存回收算法, 来解决这一问题.
@@ -98,9 +104,11 @@ window.onload = function(){
 2.3.1 全局变量
 
 <div class="highlight">
-  <pre><code class="language-text">function foo(arg) {
+  ```
+function foo(arg) {
     bar = "some text";
-}</code></pre>
+}
+```
 </div>
 
 在 JS 中处理未被声明的变量, 上述范例中的 **_bar_** 时, 会把 **_bar_** , 定义到全局对象中, 在[浏览器](https://www.w3cdoc.com)中就是 **_window_** 上. 在页面中的全局变量, 只有当页面被关闭后才会被销毁. 所以这种写法就会造成内存泄露, 当然在这个例子中泄露的只是一个简单的字符串, 但是在实际的代码中, 往往情况会更加糟糕.
@@ -108,11 +116,13 @@ window.onload = function(){
 另外一种意外创建全局变量的情况.
 
 <div class="highlight">
-  <pre><code class="language-text">function foo() {
+  ```
+function foo() {
     this.var1 = "potential accidental global";
 }
 // Foo 被调用时, this 指向全局变量(window)
-foo();</code></pre>
+foo();
+```
 </div>
 
 在这种情况下调用 **_foo_**, this被指向了全局变量 **_window_**, 意外的创建了全局变量.
@@ -124,13 +134,15 @@ foo();</code></pre>
 在很多库中, 如果使用了观察着模式, 都会提供回调方法, 来调用一些回调函数. 要记得回收这些回调函数. 举一个 setInterval的例子.
 
 <div class="highlight">
-  <pre><code class="language-text">var serverData = loadData();
+  ```
+var serverData = loadData();
 setInterval(function() {
     var renderer = document.getElementById('renderer');
     if(renderer) {
         renderer.innerHTML = JSON.stringify(serverData);
     }
-}, 5000); // 每 5 秒调用一次</code></pre>
+}, 5000); // 每 5 秒调用一次
+```
 </div>
 
 如果后续 **_renderer_** 元素被移除, 整个定时器实际上没有任何作用. 但如果你没有回收定时器, 整个定时器依然有效, 不但定时器无法被内存回收, 定时器函数中的依赖也无法回收. 在这个案例中的 **_serverData_** 也无法被回收.
@@ -140,7 +152,8 @@ setInterval(function() {
 在 JS 开发中, [我们](https://www.w3cdoc.com)会经常用到闭包, 一个内部函数, 有权访问包含其的外部函数中的变量. 下面这种情况下, 闭包也会造成内存泄露.
 
 <div class="highlight">
-  <pre><code class="language-text">var theThing = null;
+  ```
+var theThing = null;
 var replaceThing = function () {
   var originalThing = theThing;
   var unused = function () {
@@ -154,7 +167,8 @@ var replaceThing = function () {
     }
   };
 };
-setInterval(replaceThing, 1000);</code></pre>
+setInterval(replaceThing, 1000);
+```
 </div>
 
 这段代码, 每次调用 **_replaceThing _**时, **_theThing_** 获得了包含一个巨大的数组和一个对于新闭包 **_someMethod _**的对象. 同时 **_unused_** 是一个引用了 **_originalThing _**的闭包.
@@ -168,7 +182,8 @@ setInterval(replaceThing, 1000);</code></pre>
 很多时候, [我们](https://www.w3cdoc.com)对 Dom 的操作, 会把 Dom 的引用保存在一个数组或者 Map 中.
 
 <div class="highlight">
-  <pre><code class="language-text">var elements = {
+  ```
+var elements = {
     image: document.getElementById('image')
 };
 function doStuff() {
@@ -177,7 +192,8 @@ function doStuff() {
 function removeImage() {
     document.body.removeChild(document.getElementById('image'));
     // 这个时候[我们](https://www.w3cdoc.com)对于 #image 仍然有一个引用, Image 元素, 仍然无法被内存回收.
-}</code></pre>
+}
+```
 </div>
 
 上述案例中, 即使[我们](https://www.w3cdoc.com)对于 image 元素进行了移除, 但是仍然有对 image 元素的引用, 依然无法对齐进行内存回收.
@@ -210,4 +226,4 @@ JS 这类高级语言，隐藏了内存管理功能。但无论开发人员是�
 
   <a href="https://zhuanlan.zhihu.com/p/30552148">精读《JS 中的内存管理》</a>
 
-&nbsp;
+

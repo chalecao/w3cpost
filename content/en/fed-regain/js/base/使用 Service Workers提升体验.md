@@ -23,12 +23,15 @@ Service worker 最终要去解决这些问题。虽然 Service Worker 的语法�
 
 如果你的js和css等是放在CDN下面的，你可以新建一个html文件，用来注册serviceworker，然后把这个文件的response的header设置成
 
-<pre class="pure-highlightjs"><code class="">"Content-Type", "application/x-javascript; charset=utf-8"
-</code></pre>
+```
+"Content-Type", "application/x-javascript; charset=utf-8"
+
+```
 
 那么[浏览器](https://www.w3cdoc.com)就会按照js来解析，但是不影响注册SW。示例：
 
-<pre class="pure-highlightjs"><code class="">&lt;script>
+```
+<script>
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
             setTimeout(function(){
@@ -48,8 +51,9 @@ Service worker 最终要去解决这些问题。虽然 Service Worker 的语法�
     }else{
         window.TES && TES.timeStamp('onload_no_sw');
     }
-&lt;/script>
-</code></pre>
+</script>
+
+```
 
 ## 关于fetch
 
@@ -60,7 +64,8 @@ Service worker 最终要去解决这些问题。虽然 Service Worker 的语法�
     
 
     <div class="highlight">
-      <pre><code>&lt;code class="language-text">let myHeaders = new Headers({
+      ```
+<code class="language-text">let myHeaders = new Headers({
     'Access-Control-Allow-Origin': '*',
     'Content-Type': 'text/plain'
 });
@@ -71,7 +76,8 @@ fetch(url, {
 }) .then((res) => {
     // TODO
 })
-</code>&lt;/code></pre>
+</code>
+```
     </div>
 
     
@@ -79,8 +85,10 @@ fetch(url, {
     
     
     <div class="highlight">
-      <pre><code>&lt;code class="language-text">header("Access-Control-Allow-Origin: *"); 
-</code>&lt;/code></pre>
+      ```
+<code class="language-text">header("Access-Control-Allow-Origin: *"); 
+</code>
+```
     </div>
 
     
@@ -109,13 +117,14 @@ fetch(url, {
       <img loading="lazy" class="alignnone size-full wp-image-1452" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/10/v2-5bbd2fc2f90d8c5b3755616e5dd449bb_hd.png" width="222" height="183" />这种情况下可以使用JSONP。
     
     
-    ##     示例<code class=""></code>
+    ##     示例
     
 
   </div>
 </div>
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">//serviceWorker.js
+```
+//serviceWorker.js
 var CACHE_NAME = 'my-first-sw';
 var urlsToCache = [
     '/',
@@ -170,12 +179,13 @@ self.addEventListener('fetch', function (event) {
             });
         })
     );
-});</pre>
+});
+```
 
 ## webpack插件
 
 <div>
- 上面展示了在半年前研究pwa离线缓存时写的代码，而这次，真正要在正式环境上使用时，我决定使用webpack一个插件：workbox-webpack-plugin。workbox是google官方的pwa框架，workbox-webpack-plugin是由其产生的其中一个工具，内置了两个插件：<code>GenerateSW</code> 、<code>InjectManifest</code>
+ 上面展示了在半年前研究pwa离线缓存时写的代码，而这次，真正要在正式环境上使用时，我决定使用webpack一个插件：workbox-webpack-plugin。workbox是google官方的pwa框架，workbox-webpack-plugin是由其产生的其中一个工具，内置了两个插件：GenerateSW 、InjectManifest
   
   <ul>
     
@@ -187,63 +197,65 @@ self.addEventListener('fetch', function (event) {
   
  由于这次是为了进行资源缓存，所以只使用了GenerateSW这部分。
   
-  <pre><code class="hljs js copyable" lang="js">  &lt;span class="hljs-comment">//在webpack配置文件里&lt;/span>
-  &lt;span class="hljs-keyword">var&lt;/span> WorkboxPlugin = &lt;span class="hljs-built_in">require&lt;/span>(&lt;span class="hljs-string">'workbox-webpack-plugin'&lt;/span>);
-  &lt;span class="hljs-keyword">new&lt;/span> WorkboxPlugin.GenerateSW({
-            &lt;span class="hljs-attr">cacheId&lt;/span>: &lt;span class="hljs-string">'seed-cache'&lt;/span>,
+  ```
+  //在webpack配置文件里
+  var WorkboxPlugin = require('workbox-webpack-plugin');
+  new WorkboxPlugin.GenerateSW({
+            cacheId: 'seed-cache',
 
-            &lt;span class="hljs-attr">importWorkboxFrom&lt;/span>: &lt;span class="hljs-string">'disabled'&lt;/span>, &lt;span class="hljs-comment">// 可填`cdn`,`local`,`disabled`,&lt;/span>
-            importScripts: &lt;span class="hljs-string">'/scripts-build/commseed/workboxswMain.js'&lt;/span>,
+            importWorkboxFrom: 'disabled', // 可填`cdn`,`local`,`disabled`,
+            importScripts: '/scripts-build/commseed/workboxswMain.js',
 
-            &lt;span class="hljs-attr">skipWaiting&lt;/span>: &lt;span class="hljs-literal">true&lt;/span>, &lt;span class="hljs-comment">//跳过waiting状态&lt;/span>
-            clientsClaim: &lt;span class="hljs-literal">true&lt;/span>, &lt;span class="hljs-comment">//通知让新的sw立即在页面上取得控制权&lt;/span>
-            cleanupOutdatedCaches: &lt;span class="hljs-literal">true&lt;/span>,&lt;span class="hljs-comment">//删除过时、老版本的缓存&lt;/span>
+            skipWaiting: true, //跳过waiting状态
+            clientsClaim: true, //通知让新的sw立即在页面上取得控制权
+            cleanupOutdatedCaches: true,//删除过时、老版本的缓存
 
-            &lt;span class="hljs-comment">//最终生成的service worker地址，这个地址和webpack的output地址有关&lt;/span>
-            swDest: &lt;span class="hljs-string">'../workboxServiceWorker.js'&lt;/span>,
-            &lt;span class="hljs-attr">include&lt;/span>: [
+            //最终生成的service worker地址，这个地址和webpack的output地址有关
+            swDest: '../workboxServiceWorker.js',
+            include: [
 
             ],
-            &lt;span class="hljs-comment">//缓存规则，可用正则匹配请求，进行缓存&lt;/span>
-            &lt;span class="hljs-comment">//这里将js、css、还有图片资源分开缓存，可以区分缓存时间(虽然这里没做区分。。)&lt;/span>
-            &lt;span class="hljs-comment">//由于种子农场此站点较长时间不更新，所以缓存时间可以稍微长一些&lt;/span>
+            //缓存规则，可用正则匹配请求，进行缓存
+            //这里将js、css、还有图片资源分开缓存，可以区分缓存时间(虽然这里没做区分。。)
+            //由于种子农场此站点较长时间不更新，所以缓存时间可以稍微长一些
             runtimeCaching: [
                 {
-                    &lt;span class="hljs-attr">urlPattern&lt;/span>: &lt;span class="hljs-regexp">/.*\.js.*/i&lt;/span>,
-                    &lt;span class="hljs-attr">handler&lt;/span>: &lt;span class="hljs-string">'CacheFirst'&lt;/span>,
-                    &lt;span class="hljs-attr">options&lt;/span>: {
-                        &lt;span class="hljs-attr">cacheName&lt;/span>: &lt;span class="hljs-string">'seed-js'&lt;/span>,
-                        &lt;span class="hljs-attr">expiration&lt;/span>: {
-                            &lt;span class="hljs-attr">maxEntries&lt;/span>: &lt;span class="hljs-number">20&lt;/span>,  &lt;span class="hljs-comment">//最多缓存20个，超过的按照LRU原则删除&lt;/span>
-                            maxAgeSeconds: &lt;span class="hljs-number">30&lt;/span> *&lt;span class="hljs-number">24&lt;/span>* &lt;span class="hljs-number">60&lt;/span> *&lt;span class="hljs-number">60&lt;/span>, &lt;span class="hljs-comment">// 30 days&lt;/span>
+                    urlPattern: /.*\.js.*/i,
+                    handler: 'CacheFirst',
+                    options: {
+                        cacheName: 'seed-js',
+                        expiration: {
+                            maxEntries: 20,  //最多缓存20个，超过的按照LRU原则删除
+                            maxAgeSeconds: 30 *24* 60 *60, // 30 days
                         },
                     },
                 },
                 {
-                    &lt;span class="hljs-attr">urlPattern&lt;/span>: &lt;span class="hljs-regexp">/.*css.*/&lt;/span>,
-                    &lt;span class="hljs-attr">handler&lt;/span>: &lt;span class="hljs-string">'CacheFirst'&lt;/span>,
-                    &lt;span class="hljs-attr">options&lt;/span>: {
-                        &lt;span class="hljs-attr">cacheName&lt;/span>: &lt;span class="hljs-string">'seed-css'&lt;/span>,
-                        &lt;span class="hljs-attr">expiration&lt;/span>: {
-                            &lt;span class="hljs-attr">maxEntries&lt;/span>: &lt;span class="hljs-number">30&lt;/span>,  &lt;span class="hljs-comment">//最多缓存30个，超过的按照LRU原则删除&lt;/span>
-maxAgeSeconds: &lt;span class="hljs-number">30&lt;/span>* &lt;span class="hljs-number">24&lt;/span> *&lt;span class="hljs-number">60&lt;/span>* &lt;span class="hljs-number">60&lt;/span>, &lt;span class="hljs-comment">// 30 days&lt;/span>
+                    urlPattern: /.*css.*/,
+                    handler: 'CacheFirst',
+                    options: {
+                        cacheName: 'seed-css',
+                        expiration: {
+                            maxEntries: 30,  //最多缓存30个，超过的按照LRU原则删除
+maxAgeSeconds: 30* 24 *60* 60, // 30 days
                         },
                     },
                 },
                 {
-                    &lt;span class="hljs-attr">urlPattern&lt;/span>: &lt;span class="hljs-regexp">/.*(png|svga).*/&lt;/span>,
-                    &lt;span class="hljs-attr">handler&lt;/span>: &lt;span class="hljs-string">'CacheFirst'&lt;/span>,
-                    &lt;span class="hljs-attr">options&lt;/span>: {
-                        &lt;span class="hljs-attr">cacheName&lt;/span>: &lt;span class="hljs-string">'seed-image'&lt;/span>,
-                        &lt;span class="hljs-attr">expiration&lt;/span>: {
-                            &lt;span class="hljs-attr">maxEntries&lt;/span>: &lt;span class="hljs-number">30&lt;/span>,  &lt;span class="hljs-comment">//最多缓存30个，超过的按照LRU原则删除&lt;/span>
-                            maxAgeSeconds: &lt;span class="hljs-number">30&lt;/span> *&lt;span class="hljs-number">24&lt;/span>* &lt;span class="hljs-number">60&lt;/span> * &lt;span class="hljs-number">60&lt;/span>, &lt;span class="hljs-comment">// 30 days&lt;/span>
+                    urlPattern: /.*(png|svga).*/,
+                    handler: 'CacheFirst',
+                    options: {
+                        cacheName: 'seed-image',
+                        expiration: {
+                            maxEntries: 30,  //最多缓存30个，超过的按照LRU原则删除
+                            maxAgeSeconds: 30 *24* 60 * 60, // 30 days
                         },
                     },
                 }
             ]
         })
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+复制代码
+```
   <ol>
     
       importWorkboxForm和importScripts：
@@ -312,31 +324,33 @@ maxAgeSeconds: &lt;span class="hljs-number">30&lt;/span>* &lt;span class="hljs-n
   
   <ul>
     
-      前文也有介绍，service worker一旦被install，就永远存在；<code>如果有一天想要去除跑在[浏览器](https://www.w3cdoc.com)背后的这个service worker线程，要手动去卸载</code>。所以在接入之前，我得先知道如何卸载service worker，留好后手：
+      前文也有介绍，service worker一旦被install，就永远存在；如果有一天想要去除跑在[浏览器](https://www.w3cdoc.com)背后的这个service worker线程，要手动去卸载。所以在接入之前，我得先知道如何卸载service worker，留好后手：
     
   
-  <pre><code class="hljs js copyable" lang="js"> &lt;span class="hljs-keyword">if&lt;/span> (&lt;span class="hljs-string">'serviceWorker'&lt;/span> &lt;span class="hljs-keyword">in&lt;/span> navigator) {
+  ```
+ if ('serviceWorker' in navigator) {
        navigator.serviceWorker.getRegistrations()
-           .then(&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span>(&lt;span class="hljs-params">registrations&lt;/span>) &lt;/span>{
-    &lt;span class="hljs-keyword">for&lt;/span>(&lt;span class="hljs-keyword">let&lt;/span> registration &lt;span class="hljs-keyword">of&lt;/span> registrations) {
-                     &lt;span class="hljs-comment">//安装在网页的service worker不止一个，找到[我们](https://www.w3cdoc.com)的那个并删除&lt;/span>
-                    &lt;span class="hljs-keyword">if&lt;/span>(registration && registration.scope === &lt;span class="hljs-string">'https://seed.futunn.com/'&lt;/span>){
+           .then(function(registrations) {
+    for(let registration of registrations) {
+                     //安装在网页的service worker不止一个，找到[我们](https://www.w3cdoc.com)的那个并删除
+                    if(registration && registration.scope === 'https://seed.futunn.com/'){
                         registration.unregister();
                     }
                 }
             });
     }
-&lt;span class="copy-code-btn">复制代码&lt;/span></code></pre>
+复制代码
+```
   <ul>
     
-      使用service worker缓存了资源，那下次重新发布了，还<code>会不会拉取新的资源</code>呢？这里也是可以的，只要资源地址不一样、修改了hash值，那么资源是会重新去拉取并进行缓存的，如下图，可以看到对同一个js的不同版本，都进行了缓存。
+      使用service worker缓存了资源，那下次重新发布了，还会不会拉取新的资源呢？这里也是可以的，只要资源地址不一样、修改了hash值，那么资源是会重新去拉取并进行缓存的，如下图，可以看到对同一个js的不同版本，都进行了缓存。
     
   
  <img loading="lazy" width="1280" height="416" class="alignnone size-full wp-image-5588 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26961c78491.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26961c78491.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26961c78491.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26961c78491.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_98/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26961c78491.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_250/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26961c78491.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_260/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
   
   <ul>
     
-      还有个就是对于考虑开发过程的问题，如果以后上线了，sw这个东西安装下去了，每次打开都直接读取缓存的资源，那以后在<code>本地调试</code>时怎办？试了下，chrome的“disabled cache”也没有用，总不能在本地开发时也给资源打上hash值吧（目前这个项目是在发布到正式环境时才会打上hash值）。。然后针对这个问题想了蛮久的，最后发现chrome早有这个设置，在devtool中可以设置跳过service worker,<code>bypass for network</code><br /> <figure> 
+      还有个就是对于考虑开发过程的问题，如果以后上线了，sw这个东西安装下去了，每次打开都直接读取缓存的资源，那以后在本地调试时怎办？试了下，chrome的“disabled cache”也没有用，总不能在本地开发时也给资源打上hash值吧（目前这个项目是在发布到正式环境时才会打上hash值）。。然后针对这个问题想了蛮久的，最后发现chrome早有这个设置，在devtool中可以设置跳过service worker,bypass for network<br /> <figure> 
         <img loading="lazy" width="1280" height="568" class="alignnone size-full wp-image-5589 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26962b1b2f1.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26962b1b2f1.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26962b1b2f1.png?x-oss-process=image/format,webp 1280w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26962b1b2f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_133/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26962b1b2f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_341/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/01/img_5e26962b1b2f1.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_355/format,webp 800w" sizes="(max-width: 1280px) 100vw, 1280px" />
       <figcaption></figcaption></figure>
     

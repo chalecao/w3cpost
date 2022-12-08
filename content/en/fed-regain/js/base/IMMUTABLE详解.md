@@ -40,15 +40,16 @@ Facebook 工程师 Lee Byron 花费 3 年时间打造，与 React 同期出现�
 下面上代码来感受一下两者的不同：
 
 <div class="highlight highlight-source-js">
-  <pre><code>&lt;span class="pl-c">// 原来的写法
-&lt;span class="pl-k">let foo = {a: {b: &lt;span class="pl-c1">1}};
+  ```
+// 原来的写法
+let foo = {a: {b: 1}};
 let bar = foo;
-&lt;span class="pl-smi">bar.a.b = 2;
-&lt;span class="pl-en">console.log(foo.a.b);  // 打印 2
+bar.a.b = 2;
+console.log(foo.a.b);  // 打印 2
 console.log(foo === bar);  //  打印 true
 
 // 使用 immutable.js 后
-import Immutable from &lt;span class="pl-s">&lt;span class="pl-pds">'immutable';
+import Immutable from 'immutable';
 foo = Immutable.fromJS({a: {b: 1}});
 bar = foo.setIn(['a', 'b'], 2);   // 使用 setIn 赋值
 console.log(foo.getIn(['a', 'b']));  // 使用 getIn 取值，打印 1
@@ -59,7 +60,8 @@ import SImmutable from 'seamless-immutable';
 foo = SImmutable({a: {b: 1}})
 bar = foo.merge({a: { b: 2}})   // 使用 merge 赋值
 console.log(foo.a.b);  // 像原生 Object 一样取值，打印 1
-console.log(foo === bar);  //  打印 false&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span></code></pre>
+console.log(foo === bar);  //  打印 false
+```
 </div>
 
 ## IMMUTABLE 优点
@@ -71,11 +73,13 @@ console.log(foo === bar);  //  打印 false&lt;/span>&lt;/span>&lt;/span>&lt;/sp
 比如下面一段代码：
 
 <div class="highlight highlight-source-js">
-  <pre><code>&lt;span class="pl-k">function &lt;span class="pl-en">touchAndLog(&lt;span class="pl-smi">touchFn) {
-  let data = { key: &lt;span class="pl-s">&lt;span class="pl-pds">'value' };
+  ```
+function touchAndLog(touchFn) {
+  let data = { key: 'value' };
   touchFn(data);
-  console.&lt;span class="pl-c1">log(data.key); &lt;span class="pl-c">// 猜猜会打印什么？
-}&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span></code></pre>
+  console.log(data.key); // 猜猜会打印什么？
+}
+```
 </div>
 
 在不查看 `touchFn` 的代码的情况下，因为不确定它对 `data` 做了什么，你是不可能知道会打印什么（这不是废话吗）。但如果 `data` 是 Immutable 的呢，你可以很肯定的知道打印的是 `value`。
@@ -85,15 +89,17 @@ console.log(foo === bar);  //  打印 false&lt;/span>&lt;/span>&lt;/span>&lt;/sp
 Immutable.js 使用了 Structure Sharing 会尽量复用内存，甚至以前使用的对象也可以再次被复用。没有被引用的对象会被垃圾回收。
 
 <div class="highlight highlight-source-js">
-  <pre><code>&lt;span class="pl-k">import { &lt;span class="pl-smi">Map} from &lt;span class="pl-s">&lt;span class="pl-pds">'immutable';
-let a = &lt;span class="pl-c1">Map({
+  ```
+import { Map} from 'immutable';
+let a = Map({
   select: 'users',
   filter: Map({ name: 'Cam' })
 })
 let b = a.set('select', 'people');
 
-a === b; &lt;span class="pl-c">// false
-a.get('filter') === b.get('filter'); // true&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span></code></pre>
+a === b; // false
+a.get('filter') === b.get('filter'); // true
+```
 </div>
 
 上面 a 和 b 共享了没有变化的 `filter` 节点。
@@ -149,15 +155,19 @@ Immutable 中的 Map 和 List 虽对应原生 Object 和 Array，但操作非常
 两个 immutable 对象可以使用 `===` 来比较，这样是直接比较内存地址，性能最好。但即使两个对象的值是一样的，也会返回 `false`：
 
 <div class="highlight highlight-source-js">
-  <pre><code>&lt;span class="pl-k">let map1 = &lt;span class="pl-smi">Immutable.&lt;span class="pl-en">Map({a:&lt;span class="pl-c1">1, b:1, c:1});
+  ```
+let map1 = Immutable.Map({a:1, b:1, c:1});
 let map2 = Immutable.Map({a:1, b:1, c:1});
-map1 === map2;             &lt;span class="pl-c">// false&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span></code></pre>
+map1 === map2;             // false
+```
 </div>
 
 为了直接比较对象的值，immutable.js 提供了 `Immutable.is` 来做『值比较』，结果如下：
 
 <div class="highlight highlight-source-js">
-  <pre><code>&lt;span class="pl-smi">Immutable.&lt;span class="pl-en">is(map1, map2);  &lt;span class="pl-c">// true&lt;/span>&lt;/span>&lt;/span></code></pre>
+  ```
+Immutable.is(map1, map2);  // true
+```
 </div>
 
 `Immutable.is` 比较的是两个对象的 `hashCode` 或 `valueOf`（对于 JavaScript 对象）。由于 immutable 内部使用了 Trie 数据结构来存储，只要两个对象的 `hashCode` 相等，值就是一样的。这样的算法避免了深度遍历比较，性能非常好。
@@ -177,11 +187,12 @@ map1 === map2;             &lt;span class="pl-c">// false&lt;/span>&lt;/span>&lt
 由于 Immutable 数据一般嵌套非常深，为了便于访问深层数据，Cursor 提供了可以直接访问这个深层数据的引用。
 
 <div class="highlight highlight-source-js">
-  <pre><code>&lt;span class="pl-k">import &lt;span class="pl-smi">Immutable from &lt;span class="pl-s">&lt;span class="pl-pds">'immutable';
+  ```
+import Immutable from 'immutable';
 import Cursor from 'immutable/contrib/cursor';
 
-let data = Immutable.&lt;span class="pl-en">fromJS({ a: { b: { c: &lt;span class="pl-c1">1 } } });
-&lt;span class="pl-c">// 让 cursor 指向 { c: 1 }
+let data = Immutable.fromJS({ a: { b: { c: 1 } } });
+// 让 cursor 指向 { c: 1 }
 let cursor = Cursor.from(data, ['a', 'b'], newData => {
   // 当 cursor 或其子 cursor 执行 update 时调用
   console.log(newData);
@@ -189,7 +200,8 @@ let cursor = Cursor.from(data, ['a', 'b'], newData => {
 
 cursor.get('c'); // 1
 cursor = cursor.update('c', x => x + 1);
-cursor.get('c'); // 2&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span></code></pre>
+cursor.get('c'); // 2
+```
 </div>
 
 ## 实践
@@ -205,10 +217,11 @@ Immutable 则提供了简洁高效的判断数据是否变化的方法，只需�
 > 注意：React 中规定 `state` 和 `props` 只能是一个普通对象，所以比较时要比较对象的 `key`，谢谢 [@chenmnkken][3]{.user-mention} 指正。
 
 <div class="highlight highlight-source-js">
-  <pre><code>&lt;span class="pl-k">import { &lt;span class="pl-smi">is } from &lt;span class="pl-s">&lt;span class="pl-pds">'immutable';
+  ```
+import { is } from 'immutable';
 
-&lt;span class="pl-en">shouldComponentUp
-  const &lt;span class="pl-c1">thisProps = this.props || {}, thisState = this.state || {};
+shouldComponentUp
+  const thisProps = this.props || {}, thisState = this.state || {};
 
   if (Object.keys(thisProps).length !== Object.keys(nextProps).length ||
       Object.keys(thisState).length !== Object.keys(nextState).length) {
@@ -227,7 +240,8 @@ Immutable 则提供了简洁高效的判断数据是否变化的方法，只需�
     }
   }
   return false;
-}&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span></code></pre>
+}
+```
 </div>
 
 使用 Immutable 后，如下图，当红色节点的 state 变化后，不会再渲染树中的所有节点，而是只渲染图中绿色的部分：
@@ -242,9 +256,10 @@ Immutable 则提供了简洁高效的判断数据是否变化的方法，只需�
 React 建议把 `this.state` 当作 Immutable 的，因此修改前需要做一个 deepCopy，显得麻烦：
 
 <div class="highlight highlight-source-js">
-  <pre><code>&lt;span class="pl-k">import &lt;span class="pl-s">&lt;span class="pl-pds">'_' from 'lodash';
+  ```
+import '_' from 'lodash';
 
-const &lt;span class="pl-c1">Component = &lt;span class="pl-smi">React.&lt;span class="pl-en">createClass({
+const Component = React.createClass({
   getInitialState() {
     return {
       data: { times: 0 }
@@ -254,35 +269,40 @@ const &lt;span class="pl-c1">Component = &lt;span class="pl-smi">React.&lt;span 
     let data = _.cloneDeep(this.state.data);
     data.times = data.times + 1;
     this.setState({ data: data });
-    &lt;span class="pl-c">// 如果上面不做 cloneDeep，下面打印的结果会是已经加 1 后的值。
+    // 如果上面不做 cloneDeep，下面打印的结果会是已经加 1 后的值。
     console.log(this.state.data.times);
   }
-}&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span></code></pre>
+}
+```
 </div>
 
 使用 Immutable 后：
 
 <div class="highlight highlight-source-js">
-  <pre><code>  &lt;span class="pl-en">getInitialState() {
-    &lt;span class="pl-k">return {
-      data: &lt;span class="pl-c1">Map({ times: 0 })
+  ```
+  getInitialState() {
+    return {
+      data: Map({ times: 0 })
     }
   },
   handleAdd() {
-    this.setState({ data: this.&lt;span class="pl-smi">state.data.update(&lt;span class="pl-s">&lt;span class="pl-pds">'times', v => v + 1) });
-    &lt;span class="pl-c">// 这时的 times 并不会改变
+    this.setState({ data: this.state.data.update('times', v => v + 1) });
+    // 这时的 times 并不会改变
     console.log(this.state.data.get('times'));
-  }&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span></code></pre>
+  }
+```
 </div>
 
 上面的 `handleAdd` 可以简写成：
 
 <div class="highlight highlight-source-js">
-  <pre><code>  &lt;span class="pl-en">handleAdd() {
-    &lt;span class="pl-c1">this.setState(({data}) &lt;span class="pl-k">=> ({
-      data: &lt;span class="pl-smi">data.update(&lt;span class="pl-s">&lt;span class="pl-pds">'times', v => v + 1) })
+  ```
+  handleAdd() {
+    this.setState(({data}) => ({
+      data: data.update('times', v => v + 1) })
     });
-  }&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span></code></pre>
+  }
+```
 </div>
 
 ### 与 Flux 搭配使用
@@ -292,9 +312,10 @@ const &lt;span class="pl-c1">Component = &lt;span class="pl-smi">React.&lt;span 
 现在是实现一个类似带有添加和撤销功能的 Store：
 
 <div class="highlight highlight-source-js">
-  <pre><code>&lt;span class="pl-k">import { &lt;span class="pl-smi">Map, OrderedMap } from &lt;span class="pl-s">&lt;span class="pl-pds">'immutable';
-let todos = &lt;span class="pl-en">OrderedMap();
-let history = [];  &lt;span class="pl-c">// 普通数组，存放每次操作后产生的数据
+  ```
+import { Map, OrderedMap } from 'immutable';
+let todos = OrderedMap();
+let history = [];  // 普通数组，存放每次操作后产生的数据
 
 let TodoStore = createStore({
   getAll() { return todos; }
@@ -303,7 +324,7 @@ let TodoStore = createStore({
 Dispatcher.register(action => {
   if (action.actionType === 'create') {
     let id = createGUID();
-    history.&lt;span class="pl-c1">push(todos);  // 记录当前操作前的数据，便于撤销
+    history.push(todos);  // 记录当前操作前的数据，便于撤销
     todos = todos.set(id, Map({
       id: id,
       complete: false,
@@ -318,7 +339,8 @@ Dispatcher.register(action => {
     }
     TodoStore.emitChange();
   }
-});&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span>&lt;/span></code></pre>
+});
+```
 </div>
 
 ### 与 Redux 搭配使用

@@ -39,63 +39,66 @@ title: ES6模块打包工具—Rollup速览
 
 ### 全部指令 {#articleHeader2}
 
-<pre class="hljs lua"><code>Usage: rollup [options] <entry file>
+```
+Usage: rollup [options] <entry file>
 
 Basic options:
 
--v, <span class="hljs-comment">--version               Show version number</span>
--h, <span class="hljs-comment">--help                  Show this help message</span>
--c, <span class="hljs-comment">--config                Use this config file (if argument is used but value</span>
-                              is unspecified, defaults to rollup.<span class="hljs-built_in">config</span>.js)
--w, <span class="hljs-comment">--watch                 Watch files in bundle and rebuild on changes</span>
--i, <span class="hljs-comment">--input                 Input (alternative to <entry file>)</span>
--o, <span class="hljs-comment">--output.file <output>  Output (if absent, prints to stdout)</span>
--f, <span class="hljs-comment">--output.format [es]    Type of output (amd, cjs, es, iife, umd)</span>
--e, <span class="hljs-comment">--external              Comma-separate list of module IDs to exclude</span>
--g, <span class="hljs-comment">--globals               Comma-separate list of `module ID:Global` pairs</span>
+-v, --version               Show version number
+-h, --help                  Show this help message
+-c, --config                Use this config file (if argument is used but value
+                              is unspecified, defaults to rollup.config.js)
+-w, --watch                 Watch files in bundle and rebuild on changes
+-i, --input                 Input (alternative to <entry file>)
+-o, --output.file <output>  Output (if absent, prints to stdout)
+-f, --output.format [es]    Type of output (amd, cjs, es, iife, umd)
+-e, --external              Comma-separate list of module IDs to exclude
+-g, --globals               Comma-separate list of `module ID:Global` pairs
                               Any module IDs defined here are added to external
--n, <span class="hljs-comment">--name                  Name for UMD export</span>
--m, <span class="hljs-comment">--sourcemap             Generate sourcemap (`-m inline` for inline map)</span>
--l, <span class="hljs-comment">--legacy                Support IE8</span>
-<span class="hljs-comment">--amd.id                    ID for AMD module (default is anonymous)</span>
-<span class="hljs-comment">--amd.define                Function to use in place of `define`</span>
-<span class="hljs-comment">--no-strict                 Don't emit a `"use strict";` in the generated modules.</span>
-<span class="hljs-comment">--no-indent                 Don't indent result</span>
-<span class="hljs-comment">--environment <values>      Settings passed to config file (see example)</span>
-<span class="hljs-comment">--no-conflict               Generate a noConflict method for UMD globals</span>
-<span class="hljs-comment">--no-treeshake              Disable tree-shaking</span>
-<span class="hljs-comment">--silent                    Don't print warnings</span>
-<span class="hljs-comment">--intro                     Content to insert at top of bundle (inside wrapper)</span>
-<span class="hljs-comment">--outro                     Content to insert at end of bundle (inside wrapper)</span>
-<span class="hljs-comment">--banner                    Content to insert at top of bundle (outside wrapper)</span>
-<span class="hljs-comment">--footer                    Content to insert at end of bundle (outside wrapper)</span>
-<span class="hljs-comment">--interop                   Include interop block (true by default)</span></code></pre>
+-n, --name                  Name for UMD export
+-m, --sourcemap             Generate sourcemap (`-m inline` for inline map)
+-l, --legacy                Support IE8
+--amd.id                    ID for AMD module (default is anonymous)
+--amd.define                Function to use in place of `define`
+--no-strict                 Don't emit a `"use strict";` in the generated modules.
+--no-indent                 Don't indent result
+--environment <values>      Settings passed to config file (see example)
+--no-conflict               Generate a noConflict method for UMD globals
+--no-treeshake              Disable tree-shaking
+--silent                    Don't print warnings
+--intro                     Content to insert at top of bundle (inside wrapper)
+--outro                     Content to insert at end of bundle (inside wrapper)
+--banner                    Content to insert at top of bundle (outside wrapper)
+--footer                    Content to insert at end of bundle (outside wrapper)
+--interop                   Include interop block (true by default)
+```
 
 ### 配置文件细则 {#articleHeader3}
 
-<pre class="hljs dart"><code><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-  <span class="hljs-comment">// 核心选项</span>
-  input,     <span class="hljs-comment">// 必须</span>
-  <span class="hljs-keyword">external</span>,
+```
+export default {
+  // 核心选项
+  input,     // 必须
+  external,
   plugins,
 
-  <span class="hljs-comment">// 额外选项</span>
+  // 额外选项
   onwarn,
 
-  <span class="hljs-comment">// danger zone</span>
+  // danger zone
   acorn,
   context,
   moduleContext,
   legacy
 
-  output: {  <span class="hljs-comment">// 必须 (如果要输出多个，可以是一个数组)</span>
-    <span class="hljs-comment">// 核心选项</span>
-    file,    <span class="hljs-comment">// 必须</span>
-    format,  <span class="hljs-comment">// 必须</span>
+  output: {  // 必须 (如果要输出多个，可以是一个数组)
+    // 核心选项
+    file,    // 必须
+    format,  // 必须
     name,
     globals,
 
-    <span class="hljs-comment">// 额外选项</span>
+    // 额外选项
     paths,
     banner,
     footer,
@@ -105,30 +108,37 @@ Basic options:
     sourcemapFile,
     interop,
 
-    <span class="hljs-comment">// 高危选项</span>
+    // 高危选项
     exports,
     amd,
     indent
     strict
   },
-};</code></pre>
+};
+```
 
 ### 简单实例 {#articleHeader4}
 
 > 生成[浏览器](https://www.w3cdoc.com)可用
 
-<pre class="hljs objectivec"><code><span class="hljs-comment">//打包main.js到bundle.js 打包格式是立即执行函数</span>
-rollup main.js -o bundle.js -f iife</code></pre>
+```
+//打包main.js到bundle.js 打包格式是立即执行函数
+rollup main.js -o bundle.js -f iife
+```
 
 > 生成Node.js可用
 
-<pre class="hljs objectivec"><code><span class="hljs-comment">//打包main.js到bundle.js 打包格式是commonjs。</span>
-rollup main.js -o bundle.js -f cjs</code></pre>
+```
+//打包main.js到bundle.js 打包格式是commonjs。
+rollup main.js -o bundle.js -f cjs
+```
 
 > Node.js和[浏览器](https://www.w3cdoc.com)都可用
 
-<pre class="hljs objectivec"><code><span class="hljs-comment">//打包main.js到bundle.js 打包格式是UMD,这个格式需要一个模块名</span>
-rollup main.js -o bundle.js -f umd --name <span class="hljs-string">"myBundle"</span></code></pre>
+```
+//打包main.js到bundle.js 打包格式是UMD,这个格式需要一个模块名
+rollup main.js -o bundle.js -f umd --name "myBundle"
+```
 
 > 运行配置文件
 
@@ -138,14 +148,16 @@ rollup main.js -o bundle.js -f umd --name <span class="hljs-string">"myBundle"</
 
 ### example1 {#articleHeader6}
 
-<pre class="hljs javascript"><code><span class="hljs-comment">// src/example1/main.js</span>
-<span class="hljs-keyword">import</span> one <span class="hljs-keyword">from</span> <span class="hljs-string">'./module1.js'</span>;
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{
-    <span class="hljs-built_in">console</span>.log(one);
+```
+// src/example1/main.js
+import one from './module1.js';
+export default function () {
+    console.log(one);
 }
 
-<span class="hljs-comment">// src/example1/module1.js</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'hello world!'</span></code></pre>
+// src/example1/module1.js
+export default 'hello world!'
+```
 
 在**项目根目录**(之后Rollup运行会默认这个目录)运行  
 `rollup src/example1/main.js -o dist/example1/bundle.js -f cjs`
@@ -162,24 +174,28 @@ _解析：_
 
 在项目 `src/example2` 文件夹下，新建一个 `rollup.config.js` 文件，写入以下代码：
 
-<pre class="hljs css"><code><span class="hljs-selector-tag">export</span> <span class="hljs-selector-tag">default</span> {
-    <span class="hljs-attribute">input</span>: <span class="hljs-string">'src/example2/main.js'</span>,
+```
+export default {
+    input: 'src/example2/main.js',
     output: {
-        file: <span class="hljs-string">'dist/example2/bundle.js'</span>,
-        format: <span class="hljs-string">'cjs'</span>
+        file: 'dist/example2/bundle.js',
+        format: 'cjs'
     }
-}</code></pre>
+}
+```
 
 新建一个`main.js` 和 `module2.js`如下：
 
-<pre class="hljs javascript"><code><span class="hljs-comment">// src/example2/main.js</span>
-<span class="hljs-keyword">import</span> one <span class="hljs-keyword">from</span> <span class="hljs-string">'./module2.js'</span>;
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{
-    <span class="hljs-built_in">console</span>.log(one);
+```
+// src/example2/main.js
+import one from './module2.js';
+export default function () {
+    console.log(one);
 }
 
-<span class="hljs-comment">// src/example1/module2.js</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'hello config!'</span></code></pre>
+// src/example1/module2.js
+export default 'hello config!'
+```
 
 接下来就是运行命令，`rollup.config.js`本来是Rollup默认运行的配置文件，如果[我们](https://www.w3cdoc.com)的`rollup.config.js`是放在根目录下的，可以直接运行`rollup -c`，不用任何选项，但是[我们](https://www.w3cdoc.com)是放在`src/module2`文件夹下的，所以要加上配置文件的路径  
 `rollup -c src/module2/rollup.config.js`
@@ -203,26 +219,28 @@ _解析：_
 
 `src/example3`文件夹下新建 `main.js` 和 `rollup.config.js`
 
-<pre class="hljs javascript"><code><span class="hljs-comment">// main.js</span>
-<span class="hljs-keyword">import</span> { version} <span class="hljs-keyword">from</span> <span class="hljs-string">'../../package.json'</span>;
+```
+// main.js
+import { version} from '../../package.json';
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`version is <span class="hljs-subst">${version}</span>`</span>);
+export default function () {
+    console.log(`version is ${version}`);
 }
 
-<span class="hljs-comment">// rollup.config.js</span>
-<span class="hljs-keyword">import</span> json <span class="hljs-keyword">from</span> <span class="hljs-string">'rollup-plugin-json'</span>;
+// rollup.config.js
+import json from 'rollup-plugin-json';
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-    <span class="hljs-attr">input</span>: <span class="hljs-string">'src/example3/main.js'</span>,
-    <span class="hljs-attr">output</span>: {
-        <span class="hljs-attr">file</span>: <span class="hljs-string">'dist/example3/bundle.js'</span>,
-        <span class="hljs-attr">format</span>: <span class="hljs-string">'cjs'</span>
+export default {
+    input: 'src/example3/main.js',
+    output: {
+        file: 'dist/example3/bundle.js',
+        format: 'cjs'
     },
-    <span class="hljs-attr">plugins</span>: [
+    plugins: [
         json()
     ]
-}</code></pre>
+}
+```
 
 运行命令 `rollup -c src/example3/rollup.config.js`
 
@@ -240,40 +258,44 @@ Rollup 不知道怎么处理依赖于从 npm 安装到你的 `node_modules` �
 `npm install the-answer`  
 在 `src/example4` 文件夹下新增 `main.js` 和 `rollup.config.js`
 
-<pre class="hljs javascript"><code><span class="hljs-comment">// main.js</span>
-<span class="hljs-keyword">import</span> answer <span class="hljs-keyword">from</span> <span class="hljs-string">'the-answer'</span>;
+```
+// main.js
+import answer from 'the-answer';
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'the answer is '</span> + answer);
+export default function () {
+    console.log('the answer is ' + answer);
 }
 
-<span class="hljs-comment">// rollup.config.js</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-    <span class="hljs-attr">input</span>: <span class="hljs-string">'src/example4/main.js'</span>,
-    <span class="hljs-attr">output</span>: {
-        <span class="hljs-attr">file</span>: <span class="hljs-string">'dist/example4/bundle.js'</span>,
-        <span class="hljs-attr">format</span>: <span class="hljs-string">'cjs'</span>
+// rollup.config.js
+export default {
+    input: 'src/example4/main.js',
+    output: {
+        file: 'dist/example4/bundle.js',
+        format: 'cjs'
     },
-    <span class="hljs-attr">plugins</span>: [
-        <span class="hljs-comment">// 没有加入任何插件</span>
+    plugins: [
+        // 没有加入任何插件
     ]
-}</code></pre>
+}
+```
 
 运行： `rollup -c src/example4/rollup.config.js` 会有一个警告 `Unresolved dependencies` ,[我们](https://www.w3cdoc.com)看一下 打包好的`dist/example4/bundle.js`
 
-<pre class="hljs javascript"><code><span class="hljs-comment">// 截取dist/example4/bundle.js`</span>
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_interopDefault</span> (<span class="hljs-params">ex</span>) </span>{ <span class="hljs-keyword">return</span> (ex && (<span class="hljs-keyword">typeof</span> ex === <span class="hljs-string">'object'</span>) && <span class="hljs-string">'default'</span> <span class="hljs-keyword">in</span> ex) ? ex[<span class="hljs-string">'default'</span>] : ex; }
+```
+// 截取dist/example4/bundle.js`
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
-<span class="hljs-keyword">var</span> answer = _interopDefault(<span class="hljs-built_in">require</span>(<span class="hljs-string">'the-answer'</span>));
+var answer = _interopDefault(require('the-answer'));
 
-<span class="hljs-comment">// 可以看到the-answer并没有打包进来，还得用node的require去请求，然后经过函数转化才能拿到the-answer的输出值</span>
-<span class="hljs-comment">// [我们](https://www.w3cdoc.com)可以看一下 node_modules 下的 the-answer 模块暴露出的内容</span>
+// 可以看到the-answer并没有打包进来，还得用node的require去请求，然后经过函数转化才能拿到the-answer的输出值
+// [我们](https://www.w3cdoc.com)可以看一下 node_modules 下的 the-answer 模块暴露出的内容
 
-<span class="hljs-keyword">var</span> index = <span class="hljs-number">42</span>;
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> index;
+var index = 42;
+export default index;
 
-<span class="hljs-comment">// 这样也可以看出，如果the-answer如果打包进来，应该是：</span>
-<span class="hljs-keyword">var</span> answer = <span class="hljs-number">42</span>;</code></pre>
+// 这样也可以看出，如果the-answer如果打包进来，应该是：
+var answer = 42;
+```
 
 **现在[我们](https://www.w3cdoc.com)需要一个插件 <a href="https://github.com/rollup/rollup-plugin-node-resolve" target="_blank" rel="nofollow noopener noreferrer">rollup-plugin-node-resolve </a>来告诉 Rollup 如何查找外部模块**
 
@@ -281,31 +303,35 @@ Rollup 不知道怎么处理依赖于从 npm 安装到你的 `node_modules` �
 
 将插件加入配置文件中
 
-<pre class="hljs typescript"><code><span class="hljs-keyword">import</span> resolve <span class="hljs-keyword">from</span> <span class="hljs-string">'rollup-plugin-node-resolve'</span>;
+```
+import resolve from 'rollup-plugin-node-resolve';
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-    input: <span class="hljs-string">'src/example4/main.js'</span>,
+export default {
+    input: 'src/example4/main.js',
     output: {
-        file: <span class="hljs-string">'dist/example4/bundle.js'</span>,
-        format: <span class="hljs-string">'cjs'</span>
+        file: 'dist/example4/bundle.js',
+        format: 'cjs'
     },
     plugins: [
         resolve()
     ]
-}</code></pre>
+}
+```
 
 再次运行`rollup -c src/example4/rollup.config.js` 没有警告 ,[我们](https://www.w3cdoc.com)看一下打包好的`dist/example4/bundle.js`
 
-<pre class="hljs javascript"><code><span class="hljs-meta">'use strict'</span>;
+```
+'use strict';
 
-<span class="hljs-comment">// the-answer的输出已经打包进来了</span>
-<span class="hljs-keyword">var</span> index = <span class="hljs-number">42</span>;
+// the-answer的输出已经打包进来了
+var index = 42;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span> () </span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'the answer is '</span> + index);
+function main () {
+    console.log('the answer is ' + index);
 }
 
-<span class="hljs-built_in">module</span>.exports = main;</code></pre>
+module.exports = main;
+```
 
 ### example5 {#articleHeader10}
 
@@ -318,34 +344,36 @@ Rollup 不知道怎么处理依赖于从 npm 安装到你的 `node_modules` �
 
 在 `src/example5`文件夹下新建 `main.js` 和 `module5.js` `rollup.config.js`， 用来验证插件。
 
-<pre class="hljs javascript"><code><span class="hljs-comment">// module5.js</span>
-exports.named = <span class="hljs-string">'cfangxu'</span>;
-<span class="hljs-comment">//module.exports = {named: 'cfangxu'} 这个会报错，但是插件文档里说是好的，给他提一个issues</span>
+```
+// module5.js
+exports.named = 'cfangxu';
+//module.exports = {named: 'cfangxu'} 这个会报错，但是插件文档里说是好的，给他提一个issues
 
-<span class="hljs-comment">// main.js</span>
-<span class="hljs-keyword">import</span> { named } <span class="hljs-keyword">from</span> <span class="hljs-string">'./module5.js'</span>;
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{
-   <span class="hljs-built_in">console</span>.log(named);
+// main.js
+import { named } from './module5.js';
+export default function () {
+   console.log(named);
 }
 
-<span class="hljs-comment">// rollup.config.js</span>
-<span class="hljs-keyword">import</span> resolve <span class="hljs-keyword">from</span> <span class="hljs-string">'rollup-plugin-node-resolve'</span>;
-<span class="hljs-keyword">import</span> commonjs <span class="hljs-keyword">from</span> <span class="hljs-string">'rollup-plugin-commonjs'</span>;
+// rollup.config.js
+import resolve from 'rollup-plugin-node-resolve';
+import commonjs from 'rollup-plugin-commonjs';
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-   <span class="hljs-attr">input</span>: <span class="hljs-string">'src/example5/main.js'</span>,
-   <span class="hljs-attr">output</span>: {
-       <span class="hljs-attr">file</span>: <span class="hljs-string">'dist/example5/bundle.js'</span>,
-       <span class="hljs-attr">format</span>: <span class="hljs-string">'cjs'</span>
+export default {
+   input: 'src/example5/main.js',
+   output: {
+       file: 'dist/example5/bundle.js',
+       format: 'cjs'
    },
-   <span class="hljs-attr">plugins</span>: [
+   plugins: [
        resolve({
-           <span class="hljs-attr">jsnext</span>: <span class="hljs-literal">true</span>,
-           <span class="hljs-attr">main</span>: <span class="hljs-literal">true</span>
+           jsnext: true,
+           main: true
        }),
        commonjs()
    ]
-}</code></pre>
+}
+```
 
 **注意：** 如果引入的是 `node_modules`里的模块  
 例如：`import { named } from 'my-lib';`  
@@ -360,25 +388,27 @@ external 接受一个模块名称的数组或一个接受模块名称的函数(�
 
 在 `src/example6` 文件夹中新建 `main.js` 和 `rollup.config.js`
 
-<pre class="hljs typescript"><code><span class="hljs-comment">// main.js</span>
-<span class="hljs-keyword">import</span> answer <span class="hljs-keyword">from</span> <span class="hljs-string">'the-answer'</span>;
-<span class="hljs-keyword">import</span> _ <span class="hljs-keyword">from</span> <span class="hljs-string">'lodash'</span>;
+```
+// main.js
+import answer from 'the-answer';
+import _ from 'lodash';
 
-<span class="hljs-comment">// rollup.config.js</span>
-<span class="hljs-keyword">import</span> resolve <span class="hljs-keyword">from</span> <span class="hljs-string">'rollup-plugin-node-resolve'</span>;
+// rollup.config.js
+import resolve from 'rollup-plugin-node-resolve';
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-    input: <span class="hljs-string">'src/example6/main.js'</span>,
+export default {
+    input: 'src/example6/main.js',
     output: {
-        file: <span class="hljs-string">'dist/example6/bundle.js'</span>,
-        format: <span class="hljs-string">'umd'</span>,
-        name: <span class="hljs-string">'example6'</span>
+        file: 'dist/example6/bundle.js',
+        format: 'umd',
+        name: 'example6'
     },
     plugins: [
         resolve()
     ],
-    external: [<span class="hljs-string">'lodash'</span>]
-}</code></pre>
+    external: ['lodash']
+}
+```
 
 配置文件中加入 `external` 就不会把第三方的库打包进[我们](https://www.w3cdoc.com)最后的文件了。可以在 `src/example5/rollup.config.js` 中把 `external` 注释掉看看打包后的文件，会把整个 `lodsh` 打包进来。  
 _扩展：_ 如果用到 `lodsh` ，可以使用 <a href="https://github.com/lodash/babel-plugin-lodash" target="_blank" rel="nofollow noopener noreferrer">babel-plugin-lodash</a> 来最优选择lodash模块。
@@ -391,60 +421,64 @@ _扩展：_ 如果用到 `lodsh` ，可以使用 <a href="https://github.com
 
 在 `src/example7`文件夹下新建 `main.js` `.babelrc` `rollup.config.js`
 
-<pre class="hljs javascript"><code><span class="hljs-comment">//main.js</span>
-<span class="hljs-keyword">import</span> answer <span class="hljs-keyword">from</span> <span class="hljs-string">'the-answer'</span>;
+```
+//main.js
+import answer from 'the-answer';
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span> () </span>{
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`the answer is <span class="hljs-subst">${answer}</span>`</span>);
+export default function () {
+    console.log(`the answer is ${answer}`);
 }
 
-<span class="hljs-comment">//.babelrc</span>
+//.babelrc
 {
-    <span class="hljs-string">"presets"</span>: [
-        [<span class="hljs-string">"env"</span>,{
-            <span class="hljs-string">"modules"</span>: <span class="hljs-literal">false</span>
+    "presets": [
+        ["env",{
+            "modules": false
         }]
     ],
-    <span class="hljs-string">"plugins"</span>: [
-        <span class="hljs-string">"external-helpers"</span>
+    "plugins": [
+        "external-helpers"
     ]
 }
 
-<span class="hljs-comment">//rollup.config.js</span>
-<span class="hljs-keyword">import</span> resolve <span class="hljs-keyword">from</span> <span class="hljs-string">'rollup-plugin-node-resolve'</span>;
-<span class="hljs-keyword">import</span> babel <span class="hljs-keyword">from</span> <span class="hljs-string">'rollup-plugin-babel'</span>;
+//rollup.config.js
+import resolve from 'rollup-plugin-node-resolve';
+import babel from 'rollup-plugin-babel';
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
-    <span class="hljs-attr">input</span>: <span class="hljs-string">'src/example7/main.js'</span>,
-    <span class="hljs-attr">output</span>: {
-        <span class="hljs-attr">file</span>: <span class="hljs-string">'dist/example7/bundle.js'</span>,
-        <span class="hljs-attr">format</span>: <span class="hljs-string">'cjs'</span>
+export default {
+    input: 'src/example7/main.js',
+    output: {
+        file: 'dist/example7/bundle.js',
+        format: 'cjs'
     },
-    <span class="hljs-attr">plugins</span>: [
+    plugins: [
         resolve(),
         babel({
-            <span class="hljs-attr">exclude</span>: <span class="hljs-string">'node_modules/**'</span>,
-            <span class="hljs-attr">externalHelpers</span>: <span class="hljs-literal">true</span>
+            exclude: 'node_modules/**',
+            externalHelpers: true
         })
     ]
-}</code></pre>
+}
+```
 
 安装： `npm i -D babel-core babel-preset-env babel-plugin-external-helpers`
 
 运行：`rollup -c src/example7/rollup.config.js`
 
-<pre class="hljs javascript"><code><span class="hljs-comment">// dist/example7/bundle.js</span>
-<span class="hljs-meta">'use strict'</span>;
+```
+// dist/example7/bundle.js
+'use strict';
 
-<span class="hljs-keyword">var</span> index = <span class="hljs-number">42</span>;
+var index = 42;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">main</span> () </span>{
-    <span class="hljs-comment">// 转成了ES5的语法了</span>
-    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'the answer is '</span> + index);
+function main () {
+    // 转成了ES5的语法了
+    console.log('the answer is ' + index);
 }
 
-<span class="hljs-built_in">module</span>.exports = main;
-</code></pre>
+module.exports = main;
+
+```
 
 _说明_
 

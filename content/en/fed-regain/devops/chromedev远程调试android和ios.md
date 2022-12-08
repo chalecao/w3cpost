@@ -40,19 +40,23 @@ title: chrome dev远程调试android 和ios
   
  必须从您的应用中启用 WebView 调试。要启用 WebView 调试，请在 WebView 类上调用静态方法 <a href="https://developer.android.com/reference/android/webkit/WebView.html?hl=zh-cn#setWebContentsDebuggingEnabled(boolean)">setWebContentsDebuggingEnabled</a>。
   
-  <pre class="prettyprint notranslate"><code>&lt;span class="kwd">if&lt;/span> &lt;span class="pun">(&lt;/span>&lt;span class="typ">Build&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">VERSION&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">SDK_INT &lt;/span>&lt;span class="pun">>=&lt;/span> &lt;span class="typ">Build&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">VERSION_CODES&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">KITKAT&lt;/span>&lt;span class="pun">)&lt;/span> &lt;span class="pun">{&lt;/span>&lt;span class="pln">
+  ```
+&lt;span class="kwd">if&lt;/span> &lt;span class="pun">(&lt;/span>&lt;span class="typ">Build&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">VERSION&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">SDK_INT &lt;/span>&lt;span class="pun">>=&lt;/span> &lt;span class="typ">Build&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">VERSION_CODES&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">KITKAT&lt;/span>&lt;span class="pun">)&lt;/span> &lt;span class="pun">{&lt;/span>&lt;span class="pln">
     &lt;/span>&lt;span class="typ">WebView&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">setWebContentsDebuggingEnabled&lt;/span>&lt;span class="pun">(&lt;/span>&lt;span class="kwd">true&lt;/span>&lt;span class="pun">);&lt;/span>
 &lt;span class="pun">}&lt;/span>
-</code></pre>
+
+```
  此设置适用于应用的所有 WebView。
   
-提示：WebView 调试不会受应用清单中 <code>debuggable</code> 标志的状态的影响。如果您希望仅在 <code>debuggable</code> 为 <code>true</code> 时启用 WebView 调试，请在运行时测试标志。
+提示：WebView 调试不会受应用清单中 debuggable 标志的状态的影响。如果您希望仅在 debuggable 为 true 时启用 WebView 调试，请在运行时测试标志。
   
-  <pre class="prettyprint notranslate"><code>&lt;span class="kwd">if&lt;/span> &lt;span class="pun">(&lt;/span>&lt;span class="typ">Build&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">VERSION&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">SDK_INT &lt;/span>&lt;span class="pun">>=&lt;/span> &lt;span class="typ">Build&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">VERSION_CODES&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">KITKAT&lt;/span>&lt;span class="pun">)&lt;/span> &lt;span class="pun">{&lt;/span>&lt;span class="pln">
+  ```
+&lt;span class="kwd">if&lt;/span> &lt;span class="pun">(&lt;/span>&lt;span class="typ">Build&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">VERSION&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">SDK_INT &lt;/span>&lt;span class="pun">>=&lt;/span> &lt;span class="typ">Build&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">VERSION_CODES&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">KITKAT&lt;/span>&lt;span class="pun">)&lt;/span> &lt;span class="pun">{&lt;/span>&lt;span class="pln">
     &lt;/span>&lt;span class="kwd">if&lt;/span> &lt;span class="pun">(&lt;/span>&lt;span class="lit">0&lt;/span> &lt;span class="pun">!=&lt;/span> &lt;span class="pun">(&lt;/span>&lt;span class="pln">getApplicationInfo&lt;/span>&lt;span class="pun">().&lt;/span>&lt;span class="pln">flags &lt;/span>&lt;span class="pun">&&lt;/span> &lt;span class="typ">ApplicationInfo&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">FLAG_DEBUGGABLE&lt;/span>&lt;span class="pun">))&lt;/span>&lt;span class="pln">
     &lt;/span>&lt;span class="pun">{&lt;/span> &lt;span class="typ">WebView&lt;/span>&lt;span class="pun">.&lt;/span>&lt;span class="pln">setWebContentsDebuggingEnabled&lt;/span>&lt;span class="pun">(&lt;/span>&lt;span class="kwd">true&lt;/span>&lt;span class="pun">);&lt;/span> &lt;span class="pun">}&lt;/span>
 &lt;span class="pun">}&lt;/span>
-</code></pre>
+
+```
 </div>
 
 Android的webview debugger socket是一种unix domain socket，所以[我们](https://www.w3cdoc.com)要基于adb来和这个socket通信。
@@ -106,7 +110,8 @@ Stetho的通信模型如上图，其中stetho-server就是app启的一个Thread�
   在[浏览器](https://www.w3cdoc.com)访问下这个9223端口，因为http协议底层走的也是tcp所以可以直接用[浏览器](https://www.w3cdoc.com)看下：https://localhost:9223/json
 
 <div>
-  <pre><code></code><code>
+  ```
+
 [ {
 "description": "    {\"attached\":true,\"empty\":false,\"height\":1232,\"screenX\":0,\"screenY\":48,\"visible\":true,\"width\":720}",
 "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@a000f5daeaac3f79102a0c8f6eaab57aa0e00ae9/inspector.html?ws=localhost:9223/devtools/page/e5158e4a-d1df-4c43-b56c-fd19319dcadb",
@@ -115,7 +120,8 @@ Stetho的通信模型如上图，其中stetho-server就是app启的一个Thread�
 "type": "page",
 "url": "https://chaoshi.m.tmall.com/?disableNav=YES&utparam=%7B%22ranger_buckets%22%3A%22null%7C2895%22%2C%22ranger_buckets_native%22%3A%223801_4402_3151%22%7D&spm=a2141.1.icons.5&scm=2019.1.2.1007&_ig=shoutao&disableAB=1",
   "webSocketDebuggerUrl": "ws://localhost:9223/devtools/page/e5158e4a-d1df-4c43-b56c-fd19319dcadb"} ]
-</code></pre>
+
+```
 </div>
 
   返回一个数组，里面是所有可以远程调试的页面，其中包含以下字段信息：<br /> &#8211; description： 页面信息描述<br /> &#8211; devtoolsFrontendUrl：调试url地址，这个基于chrome 云服务器提供的inspector来调试，你也可以用开源的chromium中的inspector或者自己网上找下有人提取出来的调试server。<br /> &#8211; id：页面id<br /> &#8211; webSocketDebuggerUrl：android webview debug server 的 websocket， 这个地址的host和端口号是根据当前的访问tcp链接动态生成的，因为unix domain socket是没有ip地址和端口的。
@@ -179,12 +185,14 @@ chrome[浏览器](https://www.w3cdoc.com)的调试原理其实和这个基于网
     </div>
 
     <div data-key="19">
-      <pre><code></code><code>ID=$(adb devices | awk -F'device' '{if (match($0, /device$/)) print $1}')
+      ```
+ID=$(adb devices | awk -F'device' '{if (match($0, /device$/)) print $1}')
 adb shell netcfg
 IP=$(adb shell ifconfig wlan0 | awk '{if (sub(/.*ip/,"")) print $1 }')
 adb tcpip 5555
 adb connect $IP:5555
-</code></pre>
+
+```
     </div>
 
 

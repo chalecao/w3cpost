@@ -92,7 +92,7 @@ PS:两张图找不同的游戏已开始，请注意看右侧服务器端部分�
 
   <img loading="lazy" width="553" height="124" class="alignnone size-full wp-image-4940 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3a3f3ed2.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3a3f3ed2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3a3f3ed2.png?x-oss-process=image/format,webp 553w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4eb3a3f3ed2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_67/format,webp 300w" sizes="(max-width: 553px) 100vw, 553px" />
 
-<span class="img-wrap"></span>这些信息可是会伴随每次请求，来回地穿梭在服务器和客户端之间。浪费你大量的服务器资源，当然了，弊端包括但不限于此。那么，是时候看看Websocket的优势
+这些信息可是会伴随每次请求，来回地穿梭在服务器和客户端之间。浪费你大量的服务器资源，当然了，弊端包括但不限于此。那么，是时候看看Websocket的优势
 
 # Websocket的优点 {#articleHeader5}
 
@@ -128,8 +128,10 @@ Nodejs安装完成之后，其默认就给安装好了nodejs包管理工具npm�
 
 一切正常的话，[我们](https://www.w3cdoc.com)就可以通过使用命令
 
-<pre class="hljs sql"><code>npm <span class="hljs-keyword">install</span> ws
-</code></pre>
+```
+npm install ws
+
+```
 
 来安装websocket模块
 
@@ -138,36 +140,42 @@ Nodejs安装完成之后，其默认就给安装好了nodejs包管理工具npm�
 
 websocket的服务器环境基本搭建完成，接下来[我们](https://www.w3cdoc.com)通过几行简单地代码就可以把一个websocket服务器启动起来
 
-<pre class="hljs javascript"><code><span class="hljs-keyword">var</span> cons = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Array</span>();
-<span class="hljs-keyword">var</span> ws = <span class="hljs-built_in">require</span>(<span class="hljs-string">'ws'</span>).Server;
-<span class="hljs-keyword">var</span> server = <span class="hljs-keyword">new</span> ws({<span class="hljs-attr">host</span>:<span class="hljs-string">"127.0.0.1"</span>,<span class="hljs-attr">port</span>:<span class="hljs-number">8808</span>});
-server.on(<span class="hljs-string">'connection'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ws</span>)</span>{
-  <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'new connection founded successfully'</span>);
+```
+var cons = new Array();
+var ws = require('ws').Server;
+var server = new ws({host:"127.0.0.1",port:8808});
+server.on('connection',function(ws){
+  console.log('new connection founded successfully');
   cons.push(ws);
-  ws.on(<span class="hljs-string">'message'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>{
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;i<cons.length;i++){
+  ws.on('message',function(data){
+    for(var i=0;i<cons.length;i++){
         cons[i].send(data);
     }
   });
-  ws.on(<span class="hljs-string">'close'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>()</span>{
-    <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>;i<cons.length;i++){
-       <span class="hljs-keyword">if</span>(cons[i] == ws) cons.splice(i,<span class="hljs-number">1</span>);
+  ws.on('close',function(){
+    for(var i=0;i<cons.length;i++){
+       if(cons[i] == ws) cons.splice(i,1);
     }
   });
 });
-<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'websocket-server running...'</span>);
-</code></pre>
+console.log('websocket-server running...');
+
+```
 
 保存文件名为app.js，在命令行中运行
 
-<pre class="hljs nginx"><code><span class="hljs-attribute">node</span> app.js
-</code></pre>
+```
+node app.js
+
+```
 
 到此为止，服务端的部署完成，接下来，就可以看看websocket是如何在[浏览器](https://www.w3cdoc.com)上跑起来的。  
 在客户端，仅需要一条语句，就算是建立起了客户端和服务器端的链接
 
-<pre class="hljs scala"><code><span class="hljs-keyword">var</span> ws = <span class="hljs-keyword">new</span> <span class="hljs-type">WebSocket</span>(<span class="hljs-symbol">'ws</span>:<span class="hljs-comment">//127.0.0.1:8808/');</span>
-</code></pre>
+```
+var ws = new WebSocket('ws://127.0.0.1:8808/');
+
+```
 
 PS：所传递参数中的地址需要服务器上配置的一致  
 然后就可以通过各种事件/方法来完成客户端和服务器之间的数据交互，这个也就是我接下来要介绍的
@@ -186,32 +194,34 @@ PS：所传递参数中的地址需要服务器上配置的一致
 
 用法大致如下
 
-<pre class="hljs javascript"><code><span class="hljs-comment">//建立服务器连接</span>
-       ws.onopen = <span class="hljs-function"><span class="hljs-keyword">function</span>()</span>{
-        systemInfo.innerHTML = <span class="hljs-string">'<p>和websocket服务器连接成功</p>'</span>;
+```
+//建立服务器连接
+       ws.onopen = function(){
+        systemInfo.innerHTML = '<p>和websocket服务器连接成功</p>';
     }
-    <span class="hljs-comment">//接收到服务器返回的数据</span>
-    ws.onmessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>{
-        systemInfo.innerHTML += <span class="hljs-string">'<p>'</span>+e.data+<span class="hljs-string">'</p>'</span>;
+    //接收到服务器返回的数据
+    ws.onmessage = function(e){
+        systemInfo.innerHTML += '<p>'+e.data+'</p>';
     }
-    <span class="hljs-comment">//断开服务器连接</span>
-    ws.onclose = <span class="hljs-function"><span class="hljs-keyword">function</span>()</span>{
-        systemInfo.innerHTML += <span class="hljs-string">'<p>WebSocket服务器连接关闭</p>'</span>;
+    //断开服务器连接
+    ws.onclose = function(){
+        systemInfo.innerHTML += '<p>WebSocket服务器连接关闭</p>';
     }
-    <span class="hljs-comment">//ws发生错误</span>
-    ws.onerror = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>{
-        <span class="hljs-built_in">console</span>.log(e);
-        systemInfo.innerHTML += <span class="hljs-string">'<p>WebSocket发生错误</p>'</span>;
+    //ws发生错误
+    ws.onerror = function(e){
+        console.log(e);
+        systemInfo.innerHTML += '<p>WebSocket发生错误</p>';
     }
-    testForm.onsubmit = <span class="hljs-function"><span class="hljs-keyword">function</span>()</span>{
-        <span class="hljs-comment">//发送数据给服务器</span>
-        ws.send(username.value+<span class="hljs-string">":"</span>+msg.value);
-        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    testForm.onsubmit = function(){
+        //发送数据给服务器
+        ws.send(username.value+":"+msg.value);
+        return false;
     }
-    close.addEventListener(<span class="hljs-string">'click'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>()</span>{
+    close.addEventListener('click', function(){
         ws.close();
-    }, <span class="hljs-literal">false</span>);
-</code></pre>
+    }, false);
+
+```
 
 该完整demo可以<a href="http://ossweb-img.qq.com/images/tgideas/attachment/socket.zip" target="_blank" rel="nofollow noopener noreferrer">点击此处下载</a>  
 由此可见，websocket用起来真的很简单。但是这个功能相对来说非常单一，在实际的项目过程中，[我们](https://www.w3cdoc.com)所涉及到的业务逻辑可能会相对来说复杂很多，比如说某些消息只想被某个特定的范围里面的用户接收，同时，至少在天朝，使用低版本IE[浏览器](https://www.w3cdoc.com)或者其相同内核（Trident）的用户所占比例还是不少，没理由把这批用户放弃，为了解决这个问题，socket.io组件便孕育而生了
@@ -220,25 +230,33 @@ PS：所传递参数中的地址需要服务器上配置的一致
 
 Socket.io作为nodejs的一个模块，其安装方法和ws的完全一致
 
-<pre class="hljs sql"><code>npm <span class="hljs-keyword">install</span> socket.io</code></pre>
+```
+npm install socket.io
+```
 
 Socket.io同样的简单  
 在服务端只需要起一个HTTP server，然后在启动socket.io即可
 
-<pre class="hljs typescript"><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">require</span>(<span class="hljs-string">'http'</span>).createServer(handler)
-<span class="hljs-keyword">var</span> io = <span class="hljs-built_in">require</span>(<span class="hljs-string">'socket.io'</span>)(app);
-</code></pre>
+```
+var app = require('http').createServer(handler)
+var io = require('socket.io')(app);
+
+```
 
 Handler函数自己YY一下吧，  
 客户端的话，比使用原生的websocket稍微多一步，需要在页面上引入一个socket.io.js文件
 
-<pre class="hljs xml"><code><span class="hljs-tag"><<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/socket.io/socket.io.js"</span>></span><span class="hljs-tag"></<span class="hljs-name">script</span>></span>
-</code></pre>
+```
+<script src="/socket.io/socket.io.js"></script>
+
+```
 
 然后在通过运行
 
-<pre class="hljs lisp"><code>var socket = io()<span class="hljs-comment">;</span>
-</code></pre>
+```
+var socket = io();
+
+```
 
 即建立起了socket连接.
 
@@ -259,8 +277,10 @@ Handler函数自己YY一下吧，
 好吧，前面介绍了一堆，现在马上回到那个狂拽酷炫叼炸天的游戏上来，介绍这个游戏的实现，我会从4个方面来进行。  
 记得每个页面都需要引入socket.io.js文件
 
-<pre class="hljs xml"><code><span class="hljs-tag"><<span class="hljs-name">script</span> <span class="hljs-attr">src</span>=<span class="hljs-string">"/socket.io/socket.io.js"</span>></span><span class="hljs-tag"></<span class="hljs-name">script</span>></span>
-</code></pre>
+```
+<script src="/socket.io/socket.io.js"></script>
+
+```
 
 1、用户注册/登录  
 2、创建房间  
@@ -287,28 +307,34 @@ Handler函数自己YY一下吧，
 
 客户端向服务器发送注册事件（写在客户端）
 
-<pre class="hljs scala"><code>socket.emit(<span class="hljs-symbol">'regist</span>e', userName); <span class="hljs-comment">//事件名可自定义</span>
-</code></pre>
+```
+socket.emit('registe', userName); //事件名可自定义
+
+```
 
 服务器监听registe事件（写在服务端）
 
-<pre class="hljs groovy"><code>socket.on(<span class="hljs-string">'registe'</span>, function(userName){
-<span class="hljs-comment">//完成一些重名判断，写入数据之类的</span>
-<span class="hljs-comment">//上述步骤完成之后，需要向客户端发送事件，事件名可自定义</span>
-socket.emit(<span class="hljs-string">'registe'</span>, {
-        <span class="hljs-string">userInfo :</span> userInfo,
-        <span class="hljs-string">msg :</span> <span class="hljs-string">'registe successed'</span>,
-        <span class="hljs-string">code :</span> <span class="hljs-number">0</span>
+```
+socket.on('registe', function(userName){
+//完成一些重名判断，写入数据之类的
+//上述步骤完成之后，需要向客户端发送事件，事件名可自定义
+socket.emit('registe', {
+        userInfo : userInfo,
+        msg : 'registe successed',
+        code : 0
     })
 });
-</code></pre>
+
+```
 
 客户端监听服务器上发送的那个事件
 
-<pre class="hljs actionscript"><code>socket.on(<span class="hljs-string">'registe'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(data)</span> </span>{
-    <span class="hljs-comment">//根据服务器给回的数据进行相应的操作</span>
+```
+socket.on('registe', function (data) {
+    //根据服务器给回的数据进行相应的操作
 });
-</code></pre>
+
+```
 
 ## 创建房间 {#articleHeader13}
 
@@ -318,16 +344,18 @@ socket.emit(<span class="hljs-string">'registe'</span>, {
 
 下面的这几行代码是服务端创建房间的关键代码:
 
-<pre class="hljs groovy"><code>socket.on(<span class="hljs-string">'create'</span>, function (data) {
-<span class="hljs-comment">//完成一些重名判断，写入数据之类的</span>
-<span class="hljs-comment">//关键代码在此，注意和上面注册的代码相比较</span>
-io.sockets.emit(<span class="hljs-string">'create'</span>, {
-        <span class="hljs-string">roomInfo :</span> roomInfo,
-        <span class="hljs-string">msg :</span> <span class="hljs-string">'create successed'</span>,
-        <span class="hljs-string">code :</span> <span class="hljs-number">0</span>
+```
+socket.on('create', function (data) {
+//完成一些重名判断，写入数据之类的
+//关键代码在此，注意和上面注册的代码相比较
+io.sockets.emit('create', {
+        roomInfo : roomInfo,
+        msg : 'create successed',
+        code : 0
   })
 });
-</code></pre>
+
+```
 
 上面的注册/登录[我们](https://www.w3cdoc.com)在服务器向客户端发送消息时,用到的是`socket.emit`  
 在创建房间列表时，用到的是`io.sockets.emit`  
@@ -343,13 +371,15 @@ io.sockets.emit(<span class="hljs-string">'create'</span>, {
 
 如果是用这种方法，那么加入房间就会变得异常轻松
 
-<pre class="hljs actionscript"><code>socket.on(<span class="hljs-string">'enter'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span></span>{
-<span class="hljs-comment">//加入房间</span>
+```
+socket.on('enter', function(data){
+//加入房间
     socket.join(data.room);
-<span class="hljs-comment">//加入成功之后通知客户端</span>
-    socket.emit(<span class="hljs-string">'enter'</span>, userInfo[data.user]);
+//加入成功之后通知客户端
+    socket.emit('enter', userInfo[data.user]);
 })
-</code></pre>
+
+```
 
 到此为止，似乎采用这种join的方式，优势也并不是那么特别的明显。那么，在接下来的对战页面中。你就能发现其牛B之处
 
@@ -357,23 +387,29 @@ io.sockets.emit(<span class="hljs-string">'create'</span>, {
 
 所谓实时排行榜，就肯定是服务器上有数据发生变化时，需要通知客户端去更新。前面我给[大家](https://www.w3cdoc.com)介绍过两种发送数据的方式
 
-<pre class="hljs objectivec"><code>socket.emit  <span class="hljs-comment">//向当前连接的socket</span>
-</code></pre>
+```
+socket.emit  //向当前连接的socket
+
+```
 
 以及
 
-<pre class="hljs objectivec"><code>io.sockets.emit <span class="hljs-comment">//向所有连接的socket发送信息</span>
-</code></pre>
+```
+io.sockets.emit //向所有连接的socket发送信息
+
+```
 
 但是，在实际的这种加入房间的游戏对战中，似乎这两种发送消息的方式都不满足。第一种范围太小，光自己看到不顶用；第二种范围又太大，很容易骚扰到其他房间的用户。[我们](https://www.w3cdoc.com)需要第三种：消息只能被指定房间中的用户接收。很不巧的是，socket.io还真提供了这种API：
 
-<pre class="hljs groovy"><code>io.sockets.<span class="hljs-keyword">in</span>(roomID).emit
+```
+io.sockets.in(roomID).emit
 roomID也就是[我们](https://www.w3cdoc.com)上面socket.join方法中传递的参数，那么此时，[我们](https://www.w3cdoc.com)的代码仅需要如此：
-io.sockets.<span class="hljs-keyword">in</span>(roomID).emit(<span class="hljs-string">'update scroce'</span>, {
-<span class="hljs-string">player :</span> roomInfo[roonName].player,
-    <span class="hljs-string">userInfo :</span> userInfo
+io.sockets.in(roomID).emit('update scroce', {
+player : roomInfo[roonName].player,
+    userInfo : userInfo
 })
-</code></pre>
+
+```
 
 同样的，游戏倒计时也可以使用这种方法。
 

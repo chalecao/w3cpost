@@ -11,7 +11,8 @@ title: xcrun命令运行模拟器
 
  xcrun instruments -s<br /> 终端显示结果：
   
-  <pre class="hljs css"><code class="css">&lt;span class="hljs-selector-tag">Apple&lt;/span> &lt;span class="hljs-selector-tag">TV&lt;/span> (11&lt;span class="hljs-selector-class">.2&lt;/span>) &lt;span class="hljs-selector-attr">[E08E425C-ACE2-49EE-9451-2F8DE1606B44]&lt;/span> (&lt;span class="hljs-selector-tag">Simulator&lt;/span>)
+  ```
+&lt;span class="hljs-selector-tag">Apple&lt;/span> &lt;span class="hljs-selector-tag">TV&lt;/span> (11&lt;span class="hljs-selector-class">.2&lt;/span>) &lt;span class="hljs-selector-attr">[E08E425C-ACE2-49EE-9451-2F8DE1606B44]&lt;/span> (&lt;span class="hljs-selector-tag">Simulator&lt;/span>)
 &lt;span class="hljs-selector-tag">Apple&lt;/span> &lt;span class="hljs-selector-tag">TV&lt;/span> 4&lt;span class="hljs-selector-tag">K&lt;/span> (11&lt;span class="hljs-selector-class">.2&lt;/span>) &lt;span class="hljs-selector-attr">[5F7F618E-755D-4FB5-B1D2-C723BA3B7613]&lt;/span> (&lt;span class="hljs-selector-tag">Simulator&lt;/span>)
 &lt;span class="hljs-selector-tag">Apple&lt;/span> &lt;span class="hljs-selector-tag">TV&lt;/span> 4&lt;span class="hljs-selector-tag">K&lt;/span> (&lt;span class="hljs-selector-tag">at&lt;/span> 1080&lt;span class="hljs-selector-tag">p&lt;/span>) (11&lt;span class="hljs-selector-class">.2&lt;/span>) &lt;span class="hljs-selector-attr">[557BB6AF-5F1F-4C62-9414-A21EB4289CF1]&lt;/span> (&lt;span class="hljs-selector-tag">Simulator&lt;/span>)
 &lt;span class="hljs-selector-tag">Apple&lt;/span> &lt;span class="hljs-selector-tag">Watch&lt;/span> &lt;span class="hljs-selector-tag">-&lt;/span> 38&lt;span class="hljs-selector-tag">mm&lt;/span> (4&lt;span class="hljs-selector-class">.2&lt;/span>) &lt;span class="hljs-selector-attr">[C7815581-8534-4E6C-B107-F1495A4B9068]&lt;/span> (&lt;span class="hljs-selector-tag">Simulator&lt;/span>)
@@ -46,7 +47,8 @@ title: xcrun命令运行模拟器
 &lt;span class="hljs-selector-tag">iPhone&lt;/span> 8 &lt;span class="hljs-selector-tag">Plus&lt;/span> (11&lt;span class="hljs-selector-class">.2&lt;/span>) + &lt;span class="hljs-selector-tag">Apple&lt;/span> &lt;span class="hljs-selector-tag">Watch&lt;/span> &lt;span class="hljs-selector-tag">Series&lt;/span> 3 &lt;span class="hljs-selector-tag">-&lt;/span> 42&lt;span class="hljs-selector-tag">mm&lt;/span> (4&lt;span class="hljs-selector-class">.2&lt;/span>) &lt;span class="hljs-selector-attr">[E381F8A1-54E9-4428-BE4A-7011902C5D69]&lt;/span> (&lt;span class="hljs-selector-tag">Simulator&lt;/span>)
 &lt;span class="hljs-selector-tag">iPhone&lt;/span> &lt;span class="hljs-selector-tag">SE&lt;/span> (11&lt;span class="hljs-selector-class">.2&lt;/span>) &lt;span class="hljs-selector-attr">[D8ACFB1F-6678-4014-8993-72050939481D]&lt;/span> (&lt;span class="hljs-selector-tag">Simulator&lt;/span>)
 &lt;span class="hljs-selector-tag">iPhone&lt;/span> &lt;span class="hljs-selector-tag">X&lt;/span> (11&lt;span class="hljs-selector-class">.2&lt;/span>) &lt;span class="hljs-selector-attr">[1346D0CB-C0A7-40F9-BB8B-C095B736C696]&lt;/span> (&lt;span class="hljs-selector-tag">Simulator&lt;/span>)
-</code></pre>
+
+```
   ##   2、开启指定模拟器（上面的列表就是可用模拟器名称）
   
 
@@ -62,11 +64,13 @@ title: xcrun命令运行模拟器
   
  安装ipa
   
-  <pre class="EnlighterJSRAW" data-enlighter-language="null">1.将xx.ipa  改成xx.zip,解压得到xx.app
+  ```
+1.将xx.ipa  改成xx.zip,解压得到xx.app
 
 2.打开模拟器
 
-3.打开终端，运行xcrun simctl install booted xx.app</pre>
+3.打开终端，运行xcrun simctl install booted xx.app
+```
   ##   2、运行指定的app （com.example.app）
   
 

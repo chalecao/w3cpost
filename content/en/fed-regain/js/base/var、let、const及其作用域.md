@@ -24,11 +24,13 @@ _2、_ 函数作用域。
 _如下：_
 
 <div class="cnblogs_code">
-  <pre>function func(){
+  ```
+function func(){
     console.log(test);
     var test = 1;
 };
-func();</pre>
+func();
+```
 </div>
 
 _在node环境执行上述代码，结果为：_
@@ -50,7 +52,9 @@ What?‘块级作用域’又不影响var声明的变量？！！
 _如下：_
 
 <div class="cnblogs_code">
-  <pre>let test;</pre>
+  ```
+let test;
+```
 </div>
 
 _在node环境下，执行代码：_
@@ -83,9 +87,10 @@ _如下：_
 
 <div class="cnblogs_code">
   <div class="cnblogs_code_toolbar">
-    <span class="cnblogs_code_copy"><a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/copycode.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a></span>
+    <a title="复制代码"><img src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/copycode.gif" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/05/copycode.gif?x-oss-process=image/format,webp" alt="复制代码" /></a>
   </div>
-  <pre>'use strict';
+  ```
+'use strict';
 function func(args){
     if(true){
         //let声明i
@@ -96,7 +101,8 @@ function func(args){
     //在if外，再次打印i值
     console.log('outside: ' + i);
 };
-func();</pre>
+func();
+```
 </div>
 
 _在node环境中执行上述代码，结果如下：_
@@ -112,13 +118,15 @@ _在node环境中执行上述代码，结果如下：_
 _如下：_
 
 <div class="cnblogs_code">
-  <pre>'use strict';
+  ```
+'use strict';
 function func(){
     //在let声明前，打印i
     console.log(i);
     let i;
 };
-func();</pre>
+func();
+```
 </div>
 
 _在node环境下执行上述代码，结果如下：_
@@ -132,14 +140,16 @@ _在node环境下执行上述代码，结果如下：_
 _如下：_
 
 <div class="cnblogs_code">
-  <pre>'use strict';
+  ```
+'use strict';
 var test = 1;
 function func(){
     //打印test的值
     console.log(test);
     let test = 2;
 };
-func();</pre>
+func();
+```
 </div>
 
 _在node环境下执行上述代码，结果如下：_
@@ -153,13 +163,15 @@ _在node环境下执行上述代码，结果如下：_
 _如下：_
 
 <div class="cnblogs_code">
-  <pre>var arr = [];
+  ```
+var arr = [];
 for(var i = 0; i < 2; i++){
     arr[i] = function(){
         console.log(i);
     };
 };
-arr[1]();</pre>
+arr[1]();
+```
 </div>
 
 arr\[1\]()会输出2，原因是var声明的变量会变量提升，且当执行arr[1]函数时，i取自于父函数的i，而此时i已经变为2了，所以就会打印2咯。
@@ -167,7 +179,8 @@ arr\[1\]()会输出2，原因是var声明的变量会变量提升，且当执行
 以前的常用做法是，利用闭包特性。如下：
 
 <div class="cnblogs_code">
-  <pre>var arr = [];
+  ```
+var arr = [];
 for(var i = 0; i < 2; i++){
     arr[i] = (function(i){
         return function(){
@@ -175,19 +188,22 @@ for(var i = 0; i < 2; i++){
         };
     }(i));
 };
-arr[1]();</pre>
+arr[1]();
+```
 </div>
 
 又或者属性方式：
 
 <div class="cnblogs_code">
-  <pre>var arr = [];
+  ```
+var arr = [];
 for(var i = 0; i < 2; i++){
     (arr[i] = function self(){
         console.log(self.x);
     }).x = i;
 };
-arr[1]();</pre>
+arr[1]();
+```
 </div>
 
 现在有了let，它声明的变量作用域为块级，所以，[我们](https://www.w3cdoc.com)也可以利用let来达到同样的效果。
@@ -195,14 +211,16 @@ arr[1]();</pre>
 _如下：_
 
 <div class="cnblogs_code">
-  <pre>'use strict';
+  ```
+'use strict';
 var arr = [];
 for(let i = 0; i < 2; i++){
     arr[i] = function(){
         console.log(i);
     };
 };
-arr[1]();</pre>
+arr[1]();
+```
 </div>
 
 在node环境下，执行上述代码结果如下：
@@ -228,13 +246,15 @@ const命令与let命令一样，声明的变量，其作用域都是块级。
 _如下：_
 
 <div class="cnblogs_code">
-  <pre>'use strict';
+  ```
+'use strict';
 function func(){
     const PI;
     PI = 3.14;
     console.log(PI);
 };
-func();</pre>
+func();
+```
 </div>
 
 _在node环境下，执行上述代码结果如下：_
@@ -246,7 +266,9 @@ _在node环境下，执行上述代码结果如下：_
 如：
 
 <div class="cnblogs_code">
-  <pre>const PI = 3.14</pre>
+  ```
+const PI = 3.14
+```
 </div>
 
 欢迎学习[前端](https://www.w3cdoc.com)知识体系课程，本系列属于：[[前端](https://www.w3cdoc.com)增长教程][1]

@@ -18,7 +18,7 @@ title: 查找第 k 大元素
   2. 可以采用其他的排序算法，比如快排，先找到一个元素，把比他大的放在左边，比他小的放在右边。然后判断左边有几个，如果小于k个，那么就在右边找。如果大于k个，就在左边找。其实这个办法也不错。最差情况就是整体排序，时间复杂度o(n^logn)
   3. 堆排序的思路哈，要找第k大的元素，那么[我们](https://www.w3cdoc.com)就按照k个元素划分一个堆，这样，划分若干个堆。每个堆中找到最大的元素，然后比较所有堆，最小的那个元素就是第k大的元素。明白了么？？？，这个时间复杂度是o(n)哦
 
-&nbsp;
+
 
 # Just Try
 
@@ -32,13 +32,14 @@ title: 查找第 k 大元素
 
 let you think， think makes you happy!
 
-&nbsp;
+
 
 # 参考答案
 
 ### 桶排序
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">function algorithm(param){
+```
+function algorithm(param){
   let [arr, k] = param;
   let bucket = [];
   arr.forEach((v,i)=>{
@@ -54,7 +55,8 @@ function main(...param) {
   console.show("参数：" + param, "结果：" + algorithm(param))
   testPerformance(algorithm, param)
 }
-main([1,2,3,4,5,6,7,8,9], 4);</pre>
+main([1,2,3,4,5,6,7,8,9], 4);
+```
 
 请你自动动手试一下：[在线编程环境][2]
 

@@ -10,7 +10,7 @@ For Latest Versions of chrome
   
   <ul>
     
-      Type <code>chrome://net-export/</code> in the address bar and hit enter.
+      Type chrome://net-export/ in the address bar and hit enter.
     
     
       Start Recording. And save Recording file to local.
@@ -35,7 +35,7 @@ For Older Versions of chrome
   
   <ul>
     
-      Type <code>chrome://net-internals</code> in the address bar and hit enter.
+      Type chrome://net-internals in the address bar and hit enter.
     
     
       Open the page that is showing problems.

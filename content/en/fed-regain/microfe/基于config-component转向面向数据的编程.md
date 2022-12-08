@@ -51,7 +51,9 @@ github： <a href="https://github.com/chalecao/config-component" target="_blank
 
 安装：
 
-<pre class="hljs sql"><code>npm <span class="hljs-keyword">install</span> config-component <span class="hljs-comment">--save</span></code></pre>
+```
+npm install config-component --save
+```
 
 config-component默认提供了2中类型组件，
 
@@ -60,17 +62,20 @@ config-component默认提供了2中类型组件，
 
 For common component:
 
-<pre class="javascript hljs"><code class="javascript"><span class="hljs-keyword">import</span> {ConfigComponent} <span class="hljs-keyword">from</span> <span class="hljs-string">'config-component'</span>
+```
+import {ConfigComponent} from 'config-component'
 ...
 <ConfigComponent
       initialValues={...}
       schema={...}
       uiConfig={...}
-      /></code></pre>
+      />
+```
 
 For form component:
 
-<pre class="javascript hljs"><code class="javascript"><span class="hljs-keyword">import</span> {ConfigForm} <span class="hljs-keyword">from</span> <span class="hljs-string">'config-component'</span>
+```
+import {ConfigForm} from 'config-component'
 ...
 <ConfigComponent
       initialValues={...}
@@ -78,7 +83,8 @@ For form component:
       uiConfig={...}
       onSubmit={()=>{...}}
       componentSet={...}
-      /></code></pre>
+      />
+```
 
 params:
 
@@ -94,7 +100,8 @@ params:
 
 代码示例：
 
-<pre class="EnlighterJSRAW" data-enlighter-language="null">import React, { useContext } from 'react'
+```
+import React, { useContext } from 'react'
 import *as yup from 'yup'
 import* as AntdComponents from 'antd'
 import moment from 'moment'
@@ -266,7 +273,8 @@ export default function App() {
       }}
     />
   )
-}</pre>
+}
+```
 
 ## online example在线案例
 
