@@ -8,7 +8,7 @@ title: Grunt，Gulp工具
 一个应用开发到一定阶段，普遍会遇到一个问题。当功能越来越多，代码量越来越大，bug修复越来越频繁，开发人员一波一波的交替，…..应该用会向着越来越不可控发展。[我们](https://www.w3cdoc.com)不能再准确估计新功能的开发时间，也不知道一个bug修复后是否会引发另一个bug出现。所有的程序开发，都会面临着这样的问题。C/C++程序通过makefile管理编译测试打包的过程，Java程序通过Maven,Ant实现项目构建管理功能，Python有pip，Ruby有gem。在Nodejs的领域，[我们](https://www.w3cdoc.com)同样需要一个项目构建工具。
 
 本节主要介绍两种自动化构建工具，包括Grunt和Gulp，后续篇章中还会介绍bower包管理工具和Yeoman构建工具。这里先详细介绍这两种自动化构建工具，gulp.js 是一种基于流的，代码优于配置的新一代构建工具。Gulp 和 Grunt 类似。但相比于 Grunt 的频繁的 IO 操作，Gulp 的流操作，能更快地完成构建。  
-<a></a>  
+ 
 ![Grunt，Gulp工具][2]
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/18/2014_grunt_gulp/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/18/2014_grunt_gulp/</a>

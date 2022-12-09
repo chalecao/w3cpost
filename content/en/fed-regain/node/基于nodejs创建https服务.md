@@ -6,7 +6,7 @@ title: 基于Nodejs创建https服务
 ### [][1]为什么用https服务
 
 关于https协议和相关加密算法，请参考我的另一篇：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/30/2014_https/" target="_blank" rel="external">HTTPS详解SSL/TLS</a>。很多情况下，为了保证服务器的安全，比如我在服务端搭建了一个rest服务，这时候如果采用http的协议，很不安全，大部分的做法是http+web json token，但是对于token的处理也是比较棘手的。如果是对外提供开放接口，比如像百度、腾讯这些第三方开放平台接口，比如登录授权这些，可以采用http+OAuth2.0解决。对于自己做得服务器来说，如果涉及到支付交易这些，后台采用HTTPS+session的做法比较好。  
-<a></a>  
+ 
 ![基于Nodejs创建https服务][2]
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/10/18/2014_https_node/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/10/18/2014_https_node/</a>

@@ -6,7 +6,7 @@ title: JS原生编解码函数
 ### [][1]编解码的需求
 
 当你在百度输入一个关键字搜索的时候，你会发现搜索的url是被转义处理了。这里为什么要转义呢？一方面为了避免XSS，一方面可以做到通用处理，对特殊符号进行转义处理，避免引起未知的错误。JavaScript中有三个可以对字符串编码的函数，分别是： escape,encodeURI,encodeURIComponent，相应3个解码函数：unescape,decodeURI,decodeURIComponent 。  
-<a></a>  
+ 
 ![JS原生编解码函数][2]
 
 ### [][3]escape()函数

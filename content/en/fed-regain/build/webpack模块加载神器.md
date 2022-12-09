@@ -6,7 +6,7 @@ title: Webpack模块加载神器
 ### [][1]什么是Webpack
 
 Webpack 是德国开发者 Tobias Koppers 开发的模块加载器。Instagram 工程师认为这个方案很棒, 似乎还把作者招过去了。在 Webpack 当中, 所有的资源都被当作是模块, js, css, 图片等等..因此, Webpack 当中 js 可以引用 css, css 中可以嵌入图片 dataUrl。对应各种不同文件类型的资源, Webpack 有对应的模块 loader, 比如 CoffeeScript 用的是 coffee-loader, 其他还有很多:<a href="https://webpack.github.io/docs/list-of-loaders.html" target="_blank" rel="external">https://webpack.github.io/docs/list-of-loaders.html</a>  
-<a></a>  
+ 
 ![Webpack模块加载神器][2]
 
 大致的写法也就这样子:

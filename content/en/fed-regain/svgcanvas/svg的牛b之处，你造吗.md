@@ -6,7 +6,7 @@ title: SVG的牛B之处，你造吗
 ### [][1]牛掰掰的svg
 
 SVG能干啥，想干啥就干啥。可以用来做贴图，做纹理，做动画，甚至做背景图片，你想要的都可以，关键是操作灵活，和别是和canvas又可以相互转化使用，简直是居家旅行必备神器，作为[前端](https://www.w3cdoc.com)工程师，你学会了吗？不会，就抓紧开始吧。  
-<a></a>  
+ 
 ![SVG的牛B之处，你造吗][2]
 
 <a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2015/11/05/2015_svg_learn/" target="_blank" rel="external">SVG系列教程</a>

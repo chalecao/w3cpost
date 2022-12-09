@@ -6,8 +6,7 @@ title: chrome插件开发
 
 chrome extensions 中的通信交互：<https://www.cnblogs.com/experiments-of-ORLAN/p/3736511.html>
 
-
-  Chrome[浏览器](https://www.w3cdoc.com)扩展开发系列之十三：消息传递Message：<a href="https://www.cnblogs.com/champagne/p/4848520.html">https://www.cnblogs.com/champagne/p/4848520.html</a>
+Chrome[浏览器](https://www.w3cdoc.com)扩展开发系列之十三：消息传递Message：<a href="https://www.cnblogs.com/champagne/p/4848520.html">https://www.cnblogs.com/champagne/p/4848520.html</a>
 
 Where to read console messages from background.js in a Chrome extension?：
 
@@ -60,8 +59,6 @@ manifest.json-----------
 
 同时，这个ID也是chrome区别相同或不同插件的唯一指标。也就是说，即使是同样的插件名、一行不差的代码，如果拥有不同的ID，chrome也会认为他们是不一样的。
 
-![][1]
-
 但是，聪明如你会发现，在通过chrome导入插件的源码文件夹进行开发时，此处的ID和你最终打包成crx再安装的ID竟然不！一！样！因此可能造成一个困扰：如果我在开发时，因为各种各样的原因，要写死插件ID在代码或者配置中，此时如果写的是开发状态下的ID，到了打包发布后，两边ID对应不上，相关的功能也就不能实现了。（譬如在做<a href="https://developer.chrome.com/extensions/autoupdate" target="_blank" rel="noopener noreferrer">Autoupdate</a>时）
 
 所以，本文就是教你如何**保持插件在开发和打包crx后都能保持相同ID**的秘籍！
@@ -70,7 +67,6 @@ Ok，依据下面几步，你将能够快速地完成这一目的。
 
 1. 在chrome插件管理中，点击“打包扩展程序”，将你的源码文件夹选中，然后生成一个pem密钥文件，这个文件一旦生成之后就要保存好，chrome是依据这个文件来生成ID的。 如果不甚文件丢失，你只能更换应用ID了。
 
-![][2]
 
 2. 通过第一步的打包，你会得到一个crx文件，将此文件拖到chrome插件管理界面进行安装。
 

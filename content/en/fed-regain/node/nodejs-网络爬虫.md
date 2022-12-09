@@ -6,7 +6,7 @@ title: NodeJS 网络爬虫
 ### [][1]前言
 
 以前做网络爬虫都是用java开发，基于http client模拟请求，获取数据，然后基于正则表达式来提取需要的数据。这两天突然看见可以用NodeJS来做网络爬虫，而且最大的好处是，获取到的内容可以使用jQuery等库来解析操作dom，这个无疑对于数据提取是比较方便的。这里做个demo项目，作为以后应用的种子项目。  
-<a></a>  
+ 
 ![NodeJS 网络爬虫][2]
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/07/29/2014_nodejs_2/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/07/29/2014_nodejs_2/</a>

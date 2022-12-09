@@ -6,7 +6,7 @@ title: NodeJS的buffer使用总结
 ### [][1]buffer拼接数据
 
 写网页爬虫，或者读取文件流，接收网络数据流的时候，[我们](https://www.w3cdoc.com)经常使用buffer来拼接接受的数据块。关于这个字符串拼接，在java中的字符流或者字节流是可以指定编码的，或者接收后转换编码，而在NodeJS中的处理就有些不同了。  
-<a></a>  
+ 
 ![NodeJS的buffer使用总结][2]
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/09/09/2014_nodejs_buffer/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/09/09/2014_nodejs_buffer/</a>

@@ -6,7 +6,7 @@ title: fabric.js之強大的SVG处理工具类库
 ### [][1]什么是Fabric.js
 
 使用 Fabric.js 你可以创建和填充画布上的对象，从简单的几何图形到成百上千路径组成的复杂图形。你可以通过鼠标轻松的移动、缩放和旋转这些对象，修改它们的属性（颜色、透明度，层叠顺序）等等。  
-<a></a>  
+ 
 ![fabric.js之強大的SVG处理工具类库][2]
 
 <a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2015/11/05/2015_svg_learn/" target="_blank" rel="external">SVG系列教程</a>

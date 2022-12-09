@@ -217,7 +217,7 @@ new Promise(function(resolve, reject){
 document,querySelectorAll("a").forEach(()=>{
     ....
 })
-</code>
+
 ```
 </div>
 

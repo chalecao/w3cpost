@@ -6,7 +6,7 @@ title: JS常用函数
 ### [][1]前言
 
 这里主要介绍一些常用的javascript函数，这里并不会介绍jQuery，因为在手机WEB项目中可能不会使用jQuery，主要尽量使用javascript控制，减少开销，提供响应速度。渐渐的发现，写博客真的是需要耐心的，我会坚持的。此帖会一直更新所用到的js函数。  
-<a></a>  
+ 
 ![JS常用函数][2]  
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/05/2014_js/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/05/2014_js/</a>
 

@@ -6,7 +6,7 @@ title: SVG缩放，移动，倾斜和旋转变换
 ### [][1]SVG坐标系
 
 SVG元素可以通过缩放，移动，倾斜和旋转来变换-类似HTML元素使用CSS transform来变换。然而，当涉及到坐标系时这些变换所产生的影响必然有一定差别。在这篇文章中[我们](https://www.w3cdoc.com)讨论SVG的transform属性和CSS属性，包括如何使用，以及你必须知道的关于SVG坐标系变换的知识。  
-<a></a>  
+ 
 ![SVG缩放，移动，倾斜和旋转变换][2]
 
 <a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2015/11/05/2015_svg_learn/" target="_blank" rel="external">SVG系列教程</a>

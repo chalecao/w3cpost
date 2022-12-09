@@ -11,7 +11,7 @@ title: 手机网页调试工具weinre
 <a href="https://github.com/chalecao/ionic-book" target="_blank" rel="external">ionic中文教程</a>
 
 教程逐步迁移到github，欢迎点星星哦！  
-<a></a>  
+ 
 ![手机网页调试工具weinre][2]
 
 转载请注明出处：[https://haomou.net/2015/08/20/2015\_ionic\_debug2/][3]

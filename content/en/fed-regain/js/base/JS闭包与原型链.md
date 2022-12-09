@@ -31,7 +31,7 @@ function f1(){
 　　result(); // 999
 　　nAdd();
 　　result(); // 1000
-</code>
+
 ```
 
 在这段代码中，result实际上就是闭包f2函数。它一共运行了两次，第一次的值是999，第二次的值是1000。这证明了，函数f1中的局部变量n一直保存在内存中，并没有在f1调用后被自动清除。  
@@ -48,7 +48,7 @@ function F(){
 　　;
 }
 alert(F.prototype instanceof Object) //true
-</code>
+
 ```
 
 构造函数，也即构造对象。首先了解下通过构造函数实例化对象的过程。
@@ -58,7 +58,7 @@ function A(x){
 　　this.x=x;
 }
 var obj=new A(1);
-</code>
+
 ```
 
 实例化obj对象有三步：
@@ -78,14 +78,14 @@ for(o in A.prototype) {
 　　num++;
 }
 alert("member: " + num);//alert出原型所有成员个数。
-</code>
+
 ```
 
 但是，一旦定义了原型属性或原型方法，则所有通过该构造函数实例化出来的所有对象，都继承了这些原型属性和原型方法，这是通过内部的_\_proto\__链来实现的。譬如
 
 ```
 A.prototype.say=function(){alert("Hi")};
-</code>
+
 ```
 
 那所有的A的对象都具有了say方法，这个原型对象的say方法是唯一的副本给[大家](https://www.w3cdoc.com)共享的，而不是每一个对象都有关于say方法的一个副本。
@@ -104,7 +104,7 @@ function B(x,y){
 　　delete this.tmpObj;
 　　this.y=y;
 }
-</code>
+
 ```
 
 第5、6、7行：创建临时属性tmpObj引用构造函数A，然后在B内部执行，执行完后删除。当在B内部执行了this.x=x后（这里的this是B的对象），B当然就拥有了x属性，当然B的x属性和A的x属性两者是独立，所以并不能算严格的继承。第5、6、7行有更简单的实现，就是通过call(apply)方法：A.call(this,x);
@@ -131,7 +131,7 @@ B.prototype.b2 = function(){
 }
 B.prototype.constructor = B;
 var obj = new B(1,3);
-</code>
+
 ```
 
 这个例子讲的就是B继承A。第7行类继承：A.call(this.x);上面已讲过。实现原型继承的是第12行：B.prototype = new A();
@@ -163,7 +163,7 @@ return x - y;
 }
 
 //alert(add(1, 3));
-</code>
+
 ```
 
 但是，这个并不能体现OOP思想，看了原型与原型链之后觉得OOP一目了然:
@@ -173,7 +173,7 @@ var Calculator = function (decimalDigits, tax) {
 this.decimalDigits = decimalDigits;
 this.tax = tax;
 };
-</code>
+
 ```
 
 然后给Calculator的prototype属性赋值对象字面量来设定Calculator对象的原型。
@@ -189,7 +189,7 @@ return x - y;
 }
 };
 //alert((new Calculator()).add(1, 3));
-</code>
+
 ```
 
 

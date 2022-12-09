@@ -6,7 +6,7 @@ title: jquery笔记deferred
 ### [][1]什么是deferred对象
 
 开发网站的过程中，[我们](https://www.w3cdoc.com)经常遇到某些耗时很长的javascript操作 。其中，既有异步的操作（比如ajax读取服务器数据），也有同步的操作（比如遍历一个大型数组），它们都不是立即能得到结果的 。通常的做法是，为它们指定回调函数（callback） 。即事先规定，一旦它们运行结束，应该调用哪些函数 。但是，在回调函数方面，jQuery的功能非常弱 。为了改变这一点，jQuery开发团队就设计了deferred对象 。简单说，deferred对象就是jQuery的回调函数解决方案 。在英语中，defer的意思是”延迟”，所以deferred对象的含义就是”延迟”到未来某个点再执行 。它解决了如何处理耗时操作的问题，对那些操作提供了更好的控制，以及统一的编程接口 。它的主要功能，可以归结为四点 。下面[我们](https://www.w3cdoc.com)通过示例代码，一步步来学习 。  
-<a></a>  
+ 
 ![jquery笔记deferred][2]
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/09/12/2014_angularjs_2/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/09/12/2014_angularjs_2/</a>

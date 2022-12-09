@@ -6,7 +6,7 @@ title: NodeJS+mongoDB部署到Linux
 ### [][1]部署需求
 
 这几天把之前做的关于FIDO认证系统的DEMO程序部署到服务器上，想到去年买了一台Aliyun的服务器，应该还没有到期，所以就试着部署到服务器上。我的阿里云是RedHat 4.1.2的系统，使用起来还是很方便的。  
-<a></a>  
+ 
 ![NodeJS+mongoDB部署到Linux][2]
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/07/29/2014_nodejs_2/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/07/29/2014_nodejs_2/</a>

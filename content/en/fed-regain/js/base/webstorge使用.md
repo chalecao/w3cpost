@@ -6,7 +6,7 @@ title: WebStorge使用
 ### [][1]WebStorge简介
 
 互联网的未来，是移动互联网；移动互联网网页的未来是WEB App。对于Web APP或者许多的富客户端网页来说，Web Storage是很重要的一部分。对于提升用户体验和网页页面优化有很重要的价值。使用者需要对网页或app的数据结构分层整合，区分出可以用于web storage和不能storage的数据，对于需要存储的数据，再格式化成key/value形式。  
-<a></a>  
+ 
 ![WebStorge使用][2]
 
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/09/22/2014_Html5_storage/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/09/22/2014_Html5_storage/</a>

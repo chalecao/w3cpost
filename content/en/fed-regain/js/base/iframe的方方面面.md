@@ -6,7 +6,7 @@ title: iframe的方方面面
 ### [][1][浏览器](https://www.w3cdoc.com)中的[浏览器](https://www.w3cdoc.com)
 
 iframe 提供了一个简单的方式把一个网站的内容嵌入到另一个网站中。但[我们](https://www.w3cdoc.com)需要慎重的使用iframe。iframe的创建比其它包括scripts和css的 DOM 元素的创建慢了 1-2 个数量级。使用 iframe 的页面一般不会包含太多 iframe，所以创建 DOM 节点所花费的时间不会占很大的比重。但带来一些其它的问题：onload 事件以及连接池(connection pool)。  
-<a></a>  
+ 
 ![iframe的方方面面][2]
 
 ### [][3]iframe用法

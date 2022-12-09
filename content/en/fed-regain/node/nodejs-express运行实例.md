@@ -7,7 +7,7 @@ title: NodeJS Express运行实例
 
 最近在学NodeJS，其实以前学过，好长时间没有用，就忘记了。想想还是比较可惜的。最近学习也是从看资料开始，偶尔看到一些博客写的真的很不错。但是都是零零碎碎的。而且很多都是老版本的，按照博客的写法一步一步走过来，很多地方要么报错，要么都不能用。  
 自己也是找了很多资料，所以打算把这些更改的地方写一下，正确的写法记录一下，分享给想学的同学，让[大家](https://www.w3cdoc.com)都少走弯路，节省学习成本。  
-<a></a>  
+ 
 ![NodeJS Express运行实例][2]  
 转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2014/07/29/2014_nodejs_1/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2014/07/29/2014_nodejs_1/</a>
 

@@ -6,7 +6,7 @@ title: ubuntu中su与sudo的区别
 ### [][1]环境变量问题
 
 经常发现sudo 加一个命令执行，会报错command not found，比如配置了maven之后，明明配置了换进变量，但是还是用sudo mvn就不行？究其原因是sudo默认只是提供最小化的root执行环境。并不包含当前配置的环境变量。  
-<a></a>  
+ 
 ![ubuntu中su与sudo的区别][2]
 
 ### [][3]su命令临时切换用户身份

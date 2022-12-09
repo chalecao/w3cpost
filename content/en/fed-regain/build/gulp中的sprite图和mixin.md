@@ -3,7 +3,7 @@ title: Gulp中的sprite图和mixin
 
 ---
 介绍一下项目中用到的css3 mixin和自动打包雪碧图的类库  
-<a></a>  
+ 
 ![Gulp中的sprite图和mixin][1]
 
 <a href="https://www.hulufei.com/post/a-frontend-scaffold" target="_blank" rel="external">[前端](https://www.w3cdoc.com)工作流：工具集总篇</a>

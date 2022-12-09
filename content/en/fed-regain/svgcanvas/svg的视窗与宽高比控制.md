@@ -6,7 +6,7 @@ title: SVG的视窗与宽高比控制
 ### [][1]SVG坐标系
 
 SVG元素不像HTML元素一样由CSS盒模型管理。这使得[我们](https://www.w3cdoc.com)可以更加灵活定位和变换这些元素-也许一眼看上去不太直观。然而，一旦你理解了SVG坐标系和变换，操纵SVG会非常简单并且很有意义。本篇文章中[我们](https://www.w3cdoc.com)将讨论控制SVG坐标系的最重要的三个属性：viewport， viewBox， 和 preserveAspectRatio。  
-<a></a>  
+ 
 ![SVG的视窗与宽高比控制][2]
 
 <a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2015/11/05/2015_svg_learn/" target="_blank" rel="external">SVG系列教程</a>

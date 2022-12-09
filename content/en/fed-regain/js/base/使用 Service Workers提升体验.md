@@ -76,7 +76,7 @@ fetch(url, {
 }) .then((res) => {
     // TODO
 })
-</code>
+
 ```
     </div>
 
@@ -87,7 +87,7 @@ fetch(url, {
     <div class="highlight">
       ```
 <code class="language-text">header("Access-Control-Allow-Origin: *"); 
-</code>
+
 ```
     </div>
 
