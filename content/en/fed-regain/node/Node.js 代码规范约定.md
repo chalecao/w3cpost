@@ -11,7 +11,7 @@ title: Node.js 代码规范约定
   </h3>
  使用2个空格而不是 tab 来进行代码缩进，同时绝对不要混用空格和 tab 。
   
- Sublime Text 2 设置(Preferences > Settings &#8211; User)：
+ Sublime Text 2 设置(Preferences > Settings - User)：
   
   ```
   "tab_size": 2,
@@ -23,7 +23,7 @@ title: Node.js 代码规范约定
   </h3>
  使用 UNIX 风格的换行符 (\n)，同时在每个文件的结尾添加一个换行符。 Windows 风格的换行符 (\r\n) 是绝对禁止出现在任何项目中的。
   
- Sublime Text 2 设置(Preferences > Settings &#8211; User)：
+ Sublime Text 2 设置(Preferences > Settings - User)：
   
   ```
   "default_line_ending": "unix"
@@ -34,7 +34,7 @@ title: Node.js 代码规范约定
   </h3>
  就像吃完饭要刷牙一样，在提交 (commit) 代码之前你需要清理掉所有的不必要的空格。
   
- Sublime Text2 设置(Preferences > Settings &#8211; User)：
+ Sublime Text2 设置(Preferences > Settings - User)：
   
   ```
   "trim_trailing_white_space_on_save": true
@@ -50,7 +50,7 @@ title: Node.js 代码规范约定
   </h3>
  限制你每行代码不超过80个字符。尽管现在的显示器越来越大，但是你的大脑并没有变大，并且你还可以把你的大显示器切分成多屏来显示。
   
- Sublime Text 2 设置(Preferences > Settings &#8211; User)：
+ Sublime Text 2 设置(Preferences > Settings - User)：
   
   ```
   "rulers": [80]

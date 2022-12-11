@@ -890,7 +890,7 @@ observer.observe({entryTypes: ["longtask"]});
 
 除了以上关于性能度量的标准，Web 性能工作组还制定了一些可以让[浏览器](https://www.w3cdoc.com)来实现的性能优化标准，并给[我们](https://www.w3cdoc.com)提供了使用这些优化措施的 API。<a name="Vm1C0"></a>
 
-### Resource Hints &#8211; 加载性能 {#10}
+### Resource Hints - 加载性能 {#10}
 
 许多 Web 应用程序已经利用了各种预取技术来提高加载性能，这包括但不限于在需要之前使用 XMLHttpRequest 来获取和缓存资源。但是，这些实现不能提供与[浏览器](https://www.w3cdoc.com)支持的相同的性能级别。更糟糕的是，这些实现有时与[浏览器](https://www.w3cdoc.com)逻辑冲突，导致延迟或不必要的资源获取，从而降低整个页面性能。
 
@@ -979,7 +979,7 @@ prefetch 有 3 条规则：
 
 如果 HTML 不需要预处理，则可以使用 prefetch 资源提示。<a name="C8SZU"></a>
 
-### Preload &#8211; 加载性能 {#11}
+### Preload - 加载性能 {#11}
 
 许多应用程序需要细粒度地控制何时获取、处理和应用资源到文档。例如，应用程序可能会延迟某些资源的加载和处理，以减少资源争用并提高初始加载的性能。此行为通常通过将资源获取移动到应用程序的自定义资源加载逻辑中来实现，即当满足特定条件时，资源获取通过注入的元素或通过 XMLHttpRequest 启动。
 
@@ -1028,7 +1028,7 @@ prefetch 和 preload 都可以声明一个资源及其获取属性，但在用�
 
 更多可以参考： [Preload: What Is It Good For?][58] by Yoav Weiss<a name="ZfCIX"></a>
 
-### Page Visibility &#8211; 节省资源 {#12}
+### Page Visibility - 节省资源 {#12}
 
 此规范提供了观察页面可见性状态的 API ，例如当用户最小化窗口或切换到另一个选项卡时，API 会发送[visibilitychange][59] 事件，让监听者知道页面状态已更改，[我们](https://www.w3cdoc.com)可以检测事件并执行某些操作。
 
@@ -1089,7 +1089,7 @@ document.addEventListener('visibilitychange', handleVisibilityChange, false);
 
 但是这个规范各大[浏览器](https://www.w3cdoc.com)厂商的实现方式不一样，存在兼容性问题，在实现时需要做兼容，具体兼容方式可在 [Page Visibility API | MDN][63] 查看。<a name="Z5Zpq"></a>
 
-### requestIdleCallback API &#8211; 充分利用资源 {#13}
+### requestIdleCallback API - 充分利用资源 {#13}
 
 此规范定义了后台任务协同调度 API，提供了由用户代理决定在空闲时间自动执行队列任务的能力，在 [Background Tasks API | MDN][64] 中有详细介绍。
 
@@ -1147,7 +1147,7 @@ function start() {
 
 在线视频课程：<a href="https://study.163.com/course/courseMain.htm?share=2&shareId=400000000351011&courseId=1209400904&_trace_c_p_k2_=d5106aa1758748cea6e733c4b1f29bbe" target="_blank" rel="noopener noreferrer">网易云课堂课程</a>      <a href="https://segmentfault.com/ls/1650000019681091" target="_blank" rel="noopener noreferrer">思否课堂</a>
 
-### Beacon &#8211; 数据上报 {#14}
+### Beacon - 数据上报 {#14}
 
 [我们](https://www.w3cdoc.com)经常需要尝试在卸载（unload）文档之前向 Web 服务上报性能数据。过早的发送数据可能导致错过收集数据的机会。但对于开发者来说保证在文档卸载期间发送数据一直是一个困难，因为用户代理通常会**忽略**在 unload 事件处理器中产生的**异步 XMLHttpRequest**。
 

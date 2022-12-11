@@ -824,13 +824,13 @@ render() {
 # 参考资料
 
 * [基于Webpack 2的React组件懒加载][13]
-* [Lazy Loading &#8211; React][19]
+* [Lazy Loading - React][19]
 * [es6-promise-loader][11]
 * [promise-loader][9]
 * [bundle-loader][8]
 * [es6-modules-overview][20]
 * [Implicit Code Splitting and Chunk Loading with React Router and Webpack][21]
-* [Code Splitting &#8211; Using require.ensure][3]
+* [Code Splitting - Using require.ensure][3]
 <a href="https://webpack.js.org/guides/migrating/#code-splitting-with-es2015">Code Splitting with ES2015</a>
 
  [1]: https://webpack.js.org/guides/code-splitting/

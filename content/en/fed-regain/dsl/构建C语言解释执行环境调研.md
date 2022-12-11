@@ -27,7 +27,7 @@ title: 构建C语言解释执行环境调研
 目前有三种基本的方案：  
 1）基于JS构建c语言解析执行环境（论文中方案，[前端](https://www.w3cdoc.com)解析执行）  
 论文中采用PEG（ parsing expression grammar）解析表达式语法编写c语言解析器，在调研中发现还有类似的解决方案chevrotain，主要基于LL(K)词法分析。  
-参考：peg方案 &#8211; <a href="https://pegjs.org/" target="_blank" rel="external noopener">https://pegjs.org/</a> ， LL(K)方案 &#8211; <a href="https://github.com/SAP/chevrotain" target="_blank" rel="external noopener">https://github.com/SAP/chevrotain</a>
+参考：peg方案 - <a href="https://pegjs.org/" target="_blank" rel="external noopener">https://pegjs.org/</a> ， LL(K)方案 - <a href="https://github.com/SAP/chevrotain" target="_blank" rel="external noopener">https://github.com/SAP/chevrotain</a>
 
 ![[前端](https://www.w3cdoc.com)构建C语言解释执行环境调研][1]
 

@@ -1321,7 +1321,7 @@ title: 基于Chrome devTools远程调试技术方案
         <td class="bi-table-cell" colspan="1" rowspan="1" data-key="777">
           <div class="bi-table-cell-content">
             <div class="bi-unstyle bi-dnd" data-key="778">
-              <span data-key="779">API &#8211; /register</span>
+              <span data-key="779">API - /register</span>
             </div>
           </div>
         </td>
@@ -1339,7 +1339,7 @@ title: 基于Chrome devTools远程调试技术方案
         <td class="bi-table-cell" colspan="1" rowspan="1" data-key="784">
           <div class="bi-table-cell-content">
             <div class="bi-unstyle bi-dnd" data-key="785">
-              <span data-key="786">API &#8211; /json</span>
+              <span data-key="786">API - /json</span>
             </div>
           </div>
         </td>

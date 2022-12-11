@@ -52,14 +52,14 @@ While characters or short spoken words can besize-normalized and fed to a fixed-
 
 一个例子：
 
-Task 1 &#8211; Sentiment analysis: You&#8217;re given some review, and youwant to predict the rating of the review.  
-Task 2 &#8211; Machine translation: Translate a sentence from some source language totarget language.
+Task 1 - Sentiment analysis: You&#8217;re given some review, and youwant to predict the rating of the review.  
+Task 2 - Machine translation: Translate a sentence from some source language totarget language.
 
 Now, the basic difference in terms of applicability of conv-net and RNN is thatconv-nets (like most other machine learning algorithm) take a fixed size inputand generate fixed-size outputs. RNN, on the other hand, can handle arbitraryinput/output lengths, but would typically require much more data compared toconv-nets because it is a more complex model.
 
 Using this insight, we see that task 2 cannot be performed by conv-nets, sinceinputs and outputs are not fixed-length. So RNNs for task 2.
 
-For task 1, however, you can use RNN if you have a lot of data. But you canalso use conv-nets &#8211; fix the length of the input, and adjust the input lengthby truncating or padding the actual input. Note that this will not affect thesentiment of the review much, so this is a reasonable approach. And since it&#8217;sa 1D convolution, that is typically used in sequences, it is called temporalconvolution. Conceptually, it is similar to 2D spatial convolution.
+For task 1, however, you can use RNN if you have a lot of data. But you canalso use conv-nets - fix the length of the input, and adjust the input lengthby truncating or padding the actual input. Note that this will not affect thesentiment of the review much, so this is a reasonable approach. And since it&#8217;sa 1D convolution, that is typically used in sequences, it is called temporalconvolution. Conceptually, it is similar to 2D spatial convolution.
 
 小结：
 

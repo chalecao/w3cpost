@@ -255,7 +255,7 @@ return x - y;
       
         subtract=function (x,y) {
       
-        return x &#8211; y;
+        return x - y;
       
         }
       
@@ -327,7 +327,7 @@ return x - y;
       
         S: function(x, y) {
       
-        return x &#8211; y;
+        return x - y;
       
         }
       
@@ -401,7 +401,7 @@ return x - y;
       
         S: function(x, y) {
       
-        return x &#8211; y;
+        return x - y;
       
         }
       
@@ -627,7 +627,7 @@ return x - y;
       
         Object.prototype.subtract = function (x, y) {
       
-        return x &#8211; y;
+        return x - y;
       
         }
       

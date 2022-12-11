@@ -13,48 +13,37 @@ weight: 7
 它们两者之间有很多差别，这个差别就是图片和canvas的差别，图片是通过图像处理软件，如photoshop来处理的。而canvas是通过[浏览器](https://www.w3cdoc.com)的绘图API来绘制的。显示canvas能够给程序员更多的想象空间，从而做出更有意思的效果出来。  
 本节的效果，是一个可以旋转的三维时钟。如下图所示，
 
-![WebGL中的Canvas纹理合成][1]  
+![](/images/posts/2022-12-11-19-41-00.png)
+
 发现了它与普通时钟的区别了吗？首页它在正方体的6个面都有时钟的效果，而且时钟是每秒钟都更新一次的，能够准确的反应当前的时间。下面[我们](https://www.w3cdoc.com)来介绍一下，这一关于canvas作为纹理的知识。
 
 ### 时钟纹理生成过程
 
 实现这个效果的步骤可以用下面的框图来表示：  
-![WebGL中的Canvas纹理合成][2]  
+
+![](/images/posts/2022-12-11-19-41-44.png)
+
 1、在canvas上画时钟
 
-由于时钟的秒针会每秒滴答一次，那么canvas中的内容，其本身就会被更新一次。[我们](https://www.w3cdoc.com)将在canvas中绘制时钟的代码放到了【初级教程/chapter6/clock.js】中。打开代码，你会发现它非常熟悉，这里的函数都是html5绘制canvas的基本函数，只不过其逻辑需要对照代码好好来理解一下，不过这都不是[我们](https://www.w3cdoc.com)的重点了在，重点是它能画出如下的图像来，这段代码在【初级教程/chapter6/6-7.html】中能够找到。  
-![WebGL中的Canvas纹理合成][3]  
+由于时钟的秒针会每秒滴答一次，那么canvas中的内容，其本身就会被更新一次。
+
+![](/images/posts/2022-12-11-19-43-15.png)
+
 2、将canvas传递给THREE.Texture纹理
 
 Canvas可以作为纹理传递给THREE.Texture函数，纹理的构造函数是：
 
-<table>
-  <tr>
-    <td>
-        1
-    </td>
-
-    <td>
-        THREE.Texture = function ( image, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy )
-    </td>
-  </tr>
-</table>
+```
+THREE.Texture = function ( image, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy )
+```
 
 这个函数的第一个参数image，接收一个image类型的图像，或者canvas，后面的参数可以暂时不理会，它会以默认值去填充texture后面的参数。
 
 这里[我们](https://www.w3cdoc.com)只需要将canvas传递给Texture就ok了，代码如下：
 
-<table>
-  <tr>
-    <td>
-        1
-    </td>
-
-    <td>
-        texture = new THREE.Texture( canvas);
-    </td>
-  </tr>
-</table>
+```
+texture = new THREE.Texture( canvas);
+```
 
 那么纹理怎么知道其每一个像素怎么映射到形状状的表面呢，默认情况下，纹理被均匀分配到四边形的各个顶点上。
 
@@ -62,17 +51,9 @@ Canvas可以作为纹理传递给THREE.Texture函数，纹理的构造函数是�
 
 将texture传递给材质就更简单了，材质本身可以接受一个属性名为map的参数，代码如下：
 
-<table>
-  <tr>
-    <td>
-        1
-    </td>
-
-    <td>
-        var material = new THREE.MeshBasicMaterial({map:texture});
-    </td>
-  </tr>
-</table>
+```
+var material = new THREE.MeshBasicMaterial({map:texture});
+```
 
 这样就将纹理赋给了材质。
 
@@ -82,338 +63,102 @@ Canvas可以作为纹理传递给THREE.Texture函数，纹理的构造函数是�
 
 Mesh就是一个网格表面，它代表着[我们](https://www.w3cdoc.com)渲染到3D世界中的各种模型。其构造函数如下：
 
-<table>
-  <tr>
-    <td>
-        1
-    </td>
-
-    <td>
-        THREE.Mesh = function ( geometry, material )
-    </td>
-  </tr>
-</table>
+```
+THREE.Mesh = function ( geometry, material )
+```
 
 它接受2个参数，一个是几何体，一个是材质。
 
 Mesh就是一个网格表面，它代表着[我们](https://www.w3cdoc.com)渲染到3D世界中的各种模型。其构造函数如下：
 
-<table>
-  <tr>
-    <td>
-        1
-    </td>
-
-    <td>
-        THREE.Mesh = function ( geometry, material )
-    </td>
-  </tr>
-</table>
+```
+THREE.Mesh = function ( geometry, material )
+```
 
 它接受2个参数，一个是几何体，一个是材质。
 
 这里[我们](https://www.w3cdoc.com)这样来构造它：
 
-<table>
-  <tr>
-    <td>
-        1
-    </td>
-
-    <td>
-        mesh = new THREE.Mesh( geometry,material );
-    </td>
-  </tr>
-</table>
+```
+mesh = new THREE.Mesh( geometry,material );
+```
 
 其中geometry是一个THREE.CubeGeometry表示的正方体。
 
 ok，经过这4步，[我们](https://www.w3cdoc.com)的代码就可以运行了。  
 好了，最后，[我们](https://www.w3cdoc.com)来看看，[我们](https://www.w3cdoc.com)的所有代码。
 
-<table>
-  <tr>
-    <td>
-        1
-
-        2
-      
-        3
-      
-        4
-      
-        5
-      
-        6
-      
-        7
-      
-        8
-      
-        9
-      
-        10
-      
-        11
-      
-        12
-      
-        13
-      
-        14
-      
-        15
-      
-        16
-      
-        17
-      
-        18
-      
-        19
-      
-        20
-      
-        21
-      
-        22
-      
-        23
-      
-        24
-      
-        25
-      
-        26
-      
-        27
-      
-        28
-      
-        29
-      
-        30
-      
-        31
-      
-        32
-      
-        33
-      
-        34
-      
-        35
-      
-        36
-      
-        37
-      
-        38
-      
-        39
-      
-        40
-      
-        41
-      
-        42
-      
-        43
-      
-        44
-      
-        45
-      
-        46
-      
-        47
-      
-        48
-      
-        49
-      
-        50
-      
-        51
-      
-        52
-      
-        53
-      
-        54
-      
-        55
-      
-        56
-      
-        57
-      
-        58
-      
-        59
-      
-        60
-      
-        61
-      
-        62
-      
-        63
-      
-        64
-      
-        65
-      
-        66
-      
-        67
-      
-        68
-      
-        69
-    </td>
-    
-    <td>
-        <!DOCTYPE html>
-      
-        <html lang="en">
-      
-        <head>
-      
-        <title></title>
-      
-        <meta charset="utf-8">
-      
-        <style>
-      
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
+    <style>
         body {
-      
-        margin: 0px;
-      
-        background-color: #000000;
-      
-        overflow: hidden;
-      
+            margin: 0px;
+            background-color: #000000;
+            overflow: hidden;
         }
-      
-        </style>
-      
-        </head>
-      
-        <body data-ke-onload="start();">
-      
+    </style>
+</head>
+<body onload="start();">
+<script src="./clock.js"></script>
 
-      
-        <script src="../js/three.js" data-ke-src="../js/three.js"></script>
-      
-        <script src="./clock.js" data-ke-src="./clock.js"></script>
-      
+<script>
 
-      
-        <script>
-      
-
-      
-        var camera, scene, renderer;
-      
-        var mesh;
-      
-        var texture;
-      
-
-      
-        function start()
-      
-        {
-      
+    var camera, scene, renderer;
+    var mesh;
+    var texture;
+    
+    function start()
+    {
         clock();
-      
         init();
-      
         animate();
-      
-        }
-      
+    }
 
-      
-        function init() {
-      
+    function init() {
 
-      
         renderer = new THREE.WebGLRenderer();
-      
         renderer.setSize( window.innerWidth, window.innerHeight );
-      
         document.body.appendChild( renderer.domElement );
-      
         //
-      
         camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
-      
         camera.position.z = 400;
-      
         scene = new THREE.Scene();
-      
-
-      
+        
         var geometry = new THREE.CubeGeometry(150, 150, 150);
-      
         texture = new THREE.Texture( canvas);
-      
         var material = new THREE.MeshBasicMaterial({map:texture});
-      
         texture.needsUpdate = true;
-      
         mesh = new THREE.Mesh( geometry,material );
-      
         scene.add( mesh );
-      
 
-      
-        window.addEventListener( "resize", onWindowResize, false );
-      
-        }
-      
+        //
+        window.addEventListener( 'resize', onWindowResize, false );
+    }
 
-      
-        function onWindowResize() {
-      
+    function onWindowResize() {
         camera.aspect = window.innerWidth / window.innerHeight;
-      
         camera.updateProjectionMatrix();
-      
         renderer.setSize( window.innerWidth, window.innerHeight );
-      
-        }
-      
+    }
 
-      
-        function animate() {
-      
+    function animate() {
         texture.needsUpdate = true;
-      
         mesh.rotation.y -= 0.01;
-      
         mesh.rotation.x -= 0.01;
-      
         requestAnimationFrame( animate );
-      
         renderer.render( scene, camera );
-      
-        }
-      
+    }
 
-      
-        </script>
-      
+</script>
 
-      
-        </body>
-      
-        </html>
-    </td>
-  </tr>
-</table>
+</body>
+</html>
+```
 
 代码中clock.js就是绘制时钟的代码，里面有一个全局变量canvas，表示canvas本身。另外，需要注意的是在定义了纹理之后，[我们](https://www.w3cdoc.com)将texture.needsUpdate设置为了true，如果不设置为true，那么纹理就不会更新，很可能你看到的是一个黑色的正方体，原因是纹理没有被载入之前，就开始渲染了，而渲染使用了默认的材质颜色。
 
@@ -425,11 +170,3 @@ ok，经过这4步，[我们](https://www.w3cdoc.com)的代码就可以运行了
 
 [我们](https://www.w3cdoc.com)有信心，在您学完WebGL中文网的课程后，做一个漂亮的3D游戏或者3D网站，一点没有问题。
 
-### 谢谢！
-
-转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2016/05/28/2016_threejs7/" target="_blank" rel="external noopener">//fed123.oss-ap-southeast-2.aliyuncs.com/2016/05/28/2016_threejs7/</a>  
-部分内容转载于网络，若侵犯版权，请告知！谢谢。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
-
- [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs71.jpg
- [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs72.jpg
- [3]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs73.jpg

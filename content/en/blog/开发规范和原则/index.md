@@ -540,5 +540,5 @@ if(isFn({})){...}
   <a href="https://github.com/mdo/code-guide">mdo/code guide</a>
 
 
-  <a href="https://github.com/airbnb/javascript/master/react">Airbnb JavaScript Style Guide &#8211; React</a>
+  <a href="https://github.com/airbnb/javascript/master/react">Airbnb JavaScript Style Guide - React</a>
 

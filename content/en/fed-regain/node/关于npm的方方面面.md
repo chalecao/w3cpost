@@ -33,7 +33,7 @@ title: 关于NPM的方方面面
     </h3>
     
     
-       而如果想要偷懒步免去一直按 enter，在命令后追加 &#8211;yes 参数即可，其作用与一路下一步相同。
+       而如果想要偷懒步免去一直按 enter，在命令后追加 -yes 参数即可，其作用与一路下一步相同。
     
     
     
@@ -466,7 +466,7 @@ app@0.1.0
 ```
 
     <h3 class="heading" data-id="heading-8">
-      3.2 npm 3 &#8211; 扁平结构
+      3.2 npm 3 - 扁平结构
     </h3>
     
     
@@ -552,7 +552,7 @@ npm ls --depth 1
     </blockquote>
     
     <h3 class="heading" data-id="heading-9">
-      3.3 npm 5 &#8211; package-lock 文件
+      3.3 npm 5 - package-lock 文件
     </h3>
     
     
@@ -846,7 +846,7 @@ npm config set package-lock false
     
     
     
-      PPS: 在常规仅包含数字的版本号之外，semver 还允许在 MAJOR.MINOR.PATCH 后追加 - 后跟点号分隔的标签，作为预发布版本标签 &#8211; <a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fnpm%2Fnode-semver%23prerelease-tags" target="_blank" rel="nofollow noopener noreferrer">Prerelese Tags</a>，通常被视为不稳定、不建议生产使用的版本。例如：
+      PPS: 在常规仅包含数字的版本号之外，semver 还允许在 MAJOR.MINOR.PATCH 后追加 - 后跟点号分隔的标签，作为预发布版本标签 - <a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fnpm%2Fnode-semver%23prerelease-tags" target="_blank" rel="nofollow noopener noreferrer">Prerelese Tags</a>，通常被视为不稳定、不建议生产使用的版本。例如：
     
     
     <ul>
@@ -1407,13 +1407,13 @@ npm config set package-lock false
       
         运行时变量：在 npm run 的脚本执行环境内，可以通过环境变量的方式获取许多运行时相关信息，以下都可以通过 process.env 对象访问获得： <ul>
           
-            npm_lifecycle_event &#8211; 正在运行的脚本名称
+            npm_lifecycle_event - 正在运行的脚本名称
           
           
-            npm_package_<key> &#8211; 获取当前包 package.json 中某个字段的配置值：如 npm_package_name 获取包名
+            npm_package_<key> - 获取当前包 package.json 中某个字段的配置值：如 npm_package_name 获取包名
           
           
-            npm_package_<key>_<sub-key> &#8211; package.json 中嵌套字段属性：如 npm_pacakge_dependencies_webpack 可以获取到 package.json 中的 dependencies.webpack 字段的值，即 webpack 的版本号
+            npm_package_<key>_<sub-key> - package.json 中嵌套字段属性：如 npm_pacakge_dependencies_webpack 可以获取到 package.json 中的 dependencies.webpack 字段的值，即 webpack 的版本号
           
         
       
@@ -1725,7 +1725,7 @@ registry = https://registry.example.com/
       
         npm team 成员 Ashley Williams 在 2016 年 Node.js Live 上的 talk: <em>You Don&#8217;t Know npm</em>, 当时还没有 npm 5 <ul>
           
-            YouTube 视频链接: <a href="https://link.juejin.im?target=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DhopWbVKmiVQ%26t%3D537s" target="_blank" rel="nofollow noopener noreferrer">Node.js Live (Paris) &#8211; Ashley Williams, You Don&#8217;t Know npm</a>
+            YouTube 视频链接: <a href="https://link.juejin.im?target=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DhopWbVKmiVQ%26t%3D537s" target="_blank" rel="nofollow noopener noreferrer">Node.js Live (Paris) - Ashley Williams, You Don&#8217;t Know npm</a>
           
           
             演讲用的 slides: <a href="https://link.juejin.im?target=http%3A%2F%2Fashleygwilliams.github.io%2Fyou-dont-know-npm" target="_blank" rel="nofollow noopener noreferrer">the ag_deck</a>
@@ -1779,10 +1779,10 @@ registry = https://registry.example.com/
       
         yarn 中文文档，虽然是 npm 竞争者但兼容 package.json 和 node_modules 目录，因此这两部分一样可参考： <ul>
           
-            <a href="https://link.juejin.im?target=https%3A%2F%2Fyarnpkg.com%2Fzh-Hans%2Fdocs%2Fpackage-json" target="_blank" rel="nofollow noopener noreferrer">package.json &#8211; 中文</a>
+            <a href="https://link.juejin.im?target=https%3A%2F%2Fyarnpkg.com%2Fzh-Hans%2Fdocs%2Fpackage-json" target="_blank" rel="nofollow noopener noreferrer">package.json - 中文</a>
           
           
-            <a href="https://link.juejin.im?target=https%3A%2F%2Fyarnpkg.com%2Fzh-Hans%2Fdocs%2Fdependencies" target="_blank" rel="nofollow noopener noreferrer">依赖与版本 &#8211; 中文</a>
+            <a href="https://link.juejin.im?target=https%3A%2F%2Fyarnpkg.com%2Fzh-Hans%2Fdocs%2Fdependencies" target="_blank" rel="nofollow noopener noreferrer">依赖与版本 - 中文</a>
           
         
       

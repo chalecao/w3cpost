@@ -742,7 +742,7 @@ if (ga && !isCompleted.hasOwnProperty(sampleName)) {
             In the Chrome address bar type &#8220;chrome://net-internals/#hsts&#8221; 打开这个地址
           
           
-            At the very bottom of a page is QUERY domain textbox &#8211; verify that localhost is known to the browser. If it says &#8220;Not found&#8221; then this is not the answer you are looking for.  查询被处理的域名
+            At the very bottom of a page is QUERY domain textbox - verify that localhost is known to the browser. If it says &#8220;Not found&#8221; then this is not the answer you are looking for.  查询被处理的域名
           
           
             If it is, DELETE the localhost domain using the textbox above
@@ -757,7 +757,7 @@ if (ga && !isCompleted.hasOwnProperty(sampleName)) {
         
         
         
-         UPDATE &#8211; November 2017
+         UPDATE - November 2017
         
         
         
@@ -769,7 +769,7 @@ if (ga && !isCompleted.hasOwnProperty(sampleName)) {
         
         
         
-         UPDATE &#8211; December 2017 If you are using .dev domain see other answers below as Chrome (and others) force HTTPS via preloaded HSTS.
+         UPDATE - December 2017 If you are using .dev domain see other answers below as Chrome (and others) force HTTPS via preloaded HSTS.
         
         
         

@@ -15,7 +15,7 @@ title: 湖仓一体lake house
  <img class="image lake-drag-image" title="1.png" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/dce8a7c792c44a8abdc738526cd3fee0.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/dce8a7c792c44a8abdc738526cd3fee0.png?x-oss-process=image/format,webp" alt="1.png" data-role="image" data-raw-src="" data-height="2110px" />
   
   <h1 id="slide-1" data-lake-id="90a06c8ece988e97c4f3ea54c8f39b6f">
-    Delta Lake技术系列 &#8211; 湖仓一体（Lakehouse）
+    Delta Lake技术系列 - 湖仓一体（Lakehouse）
   </h1>
  ——整合数据湖和数据仓库的最佳优势
   

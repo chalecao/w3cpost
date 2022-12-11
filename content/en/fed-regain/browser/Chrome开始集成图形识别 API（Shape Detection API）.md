@@ -107,8 +107,8 @@ title: Chrome开始集成图形识别 API（Shape Detection API）
 
 图形识别虽然是刚需，但自去年底公布消息以来，可能是由于这些API尚处于实验阶段，尚待打磨，在开发社区内还未形成大范围的讨论，目前能收集到的主要是以下资料供开发者参考。
 
-* [API: Accelerated Shape Detection in Images][5] &#8211; by [Miguel Casas-Sanchez (Google Inc.)][6] | [中文版][7] by [谈浩][8]
-* [Face detection using Shape Detection API &#8211; by Paul Kinlan][9]
+* [API: Accelerated Shape Detection in Images][5] - by [Miguel Casas-Sanchez (Google Inc.)][6] | [中文版][7] by [谈浩][8]
+* [Face detection using Shape Detection API - by Paul Kinlan][9]
 
 不过正因为进化迅速，这套图形识别API从去年的M57版本发展至今，已经发生了不小的变化，也许在不久的将来，就会合并到稳定版中，真正为广大开发者所用，构建更多有趣的应用。
 

@@ -185,7 +185,7 @@ document.documentElement.style.setProperty('--testMargin', '100px');
 
 ## 参考文献：
 
-<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Using_CSS_variables" target="_blank" rel="noopener">MDN&#8211;使用CSS变量</a>
+<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/Using_CSS_variables" target="_blank" rel="noopener">MDN-使用CSS变量</a>
 
 <a href="https://philipwalton.com/articles/why-im-excited-about-native-css-variables/" target="_blank" rel="noopener">Why I&#8217;m Excited About Native CSS Variables</a>
 

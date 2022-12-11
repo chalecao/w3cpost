@@ -124,7 +124,7 @@ if (Math.random() > 0.5) {
 * 使用了 _eval()_ 函数
 * 你的项目有多个 entry
 
-运行 Webpack 时加上 _&#8211;display-optimization-bailout_ 参数可以得知为什么你的项目无法使用 Scope Hoisting：
+运行 Webpack 时加上 _-display-optimization-bailout_ 参数可以得知为什么你的项目无法使用 Scope Hoisting：
 
 <div class="highlight">
   ```

@@ -493,7 +493,7 @@ curl -X DELETE "localhost:9200/customer/_doc/2?pretty"
 
 这个功能非常重要，因为它提供了一种非常有效的机制，可以在尽可能少的网络往返的情况下尽可能快地执行多个操作。
 
-下面的例子，索引两个文档（ID 1 &#8211; John Doe 和 ID 2 &#8211; Jane Doe）
+下面的例子，索引两个文档（ID 1 - John Doe 和 ID 2 - Jane Doe）
 
 请求：
 

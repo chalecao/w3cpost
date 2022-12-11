@@ -241,7 +241,7 @@ output.elasticsearch:
             
             **设置dashboard**
             
-            ./filebeat setup &#8211;dashboards
+            ./filebeat setup -dashboards
             
             **启动Filebeat**
             

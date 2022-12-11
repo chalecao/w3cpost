@@ -23,7 +23,7 @@ weight: 1
       </style>
   </head>
   <body>
-      <script src="https://sqimg.qq.com/qq_product_operations/mma/javanli_test/lib/three.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
       <script>
       // Our Javascript will go here.
       </script>
@@ -83,7 +83,7 @@ document.body.appendChild(renderer.domElement);
 <head>
 <title></title>
 <style>canvas { width: 100%; height: 100% }</style>
-<script src="https://sqimg.qq.com/qq_product_operations/mma/javanli_test/lib/three.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js" ></script>
 </head>
 <body>
 <script>
@@ -177,7 +177,7 @@ Three.js中的场景是一个物体的容器，开发者可以将需要的角色
 <head>
 <meta charset="UTF-8">
 <title>Three框架</title>
-<script src="https://sqimg.qq.com/qq_product_operations/mma/javanli_test/lib/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
 <style type="text/css">
 div#canvas-frame {
         border: none;

@@ -288,5 +288,5 @@ rules: [      {        test: /\.css$/,        use: [          'style-loader',   
 * <a href="https://hospodarets.com/you-might-not-need-a-css-preprocessor" target="_blank" rel="noopener noreferrer">You might not need a CSS preprocessor</a>
 * <a href="https://developer.mozilla.org/en-US/docs/Archive/CSS3" target="_blank" rel="noopener noreferrer">CSS3 Modules and the standardization process</a>
 * <a href="https://alistapart.com/article/readspec/" target="_blank" rel="noopener noreferrer">How to Read W3C Specs</a>
-* <a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets" target="_blank" rel="noopener noreferrer">Wikipedia &#8211; Cascading Style Sheets</a>
+* <a href="https://en.wikipedia.org/wiki/Cascading_Style_Sheets" target="_blank" rel="noopener noreferrer">Wikipedia - Cascading Style Sheets</a>
 * <a href="https://www.w3.org/TR/css-variables-1/" target="_blank" rel="noopener noreferrer">CSS Custom Properties for Cascading Variables Module Level 1</a>

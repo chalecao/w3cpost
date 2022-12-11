@@ -186,7 +186,7 @@ new Promise(function(resolve, reject){
 验证汉字：^[\u4e00-\u9fa5],{0,}$  
 验证Email地址：^\w+[-+.]\w+)\*@\w+([-.]\w+)\*\.\w+([-.]\w+)*$  
 验证InternetURL：^https://([\w-]+\.)+[\w-]+(/[\w-./?%&=]\*)?$ ；^[a-zA-z]+://(w+(-w+)\*)(.(w+(-w+)\*))\*(?S*)?$  
-验证电话号码：^(\d3,4\d3,4|\d{3,4}-)?\d{7,8}$：&#8211;正确格式为：XXXX-XXXXXXX，XXXX-XXXXXXXX，XXX-XXXXXXX，XXX-XXXXXXXX，XXXXXXX，XXXXXXXX。  
+验证电话号码：^(\d3,4\d3,4|\d{3,4}-)?\d{7,8}$：-正确格式为：XXXX-XXXXXXX，XXXX-XXXXXXXX，XXX-XXXXXXX，XXX-XXXXXXXX，XXXXXXX，XXXXXXXX。  
 验证身份证号（15位或18位数字）：^\d{15}|\d{}18$  
 验证一年的12个月：^(0?[1-9]|1[0-2])$ 正确格式为：“01”-“09”和“1”“12”  
 验证一个月的31天：^((0?[1-9])|[(1|2](0-9))|30|31)$ 正确格式为：01、09和1、31。  

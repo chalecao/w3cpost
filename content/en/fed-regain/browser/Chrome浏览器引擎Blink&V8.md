@@ -493,7 +493,7 @@ DebugPrint: 0xe4a08148b69: [JS_OBJECT_TYPE]
  - map: 0x0e4a083074d5 <Map(HOLEY_ELEMENTS)> [FastProperties]
  - prototype: 0x0e4a082c3c69 </object> 0xe4a082d2605: [String] in OldSpace: #out: 0x0e4a08148c6d  } - elements: 0x0e4a08148bc5 <FixedArray[20]> { 0: 0x0e4a08042429
 ```
- 1: 1 2: 0x0e4a08044939 <String[1]: #1> 3-19: 0x0e4a08042429 } 0xe4a083074d5: [Map] &#8211; type: JS_OBJECT_TYPE &#8211; instance size: 24 &#8211; inobject properties: 3 &#8211; elements kind: HOLEY_ELEMENTS &#8211; unused property fields: 2 &#8211; enum length: invalid &#8211; stable_map &#8211; back pointer: 0x0e4a083074ad <Map(HOLEY_ELEMENTS)> &#8211; prototype_validity cell: 0x0e4a082d277d value= 0> &#8211; instance descriptors (own) #4: 0x0e4a08148c89 <DescriptorArray[4]> &#8211; prototype: 0x0e4a082c3c69 
+ 1: 1 2: 0x0e4a08044939 <String[1]: #1> 3-19: 0x0e4a08042429 } 0xe4a083074d5: [Map] - type: JS_OBJECT_TYPE - instance size: 24 - inobject properties: 3 - elements kind: HOLEY_ELEMENTS - unused property fields: 2 - enum length: invalid - stable_map - back pointer: 0x0e4a083074ad <Map(HOLEY_ELEMENTS)> - prototype_validity cell: 0x0e4a082d277d value= 0> - instance descriptors (own) #4: 0x0e4a08148c89 <DescriptorArray[4]> - prototype: 0x0e4a082c3c69 
 ``` </div>
 
     
@@ -996,7 +996,7 @@ window.obj = new Object()
         <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//www.youtube.com/watch%3Fv%3DJ9HAvlW7BqA" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">Understanding Why The New V8 Is So Fast, One Demo At A Time</a>
       
       
-        <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//www.youtube.com/watch%3Fv%3Dr5OWCtuKiAk%26feature%3Demb_logo" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">BlinkOn 6 Day 1 Talk 2: Ignition &#8211; an interpreter for V8</a>
+        <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//www.youtube.com/watch%3Fv%3Dr5OWCtuKiAk%26feature%3Demb_logo" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">BlinkOn 6 Day 1 Talk 2: Ignition - an interpreter for V8</a>
       
       
         <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//v8.dev/blog/ignition-interpreter" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">Firing up the Ignition interpreter</a>

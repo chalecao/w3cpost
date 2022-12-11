@@ -124,7 +124,7 @@ Stetho的通信模型如上图，其中stetho-server就是app启的一个Thread�
 ```
 </div>
 
-  返回一个数组，里面是所有可以远程调试的页面，其中包含以下字段信息：<br /> &#8211; description： 页面信息描述<br /> &#8211; devtoolsFrontendUrl：调试url地址，这个基于chrome 云服务器提供的inspector来调试，你也可以用开源的chromium中的inspector或者自己网上找下有人提取出来的调试server。<br /> &#8211; id：页面id<br /> &#8211; webSocketDebuggerUrl：android webview debug server 的 websocket， 这个地址的host和端口号是根据当前的访问tcp链接动态生成的，因为unix domain socket是没有ip地址和端口的。
+  返回一个数组，里面是所有可以远程调试的页面，其中包含以下字段信息：<br /> - description： 页面信息描述<br /> - devtoolsFrontendUrl：调试url地址，这个基于chrome 云服务器提供的inspector来调试，你也可以用开源的chromium中的inspector或者自己网上找下有人提取出来的调试server。<br /> - id：页面id<br /> - webSocketDebuggerUrl：android webview debug server 的 websocket， 这个地址的host和端口号是根据当前的访问tcp链接动态生成的，因为unix domain socket是没有ip地址和端口的。
 
 ## 调试方法
 

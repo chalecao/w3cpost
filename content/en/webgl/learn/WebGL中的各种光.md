@@ -5,9 +5,7 @@ weight: 5
 ### 世界有了光，就不在黑暗
 
 宇宙间的物体有的是发光的，有的是不发光的，[我们](https://www.w3cdoc.com)把发光的物体叫做光源。太阳、电灯、燃烧着的蜡烛等都是光源。  
-在Threejs的世界里，有了光，就不会在黑暗。看美剧 <a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2016/05/09/%E5%86%B0%E4%B8%8E%E7%81%AB%E4%B9%8B%E6%AD%8C%EF%BC%9A%E6%9D%83%E5%8A%9B%E7%9A%84%E6%B8%B8%E6%88%8F.%E7%AC%AC%E5%85%AD%E5%AD%A3.S06E03.HD720P.X264.AAC.english.CHS-ENG.Mp4Ba/" target="_blank" rel="external noopener">冰与火之歌：权力的游戏 第六季 </a> 里面就有火神 呵呵
-
-![WebGL中的各种光][1]
+在Threejs的世界里，有了光，就不会在黑暗。看美剧里面就有火神 呵呵
 
 ### Threejs中的各种光源
 
@@ -17,36 +15,22 @@ weight: 5
 
 在Threejs中，光源用Light表示，它是所有光源的基类。它的构造函数是：
 
-<table>
-  <tr>
-    <td>
-        1
-    </td>
-
-    <td>
-        THREE.Light ( hex )
-    </td>
-  </tr>
-</table>
+```
+THREE.Light ( hex )
+```
 
 它有一个参数hex，接受一个16进制的颜色值。例如要定义一种红色的光源，[我们](https://www.w3cdoc.com)可以这样来定义：
 
-<table>
-  <tr>
-    <td>
-        1
-    </td>
-
-    <td>
-        Var redLight = new THREE.Light(0xFF0000);
-    </td>
-  </tr>
-</table>
+```
+Var redLight = new THREE.Light(0xFF0000);
+```
 
 #### 由基类派生出来的其他种类光源
 
 THREE.Light只是其他所有光源的基类，要让光源除了具有颜色的特性之外，[我们](https://www.w3cdoc.com)需要其他光源。看看，下面的类图，是目前光源的继承结构。  
-![WebGL中的各种光][2]  
+
+![](/images/posts/2022-12-10-21-51-24.png)
+
 可以看出，所有的具体光源都继承与THREE.Light类。下面[我们](https://www.w3cdoc.com)来具体看一下，其他光源。
 
 ### 环境光
@@ -55,39 +39,15 @@ THREE.Light只是其他所有光源的基类，要让光源除了具有颜色的
 
 环境光用THREE.AmbientLight来表示，它的构造函数如下所示：
 
-<table>
-  <tr>
-    <td>
-        1
-    </td>
-
-    <td>
-        THREE.AmbientLight( hex )
-    </td>
-  </tr>
-</table>
+```
+THREE.AmbientLight( hex )
+```
 
 它仍然接受一个16进制的颜色值，作为光源的颜色。环境光将照射场景中的所有物体，让物体显示出某种颜色。环境光的使用例子如下所示：
 
-<table>
-  <tr>
-    <td>
-        1
-
-        2
-      
-        3
-    </td>
-    
-    <td>
-        var light = new THREE.AmbientLight( 0xff0000 );
-      
-
-      
-        scene.add( light );
-    </td>
-  </tr>
-</table>
+```
+var light = new THREE.AmbientLight( 0xff0000 );
+```
 
 只需要将光源加入场景，场景就能够通过光源渲染出好的效果来了。
 
@@ -97,17 +57,9 @@ THREE.Light只是其他所有光源的基类，要让光源除了具有颜色的
 
 点光源用PointLight来表示，它的构造函数如下所示：
 
-<table>
-  <tr>
-    <td>
-        1
-    </td>
-
-    <td>
-        PointLight( color, intensity, distance )
-    </td>
-  </tr>
-</table>
+```
+PointLight( color, intensity, distance )
+```
 
 这个类的参数稍微复杂一些，[我们](https://www.w3cdoc.com)花点时间来解释一下：
 
@@ -120,20 +72,14 @@ distance：光的距离，从光源所在的位置，经过distance这段距离�
 ### 聚光灯
 
 聚光灯：这种光源的光线从一个锥体中射出，在被照射的物体上产生聚光的效果。使用这种光源需要指定光的射出方向以及锥体的顶角α。聚光灯示例如图所示：  
-![WebGL中的各种光][3]  
+
+![](/images/posts/2022-12-10-21-53-25.png)
+
 聚光灯的构造函数是：
 
-<table>
-  <tr>
-    <td>
-        1
-    </td>
-
-    <td>
-        THREE.SpotLight( hex, intensity, distance, angle, exponent )
-    </td>
-  </tr>
-</table>
+```
+THREE.SpotLight( hex, intensity, distance, angle, exponent )
+```
 
 函数的参数如下所示：
 
@@ -168,350 +114,99 @@ exponent：光源模型中，衰减的一个参数，越大衰减约快。
 
 [我们](https://www.w3cdoc.com)首先在屏幕上画一个物体，不带任何的光源，定义物体的颜色为黑色，其值为0x000000，定义材质如下：
 
-<table>
-  <tr>
-    <td>
-        1
-    </td>
-
-    <td>
-        var material = new THREE.MeshLambertMaterial( { color:0x000000} ); // 这是兰伯特材质，材质中的一种
-    </td>
-  </tr>
-</table>
+```
+var material = new THREE.MeshLambertMaterial( { color:0x000000} ); // 这是兰伯特材质，材质中的一种
+```
 
 先看看最终的运行截图，如下所示：  
-![WebGL中的各种光][4]  
+
+![](/images/posts/2022-12-10-21-54-00.png)
+
 由这幅图得出结论，当没有任何光源的时候，最终的颜色将是材质的颜色。但是这个结论目前来说，并没有依据。  
 代码如下。
 
-<table>
-  <tr>
-    <td>
-        1
-
-        2
-      
-        3
-      
-        4
-      
-        5
-      
-        6
-      
-        7
-      
-        8
-      
-        9
-      
-        10
-      
-        11
-      
-        12
-      
-        13
-      
-        14
-      
-        15
-      
-        16
-      
-        17
-      
-        18
-      
-        19
-      
-        20
-      
-        21
-      
-        22
-      
-        23
-      
-        24
-      
-        25
-      
-        26
-      
-        27
-      
-        28
-      
-        29
-      
-        30
-      
-        31
-      
-        32
-      
-        33
-      
-        34
-      
-        35
-      
-        36
-      
-        37
-      
-        38
-      
-        39
-      
-        40
-      
-        41
-      
-        42
-      
-        43
-      
-        44
-      
-        45
-      
-        46
-      
-        47
-      
-        48
-      
-        49
-      
-        50
-      
-        51
-      
-        52
-      
-        53
-      
-        54
-      
-        55
-      
-        56
-      
-        57
-      
-        58
-      
-        59
-      
-        60
-      
-        61
-      
-        62
-      
-        63
-      
-        64
-      
-        65
-      
-        66
-      
-        67
-      
-        68
-      
-        69
-      
-        70
-      
-        71
-      
-        72
-      
-        73
-      
-        74
-      
-        75
-      
-        76
-      
-        77
-      
-        78
-      
-        79
-      
-        80
-    </td>
-    
-    <td>
-        <!DOCTYPE html>
-      
-        <html>
-      
-        <head>
-      
-        <meta charset="UTF-8">
-      
-        <title>Three框架</title>
-      
-        <script src="js/three.js"></script>
-      
-        <style type="text/css">
-      
+```
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Three框架</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
+    <style type="text/css">
         div#canvas-frame {
-      
-        border: none;
-      
-        cursor: pointer;
-      
-        width: 100%;
-      
-        height: 600px;
-      
-        background-color: #EEEEEE;
-      
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            height: 600px;
+            background-color: #EEEEEE;
         }
-      
 
-      
-        </style>
-      
-        <script>
-      
+    </style>
+    <script>
         var renderer;
-      
         function initThree() {
-      
-        width = document.getElementById("canvas-frame").clientWidth;
-      
-        height = document.getElementById("canvas-frame").clientHeight;
-      
-        renderer = new THREE.WebGLRenderer({
-      
-        antialias : true
-      
-        });
-      
-        renderer.setSize(width, height);
-      
-        document.getElementById("canvas-frame").appendChild(renderer.domElement);
-      
-        renderer.setClearColor(0xFFFFFF, 1.0);
-      
+            width = document.getElementById('canvas-frame').clientWidth;
+            height = document.getElementById('canvas-frame').clientHeight;
+            renderer = new THREE.WebGLRenderer({
+                antialias : true
+            });
+            renderer.setSize(width, height);
+            document.getElementById('canvas-frame').appendChild(renderer.domElement);
+            renderer.setClearColor(0xFFFFFF, 1.0);
         }
-      
 
-      
         var camera;
-      
         function initCamera() {
-      
-        camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
-      
-        camera.position.x = 600;
-      
-        camera.position.y = 0;
-      
-        camera.position.z = 600;
-      
-        camera.up.x = 0;
-      
-        camera.up.y = 1;
-      
-        camera.up.z = 0;
-      
-        camera.lookAt({
-      
-        x : 0,
-      
-        y : 0,
-      
-        z : 0
-      
-        });
-      
+            camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+            camera.position.x = 600;
+            camera.position.y = 0;
+            camera.position.z = 600;
+            camera.up.x = 0;
+            camera.up.y = 1;
+            camera.up.z = 0;
+            camera.lookAt({
+                x : 0,
+                y : 0,
+                z : 0
+            });
         }
-      
 
-      
         var scene;
-      
         function initScene() {
-      
-        scene = new THREE.Scene();
-      
+            scene = new THREE.Scene();
         }
-      
 
-      
         var light;
-      
         function initLight() {
-      
         }
-      
 
-      
         var cube;
-      
         function initObject() {
-      
-        var geometry = new THREE.CubeGeometry( 200, 100, 50,4,4);
-      
-        var material = new THREE.MeshLambertMaterial( { color:0xFFFFFF} );
-      
-        var mesh = new THREE.Mesh( geometry,material);
-      
-        mesh.position = new THREE.Vector3(0,0,0);
-      
-        scene.add(mesh);
-      
+            var geometry = new THREE.CubeGeometry( 200, 100, 50,4,4);
+            var material = new THREE.MeshLambertMaterial( { color:0xFFFFFF} );
+            var mesh = new THREE.Mesh( geometry,material);
+            mesh.position = new THREE.Vector3(0,0,0);
+            scene.add(mesh);
         }
-      
 
-      
         function threeStart() {
-      
-        initThree();
-      
-        initCamera();
-      
-        initScene();
-      
-        initLight();
-      
-        initObject();
-      
-        renderer.clear();
-      
-        renderer.render(scene, camera);
-      
+            initThree();
+            initCamera();
+            initScene();
+            initLight();
+            initObject();
+            renderer.clear();
+            renderer.render(scene, camera);
         }
-      
 
-      
-        </script>
-      
-        </head>
-      
+    </script>
+</head>
 
-      
-        <body onload="threeStart();">
-      
-        <div id="canvas-frame"></div>
-      
-        </body>
-      
-        </html>
-    </td>
-  </tr>
-</table>
+<body onload="threeStart();">
+    <div id="canvas-frame"></div>
+</body>
+</html>
+```
 
 现在[我们](https://www.w3cdoc.com)来解析一下：
 
@@ -532,374 +227,109 @@ exponent：光源模型中，衰减的一个参数，越大衰减约快。
 Lambert材质表面会在所有方向上均匀地散射灯光，这就会使颜色看上去比较均匀。想想一张纸，无论什么颜色，是不是纸的各个部分颜色都比较均匀呢。
 
 Lambert材质的图例如下所示：  
-![WebGL中的各种光][5]  
+
+![](/images/posts/2022-12-10-21-56-25.png)
+
 Lambert材质会受环境光的影响，呈现环境光的颜色，与材质本身颜色关系不大。
 
 [我们](https://www.w3cdoc.com)现在来做一个例子
 
 例子：红色环境光照射下的长方体，它用的是淡红色(0x880000)的兰伯特材质。效果如下图：  
-![WebGL中的各种光][6]  
+
+![](/images/posts/2022-12-10-21-56-43.png)
+
 [我们](https://www.w3cdoc.com)来看看代码，你可以在5-2.html中找到它，这里不存在环保问题，所以，我把所有代码都列出来了。
 
-<table>
-  <tr>
-    <td>
-        1
-
-        2
-      
-        3
-      
-        4
-      
-        5
-      
-        6
-      
-        7
-      
-        8
-      
-        9
-      
-        10
-      
-        11
-      
-        12
-      
-        13
-      
-        14
-      
-        15
-      
-        16
-      
-        17
-      
-        18
-      
-        19
-      
-        20
-      
-        21
-      
-        22
-      
-        23
-      
-        24
-      
-        25
-      
-        26
-      
-        27
-      
-        28
-      
-        29
-      
-        30
-      
-        31
-      
-        32
-      
-        33
-      
-        34
-      
-        35
-      
-        36
-      
-        37
-      
-        38
-      
-        39
-      
-        40
-      
-        41
-      
-        42
-      
-        43
-      
-        44
-      
-        45
-      
-        46
-      
-        47
-      
-        48
-      
-        49
-      
-        50
-      
-        51
-      
-        52
-      
-        53
-      
-        54
-      
-        55
-      
-        56
-      
-        57
-      
-        58
-      
-        59
-      
-        60
-      
-        61
-      
-        62
-      
-        63
-      
-        64
-      
-        65
-      
-        66
-      
-        67
-      
-        68
-      
-        69
-      
-        70
-      
-        71
-      
-        72
-      
-        73
-      
-        74
-      
-        75
-      
-        76
-      
-        77
-      
-        78
-      
-        79
-      
-        80
-      
-        81
-      
-        82
-      
-        83
-      
-        84
-      
-        85
-      
-        86
-      
-        87
-      
-        88
-    </td>
-    
-    <td>
-        <!DOCTYPE html>
-      
-        <html>
-      
-        <head>
-      
-        <meta charset="UTF-8">
-      
-        <title>Three框架</title>
-      
-        <script src="js/three.js"></script>
-      
-        <style type="text/css">
-      
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Three框架</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
+    <style type="text/css">
         div#canvas-frame {
-      
-        border: none;
-      
-        cursor: pointer;
-      
-        width: 100%;
-      
-        height: 600px;
-      
-        background-color: #EEEEEE;
-      
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            height: 600px;
+            background-color: #EEEEEE;
         }
-      
 
-      
-        </style>
-      
-        <script>
-      
+    </style>
+    <script>
         var renderer;
-      
         function initThree() {
-      
-        width = document.getElementById("canvas-frame").clientWidth;
-      
-        height = document.getElementById("canvas-frame").clientHeight;
-      
-        renderer = new THREE.WebGLRenderer({
-      
-        antialias : true
-      
-        });
-      
-        renderer.setSize(width, height);
-      
-        document.getElementById("canvas-frame").appendChild(renderer.domElement);
-      
-        renderer.setClearColor(0xFFFFFF, 1.0);
-      
+            width = document.getElementById('canvas-frame').clientWidth;
+            height = document.getElementById('canvas-frame').clientHeight;
+            renderer = new THREE.WebGLRenderer({
+                antialias : true
+            });
+            renderer.setSize(width, height);
+            document.getElementById('canvas-frame').appendChild(renderer.domElement);
+            renderer.setClearColor(0xFFFFFF, 1.0);
         }
-      
 
-      
         var camera;
-      
         function initCamera() {
-      
-        camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
-      
-        camera.position.x = 600;
-      
-        camera.position.y = 0;
-      
-        camera.position.z = 600;
-      
-        camera.up.x = 0;
-      
-        camera.up.y = 1;
-      
-        camera.up.z = 0;
-      
-        camera.lookAt({
-      
-        x : 0,
-      
-        y : 0,
-      
-        z : 0
-      
-        });
-      
+            camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+            camera.position.x = 600;
+            camera.position.y = 0;
+            camera.position.z = 600;
+            camera.up.x = 0;
+            camera.up.y = 1;
+            camera.up.z = 0;
+            camera.lookAt({
+                x : 0,
+                y : 0,
+                z : 0
+            });
         }
-      
 
-      
         var scene;
-      
         function initScene() {
-      
-        scene = new THREE.Scene();
-      
+            scene = new THREE.Scene();
         }
-      
 
-      
         var light;
-      
         function initLight() {
-      
         // A start
-      
-        light = new THREE.AmbientLight(0xFF0000);
-      
-        light.position.set(100, 100, 200);
-      
-        scene.add(light);
-      
+            light = new THREE.AmbientLight(0xFF0000);
+            light.position.set(100, 100, 200);
+            scene.add(light);
         // A end
-      
 
-      
         }
-      
 
-      
         var cube;
-      
         function initObject() {
-      
-        var geometry = new THREE.CubeGeometry( 200, 100, 50,4,4);
-      
-        // B start
-      
-        var material = new THREE.MeshLambertMaterial( { color:0x880000} );
-      
-        // B end
-      
-        var mesh = new THREE.Mesh( geometry,material);
-      
-        mesh.position = new THREE.Vector3(0,0,0);
-      
-        scene.add(mesh);
-      
+            var geometry = new THREE.CubeGeometry( 200, 100, 50,4,4);
+            // B start
+            var material = new THREE.MeshLambertMaterial( { color:0x880000} );
+            // B end
+            var mesh = new THREE.Mesh( geometry,material);
+            mesh.position = new THREE.Vector3(0,0,0);
+            scene.add(mesh);
         }
-      
 
-      
         function threeStart() {
-      
-        initThree();
-      
-        initCamera();
-      
-        initScene();
-      
-        initLight();
-      
-        initObject();
-      
-        renderer.clear();
-      
-        renderer.render(scene, camera);
-      
+            initThree();
+            initCamera();
+            initScene();
+            initLight();
+            initObject();
+            renderer.clear();
+            renderer.render(scene, camera);
         }
-      
 
-      
-        </script>
-      
-        </head>
-      
+    </script>
+</head>
 
-      
-        <body onload="threeStart();">
-      
-        <div id="canvas-frame"></div>
-      
-        </body>
-      
-        </html>
-    </td>
-  </tr>
-</table>
+<body onload="threeStart();">
+    <div id="canvas-frame"></div>
+</body>
+</html>
+```
 
 好了，[我们](https://www.w3cdoc.com)来分析一下这段代码。
 
@@ -921,20 +351,14 @@ Lambert材质会受环境光的影响，呈现环境光的颜色，与材质本�
 
 平行光又称为方向光（Directional Light），是一组没有衰减的平行的光线，类似太阳光的效果。  
 方向光的模型如图：  
-![WebGL中的各种光][7]  
+
+![](/images/posts/2022-12-10-21-59-50.png)
+
 方向光的构造函数如下所示：
 
-<table>
-  <tr>
-    <td>
-        1
-    </td>
-
-    <td>
-        THREE.DirectionalLight = function ( hex, intensity )
-    </td>
-  </tr>
-</table>
+```
+THREE.DirectionalLight = function ( hex, intensity )
+```
 
 其参数如下：
 
@@ -945,364 +369,100 @@ Intensity：光线的强度，默认为1。因为RGB的三个值均在0~255之�
 [我们](https://www.w3cdoc.com)来看一个方向光的例子：
 
 一个红色的方向光，把它放在（0，0,1）的位置，密度为1，照射在一个长方体中。效果如下图所示：  
-![WebGL中的各种光][8]  
+
+![](/images/posts/2022-12-10-22-01-50.png)
+
 完整代码：
 
-<table>
-  <tr>
-    <td>
-        1
-
-        2
-      
-        3
-      
-        4
-      
-        5
-      
-        6
-      
-        7
-      
-        8
-      
-        9
-      
-        10
-      
-        11
-      
-        12
-      
-        13
-      
-        14
-      
-        15
-      
-        16
-      
-        17
-      
-        18
-      
-        19
-      
-        20
-      
-        21
-      
-        22
-      
-        23
-      
-        24
-      
-        25
-      
-        26
-      
-        27
-      
-        28
-      
-        29
-      
-        30
-      
-        31
-      
-        32
-      
-        33
-      
-        34
-      
-        35
-      
-        36
-      
-        37
-      
-        38
-      
-        39
-      
-        40
-      
-        41
-      
-        42
-      
-        43
-      
-        44
-      
-        45
-      
-        46
-      
-        47
-      
-        48
-      
-        49
-      
-        50
-      
-        51
-      
-        52
-      
-        53
-      
-        54
-      
-        55
-      
-        56
-      
-        57
-      
-        58
-      
-        59
-      
-        60
-      
-        61
-      
-        62
-      
-        63
-      
-        64
-      
-        65
-      
-        66
-      
-        67
-      
-        68
-      
-        69
-      
-        70
-      
-        71
-      
-        72
-      
-        73
-      
-        74
-      
-        75
-      
-        76
-      
-        77
-      
-        78
-      
-        79
-      
-        80
-      
-        81
-      
-        82
-      
-        83
-      
-        84
-      
-        85
-      
-        86
-      
-        87
-    </td>
-    
-    <td>
-        <!DOCTYPE html>
-      
-        <html>
-      
-        <head>
-      
-        <meta charset="UTF-8">
-      
-        <title>Three框架</title>
-      
-        <script src="js/three.js"></script>
-      
-        <style type="text/css">
-      
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Three框架</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
+    <style type="text/css">
         div#canvas-frame {
-      
-        border: none;
-      
-        cursor: pointer;
-      
-        width: 100%;
-      
-        height: 600px;
-      
-        background-color: #EEEEEE;
-      
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            height: 600px;
+            background-color: #EEEEEE;
         }
-      
 
-      
-        </style>
-      
-        <script>
-      
+    </style>
+    <script>
         var renderer;
-      
         function initThree() {
-      
-        width = document.getElementById("canvas-frame").clientWidth;
-      
-        height = document.getElementById("canvas-frame").clientHeight;
-      
-        renderer = new THREE.WebGLRenderer({
-      
-        antialias : true
-      
-        });
-      
-        renderer.setSize(width, height);
-      
-        document.getElementById("canvas-frame").appendChild(renderer.domElement);
-      
-        renderer.setClearColor(0xFFFFFF, 1.0);
-      
+            width = document.getElementById('canvas-frame').clientWidth;
+            height = document.getElementById('canvas-frame').clientHeight;
+            renderer = new THREE.WebGLRenderer({
+                antialias : true
+            });
+            renderer.setSize(width, height);
+            document.getElementById('canvas-frame').appendChild(renderer.domElement);
+            renderer.setClearColor(0xFFFFFF, 1.0);
         }
-      
 
-      
         var camera;
-      
         function initCamera() {
-      
-        camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
-      
-        camera.position.x = 600;
-      
-        camera.position.y = 0;
-      
-        camera.position.z = 600;
-      
-        camera.up.x = 0;
-      
-        camera.up.y = 1;
-      
-        camera.up.z = 0;
-      
-        camera.lookAt({
-      
-        x : 0,
-      
-        y : 0,
-      
-        z : 0
-      
-        });
-      
+            camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+            camera.position.x = 600;
+            camera.position.y = 0;
+            camera.position.z = 600;
+            camera.up.x = 0;
+            camera.up.y = 1;
+            camera.up.z = 0;
+            camera.lookAt({
+                x : 0,
+                y : 0,
+                z : 0
+            });
         }
-      
 
-      
         var scene;
-      
         function initScene() {
-      
-        scene = new THREE.Scene();
-      
+            scene = new THREE.Scene();
         }
-      
 
-      
         var light;
-      
         function initLight() {
-      
-        // A start
-      
-        // 第二个参数是光源强度，你可以改变它试一下
-      
-        light = new THREE.DirectionalLight(0xFF0000,1);
-      
-        // 位置不同，方向光作用于物体的面也不同，看到的物体各个面的颜色也不一样
-      
-        light.position.set(0,0,1);
-      
-        scene.add(light);
-      
-        // A end
-      
+            // A start
+            // 第二个参数是光源强度，你可以改变它试一下
+            light = new THREE.DirectionalLight(0xFF0000,1);
+            // 位置不同，方向光作用于物体的面也不同，看到的物体各个面的颜色也不一样
+            light.position.set(0,0,1);
+            scene.add(light);
+            // A end
         }
-      
 
-      
         var cube;
-      
         function initObject() {
-      
-        var geometry = new THREE.CubeGeometry( 200, 100, 50,4,4);
-      
-        var material = new THREE.MeshLambertMaterial( { color:0xFFFFFF} );
-      
-        var mesh = new THREE.Mesh( geometry,material);
-      
-        mesh.position.set(0,0,0);
-      
-        scene.add(mesh);
-      
+            var geometry = new THREE.CubeGeometry( 200, 100, 50,4,4);
+            var material = new THREE.MeshLambertMaterial( { color:0xFFFFFF} );
+            var mesh = new THREE.Mesh( geometry,material);
+            mesh.position.set(0,0,0);
+            scene.add(mesh);
         }
-      
 
-      
         function threeStart() {
-      
-        initThree();
-      
-        initCamera();
-      
-        initScene();
-      
-        initLight();
-      
-        initObject();
-      
-        renderer.clear();
-      
-        renderer.render(scene, camera);
-      
+            initThree();
+            initCamera();
+            initScene();
+            initLight();
+            initObject();
+            renderer.clear();
+            renderer.render(scene, camera);
         }
-      
 
-      
-        </script>
-      
-        </head>
-      
+    </script>
+</head>
 
-      
-        <body onload="threeStart();">
-      
-        <div id="canvas-frame"></div>
-      
-        </body>
-      
-        </html>
-    </td>
-  </tr>
-</table>
+<body onload="threeStart();">
+    <div id="canvas-frame"></div>
+</body>
+</html>
+```
 
 [我们](https://www.w3cdoc.com)来分析一下上面的代码：
 
@@ -1311,478 +471,139 @@ Intensity：光线的强度，默认为1。因为RGB的三个值均在0~255之�
 2、平行光有一个方向，它的方向是如何决定的呢？
 
 方向由位置和原点（0,0,0）来决定，方向光只与方向有关，与离物体的远近无关。分别将平行光放到（0,0,100），（0,0,50），（0,0,25），（0,0,1），渲染的结果还是红色和黑色，见下图，颜色的深浅不与离物体的距离相关。  
-![WebGL中的各种光][9]  
+
+![](/images/posts/2022-12-10-22-03-14.png)
+
 但是它与方向有关，如果，[我们](https://www.w3cdoc.com)灯光的位置改为（1,0,0,5），那么效果如图所示：  
-![WebGL中的各种光][10]  
+
+![](/images/posts/2022-12-10-22-03-23.png)
+
 请仔细领会这幅图的意思。  
 增加几个物体，从宏观上看一下光源对物体的影响,现在，[我们](https://www.w3cdoc.com)在场景中增加几个物体，来看看，光源对物体的影响。如图是添加了几个物体的截图。仍然是使用方向光。  
-![WebGL中的各种光][11] 
 
-<table>
-  <tr>
-    <td>
-        1
+![](/images/posts/2022-12-10-22-03-39.png)
 
-        2
-      
-        3
-      
-        4
-      
-        5
-      
-        6
-      
-        7
-      
-        8
-      
-        9
-      
-        10
-      
-        11
-      
-        12
-      
-        13
-      
-        14
-      
-        15
-      
-        16
-      
-        17
-      
-        18
-      
-        19
-      
-        20
-      
-        21
-      
-        22
-      
-        23
-      
-        24
-      
-        25
-      
-        26
-      
-        27
-      
-        28
-      
-        29
-      
-        30
-      
-        31
-      
-        32
-      
-        33
-      
-        34
-      
-        35
-      
-        36
-      
-        37
-      
-        38
-      
-        39
-      
-        40
-      
-        41
-      
-        42
-      
-        43
-      
-        44
-      
-        45
-      
-        46
-      
-        47
-      
-        48
-      
-        49
-      
-        50
-      
-        51
-      
-        52
-      
-        53
-      
-        54
-      
-        55
-      
-        56
-      
-        57
-      
-        58
-      
-        59
-      
-        60
-      
-        61
-      
-        62
-      
-        63
-      
-        64
-      
-        65
-      
-        66
-      
-        67
-      
-        68
-      
-        69
-      
-        70
-      
-        71
-      
-        72
-      
-        73
-      
-        74
-      
-        75
-      
-        76
-      
-        77
-      
-        78
-      
-        79
-      
-        80
-      
-        81
-      
-        82
-      
-        83
-      
-        84
-      
-        85
-      
-        86
-      
-        87
-      
-        88
-      
-        89
-      
-        90
-      
-        91
-      
-        92
-      
-        93
-      
-        94
-      
-        95
-      
-        96
-      
-        97
-      
-        98
-      
-        99
-      
-        100
-      
-        101
-      
-        102
-      
-        103
-      
-        104
-      
-        105
-      
-        106
-      
-        107
-      
-        108
-      
-        109
-      
-        110
-      
-        111
-      
-        112
-      
-        113
-      
-        114
-    </td>
-    
-    <td>
-        <!DOCTYPE html>
-      
-        <html>
-      
-        <head>
-      
-        <meta charset="UTF-8">
-      
-        <title>Three框架</title>
-      
-        <script src="js/Three.js"></script>
-      
-        <style type="text/css">
-      
+```
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Three框架</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
+    <style type="text/css">
         div#canvas-frame {
-      
-        border: none;
-      
-        cursor: pointer;
-      
-        width: 100%;
-      
-        height: 600px;
-      
-        background-color: #EEEEEE;
-      
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            height: 600px;
+            background-color: #EEEEEE;
         }
-      
 
-      
-        </style>
-      
-        <script>
-      
+    </style>
+    <script>
         var renderer;
-      
         function initThree() {
-      
-        width = document.getElementById("canvas-frame").clientWidth;
-      
-        height = document.getElementById("canvas-frame").clientHeight;
-      
-        renderer = new THREE.WebGLRenderer({
-      
-        antialias : true
-      
-        });
-      
-        renderer.setSize(width, height);
-      
-        document.getElementById("canvas-frame").appendChild(renderer.domElement);
-      
-        renderer.setClearColor(0xFFFFFF, 1.0);
-      
+            width = document.getElementById('canvas-frame').clientWidth;
+            height = document.getElementById('canvas-frame').clientHeight;
+            renderer = new THREE.WebGLRenderer({
+                antialias : true
+            });
+            renderer.setSize(width, height);
+            document.getElementById('canvas-frame').appendChild(renderer.domElement);
+            renderer.setClearColor(0xFFFFFF, 1.0);
         }
-      
 
-      
         var camera;
-      
         function initCamera() {
-      
-        camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
-      
-        camera.position.x = 600;
-      
-        camera.position.y = 0;
-      
-        camera.position.z = 600;
-      
-        camera.up.x = 0;
-      
-        camera.up.y = 1;
-      
-        camera.up.z = 0;
-      
-        camera.lookAt({
-      
-        x : 0,
-      
-        y : 0,
-      
-        z : 0
-      
-        });
-      
+            camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+            camera.position.x = 600;
+            camera.position.y = 0;
+            camera.position.z = 600;
+            camera.up.x = 0;
+            camera.up.y = 1;
+            camera.up.z = 0;
+            camera.lookAt({
+                x : 0,
+                y : 0,
+                z : 0
+            });
         }
-      
 
-      
         var scene;
-      
         function initScene() {
-      
-        scene = new THREE.Scene();
-      
+            scene = new THREE.Scene();
         }
-      
 
-      
         var light;
-      
         function initLight() {
-      
-        // light = new THREE.AmbientLight(0xFF0000);
-      
-        // light.position.set(100, 100, 200);
-      
-        // scene.add(light);
-      
-        // 聚光灯
-      
-        light = new THREE.DirectionalLight(0xFF0000);
-      
-        light.position.set(0, 0,1);
-      
-        scene.add(light);
-      
+//                light = new THREE.AmbientLight(0xFF0000);
+//                light.position.set(100, 100, 200);
+//                scene.add(light);
+            // 聚光灯
+            light = new THREE.DirectionalLight(0xFF0000);
+            light.position.set(0, 0,1);
+            scene.add(light);
         }
-      
 
-      
-        // A start
-      
+        // A start 
         var cube;
-      
         function initObject() {
-      
-        var geometry = new THREE.CubeGeometry( 200, 100, 50,4,4);
-      
-        var material = new THREE.MeshLambertMaterial( { color:0xFFFFFF} );
-      
-        var mesh = new THREE.Mesh( geometry,material);
-      
-        mesh.position.set(0,0,0);
-      
-        scene.add(mesh);
-      
+            var geometry = new THREE.CubeGeometry( 200, 100, 50,4,4);
+            var material = new THREE.MeshLambertMaterial( { color:0xFFFFFF} );
+            var mesh = new THREE.Mesh( geometry,material);
+            mesh.position.set(0,0,0);
+            scene.add(mesh);
 
-      
-        var geometry2 = new THREE.CubeGeometry( 200, 100, 50,4,4);
-      
-        var material2 = new THREE.MeshLambertMaterial( { color:0xFFFFFF} );
-      
-        var mesh2 = new THREE.Mesh( geometry2,material2);
-      
-        mesh2.position.set(-300,0,0);
-      
-        scene.add(mesh2);
-      
+            var geometry2 = new THREE.CubeGeometry( 200, 100, 50,4,4);
+            var material2 = new THREE.MeshLambertMaterial( { color:0xFFFFFF} );
+            var mesh2 = new THREE.Mesh( geometry2,material2);
+            mesh2.position.set(-300,0,0);
+            scene.add(mesh2);
 
-      
-        var geometry3 = new THREE.CubeGeometry( 200, 100, 50,4,4);
-      
-        var material3 = new THREE.MeshLambertMaterial( { color:0xFFFFFF} );
-      
-        var mesh3 = new THREE.Mesh( geometry3,material3);
-      
-        mesh3.position.set(0,-150,0);
-      
-        scene.add(mesh3);
-      
+            var geometry3 = new THREE.CubeGeometry( 200, 100, 50,4,4);
+            var material3 = new THREE.MeshLambertMaterial( { color:0xFFFFFF} );
+            var mesh3 = new THREE.Mesh( geometry3,material3);
+            mesh3.position.set(0,-150,0);
+            scene.add(mesh3);
 
-      
-        var mesh4 = new THREE.Mesh( geometry3,material3);
-      
-        mesh4.position.set(0,150,0);
-      
-        scene.add(mesh4);
-      
+            var mesh4 = new THREE.Mesh( geometry3,material3);
+            mesh4.position.set(0,150,0);
+            scene.add(mesh4);
 
-      
-        var mesh5 = new THREE.Mesh( geometry3,material3);
-      
-        mesh5.position.set(300,0,0);
-      
-        scene.add(mesh5);
-      
+            var mesh5 = new THREE.Mesh( geometry3,material3);
+            mesh5.position.set(300,0,0);
+            scene.add(mesh5);
 
-      
-        var mesh6 = new THREE.Mesh( geometry3,material3);
-      
-        mesh6.position.set(0,0,-100);
-      
-        scene.add(mesh6);
-      
+            var mesh6 = new THREE.Mesh( geometry3,material3);
+            mesh6.position.set(0,0,-100);
+            scene.add(mesh6);
 
-      
         }
-      
         // A end
-      
 
-      
         function threeStart() {
-      
-        initThree();
-      
-        initCamera();
-      
-        initScene();
-      
-        initLight();
-      
-        initObject();
-      
-        renderer.clear();
-      
-        renderer.render(scene, camera);
-      
+            initThree();
+            initCamera();
+            initScene();
+            initLight();
+            initObject();
+            renderer.clear();
+            renderer.render(scene, camera);
         }
-      
 
-      
-        </script>
-      
-        </head>
-      
+    </script>
+</head>
 
-      
-        <body onload="threeStart();">
-      
-        <div id="canvas-frame"></div>
-      
-        </body>
-      
-        </html>
-    </td>
-  </tr>
-</table>
+<body onload="threeStart();">
+    <div id="canvas-frame"></div>
+</body>
+</html>
+```
 
 在A处，[我们](https://www.w3cdoc.com)一共new了6个Mesh，并将每一个mesh放到了不同的位置，这样就生了上图的模样。这里并没有太多的技术含量，童鞋们只需要如法炮制就ok了。
+
+6、扩展阅读 Babylon中的方向光
+最近问微软的Babylon.js的同学比较多，Babylon.js的方向光也可以学习一下，入门很容易。 有兴趣的同学，可以看一下[Babylon.js的方向光](https://www.hellodemos.com/hello-babylonjs/babylonjs-light2.html).
 
 ### 环境光和方向光
 
@@ -1790,92 +611,36 @@ Intensity：光线的强度，默认为1。因为RGB的三个值均在0~255之�
 
 当环境光和方向光同时存在的时候，会出现怎么样的情况呢？可以把这种情况想成两种光源同时作用于物体，它产生的情况，和每种光源分别作用于物体，然后将两者的结果相加，是一样的效果。首先看看下面的代码：
 
-<table>
-  <tr>
-    <td>
-        1
+```
+function initLight() {
 
-        2
-      
-        3
-      
-        4
-      
-        5
-      
-        6
-      
-        7
-      
-        8
-      
-        9
-      
-        10
-      
-        11
-      
-        12
-      
-        13
-      
-        14
-      
-        15
-      
-        16
-      
-        17
-    </td>
-    
-    <td>
-        function initLight() {
-      
+    light = new THREE.AmbientLight(0x00FF00);
+    light.position.set(100, 100, 200);
+    scene.add(light);
 
-      
-        light = new THREE.AmbientLight(0x00FF00);
-      
-
-      
-        light.position.set(100, 100, 200);
-      
-
-      
-        scene.add(light);
-      
-
-      
-        // 方向光
-      
-
-      
-        light = new THREE.DirectionalLight(0xFF0000);
-      
-
-      
-        light.position.set(0, 0,1);
-      
-
-      
-        scene.add(light);
-      
-
-      
-        }
-    </td>
-  </tr>
-</table>
+    // 方向光
+    light = new THREE.DirectionalLight(0xFF0000);
+    light.position.set(0, 0,1);
+    scene.add(light);
+}
+```
 
 从代码上可以看出，环境光是绿色0x00FF00，方向光是红色0xFF0000，
 
 [我们](https://www.w3cdoc.com)来看看只有环境光，把方向光去掉的时候，渲染的结果是怎么样的：  
-![WebGL中的各种光][12]  
+
+![](/images/posts/2022-12-10-22-10-47.png)
+
 反过来，只有方向光的情况，没有环境光的时候，渲染的结果又会是怎么样呢？看看下图：  
-![WebGL中的各种光][13]  
+
+![](/images/posts/2022-12-10-22-10-54.png)
+
 是的，总结一下，当方向光照射过来的时候，被照射的表面呈现光的颜色，而由于是方向光，没有照射到的表面，就呈现暗色，一般是黑色，表示没有任何光源照到该表面。
 
 ok，好了，现在[我们](https://www.w3cdoc.com)将环境光和方向光都加上，看看会出现什么效果，也会你已经猜到了效果，不过我还是不厌其烦的给你演示一次。  
-![WebGL中的各种光][14]  
+
+![](/images/posts/2022-12-10-22-11-06.png)
+
 好了，[我们](https://www.w3cdoc.com)马上来总结一下：
 
 1.首先方向光，是如图箭头的方向着色到物体的。而环境光由于与位置没有关系，方向又是任何方向都可以照射的，所以[我们](https://www.w3cdoc.com)不管光的方向。
@@ -1892,40 +657,21 @@ ok，好了，现在[我们](https://www.w3cdoc.com)将环境光和方向光都�
 
 下面的例子介绍了怎么使用点光源：
 
-<table>
-  <tr>
-    <td>
-        1
-
-        2
-      
-        3
-      
-        4
-      
-        5
-    </td>
-    
-    <td>
-        light = new THREE.PointLight(0xFF0000);
-      
-
-      
-        light.position.set(0, 0,50);
-      
-
-      
-        scene.add(light);
-    </td>
-  </tr>
-</table>
-
+```
+light = new THREE.PointLight(0xFF0000);
+light.position.set(0, 0,50);
+scene.add(light);
+```
 效果如下图：  
-![WebGL中的各种光][15]  
+
+![](/images/posts/2022-12-10-22-11-34.png)
+
 点光源就是在一个点向周围发出的光，所以，你会看到照在物体上的光，有点像球的形状。改变点光源的位置，那么得到的效果图又会有一些区别。
 
 将光源的位置改在(0, 0,25)，则刚好在一个长方体的边上，效果图如下所示：  
-![WebGL中的各种光][16]  
+
+![](/images/posts/2022-12-10-22-11-45.png)
+
 比较上面两幅图，你会发现，第二幅图和第一幅被照射的位置是不一样的。第二幅图，由于刚好在中间的一个长方形的边上，所以被边挡住，只有长方体内部受到光源，而外部面没有受到光源的，所以呈现黑色。
 
 从这里也反应出了，一个面分前后两个面的，只有被光源照射的那个面才能够被看到。
@@ -1935,28 +681,7 @@ ok，好了，现在[我们](https://www.w3cdoc.com)将环境光和方向光都�
 将方向光和点光源混合使用。
 
 效果如图所示：  
-![WebGL中的各种光][17]  
+
+![](/images/posts/2022-12-10-22-11-58.png)
+
 这一节课的还会有更新，不太完美，敬请原谅。
-
-### 谢谢！
-
-转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2016/05/26/2016_threejs5/" target="_blank" rel="external noopener">//fed123.oss-ap-southeast-2.aliyuncs.com/2016/05/26/2016_threejs5/</a>  
-部分内容转载于网络，若侵犯版权，请告知！谢谢。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
-
- [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs51.jpg
- [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs51-1.jpg
- [3]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/20130516165745_434.jpg
- [4]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs52.png
- [5]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs53.jpg
- [6]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs54.png
- [7]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs7.jpg
- [8]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs8.png
- [9]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs9.png
- [10]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs10.png
- [11]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs12.png
- [12]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs13.png
- [13]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs14.png
- [14]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs15.png
- [15]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs16.png
- [16]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs17.png
- [17]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/threejs19.png

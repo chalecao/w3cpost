@@ -140,7 +140,7 @@ PaaS 本身的概念挺大，广义的说它处于IaaS和SaaS之间，[我们](h
 
 [前端](https://www.w3cdoc.com)经过了Ajax、Nodejs、React等技术迭代后，已经形成了相对成熟的技术体系，特别是Nodejs，使[前端](https://www.w3cdoc.com)和服务端产生了联系。
 
-[前端](https://www.w3cdoc.com)和后端的分工发挥了各个的优点，但是在协作的过程中也一直存在一个问题，后端同学通常是面向领域和服务提供接口，但是[前端](https://www.w3cdoc.com)是面向用户具体的数据接口，有时候一个简单的需求会因为两边的定义和联调搞半天。所以也诞生了BFF（Backends For Frontends）这样一层，谁使用谁开发，专门解决领域模型 &#8211; UI 模型的转换。
+[前端](https://www.w3cdoc.com)和后端的分工发挥了各个的优点，但是在协作的过程中也一直存在一个问题，后端同学通常是面向领域和服务提供接口，但是[前端](https://www.w3cdoc.com)是面向用户具体的数据接口，有时候一个简单的需求会因为两边的定义和联调搞半天。所以也诞生了BFF（Backends For Frontends）这样一层，谁使用谁开发，专门解决领域模型 - UI 模型的转换。
 
 <div class="image-package">
   <div class="image-container">

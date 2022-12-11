@@ -85,7 +85,7 @@ var doAdd = new Function("iNum", "alert(iNum + 10)");
 callAnotherFunc(doAdd, 10); //输出 "20"
 ```
 
-在上面的例子中，callAnotherFunc() 有两个参数 &#8211; 要调用的函数和传递给该函数的参数。这段代码把 doAdd() 传递给 callAnotherFunc() 函数，参数是 10，输出 “20”。
+在上面的例子中，callAnotherFunc() 有两个参数 - 要调用的函数和传递给该函数的参数。这段代码把 doAdd() 传递给 callAnotherFunc() 函数，参数是 10，输出 “20”。
 
 注意：尽管可以使用 Function 构造函数创建函数，但最好不要使用它，因为用它定义函数比用传统方式要慢得多。不过，所有函数都应看作 Function 类的实例。
 

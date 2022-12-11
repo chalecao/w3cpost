@@ -139,7 +139,7 @@ Commit 模式主要用于 H5 游戏，它允许应用/游戏在 Worker 线程直
   1. 非合成器动画的渲染流水线比较复杂和冗长，有较多的 Overhead，页面的结构越复杂，Overhead 就越高；
   2. 如果同时有其它 DOM 元素一起更新，Canvas 的更新会被其它 DOM 元素的光栅化所阻塞，导致性能下降，性能下降的幅度取决于其它 DOM 元素光栅化的耗时；
 
-> 关于 Chrome 非合成器动画的渲染流水线可以参考我的文章 &#8211; <a class="internal" href="https://zhuanlan.zhihu.com/p/30534023" data-za-detail-view-id="1043">[浏览器](https://www.w3cdoc.com)渲染流水线解析与网页动画性能优化</a>。
+> 关于 Chrome 非合成器动画的渲染流水线可以参考我的文章 - <a class="internal" href="https://zhuanlan.zhihu.com/p/30534023" data-za-detail-view-id="1043">[浏览器](https://www.w3cdoc.com)渲染流水线解析与网页动画性能优化</a>。
 
 如果[我们](https://www.w3cdoc.com)调用 Commit，并且 Commit 的 OffscreenCanvas 是跟当前 DOM 树里面的某个 Canvas 元素相关联，[浏览器](https://www.w3cdoc.com)就会直接将 OffscreenCanvas 的当前绘制缓冲区发送给 Display Compositor，然后 Display Compositor 就会合成新的一帧输出到当前窗口，对[浏览器](https://www.w3cdoc.com)来说这就是最短的渲染路径。
 

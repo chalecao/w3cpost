@@ -3,7 +3,7 @@ title: tree shaking介绍
 
 ---
 
-<h1 class="article-title" data-v-3f6f7ca1="">Tree-Shaking性能优化实践 &#8211; 原理篇</h1> <div class="article-content" data-v-3f6f7ca1="" data-id="5a4dc9a66fb9a044ff31e06c">
+<h1 class="article-title" data-v-3f6f7ca1="">Tree-Shaking性能优化实践 - 原理篇</h1> <div class="article-content" data-v-3f6f7ca1="" data-id="5a4dc9a66fb9a044ff31e06c">
 
 <div>
   <h2 data-id="heading-0">

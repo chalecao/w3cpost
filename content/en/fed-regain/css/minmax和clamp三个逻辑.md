@@ -10,7 +10,7 @@ weight: 8
 
 ## 背景
 
-> 数学函数，`calc()`，`min()`，`max()`，和`clamp()`允许与另外的数学表达式（+），减（ &#8211; ），乘（*），和除（/），以用作组分值 <a href="https://www.w3.org/TR/css-values-4/#calc-notation">CSS值和单位级别4</a>
+> 数学函数，`calc()`，`min()`，`max()`，和`clamp()`允许与另外的数学表达式（+），减（ - ），乘（*），和除（/），以用作组分值 <a href="https://www.w3.org/TR/css-values-4/#calc-notation">CSS值和单位级别4</a>
 
 Safari是在四月2019年第一个[支持][4] 的，以后，今年79版，与Firefox [75][5]版本，[我们](https://www.w3cdoc.com)现代[浏览器](https://www.w3cdoc.com)的`min()`，`max()`和`clamp()`支持情况如下。
 

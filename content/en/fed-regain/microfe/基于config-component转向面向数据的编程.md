@@ -280,11 +280,11 @@ export default function App() {
 
 playground：<a href="https://chalecao.github.io/config-component/playground/form/storybook-static/index.html" target="_blank" rel="nofollow noopener noreferrer">https://chalecao.github.io/co&#8230;</a>
 
-### example &#8211; configForm {#articleHeader6}
+### example - configForm {#articleHeader6}
 
 online example: <a href="https://codesandbox.io/s/config-component-form-5hnvt" target="_blank" rel="nofollow noopener noreferrer">https://codesandbox.io/s/conf&#8230;</a>
 
-### example &#8211; configComponent {#articleHeader7}
+### example - configComponent {#articleHeader7}
 
 online example: <a href="https://codesandbox.io/s/config-component-z7u9x" target="_blank" rel="nofollow noopener noreferrer">https://codesandbox.io/s/conf&#8230;</a>
 

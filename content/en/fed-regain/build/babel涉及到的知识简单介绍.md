@@ -287,7 +287,7 @@ node test.js //报错
 ```
         
         
-          &#8211;presets react 是参数，等同于
+          -presets react 是参数，等同于
         
         
         <div class="widget-codetool" style="display: none;">

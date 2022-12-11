@@ -97,7 +97,7 @@ Blink 中每个作业都有自己的 JobMaster，以根据作业需要请求和�
 
 在生产环境中，[我们](https://www.w3cdoc.com)的客户端可能需要改变 Operator 的并行性，但同时他们不想失去当前状态。当[我们](https://www.w3cdoc.com)开始使用 Blink 时，Flink 不支持在保持状态的同时改变 Operator 的并行性。Blink 引入了“bucket”的概念作为状态管理的基本单位。有比任务更多的 bucket，并且每个任务将被分配多个 bucket。当并行性改变时，[我们](https://www.w3cdoc.com)将重新分配任务的 bucket。 使用这种方法，可以改变 Operator 的并行性并维持状态。
 
-（编者注：Flink 社区同时在 Flink 1.2 版本中解决了的这个问题 &#8211; 该功能在最新版本的主分支中可用。Flink 的“key groups”概念在很大程度上等同于上面提到的“bucket”，但是实现时使用的数据结构略有不同。更多信息，请在 Jira 查看<a href="https://issues.apache.org/jira/browse/FLINK-3755" target="_blank" rel="noopener">FLIR-3755</a>）
+（编者注：Flink 社区同时在 Flink 1.2 版本中解决了的这个问题 - 该功能在最新版本的主分支中可用。Flink 的“key groups”概念在很大程度上等同于上面提到的“bucket”，但是实现时使用的数据结构略有不同。更多信息，请在 Jira 查看<a href="https://issues.apache.org/jira/browse/FLINK-3755" target="_blank" rel="noopener">FLIR-3755</a>）
 
 
   <img loading="lazy" width="452" height="268" class="alignnone size-full wp-image-3580 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2ee4c48f.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2ee4c48f.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2ee4c48f.png?x-oss-process=image/format,webp 452w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2ee4c48f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_178/format,webp 300w" sizes="(max-width: 452px) 100vw, 452px" />

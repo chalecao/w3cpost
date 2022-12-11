@@ -75,6 +75,9 @@ pre {
   background-color: $color-btn-bg;
   border-color: $color-btn-border;
 }
+.btn-run{
+  right: 65px;
+}
 
 .btn-copy:hover {
   color: $color-btn-text;
@@ -119,9 +122,28 @@ pre {
   color: $color-btn-text;
 }
 
+.btn-run::after {
+  content: "Run";
+  display: block;
+  color: $color-btn-text;
+}
+
+.btn-run:hover::after {
+  content: "Run";
+  display: block;
+  color: $color-btn-text;
+}
+
 .btn-copy:focus::after,
 .btn-copy:active::after {
   content: "Copied";
+  display: block;
+  color: $color-btn-text;
+}
+
+.btn-run:focus::after,
+.btn-run:active::after {
+  content: "RunOk";
   display: block;
   color: $color-btn-text;
 }

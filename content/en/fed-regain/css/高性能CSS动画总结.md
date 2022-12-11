@@ -18,7 +18,7 @@ Chrome[浏览器](https://www.w3cdoc.com)渲染流程：
 
 ![](/images/posts/2022-12-04-14-14-19.png)
 
-有关于Chrome[浏览器](https://www.w3cdoc.com)渲染的详细内容，可以参考《<a href="https://github.com/abcrun/abcrun.github.com/issues/17" target="_blank" rel="noopener noreferrer">图解[浏览器](https://www.w3cdoc.com)渲染过程 &#8211; 基于Webkit/Blink内核Chrome[浏览器](https://www.w3cdoc.com)</a>》一文著作权归作者所有。
+有关于Chrome[浏览器](https://www.w3cdoc.com)渲染的详细内容，可以参考《<a href="https://github.com/abcrun/abcrun.github.com/issues/17" target="_blank" rel="noopener noreferrer">图解[浏览器](https://www.w3cdoc.com)渲染过程 - 基于Webkit/Blink内核Chrome[浏览器](https://www.w3cdoc.com)</a>》一文著作权归作者所有。
 
 从上面的流程图中不难看出，Chrome渲染主要包括Parse Html、Recalculate Style、Layout、Rasterizer、Paint、Image Decode、Image Resize和Composite Layers等。简单了解一下其含义，以便后续内容的更好理解。
 

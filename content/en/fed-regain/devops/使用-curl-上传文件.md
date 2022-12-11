@@ -4,7 +4,7 @@ title: 使用 CURL 上传文件
 ---
 CURL 是一个强大的向服务器发送请求的工具， 尤其是在测试 API 的时候。  
 很多人像寻常表单一样使用了 `-X POST` 方式来使用 CURL 去上传文件，但实际上这是错误的。  
-正确的方式是使用 **-F (&#8211;form)**来上传文件，这样才会给请求添加 `enctype="multipart/form-data"` 参数。
+正确的方式是使用 **-F (-form)**来上传文件，这样才会给请求添加 `enctype="multipart/form-data"` 参数。
 
     <span class="hljs-meta">$</span><span class="bash"> curl -F 'data=@path/to/<span class="hljs-built_in">local</span>/file’ UPLOAD_ADDRES</span>
 

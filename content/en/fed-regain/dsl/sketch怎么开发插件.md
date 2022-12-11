@@ -60,10 +60,10 @@ mrwalker.sketchplugin
 >
 > Sketch 插件包可以使用 <a href="https://skpm.io/" target="_blank" rel="noopener noreferrer">skpm</a> 在构建过程中生成，skpm 提供 Sketch 官方插件模版:
 >
-> * <a href="https://github.com/skpm/skpm/tree/master/template" target="_blank" rel="noopener noreferrer">skpm/skpm</a> &#8211; The simplest possible plugin setup. (_default_)
-> * <a href="https://github.com/skpm/with-prettier" target="_blank" rel="noopener noreferrer">skpm/with-prettier</a> &#8211; A plugin setup featuring linting with ESLint and code formatting with Prettier.
-> * <a href="https://github.com/skpm/with-datasupplier" target="_blank" rel="noopener noreferrer">skpm/with-datasupplier</a> &#8211; A template to create DataSupplier plugins (check <a href="https://blog.sketchapp.com/do-more-with-data-2b765e870e4f" target="_blank" rel="noopener noreferrer">our blog</a> for more info)
-> * <a href="https://github.com/skpm/with-webview" target="_blank" rel="noopener noreferrer">skpm/with-webview</a> &#8211; A template to create plugins displaying some rich UI in a WebView (check <a href="https://github.com/skpm/sketch-module-web-view" target="_blank" rel="noopener noreferrer">sketch-module-web-view</a> for more info)
+> * <a href="https://github.com/skpm/skpm/tree/master/template" target="_blank" rel="noopener noreferrer">skpm/skpm</a> - The simplest possible plugin setup. (_default_)
+> * <a href="https://github.com/skpm/with-prettier" target="_blank" rel="noopener noreferrer">skpm/with-prettier</a> - A plugin setup featuring linting with ESLint and code formatting with Prettier.
+> * <a href="https://github.com/skpm/with-datasupplier" target="_blank" rel="noopener noreferrer">skpm/with-datasupplier</a> - A template to create DataSupplier plugins (check <a href="https://blog.sketchapp.com/do-more-with-data-2b765e870e4f" target="_blank" rel="noopener noreferrer">our blog</a> for more info)
+> * <a href="https://github.com/skpm/with-webview" target="_blank" rel="noopener noreferrer">skpm/with-webview</a> - A template to create plugins displaying some rich UI in a WebView (check <a href="https://github.com/skpm/sketch-module-web-view" target="_blank" rel="noopener noreferrer">sketch-module-web-view</a> for more info)
 >
 > &#x1f481; Tip: Any Github repo with a ‘template’ folder can be used as a custom template:
 >

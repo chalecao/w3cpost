@@ -334,7 +334,7 @@ npm install [package]@[tag]
         </td>
         
         <td>
-          npm install [package] &#8211;save
+          npm install [package] -save
         </td>
         
         <td>
@@ -344,11 +344,11 @@ npm install [package]@[tag]
       
       <tr>
         <td>
-          yarn add [package] &#8211;dev
+          yarn add [package] -dev
         </td>
         
         <td>
-          npm install [package] &#8211;save-dev
+          npm install [package] -save-dev
         </td>
         
         <td>
@@ -362,7 +362,7 @@ npm install [package]@[tag]
         </td>
         
         <td>
-          npm uninstall [package] &#8211;save /&#8211;save-dev
+          npm uninstall [package] -save /-save-dev
         </td>
         
         <td>

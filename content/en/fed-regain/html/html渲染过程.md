@@ -66,7 +66,7 @@ Blink通常使用ScriptState对象作为JavaScript环境的引用，blink::Scrip
   
 ### Rasterize thread
   
-光栅化线程 &#8211; 如果内核线程只负责将网页内容转换为绘图指令列表，则真正的光栅化（执行绘图指令计算出像素的颜色值）则由独立的光栅化线程完成；
+光栅化线程 - 如果内核线程只负责将网页内容转换为绘图指令列表，则真正的光栅化（执行绘图指令计算出像素的颜色值）则由独立的光栅化线程完成；
   
 ### Compositor thread
   
@@ -78,7 +78,7 @@ Layer Compositor 需要为每个图层进行分块，为每个分块分配 Resou
   
 ###  GPU thread
   
-GPU 线程 &#8211; 如果使用 GPU 合成，则由 GPU 线程负责执行 GL 绘图指令，访问 GPU，可能跟合成线程是同一个线程，也有可能是独立的线程（合成线程产生GL指令，GPU 线程执行）；
+GPU 线程 - 如果使用 GPU 合成，则由 GPU 线程负责执行 GL 绘图指令，访问 GPU，可能跟合成线程是同一个线程，也有可能是独立的线程（合成线程产生GL指令，GPU 线程执行）；
   
 ###  Browser UI thread
   
@@ -101,7 +101,7 @@ GPU 线程 &#8211; 如果使用 GPU 合成，则由 GPU 线程负责执行 GL �
   
 ![](/images/posts/img_5faffa26a68dd.webp)
 
-上一节[我们](https://www.w3cdoc.com)说 Render 树是衔接[浏览器](https://www.w3cdoc.com)排版引擎和渲染引擎之间的桥梁，它是排版引擎的输出，渲染引擎的输入。不过[浏览器](https://www.w3cdoc.com)渲染引擎并不是直接使用 Render 树进行绘制，为了方便处理 Positioning（定位），Clipping（裁剪），Overflow-scroll（页內滚动），CSS Transform/Opacity/Animation/Filter，Mask or Reflection，Z-indexing（Z排序）等，[浏览器](https://www.w3cdoc.com)需要生成另外一棵树 &#8211; Layer 树。
+上一节[我们](https://www.w3cdoc.com)说 Render 树是衔接[浏览器](https://www.w3cdoc.com)排版引擎和渲染引擎之间的桥梁，它是排版引擎的输出，渲染引擎的输入。不过[浏览器](https://www.w3cdoc.com)渲染引擎并不是直接使用 Render 树进行绘制，为了方便处理 Positioning（定位），Clipping（裁剪），Overflow-scroll（页內滚动），CSS Transform/Opacity/Animation/Filter，Mask or Reflection，Z-indexing（Z排序）等，[浏览器](https://www.w3cdoc.com)需要生成另外一棵树 - Layer 树。
   
 ![](/images/posts/img_5faffa4345505.webp)
  渲染引擎会为一些特定的 RenderObject 生成对应的 RenderLayer，而这些特定的 RenderObject 跟对应的 RenderLayer 就是直属的关系，相应的，它们的子节点如果没有对应的 RenderLayer，就从属于父节点的 RenderLayer。最终，每一个 RenderObject 都会直接或者间接地从属于一个 RenderLayer。
@@ -151,7 +151,7 @@ In this mode RenderObjects paint themselves into the destination bitmap by issui
   
 ![](/images/posts/img_5faffed28f681.webp)
 
-不过并不是拥有独立缓存的 RenderLayer 越多越好，太多拥有独立缓存的 Layer 会带来一些严重的副作用 &#8211; 首先它大大增加了内存的开销，这点在移动设备上的影响更大，甚至导致[浏览器](https://www.w3cdoc.com)在一些内存较少的移动设备上无法很好地支持图层合成加速；其次，它加大了合成的时间开销，导致合成性能的下降，而合成性能跟网页滚动/缩放操作的流畅度又息息相关，最终导致网页滚动/缩放的流畅度下降，让用户觉得[浏览器](https://www.w3cdoc.com)/网页卡顿。
+不过并不是拥有独立缓存的 RenderLayer 越多越好，太多拥有独立缓存的 Layer 会带来一些严重的副作用 - 首先它大大增加了内存的开销，这点在移动设备上的影响更大，甚至导致[浏览器](https://www.w3cdoc.com)在一些内存较少的移动设备上无法很好地支持图层合成加速；其次，它加大了合成的时间开销，导致合成性能的下降，而合成性能跟网页滚动/缩放操作的流畅度又息息相关，最终导致网页滚动/缩放的流畅度下降，让用户觉得[浏览器](https://www.w3cdoc.com)/网页卡顿。
   
 ## 参考
 <a href="https://blog.csdn.net/rogeryi/article/details/23686609">how render work</a><br />

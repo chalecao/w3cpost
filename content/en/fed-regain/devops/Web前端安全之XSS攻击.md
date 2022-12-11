@@ -665,8 +665,8 @@ getTop().location.href="/cgi-bin/loginpage?autologin=n&errtype=1&verify=&clientu
 * OWASP. [Use the OWASP Java Encoder<i class="fa fa-link" aria-hidden="true"></i>][14]-Use-the-OWASP-Java-Encoder), GitHub.
 * Ahmed Elsobky. [Unleashing an Ultimate XSS Polyglot<i class="fa fa-link" aria-hidden="true"></i>][2], GitHub.
 * Jad S. Boutros. [Reducing XSS by way of Automatic Context-Aware Escaping in Template Systems<i class="fa fa-link" aria-hidden="true"></i>][6], Google Security Blog.
-* Vue.js. [v-html &#8211; Vue API docs<i class="fa fa-link" aria-hidden="true"></i>][15], Vue.js.
-* React. [dangerouslySetInnerHTML &#8211; DOM Elements<i class="fa fa-link" aria-hidden="true"></i>][16], React.
+* Vue.js. [v-html - Vue API docs<i class="fa fa-link" aria-hidden="true"></i>][15], Vue.js.
+* React. [dangerouslySetInnerHTML - DOM Elements<i class="fa fa-link" aria-hidden="true"></i>][16], React.
 
 ## xss资源
 

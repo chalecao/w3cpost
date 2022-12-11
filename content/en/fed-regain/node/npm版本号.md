@@ -60,7 +60,7 @@ command-line example:
 
 <div class="highlight sh">
   <div class="line">
-    $ semver 1.2.3 -i prerelease &#8211;preid beta
+    $ semver 1.2.3 -i prerelease -preid beta
   </div>
   <div class="line">
     1.2.4-beta.0

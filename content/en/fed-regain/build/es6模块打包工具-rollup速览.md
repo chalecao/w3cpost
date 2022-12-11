@@ -338,7 +338,7 @@ module.exports = main;
 类似 `the-answer` 一些库因为 `package.json`里的module选项可以让[我们](https://www.w3cdoc.com)正常导入的ES6模块。 但是目前，npm中的大多数包都是以CommonJS模块的形式出现的。 在它们更改之前，[我们](https://www.w3cdoc.com)需要将CommonJS模块转换为 ES2015 供 Rollup 处理。
 
 <a href="https://github.com/rollup/rollup-plugin-commonjs" target="_blank" rel="nofollow noopener noreferrer">rollup-plugin-commonjs</a> 插件就是用来将 CommonJS 转换成 ES2015 模块的。通常，这个插件会跟 `rollup-plugin-node-resolve`配合使用，这样就能打包 `node_modules`依赖中的CommonJS。  
-`rollup-plugin-commonjs` 应该用在其他插件转换你的模块之前 &#8211; 这是为了防止其他插件的改变破坏CommonJS的检测。
+`rollup-plugin-commonjs` 应该用在其他插件转换你的模块之前 - 这是为了防止其他插件的改变破坏CommonJS的检测。
 
 安装：`npm i -D rollup-plugin-commonjs`
 
