@@ -135,7 +135,7 @@ function compileCode(code) {
 
 不过，这里还存在两个逻辑漏洞：
 
-* code 中可以提前关闭 sandbox 的 with 语境，如 &#8216;} alert(this); {&#8216;；
+* code 中可以提前关闭 sandbox 的 with 语境，如 ;} alert(this); {；
 * code 中可以使用 eval 和 new Function 直接逃逸
 
 对于第一个问题，[我们](https://www.w3cdoc.com)可以通过堆栈深度检测：

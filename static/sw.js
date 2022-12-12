@@ -1,4 +1,4 @@
-const version = "0.1.1";
+const version = "0.1.2";
 const cacheName = `w3cdoc-${version}`;
 self.addEventListener('install', e => {
   e.waitUntil(
