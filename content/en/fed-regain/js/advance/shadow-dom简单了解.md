@@ -1,22 +1,10 @@
 ---
 title: Shadow DOM简单了解
 
-
-
-
-enclosure:
-  - |
-    |
-        http://7ryl2t.com2.z0.glb.qiniucdn.com/572ffc37a2e5a.mp4
-        9989621
-        video/mp4
-        
-
-
 ---
 你有好奇过这个问题吗，为什么只用video标签包裹着source标签，就可以完成一系列视频功能：播放/暂停按钮、进度条、视频时间显示、音量控制等等？既然 DOM 源码这么干净，你有想过实现这些组件的代码是从哪儿来的吗？
 
-## 1. 简介 {#1-简介.post-heading}
+## 简介
 
 Shadow DOM它允许在文档（document）渲染时插入一棵DOM元素子树，但是这棵子树不在主DOM树中。
 
@@ -47,11 +35,11 @@ Shadow DOM它允许在文档（document）渲染时插入一棵DOM元素子树�
 
 <img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FhgQ2ofckuyoCPD8RlAd3INcGRAx.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FhgQ2ofckuyoCPD8RlAd3INcGRAx.png?x-oss-process=image/format,webp" alt="Video Shadow DOM" width="714" height="358" />
 
-# shadow-root称为影子根，可以看到它在video里面，换句话说，#shadow-root寄生在video上，所以video此时称为影子宿主。可以看到上图有两个#shadow-root，这是因为#shadow-root可以嵌套，形成节点树，即称为影子树（shadow trees）。影子树对其中的内容进行了封装，有选择性的进行渲染。这就意味着[我们](https://www.w3cdoc.com)可以插入文本、重新安排内容、添加样式等等。如下所示：
+shadow-root称为影子根，可以看到它在video里面，换句话说，#shadow-root寄生在video上，所以video此时称为影子宿主。可以看到上图有两个#shadow-root，这是因为#shadow-root可以嵌套，形成节点树，即称为影子树（shadow trees）。影子树对其中的内容进行了封装，有选择性的进行渲染。这就意味着[我们](https://www.w3cdoc.com)可以插入文本、重新安排内容、添加样式等等。如下所示：
 
 <img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FoF1XzsX8voCu3Gh9mJKBXkHeQDC.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FoF1XzsX8voCu3Gh9mJKBXkHeQDC.jpg?x-oss-process=image/format,webp" alt="影子树" width="498" height="618" />
 
-## 2. 怎样创建Shadow DOM {#2-怎样创建Shadow-DOM.post-heading}
+## 怎样创建ShadowDOM
 
 使用createShadowRoot()来创建Shadow DOM，并赋值给一个变量，然后添加元素给变量即可。
 
@@ -70,16 +58,12 @@ color: #f00;
 <body>
 <div class="shadowhost">Hello, world!</div>
 <script>
-
 // 影子宿主（shadow host）
 var shadowHost = document.querySelector('.shadowhost');
-
 // 创建影子根（shadow root）
 var shadowRoot = shadowHost.createShadowRoot();
-
 // 影子根作为影子树的第一个节点，其他的节点比如p节点都是它的子节点。
 shadowRoot.innerHTML = '<p class="shadowroot_son">夏天夏天悄悄过去留下小秘密！</p>';
-
 </script>
 </body>
 </html>
@@ -91,17 +75,17 @@ shadowRoot.innerHTML = '<p class="shadowroot_son">夏天夏天悄悄过去留下
 
 有没有注意到.shadowroot_son的样式color: #f00;不生效？！那是因为影子宿主和影子根之间存在影子边界（shadow boundary），影子边界保证主 DOM写的 CSS 选择器和 JavaScript 代码都不会影响到Shadow DOM，当然也保护主文档不受 shadow DOM 样式的侵袭。
 
-## 3. 想要渲染影子宿主里的内容，那该怎么玩？ {#3-想要渲染影子宿主里的内容，那该怎么玩？.post-heading}
+## 想要渲染影子宿主里的内容，那该怎么玩
 
 需要完成此项任务，需要两个利器：`<content>`和`<template>`。
 
-### 3.1 `<content>` {#3-1-lt-content-gt.post-heading}
+###  `<content>`
 
 通过 `<content>` 标签把来自主文档并添加到 shadow DOM 的内容被称为分布节点。
 
 `<content>`的select属性告诉`<content>`标签有选择性的插入内容。select 属性使用 CSS 选择器来选取想要展示的内容，选择器包括类选择器、元素选择器等。
 
-### 3.2 `<template>` {#3-2-lt-template-gt.post-heading}
+### `<template>`
 
 目前的模板HTML做法通常是在`<script>` 中嵌入模板HTML，让内部的HTML标签按照字符串处理的，从而使得内容不显示：
 
@@ -115,7 +99,7 @@ shadowRoot.innerHTML = '<p class="shadowroot_son">夏天夏天悄悄过去留下
 
 `<template>`在使用前不会被渲染，不会执行加载等操作，也能够实现隐藏标签内容，而且位置任意性，可以在`<head>`中，也可以在`<body>`或者`<frameset>`中。
 
-### 3.3 实例 {#3-3-实例.post-heading}
+### 实例
 
 通过以上对 `<content>`和`<template>`的简单了解，[我们](https://www.w3cdoc.com)来通过一个实例加深理解：
 
@@ -151,9 +135,7 @@ var template = document.querySelector('.template');
 // 利用document.importNode获取节点，true表示深度克隆。
 shadowRoot.appendChild(document.importNode(template.content, true));
 </script>
-
 </body>
-
 </html>
 ```
 
@@ -173,9 +155,9 @@ console.log(template.childNodes); // 返回[]，说明childNodes无效
 
 <img class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FgnGjHYb8sI1_jns_CViHrsXgc6n.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FgnGjHYb8sI1_jns_CViHrsXgc6n.png?x-oss-process=image/format,webp" alt="贪心插入点" />
 
-## 4. 关于样式 {#4-关于样式.post-heading}
+## 关于样式
 
-### 4.1 宿主样式:host {#4-1-宿主样式-host.post-heading}
+### 宿主样式:host
 
 在shadow DOM中利用:host定义宿主的样式，当然用户可以在主文档中覆盖这个样式。
 
@@ -187,22 +169,22 @@ console.log(template.childNodes); // 返回[]，说明childNodes无效
 :host(:hover) { border: 2px solid #0ff;}
 ```
 
-### 4.2 ::shadow {#4-2-shadow.post-heading}
+### ::shadow
 
 原则上来说，影子边界保证主 DOM写的 CSS 选择器和 JavaScript 代码都不会影响到Shadow DOM。  
 但你可能会想打破影子边界的所谓保证，主文档能够给Shadow DOM添加一些样式，这时可以使用::shadow。
 
-### 4.3 /deep/ {#4-3-deep.post-heading}
+### /deep/
 
 ::shadow 选择器的一个缺陷是他只能穿透一层影子边界，如果你在一个影子树中嵌套了多个影子树，那么使用 /deep/ 。
 
-### 4.4 ::content {#4-4-content.post-heading}
+### ::content 
 
 还记得什么叫分布节点吗？通过 `<content>` 标签把来自主文档并添加到 shadow DOM 的内容被称为分布节点。
 
 分布节点的样式渲染需要用到 ::content。即使分布节点为em标签，直接写 em {} 不生效，应该写成::content > em {}。
 
-### 4.5 实例 {#4-5-实例.post-heading}
+### 4.5 实例 
 
 ```
 <!DOCTYPE html>
@@ -254,8 +236,8 @@ border-radius: 10px;
 </style>
 <h1>你<content select=".shadowhost_content1"></content>我<content select=".shadowhost_content2"></content>!</h1>
 </template>
-<!-- E 模板标签 template -->
 
+<!-- E 模板标签 template -->
 <script>
 var shadowHost = document.querySelector('.shadowhost');
 
@@ -270,14 +252,13 @@ shadowRoot.appendChild(document.importNode(template.content, true));
 </html>
 ```
 
-
-  [浏览器](https://www.w3cdoc.com)截图如下：
+[浏览器](https://www.w3cdoc.com)截图如下：
 
 <img class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FojZYP5WW1JAGN-3fyW9jnFLGiuN.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FojZYP5WW1JAGN-3fyW9jnFLGiuN.png?x-oss-process=image/format,webp" alt="::content&::shadow&/deep/" />
 
-## 5. JavaScript {#5-JavaScript.post-heading}
+## JavaScript
 
-### 5.1 重定向 {#5-1-重定向.post-heading}
+### 重定向
 
 Shadow DOM 里的 JS 与传统的 JS 一个真正不同的点在于事件调度（event dispatching）。要记住的一点是：原来绑定在 shadow DOM 节点中的事件被重定向了，所以他们看起来像绑定在影子宿主上一样。
 
@@ -328,7 +309,7 @@ console.log(e.target.id + ' click!');
 
 <img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FuPYA7rXQnnK78gC75QnvhRkzpqN.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FuPYA7rXQnnK78gC75QnvhRkzpqN.jpg?x-oss-process=image/format,webp" alt="事件重定向" width="346" height="205" />
 
-### 5.2 被阻塞的事件（Blocked Events） {#5-2-被阻塞的事件（Blocked-Events）.post-heading}
+### 被阻塞的事件（Blocked Events）
 
 事件abort、 error、 select 、change 、load 、reset 、resize 、scroll 、selectstart不会进行重定向而是直接被干掉，因此事件不能冒泡到文档中，事件监听重定向至文档，因此无法监听到这一事件。
 
@@ -344,7 +325,7 @@ document.addEventListener('select', function(e) {
 
 <img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FpPbkUQKdtodVkllgCc3K4-5miOe.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FpPbkUQKdtodVkllgCc3K4-5miOe.jpg?x-oss-process=image/format,webp" alt="被阻塞的事件" width="403" height="121" />
 
-### 6. 兼容性 {#6-兼容性.post-heading}
+### 兼容性
 
 <img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FpSHZHqQtxYyUIO2vdUCRaVnJyaA.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/FpSHZHqQtxYyUIO2vdUCRaVnJyaA.png?x-oss-process=image/format,webp" alt="template兼容性" width="724" height="531" />
 
@@ -354,7 +335,7 @@ document.addEventListener('select', function(e) {
 
 <a href="http://webcomponents.org/" target="_blank" rel="external noopener noreferrer">webcomponents.js</a>使得Shadow DOM在非 native 支持的[浏览器](https://www.w3cdoc.com)上实现。
 
-## 7. 参考链接 {#7-参考链接.post-heading}
+## 参考链接
 
 <a href="https://css-tricks.com/modular-future-web-components/" target="_blank" rel="external noopener noreferrer">A Guide to Web Components</a>  
 <a href="http://www.ituring.com.cn/article/177453" target="_blank" rel="external noopener noreferrer">Shadow DOM系列文章</a>  

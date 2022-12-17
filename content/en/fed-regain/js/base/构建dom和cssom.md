@@ -1,8 +1,8 @@
 ---
 title: 构建DOM和CSSOM
-
+weight: 4
 ---
-1. ## 什么是DOM
+## 什么是DOM
 
 > Document Object Model 文档对象模型
 

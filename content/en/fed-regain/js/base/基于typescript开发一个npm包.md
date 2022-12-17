@@ -1,9 +1,6 @@
 ---
 title: 基于typescript开发一个npm包
-
-baidu_record:
-  - 1
-
+weight: 7
 ---
 很多时候，[我们](https://www.w3cdoc.com)可能想要用 typescript 语言来创建一些模块，并提交到 npm 供别人使用，
 
@@ -11,22 +8,20 @@ baidu_record:
 
 答案是：**创建一个优雅的，对开发者友好的模块，至少需要以下 15 个步骤**
 
-<ol class="ol-level-0">
- 初始化文件夹，初始化 git 仓库，初始化 npm，初始化 tsc
- 修改 tsconfig.js 配置
- 添加 npm 脚本
- 添加 tslint 校验代码规则以及 editorconfig,prettier 统一代码风格
- 设置 git 提交的校验钩子
- 开始编写代码
- watch 模式开发
- 忽略 ts 编译生成的文件夹
- 添加单元测试
- 写一个单元测试示例
- 设置一些有用的 npm 脚本
- 完善 package.json 的描述信息
- 提交代码到 git 仓库
- 发布包到 <a href="http://www.npmjs.com/" target="_blank" rel="nofollow noopener noreferrer" data-from="10680">npm</a>
-</ol>
+- 初始化文件夹，初始化 git 仓库，初始化 npm，初始化 tsc
+- 修改 tsconfig.js 配置
+- 添加 npm 脚本
+- 添加 tslint 校验代码规则以及 editorconfig,prettier 统一代码风格
+- 设置 git 提交的校验钩子
+- 开始编写代码
+- watch 模式开发
+- 忽略 ts 编译生成的文件夹
+- 添加单元测试
+- 写一个单元测试示例
+- 设置一些有用的 npm 脚本
+- 完善 package.json 的描述信息
+- 提交代码到 git 仓库
+- 发布包到 <a href="http://www.npmjs.com/" target="_blank" rel="nofollow noopener noreferrer" data-from="10680">npm</a>
 
 本篇文章里，我会列出每个步骤的详细说明。
 
@@ -47,7 +42,7 @@ git remote set-url origin your-git-url
 
 下面就是常规步骤了，学习目的的话，建议按照下面的步骤全部跑一遍：
 
-## 1. 初始化文件夹，初始化 npm，初始化 tsc {#1.-%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%8C%E5%88%9D%E5%A7%8B%E5%8C%96-npm%EF%BC%8C%E5%88%9D%E5%A7%8B%E5%8C%96-tsc}
+## 初始化文件夹，初始化 npm，初始化 tsc 
 
 ```
 mkdir project-name
@@ -68,18 +63,18 @@ npm init --y
 tsc --init
 ```
 
-## 2. 修改 tsconfig.js 配置 {#2.-%E4%BF%AE%E6%94%B9-tsconfig.js-%E9%85%8D%E7%BD%AE}
+## 修改 tsconfig.js 配置 
 
 修改以下默认配置：
 
 ```
 {
-    "compilerOptions": {
-        "declaration": true,
-        "outDir": "./lib",
-     },
-    "include": ["src"],
-    "exclude": ["node_modules", "**/__tests__/*"]
+"compilerOptions": {
+    "declaration": true,
+    "outDir": "./lib",
+  },
+"include": ["src"],
+"exclude": ["node_modules", "**/__tests__/*"]
 }
 ```
 
@@ -87,33 +82,33 @@ tsc --init
 
 ```
 {
-    "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "declaration": true,
-        "strict": true,
-        "outDir": "./lib",
-        "esModuleInterop": true
-    },
-    "include": ["src"],
-    "exclude": ["node_modules", "**/__tests__/*"]
+"compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "strict": true,
+    "outDir": "./lib",
+    "esModuleInterop": true
+},
+"include": ["src"],
+"exclude": ["node_modules", "**/__tests__/*"]
 }
 ```
 
-## 3. 添加 npm 脚本 {#3.-%E6%B7%BB%E5%8A%A0-npm-%E8%84%9A%E6%9C%AC}
+## 添加 npm 脚本
 
 在 package.json 里编辑 scripts 字段:
 
 ```
 {
-  "scripts": {
-    "start": "tsc -w",
-    "build": "tsc"
-  }
+"scripts": {
+  "start": "tsc -w",
+  "build": "tsc"
+}
 }
 ```
 
-## 4. 添加 tslint 校验代码规则以及 editorconfig,prettier 统一代码风格 {#4.-%E6%B7%BB%E5%8A%A0-tslint-%E6%A0%A1%E9%AA%8C%E4%BB%A3%E7%A0%81%E8%A7%84%E5%88%99%E4%BB%A5%E5%8F%8A-editorconfig,prettier-%E7%BB%9F%E4%B8%80%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC}
+## 添加 tslint 校验代码规则以及 editorconfig,prettier 统一代码风格 
 
 ```
 npm install --save-dev prettier tslint tslint-config-prettier
@@ -189,7 +184,7 @@ indent_size = 2
 }
 ```
 
-## 5. 设置 git 提交的校验钩子 {#5.-%E8%AE%BE%E7%BD%AE-git-%E6%8F%90%E4%BA%A4%E7%9A%84%E6%A0%A1%E9%AA%8C%E9%92%A9%E5%AD%90}
+## 设置 git 提交的校验钩子 
 
 设置 git 提交的钩子校验规范
 
@@ -250,7 +245,7 @@ package.json 新增 scripts 配置：
 }
 ```
 
-## 6. 开始编写代码 {#6.-%E5%BC%80%E5%A7%8B%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81}
+## 开始编写代码
 
 ```
 cd project-name
@@ -265,13 +260,13 @@ touch index.ts
 export const Greeter = (name: string) => `Hello ${name}`;
 ```
 
-## 7. watch 模式下开发 {#7.-watch-%E6%A8%A1%E5%BC%8F%E4%B8%8B%E5%BC%80%E5%8F%91}
+## watch 模式下开发 
 
 ```
 npm start
 ```
 
-## 8. 忽略 ts 编译生成的文件夹 {#8.-%E5%BF%BD%E7%95%A5-ts-%E7%BC%96%E8%AF%91%E7%94%9F%E6%88%90%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9}
+## 忽略 ts 编译生成的文件夹 
 
 把`/lib`文件夹添加到`.gitignore`
 
@@ -279,7 +274,7 @@ npm start
 /lib
 ```
 
-## 9. 添加单元测试 {#9.-%E6%B7%BB%E5%8A%A0%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95}
+## 添加单元测试 
 
 ```
 npm install --save-dev jest ts-jest @types/jest
@@ -307,7 +302,7 @@ npm install --save-dev jest ts-jest @types/jest
 }
 ```
 
-## 10. 写一个单元测试示例 {#10.-%E5%86%99%E4%B8%80%E4%B8%AA%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%A4%BA%E4%BE%8B}
+## 写一个单元测试示例 
 
 在 **src** 文件夹下新建一个 `__tests__`的文件夹来存放测试用例文件，新建一个 **Greeter.test.ts**文件,写入：
 
@@ -326,7 +321,7 @@ npm test
 
 结果应该是通过的。
 
-## 11. 设置一些有用的 npm 脚本 {#11.-%E8%AE%BE%E7%BD%AE%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84-npm-%E8%84%9A%E6%9C%AC}
+## 设置一些有用的 npm 脚本 
 
 prepare: 发布前和用户安装前运行
 
@@ -350,7 +345,7 @@ postversion: 新建版本后运行
 }
 ```
 
-## 12. 完善 package.json 的描述信息 {#12.-%E5%AE%8C%E5%96%84-package.json-%E7%9A%84%E6%8F%8F%E8%BF%B0%E4%BF%A1%E6%81%AF}
+## 完善 package.json 的描述信息 
 
 **name** 完善包名，描述，包入口文件 **main** 字段，typescript 类型文件 **types** 字段定义
 
@@ -363,7 +358,7 @@ postversion: 新建版本后运行
 }
 ```
 
-## 13. 完善文档信息 {#13.-%E5%AE%8C%E5%96%84%E6%96%87%E6%A1%A3%E4%BF%A1%E6%81%AF}
+## 完善文档信息 
 
 新建 **doc** 文件夹，在里面可以写一些模块详细的文档:
 
@@ -373,7 +368,7 @@ mkdir doc
 
 完善 **readme.md**的信息，格式可以参考 <a href="https://github.com/jehna/readme-best-practices/blob/master/README-default.md" target="_blank" rel="nofollow noopener noreferrer" data-from="10680">这里</a>
 
-## 14. 提交代码到 git 仓库 {#14.-%E6%8F%90%E4%BA%A4%E4%BB%A3%E7%A0%81%E5%88%B0-git-%E4%BB%93%E5%BA%93}
+## 提交代码到 git 仓库
 
 发布之后就把代码提交到 git 仓库吧
 
@@ -383,7 +378,7 @@ git commit -m "feat: init"
 # 关联到远程仓库不属于本教程的内容，就不写push了
 ```
 
-## 15. 发布包到 <a href="https://www.npmjs.com/" target="_blank" rel="nofollow noopener noreferrer" data-from="10680">npm</a> {#15.-%E5%8F%91%E5%B8%83%E5%8C%85%E5%88%B0-npm}
+## 发布包到npm
 
 如果你还没注册 npm 的用户的话，需要先注册。
 
@@ -401,6 +396,6 @@ npm publish
 
 发布之后，你可以去 <a href="https://www.npmjs.com/" target="_blank" rel="nofollow noopener noreferrer" data-from="10680">https://www.npmjs.com/</a> 上找到你的包
 
-## 参考 {#%E5%8F%82%E8%80%83}
+## 参考
 
 <a href="https://itnext.io/step-by-step-building-and-publishing-an-npm-typescript-package-44fe7164964c" target="_blank" rel="nofollow noopener noreferrer" data-from="10680">Step by step: Building and publishing an NPM Typescript package.</a>

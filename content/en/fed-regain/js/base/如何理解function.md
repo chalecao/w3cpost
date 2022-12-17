@@ -2,15 +2,11 @@
 title: 如何理解function
 
 ---
-# 想过function吗？
+## 想过function吗？
 
 Function作为Javascript的核心技术之一,清晰的理解function的机制和用法,对[我们](https://www.w3cdoc.com)进行javascript开发非常重要。你有想过function是什么吗？ECMAScript 的函数实际上是功能完整的对象。其中function是javascript中定义函数的关键字，由function定义的函数是一个由代码集合而成的对象，属于引用类型。而Function则是javascript中的引用类型中的一种，类似Number和String和Object和Boolean。Function类可以表示开发者定义的任何函数。
 
-<img class="aligncenter" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/function.jpg" alt="如何理解function" />
-
-本节属于：[[前端](https://www.w3cdoc.com)工程师自学面试找工作必备知识][1]
-
-# Function与function
+## Function与function
 
 ECMAScript 最令人感兴趣的可能莫过于函数实际上是功能完整的对象。Function 类可以表示开发者定义的任何函数。
 
@@ -28,8 +24,7 @@ function sayHi(sName, sMessage) {
     alert("Hello " + sName + sMessage);
 }
 ```
- 还可以这样定义它：
-
+还可以这样定义它：
 
 ```
 var sayHi = new Function("sName", "sMessage", "alert(/"Hello /" + sName + sMessage);");
@@ -71,9 +66,7 @@ doAdd(10); //输出 "20"
 alsodoAdd(10); //输出 "20"
 ```
 
-
 在这里，变量 doAdd 被定义为函数，然后 alsodoAdd 被声明为指向同一个函数的指针。用这两个变量都可以执行该函数的代码，并输出相同的结果 -“20”。因此，如果函数名只是指向函数的变量，那么可以把函数作为参数传递给另一个函数吗？回答是肯定的！
-
 
 ```
 function callAnotherFunc(fnFunction, vArgument) {
@@ -91,7 +84,6 @@ callAnotherFunc(doAdd, 10); //输出 "20"
 
 如前所述，函数属于引用类型，所以它们也有属性和方法。ECMAScript 定义的属性 length 声明了函数期望的参数个数。例如：
 
-
 ```
 function doAdd(iNum) {
 alert(iNum + 10);
@@ -105,13 +97,11 @@ alert(doAdd.length); //输出 "1"
 alert(sayHi.length); //输出 "0"
 ```
 
-
 函数 doAdd() 定义了一个参数，因此它的 length 是 1；sayHi() 没有定义参数，所以 length 是 0。
 
 记住，无论定义了几个参数，ECMAScript 可以接受任意多个参数（最多 25 个），这一点在上面讲解过。属性 length 只是为查看默认情况下预期的参数个数提供了一种简便方式。
 
 Function 对象也有与所有对象共享的 valueOf() 方法和 toString() 方法。这两个方法返回的都是函数的源代码，在调试时尤其有用。例如：
-
 
 ```
 function doAdd(iNum) {
@@ -121,30 +111,26 @@ alert(iNum + 10);
 document.write(doAdd.toString());
 ```
 
-
 上面这段代码输出了 doAdd() 函数的文本。
 
 ## function使用
-
 
 ```
 function myfunc(param) {
 //code
 }
 ```
- 注意Javascript中的函数名相同的两个function被认为是同一个，在运行时到底调用哪一个function取决于加载顺序,后一个加载的function会覆盖前一个.
 
+注意Javascript中的函数名相同的两个function被认为是同一个，在运行时到底调用哪一个function取决于加载顺序,后一个加载的function会覆盖前一个.
 
 ```
 function func1() {return 'func1'; }
 function func1(name) { return name; }
-
 ```
 
 究其原因是：javascript中function的参数都是可选参数,因此funciton的识别是不包括入参的,而函数入参处的声明是为了引用方便以及可读性.
 
 以上的代码也等价于:
-
 
 ```
 function func1() {
@@ -159,16 +145,13 @@ func('function'); //return 'function'
 
 是的没错,在javascript中function就是对象,[我们](https://www.w3cdoc.com)可以向使用一个对象那样使用function。它可以有自己的属性和方法.有如下的一个funciton:
 
-
 ```
 function nameOf(name) {
-return name.toUpperCase();
+  return name.toUpperCase();
 }
 ```
 
-
 function作为对象进行赋值
-
 
 ```
 var person = person || {};
@@ -181,17 +164,14 @@ person.nameOf('yang dong') // return "YANG DONG"
 
 看看以下的代码, 你能从中的到什么信息:
 
-
 ```
 function nameOf() {return nameOf.blogger;}
 nameOf.blogger = "YANG_DONG";
 ```
 
-
 没错,function可以拥有自己的属性。考虑这样一种场景, 假如[我们](https://www.w3cdoc.com)要统计某个function被调用的次数.那么[我们](https://www.w3cdoc.com)有两种方式来实现:
 
-  1. 设定一个全局变量来记录,该funciton被调用的次数,每调用一次,该变量加1:
-
+1. 设定一个全局变量来记录,该funciton被调用的次数,每调用一次,该变量加1:
 
 ```
 var globalNameOfCounter = 0;
@@ -199,13 +179,11 @@ nameOf();
 globalNameOfCounter ++;
 ```
 
-
 这样做看起来是没有问题的,在代码还是比较简单的时候,它可以工作的很好,但是随着代码越来越复杂,维护这段逻辑的成本会直线上升。主要是因为:globalNameOfCounter污染的global命名空间,并且破坏了代码的封装性.
 
 2. 使用function的属性
 
 看看以下代码:
-
 
 ```
 function nameOf() {
@@ -217,9 +195,6 @@ nameOf.counter = 0;
 nameOf(); //nameOf.counter = 1
 nameOf(); //nameOf.counter = 2
 ```
-
-
-
 
 显而易见,第二种方式有着很好的封装性和维护性.function的属性的应用还不止如此.请看下文.
 
@@ -237,13 +212,12 @@ nameOf.getBloggerName = function() {
     return nameOf.blogger;
 }
 ```
- 此时在nameOf名字空间之下已经包含了:blogger,counter属性和function getBloggerName方法.
 
+此时在nameOf名字空间之下已经包含了:blogger,counter属性和function getBloggerName方法.
 
 ### function作为method
 
 在javascript中function和method其实是没有什么本质区别的,如果非的区分两者的话,我想也就是this变量不同吧.
-
 
 ```
 function g() {return this;}
@@ -252,7 +226,6 @@ local.method = g; //修改this指向local
 local.method(); //返回local对象
 g(); //返回DOMWindow对象
 ```
-
 
 ### function皆为closure
 
@@ -317,21 +290,20 @@ They are:
 arguments is an Object instance.
 ```
 
-
 ### length
 
 获取函数定义的参数个数，
-
-  functionName.length
-
+```
+functionName.length
+```
 不同于arguments.length，这点[我们](https://www.w3cdoc.com)在上面有介绍。因为Javascript调用函数时候对函数参数不作任何个数和类型检查，也就没有函数调用错误概念。但是[我们](https://www.w3cdoc.com)可以利用functionName.length和arguments.length的不同，在函数调用内部来检测参数个数检测。
 
 ```
 function checkVarCount(a, b) {
-if (checkVarCount.length !== arguments.length) {
-alert("The count of the parameters you passed into the function doesn't match the function definition.");
-}
-alert("Successfully call the function");
+  if (checkVarCount.length !== arguments.length) {
+    alert("The count of the parameters you passed into the function doesn't match the function definition.");
+  }
+  alert("Successfully call the function");
 }
 checkVarCount(1, 2);
 //Successfully call the function
@@ -343,28 +315,27 @@ checkVarCount(1);
 ### caller
 
 获取调用当前函数的函数。caller属性只有当函数正在执行时才被定义。
-
-  functionName.caller
-
+```
+functionName.caller
+```
 如果函数是从 JavaScript 程序的顶层调用的，则caller包含null。如果在字符串上下文中使用 caller 属性，则其结果和 functionName.toString 相同，也就是说，将显示函数的反编译文本。
-
 
 ```
 function test() {
-if (test.caller == null) {
-document.write("test is called from the toppest level");
-} else {
-document.write("test is called from the function:<br/>");
-document.writeln(test.caller.toString());
-}
-document.write("<br />");
+  if (test.caller == null) {
+    document.write("test is called from the toppest level");
+  } else {
+    document.write("test is called from the function:<br/>");
+    document.writeln(test.caller.toString());
+  }
+  document.write("<br />");
 }
 //call from the top level
 test();
 //output: test is called from the toppest level
 
 function testOuter() {
-test();
+  test();
 }
 
 //call from the function testOuter
@@ -374,66 +345,60 @@ testOuter();
 //function testOuter() { test(); }
 ```
 
-
 ### callee
 
 返回正被执行的 Function 对象，即指定的 Function 对象的正文。
-
+```
   [functionName.]arguments.callee
-
+```
 callee 属性是 arguments 对象的一个成员，该属性仅当相关函数正在执行时才可用。通常这个属性被用来递归调用匿名函数。
 
 ```
 var fac = function(n){
-if (n <= 0)
-return 1;
-else
-return n * arguments.callee(n - 1);
+  if (n <= 0)
+    return 1;
+  else
+    return n * arguments.callee(n - 1);
 }(4);
 document.write(fac);//24
-
 ```
 
 ### constructor
 
 获取创建某个对象的函数。constructor 属性是每个具有原型的对象的原型成员。 这包括除 Global 和 Math 对象之外的所有内部 JavaScript 对象。 constructor 属性就是用来构造对象实例的函数引用。
 
-
 ```
 // A constructor function.
 function MyObj() {
-this.number = 1;
+  this.number = 1;
 }
 
 var x = new String("Hi");
-
 if (x.constructor == String)
-document.write("Object is a String.");
+  document.write("Object is a String.");
 document.write ("<br />");
 
 var y = new MyObj;
 if (y.constructor == MyObj)
-document.write("Object constructor is MyObj.");
+  document.write("Object constructor is MyObj.");
 
 // Output:
 // Object is a String.
 // Object constructor is MyObj.
 ```
 
-
 ### prototype
 
 获取对象的原型。每一个构造函数都有一个prototype属性，指向另一个对象。这个对象的所有属性和方法，都会被构造函数的实例继承。这意味着，[我们](https://www.w3cdoc.com)可以把那些不变的属性和方法，直接定义在prototype对象上。
 
-
 ```
 function Man(name, age) {
-this.name = name;
-this.age = age;
+  this.name = name;
+  this.age = age;
 }
 Man.prototype.sex = "M";
 Man.prototype.struggle = function () {
-alert("day day up!!!!");
+  alert("day day up!!!!");
 }
 var li = new Man("Leo", 10);
 alert(li.sex);//M
@@ -442,9 +407,7 @@ Man.prototype.isStrong = true;
 alert(li.isStrong);//true
 ```
 
-
 这样[我们](https://www.w3cdoc.com)也可以向已定义好的对象（包括javascript提供的原生对象）中追加方法和属性，
-
 
 ```
 var aa = new Number(2);
@@ -455,9 +418,7 @@ return this + add1;
 alert(aa.add(1)); // 3
 ```
  
-
-
-# 常用方法
+## 常用方法
 
 #### apply
 
@@ -517,8 +478,6 @@ document.write(callMe.apply());
 
 ```
 
-
-
 #### call
 
 调用一个对象的方法，用另一个对象替换当前对象。
@@ -560,15 +519,13 @@ document.write(callMe.call(3, 4, 5));
 // arguments: 5
 ```
 
-
 #### bind
 
 对于给定函数，创建具有与原始函数相同的主体的绑定函数。 在绑定功能中，this对象解析为传入的对象。 该绑定函数具有指定的初始参数。
-
+```
   function.bind(thisArg[,arg1[,arg2[,argN]]])
-
+```
 其中function, thisArg为必选项。返回一个与 function 函数相同的新函数，只不过函数中的this对象和参数不同。
-
 
 ```
 // Define the original function.
@@ -612,9 +569,7 @@ var displayArgs2 = displayArgs.bind(emptyObject, 12, "a");
 displayArgs2("b", "c");
 // Output: 12 a b c
 ```
-
 在对象定义内部使用bind方法可以将某个事件绑定到对象内部的某个方法，
-
 
 ```
 <input type="button" id="start" value="Start" />
@@ -650,7 +605,6 @@ btnStop.addEventListener("click", someCar.stop, false);
 </script>
 ```
 
-
 从上面Sample[我们](https://www.w3cdoc.com)发现，当不使用bind方法的时候，事件里面的this指向的触发click事件dom元素input，它当然没有owner属性；如果利用bind指定事件里面的this对象，就能达到[我们](https://www.w3cdoc.com)想要的效果。
 
 #### toString
@@ -665,7 +619,6 @@ objectname必需，指定需要获取字符串表示形式的对象。radix可�
 
 toString 方法是一个所有内置的 JavaScript 对象的成员。 它的行为取决于对象的类型：
 
-
 ```
 Object Behavior
 Array 将 Array 的元素转换为字符串。 结果字符串被连接起来，用逗号分隔。
@@ -679,7 +632,6 @@ String 返回 String 对象的值。
 Default 返回 "[object objectname]"，其中 objectname 为对象类型的名称。
 ```
 
-
 #### valueOf
 
 返回对象的原生值。
@@ -687,9 +639,7 @@ Default 返回 "[object objectname]"，其中 objectname 为对象类型的名�
 ```
 object.valueOf( )
 ```
-
 Javascript内部各个对象定义的valueOf不同：
-
 
 ```
 Object Return value
@@ -703,7 +653,6 @@ String 字符串值。
 Math 和 Error 对象都没有 valueOf 方法。
 ```
 
-
 Function 和 function，理解了吗？
 
 ### 举个例子
@@ -714,11 +663,3 @@ setTimeout('alert(1)',1e3)
 setTimeout(new Function('alert(1)'),1e3)
 
 ```
-
-
-
-### 谢谢！
-
-欢迎关注[前端](https://www.w3cdoc.com)学堂公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
-
- [1]: https://www.f2e123.com/javascriptnodejs/742.html

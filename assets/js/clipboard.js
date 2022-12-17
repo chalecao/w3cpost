@@ -24,8 +24,10 @@ for (var i = 0; i < pre.length; ++i) {
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>Code Edit</title>
+${/console/.test(tempHtmlContent)?'<link rel="stylesheet" type="text/css" href="/js/playground/lib/console.css" />':''}
 </head>
 <body>
+${/console/.test(tempHtmlContent)?'<script src="/js/playground/lib/console.js" ></script>':''}
 <script>
  ${tempHtmlContent}
 </script>

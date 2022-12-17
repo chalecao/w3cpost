@@ -2,7 +2,7 @@
 title: 异步回调之Promise对象
 
 ---
-# 异步思想
+## 异步思想
 
 你可能知道，Javascript语言的执行环境是”单线程”（single thread）。  
 所谓”单线程”，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。
@@ -25,33 +25,25 @@ title: 异步回调之Promise对象
 假定有两个函数f1和f2，后者等待前者的执行结果。
 
 ```
-
 f1();
 f2();
-
-
 ```
 
 如果f1是一个很耗时的任务，可以考虑改写f1，把f2写成f1的回调函数。
 
 ```
-
 function f1(callback){
 　　　　setTimeout(function () {
 　　　　　　// f1的任务代码
 　　　　　　callback();
 　　　　}, 1000);
 　　}
-
-
 ```
 
 执行代码就变成下面这样：
 
 ```
-
 f1(f2);
-
 
 ```
 
@@ -64,24 +56,18 @@ f1(f2);
 还是以f1和f2为例。首先，为f1绑定一个事件（这里采用的jQuery的写法）。
 
 ```
-
 f1.on('done', f2);
-
-
 ```
 
 上面这行代码的意思是，当f1发生done事件，就执行f2。然后，对f1进行改写：
 
 ```
-
 function f1(){
 　　　　setTimeout(function () {
 　　　　　　// f1的任务代码
 　　　　　　f1.trigger('done');
 　　　　}, 1000);
 　　}
-
-
 ```
 
 f1.trigger(‘done’)表示，执行完成后，立即触发done事件，从而开始执行f2。  
@@ -95,34 +81,25 @@ f1.trigger(‘done’)表示，执行完成后，立即触发done事件，从而
 首先，f2向”信号中心”jQuery订阅”done”信号。
 
 ```
-
 jQuery.subscribe("done", f2);
-
-
 ```
 
 然后，f1进行如下改写：
 
 ```
-
-　function f1(){
-　　　　setTimeout(function () {
-　　　　　　// f1的任务代码
-　　　　　　jQuery.publish("done");
-　　　　}, 1000);
-　　}
-
-
+function f1(){
+　　setTimeout(function () {
+　　　　// f1的任务代码
+　　　　jQuery.publish("done");
+　　}, 1000);
+}
 ```
 
 jQuery.publish(“done”)的意思是，f1执行完成后，向”信号中心”jQuery发布”done”信号，从而引发f2的执行。  
 此外，f2完成执行后，也可以取消订阅（unsubscribe）。
 
 ```
-
-　jQuery.unsubscribe("done", f2);
-
-
+jQuery.unsubscribe("done", f2);
 ```
 
 这种方法的性质与”事件监听”类似，但是明显优于后者。因为[我们](https://www.w3cdoc.com)可以通过查看”消息中心”，了解存在多少信号、每个信号有多少订阅者，从而监控程序的运行。
@@ -133,16 +110,12 @@ Promises对象是CommonJS工作组提出的一种规范，目的是为异步编�
 简单说，它的思想是，每一个异步任务返回一个Promise对象，该对象有一个then方法，允许指定回调函数。比如，f1的回调函数f2,可以写成：
 
 ```
-
 f1().then(f2);
-
-
 ```
 
 f1要进行如下改写（这里使用的是jQuery的实现）：
 
 ```
-
 function f1(){
 　　　　var dfd = $.Deferred();
 　　　　setTimeout(function () {
@@ -151,27 +124,18 @@ function f1(){
 　　　　}, 500);
 　　　　return dfd.promise;
 　　}
-
-
 ```
-
 这样写的优点在于，回调函数变成了链式写法，程序的流程可以看得很清楚，而且有一整套的配套方法，可以实现许多强大的功能。  
 比如，指定多个回调函数：
 
 ```
-
 f1().then(f2).then(f3);
-
-
 ```
 
 再比如，指定发生错误时的回调函数：
 
 ```
-
 f1().then(f2).fail(f3);
-
-
 ```
 
 而且，它还有一个前面三种方法都没有的好处：如果一个任务已经完成，再添加回调函数，该回调函数会立即执行。所以，你不用担心是否错过了某个事件或信号。这种方法的缺点就是编写和理解，都相对比较难。下面[我们](https://www.w3cdoc.com)详细介绍promise对象。
@@ -181,25 +145,22 @@ f1().then(f2).fail(f3);
 其实 Promise 这个东西提出来也挺久时间了，它是一种解决复杂异步回调逻辑的方法。大部分人类的正常思维方式都是线性连贯的，但是在 JavaScript 中，异步却是主流。所以，在遇到复杂逻辑时，[我们](https://www.w3cdoc.com)往往会写成这样：
 
 ```
-
 // Code uses jQuery to illustrate the Pyramid of Doom
 (function($) {
-$(function(){
-$("button").click(function(e) {
-$.get("/test.json", function(data, textStatus, jqXHR) {
-$(".list").each(function() {
-$(this).click(function(e) {
-setTimeout(function() {
-alert("Hello World!");
-}, 1000);
-});
-});
-});
-});
-});
+  $(function(){
+    $("button").click(function(e) {
+      $.get("/test.json", function(data, textStatus, jqXHR) {
+        $(".list").each(function() {
+          $(this).click(function(e) {
+            setTimeout(function() {
+              alert("Hello World!");
+            }, 1000);
+          });
+        });
+      });
+    });
+  });
 })(jQuery);
-
-
 ```
 
 这就是所谓的「回调金字塔」,解决这个方法最简单的方法，就是把匿名函数取个名字，单独提取出来定义。但是当遇到多变的业务场景时，具名函数的方法也不太管用，于是便有了各种高级的碾平异步回调的解决方案，Promise 就是其中一种。
@@ -211,49 +172,39 @@ alert("Hello World!");
 为了简化各种各样的异步逻辑，[我们](https://www.w3cdoc.com)先假设有一个会花一些时间来完成的 JS 函数。它的功能很简单，就是过一段时间以后调用传入的回调函数。
 
 ```
-
 var wait = function(callback, param) {
-setTimeout(function() {
-callback(param)
-}, 2000 + (Math.random() - 0.5) * 1000);
-}
+  setTimeout(function() {
+    callback(param)
+  }, 2000 + (Math.random() - 0.5) * 1000);
+  }
 wait(console.log.bind(console), 'test');
-
-
 ```
-
 你可以想象多层嵌套的时候大概是什么样子：
 
 ```
-
 wait(function() {
 console.log('如果你愿意');
 wait(function() {
-console.log('一层');
-wait(function() {
-console.log('一层');
-wait(function() {
-console.log('一层地');
-wait(console.log.bind(console), '剥开我的心');
+  console.log('一层');
+  wait(function() {
+    console.log('一层');
+    wait(function() {
+      console.log('一层地');
+      wait(console.log.bind(console), '剥开我的心');
+      });
+    });
+  });
 });
-});
-});
-});
-
-
 ```
 
 那么，在 Promise 的世界里是什么样的呢？这就不得不先枯燥地解释一些东西了。首先，什么叫做一个「promise」？一个 promise 可以是一个对象或者函数，它包含一个 then 接口并且符合相应的规范。使用一个 promise 的方法就是这样：
 
 ```
-
 promise.then(function(response) {
 // onFulfilled 时执行
 }, function(error) {
 // onRejected 时执行
 });
-
-
 ```
 
 于是问题又来了，什么叫做 fulfilled 和 rejected 呢？一个 promise 会有三种状态，大致可以理解为执行成功（fulfilled）、执行失败（rejected）和正在执行中（pending）。Promise 包含一个状态机，它内部的状态转换，只允许从 pending 到 fulfilled 或者 rejected 一次，不允许更多了。如果用[大家](https://www.w3cdoc.com)喜闻乐见的薛定谔的猫来解释，就是打开盒子的时候，[我们](https://www.w3cdoc.com)的猫要么死了，要么没死，要么不确定死没死，死的的猫无法复活，活猫也一定不会死:D
@@ -261,36 +212,35 @@ promise.then(function(response) {
 新建一个 promise 的时候，[我们](https://www.w3cdoc.com)需要在代码中定义什么时候算成功了，什么时候算失败了。于是上面 wait 的例子便可以改写这样了：
 
 ```
-
 function waitPromise(param) {
 return new Promise(function(resolve, reject) {
-setTimeout(function() {
-resolve(param);
-}, 2000 + (Math.random() - 0.5) * 1000);
-});
+  setTimeout(function() {
+    resolve(param);
+  }, 2000 + (Math.random() - 0.5) * 1000);
+  });
 }
 waitPromise('如果你愿意').then(function(response) {
 console.log(response);
-return waitPromise('一层');
+  return waitPromise('一层');
 }).then(function(response) {
 console.log(response);
-return waitPromise('一层');
+  return waitPromise('一层');
 }).then(function(response) {
 console.log(response);
-return waitPromise('一层地');
+  return waitPromise('一层地');
 }).then(function(response) {
 console.log(response);
-return waitPromise('剥开我的心');
+  return waitPromise('剥开我的心');
 }).then(console.log.bind(console));
-
-
 ```
 
 从上面的例子中，[我们](https://www.w3cdoc.com)可以看出几点：
 
 一个 promise 它 resolve（或者 reject）的东西就是 then 的两个回调接受的参数。  
 then 可以链式调用，调用的顺序就是你定义的顺序。  
+
 在 onFulfilled（或者 onRejected）中，你可以返回一个 promise，此时 then 会返回这个 promise 的一个代理，并响应它的状态变化（即给下一个 then 使用）。  
+
 onFulfilled 和 onRejected 中，除了可以返回一个 promise 以外，还可以返回一个对象，其中包含一个 then 方法——这样的对象称作 thenable。当 thenable 被返回时，代理的 promise 就会去调用该方法，并传入 resolvePromise 和 rejectPromise 两个参数，于是这个 promise 也就链式地传递下去了。除此之外，返回一个不是 thenable 的值也是可以的，这相当于一个简化，该返回值会被链式的 promise 立即 fulfill。
 
 上面的例子比较一根筋，所有的 then 只定义了第一个参数（即成功的回调），其实[我们](https://www.w3cdoc.com)还可以通过调用 onRejected 或者抛出一个异常来表示 Promise 执行失败，从而进入 then 的第二个函数中（then(func1, func2) 必定会调用且仅调用其中一个）。听上去是不是有点 try/catch 的味道，事实上，Promise 还真提供了一个语法糖，就是 catch(func)，它其实相当于 then(undefined, func)。链条中加入的 catch 可以管上它之前所有的 promise 中的失败情况。
@@ -305,20 +255,16 @@ Promises/A+
 之前说了那么多关于 Promise 的这个规定，那个规定，其实它是有一个统一的名称的，就叫做 Promises/A+。在它的网站上，你可以阅读到完整的规范文档。  
 基于这个标准，除了 ECMAScript 6 中比较简易的 Promise 以外，还有很多实现各不相同，功能各有千秋的实现，比较有名的有（按现有 Github Star 数排列）：
 
-```
-
+``` 
 Q
 Bluebird
 when
 rsvp.js
-
-
 ```
 
 例如，Q 支持进度查询功能，执行时间较长的异步操作（例如文件上传）可以即时获取进度信息：
 
 ```
-
 return uploadFile()
 .then(function () {
 // Success uploading the file
@@ -338,67 +284,65 @@ return uploadFile()
 
 ```
 function MyPromise(resolver) {
-  // 简单起见就不做类型检查了，假定 resolver 一定为函数
-  this.status = 0; // 0: pending, 1: fulfilled, 2: rejected
-  this.value = null;
-  this.handlers = [];
-  doResolve.call(this, resolver);
+// 简单起见就不做类型检查了，假定 resolver 一定为函数
+this.status = 0; // 0: pending, 1: fulfilled, 2: rejected
+this.value = null;
+this.handlers = [];
+doResolve.call(this, resolver);
 }
 function doResolve(resolver) {
-  var called = false;
-  function resolvePromise(value) {
-    if (called) {
-      return;
-    } else {
-      called = true;
-      resolve.call(this, value);
-    }
+var called = false;
+function resolvePromise(value) {
+  if (called) {
+    return;
+  } else {
+    called = true;
+    resolve.call(this, value);
   }
-  function rejectPromise(reason) {
-    if (called) {
-      return;
-    } else {
-      called = true;
-      reject.call(this, reason);
-    }
+}
+function rejectPromise(reason) {
+  if (called) {
+    return;
+  } else {
+    called = true;
+    reject.call(this, reason);
   }
-  try {
-    resolver(resolvePromise.bind(this), rejectPromise.bind(this));
-  } catch(e) {
-    rejectPromise(e);
-  }
+}
+try {
+  resolver(resolvePromise.bind(this), rejectPromise.bind(this));
+} catch(e) {
+  rejectPromise(e);
+}
 }
 ```
 
 这样，当使用 new Promise(function(resolve, reject) {…}); 构造时，就会进入 doResolve，这时会执行传入给 new Promise 的参数，并给出 resolve 和 reject 的实现。可以看到为了保证 resolve 或 reject 总共只能被调用一次，这里用到了一个闭包。接下来来看具体的 resolve 和 reject 是怎么实现的。
 
 ```
-
 function resolve(value) {
-  try {
-    if (this === value) {
-      throw new TypeError('A promise cannot be resolved with itself.');
-    }
-    if (value && (typeof value === 'object' || typeof value === 'function')) {
-      var then = value.then;
-      if (typeof then === 'function') {
-        doResolve.call(this, then.bind(value));
-        return;
-      }
-    }
-    this.status = 1;
-    this.value = value;
-    dequeue.call(this);
-  } catch(e) {
-    reject(e);
+try {
+  if (this === value) {
+    throw new TypeError('A promise cannot be resolved with itself.');
   }
+  if (value && (typeof value === 'object' || typeof value === 'function')) {
+    var then = value.then;
+    if (typeof then === 'function') {
+      doResolve.call(this, then.bind(value));
+      return;
+    }
+  }
+  this.status = 1;
+  this.value = value;
+  dequeue.call(this);
+} catch(e) {
+  reject(e);
+}
 }
 function reject(reason) {
   this.status = 2;
   this.value = reason;
   dequeue.call(this);
 }
-
 ```
 
 具体的 resolve 实现中，[我们](https://www.w3cdoc.com)会判断解决的值是否是一个 thenable，如果是的话，就会去执行这个 then 函数，并且接受它的状态和返回值。如果不是，就直接使用该值解决这个 promise。
@@ -408,7 +352,6 @@ function reject(reason) {
 在这里，[我们](https://www.w3cdoc.com)使用了 this.handlers 数组来暂存 then 的回调函数，当状态改变时，会调用 dequeue 方法来处理队列。
 
 ```
-
 function dequeue() {
   var handler;
   while (this.handlers.length) {
@@ -416,53 +359,50 @@ function dequeue() {
     handle.call(this, handler.thenPromise, handler.onFulfilled, handler.onRejected);
   }
 }
-
 ```
 
 最后便是核心方法 then 的实现了。根据规范，它必须返回一个 promise，并根据 onFulfilled 或 onRejected 回调的返回值来决定是将它标记为完成还是失败。
 
 ```
-
 MyPromise.prototype.then = function(onFulfilled, onRejected) {
-  var self = this;
-  var thenPromise = new MyPromise(function() {});
-  if (!self.status) {
-    self.handlers.push({
-    thenPromise: thenPromise,
-    onFulfilled: onFulfilled,
-    onRejected: onRejected
-    });
-  } else {
-    handle.call(self, thenPromise, onFulfilled, onRejected);
-  }
-  return thenPromise;
+var self = this;
+var thenPromise = new MyPromise(function() {});
+if (!self.status) {
+  self.handlers.push({
+  thenPromise: thenPromise,
+  onFulfilled: onFulfilled,
+  onRejected: onRejected
+  });
+} else {
+  handle.call(self, thenPromise, onFulfilled, onRejected);
+}
+return thenPromise;
 };
 function handle(thenPromise, onFulfilled, onRejected) {
-  var self = this;
-  setTimeout(function() {
-    var callback, ret;
-    if (self.status == 1) {
-      callback = onFulfilled;
-    } else {
-      callback = onRejected;
+var self = this;
+setTimeout(function() {
+  var callback, ret;
+  if (self.status == 1) {
+    callback = onFulfilled;
+  } else {
+    callback = onRejected;
+  }
+  if (typeof callback === 'function') {
+    try {
+      ret = callback(self.value);
+      resolve.call(thenPromise, ret);
+    } catch(e) {
+      reject.call(thenPromise, e);
     }
-    if (typeof callback === 'function') {
-      try {
-        ret = callback(self.value);
-        resolve.call(thenPromise, ret);
-      } catch(e) {
-        reject.call(thenPromise, e);
-      }
-      return;
-    }
-    if (self.status == 1) {
-      resolve.call(thenPromise, self.value);
-    } else {
-      reject.call(thenPromise, self.value);
-    }
-  }, 1);
+    return;
+  }
+  if (self.status == 1) {
+    resolve.call(thenPromise, self.value);
+  } else {
+    reject.call(thenPromise, self.value);
+  }
+}, 1);
 }
-
 ```
 
 在上面的 handle 函数中，[我们](https://www.w3cdoc.com)立即调用回调函数，并且根据回调函数的类型来改变 then 方法返回的 promise 的状态，这样就形成了一个 promise 链条。
@@ -475,20 +415,17 @@ function handle(thenPromise, onFulfilled, onRejected) {
 [我们](https://www.w3cdoc.com)回到文章开头的例子，使用[我们](https://www.w3cdoc.com)自己的 MyPromise 试验一下。简单起见，就不写那么多层了。
 
 ```
-
 function waitPromise(param) {
-  return new Promise(function(resolve, reject) {
-    setTimeout(function() {
-      resolve(param);
-    }, 2000 + (Math.random() - 0.5) * 1000);
-  });
+return new Promise(function(resolve, reject) {
+  setTimeout(function() {
+    resolve(param);
+  }, 2000 + (Math.random() - 0.5) * 1000);
+});
 }
 waitPromise('如果你愿意').then(function(response) {
-  console.log(response);
-  return waitPromise('一层');
+console.log(response);
+return waitPromise('一层');
 }).then(console.log.bind(console));
-
-
 ```
 
 可以看到[我们](https://www.w3cdoc.com)可以成功输出两行文字。你能根据上面的实现，看出这次调用事实上一共产生了多少个 promise 对象吗？
@@ -501,11 +438,9 @@ P2：第二个 then 返回的
 P3：第一个 then 里，通过 return waitPromise(‘一层’) 返回的  
 P4：在处理 P1 时，会调用 P3 的 then 方法，这时候又会返回一个 promise
 
+## Pomise.all与Promise.race举例
 
-
-# Pomise.all与Promise.race举例
-
-##### 一、Pomise.all的使用
+### Pomise.all的使用
 
 Promise.all可以将多个Promise实例包装成一个新的Promise实例。同时，成功和失败的返回值是不同的，成功的时候返回的是一个结果数组，而失败的时候则返回最先被reject失败状态的值。
 
@@ -513,27 +448,26 @@ Promise.all可以将多个Promise实例包装成一个新的Promise实例。同�
 
 ```
 let p1 = new Promise((resolve, reject) => {
-  resolve('成功了')
+resolve('成功了')
 })
 
 let p2 = new Promise((resolve, reject) => {
-  resolve('success')
+resolve('success')
 })
 
 let p3 = Promse.reject('失败')
 
 Promise.all([p1, p2]).then((result) => {
-  console.log(result)               //['成功了', 'success']
+console.log(result)               //['成功了', 'success']
 }).catch((error) => {
-  console.log(error)
+console.log(error)
 })
 
 Promise.all([p1,p3,p2]).then((result) => {
-  console.log(result)
+console.log(result)
 }).catch((error) => {
-  console.log(error)      // 失败了，打出 '失败'
+console.log(error)      // 失败了，打出 '失败'
 })
-
 ```
 
 Promse.all在处理多个异步处理时非常有用，比如说一个页面上需要等两个或多个ajax的数据回来以后才正常显示，在此之前只显示loading图标。
@@ -542,55 +476,48 @@ Promse.all在处理多个异步处理时非常有用，比如说一个页面上�
 
 ```
 let wake = (time) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(`${time / 1000}秒后醒来`)
-    }, time)
-  })
+return new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve(`${time / 1000}秒后醒来`)
+  }, time)
+})
 }
 
 let p1 = wake(3000)
 let p2 = wake(2000)
 
 Promise.all([p1, p2]).then((result) => {
-  console.log(result)       // [ '3秒后醒来', '2秒后醒来' ]
+console.log(result)       // [ '3秒后醒来', '2秒后醒来' ]
 }).catch((error) => {
-  console.log(error)
+console.log(error)
 })
 
 ```
 
 需要特别注意的是，Promise.all获得的成功结果的数组里面的数据顺序和Promise.all接收到的数组顺序是一致的，即p1的结果在前，即便p1的结果获取的比p2要晚。这带来了一个绝大的好处：在[前端](https://www.w3cdoc.com)开发请求数据的过程中，偶尔会遇到发送多个请求并根据请求顺序获取和使用数据的场景，使用Promise.all毫无疑问可以解决这个问题。
 
-##### 二、Promise.race的使用
+### Promise.race的使用
 
 顾名思义，Promse.race就是赛跑的意思，意思就是说，Promise.race([p1, p2, p3])里面哪个结果获得的快，就返回那个结果，不管结果本身是成功状态还是失败状态。
 
 ```
 let p1 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve('success')
-  },1000)
+setTimeout(() => {
+  resolve('success')
+},1000)
 })
 
 let p2 = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    reject('failed')
-  }, 500)
+setTimeout(() => {
+  reject('failed')
+}, 500)
 })
 
 Promise.race([p1, p2]).then((result) => {
-  console.log(result)
+console.log(result)
 }).catch((error) => {
-  console.log(error)  // 打开的是 'failed'
+console.log(error)  // 打开的是 'failed'
 })
 
 ```
-
 原理是挺简单的，但是在实际运用中还没有想到什么的使用场景会使用到。
-
-# 参考资料
-
-JavaScript Promises – There and back again  
-Promises/A+  
-Promises Implementing
