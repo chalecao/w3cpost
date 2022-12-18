@@ -18,6 +18,19 @@ weight: 9
 
 最内部的即为内容区。
 
+### border-box
+
+有两种盒子模型：
+
+①是标准盒子模型，一般浏览器默认为标准盒子模型。即:box-sizing:content-box
+- 没有设置box-sizing:border-box属性，宽高就是设置的宽度和高度，展示在页面上的宽高会加上padding和border的值
+- 比如填满宽度的时候直接写width：100%，这时候如果有padding和border，页面会被撑开，出现滚动条
+
+②是怪异盒子模型，可根据实际项目需要自行设置。即：box-sizing:border-box
+- 加了box-sizing:border-box属性，padding和border的值都算在设置的width和height数值里面，一些老司机可能喜欢这个
+- 比如填满宽度的时候，可以直接写width：100%
+
+
 [我们](https://www.w3cdoc.com)平时用到过吗？
 
 这个概念虽然可能不熟悉，但是实际上[我们](https://www.w3cdoc.com)经常用到：
