@@ -1,6 +1,6 @@
 ---
 title: 关于hit test
-
+weight: 12
 ---
 
   <img loading="lazy" class="alignnone wp-image-6084 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/format,webp" alt="" width="675" height="259" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/format,webp 1156w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_115/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_306/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/11/img_5fa9307828cb6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_294/format,webp 768w" sizes="(max-width: 675px) 100vw, 675px" />

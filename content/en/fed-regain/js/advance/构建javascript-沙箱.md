@@ -1,6 +1,6 @@
 ---
 title: 构建JavaScript 沙箱
-
+weight: 10
 ---
 在 Node.js 中有一个模块叫做 VM，它提供了几个 API，允许代码在 V8 虚拟机上下文中运行，如：
 

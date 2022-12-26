@@ -1,6 +1,6 @@
 ---
 title: 异步回调之Promise对象
-
+weight: 17
 ---
 ## 异步思想
 
@@ -8,8 +8,6 @@ title: 异步回调之Promise对象
 所谓”单线程”，就是指一次只能完成一件任务。如果有多个任务，就必须排队，前面一个任务完成，再执行后面一个任务，以此类推。
 
 这种模式的好处是实现起来比较简单，执行环境相对单纯；坏处是只要有一个任务耗时很长，后面的任务都必须排队等着，会拖延整个程序的执行。常见的[浏览器](https://www.w3cdoc.com)无响应（假死），往往就是因为某一段Javascript代码长时间运行（比如死循环），导致整个页面卡在这个地方，其他任务无法执行。
-
-<img loading="lazy" class="aligncenter" src="//fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/promise1.jpg" alt="异步回调之Promise对象" width="492" height="330" />
 
 ### 异步问题
 
@@ -63,11 +61,11 @@ f1.on('done', f2);
 
 ```
 function f1(){
-　　　　setTimeout(function () {
-　　　　　　// f1的任务代码
-　　　　　　f1.trigger('done');
-　　　　}, 1000);
-　　}
+　　setTimeout(function () {
+　　　　// f1的任务代码
+　　　　f1.trigger('done');
+　　}, 1000);
+}
 ```
 
 f1.trigger(‘done’)表示，执行完成后，立即触发done事件，从而开始执行f2。  
@@ -284,35 +282,35 @@ return uploadFile()
 
 ```
 function MyPromise(resolver) {
-// 简单起见就不做类型检查了，假定 resolver 一定为函数
-this.status = 0; // 0: pending, 1: fulfilled, 2: rejected
-this.value = null;
-this.handlers = [];
-doResolve.call(this, resolver);
+  // 简单起见就不做类型检查了，假定 resolver 一定为函数
+  this.status = 0; // 0: pending, 1: fulfilled, 2: rejected
+  this.value = null;
+  this.handlers = [];
+  doResolve.call(this, resolver);
 }
 function doResolve(resolver) {
-var called = false;
-function resolvePromise(value) {
-  if (called) {
-    return;
-  } else {
-    called = true;
-    resolve.call(this, value);
+  var called = false;
+  function resolvePromise(value) {
+      if (called) {
+        return;
+      } else {
+        called = true;
+        resolve.call(this, value);
+      }
   }
-}
-function rejectPromise(reason) {
-  if (called) {
-    return;
-  } else {
-    called = true;
-    reject.call(this, reason);
+  function rejectPromise(reason) {
+    if (called) {
+      return;
+    } else {
+      called = true;
+      reject.call(this, reason);
+    }
   }
-}
-try {
-  resolver(resolvePromise.bind(this), rejectPromise.bind(this));
-} catch(e) {
-  rejectPromise(e);
-}
+  try {
+    resolver(resolvePromise.bind(this), rejectPromise.bind(this));
+  } catch(e) {
+    rejectPromise(e);
+  }
 }
 ```
 

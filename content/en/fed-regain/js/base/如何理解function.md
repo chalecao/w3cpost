@@ -1,6 +1,6 @@
 ---
 title: 如何理解function
-
+weight: 13
 ---
 ## 想过function吗？
 

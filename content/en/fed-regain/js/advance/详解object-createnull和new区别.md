@@ -65,7 +65,7 @@ console.log(o)
 
 在chrome控制台打印如下：
 
-<img loading="lazy" width="377" height="281" class="alignnone size-full wp-image-4539 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c765506eb.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c765506eb.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c765506eb.png?x-oss-process=image/format,webp 377w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c765506eb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_224/format,webp 300w" sizes="(max-width: 377px) 100vw, 377px" />
+![](/images/posts/2022-12-21-20-08-18.png)
 
 从上图可以看到，新创建的对象继承了`Object`自身的方法，如`hasOwnProperty`、`toString`等，在新对象上可以直接使用。
 
@@ -84,7 +84,7 @@ console.log(o)
 
 在chrome控制台打印如下：
 
-<img loading="lazy" width="213" height="57" class="alignnone size-full wp-image-4540 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7779e97a.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7779e97a.png?x-oss-process=image/format,webp" alt="" />
+![](/images/posts/2022-12-21-20-08-09.png)
 
 可以看到，新创建的对象除了自身属性a之外，原型链上没有任何属性，也就是没有继承Object的任何东西，此时如果[我们](https://www.w3cdoc.com)调用`o.toString()`会报`Uncaught TypeError`的错误。
 
@@ -103,7 +103,7 @@ console.log(o)
 
 将`null`改为`{}`，结果是怎样的？在chrome控制台打印如下：
 
-<img loading="lazy" width="395" height="293" class="alignnone size-full wp-image-4541 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7884db9f.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7884db9f.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7884db9f.png?x-oss-process=image/format,webp 395w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7884db9f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_223/format,webp 300w" sizes="(max-width: 395px) 100vw, 395px" />
+![](/images/posts/2022-12-21-20-09-04.png)
 
 [我们](https://www.w3cdoc.com)看到，这样创建的对象和使用`{}`创建对象已经很相近了，但是还是有一点区别：多了一层`proto`嵌套。
 
@@ -120,7 +120,9 @@ var o = Object.create(Object.prototype,{
 console.log(o)
 ```
 
-chrome控制台打印如下：<img loading="lazy" width="377" height="276" class="alignnone size-full wp-image-4542 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c79ea4239.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c79ea4239.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c79ea4239.png?x-oss-process=image/format,webp 377w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c79ea4239.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_220/format,webp 300w" sizes="(max-width: 377px) 100vw, 377px" />
+chrome控制台打印如下：
+
+![](/images/posts/2022-12-21-20-09-14.png)
 
 这次就和使用`{}`创建的对象一模一样了。至此，我相信[大家](https://www.w3cdoc.com)已经对两者的区别十分清楚了。
 
@@ -136,7 +138,7 @@ chrome控制台打印如下：<img loading="lazy" width="377" height="276" class
 
 在chrome打印如下：
 
-<img loading="lazy" width="375" height="423" class="alignnone size-full wp-image-4543 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7e34e9e7.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7e34e9e7.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7e34e9e7.png?x-oss-process=image/format,webp 375w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12c7e34e9e7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_266,h_300/format,webp 266w" sizes="(max-width: 375px) 100vw, 375px" />
+![](/images/posts/2022-12-21-20-09-25.png)
 
 从上图可以看到，使用`create`创建的对象，没有任何属性，显示`No properties`，[我们](https://www.w3cdoc.com)可以把它当作一个非常**纯净**的map来使用，[我们](https://www.w3cdoc.com)可以自己定义`hasOwnProperty`、`toString`方法，不管是有意还是不小心，[我们](https://www.w3cdoc.com)完全不必担心会将原型链上的同名方法覆盖掉。举个例子：
 
@@ -192,7 +194,7 @@ console.log(o3.a);
 ```
 结果是： 2 ， undefined， 2
 
-<img loading="lazy" class="alignnone  wp-image-4545 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12ce75ac749.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12ce75ac749.png?x-oss-process=image/format,webp" alt="" width="396" height="512" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12ce75ac749.png?x-oss-process=image/format,webp 678w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12ce75ac749.png?x-oss-process=image/quality,q_50/resize,m_fill,w_232,h_300/format,webp 232w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12ce75ac749.png?x-oss-process=image/quality,q_50/resize,m_fill,w_464,h_600/format,webp 464w" sizes="(max-width: 396px) 100vw, 396px" />
+![](/images/posts/2022-12-21-20-09-45.png)
 
 * o1的原型指向的是Object，实例上有属性a。 相当于代码：
 
@@ -205,7 +207,7 @@ console.log(new BB())
 
 o1和这种class 创建出来的对象没有区别的。
 
-<img loading="lazy" class="alignnone  wp-image-4546 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12ce8f814e9.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12ce8f814e9.png?x-oss-process=image/format,webp" alt="" width="352" height="272" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12ce8f814e9.png?x-oss-process=image/format,webp 542w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d12ce8f814e9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_231/format,webp 300w" sizes="(max-width: 352px) 100vw, 352px" />
+![](/images/posts/2022-12-21-20-09-55.png)
 
 * o3的原型指向了Base这个对象，o1属性上没有a，会查找原型，查到原型上有a
 

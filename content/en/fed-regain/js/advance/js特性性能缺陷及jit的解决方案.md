@@ -1,12 +1,6 @@
 ---
 title: JS特性性能缺陷及JIT的解决方案
-
-
-
-
-xzh_tui_back:
-  - 成功
-
+weight: 7
 ---
 拜读了David的《[Know Your Engines: How to Make Your JavaScript Fast][1]》，David是Mozilla的JS引擎工程师，文章主要介绍了JIT与GC原理，以及如何根据某些基本原理，优化js代码的执行效率，虽然是老文了，但对我来说仍受益匪浅。这里，我根据上文整理了本文，同时，[大家](https://www.w3cdoc.com)也可以从侧面了解下JIT。
 
@@ -24,10 +18,9 @@ Javascript是个无类型的语言，这导致了 x = y +ｚ这种表达式，�
 
 而JS引擎内部则使用“细粒度”的类型，比如：32-bit\* integer, 64-bit\* floating-point，如图：
 
+![](/images/posts/2022-12-21-20-44-53.png)
 
-  <img loading="lazy" width="430" height="141" class="alignnone size-full wp-image-4973 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca1639e3d4.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca1639e3d4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca1639e3d4.png?x-oss-process=image/format,webp 430w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d5ca1639e3d4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_98/format,webp 300w" sizes="(max-width: 430px) 100vw, 430px" />
-
-        这就要求js类型-js引擎类型，需要做“boxed/unboxed（装箱/解箱）”，在处理一次x = y + z这种计算，需要经过的步骤如下：
+这就要求js类型-js引擎类型，需要做“boxed/unboxed（装箱/解箱）”，在处理一次x = y + z这种计算，需要经过的步骤如下：
 
 （1）从内存，读取 x = y + z的操作符。
 

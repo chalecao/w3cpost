@@ -1,6 +1,6 @@
 ---
 title: TypeScript初学了解
-
+weight: 3
 ---
 <div>
   <h2 class="heading" data-id="heading-0">

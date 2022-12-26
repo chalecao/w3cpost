@@ -1,7 +1,6 @@
 ---
 title: typescript大法
-
-
+weight: 20
 ---
 介绍下`tsconfig`
 

@@ -17,24 +17,39 @@ for (var i = 0; i < pre.length; ++i) {
 
     const targetEl = e.target.parentNode.lastChild;
     let tempHtmlContent = targetEl.innerText;
+    const isReact = /(react|reactdom|useState|useEffect|useCallback|useMemo)/i.test(tempHtmlContent);
+    const isConsole = /console/.test(tempHtmlContent);
     if (!/html/.test(tempHtmlContent)) {
-      tempHtmlContent = `<!DOCTYPE html>
+      tempHtmlContent = `
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>Code Edit</title>
-${/console/.test(tempHtmlContent)?'<link rel="stylesheet" type="text/css" href="/js/playground/lib/console.css" />':''}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Code Edit</title>
+${isConsole?' <link rel="stylesheet" type="text/css" href="/js/playground/lib/console.css" />':''}
+${isReact?' <script src="/js/playground/framework/babel.js" ></script>':''}
+${isReact?' <script src="//cdn.bootcss.com/react/16.8.6/umd/react.production.min.js" ></script>':''}
+${isReact?' <script src="//cdn.bootcss.com/react-dom/16.8.6/umd/react-dom.production.min.js" ></script>':''}
 </head>
 <body>
-${/console/.test(tempHtmlContent)?'<script src="/js/playground/lib/console.js" ></script>':''}
-<script>
- ${tempHtmlContent}
+${isConsole?' <script src="/js/playground/lib/console.js" ></script>':''}
+${isReact?'<div id="root"></div>':''}
+${isReact?'<script type="text/babel">':'<script>'}
+${isReact?'const useState = React.useState;':''}
+${isReact?'const useEffect = React.useEffect;':''}
+
+${tempHtmlContent}
+${isReact?`
+/**------------修改下组件名称------**/
+ReactDOM.render(
+  <xxx />,
+  document.getElementById('root')
+);`:''}
 </script>
 </body>
 </html>`
     }
-
     localStorage.setItem('playground-html-content', tempHtmlContent);
     window.open("/playground.html");
   });

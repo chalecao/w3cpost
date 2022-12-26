@@ -1,6 +1,8 @@
 ---
 title: react shadow
+weight: 14 
 ---
+
 ## Shadow DOM 是什么
 
 Shadow DOM 是什么？[我们](https://www.w3cdoc.com)先来打开 Chrome 的 DevTool，并在 Settings -> Preferences -> Elements 中把  Show user agent shadow DOM 打上勾。然后，打开一个支持 HTML5 播放的视频网站。

@@ -1,5 +1,6 @@
 ---
 title: script标签添加crossorigin
+weight: 39
 ---
 最近 <a href="https://getbootstrap.com/" target="_blank" rel="noopener noreferrer">Bootstrap 4</a> 已经正式发布了，可能已经有爱尝鲜的小伙伴在 alpha 阶段就尝试过 BS4。不过今天要说的不是 BS4，而是官网里引入 BS4 框架依赖的 jQuery 的代码：
 

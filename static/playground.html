@@ -132,7 +132,8 @@
     }
 
     .editbox {
-      height: 100%； box-sizing: border-box;
+      height: 100%;
+      box-sizing: border-box;
       overflow-y: auto;
     }
 
@@ -194,7 +195,7 @@
       </div>
     </div>
     <div class="result-view">
-      <iframe id="preview" class="preview"></iframe>
+      <iframe class="preview preview-iframe"></iframe>
       <div id="mkview" class="preview markdown-body" style="display: none;"></div>
     </div>
   </div>
@@ -210,7 +211,7 @@
 
 
     var night = false;
-    var dom = document.getElementById('preview');
+
     var editor = CodeMirror.fromTextArea(document.getElementById("htmlEdit"), {
       lineNumbers: false,
       mode: "htmlmixed",
@@ -264,7 +265,7 @@
       }
     });
 
-    runPreview();
+    // runPreview();
     runMkview();
     tab();
 
@@ -275,6 +276,12 @@
     });
 
     function runPreview() {
+      if (document.querySelector('.preview-iframe')) {
+        document.querySelector('.preview-iframe').remove();
+      }
+      var dom = document.createElement('iframe');
+      dom.className = 'preview preview-iframe';
+      document.querySelector('.result-view').append(dom);
       dom.contentWindow.document.open();
       dom.contentWindow.document.write(editor.getValue());
       dom.contentWindow.document.close();

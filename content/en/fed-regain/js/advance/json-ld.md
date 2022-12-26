@@ -1,5 +1,6 @@
 ---
 title: json-ld的用处
+weight: 16
 ---
 
 JSON-LD是 JavaScript Object Notation for Linked Data的缩写，是一种基于JSON表示和传输互联数据（Linked Data）的方法。可用于实施结构化数据。JSON-LD描述了如何通过JSON表示有向图，以及如何在一个文档中混合表示互联数据及非互联数据。JSON-LD的语法和JSON兼容。基于JSON-LD可以在基于Web的编程环境中使用互联数据，构造可互操作的互联数据Web服务（linked data web services），并向基于JSON的存储引擎中保存互联数据。

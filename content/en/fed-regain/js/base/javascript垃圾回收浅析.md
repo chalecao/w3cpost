@@ -1,6 +1,6 @@
 ---
 title: Javascript垃圾回收浅析
-
+weight: 28
 ---
 # 一. 枚举Javascript引擎分配内存的场景：
 

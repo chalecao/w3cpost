@@ -1,6 +1,6 @@
 ---
 title: 使用setTimeout循环调用和setInterval有什么区别
-
+weight: 16
 ---
 [有关setTimeout（）和setInterval（）的注意事项][1] 
 

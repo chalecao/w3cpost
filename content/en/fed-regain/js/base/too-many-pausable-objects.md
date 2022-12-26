@@ -1,6 +1,6 @@
 ---
 title: Too many Pausable Objects
-
+weight: 40
 ---
 业务[前端](https://www.w3cdoc.com)监控JS报错偶尔会看到这个错误
 

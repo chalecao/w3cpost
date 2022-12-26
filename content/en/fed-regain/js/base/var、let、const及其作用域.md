@@ -125,7 +125,7 @@ reference error: test is not defined
 _如下：_
 
 
-  ```
+```
 var arr = [];
 for(var i = 0; i < 2; i++){
     arr[i] = function(){
@@ -141,7 +141,7 @@ arr\[1\]()会输出2，原因是var声明的变量会变量提升，且当执行
 以前的常用做法是，利用闭包特性。如下：
 
 
-  ```
+```
 var arr = [];
 for(var i = 0; i < 2; i++){
     arr[i] = (function(i){

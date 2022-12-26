@@ -1,7 +1,8 @@
 ---
 title: Object.defineProperty与Proxy
-
+weight: 3 
 ---
+
 [Object.observe()][1]方法用于异步地监视一个对象的修改。当对象属性被修改时，方法的回调函数会提供一个有序的修改流。然而，这个接口已经被废弃并从各[浏览器](https://www.w3cdoc.com)中移除。你可以使用更通用的 [`Proxy`][2] 对象替代。
     
 写了两个版本，分别是使用 js 里的 Proxy （代理）和 Object.defineProperty 实现

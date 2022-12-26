@@ -17,7 +17,8 @@ Fetch是基于promise的，因此比较容易想到，如果服务器返回http�
 例如, `ftp` 协议 并不支持fetch,所以它会返回一个被rejected 的 promise :
 
 ```
-fetch('ftp://example.com') .catch(err => console.error('Caught error: ', err))
+fetch('ftp://example.com')
+.catch(err => console.error('Caught error: ', err))
 ```
 
 但是请求一个返回404错误的URL并有没有发生错误（即类似404这类错误fetch返回的并不是rejected）
@@ -39,7 +40,9 @@ if(res.ok) {
 } else {
     throw Error(`Request rejected with status ${res.status}`);
 }})
-.catch(console.error)
+.catch(e=>{
+    console.error(e.message, e)
+})
 ```
 
 ### 忘记包含credentials

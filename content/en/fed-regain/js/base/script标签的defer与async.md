@@ -1,6 +1,6 @@
 ---
 title: script标签的defer与async
-
+weight: 38
 ---
 ## javascript知识点
 

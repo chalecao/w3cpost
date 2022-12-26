@@ -1,6 +1,6 @@
 ---
 title: IMMUTABLE 详解
-
+weight: 26
 ---
 有人说 Immutable 可以给 React 应用带来数十倍的提升，也有人说 Immutable 的引入是近期 JavaScript 中伟大的发明，因为同期 React 太火，它的光芒被掩盖了。这些至少说明 Immutable 是很有价值的，同时我也明白了Object.assign 这个API为什么设计成浅拷贝了，拷贝的对象树底层的节点还是公用的，这样高效而且节省内存。下面[我们](https://www.w3cdoc.com)来一探究竟。
 
