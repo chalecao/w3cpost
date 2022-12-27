@@ -131,12 +131,12 @@ title: 用JavaScript自己写Virtual DOM
   <a href="https://github.com/chalecao/virtualdom">github中package.json配置和rollup.config.js</a> <img loading="lazy" class="alignnone wp-image-1844 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/22-1.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/22-1.jpg?x-oss-process=image/resize,m_fill,w_1024,h_639/format,webp" alt="" width="510" height="318" /> <img loading="lazy" class="alignnone wp-image-1843 " src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/333.jpg" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/01/333.jpg?x-oss-process=image/resize,m_fill,w_1024,h_612/format,webp" alt="" width="505" height="302" />
   ```
 const vdom = (
-    &lt;div id="_Q5" style="border: 1px solid red;">
-        &lt;div style="text-align: center; margin: 36px auto 18px; width: 160px; line-height: 0;">
-            &lt;img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png" height="56" style="border: none; margin: 8px 0px;">&lt;/img>
+    <div id="_Q5" style="border: 1px solid red;">
+        <div style="text-align: center; margin: 36px auto 18px; width: 160px; line-height: 0;">
+            <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_160x56dp.png" height="56" style="border: none; margin: 8px 0px;"></img>
             hello
-        &lt;/div>
-    &lt;/div>)
+        </div>
+    </div>)
 
 ``` 上面[我们](https://www.w3cdoc.com)定义的vdom片段采用JSX处理器处理后如下面代码：
   ```
@@ -197,7 +197,7 @@ function updateElement($parent, newnode, oldnode) {
     } else if (newnode.type) {
         var newL = newnode.children.length;
         var oldL = oldnode.children.length;
-        for (var i = 0; i &lt; newL || i &lt; oldL; i++) {
+        for (var i = 0; i < newL || i < oldL; i++) {
             updateElement($parent.childNodes[index], newnode.children[i], oldnode.children[i], i);
         }
     }
@@ -218,7 +218,7 @@ function updateElement($parent, newnode, oldnode) {
       ```
 {
   type: “div”,
-  &lt;span style="color: #ff0000;">props&lt;/span>: {“style”: ”…”},
+  props: {“style”: ”…”},
   children: [
       {type: “img”, props: {“src”: ”…”}
 ]}
@@ -280,10 +280,10 @@ function updateElement($parent, newnode, oldnode, index = 0) {
         $parent.replaceChild(createElement(newnode),
             $parent.childNodes[index])
     } else if (newnode.type) {
-       &lt;span style="color: #ff0000;"> updateProps($el, newnode.props, oldnode.props)&lt;/span>
+        updateProps($el, newnode.props, oldnode.props)
         let newL = newnode.children.length;
         let oldL = oldnode.children.length;
-        for (var i = 0; i &lt; newL || i &lt; oldL; i++) {
+        for (var i = 0; i < newL || i < oldL; i++) {
             updateElement($parent.childNodes[index],
                 newnode.children[i],
                 oldnode.children[i],

@@ -6,7 +6,7 @@ title: web components入门与实践
 
 * **Custom elements（自定义元素）：**一组JavaScript API，允许您定义custom elements及其行为，然后可以在您的用户界面中按照需要使用它们。
 * **Shadow DOM（影子DOM）**：一组JavaScript API，用于将封装的“影子”DOM树附加到元素（与主文档DOM分开呈现）并控制其关联的功能。通过这种方式，您可以保持元素的功能私有，这样它们就可以被脚本化和样式化，而不用担心与文档的其他部分发生冲突。看这里（ [Shadow DOM简单了解][1]）
-* **HTML templates（HTML模板）：**<a style="font-style: normal !important; text-decoration: none; color: #3d7e9a; margin: 0px; padding: 0px; border: 0px;" title="HTML <template> 元素 是一种用于保存客户端内容的机制，该内容在页面加载时不被渲染，但可以在运行时使用JavaScript进行实例化。" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/template">&lt;template></a> 和 <a style="font-style: normal !important; text-decoration: none; color: #3d7e9a; margin: 0px; padding: 0px; border: 0px;" title="HTML <slot> 标签是web组件技术的一部分，slot是web组件的一个占位符，可以用来插入自定义的标记文本。可以创建不同的DOM树并进行渲染。" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/slot">&lt;slot></a> 元素使您可以编写不在呈现页面中显示的标记模板。然后它们可以作为自定义元素结构的基础被多次重用。
+* **HTML templates（HTML模板）：**<a style="font-style: normal !important; text-decoration: none; color: #3d7e9a; margin: 0px; padding: 0px; border: 0px;" title="HTML <template> 元素 是一种用于保存客户端内容的机制，该内容在页面加载时不被渲染，但可以在运行时使用JavaScript进行实例化。" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/template"><template></a> 和 <a style="font-style: normal !important; text-decoration: none; color: #3d7e9a; margin: 0px; padding: 0px; border: 0px;" title="HTML <slot> 标签是web组件技术的一部分，slot是web组件的一个占位符，可以用来插入自定义的标记文本。可以创建不同的DOM树并进行渲染。" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/slot"><slot></a> 元素使您可以编写不在呈现页面中显示的标记模板。然后它们可以作为自定义元素结构的基础被多次重用。
 * **[HTML Imports（HTML导入）][2]：**一旦定义了自定义组件，最简单的重用它的方法就是使其定义细节保存在一个单独的文件中，然后使用导入机制将其导入到想要实际使用它的页面中。HTML 导入就是这样一种机制，尽管存在争议 — Mozilla 根本不同意这种方法，并打算在将来实现更合适的。
 
 实现web component的基本方法通常如下所示：
@@ -14,7 +14,7 @@ title: web components入门与实践
   1. 使用ECMAScript 2015类语法创建一个类，来指定web组件的功能(参阅[类][3]获取更多信息)。
   2. 使用[`CustomElementRegistry.define()`][4]方法注册您的新自定义元素 ，并向其传递要定义的元素名称、指定元素功能的类以及可选的，其所继承自的元素。
   3. 如果需要的话，使用[`Element.attachShadow()`][5]方法将一个shadow DOM附加到自定义元素上。使用通常的DOM方法向shadow DOM中添加子元素、事件监听器等等。
-  4. 如果需要的话，使用<a style="font-style: normal !important; text-decoration: none; color: #3d7e9a; margin: 0px; padding: 0px; border: 0px;" title="HTML <template> 元素 是一种用于保存客户端内容的机制，该内容在页面加载时不被渲染，但可以在运行时使用JavaScript进行实例化。" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/template">&lt;template></a> 和 <a style="font-style: normal !important; text-decoration: none; color: #3d7e9a; margin: 0px; padding: 0px; border: 0px;" title="HTML <slot> 标签是web组件技术的一部分，slot是web组件的一个占位符，可以用来插入自定义的标记文本。可以创建不同的DOM树并进行渲染。" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/slot">&lt;slot></a>方法定义一个HTML模板。再次使用常规DOM方法克隆模板并将其附加到您的shadow DOM中。
+  4. 如果需要的话，使用<a style="font-style: normal !important; text-decoration: none; color: #3d7e9a; margin: 0px; padding: 0px; border: 0px;" title="HTML <template> 元素 是一种用于保存客户端内容的机制，该内容在页面加载时不被渲染，但可以在运行时使用JavaScript进行实例化。" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/template"><template></a> 和 <a style="font-style: normal !important; text-decoration: none; color: #3d7e9a; margin: 0px; padding: 0px; border: 0px;" title="HTML <slot> 标签是web组件技术的一部分，slot是web组件的一个占位符，可以用来插入自定义的标记文本。可以创建不同的DOM树并进行渲染。" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/slot"><slot></a>方法定义一个HTML模板。再次使用常规DOM方法克隆模板并将其附加到您的shadow DOM中。
   5. 在页面任何您喜欢的位置使用自定义元素，就像使用常规HTML元素那样。
 
 # 生命周期 {#生命周期}
@@ -37,19 +37,19 @@ title: web components入门与实践
 
 :   介绍shadow DOM的基础知识，展示如何向元素中附加shadow DOM，添加到shadow DOM树，添加样式等等。
 :   ```
-&lt;!DOCTYPE html>
-&lt;html>
-  &lt;head>
-    &lt;meta charset="utf-8">
-    &lt;title>Simple DOM example&lt;/title>
-  &lt;/head>
-  &lt;body>
-      &lt;section>
-        &lt;img src="dinosaur.png" alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.">
-        &lt;p>Here we will add a link to the &lt;a href="https://www.mozilla.org/">Mozilla homepage&lt;/a>&lt;/p>
-      &lt;/section>
-  &lt;/body>
-&lt;/html>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Simple DOM example</title>
+  </head>
+  <body>
+      <section>
+        <img src="dinosaur.png" alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.">
+        <p>Here we will add a link to the <a href="https://www.mozilla.org/">Mozilla homepage</a></p>
+      </section>
+  </body>
+</html>
 ```
 :   上面这个代码产生的DOM结构如下：<img loading="lazy" class="" src="https://mdn.mozillademos.org/files/14559/dom-screenshot.png" alt="" width="532" height="294" /> Shadow DOM 允许将隐藏的DOM树附加到一个常规的DOM节点上，这个附加的Shadow DOM树从根节点shadow root开始，下面可以像常规DOM操作一样挂载你想要的DOM节点。<img loading="lazy" class="aligncenter" src="https://mdn.mozillademos.org/files/15788/shadow-dom.png" alt="" width="587" height="280" />   Shadow DOM一些术语：
 
@@ -58,12 +58,12 @@ title: web components入门与实践
       * **Shadow boundary**: shadow DOM 结束, regular DOM 开始的分界.
       * **Shadow root**: shadow dom根节点.   shadow DOM 的节点操作和常规DOM的操作几乎没有区别， 唯一的区别是shadow DOM 的操作不会影响外面任何正常DOM的数据和展示。shadow DOM其实并不是什么新的概念， 
     
-    <a style="text-decoration: none; color: #3d7e9a; margin: 0px; padding: 0px; border: 0px;" title="The HTML Video element (<video>) embeds a media player which supports video playback into the document." href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video">&lt;video></a>标签最早的实现原理就是利用shadow DOM来展示处理播放器的操作按钮等元素。shadow DOM 规范主要是为了方便开发者操作自定义的DOM元素下的shadow DOM。
+    <a style="text-decoration: none; color: #3d7e9a; margin: 0px; padding: 0px; border: 0px;" title="The HTML Video element (<video>) embeds a media player which supports video playback into the document." href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"><video></a>标签最早的实现原理就是利用shadow DOM来展示处理播放器的操作按钮等元素。shadow DOM 规范主要是为了方便开发者操作自定义的DOM元素下的shadow DOM。
 :
 
 ## [Using templates and slots][8]
 
-:   介绍如何使用<a style="font-style: normal !important; text-decoration: none; color: #3d7e9a; margin: 0px; padding: 0px; border: 0px;" title="HTML <template> 元素 是一种用于保存客户端内容的机制，该内容在页面加载时不被渲染，但可以在运行时使用JavaScript进行实例化。" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/template">&lt;template></a> 和 <a style="font-style: normal !important; text-decoration: none; color: #3d7e9a; margin: 0px; padding: 0px; border: 0px;" title="HTML <slot> 标签是web组件技术的一部分，slot是web组件的一个占位符，可以用来插入自定义的标记文本。可以创建不同的DOM树并进行渲染。" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/slot">&lt;slot></a> 元素定义可重用的HTML结构，然后在Web components中使用该结构。
+:   介绍如何使用<a style="font-style: normal !important; text-decoration: none; color: #3d7e9a; margin: 0px; padding: 0px; border: 0px;" title="HTML <template> 元素 是一种用于保存客户端内容的机制，该内容在页面加载时不被渲染，但可以在运行时使用JavaScript进行实例化。" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/template"><template></a> 和 <a style="font-style: normal !important; text-decoration: none; color: #3d7e9a; margin: 0px; padding: 0px; border: 0px;" title="HTML <slot> 标签是web组件技术的一部分，slot是web组件的一个占位符，可以用来插入自定义的标记文本。可以创建不同的DOM树并进行渲染。" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/slot"><slot></a> 元素定义可重用的HTML结构，然后在Web components中使用该结构。
 :
 :   综合实践，如下面这个例子：
 

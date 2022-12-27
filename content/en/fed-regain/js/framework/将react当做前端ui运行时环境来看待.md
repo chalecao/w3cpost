@@ -76,12 +76,12 @@ React 元素是一个普通的 JavaScript 对象。它用来描述一个宿主�
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token comment">// JSX 是用来描述这些对象的语法糖。&lt;/span>
-&lt;span class="token comment">// &lt;button className="blue" />&lt;/span>
-&lt;span class="token punctuation">{&lt;/span>
-  type&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'button'&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-  props&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">{&lt;/span> className&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'blue'&lt;/span> &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+// JSX 是用来描述这些对象的语法糖。
+// <button className="blue" />
+{
+  type: 'button',
+  props: { className: 'blue' }
+}
 ```
 </div>
 
@@ -91,23 +91,23 @@ React 元素是轻量级的因为没有宿主实例与它绑定在一起。同�
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token comment">// JSX 是用来描述这些对象的语法糖。&lt;/span>
-&lt;span class="token comment">// &lt;dialog>&lt;/span>
-&lt;span class="token comment">//   &lt;button className="blue" />&lt;/span>
-&lt;span class="token comment">//   &lt;button className="red" />&lt;/span>
-&lt;span class="token comment">// &lt;/dialog>&lt;/span>
-&lt;span class="token punctuation">{&lt;/span>
-  type&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'dialog'&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-  props&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    children&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">[&lt;/span>&lt;span class="token punctuation">{&lt;/span>
-      type&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'button'&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-      props&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">{&lt;/span> className&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'blue'&lt;/span> &lt;span class="token punctuation">}&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-      type&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'button'&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-      props&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">{&lt;/span> className&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'red'&lt;/span> &lt;span class="token punctuation">}&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">]&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+// JSX 是用来描述这些对象的语法糖。
+// <dialog>
+//   <button className="blue" />
+//   <button className="red" />
+// </dialog>
+{
+  type: 'dialog',
+  props: {
+    children: [{
+      type: 'button',
+      props: { className: 'blue' }
+    }, {
+      type: 'button',
+      props: { className: 'red' }
+    }]
+  }
+}
 ```
 </div>
 
@@ -127,11 +127,11 @@ React 元素具有不可变性。例如，你不能改变 React 元素中的子�
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>
-  &lt;span class="token comment">// { type: 'button', props: { className: 'blue' } }&lt;/span>
-  &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>button &lt;span class="token attr-name">className&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>blue&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token punctuation">/>&lt;/span>&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-  document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'container'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+ReactDOM.render(
+  // { type: 'button', props: { className: 'blue' } }
+  <button className="blue" />,
+  document.getElementById('container')
+);
 ```
 </div>
 
@@ -141,10 +141,10 @@ React 会查看 reactElement.type （在[我们](https://www.w3cdoc.com)的例
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token comment">// 在 ReactDOM 渲染器内部（简化版）&lt;/span>
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">createHostInstance&lt;/span>&lt;span class="token punctuation">(&lt;/span>reactElement&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-&lt;span class="gatsby-highlight-code-line">  &lt;span class="token keyword">let&lt;/span> domNode &lt;span class="token operator">=&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createElement&lt;/span>&lt;span class="token punctuation">(&lt;/span>reactElement&lt;span class="token punctuation">.&lt;/span>type&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;/span>&lt;span class="gatsby-highlight-code-line">  domNode&lt;span class="token punctuation">.&lt;/span>className &lt;span class="token operator">=&lt;/span> reactElement&lt;span class="token punctuation">.&lt;/span>props&lt;span class="token punctuation">.&lt;/span>className&lt;span class="token punctuation">;&lt;/span>&lt;/span>  &lt;span class="token keyword">return&lt;/span> domNode&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+// 在 ReactDOM 渲染器内部（简化版）
+function createHostInstance(reactElement) {
+  let domNode = document.createElement(reactElement.type);  domNode.className = reactElement.props.className;  return domNode;
+}
 ```
 </div>
 
@@ -152,8 +152,8 @@ React 会查看 reactElement.type （在[我们](https://www.w3cdoc.com)的例
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="gatsby-highlight-code-line">&lt;span class="token keyword">let&lt;/span> domNode &lt;span class="token operator">=&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createElement&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'button'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;/span>&lt;span class="gatsby-highlight-code-line">domNode&lt;span class="token punctuation">.&lt;/span>className &lt;span class="token operator">=&lt;/span> &lt;span class="token string">'blue'&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;/span>
-domContainer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">appendChild&lt;/span>&lt;span class="token punctuation">(&lt;/span>domNode&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+let domNode = document.createElement('button');domNode.className = 'blue';
+domContainer.appendChild(domNode);
 ```
 </div>
 
@@ -165,17 +165,17 @@ domContainer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token 
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>
-&lt;span class="gatsby-highlight-code-line">  &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>button &lt;span class="token attr-name">className&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>blue&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token punctuation">/>&lt;/span>&lt;/span>&lt;span class="token punctuation">,&lt;/span>&lt;/span>  document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'container'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+ReactDOM.render(
+  <button className="blue" />,  document.getElementById('container')
+);
 
-&lt;span class="token comment">// ... 之后 ...&lt;/span>
+// ... 之后 ...
 
-&lt;span class="token comment">// 应该替换掉 button 宿主实例吗？&lt;/span>
-&lt;span class="token comment">// 还是在已有的 button 上更新属性？&lt;/span>
-ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>
-&lt;span class="gatsby-highlight-code-line">  &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>button &lt;span class="token attr-name">className&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>red&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token punctuation">/>&lt;/span>&lt;/span>&lt;span class="token punctuation">,&lt;/span>&lt;/span>  document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'container'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+// 应该替换掉 button 宿主实例吗？
+// 还是在已有的 button 上更新属性？
+ReactDOM.render(
+  <button className="red" />,  document.getElementById('container')
+);
 ```
 </div>
 
@@ -185,13 +185,13 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">let&lt;/span> domContainer &lt;span class="token operator">=&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'container'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token comment">// 清除掉原来的树&lt;/span>
-domContainer&lt;span class="token punctuation">.&lt;/span>innerHTML &lt;span class="token operator">=&lt;/span> &lt;span class="token string">''&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token comment">// 创建新的宿主实例树&lt;/span>
-&lt;span class="token keyword">let&lt;/span> domNode &lt;span class="token operator">=&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createElement&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'button'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-domNode&lt;span class="token punctuation">.&lt;/span>className &lt;span class="token operator">=&lt;/span> &lt;span class="token string">'red'&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-domContainer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">appendChild&lt;/span>&lt;span class="token punctuation">(&lt;/span>domNode&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+let domContainer = document.getElementById('container');
+// 清除掉原来的树
+domContainer.innerHTML = '';
+// 创建新的宿主实例树
+let domNode = document.createElement('button');
+domNode.className = 'red';
+domContainer.appendChild(domNode);
 ```
 </div>
 
@@ -199,9 +199,9 @@ domContainer&lt;span class="token punctuation">.&lt;/span>&lt;span class="token 
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">let&lt;/span> domNode &lt;span class="token operator">=&lt;/span> domContainer&lt;span class="token punctuation">.&lt;/span>firstChild&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token comment">// 更新已有的宿主实例&lt;/span>
-domNode&lt;span class="token punctuation">.&lt;/span>className &lt;span class="token operator">=&lt;/span> &lt;span class="token string">'red'&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+let domNode = domContainer.firstChild;
+// 更新已有的宿主实例
+domNode.className = 'red';
 ```
 </div>
 
@@ -209,7 +209,7 @@ domNode&lt;span class="token punctuation">.&lt;/span>className &lt;span class="t
 
 这就引出了一个识别问题。React 元素可能每次都不相同，到底什么时候才该从概念上引用同一个宿主实例呢？
 
-在[我们](https://www.w3cdoc.com)的例子中，它很简单。[我们](https://www.w3cdoc.com)之前渲染了 &lt;button> 作为第一个（也是唯一）的子元素，接下来[我们](https://www.w3cdoc.com)想要在同一个地方再次渲染 &lt;button> 。在宿主实例中[我们](https://www.w3cdoc.com)已经有了一个 &lt;button> 为什么还要重新创建呢？让[我们](https://www.w3cdoc.com)重用它。
+在[我们](https://www.w3cdoc.com)的例子中，它很简单。[我们](https://www.w3cdoc.com)之前渲染了 <button> 作为第一个（也是唯一）的子元素，接下来[我们](https://www.w3cdoc.com)想要在同一个地方再次渲染 <button> 。在宿主实例中[我们](https://www.w3cdoc.com)已经有了一个 <button> 为什么还要重新创建呢？让[我们](https://www.w3cdoc.com)重用它。
 
 这与 React 如何思考并解决这类问题已经很接近了。
 
@@ -219,36 +219,36 @@ domNode&lt;span class="token punctuation">.&lt;/span>className &lt;span class="t
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token comment">// let domNode = document.createElement('button');&lt;/span>
-&lt;span class="token comment">// domNode.className = 'blue';&lt;/span>
-&lt;span class="token comment">// domContainer.appendChild(domNode);&lt;/span>
-ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>
-  &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>button &lt;span class="token attr-name">className&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>blue&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token punctuation">/>&lt;/span>&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-  document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'container'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+// let domNode = document.createElement('button');
+// domNode.className = 'blue';
+// domContainer.appendChild(domNode);
+ReactDOM.render(
+  <button className="blue" />,
+  document.getElementById('container')
+);
 
-&lt;span class="gatsby-highlight-code-line">&lt;span class="token comment">// 能重用宿主实例吗？能！(button → button)&lt;/span>&lt;/span>&lt;span class="gatsby-highlight-code-line">&lt;span class="token comment">// domNode.className = 'red';&lt;/span>&lt;/span>ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>
-  &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>button &lt;span class="token attr-name">className&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>red&lt;span class="token punctuation">"&lt;/span>&lt;/span> &lt;span class="token punctuation">/>&lt;/span>&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-  document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'container'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+// 能重用宿主实例吗？能！(button → button)// domNode.className = 'red';ReactDOM.render(
+  <button className="red" />,
+  document.getElementById('container')
+);
 
-&lt;span class="gatsby-highlight-code-line">&lt;span class="token comment">// 能重用宿主实例吗？不能！(button → p)&lt;/span>&lt;/span>&lt;span class="token comment">// domContainer.removeChild(domNode);&lt;/span>
-&lt;span class="token comment">// domNode = document.createElement('p');&lt;/span>
-&lt;span class="token comment">// domNode.textContent = 'Hello';&lt;/span>
-&lt;span class="token comment">// domContainer.appendChild(domNode);&lt;/span>
-ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>
-  &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">Hello&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-  document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'container'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+// 能重用宿主实例吗？不能！(button → p)// domContainer.removeChild(domNode);
+// domNode = document.createElement('p');
+// domNode.textContent = 'Hello';
+// domContainer.appendChild(domNode);
+ReactDOM.render(
+  <p>Hello</p>,
+  document.getElementById('container')
+);
 
-&lt;span class="gatsby-highlight-code-line">&lt;span class="token comment">// 能重用宿主实例吗？能！(p → p)&lt;/span>&lt;/span>&lt;span class="gatsby-highlight-code-line">&lt;span class="token comment">// domNode.textContent = 'Goodbye';&lt;/span>&lt;/span>ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>
-  &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">Goodbye&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-  document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'container'&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+// 能重用宿主实例吗？能！(p → p)// domNode.textContent = 'Goodbye';ReactDOM.render(
+  <p>Goodbye</p>,
+  document.getElementById('container')
+);
 ```
 </div>
 
-同样的启发式方法也适用于子树。例如，当[我们](https://www.w3cdoc.com)在 &lt;dialog> 中新增两个 &lt;button> ，React 会先决定是否要重用 &lt;dialog> ，然后为每一个子元素重复这个决定步骤。
+同样的启发式方法也适用于子树。例如，当[我们](https://www.w3cdoc.com)在 <dialog> 中新增两个 <button> ，React 会先决定是否要重用 <dialog> ，然后为每一个子元素重复这个决定步骤。
 
 ## 条件 {#条件}
 
@@ -258,25 +258,25 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token comment">// 第一次渲染&lt;/span>
-ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>
-  &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>dialog&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>input &lt;span class="token punctuation">/>&lt;/span>&lt;/span>
-  &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>dialog&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token punctuation">,&lt;/span>
+// 第一次渲染
+ReactDOM.render(
+  <dialog>
+    <input />
+  </dialog>,
   domContainer
-&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+);
 
-&lt;span class="token comment">// 下一次渲染&lt;/span>
-ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>
-  &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>dialog&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-&lt;span class="gatsby-highlight-code-line">    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">I was just added here!&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;/span>    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>input &lt;span class="token punctuation">/>&lt;/span>&lt;/span>
-  &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>dialog&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token punctuation">,&lt;/span>
+// 下一次渲染
+ReactDOM.render(
+  <dialog>
+    <p>I was just added here!</p>    <input />
+  </dialog>,
   domContainer
-&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+);
 ```
 </div>
 
-在这个例子中，&lt;input> 宿主实例会被重新创建。React 会遍历整个元素树，并将其与先前的版本进行比较：
+在这个例子中，<input> 宿主实例会被重新创建。React 会遍历整个元素树，并将其与先前的版本进行比较：
 
 * dialog → dialog ：能重用宿主实例吗？**能 — 因为类型是匹配的。**
   * input → p ：能重用宿主实例吗？**不能，类型改变了！** 需要删除已有的 input 然后重新创建一个 p 宿主实例。
@@ -286,16 +286,16 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="gatsby-highlight-code-line">&lt;span class="token keyword">let&lt;/span> oldInputNode &lt;span class="token operator">=&lt;/span> dialogNode&lt;span class="token punctuation">.&lt;/span>firstChild&lt;span class="token punctuation">;&lt;/span>&lt;/span>&lt;span class="gatsby-highlight-code-line">dialogNode&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">removeChild&lt;/span>&lt;span class="token punctuation">(&lt;/span>oldInputNode&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;/span>
-&lt;span class="token keyword">let&lt;/span> pNode &lt;span class="token operator">=&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createElement&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'p'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-pNode&lt;span class="token punctuation">.&lt;/span>textContent &lt;span class="token operator">=&lt;/span> &lt;span class="token string">'I was just added here!'&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-dialogNode&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">appendChild&lt;/span>&lt;span class="token punctuation">(&lt;/span>pNode&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+let oldInputNode = dialogNode.firstChild;dialogNode.removeChild(oldInputNode);
+let pNode = document.createElement('p');
+pNode.textContent = 'I was just added here!';
+dialogNode.appendChild(pNode);
 
-&lt;span class="gatsby-highlight-code-line">&lt;span class="token keyword">let&lt;/span> newInputNode &lt;span class="token operator">=&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createElement&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'input'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;/span>&lt;span class="gatsby-highlight-code-line">dialogNode&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">appendChild&lt;/span>&lt;span class="token punctuation">(&lt;/span>newInputNode&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;/span>
+let newInputNode = document.createElement('input');dialogNode.appendChild(newInputNode);
 ```
 </div>
 
-这样的做法并不科学因为事实上 &lt;input> 并没有被 &lt;p> 所替代 — 它只是移动了位置而已。[我们](https://www.w3cdoc.com)不希望因为重建 DOM 而丢失了 selection、focus 等状态以及其中的内容。
+这样的做法并不科学因为事实上 <input> 并没有被 <p> 所替代 — 它只是移动了位置而已。[我们](https://www.w3cdoc.com)不希望因为重建 DOM 而丢失了 selection、focus 等状态以及其中的内容。
 
 虽然这个问题很容易解决（在下面我会马上讲到），但这个问题在 React 应用中并不常见。而当[我们](https://www.w3cdoc.com)探讨为什么会这样时却很有意思。
 
@@ -303,18 +303,18 @@ dialogNode&lt;span class="token punctuation">.&lt;/span>&lt;span class="token fu
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Form&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> showMessage &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">let&lt;/span> message &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">null&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>showMessage&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    message &lt;span class="token operator">=&lt;/span> &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">I was just added here!&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>dialog&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-      &lt;span class="token punctuation">{&lt;/span>message&lt;span class="token punctuation">}&lt;/span>
-      &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>input &lt;span class="token punctuation">/>&lt;/span>&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>dialog&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function Form({ showMessage }) {
+  let message = null;
+  if (showMessage) {
+    message = <p>I was just added here!</p>;
+  }
+  return (
+    <dialog>
+      {message}
+      <input />
+    </dialog>
+  );
+}
 ```
 </div>
 
@@ -322,24 +322,24 @@ dialogNode&lt;span class="token punctuation">.&lt;/span>&lt;span class="token fu
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Form&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> showMessage &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">let&lt;/span> message &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">null&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>showMessage&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    message &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-      type&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'p'&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-      props&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">{&lt;/span> children&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'I was just added here!'&lt;/span> &lt;span class="token punctuation">}&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    type&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'dialog'&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-    props&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-&lt;span class="gatsby-highlight-code-line">      children&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">[&lt;/span>&lt;/span>&lt;span class="gatsby-highlight-code-line">        message&lt;span class="token punctuation">,&lt;/span>&lt;/span>&lt;span class="gatsby-highlight-code-line">        &lt;span class="token punctuation">{&lt;/span> type&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'input'&lt;/span>&lt;span class="token punctuation">,&lt;/span> props&lt;span class="token punctuation">:&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;span class="token punctuation">}&lt;/span> &lt;span class="token punctuation">}&lt;/span>&lt;/span>&lt;span class="gatsby-highlight-code-line">      &lt;span class="token punctuation">]&lt;/span>&lt;/span>    &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function Form({ showMessage }) {
+  let message = null;
+  if (showMessage) {
+    message = {
+      type: 'p',
+      props: { children: 'I was just added here!' }
+    };
+  }
+  return {
+    type: 'dialog',
+    props: {
+      children: [        message,        { type: 'input', props: {} }      ]    }
+  };
+}
 ```
 </div>
 
-**不管 showMessage 是 true 还是 false ，在渲染的过程中 &lt;input> 总是在第二个孩子的位置且不会改变。**
+**不管 showMessage 是 true 还是 false ，在渲染的过程中 <input> 总是在第二个孩子的位置且不会改变。**
 
 如果 showMessage 从 false 改变为 true ，React 会遍历整个元素树，并与之前的版本进行比较：
 
@@ -351,10 +351,10 @@ dialogNode&lt;span class="token punctuation">.&lt;/span>&lt;span class="token fu
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">let&lt;/span> inputNode &lt;span class="token operator">=&lt;/span> dialogNode&lt;span class="token punctuation">.&lt;/span>firstChild&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token keyword">let&lt;/span> pNode &lt;span class="token operator">=&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createElement&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'p'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-pNode&lt;span class="token punctuation">.&lt;/span>textContent &lt;span class="token operator">=&lt;/span> &lt;span class="token string">'I was just added here!'&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-dialogNode&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">insertBefore&lt;/span>&lt;span class="token punctuation">(&lt;/span>pNode&lt;span class="token punctuation">,&lt;/span> inputNode&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+let inputNode = dialogNode.firstChild;
+let pNode = document.createElement('p');
+pNode.textContent = 'I was just added here!';
+dialogNode.insertBefore(pNode, inputNode);
 ```
 </div>
 
@@ -370,19 +370,19 @@ dialogNode&lt;span class="token punctuation">.&lt;/span>&lt;span class="token fu
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">ShoppingList&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> list &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>form&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-      &lt;span class="token punctuation">{&lt;/span>list&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">map&lt;/span>&lt;span class="token punctuation">(&lt;/span>item &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-        &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">
-          You bought &lt;/span>&lt;span class="token punctuation">{&lt;/span>item&lt;span class="token punctuation">.&lt;/span>name&lt;span class="token punctuation">}&lt;/span>
-          &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>br &lt;span class="token punctuation">/>&lt;/span>&lt;/span>&lt;span class="token plain-text">
-          Enter how many do you want: &lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>input &lt;span class="token punctuation">/>&lt;/span>&lt;/span>
-        &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-      &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">}&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>form&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token punctuation">)&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function ShoppingList({ list }) {
+  return (
+    <form>
+      {list.map(item => (
+        <p>
+          You bought {item.name}
+          <br />
+          Enter how many do you want: <input />
+        </p>
+      ))}
+    </form>
+  )
+}
 ```
 </div>
 
@@ -392,11 +392,11 @@ dialogNode&lt;span class="token punctuation">.&lt;/span>&lt;span class="token fu
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">for&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token keyword">let&lt;/span> i &lt;span class="token operator">=&lt;/span> &lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">;&lt;/span> i &lt;span class="token operator">&lt;&lt;/span> &lt;span class="token number">10&lt;/span>&lt;span class="token punctuation">;&lt;/span> i&lt;span class="token operator">++&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">let&lt;/span> pNode &lt;span class="token operator">=&lt;/span> formNode&lt;span class="token punctuation">.&lt;/span>childNodes&lt;span class="token punctuation">[&lt;/span>i&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token keyword">let&lt;/span> textNode &lt;span class="token operator">=&lt;/span> pNode&lt;span class="token punctuation">.&lt;/span>firstChild&lt;span class="token punctuation">;&lt;/span>
-  textNode&lt;span class="token punctuation">.&lt;/span>textContent &lt;span class="token operator">=&lt;/span> &lt;span class="token string">'You bought '&lt;/span> &lt;span class="token operator">+&lt;/span> items&lt;span class="token punctuation">[&lt;/span>i&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">.&lt;/span>name&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+for (let i = 0; i < 10; i++) {
+  let pNode = formNode.childNodes[i];
+  let textNode = pNode.firstChild;
+  textNode.textContent = 'You bought ' + items[i].name;
+}
 ```
 </div>
 
@@ -406,26 +406,26 @@ React 只会对其中的每个元素进行更新而不是将其重新排序。�
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">ShoppingList&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> list &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>form&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-      &lt;span class="token punctuation">{&lt;/span>list&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">map&lt;/span>&lt;span class="token punctuation">(&lt;/span>item &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-&lt;span class="gatsby-highlight-code-line">        &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>p &lt;span class="token attr-name">key&lt;/span>&lt;span class="token script language-javascript">&lt;span class="token script-punctuation punctuation">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>item&lt;span class="token punctuation">.&lt;/span>productId&lt;span class="token punctuation">}&lt;/span>&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;/span>&lt;span class="token plain-text">          You bought &lt;/span>&lt;span class="token punctuation">{&lt;/span>item&lt;span class="token punctuation">.&lt;/span>name&lt;span class="token punctuation">}&lt;/span>
-          &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>br &lt;span class="token punctuation">/>&lt;/span>&lt;/span>
-&lt;span class="token plain-text">          Enter how many do you want: &lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>input &lt;span class="token punctuation">/>&lt;/span>&lt;/span>
-        &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-      &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">}&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>form&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token punctuation">)&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function ShoppingList({ list }) {
+  return (
+    <form>
+      {list.map(item => (
+        <p key={item.productId}>          You bought {item.name}
+          <br />
+          Enter how many do you want: <input />
+        </p>
+      ))}
+    </form>
+  )
+}
 ```
 </div>
 
 key 给予 React 判断子元素是否真正相同的能力，即使在渲染前后它在父元素中的位置不是相同的。
 
-当 React 在 &lt;form> 中发现 &lt;p key="42"> ，它就会检查之前版本中的 &lt;form> 是否同样含有 &lt;p key="42"> 。即使 &lt;form> 中的子元素们改变位置后，这个方法同样有效。在渲染前后当 key 仍然相同时，React 会重用先前的宿主实例，然后重新排序其兄弟元素。
+当 React 在 <form> 中发现 <p key="42"> ，它就会检查之前版本中的 <form> 是否同样含有 <p key="42"> 。即使 <form> 中的子元素们改变位置后，这个方法同样有效。在渲染前后当 key 仍然相同时，React 会重用先前的宿主实例，然后重新排序其兄弟元素。
 
-需要注意的是 key 只与特定的父亲 React 元素相关联，比如 &lt;form> 。React 并不会去匹配父元素不同但 key 相同的子元素。（React 并没有惯用的支持对在不重新创建元素的情况下让宿主实例在不同的父元素之间移动。）
+需要注意的是 key 只与特定的父亲 React 元素相关联，比如 <form> 。React 并不会去匹配父元素不同但 key 相同的子元素。（React 并没有惯用的支持对在不重新创建元素的情况下让宿主实例在不同的父元素之间移动。）
 
 给 key 赋予什么值最好呢？最好的答案就是：**什么时候你会说一个元素不会改变即使它在父元素中的顺序被改变？** 例如，在[我们](https://www.w3cdoc.com)的商品列表中，商品本身的 ID 是区别于其他商品的唯一标识，那么它就最适合作为 key 。
 
@@ -435,18 +435,18 @@ key 给予 React 判断子元素是否真正相同的能力，即使在渲染�
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Form&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> showMessage &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">let&lt;/span> message &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">null&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>showMessage&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    message &lt;span class="token operator">=&lt;/span> &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">I was just added here!&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>dialog&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-      &lt;span class="token punctuation">{&lt;/span>message&lt;span class="token punctuation">}&lt;/span>
-      &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>input &lt;span class="token punctuation">/>&lt;/span>&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>dialog&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function Form({ showMessage }) {
+  let message = null;
+  if (showMessage) {
+    message = <p>I was just added here!</p>;
+  }
+  return (
+    <dialog>
+      {message}
+      <input />
+    </dialog>
+  );
+}
 ```
 </div>
 
@@ -460,10 +460,10 @@ React 组件中对于 props 应该是纯净的。
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Button&lt;/span>&lt;span class="token punctuation">(&lt;/span>props&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token comment">// &#x1f534; 没有作用&lt;/span>
-  props&lt;span class="token punctuation">.&lt;/span>isActive &lt;span class="token operator">=&lt;/span> &lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function Button(props) {
+  // &#x1f534; 没有作用
+  props.isActive = true;
+}
 ```
 </div>
 
@@ -473,14 +473,14 @@ React 组件中对于 props 应该是纯净的。
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">FriendList&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> friends &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-&lt;span class="gatsby-highlight-code-line">  &lt;span class="token keyword">let&lt;/span> items &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">[&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;/span>  &lt;span class="token keyword">for&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token keyword">let&lt;/span> i &lt;span class="token operator">=&lt;/span> &lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">;&lt;/span> i &lt;span class="token operator">&lt;&lt;/span> friends&lt;span class="token punctuation">.&lt;/span>length&lt;span class="token punctuation">;&lt;/span> i&lt;span class="token operator">++&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">let&lt;/span> friend &lt;span class="token operator">=&lt;/span> friends&lt;span class="token punctuation">[&lt;/span>i&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="gatsby-highlight-code-line">    items&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">push&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;/span>      &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>Friend &lt;span class="token attr-name">key&lt;/span>&lt;span class="token script language-javascript">&lt;span class="token script-punctuation punctuation">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>friend&lt;span class="token punctuation">.&lt;/span>id&lt;span class="token punctuation">}&lt;/span>&lt;/span> &lt;span class="token attr-name">friend&lt;/span>&lt;span class="token script language-javascript">&lt;span class="token script-punctuation punctuation">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>friend&lt;span class="token punctuation">}&lt;/span>&lt;/span> &lt;span class="token punctuation">/>&lt;/span>&lt;/span>
-    &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>section&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token punctuation">{&lt;/span>items&lt;span class="token punctuation">}&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>section&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function FriendList({ friends }) {
+  let items = [];  for (let i = 0; i < friends.length; i++) {
+    let friend = friends[i];
+    items.push(      <Friend key={friend.id} friend={friend} />
+    );
+  }
+  return <section>{items}</section>;
+}
 ```
 </div>
 
@@ -490,12 +490,12 @@ React 组件中对于 props 应该是纯净的。
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">ExpenseForm&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token comment">// 只要不影响其他组件这是被允许的：&lt;/span>
-  SuperCalculator&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">initializeIfNotReady&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+function ExpenseForm() {
+  // 只要不影响其他组件这是被允许的：
+  SuperCalculator.initializeIfNotReady();
 
-  &lt;span class="token comment">// 继续渲染......&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+  // 继续渲染......
+}
 ```
 </div>
 
@@ -509,8 +509,8 @@ React 组件中对于 props 应该是纯净的。
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">let&lt;/span> reactElement &lt;span class="token operator">=&lt;/span> &lt;span class="token function">Form&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> showMessage&lt;span class="token punctuation">:&lt;/span> &lt;span class="token boolean">true&lt;/span> &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>reactElement&lt;span class="token punctuation">,&lt;/span> domContainer&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+let reactElement = Form({ showMessage: true });
+ReactDOM.render(reactElement, domContainer);
 ```
 </div>
 
@@ -520,9 +520,9 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token comment">// { type: Form, props: { showMessage: true } }&lt;/span>
-&lt;span class="token keyword">let&lt;/span> reactElement &lt;span class="token operator">=&lt;/span> &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>Form &lt;span class="token attr-name">showMessage&lt;/span>&lt;span class="token script language-javascript">&lt;span class="token script-punctuation punctuation">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token boolean">true&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;/span> &lt;span class="token punctuation">/>&lt;/span>&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>reactElement&lt;span class="token punctuation">,&lt;/span> domContainer&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+// { type: Form, props: { showMessage: true } }
+let reactElement = <Form showMessage={true} />;
+ReactDOM.render(reactElement, domContainer);
 ```
 </div>
 
@@ -530,48 +530,48 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token comment">// React 内部的某个地方&lt;/span>
-&lt;span class="token keyword">let&lt;/span> type &lt;span class="token operator">=&lt;/span> reactElement&lt;span class="token punctuation">.&lt;/span>type&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">// Form&lt;/span>
-&lt;span class="token keyword">let&lt;/span> props &lt;span class="token operator">=&lt;/span> reactElement&lt;span class="token punctuation">.&lt;/span>props&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">// { showMessage: true }&lt;/span>
-&lt;span class="token keyword">let&lt;/span> result &lt;span class="token operator">=&lt;/span> &lt;span class="token function">type&lt;/span>&lt;span class="token punctuation">(&lt;/span>props&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">// 无论 Form 会返回什么&lt;/span>
+// React 内部的某个地方
+let type = reactElement.type; // Form
+let props = reactElement.props; // { showMessage: true }
+let result = type(props); // 无论 Form 会返回什么
 ```
 </div>
 
-组件函数名称按照规定需要大写。当 JSX 转换时看见 &lt;Form> 而不是 &lt;form> ，它让对象 type 本身成为标识符而不是字符串：
+组件函数名称按照规定需要大写。当 JSX 转换时看见 <Form> 而不是 <form> ，它让对象 type 本身成为标识符而不是字符串：
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>form &lt;span class="token punctuation">/>&lt;/span>&lt;/span>&lt;span class="token punctuation">.&lt;/span>type&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">// 'form' 字符串&lt;/span>
-console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>Form &lt;span class="token punctuation">/>&lt;/span>&lt;/span>&lt;span class="token punctuation">.&lt;/span>type&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">// Form 函数&lt;/span>
+console.log(<form />.type); // 'form' 字符串
+console.log(<Form />.type); // Form 函数
 ```
 </div>
 
-[我们](https://www.w3cdoc.com)并没有全局的注册机制 — 字面上当[我们](https://www.w3cdoc.com)输入 &lt;Form> 时代表着 Form 。如果 Form 在局部作用域中并不存在，你会发现一个 JavaScript 错误，就像平常你使用错误的变量名称一样。
+[我们](https://www.w3cdoc.com)并没有全局的注册机制 — 字面上当[我们](https://www.w3cdoc.com)输入 <Form> 时代表着 Form 。如果 Form 在局部作用域中并不存在，你会发现一个 JavaScript 错误，就像平常你使用错误的变量名称一样。
 
 **因此，当元素类型是一个函数的时候 React 会做什么呢？它会调用你的组件，然后询问组件想要渲染什么元素。**
 
 这个步骤会递归式地执行下去，更详细的描述在<a href="https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html" target="_blank" rel="nofollow noopener noreferrer">这里</a> 。总的来说，它会像这样执行：
 
-* **你：** ReactDOM.render(&lt;App />, domContainer)
+* **你：** ReactDOM.render(<App />, domContainer)
 * **React：** App ，你想要渲染什么？
-  * App ：我要渲染包含 &lt;Content> 的 &lt;Layout> 。
-* **React：** &lt;Layout> ，你要渲染什么？
-  * Layout ：我要在 &lt;div> 中渲染我的子元素。我的子元素是 &lt;Content> 所以我猜它应该渲染到 &lt;div> 中去。
-* **React：** &lt;Content> ，你要渲染什么？
-  * &lt;Content> ：我要在 &lt;article> 中渲染一些文本和 &lt;Footer> 。
-* **React：** &lt;Footer> ，你要渲染什么？
-  * &lt;Footer> ：我要渲染含有文本的 &lt;footer> 。
+  * App ：我要渲染包含 <Content> 的 <Layout> 。
+* **React：** <Layout> ，你要渲染什么？
+  * Layout ：我要在 <div> 中渲染我的子元素。我的子元素是 <Content> 所以我猜它应该渲染到 <div> 中去。
+* **React：** <Content> ，你要渲染什么？
+  * <Content> ：我要在 <article> 中渲染一些文本和 <Footer> 。
+* **React：** <Footer> ，你要渲染什么？
+  * <Footer> ：我要渲染含有文本的 <footer> 。
 * **React：** 好的，让[我们](https://www.w3cdoc.com)开始吧：
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token comment">// 最终的 DOM 结构&lt;/span>
-&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>div&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>article&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">
+// 最终的 DOM 结构
+<div>
+  <article>
     Some text
-    &lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>footer&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">some more text&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>footer&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>article&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>div&lt;span class="token punctuation">>&lt;/span>&lt;/span>
+    <footer>some more text</footer>
+  </article>
+</div>
 ```
 </div>
 
@@ -581,32 +581,32 @@ console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token funct
 
 ## 控制反转 {#控制反转}
 
-你也许会好奇：为什么[我们](https://www.w3cdoc.com)不直接调用组件？为什么要编写 &lt;Form /> 而不是 Form() ？
+你也许会好奇：为什么[我们](https://www.w3cdoc.com)不直接调用组件？为什么要编写 <Form /> 而不是 Form() ？
 
 **React 能够做的更好如果它“知晓”你的组件而不是在你递归调用它们之后生成的 React 元素树。**
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token comment">// &#x1f534; React 并不知道 Layout 和 Article 的存在。&lt;/span>
-&lt;span class="token comment">// 因为你在调用它们。&lt;/span>
-ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>
-  &lt;span class="token function">Layout&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> children&lt;span class="token punctuation">:&lt;/span> &lt;span class="token function">Article&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">,&lt;/span>
+// &#x1f534; React 并不知道 Layout 和 Article 的存在。
+// 因为你在调用它们。
+ReactDOM.render(
+  Layout({ children: Article() }),
   domContainer
-&lt;span class="token punctuation">)&lt;/span>
+)
 
-&lt;span class="token comment">// &#x2705; React知道 Layout 和 Article 的存在。&lt;/span>
-&lt;span class="token comment">// React 来调用它们。&lt;/span>
-ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>
-  &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>Layout&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>Article &lt;span class="token punctuation">/>&lt;/span>&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>Layout&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token punctuation">,&lt;/span>
+// &#x2705; React知道 Layout 和 Article 的存在。
+// React 来调用它们。
+ReactDOM.render(
+  <Layout><Article /></Layout>,
   domContainer
-&lt;span class="token punctuation">)&lt;/span>
+)
 ```
 </div>
 
 这是一个关于<a href="https://en.wikipedia.org/wiki/Inversion_of_control" target="_blank" rel="nofollow noopener noreferrer">控制反转</a>的经典案例。通过让 React 调用[我们](https://www.w3cdoc.com)的组件，[我们](https://www.w3cdoc.com)会获得一些有趣的属性：
 
 * **组件不仅仅只是函数。** React 能够用在树中与组件本身紧密相连的局部状态等特性来增强组件功能。优秀的运行时提供了与当前问题相匹配的基本抽象。就像[我们](https://www.w3cdoc.com)已经提到过的，React 专门针对于那些渲染 UI 树并且能够响应交互的应用。如果你直接调用了组件，你就只能自己来构建这些特性了。
-* **组件类型参与协调。** 通过 React 来调用你的组件，能让它了解更多关于元素树的结构。例如，当你从渲染 &lt;Feed> 页面转到 Profile 页面，React 不会尝试重用其中的宿主实例 — 就像你用 &lt;p> 替换掉 &lt;button> 一样。所有的状态都会丢失 — 对于渲染完全不同的视图时，通常来说这是一件好事。你不会想要在 &lt;PasswordForm> 和 &lt;MessengerChat> 之间保留输入框的状态尽管 &lt;input> 的位置意外地“排列”在它们之间。
+* **组件类型参与协调。** 通过 React 来调用你的组件，能让它了解更多关于元素树的结构。例如，当你从渲染 <Feed> 页面转到 Profile 页面，React 不会尝试重用其中的宿主实例 — 就像你用 <p> 替换掉 <button> 一样。所有的状态都会丢失 — 对于渲染完全不同的视图时，通常来说这是一件好事。你不会想要在 <PasswordForm> 和 <MessengerChat> 之间保留输入框的状态尽管 <input> 的位置意外地“排列”在它们之间。
 * **React 能够推迟协调。** 如果让 React 控制调用你的组件，它能做很多有趣的事情。例如，它可以让[浏览器](https://www.w3cdoc.com)在组件调用之间做一些工作，这样重渲染大体量的组件树时就<a href="https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html" target="_blank" rel="nofollow noopener noreferrer">不会阻塞主线程</a>。想要手动编排这个过程而不依赖 React 的话将会十分困难。
 * **更好的可调试性。** 如果组件是库中所重视的一等公民，[我们](https://www.w3cdoc.com)就可以构建<a href="https://github.com/facebook/react-devtools" target="_blank" rel="nofollow noopener noreferrer">丰富的开发者工具</a>，用于开发中的自省。
 
@@ -618,11 +618,11 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token comment">// (2) 它会作为第二个计算&lt;/span>
-&lt;span class="token function">eat&lt;/span>&lt;span class="token punctuation">(&lt;/span>
-  &lt;span class="token comment">// (1) 它会首先计算&lt;/span>
-  &lt;span class="token function">prepareMeal&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>
-&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+// (2) 它会作为第二个计算
+eat(
+  // (1) 它会首先计算
+  prepareMeal()
+);
 ```
 </div>
 
@@ -630,52 +630,52 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
 但是，React 组件是[相对][3]纯净的。如果[我们](https://www.w3cdoc.com)知道它的结果不会在屏幕上出现，则完全没有必要执行它。
 
-考虑下面这个含有 &lt;Comments> 的 &lt;Page> 组件：
+考虑下面这个含有 <Comments> 的 <Page> 组件：
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Story&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> currentUser &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token comment">// return {&lt;/span>
-  &lt;span class="token comment">//   type: Page,&lt;/span>
-  &lt;span class="token comment">//   props: {&lt;/span>
-  &lt;span class="token comment">//     user: currentUser,&lt;/span>
-  &lt;span class="token comment">//     children: { type: Comments, props: {} }&lt;/span>
-  &lt;span class="token comment">//   }&lt;/span>
-  &lt;span class="token comment">// }&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>Page &lt;span class="token attr-name">user&lt;/span>&lt;span class="token script language-javascript">&lt;span class="token script-punctuation punctuation">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>currentUser&lt;span class="token punctuation">}&lt;/span>&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-&lt;span class="gatsby-highlight-code-line">      &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>Comments &lt;span class="token punctuation">/>&lt;/span>&lt;/span>&lt;/span>    &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>Page&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function Story({ currentUser }) {
+  // return {
+  //   type: Page,
+  //   props: {
+  //     user: currentUser,
+  //     children: { type: Comments, props: {} }
+  //   }
+  // }
+  return (
+    <Page user={currentUser}>
+      <Comments />    </Page>
+  );
+}
 ```
 </div>
 
-&lt;Page> 组件能够在 &lt;Layout> 中渲染传递给它的子项：
+<Page> 组件能够在 <Layout> 中渲染传递给它的子项：
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Page&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> currentUser&lt;span class="token punctuation">,&lt;/span> children &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>Layout&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-&lt;span class="gatsby-highlight-code-line">      &lt;span class="token punctuation">{&lt;/span>children&lt;span class="token punctuation">}&lt;/span>&lt;/span>    &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>Layout&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function Page({ currentUser, children }) {
+  return (
+    <Layout>
+      {children}    </Layout>
+  );
+}
 ```
 </div>
 
-_(在 JSX 中 &lt;A>&lt;B />&lt;/A> 和 &lt;A children={&lt;B />} />相同。)_
+_(在 JSX 中 <A><B /></A> 和 <A children={<B />} />相同。)_
 
 但是要是存在提前返回的情况呢？
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Page&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> currentUser&lt;span class="token punctuation">,&lt;/span> children &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-&lt;span class="gatsby-highlight-code-line">  &lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">!&lt;/span>currentUser&lt;span class="token punctuation">.&lt;/span>isLoggedIn&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;/span>&lt;span class="gatsby-highlight-code-line">    &lt;span class="token keyword">return&lt;/span> &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>h1&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">Please login&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>h1&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;/span>&lt;span class="gatsby-highlight-code-line">  &lt;span class="token punctuation">}&lt;/span>&lt;/span>  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>Layout&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-      &lt;span class="token punctuation">{&lt;/span>children&lt;span class="token punctuation">}&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>Layout&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function Page({ currentUser, children }) {
+  if (!currentUser.isLoggedIn) {    return <h1>Please login</h1>;  }  return (
+    <Layout>
+      {children}
+    </Layout>
+  );
+}
 ```
 </div>
 
@@ -683,13 +683,13 @@ _(在 JSX 中 &lt;A>&lt;B />&lt;/A> 和 &lt;A children={&lt;B />} />相同。
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token comment">// {&lt;/span>
-&lt;span class="token comment">//   type: Page,&lt;/span>
-&lt;span class="token comment">//   props: {&lt;/span>
-&lt;span class="gatsby-highlight-code-line">&lt;span class="token comment">//     children: Comments() // 总是调用！&lt;/span>&lt;/span>&lt;span class="token comment">//   }&lt;/span>
-&lt;span class="token comment">// }&lt;/span>
-&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>Page&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-&lt;span class="gatsby-highlight-code-line">  &lt;span class="token punctuation">{&lt;/span>&lt;span class="token function">Comments&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>Page&lt;span class="token punctuation">>&lt;/span>&lt;/span>
+// {
+//   type: Page,
+//   props: {
+//     children: Comments() // 总是调用！//   }
+// }
+<Page>
+  {Comments()}</Page>
 ```
 </div>
 
@@ -697,23 +697,23 @@ _(在 JSX 中 &lt;A>&lt;B />&lt;/A> 和 &lt;A children={&lt;B />} />相同。
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token comment">// {&lt;/span>
-&lt;span class="token comment">//   type: Page,&lt;/span>
-&lt;span class="token comment">//   props: {&lt;/span>
-&lt;span class="gatsby-highlight-code-line">&lt;span class="token comment">//     children: { type: Comments }&lt;/span>&lt;/span>&lt;span class="token comment">//   }&lt;/span>
-&lt;span class="token comment">// }&lt;/span>
-&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>Page&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-&lt;span class="gatsby-highlight-code-line">  &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>Comments &lt;span class="token punctuation">/>&lt;/span>&lt;/span>&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>Page&lt;span class="token punctuation">>&lt;/span>&lt;/span>
+// {
+//   type: Page,
+//   props: {
+//     children: { type: Comments }//   }
+// }
+<Page>
+  <Comments /></Page>
 ```
 </div>
 
-让 React 来决定何时以及是否调用组件。如果[我们](https://www.w3cdoc.com)的的 Page 组件忽略自身的 children prop 且相反地渲染了 &lt;h1>Please login&lt;/h1> ，React 不会尝试去调用 Comments 函数。重点是什么？
+让 React 来决定何时以及是否调用组件。如果[我们](https://www.w3cdoc.com)的的 Page 组件忽略自身的 children prop 且相反地渲染了 <h1>Please login</h1> ，React 不会尝试去调用 Comments 函数。重点是什么？
 
 这很好，因为它既可以让[我们](https://www.w3cdoc.com)避免不必要的渲染也能使[我们](https://www.w3cdoc.com)的代码变得不那么脆弱。（当用户退出登录时，[我们](https://www.w3cdoc.com)并不在乎 Comments 是否被丢弃 — 因为它从没有被调用过。）
 
 ## 状态 {#状态}
 
-[我们](https://www.w3cdoc.com)先前提到过关于[协调][4]和在树中元素概念上的“位置”是如何让 React 知晓是该重用宿主实例还是该重建它。宿主实例能够拥有所有相关的局部状态：focus、selection、input 等等。[我们](https://www.w3cdoc.com)想要在渲染更新概念上相同的 UI 时保留这些状态。[我们](https://www.w3cdoc.com)也想可预测性地摧毁它们，当[我们](https://www.w3cdoc.com)在概念上渲染的是完全不同的东西时（例如从 &lt;SignupForm> 转换到 &lt;MessengerChat>）。
+[我们](https://www.w3cdoc.com)先前提到过关于[协调][4]和在树中元素概念上的“位置”是如何让 React 知晓是该重用宿主实例还是该重建它。宿主实例能够拥有所有相关的局部状态：focus、selection、input 等等。[我们](https://www.w3cdoc.com)想要在渲染更新概念上相同的 UI 时保留这些状态。[我们](https://www.w3cdoc.com)也想可预测性地摧毁它们，当[我们](https://www.w3cdoc.com)在概念上渲染的是完全不同的东西时（例如从 <SignupForm> 转换到 <MessengerChat>）。
 
 **局部状态是如此有用，以至于 React 让你的组件也能拥有它。** 组件仍然是函数但是 React 用对构建 UI 有好处的许多特性增强了它。在树中每个组件所绑定的局部状态就是这些特性之一。
 
@@ -721,15 +721,15 @@ _(在 JSX 中 &lt;A>&lt;B />&lt;/A> 和 &lt;A children={&lt;B />} />相同。
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Example&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-&lt;span class="gatsby-highlight-code-line">  &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>div&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-&lt;span class="gatsby-highlight-code-line">      &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">You clicked &lt;/span>&lt;span class="token punctuation">{&lt;/span>count&lt;span class="token punctuation">}&lt;/span>&lt;span class="token plain-text"> times&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;/span>&lt;span class="gatsby-highlight-code-line">      &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>button &lt;span class="token attr-name">onClick&lt;/span>&lt;span class="token script language-javascript">&lt;span class="token script-punctuation punctuation">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token function">setCount&lt;/span>&lt;span class="token punctuation">(&lt;/span>count &lt;span class="token operator">+&lt;/span> &lt;span class="token number">1&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;/span>&lt;span class="token plain-text">        Click me&lt;/span>
-      &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>button&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>div&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function Example() {
+  const [count, setCount] = useState(0);
+  return (
+    <div>
+      <p>You clicked {count} times</p>      <button onClick={() => setCount(count + 1)}>        Click me
+      </button>
+    </div>
+  );
+}
 ```
 </div>
 
@@ -753,15 +753,15 @@ _(你能在 <a href="https://reactjs.org/docs/hooks-intro.html" target="_blank"
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Row&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> item &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token comment">// ...&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function Row({ item }) {
+  // ...
+}
 
-&lt;span class="gatsby-highlight-code-line">&lt;span class="token keyword">export&lt;/span> &lt;span class="token keyword">default&lt;/span> React&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">memo&lt;/span>&lt;span class="token punctuation">(&lt;/span>Row&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;/span>
+export default React.memo(Row);
 ```
 </div>
 
-现在，在父组件 &lt;Table> 中调用 setState 时如果 &lt;Row> 中的 item 与先前渲染的结果是相同的，React 就会直接跳过协调的过程。
+现在，在父组件 <Table> 中调用 setState 时如果 <Row> 中的 item 与先前渲染的结果是相同的，React 就会直接跳过协调的过程。
 
 你可以通过 <a href="https://reactjs.org/docs/hooks-reference.html#usememo" target="_blank" rel="nofollow noopener noreferrer">useMemo() Hook</a> 获得单个表达式级别的细粒度缓存。该缓存于其相关的组件紧密联系在一起，并且将与局部状态一起被销毁。它只会保留最后一次计算的结果。
 
@@ -785,22 +785,22 @@ React 的设计原则之一就是它可以处理原始数据。如果你拥有�
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Parent&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">let&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-&lt;span class="gatsby-highlight-code-line">    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>div &lt;span class="token attr-name">onClick&lt;/span>&lt;span class="token script language-javascript">&lt;span class="token script-punctuation punctuation">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token function">setCount&lt;/span>&lt;span class="token punctuation">(&lt;/span>count &lt;span class="token operator">+&lt;/span> &lt;span class="token number">1&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;/span>&lt;span class="token plain-text">      Parent clicked &lt;/span>&lt;span class="token punctuation">{&lt;/span>count&lt;span class="token punctuation">}&lt;/span>&lt;span class="token plain-text"> times&lt;/span>
-      &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>Child &lt;span class="token punctuation">/>&lt;/span>&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>div&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function Parent() {
+  let [count, setCount] = useState(0);
+  return (
+    <div onClick={() => setCount(count + 1)}>      Parent clicked {count} times
+      <Child />
+    </div>
+  );
+}
 
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Child&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">let&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-&lt;span class="gatsby-highlight-code-line">    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>button &lt;span class="token attr-name">onClick&lt;/span>&lt;span class="token script language-javascript">&lt;span class="token script-punctuation punctuation">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token function">setCount&lt;/span>&lt;span class="token punctuation">(&lt;/span>count &lt;span class="token operator">+&lt;/span> &lt;span class="token number">1&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;/span>&lt;span class="token plain-text">      Child clicked &lt;/span>&lt;span class="token punctuation">{&lt;/span>count&lt;span class="token punctuation">}&lt;/span>&lt;span class="token plain-text"> times&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>button&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function Child() {
+  let [count, setCount] = useState(0);
+  return (
+    <button onClick={() => setCount(count + 1)}>      Child clicked {count} times
+    </button>
+  );
+}
 ```
 </div>
 
@@ -810,13 +810,13 @@ React 的设计原则之一就是它可以处理原始数据。如果你拥有�
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token operator">**&lt;/span>&lt;span class="token operator">*&lt;/span> 进入 React [浏览器](https://www.w3cdoc.com) click 事件处理过程 &lt;span class="token operator">**&lt;/span>&lt;span class="token operator">*&lt;/span>
-&lt;span class="token function">Child&lt;/span> &lt;span class="token punctuation">(&lt;/span>onClick&lt;span class="token punctuation">)&lt;/span>
-  &lt;span class="token operator">-&lt;/span> setState
-&lt;span class="gatsby-highlight-code-line">  &lt;span class="token operator">-&lt;/span> re&lt;span class="token operator">-&lt;/span>render Child &lt;span class="token comment">// &#x1f61e; 不必要的重渲染&lt;/span>&lt;/span>&lt;span class="token function">Parent&lt;/span> &lt;span class="token punctuation">(&lt;/span>onClick&lt;span class="token punctuation">)&lt;/span>
-  &lt;span class="token operator">-&lt;/span> setState
-  &lt;span class="token operator">-&lt;/span> re&lt;span class="token operator">-&lt;/span>render Parent
-&lt;span class="gatsby-highlight-code-line">  &lt;span class="token operator">-&lt;/span> re&lt;span class="token operator">-&lt;/span>render Child&lt;/span>&lt;span class="token operator">**&lt;/span>&lt;span class="token operator">*&lt;/span> 结束 React [浏览器](https://www.w3cdoc.com) click 事件处理过程 &lt;span class="token operator">**&lt;/span>&lt;span class="token operator">*&lt;/span>
+*** 进入 React [浏览器](https://www.w3cdoc.com) click 事件处理过程 ***
+Child (onClick)
+  - setState
+  - re-render Child // &#x1f61e; 不必要的重渲染Parent (onClick)
+  - setState
+  - re-render Parent
+  - re-render Child*** 结束 React [浏览器](https://www.w3cdoc.com) click 事件处理过程 ***
 ```
 </div>
 
@@ -826,15 +826,15 @@ React 的设计原则之一就是它可以处理原始数据。如果你拥有�
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token operator">**&lt;/span>&lt;span class="token operator">*&lt;/span> 进入 React [浏览器](https://www.w3cdoc.com) click 事件处理过程 &lt;span class="token operator">**&lt;/span>&lt;span class="token operator">*&lt;/span>
-&lt;span class="token function">Child&lt;/span> &lt;span class="token punctuation">(&lt;/span>onClick&lt;span class="token punctuation">)&lt;/span>
-  &lt;span class="token operator">-&lt;/span> setState
-&lt;span class="token function">Parent&lt;/span> &lt;span class="token punctuation">(&lt;/span>onClick&lt;span class="token punctuation">)&lt;/span>
-  &lt;span class="token operator">-&lt;/span> setState
-&lt;span class="token operator">**&lt;/span>&lt;span class="token operator">*&lt;/span> Processing state updates                     &lt;span class="token operator">**&lt;/span>&lt;span class="token operator">*&lt;/span>
-  &lt;span class="token operator">-&lt;/span> re&lt;span class="token operator">-&lt;/span>render Parent
-  &lt;span class="token operator">-&lt;/span> re&lt;span class="token operator">-&lt;/span>render Child
-&lt;span class="token operator">**&lt;/span>&lt;span class="token operator">*&lt;/span> 结束 React [浏览器](https://www.w3cdoc.com) click 事件处理过程  &lt;span class="token operator">**&lt;/span>&lt;span class="token operator">*&lt;/span>
+*** 进入 React [浏览器](https://www.w3cdoc.com) click 事件处理过程 ***
+Child (onClick)
+  - setState
+Parent (onClick)
+  - setState
+*** Processing state updates                     ***
+  - re-render Parent
+  - re-render Child
+*** 结束 React [浏览器](https://www.w3cdoc.com) click 事件处理过程  ***
 ```
 </div>
 
@@ -844,17 +844,17 @@ React 的设计原则之一就是它可以处理原始数据。如果你拥有�
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-  &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCounter&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+  const [count, setCounter] = useState(0);
 
-  &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">increment&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token function">setCounter&lt;/span>&lt;span class="token punctuation">(&lt;/span>count &lt;span class="token operator">+&lt;/span> &lt;span class="token number">1&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
+  function increment() {
+    setCounter(count + 1);
+  }
 
-  &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">handleClick&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token function">increment&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token function">increment&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token function">increment&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
+  function handleClick() {
+    increment();
+    increment();
+    increment();
+  }
 ```
 </div>
 
@@ -862,17 +862,17 @@ React 的设计原则之一就是它可以处理原始数据。如果你拥有�
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-  &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCounter&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+  const [count, setCounter] = useState(0);
 
-  &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">increment&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token function">setCounter&lt;/span>&lt;span class="token punctuation">(&lt;/span>c &lt;span class="token operator">=>&lt;/span> c &lt;span class="token operator">+&lt;/span> &lt;span class="token number">1&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
+  function increment() {
+    setCounter(c => c + 1);
+  }
 
-  &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">handleClick&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token function">increment&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token function">increment&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token function">increment&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
+  function handleClick() {
+    increment();
+    increment();
+    increment();
+  }
 ```
 </div>
 
@@ -882,19 +882,19 @@ React 会将 updater 函数放入队列中，并在之后按顺序执行它们�
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-  &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>counter&lt;span class="token punctuation">,&lt;/span> dispatch&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useReducer&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>state&lt;span class="token punctuation">,&lt;/span> action&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>action &lt;span class="token operator">===&lt;/span> &lt;span class="token string">'increment'&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-      &lt;span class="token keyword">return&lt;/span> state &lt;span class="token operator">+&lt;/span> &lt;span class="token number">1&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span> &lt;span class="token keyword">else&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-      &lt;span class="token keyword">return&lt;/span> state&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+  const [counter, dispatch] = useReducer((state, action) => {
+    if (action === 'increment') {
+      return state + 1;
+    } else {
+      return state;
+    }
+  }, 0);
 
-  &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">handleClick&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token function">dispatch&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'increment'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token function">dispatch&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'increment'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token function">dispatch&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'increment'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
+  function handleClick() {
+    dispatch('increment');
+    dispatch('increment');
+    dispatch('increment');
+  }
 ```
 </div>
 
@@ -922,27 +922,27 @@ Fibers 是局部状态真正存在的地方。当状态被更新后，React 将�
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">const&lt;/span> ThemeContext &lt;span class="token operator">=&lt;/span> React&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createContext&lt;/span>&lt;span class="token punctuation">(&lt;/span>
-  &lt;span class="token string">'light'&lt;/span> &lt;span class="token comment">// 默认值作为后备&lt;/span>
-&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+const ThemeContext = React.createContext(
+  'light' // 默认值作为后备
+);
 
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">DarkApp&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>ThemeContext.Provider &lt;span class="token attr-name">value&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>dark&lt;span class="token punctuation">"&lt;/span>&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-      &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>MyComponents &lt;span class="token punctuation">/>&lt;/span>&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>ThemeContext.Provider&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function DarkApp() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <MyComponents />
+    </ThemeContext.Provider>
+  );
+}
 
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">SomeDeeplyNestedChild&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token comment">// 取决于其子组件在哪里被渲染&lt;/span>
-  &lt;span class="token keyword">const&lt;/span> theme &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useContext&lt;/span>&lt;span class="token punctuation">(&lt;/span>ThemeContext&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token comment">// ...&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function SomeDeeplyNestedChild() {
+  // 取决于其子组件在哪里被渲染
+  const theme = useContext(ThemeContext);
+  // ...
+}
 ```
 </div>
 
-当 SomeDeeplyNestedChild 渲染时， useContext(ThemeContext) 会寻找树中最近的 &lt;ThemeContext.Provider> ，并且使用它的 value 。
+当 SomeDeeplyNestedChild 渲染时， useContext(ThemeContext) 会寻找树中最近的 <ThemeContext.Provider> ，并且使用它的 value 。
 
 (事实上，React 维护了一个上下文栈当其渲染时。)
 
@@ -956,19 +956,19 @@ Fibers 是局部状态真正存在的地方。当状态被更新后，React 将�
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">Example&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+function Example() {
+  const [count, setCount] = useState(0);
 
-&lt;span class="gatsby-highlight-code-line">  &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;/span>&lt;span class="gatsby-highlight-code-line">    document&lt;span class="token punctuation">.&lt;/span>title &lt;span class="token operator">=&lt;/span> &lt;span class="token template-string">&lt;span class="token string">`You clicked &lt;/span>&lt;span class="token interpolation">&lt;span class="token interpolation-punctuation punctuation">${&lt;/span>count&lt;span class="token interpolation-punctuation punctuation">}&lt;/span>&lt;/span>&lt;span class="token string"> times`&lt;/span>&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;/span>&lt;span class="gatsby-highlight-code-line">  &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>div&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-      &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">You clicked &lt;/span>&lt;span class="token punctuation">{&lt;/span>count&lt;span class="token punctuation">}&lt;/span>&lt;span class="token plain-text"> times&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-      &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>button &lt;span class="token attr-name">onClick&lt;/span>&lt;span class="token script language-javascript">&lt;span class="token script-punctuation punctuation">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token function">setCount&lt;/span>&lt;span class="token punctuation">(&lt;/span>count &lt;span class="token operator">+&lt;/span> &lt;span class="token number">1&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-&lt;span class="token plain-text">        Click me&lt;/span>
-      &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>button&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>div&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+  useEffect(() => {    document.title = `You clicked ${count} times`;  });
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
 ```
 </div>
 
@@ -982,10 +982,10 @@ effect 可能需要被清理，例如订阅数据源的例子。在订阅之后�
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-  &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    DataSource&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">addSubscription&lt;/span>&lt;span class="token punctuation">(&lt;/span>handleChange&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> DataSource&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">removeSubscription&lt;/span>&lt;span class="token punctuation">(&lt;/span>handleChange&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+  useEffect(() => {
+    DataSource.addSubscription(handleChange);
+    return () => DataSource.removeSubscription(handleChange);
+  });
 ```
 </div>
 
@@ -995,9 +995,9 @@ React 会在下次调用该 effect 之前执行这个返回的函数，当然是
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-  &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    document&lt;span class="token punctuation">.&lt;/span>title &lt;span class="token operator">=&lt;/span> &lt;span class="token template-string">&lt;span class="token string">`You clicked &lt;/span>&lt;span class="token interpolation">&lt;span class="token interpolation-punctuation punctuation">${&lt;/span>count&lt;span class="token interpolation-punctuation punctuation">}&lt;/span>&lt;/span>&lt;span class="token string"> times`&lt;/span>&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="gatsby-highlight-code-line">  &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;/span>
+  useEffect(() => {
+    document.title = `You clicked ${count} times`;
+  }, [count]);
 ```
 </div>
 
@@ -1007,10 +1007,10 @@ React 会在下次调用该 effect 之前执行这个返回的函数，当然是
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-  &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    DataSource&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">addSubscription&lt;/span>&lt;span class="token punctuation">(&lt;/span>handleChange&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> DataSource&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">removeSubscription&lt;/span>&lt;span class="token punctuation">(&lt;/span>handleChange&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">[&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+  useEffect(() => {
+    DataSource.addSubscription(handleChange);
+    return () => DataSource.removeSubscription(handleChange);
+  }, []);
 ```
 </div>
 
@@ -1018,9 +1018,9 @@ React 会在下次调用该 effect 之前执行这个返回的函数，当然是
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-  &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">handleChange&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    console&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">log&lt;/span>&lt;span class="token punctuation">(&lt;/span>count&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
+  function handleChange() {
+    console.log(count);
+  }
 ```
 </div>
 
@@ -1030,10 +1030,10 @@ React 会在下次调用该 effect 之前执行这个返回的函数，当然是
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-  &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    DataSource&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">addSubscription&lt;/span>&lt;span class="token punctuation">(&lt;/span>handleChange&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> DataSource&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">removeSubscription&lt;/span>&lt;span class="token punctuation">(&lt;/span>handleChange&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="gatsby-highlight-code-line">  &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">,&lt;/span> &lt;span class="token punctuation">[&lt;/span>handleChange&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;/span>
+  useEffect(() => {
+    DataSource.addSubscription(handleChange);
+    return () => DataSource.removeSubscription(handleChange);
+  }, [handleChange]);
 ```
 </div>
 
@@ -1047,22 +1047,22 @@ _(你能在 <a href="https://reactjs.org/docs/hooks-effect.html" target="_blank
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">MyResponsiveComponent&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-&lt;span class="gatsby-highlight-code-line">  &lt;span class="token keyword">const&lt;/span> width &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useWindowWidth&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span> &lt;span class="token comment">// [我们](https://www.w3cdoc.com)自己的 Hook&lt;/span>&lt;/span>  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">Window width is &lt;/span>&lt;span class="token punctuation">{&lt;/span>width&lt;span class="token punctuation">}&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function MyResponsiveComponent() {
+  const width = useWindowWidth(); // [我们](https://www.w3cdoc.com)自己的 Hook  return (
+    <p>Window width is {width}</p>
+  );
+}
 
-&lt;span class="gatsby-highlight-code-line">&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">useWindowWidth&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>&lt;/span>  &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>width&lt;span class="token punctuation">,&lt;/span> setWidth&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>window&lt;span class="token punctuation">.&lt;/span>innerWidth&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token function">useEffect&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">const&lt;/span> &lt;span class="token function-variable function">handleResize&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token function">setWidth&lt;/span>&lt;span class="token punctuation">(&lt;/span>window&lt;span class="token punctuation">.&lt;/span>innerWidth&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    window&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">addEventListener&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'resize'&lt;/span>&lt;span class="token punctuation">,&lt;/span> handleResize&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-      window&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">removeEventListener&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'resize'&lt;/span>&lt;span class="token punctuation">,&lt;/span> handleResize&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> width&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function useWindowWidth() {  const [width, setWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  });
+  return width;
+}
 ```
 </div>
 
@@ -1078,18 +1078,18 @@ _(你能在 <a href="https://reactjs.org/docs/hooks-custom.html" target="_blank
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token comment">// &#x1f609; 注意：并不是真的语法&lt;/span>
-component &lt;span class="token function">Example&lt;/span>&lt;span class="token punctuation">(&lt;/span>props&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-&lt;span class="gatsby-highlight-code-line">  &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> use &lt;span class="token function">State&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>div&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-      &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token plain-text">You clicked &lt;/span>&lt;span class="token punctuation">{&lt;/span>count&lt;span class="token punctuation">}&lt;/span>&lt;span class="token plain-text"> times&lt;/span>&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>p&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-      &lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>button &lt;span class="token attr-name">onClick&lt;/span>&lt;span class="token script language-javascript">&lt;span class="token script-punctuation punctuation">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token function">setCount&lt;/span>&lt;span class="token punctuation">(&lt;/span>count &lt;span class="token operator">+&lt;/span> &lt;span class="token number">1&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-&lt;span class="token plain-text">        Click me&lt;/span>
-      &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>button&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-    &lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>div&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+// &#x1f609; 注意：并不是真的语法
+component Example(props) {
+  const [count, setCount] = use State(0);
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>
+        Click me
+      </button>
+    </div>
+  );
+}
 ```
 </div>
 
@@ -1097,22 +1097,22 @@ component &lt;span class="token function">Example&lt;/span>&lt;span class="token
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token comment">// &#x1f609; 注意：并不是真的语法&lt;/span>
+// &#x1f609; 注意：并不是真的语法
 
-&lt;span class="token comment">// 它是谁的...局部状态？&lt;/span>
-&lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> use &lt;span class="token function">State&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+// 它是谁的...局部状态？
+const [count, setCount] = use State(0);
 
-component &lt;span class="token function">Example&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>condition&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token comment">// 要是 condition 是 false 时会发生什么呢？&lt;/span>
-    &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> use &lt;span class="token function">State&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
+component Example() {
+  if (condition) {
+    // 要是 condition 是 false 时会发生什么呢？
+    const [count, setCount] = use State(0);
+  }
 
-  &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">handleClick&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token comment">// 要是离开了组件函数会发生什么？&lt;/span>
-    &lt;span class="token comment">// 这和一般的变量又有什么区别呢？&lt;/span>
-    &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> use &lt;span class="token function">State&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
+  function handleClick() {
+    // 要是离开了组件函数会发生什么？
+    // 这和一般的变量又有什么区别呢？
+    const [count, setCount] = use State(0);
+  }
 ```
 </div>
 
@@ -1120,15 +1120,15 @@ React 状态和在树中与其相关的组件紧密联系在一起。如果 use
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token comment">// &#x1f609; 注意：并不是真的语法&lt;/span>
-component &lt;span class="token function">Example&lt;/span>&lt;span class="token punctuation">(&lt;/span>props&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token comment">// 只在这里有效&lt;/span>
-  &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> use &lt;span class="token function">State&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+// &#x1f609; 注意：并不是真的语法
+component Example(props) {
+  // 只在这里有效
+  const [count, setCount] = use State(0);
 
-  &lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>condition&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token comment">// 这会是一个语法错误&lt;/span>
-    &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">[&lt;/span>count&lt;span class="token punctuation">,&lt;/span> setCount&lt;span class="token punctuation">]&lt;/span> &lt;span class="token operator">=&lt;/span> use &lt;span class="token function">State&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token number">0&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
+  if (condition) {
+    // 这会是一个语法错误
+    const [count, setCount] = use State(0);
+  }
 ```
 </div>
 
@@ -1144,25 +1144,25 @@ Hooks 的内部实现其实是<a href="https://dev.to/aspittel/thank-u-next-an-i
 
 <div class="gatsby-highlight" data-language="jsx">
   ```
-&lt;span class="token comment">// 伪代码&lt;/span>
-&lt;span class="token keyword">let&lt;/span> hooks&lt;span class="token punctuation">,&lt;/span> i&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">useState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  i&lt;span class="token operator">++&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token keyword">if&lt;/span> &lt;span class="token punctuation">(&lt;/span>hooks&lt;span class="token punctuation">[&lt;/span>i&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token comment">// 再次渲染时&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> hooks&lt;span class="token punctuation">[&lt;/span>i&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token comment">// 第一次渲染&lt;/span>
-  hooks&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">push&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">...&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+// 伪代码
+let hooks, i;
+function useState() {
+  i++;
+  if (hooks[i]) {
+    // 再次渲染时
+    return hooks[i];
+  }
+  // 第一次渲染
+  hooks.push(...);
+}
 
-&lt;span class="token comment">// 准备渲染&lt;/span>
-i &lt;span class="token operator">=&lt;/span> &lt;span class="token operator">-&lt;/span>&lt;span class="token number">1&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-hooks &lt;span class="token operator">=&lt;/span> fiber&lt;span class="token punctuation">.&lt;/span>hooks &lt;span class="token operator">||&lt;/span> &lt;span class="token punctuation">[&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token comment">// 调用组件&lt;/span>
-&lt;span class="token function">YourComponent&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token comment">// 缓存 Hooks 的状态&lt;/span>
-fiber&lt;span class="token punctuation">.&lt;/span>hooks &lt;span class="token operator">=&lt;/span> hooks&lt;span class="token punctuation">;&lt;/span>
+// 准备渲染
+i = -1;
+hooks = fiber.hooks || [];
+// 调用组件
+YourComponent();
+// 缓存 Hooks 的状态
+fiber.hooks = hooks;
 ```
 </div>
 

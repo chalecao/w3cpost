@@ -41,11 +41,11 @@ React 框架内部的运作可以分为 3 层：
 Fiber 其实指的是一种数据结构，它可以用一个纯 JS 对象来表示：
 
 ```
-&lt;span class="hljs-keyword">const&lt;/span> fiber = {
-    stateNode,    &lt;span class="hljs-comment">// 节点实例&lt;/span>
-    child,        &lt;span class="hljs-comment">// 子节点&lt;/span>
-    sibling,      &lt;span class="hljs-comment">// 兄弟节点&lt;/span>
-    &lt;span class="hljs-keyword">return&lt;/span>,       &lt;span class="hljs-comment">// 父节点&lt;/span>
+const fiber = {
+    stateNode,    // 节点实例
+    child,        // 子节点
+    sibling,      // 兄弟节点
+    return,       // 父节点
 }
 ```
 

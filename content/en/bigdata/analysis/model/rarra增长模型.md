@@ -2,7 +2,7 @@
 title: RARRA增长模型
 
 ---
-## 从AARRR到RARRA的运营思路转变 {#toc-1}
+## 从AARRR到RARRA的运营思路转变
 
 众所周知，AARRR经典的增长黑客体系，也称之为「海盗法则」，分别是获取、激活、留存、变现以及推荐。提出这个模型的 Dave McClure 认为，所有创新型、成长型的企业都应该按照这样的模型来做增长。
 
@@ -18,15 +18,15 @@ AARRR专注于获客（Acquisition），作为一个2007年提出的概念， AA
 
 因为以上两个原因，现在黑客增长的真正关键在于用户留存，而不是获客。所以[我们](https://www.w3cdoc.com)需要一个更好的模型——就是RARRA模型。
 
-## AARRR与RARRA的区别 {#toc-2}
+## AARRR与RARRA的区别 
 
 RARRA模型是托马斯·佩蒂特Thomas Petit和贾博·帕普Gabor Papp对于海盗指标-AARRR模型的优化，RARRA模型突出了用户留存的重要性。
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/y3jgjgvfunx0RX0noosl.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/y3jgjgvfunx0RX0noosl.png?x-oss-process=image/format,webp" alt="" width="1101" height="524" data-action="zoom" />
+![](/images/posts/2022-12-27-21-03-00.png)
 
 简单的说，AARRR模型的核心在于获客，而在RARRA的模型下，专注用户的留存。
 
-## RARRA模型下，如何做用户增长？（成功案例分享） {#toc-3}
+## RARRA模型下，如何做用户增长？（成功案例分享）
 
 分享一个[我们](https://www.w3cdoc.com)前不久自己做的**RARRA模型下**用户增长的成功案例：
 
@@ -48,7 +48,7 @@ RARRA模型是托马斯·佩蒂特Thomas Petit和贾博·帕普Gabor Papp对于�
 
 那么接下来，就要对北极星指标进行分解。
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/1cNM4TJ6YAzo3d6sRyh8.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/1cNM4TJ6YAzo3d6sRyh8.png?x-oss-process=image/format,webp" alt="" width="888" height="404" data-action="zoom" />
+![](/images/posts/2022-12-27-21-03-19.png)
 
 从指标拆解来看：
 
@@ -67,17 +67,17 @@ RARRA模型是托马斯·佩蒂特Thomas Petit和贾博·帕普Gabor Papp对于�
 
 [我们](https://www.w3cdoc.com)拉出不同维度用户数据进行对比，最后发现新用户和老用户的续课率差值竟高达53%。
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/ZeVAtME5SaSCJlqxcOse.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/ZeVAtME5SaSCJlqxcOse.png?x-oss-process=image/format,webp" alt="" width="466" height="273" data-action="zoom" />
+![](/images/posts/2022-12-27-21-03-32.png)
 
 也就是说，新用户进行初步低价课转化后，在从低价课到达正价课的留存续课阶段，是流失最严重的一块。
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/FVdvj9MTZssbPHZLeuiT.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/FVdvj9MTZssbPHZLeuiT.png?x-oss-process=image/format,webp" alt="" width="501" height="194" data-action="zoom" />
+![](/images/posts/2022-12-27-21-03-41.png)
 
 找到了最痛的点，问题其实已经解决了一半。
 
 接下来，通过各种数据因素分析，[我们](https://www.w3cdoc.com)判断出了影响新用户续课率的几个重点因素，分别是：用户来源、课前服务、课程质量。并且对每一个因素继续分解深挖。（标红为续课率效果最好）
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/QohKG1fJkDzXqSrchHa3.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/QohKG1fJkDzXqSrchHa3.png?x-oss-process=image/format,webp" alt="" width="524" height="215" data-action="zoom" />
+![](/images/posts/2022-12-27-21-03-49.png)
 
 * 在课程质量方面，三个细分数据指标综合可以衡量课程质量。
 * 课前服务时间上，通过数据对比，[我们](https://www.w3cdoc.com)发现课前两周进行服务的效果最好，续课率也最高。
@@ -93,6 +93,6 @@ RARRA模型是托马斯·佩蒂特Thomas Petit和贾博·帕普Gabor Papp对于�
 
 通过以上三个方向的运营策略调整，同样的团队，仅用了一个月的时间，就把新老用户续课率的差值从53%缩小到了9%！效果非常明显。同时平台整体收入也大幅增加，而运营成本却比以前大规模进行渠道投放大大节省了。
 
-<img loading="lazy" class="aligncenter" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/IN5JQpiAh7yw4traFGec.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/03/IN5JQpiAh7yw4traFGec.png?x-oss-process=image/format,webp" alt="" width="544" height="300" data-action="zoom" />
+![](/images/posts/2022-12-27-21-03-59.png)
 
 阶段性的成功，正是及时调整了用户增长模型，并采用系统的数据分析方法驱动用户增长。可以看出，数据驱动下，最终给出的运营策略非常简洁，但前面数据组背后付出的努力和精力是很难被看到的。这正是[我们](https://www.w3cdoc.com)想要的结果，扎根稳且深入，但呈现的却是简洁明了的运营指令。

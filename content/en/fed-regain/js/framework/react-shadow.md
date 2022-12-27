@@ -81,47 +81,43 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
   </h1>
  Shadow DOM 必须附加在一个元素上，可以是通过 HTML 声明的一个元素，也可以是通过脚本动态创建的元素。可以是原生的元素，如 div、p ，也可以是「自定义元素」如 my-element ，语法如下：
   
-  <div class="highlight">
-    <div class="copytoclipboard-wrapper" style="position: relative;">
+
       ```
-&lt;span class="token keyword">const&lt;/span> shadowroot &lt;span class="token operator">=&lt;/span> element&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">attachShadow&lt;/span>&lt;span class="token punctuation">(&lt;/span>shadowRootInit&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+const shadowroot = element.attachShadow(shadowRootInit);
 
 ```
 
       
-        <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
+        
       
-    </div>
-  </div>
+
  参考如下例所示：
   
-  <div class="highlight">
-    <div class="copytoclipboard-wrapper" style="position: relative;">
+
       ```
-&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>html&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>head&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-    &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>title&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>Shadow Demo&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>title&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>head&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>body&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-    &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>h1&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>Shadow Demo&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>h1&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-    &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>div&lt;/span> &lt;span class="token attr-name">id&lt;/span>&lt;span class="token attr-value">&lt;span class="token punctuation">=&lt;/span>&lt;span class="token punctuation">"&lt;/span>host&lt;span class="token punctuation">"&lt;/span>&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>div&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-    &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>script&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
+<html>
+  <head>
+    <title>Shadow Demo</title>
+  </head>
+  <body>
+    <h1>Shadow Demo</h1>
+    <div id="host"></div>
+    <script>
       const host = document.querySelector('#host');
       // 通过 attachShadow 向元素附加 Shadow DOM
       const shodowRoot = host.attachShadow({ mode: 'open' });
       // 向 shodowRoot 中添加一些内容
-      shodowRoot.innerHTML = `&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>style&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token style language-css">&lt;span class="token selector">*&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token property">color&lt;/span>&lt;span class="token punctuation">:&lt;/span>red&lt;span class="token punctuation">;&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;/span>&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>style&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;&lt;/span>h2&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>haha!&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>h2&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>`;
-    &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>script&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-  &lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>body&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
-&lt;span class="token tag">&lt;span class="token tag">&lt;span class="token punctuation">&lt;/&lt;/span>html&lt;/span>&lt;span class="token punctuation">>&lt;/span>&lt;/span>
+      shodowRoot.innerHTML = `<style>*{color:red;}</style><h2>haha!</h2>`;
+    </script>
+  </body>
+</html>
 
 ```
 
       
-        <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
+        
       
-    </div>
-  </div>
+
  通过这个简单的示例可以看到「在 Shadow DOM 中定义的样式，并不会影响到主文档中的元素」，如下图<br /> <a href="https://intranetproxy.alipay.com/skylark/lark/0/2019/png/12673/1567668185403-a949d18d-6e4e-41cf-931a-29ea6688cb8b.png#align=left&display=inline&height=678&name=image.png&originHeight=1356&originWidth=2206&size=514537&status=done&width=1103" target="_blank" rel="noopener noreferrer"><br /> </a>
   
  <img loading="lazy" width="2206" height="1356" class="alignnone size-full wp-image-5118 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/format,webp 2206w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_184/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_472/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa4e59184.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_492/format,webp 800w" sizes="(max-width: 2206px) 100vw, 2206px" />
@@ -145,47 +141,43 @@ Web Components 允许开发者创建可重用的自定义元素，它们可以�
   </h1>
  并非所有 HTML 元素都可以开启 Shadow DOM 的，只有一组有限的元素可以附加 Shadow DOM。有时尝试将 Shadow DOM 树附加到某些元素将会导致 DOMException 错误，例如：
   
-  <div class="highlight">
-    <div class="copytoclipboard-wrapper" style="position: relative;">
+
       ```
-document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createElement&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'img'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">attachShadow&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span>mode&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'open'&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token comment" spellcheck="true">// => DOMException&lt;/span>
+document.createElement('img').attachShadow({mode: 'open'});
+// => DOMException
 
 ```
 
       
-        <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
+        
       
-    </div>
-  </div>
- 用 &lt;img> 这样的非容器素作为 Shadow Host 是不合理的，因此这段代码将抛出 DOMException 错误。此外因为安全原因一些元素也不能附加 Shadow DOM（比如 A 元素），会出现错误的另一个原因是[浏览器](https://www.w3cdoc.com)已经用该元素附加了 Shadow DOM，比如 Input 等。
+
+ 用 <img> 这样的非容器素作为 Shadow Host 是不合理的，因此这段代码将抛出 DOMException 错误。此外因为安全原因一些元素也不能附加 Shadow DOM（比如 A 元素），会出现错误的另一个原因是[浏览器](https://www.w3cdoc.com)已经用该元素附加了 Shadow DOM，比如 Input 等。
   
  下表列出了所有支持的元素：
   
-  <div class="highlight">
-    <div class="copytoclipboard-wrapper" style="position: relative;">
+
       ```
-&lt;span class="token code keyword">                +----------------+----------------+----------------+&lt;/span>
-&lt;span class="token code keyword">                |    article     |      aside     |   blockquote   |&lt;/span>
-&lt;span class="token code keyword">                +----------------+----------------+----------------+&lt;/span>
-&lt;span class="token code keyword">                |     body       |       div      |     footer     |&lt;/span>
-&lt;span class="token code keyword">                +----------------+----------------+----------------+&lt;/span>
-&lt;span class="token code keyword">                |      h1        |       h2       |       h3       |&lt;/span>
-&lt;span class="token code keyword">                +----------------+----------------+----------------+&lt;/span>
-&lt;span class="token code keyword">                |      h4        |       h5       |       h6       |&lt;/span>
-&lt;span class="token code keyword">                +----------------+----------------+----------------+&lt;/span>
-&lt;span class="token code keyword">                |    header      |      main      |      nav       |&lt;/span>
-&lt;span class="token code keyword">                +----------------+----------------+----------------+&lt;/span>
-&lt;span class="token code keyword">                |      p         |     section    |      span      |&lt;/span>
-&lt;span class="token code keyword">                +----------------+----------------+----------------+&lt;/span>
+                +----------------+----------------+----------------+
+                |    article     |      aside     |   blockquote   |
+                +----------------+----------------+----------------+
+                |     body       |       div      |     footer     |
+                +----------------+----------------+----------------+
+                |      h1        |       h2       |       h3       |
+                +----------------+----------------+----------------+
+                |      h4        |       h5       |       h6       |
+                +----------------+----------------+----------------+
+                |    header      |      main      |      nav       |
+                +----------------+----------------+----------------+
+                |      p         |     section    |      span      |
+                +----------------+----------------+----------------+
 
 ```
 
       
-        <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
+        
       
-    </div>
-  </div>
+
  <a name="Pba63"></a>
   
   <h1 id="8">
@@ -201,39 +193,37 @@ document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
     6.1. 尝试写一个 React 组件
   
 
-  <div class="highlight">
-    <div class="copytoclipboard-wrapper" style="position: relative;">
+
       ```
-&lt;span class="token keyword">import&lt;/span> React &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token keyword">import&lt;/span> ReactDOM &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react-dom"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+import React from "react";
+import ReactDOM from "react-dom";
 
-&lt;span class="token keyword">export&lt;/span> &lt;span class="token keyword">class&lt;/span> &lt;span class="token class-name">ShadowView&lt;/span> &lt;span class="token keyword">extends&lt;/span> &lt;span class="token class-name">React&lt;span class="token punctuation">.&lt;/span>Component&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token function-variable function">attachShadow&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">(&lt;/span>host&lt;span class="token punctuation">:&lt;/span> Element&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    host&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">attachShadow&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> mode&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"open"&lt;/span> &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">{&lt;/span> children &lt;span class="token punctuation">}&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>props&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> &lt;span class="token operator">&lt;&lt;/span>div ref&lt;span class="token operator">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>attachShadow&lt;span class="token punctuation">}&lt;/span>&lt;span class="token operator">>&lt;/span>
-      &lt;span class="token punctuation">{&lt;/span>children&lt;span class="token punctuation">}&lt;/span>
-    &lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>div&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+export class ShadowView extends React.Component {
+  attachShadow = (host: Element) => {
+    host.attachShadow({ mode: "open" });
+  }
+  render() {
+    const { children } = this.props;
+    return <div ref={this.attachShadow}>
+      {children}
+    </div>;
+  }
+}
 
-&lt;span class="token keyword">export&lt;/span> &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">App&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token operator">&lt;&lt;/span>ShadowView&lt;span class="token operator">>&lt;/span>
-    &lt;span class="token operator">&lt;&lt;/span>span&lt;span class="token operator">>&lt;/span>这儿是隔离的&lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>span&lt;span class="token operator">>&lt;/span>
-  &lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>ShadowView&lt;span class="token operator">>&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+export function App() {
+  return <ShadowView>
+    <span>这儿是隔离的</span>
+  </ShadowView>
+}
 
-ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App &lt;span class="token operator">/&lt;/span>&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"root"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+ReactDOM.render(<App />, document.getElementById("root"));
 
 ```
 
       
-        <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
+        
       
-    </div>
-  </div>
+
  跑起来看看效果，一定会发现「咦？什么也没有显示」：
   
  <img loading="lazy" width="2096" height="1174" class="alignnone size-full wp-image-5119 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/format,webp 2096w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_168/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_430/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fa5c1b3c4.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_448/format,webp 800w" sizes="(max-width: 2096px) 100vw, 2096px" />
@@ -252,56 +242,54 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
  在 React 中通过 ref 拿到真实的 DOM 引用后，是否能通过原生的 DOM  API，将 host 的 children 移动到 host.shadowRoot 中？
   
-  <div class="highlight">
-    <div class="copytoclipboard-wrapper" style="position: relative;">
+
       ```
-&lt;span class="token keyword">import&lt;/span> React &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token keyword">import&lt;/span> ReactDOM &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react-dom"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+import React from "react";
+import ReactDOM from "react-dom";
 
-&lt;span class="token comment" spellcheck="true">// 基于直接操作 DOM 的方式改造的一版&lt;/span>
-&lt;span class="token keyword">export&lt;/span> &lt;span class="token keyword">class&lt;/span> &lt;span class="token class-name">ShadowView&lt;/span> &lt;span class="token keyword">extends&lt;/span> &lt;span class="token class-name">React&lt;span class="token punctuation">.&lt;/span>Component&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token function-variable function">attachShadow&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">(&lt;/span>host&lt;span class="token punctuation">:&lt;/span> Element&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">const&lt;/span> shadowRoot &lt;span class="token operator">=&lt;/span> host&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">attachShadow&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> mode&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"open"&lt;/span> &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token comment" spellcheck="true">//将所有 children 移到 shadowRoot 中&lt;/span>
-    &lt;span class="token punctuation">[&lt;/span>&lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">.&lt;/span>slice&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">call&lt;/span>&lt;span class="token punctuation">(&lt;/span>host&lt;span class="token punctuation">.&lt;/span>children&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">forEach&lt;/span>&lt;span class="token punctuation">(&lt;/span>child &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-      shadowRoot&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">appendChild&lt;/span>&lt;span class="token punctuation">(&lt;/span>child&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">{&lt;/span> children &lt;span class="token punctuation">}&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>props&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> &lt;span class="token operator">&lt;&lt;/span>div ref&lt;span class="token operator">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>attachShadow&lt;span class="token punctuation">}&lt;/span>&lt;span class="token operator">>&lt;/span>
-      &lt;span class="token punctuation">{&lt;/span>children&lt;span class="token punctuation">}&lt;/span>
-    &lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>div&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+// 基于直接操作 DOM 的方式改造的一版
+export class ShadowView extends React.Component {
+  attachShadow = (host: Element) => {
+    const shadowRoot = host.attachShadow({ mode: "open" });
+    //将所有 children 移到 shadowRoot 中
+    [].slice.call(host.children).forEach(child => {
+      shadowRoot.appendChild(child);
+    });
+  }
+  render() {
+    const { children } = this.props;
+    return <div ref={this.attachShadow}>
+      {children}
+    </div>;
+  }
+}
 
-&lt;span class="token comment" spellcheck="true">// 验证一下&lt;/span>
-&lt;span class="token keyword">export&lt;/span> &lt;span class="token keyword">class&lt;/span> &lt;span class="token class-name">App&lt;/span> &lt;span class="token keyword">extends&lt;/span> &lt;span class="token class-name">React&lt;span class="token punctuation">.&lt;/span>Component&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  state &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">{&lt;/span> message&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'...'&lt;/span> &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token function-variable function">onBtnClick&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">setState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> message&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'haha'&lt;/span> &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">{&lt;/span> message &lt;span class="token punctuation">}&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>state&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> &lt;span class="token operator">&lt;&lt;/span>div&lt;span class="token operator">>&lt;/span>
-      &lt;span class="token operator">&lt;&lt;/span>ShadowView&lt;span class="token operator">>&lt;/span>
-        &lt;span class="token operator">&lt;&lt;/span>div&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">{&lt;/span>message&lt;span class="token punctuation">}&lt;/span>&lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>div&lt;span class="token operator">>&lt;/span>
-        &lt;span class="token operator">&lt;&lt;/span>button onClick&lt;span class="token operator">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>onBtnClick&lt;span class="token punctuation">}&lt;/span>&lt;span class="token operator">>&lt;/span>内部单击&lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>button&lt;span class="token operator">>&lt;/span>
-      &lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>ShadowView&lt;span class="token operator">>&lt;/span>
-      &lt;span class="token operator">&lt;&lt;/span>button onClick&lt;span class="token operator">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>onBtnClick&lt;span class="token punctuation">}&lt;/span>&lt;span class="token operator">>&lt;/span>外部单击&lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>button&lt;span class="token operator">>&lt;/span>
-    &lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>div&lt;span class="token operator">>&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+// 验证一下
+export class App extends React.Component {
+  state = { message: '...' };
+  onBtnClick = () => {
+    this.setState({ message: 'haha' });
+  }
+  render() {
+    const { message } = this.state;
+    return <div>
+      <ShadowView>
+        <div>{message}</div>
+        <button onClick={this.onBtnClick}>内部单击</button>
+      </ShadowView>
+      <button onClick={this.onBtnClick}>外部单击</button>
+    </div>
+  }
+}
 
-ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App &lt;span class="token operator">/&lt;/span>&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"root"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+ReactDOM.render(<App />, document.getElementById("root"));
 
 ```
 
       
-        <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
+        
       
-    </div>
-  </div>
+
  在[浏览器](https://www.w3cdoc.com)中看看效果，可以看到是可以正常显示的。但与此同时会发现一个问题「隔离在 ShadowRoot 中的元素上的事件无法被触发了」，这是什么原因呢？
   
  是由于 React 的「合成事件机制」的导致的，[我们](https://www.w3cdoc.com)知道在 React 中「事件」并不会直接绑定到具体的 DOM 元素上，而是通过在 document 上绑定的 ReactEventListener 来管理， 当时元素被单击或触发其他事件时，事件被 dispatch 到 document 时将由 React 进行处理并触发相应合成事件的执行。
@@ -320,49 +308,47 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
 
  ReactDOM.render 的第二个参数，可传入一个 DOM 元素。那是不是能通过 ReactDOM.render 将 React Eements 渲染到 Shodaw DOM 中呢？看一下如下尝试：
   
-  <div class="highlight">
-    <div class="copytoclipboard-wrapper" style="position: relative;">
+
       ```
-&lt;span class="token keyword">import&lt;/span> React &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token keyword">import&lt;/span> ReactDOM &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react-dom"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+import React from "react";
+import ReactDOM from "react-dom";
 
-&lt;span class="token comment" spellcheck="true">// 换用 ReactDOM.render 实现&lt;/span>
-&lt;span class="token keyword">export&lt;/span> &lt;span class="token keyword">class&lt;/span> &lt;span class="token class-name">ShadowView&lt;/span> &lt;span class="token keyword">extends&lt;/span> &lt;span class="token class-name">React&lt;span class="token punctuation">.&lt;/span>Component&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token function-variable function">attachShadow&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">(&lt;/span>host&lt;span class="token punctuation">:&lt;/span> Element&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">{&lt;/span> children &lt;span class="token punctuation">}&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>props&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token keyword">const&lt;/span> shadowRoot &lt;span class="token operator">=&lt;/span> host&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">attachShadow&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> mode&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"open"&lt;/span> &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>children&lt;span class="token punctuation">,&lt;/span> shadowRoot&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> &lt;span class="token operator">&lt;&lt;/span>div ref&lt;span class="token operator">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>attachShadow&lt;span class="token punctuation">}&lt;/span>&lt;span class="token operator">>&lt;/span>&lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>div&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+// 换用 ReactDOM.render 实现
+export class ShadowView extends React.Component {
+  attachShadow = (host: Element) => {
+    const { children } = this.props;
+    const shadowRoot = host.attachShadow({ mode: "open" });
+    ReactDOM.render(children, shadowRoot);
+  }
+  render() {
+    return <div ref={this.attachShadow}></div>;
+  }
+}
 
-&lt;span class="token comment" spellcheck="true">// 试试效果如何&lt;/span>
-&lt;span class="token keyword">export&lt;/span> &lt;span class="token keyword">class&lt;/span> &lt;span class="token class-name">App&lt;/span> &lt;span class="token keyword">extends&lt;/span> &lt;span class="token class-name">React&lt;span class="token punctuation">.&lt;/span>Component&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  state &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">{&lt;/span> message&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'...'&lt;/span> &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token function-variable function">onBtnClick&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">setState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> message&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'haha'&lt;/span> &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token function">alert&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'haha'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">{&lt;/span> message &lt;span class="token punctuation">}&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>state&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> &lt;span class="token operator">&lt;&lt;/span>ShadowView&lt;span class="token operator">>&lt;/span>
-      &lt;span class="token operator">&lt;&lt;/span>div&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">{&lt;/span>message&lt;span class="token punctuation">}&lt;/span>&lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>div&lt;span class="token operator">>&lt;/span>
-      &lt;span class="token operator">&lt;&lt;/span>button onClick&lt;span class="token operator">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>onBtnClick&lt;span class="token punctuation">}&lt;/span>&lt;span class="token operator">>&lt;/span>单击我&lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>button&lt;span class="token operator">>&lt;/span>
-    &lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>ShadowView&lt;span class="token operator">>&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+// 试试效果如何
+export class App extends React.Component {
+  state = { message: '...' };
+  onBtnClick = () => {
+    this.setState({ message: 'haha' });
+    alert('haha');
+  }
+  render() {
+    const { message } = this.state;
+    return <ShadowView>
+      <div>{message}</div>
+      <button onClick={this.onBtnClick}>单击我</button>
+    </ShadowView>
+  }
+}
 
-ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App &lt;span class="token operator">/&lt;/span>&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"root"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+ReactDOM.render(<App />, document.getElementById("root"));
 
 ```
 
       
-        <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
+        
       
-    </div>
-  </div>
+
  可以看到通过 ReactDOM.render 进行 children 的渲染，是能够正常渲染到 Shadow Root 中，并且在 Shadow DOM 中合成事件也是能正常触发执行的。
   
  为什么此时「隔离在 Shadow DOM 中的元素事件」能够被触发了呢？ 因为在 Reac 在发现渲染的目标在 ShadowRoot 中时，将会将事件绑定在通过 Element.getRootNode() 获取的 DocumentFragment 的 RootNode 上。
@@ -381,58 +367,56 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
   
  ReactDOM.createPortal 有一个特性是「通过 createPortal 渲染的 DOM，事件可以从 Portal 的入口端冒泡上来」，这一特性很关键，没有父子关系的 DOM ，合成事件能冒泡过来，那通过  createPortal 渲染到 Shadow DOM 中的元素的事件也能正常触发吧？并且能让所有元素的渲染在一个上下文中。那就基于 createPortal 实现一下：
   
-  <div class="highlight">
-    <div class="copytoclipboard-wrapper" style="position: relative;">
+
       ```
-&lt;span class="token keyword">import&lt;/span> React &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token keyword">import&lt;/span> ReactDOM &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react-dom"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+import React from "react";
+import ReactDOM from "react-dom";
 
-&lt;span class="token comment" spellcheck="true">// 利用 ReactDOM.createPortal 的实现&lt;/span>
-&lt;span class="token keyword">export&lt;/span> &lt;span class="token keyword">function&lt;/span> &lt;span class="token function">ShadowContent&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> root&lt;span class="token punctuation">,&lt;/span> children &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">createPortal&lt;/span>&lt;span class="token punctuation">(&lt;/span>children&lt;span class="token punctuation">,&lt;/span> root&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+// 利用 ReactDOM.createPortal 的实现
+export function ShadowContent({ root, children }) {
+  return ReactDOM.createPortal(children, root);
+}
 
-&lt;span class="token keyword">export&lt;/span> &lt;span class="token keyword">class&lt;/span> &lt;span class="token class-name">ShadowView&lt;/span> &lt;span class="token keyword">extends&lt;/span> &lt;span class="token class-name">React&lt;span class="token punctuation">.&lt;/span>Component&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  state &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">{&lt;/span> root&lt;span class="token punctuation">:&lt;/span> &lt;span class="token keyword">null&lt;/span> &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token function-variable function">setRoot&lt;/span> &lt;span class="token operator">=&lt;/span> eleemnt &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">const&lt;/span> root &lt;span class="token operator">=&lt;/span> eleemnt&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">attachShadow&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> mode&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">"open"&lt;/span> &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">setState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> root &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">{&lt;/span> children &lt;span class="token punctuation">}&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>props&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">{&lt;/span> root &lt;span class="token punctuation">}&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>state&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> &lt;span class="token operator">&lt;&lt;/span>div ref&lt;span class="token operator">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>setRoot&lt;span class="token punctuation">}&lt;/span>&lt;span class="token operator">>&lt;/span>
-      &lt;span class="token punctuation">{&lt;/span>root &lt;span class="token operator">&&&lt;/span> &lt;span class="token operator">&lt;&lt;/span>ShadowContent root&lt;span class="token operator">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>root&lt;span class="token punctuation">}&lt;/span> &lt;span class="token operator">>&lt;/span>
-        &lt;span class="token punctuation">{&lt;/span>children&lt;span class="token punctuation">}&lt;/span>
-      &lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>ShadowContent&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">}&lt;/span>
-    &lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>div&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+export class ShadowView extends React.Component {
+  state = { root: null };
+  setRoot = eleemnt => {
+    const root = eleemnt.attachShadow({ mode: "open" });
+    this.setState({ root });
+  };
+  render() {
+    const { children } = this.props;
+    const { root } = this.state;
+    return <div ref={this.setRoot}>
+      {root && <ShadowContent root={root} >
+        {children}
+      </ShadowContent>}
+    </div>;
+  }
+}
 
-&lt;span class="token comment" spellcheck="true">// 试试如何&lt;/span>
-&lt;span class="token keyword">export&lt;/span> &lt;span class="token keyword">class&lt;/span> &lt;span class="token class-name">App&lt;/span> &lt;span class="token keyword">extends&lt;/span> &lt;span class="token class-name">React&lt;span class="token punctuation">.&lt;/span>Component&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  state &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">{&lt;/span> message&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'...'&lt;/span> &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token function-variable function">onBtnClick&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token operator">=>&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">setState&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">{&lt;/span> message&lt;span class="token punctuation">:&lt;/span> &lt;span class="token string">'haha'&lt;/span> &lt;span class="token punctuation">}&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-  &lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-    &lt;span class="token keyword">const&lt;/span> &lt;span class="token punctuation">{&lt;/span> message &lt;span class="token punctuation">}&lt;/span> &lt;span class="token operator">=&lt;/span> &lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>state&lt;span class="token punctuation">;&lt;/span>
-    &lt;span class="token keyword">return&lt;/span> &lt;span class="token operator">&lt;&lt;/span>ShadowView&lt;span class="token operator">>&lt;/span>
-      &lt;span class="token operator">&lt;&lt;/span>div&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">{&lt;/span>message&lt;span class="token punctuation">}&lt;/span>&lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>div&lt;span class="token operator">>&lt;/span>
-      &lt;span class="token operator">&lt;&lt;/span>button onClick&lt;span class="token operator">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token keyword">this&lt;/span>&lt;span class="token punctuation">.&lt;/span>onBtnClick&lt;span class="token punctuation">}&lt;/span>&lt;span class="token operator">>&lt;/span>单击我&lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>button&lt;span class="token operator">>&lt;/span>
-    &lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>ShadowView&lt;span class="token operator">>&lt;/span>
-  &lt;span class="token punctuation">}&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+// 试试如何
+export class App extends React.Component {
+  state = { message: '...' };
+  onBtnClick = () => {
+    this.setState({ message: 'haha' });
+  }
+  render() {
+    const { message } = this.state;
+    return <ShadowView>
+      <div>{message}</div>
+      <button onClick={this.onBtnClick}>单击我</button>
+    </ShadowView>
+  }
+}
 
-ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App &lt;span class="token operator">/&lt;/span>&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">"root"&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+ReactDOM.render(<App />, document.getElementById("root"));
 
 ```
 
       
-        <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
+        
       
-    </div>
-  </div>
+
  <img loading="lazy" width="2164" height="1406" class="alignnone size-full wp-image-5123 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png?x-oss-process=image/format,webp 2164w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_195/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_499/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5db7fab05b209.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_520/format,webp 800w" sizes="(max-width: 2164px) 100vw, 2164px" />
   
  Wow! 一切正常，有一个小问题是 createPortal 不支持 React 16 以下的版本，但大多数情况下这并不是个什么大问题。
@@ -454,55 +438,51 @@ ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token func
     7.1. 安装组件
   
 
-  <div class="highlight">
-    <div class="copytoclipboard-wrapper" style="position: relative;">
+
       ```
-&lt;span class="token function">npm&lt;/span> i shadow-view --save
+npm i shadow-view --save
 
 ```
 
       
-        <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
+        
       
-    </div>
-  </div>
+
  <a name="uwOxQ"></a>
   
   <h2 id="15">
     7.2. 使用组件
   
 
-  <div class="highlight">
-    <div class="copytoclipboard-wrapper" style="position: relative;">
+
       ```
-&lt;span class="token keyword">import&lt;/span> &lt;span class="token operator">*&lt;/span> &lt;span class="token keyword">as&lt;/span> React &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token keyword">import&lt;/span> &lt;span class="token operator">*&lt;/span> &lt;span class="token keyword">as&lt;/span> ReactDOM &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"react-dom"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token keyword">import&lt;/span> &lt;span class="token punctuation">{&lt;/span> ShadowView &lt;span class="token punctuation">}&lt;/span> &lt;span class="token keyword">from&lt;/span> &lt;span class="token string">"shadow-view"&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import { ShadowView } from "shadow-view";
 
-&lt;span class="token keyword">function&lt;/span> &lt;span class="token function">App&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token punctuation">)&lt;/span> &lt;span class="token punctuation">{&lt;/span>
-  &lt;span class="token keyword">return&lt;/span> &lt;span class="token punctuation">(&lt;/span>
-    &lt;span class="token operator">&lt;&lt;/span>ShadowView
-       styleContent&lt;span class="token operator">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token template-string">&lt;span class="token string">`*{color:red;}`&lt;/span>&lt;/span>&lt;span class="token punctuation">}&lt;/span>
-       styleSheets&lt;span class="token operator">=&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token punctuation">[&lt;/span>
-          &lt;span class="token string">'your_style1_url.css'&lt;/span>&lt;span class="token punctuation">,&lt;/span>
-          &lt;span class="token string">'your_style2_url.css'&lt;/span>
-       &lt;span class="token punctuation">]&lt;/span>&lt;span class="token punctuation">}&lt;/span>
-    &lt;span class="token operator">>&lt;/span>
-      &lt;span class="token operator">&lt;&lt;/span>style&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">{&lt;/span>&lt;span class="token template-string">&lt;span class="token string">`在这儿也可写内部样式`&lt;/span>&lt;/span>&lt;span class="token punctuation">}&lt;/span>&lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>style&lt;span class="token operator">>&lt;/span>
-      &lt;span class="token operator">&lt;&lt;/span>div&lt;span class="token operator">>&lt;/span>这是一个测试&lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>div&lt;span class="token operator">>&lt;/span>
-    &lt;span class="token operator">&lt;&lt;/span>&lt;span class="token operator">/&lt;/span>ShadowView&lt;span class="token operator">>&lt;/span>
-  &lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
-&lt;span class="token punctuation">}&lt;/span>
+function App() {
+  return (
+    <ShadowView
+       styleContent={`*{color:red;}`}
+       styleSheets={[
+          'your_style1_url.css',
+          'your_style2_url.css'
+       ]}
+    >
+      <style>{`在这儿也可写内部样式`}</style>
+      <div>这是一个测试</div>
+    </ShadowView>
+  );
+}
 
-ReactDOM&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">render&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token operator">&lt;&lt;/span>App&lt;span class="token operator">/&lt;/span>&lt;span class="token operator">>&lt;/span>&lt;span class="token punctuation">,&lt;/span> document&lt;span class="token punctuation">.&lt;/span>&lt;span class="token function">getElementById&lt;/span>&lt;span class="token punctuation">(&lt;/span>&lt;span class="token string">'root'&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">)&lt;/span>&lt;span class="token punctuation">;&lt;/span>
+ReactDOM.render(<App/>, document.getElementById('root'));
 
 ```
 
       
-        <button class="copytoclipboard btn btn-default" style="position: absolute; top: 10px; right: 10px;">Copy</button>
+        
       
-    </div>
-  </div>
+
  <a name="ZMGXF"></a>
   
   <h2 id="16">

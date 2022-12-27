@@ -11,19 +11,19 @@ title: react hook的初步研究前言renderWithHooks的整个过程
 在源码里面，renderWithHooks函数是渲染一个组件会调用的，跟hook相关的操作都在这里之后。 比如这段代码：
 
 ```
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-    <span class="token keyword">const</span> <span class="token punctuation">[</span>n<span class="token punctuation">,</span> setn<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">const</span> <span class="token punctuation">[</span>age<span class="token punctuation">,</span> setAge<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">const</span> <span class="token punctuation">[</span>man<span class="token punctuation">,</span> setSex<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token punctuation">(</span>
-        <span class="token operator">&lt;</span>div<span class="token operator">></span>
-            这是n<span class="token punctuation">:</span><span class="token punctuation">{</span>n<span class="token punctuation">}</span><span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setn</span><span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">></span>n<span class="token operator">++</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
-            年龄：<span class="token punctuation">{</span>age<span class="token punctuation">}</span><span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setAge</span><span class="token punctuation">(</span>age <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">></span>age<span class="token operator">+</span><span class="token number">2</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
-            变性：<span class="token punctuation">{</span>man <span class="token operator">?</span> <span class="token string">'man'</span> <span class="token punctuation">:</span> <span class="token string">'gay'</span><span class="token punctuation">}</span><span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setSex</span><span class="token punctuation">(</span><span class="token operator">!</span>man<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">></span>change<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-    <span class="token punctuation">)</span>
-<span class="token punctuation">}</span>
-复制代码
+export default () => {
+    const [n, setn] = useState(1);
+    const [age, setAge] = useState(10);
+    const [man, setSex] = useState(true);
+    return (
+        <div>
+            这是n:{n}<button onClick={() => setn(n + 1)}>n++</button>
+            年龄：{age}<button onClick={() => setAge(age + 2)}>age+2</button>
+            变性：{man ? <span class="token string">'man' : <span class="token string">'gay'}<button onClick={() => setSex(!man)}>change</button>
+        </div>
+    )
+}
+
 ```
 
 第一次挂载组件的时候，会给对应的state留下一个dispatch接口，这个接口是操作对应的state的，也就是setn、setAge、setSex，以`return [initState, dispatch]`这种形式返回。后面的更新，每次点击都会让整个组件函数重新执行，3次useState，源码内部的实现是维护一个队列，setter和对应的state是一一对应的：
@@ -145,16 +145,16 @@ title: react hook的初步研究前言renderWithHooks的整个过程
 如果[我们](https://www.w3cdoc.com)就是这样不按照套路使用的话，比如代码里面由于某种条件判断，使得[我们](https://www.w3cdoc.com)第二次调用组件函数的时候usestate的顺序不一样，伪代码：
 
 ```
-<span class="token comment">// 第一次</span>
-    <span class="token keyword">const</span> <span class="token punctuation">[</span>n<span class="token punctuation">,</span> setn<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">const</span> <span class="token punctuation">[</span>age<span class="token punctuation">,</span> setAge<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">const</span> <span class="token punctuation">[</span>man<span class="token punctuation">,</span> setSex<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 第一次
+    const [n, setn] = useState(1);
+    const [age, setAge] = useState(10);
+    const [man, setSex] = useState(true);
 
-<span class="token comment">// 第二次</span>
-    <span class="token keyword">const</span> <span class="token punctuation">[</span>age<span class="token punctuation">,</span> setAge<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">const</span> <span class="token punctuation">[</span>n<span class="token punctuation">,</span> setn<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">const</span> <span class="token punctuation">[</span>man<span class="token punctuation">,</span> setSex<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">useState</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-复制代码
+<span class="token comment">// 第二次
+    const [age, setAge] = useState(10);
+    const [n, setn] = useState(1);
+    const [man, setSex] = useState(true);
+
 ```
 
 第一次：
@@ -446,16 +446,16 @@ title: react hook的初步研究前言renderWithHooks的整个过程
 这下问题来了：
 
 ```
-<span class="token keyword">return</span> <span class="token punctuation">(</span>
-        <span class="token operator">&lt;</span>div<span class="token operator">></span>
-            <span class="token punctuation">{</span><span class="token comment">/*setn指的是setAge_function，点了会改变_age。这里的n展示的是_age*/</span><span class="token punctuation">}</span>
-            这是n<span class="token punctuation">:</span><span class="token punctuation">{</span>n<span class="token punctuation">}</span><span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setn</span><span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">></span>n<span class="token operator">++</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
-            <span class="token punctuation">{</span><span class="token comment">/*setAge指的是setn_function，点了会改变_n。这里的age展示的是_n*/</span><span class="token punctuation">}</span>
-            年龄：<span class="token punctuation">{</span>age<span class="token punctuation">}</span><span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setAge</span><span class="token punctuation">(</span>age <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">></span>age<span class="token operator">+</span><span class="token number">2</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
-            变性：<span class="token punctuation">{</span>man <span class="token operator">?</span> <span class="token string">'man'</span> <span class="token punctuation">:</span> <span class="token string">'gay'</span><span class="token punctuation">}</span><span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token function">setSex</span><span class="token punctuation">(</span><span class="token operator">!</span>man<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">></span>change<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-    <span class="token punctuation">)</span>
-复制代码
+return (
+        <div>
+            {<span class="token comment">/*setn指的是setAge_function，点了会改变_age。这里的n展示的是_age*/}
+            这是n:{n}<button onClick={() => setn(n + 1)}>n++</button>
+            {<span class="token comment">/*setAge指的是setn_function，点了会改变_n。这里的age展示的是_n*/}
+            年龄：{age}<button onClick={() => setAge(age + 2)}>age+2</button>
+            变性：{man ? <span class="token string">'man' : <span class="token string">'gay'}<button onClick={() => setSex(!man)}>change</button>
+        </div>
+    )
+
 ```
 
 点了一次后，n展示了age，age展示了n，但是他们逻辑就正常，该+1就+1，该+2就+2。其实，可以通过代码让这种情况不出现bug，只是，为了让一个不合法操作正常，加上hack代码，同事两行泪啊。
@@ -575,42 +575,42 @@ title: react hook的初步研究前言renderWithHooks的整个过程
 来到react-dom源码里面，crtl+f找到renderWithHooks：
 
 ```
-<span class="token keyword">function</span> <span class="token function">renderWithHooks</span><span class="token punctuation">(</span>current<span class="token punctuation">,</span> workInProgress<span class="token punctuation">,</span> Component<span class="token punctuation">,</span> props<span class="token punctuation">,</span> refOrContext<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  currentlyRenderingFiber$<span class="token number">1</span> <span class="token operator">=</span> workInProgress<span class="token punctuation">;</span>
-  <span class="token comment">// 第一次的状态</span>
-  firstCurrentHook <span class="token operator">=</span> nextCurrentHook <span class="token operator">=</span> current <span class="token operator">!==</span> <span class="token keyword">null</span> <span class="token operator">?</span> current<span class="token punctuation">.</span>memoizedState <span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+function renderWithHooks(current, workInProgress, Component, props, refOrContext) {
+  currentlyRenderingFiber$1 = workInProgress;
+  <span class="token comment">// 第一次的状态
+  firstCurrentHook = nextCurrentHook = current !== null ? current.memoizedState : null;
 
-  <span class="token comment">// 一些变量初始值：</span>
-  <span class="token comment">// currentHook = null;</span>
-  <span class="token comment">// workInProgressHook = null;</span>
+  <span class="token comment">// 一些变量初始值：
+  <span class="token comment">// currentHook = null;
+  <span class="token comment">// workInProgressHook = null;
 
-  <span class="token comment">// didScheduleRenderPhaseUpdate = false; 是否正在update中</span>
-  <span class="token comment">// numberOfReRenders = 0; 重新渲染的时候fiber节点数</span>
+  <span class="token comment">// didScheduleRenderPhaseUpdate = false; 是否正在update中
+  <span class="token comment">// numberOfReRenders = 0; 重新渲染的时候fiber节点数
 
-  <span class="token punctuation">{</span>
-  <span class="token comment">// 第一次HooksDispatcherOnMountInDEV，第二次以后都是HooksDispatcherOnUpdateInDEV</span>
-  <span class="token comment">// firstCurrentHook就在前面被赋值一次，而nextCurrentHook会被赋值为当前存放hook的对象里面</span>
-    ReactCurrentDispatcher$<span class="token number">1</span><span class="token punctuation">.</span>current <span class="token operator">=</span> nextCurrentHook <span class="token operator">===</span> <span class="token keyword">null</span> <span class="token operator">?</span> HooksDispatcherOnMountInDEV <span class="token punctuation">:</span> HooksDispatcherOnUpdateInDEV<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
+  {
+  <span class="token comment">// 第一次HooksDispatcherOnMountInDEV，第二次以后都是HooksDispatcherOnUpdateInDEV
+  <span class="token comment">// firstCurrentHook就在前面被赋值一次，而nextCurrentHook会被赋值为当前存放hook的对象里面
+    ReactCurrentDispatcher$1.current = nextCurrentHook === null ? HooksDispatcherOnMountInDEV : HooksDispatcherOnUpdateInDEV;
+  }
 
-  <span class="token keyword">var</span> children <span class="token operator">=</span> <span class="token function">Component</span><span class="token punctuation">(</span>props<span class="token punctuation">,</span> refOrContext<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  var children = Component(props, refOrContext);
 
-  <span class="token comment">// 重新渲染的时候</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>didScheduleRenderPhaseUpdate<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">do</span> <span class="token punctuation">{</span>
-      didScheduleRenderPhaseUpdate <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
-      numberOfReRenders <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token comment">// 重新渲染的时候
+  if (didScheduleRenderPhaseUpdate) {
+    do {
+      didScheduleRenderPhaseUpdate = false;
+      numberOfReRenders += 1;
 
-      <span class="token comment">// 重新渲染就是HooksDispatcherOnUpdateInDEV了</span>
-      ReactCurrentDispatcher$<span class="token number">1</span><span class="token punctuation">.</span>current <span class="token operator">=</span> HooksDispatcherOnUpdateInDEV<span class="token punctuation">;</span>
+      <span class="token comment">// 重新渲染就是HooksDispatcherOnUpdateInDEV了
+      ReactCurrentDispatcher$1.current = HooksDispatcherOnUpdateInDEV;
 
-      children <span class="token operator">=</span> <span class="token function">Component</span><span class="token punctuation">(</span>props<span class="token punctuation">,</span> refOrContext<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>didScheduleRenderPhaseUpdate<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    numberOfReRenders <span class="token operator">=</span> <span class="token number"></span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-  <span class="token keyword">return</span> children<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-复制代码
+      children = Component(props, refOrContext);
+    } while (didScheduleRenderPhaseUpdate);
+    numberOfReRenders = ;
+  }
+  return children;
+}
+
 ```
 
 可以看见，renderWithHooks对于首次挂载组件走的是HooksDispatcherOnMountInDEV相关的逻辑，以后的更新重新渲染走的是HooksDispatcherOnUpdateInDEV里面的逻辑
@@ -620,63 +620,63 @@ title: react hook的初步研究前言renderWithHooks的整个过程
 ReactCurrentDispatcher$1.current会是HooksDispatcherOnMountInDEV和HooksDispatcherOnUpdateInDEV其中一个，它们都是一个存放所有的hook函数的对象。首先，[我们](https://www.w3cdoc.com)看一下第一次挂载的时候使用的HooksDispatcherOnMountInDEV里面的useState:
 
 ```
-HooksDispatcherOnMountInDEV <span class="token operator">=</span> <span class="token punctuation">{</span>
-    <span class="token comment">// ....</span>
-    useState<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>initialState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token comment">// ...已省略了容错代码</span>
-      currentHookNameInDev <span class="token operator">=</span> <span class="token string">'useState'</span><span class="token punctuation">;</span>
-      <span class="token keyword">return</span> <span class="token function">mountState</span><span class="token punctuation">(</span>initialState<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">}</span>
+HooksDispatcherOnMountInDEV = {
+    <span class="token comment">// ....
+    useState: function (initialState) {
+      <span class="token comment">// ...已省略了容错代码
+      currentHookNameInDev = <span class="token string">'useState';
+      return mountState(initialState);
+    },
+}
 
-<span class="token comment">// mountState函数</span>
-<span class="token keyword">function</span> <span class="token function">mountState</span><span class="token punctuation">(</span>initialState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token comment">// 获取当前的hook对象</span>
-  <span class="token keyword">var</span> hook <span class="token operator">=</span> <span class="token function">mountWorkInProgressHook</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token comment">// 初始化的state以及状态记忆</span>
-  hook<span class="token punctuation">.</span>memoizedState <span class="token operator">=</span> hook<span class="token punctuation">.</span>baseState <span class="token operator">=</span> initialState<span class="token punctuation">;</span>
-  <span class="token comment">// 以后用的dispatch函数就在hook.queue里面</span>
-  <span class="token keyword">var</span> queue <span class="token operator">=</span> hook<span class="token punctuation">.</span>queue <span class="token operator">=</span> <span class="token punctuation">{</span>
-    last<span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
-    dispatch<span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
-    eagerReducer<span class="token punctuation">:</span> basicStateReducer<span class="token punctuation">,</span>
-    eagerState<span class="token punctuation">:</span> initialState
-  <span class="token punctuation">}</span><span class="token punctuation">;</span>
-  <span class="token comment">// 暴露出来修改state的dispatch，也是更新状态的核心，具体原理这里不探究</span>
-  <span class="token keyword">var</span> dispatch <span class="token operator">=</span> queue<span class="token punctuation">.</span>dispatch <span class="token operator">=</span> dispatchAction<span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span>
-  currentlyRenderingFiber$<span class="token number">1</span><span class="token punctuation">,</span> queue<span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token punctuation">[</span>hook<span class="token punctuation">.</span>memoizedState<span class="token punctuation">,</span> dispatch<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-复制代码
+<span class="token comment">// mountState函数
+function mountState(initialState) {
+  <span class="token comment">// 获取当前的hook对象
+  var hook = mountWorkInProgressHook();
+  <span class="token comment">// 初始化的state以及状态记忆
+  hook.memoizedState = hook.baseState = initialState;
+  <span class="token comment">// 以后用的dispatch函数就在hook.queue里面
+  var queue = hook.queue = {
+    last: null,
+    dispatch: null,
+    eagerReducer: basicStateReducer,
+    eagerState: initialState
+  };
+  <span class="token comment">// 暴露出来修改state的dispatch，也是更新状态的核心，具体原理这里不探究
+  var dispatch = queue.dispatch = dispatchAction.bind(null,
+  currentlyRenderingFiber$1, queue);
+  return [hook.memoizedState, dispatch];
+}
+
 ```
 
 这就是第一步了，把初始状态和dispatch存进去。后面的更新，当前的dispatcher用的是HooksDispatcherOnUpdateInDEV里面的hook：
 
 ```
-HooksDispatcherOnMountInDEV <span class="token operator">=</span> <span class="token punctuation">{</span>
-    <span class="token comment">// ....</span>
-    useState<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>initialState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token comment">// ...</span>
-      currentHookNameInDev <span class="token operator">=</span> <span class="token string">'useState'</span><span class="token punctuation">;</span>
-      <span class="token keyword">return</span> <span class="token function">updateState</span><span class="token punctuation">(</span>initialState<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span><span class="token punctuation">,</span>
-<span class="token punctuation">}</span>
+HooksDispatcherOnMountInDEV = {
+    <span class="token comment">// ....
+    useState: function (initialState) {
+      <span class="token comment">// ...
+      currentHookNameInDev = <span class="token string">'useState';
+      return updateState(initialState);
+      },
+}
 
-<span class="token keyword">function</span> <span class="token function">updateState</span><span class="token punctuation">(</span>initialState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token function">updateReducer</span><span class="token punctuation">(</span>basicStateReducer<span class="token punctuation">,</span> initialState<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+function updateState(initialState) {
+  return updateReducer(basicStateReducer, initialState);
+}
 
-<span class="token keyword">function</span> <span class="token function">updateReducer</span><span class="token punctuation">(</span>reducer<span class="token punctuation">,</span> initialArg<span class="token punctuation">,</span> init<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token comment">// 获取当前hook</span>
-  <span class="token keyword">var</span> hook <span class="token operator">=</span> <span class="token function">updateWorkInProgressHook</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">var</span> queue <span class="token operator">=</span> hook<span class="token punctuation">.</span>queue<span class="token punctuation">;</span>
+function updateReducer(reducer, initialArg, init) {
+  <span class="token comment">// 获取当前hook
+  var hook = updateWorkInProgressHook();
+  var queue = hook.queue;
 
-  <span class="token comment">// 如果是重新渲染的过程，返回被dispatchAction函数修改过的新state和dispatch函数</span>
-  <span class="token keyword">if</span> <span class="token punctuation">(</span>numberOfReRenders <span class="token operator">></span> <span class="token number"></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token keyword">var</span> _dispatch <span class="token operator">=</span> queue<span class="token punctuation">.</span>dispatch<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> <span class="token punctuation">[</span>hook<span class="token punctuation">.</span>memoizedState<span class="token punctuation">,</span> _dispatch<span class="token punctuation">]</span><span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-复制代码
+  <span class="token comment">// 如果是重新渲染的过程，返回被dispatchAction函数修改过的新state和dispatch函数
+  if (numberOfReRenders > ) {
+    var _dispatch = queue.dispatch;
+    return [hook.memoizedState, _dispatch];
+  }
+
 ```
 
 # updateWorkInProgressHook如何进行
@@ -690,30 +690,30 @@ HooksDispatcherOnMountInDEV <span class="token operator">=</span> <span class="t
 每一次hook都是用updateWorkInProgressHook获取的。也是这个函数的实现，让[我们](https://www.w3cdoc.com)看起来react内部是用一个数组维护了hook
 
 ```
-<span class="token keyword">function</span> <span class="token function">updateWorkInProgressHook</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment">// nextCurrentHook是前面的renderWithHooks赋值的</span>
-    currentHook <span class="token operator">=</span> nextCurrentHook<span class="token punctuation">;</span>
+function updateWorkInProgressHook() {
+    <span class="token comment">// nextCurrentHook是前面的renderWithHooks赋值的
+    currentHook = nextCurrentHook;
 
-    <span class="token keyword">var</span> newHook <span class="token operator">=</span> <span class="token punctuation">{</span>
-      memoizedState<span class="token punctuation">:</span> currentHook<span class="token punctuation">.</span>memoizedState<span class="token punctuation">,</span>
-      baseState<span class="token punctuation">:</span> currentHook<span class="token punctuation">.</span>baseState<span class="token punctuation">,</span>
-      queue<span class="token punctuation">:</span> currentHook<span class="token punctuation">.</span>queue<span class="token punctuation">,</span>
-      baseUpdate<span class="token punctuation">:</span> currentHook<span class="token punctuation">.</span>baseUpdate<span class="token punctuation">,</span>
-      next<span class="token punctuation">:</span> <span class="token keyword">null</span>
-    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    var newHook = {
+      memoizedState: currentHook.memoizedState,
+      baseState: currentHook.baseState,
+      queue: currentHook.queue,
+      baseUpdate: currentHook.baseUpdate,
+      next: null
+    };
 
-   <span class="token comment">// 取下一个，就像遍历一样</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>workInProgressHook <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token comment">// 第一次执行组件函数，最开始没有in progress的hook</span>
-      workInProgressHook <span class="token operator">=</span> firstWorkInProgressHook <span class="token operator">=</span> newHook<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
-      <span class="token comment">// 更新的时候</span>
-      workInProgressHook <span class="token operator">=</span> workInProgressHook<span class="token punctuation">.</span>next <span class="token operator">=</span> newHook<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    nextCurrentHook <span class="token operator">=</span> currentHook<span class="token punctuation">.</span>next<span class="token punctuation">;</span>
-    <span class="token keyword">return</span> workInProgressHook<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-复制代码
+   <span class="token comment">// 取下一个，就像遍历一样
+    if (workInProgressHook === null) {
+      <span class="token comment">// 第一次执行组件函数，最开始没有in progress的hook
+      workInProgressHook = firstWorkInProgressHook = newHook;
+    } else {
+      <span class="token comment">// 更新的时候
+      workInProgressHook = workInProgressHook.next = newHook;
+    }
+    nextCurrentHook = currentHook.next;
+    return workInProgressHook;
+}
+
 ```
 
 # 手动模拟更新还原过程
@@ -721,93 +721,93 @@ HooksDispatcherOnMountInDEV <span class="token operator">=</span> <span class="t
 [我们](https://www.w3cdoc.com)还是继续在[我们](https://www.w3cdoc.com)的例子上面改。首先，先用最简单的方法实现一个low一点的hook：
 
 ```
-<span class="token keyword">let</span> state <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// 存放useState的第一个返回值，状态</span>
-<span class="token keyword">let</span> dispatchers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>  <span class="token comment">// 存放useState的第二个返回值，dispatch函数</span>
-<span class="token keyword">let</span> cursor <span class="token operator">=</span> <span class="token number"></span><span class="token punctuation">;</span>  <span class="token comment">// 遍历用的游标，替代next方便理解</span>
+let state = []; <span class="token comment">// 存放useState的第一个返回值，状态
+let dispatchers = [];  <span class="token comment">// 存放useState的第二个返回值，dispatch函数
+let cursor = ;  <span class="token comment">// 遍历用的游标，替代next方便理解
 
-<span class="token keyword">function</span> <span class="token function">_useState</span><span class="token punctuation">(</span>initState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-<span class="token comment">// 第一次来就是赋值，后面来就是靠游标读取</span>
-  <span class="token keyword">const</span> dispatcher <span class="token operator">=</span> dispatchers<span class="token punctuation">[</span>cursor<span class="token punctuation">]</span> <span class="token operator">||</span>
-    <span class="token punctuation">(</span>
-      dispatchers<span class="token punctuation">[</span>cursor<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>_cursor <span class="token operator">=></span> newVal <span class="token operator">=></span> <span class="token punctuation">{</span> <span class="token comment">// 你们熟悉的闭包</span>
-        state<span class="token punctuation">[</span>_cursor<span class="token punctuation">]</span> <span class="token operator">=</span> newVal<span class="token punctuation">;</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'修改的新state>>'</span><span class="token punctuation">,</span> state<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>cursor<span class="token punctuation">)</span><span class="token punctuation">,</span>
-      dispatchers<span class="token punctuation">[</span>cursor<span class="token punctuation">]</span>
-    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+function _useState(initState) {
+<span class="token comment">// 第一次来就是赋值，后面来就是靠游标读取
+  const dispatcher = dispatchers[cursor] ||
+    (
+      dispatchers[cursor] = (_cursor => newVal => { <span class="token comment">// 你们熟悉的闭包
+        state[_cursor] = newVal;
+        console.log(<span class="token string">'修改的新state>>', state);
+      })(cursor),
+      dispatchers[cursor]
+    );
 
-<span class="token comment">// 第一次来还是赋值，后面来就是靠游标直接读取</span>
-  <span class="token keyword">const</span> value <span class="token operator">=</span> <span class="token punctuation">(</span>state<span class="token punctuation">[</span>cursor<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>state<span class="token punctuation">[</span>cursor<span class="token punctuation">]</span> <span class="token operator">=</span> initState<span class="token punctuation">,</span> state<span class="token punctuation">[</span>cursor<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 第一次来还是赋值，后面来就是靠游标直接读取
+  const value = (state[cursor]) || (state[cursor] = initState, state[cursor]);
 
-  cursor<span class="token operator">++</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token punctuation">[</span>value<span class="token punctuation">,</span> dispatcher<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-复制代码
+  cursor++;
+  return [value, dispatcher];
+}
+
 ```
 
 就这么简单，极其简单版本hook。但是[我们](https://www.w3cdoc.com)要模拟react里面的重新渲染更新，需要动一点手脚：
 
 ```
 根组件就是HookIsHere组件
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token operator">&lt;</span>HookIsHere <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-复制代码
+export default () => {
+  return <HookIsHere />;
+}
+
 ```
 
 脱离了react环境的简易hook，如果用在HookIsHere组件中，需要手动模拟更新过程：
 
 ```
-<span class="token keyword">function</span> <span class="token function">HookIsHere</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token function">updateHooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// react每次更新，都会跑完全部hook，[我们](https://www.w3cdoc.com)用这个函数模拟</span>
-  <span class="token keyword">return</span> <span class="token punctuation">(</span>
-    <span class="token operator">&lt;</span>div<span class="token operator">></span>
-      修改n<span class="token punctuation">:</span><span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-        <span class="token function">re_render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 表示重新渲染</span>
-        <span class="token keyword">const</span> <span class="token punctuation">[</span>n<span class="token punctuation">,</span> setn<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">updateHooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number"></span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token function">setn</span><span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">></span>n<span class="token operator">++</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
-      修改年龄：<span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-        <span class="token function">re_render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">const</span> <span class="token punctuation">[</span>age<span class="token punctuation">,</span> setAge<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">updateHooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token function">setAge</span><span class="token punctuation">(</span>age <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">></span>age<span class="token operator">+</span><span class="token number">2</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
-      变性：<span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-        <span class="token function">re_render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">const</span> <span class="token punctuation">[</span>man<span class="token punctuation">,</span> setSex<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">updateHooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token function">setSex</span><span class="token punctuation">(</span><span class="token operator">!</span>man<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">></span>change<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-  <span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+function HookIsHere() {
+  updateHooks(); <span class="token comment">// react每次更新，都会跑完全部hook，[我们](https://www.w3cdoc.com)用这个函数模拟
+  return (
+    <div>
+      修改n:<button onClick={() => {
+        re_render(); <span class="token comment">// 表示重新渲染
+        const [n, setn] = updateHooks()[];
+        setn(n + 1);
+      }}>n++</button>
+      修改年龄：<button onClick={() => {
+        re_render();
+        const [age, setAge] = updateHooks()[1];
+        setAge(age + 2);
+      }}>age+2</button>
+      变性：<button onClick={() => {
+        re_render();
+        const [man, setSex] = updateHooks()[2];
+        setSex(!man);
+      }}>change</button>
+    </div>
+  );
+}
 
-<span class="token comment">// 首次挂载组件</span>
-<span class="token keyword">function</span> <span class="token function">mountComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'模拟首次mount'</span><span class="token punctuation">)</span>
-  <span class="token keyword">return</span> <span class="token operator">&lt;</span>HookIsHere <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span> <span class="token comment">// 会被render返回的，这里只是模拟并没有什么卵用</span>
-<span class="token punctuation">}</span>
+<span class="token comment">// 首次挂载组件
+function mountComponent() {
+  console.log(<span class="token string">'模拟首次mount')
+  return <HookIsHere />; <span class="token comment">// 会被render返回的，这里只是模拟并没有什么卵用
+}
 
-<span class="token comment">// 封装一下，能让[我们](https://www.w3cdoc.com)每次更新ui可以重新把函数组件所有的useState运行一次</span>
-<span class="token comment">// 脱离react自身环境实现的简易版本，只能通过这种方法模拟更新</span>
-<span class="token keyword">function</span> <span class="token function">updateHooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">[</span>
-    <span class="token function">_useState</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token function">_useState</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token function">_useState</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
-  <span class="token punctuation">]</span>
-<span class="token punctuation">}</span>
+<span class="token comment">// 封装一下，能让[我们](https://www.w3cdoc.com)每次更新ui可以重新把函数组件所有的useState运行一次
+<span class="token comment">// 脱离react自身环境实现的简易版本，只能通过这种方法模拟更新
+function updateHooks() {
+  return [
+    _useState(1),
+    _useState(10),
+    _useState(true)
+  ]
+}
 
-<span class="token comment">// 每次重新渲染，游标当然是清零的</span>
-<span class="token keyword">function</span> <span class="token function">re_render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  cursor <span class="token operator">=</span> <span class="token number"></span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+<span class="token comment">// 每次重新渲染，游标当然是清零的
+function re_render() {
+  cursor = ;
+}
 
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// mount前</span>
-<span class="token function">mountComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// mount了</span>
-<span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// react有异步渲染的，现在可以看见初始状态</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-复制代码
+console.log(state); <span class="token comment">// mount前
+mountComponent(); <span class="token comment">// mount了
+setTimeout(() => {
+  console.log(state); <span class="token comment">// react有异步渲染的，现在可以看见初始状态
+});
+
 ```
 
 打开控制台，可以看见[我们](https://www.w3cdoc.com)的自己造的hook跑起来了的console
@@ -815,76 +815,76 @@ console<span class="token punctuation">.</span><span class="token function">log<
 全部代码：
 
 ```
-<span class="token keyword">import</span> React <span class="token keyword">from</span> <span class="token string">'react'</span><span class="token punctuation">;</span>
+import React from <span class="token string">'react';
 
-<span class="token keyword">let</span> state <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">let</span> dispatchers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">let</span> cursor <span class="token operator">=</span> <span class="token number"></span><span class="token punctuation">;</span>
+let state = [];
+let dispatchers = [];
+let cursor = ;
 
-<span class="token keyword">function</span> <span class="token function">_useState</span><span class="token punctuation">(</span>initState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">const</span> dispatcher <span class="token operator">=</span> dispatchers<span class="token punctuation">[</span>cursor<span class="token punctuation">]</span> <span class="token operator">||</span>
-    <span class="token punctuation">(</span>
-      dispatchers<span class="token punctuation">[</span>cursor<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>_cursor <span class="token operator">=></span> newVal <span class="token operator">=></span> <span class="token punctuation">{</span>
-        state<span class="token punctuation">[</span>_cursor<span class="token punctuation">]</span> <span class="token operator">=</span> newVal<span class="token punctuation">;</span>
-        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'修改的新state>>'</span><span class="token punctuation">,</span> state<span class="token punctuation">,</span> dispatchers<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>cursor<span class="token punctuation">)</span><span class="token punctuation">,</span>
-      dispatchers<span class="token punctuation">[</span>cursor<span class="token punctuation">]</span>
-    <span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">const</span> value <span class="token operator">=</span> <span class="token punctuation">(</span>state<span class="token punctuation">[</span>cursor<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token punctuation">(</span>state<span class="token punctuation">[</span>cursor<span class="token punctuation">]</span> <span class="token operator">=</span> initState<span class="token punctuation">,</span> state<span class="token punctuation">[</span>cursor<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+function _useState(initState) {
+  const dispatcher = dispatchers[cursor] ||
+    (
+      dispatchers[cursor] = (_cursor => newVal => {
+        state[_cursor] = newVal;
+        console.log(<span class="token string">'修改的新state>>', state, dispatchers);
+      })(cursor),
+      dispatchers[cursor]
+    );
+  const value = (state[cursor]) || (state[cursor] = initState, state[cursor]);
 
-  cursor<span class="token operator">++</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token punctuation">[</span>value<span class="token punctuation">,</span> dispatcher<span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+  cursor++;
+  return [value, dispatcher];
+}
 
-<span class="token keyword">function</span> <span class="token function">updateHooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token punctuation">[</span>
-    <span class="token function">_useState</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token function">_useState</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-    <span class="token function">_useState</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>
-  <span class="token punctuation">]</span>
-<span class="token punctuation">}</span>
+function updateHooks() {
+  return [
+    _useState(1),
+    _useState(10),
+    _useState(true)
+  ]
+}
 
-<span class="token keyword">function</span> <span class="token function">HookIsHere</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token function">updateHooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token punctuation">(</span>
-    <span class="token operator">&lt;</span>div<span class="token operator">></span>
-      修改n<span class="token punctuation">:</span><span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-        <span class="token function">re_render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">const</span> <span class="token punctuation">[</span>n<span class="token punctuation">,</span> setn<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">updateHooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number"></span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token function">setn</span><span class="token punctuation">(</span>n <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">></span>n<span class="token operator">++</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
-      修改年龄：<span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-        <span class="token function">re_render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">const</span> <span class="token punctuation">[</span>age<span class="token punctuation">,</span> setAge<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">updateHooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token function">setAge</span><span class="token punctuation">(</span>age <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">></span>age<span class="token operator">+</span><span class="token number">2</span><span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
-      变性：<span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-        <span class="token function">re_render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">const</span> <span class="token punctuation">[</span>man<span class="token punctuation">,</span> setSex<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">updateHooks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-        <span class="token function">setSex</span><span class="token punctuation">(</span><span class="token operator">!</span>man<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token operator">></span>change<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">></span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">></span>
-  <span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+function HookIsHere() {
+  updateHooks();
+  return (
+    <div>
+      修改n:<button onClick={() => {
+        re_render();
+        const [n, setn] = updateHooks()[];
+        setn(n + 1);
+      }}>n++</button>
+      修改年龄：<button onClick={() => {
+        re_render();
+        const [age, setAge] = updateHooks()[1];
+        setAge(age + 2);
+      }}>age+2</button>
+      变性：<button onClick={() => {
+        re_render();
+        const [man, setSex] = updateHooks()[2];
+        setSex(!man);
+      }}>change</button>
+    </div>
+  );
+}
 
-<span class="token keyword">function</span> <span class="token function">re_render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  cursor <span class="token operator">=</span> <span class="token number"></span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+function re_render() {
+  cursor = ;
+}
 
-<span class="token keyword">function</span> <span class="token function">mountComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'模拟首次mount'</span><span class="token punctuation">)</span>
-  cursor <span class="token operator">=</span> <span class="token number"></span><span class="token punctuation">;</span>
-  <span class="token keyword">return</span> <span class="token operator">&lt;</span>HookIsHere <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
+function mountComponent() {
+  console.log(<span class="token string">'模拟首次mount')
+  cursor = ;
+  return <HookIsHere />;
+}
 
-console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">mountComponent</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console.log(state);
+mountComponent();
+setTimeout(() => {
+  console.log(state);
+});
 
-<span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
-  <span class="token keyword">return</span> <span class="token operator">&lt;</span>HookIsHere <span class="token operator">/</span><span class="token operator">></span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-复制代码
+export default () => {
+  return <HookIsHere />;
+}
+
 ```

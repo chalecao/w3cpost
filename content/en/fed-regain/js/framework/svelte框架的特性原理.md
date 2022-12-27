@@ -105,11 +105,11 @@ title: Svelte框架的特性原理
 
 <div class="highlight">
   ```
-&lt;span class="kr">const&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="nx">count&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">setCount&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">useState&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">);&lt;/span>
+const [count, setCount] = useState(0);
 
-&lt;span class="kd">function&lt;/span> &lt;span class="nx">increment&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="nx">setCount&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">count&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;span class="p">}&lt;/span>
+function increment() {
+  setCount(count + 1);
+}
 
 ```
 </div>
@@ -120,11 +120,11 @@ title: Svelte框架的特性原理
 
 <div class="highlight">
   ```
-&lt;span class="kd">let&lt;/span> &lt;span class="nx">count&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+let count = 0;
 
-&lt;span class="kd">function&lt;/span> &lt;span class="nx">increment&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="nx">count&lt;/span> &lt;span class="o">+=&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
-&lt;span class="p">}&lt;/span>
+function increment() {
+  count += 1;
+}
 
 ```
 </div>
@@ -396,12 +396,12 @@ Svelte 采用数组来存放，数组中一项是二进制31位的比特位。�
 
 <div class="highlight">
   ```
-&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="nx">A&lt;/span> &lt;span class="nx">数据变了&lt;/span> &lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="nx">更新A对应的DOM节点&lt;/span>
-&lt;span class="p">}&lt;/span>
-&lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span> &lt;span class="nx">B&lt;/span> &lt;span class="nx">数据变了&lt;/span> &lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
-  &lt;span class="nx">更新B对应的DOM节点&lt;/span>
-&lt;span class="p">}&lt;/span>
+if ( A 数据变了 ) {
+  更新A对应的DOM节点
+}
+if ( B 数据变了 ) {
+  更新B对应的DOM节点
+}
 
 ```
 </div>
@@ -442,7 +442,7 @@ Svelte 采用数组来存放，数组中一项是二进制31位的比特位。�
   上面就是Svelte 最核心更新DOM机制，下面[我们](https://www.w3cdoc.com)串起来整个的流程。
 
 
-  下面是非常简单的一个 Svelte 组件，点击&lt;button>会触发onClick事件，从而改变name 变量。
+  下面是非常简单的一个 Svelte 组件，点击<button>会触发onClick事件，从而改变name 变量。
 <figure data-size="normal">
 
 <img class="origin_image zh-lightbox-thumb lazy" src="https://pic1.zhimg.com/80/v2-68c7d2b9d78a77ea31d20fbd28d94840_720w.jpg" width="854" data-caption="" data-size="normal" data-rawwidth="854" data-rawheight="768" data-original="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/v2-68c7d2b9d78a77ea31d20fbd28d94840_r.jpg" data-actualsrc="https://pic1.zhimg.com/v2-68c7d2b9d78a77ea31d20fbd28d94840_b.jpg" data-lazy-status="ok" /> </figure>

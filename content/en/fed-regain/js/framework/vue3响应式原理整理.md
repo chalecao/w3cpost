@@ -15,7 +15,7 @@ title: Vue3响应式原理整理
 * <a href="https://www.bilibili.com/video/BV1Tg4y1z7FH" rel="nofollow">202004 尤大 - 聊聊 Vue.js 3.0 Beta 官方直播</a>
 * <a href="https://www.bilibili.com/video/BV1Et41197L4" rel="nofollow">2018 VueConf 杭州 尤大关于Vue3的演讲视频</a>
 
-## vue2 响应式原理回顾 {#item-1}
+## vue2 响应式原理回顾
 
 * 对象响应化：遍历每个key，通过 `Object.defineProperty` API定义getter，setter
 
@@ -69,7 +69,7 @@ const arrayProto = Object.create(originalProto)
 })
 ```
 
-## vue2响应式痛点 {#item-2}
+## vue2响应式痛点 
 
 * 递归，消耗大
 * 新增/删除属性，需要额外实现单独的API
@@ -77,7 +77,7 @@ const arrayProto = Object.create(originalProto)
 * Map Set Class等数据类型，无法响应式
 * 修改语法有限制
 
-## vue3响应式方案 {#item-3}
+## vue3响应式方案
 
 使用ES6的 **<a href="https://es6.ruanyifeng.com/#docs/proxy" rel="nofollow">Proxy</a>** 进行数据响应化，解决上述Vue2所有痛点
 
@@ -105,12 +105,9 @@ function reactice(obj){
 }
 ```
 
-## 响应式原理 {#item-4}
+## 响应式原理 
 
-
-  <img loading="lazy" width="807" height="1093" class="alignnone size-full wp-image-6579 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/format,webp 807w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/quality,q_50/resize,m_fill,w_222,h_300/format,webp 222w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/quality,q_50/resize,m_fill,w_443,h_600/format,webp 443w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb7a4ed20.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_1040/format,webp 768w" sizes="(max-width: 807px) 100vw, 807px" />
-
-
+![](/images/posts/2022-12-26-18-12-29.png)
 
 * 通过 **`effect`** 声明依赖响应式数据的函数cb ( 例如视图渲染函数render函数)，并执行cb函数，执行过程中，会触发响应式数据 `getter`
 * 在响应式数据 `getter`中进行 `track`依赖收集：建立 **数据&cb** 的映射关系存储于 `targetMap`
@@ -125,7 +122,7 @@ targetMap: WeakMap{
 }
 ```
 
-## 手写vue3响应式 {#item-5}
+## 手写vue3响应式 
 
 大致结构
 
@@ -145,7 +142,7 @@ function track(target,key){}
 function trigger(target,key){}
 ```
 
-### reactive {#item-5-1}
+### reactive 
 
 ```
 /*建立响应式数据*/
@@ -184,7 +181,7 @@ function reactive(obj){
 }
 ```
 
-### effect {#item-5-2}
+### effect 
 
 ```
 /*声明响应函数cb*/
@@ -211,7 +208,7 @@ function effect(cb){
 }
 ```
 
-### track {#item-5-3}
+### track 
 
 ```
 /*依赖收集：建立 数据&cb 映射关系*/
@@ -235,7 +232,7 @@ function track(target,key){
 }
 ```
 
-### trigger {#item-5-4}
+### trigger 
 
 ```
 /*触发更新：根据映射关系，执行cb*/
@@ -250,7 +247,7 @@ function trigger(target, key){
 }
 ```
 
-### 测试demo {#item-5-5}
+### 测试demo 
 
 ```
 <!-- test.html -->
@@ -283,6 +280,5 @@ function trigger(target, key){
 
 效果：
 
-
-  <img loading="lazy" width="547" height="548" class="alignnone size-full wp-image-6578 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb66198a5.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb66198a5.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb66198a5.png?x-oss-process=image/format,webp 547w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb66198a5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_300/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6069eb66198a5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_150,h_150/format,webp 150w" sizes="(max-width: 547px) 100vw, 547px" />
+![](/images/posts/2022-12-26-18-11-59.png)
 

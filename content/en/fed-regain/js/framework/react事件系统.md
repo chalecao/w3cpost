@@ -78,11 +78,11 @@ React 合成事件与原生事件执行顺序图：
 
 ```
 componentDidMount() {
-&lt;span class="hljs-built_in">document&lt;/span>.body.addEventListener(&lt;span class="hljs-string">'click'&lt;/span>, &lt;span class="hljs-function">&lt;span class="hljs-params">e&lt;/span> =>&lt;/span> {
- &lt;span class="hljs-keyword">if&lt;/span> (e.target && e.target.matches(&lt;span class="hljs-string">'div.code'&lt;/span>)) {  
-      &lt;span class="hljs-keyword">return&lt;/span>;
+document.body.addEventListener('click', e => {
+ if (e.target && e.target.matches('div.code')) {  
+      return;
   }
-  &lt;span class="hljs-keyword">this&lt;/span>.setState({   active: &lt;span class="hljs-literal">false&lt;/span>,    });   });
+  this.setState({   active: false,    });   });
  }
 
 ```
@@ -93,18 +93,18 @@ componentDidMount() {
 事件注册即在 document 节点，将 React 事件转化为 DOM 原生事件，并注册回调。
 
 ```
-&lt;span class="hljs-comment">// enqueuePutListener 负责事件注册。&lt;/span>
-&lt;span class="hljs-comment">// inst：注册事件的 React 组件实例&lt;/span>
-&lt;span class="hljs-comment">// registrationName：React 事件，如：onClick、onChange&lt;/span>
-&lt;span class="hljs-comment">// listener：和事件绑定的 React 回调方法，如：handleClick、handleChange&lt;/span>
-&lt;span class="hljs-comment">// transaction：React 事务流，不懂没关系，不太影响对事件系统的理解&lt;/span>
-&lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">enqueuePutListener&lt;/span>&lt;span class="hljs-params">(inst, registrationName, listener, transaction)&lt;/span> &lt;/span>{
+// enqueuePutListener 负责事件注册。
+// inst：注册事件的 React 组件实例
+// registrationName：React 事件，如：onClick、onChange
+// listener：和事件绑定的 React 回调方法，如：handleClick、handleChange
+// transaction：React 事务流，不懂没关系，不太影响对事件系统的理解
+function enqueuePutListener(inst, registrationName, listener, transaction) {
     ... ...
-   &lt;span class="hljs-comment">// doc 为找到的 document 节点&lt;/span>
-    &lt;span class="hljs-keyword">var&lt;/span> doc = isDocumentFragment ? containerInfo._node : containerInfo._ownerDocument;
-    &lt;span class="hljs-comment">// 事件注册&lt;/span>
+   // doc 为找到的 document 节点
+    var doc = isDocumentFragment ? containerInfo._node : containerInfo._ownerDocument;
+    // 事件注册
     listenTo(registrationName, doc);
-    &lt;span class="hljs-comment">// 事件存储，之后会讲到，即存储事件回调方法&lt;/span>
+    // 事件存储，之后会讲到，即存储事件回调方法
     transaction.getReactMountReady().enqueue(putListener, {
         inst: inst,
         registrationName: registrationName,
@@ -116,23 +116,23 @@ componentDidMount() {
 来看事件注册的具体代码，如何在 document 上绑定 DOM 原生事件。
 
 ```
-&lt;span class="hljs-comment">// 事件注册&lt;/span>
-&lt;span class="hljs-comment">// registrationName：React 事件名，如：onClick、onChange&lt;/span>
-&lt;span class="hljs-comment">// contentDocumentHandle：要将事件绑定到的 DOM 节点&lt;/span>
-listenTo: &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-params">(registrationName, contentDocumentHandle)&lt;/span> &lt;/span>{
-    &lt;span class="hljs-comment">// document&lt;/span>
-    &lt;span class="hljs-keyword">var&lt;/span> mountAt = contentDocumentHandle;
-    &lt;span class="hljs-comment">// React 事件和绑定在根节点的 topEvent 的转化关系，如：onClick -> topClick&lt;/span>
-    &lt;span class="hljs-keyword">var&lt;/span> dependencies = EventPluginRegistry.registrationNameDependencies[registrationName];
+// 事件注册
+// registrationName：React 事件名，如：onClick、onChange
+// contentDocumentHandle：要将事件绑定到的 DOM 节点
+listenTo: function (registrationName, contentDocumentHandle) {
+    // document
+    var mountAt = contentDocumentHandle;
+    // React 事件和绑定在根节点的 topEvent 的转化关系，如：onClick -> topClick
+    var dependencies = EventPluginRegistry.registrationNameDependencies[registrationName];
 
-    &lt;span class="hljs-keyword">for&lt;/span> (&lt;span class="hljs-keyword">var&lt;/span> i = &lt;span class="hljs-number">0&lt;/span>; i &lt; dependencies.length; i++){
-        &lt;span class="hljs-comment">// 内部有大量判断[浏览器](https://www.w3cdoc.com)兼容等的步骤，提取一下核心代码&lt;/span>
-        &lt;span class="hljs-keyword">var&lt;/span> dependency = dependencies[i];
+    for (var i = 0; i < dependencies.length; i++){
+        // 内部有大量判断[浏览器](https://www.w3cdoc.com)兼容等的步骤，提取一下核心代码
+        var dependency = dependencies[i];
 
-        &lt;span class="hljs-comment">// topEvent 和原生 DOM 事件的转化关系&lt;/span>
-        &lt;span class="hljs-keyword">if&lt;/span> (topEventMapping.hasOwnProperty(dependency)) {
-            &lt;span class="hljs-comment">// 三个参数为 topEvent、原生 DOM Event、Document&lt;/span>
-            &lt;span class="hljs-comment">// 将事件绑定到冒泡阶段&lt;/span>
+        // topEvent 和原生 DOM 事件的转化关系
+        if (topEventMapping.hasOwnProperty(dependency)) {
+            // 三个参数为 topEvent、原生 DOM Event、Document
+            // 将事件绑定到冒泡阶段
             trapBubbledEvent(dependency, topEventMapping[dependency], mountAt);
         }
     }
@@ -143,22 +143,22 @@ listenTo: &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&
 来看将事件绑定到冒泡阶段的具体代码：
 
 ```
-&lt;span class="hljs-comment">// 三个参数为 topEvent、原生 DOM Event、Document（挂载节点）&lt;/span>
-trapBubbledEvent: &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-params">(topLevelType, handlerBaseName, element)&lt;/span> &lt;/span>{
-    &lt;span class="hljs-keyword">if&lt;/span> (!element) {
-        &lt;span class="hljs-keyword">return&lt;/span> &lt;span class="hljs-literal">null&lt;/span>;
+// 三个参数为 topEvent、原生 DOM Event、Document（挂载节点）
+trapBubbledEvent: function (topLevelType, handlerBaseName, element) {
+    if (!element) {
+        return null;
     }
-    &lt;span class="hljs-keyword">return&lt;/span> EventListener.listen(element, handlerBaseName, ReactEventListener.dispatchEvent.bind(&lt;span class="hljs-literal">null&lt;/span>, topLevelType));
+    return EventListener.listen(element, handlerBaseName, ReactEventListener.dispatchEvent.bind(null, topLevelType));
 }
 
-&lt;span class="hljs-comment">// 三个参数为 Document（挂载节点）、原生 DOM Event、事件绑定函数&lt;/span>
-listen: &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">listen&lt;/span>&lt;span class="hljs-params">(target, eventType, callback)&lt;/span> &lt;/span>{
-    &lt;span class="hljs-comment">// 去除[浏览器](https://www.w3cdoc.com)兼容部分，留下核心后&lt;/span>
-    target.addEventListener(eventType, callback, &lt;span class="hljs-literal">false&lt;/span>);
-    &lt;span class="hljs-comment">// 返回一个解绑的函数&lt;/span>
-    &lt;span class="hljs-keyword">return&lt;/span> {
-        remove: &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-title">remove&lt;/span>&lt;span class="hljs-params">()&lt;/span> &lt;/span>{
-            target.removeEventListener(eventType, callback, &lt;span class="hljs-literal">false&lt;/span>);
+// 三个参数为 Document（挂载节点）、原生 DOM Event、事件绑定函数
+listen: function listen(target, eventType, callback) {
+    // 去除[浏览器](https://www.w3cdoc.com)兼容部分，留下核心后
+    target.addEventListener(eventType, callback, false);
+    // 返回一个解绑的函数
+    return {
+        remove: function remove() {
+            target.removeEventListener(eventType, callback, false);
         }
     }
 }
@@ -171,15 +171,15 @@ listen: &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt
 事件注册之后，还需要将事件绑定的回调函数存储下来。这样，在触发事件后才能去寻找相应回调来触发。在一开始的代码中，[我们](https://www.w3cdoc.com)已经看到，是使用 putListener 方法来进行事件回调存储。
 
 ```
-&lt;span class="hljs-comment">// inst：注册事件的 React 组件实例&lt;/span>
-&lt;span class="hljs-comment">// registrationName：React 事件，如：onClick、onChange&lt;/span>
-&lt;span class="hljs-comment">// listener：和事件绑定的 React 回调方法，如：handleClick、handleChange&lt;/span>
-putListener: &lt;span class="hljs-function">&lt;span class="hljs-keyword">function&lt;/span> &lt;span class="hljs-params">(inst, registrationName, listener)&lt;/span> &lt;/span>{
-    &lt;span class="hljs-comment">// 核心代码如下&lt;/span>
-    &lt;span class="hljs-comment">// 生成每个组件实例唯一的标识符 key&lt;/span>
-    &lt;span class="hljs-keyword">var&lt;/span> key = getDictionaryKey(inst);
-    &lt;span class="hljs-comment">// 获取某种 React 事件在回调存储银行中的对象&lt;/span>
-    &lt;span class="hljs-keyword">var&lt;/span> bankForRegistrationName = listenerBank[registrationName] || (listenerBank[registrationName] = {});
+// inst：注册事件的 React 组件实例
+// registrationName：React 事件，如：onClick、onChange
+// listener：和事件绑定的 React 回调方法，如：handleClick、handleChange
+putListener: function (inst, registrationName, listener) {
+    // 核心代码如下
+    // 生成每个组件实例唯一的标识符 key
+    var key = getDictionaryKey(inst);
+    // 获取某种 React 事件在回调存储银行中的对象
+    var bankForRegistrationName = listenerBank[registrationName] || (listenerBank[registrationName] = {});
     bankForRegistrationName[key] = listener;
 }
 
@@ -202,9 +202,9 @@ React合成事件的冒泡并不是真的冒泡，而是节点的遍历。
 个人觉得stopImmediatePropagation非常有用，很有必要阻止合成事件冒泡到DOM document上，原因是：
 
 ```
-&lt;span class="hljs-number">1.&lt;/span>合成事件本来就绑定在&lt;span class="hljs-built_in">document&lt;/span>上，完全可以获取这个&lt;span class="hljs-built_in">document&lt;/span>
-&lt;span class="hljs-number">2.&lt;/span>stopImmediatePropagation可以阻止触发的&lt;span class="hljs-built_in">document&lt;/span> DOM上的事件，这十分有必要
-&lt;span class="hljs-number">3.&lt;/span>不会阻止DOM 上的事件冒泡到&lt;span class="hljs-built_in">document&lt;/span> DOM
+1.合成事件本来就绑定在document上，完全可以获取这个document
+2.stopImmediatePropagation可以阻止触发的document DOM上的事件，这十分有必要
+3.不会阻止DOM 上的事件冒泡到document DOM
 
 ```
 

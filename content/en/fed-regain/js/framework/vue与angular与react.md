@@ -122,7 +122,7 @@ String-based 和 Dom-based的模板技术都或多或少的依赖与innerHTML, �
 
 ```
 "{{isLogin? 'Login': 'Wellcome'}}"
-&lt;/code>
+</code>
 ```
 
 一旦regularjs的引擎遇到这段模板与代表的语法元素节点，会进入如下函数处理  
@@ -164,7 +164,7 @@ Object.defineProperty(obj, "key", {
     writable: false,
     value: "static"
 });
-&lt;/code>
+</code>
 ```
 
 你可以在创建对象的时候设置属性的get或set方法，也可以直接修改对象的属性。上面这两个方法是ES5新增的方法，主要是IE8的兼容性可以查看上面的参考MDN链接。
@@ -178,12 +178,12 @@ Object.defineProperty(obj, "key", {
   1. 实现数据绑定处理
 
 ```
-&lt;div id='box' ao-controller="box">
-&lt;div id='aa-attr' style="background: #a9ea00;width:100px;height:100px;" ao-css-width="w" ao-click='click' >&lt;/div>
-&lt;p id='aa-text'>{{ w }}&lt;/p>
-&lt;/div>
+<div id='box' ao-controller="box">
+<div id='aa-attr' style="background: #a9ea00;width:100px;height:100px;" ao-css-width="w" ao-click='click' ></div>
+<p id='aa-text'>{{ w }}</p>
+</div>
 
-&lt;script>
+<script>
 
 var vm = {}
 
@@ -216,8 +216,8 @@ vm.w = 300 //设置element.style.width == 300
 
 alert(vm.w)
 
-&lt;/script>
-&lt;/code>
+</script>
+</code>
 ```
 
 

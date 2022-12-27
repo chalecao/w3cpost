@@ -50,7 +50,7 @@ title: 转:react-redux原理介绍，最易懂的说明
     
     ```
 npm install --save redux
-&lt;span class="copy-code-btn">复制代码&lt;/span>
+复制代码
 ```
 
     <h4 class="heading" data-id="heading-3">
@@ -102,8 +102,8 @@ npm install --save redux
     
     
     ```
-&lt;span class="hljs-built_in">let&lt;/span> store = createStore(reducers);
-&lt;span class="copy-code-btn">复制代码&lt;/span>
+let store = createStore(reducers);
+复制代码
 ```
 
     
@@ -116,7 +116,7 @@ npm install --save redux
 提供 dispatch(action) 方法更新 state；
 通过 subscribe(listener) 注册监听器;
 通过 subscribe(listener) 返回的函数注销监听器。
-&lt;span class="copy-code-btn">复制代码&lt;/span>
+复制代码
 ```
 
     
@@ -147,19 +147,19 @@ npm install --save redux
     
     
     ```
-import { createStore } from &lt;span class="hljs-string">'redux'&lt;/span>
+import { createStore } from 'redux'
 
 const reducer = (state = {count: 0}, action) => {
   switch (action.type){
-    &lt;span class="hljs-keyword">case&lt;/span> &lt;span class="hljs-string">'INCREASE'&lt;/span>: &lt;span class="hljs-built_in">return&lt;/span> {count: state.count + 1};
-    &lt;span class="hljs-keyword">case&lt;/span> &lt;span class="hljs-string">'DECREASE'&lt;/span>: &lt;span class="hljs-built_in">return&lt;/span> {count: state.count - 1};
-    default: &lt;span class="hljs-built_in">return&lt;/span> state;
+    case 'INCREASE': return {count: state.count + 1};
+    case 'DECREASE': return {count: state.count - 1};
+    default: return state;
   }
 }
 
 const actions = {
-  increase: () => ({&lt;span class="hljs-built_in">type&lt;/span>: &lt;span class="hljs-string">'INCREASE'&lt;/span>}),
-  decrease: () => ({&lt;span class="hljs-built_in">type&lt;/span>: &lt;span class="hljs-string">'DECREASE'&lt;/span>})
+  increase: () => ({type: 'INCREASE'}),
+  decrease: () => ({type: 'DECREASE'})
 }
 
 const store = createStore(reducer);
@@ -172,7 +172,7 @@ store.dispatch(actions.increase()) // {count: 1}
 store.dispatch(actions.increase()) // {count: 2}
 store.dispatch(actions.increase()) // {count: 3}
 
-&lt;span class="copy-code-btn">复制代码&lt;/span>
+复制代码
 ```
 
     
@@ -181,13 +181,13 @@ store.dispatch(actions.increase()) // {count: 3}
     
     ```
 class Todos extends Component {
-    &lt;span class="hljs-function">&lt;span class="hljs-title">render&lt;/span>&lt;/span>(){
-        &lt;span class="hljs-built_in">return&lt;/span>(
-            &lt;div onCLick={()=>store.dispatch(actions.delTodo()) }>&lt;span class="hljs-built_in">test&lt;/span>&lt;/div>
+    render(){
+        return(
+            <div onCLick={()=>store.dispatch(actions.delTodo()) }>test</div>
         )
     }
 }
-&lt;span class="copy-code-btn">复制代码&lt;/span>
+复制代码
 ```
 
     <h4 class="heading" data-id="heading-5">
@@ -204,7 +204,7 @@ class Todos extends Component {
     
     ```
 npm install --save react-redux
-&lt;span class="copy-code-btn">复制代码&lt;/span>
+复制代码
 ```
 
     
@@ -249,24 +249,24 @@ npm install --save react-redux
     
     
     ```
-import React, { Component } from &lt;span class="hljs-string">'react'&lt;/span>;
-import store from &lt;span class="hljs-string">'../store'&lt;/span>;
-import actions from &lt;span class="hljs-string">'../store/actions/list'&lt;/span>;
-import {connect} from &lt;span class="hljs-string">'react-redux'&lt;/span>;
+import React, { Component } from 'react';
+import store from '../store';
+import actions from '../store/actions/list';
+import {connect} from 'react-redux';
 
 class Todos extends Component {
-    &lt;span class="hljs-function">&lt;span class="hljs-title">render&lt;/span>&lt;/span>(){
-        &lt;span class="hljs-built_in">return&lt;/span>(
-            &lt;div onCLick={()=>this.props.del_todo() }>&lt;span class="hljs-built_in">test&lt;/span>&lt;/div>
+    render(){
+        return(
+            <div onCLick={()=>this.props.del_todo() }>test</div>
         )
     }
 }
 
-&lt;span class="hljs-built_in">export&lt;/span> default connect(
+export default connect(
     state=>state,
     actions
 )(Todos);
-&lt;span class="copy-code-btn">复制代码&lt;/span>
+复制代码
 ```
 
     
@@ -290,27 +290,27 @@ class Todos extends Component {
     
     
     ```
-&lt;span class="hljs-built_in">export&lt;/span> default &lt;span class="hljs-keyword">function&lt;/span> (state = { lists: [{text:&lt;span class="hljs-string">'移动端计划'&lt;/span>}],newType:&lt;span class="hljs-string">'all'&lt;/span>}, action) {
+export default function (state = { lists: [{text:'移动端计划'}],newType:'all'}, action) {
     switch (action.type) {
-        &lt;span class="hljs-keyword">case&lt;/span> types.ADD_TODO:
-            &lt;span class="hljs-built_in">return&lt;/span> {...state,lists:[...state.lists,{text:action.text}]}
-        &lt;span class="hljs-keyword">case&lt;/span> types.TOGGLE_TODO:
-            &lt;span class="hljs-built_in">return&lt;/span> {...state,lists:state.lists.map((item,index)=>{
-                &lt;span class="hljs-keyword">if&lt;/span>(index == action.index){
+        case types.ADD_TODO:
+            return {...state,lists:[...state.lists,{text:action.text}]}
+        case types.TOGGLE_TODO:
+            return {...state,lists:state.lists.map((item,index)=>{
+                if(index == action.index){
                     item.completed = !item.completed
                 }
-                &lt;span class="hljs-built_in">return&lt;/span> item
+                return item
             })}
-        &lt;span class="hljs-keyword">case&lt;/span> types.DEL_TODO:
-            &lt;span class="hljs-built_in">return&lt;/span> {...state,lists:[...state.lists.slice(0,action.index),...state.lists.slice(action.index+1)]}
-        &lt;span class="hljs-keyword">case&lt;/span> types.SWITCH_TYPE:
+        case types.DEL_TODO:
+            return {...state,lists:[...state.lists.slice(0,action.index),...state.lists.slice(action.index+1)]}
+        case types.SWITCH_TYPE:
             console.log({...state,newType:action.newType})
-            &lt;span class="hljs-built_in">return&lt;/span> {...state,newType:action.newType}
+            return {...state,newType:action.newType}
         default:
-            &lt;span class="hljs-built_in">return&lt;/span> state;
+            return state;
     }
 }
-&lt;span class="copy-code-btn">复制代码&lt;/span>
+复制代码
 ```
 
     
@@ -318,31 +318,31 @@ class Todos extends Component {
     
     
     ```
-import React, { Component } from &lt;span class="hljs-string">'react'&lt;/span>;
-import store from &lt;span class="hljs-string">'../store'&lt;/span>;
-import actions from &lt;span class="hljs-string">'../store/actions/list'&lt;/span>;
-import {connect} from &lt;span class="hljs-string">'react-redux'&lt;/span>;
+import React, { Component } from 'react';
+import store from '../store';
+import actions from '../store/actions/list';
+import {connect} from 'react-redux';
 
 class Todos extends Component {
-    &lt;span class="hljs-function">&lt;span class="hljs-title">render&lt;/span>&lt;/span>(){
-        &lt;span class="hljs-built_in">return&lt;/span>(
+    render(){
+        return(
             {
-                + &lt;ul>
+                + <ul>
                 +    this.props.state.lists.map(list =>(
-                +        &lt;li>{list.text}&lt;/li>
+                +        <li>{list.text}</li>
                 +    ))
-                + &lt;/ul>
+                + </ul>
             }
-            &lt;div onCLick={()=>this.props.del_todo() }>&lt;span class="hljs-built_in">test&lt;/span>&lt;/div>
+            <div onCLick={()=>this.props.del_todo() }>test</div>
         )
     }
 }
 
-&lt;span class="hljs-built_in">export&lt;/span> default connect(
+export default connect(
     state=>state,
     actions
 )(Todos);
-&lt;span class="copy-code-btn">复制代码&lt;/span>
+复制代码
 ```
 
     
@@ -358,26 +358,26 @@ class Todos extends Component {
     
     
     ```
-import * as types from &lt;span class="hljs-string">"../action-types"&lt;/span>;
+import * as types from "../action-types";
 
-&lt;span class="hljs-built_in">export&lt;/span> default{
+export default{
     add_todo(text){
-        &lt;span class="hljs-built_in">return&lt;/span> { &lt;span class="hljs-built_in">type&lt;/span>: types.ADD_TODO, text: text}
+        return { type: types.ADD_TODO, text: text}
     },
     del_todo(idx){
-        &lt;span class="hljs-built_in">return&lt;/span> {&lt;span class="hljs-built_in">type&lt;/span>:types.DEL_TODO, index: idx}
+        return {type:types.DEL_TODO, index: idx}
     },
     toggle_todo(index){
-        &lt;span class="hljs-built_in">return&lt;/span> {&lt;span class="hljs-built_in">type&lt;/span>:types.TOGGLE_TODO, index}
+        return {type:types.TOGGLE_TODO, index}
     },
     del_todo(index){
-        &lt;span class="hljs-built_in">return&lt;/span> {&lt;span class="hljs-built_in">type&lt;/span>:types.DEL_TODO, index}
+        return {type:types.DEL_TODO, index}
     },
     switch_type(newType){
-        &lt;span class="hljs-built_in">return&lt;/span> {&lt;span class="hljs-built_in">type&lt;/span>:types.SWITCH_TYPE, newType}
+        return {type:types.SWITCH_TYPE, newType}
     }
 }
-&lt;span class="copy-code-btn">复制代码&lt;/span>
+复制代码
 ```
 
     
@@ -389,8 +389,8 @@ import * as types from &lt;span class="hljs-string">"../action-types"&lt;/span>;
     
     
     ```
-    &lt;div onCLick={()=>this.props.del_todo() }>&lt;span class="hljs-built_in">test&lt;/span>&lt;/div>
-&lt;span class="copy-code-btn">复制代码&lt;/span>
+    <div onCLick={()=>this.props.del_todo() }>test</div>
+复制代码
 ```
 
     <h4 class="heading" data-id="heading-7">
@@ -403,7 +403,7 @@ import * as types from &lt;span class="hljs-string">"../action-types"&lt;/span>;
     
     ```
 store.dispatch(actions.increase())
-&lt;span class="copy-code-btn">复制代码&lt;/span>
+复制代码
 ```
 
     
@@ -415,12 +415,12 @@ store.dispatch(actions.increase())
     
     
     ```
-import React,{Component} from &lt;span class="hljs-string">'react'&lt;/span>;
-import {&lt;span class="hljs-built_in">bind&lt;/span>ActionCreators} from &lt;span class="hljs-string">'redux'&lt;/span>;
-import propTypes from &lt;span class="hljs-string">'prop-types'&lt;/span>;
+import React,{Component} from 'react';
+import {bindActionCreators} from 'redux';
+import propTypes from 'prop-types';
 
-&lt;span class="hljs-built_in">export&lt;/span> default &lt;span class="hljs-keyword">function&lt;/span>(mapStateToProps,mapDispatchToProps){
-   &lt;span class="hljs-built_in">return&lt;/span> &lt;span class="hljs-keyword">function&lt;/span>(WrapedComponent){
+export default function(mapStateToProps,mapDispatchToProps){
+   return function(WrapedComponent){
       class ProxyComponent extends Component{
           static contextTypes = {
               store:propTypes.object
@@ -430,29 +430,29 @@ import propTypes from &lt;span class="hljs-string">'prop-types'&lt;/span>;
             this.store = context.store;
             this.state = mapStateToProps(this.store.getState());
           }
-          &lt;span class="hljs-function">&lt;span class="hljs-title">componentWillMount&lt;/span>&lt;/span>(){
+          componentWillMount(){
               this.unsubscribe = this.store.subscribe(()=>{
                   this.setState(mapStateToProps(this.store.getState()));
               });
           }
-          &lt;span class="hljs-function">&lt;span class="hljs-title">componentWillUnmount&lt;/span>&lt;/span>(){
+          componentWillUnmount(){
               this.unsubscribe();
           }
-          &lt;span class="hljs-function">&lt;span class="hljs-title">render&lt;/span>&lt;/span>(){
-              &lt;span class="hljs-built_in">let&lt;/span> actions= {};
-              &lt;span class="hljs-keyword">if&lt;/span>(typeof mapDispatchToProps == &lt;span class="hljs-string">'function'&lt;/span>){
+          render(){
+              let actions= {};
+              if(typeof mapDispatchToProps == 'function'){
                 actions = mapDispatchToProps(this.store.disaptch);
-              }&lt;span class="hljs-keyword">else&lt;/span> &lt;span class="hljs-keyword">if&lt;/span>(typeof mapDispatchToProps == &lt;span class="hljs-string">'object'&lt;/span>){
-                  console.log(&lt;span class="hljs-string">'object'&lt;/span>, mapDispatchToProps)
-                actions = &lt;span class="hljs-built_in">bind&lt;/span>ActionCreators(mapDispatchToProps,this.store.dispatch);
+              }else if(typeof mapDispatchToProps == 'object'){
+                  console.log('object', mapDispatchToProps)
+                actions = bindActionCreators(mapDispatchToProps,this.store.dispatch);
               }
-                &lt;span class="hljs-built_in">return&lt;/span> &lt;WrapedComponent {...this.state} {...actions}/>
+                return <WrapedComponent {...this.state} {...actions}/>
          }
       }
-      &lt;span class="hljs-built_in">return&lt;/span> ProxyComponent;
+      return ProxyComponent;
    }
 }
-&lt;span class="copy-code-btn">复制代码&lt;/span>
+复制代码
 ```
 
     
@@ -461,7 +461,7 @@ import propTypes from &lt;span class="hljs-string">'prop-types'&lt;/span>;
     
     ```
 mapStateToProps(this.store.getState());
-&lt;span class="copy-code-btn">复制代码&lt;/span>
+复制代码
 ```
 
     
@@ -469,8 +469,8 @@ mapStateToProps(this.store.getState());
     
     
     ```
- &lt;span class="hljs-built_in">bind&lt;/span>ActionCreators(mapDispatchToProps,this.store.dispatch);
-&lt;span class="copy-code-btn">复制代码&lt;/span>
+ bindActionCreators(mapDispatchToProps,this.store.dispatch);
+复制代码
 ```
 
     
