@@ -56,25 +56,8 @@ R = result，结果，这项任务最终拿到了什么结果？是否符合期�
   3. 不要问指导意见。面试官可能会说，但是这种并没有体现这个问题的价值。
   4. 可以问面试岗位的工作情况和自己的匹配度。这是比较好的问题，面试官也愿意和你说说工作的情况。
 
-## [前端](https://www.w3cdoc.com)基础和进阶知识
-
-[[前端](https://www.w3cdoc.com)工程师自学面试找工作必备知识][1]
-
-[用JavaScript自己写MVVM[前端](https://www.w3cdoc.com)框架][2]
-
-[[前端](https://www.w3cdoc.com)函数式编程FP易学易用][3]
-
-[[前端](https://www.w3cdoc.com)自己用NodeJS编写区块链BlockChain][4]
-
-[程序语言进阶之DSL与AST实战解析][5]
-
 ## 面试心理
 
 推荐看下 [《财富理论》][6] 这部爱情电影，里面有介绍一些面试心理建设的事情。祝[大家](https://www.w3cdoc.com)Good luck！
 
- [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/qianduangongchengshizixuemianshizhaogongzuobibeizhishi/
- [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/hanshushibianchengyuvirtualdom/
- [3]: //fed123.oss-ap-southeast-2.aliyuncs.com/qianduanhanshushibianchengfpyixueyiyong/
- [4]: //fed123.oss-ap-southeast-2.aliyuncs.com/yongnodejsbianxiequkuailianblockchain/
- [5]: //fed123.oss-ap-southeast-2.aliyuncs.com/chengxuyuyanjinjiezhidslyuastshizhanjiexi/
  [6]: https://movie.douban.com/subject/26280036/

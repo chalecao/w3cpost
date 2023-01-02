@@ -56,14 +56,3 @@ history.replaceState()用起来很像pushState()，除了replaceState()是用来
 
 当history实体被改变时，popstate事件将会发生。如果history实体是有pushState和replaceState方法产生的，popstate事件的state属性会包含一份来自history实体的state对象的拷贝,详见window.onpopstate。
 
-### [][6]谢谢！
-
-转载请注明出处：<a href="//fed123.oss-ap-southeast-2.aliyuncs.com/2017/02/27/2017_history/" target="_blank" rel="external">//fed123.oss-ap-southeast-2.aliyuncs.com/2017/02/27/2017_history/</a>  
-欢迎关注皓眸学问公众号（扫描左侧二维码），每天好文、新技术！任何学习疑问或者工作问题都可以给我留言、互动。T\_T 皓眸大[前端](https://www.w3cdoc.com)开发学习 T\_T
-
- [1]: //fed123.oss-ap-southeast-2.aliyuncs.com/wp-content/uploads/2017/08/javascript-1.jpg
- [2]: //fed123.oss-ap-southeast-2.aliyuncs.com/2017/02/27/2017_history/#History "History"
- [3]: //fed123.oss-ap-southeast-2.aliyuncs.com/2017/02/27/2017_history/#操作history "操作history"
- [4]: //fed123.oss-ap-southeast-2.aliyuncs.com/2017/02/27/2017_history/#pushState方法 "pushState方法"
- [5]: //fed123.oss-ap-southeast-2.aliyuncs.com/2017/02/27/2017_history/#replaceState方法 "replaceState方法"
- [6]: //fed123.oss-ap-southeast-2.aliyuncs.com/2017/02/27/2017_history/#谢谢！ "谢谢！"
