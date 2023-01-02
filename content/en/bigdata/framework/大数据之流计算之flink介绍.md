@@ -1,8 +1,8 @@
 ---
 title: 大数据之流计算之Flink介绍
-
+weight: 7
 ---
-# 大数据计算引擎的发展 {#2大数据计算引擎的发展outline.ibm-h2}
+## 大数据计算引擎的发展 {#2大数据计算引擎的发展outline.ibm-h2}
 
 这几年大数据的飞速发展，出现了很多热门的开源社区，其中著名的有 Hadoop、Storm，以及后来的 Spark，他们都有着各自专注的应用场景。Spark 掀开了内存计算的先河，也以内存为赌注，赢得了内存计算的飞速发展。Spark 的火热或多或少的掩盖了其他分布式计算的系统身影。就像 Flink，也就在这个时候默默的发展着。
 
@@ -18,22 +18,20 @@ title: 大数据之流计算之Flink介绍
 
 或许会有人不同意以上的分类，我觉得其实这并不重要的，重要的是体会各个框架的差异，以及更适合的场景。并进行理解，没有哪一个框架可以完美的支持所有的场景，也就不可能有任何一个框架能完全取代另一个，就像 Spark 没有完全取代 Hadoop，当然 Flink 也不可能取代 Spark。本文将致力描述 Flink 的原理以及应用。
 
-# Flink 简介 {#3Flink简介outline.ibm-h2}
+## Flink 简介 {#3Flink简介outline.ibm-h2}
 
 很多人可能都是在 2015 年才听到 Flink 这个词，其实早在 2008 年，Flink 的前身已经是柏林理工大学一个研究性项目， 在 2014 被 Apache 孵化器所接受，然后迅速地成为了 ASF（Apache Software Foundation）的顶级项目之一。Flink 的最新版本目前已经更新到了 0.10.0 了，在很多人感慨 Spark 的快速发展的同时，或许[我们](https://www.w3cdoc.com)也该为 Flink 的发展速度点个赞。
 
 Flink 是一个针对流数据和批数据的分布式处理引擎。它主要是由 Java 代码实现。目前主要还是依靠开源社区的贡献而发展。对 Flink 而言，其所要处理的主要场景就是流数据，批数据只是流数据的一个极限特例而已。再换句话说，Flink 会把所有任务当成流来处理，这也是其最大的特点。Flink 可以支持本地的快速迭代，以及一些环形的迭代任务。并且 Flink 可以定制化内存管理。在这点，如果要对比 Flink 和 Spark 的话，Flink 并没有将内存完全交给应用层。这也是为什么 Spark 相对于 Flink，更容易出现 OOM 的原因（out of memory）。就框架本身与应用场景来说，Flink 更相似与 Storm。如果之前了解过 Storm 或者 Flume 的读者，可能会更容易理解 Flink 的架构和很多概念。下面让[我们](https://www.w3cdoc.com)先来看下 Flink 的架构图。
 
-<h5 id="N10057" class="ibm-h5" style="text-align: center;">
   图 1. Flink 架构图
-</h5>
 
+![](/images/posts/2023-01-01-18-40-24.png)
 
-  <img loading="lazy" class="alignnone wp-image-3362 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c068efc6.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c068efc6.png?x-oss-process=image/format,webp" alt="" width="465" height="233" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c068efc6.png?x-oss-process=image/format,webp 2284w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c068efc6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_150/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c068efc6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_385/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c068efc6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_401/format,webp 800w" sizes="(max-width: 465px) 100vw, 465px" />
 
 如图 1 所示，[我们](https://www.w3cdoc.com)可以了解到 Flink 几个最基础的概念，Client、JobManager 和 TaskManager。Client 用来提交任务给 JobManager，JobManager 分发任务给 TaskManager 去执行，然后 TaskManager 会心跳的汇报任务状态。看到这里，有的人应该已经有种回到 Hadoop 一代的错觉。确实，从架构图去看，JobManager 很像当年的 JobTracker，TaskManager 也很像当年的 TaskTracker。然而有一个最重要的区别就是 TaskManager 之间是是流（Stream）。其次，Hadoop 一代中，只有 Map 和 Reduce 之间的 Shuffle，而对 Flink 而言，可能是很多级，并且在 TaskManager 内部和 TaskManager 之间都会有数据传递，而不像 Hadoop，是固定的 Map 到 Reduce。
 
-# Flink 中的调度简述 {#4Flink中的调度简述outline.ibm-h2}
+## Flink 中的调度简述 {#4Flink中的调度简述outline.ibm-h2}
 
 在 Flink 集群中，计算资源被定义为 Task Slot。每个 TaskManager 会拥有一个或多个 Slots。JobManager 会以 Slot 为单位调度 Task。但是这里的 Task 跟[我们](https://www.w3cdoc.com)在 Hadoop 中的理解是有区别的。对 Flink 的 JobManager 来说，其调度的是一个 Pipeline 的 Task，而不是一个点。举个例子，在 Hadoop 中 Map 和 Reduce 是两个独立调度的 Task，并且都会去占用计算资源。对 Flink 来说 MapReduce 是一个 Pipeline 的 Task，只占用一个计算资源。类同的，如果有一个 MRR 的 Pipeline Task，在 Flink 中其也是一个被整体调度的 Pipeline Task。在 TaskManager 中，根据其所拥有的 Slot 个数，同时会拥有多个 Pipeline。
 
@@ -41,35 +39,27 @@ Flink 是一个针对流数据和批数据的分布式处理引擎。它主要�
 
 需要深度学习 Flink 调度读者，可以在 Flink 的源码目录中找到 flink-runtime 这个文件夹，JobManager 的 code 基本都在这里。
 
-## Flink 的生态圈 {#5Flink的生态圈outline.ibm-h2}
+### Flink 的生态圈 {#5Flink的生态圈outline.ibm-h2}
 
 一个计算框架要有长远的发展，必须打造一个完整的 Stack。不然就跟纸上谈兵一样，没有任何意义。只有上层有了具体的应用，并能很好的发挥计算框架本身的优势，那么这个计算框架才能吸引更多的资源，才会更快的进步。所以 Flink 也在努力构建自己的 Stack。
 
 Flink 首先支持了 Scala 和 Java 的 API，Python 也正在测试中。Flink 通过 Gelly 支持了图操作，还有机器学习的 FlinkML。Table 是一种接口化的 SQL 支持，也就是 API 支持，而不是文本化的 SQL 解析和执行。对于完整的 Stack [我们](https://www.w3cdoc.com)可以参考下图。
 
-<h5 id="N10077" class="ibm-h5" style="text-align: center;">
   图 2. Flink 的 Stack
-</h5>
-
-
-  <img loading="lazy" class="alignnone wp-image-3363 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c394fef7.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c394fef7.png?x-oss-process=image/format,webp" alt="" width="479" height="251" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c394fef7.png?x-oss-process=image/format,webp 3420w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c394fef7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_157/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c394fef7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_402/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c394fef7.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_419/format,webp 800w" sizes="(max-width: 479px) 100vw, 479px" />
+![](/images/posts/2023-01-01-18-40-44.png)
 
 Flink 为了更广泛的支持大数据的生态圈，其下也实现了很多 Connector 的子项目。最熟悉的，当然就是与 Hadoop HDFS 集成。其次，Flink 也宣布支持了 Tachyon、S3 以及 MapRFS。不过对于 Tachyon 以及 S3 的支持，都是通过 Hadoop HDFS 这层包装实现的，也就是说要使用 Tachyon 和 S3，就必须有 Hadoop，而且要更改 Hadoop 的配置（core-site.xml）。如果浏览 Flink 的代码目录，[我们](https://www.w3cdoc.com)就会看到更多 Connector 项目，例如 Flume 和 Kafka。
 
-# Flink 的部署 {#6Flink的部署outline.ibm-h2}
+## Flink 的部署 {#6Flink的部署outline.ibm-h2}
 
 Flink 有三种部署模式，分别是 Local、Standalone Cluster 和 Yarn Cluster。对于 Local 模式来说，JobManager 和 TaskManager 会公用一个 JVM 来完成 Workload。如果要验证一个简单的应用，Local 模式是最方便的。实际应用中大多使用 Standalone 或者 Yarn Cluster。下面我主要介绍下这两种模式。
 
-### Standalone 模式 {#N10089.ibm-h3}
+#### Standalone 模式 {#N10089.ibm-h3}
 
 在搭建 Standalone 模式的 Flink 集群之前，[我们](https://www.w3cdoc.com)需要先下载 Flink 安装包。这里[我们](https://www.w3cdoc.com)需要下载 Flink 针对 Hadoop 1.x 的包。下载并解压后，进到 Flink 的根目录，然后查看 conf 文件夹，如下图。
 
-<h5 id="N10091" class="ibm-h5" style="text-align: center;">
   图 3. Flink 的目录结构
-</h5>
-
-
-  <img loading="lazy" class="alignnone wp-image-3364 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c644aba9.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c644aba9.png?x-oss-process=image/format,webp" alt="" width="603" height="216" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c644aba9.png?x-oss-process=image/format,webp 2192w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c644aba9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_107/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c644aba9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_275/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c644aba9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_286/format,webp 800w" sizes="(max-width: 603px) 100vw, 603px" />
+![](/images/posts/2023-01-01-18-41-05.png)
 
 [我们](https://www.w3cdoc.com)需要指定 Master 和 Worker。Master 机器会启动 JobManager，Worker 则会启动 TaskManager。因此，[我们](https://www.w3cdoc.com)需要修改 conf 目录中的 master 和 slaves。在配置 master 文件时，需要指定 JobManager 的 UI 监听端口。一般情况下，JobManager 只需配置一个，Worker 则须配置一个或多个（以行为单位）。示例如下：
 
@@ -83,32 +73,20 @@ localhost
 
 在 conf 目录中找到文件 flink-conf.yaml。在这个文件中定义了 Flink 各个模块的基本属性，如 RPC 的端口，JobManager 和 TaskManager 堆的大小等。在不考虑 HA 的情况下，一般只需要修改属性 taskmanager.numberOfTaskSlots，也就是每个 Task Manager 所拥有的 Slot 个数。这个属性，一般设置成机器 CPU 的 core 数，用来平衡机器之间的运算性能。其默认值为 1。配置完成后，使用下图中的命令启动 JobManager 和 TaskManager（启动之前，需要确认 Java 的环境是否已经就绪）。
 
-<h5 id="N100A3" class="ibm-h5" style="text-align: center;">
   图 4. 启动 StandAlone 模式的 Flink
-</h5>
-
-
-  <img loading="lazy" class="alignnone wp-image-3365 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c951271c.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c951271c.png?x-oss-process=image/format,webp" alt="" width="662" height="73" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c951271c.png?x-oss-process=image/format,webp 2504w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c951271c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_33/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c951271c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_85/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c951271c.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_88/format,webp 800w" sizes="(max-width: 662px) 100vw, 662px" />
+![](/images/posts/2023-01-01-18-41-20.png)
 
 启动之后[我们](https://www.w3cdoc.com)就可以登陆 Flink 的 GUI 页面。在页面中[我们](https://www.w3cdoc.com)可以看到 Flink 集群的基本属性，在 JobManager 和 TaskManager 的页面中，可以看到这两个模块的属性。目前 Flink 的 GUI，只提供了简单的查看功能，无法动态修改配置属性。一般在企业级应用中，这是很难被接受的。因此，一个企业真正要应用 Flink 的话，估计也不得不加强 WEB 的功能。
 
-<h5 id="N100AF" class="ibm-h5" style="text-align: center;">
   图 5. Flink 的 GUI 页面
-</h5>
+  ![](/images/posts/2023-01-01-18-41-31.png)
 
-
-  <img loading="lazy" class="alignnone wp-image-3366 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c9f9c60f.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c9f9c60f.png?x-oss-process=image/format,webp" alt="" width="638" height="282" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c9f9c60f.png?x-oss-process=image/format,webp 5632w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c9f9c60f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_133/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c9f9c60f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_339/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4c9f9c60f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_353/format,webp 800w" sizes="(max-width: 638px) 100vw, 638px" />
-
-### Yarn Cluster 模式 {#N100B8.ibm-h3}
+#### Yarn Cluster 模式 {#N100B8.ibm-h3}
 
 在一个企业中，为了最大化的利用集群资源，一般都会在一个集群中同时运行多种类型的 Workload。因此 Flink 也支持在 Yarn 上面运行。首先，让[我们](https://www.w3cdoc.com)通过下图了解下 Yarn 和 Flink 的关系。
 
-<h5 id="N100C0" class="ibm-h5" style="text-align: center;">
-  图 6. Flink 与 Yarn 的关系
-</h5>
-
-
-  <img loading="lazy" class="alignnone wp-image-3367 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4cc2dda0b.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4cc2dda0b.png?x-oss-process=image/format,webp" alt="" width="713" height="309" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4cc2dda0b.png?x-oss-process=image/format,webp 3564w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4cc2dda0b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_130/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4cc2dda0b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_333/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4cc2dda0b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_347/format,webp 800w" sizes="(max-width: 713px) 100vw, 713px" />
+图 6. Flink 与 Yarn 的关系
+![](/images/posts/2023-01-01-18-41-45.png)
 
 在图中可以看出，Flink 与 Yarn 的关系与 MapReduce 和 Yarn 的关系是一样的。Flink 通过 Yarn 的接口实现了自己的 App Master。当在 Yarn 中部署了 Flink，Yarn 就会用自己的 Container 来启动 Flink 的 JobManager（也就是 App Master）和 TaskManager。
 
@@ -134,16 +112,12 @@ yarn-session.sh –d –s 2 –tm 800 –n 2
 
 上面的命令的意思是，向 Yarn 申请 2 个 Container 启动 TaskManager（-n 2），每个 TaskManager 拥有两个 Task Slot（-s 2），并且向每个 TaskManager 的 Container 申请 800M 的内存。在上面的命令成功后，[我们](https://www.w3cdoc.com)就可以在 Yarn Application 页面看到 Flink 的纪录。如下图。
 
-<h5 id="N100E2" class="ibm-h5" style="text-align: center;">
   图 7. Flink on Yarn
-</h5>
-
-
-  <img loading="lazy" class="alignnone wp-image-3368 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4d0b33269.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4d0b33269.png?x-oss-process=image/format,webp" alt="" width="694" height="266" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4d0b33269.png?x-oss-process=image/format,webp 4316w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4d0b33269.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_115/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4d0b33269.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_295/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4d0b33269.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_307/format,webp 800w" sizes="(max-width: 694px) 100vw, 694px" />
+![](/images/posts/2023-01-01-18-42-02.png)
 
 如果有些读者在虚拟机中测试，可能会遇到错误。这里需要注意内存的大小，Flink 向 Yarn 会申请多个 Container，但是 Yarn 的配置可能限制了 Container 所能申请的内存大小，甚至 Yarn 本身所管理的内存就很小。这样很可能无法正常启动 TaskManager，尤其当指定多个 TaskManager 的时候。因此，在启动 Flink 之后，需要去 Flink 的页面中检查下 Flink 的状态。这里可以从 RM 的页面中，直接跳转（点击 Tracking UI）。对于 Flink 安装时的 Trouble-shooting，可能更多时候需要查看 Yarn 相关的 log 来分析。这里就不多做介绍，读者可以到 Yarn 相关的描述中查找。
 
-## Flink 的 HA {#7Flink的HAoutline.ibm-h2}
+### Flink 的 HA {#7Flink的HAoutline.ibm-h2}
 
 对于一个企业级的应用，稳定性是首要要考虑的问题，然后才是性能，因此 HA 机制是必不可少的。另外，对于已经了解 Flink 架构的读者，可能会更担心 Flink 架构背后的单点问题。和 Hadoop 一代一样，从架构中[我们](https://www.w3cdoc.com)可以很明显的发现 JobManager 有明显的单点问题（SPOF，single point of failure）。 JobManager 肩负着任务调度以及资源分配，一旦 JobManager 出现意外，其后果可想而知。Flink 对 JobManager HA 的处理方式，原理上基本和 Hadoop 一样（一代和二代）。
 
@@ -151,7 +125,7 @@ yarn-session.sh –d –s 2 –tm 800 –n 2
 
 对于 Yarn Cluaster 模式来说，Flink 就要依靠 Yarn 本身来对 JobManager 做 HA 了。其实这里完全是 Yarn 的机制。对于 Yarn Cluster 模式来说，JobManager 和 TaskManager 都是被 Yarn 启动在 Yarn 的 Container 中。此时的 JobManager，其实应该称之为 Flink Application Master。也就说它的故障恢复，就完全依靠着 Yarn 中的 ResourceManager（和 MapReduce 的 AppMaster 一样）。由于完全依赖了 Yarn，因此不同版本的 Yarn 可能会有细微的差异。这里不再做深究。
 
-# Flink 的 Rest API 介绍 {#8Flink的RestAPI介绍outline.ibm-h2}
+## Flink 的 Rest API 介绍 {#8Flink的RestAPI介绍outline.ibm-h2}
 
 Flink 和其他大多开源的框架一样，提供了很多有用的 Rest API。不过 Flink 的 RestAPI，目前还不是很强大，只能支持一些 Monitor 的功能。Flink Dashboard 本身也是通过其 Rest 来查询各项的结果数据。在 Flink RestAPI 基础上，可以比较容易的将 Flink 的 Monitor 功能和其他第三方工具相集成，这也是其设计的初衷。
 
@@ -173,16 +147,12 @@ $ c
 
 3.查询一个指定的 Job 信息: /jobs/jobid。这个查询的结果会返回特别多的详细的内容，这是我在[浏览器](https://www.w3cdoc.com)中进行的测试，如下图：
 
-<h5 id="N1011C" class="ibm-h5" style="text-align: center;">
-  图 9. Rest 查询具体的 Job 信息
-</h5>
-
-
-  <img loading="lazy" class="alignnone wp-image-3369 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4d782e6ae.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4d782e6ae.png?x-oss-process=image/format,webp" alt="" width="671" height="137" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4d782e6ae.png?x-oss-process=image/format,webp 4136w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4d782e6ae.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_61/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4d782e6ae.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_157/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c1c4d782e6ae.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_163/format,webp 800w" sizes="(max-width: 671px) 100vw, 671px" />
+图 9. Rest 查询具体的 Job 信息
+![](/images/posts/2023-01-01-18-42-23.png)
 
 想要了解更多 Rest 请求内容的读者，可以去 Apache Flink 的页面中查找。由于篇幅有限，这里就不一一列举。
 
-# 运行 Flink 的 Workload {#9运行Flink的Workloadoutline.ibm-h2}
+## 运行 Flink 的 Workload {#9运行Flink的Workloadoutline.ibm-h2}
 
 WordCount 的例子，就像是计算框架的 helloworld。这里我就以 WordCount 为例，介绍下如何在 Flink 中运行 workload。
 
@@ -194,11 +164,11 @@ WordCount 的例子，就像是计算框架的 helloworld。这里我就以 Word
 
 上面的命令是在 HDFS 中运行 WordCount，如果没有 HDFS 用本地的文件系统也是可以的，只需要将“hdfs://”换成“file://”。这里[我们](https://www.w3cdoc.com)需要强调一种部署关系，就是 StandAlone 模式的 Flink，也是可以直接访问 HDFS 等分布式文件系统的。
 
-# 结束语 {#10结束语outline.ibm-h2}
+## 结束语 {#10结束语outline.ibm-h2}
 
 Flink 是一个比 Spark 起步晚的项目，但是并不代表 Flink 的前途就会暗淡。Flink 和 Spark 有很多类似之处，但也有很多明显的差异。本文并没有比较这两者之间的差异，这是未来我想与[大家](https://www.w3cdoc.com)探讨的。例如 Flink 如何更高效的管理内存，如何进一步的避免用户程序的 OOM。在 Flink 的世界里一切都是流，它更专注处理流应用。由于其起步晚，加上社区的活跃度并没有 Spark 那么热，所以其在一些细节的场景支持上，并没有 Spark 那么完善。例如目前在 SQL 的支持上并没有 Spark 那么平滑。在企业级应用中，Spark 已经开始落地，而 Flink 可能还需要一段时间的打磨。在后续文章中，我会详细介绍如何开发 Flink 的程序，以及更多有关 Flink 内部实现的内容。
 
-# 相关主题 {#artrelatedtopics.ibm-h4}
+## 相关主题 {#artrelatedtopics.ibm-h4}
 
 * [Apache Flink][1]
 * [Apache Tachyon][2]

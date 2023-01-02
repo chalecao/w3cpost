@@ -1,6 +1,6 @@
 ---
 title: KimBall维度建模
-
+weight: 5
 
 ---
 

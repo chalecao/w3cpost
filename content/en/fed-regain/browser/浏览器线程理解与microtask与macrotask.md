@@ -3,8 +3,7 @@ title: 浏览器线程理解与microtask与macrotask
 
 ---
 
-# 大纲
-
+## 大纲
 
  区分进程和线程
  [浏览器](https://www.w3cdoc.com)是多进程的
@@ -28,10 +27,7 @@ title: 浏览器线程理解与microtask与macrotask
  事件循环进阶：macrotask与microtask
  写在最后的话
 
-
-
-
-# 区分进程和线程
+## 区分进程和线程
 
 线程和进程区分不清，是很多新手都会犯的错误，没有关系。这很正常。先看看下面这个形象的比喻：
 
@@ -45,16 +41,13 @@ title: 浏览器线程理解与microtask与macrotask
 
 如果是windows电脑中，可以打开任务管理器，可以看到有一个后台进程列表。对，那里就是查看进程的地方，而且可以看到每个进程的内存资源信息以及cpu占有率。
 
+![](/images/posts/2022-12-29-19-36-07.png)
 
-  <img loading="lazy" class="alignnone wp-image-3334 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png?x-oss-process=image/format,webp" alt="" width="411" height="300" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_218/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_559/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cab82e4a6.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_582/format,webp 800w" sizes="(max-width: 411px) 100vw, 411px" />所以，应该更容易理解了：进程是cpu资源分配的最小单位（系统会给它分配内存）最后，再用较为官方的术语描述一遍：
-
-
- 进程是cpu资源分配的最小单位（是能拥有资源和独立运行的最小单位）
- 线程是cpu调度的最小单位（线程是建立在进程的基础上的一次程序运行单位，一个进程中可以有多个线程）
-
+所以，应该更容易理解了：进程是cpu资源分配的最小单位（系统会给它分配内存）最后，再用较为官方的术语描述一遍：
+- 进程是cpu资源分配的最小单位（是能拥有资源和独立运行的最小单位）
+- 线程是cpu调度的最小单位（线程是建立在进程的基础上的一次程序运行单位，一个进程中可以有多个线程）
 
 提示：
-
 
  不同进程之间也可以通信，不过代价较大
  现在，一般通用的叫法：单线程与多线程，都是指在一个进程内的单和多。（所以核心还是得属于一个进程才行）
@@ -73,8 +66,7 @@ title: 浏览器线程理解与microtask与macrotask
 
 关于以上几点的验证，请再第一张图：
 
-
-  <img loading="lazy" class="alignnone wp-image-3335 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/format,webp" alt="" width="541" height="324" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_180/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_460/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17caeb4664a.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_479/format,webp 800w" sizes="(max-width: 541px) 100vw, 541px" />
+![](/images/posts/2022-12-29-19-37-29.png)
 
 图中打开了Chrome[浏览器](https://www.w3cdoc.com)的多个标签页，然后可以在Chrome的任务管理器中看到有多个进程（分别是每一个Tab页面有一个独立的进程，以及一个主进程）。
 
@@ -109,8 +101,7 @@ GPU进程：最多一个，用于3D绘制等
 
 当然，[浏览器](https://www.w3cdoc.com)有时会将多个进程合并（譬如打开多个空白标签页后，会发现多个空白标签页被合并成了一个进程），如图<figure class=""></figure>
 
-
-  <img loading="lazy" class="alignnone wp-image-3336 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/format,webp" alt="" width="489" height="238" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_146/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_374/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cb47329a9.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_389/format,webp 800w" sizes="(max-width: 489px) 100vw, 489px" />
+![](/images/posts/2022-12-29-19-37-45.png)
 
 另外，可以通过Chrome的更多工具 -> 任务管理器自行验证
 
@@ -183,12 +174,11 @@ GPU进程：最多一个，用于3D绘制等
 
 看到这里，如果觉得累了，可以先休息下，这些概念需要被消化，毕竟后续将提到的事件循环机制就是基于事件触发线程的，所以如果仅仅是看某个碎片化知识，可能会有一种似懂非懂的感觉。要完成的梳理一遍才能快速沉淀，不易遗忘。放张图巩固下吧：
 
-
-  <img loading="lazy" class="alignnone wp-image-3337 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cbf5a66e5.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cbf5a66e5.png?x-oss-process=image/format,webp" alt="" width="193" height="388" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cbf5a66e5.png?x-oss-process=image/format,webp 287w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cbf5a66e5.png?x-oss-process=image/quality,q_50/resize,m_fill,w_149,h_300/format,webp 149w" sizes="(max-width: 193px) 100vw, 193px" />
+![](/images/posts/2022-12-29-19-37-57.png)
 
 再说一点，为什么JS引擎是单线程的？额，这个问题其实应该没有标准答案，譬如，可能仅仅是因为由于多线程的复杂性，譬如多线程操作一般要加锁，因此最初设计时选择了单线程。。。
 
-# Browser进程和[浏览器](https://www.w3cdoc.com)内核（Renderer进程）的通信过程
+## Browser进程和[浏览器](https://www.w3cdoc.com)内核（Renderer进程）的通信过程
 
 看到这里，首先，应该对[浏览器](https://www.w3cdoc.com)内的进程和线程都有一定理解了，那么接下来，再谈谈[浏览器](https://www.w3cdoc.com)的Browser进程（控制进程）是如何和内核通信的，  
 这点也理解后，就可以将这部分的知识串联起来，从头到尾有一个完整的概念。
@@ -207,8 +197,7 @@ GPU进程：最多一个，用于3D绘制等
 
 这里绘一张简单的图：（很简化）
 
-
-  <img loading="lazy" class="alignnone wp-image-3338 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cc420be92.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cc420be92.png?x-oss-process=image/format,webp" alt="" width="330" height="228" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cc420be92.png?x-oss-process=image/format,webp 470w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cc420be92.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_207/format,webp 300w" sizes="(max-width: 330px) 100vw, 330px" />
+![](/images/posts/2022-12-29-19-38-08.png)
 
 看完这一整套流程，应该对[浏览器](https://www.w3cdoc.com)的运作有了一定理解了，这样有了知识架构的基础后，后续就方便往上填充内容。
 
@@ -291,10 +280,9 @@ MDN的官方解释是：
 
 所有详细步骤都已经略去，渲染完毕后就是`load`事件了，之后就是自己的JS逻辑处理了。既然略去了一些详细的步骤，那么就提一些可能需要注意的细节把。
 
-这里重绘参考来源中的一张图：<figure class=""></figure>
+这里重绘参考来源中的一张图：
 
-
-  <img loading="lazy" class="alignnone wp-image-3339 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/format,webp" alt="" width="629" height="246" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_117/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_300/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17ccaf2fe0f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_313/format,webp 800w" sizes="(max-width: 629px) 100vw, 629px" />
+![](/images/posts/2022-12-29-19-39-50.png)
 
 # load事件与DOMContentLoaded事件的先后
 
@@ -347,8 +335,7 @@ MDN的官方解释是：
 
 如下图。可以验证上述的说法
 
-
-  <img loading="lazy" class="alignnone wp-image-3340 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png?x-oss-process=image/format,webp" alt="" width="385" height="241" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png?x-oss-process=image/format,webp 900w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_188/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_481/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd0192692.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_501/format,webp 800w" sizes="(max-width: 385px) 100vw, 385px" />
+![](/images/posts/2022-12-29-19-40-03.png)
 
 ## **如何变成复合图层（硬件加速）**
 
@@ -358,7 +345,7 @@ MDN的官方解释是：
  最常用的方式：translate3d、translateZ
  opacity属性/过渡动画（需要动画执行的过程中才会创建合成层，动画没有开始或结束后元素还会回到之前的状态）
  will-chang属性（这个比较偏僻），一般配合opacity与translate使用（而且经测试，除了上述可以引发硬件加速的属性外，其它属性并不会变成复合层），作用是提前告诉[浏览器](https://www.w3cdoc.com)要变化，这样[浏览器](https://www.w3cdoc.com)会开始做一些优化工作（这个最好用完后就释放）
- <video><iframe><canvas><webgl>等元素
+ video\iframe\canvas\webgl等元素
  其它，譬如以前的flash插件
 
 
@@ -414,8 +401,7 @@ webkit CSS3中，如果这个元素添加了硬件加速，并且index层级比�
 
 看图：
 
-
-  <img loading="lazy" class="alignnone wp-image-3341 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd366ab92.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd366ab92.png?x-oss-process=image/format,webp" alt="" width="436" height="455" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd366ab92.png?x-oss-process=image/format,webp 610w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd366ab92.png?x-oss-process=image/quality,q_50/resize,m_fill,w_287,h_300/format,webp 287w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd366ab92.png?x-oss-process=image/quality,q_50/resize,m_fill,w_575,h_600/format,webp 575w" sizes="(max-width: 436px) 100vw, 436px" />
+![](/images/posts/2022-12-29-19-40-46.png)
 
 看到这里，应该就可以理解了：为什么有时候setTimeout推入的事件不能准时执行？因为可能在它推入到事件列表时，主线程还不空闲，正在执行其它代码，所以自然有误差。
 
@@ -423,8 +409,7 @@ webkit CSS3中，如果这个元素添加了硬件加速，并且index层级比�
 
 这里就直接引用一张图片来协助理解：（参考自Philip Roberts的演讲《Help, I’m stuck in an event-loop》）<figure class=""></figure>
 
-
-  <img loading="lazy" class="alignnone wp-image-3342 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/format,webp" alt="" width="471" height="384" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/format,webp 636w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_244/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cd5179e3b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_320,h_260/format,webp 320w" sizes="(max-width: 471px) 100vw, 471px" />
+![](/images/posts/2022-12-29-19-40-55.png)
 
 上图大致描述就是：
 
@@ -450,19 +435,23 @@ webkit CSS3中，如果这个元素添加了硬件加速，并且index层级比�
 譬如:
 
 ```
-setTimeout(function(){console.log('hello!');},1000);
+setTimeout(function(){
+  console.log('hello!');
+},1000);
 ```
 
 这段代码的作用是当`1000`毫秒计时完毕后（由定时器线程计时），将回调函数推入事件队列中，等待主线程执行
 
 ```
-setTimeout(function(){console.log('hello!');},0);console.log('begin');
+setTimeout(function(){
+  console.log('hello!');
+},0);
+console.log('begin');
 ```
 
 这段代码的效果是最快的时间内将回调函数推入事件队列中，等待主线程执行
 
 注意：
-
 
  执行结果是：先begin后hello!
  虽然代码的本意是0毫秒后就推入事件队列，但是W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。<br /> (不过也有一说是不同[浏览器](https://www.w3cdoc.com)有不同的最小时间设定)
@@ -564,8 +553,7 @@ setTimeout
 
 如图：
 
-
-  <img loading="lazy" class="alignnone wp-image-3343 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cdac858b8.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/12/img_5c17cdac858b8.png?x-oss-process=image/format,webp" alt="" width="310" height="582" />
+![](/images/posts/2022-12-29-19-41-36.png)
 
 另外，请注意下`Promise`的`polyfill`与官方版本的区别：
 
@@ -609,21 +597,20 @@ MessageChannel属于宏任务，优先级是：`setImmediate->MessageChannel->se
 同时，也应该注意到了JS根本就没有想象的那么简单，[前端](https://www.w3cdoc.com)的知识也是无穷无尽，层出不穷的概念、N多易忘的知识点、各式各样的框架、  
 底层原理方面也是可以无限的往下深挖，然后你就会发现，你知道的太少了。。。
 
-另外，本文也打算先告一段落，其它的，如JS词法解析，可执行上下文以及VO等概念就不继续在本文中写了，后续可以考虑另开新的文章。<section class=""></section> <section class=""></section> <section class=""></section> <section class=""></section>
+另外，本文也打算先告一段落，其它的，如JS词法解析，可执行上下文以及VO等概念就不继续在本文中写了，后续可以考虑另开新的文章。
 
 # 参考资料
 
-* https://blog.csdn.net/sjn0503/article/details/76087631
-* https://segmentfault.com/a/1190000004322358<section class=""></section> <section class=""></section>
-
-
- https://www.cnblogs.com/lhb25/p/how-browsers-work.html
- https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
- https://segmentfault.com/p/1210000012780980<br /> https://blog.csdn.net/Steward2011/article/details/51319298
- https://www.imweb.io/topic/58e3bfa845e5c13468f567d5
- https://segmentfault.com/a/1190000008015671
- https://juejin.im/post/5a4ed917f265da3e317df515
- https://www.cnblogs.com/iovec/p/7904416.html
- https://www.cnblogs.com/wyaocn/p/5761163.html
- https://www.ruanyifeng.com/blog/2014/10/event-loop.html#comment-text
+<https://blog.csdn.net/sjn0503/article/details/76087631>
+<https://segmentfault.com/a/1190000004322358>
+ <https://www.cnblogs.com/lhb25/p/how-browsers-work.html>
+ <https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules>
+ <https://segmentfault.com/p/1210000012780980>
+ <https://blog.csdn.net/Steward2011/article/details/51319298>
+ <vhttps://www.imweb.io/topic/58e3bfa845e5c13468f567d5>
+ <https://segmentfault.com/a/1190000008015671>
+ <https://juejin.im/post/5a4ed917f265da3e317df515>
+ <https://www.cnblogs.com/iovec/p/7904416.html>
+ <https://www.cnblogs.com/wyaocn/p/5761163.html>
+ <https://www.ruanyifeng.com/blog/2014/10/event-loop.html#comment-text>
 

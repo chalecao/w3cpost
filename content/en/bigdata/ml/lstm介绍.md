@@ -1,6 +1,6 @@
 ---
 title: LSTM介绍
-
+weight: 3
 ---
 之前一直在做CNN的一些研究，最近刚刚回到实验室，定下来了自己的小组，然后开始了一些LSTM的学习。
 
@@ -12,22 +12,21 @@ title: LSTM介绍
 
 希望之后能跟各位朋友多多交流，共同进步。
 
-# 1. 概念：
+## 1. 概念：
 
 **Long short-termmemory** (**LSTM**)is a <a class="outlink" title="Recurrent neural network" target="_blank" rel="nofollow noopener noreferrer">recurrent neuralnetwork</a> (RNN)architecture (an <a class="outlink" title="Artificial neural network" target="_blank" rel="nofollow noopener noreferrer">artificialneural network</a>)published<a class="outlink" target="_blank" rel="nofollow noopener noreferrer"><sup>[1]</sup></a> in 1997 by <a class="outlink" title="Sepp Hochreiter" target="_blank" rel="nofollow noopener noreferrer">Sepp Hochreiter</a> and <a class="outlink" title="Jürgen Schmidhuber" target="_blank" rel="nofollow noopener noreferrer">Jürgen Schmidhuber</a>. Like most RNNs, an LSTM network is universalin the sense that given enough network units it can compute anything aconventional computer can compute, provided it has the proper <a class="outlink" title="Weight" target="_blank" rel="nofollow noopener noreferrer">weight</a> <a class="outlink" title="Matrix (mathematics)" target="_blank" rel="nofollow noopener noreferrer">matrix</a>, which may be viewed as its program. Unliketraditional RNNs, an LSTM network is well-suited to learn from experience to <a class="outlink" title="Classification in machine learning" target="_blank" rel="nofollow noopener noreferrer">classify</a>, <a class="outlink" title="Computer data processing" target="_blank" rel="nofollow noopener noreferrer">process</a> and <a class="outlink" title="Predict" target="_blank" rel="nofollow noopener noreferrer">predict</a> <a class="outlink" title="Time series" target="_blank" rel="nofollow noopener noreferrer">time series</a> when there are very long time lags of unknownsize between important events. This is one of the main reasons why LSTMoutperforms alternative RNNs and <a class="outlink" title="Hidden Markov Models" target="_blank" rel="nofollow noopener noreferrer">Hidden Markov Models</a> and other sequence learning methods in numerousapplications.
 
 
 
-# 2.类属
+## 2.类属
 
-
-  <img loading="lazy" width="960" height="589" class="alignnone size-full wp-image-4571 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png?x-oss-process=image/format,webp 960w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_184/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_471/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/06/img_5d15e5344a8c3.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_491/format,webp 800w" sizes="(max-width: 960px) 100vw, 960px" /> 
+![](/images/posts/2022-12-31-17-17-51.png)
 
 **LSTM是RNN的一种变种，属于反馈神经网络的范畴。**
 
 ****
 
-# 3.模型的特点与适用性
+## 3.模型的特点与适用性
 
 ## 3.1 前馈神经网络VS 反馈神经网络
 
@@ -41,13 +40,11 @@ title: LSTM介绍
 
 《Convolutional Networks for Images, Speech,and Time Series》，by YannLeCun & Yoshua Bengio
 
-<a class="outlink" target="_blank" rel="nofollow noopener noreferrer">http://nuyoo.utm.mx/~jjf/rna/A12%20Convolutional%20networks%20for%20images,%20speech,%20and%20time%20series.pdf</a>  
+> [Convolutional Networks for Images](http://nuyoo.utm.mx/~jjf/rna/A12%20Convolutional%20networks%20for%20images,%20speech,%20and%20time%20series.pdf) 
+
 尤其是这一段：  
 While characters or short spoken words can besize-normalized and fed to a fixed-size network, more complex objects such aswritten or spoken words and sentences have inherently variable size. One way ofhandling such a composite object is to segment it heuristically into simplerobjects that can be recognized individually, e.g. characters phonemes. However,reliable segmentation heuristics do not exist for speech or cursivehandwriting. A bruteforce solution&#8230;..  
 简单的说，CNN并不完全适用于学习时间序列，因此会需要各种辅助性处理，且效果也不一定好。面对对时间序列敏感的问题赫和任务，RNN(如LSTM)通常会比较合适。
-
-
-
 
 
 一个例子：
@@ -72,21 +69,12 @@ CNN应该侧重空间映射，图像数据尤为贴合此场景。
 
 两篇文章的描述：
 
-
-
 **1.     AlexGraves. 《SupervisedSequence Labelling with Recurrent Neural Networks》. Textbook, Studies inComputational Intelligence, Springer, 2012.**
-
-
 
 “Long Short-term Memory (LSTM) is an RNN architecture designed to be better at storing and accessing informationthanstandard RNNs. LSTM has recently given state-of-the-art results in a variety ofsequenceprocessing tasks, including speech andhandwriting recognition .”
 
 
-
-
-
 **2.    Yann LeCun、Yoshua Bengio和Geoffrey Hinton合作的这篇综述文章《**<a class="outlink" target="_blank" rel="nofollow noopener noreferrer">Deep Learning</a>**》**
-
-
 
 “RNNs一旦展开（如图5），可以将之视为一个所有层共享同样权值的深度前馈神经网络。虽然它们的目的是学习长期的依赖性，但理论的和经验的证据表明很难学习并长期保存信息。
 
@@ -95,270 +83,269 @@ CNN应该侧重空间映射，图像数据尤为贴合此场景。
 LSTM网络随后被证明比传统的RNNs更加有效，尤其当每一个时间步长内有若干层时，整个语音识别系统能够完全一致的将声学转录为字符序列。目前LSTM网络或者相关的门控单元同样用于编码和解码网络，并且在机器翻译中表现良好。”
 
 
-
-# 4.在不同任务上的数据对比
+## 4.在不同任务上的数据对比
 
 <div align="center">
-  <table class="table table-bordered" border="1" width="667" cellspacing="0" cellpadding="0">
-    <tr>
-      <td valign="bottom">
-        
-         Task
-        
-      </td>
+<table class="table table-bordered" border="1" width="667" cellspacing="0" cellpadding="0">
+<tr>
+<td valign="bottom">
 
-      <td valign="bottom">
-        
-          classification
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          sentiment analysis
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          machine translation
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          dialog
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          language generation
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          QA
-        
-      </td>
-      
-      <td valign="bottom">
-        
-         total
-        
-      </td>
-    </tr>
-    
-    <tr>
-      <td colspan="8" valign="bottom" width="667">
-        2006年以来，从Google Scholar上的检索数据进行对比
-      </td>
-    </tr>
-    
-    <tr>
-      <td valign="bottom">
-        
-         LSTM
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          1900
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          148
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          616
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          373
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          27
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          59
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          3690
-        
-      </td>
-    </tr>
-    
-    <tr>
-      <td valign="bottom">
-        
-         CNN
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          5060
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          179
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          247
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          304
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          30
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          100
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          5670
-        
-      </td>
-    </tr>
-    
-    <tr>
-      <td colspan="8" valign="bottom" width="667">
-        从Web of Science数据库上的主题检索进行对比(全时间)
-      </td>
-    </tr>
-    
-    <tr>
-      <td valign="bottom">
-        
-         LSTM
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          56
-        
-      </td>
-      
-      <td valign="bottom">
-        
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          1
-        
-      </td>
-      
-      <td valign="bottom">
-        
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          6
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          2
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          248
-        
-      </td>
-    </tr>
-    
-    <tr>
-      <td valign="bottom">
-        
-         CNN
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          373
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          2
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          13
-        
-      </td>
-      
-      <td valign="bottom">
-        
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          25
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          2
-        
-      </td>
-      
-      <td valign="bottom">
-        
-          1064
-        
-      </td>
-    </tr>
-  </table>
+Task
+
+</td>
+
+<td valign="bottom">
+
+classification
+
+</td>
+
+<td valign="bottom">
+
+sentiment analysis
+
+</td>
+
+<td valign="bottom">
+
+machine translation
+
+</td>
+
+<td valign="bottom">
+
+dialog
+
+</td>
+
+<td valign="bottom">
+
+language generation
+
+</td>
+
+<td valign="bottom">
+
+QA
+
+</td>
+
+<td valign="bottom">
+
+total
+
+</td>
+</tr>
+
+<tr>
+<td colspan="8" valign="bottom" width="667">
+2006年以来，从Google Scholar上的检索数据进行对比
+</td>
+</tr>
+
+<tr>
+<td valign="bottom">
+
+LSTM
+
+</td>
+
+<td valign="bottom">
+
+1900
+
+</td>
+
+<td valign="bottom">
+
+148
+
+</td>
+
+<td valign="bottom">
+
+616
+
+</td>
+
+<td valign="bottom">
+
+373
+
+</td>
+
+<td valign="bottom">
+
+27
+
+</td>
+
+<td valign="bottom">
+
+59
+
+</td>
+
+<td valign="bottom">
+
+3690
+
+</td>
+</tr>
+
+<tr>
+<td valign="bottom">
+
+CNN
+
+</td>
+
+<td valign="bottom">
+
+5060
+
+</td>
+
+<td valign="bottom">
+
+179
+
+</td>
+
+<td valign="bottom">
+
+247
+
+</td>
+
+<td valign="bottom">
+
+304
+
+</td>
+
+<td valign="bottom">
+
+30
+
+</td>
+
+<td valign="bottom">
+
+100
+
+</td>
+
+<td valign="bottom">
+
+5670
+
+</td>
+</tr>
+
+<tr>
+<td colspan="8" valign="bottom" width="667">
+从Web of Science数据库上的主题检索进行对比(全时间)
+</td>
+</tr>
+
+<tr>
+<td valign="bottom">
+
+LSTM
+
+</td>
+
+<td valign="bottom">
+
+56
+
+</td>
+
+<td valign="bottom">
+
+
+</td>
+
+<td valign="bottom">
+
+1
+
+</td>
+
+<td valign="bottom">
+
+
+</td>
+
+<td valign="bottom">
+
+6
+
+</td>
+
+<td valign="bottom">
+
+2
+
+</td>
+
+<td valign="bottom">
+
+248
+
+</td>
+</tr>
+
+<tr>
+<td valign="bottom">
+
+CNN
+
+</td>
+
+<td valign="bottom">
+
+373
+
+</td>
+
+<td valign="bottom">
+
+2
+
+</td>
+
+<td valign="bottom">
+
+13
+
+</td>
+
+<td valign="bottom">
+
+
+</td>
+
+<td valign="bottom">
+
+25
+
+</td>
+
+<td valign="bottom">
+
+2
+
+</td>
+
+<td valign="bottom">
+
+1064
+
+</td>
+</tr>
+</table>
 </div>
 
 
@@ -367,17 +354,13 @@ LSTM网络随后被证明比传统的RNNs更加有效，尤其当每一个时间
 
 CNN大部分的任务都是跟分类相关的，在处理一些较为复杂的任务上的应用暂时还比较匮乏。而LSTM在近年来尤其发展迅猛，在处理序列相关的任务时的应用较为广泛。
 
-# 5.结论
+## 5.结论
 
 LSTM是RNN的一个优秀的变种模型，继承了大部分RNN模型的特性，同时解决了梯度反传过程由于逐步缩减而产生的Vanishing Gradient问题。具体到语言处理任务中，LSTM非常适合用于处理与时间序列高度相关的问题，例如机器翻译、对话生成、编码\解码等。
 
 虽然在分类问题上，至今看来以CNN为代表的前馈网络依然有着性能的优势，但是LSTM在长远的更为复杂的任务上的潜力是CNN无法媲美的。它更真实地表征或模拟了人类行为、逻辑发展和神经组织的认知过程。尤其从2014年以来，LSTM已经成为RNN甚至深度学习框架中非常热点的研究模型，得到大量的关注和研究。
 
-# 6.案例
-
-
-  <a href="https://www.zhihu.com/question/34681168">CNN(卷积神经网络)、RNN(循环神经网络)、DNN(深度神经网络)</a>
-
-
-  <a href="https://www.altumintelligence.com/articles/a/Time-Series-Prediction-Using-LSTM-Deep-Neural-Networks">案例剖析：利用LSTM深层神经网络进行时间序列预测</a>
+## 6.案例
+- <a href="https://www.zhihu.com/question/34681168">CNN(卷积神经网络)、RNN(循环神经网络)、DNN(深度神经网络)</a>
+- <a href="https://www.altumintelligence.com/articles/a/Time-Series-Prediction-Using-LSTM-Deep-Neural-Networks">案例剖析：利用LSTM深层神经网络进行时间序列预测</a>
 

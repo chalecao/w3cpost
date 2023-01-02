@@ -136,20 +136,10 @@ homepage: false
 
 * 评审放在下午 4点-6点，单个控制在一小时，在公司最热闹的时间段去一个安静的会议室一起探讨产品和技术。会议室优先选有窗户、环境好的，良好的环境有助于激发创意。
 * 会议遵循最小化原则，可参考：<a href="https://www.ifanr.com/366790" target="_blank" rel="noopener noreferrer">亚马逊的“两个披萨” 和 “六页备忘录”</a>
-
-
-  <ul>
+  - 能不开就开，能少拉人就少拉人
+  - 必须得开就在会前准备好资料，没看资料就不要参加
+  - 可去可不去的会就不要去，去参加的务必先看完资料
     
-      能不开就开，能少拉人就少拉人
-    
-    
-      必须得开就在会前准备好资料，没看资料就不要参加
-    
-    
-      可去可不去的会就不要去，去参加的务必先看完资料
-    
-
-
 **看到这里你可能会问：当[大家](https://www.w3cdoc.com)都 8 点半到时，这些方法岂不是失效了？**
 
 无需担心，因为整个行业是 10 点半左右，大势难改，一旦真的改变了，你可以再提前到 7 点半即可&#x1f604;
@@ -245,15 +235,18 @@ homepage: false
 
 工作是一项长跑，人生更是一项长跑。只要持续去探索和实践如何提升这三种能力，肯定能找到最适合自己的节奏，创造出更多的价值。
 
-## 后记 {#1lMOQ}
+## 后记 
 
 ### A Life of Productivity {#ifhaW}
 
 有位叫 贤月」的读者推荐了一篇和本文观点类似的文章：<a href="https://mp.weixin.qq.com/s/OW6ES5i5hxpX6d-g057etQ" target="_blank" rel="noopener noreferrer">如何从瞎忙族升级为高效牛人</a>，文章介绍了这本书：<a href="https://book.douban.com/subject/27080718/" target="_blank" rel="noopener noreferrer">别让无效努力毁掉你</a>，英文名是 <a href="https://alifeofproductivity.com/the-productivity-project/" target="_blank" rel="noopener noreferrer">The Productivity Project</a> 。作者是 <a href="https://alifeofproductivity.com/welcome/" target="_blank" rel="noopener noreferrer">Chris Bailey</a>：专注于高效能方法的探索，他的研究成果备受媒体和企业关注，TED 大会也邀请他演讲 <a href="https://www.youtube.com/watch?v=Hu4Yvq-g7_Y" target="_blank" rel="noopener noreferrer">How to Get Your Brain to Focus</a> ，并介绍他“**可能是这个世界上最高效的人之一**”。Bailey <a href="http://www.sohu.com/a/276933207_120019197" target="_blank" rel="noopener noreferrer">也推崇心流理论</a>，这本书写的非常棒，看了书的目录才发现我讲的原来只是这本书的子集，感兴趣的同学可以深入学习。Bailey 的核心理念是这张图：
 
 ![](last.png)
+
 非常清晰地指明了的高效的关键在于：让 Time、Attention、Energy 的交集最大化。
 
-**高效工作这个话题还可再往前推演一步：为什么做这份工作，属于我的天命究竟是什么？**若能回答清楚这些人生终极问题，高效将是很自然的一件事，因为你的 Time、Attention、Energy 将会自动往你的天命聚拢，高效则是水到渠成的一件事。但这些问题绝非一朝一夕甚至在这一生就能想清楚，在没想清楚前，利用一些方法让当下的工作更高效才是正道，也只有这样才能让[我们](https://www.w3cdoc.com)有更多的精力去探索世界、寻找天命。
+高效工作这个话题还可再往前推演一步：为什么做这份工作，属于我的天命究竟是什么？
+
+若能回答清楚这些人生终极问题，高效将是很自然的一件事，因为你的 Time、Attention、Energy 将会自动往你的天命聚拢，高效则是水到渠成的一件事。但这些问题绝非一朝一夕甚至在这一生就能想清楚，在没想清楚前，利用一些方法让当下的工作更高效才是正道，也只有这样才能让[我们](https://www.w3cdoc.com)有更多的精力去探索世界、寻找天命。
 
 人生短暂，光阴易逝，高效之路重在行动，希望每个人都能找到属于自己的高效之路。

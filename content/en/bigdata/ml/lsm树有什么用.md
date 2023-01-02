@@ -1,16 +1,14 @@
 ---
 title: LSM树有什么用
-
+weight: 4
 ---
 十多年前，谷歌发布了大名鼎鼎的&#8221;三驾马车&#8221;的论文，分别是GFS(2003年)，MapReduce（2004年），BigTable（2006年），为开源界在<a href="https://cloud.tencent.com/solution/bigdata?from=10680" target="_blank" rel="noopener" data-text-link="109_1441835" data-from="10680">大数据</a>领域带来了无数的灵感，其中在 “BigTable” 的论文中很多很酷的方面之一就是它所使用的文件组织方式，这个方法更一般的名字叫 Log Structured-Merge Tree。在面对亿级别之上的海量数据的存储和检索的场景下，[我们](https://www.w3cdoc.com)选择的<a href="https://cloud.tencent.com/solution/database?from=10680" target="_blank" rel="noopener" data-text-link="107_1441835" data-from="10680">数据库</a>通常都是各种强力的NoSQL，比如Hbase，Cassandra，Leveldb，RocksDB等等，这其中前两者是Apache下面的顶级开源项目数据库，后两者分别是Google和Facebook开源的数据库存储引擎。而这些强大的NoSQL数据库都有一个共性，就是其底层使用的数据结构，都是仿照“BigTable”中的文件组织方式来实现的，也就是[我们](https://www.w3cdoc.com)今天要介绍的LSM-Tree。
 
-### 什么是LSM-Tree {#%E4%BB%80%E4%B9%88%E6%98%AFLSM-Tree}
+### 什么是LSM-Tree 
 
-LSM-Tree全称是Log Structured Merge Tree，是一种分层，有序，面向磁盘的数据结构，其核心思想是充分了利用了，磁盘批量的顺序写要远比随机写性能高出很多，如下图示：<figure>
+LSM-Tree全称是Log Structured Merge Tree，是一种分层，有序，面向磁盘的数据结构，其核心思想是充分了利用了，磁盘批量的顺序写要远比随机写性能高出很多，如下图示：
 
-<div class="image-block">
- <img loading="lazy" width="300" height="267" class="alignnone size-full wp-image-7111 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258440229dc8.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_6258440229dc8.png?x-oss-process=image/format,webp" alt="" />
-</div></figure>
+![](/images/posts/2022-12-31-17-16-45.png)
 
 围绕这一原理进行设计和优化，以此让写性能达到最优，正如[我们](https://www.w3cdoc.com)普通的Log的写入方式，这种结构的写入，全部都是以Append的模式追加，不存在删除和修改。当然有得就有舍，这种结构虽然大大提升了数据的写入能力，却是以牺牲部分读取性能为代价，故此这种结构通常适合于写多读少的场景。故LSM被设计来提供比传统的B+树或者ISAM更好的写操作吞吐量，通过消去随机的本地更新操作来达到这个目标。这里面最典型的例子就属于Kakfa了，把磁盘顺序写发挥到了极致，故而在大数据领域成为了互联网公司标配的分布式消息<a href="https://cloud.tencent.com/product/tdmq?from=10680" target="_blank" rel="noopener" data-text-link="100_1441835" data-from="10680">中间件</a>组件。
 
@@ -22,7 +20,7 @@ LSM-Tree全称是Log Structured Merge Tree，是一种分层，有序，面向�
 
 想要支持更复杂和高效的读取，比如按key查询和按range查询，就得需要做一步的设计，这也是LSM-Tree结构，除了利用磁盘顺序写之外，还划分了内存+磁盘多层的合并结构的原因，正是基于这种结构再加上不同的优化实现，才造就了在这之上的各种独具特点的NoSQL数据库，如Hbase，Cassandra，Leveldb，RocksDB，MongoDB，TiDB等。
 
-### SSTable 和 LSM-Tree {#SSTable-%E5%92%8C-LSM-Tree}
+### SSTable 和 LSM-Tree 
 
 提到LSM-Tree这种结构，就得提一下LevelDB这个存储引擎，[我们](https://www.w3cdoc.com)知道Bigtable是谷歌开源的一篇论文，很难接触到它的源代码实现。如果说Bigtable是分布式闭源的一个高性能的KV系统，那么LevelDB就是这个KV系统开源的单机版实现，最为重要的是LevelDB是由Bigtable的原作者 Jeff Dean 和 Sanjay Ghemawat 共同完成，可以说高度复刻了Bigtable 论文中对于其实现的描述。
 
@@ -30,17 +28,13 @@ LSM-Tree全称是Log Structured Merge Tree，是一种分层，有序，面向�
 
 An SSTable provides a persistent, ordered immutable map from keys to values, where both keys and values are arbitrary byte strings. Operations are provided to look up the value associated with a specified key, and to iterate over all key/value pairs in a specified key range. Internally, each SSTable contains a sequence of blocks (typically each block is 64KB in size, but this is configurable). A block index (stored at the end of the SSTable) is used to locate blocks; the index is loaded into memory when the SSTable is opened. A lookup can be performed with a single disk seek: we first find the appropriate block by performing a binary search in the in-memory index, and then reading the appropriate block from disk. Optionally, an SSTable can be completely mapped into memory, which allows us to perform lookups and scans without touching disk.
 
-如上所述，SSTable是一种拥有持久化，有序且不可变的的键值存储结构，它的key和value都是任意的字节数组，并且了提供了按指定key查找和指定范围的key区间迭代遍历的功能。SSTable内部包含了一系列可配置大小的Block块，典型的大小是64KB，关于这些Block块的index存储在SSTable的尾部，用于帮助快速查找特定的Block。当一个SSTable被打开的时候，index会被加载到内存，然后根据key在内存index里面进行一个二分查找，查到该key对应的磁盘的offset之后，然后去磁盘把响应的块数据读取出来。当然如果内存足够大的话，可以直接把SSTable直接通过MMap的技术映射到内存中，从而提供更快的查找。<figure>
+如上所述，SSTable是一种拥有持久化，有序且不可变的的键值存储结构，它的key和value都是任意的字节数组，并且了提供了按指定key查找和指定范围的key区间迭代遍历的功能。SSTable内部包含了一系列可配置大小的Block块，典型的大小是64KB，关于这些Block块的index存储在SSTable的尾部，用于帮助快速查找特定的Block。当一个SSTable被打开的时候，index会被加载到内存，然后根据key在内存index里面进行一个二分查找，查到该key对应的磁盘的offset之后，然后去磁盘把响应的块数据读取出来。当然如果内存足够大的话，可以直接把SSTable直接通过MMap的技术映射到内存中，从而提供更快的查找。
 
-<div class="image-block">
- <img loading="lazy" width="733" height="121" class="alignnone size-full wp-image-7109 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843bdbc943.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843bdbc943.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843bdbc943.png?x-oss-process=image/format,webp 733w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843bdbc943.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_50/format,webp 300w" sizes="(max-width: 733px) 100vw, 733px" />
-</div></figure>
+![](/images/posts/2022-12-31-17-17-01.png)
 
-在LSM-Tree里，SSTable有一份在内存里面，其他的多级在磁盘上，如下图是一份完整的LSM-Tree图示：<figure>
+在LSM-Tree里，SSTable有一份在内存里面，其他的多级在磁盘上，如下图是一份完整的LSM-Tree图示：
 
-<div class="image-block">
- <img loading="lazy" width="960" height="720" class="alignnone size-full wp-image-7110 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png?x-oss-process=image/format,webp 960w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_225/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_600/format,webp 800w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2022/04/img_625843d922669.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_576/format,webp 768w" sizes="(max-width: 960px) 100vw, 960px" />
-</div></figure>
+![](/images/posts/2022-12-31-17-17-10.png)
 
 [我们](https://www.w3cdoc.com)总结下在在LSM-Tree里面如何写数据的？
 
@@ -80,7 +74,7 @@ SSTable 是可以启用压缩功能的，并且这种压缩不是将整个 SSTab
 
 最后有的同学可能会问道，为什么LSM不直接顺序写入磁盘，而是需要在内存中缓冲一下？ 这个问题其实很容易解答，单条写的性能肯定没有批量写来的块，这个原理其实在Kafka里面也是一样的，虽然kafka给[我们](https://www.w3cdoc.com)的感觉是写入后就落地，但其实并不是，本身是 可以根据条数或者时间比如200ms刷入磁盘一次，这样能大大提升写入效率。此外在LSM中，在磁盘缓冲的另一个好处是，针对新增的数据，可以直接查询返回，能够避免一定的IO操作。
 
-### B+Tree VS LSM-Tree {#B+Tree-VS-LSM-Tree}
+### B+Tree VS LSM-Tree 
 
 传统关系型数据采用的底层数据结构是B+树，那么同样是面向磁盘存储的数据结构LSM-Tree相比B+树有什么异同之处呢？
 
@@ -98,7 +92,7 @@ B+Tree则是将数据拆分为固定大小的Block或Page, 一般是4KB大小，
 
 阿里为了优化这个问题，在X-DB引入了异构硬件设备FPGA来代替CPU完成compaction操作，使系统整体性能维持在高水位并避免抖动，是存储引擎得以服务业务苛刻要求的关键。
 
-### 总结 {#%E6%80%BB%E7%BB%93}
+### 总结 
 
 本文主要介绍了LSM-Tree的相关内容，简单的说，其牺牲了部分读取的性能，通过批量顺序写来换取了高吞吐的写性能，这种特性在大数据领域得到充分了体现，最直接的例子就各种NoSQL在大数据领域的应用，学习和了解LSM-Tree的结构将有助于[我们](https://www.w3cdoc.com)更加深入的去理解相关NoSQL数据库的实现原理，掌握隐藏在这些框架下面的核心知识。
 

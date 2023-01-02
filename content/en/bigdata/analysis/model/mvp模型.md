@@ -1,6 +1,6 @@
 ---
 title: MVP模型
-
+weight: 10
 ---
 ## 什么是 MVP {#toc-1}
 

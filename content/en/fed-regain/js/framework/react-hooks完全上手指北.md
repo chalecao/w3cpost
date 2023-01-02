@@ -70,8 +70,7 @@ renderProps的问题：
 * 渲染的不是React组件，因此没有`props`属性，即不能像HOC那样访问`this.props.children`
 * 引入了callback hell问题
 
-
-  <img loading="lazy" class="alignnone  wp-image-4899 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/format,webp" alt="" width="405" height="638" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/format,webp 996w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/quality,q_50/resize,m_fill,w_190,h_300/format,webp 190w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_1211/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984dd26062.png?x-oss-process=image/quality,q_50/resize,m_fill,w_381,h_600/format,webp 381w" sizes="(max-width: 405px) 100vw, 405px" />
+![](/images/posts/2022-12-31-12-21-30.png)
 
 （图片来自React官方示例）
 
@@ -354,8 +353,7 @@ useState<S>(initialState: (() => S) | S): [S, Dispatch<BasicStateAction<S>>]
 
 > 思考&#x1f914;：useState为啥不返回object而是返回tuple？
 
-
-  <img loading="lazy" width="593" height="162" class="alignnone size-full wp-image-4898 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984cee4ca2.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984cee4ca2.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984cee4ca2.png?x-oss-process=image/format,webp 593w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984cee4ca2.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_82/format,webp 300w" sizes="(max-width: 593px) 100vw, 593px" />
+![](/images/posts/2022-12-31-12-21-52.png)
 
 * 是Hook：使用了Hook API的函数组件，返回的setter可以改变组件的状态
 * 又不像Hook：和一般意义上的Hook（钩子）不一样，这里的Hook可以多次调用且产生不同的效果，且Hook随Fiber一起生灭
@@ -450,8 +448,7 @@ function App() {
 
 Hook链表结构：
 
-
-  <img loading="lazy" class="alignnone  wp-image-4897 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984c5c3155.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984c5c3155.png?x-oss-process=image/format,webp" alt="" width="561" height="356" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984c5c3155.png?x-oss-process=image/format,webp 746w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984c5c3155.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_190/format,webp 300w" sizes="(max-width: 561px) 100vw, 561px" />
+![](/images/posts/2022-12-31-12-22-10.png)
 
 * Hook API调用会产生一个对应的Hook实例（并追加到Hooks链），但是返回给组件的是state和对应的setter，re-render时框架并不知道这个setter对应哪个Hooks实例（除非用HashMap来存储Hooks，但这就要求调用的时候把相应的key传给React，会增加Hooks使用的复杂度）
 * re-render时会按顺序执行整个Hooks链，如果re-render时sth不满足，则会执行`useState(5)`分支，相反useState(4)则不会执行到，导致`useState(5)`返回的值其实是4，因为**首次render之后，只能通过useState返回的dispatch修改对应Hook的memoizedState**，因此必须要**保证Hooks的顺序不变**，所以不能在分支调用Hook API。
@@ -556,8 +553,7 @@ function App() {
 
 图解更新过程：
 
-
-  <img loading="lazy" class="alignnone  wp-image-4896 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/format,webp" alt="" width="616" height="328" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/format,webp 949w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_160/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_409/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984bcbec50.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_426/format,webp 800w" sizes="(max-width: 616px) 100vw, 616px" />
+![](/images/posts/2022-12-31-12-22-36.png)
 
 * setState返回的setter执行会导致re-render
 * 框架内部会对多次setter操作进行合并（循环执行传入的setter，目的是保证useState拿到最新的状态）
@@ -675,7 +671,7 @@ console.log('print log after 1s!');
 }
 ```
 
-### useReducer {#Xy45x}
+### useReducer
 
 ```
 useReducer<S, I, A>(reducer: (S, A) => S, initialArg: I, init?: I => S, ): [S, Dispatch<A>]
@@ -704,12 +700,11 @@ return {
   }
 }
 ```
+![](/images/posts/2022-12-31-12-24-25.png)
 
-<img loading="lazy" class="alignnone  wp-image-4895 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png?x-oss-process=image/format,webp" alt="" width="617" height="103" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png?x-oss-process=image/format,webp 1510w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_50/format,webp 300w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_128/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d4984abc1b29.png?x-oss-process=image/quality,q_50/resize,m_fill,w_800,h_134/format,webp 800w" sizes="(max-width: 617px) 100vw, 617px" />
+### 性能优化（Memoization）
 
-### 性能优化（Memoization） {#Pc6Dk}
-
-#### useCallback {#c3wDK}
+#### useCallback
 
 ```
  useCallback<T>(callback: T, deps: Array<mixed> | void | null): T
@@ -772,7 +767,7 @@ setList(initList);
 * 条件允许的话，把函数体移到`useEffect`内部
 * 如果函数的调用不止是`useEffect`内部（如需要传递给子组件），可以使用`useCallback` API包裹函数，`useCallback`的本质是对函数进行依赖分析，依赖变更时才重新执行
 
-#### useMemo & memo {#dkJGO}
+#### useMemo & memo
 
 ```
 useMemo<T>(create: () => T, deps: Array<mixed> | void | null): T
@@ -827,8 +822,7 @@ const MemoList = React.memo(({ list }) => {
 * 使用`Context.Provider` API在上层组件挂载状态
 * 使用`Context.Consumer` API为具体的组件提供状态
 
-
-  <img loading="lazy" class="alignnone  wp-image-4894 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/format,webp" alt="" width="531" height="807" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/format,webp 1036w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/quality,q_50/resize,m_fill,w_197,h_300/format,webp 197w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/quality,q_50/resize,m_fill,w_768,h_1167/format,webp 768w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/08/img_5d49849b4fe48.png?x-oss-process=image/quality,q_50/resize,m_fill,w_395,h_600/format,webp 395w" sizes="(max-width: 531px) 100vw, 531px" />
+![](/images/posts/2022-12-31-12-24-56.png)
 
 （图片来自React官方示例）
 
@@ -898,7 +892,7 @@ function Child2() {
 ```
 
 
-### Capture Values {#OLkuW}
+### Capture Values
 
 1、`useState`具有capture values，查看<a href="https://codesandbox.io/s/cv-usestate-cocs4" target="_blank" rel="noopener noreferrer">demo</a>
 
@@ -999,17 +993,8 @@ function A({ a, b }) {
 2、状态共享方案
 
 * useReducer+useContext组合：
-
-
-  <ul>
-    
-如果共享一个大的state，一处state变更会导致整棵树re-render，把所有组件使用memo或useMemo包裹也不现实，代码太丑
-    
-    
-使用多个Context，可以实现namespace，但是当组件需要使用多个Context时又会出现Provider嵌套
-    
-
-
+  - 如果共享一个大的state，一处state变更会导致整棵树re-render，把所有组件使用memo或useMemo包裹也不现实，代码太丑
+  - 使用多个Context，可以实现namespace，但是当组件需要使用多个Context时又会出现Provider嵌套
 * react-redux@7.x
 * 其他方案
 
@@ -1017,7 +1002,7 @@ function A({ a, b }) {
 
 4、类拥有比函数更丰富的表达能力（OOP），React采用Hooks+Function Component（函数式）的方式其实是一种无奈的选择，试想一个挂载了十几个方法的Class Component，用Function Component来写如何能让业务逻辑看上去清晰明了？
 
-## Ref {#koFbs}
+## Ref 
 
 * <a href="https://overreacted.io/a-complete-guide-to-useeffect/" target="_blank" rel="noopener noreferrer">A Complete Guide to useEffect</a> （翻译：<a href="https://overreacted.io/zh-hans/a-complete-guide-to-useeffect" target="_blank" rel="noopener noreferrer">https://overreacted.io/zh-hans/a-complete-guide-to-useeffect</a>）
 * <a href="https://github.com/dt-fe/weekly/blob/v2/104.%E7%B2%BE%E8%AF%BB%E3%80%8AFunction%20Component%20%E5%85%A5%E9%97%A8%E3%80%8B.md" target="_blank" rel="noopener noreferrer">精读《Function Component 入门》</a>

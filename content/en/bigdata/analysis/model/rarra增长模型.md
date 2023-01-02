@@ -1,6 +1,6 @@
 ---
 title: RARRA增长模型
-
+weight: 4
 ---
 ## 从AARRR到RARRA的运营思路转变
 

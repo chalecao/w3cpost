@@ -1,6 +1,6 @@
 ---
 title: TensorFlow.js简单概念和用法
-
+weight: 10
 ---
 ## 简介
 
@@ -12,8 +12,7 @@ TensorFlow.js 是一个利用 WebGL 来进行加速的机器学习类库，它�
 
 TensorFlow.js 中数据的核心表现形式是 **<a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//js.tensorflow.org/api/latest/index.html%23class%3ATensor" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">张量</a>** ：一组数值形成的一维或多维的数组。每个`Tensor`的实例都有 `shape` 属性来用于定义数组的维度形状——即数组有几个维度，每个维度有几个值。 其中 `tensor` 最主要的构造函数就是 `tf.tensor`：
 
-<div class="highlight">
-  ```
+```
 // 2x3 张量
 const shape = [2, 3]; // 2 行, 3 列
 const a = tf.tensor([1.0, 2.0, 3.0, 10.0, 20.0, 30.0], shape);
@@ -28,26 +27,24 @@ b.print();
 //       [10, 20, 30]]
 
 ```
-</div>
+
 
 但是，如果仅仅需要构造低维张量，[我们](https://www.w3cdoc.com)推荐使用以下函数而不是 `tf.tensor` 来增强代码的可读性：`tf.scalar`，`tf.tensor1d`，`tf.tensor2d`，`tf.tensor3d`和`tf.tensor4d`。
 
 以下示例使用 `tf.tensor2d` 来创建与上面示例相同的张量：
 
-<div class="highlight">
-  ```
+```
 const c = tf.tensor2d([[1.0, 2.0, 3.0], [10.0, 20.0, 30.0]]);
 c.print();
 // 输出: [[1 , 2 , 3 ],
 //       [10, 20, 30]]
 
 ```
-</div>
+
 
 TensorFlow.js 还提供了一些带有初始化功能的张量构造函数，比如创建所有值均为 0 的 `tf.zeros` 或为 1 的 `tf.ones`：
 
-<div class="highlight">
-  ```
+```
 // 所有值均为 0 的 3x5 张量
 const zeros = tf.zeros([3, 5]);
 // 输出: [[0, 0, 0, 0, 0],
@@ -55,7 +52,7 @@ const zeros = tf.zeros([3, 5]);
 //       [0, 0, 0, 0, 0]]
 
 ```
-</div>
+
 
 在 TensorFlow.js 中，张量是不可变的 (immutable)。它们一旦被创建，你就不能修改它们的值；但是你可以通过对它们执行操作来生成新的张量。
 
@@ -65,8 +62,7 @@ const zeros = tf.zeros([3, 5]);
 
 <a class=" wrap external" href="https://link.zhihu.com/?target=https%3A//js.tensorflow.org/api/latest/index.html%23class%3AVariable" target="_blank" rel="nofollow noopener noreferrer" data-za-detail-view-id="1043">Variables</a> 是由张量的值来初始化的。然而，与张量不同的是，它们的值是可变的。您可以使用 `assign` 方法为现有变量分配一个新的张量：
 
-<div class="highlight">
-  ```
+```
 const initialValues = tf.zeros([5]);
 const biases = tf.variable(initialValues); // 初始化 biases
 biases.print(); // 输出: [0, 0, 0, 0, 0]
@@ -76,7 +72,7 @@ biases.assign(updatedValues); // 更新 biases 的值
 biases.print(); // 输出: [0, 1, 0, 1, 0]
 
 ```
-</div>
+
 
 变量主要用于在模型训练期间存储和更新值。
 
@@ -88,8 +84,7 @@ biases.print(); // 输出: [0, 1, 0, 1, 0]
 
 可用的操作很多，包括一元操作，如 `square`：
 
-<div class="highlight">
-  ```
+```
 const d = tf.tensor2d([[1.0, 2.0], [3.0, 4.0]]);
 const d_squared = d.square();
 d_squared.print();
@@ -97,12 +92,11 @@ d_squared.print();
 //       [9, 16]]
 
 ```
-</div>
+
 
 还有二元操作，如 `add` ，`sub` 和 `mul`：
 
-<div class="highlight">
-  ```
+```
 const e = tf.tensor2d([[1.0, 2.0], [3.0, 4.0]]);
 const f = tf.tensor2d([[5.0, 6.0], [7.0, 8.0]]);
 
@@ -112,12 +106,11 @@ e_plus_f.print();
 //       [10, 12]]
 
 ```
-</div>
+
 
 TensorFlow.js 的 API 是支持链式调用的，所以你可以在 ops 的结果上继续调用 ops：
 
-<div class="highlight">
-  ```
+```
 const sq_sum = e.add(f).square();
 sq_sum.print();
 // 输出: [[36 , 64 ],
@@ -128,7 +121,7 @@ sq_sum.print();
 const sq_sum = tf.square(tf.add(e, f));
 
 ```
-</div>
+
 
 * * *
 
@@ -136,8 +129,7 @@ const sq_sum = tf.square(tf.add(e, f));
 
 从概念上讲，模型是一个给定一些输入会产生一些期望输出的函数。 在 TensorFlow.js 中有两种创建模型的方法。您可以直接使用 ops 来代表模型所做的工作。例如：
 
-<div class="highlight">
-  ```
+```
 // 定义常量: y = 2x^2 + 4x + 8
 const a = tf.scalar(2);
 const b = tf.scalar(4);
@@ -163,12 +155,11 @@ const result = predict(2);
 result.print() // 输出: 24
 
 ```
-</div>
+
 
 您还可以使用更高抽象的 API `tf.model` 来构建多层的模型，这是深度学习中的相当流行的一种抽象。下面代码构建了一个 `tf.sequential` 模型：
 
-<div class="highlight">
-  ```
+```
 const model = tf.sequential();
 model.add(
   tf.layers.simpleRNN({
@@ -183,7 +174,7 @@ model.compile({optimizer, loss: 'categoricalCrossentropy'});
 model.fit({x: data, y: labels)});
 
 ```
-</div>
+
 
 TensorFlow.js 中有多种不同类型的层，例如 `tf.layers.simpleRNN`，`tf.layers.gru` 和 `tf.layers.lstm`等。
 
@@ -199,8 +190,7 @@ TensorFlow.js 提供了两个有助于解决这个问题的函数：`dispose` �
 
 你可以在张量或变量上调用`dispose`来清空已占用的 GPU 内存：
 
-<div class="highlight">
-  ```
+```
 const x = tf.tensor2d([[0.0, 2.0], [4.0, 6.0]]);
 const x_squared = x.square();
 
@@ -208,14 +198,13 @@ x.dispose();
 x_squared.dispose();
 
 ```
-</div>
+
 
 ## tf.tidy
 
 在进行了大量的张量操作后，挨个调用 `dispose` 可能会很麻烦。因此，TensorFlow.js 提供了另一个函数 `tf.tidy`，它有点类似于 JavaScript 中的「作用域」，但是面向「GPU-backed tensors」。 `tf.tidy` 执行后就会清除所有的中间张量，并释放它们的GPU内存。但是它不会清除内部函数的返回值。
 
-<div class="highlight">
-  ```
+```
 // tf.tidy takes a function to tidy up after
 const average = tf.tidy(() => {
   // tf.tidy 将会清除此函数内由张量使用的所有GPU内存
@@ -233,7 +222,7 @@ const average = tf.tidy(() => {
 average.print() // 输出: 3.5
 
 ```
-</div>
+
 
 合理使用 `tf.tidy` 将有助于缓解应用程序中的内存泄漏现象，也有助于控制内存何时回收。
 

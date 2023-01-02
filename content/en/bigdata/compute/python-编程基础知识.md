@@ -3,8 +3,6 @@ title: python-编程基础知识
 weight: 8
 ---
 
-  <img loading="lazy" width="339" height="149" class="alignnone size-full wp-image-2834 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png?x-oss-process=image/format,webp 339w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2018/11/img_5bf6084610d03.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_132/format,webp 300w" sizes="(max-width: 339px) 100vw, 339px" />
-
 ## Python 编程 {#python-}
 
 ### 基础 Python

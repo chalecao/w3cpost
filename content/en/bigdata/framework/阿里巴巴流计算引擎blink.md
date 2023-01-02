@@ -1,6 +1,6 @@
 ---
 title: 阿里巴巴流计算引擎Blink
-
+weight: 6
 ---
 
 阿里巴巴是世界上最大的电子商务零售商。 [我们](https://www.w3cdoc.com)在 2015 年的年销售额总计 3940 亿美元，超过 eBay 和亚马逊之和。阿里巴巴搜索（个性化搜索和推荐平台）是客户的关键入口，并承载了大部分在线收入，因此搜索基础架构团队需要不断探索新技术来改进产品。
@@ -23,8 +23,7 @@ Apache Flink? 就是一种这样的技术，阿里巴巴正在使用基于 Flink
   2. 使用业务逻辑将来自不同表的数据连接在一起，以创建最终的可搜索文档。这是一个 HBase 表，[我们](https://www.w3cdoc.com)称之为&#8217;Result&#8217;表。
   3. 将此 HBase 表导出为文件作为更新集合。
 
-
-  <img loading="lazy" width="444" height="268" class="alignnone size-full wp-image-3574 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d29cbb553.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d29cbb553.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d29cbb553.png?x-oss-process=image/format,webp 444w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d29cbb553.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_181/format,webp 300w" sizes="(max-width: 444px) 100vw, 444px" />
+![](/images/posts/2023-01-01-18-52-15.png)
 
 这 3 个阶段实际上是在经典的“lambda 架构”中的 2 个不同的 pipeline 上运行：全量构建 pipeline 和增量构建 pipeline。
 
@@ -37,8 +36,7 @@ Apache Flink? 就是一种这样的技术，阿里巴巴正在使用基于 Flink
 
 在线日志（展示，点击，交易）由解析器和过滤器收集和处理，然后使用业务逻辑连接在一起。接下来聚合数据，将聚合结果推送到 Druid，在 Druid 内部，[我们](https://www.w3cdoc.com)可以编写查询语句并对数据执行复杂的 OLAP 分析，并查看不同算法的效果。
 
-
-  <img loading="lazy" width="448" height="269" class="alignnone size-full wp-image-3575 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2bade11b.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2bade11b.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2bade11b.png?x-oss-process=image/format,webp 448w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2bade11b.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_180/format,webp 300w" sizes="(max-width: 448px) 100vw, 448px" />
+![](/images/posts/2023-01-01-18-52-23.png)
 
 ## 在线机器学习
 
@@ -46,10 +44,7 @@ Apache Flink? 就是一种这样的技术，阿里巴巴正在使用基于 Flink
 
 其次，每年的特定日子（如<a href="https://en.wikipedia.org/wiki/Singles%27_Day" target="_blank" rel="noopener">光棍节</a>），有些商品折扣力度很大，有时甚至高达 50％。因此，用户行为也会发生很大的变化。交易量巨大，通常比[我们](https://www.w3cdoc.com)在平时看到的高出很多倍。以前训练的模型在这个场景作用有限，因此[我们](https://www.w3cdoc.com)使用日志和 Flink 流式作业构建了在线机器学习模型，这个模型会将实时用户行为数据反馈到系统中。结果在这些不常见但非常重要的营销节日的转换率有了很大的提升。
 
-
-  <img loading="lazy" width="448" height="266" class="alignnone size-full wp-image-3577 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2ca2b3b0.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2ca2b3b0.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2ca2b3b0.png?x-oss-process=image/format,webp 448w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2ca2b3b0.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_178/format,webp 300w" sizes="(max-width: 448px) 100vw, 448px" />
-
-
+![](/images/posts/2023-01-01-18-52-31.png)
 
 # 选择一个框架来解决问题
 
@@ -79,8 +74,7 @@ Blink 的改进主要包括两个方面：
 
 （编辑注：<a href="https://cwiki.apache.org/confluence/display/FLINK/FLIP-11%3a+Table+API+Stream+Aggregations" target="_blank" rel="noopener">FLIP-11</a>涵盖了与上述功能相关的一系列 Table API 和 SQL 改进，对该主题感兴趣的可以阅读）
 
-
-  <img loading="lazy" width="446" height="267" class="alignnone size-full wp-image-3578 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2dae1bfb.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2dae1bfb.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2dae1bfb.png?x-oss-process=image/format,webp 446w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2dae1bfb.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_180/format,webp 300w" sizes="(max-width: 446px) 100vw, 446px" />
+![](/images/posts/2023-01-01-18-52-41.png)
 
 接下来，[我们](https://www.w3cdoc.com)将介绍运行时改进，可以分为四个不同的类别。
 
@@ -90,8 +84,7 @@ Blink 的改进主要包括两个方面：
 
 Blink 中每个作业都有自己的 JobMaster，以根据作业需要请求和释放资源。并且不同的作业不能在同一个 Java 进程中运行，这将在作业和任务之间得到最佳隔离。阿里巴巴团队目前正在与 Flink 社区合作，将这项工作贡献给开放源代码，改进工作在<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=65147077" target="_blank" rel="noopener">FLIP-6</a>（除了 YARN 之外还扩展到其他集群管理器）中得到了体现。
 
-
-  <img loading="lazy" width="448" height="268" class="alignnone size-full wp-image-3579 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2e565985.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2e565985.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2e565985.png?x-oss-process=image/format,webp 448w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2e565985.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_179/format,webp 300w" sizes="(max-width: 448px) 100vw, 448px" />
+![](/images/posts/2023-01-01-18-52-50.png)
 
 ## Operator 缩放
 
@@ -99,14 +92,13 @@ Blink 中每个作业都有自己的 JobMaster，以根据作业需要请求和�
 
 （编者注：Flink 社区同时在 Flink 1.2 版本中解决了的这个问题 - 该功能在最新版本的主分支中可用。Flink 的“key groups”概念在很大程度上等同于上面提到的“bucket”，但是实现时使用的数据结构略有不同。更多信息，请在 Jira 查看<a href="https://issues.apache.org/jira/browse/FLINK-3755" target="_blank" rel="noopener">FLIR-3755</a>）
 
-
-  <img loading="lazy" width="452" height="268" class="alignnone size-full wp-image-3580 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2ee4c48f.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2ee4c48f.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2ee4c48f.png?x-oss-process=image/format,webp 452w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2ee4c48f.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_178/format,webp 300w" sizes="(max-width: 452px) 100vw, 452px" />
+![](/images/posts/2023-01-01-18-52-58.png)
 
 ## 增量 Checkpoint
 
 在 Flink 中，Checkpoint 操作分为两个阶段：在本地获取状态快照，然后将状态快照保存到 HDFS（或另一个存储系统），并且每个快照的整个状态存储在 HDFS 中。[我们](https://www.w3cdoc.com)的状态数据太大了，这种方法是不可行的，所以 Blink 只存储修改的状态在 HDFS 中，这能够大大提高 Checkpoint 的效率。这种修改使[我们](https://www.w3cdoc.com)能够在生产环境中使用很大的状态数据。
 
-<img loading="lazy" width="447" height="268" class="alignnone size-full wp-image-3581 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2f765a23.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2f765a23.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2f765a23.png?x-oss-process=image/format,webp 447w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2f765a23.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_180/format,webp 300w" sizes="(max-width: 447px) 100vw, 447px" />
+![](/images/posts/2023-01-01-18-53-06.png)
 
 ## 异步 I/O
 
@@ -114,8 +106,7 @@ Blink 中每个作业都有自己的 JobMaster，以根据作业需要请求和�
 
 （编辑笔记：data Artisans 认为 FLIP-12 足够强大，可以在不久的将来在某个时间拥有自己的独立写入。所以[我们](https://www.w3cdoc.com)只是简单地介绍一下这里的想法，如果你想了解更多，可以查看<a href="https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=65870673" target="_blank" rel="noopener">FLIP writeup</a>）
 
-
-  <img loading="lazy" width="448" height="267" class="alignnone size-full wp-image-3582 shadow" src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2fed6cfc.png" data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2fed6cfc.png?x-oss-process=image/format,webp" alt="" srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2fed6cfc.png?x-oss-process=image/format,webp 448w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/01/img_5c41d2fed6cfc.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_179/format,webp 300w" sizes="(max-width: 448px) 100vw, 448px" />
+![](/images/posts/2023-01-01-18-53-14.png)
 
 #  阿里巴巴的 Flink 未来计划是什么?
 

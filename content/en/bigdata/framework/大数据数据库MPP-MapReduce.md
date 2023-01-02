@@ -1,6 +1,6 @@
 ---
 title: 大数据数据库MPP-MapReduce
-
+weight: 4
 ---
 这些年<a class="hl hl-1" href="https://so.csdn.net/so/search?q=%E5%A4%A7%E6%95%B0%E6%8D%AE&spm=1001.2101.3001.7020" target="_blank" rel="noopener" data-report-click="{&quot;spm&quot;:&quot;1001.2101.3001.7020&quot;,&quot;dest&quot;:&quot;https://so.csdn.net/so/search?q=%E5%A4%A7%E6%95%B0%E6%8D%AE&spm=1001.2101.3001.7020&quot;}" data-tit="大数据" data-pretit="大数据">大数据</a>概念已经成为IT界的热门，[我们](https://www.w3cdoc.com)经常也会在新闻和报纸中看到。大数据概念中最为关键的技术就是数据库管理系统，伴随着hadoop和MapReduce技术的流行，大数据的数据库中Hive和Spark等新型数据库脱颖而出；而另一个技术流派是基于传统的并行数据库技术演化而来的大规模并行处理（MPP）数据库比如GreenPlum和HAWQ也在最近几年突飞猛进，这两种流派都有对应的比较知名的产品，他们都已得到了市场的认可。
 
