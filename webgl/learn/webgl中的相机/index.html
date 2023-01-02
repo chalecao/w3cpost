@@ -1,0 +1,205 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-regular.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-500.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-700.woff2 type=font/woff2 crossorigin><script>(()=>{var t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,e=localStorage.getItem("theme");t&&e===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),t&&e==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),e==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script><link rel=stylesheet href=/main.f9552544b4ca62af741c0d24d283b4ddcfa2a026a871cff4112743eeb6c4950a530c923242d9d4d42e93635dd91ebd78601a145b8b205bb363d7065c1fa59ffe.css integrity="sha512-+VUlRLTKYq90HA0k0oO03c+ioCaocc/0ESdD7rbElQpTDJIyQtnU1C6TY13ZHr14YBoUW4sgW7Nj1wZcH6Wf/g==" crossorigin=anonymous><noscript><style>img.lazyload{display:none}</style></noscript><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><meta name=bingbot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><title>WebGL中的相机 - 万维刀客「w3cdoc」</title><meta name=description content="动起手来 # 在第一课里，我们提到后续课程会详细讲解相机，那么今天就是我履行诺言的时刻了。嘿，这一刻，有点激动，想到相机，大学时，一直想买一个单反，但是要1万多。工作后，当一个月的工资就能买一个单反时，内心充满了骄傲和自豪。所以，各位大大们，技术还是有用的，至少技术可以用来挣钱。
+家有万贯，不如一技在手，加油。
+对WebGL感兴趣，还不知道如何入门的大大们，看看本教程吧，我有信心看完本教程，特别是看完本教程的中级和高级篇，你应该对3D世界有一个自己的理解了。使用你做的绚丽的demo去找一份不做的工作，就应该没有问题。
+认识相机 # 在Threejs中相机的表示是THREE.Camera，它是相机的抽象基类，其子类有两种相机，分别是正投影相机THREE.OrthographicCamera和透视投影相机THREE.PerspectiveCamera。类图如下所示：
+正投影相机有时候也叫正交投影摄像机，下图显示了正交摄像机投影和透视投影之间的差别。
+正投影和透视投影的区别是：透视投影有一个基本点，就是远处的物体比近处的物体小。在工程建筑领域，正投影的例子很多，例如下面就是一个正投影的例子,其特点是，远近高低比例都相同。
+正投影相机 # 下面我们来介绍正投影相机，正投影的构造函数如下所示：
+OrthographicCamera( left, right, top, bottom, near, far ) 结合下面一个图，我们来看看，各个参数的意思。
+介绍参数之前，先假定一个相机中心点，相机中心点可以想成是镜头的中心点。为了让大家能更容易的明白，我还是上一幅图吧，虽然这样会多花我一点时间。
+图中红点就是我们假设的相机中心点。下面介绍一下构造函数的参数：
+1、 left参数
+left：左平面距离相机中心点的垂直距离。从图中可以看出，左平面是屏幕里面的那个平面。
+2、 right参数
+right：右平面距离相机中心点的垂直距离。从图中可以看出，右平面是屏幕稍微外面一点的那个平面。
+3、 top参数
+top：顶平面距离相机中心点的垂直距离。上图中的顶平面，是长方体头朝天的平面。
+4、 bottom参数
+bottom：底平面距离相机中心点的垂直距离。底平面是头朝地的平面。
+5、near参数
+near：近平面距离相机中心点的垂直距离。近平面是左边竖着的那个平面。
+6、far参数
+far：远平面距离相机中心点的垂直距离。远平面是右边竖着的那个平面。
+有了这些参数和相机中心点，我们这里将相机的中心点又定义为相机的位置。通过这些参数，我们就能够在三维空间中唯一的确定上图的一个长方体。这个长方体也叫做视景体。
+投影变换的目的就是定义一个视景体，使得视景体外多余的部分裁剪掉，最终图像只是视景体内的有关部分。
+好了，看一个简单的例子：
+var camera = new THREE.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, 1, 1000 ); scene.add( camera ); 这个例子将浏览器窗口的宽度和高度作为了视景体的高度和宽度，相机正好在窗口的中心点上。这也是我们一般的设置方法，基本上为了方便，我们不会设置其他的值。
+透视投影相机 # 透视投影是更符合我们视觉的投影，当你凝视一个女人时，就是因为远近高低各不同，女人才显得美丽，叫你看一个正投影的女人，估计连胸部、屁股都分不清，那么也没什么看头。"><link rel=canonical href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="og:title" content="WebGL中的相机"><meta property="og:description" content="动起手来 # 在第一课里，我们提到后续课程会详细讲解相机，那么今天就是我履行诺言的时刻了。嘿，这一刻，有点激动，想到相机，大学时，一直想买一个单反，但是要1万多。工作后，当一个月的工资就能买一个单反时，内心充满了骄傲和自豪。所以，各位大大们，技术还是有用的，至少技术可以用来挣钱。
+家有万贯，不如一技在手，加油。
+对WebGL感兴趣，还不知道如何入门的大大们，看看本教程吧，我有信心看完本教程，特别是看完本教程的中级和高级篇，你应该对3D世界有一个自己的理解了。使用你做的绚丽的demo去找一份不做的工作，就应该没有问题。
+认识相机 # 在Threejs中相机的表示是THREE.Camera，它是相机的抽象基类，其子类有两种相机，分别是正投影相机THREE.OrthographicCamera和透视投影相机THREE.PerspectiveCamera。类图如下所示：
+正投影相机有时候也叫正交投影摄像机，下图显示了正交摄像机投影和透视投影之间的差别。
+正投影和透视投影的区别是：透视投影有一个基本点，就是远处的物体比近处的物体小。在工程建筑领域，正投影的例子很多，例如下面就是一个正投影的例子,其特点是，远近高低比例都相同。
+正投影相机 # 下面我们来介绍正投影相机，正投影的构造函数如下所示：
+OrthographicCamera( left, right, top, bottom, near, far ) 结合下面一个图，我们来看看，各个参数的意思。
+介绍参数之前，先假定一个相机中心点，相机中心点可以想成是镜头的中心点。为了让大家能更容易的明白，我还是上一幅图吧，虽然这样会多花我一点时间。
+图中红点就是我们假设的相机中心点。下面介绍一下构造函数的参数：
+1、 left参数
+left：左平面距离相机中心点的垂直距离。从图中可以看出，左平面是屏幕里面的那个平面。
+2、 right参数
+right：右平面距离相机中心点的垂直距离。从图中可以看出，右平面是屏幕稍微外面一点的那个平面。
+3、 top参数
+top：顶平面距离相机中心点的垂直距离。上图中的顶平面，是长方体头朝天的平面。
+4、 bottom参数
+bottom：底平面距离相机中心点的垂直距离。底平面是头朝地的平面。
+5、near参数
+near：近平面距离相机中心点的垂直距离。近平面是左边竖着的那个平面。
+6、far参数
+far：远平面距离相机中心点的垂直距离。远平面是右边竖着的那个平面。
+有了这些参数和相机中心点，我们这里将相机的中心点又定义为相机的位置。通过这些参数，我们就能够在三维空间中唯一的确定上图的一个长方体。这个长方体也叫做视景体。
+投影变换的目的就是定义一个视景体，使得视景体外多余的部分裁剪掉，最终图像只是视景体内的有关部分。
+好了，看一个简单的例子：
+var camera = new THREE.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, 1, 1000 ); scene.add( camera ); 这个例子将浏览器窗口的宽度和高度作为了视景体的高度和宽度，相机正好在窗口的中心点上。这也是我们一般的设置方法，基本上为了方便，我们不会设置其他的值。
+透视投影相机 # 透视投影是更符合我们视觉的投影，当你凝视一个女人时，就是因为远近高低各不同，女人才显得美丽，叫你看一个正投影的女人，估计连胸部、屁股都分不清，那么也没什么看头。"><meta property="og:url" content="/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/"><meta property="og:site_name" content="万维刀客「w3cdoc」"><meta property="og:image" content="/doks.png"><meta property="og:image:alt" content="万维刀客「w3cdoc」"><meta name=twitter:card content="summary_large_image"><meta name=twitter:site content="@w3cdoc"><meta name=twitter:creator content="@chalecao"><meta name=twitter:title content="WebGL中的相机"><meta name=twitter:description content><meta name=twitter:image content="/doks.png"><meta name=twitter:image:alt content="WebGL中的相机"><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"/#/schema/organization/1","name":"w3cdoc","url":"/","sameAs":["https://twitter.com/w3cdoc"],"logo":{"@type":"ImageObject","@id":"/#/schema/image/1","url":"/w3cdoc.png","width":512,"height":512,"caption":"w3cdoc"},"image":{"@id":"/#/schema/image/1"}},{"@type":"WebSite","@id":"/#/schema/website/1","url":"/","name":"万维刀客「w3cdoc」","description":"互联网同学互相帮助、学习成长的家园","publisher":{"@id":"/#/schema/organization/1"}},{"@type":"WebPage","@id":"/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/","url":"/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/","name":"WebGL中的相机","description":"","isPartOf":{"@id":"/#/schema/website/1"},"about":{"@id":"/#/schema/organization/1"},"datePublished":"0001-01-01T00:00:00CET","dateModified":"0001-01-01T00:00:00CET","breadcrumb":{"@id":"/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/#/schema/breadcrumb/1"},"primaryImageOfPage":{"@id":"/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/#/schema/image/2"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/"]}]},{"@type":"BreadcrumbList","@id":"/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/#/schema/breadcrumb/1","name":"Breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"/","url":"/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@id":"/webgllearnwebgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/"}}]},{"@context":"https://schema.org","@graph":[{"@type":"ImageObject","@id":"/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/#/schema/image/2","url":"/doks.png","contentUrl":"/doks.png","caption":"WebGL中的相机"}]}]}</script><meta name=theme-color content="#fff"><link rel=icon href=/favicon.ico sizes=any><link rel=icon type=image/svg+xml href=/favicon.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest crossorigin=use-credentials href=/site.webmanifest><script>"serviceWorker"in navigator&&navigator.serviceWorker.register("/sw.js",{scope:"/"}).then(function(e){console.log("Registration succeeded. Scope is "+e.scope)}).catch(function(e){console.log("Registration failed with "+e)})</script><script src=/js/vendor/autolog.js async></script></head><body class="webgl single"><div class=sticky-top><div class=header-bar></div><header class="navbar navbar-expand-lg navbar-light doks-navbar"><nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation"><a class="navbar-brand order-0" href=/ aria-label=万维刀客「w3cdoc」>万维刀客「w3cdoc」</a>
+<button class="btn btn-menu order-2 d-block d-lg-none" type=button data-bs-toggle=offcanvas data-bs-target=#offcanvasDoks aria-controls=offcanvasDoks aria-label="Open main menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex=-1 id=offcanvasDoks data-bs-backdrop=true aria-labelledby=offcanvasDoksLabel><div class="header-bar d-lg-none"></div><div class="offcanvas-header d-lg-none"><h2 class="h5 offcanvas-title ps-2" id=offcanvasDoksLabel><a class=text-dark href=/>万维刀客「w3cdoc」</a></h2><button type=button class="btn-close text-reset me-2" data-bs-dismiss=offcanvas aria-label="Close main menu"></button></div><div class="offcanvas-body p-4 p-lg-0"><ul class="nav flex-column flex-lg-row align-items-lg-center mt-2 mt-lg-0 ms-lg-2 me-lg-auto"><li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-0 py-1" href=# id=navbarDropdownMenuLink role=button data-bs-toggle=dropdown aria-expanded=false>初级入门
+<span class=dropdown-caret><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></span></a><ul class="dropdown-menu dropdown-menu-main shadow rounded border-0" aria-labelledby=navbarDropdownMenuLink><li><a class=dropdown-item href=/js/basic/javascript%E4%BB%8B%E7%BB%8D/>JS入门</a></li><li><a class=dropdown-item href=/git/basic/introduction/>Git入门</a></li></ul></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-0 py-1" href=# id=navbarDropdownMenuLink role=button data-bs-toggle=dropdown aria-expanded=false>进阶学习
+<span class=dropdown-caret><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></span></a><ul class="dropdown-menu dropdown-menu-main shadow rounded border-0" aria-labelledby=navbarDropdownMenuLink><li><a class=dropdown-item href=/fed-regain/html/html%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2/>前端增长</a></li><li><a class=dropdown-item href=/webgl/base/%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/>3D图形</a></li><li><a class=dropdown-item href=/bigdata/compute/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/>数据分析</a></li></ul></li><li class=nav-item><a class="nav-link ps-0 py-1" href=/blog/>博客</a></li><li class=nav-item><a class="nav-link ps-0 py-1" href=/course/>网课教程</a></li></ul><hr class="text-black-50 my-4 d-lg-none"><form class="doks-search position-relative flex-grow-1 ms-lg-auto me-lg-2"><input id=search class="form-control is-search" type=search placeholder="Search docs..." aria-label="Search docs..." autocomplete=off><div id=suggestions class="shadow bg-white rounded d-none"></div></form><hr class="text-black-50 my-4 d-lg-none"><ul class="nav flex-column flex-lg-row"></ul><hr class="text-black-50 my-4 d-lg-none"><button id=mode class="btn btn-link" type=button aria-label="Toggle user interface mode">
+<span class=toggle-dark><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span><span class=toggle-light><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span></button></div></div></nav></header></div><div class=container-xxl><aside class=doks-sidebar><nav id=doks-docs-nav class="collapse d-lg-none" aria-label="Tertiary navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-c7f3a86c4d209391b63439cc2af9bf20 aria-expanded=false>
+理论基础</button><div class=collapse id=section-c7f3a86c4d209391b63439cc2af9bf20><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/webgl/base/%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/>基础教程</a></li><li><a class="docs-link rounded" href=/webgl/base/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%9A%84%E6%95%B0%E5%AD%A6%E7%90%86%E8%AE%BA/>图像处理的数学理论</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-a6e9adb94ced3e994cf1b1d4abc688dd aria-expanded=true>
+webgl入门</button><div class="collapse show" id=section-a6e9adb94ced3e994cf1b1d4abc688dd><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/webgl/learn/%E5%88%9D%E5%A7%8Bwebgl%E5%92%8Cthreejs/>初始WebGL和ThreeJS</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/>点线面基本作图</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E8%BF%90%E5%8A%A8%E7%9A%84%E5%9C%BA%E6%99%AF/>运动的场景</a></li><li><a class="docs-link rounded active" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/>WebGL中的相机</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/>WebGL中的各种光</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/>WebGL中的图片纹理合成</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84canvas%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/>WebGL中的Canvas纹理合成</a></li><li><a class="docs-link rounded" href=/webgl/learn/3d%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8A%A0%E8%BD%BD%E4%B8%8E%E4%BD%BF%E7%94%A8/>3D模型的加载与使用</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E7%BD%91%E6%A0%BC%E6%A8%A1%E5%9E%8B%E6%97%8B%E8%BD%AC%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E6%96%B9%E6%B3%95/>网格模型旋转的常用技巧和方法</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/>多摄像机多视图多角度摄影</a></li></ul></div></li></ul></nav></aside></div><div class="wrap container-xxl" role=document><div class=content><div class="row flex-xl-nowrap"><div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block"><nav class=docs-links aria-label="Main navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-c7f3a86c4d209391b63439cc2af9bf20 aria-expanded=false>
+理论基础</button><div class=collapse id=section-c7f3a86c4d209391b63439cc2af9bf20><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/webgl/base/%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/>基础教程</a></li><li><a class="docs-link rounded" href=/webgl/base/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%9A%84%E6%95%B0%E5%AD%A6%E7%90%86%E8%AE%BA/>图像处理的数学理论</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-a6e9adb94ced3e994cf1b1d4abc688dd aria-expanded=true>
+webgl入门</button><div class="collapse show" id=section-a6e9adb94ced3e994cf1b1d4abc688dd><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/webgl/learn/%E5%88%9D%E5%A7%8Bwebgl%E5%92%8Cthreejs/>初始WebGL和ThreeJS</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/>点线面基本作图</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E8%BF%90%E5%8A%A8%E7%9A%84%E5%9C%BA%E6%99%AF/>运动的场景</a></li><li><a class="docs-link rounded active" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/>WebGL中的相机</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/>WebGL中的各种光</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/>WebGL中的图片纹理合成</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84canvas%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/>WebGL中的Canvas纹理合成</a></li><li><a class="docs-link rounded" href=/webgl/learn/3d%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8A%A0%E8%BD%BD%E4%B8%8E%E4%BD%BF%E7%94%A8/>3D模型的加载与使用</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E7%BD%91%E6%A0%BC%E6%A8%A1%E5%9E%8B%E6%97%8B%E8%BD%AC%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E6%96%B9%E6%B3%95/>网格模型旋转的常用技巧和方法</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/>多摄像机多视图多角度摄影</a></li></ul></div></li></ul></nav></div><nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation"><div class=d-xl-none><button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#onThisPage aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>On this page</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button>
+<button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#doks-docs-nav aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>Book Menu</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button><div class=collapse id=onThisPage><div class="card card-body mt-3 py-1"><div class=page-links><nav id=TableOfContents><ul><li><ul><li><a href=#动起手来>动起手来</a></li><li><a href=#认识相机>认识相机</a></li><li><a href=#正投影相机>正投影相机</a></li><li><a href=#透视投影相机>透视投影相机</a></li></ul></li></ul></nav></div></div></div></div><div class="page-links d-none d-xl-block"><h3>On this page</h3><nav id=TableOfContents><ul><li><ul><li><a href=#动起手来>动起手来</a></li><li><a href=#认识相机>认识相机</a></li><li><a href=#正投影相机>正投影相机</a></li><li><a href=#透视投影相机>透视投影相机</a></li></ul></li></ul></nav></div></nav><main class="docs-content col-lg-11 col-xl-9 mx-xl-auto"><h1>WebGL中的相机</h1><p class=lead></p><nav class=d-xl-none aria-label="Quaternary navigation"><div class=d-xl-none><button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#onThisPage aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>On this page</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button>
+<button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#doks-docs-nav aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>Book Menu</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button><div class=collapse id=onThisPage><div class="card card-body mt-3 py-1"><div class=page-links><nav id=TableOfContents><ul><li><ul><li><a href=#动起手来>动起手来</a></li><li><a href=#认识相机>认识相机</a></li><li><a href=#正投影相机>正投影相机</a></li><li><a href=#透视投影相机>透视投影相机</a></li></ul></li></ul></nav></div></div></div></div><div class="page-links d-none d-xl-block"><h3>On this page</h3><nav id=TableOfContents><ul><li><ul><li><a href=#动起手来>动起手来</a></li><li><a href=#认识相机>认识相机</a></li><li><a href=#正投影相机>正投影相机</a></li><li><a href=#透视投影相机>透视投影相机</a></li></ul></li></ul></nav></div></nav><h3 id=动起手来>动起手来 <a href=#%e5%8a%a8%e8%b5%b7%e6%89%8b%e6%9d%a5 class=anchor aria-hidden=true>#</a></h3><p>在第一课里，<a href=https://www.w3cdoc.com>我们</a>提到后续课程会详细讲解相机，那么今天就是我履行诺言的时刻了。嘿，这一刻，有点激动，想到相机，大学时，一直想买一个单反，但是要1万多。工作后，当一个月的工资就能买一个单反时，内心充满了骄傲和自豪。所以，各位大大们，技术还是有用的，至少技术可以用来挣钱。</p><p>家有万贯，不如一技在手，加油。</p><p>对WebGL感兴趣，还不知道如何入门的大大们，看看本教程吧，我有信心看完本教程，特别是看完本教程的中级和高级篇，你应该对3D世界有一个自己的理解了。使用你做的绚丽的demo去找一份不做的工作，就应该没有问题。</p><h3 id=认识相机>认识相机 <a href=#%e8%ae%a4%e8%af%86%e7%9b%b8%e6%9c%ba class=anchor aria-hidden=true>#</a></h3><p>在Threejs中相机的表示是THREE.Camera，它是相机的抽象基类，其子类有两种相机，分别是正投影相机THREE.OrthographicCamera和透视投影相机THREE.PerspectiveCamera。类图如下所示：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-20-46-10.png></p><p>正投影相机有时候也叫正交投影摄像机，下图显示了正交摄像机投影和透视投影之间的差别。</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-20-46-22.png></p><p>正投影和透视投影的区别是：透视投影有一个基本点，就是远处的物体比近处的物体小。在工程建筑领域，正投影的例子很多，例如下面就是一个正投影的例子,其特点是，远近高低比例都相同。</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-20-46-45.png></p><h3 id=正投影相机>正投影相机 <a href=#%e6%ad%a3%e6%8a%95%e5%bd%b1%e7%9b%b8%e6%9c%ba class=anchor aria-hidden=true>#</a></h3><p>下面<a href=https://www.w3cdoc.com>我们</a>来介绍正投影相机，正投影的构造函数如下所示：</p><pre><code>OrthographicCamera( left, right, top, bottom, near, far )
+</code></pre><p>结合下面一个图，<a href=https://www.w3cdoc.com>我们</a>来看看，各个参数的意思。</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-21-20-30.png></p><p>介绍参数之前，先假定一个相机中心点，相机中心点可以想成是镜头的中心点。为了让<a href=https://www.w3cdoc.com>大家</a>能更容易的明白，我还是上一幅图吧，虽然这样会多花我一点时间。</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-21-20-43.png></p><p>图中红点就是<a href=https://www.w3cdoc.com>我们</a>假设的相机中心点。下面介绍一下构造函数的参数：</p><p>1、 left参数</p><p>left：左平面距离相机中心点的垂直距离。从图中可以看出，左平面是屏幕里面的那个平面。</p><p>2、 right参数</p><p>right：右平面距离相机中心点的垂直距离。从图中可以看出，右平面是屏幕稍微外面一点的那个平面。</p><p>3、 top参数</p><p>top：顶平面距离相机中心点的垂直距离。上图中的顶平面，是长方体头朝天的平面。</p><p>4、 bottom参数</p><p>bottom：底平面距离相机中心点的垂直距离。底平面是头朝地的平面。</p><p>5、near参数</p><p>near：近平面距离相机中心点的垂直距离。近平面是左边竖着的那个平面。</p><p>6、far参数</p><p>far：远平面距离相机中心点的垂直距离。远平面是右边竖着的那个平面。</p><p>有了这些参数和相机中心点，<a href=https://www.w3cdoc.com>我们</a>这里将相机的中心点又定义为相机的位置。通过这些参数，<a href=https://www.w3cdoc.com>我们</a>就能够在三维空间中唯一的确定上图的一个长方体。这个长方体也叫做视景体。</p><p>投影变换的目的就是定义一个视景体，使得视景体外多余的部分裁剪掉，最终图像只是视景体内的有关部分。</p><p>好了，看一个简单的例子：</p><pre><code>var camera = new THREE.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, 1, 1000 );
+scene.add( camera );
+</code></pre><p>这个例子将<a href=https://www.w3cdoc.com>浏览器</a>窗口的宽度和高度作为了视景体的高度和宽度，相机正好在窗口的中心点上。这也是<a href=https://www.w3cdoc.com>我们</a>一般的设置方法，基本上为了方便，<a href=https://www.w3cdoc.com>我们</a>不会设置其他的值。</p><h3 id=透视投影相机>透视投影相机 <a href=#%e9%80%8f%e8%a7%86%e6%8a%95%e5%bd%b1%e7%9b%b8%e6%9c%ba class=anchor aria-hidden=true>#</a></h3><p>透视投影是更符合<a href=https://www.w3cdoc.com>我们</a>视觉的投影，当你凝视一个女人时，就是因为远近高低各不同，女人才显得美丽，叫你看一个正投影的女人，估计连胸部、屁股都分不清，那么也没什么看头。</p><p>正因为，透视相机这么有魅力，所以在各种应用中运用非常广泛。</p><p>透视投影相机的构造函数如下所示：</p><pre><code>PerspectiveCamera( fov, aspect, near, far )
+</code></pre><p><a href=https://www.w3cdoc.com>我们</a>来欣赏一幅图来看看这个函数的各个参数的意思：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-21-37-13.png></p><p>先来明确这个图里涉及的概念。很多作者都认为这些概念很简单，不需要讲解，但是其实正是这些简单的东西，让很多初学者不明白。所以我一直想把这些简单的内容给讲清楚，以至于<a href=https://www.w3cdoc.com>大家</a>不在这个上面花费过多的时间，毕竟多的时间可以去挣钱，可以去陪女朋友，去做超级奶爸。</p><p>1、视角fov：这个最难理解,我的理解是,眼睛睁开的角度,即,视角的大小,如果设置为0,相当你闭上眼睛了,所以什么也看不到,如果为180,那么可以认为你的视界很广阔,但是在180度的时候，往往物体很小，因为他在你的整个可视区域中的比例变小了。</p><p>2、近平面near：这个呢，表示你近处的裁面的距离。补充一下，也可以认为是眼睛距离近处的距离，假设为10米远，请不要设置为负值，Three.js就傻了,不知道怎么算了,</p><p>3、远平面far：这个呢，表示你远处的裁面,</p><p>4、纵横比aspect：实际窗口的纵横比，即宽度除以高度。这个值越大，说明你宽度越大，那么你可能看的是宽银幕电影了，如果这个值小于1，那么可能你看到的是如手机的LED屏幕了。<br>好了，看看下面一个简单的例子：</p><pre><code>var camera = new THREE.PerspectiveCamera( 45, width / height, 1, 1000 );
+scene.add( camera );
+</code></pre><p>接下来，结合上面讲的两种相机，<a href=https://www.w3cdoc.com>我们</a>来看一个实例。这个实例首先使用正投影相机，然后在使用透视相机。先看看正投影相机的效果：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-21-47-09.png></p><p>示例代码：</p><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Three框架&lt;/title&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js&quot;&gt;&lt;/script&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+div#canvas-frame {
+border: none;
+cursor: pointer;
+width: 100%;
+height: 600px;
+background-color: #EEEEEE;
+}
+&lt;/style&gt;
+&lt;script&gt;
+var renderer;
+function initThree() {
+  width = document.getElementById(&quot;canvas-frame&quot;).clientWidth;
+  height = document.getElementById(&quot;canvas-frame&quot;).clientHeight;
+  renderer = new THREE.WebGLRenderer({
+    antialias : true
+  });
+
+  renderer.setSize(width, height);
+  document.getElementById(&quot;canvas-frame&quot;).appendChild(renderer.domElement);
+  renderer.setClearColor(0xFFFFFF, 1.0);
+}
+
+var camera;
+function initCamera() {
+  //camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+  camera = new THREE.OrthographicCamera( window.innerWidth / - 2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / - 2, 10, 1000 );
+  camera.position.x = 0;
+  camera.position.y = 0;
+  camera.position.z = 600;
+  camera.up.x = 0;
+  camera.up.y = 1;
+  camera.up.z = 0;
+  camera.lookAt({
+    x : 0,
+    y : 0,
+    z : 0
+  });
+}
+
+var scene;
+function initScene() {
+scene = new THREE.Scene();
+}
+
+var light;
+function initLight() {
+  light = new THREE.PointLight(0x00FF00);
+  light.position.set(0, 0,300);
+  scene.add(light);
+}
+
+var cube;
+function initObject() {
+  var geometry = new THREE.CylinderGeometry( 70,100,200);
+  var material = new THREE.MeshLambertMaterial( { color:0xFFFFFF} );
+  var mesh = new THREE.Mesh( geometry,material);
+  mesh.position = new THREE.Vector3(0,0,0);
+  scene.add(mesh);
+}
+
+function threeStart() {
+  initThree();
+  initCamera();
+  initScene();
+  initLight();
+  initObject();
+  animation();
+}
+
+function animation(){
+//renderer.clear();
+//camera.position.x =camera.position.x +1;
+changeFov();
+renderer.render(scene, camera);
+requestAnimationFrame(animation);
+}
+
+function setCameraFov(fov)
+{
+    camera.fov = fov;
+    camera.updateProjectionMatrix();
+}
+
+function changeFov()
+{
+    var txtFov = document.getElementById(&quot;txtFov&quot;).value;
+    var val = parseFloat(txtFov);
+    setCameraFov(val);
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload=&quot;threeStart();&quot;&gt;
+&lt;div id=&quot;canvas-frame&quot;&gt;&lt;/div&gt;
+&lt;div&gt;
+    Fov:&lt;input type=&quot;text&quot; value=&quot;45&quot; id=&quot;txtFov&quot;/&gt;(0到180的值)
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>明白了正投影的效果，<a href=https://www.w3cdoc.com>我们</a>现在将相机变成透视投影，只要更改上面关于相机的代码，就可以了，这里<a href=https://www.w3cdoc.com>我们</a>变成如下的代码：</p><pre><code>camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+</code></pre><p>效果如下:</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-21-45-50.png></p><p>这是视角为45度的情况，也就是眼睛睁开45度的情况。人类的正常视角是120度左右，但是要集中注意力看清楚东西，那么眼睛的视角在30-40度比较好。</p><p>这里<a href=https://www.w3cdoc.com>我们</a>分别展示视角设置为80度，100度，120度，160度和179度时，看到场景的情况：</p><p>80度视角效果图如下:</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-21-45-58.png></p><p>179度视角效果图如下, 看不见了:</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-21-46-22.png></p><p>ok，<a href=https://www.w3cdoc.com>我们</a>已经将主要的视角大小给搞定了。反复对照上面的图，你会发现，视角越大，中间的物体越小，这是因为，视角越大，看到的场景越大，那么中间的物体相对于整个场景来说，就越小了。</p><p>你还可以试一试睁大您的眼睛，努力挣得最大，你发现周围的物体看不清了，这就是眼大不清的原理，你无法集中注意力，而且你视图看到你前面的所有物体，你的焦距无法固定，所以场景非常模糊。</p><p>虽然你也许感觉不了非常明显，你前面的某一件物体确实缩小了，但在计算机固定大小的屏幕上，显示更多更大的场景，毫无疑问，每一件物体显示是缩小了。</p><p>当到达179度的时候，three.js真的傻了，他已经完全不明白你要看什么了，他已经将你要看的场景设为无穷大了，所以每一件物体相对于无穷大来说，基本在屏幕中无法显示了。</p><div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between"></div><div class="docs-navigation d-flex justify-content-between"><a href=/webgl/learn/%E8%BF%90%E5%8A%A8%E7%9A%84%E5%9C%BA%E6%99%AF/><div class="card my-1"><div class="card-body py-2">&larr; 运动的场景</div></div></a><a class=ms-auto href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/><div class="card my-1"><div class="card-body py-2">WebGL中的各种光 &rarr;</div></div></a></div></main></div></div></div><footer class="footer text-muted"><div class=container-xxl><div class=row><div class="col-lg-8 order-last order-lg-first"><ul class=list-inline><li class=list-inline-item>Copyright © 2022-Present 浙ICP备18052292号-3</li></ul></div><div class="col-lg-8 order-first order-lg-last text-lg-end"><ul class=list-inline></ul></div></div></div></footer><script src=/js/bootstrap.min.1117772738b0b01188ff56b000f75758d3ca75fab55d0d7cf813282148e4840455e1fc0a8f1c2951391282de6e64bed66b885160643382a58f67db6d110e9feb.js integrity="sha512-ERd3JziwsBGI/1awAPdXWNPKdfq1XQ18+BMoIUjkhARV4fwKjxwpUTkSgt5uZL7Wa4hRYGQzgqWPZ9ttEQ6f6w==" crossorigin=anonymous defer></script>
+<script src=/js/highlight.min.35e8488ad0bca08539c53f48a94a3c02f90c10ddc1ecba4a7fd7ec827cef556dec98a33813e3681b33a5750eefd53e65ab606d30febc27e411c293f2290f96a5.js integrity="sha512-NehIitC8oIU5xT9IqUo8AvkMEN3B7LpKf9fsgnzvVW3smKM4E+NoGzOldQ7v1T5lq2BtMP68J+QRwpPyKQ+WpQ==" crossorigin=anonymous defer></script>
+<script src=/main.min.5874482df6978e314928bf4ce1c634b6464aa5445dd098e344aa61159e2b10139d82662edd47e835a3ea422c24214134f15eded85f28e55774a70f9c4919b2b3.js integrity="sha512-WHRILfaXjjFJKL9M4cY0tkZKpURd0JjjRKphFZ4rEBOdgmYu3UfoNaPqQiwkIUE08V7e2F8o5Vd0pw+cSRmysw==" crossorigin=anonymous defer></script>
+<script src=/index.min.4ae26272486ea46c5bb0bed7a0b434a91b05e8182cfb839a405dd4e647b05ce5d76d401a5103d822d3b1589fc56335cd372b712d97085b8d89aebf244b1b5501.js integrity="sha512-SuJickhupGxbsL7XoLQ0qRsF6Bgs+4OaQF3U5kewXOXXbUAaUQPYItOxWJ/FYzXNNytxLZcIW42Jrr8kSxtVAQ==" crossorigin=anonymous defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML" async></script>
+<script type="text/x-mathjax-config;executed=true">
+  window.MathJax.Hub.Config({
+      showProcessingMessages: false, //关闭js加载过程信息
+      messageStyle: "none", //不显示信息
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+          inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]], //段内公式选择符
+          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+      },
+      "HTML-CSS": {
+          availableFonts: ["STIX", "TeX"], //可选字体
+          showMathMenu: false //关闭右击菜单显示
+      }
+  });
+  //下面第三个参数可以不写，默认对整个html内的latex进行翻译
+  window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementsByClassName("ck-content")]);
+</script></body></html>

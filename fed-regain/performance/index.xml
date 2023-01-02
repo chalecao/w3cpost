@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>性能体验 on</title><link>/fed-regain/performance/</link><description>Recent content in 性能体验 on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 06 Oct 2020 08:49:15 +0000</lastBuildDate><atom:link href="/fed-regain/performance/index.xml" rel="self" type="application/rss+xml"/><item><title>web性能指标标准</title><link>/fed-regain/performance/web%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E6%A0%87%E5%87%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/performance/web%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E6%A0%87%E5%87%86/</guid><description>很多人关注的、包括网上发布的一些文章大多都是关于性能优化手段，也有关于性能指标的以及如何做性能监控的，这些很多都基于 Web 性能标准以及浏览器对 Web 性能标准的实现。
+欢迎学习前端知识体系课程，本系列属于：[前端增长教程][1]
+在线视频课程：网易云课堂课程 思否课堂
+如果我们全面的了解了 Web 性能标准，就能知道性能指标是如何定义的、性能指标的计算方式以及有哪些浏览器支持的优化策略。基于这些了解，我们才能说如何去排查性能问题、如何去优化性能以及如何去采集这些性能数据来做性能监控。
+从 Web 性能工作组的[主页][2]可以看到全部的性能标准，我们也可以在 [ALL STANDARDS AND DRAFTS][3] 搜索到这些标准。
+本篇文章将与大家一起，系统的学习这些 Web 性能标准。我将 Web 性能标准大体分为两类：性能度量相关和优化策略相关。在介绍每种标准时，我将按这样的顺序介绍：
+标准的用处 标准的版本 标准包含的内容 与其他标准的关系 性能度量 # 我们关注的页面的性能主要包括页面呈现时间以及交互操作的流畅度。当页面呈现时间越短、交互越流畅时，我们认为页面性能越好。
+用户可以在感官上判断性能的好坏，但是作为开发者，我们需要把性能量化，用性能指标来度量性能的好坏。现在主流浏览器已经支持通过特定的 API 来获取页面的性能数据。
+在 HTML 规范中定义了 [Window][4] 对象，我们可以通过 window 来获取一个 Window 对象， 在 window 上挂载了很多我们熟悉的 API， 例如:
+window.document window.history window.localStorage window.location window.navigator window.postMessage … 这些 API 都由不同的 W3C 标准定义，而 Web 性能标准则是在 window 上添加了 performance 属性，通过 window.performance 返回一个 Performance 对象。</description></item><item><title>产品中的体验衡量指标</title><link>/fed-regain/performance/%E4%BA%A7%E5%93%81%E4%B8%AD%E7%9A%84%E4%BD%93%E9%AA%8C%E8%A1%A1%E9%87%8F%E6%8C%87%E6%A0%87/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/performance/%E4%BA%A7%E5%93%81%E4%B8%AD%E7%9A%84%E4%BD%93%E9%AA%8C%E8%A1%A1%E9%87%8F%E6%8C%87%E6%A0%87/</guid><description>1、关于数据指标与衡量的常见迷思 # 01 数据指标的使用，不符合GSM 原则 # 当有一定的用户后，结合常见的数据分析工具或内部团队自建的数据埋点，网站和应用马上就能出现许多可供分析的数据，似乎只要有这些数据，令人惊喜的洞察就会自动浮出水面。
+GSM（Goal-Signal-Metrics）是Google 提出的目标导向衡量模型，用来拆解用户使用产品时的设计目标-行为信号-衡量指标的一种模式。
+Google GSM Framework, Goal-Signal-Metrics
+在商业场景中，所有的数据衡量必定带有明确的目标，比如：透过观察宽口转化和窄口转化，分析广告投放效益以及GMV 成本。甚至，如果仅基于这些观察数据进行动作性的优化，没有配合中长期的决策时，变化仅会流于短期效益。
+02 显而易见的数据指标，不代表就是有帮助的 # 一个数据指标容易监测与计算，并不意味着它对你的产品来说就是重要的。透过现在大部分的分析工具，可以很容易就监测跟踪成百上千的各种指标，而且分析的工具也层出不穷。新产品团队往往因为能获取大量的数据，然后就期望洞察自动出现，但往往不遂人意。
+例如，网页或App 的PV 数据很容易收集，但如果你的网页或产品是属于内容消费类型的，它就无法呈现用户是否在你的网站消费内容（有效时长更具代表性）。高的PV 或许是由市场广告转化过来的用户，但对内容消费类的产品目标，肯定不是确定每个用户到底浏览了多少页面，PV 可能是衡量广告效果的重要度量，但它并不是监测用户参与度的良好方式。
+如果你不确定你正在用的数据指标，是否有正向帮助的话。可以参考AARRR 的转化模型，来帮助自己梳理清楚核心的转化链路。
+03 单一的数据指标，对于效果衡量可能是模糊的 # 如上面所说相较于PV、UV、DAU，用户在网站或应用中的有效停留时长，可能更适合用来衡量用户在产品中的参与度。
+但停留时间越长可能是正面的，也可能是负面的。在电商产品类的转化过程中，如果在关键的转化节点用户停留较久，可能意味着用户因困惑、分心或挫败而花费了大量时间。即便同时监测网站或应用的停留时长和转化率，你可能仍然不清楚为什么用户参与度如此高，对于最后的成交却没有太大帮助。
+这时就需要透过配合更细致的数据指标组合，慢慢的定位用户在操作步骤中的关键问题，并尝试透过A/B Testing 来解决。
+04 正确的衡量指标，要依产品、企业本身而制定 # 大家常用的数据指标，并不一定适合自己当前产品阶段或企业目标。
+正常而言企业的主力产品，正是代表着企业主要的商业营利模式，因此在发布产品后要监测的各种衡量指标，通常在产品准备进入市场前，都已依照商业模式进行拆分。但在产品的冷启动时期，这些依商业模式拆分的指标，很多时候无法反映出，企业的产品是否正在往好的方向成长。
+比如Saas服务类型的产品，通常都会使用净收入留存NDRR （Net Dollar Retention Rate）作为主要的商业模式指标，但在前期用户量少时，搭配NPS或PSAT等类型的指标，才能够好的回归到Saas产品的服务体验本质。了解企业目前提供的服务，对用户来说是否是正向的，并且能持续增长。
+05 大多时候，衡量指标并不会纯粹与设计相关 # 在产品开发迭代中发布新功能后，数据可能会开始上升。产品团队可能认为这是新功能的发布造成的，但销售部分却可能会将它与一项新的促销活动联系起来，而UX 团队则可能认为这与他们的新设计相关。
+这种场景在产品的数据到达一定规模时十分常见。真实情况是只能透过控制一些固定因子，来做更细部的A/B Testing 拆分。但大多时候产品的迭代时间与开发资源，很难真正做到能明确确认是因为什么原因。
+因此结合前面所说的，各团队在主要的数据指标中，配合其他辅助指标，甚至提取更与团队紧密相关的个别指标，来了解在产品的迭代过程中，各自团队做的决策是否是正向的。
+用户体验指标，跟易用性和商业指标目的不同
+下面就会介绍几种工作中常用的，与体验相关的衡量指标，部分指标在订定的一开始，本身即包涵了商业与体验维度。
+2、工作中可能用到的几种体验衡量指标 大部分的体验衡量指标，都会基于三个主要价值观，结合其他用户态度类型作为衡量基准。
+可用性 参与度 转化率＋ User Attitude 下面介绍几种，在工作中可能常用到的通用型，与不同业务场景型的体验衡量指标。 2.1 通用型 01 传统网站服务使用的PULSE PULSE 是基于商业和技术的衡量模型，被很多组织和公司广泛应用于跟踪产品的整体表现。包含：
+Page view 页面浏览量 Uptime 响应时间 Latency 延迟 Seven days active user 7天活跃用户数 Earning 收益 但不难看出PULSE 指标仅覆盖了UX 设计中最最基础的可用性部分，和衡量用户体验的直接关系不大，难以评估设计工作到来的影响，毕竟这个指标创建之初是用来衡量产品的技术与商业效果。</description></item><item><title>极致性能体验编码框架优化</title><link>/fed-regain/performance/%E6%9E%81%E8%87%B4%E6%80%A7%E8%83%BD%E4%BD%93%E9%AA%8C%E7%BC%96%E7%A0%81%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/performance/%E6%9E%81%E8%87%B4%E6%80%A7%E8%83%BD%E4%BD%93%E9%AA%8C%E7%BC%96%E7%A0%81%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96/</guid><description>系列课程：[高性能极致用户体验前端开发实战]1
+在线课程：云课堂视频课程
+我们说的“快”，并不仅仅指浏览器器加载页面快，就是常说的秒开率，一般指DomContentLoad时间。但是“快”其实包含更多的含义，除了前面说的浏览器加载快，还包含浏览器解析快（Javascript脚本发布时通常都会做代码压缩混淆，不仅是减少体积，也为了安全性），JS脚本编译快（我们知道javascript在浏览器的javascript虚拟机【managed runtime environment for JavaScript，JavaScript托管运行时环境】中运行的，所以也需要编辑JS脚本成字节码，才能运行），最后一个就是javascript执行快。
+优化策略 # 链路优化中，我们已经解决了JavaScript下载加速的问题，那么剩下的优化工作主要集中在优化浏览器解析、编译并执行JS脚本。影响浏览器解析和执行JS脚本的因素主要是JS脚本的体积大小和代码的复杂程度。所以编程代码优化实践主要是减少代码的体积和按需降低代码复杂度，实现浏览器解析快，JS脚本编译快。
+代码体积大，加载就会耗时，而且占用cdn存储资源和http请求资源，浏览器解析时暂用内存多，分析代码耗时。 代码复杂度高，代码解析就比较耗时。如果依赖一些复杂的类库，还要考虑库的解析和执行时间。浏览器解析代码会占用更多内存，使用堆栈更深，执行耗时。 首屏渲染 # 有许多方法可以用来减少程序的初始化加载时间。最小化加载的 JavaScript 数量：代码越少，解析耗时越少，运行时间越少。为了达到此目的，可以用特殊的方法传输必需的代码而不是一股劳地加载一大坨代码。比如，PRPL 模式即表示该种代码传输类型。或者，可以检查依赖然后查看是否有无用、冗余的依赖导致代码库的膨胀。然而，这些东西需要很大的篇幅来进行讨论。可以先参考下：提升javascript代码编译速度的几点建议。这里我们主要介绍PRPL模型。
+移动网络非常慢。这些年，网络已从以文档为中心的平台演化为一流的应用平台。 有赖于平台本身的进步（例如服务工作线程）以及我们用于构建应用的工具和技术，用户在网络上几乎可以通过虚拟方式执行任何操作，就像在本机应用中操作一样。同时，我们大量的计算也已经发生变化，从使用快速、稳定网络连接的强大桌面设备转移到连接经常较慢、不稳定（或两者兼有）的相对欠强大的移动设备上。特别是在孕育着下一批十亿用户的地方，这一点体现得尤为真切。很遗憾，我们在桌面时代设计用于构建和部署强大、功能丰富的网络应用的模式通常会导致应用在移动设备上的加载时间过长 - 漫长的时间让很多用户选择放弃应用。这为创建新模式提供了机会，新模式需要利用现代网络平台功能更快速、更精细地提供移动网络体验。PRPL 就是这样一种模式。
+PRPL 模式 # PRPL 是一种用于结构化和提供 Progressive Web App (PWA) 的模式，该模式强调应用交付和启动的性能。 它代表：
+推送 - 为初始网址路由推送关键资源。 渲染 - 渲染初始路由。 预缓存 - 预缓存剩余路由。 延迟加载 - 延迟加载并按需创建剩余路由。 除了针对 PWA 的基本目标和标准外，PRPL 还竭力在以下方面进行优化：
+尽可能减少交互时间 特别是第一次使用（无论入口点在何处） 特别是在真实的移动设备上 尽可能提高缓存效率，特别是在发布更新时 开发和部署的简易性 PRPL 的灵感来源于一套现代网络平台功能，不必在首字母缩略词中打出每个字母或使用每个功能就可以应用这一模式。实际上，PRPL 更多的是一种思维模式和提高移动网络性能的长期愿景，而不仅仅是特定技术或技巧。PRPL 背后的理念并不新，但该方法由 Polymer 团队构建框架和命名，并在 Google I/O 2016 上公布。如果您的单页面应用 (SPA) 采用以下结构，PRPL 完全适用：
+应用的主_进入点_从每个有效的路由提供。 此文件应非常小，它从不同网址提供，因此会被缓存多次。 进入点的所有资源网址都需要是绝对网址，因为它可以从非顶级网址提供。 Shell 或 App Shell，包含顶级应用逻辑、路由器，等等。 延迟加载的应用_片段_。片段可以表示特定视图的代码，或可延迟加载的其他代码（例如，首次绘制不需要的部分主应用，如用户与应用交互前未显示的菜单）。Shell 负责在需要时动态导入片段。 服务器和服务工作线程协同为非活动路由预缓存资源。</description></item><item><title>监控要考虑的事情</title><link>/fed-regain/performance/%E7%9B%91%E6%8E%A7%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E4%BA%8B%E6%83%85/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/performance/%E7%9B%91%E6%8E%A7%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E4%BA%8B%E6%83%85/</guid><description>前端一直是距离用户最近的一层，随着产品的日益完善，我们会更加注重用户体验，而前端异常却如鲠在喉，甚是烦人。
+一、为什么要处理异常？
+异常是不可控的，会影响最终的呈现结果，但是我们有充分的理由去做这样的事情。
+1.增强用户体验；
+2.远程定位问题；
+3.未雨绸缪，及早发现问题；
+4.无法复线问题，尤其是移动端，机型，系统都是问题；
+5.完善的前端方案，前端监控系统；
+对于 JS 而言，我们面对的仅仅只是异常，异常的出现不会直接导致 JS 引擎崩溃，最多只会使当前执行的任务终止。
+二、需要处理哪些异常？
+对于前端来说，我们可做的异常捕获还真不少。总结一下，大概如下：
+JS 语法错误、代码异常
+AJAX 请求异常
+静态资源加载异常
+Promise 异常
+Iframe 异常
+跨域 Script error
+崩溃和卡顿
+下面我会针对每种具体情况来说明如何处理这些异常。
+三、Try-Catch 的误区
+try-catch 只能捕获到同步的运行时错误，对语法和异步错误却无能为力，捕获不到。
+1.同步运行时错误：
+​​
+输出：
+​​
+2.不能捕获到语法错误，我们修改一下代码，删掉一个单引号：
+​​
+输出：
+​​
+不过语法错误在我们开发阶段就可以看到，应该不会顺利上到线上环境。
+3.异步错误：
+​​
+可以看看日志：
+​​
+并没有捕获到异常，这是需要我们特别注意的地方。
+四、window.onerror 不是万能的
+当 JS 运行时错误发生时，window 会触发一个 ErrorEvent 接口的 error 事件，并执行 window.onerror()。
+​​
+首先试试同步运行时错误 ​​
+可以看到，我们捕获到了异常：
+​​
+再试试语法错误呢？ ​​
+控制台打印出了这样的异常：
+​​
+竟然没有捕获到语法错误？
+怀着忐忑的心，我们最后来试试异步运行时错误： ​​</description></item><item><title>网页加载渲染链路优化</title><link>/fed-regain/performance/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E6%B8%B2%E6%9F%93%E9%93%BE%E8%B7%AF%E4%BC%98%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/performance/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E6%B8%B2%E6%9F%93%E9%93%BE%E8%B7%AF%E4%BC%98%E5%8C%96/</guid><description>系列课程：[高性能极致用户体验前端开发实战]1
+在线课程：云课堂视频课程
+优化实战 # 我们已经全面分析总结了评估页面性能和用户体验的各个指标参数。那么怎么来优化呢？open signal官方提供了2018年2月份统计的全世界4G网络覆盖率和通信速率的统计分布图如下，在目前移动互联网的浪潮下，我们要利用好用户终端设备的每个字节的流量。
+当然页面性能和体验优化并不是一蹴而就的，需要不断的研究、跟踪，发现问题，解决问题。但是我们可以在一开始编写业务代码的时候就做的更好，做到极致。所以，关于优化实战我们主要分为两部分：加载渲染链路优化 和 编程代码优化。
+加载渲染链路优化 # 从访问url到页面呈现，整个链路可以做优化的思路。
+幸运的是，W3C推荐的Navigation Timing标准中所定义的核心的页面性能数据，它包含了从上个页面销毁到跳转到当前页面加载完成每个阶段所消耗的时间。在canIuse上查到的兼容性也很好：
+利用这个接口可以很方便的帮助我们排查链路问题。在Navigation Timing标准中介绍到这个API主要包含两个接口：PerformanceTiming和PerformanceNavigation，这两个接口由浏览器进行实现和维护，当浏览器创建页面的时候就会把接口定义的相关数据挂载到window.performance.timing和window.performance.navigation这两个属性上。我们可以打开一个网页看一下：
+我们把这两个图对比一下，就可以很容易的排查出页面的加载链路问题。
+静态资源链路 # 打开页面的第一步是请求页面的html，这里面涉及TTFB这个综合指标。同时如果有必要我们也可以统计DNS时间和TCP时间。
+DNS时间：主要是根据请求域名查询到对应主机IP的时间。这个和DNS服务器有关系，也可能和本地缓存有关，如果这个很慢，可以找服务商排查下问题。
+TCP时间：tcp是承接http协议的下层协议。主要是路由到主机ip，并建立tcp链接的时间。这个时间反应了服务器到用户客户端之间链路是否通畅，网络是否通畅。
+请求完HTML之后，就开始解析html代码，按照从上至下、自然顺序解析，解析内联CSS代码或者加载外链CSS脚本，解析内联Javascript脚本，或者加载外链Javascript脚本。由于浏览器是单线程的，这些CSS和Javascript脚本很可能就会造成页面卡顿。参考 [浏览器线程理解与microtask与macrotask]8。
+加载 # CDN是内容分发网络，主要用于缓存静态资源。CDN服务商一般会在全国各地部署服务，而且带宽很大，这样访问CDN的资源时就可以有较短的路由路径，而且带宽也比较大，访问比较快。
+建议最好把html, CSS、JS、font、img这些资源放在CDN上，没有CDN也可以放在OSS存储服务上，总之比自己的服务器硬盘快多了，至少服务商会在不同区域做分布式部署 如果没有钱买CDN服务，那么就尽可能少的加载外联CSS和JS代码，注意html头部可以增加dns-prefetch，减少DNS解析时间 不是在首屏展示的资源，不要立即加载，可以在页面onload之后加载，或者首屏渲染完成再加载 压缩CSS、JS、font、img，尽量减少体积，服务端开启gzip 考虑资源combo请求，减少http请求量，浏览器一般都有并发限制, 比如chrome一次6个并发http请求，不同浏览器内核可能不一样。 加载脚本会阻塞浏览器主线程，考虑异步化，参考 script标签的defer与async 利用好缓存，利用好http响应头缓存字段，开启静态资源缓存，减少资源下载，建议开启service worker缓存，这个是作为APP Cache的替代方案，参考MDN； 对于单纯的获取数据做展示，尽量采用JSONP请求数据，而不是AJAX，提升数据请求性能。参考jsonp而不是AJAX？ 开启HTTP/2 ，HTTP2支持链接复用，可以很高效下载多个小文件。HTTP/2 的目的是通过支持完整的请求与响应复用来减少延迟，通过有效压缩 HTTP 标头字段将协议开销降至最低，同时增加对请求优先级和服务器推送的支持。 解析渲染 # 加载完JS和CSS之后，浏览器开始解析执行。Chrome的渲染流程是这样的：（可以参考 高性能CSS动画）
+为了让浏览器更快的解析渲染，我们需要考虑这几点：
+CSS嵌套层级不要太深，不超过3级，避免在最内层使用通配选择器。参考关于 CSS 选择器性能 JS脚本不要太复杂，考虑轻量化架构，降低JS复杂性，减少解析时间，尽量不要引用复杂的第三方脚本。 按需加载模块，按需打包，首页仅仅加载和执行和首屏相关的脚本。其他脚本延迟加载执行。 考虑依赖的第三方模块是不是必须，需不需要精简。 打包优化，code split 和 tree shaken。常用webpack和rollup的优化。 用户交互相关事件绑定（比如页面scroll，用户左右滑动等），添加参数{passive:true}，减少浏览器事件等待。因为这些事件属于可阻止事件，浏览器不知道用户会不会阻止，所以需要等待js执行，然后再做响应。添加passive参数，就告诉浏览器不用等待了。 IOS8以后的ios支持wkwebview，但是很多app之前用的还是uiwebview，建议转换成wkwebview，获得性能的提升（UIwebview在执行JS时会阻塞UI渲染进程，WKwebview不会）。 介绍一下code split的方案： react-loadable
+// 未处理 import OtherComponent from '.</description></item><item><title>跳出率降低优化实践</title><link>/fed-regain/performance/%E8%B7%B3%E5%87%BA%E7%8E%87%E9%99%8D%E4%BD%8E%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/performance/%E8%B7%B3%E5%87%BA%E7%8E%87%E9%99%8D%E4%BD%8E%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5/</guid><description>衡量影响#{.w-headline-link} # 我们专注于最大内容绘制 (LCP)和累积布局转换 (CLS)，因为它们在为我们的用户提供出色的阅读体验方面最为重要。在实施了如下所述的各种性能修复后，经济时报设法在几个月内显着改善了 Chrome 用户体验 (CrUX) 报告指标。
+总体而言，CLS从 0.25提高到 0.09 ，提高了 250%。总体而言，LCP从 4.5 秒提高到 2.5 秒**，提高**了 80%。
+此外，从 2020 年 10 月到 2021 年 7 月，“差”范围内的 LCP 值降低了 33%：
+此外，在同一时间范围内，“差”范围内的 CLS 值降低了 65%，而“良好”范围内的 CLS 值增加了 20%：
+结果是，之前未达到 CWV 阈值的《经济时报》现在在其整个来源都通过了 CWV 阈值，并且总体跳出率降低了 43%。
+什么是 LCP，我们如何改进它？#{.w-headline-link} # 最大的元素是与改善用户体验和识别加载速度最相关的元素。First Contentful Paint (FCP)等性能指标仅捕获页面加载的初始体验。另一方面，LCP 报告用户可见的最大图像、文本或视频部分的渲染时间。
+除了切换到更快的 DNS 提供商和优化图像之外，这里还有一些我们应用的用于改进 LCP 的技术。
+关键请求优先#{.w-headline-link} # 由于所有现代浏览器都会限制并发请求数，因此开发人员需要优先加载关键内容。要加载复杂的网页，我们需要下载诸如页眉元素、CSS、JavaScript 资源、主图、文章正文、评论、其他相关新闻、页脚和广告等资产。我们评估了 LCP 所需的元素，并提供了首先加载这些项目以改进 LCP 的偏好。我们还推迟了不属于初始页面呈现的调用。
+文字外观#{.w-headline-link} # 我们对该font-display属性进行了试验，因为这会影响 LCP 和 CLS。我们尝试了font-display: auto;，然后切换到font-display: swap;.</description></item><item><title>页面性能指标数据计算方法</title><link>/fed-regain/performance/%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/performance/%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86/</guid><description>系列课程：[高性能极致用户体验前端开发实战]1
+在线课程：云课堂视频课程
+上面我们梳理了页面性能和体验相关的数据指标，聪明的你可能会想到怎么获取这些指标对应的数据呢？别着急，事实上Web Performance Working Group 制定了很多相关的接口标准，部分已经实现，部分还在草案阶段。我们主要用到Performance这个接口，它提供的数据基本包含了我们需要的各个指标。
+指标数据采集API # Performance接口允许访问当前页面性能相关的信息。它是High Resolution Time API的一部分。但是它被Performance Timeline API, the Navigation Timing API, the User Timing API, and the Resource Timing API 扩展增强了，实际上Performance的主要功能都是由这几个API提供的。我们分别介绍下：
+High Resolution Time API # 这里必须要介绍下 High Resolution Time API，主要定义了 DOMHighResTimeStamp 数据类型，这是一个高精度时间戳类型，double类型，相对于 time origin, global monotonic clock的时间。或者是两个高精度时间戳的时间差值。其单位是毫秒。如果由于设备软件或者硬件的限制，浏览器不能提供5微秒精度的时间，那么浏览器提供的DOMHighResTimeStamp时间至少精确到1ms，防止时序攻击。performance.now提供了一个相对于time-origin的精确时间间隔。
+performance.now()
+973141.500000027
+Navigation Timing API # 在Navigation Timing标准中介绍到这个API主要包含两个接口：PerformanceTiming和PerformanceNavigation，这两个接口由浏览器进行实现和维护，当浏览器创建页面的时候就会把接口定义的相关数据挂载到window.performance.timing和window.performance.navigation这两个属性上。可以参考下一节 加载链路优化 这部分内容。
+其中PerformanceTiming的时间点属性有这些：
+interface PerformanceTiming {
+readonly attribute unsigned long long navigationStart;
+readonly attribute unsigned long long unloadEventStart;
+readonly attribute unsigned long long unloadEventEnd;
+readonly attribute unsigned long long redirectStart;
+readonly attribute unsigned long long redirectEnd;
+readonly attribute unsigned long long fetchStart;
+readonly attribute unsigned long long domainLookupStart;
+readonly attribute unsigned long long domainLookupEnd;
+readonly attribute unsigned long long connectStart;
+readonly attribute unsigned long long connectEnd;
+readonly attribute unsigned long long secureConnectionStart;
+readonly attribute unsigned long long requestStart;
+readonly attribute unsigned long long responseStart;
+readonly attribute unsigned long long responseEnd;
+readonly attribute unsigned long long domLoading;
+readonly attribute unsigned long long domInteractive;
+readonly attribute unsigned long long domContentLoadedEventStart;
+readonly attribute unsigned long long domContentLoadedEventEnd;
+readonly attribute unsigned long long domComplete;
+readonly attribute unsigned long long loadEventStart;
+readonly attribute unsigned long long loadEventEnd;
+};
+简单介绍几个有用的时间点：</description></item><item><title>页面性能指标数据采集架构</title><link>/fed-regain/performance/%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E6%9E%B6%E6%9E%84/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/performance/%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E6%9E%B6%E6%9E%84/</guid><description>系列课程：[高性能极致用户体验前端开发实战]1
+在线课程：云课堂视频课程
+上节我们根据浏览器渲染页面的流程梳理了前端开发中常用的性能指标和用户体验指标，同时也基于浏览器的Performance API标准给出了这些指标的计算方法。那么，剩下需要考虑的就是如何搭建这样一个前端性能监控平台的架构，各个环节如何有效运转衔接，如何扩展延伸。最重要的是如何处理数据问题。先放一张整体设计图：
+我们来慢慢梳理一下：
+采集脚本 # 首先我们有一个指标数据采集的脚本，用于采集各个端的数据，注意需要处理不同端的差异性（比如app内的web view和原生webview差异，不同前端框架可能导致的差异，Android和IOS的差异），同时需要考虑数据采样
+计算指标 端差异化处理 采样，前面介绍过了，即使用户量不大，但是叠加上时间维度，最后的数据累积起来也可能超出现有系统的处理能力。最好的方法是做采样。但是要合理选用采样策略，既要保证样本分布均匀，又要保证样本具有代表性。 总结起来，主要是上面三个方面。
+日志系统 # 采集脚本采集到数据之后需要上报的，这里我们像开发页面那样简单的调用接口。要知道我们做的是性能监控，不仅随时都会收集数据上报，同时也很可能多端并发，所以一般的接口分分分钟就可能搞挂。所以，业界通用的做法是采用日至系统来承接。
+这里主要介绍发送请求和处理请求两部分。
+发送请求 像很多这种做网站数据统计的，比如百度统计，CNZZ，google等，他们都是发一个get请求，附带一些数据。而且为了处理跨域问题、提升并发，减少网页消耗，一般做法都是请求一个gif图片地址，在图片的url上带上参数。或者通过JSONP的形式。比如下图：
+处理请求 处理请求这里其实很简单了，如果你想到的是写后端接口来处理，那么就太复杂了，主要是性能上很难达到高并发的要求。最便宜、最简洁、最通用的方法是让HTTP Server写日志。通常用的Apache或者Nginx都能很简单做到这点，配置一下拦截的url规则和日志规则就可以了。当然日志是默认写入到磁盘的，剩下的就是要保证磁盘容量够大，预算能够放得下多少时间的日志量。
+实时计算平台 # 前面介绍过流计算Flink，这里也就是需要这样的平台来帮我们实时汇总计算数据。
+实时计算平台主要是为我们处理日志数据的，随着用户的增长，时间的推移，我们上报的埋点数据集合肯定是海量数据。需要实时计算平台为我们不停地整理日志数据，方便支撑我们不同纬度的业务需求，比如实时数据统计和离线数据归类。
+实时数据统计，实时计算当前的性能和体验指标，用于快速定位发现问题，对于像特别大型的官方活动，需要这种实时监控能力。 离线数据归类，日志系统记录的上报数据最终要进行分析归类，转换成我们需要的结构化数据，最后存储在我们的mysql关系数据库中，这样方便后续继续分析使用。比如查询历史的数据情况，就不需要每次都来查询实时计算平台。 数据持久化 # 分为两部分：
+临时持久化，缓存实时的数据计算结果，一般时间跨度不长。比如双十一大促活动24小时监控。 长期持久化，比如可以按照天为维度，每天跑任务计算出所有需要的数据，最后写到我们的关系数据表中。 欢迎学习前端知识体系课程，本系列属于：[前端增长教程]5
+在线视频课程：网易云课堂课程 思否课堂
+推荐 # 参考看下阿里云的日志服务架构</description></item><item><title>高性能极致用户体验开发实战</title><link>/fed-regain/performance/%E9%AB%98%E6%80%A7%E8%83%BD%E6%9E%81%E8%87%B4%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/performance/%E9%AB%98%E6%80%A7%E8%83%BD%E6%9E%81%E8%87%B4%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/</guid><description>课程介绍 # 高性能极致用户体验前端开发实战课程适合所有前端开发学习或者从业者，结合目前前端开发的最佳实践，提供前端网页性能分析优化知识，结合实际项目经验分析可以采用的优化思路，并给出开发高性能极致体验网页的通用方法和技巧。
+在线课程：[高性能极致用户体验前端开发实战]1
+思否课程：[高性能极致用户体验前端开发实战]2
+课时1：[前端性能优化标准与指标]3
+课时2：[前端页面性能指标数据计算方法]4
+课时3：[前端页面性能指标数据采集架构]5
+课时4：[前端网页加载渲染链路优化]6
+课时5：[前端极致性能体验编码框架优化]7
+在开始学习本课程之前，先提2个基本要求：
+了解业务 # 作为一名合格的前端开发，我们的开发工作不是盲目的，我们的优化目标需要明确，所以首先要了解你所做的业务。不仅要知道整个业务背景，还需要了解业务需求，业务目的，最后最好能拿到业务结果。
+了解业务的目的是能让你更好的分配开发的权重，合理安排开发的重点。比如开发的是视频类网站，那么开发的重点自然在于播放器加载和流畅播放以及降级方案。如果是天气类业务，那么核心业务是要保障稳定快速的展示出天气相关数据，然后是加载展示其他内容。如果是博文类网站，那么重点在于首屏的信息加载和展示。
+了解用户 # 了解用户也是至关重要，如果连自己所做业务的受众都不知道，那么何谈用户体验，何谈极致性能？ 这一部分至少你要知道现在做的业务主要是面向PC用户还是移动web用户，PC用户所用的浏览器都是什么版本，比例分布是怎样？移动端用户android和ios比例多少，各自平台版本分布情况如何？这是最基本的要求，因为我们开发的代码是在这些平台运行的。 如果不知道怎么办？没关系，从今天开始统计起来，做个埋点日志服务，前端写个脚本上报下useragent就可以了。
+navigator.userAgent &amp;quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36&amp;quot; 课程大纲 # 评判标准
+RAIL评估模型 性能指标 体验指标 指标数据采集 优化实战
+链路优化 编程优化 链路优化
+链路阶段分析 阶段指标数据 各阶段优化手段 案例分析和常用工具 编程优化
+首屏渲染 懒加载功能组件 滚动加载分页组件 web worker计算 Task切分 代码分割与打包 前端开发架构优化 前端开发架构优化
+ES6 module+template web component 轻react或vue 微前端架构 评判标准 # 无规矩不成方圆，所以这里先说说评判标准。评判标准主要指的是用户打开网页、浏览网页的体验和感受。我们需要一种客观的评估模型来统一量化用户体验的各个环节，这样才能找到需要优化的方向，找到开发极致用户体验网页的捷径。
+RAIL评估模型 # RAIL 是一种以用户为中心的性能模型。每个网络应用均具有与其生命周期有关的四个不同方面，且这些方面以不同的方式影响着性能。以用户为中心；最终目标不仅是让您的网站在任何特定设备上都能运行很快，而是使用户满意。</description></item></channel></rss>

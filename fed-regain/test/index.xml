@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>测试 on</title><link>/fed-regain/test/</link><description>Recent content in 测试 on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 06 Oct 2020 08:49:15 +0000</lastBuildDate><atom:link href="/fed-regain/test/index.xml" rel="self" type="application/rss+xml"/><item><title>可用性测试</title><link>/fed-regain/test/%E5%8F%AF%E7%94%A8%E6%80%A7%E6%B5%8B%E8%AF%95/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/test/%E5%8F%AF%E7%94%A8%E6%80%A7%E6%B5%8B%E8%AF%95/</guid><description>1.1 什么是可用性测试 # 首先，嘉宾通过层层的逻辑推演，向我们展示了可用性测试的本质。互联网行业中的各角色，常常采用各种各样的手段试图有效地洞察用户，而要有效地洞察用户，其方法论是：最大化满足场景层、行为层、认知层三大要素。
+将上述三大要素作为坐标系，并将平时所使用的各种手段放到对应的位置上后，发现可用性测试在三大要素中处于一个较为均衡的位置，与各种方法独立对比时，有较为独特的优势。
+**可用性测试：邀请有代表性的用户使用产品/原型完成典型人物，对其过程进行观察、记录、测量和访谈，形成对可用性的问题发现和用户需求洞察。**从原理上来说，它在单位时空内获取动作、情绪、视觉、观点等多维度的信息，利用大脑机制产生共情，达到真正进入用户视角的效果，更有效地发现认知偏差，调整产品达到期望。
+从结果层面：下图是大部分人心目中，可用性测试的价值：通过可用性，可以帮助从业者发现可用性问题。但嘉宾通过一个简单而实际的例子带领我们对可用性测试的价值进行了更深层次的认识。
+1.2 可用性测试的价值 像列表找房这样逻辑简单、功能成熟的模块，存在基础可用性问题的概率很低，那么[我们](https://www.w3cdoc.com)对于这样的产品是否还有做可用性测试的必要，如果做可用性测试，[我们](https://www.w3cdoc.com)还能从中得到什么更有价值的洞察？ 在观察用户使用的过程中，发现不同的用户在使用时，存在非常大的差异。而这些差异蕴含着用户的深度诉求。下图展示了两类用户，这两类用户均通过列表找房。其中一类习惯于勾选多站，而另一类则习惯于不勾选多站，只围绕一个站点找房。如果单纯从线上数据，其实很难发现背后的诉求。测试的情景中，可以及时地追问背后的原因。第一类人对地点的要求较为宽松，更接近找房的早期，或者属于价格敏感型用户。而另一类人则对地点较为敏感，或者更接近找房的中晚期。虽然这是简单的一个结论，但是背后还透露出更复杂的信息，此处暂且不表。
+因此，可用性问题只是这种方法所产生的基础价值，而更高阶的价值应该是可以洞察用户心理模型，发现产品与需求之间的差距。
+如果我们可以在产品周期中更广泛地使用此方法，可以发挥出更大的价值，以下总结了可用性测试在产品周期中不同时间段的使用价值。
+探索型测试：&amp;lt;br /&amp;gt; 在新产品或设计早期，偏向探索性。 比较型测试：&amp;lt;br /&amp;gt; 在设计中期，多用于在多个产品、设计中选择更优方案。 评估型测试：&amp;lt;br /&amp;gt; 在上线前后则偏重于修复问题或提出迭代方向。 例子1：如何利用可用性测试来探索方向。
+现状：进入地图页面的用户只有48%的人继续使用，52%用户进入即流失。本质问题是什么？
+通过可用性深度挖掘，从来不使用地图的用户和使用后放弃的用户各自的底层使用逻辑，通过解开如下问题，来达到更本质的洞察：
+这类用户，如何使用产品？ Ta为什么要这样用？ 产品的现状是否支持他这样用？ 如果不支持，我应该怎么样优化？ 经过上述过程，我们会更明确地了解我们的产品具体要契合哪一类人群，他们会如何使用产品，我们如何结合他们的使用路径优化产品，以达到更高的产品价值。
+例子2：如何使用可用性测试来进行多方案的对比。
+2019年自如网站改版时，在两个方案中难以抉择，由于发现用户在网页版找房时喜欢看图片，因此其中一版（B版）针对此诉求做了相应的优化，同时还有一个版本（A版）是保留原有的结构。通过可用性测试发现用户使用旧版网站浏览房源页时，对【左侧图片区】和【关键信息区】有反复切换、对照浏览的行为特征，眼动呈现 Z形的往返模式。因此B版的布局，与用户的诉求不符，因此最后基于可用性测试的发现，针对A版进行了优化，产出了C版。
+例子3：在上线前后进行的可用性测试
+产出了上线前需要解决的问题以及下一期迭代的需求。
+此类测试不会太大范围地浪费项目时间，只是在已有的设计开发周期基础上，再给出两天时间，即可高效完成这样一次测试，同时给产品迭代方向提出具有更高价值的建议。
+2. 如何做出高价值洞察的可用性测试 [我们](https://www.w3cdoc.com)可以结合素材、紧急度、预算等因素，选择更合适的测试方式。 具体分为：
+常规型：把用户邀请到现场，通过摄像、观察等方式，记录用户的使用情况； 眼动型：配合眼动仪，观察记录用户的使用情况； 远程型：配合腾讯会议等方式，观察记录用户的使用情况，并与用户远程沟通使用感受； 眼动型可用性测试
+眼动可用性测试可以获得的价值包括：
+用户对界面上各种元素的反馈，以及注意力的分布； 发现内容与内容之间、页面与页面之间的跳转顺序，即用户的使用习惯及决策过程。 在可用性测试五大步骤中，方案设计是最重要的，一个好的方案设计是一个有效的可用性测试的核心和灵魂。
+很多新手同学会出现一种情况，当发现被试出现大量同质化的行为时，很难找到观察点去发现新的有用的信息。因此嘉宾提出如下方法论：
+提前预演用户路径，为观-测-访进行“埋点”。
+第一步：拆分触点&amp;lt;br /&amp;gt; 触点：即对产品使用过程中涉及到的主要环节&amp;lt;br /&amp;gt; 原因：不同用户对产品的使用路径不一样，通过人脑记忆会十分混乱，通过拆分触点，可以清晰地意识到用户的实际使用路径差异，并可以及时访问用户，跳过触点的原因是忘了还是刻意不使用；&amp;lt;br /&amp;gt; &amp;lt;a class=&amp;quot;&amp;quot; href=&amp;quot;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/biji-uxren-bj-202101-zouxin-21.png&amp;quot; target=&amp;quot;_blank&amp;quot; rel=&amp;quot;noopener noreferrer&amp;quot;&amp;gt;&amp;lt;img loading=&amp;quot;lazy&amp;quot; class=&amp;quot;alignnone wp-image-71355 tc-smart-load-skip tc-smart-loaded&amp;quot; src=&amp;quot;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/biji-uxren-bj-202101-zouxin-21.png&amp;quot; data-src=&amp;quot;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/05/biji-uxren-bj-202101-zouxin-21.png?x-oss-process=image/format,webp&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;1000&amp;quot; height=&amp;quot;564&amp;quot; /&amp;gt;&amp;lt;/a&amp;gt; 第二步：提出可能存在的问题或待验证的假设&amp;lt;br /&amp;gt; 针对每一个触点提前想好可能存在的问题，或待验证的假设，以便在测试过程中重点关注。&amp;lt;br /&amp;gt; &amp;lt;a class=&amp;quot;&amp;quot; href=&amp;quot;https://haomou.</description></item><item><title>开发测试工具mocha-in-browser</title><link>/fed-regain/test/%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7mocha-in-browser/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/test/%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7mocha-in-browser/</guid><description>mocha-in-browser # mocha in browser which can auto load test cases from user config file and can also provide useful test util methods。
+GIT:https://github.com/chalecao/mocha-in-browser
+usage # install mocha-in-browser
+npm install mocha-in-browser --save-dev mocha-in-browser 是问了方便你更好的编写mocha测试代码，如果在项目中使用，你还需要安装mocha， package.json中的配置参考：
+... &amp;quot;scripts&amp;quot;: { &amp;quot;test&amp;quot;: &amp;quot;./node_modules/.bin/mocha ./test/main.spec.js&amp;quot;, }, .... &amp;quot;devDependencies&amp;quot;: { &amp;quot;mocha&amp;quot;: &amp;quot;^4.0.1&amp;quot;, &amp;quot;mocha-in-browser&amp;quot;: &amp;quot;^1.0.0&amp;quot;, .... write test cases # 假设你的主测试用例路径是./test/main.spec.js，可以将测试用例分为两个部分：单元/UI测试和E2E测试。其中：
+单元测试主要用来测试通用方法，通用类等正确性，当然这些都是抽象出来作为公用的代码，后面任何修改都需要保证代码的正确性。 UI测试，这里指的也是通用UI，基本也是可以单独运行测试的。 E2E测试，在测试体系中，这部分属于集成测试，主要从整体效果上保证页面展示不会出现什么大问题（比如图片不展示、页面空白等）。 附上main.spec.js的例子： //本项目提供的测试用例基类 let specBase = require('mocha-in-browser/lib/base.spec') class mainSpec extends specBase { constructor(config) { //构造函数，传入单元/UI测试用例，和一些配置 super({ configPath: &amp;quot;.</description></item><item><title>测试方法+工具</title><link>/fed-regain/test/%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95+%E5%B7%A5%E5%85%B7/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/test/%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95+%E5%B7%A5%E5%85%B7/</guid><description>天气小雨，不宜出门。只好在家好好修炼，正好准备总结一下测试相关的知识。主要总结以下项目中用到的前端测试工具：
+mocha-phantomjs+chai来实现自动化单元测试 nightWatch 实现端到端的集成测试 mocha+chai # Mocha（发音”摩卡”）诞生于2011年，是现在最流行的JavaScript测试框架之一，在浏览器和Node环境都可以使用。Mocha的作用是运行测试脚本，通常，测试脚本与所要测试的源码脚本同名，但是后缀名为.test.js（表示测试）或者.spec.js（表示规格）。比如，add.js的测试脚本名字就是add.test.js。
+上面这段代码，就是测试脚本，它可以独立执行。测试脚本里面应该包括一个或多个describe块，每个describe块应该包括一个或多个it块。
+describe块称为”测试套件”（test suite），表示一组相关的测试。它是一个函数，第一个参数是测试套件的名称（”加法函数的测试”），第二个参数是一个实际执行的函数。
+it块称为”测试用例”（test case），表示一个单独的测试，是测试的最小单位。它也是一个函数，第一个参数是测试用例的名称（”1 加 1 应该等于 2”），第二个参数是一个实际执行的函数。
+chai是一个断言库，断言的意思类似于语言，就是1+1应该等于2，描述类似的这样的预言，断言和预言的区别在于断言的结果是必定发生的，断言的结果是准确的，如果发生错误只可能是执行断言的函数发生了错误，所以就可以定位是测试的函数有bug。所有的测试用例（it块）都应该含有一句或多句的断言。它是编写测试用例的关键。断言功能由断言库来实现，Mocha本身不带断言库，所以必须先引入断言库。
+断言库有很多种，Mocha并不限制使用哪一种。上面代码引入的断言库是chai，并且指定使用它的expect断言风格。
+expect断言的优点是很接近自然语言，下面是一些例子。
+基本上，expect断言的写法都是一样的。头部是expect方法，尾部是断言方法，比如equal、a/an、ok、match等。两者之间使用to或to.be连接。对于结果值的判断用to.be链接，而对于结果是函数的判断通过to链接。
+有了测试脚本以后，就可以用Mocha运行它。
+上面的运行结果表示，测试脚本通过了测试，一共只有1个测试用例，耗时是8毫秒。Mocha默认运行test第一层子目录里面的测试脚本。所以，一般都会把测试脚本放在test目录里面，然后执行mocha就不需要参数了。为了改变默认运行test第一层子目录这种行为，就必须加上–recursive参数，这时test子目录下面所有的测试用例,不管在哪一层都会执行。mocha目录同样支持通配符，如下:
+关于mocha其他的参数，可以查看 mocha -h
+详细参考阮老师文章： https://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html
+es6编写测试脚本 # 测试用例可以采用es6来编写，如下：
+执行测试用例之前需要采用babel转义es6，
+然后，在项目目录下面，新建一个.babelrc配置文件。
+最后，使用–compilers参数指定测试脚本的转码器。
+上面代码中，–compilers参数后面紧跟一个用冒号分隔的字符串，冒号左边是文件的后缀名，右边是用来处理这一类文件的模块名。上面代码表示，运行测试之前，先用babel-core/register模块，处理一下.js文件。由于这里的转码器安装在项目内，所以要使用项目内安装的Mocha；如果转码器安装在全局，就可以使用全局的Mocha。
+下面是另外一个例子，使用Mocha测试CoffeeScript脚本。测试之前，先将.coffee文件转成.js文件。
+注意，Babel默认不会对Iterator、Generator、Promise、Map、Set等全局对象，以及一些全局对象的方法（比如Object.assign）转码。如果你想要对这些对象转码，就要安装babel-polyfill。
+然后，在你的脚本头部加上一行。
+关于异步测试用例 # Mocha默认每个测试用例最多执行2000毫秒，如果到时没有得到结果，就报错。对于涉及异步操作的测试用例，这个时间往往是不够的，需要用-t或–timeout参数指定超时门槛。
+上面的测试用例，需要4000毫秒之后，才有运行结果。所以，需要用-t或–timeout参数，改变默认的超时设置。
+上面命令将测试的超时时限指定为5000毫秒。另外，上面的测试用例里面，有一个done函数。it块执行的时候，传入一个done参数，当测试结束的时候，必须显式调用这个函数，告诉Mocha测试结束了。否则，Mocha就无法知道，测试是否结束，会一直等到超时报错。你可以把这行删除试试看。
+详细参考阮老师文章： https://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html
+测试用例的钩子 # Mocha在describe块之中，提供测试用例的四个钩子：before()、after()、beforeEach()和afterEach()。它们会在指定时间执行。
+详细参考阮老师文章： https://www.ruanyifeng.com/blog/2015/12/a-mocha-tutorial-of-examples.html
+附上阮老师的案例：https://github.com/ruanyf/mocha-demos
+mocha API：https://mochajs.org/#getting-started
+mocha bugs # 在使用mocha在浏览器测试中遇到过一些问题，有些很难解决，比如：
+上面这个在写异步测试用例，调用done方法后会报错，不一定都会，我遇到的是会报错，排查了很久，发现的原因是我写的测试用例是基于自己定义的 define函数和require函数来写的，在执行异步操作的时候，调用done方法的时候这个测试用例已经执行过了，导致调用done的时候，对应test为null,可以在这里写个debugger看下：
+很是奇怪，分析了半天没找到原因，想想可能是我用的define和require的问题，于是把测试用例去掉define定义，直接用es6模块来写，然后运行时正常的，
+chai # 上面提到过，chai主要是一个断言库，用来实现断言的。chai提供了expect和should两种BDD风格的断言函数。
+expect和should是BDD风格的，二者使用相同的链式语言来组织断言，但不同在于他们初始化断言的方式：expect使用构造函数来创建断言对象实例，而should通过为Object.prototype新增方法来实现断言（所以should不支持IE）；expect直接指向chai.expect，而should则是chai.should()。
+个人比较建议使用expect，should不仅不兼容IE，在某些情况下还需要改变断言方式来填坑。
+chai API: https://chaijs.com/api/bdd/#
+中文chai API: https://www.jianshu.com/p/f200a75a15d2</description></item></channel></rss>

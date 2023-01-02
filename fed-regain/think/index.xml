@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>通向能力 on</title><link>/fed-regain/think/</link><description>Recent content in 通向能力 on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 06 Oct 2020 08:49:15 +0000</lastBuildDate><atom:link href="/fed-regain/think/index.xml" rel="self" type="application/rss+xml"/><item><title>中台的理解</title><link>/fed-regain/think/%E4%B8%AD%E5%8F%B0%E7%9A%84%E7%90%86%E8%A7%A3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/think/%E4%B8%AD%E5%8F%B0%E7%9A%84%E7%90%86%E8%A7%A3/</guid><description>中台迷思 # 原文：白话中台战略：中台是个什么鬼?
+到处都在喊中台，到处都是中台，中台这个词在我看来已经被滥用了。
+在有些人眼里：中台就是技术平台，像微服务开发框架、Devops平台、PaaS平台，容器云之类的，人们都叫它“技术中台”。 在有些人眼里：中台就是微服务业务平台，像最常见的什么用户中心，订单中心，各种微服务集散地，人们都叫它“业务中台”。 在有些人眼里：中台应该是组织的事情，在释放潜能：平台型组织的进化路线图 (豆瓣)中就提出了平台型组织和组织中台的概念，这类组织中台在企业中主要起到投资评估与投后管理的作用，类似于企业内部资源调度中心和内部创新孵化组织，人们叫它“组织中台” 看完本篇你就会理解，上边的这几类“中台”划分还是靠谱的，更多我看到的情况是大家为了响应企业的“中台战略”，干脆直接将自己系统的“后端”或是“后台”改个名，就叫“中台”。
+中台到底是什么？它对于企业的意义到底是什么？当我们谈中台时我们到底在谈些什么？
+想要寻找到答案，仅仅沉寂在各自“中台”之中，如同管中窥豹，身入迷阵，是很难想清楚的。不如换个 ⾓度，从各类的“中台迷阵”中跳脱出来，尝试以更高的视角，从企业均衡可持续发展的角度，来思考中台的价值，来试图反推它存在的价值。
+所以，为了搞明白中台存在的价值，我们需要回答以下两个问题：
+企业为什么要平台化？ 企业为什么要建中台？ 第一个问题：企业为什么要平台化？ # 先给答案，其实很简单：
+因为在当今互联网时代，⽤户才是商业战场的中心，为了快速响应用户的需求，借助平台化的力量可以事半功倍。
+不断快速响应、探索、挖掘、引领⽤户的需求，才是企业得以⽣存和持续发展的关键因素。
+那些真正尊重用户，甚⾄不惜调整⾃己颠覆⾃己来响应⽤户的企业将在这场以⽤户为中心的商业战争中得以⽣存和发展；⽽反之，那些在过去的成就上故步⾃封，存在侥幸⼼理希望⽤户会像之前一样继续追随⾃己的企业则会被用户淘汰。
+很残酷，但这就是这个时代最基本的企业⽣存法则。
+数字化企业
+⽽平台化之所以重要，就是因为它赋予或加强了企业在以用户为中心的现代商业战争中最最最核心的能力：⽤户响应力。这种能力可以帮助企业在商战上先发制⼈，始终抢得先机。
+可以说，在互联网时代，商业的斗争就是对于用户响应力的比拼。
+又有点远大空是不是，我们来看⼏个经典的例子:
+1.说起中台，最先想到的应该就属是阿⾥的“⼤中台，⼩前台”战略。阿⾥⼈通过多年不懈的努力，在业务的不断催化滋养下，将⾃己的技术和业务能力沉淀出一套综合能力平台，具备了对于前台业务变化及创新的快速响应能力。
+(阿里中台)
+2.海尔也早在⼗年前就已经开始推进平台化组织的转型，提出了“平台⾃营体⽀撑⼀线⾃营体”的战略规划和转型⽬标。构建了“⼈单合一”、“⽤户付薪” 的创客文化，真正将平台化提⾼到了组织的⾼度。
+(海尔组织中台)
+3.华为在几年前就提出了“⼤平台炮火支撑精兵作战”的企业战略，“让听得到炮声的人能呼唤到炮火” 这句话形象的诠释了大平台⽀撑下小前台的作战策略。这种极度灵活又威力巨⼤的战法，使之可以迅速响应瞬息万变的战场，一旦锁定目标，通过大平台的炮火群，迅速精准对于战场进行强大的火⼒支援。
+(⼤平台炮火支撑精兵作战)
+可⻅，在互联⽹热火朝天，第四次工业革命的曙光即将到来的今日，企业能否真正做到“以用户为中心”，并不断提升自己的用户响应力来追随甚至引领用户的脚步，持续规模化创新，终将决定企业能否在这样充满挑战和机遇的市场上笑到最后，在商业上长久保持创新活力与竞争力。
+(数字化平台战略)
+而平台化恰好可以助力企业更快更好的做到这些，所以这回答了第一个问题，企业需要平台化。
+第二个问题：企业为什么要建中台？ # 好，想明白了第一个问题，为什么需要平台化。但是平台化并不是一个新概念，很多企业在这个方向上已经做了多年的努力和积淀。那为什么最近几年“中台”这个相对较新的概念又会异军突起？对于企业来讲，传统的“前台+后台”的平台化架构又为什么不能满足企业的要求呢?
+好，这就引出了我们的第二个问题：企业为什么要建中台？
+来，先定义一下前台与后台 # 因为平台这个词过于宽泛了，为了能让大家理解我在说什么，我先定义一下本篇文章上下文下我所说的前台和后台各指什么：
+**前台：**由各类前台系统组成的前端平台。每个前台系统就是一个用户触点，即企业的最终用户直接使用或交互的系统，是企业与最终用户的交点。例如用户直接使用的网站，手机App，微信公众号等都属于前台范畴。 **后台：**由后台系统组成的后端平台。每个后台系统一般管理了企业的一类核心资源（数据+计算），例如财务系统，产品系统，客户管理系统，仓库物流管理系统等，这类系统构成了企业的后台。基础设施和计算平台作为企业的核心计算资源，也属于后台的一部分。 后台并不为前台而生 # 定义了前台和后台，对于第二个问题（企业为什么要建中台），同样先给出我的答案：
+因为企业后台往往并不能很好的支撑前台快速创新响应用户的需求，后台更多解决的是企业管理效率问题，而中台要解决的才是前台的创新问题
+大多数企业已有的后台，要么前台根本就用不了，要么不好用，要么变更速度跟不上前台的节奏。
+我们看到的很多企业的后台系统，在创建之初的目标，并不是主要服务于前台系统创新，而更多的是为了实现后端资源的电子化管理，解决企业管理的效率问题。这类系统要不就是当年花大价钱外购，需要每年支付大量的服务费，并且版本老旧，定制化困难；要不就是花大价钱自建，年久失修，一身的补丁，同样变更困难，也是企业所谓的“遗留系统”的重灾区。
+总结下来就两个字“慢”和“贵”，对业务的响应慢，动不动改个小功能就还要花一大笔钱。
+有人会说了，你不能拿遗留系统说事儿啊，我们可以新建后台系统啊，整个2.0问题不就解决了。
+但就算是新建的后台系统，因为其管理的是企业的关键核心数据，考虑到企业安全、审计、合规、法律等限制。导致其同样往往⽆法被前台系统直接使用，或是受到各类限制⽆法快速变化，以⽀持前台快速的创新需求。
+此时的前台和后台就像是两个不同转速的⻮轮，前台由于要快速响应前端用户的需求，讲究的是快速创新迭代，所以要求转速越快越好；⽽后台由于⾯对的是相对稳定的后端资源，⽽且往系统陈旧复杂，甚至还受到法律法规审计等相关合规约束，所以往往是稳定至上，越稳定越好， 转速也自然是越慢越好。
+所以，随着企业务的不断发展，这种“前台+后台”的⻮轮速率“匹配失衡”的问题就逐步显现出来。
+随着企业业务的发展壮大，因为后台修改的成本和⻛险较⾼，所以驱使我们会尽量选择保持后台系统的稳定性，但还要响应用户持续不断的需求，自然就会将大量的业务逻辑(业务能力)直接塞到了前台系统中，引入重复的同时还会致使前台系统不断膨胀，变得臃肿，形成了一个个⼤泥球的“烟囱式单体应用”。渐渐拖垮了前台系统的“⽤户响应⼒”，用户满意度降低，企业竞争力也随之不断下降。
+对于这样的问题，Gatner在2016年提出的一份《Pace-Layered Application Strategy》报告中，给出了一种解决方案，即按照“步速”将企业的应用系统划分为三个层次（正好契合前中后台的三个层次），不同的层次采用完全不同的策略。
+而Pace-Layered Application Strategy也为“中台”产生的必然性，提供了理论上的支撑。
+Pace-Layered Application Strategy # (Gatner: Pace-Layered Application Strategy)</description></item><item><title>前端技能总结</title><link>/fed-regain/think/%E5%89%8D%E7%AB%AF%E6%8A%80%E8%83%BD%E6%80%BB%E7%BB%93/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/think/%E5%89%8D%E7%AB%AF%E6%8A%80%E8%83%BD%E6%80%BB%E7%BB%93/</guid><description>如果让你作为前端负责人，你认为前端必备技能有哪些呢？
+编码能力 # 编码规范 # 学习编码规范，最好就是先阅读一下现有的规范。前端编码规范
+然后可以指定自己团队的编码规范，制定完之后可以通过配置eslint来检验你的编码是否符合规范。
+关于规范还可以参考：https://github.com/fedesigner/styleguide
+ESlint使用： https://gcdn.gcpowertools.com.cn/showtopic-36912-1-3.html?utm_source=segmentfault&amp;amp;utm_medium=referral&amp;amp;utm_campaign=20170417&amp;amp;utm_content=36912
+原型与类与对象 # 先上一段代码，仔细看一下，能理解多少。
+DOM树 # 基础知识这里就不做多介绍了，不过我还是比较注重对于浏览器渲染网页的机制的理解。先看下这张图：
+当浏览器获得一个html文件时，会“自上而下”加载，并在加载过程中进行解析渲染。
+解析：
+浏览器会将HTML解析成一个DOM树，DOM 树的构建过程是一个深度遍历过程：当前节点的所有子节点都构建好后才会去构建当前节点的下一个兄弟节点。 将CSS解析成 CSS Rule Tree 。 根据DOM树和CSSOM来构造 Rendering Tree。注意：Rendering Tree 渲染树并不等同于 DOM 树，因为一些像 Header 或 display:none 的东西就没必要放在渲染树中了。 有了Render Tree，浏览器已经能知道网页中有哪些节点、各个节点的CSS定义以及他们的从属关系。下一步操作称之为Layout，顾名思义就是计算出每个节点在屏幕中的位置。 再下一步就是绘制，即遍历render树，并使用UI后端层绘制每个节点。
+上述这个过程是逐步完成的，为了更好的用户体验，渲染引擎将会尽可能早的将内容呈现到屏幕上，并不会等到所有的html都解析完成之后再去构建和布局render树。它是解析完一部分内容就显示一部分内容，同时，可能还在通过网络下载其余内容。 （1）Reflow（回流）：浏览器要花时间去渲染，当它发现了某个部分发生了变化影响了布局，那就需要倒回去重新渲染。
+（2）Repaint（重绘）：如果只是改变了某个元素的背景颜色，文字颜色等，不影响元素周围或内部布局的属性，将只会引起浏览器的repaint，重画某一部分。
+Reflow要比Repaint更花费时间，也就更影响性能。所以在写代码的时候，要尽量避免过多的Reflow。
+reflow的原因：
+（1）页面初始化的时候；
+（2）操作DOM时；
+（3）某些元素的尺寸变了；
+（4）如果 CSS 的属性发生变化了。
+减少 reflow/repaint
+（1）不要一条一条地修改 DOM 的样式。与其这样，还不如预先定义好 css 的 class，然后修改 DOM 的 className。
+（2）不要把 DOM 结点的属性值放在一个循环里当成循环里的变量。
+（3）为动画的 HTML 元件使用 fixed 或 absoult 的 position，那么修改他们的 CSS 是不会 reflow 的。</description></item><item><title>回顾前端2019</title><link>/fed-regain/think/%E5%9B%9E%E9%A1%BE%E5%89%8D%E7%AB%AF2019/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/think/%E5%9B%9E%E9%A1%BE%E5%89%8D%E7%AB%AF2019/</guid><description>标准进行时 # ECMAScript 2019 如期到来 # ECMAScript 2019 年包含这些更新：
+Array.prototype.flat、Array.prototype.flatMap； String.prototype.trimStart、String.prototype.trimEnd； Object.fromEntries； Symbol.prototype.description； try catch 语句允许不填入参数了； Array.prototype.sort 将用 Timsort 算法 保证排序结果的稳定性； Function.prototype.toString() 行为修改； 修复 JSON 中 Unicode 边界问题的 Well Formed JSON 和 Subsume JSON。 ECMAScript 2020 年可以期待这些更新。
+WebAPI 趋于丰富 # WebAuthn 进入 W3C 推荐规范，WebAuthn 允许用户通过生物识别、个人移动设备等多种方式来进行身份认证；
+三个 WebAssembly 标准进入 W3C 推荐阶段： WebAssembly 核心规范、WebAssembly Web API、WebAssembly JavaScript 接口；
+W3C 发布 CSS Animation Worklet API 工作草案，提供了在专用线程中运行动画的 API；
+Web Monetization API （小额支付 API）在过去一年有了声音；
+画中画提案 Picture-in-Picture API 已经在三个主流浏览器（Chrome 71、Firefox 69 和 Safari TP 95）中得到实验性支持；</description></item><item><title>工程师自学面试找工作必备知识</title><link>/fed-regain/think/%E8%87%AA%E5%AD%A6%E9%9D%A2%E8%AF%95%E6%89%BE%E5%B7%A5%E4%BD%9C%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/think/%E8%87%AA%E5%AD%A6%E9%9D%A2%E8%AF%95%E6%89%BE%E5%B7%A5%E4%BD%9C%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/</guid><description>欢迎学习前端知识体系课程，本系列属于：[前端增长教程][1]
+本教程只是自己平时总结的零零总总学习大前端的知识，需要说明的是本系列教程并不是连续的由浅入深的内容，只是博主自己平日积累的。而且可能部分内容摘自互联网，请勿见怪，有出处的，我尽量会附上原网址链接。前端工程师本来对于技术就是不断积累和深化的过程，所以想进阶高级工程师，或者资深工程师，请务必牢记，踏踏实实学习积累，没有捷径。
+如果你想踏入前端学习，准备在走向前端生涯，那么你该好好准备了。如果你想进入网易、百度、阿里这样的大公司，那你更要好好学习下面这些知识点，基础的知识要打牢，否则很难通过笔试或者面试哦。快快行动吧！
+[前端](https://www.w3cdoc.com)进阶系列课程 [《前端增长-高级进阶知识梳理总结》][2]
+《用JavaScript自己写MVVM前端框架》：http://t.cn/REeKJp0
+《前端函数式编程FP易学易用》：http://t.cn/REeKVSk
+《前端自己用NodeJS编写区块链BlockChain》：http://t.cn/REeoF7v
+《程序语言进阶之DSL与AST实战解析》：http://t.cn/R3XoQJA
+《高性能web前端网页优化开发实战》：学习在线视频教程
+《机器学习python与tensorflow实战》：在线学习视频教程
+入门基础-最低要求 # 第一章：HTML基础知识 # 1.1. HTML发展历史HTML，HTML简介，简要介绍HTML发展历史、基本概念和文档声明等
+1.2.标签，介绍标签语法、各类标签及语义化 标签语义化的目的就是对搜索引擎友好，有了良好的结构和语义我们的网页内容便自然容易被搜索引擎抓取，这种符合搜索引擎收索规则的做法，网站的推广便可以省下不少的功夫，而且可维护性更高，因为结构清晰,十分易于阅读。这也是搜索引擎优化SEO（search engine optimization）重要的一步。
+&amp;lt; b &amp;gt; &amp;lt; i &amp;gt; 是视觉要素（presentationl elements），分别表示无意义的加粗，无意义的斜体，表现样式为 { font-weight: bolder }，仅仅表示「这里应该用粗体显示」或者「这里应该用斜体显示」，此两个标签在HTML4.01中并不被推荐使用； &amp;lt; em &amp;gt; 和 &amp;lt; strong &amp;gt; 是表达要素(phrase elements)。 &amp;lt; em &amp;gt; （emphasized text）表示一般的强调文本，而 &amp;lt; strong &amp;gt; （strong emphasized text）表示比 &amp;lt; em &amp;gt; 语义更强的的强调文本。 HTML5 中的 b/strong，i/em 有什么区别
+1.3.实体字符，介绍常用实体字符
+POST文件上传详解
+1.4. HTML元素嵌套约束
+第二章：CSS知识点 # 2.1 CSS，CSS简介，简要介绍CSS发展历史和基本概念、引入、基本语法
+2.2 选择器，基本选择器、属性选择器、伪类选择器、伪元素选择器、组合选择器、分组选择器、优先级、层叠、继承、!</description></item><item><title>校招社招必备核心面试问题与详细解答</title><link>/fed-regain/think/%E6%AF%94%E8%BE%83%E9%9A%BE%E7%9A%84%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/think/%E6%AF%94%E8%BE%83%E9%9A%BE%E7%9A%84%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/</guid><description>本文总结了前端老司机经常问题的一些问题并结合个人总结给出了比较详尽的答案。网易阿里腾讯校招社招必备知识点。
+原理讲解参考：[前端增长-重新定义大前端]1
+前端基础知识视频讲解：网易云课堂课程 思否segment课堂
+1.关于性能优化说说js文件摆放顺序、减少请求、雪碧图等等原理， 说下window.performance.timing api是干什么的？ # 浏览器是按照文档流解析html，为了更快构建DOM树和渲染树将页面呈现到屏幕上，建议是降js放在文档dom树结尾，body标签闭合前。 浏览器并发HTTP请求有限制（6个左右），加载页面html后开始解析，解析到外链资源比如js css和图片，就会发http请求获取对应资源。减少请求就是减少这些资源请求, 可以 css资源合并，js资源合并，图片资源合并同时做lazyload，区分首屏非首屏接口，按需请求数据。 雪碧图是一种图片资源的合并方法，将一些小图片合成一张图，通过background-position来定位到对应部分。 window.performance.timing 参考下[前端页面性能指标数据计算方法]2, performance接口属于w3c标准hight resolution time中的一部分，通过navigation timeline api 、 performance timeline api，user timing api，resource timeline api 这四个接口做了增强实现。其中navigation timeline api中PerformanceTiming 接口数据放在 performance.timing这个对象上。主要记录了浏览器从跳转开始的各个时间点的时间，比如navigationStart是页面开始跳转时间，fetchStart是页面开始时间，domainLookupStart是DNS开始时间，domainLookupEnd是DNS结束时间， 查找到DNS后建立http链接，connectStart和connectEnd分别是链接开始和结束时间，然后是requestStart开始发起请求时间，responseStart开始响应时间，responseEnd响应结束时间。然后是苟安DOM树时间，分别是domLoading, domInteractive, domContentLoad和domComplete时间，分别对应document.readyState状态loading、interactive和complete。最后是页面onload，分别是loadEventStart和loadEventEnd时间节点。 可以通过这个接口统计前端的页面性能数据。
+domainLookupStart - fetchStart = appCache时间，这段时间浏览器首先检查缓存 domainLookupEnd -domainLookupStart = DNS时间 connectEnd - connectStart = TCP时间 responseStart - requestStart = FTTB首字节时间，或者说是服务器响应等待时间 domContentLoad - navigationStart = 页面pageLoad时间 loadEventEnd - navigationStart = 页面onLoad时间 2.请你描述下一个网页是如何渲染出来的，dom树和css树是如何合并的，浏览器的运行机制是什么，什么是否会造成渲染阻塞？ # 参考下：[浏览器工作原理]4 [浏览器渲染与阻塞原理]5</description></item></channel></rss>

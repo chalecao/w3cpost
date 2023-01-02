@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>dsl on</title><link>/fed-regain/dsl/</link><description>Recent content in dsl on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 06 Oct 2020 08:49:15 +0000</lastBuildDate><atom:link href="/fed-regain/dsl/index.xml" rel="self" type="application/rss+xml"/><item><title>js模拟红白机jsnes任天堂游戏机</title><link>/fed-regain/dsl/js%E6%A8%A1%E6%8B%9F%E7%BA%A2%E7%99%BD%E6%9C%BAjsnes%E4%BB%BB%E5%A4%A9%E5%A0%82%E6%B8%B8%E6%88%8F%E6%9C%BA/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/dsl/js%E6%A8%A1%E6%8B%9F%E7%BA%A2%E7%99%BD%E6%9C%BAjsnes%E4%BB%BB%E5%A4%A9%E5%A0%82%E6%B8%B8%E6%88%8F%E6%9C%BA/</guid><description>研究了一下网页运行红白机，其实这个很早就有老外写了这个模拟器，用js代码写的模拟红白机的硬件，然后加载nes格式的游戏，但是支持的知识较早的nes游戏rom，貌似后来开发的都不支持。
+奉上我做的网页版：FC游戏机
+，也可以关注我的微信公众号，见左边。可以直接在手机上玩。
+游戏机GIT代码： https://github.com/chalecao/game.git （欢迎给我点星星哦，欢迎fork）
+fc硬件 # FC使用了1.79Mhz的摩斯太克制造的 Mos 6502（8位）CPU（原用于苹果第一台mac:Apple I)，分辨率为256×240，52色中最大同时显示24色，最大活动块(sprite)数是64，活动块大小为8×8。声音方面使用PSG音源，有4个模拟声道和1个数字声道。卡带的极限容量是4Mbit(512KB)。特别的是FC第一次在主机内部搭载了PPU(Picture Processing Unit)用来得到强化的图像效果。这使游戏的质量比起Atari2600时代有了质的飞跃。由于将操作从3D的摇杆转化成2D平面而在”Game&amp;amp;Watch”上受到好评的十字方向键也被FC也继承了下来。而现在十字键几乎成了Nintendo的招牌设计，也极大的影响到了其它厂商开发的主机手柄设计。
+NES
+中央处理器： 6502 CPU。
+二进制数值： 8Bits。
+运行频率： NTSC：1.7897725 Mhz ；PAL：1.773447 Mhz。
+内部储存器： 8KB，6KB显示存储器+2KB镜像存储器。
+图像处理器： 64种颜色，除去重复的颜色剩下52种颜色，最大显示数：16种颜色。
+Nintendo Entertainment System声音处理器： 矩形声波处理器两个，三角型声波处理器一个，噪音处理器一个，PCM数字声音发生器一个。
+硬件接口： 游戏卡带接口×1，游戏手柄接口×2。电源接口×1，RF视频线接口×1，AV视频线接口×1，周边设备接口×1。
+游戏载体： Rom卡带。
+游戏卡带容量： 24KB，40KB，48KB，64KB，80KB，128KB，160KB，256KB。
+周边设备： Zapper，Robot。
+参考：https://tieba.baidu.com/p/1389586189
+jsnes # 这位大牛写的硬件模拟器，是基于上面的硬件配置来写的。看了一下源代码，声波处理器有些问题，目前算法效率太低，导致开启声音时游戏运行比较卡顿。github: https://github.com/bfirsh/jsnes
+抽空优化优化，大家可以玩玩我做的网页版的，也欢迎打赏哈！
+谢谢！ # 欢迎关注公众号（扫描左侧二维码），前端学习交流</description></item><item><title>Sketch怎么开发插件</title><link>/fed-regain/dsl/sketch%E6%80%8E%E4%B9%88%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/dsl/sketch%E6%80%8E%E4%B9%88%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6/</guid><description>Sketch 是非常流行的 UI 设计工具，2014年随着 Sketch V43 版本增加 Symbols 功能、开放开发者权限，吸引了大批开发者的关注。
+目前 Sketch 开发有两大热门课题：① React 组件渲染成 sketch 由 airbnb 团队发起，② 使用 skpm 构建开发 Sketch 插件。
+Sketch 插件开发相关资料较少且不太完善，我们开发插件过程中可以重点参考官方文档，只是有些陈旧。官方有提供 JavaScript API 借助 CocoaScript bridge 访问内部 Sketch API 和 macOS 框架进行开发插件（Sketch 53~56 版 JS API 在 native MacOS 和 Sketch API 暴露的特殊环境中运行），提供的底层 API 功能有些薄弱，更深入的就需要了解掌握 Objective-C 、 CocoaScript 、AppKit、Sketch-Headers。
+Sketch 插件结构 # Sketch Plugin 是一个或多个 scripts 的集合，每个 script 定义一个或多个 commands。Sketch Plugin 是以 .sketchplugin 扩展名的文件夹，包含文件和子文件夹。严格来说，Plugin 实际上是 OS X package，用作为 OS X bundle。</description></item><item><title>基于config-form转向面向数据的编程</title><link>/fed-regain/dsl/%E5%9F%BA%E4%BA%8Econfig-form%E8%BD%AC%E5%90%91%E9%9D%A2%E5%90%91%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BC%96%E7%A8%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/dsl/%E5%9F%BA%E4%BA%8Econfig-form%E8%BD%AC%E5%90%91%E9%9D%A2%E5%90%91%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BC%96%E7%A8%8B/</guid><description>本文接上篇继续分析如何转向面向数据的编程
+面向数据 # 前面我提出了样式行为数据分离的想法：
+样式 mix 行为 = 样式 + 数据 + 行为
+之前我们都知道做样式行为分离，从jQuery之后也出现了像Angular，Backbone，Avalon，React，Vue等等很多前端框架，从MVC设计理念到MVVM到响应式设计。这些前端框架的基本出发点其实都是样式和行为分离，JS框架主要解决的是行为的问题。
+程序（行为） = 算法 + 数据
+大学的计算机课程中我们都学过：程序主要包含两部分，算法和数据。
+对于前端领域，其实多了一部分就是样式。当然样式主要包括：HTML结构+CSS样式，这些都是基础知识，就不用做多介绍，从HTML5+CSS3标准之后，也没有多大的变化。但是在MVVM框架中使用方式发生了变化，对于React框架，引入了jsx类型文件，支持编写HTML片段，通过DSL分析，基于AST转化成包装函数，最后编译成我们的代码。
+config-component # config-component其实将JSX中html代码片段做了进一步的抽象，转化成JSON-Schema的数据形式来驱动。用户只需要专注于如何构造处理JSON数据，具体的展现是通过JSON数据来驱动view展示。将我们的程序转化成：样式+数据+算法
+程序= 样式 + 数据 + 算法
+从前端目前codeless的发展方向来看，这其实只是其中一部分，更进一步基于config-component我们可以做
+DDV（数据驱动view），对于一些比较固定的场景，比如导购展示页面，完全可以通过数据驱动页面的展示，包括驱动某个UI展示，驱动整个框架展示。这时候后端接口返回数据就需要包含两个层次，UI层数据和业务数据。如果同时将两个数据混在一起，其实就类似我们说的SSR（服务端渲染）了，但是是从另一个方式来实现的，可以说是轻量级的服务端渲染 可视化搭建，这个场景和第一个场景结合起来更能发挥价值。后端同学可能并不擅长写UI，即使抽象成JSON Schema，也需要了解简单的一些前端知识。而这个UI层的JSON Schema我们可以通过可视化搭建来完成，搭建之后生成一份JSON Schema，作为页面的UI，在搭建的时候处理好后端数据的映射关系其实就ok了。需要我们处理的其实是一些算法逻辑。 config-component中提供了config-form组件，主要用于解决中后台的form表单的处理，包含了以下功能：
+JSON Schema驱动表单展示，支持自定义组件，支持函数组件，支持原生组件 提供数据统一校验机制，将数据模型层统一抽出来处理，UI中通过schemaKey关联即可，处理起来更加灵活。提供数据校验高亮和自定义提示 支持灵活的自定义事件处理 比较一下传统的写法：
+&amp;lt;div className={`step-1 ${step}`}&amp;gt;
+&amp;lt;div&amp;gt;
+任务类型： &amp;lt;Select
+className=&amp;quot;select-type&amp;quot;
+onChange={id =&amp;gt; setTaskSelected(() =&amp;gt; {
+const task = taskList.find(item =&amp;gt; item.id == id)
+task.taskIndex = JSON.parse(task.taskIndex)
+return task
+})}
+dataSource={taskList.map(it =&amp;gt; ({ label: it.</description></item><item><title>构建C语言解释执行环境调研</title><link>/fed-regain/dsl/%E6%9E%84%E5%BB%BAc%E8%AF%AD%E8%A8%80%E8%A7%A3%E9%87%8A%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E8%B0%83%E7%A0%94/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/dsl/%E6%9E%84%E5%BB%BAc%E8%AF%AD%E8%A8%80%E8%A7%A3%E9%87%8A%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E8%B0%83%E7%A0%94/</guid><description>关于编译器 # 有没想过在浏览器中直接运行其他语言？有没有想过写完c语言，能够立即在浏览器上编译运行。其实也没什么卵用了。只不过是的确可以基于js语言来构造其他语言的解析器。
+编译执行与解释执行 # 一种高级编程语言，从源代码开始，一直到被执行生成相应的动作，大约经历了这几个步骤
+执行源代码====&amp;gt;（中间表示形式====&amp;gt;）基本操作序列====&amp;gt;生成最终动作
+编译型和解释型语言的不同指出只是在于，这些过程发生的时机不一样。
+编译型语言的代表是C，源代码被编译之后生成中间文件（.o和.obj），然后用连接器和汇编器生成机器码，也就是一系列基本操作的序列，机器码最后被执行生成最终动作。
+解释型的语言以Ruby为例，也经历了这些步骤，不同的是，C语言会把那些从源代码“变”来的基本操作序列（保存）起来，而Ruby直接将这些生成的基本操作序列（Ruby虚拟机）指令丢给Ruby虚拟机执行然后产生动作了。
+所以我们看到的现象是，编译型语言要先编译再运行，而解释性语言直接“运行”源代码。除了BASIC这样特别早期的解释型语言，是直接解释执行，现在的解释型语言都采取将代码编译为某种特定的虚拟机代码或者机器码的形式，然后再执行那些编译好的代码。BASIC这种直接解释的，我们可以将他的基本操作序列理解为直接执行基本操作的那些函数。
+现在关于解释和编译的界限也不是特别清晰了。Java需要预先把代码编译成虚拟机指令的，然后在运行这些虚拟机指令，有的教科书上会成为混合型或者半编译型。像Python和lua这样就更不好分了，可以直接解释源代码运行，也可以编译为虚拟机指令然后再运行。php编译之后的结果可以被Web Server缓存起来，甚至还可以先被翻译为C++，然后再编译。.NET 的CLR运行时是Windows的组成部分，编译好的.NET 系列语言的代码直接生成可执行文件，然后被“直接”执行，看起来跟C没有什么太大的差别。JavaScript可以被V8引擎编译为机器码然后执行，如果在node.js下，这个编译结果被缓存起来了，你说这跟编译好再执行的C有什么区别。
+基于JavaScript构造c语言运行环境 # 目前有三种基本的方案：
+1）基于JS构建c语言解析执行环境（论文中方案，前端解析执行）
+论文中采用PEG（ parsing expression grammar）解析表达式语法编写c语言解析器，在调研中发现还有类似的解决方案chevrotain，主要基于LL(K)词法分析。
+参考：peg方案 - https://pegjs.org/ ， LL(K)方案 - https://github.com/SAP/chevrotain
+2） 编译c语言为JS，然后执行（后端编译，前端执行）
+参考：https://www.oschina.net/translate/asmjs-javascript-compile-target
+3）服务端编译执行c语言程序，返回执行结果，前端展示
+其中ll(k)语法分析如下：
+LL（K)分析方法是一种自顶向下的分析技术，这种分析方法是从左到右扫描源程序（输入串），同时从识别符号开始生成句子的最左推导，向前看K个符号，便能确定当前应选用怎样的规则。当K=1时，即是LL（1)分析法。
+LL（1）分析法中很重要的一块内容是分析矩阵的构造，这个分析矩阵是进行语法分析的依据，每一步都要靠它来决定如何进行，分析矩阵的构造方法如下：
+对于A→ab(a∈Vt),则令LL(A,a)=R(b)／N 对于A→Db(D∈Vn)，且Select(A→Db)=｛b1,b2,…bn}，则令LL(A,bi)=R(Db)／P(i=1,2,…n) 对于A→є,且Select(A→є)=｛b1,b2,…bn｝，则令LL(A,bi)=R(є)／P(i=1,2,…n) a∈Vt,a不出现在规则右部的首部，则令LL(a,a)=R(є)／N ＃，则令LL(＃,＃)=acc 其它情况出错，在分析矩阵中可用空白表示
+参考： https://blog.csdn.net/hackerain/article/details/7682846 PEG 语法分析：
+PEG 也是一种文法, 不过是解析式的文法, 给定一个规则和文本位置, 它的解析只有一个结果. PEG 源自 TDPL (top down parsing language), 其语法和递归下降解析器是同构的 (当然你也可以照着 CFG 写这么一个解析器, 但是你得用类似深度优先的搜索, 而且要对所有 | 选择支平等对待, 复杂度还容易爆炸). pakrat parser 就是对 PEG 文法的解析加上缓存表的优化, 达到 O(1) 的效率.</description></item><item><title>流程驱动设计研发实战</title><link>/fed-regain/dsl/%E6%B5%81%E7%A8%8B%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1%E7%A0%94%E5%8F%91%E5%AE%9E%E6%88%98/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/dsl/%E6%B5%81%E7%A8%8B%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1%E7%A0%94%E5%8F%91%E5%AE%9E%E6%88%98/</guid><description>云课堂：在线视频教程 （附参考代码）
+segment课堂：在线教程
+课程收获 # 干货满满的综合性项目，提升个人综合实力！！！
+亮点一： 从需求到流程引擎设计
+亮点二： 流程引擎编码实现
+亮点三： 可视化流程编排设计
+适用人群 # 具有一定前端基础，JS熟练，了解基本软件设计知识，对前端有体系化的认知。
+初中级未曾接触前端监控的前端工程师 有准备面试冲刺大厂的前端工程师 项目中遇到监控技术瓶颈的前端工程师 课程简介 # 为什么要流程驱动
+流程驱动是一种编程思想，实现这种思想的方式有很多，本课程介绍前端的一种简单高效的实现方式，达成业务高内聚、低耦合的目的，快速实现业务价值。
+学本课程有什么用
+本课程还是干货慢慢，期间穿插介绍7大软件设计思想，以及流程驱动是怎么实现这些思想的。多思考，多动手才能理解。
+必备技能，面试必问，必要知道的那些事
+流程驱动是最近比较热门的一个方向，通过流程配置解耦流程各个环节，实现软件设计的高内聚、低耦合。
+本课程从理论到实践，全方位覆盖，作为很好的进阶学习的案例，希望你能好好学习，认真思考，学有所获。
+讲师介绍 # 扫地僧 - 高级技术专家
+前阿里、网易前端技术专家，负责流程驱动引擎、可视化搭建、前端发布、构建平台等技术能力建设，带领业务团队，负责整体业务线。
+课程大纲 # 第一章：前端流程引擎设计
+1.1 初识前端流程引擎
+1.2 流程引擎演示-流程设计
+1.3 流程引擎演示-流程节点实现
+1.4 流程引擎演示-流程驱动执行
+1.5 流程驱动解决的问题
+1.6 如何做到高内聚、低耦合
+1.7 流程驱动与设计原则
+第二章：编码实现前端流程引擎
+2.1 流程引擎数据模型设计
+2.2 常规流程驱动编码
+2.3 流程嵌套处理
+2.4 流程数据流转参数处理
+2.5 异常处理
+2.6 回调处理
+第三章：可视化流程编排
+3.1 为什么要可视化流程编排
+3.2 可视化编排设计思路
+3.3 可视化流程编排实现</description></item></channel></rss>

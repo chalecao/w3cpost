@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>css on</title><link>/fed-regain/css/</link><description>Recent content in css on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 06 Oct 2020 08:49:15 +0000</lastBuildDate><atom:link href="/fed-regain/css/index.xml" rel="self" type="application/rss+xml"/><item><title>CSS的发展</title><link>/fed-regain/css/css%E7%9A%84%E5%8F%91%E5%B1%95/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/css/css%E7%9A%84%E5%8F%91%E5%B1%95/</guid><description>随着前端工程化的不断完善，CSS 预处理器已经成为项目中不可缺少的部分，很多人在项目技术选型阶段就会先选择一个 CSS 预处理器，绝大部分前端工程的脚手架也内置了一系列的 CSS 预处理的模版，大家已经习惯了享受 CSS 预处理器带来的书写代码的灵活流畅，反而将原生的 CSS 冷落在一旁。
+可能许多前端开发人员依然觉得 CSS 预处理器属于比较新的技术，其实不然，最早的 CSS 预处理器 Sass 从 07 年诞生距今已有 12 年，相对较新的的 Stylus 也已发布 9 年了。
+前端的技术栈发展突飞猛进，W3C 的 CSS 工作组也一直在持续从社区汲取营养，加快 CSS 的迭代。那么到现在为止，CSS 是否可以取代 CSS 预处理器的地位？CSS 预处理器会不会成为 CSS 过渡时期的产物呢？
+W3C 介绍 # CSS 是开放网络的核心语言之一，由 W3C 规范 实现跨浏览器的标准化。因此，在深入了解 CSS 规范更新进度之前，我们有必要先了解一下 W3C 及其规范制定流程。
+W3C 也就是万维网联盟（World Wide Web Consortium），又称 W3C 理事会，是万维网的主要国际标准组织。为半自治非政府组织（quasi-autonomous non-governmental organisation）。由 蒂姆·伯纳斯-李（Tim Berners-Lee）于 1994年10月 于麻省理工学院 MIT 计算机科学与人工智能实验室（MIT／LCS）创立。
+W3C 制定了一系列标准并督促网络应用开发者和内容提供者遵循这些标准。标准的内容包括使用语言的规范，开发中使用的导则和解释引擎的行为等等。W3C制定了包括 HTML、DOM、SVG、XML和 CSS 等的众多影响深远的标准规范。
+W3C 规范制定流程 # 因为接下来我们需要谈到一些不同阶段的 CSS 规范，因此这里有必要简单介绍一下 W3C 的规范制定流程。</description></item><item><title>CSS交互</title><link>/fed-regain/css/css%E4%BA%A4%E4%BA%92/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/css/css%E4%BA%A4%E4%BA%92/</guid><description>Pointer Events # touch event # 主要了解下css相关控制的手势和触摸事件，大家手写slide或者拖拽的时候会用到，有兴趣可以扩展学习下 touch点击穿透与click与300ms延迟
+参考 # https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events
+https://developer.mozilla.org/zh-CN/docs/Web/API/Pointer_events
+https://www.kancloud.cn/kancloud/the-mobile-web-handbook/64057
+https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action
+https://developer.mozilla.org/zh-CN/docs/Web/API/TouchEvent</description></item><item><title>CSS变量</title><link>/fed-regain/css/css%E5%8F%98%E9%87%8F/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/css/css%E5%8F%98%E9%87%8F/</guid><description>这是一个令人激动的革新。
+CSS 变量，顾名思义，也就是由网页的作者或用户定义的实体，用来指定文档中的特定变量。
+更准确的说法，应该称之为 CSS 自定义属性 ，不过下文为了好理解都称之为 CSS 变量。
+一直以来我们都知道，CSS 中是没有变量而言的，要使用 CSS 变量，只能借助 SASS 或者 LESS 这类预编译器。
+但是新的草案发布之后，直接在 CSS 中定义和使用变量已经不再是幻想了，像下面这样，看个简单的例子：
+// 声明一个变量： :root{ --bgColor:#000; } 这里我们借助了上篇文章 结构性伪类 中的 :root{ } 伪类，在全局 :root{ } 伪类中定义了一个 CSS 变量，取名为 --bgColor 。
+定义完了之后则是使用，假设我要设置一个 div 的背景色为黑色：
+.main{ background:var(--bgColor); } 这里，我们在需要使用之前定义变量的地方，通过 var(定义的变量名) 来调用。
+Demo戳我 — CSS 变量简单示例。
+CSS 变量的层叠与作用域 # CSS 变量是支持继承的，不过这里说成级联或者层叠应该更贴切。
+在 CSS 中，一个元素的实际属性是由其自身属性以及其祖先元素的属性层叠得到的，CSS 变量也支持层叠的特性，当一个属性没有在当前元素定义，则会转而使用其祖先元素的属性。在当前元素定义的属性，将会覆盖祖先元素的同名属性。
+其实也就是作用域，通俗一点就是局部变量会在作用范围内覆盖全局变量。
+:root{ --mainColor:red; } div{ --mainColor:blue; color:var(--mainColor); } 上面示例中最终生效的变量是 --mainColor:blue。</description></item><item><title>css基线与行高关系</title><link>/fed-regain/css/css%E5%9F%BA%E7%BA%BF%E4%B8%8E%E8%A1%8C%E9%AB%98%E5%85%B3%E7%B3%BB/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/css/css%E5%9F%BA%E7%BA%BF%E4%B8%8E%E8%A1%8C%E9%AB%98%E5%85%B3%E7%B3%BB/</guid><description>基本概念 # 1、基线、底线、顶线、中线
+注意：基线（base line）并不是汉字文字的下端沿，而是英文字母“x”的下端沿。
+2、内容区
+内容区是指底线和顶线包裹的区域（行内元素display:inline;可以通过background-color属性显示出来），实际中不一定看得到，但确实存在。内容区的大小依据font-size的值和字数进行变化。
+3、行距、行高
+行高（line-height）：包括内容区与以内容区为基础对称拓展的空白区域，我们称之为行高。一般情况下，也可以认为是相邻文本行基线间的距离。
+行距：指相邻文本间上一个文本行基线和下一个文本行顶线之间的距离。当然，我更愿意认为是（上文本行行高-内容区高度）/2+（下文本行行高-内容区高度）/2。
+4、行内框
+行内框是一个浏览器渲染模型中的概念，无法显示出来，但是它又确实存在，它的高度就是行高指定的高度。
+5、行框
+行框（line box），同行内框类似的概念，行框是指本行的一个虚拟的矩形框，也是浏览器渲染模式中的一个概念。行框高度等于本行内所有元素中行内框最大的值（以行高值最大的行内框为基准，其他行内框采用自己的对齐方式向基准对齐，最终计算行框的高度）
+设置元素的垂直对齐方式 # 上一节我们讲解了行高与单行纯文字的垂直居中（line-height），而如果行内含有图片和文字，在浏览器渲染出来后，读者可以发现文字和图片在垂直方向并不是沿中线居中，而是沿基线对齐。这是因为，元素默认的垂直对齐方式为基线对齐（vertical-align：baseline）。
+![][5]
+CSS语法：vertical-align
+语法：
+baseline | sub | super | top | text-top | middle | bottom | text-bottom | &amp;lt;百分比&amp;gt; | &amp;lt;长度&amp;gt; | inherit
+说明：
+设置元素内容的垂直对齐方式。
+参数：
+baseline： 基线对齐；
+sub： 下标显示；
+super： 上标显示；
+top： 顶端对齐；
+text-top： 文本的顶端对齐；
+middle： 中部对齐； //没有研究透的属性
+bottom： 底端对齐；
+text-bottom： 文本的底端对齐；
+百分比和长度： CSS2，可为负数。
+初始值：baseline
+继承性：不继承
+此处需要特别注意的是：垂直对齐属性只对文本有效（是指包含了#Text节点的元素节点才能正确地处理vertical-align属性）。同时，该属性不能继承。
+属性值详解
+在上面一节中，介绍了文本的基线、顶线、中线和底线，还有内容区、行内框和行框，而本节的垂直对齐和这几个概念密切相关。
+1、基线对齐（vertical-align：baseline）</description></item><item><title>CSS选择器性能损耗</title><link>/fed-regain/css/css%E9%80%89%E6%8B%A9%E5%99%A8%E6%80%A7%E8%83%BD%E6%8D%9F%E8%80%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/css/css%E9%80%89%E6%8B%A9%E5%99%A8%E6%80%A7%E8%83%BD%E6%8D%9F%E8%80%97/</guid><description>CSS选择器对性能的影响源于浏览器匹配选择器和文档元素时所消耗的时间，所以优化选择器的原则是应尽量避免使用消耗更多匹配时间的选择器。而在这之前我们需要了解CSS选择器匹配的机制， 如子选择器规则：
+#header &amp;gt; a {font-weight:blod;} 我们中的大多数人都是从左到右的阅读习惯，会习惯性的设定浏览器也是从左到右的方式进行匹配规则，推测这条规则的开销并不高。
+我们会假设浏览器以这样的方式工作：寻找 id 为 header 的元素，然后将样式规则应用到直系子元素中的 a 元素上。我们知道文档中只有一个 id 为 header 的元素，并且它只有几个 a 元素的子节点，所以这个CSS选择器应该相当高效。
+事实上，却恰恰相反，CSS选择器是从右到左进行规则匹配。了解这个机制后，例子中看似高效的选择器在实际中的匹配开销是很高的，浏览器必须遍历页面中所有的 a 元素并且确定其父元素的 id 是否为 header 。
+如果把例子的子选择器改为后代选择器则会开销更多，在遍历页面中所有 a 元素后还需向其上级遍历直到根节点。
+#header a {font-weight:blod;} 理解了CSS选择器从右到左匹配的机制后，明白只要当前选择符的左边还有其他选择符，样式系统就会继续向左移动，直到找到和规则匹配的选择符，或者因为不匹配而退出。我们把最右边选择符称之为关键选择器。
+优化css选择器 # Google 资深web开发工程师 Steve Souders 对 CSS 选择器的执行效率从高到低做了一个排序：
+1.id选择器（#myid）
+2.类选择器（.myclassname）
+3.标签选择器（div,h1,p）
+4.相邻选择器（h1+p）
+5.子选择器（ul &amp;lt; li）
+6.后代选择器（li a）
+7.通配符选择器（*）
+8.属性选择器（a[rel=”external”]）
+9.伪类选择器（a:hover, li:nth-child）
+根据以上「选择器匹配」与「选择器执行效率」原则，我们可以通过避免不恰当的使用，提升 CSS 选择器性能。
+1、避免使用通用选择器
+.content * {color: red;} 浏览器匹配文档中所有的元素后分别向上逐级匹配 class 为 content 的元素，直到文档的根节点。因此其匹配开销是非常大的，所以应避免使用关键选择器是通配选择器的情况。
+2、避免使用标签或 class 选择器限制 id 选择器</description></item><item><title>font-face需要知道的一切</title><link>/fed-regain/css/font-face%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E4%B8%80%E5%88%87/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/css/font-face%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E4%B8%80%E5%88%87/</guid><description>字体是实现良好的设计、品牌推广、可读性和无障碍功能的基础。 网页字体可实现所有上述目标以及其他目标：文本可选取、可搜索、可缩放并支持高 DPI，无论屏幕尺寸和分辨率如何，均可提供一致并且锐利的文本渲染。 网页字体是实现良好的设计、用户体验和性能的关键所在。
+网页字体优化是总体性能策略的一个关键部分。 每个字体都是一项附加资源，并且某些字体可能会阻塞文本的渲染，但不能仅仅因为网页使用了网页字体，就认为它只能降低渲染速度。 相反，如果对字体进行优化，再通过制定明智的策略对字体在网页上的加载和应用方式作出规定，就可以帮助减小网页总大小，并缩短网页渲染时间。
+网页字体详解 # TL;DR # Unicode 字体可能包含数千种字形。 字体格式有四种：WOFF2、WOFF、EOT 和 TTF。 某些字体格式需要使用压缩。 _网页字体_是一个字形集合，而每个字形是描述字母或符号的矢量形状。 因此，特定字体文件的大小由两个简单变量决定：每个字形矢量路径的复杂程度和特定字体中字形的数量。 例如，Open Sans 是其中一种最流行的网页字体，包含 897 个字形，其中包括拉丁文、希腊文和西里尔文字符。
+选取字体时，重要的是考虑它支持的字符集。 如果您需要将页面内容本地化成多种语言，就应该使用一种能够为用户带来一致的外观和体验的字体。 例如，Google 的 Noto 字体系列 旨在支持全世界的语言。 但请注意，Noto（含所有语言）ZIP 格式下载文件的总大小超过了 1.1GB+。
+显然，在网页上使用字体需要某些细致的设计，以确保字体不影响性能。 幸运的是，网络平台提供了所有必要的基元，本指南的其余部分将通过实际操作让您了解如何两全其美。
+网页字体格式 # 目前网络上使用的字体容器格式有四种： EOT、 TTF、 WOFF 和 WOFF2。 遗憾的是，尽管选择范围很广，但仍然缺少在所有新旧浏览器上都能使用的单一通用格式： EOT 只有 IE 支持，TTF 获得了部分 IE 支持，WOFF 获得了最广泛的支持，但在某些较旧的上不受支持，而 WOFF 2.0 支持对许多来说尚未实现。
+那我们该怎么办？不存在在所有浏览器上都能使用的单一格式，这意味着我们需要提供多种格式才能实现一致的体验：
+将 WOFF 2.0 变体提供给支持的浏览器。 将 WOFF 变体提供给大多数浏览器。 将 TTF 变体提供给旧版 Android（4.4 版以下）浏览器。 将 EOT 变体提供给旧版 IE（IE9 版以下）浏览器。 注：从技术上讲，还有另一种容器格式，即 SVG 字体容器，但 IE 或 Firefox 从未为其提供支持，并且现在 Chrome 也放弃了对它的支持。 因此，它的用途很有限，本指南中有意将其忽略。</description></item><item><title>media type 与media query</title><link>/fed-regain/css/media-type-%E4%B8%8Emedia-query/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/css/media-type-%E4%B8%8Emedia-query/</guid><description>link&amp;amp;import # CSS link、@import共同点：
+都是为了加载CSS文件。
+CSS link、@import不同点：
+Link属于XHTML标签，而@import完全是CSS提供的一种方式。link除了可以加载CSS外，还可以做很多其它的事情，比如定义RSS，定义rel连接属性等，@import就只能加载CSS了。 @import要起作用，必须放在样式文件的最前面（包括注释的前面）。 并行加载、串行加载，加载性能的问题，参考下面的链接 兼容性的差别。由于@import是CSS2.1提出的所以老的浏览器不支持，@import只有在IE5以上的才能识别，而link标签无此问题。 使用dom控制样式时的差别。当使用javascript控制dom去改变样式的时候，只能使用link标签，因为@import不是dom可以控制的。 ？没有验证过！ 建议：不适用@import，使用link
+don’t use @import
+Yahoo 网页性能最佳实践：使用link，不使用import
+media type # media type(媒体类型)：
+是css 2中的一个非常有用的属性，通过media type我们可以对不同的设备指定特定的样式，从而实现更丰富的界面。
+例子：
+&amp;lt;link href=&amp;quot;style.css&amp;quot; media=&amp;quot;screen print&amp;quot; ... @import url(&amp;quot;style.css&amp;quot;) screen; &amp;lt;style media=&amp;quot;screen&amp;quot;&amp;gt; @import url(&amp;quot;style.css&amp;quot;); &amp;lt;/style&amp;gt; media query(媒体查询)：
+是对media type的一种增强，是CSS 3的重要内容之一。
+例子：
+&amp;lt;link media=&amp;quot;only screen and (max-device-width: 480px)&amp;quot; href=&amp;quot;style.css&amp;quot;&amp;gt;</description></item><item><title>minmax和clamp三个逻辑</title><link>/fed-regain/css/minmax%E5%92%8Cclamp%E4%B8%89%E4%B8%AA%E9%80%BB%E8%BE%91/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/css/minmax%E5%92%8Cclamp%E4%B8%89%E4%B8%AA%E9%80%BB%E8%BE%91/</guid><description>了解如何使用这些受支持的CSS函数控制元素的大小，保持适当的间距以及实现流体排版。
+随着响应式设计的发展和日益细化，CSS本身也在不断发展，并为作者提供了更多的控制权。的 min()， max()和 clamp()功能，现在支持所有现代浏览器，都在做创作网站最新的工具中和网络应用更加积极地应用。
+当谈到灵活和流体排版，控制单元调整大小，并保持适当的间隙，min()，max()，和clamp()可以提供帮助。
+背景 # 数学函数，calc()，min()，max()，和clamp()允许与另外的数学表达式（+），减（ - ），乘（*），和除（/），以用作组分值 CSS值和单位级别4
+Safari是在四月2019年第一个支持 的，以后，今年79版，与Firefox 75版本，我们现代浏览器的min()，max()和clamp()支持情况如下。
+您可以在任何有意义的CSS表达式的右侧使用min()，max()和clamp()。对于min()和max()，您提供了一个值列表，然后浏览器确定哪一个分别是最小的或最大的。例如，对于：min(1rem, 50%, 10vw)，浏览器将计算这些相对单位中的最小单位，并将该值用作实际值。max()函数从逗号分隔的表达式列表中选择最大值。clamp()输入三个值：最小值，理想值（从中进行计算）和最大值。
+您可以单独使用它们（即font-size: max(0.5vw, 50%, 2rem)），将它们结合使用calc()（即font-size: max(calc(0.5vw - 1em), 2rem)）或组合使用（即font-size: max(min(0.5vw, 1em), 2rem)）。
+当使用的计算内min()，max()或clamp() 功能，可以mix上calc()。例如，写font-size: max(calc(0.5vw - 1em), 2rem)将与相同font-size: max(0.5vw - 1em, 2rem)。
+回顾一下：
+min()：从逗号分隔的表达式列表中选择最小（最负数）的值 max()：从逗号分隔的表达式列表中选择最大（最正）的值 clamp(, , )：根据设定的理想值在上限和下限之间钳位一个值 示例：完美的宽度 # 根据 罗伯特·布林赫斯特（Robert Bringhurst）的《印刷风格要素》，“对于以文本大小设置在带衬线的文本面上的单列页面，从45到75个字符的任何长度都被认为是令人满意的行长。”
+为确保您的文本块不小于45个字符或不大于75个字符，请使用clamp()和ch（字符0宽度）单位：
+p { width: clamp(45ch, 50%, 75ch); } 这允许浏览器确定段落的宽度。它将宽度设置为50％，除非50％小于45ch，这时45ch将选择，反之亦然，如果50％大于则反之亦然75ch。
+参考 # MDN上的CSS值和单位 CSS值和单位4级规范 CSS关于内部元素宽度的技巧 min（），max（），clamp（）概述（由Ahmad Shadeed撰写）</description></item><item><title>什么是containing block？</title><link>/fed-regain/css/containingblock/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/css/containingblock/</guid><description>如果干巴巴的问一个前端什么是containing block。大部分都不知所云。官方示意如下：
+The size and position of an element are often impacted by its containing block. Most often, the containing block is the content area of an element’s nearest block-level ancestor, but this is not always the case. In this article, we examine the factors that deterime an element’s containing block.
+简单来说就是——无特殊情况下，containing block（包含块）就是最近的块元素的content area（内容区）。
+什么是内容区？ # 以这个经典的盒模型图：
+最内部的即为内容区。
+border-box # 有两种盒子模型：
+①是标准盒子模型，一般浏览器默认为标准盒子模型。即:box-sizing:content-box
+没有设置box-sizing:border-box属性，宽高就是设置的宽度和高度，展示在页面上的宽高会加上padding和border的值 比如填满宽度的时候直接写width：100%，这时候如果有padding和border，页面会被撑开，出现滚动条 ②是怪异盒子模型，可根据实际项目需要自行设置。即：box-sizing:border-box
+加了box-sizing:border-box属性，padding和border的值都算在设置的width和height数值里面，一些老司机可能喜欢这个 比如填满宽度的时候，可以直接写width：100% 我们平时用到过吗？
+这个概念虽然可能不熟悉，但是实际上我们经常用到：
+.outer { width: 200px; box-sizing: border-box; } .</description></item><item><title>content-visibility</title><link>/fed-regain/css/content-visibility/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/css/content-visibility/</guid><description>该 content-visibility 属性在Chromium 85中启动，可能是影响页面加载性能的最具影响力的新CSS属性之一。content-visibility使用户代理可以跳过元素的渲染工作，包括布局和绘画，直到需要它为止。因为跳过了渲染，所以如果大部分内容不在屏幕上，则利用该content-visibility属性可使初始用户加载更快。它还允许与屏幕上的内容进行更快的交互。漂亮整齐。
+在我们的文章演示中，应用于content-visibility: auto分块的内容区域可以使初始负载的渲染性能提高7倍。请继续阅读以了解更多信息。
+浏览器支持 # content-visibility依赖CSS包含规范中的基元。虽然content-visibility目前仅在Chromium 85中受支持（并且被Firefox 视为“值得原型化”），但[大多数现代浏览器]4都支持Containment Spec 。
+CSS Containment＃ # CSS Containment的主要目标是通过提供DOM子树与页面其余部分的可预测隔离来实现Web内容的渲染性能改进。
+基本上，开发人员可以告诉浏览器页面的哪些部分被封装为一组内容，从而使浏览器无需考虑子树之外的状态就可以对内容进行推理。知道内容（子树）的哪些位包含隔离的内容意味着浏览器可以为页面渲染做出优化决策。
+CSS Containment 四种类型，每种类型都是containCSS属性的潜在值，可以将它们组合在一起，以空格分隔的值列表：
+size：元素上的大小限制可确保元素框的布局，而无需检查其后代。这意味着，如果我们仅需要元素的大小，就可以跳过后代的布局。 layout：布局限制意味着后代不会影响页面上其他框的外部布局。如果我们只想布置其他盒子，这使我们有可能跳过后代的布局。 style：样式包含可确保不仅对后代具有影响的属性不会逃脱元素（例如，计数器）。如果我们想要的只是在其他元素上计算样式，这使我们有可能跳过后代的样式计算。 paint：包含油漆可以确保容纳盒的后代不会显示在其边界之外。没有任何内容可以使元素明显溢出，并且如果元素在屏幕外或以其他方式不可见，则其后代也将不可见。如果元素不在屏幕上，这使我们有可能跳过绘画后代。 使用content-visibility跳过渲染工作 # 可能很难弄清楚要使用哪个包含值，因为只有在指定了适当的设置后，浏览器优化才能开始。您可以使用这些值来查看最合适的值，或者可以使用另一个CSS属性content-visibility来自动应用所需的包含。content-visibility确保开发人员以最小的努力获得最大的浏览器性能提升。
+content-visibility属性可以接受多个值，但是auto可以立即提高性能。有一个元素 content-visibility: auto的收益layout，style并paint遏制。如果该元素不在屏幕上（并且与用户无关，则相关元素将是在其子树中具有焦点或选择的元素），那么它也会获得size包容性（并且停止 绘画 和 对其内容进行命中测试）。
+这是什么意思？简而言之，如果该元素不在屏幕上，则不会渲染其后代。浏览器在不考虑元素任何内容的情况下确定元素的大小，并在此处停止。跳过大多数渲染，例如元素子树的样式和布局。
+当元素接近视口时，浏览器不再添加size 围堵并开始绘制和命中测试元素的内容。这使得渲染工作能够及时完成以被用户看到。
+例如：旅游博客 # 在此示例中，我们将旅行博客的基线设置在右侧，并应用于content-visibility: auto左侧的大块区域。结果显示，在初始页面加载时，渲染时间从232ms变为30ms。
+一个旅游博客通常包含一组带有一些图片和一些描述性文字的故事。这是典型浏览器导航到旅行博客时发生的情况：
+页面的一部分以及任何所需的资源都从网络下载。 浏览器的样式和布局页面的所有内容，而无需考虑该内容是否对用户可见。 浏览器返回到步骤1，直到下载了所有页面和资源。 在步骤2中，浏览器处理所有内容以查找可能已更改的内容。它会更新任何新元素的样式和布局，以及由于新更新而可能发生移动的元素。这是渲染工作。这需要时间。
+现在考虑一下，如果您content-visibility: auto在博客中放置每个单独的故事，将会发生什么。一般循环是相同的：浏览器下载并呈现页面的大块。但是，不同之处在于它在步骤2中所做的工作量。
+借助内容可见性，它将设置样式和布局用户当前可见的所有内容（它们在屏幕上）。但是，当处理完全不在屏幕上的故事时，浏览器将跳过渲染工作，仅样式化和布局元素框本身。
+加载该页面的性能好象它包含完整的屏幕上的故事以及每个非屏幕上的故事的空白框。效果要好得多，可以_将_加载的渲染成本_降低50％或更多_。在我们的示例中，我们看到渲染时间从232ms提升到了 30ms。性能提升了7倍。
+为了获得这些好处，您需要做什么工作？首先，我们将内容分成几部分：
+story应用 了类将内容分块为小节的示例，以接收content-visibility: auto。参见Codepen上的演示 然后，我们将以下样式规则应用于这些部分：
+.story { content-visibility: auto; contain-intrinsic-size: 1000px; /*Explained in the next section.*/ } 请注意，随着内容移入和移出可见性，它将根据需要开始和停止呈现。但是，这并不意味着浏览器将不得不一次又一次地渲染和重新渲染相同的内容，因为在可能的情况下会保存渲染工作。</description></item></channel></rss>

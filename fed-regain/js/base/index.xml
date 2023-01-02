@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>js基础 on</title><link>/fed-regain/js/base/</link><description>Recent content in js基础 on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 06 Oct 2020 08:49:15 +0000</lastBuildDate><atom:link href="/fed-regain/js/base/index.xml" rel="self" type="application/rss+xml"/><item><title>var、let、const及其作用域</title><link>/fed-regain/js/base/varletconst%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8%E5%9F%9F/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/base/varletconst%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8%E5%9F%9F/</guid><description>var命令 # 在ECMAScript6（以下简称ES6）之前，ECMAScript的作用域只有两种：
+1、全局作用域； 2、函数作用域。 正是因为有这两种作用域，所以在JavaScript中出现一术语-“变量提升（hoisting）”。 如下：
+function func(){ console.log(test); var test = 1; }; func(); 在node环境执行上述代码，结果为：
+&amp;gt; node 1.js undefined 之所以为’undefined’，原因就在于‘变量提升’，在进入func函数时，将所有通过var声明的变量置前并赋予undefined的值。
+但，ES6的到来，为我们提供了‘块级作用域’。且‘块级作用域’并不影响var声明的变量。
+What?‘块级作用域’又不影响var声明的变量？！！
+是的，var声明的变量的性质和原来一样，还是具有‘变量提升’的特性。而‘块级作用域’通过新增命令let和const来体现。
+下面，我们透过新增的let和const命令，协同感受下ES6的块级作用域。
+注：由于let和const属于ES6，所以都必须使用严格模式，否则会报错。如下：
+let test; 在node环境下，执行代码：
+Uncaught SyntaxError: Block-scoped declarations (let, const, function, class) not yet supported outs strict mode let命令 # 什么是let呢？
+let和var差不多，都是用来声明变量的。区别就在于：
+1、 let声明的变量只在所处于的块级有效；
+2、 let没有‘变量提升’的特性，而是‘暂时性死区（temporal dead zone）’特性。
+下面将一一讲解。
+let声明的变量只在块级有效。如下：
+'use strict'; function func(args){ if(true){ //let声明i let i = 6; //在if内打印i值 console.log('inside: ' + i); } //在if外，再次打印i值 console.</description></item><item><title>多行超出尾部展示省略号</title><link>/fed-regain/js/base/%E5%A4%9A%E8%A1%8C%E8%B6%85%E5%87%BA%E5%B0%BE%E9%83%A8%E5%B1%95%E7%A4%BA%E7%9C%81%E7%95%A5%E5%8F%B7%E6%94%B9%E8%BF%9B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/base/%E5%A4%9A%E8%A1%8C%E8%B6%85%E5%87%BA%E5%B0%BE%E9%83%A8%E5%B1%95%E7%A4%BA%E7%9C%81%E7%95%A5%E5%8F%B7%E6%94%B9%E8%BF%9B/</guid><description>超出两行则末尾展示省略号 # 经常有需求一段文字展示时，单行超出自动折行，超出两行则末尾展示省略号。
+css写单行超出显示省略号，可以复习下，这个很常用。
+width: 3rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 这种两行的文字，用纯css截取，移动端下载也ok了，iOS的我测了ok，安卓的只测试了小米，魅族，三星的部分机型，是否很符合规范大家可以去查查文档之类的，但是效果确实实现了啊，代码如下：
+overflow: hidden; text-overflow: ellipsis; display: box; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; 进化 # 这两天抽时间做了一个退化处理，就是支持-webkit-box属性的浏览器中采用css来控制，不支持这一属性的浏览器如IE9以上、火狐浏览器，则使用JS动态计算的方法裁剪文本，在文本末未追加省略号(…)。在这个过程中，出乎意外的发现了chrome浏览器的一个bug，版本 55.0.2883.87 m.
+展示bug # 你可以试试下面的代码，在hover的时候，尾部的省略号…不会跟着变色。
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt; &amp;lt;title&amp;gt;Title&amp;lt;/title&amp;gt; &amp;lt;style&amp;gt; div{ color: blue; } span{ overflow:hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; width: 100px; color: blue; font-family: 微软雅黑, &amp;quot;Microsoft YaHei&amp;quot;; } span:hover{ color: red; } &amp;lt;/style&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;div&amp;gt; &amp;lt;a href=&amp;quot;www.</description></item><item><title>二进制运算符使用</title><link>/fed-regain/js/base/%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BD%BF%E7%94%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/base/%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BD%BF%E7%94%A8/</guid><description>基础知识 # &amp;amp;位与：与（x&amp;amp;y）两二进制上下比较只有位值都为1时才取1，否则取0
+例如：14&amp;amp;15 14 二进制 1110 15 二进制 1111 &amp;amp;与的结果 1110 结果14 |位或：与（x|y）两二进制上下比较只有位值都为0时才取0，否则取1
+14|15 14 二进制 1110 15 二进制 1111 |与的结果 1111 结果15 ^位异或：与（x^y）两二进制上下比较只有位不相等时才取1，否则取零
+14^15 (14 二进制 1110 15 二进制 1111 ^与的结果 0001 -》结果1) ~位非：某个数值的按位非操作，可以简单的理解为该值取负值后减1，例如：
+~5 = -5-1 = -6 ~-5 = 5-1 = 4 ~4 = -4-1 = -5 原理： # 二进制数的负数是取该二进制数的补码，然后+1。
+二进制数，最高位为0表示正数，最高位为1表示负数。（最高位分不同情况存储不一样）
+5的二进制表示：00000101 （假设最高位为8位） 补码：11111010 -5：11111011 (~)按位非操作其实就是取补码的过程，也就是上述求该值负数的逆过程，所以可以简单的理解为该值取负值后减1。
+5的补码就是5，那么5+1 = -5，所以~5 = -5-1 = -6
+应用： # indexOf() # 判断数组或者字符串中是否存在某个元素，一般使用indexOf（）如下：</description></item><item><title>TypeScript初学了解</title><link>/fed-regain/js/base/typescript%E5%88%9D%E5%AD%A6%E4%BA%86%E8%A7%A3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/base/typescript%E5%88%9D%E5%AD%A6%E4%BA%86%E8%A7%A3/</guid><description>为什么JS需要类型检查 TypeScript的设计目标在这里可以查看到，简单概括为两点：
+为JavaScript提供一个可选择的类型检查系统； 为JavaScript提供一个包含将来新特性的版本。 TypeScript的核心价值体现在第一点，第二点可以认为是TypeScript的向后兼容性保证，也是TypeScript必须要做到的。 那么为什么JS需要做静态类型检查呢？在几年前这个问题也许还会存在比较大的争议，在前端日趋复杂的今天，经过像Google、Microsoft、FaceBook这样的大公司实践表明，类型检查对于代码可维护性和可读性是有非常大的帮助的，尤其针对于需要长期维护的规模性系统。
+TypeScript优势 在我看来，TypeScript能够带来最直观上的好处有三点：
+帮助更好地重构代码； 类型声明本身是最好查阅的文档。 编辑器的智能提示更加友好。 一个好的代码习惯是时常对自己写过的代码进行小的重构，让代码往更可维护的方向去发展。然而对于已经上线的业务代码，往往测试覆盖率不会很高，当[我们](https://www.w3cdoc.com)想要重构时，经常会担心自己的改动会产生各种不可预知的bug。哪怕是一个小的重命名，也有可能照顾不到所有的调用处造成问题。 如果是一个TypeScript项目，这种担心就会大大降低，我们可以依赖于TypeScript的静态检查特性帮助找出一个小的改动（如重命名）带来的其他模块的问题，甚至对于模块文件来说，我们可以直接借助编辑器的能力进行“一键重命名”操作。
+另外一个问题，如果你接手过一个老项目，肯定会头痛于各种文档的缺失和几乎没有注释的代码，一个好的TypeScript项目，是可以做到代码即文档的，通过声明文件我们可以很好地看出各个字段的含义以及哪些是前端必须字段：
+// 砍价用户信息 export interface BargainJoinData { curr_price: number; // 当前价 curr_ts: number; // 当前时间 init_ts: number; // 创建时间 is_bottom_price: number; // 砍到底价 } 复制代码 TypeScript对开发者是友好的 TypeScript在设计之初，就确定了他们的目标并不是要做多么严格完备的类型强校验系统，而是能够更好地兼容JS，更贴合JS开发者的开发习惯。可以说这是MS的商业战略，也是TS能够成功的关键性因素之一。它对JS的兼容性主要表现为以下三个方面：
+隐式的类型推断 ``` var foo = 123; foo = "456"; // Error: cannot assign `string` to `number` 复制代码 ``` 当[我们](https://www.w3cdoc.com)对一个变量或函数等进行赋值时，TypeScript能够自动推断类型赋予变量，TypeScript背后有非常强大的自推断算法帮助识别类型，这个特性无疑可以帮助[我们](https://www.w3cdoc.com)简化一些声明，不必像强类型的语言那样处处是声明，也可以让[我们](https://www.w3cdoc.com)看代码时更加轻松。 结构化的类型 TypeScript旨在让JS开发者更简单地上手，因此将类型设计为“结构化”(Structural)的而非“名义式”(Nominal)的。 什么意思呢？意味着TypeScript的类型并不根据定义的名字绑定，只要是形似的类型，不管名称相不相同，都可以作为兼容类型（这很像所谓的duck typing），也就是说，下面的代码在TypeScript中是完全合法的：
+class Foo { method(input: string) { /*.</description></item><item><title>工程师使用fetch常见的四种错误</title><link>/fed-regain/js/base/%E5%B7%A5%E7%A8%8B%E5%B8%88%E4%BD%BF%E7%94%A8fetch%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9B%9B%E7%A7%8D%E9%94%99%E8%AF%AF/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/base/%E5%B7%A5%E7%A8%8B%E5%B8%88%E4%BD%BF%E7%94%A8fetch%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9B%9B%E7%A7%8D%E9%94%99%E8%AF%AF/</guid><description>查看原文
+fetch 是浏览器中发送http请求最流行方式。它不仅仅是一个比XMLHttpRequest更好、更符合人体工程学的API，它还带来了许多令人兴奋的新功能，比如响应流、对凭证和CORS请求的更多控制，以及与ServiceWorkers和缓存API的集成
+我自己也在研究并使用它，同时也见证了fetch的成长(原文：广泛使用), 发现即使有经验的开发者也会犯一些比较常见的错误。我认为这在很大程度上与fetch的API在表面上看起来它的行为模式都很像jQuery $.ajax、angularJS的$http、 axios等。它们之间有一些重要的区别，而这些区别大多源于fetch作为底层网络请求的原型设计
+四类错误 # 认为一旦发生http错误，promise就会被reject # Fetch是基于promise的，因此比较容易想到，如果服务器返回http的错误状态码，像404或是500,Promise就会被拒绝，就像原始的XMLHttpRequest一样；但fetch并不是这样的——它仅仅在发生“network error（网络错误）”才会被拒绝(这是一个令人困惑的术语，但规范是这么说的)。如果可以服务器获得http错误状态，则表明服务器正常工作且在处理请求，而“network error（网络错误）”表示根本无法到达服务器(例如连接拒绝或名称未解析)或请求配置有错误(错误的请求地址)。
+例如, ftp 协议 并不支持fetch,所以它会返回一个被rejected 的 promise :
+fetch('ftp://example.com') .catch(err =&amp;gt; console.error('Caught error: ', err)) 但是请求一个返回404错误的URL并有没有发生错误（即类似404这类错误fetch返回的并不是rejected）
+fetch('https://jsonplaceholder.typicode.com/404') .then(res =&amp;gt; console.log('response: ', res)) .catch(console.error) 我想对大部分开发者来说，http返回的错误对web应用程序处理一个rejected的promise是非常有用的。为此(fetch对http错误的处理方式)，我们仅仅需要对验证ok 属性的值 ，如果 ok
+的值为false ，则 reject
+fetch('https://jsonplaceholder.typicode.com/404') .then(res =&amp;gt; { if(res.ok) { return res; } else { throw Error(`Request rejected with status ${res.status}`); }}) .catch(e=&amp;gt;{ console.error(e.message, e) }) 忘记包含credentials # 与XHR不同，fetch在默认情况下不包括请求中的任何cookie。因此，如果针对您的API的请求需要基于cookie的授权(大多数web应用程序都需要)，那么必须有这个选项，否则您的调用可能会返回401未授权。
+这非常简单：
+fetch('/url', { credentials: 'include' }) 注意，如果您正在使用fetch polyfill，那么(不幸的是)您可能会偶尔地忘记这一点，一切看起来就好像你已经正在使用credentials: 'include'一样，这是因为它只是在底层使用XHR，而XHR自动具有这种行为。</description></item><item><title>构建DOM和CSSOM</title><link>/fed-regain/js/base/%E6%9E%84%E5%BB%BAdom%E5%92%8Ccssom/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/base/%E6%9E%84%E5%BB%BAdom%E5%92%8Ccssom/</guid><description>什么是DOM # Document Object Model 文档对象模型
+什么是DOM？可能很多人第一反应就是div、p、span等html标签（至少我是），但要知道，DOM是Model，是Object Model，对象模型，是为HTML（and XML）提供的API。HTML(Hyper Text Markup Language)是一种标记语言，HTML在DOM的模型标准中被视为对象，DOM只提供编程接口，却无法实际操作HTML里面的内容。但在浏览器端，前端们可以用脚本语言（JavaScript）通过DOM去操作HTML内容。
+那么问题来了，只有JavaScript才能调用DOM这个API吗？
+答案是NO。
+Python也可以访问DOM。所以DOM不是提供给Javascript的API，也不是Javascript里的API。
+PS: 实质上还存在CSSOM：CSS Object Model，浏览器将CSS代码解析成树形的数据结构，与DOM是两个独立的数据结构。
+浏览器渲染过程 # 讨论DOM操作成本，肯定要先了解该成本的来源，那么就离不开浏览器渲染。
+这里暂只讨论浏览器拿到HTML之后开始解析、渲染。（怎么拿到HTML资源的可能后续另开篇总结吧，什么握握握手啊挥挥挥挥手啊，万恶的flag…）
+解析HTML，构建DOM树（这里遇到外链，此时会发起请求） 解析CSS，生成CSS规则树 合并DOM树和CSS规则，生成render树 布局render树（Layout/reflow），负责各元素尺寸、位置的计算 绘制render树（paint），绘制页面像素信息 浏览器会将各层的信息发送给GPU，GPU将各层合成（composite），显示在屏幕上 构建DOM树 # &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width,initial-scale=1&amp;quot;&amp;gt; &amp;lt;link href=&amp;quot;style.css&amp;quot; rel=&amp;quot;stylesheet&amp;quot;&amp;gt; &amp;lt;title&amp;gt;Critical Path&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;p&amp;gt;Hello &amp;lt;span&amp;gt;web performance students!&amp;lt;/p&amp;gt; &amp;lt;div&amp;gt;&amp;lt;img src=&amp;quot;awesome-photo.jpg&amp;quot;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 无论是DOM还是CSSOM，都是要经过Bytes → characters → tokens → nodes → object model这个过程。
+DOM树构建过程：当前节点的所有子节点都构建好后才会去构建当前节点的下一个兄弟节点。
+构建CSSOM树 # 上述也提到了CSSOM的构建过程，也是树的结构，在最终计算各个节点的样式时，浏览器都会先从该节点的普遍属性（比如body里设置的全局样式）开始，再去应用该节点的具体属性。还有要注意的是，每个浏览器都有自己默认的样式表，因此很多时候这棵CSSOM树只是对这张默认样式表的部分替换。
+生成render树 # DOM树和CSSOM树合并生成render树
+简单描述这个过程：
+DOM树从根节点开始遍历可见节点，这里之所以强调了“可见”，是因为如果遇到设置了类似display: none;的不可见节点，在render过程中是会被跳过的（但visibility: hidden; opacity: 0这种仍旧占据空间的节点不会被跳过render），保存各个节点的样式信息及其余节点的从属关系。</description></item><item><title>JavaScript事件流</title><link>/fed-regain/js/base/javascript%E4%BA%8B%E4%BB%B6%E6%B5%81/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/base/javascript%E4%BA%8B%E4%BB%B6%E6%B5%81/</guid><description>DOM级别与DOM事件 # 首先在介绍DOM事件之前我们先来认识下DOM的不同级别。针对不同级别的DOM，我们的DOM事件处理方式也是不一样的。
+DOM级别一共可以分为4个级别：DOM0级，DOM1级，DOM2级和DOM3级，
+而DOM事件分为3个级别：DOM0级事件处理，DOM2级事件处理和DOM3级事件处理。
+如下图所示：
+其中1级DOM标准中并没有定义事件相关的内容，所以没有所谓的1级DOM事件模型。
+事件 # 事件指可以被 JavaScript 侦测到的行为。即鼠标点击、页面或图像载入、鼠标悬浮于页面的某个热点之上、在表单中选取输入框、确认表单、键盘按键等操作。事件通常与函数配合使用，当事件发生时函数才会执行。
+事件名称：click/mouseover/blur(“不带on”)响应某个事件的函数就是事件处理程序(事件侦听器)。
+事件处理程序函数名称：onclick/onmouseove/onblur
+例子代码&amp;ndash;点击事件触发alert函数
+&amp;lt;button onclick=&amp;quot;alert('hello')&amp;quot;&amp;gt;&amp;lt;/button&amp;gt; 更多事件类别请参考w3c中关于事件的详细类别。
+JavaScript 事件
+JavaScript 事件参考手册
+事件流 # 事件流指从页面中接收事件的顺序,也可理解为事件在页面中传播的顺序。
+一点背景：
+早期的IE事件传播方向为由上至下，即从document逐级向下传播到目标元素；
+而Netscape公司的Netscape Navigator则是朝相反的方向传播，也就是从目标元素开始向上逐级传播最终至window。 两家公司对于事件流出现了截然相反的定义。
+后来ECMAScript在DOM2中对事件流进行了进一步规范，基本上就是上述二者的结合。
+当事件发生时，最先得到通知的是window，然后是document，由上至下逐级依次而入，直到真正触发事件的那个元素(目标元素)为止，这个过程就是捕获。
+接下来，事件会从目标元素开始起泡，由下至上逐级依次传播，直到window对象为止，这个过程就是冒泡。
+所以捕获比冒泡先执行。
+其中DOM3级事件在DOM2的基础之上添加了更多的事件类型。
+DOM2级事件规定的事件流包括三个阶段：
+（1）事件捕获阶段（2）处于目标阶段（3）事件冒泡阶段。
+下面图片来自：https://www.w3.org/TR/DOM-Lev…
+我们写一个例子：如下图，中间白色区域的盒子分别为box1,box2…box6,包含控制按钮设置我们的事件
+&amp;lt;div&amp;gt; &amp;lt;h4 id=&amp;quot;currentBox&amp;quot;&amp;gt;点击按钮设置类型后再点击中心&amp;lt;/h4&amp;gt; &amp;lt;button class=&amp;quot;btn&amp;quot; id=&amp;quot;btnCapture&amp;quot; onclick=&amp;quot;setCapture()&amp;quot;&amp;gt;设置捕获&amp;lt;/button&amp;gt; &amp;lt;button class=&amp;quot;btn&amp;quot; id=&amp;quot;btnBubble&amp;quot; onclick=&amp;quot;setBubble()&amp;quot;&amp;gt;设置冒泡&amp;lt;/button&amp;gt; &amp;lt;button class=&amp;quot;btn&amp;quot; id=&amp;quot;btnAll&amp;quot; onclick=&amp;quot;setAll()&amp;quot;&amp;gt;设置捕获和冒泡&amp;lt;/button&amp;gt; &amp;lt;button class=&amp;quot;btn&amp;quot; onclick=&amp;quot;clearAll()&amp;quot;&amp;gt;动画完成后再清除设置&amp;lt;/button&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;box&amp;quot; id=&amp;quot;box1&amp;quot;&amp;gt; &amp;lt;div class=&amp;quot;box&amp;quot; id=&amp;quot;box2&amp;quot;&amp;gt; &amp;lt;div class=&amp;quot;box&amp;quot; id=&amp;quot;box3&amp;quot;&amp;gt; &amp;lt;div class=&amp;quot;box&amp;quot; id=&amp;quot;box4&amp;quot;&amp;gt; &amp;lt;div class=&amp;quot;box&amp;quot; id=&amp;quot;box5&amp;quot;&amp;gt; &amp;lt;div class=&amp;quot;box&amp;quot; id=&amp;quot;box6&amp;quot;&amp;gt; 点击 &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; 大概流程图如下：</description></item><item><title>关于ajax请求头设置</title><link>/fed-regain/js/base/%E5%85%B3%E4%BA%8Eajax%E8%AF%B7%E6%B1%82%E5%A4%B4%E8%AE%BE%E7%BD%AE/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/base/%E5%85%B3%E4%BA%8Eajax%E8%AF%B7%E6%B1%82%E5%A4%B4%E8%AE%BE%E7%BD%AE/</guid><description>今天同事说想改下host请求头，之前好像记得不能修改这个header，找了一下资源，记一下。下面这些请求头设置是不会生效的。
+var forbiddenRequestHeaders = [
+&amp;quot;accept-charset&amp;quot;,
+&amp;quot;accept-encoding&amp;quot;,
+&amp;quot;access-control-request-headers&amp;quot;,
+&amp;quot;access-control-request-method&amp;quot;,
+&amp;quot;connection&amp;quot;,
+&amp;quot;content-length&amp;quot;,
+&amp;quot;content-transfer-encoding&amp;quot;,
+&amp;quot;cookie&amp;quot;,
+&amp;quot;cookie2&amp;quot;,
+&amp;quot;date&amp;quot;,
+&amp;quot;expect&amp;quot;,
+&amp;quot;host&amp;quot;,
+&amp;quot;keep-alive&amp;quot;,
+&amp;quot;origin&amp;quot;,
+&amp;quot;referer&amp;quot;,
+&amp;quot;te&amp;quot;,
+&amp;quot;trailer&amp;quot;,
+&amp;quot;transfer-encoding&amp;quot;,
+&amp;quot;upgrade&amp;quot;,
+&amp;quot;via&amp;quot; ];
+想改的话也有办法，浏览器插件好像可以做到。记得有一个iheader插件。</description></item><item><title>函数调用的角度理解call</title><link>/fed-regain/js/base/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%9A%84%E8%A7%92%E5%BA%A6%E7%90%86%E8%A7%A3call/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/base/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%9A%84%E8%A7%92%E5%BA%A6%E7%90%86%E8%A7%A3call/</guid><description>问题引入 # 大家都听过自执行函数吧，很多插件代码也都是写成了自执行函数的形式，加载插件的时候，执行本省，完成初始化。那么，你清楚其中的函数调用的原理吗？知道其他的写法吗？this的变换呢？这里我们先给个问题，然后再解释。
+先看一下下面的例子：
+(fn)() (0,fn)() 上面的例子中给出了两种自执行函数的写法，你能看出有什么区别吗？
+var a = { foo: function() { console.log(this === window); } }; a.foo(); // Returns 'false' in console (0, a.foo)(); // Returns 'true' in console 虽然比较简单，但是蕴含的知识很多。
+js里函数调用有4种模式：方法调用、正常函数调用、构造器函数调用、apply/call 调用。同时，无论哪种函数调用除了你声明时定义的形参外，还会自动添加2个形参，分别是 this 和 arguments。
+这里你既然问 this，那么就只谈 this。this 的值，在上面4中调用模式下，分别会绑定不同的值。分别来说一说：
+方法调用 # 这个很好理解，函数是一个对象的属性，比如
+var a = { v : 0, f : function(xx) { this.v = xx; } } a.f(5); 这个时候，上面函数里的 this 就绑定的是这个对象 a。所以 this.v 可以取到对象 a 的属性 v。</description></item><item><title>基于typescript开发一个npm包</title><link>/fed-regain/js/base/%E5%9F%BA%E4%BA%8Etypescript%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AAnpm%E5%8C%85/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/base/%E5%9F%BA%E4%BA%8Etypescript%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AAnpm%E5%8C%85/</guid><description>很多时候，我们可能想要用 typescript 语言来创建一些模块，并提交到 npm 供别人使用，
+那么在 2018 年，如果我想要初始化这样的一个模块，我需要做哪些步骤呢？：
+答案是：创建一个优雅的，对开发者友好的模块，至少需要以下 15 个步骤
+初始化文件夹，初始化 git 仓库，初始化 npm，初始化 tsc 修改 tsconfig.js 配置 添加 npm 脚本 添加 tslint 校验代码规则以及 editorconfig,prettier 统一代码风格 设置 git 提交的校验钩子 开始编写代码 watch 模式开发 忽略 ts 编译生成的文件夹 添加单元测试 写一个单元测试示例 设置一些有用的 npm 脚本 完善 package.json 的描述信息 提交代码到 git 仓库 发布包到 npm 本篇文章里，我会列出每个步骤的详细说明。
+实际开发中，如果每个包都去走一遍这些步骤，步骤好像确实有点多。所以如果你需要实际创建项目的时候，你可以选择 clone 我提供的样板项目 来开始一个新的 ts 模块的开发，主要步骤如下：
+git clone https://github.com/xiaomingplus/npm-typescript-boilerplate.git your-project-name cd your-project-name # 安装依赖 npm i # 开始开发 npm start # 修改 package.</description></item></channel></rss>

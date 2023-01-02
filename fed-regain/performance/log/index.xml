@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>性能体验埋点 on</title><link>/fed-regain/performance/log/</link><description>Recent content in 性能体验埋点 on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 06 Oct 2020 08:49:15 +0000</lastBuildDate><atom:link href="/fed-regain/performance/log/index.xml" rel="self" type="application/rss+xml"/><item><title>“总阻塞时间”（TBT）</title><link>/fed-regain/performance/log/%E6%80%BB%E9%98%BB%E5%A1%9E%E6%97%B6%E9%97%B4tbt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/performance/log/%E6%80%BB%E9%98%BB%E5%A1%9E%E6%97%B6%E9%97%B4tbt/</guid><description>总阻塞时间（TBT）是衡量负载响应能力的重要实验室指标，因为它有助于量化页面在变得可靠交互之前的非交互性的严重程度-低TBT有助于确保页面 可用。 什么是TBT？＃ # “总阻塞时间”（TBT）度量标准度量了“首屏内容渲染（FCP）”和“可交互时间”（TTI）之间的总 时间， 在该时间中，主线程被阻塞足够长的时间导致阻塞输入响应。
+只要存在长任务且该任务在主线程上运行超过50毫秒（ms），该主线程即被视为“阻塞”。我们说主线程“被阻止”是因为浏览器无法中断正在进行的任务。因此，如果用户_确实_在较长的任务中间与页面进行交互，则浏览器必须等待任务完成才能响应。
+如果任务足够长（例如，超过50毫秒的任何时间），则用户很可能会注意到延迟，并感觉页面缓慢或过时。
+给定的长任务的_阻塞时间_是其持续时间超过50毫秒。页面的总阻塞时间是FCP和TTI之间发生的每个长任务的阻塞时间之和。
+例如，考虑页面加载期间浏览器主线程的下图：
+上面的时间轴有五个任务，其中三个是长任务，因为它们的持续时间超过50毫秒。下图显示了每个长任务的阻塞时间：
+因此，虽然在主线程上运行任务所花费的总时间为560毫秒，但只有345毫秒的时间被视为阻塞时间。
+&amp;lt;th&amp;gt; 任务持续时间 &amp;lt;/th&amp;gt; &amp;lt;th&amp;gt; 任务阻止时间 &amp;lt;/th&amp;gt; 任务一 &amp;lt;td&amp;gt; 250毫秒 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 200毫秒 &amp;lt;/td&amp;gt; 任务二 &amp;lt;td&amp;gt; 90毫秒 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 40毫秒 &amp;lt;/td&amp;gt; 任务三 &amp;lt;td&amp;gt; 35毫秒 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 0毫秒 &amp;lt;/td&amp;gt; 任务四 &amp;lt;td&amp;gt; 30毫秒 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 0毫秒 &amp;lt;/td&amp;gt; 任务五 &amp;lt;td&amp;gt; 155毫秒 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 105毫秒 &amp;lt;/td&amp;gt; 总封锁时间 &amp;lt;td&amp;gt; 345毫秒 &amp;lt;/td&amp;gt; TBT与TTI有何关系？＃ # TBT是TTI的一个很好的辅助指标，因为它有助于量化页面在变为可靠交互之前的非交互阻塞程度。
+如果主线程至少有五秒钟没有执行长任务，则TTI认为页面“可靠地交互”。这意味着，在10秒内分布的三个51毫秒任务可以将TTI推迟到单个10秒长的任务，但是对于试图与页面进行交互的用户而言，这两种情况会感觉非常不同。
+在第一种情况下，三个51毫秒的任务的TBT为3毫秒。而单个10秒长的任务的TBT为9950 ms。在第二种情况下，较大的TBT值量化了较差的体验。
+如何衡量TBT ＃ # TBT是应该在实验室中测量的指标。衡量TBT的最佳方法是在您的站点上运行Lighthouse性能审核。有关用法的详细信息，请参见TBT上的Lighthouse文档。
+也可以通过监听longtask，在tti之前计算tbt时间。参考[打造企业级私有前端监控体系]6课程中有介绍。</description></item><item><title>Elasticsearch入门学习</title><link>/fed-regain/performance/log/elasticsearch%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/performance/log/elasticsearch%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0/</guid><description>Elasticsearch 是一个分布式的 RESTful 风格的搜索和数据分析引擎。
+查询 ： Elasticsearch 允许执行和合并多种类型的搜索 — 结构化、非结构化、地理位置、度量指标 — 搜索方式随心而变。 分析 ： 找到与查询最匹配的十个文档是一回事。但是如果面对的是十亿行日志，又该如何解读呢？Elasticsearch 聚合让您能够从大处着眼，探索数据的趋势和模式。 速度 ： Elasticsearch 很快。真的，真的很快。 可扩展性 ： 可以在笔记本电脑上运行。 也可以在承载了 PB 级数据的成百上千台服务器上运行。 弹性 ： Elasticsearch 运行在一个分布式的环境中，从设计之初就考虑到了这一点。 灵活性 ： 具备多个案例场景。数字、文本、地理位置、结构化、非结构化。所有的数据类型都欢迎。 HADOOP &amp;amp; SPARK ： Elasticsearch + Hadoop 准备开始 # Elasticsearch是一个高度可伸缩的开源全文搜索和分析引擎。它允许您快速和接近实时地存储、搜索和分析大量数据。
+这里有一些使用Elasticsearch的用例：
+你经营一个网上商店，你允许你的顾客搜索你卖的产品。在这种情况下，您可以使用Elasticsearch来存储整个产品目录和库存，并为它们提供搜索和自动完成建议。 你希望收集日志或事务数据，并希望分析和挖掘这些数据，以查找趋势、统计、汇总或异常。在这种情况下，你可以使用loghide (Elasticsearch/ loghide /Kibana堆栈的一部分)来收集、聚合和解析数据，然后让loghide将这些数据输入到Elasticsearch中。一旦数据在Elasticsearch中，你就可以运行搜索和聚合来挖掘你感兴趣的任何信息。 你运行一个价格警报平台，允许精通价格的客户指定如下规则:“我有兴趣购买特定的电子设备，如果下个月任何供应商的产品价格低于X美元，我希望得到通知”。在这种情况下，你可以抓取供应商的价格，将它们推入到Elasticsearch中，并使用其反向搜索(Percolator)功能来匹配价格走势与客户查询，并最终在找到匹配后将警报推送给客户。 你有分析/业务智能需求，并希望快速调查、分析、可视化，并对大量数据提出特别问题(想想数百万或数十亿的记录)。在这种情况下，你可以使用Elasticsearch来存储数据，然后使用Kibana (Elasticsearch/ loghide /Kibana堆栈的一部分)来构建自定义仪表板，以可视化对您来说很重要的数据的各个方面。此外，还可以使用Elasticsearch聚合功能对数据执行复杂的业务智能查询。 基本概念 # Near Realtime (NRT)
+Elasticsearch是一个近乎实时的搜索平台。这意味着从索引文档到可以搜索的时间只有轻微的延迟（通常是1秒）。
+Cluster
+集群是一个或多个节点(服务器)的集合，它们共同保存你的整个数据，并提供跨所有节点的联合索引和搜索功能。一个集群由一个唯一的名称标识，默认这个唯一标识的名称是”elasticsearch”。这个名称很重要，因为如果节点被设置为按其名称加入集群，那么节点只能是集群的一部分。
+确保不要在不同的环境中用相同的集群名称，否则可能导致节点加入到错误的集群中。例如，你可以使用”logging-dev”, “logging-test”, “logging-prod”分别用于开发、测试和正式集群的名字。
+Node
+节点是一个单独的服务器，它是集群的一部分，存储数据，并参与集群的索引和搜索功能。就像集群一样，节点由一个名称来标识，默认情况下，该名称是在启动时分配给节点的随机通用唯一标识符(UUID)。如果不想用默认的节点名，可以定义任何想要的节点名。这个名称对于管理来说很重要，因为你希望识别网络中的哪些服务器对应于你的Elasticsearch集群中的哪些节点。
+一个节点可以通过配置集群名称来加入到一个特定的集群中。默认情况下，每个节点都被设置加入到一个名字叫”elasticsearch”的集群中，这就意味着如果你启动了很多个节点，并且假设它们彼此可以互相发现，那么它们将自动形成并加入到一个名为”elasticsearch”的集群中。
+一个集群可以有任意数量的节点。此外，如果在你的网络上当前没有运行任何节点，那么此时启动一个节点将默认形成一个单节点的名字叫”elasticsearch”的集群。
+Index</description></item><item><title>LCP、TBT与CLS指标</title><link>/fed-regain/performance/log/lcptbt%E4%B8%8Ecls%E6%8C%87%E6%A0%87/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/performance/log/lcptbt%E4%B8%8Ecls%E6%8C%87%E6%A0%87/</guid><description>FP (First Paint) 首次绘制 &amp;lt;/div&amp;gt; FP (First Paint) 首次绘制: 标记[浏览器](https://www.w3cdoc.com)渲染任何在视觉上不同于导航前屏幕内容之内容的时间点. ## &amp;lt;a name=&amp;quot;t2&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;a name=&amp;quot;t2&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;a id=&amp;quot;FCP_First_Contentful_Paint___13&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;FCP (First Contentful Paint) 首次内容绘制 FCP (First Contentful Paint) 首次内容绘制 标记[浏览器](https://www.w3cdoc.com)渲染来自 DOM 第一位内容的时间点，该内容可能是文本、图像、SVG 甚至 元素. ## &amp;lt;a name=&amp;quot;t3&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;a name=&amp;quot;t3&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;a id=&amp;quot;LCP_Largest_Contentful_Paint__16&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;LCP (Largest Contentful Paint) 最大内容渲染 LCP (Largest Contentful Paint) 最大内容渲染: 代表在viewport中最大的页面元素加载的时间. LCP的数据会通过PerformanceEntry对象记录, 每次出现更大的内容渲染, 则会产生一个新的PerformanceEntry对象.(2019年11月新增) 提议：&amp;lt;a href=&amp;quot;https://wicg.github.io/largest-contentful-paint/&amp;quot;&amp;gt;https://wicg.github.io/largest-contentful-paint/&amp;lt;/a&amp;gt; 说明：&amp;lt;a href=&amp;quot;https://web.dev/lcp/&amp;quot;&amp;gt;https://web.dev/lcp/&amp;lt;/a&amp;gt; ## &amp;lt;a name=&amp;quot;t4&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;a name=&amp;quot;t4&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;a id=&amp;quot;DCL_DomContentloaded__19&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;DCL (DomContentloaded) DCL (DomContentloaded): 当 HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，无需等待样式表、图像和子框架的完成加载. ## &amp;lt;a name=&amp;quot;t5&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;a name=&amp;quot;t5&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;&amp;lt;a id=&amp;quot;FMPFirst_Meaningful_Paint__22&amp;quot;&amp;gt;&amp;lt;/a&amp;gt;FMP(First Meaningful Paint) 首次有效绘制 FMP(First Meaningful Paint) 首次有效绘制: 例如，在 YouTube 观看页面上，主视频就是主角元素.</description></item><item><title>了解Filebeat和使用配置</title><link>/fed-regain/performance/log/%E4%BA%86%E8%A7%A3filebeat%E5%92%8C%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/performance/log/%E4%BA%86%E8%A7%A3filebeat%E5%92%8C%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE/</guid><description>认识Beats # Beats是用于单用途数据托运人的平台。它们以轻量级代理的形式安装，并将来自成百上千台机器的数据发送到Logstash或Elasticsearch。
+（画外音：通俗地理解，就是采集数据，并上报到Logstash或Elasticsearch）
+Beats对于收集数据非常有用。它们位于你的服务器上，将数据集中在Elasticsearch中，Beats也可以发送到Logstash来进行转换和解析。
+为了捕捉（捕获）数据，Elastic提供了各种Beats：
+Beats可以直接（或者通过Logstash）将数据发送到Elasticsearch，在那里你可以进一步处理和增强数据，然后在Kibana中将其可视化。
+Filebeat # 第1步：安装Filebeat # 第2步：配置Filebeat # 配置文件：filebeat.yml
+为了配置Filebeat：
+1. 定义日志文件路径
+对于最基本的Filebeat配置，你可以使用单个路径。例如：
+``` filebeat.inputs: - type: log enabled: true paths: - /var/log/*.log ``` 在这个例子中，获取在/var/log/*.log路径下的所有文件作为输入，这就意味着Filebeat将获取/var/log目录下所有以.log结尾的文件。
+为了从预定义的子目录级别下抓取所有文件，可以使用以下模式：/var/log/*/*.log。这将抓取/var/log的子文件夹下所有的以.log结尾的文件。它不会从/var/log文件夹本身抓取。目前，不可能递归地抓取这个目录下的所有子目录下的所有.log文件。
+（画外音：
+假设配置的输入路径是/var/log/*/*.log，假设目录结构是这样的：
+那么只会抓取到2.log和3.log，而不会抓到1.log和4.log。因为/var/log/aaa/ccc/1.log和/var/log/4.log不会被抓到。
+）
+2. 如果你发送输出目录到Elasticsearch（并且不用Logstash），那么设置IP地址和端口以便能够找到Elasticsearch：
+``` output.elasticsearch: hosts: ["192.168.1.42:9200"] ``` 3. 如果你打算用Kibana仪表盘，可以这样配置Kibana端点：
+``` setup.kibana: host: "localhost:5601" ``` 4. 如果你的Elasticsearch和Kibana配置了安全策略，那么在你启动Filebeat之前需要在配置文件中指定访问凭据。例如：
+``` output.elasticsearch: hosts: ["myEShost:9200"] username: "filebeat_internal" password: "{pwd}" setup.kibana: host: "mykibanahost:5601" username: "my_kibana_user" password: "{pwd}" ``` 第3步：配置Filebeat以使用Logstash # 如果你想使用Logstash对Filebeat收集的数据执行额外的处理，那么你需要将Filebeat配置为使用Logstash。</description></item><item><title>最大内容绘画（LCP）</title><link>/fed-regain/performance/log/%E6%9C%80%E5%A4%A7%E5%86%85%E5%AE%B9%E7%BB%98%E7%94%BBlcp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/performance/log/%E6%9C%80%E5%A4%A7%E5%86%85%E5%AE%B9%E7%BB%98%E7%94%BBlcp/</guid><description>最大内容绘画（LCP）是衡量用户&amp;lt;a href=&amp;quot;https://web.dev/user-centric-performance-metrics/#types-of-metrics&amp;quot;&amp;gt;感知加载速度的&amp;lt;/a&amp;gt;一项重要的以用户为中心的度量标准，因为它标记了页面主要内容可能已加载时页面加载时间线中的时间点-快速的LCP有助于使用户确信页面 &amp;lt;a href=&amp;quot;https://web.dev/user-centric-performance-metrics/#questions&amp;quot;&amp;gt;有用&amp;lt;/a&amp;gt;。 从历史上看，Web开发人员衡量网页主要内容的加载速度和对用户可见的速度一直是一个挑战。
+较旧的指标（例如 load或 DOMContentLoaded） 不好，因为它们不一定与用户在屏幕上看到的相对应。而且，以用户为中心的更新性能指标（例如First Contentful Paint（FCP））只能捕捉到加载体验的最开始。如果页面显示启动屏幕或显示加载指示器，则此刻与用户无关。
+过去，我们建议使用诸如“首次有意义的绘画（FMP）”和“速度指数（SI）”（均可以在Lighthouse中获得）这样的性能指标来帮助捕获最初的颜料后的更多加载体验，但是这些指标非常复杂，难以解释，而且通常是错误的-表示它们仍然无法识别页面的主要内容何时加载。
+有时越简单越好。根据W3C Web性能工作组的讨论和Google的研究，我们发现，衡量何时加载页面主要内容的一种更准确的方法是查看何时呈现最大的元素。
+什么是LCP？＃ # “最大内容绘画（LCP）”度量标准报告视口内可见的最大图像或文本块的渲染时间 。
+好的LCP分数是多少？＃ # 为了提供良好的用户体验，网站应努力在开始加载页面的前2.5秒内进行“最大内容绘画” 。为了确保您达到大多数用户的这一目标，衡量移动设备和台式机设备的页面加载量的第75个百分位是一个很好的衡量标准。
+要了解有关此建议背后的研究和方法的更多信息，请参阅：定义核心Web Vitals指标阈值 考虑哪些要素？＃ # 根据“LCP API”中当前指定的内容，“LCP”考虑的元素类型为：
+img 元素 svg元素内嵌的image元素 video 元素（使用海报图像） 通过url()函数加载背景图片的元素 包含文本节点或其他内联级文本元素子级的块级元素。 注意，将元素限制在此有限范围内是有意的，以便一开始就保持简单。
+如何确定元素的大小？＃ {#how-is-an-element&amp;rsquo;s-size-determined} # 为“最大内容绘画”报告的元素的大小通常是用户在视口中可见的大小。如果元素延伸到视口之外，或者任何元素被裁剪或具有不可见的 溢出，则这些部分不会计入元素的大小。
+对于已根据其固有尺寸调整大小的图像元素，报告的尺寸为可见尺寸或固有尺寸，以较小者为准。例如，缩小到远小于其固有尺寸的图像将仅报告其显示尺寸，而拉伸或扩展为较大尺寸的图像将仅报告其固有尺寸。
+对于文本元素，仅考虑其文本节点的大小（包含所有文本节点的最小矩形）。
+对于所有元素，不考虑通过CSS应用的任何margin，padding或border。
+确定哪个文本节点属于哪个元素有时可能很棘手，尤其是对于其子元素包括内联元素和纯文本节点以及块级元素的元素而言。关键是每个文本节点都属于（并且仅属于）其最接近的块级祖先元素。用规范术语来说：每个文本节点都属于生成其包含块的元素。 何时报告LCP？＃ # 网页通常是分阶段加载的，因此，页面上最大的元素可能会发生变化。
+为了处理这种潜在的变化，浏览器会在绘制第一帧后立即派出一个 PerformanceEntry 类型，largest-contentful-paint该类型标识最大的内容元素。但是，在渲染后续帧时， 在最大内容元素发生更改时再次发出 PerformanceEntry 。
+例如，在带有文本和hero 图像的页面上，浏览器可能最初只是呈现文本-此时，浏览器将调度一个largest-contentful-paint条目，该条目可能指向的element是文本。之后，一旦英雄图片加载完成，largest-contentful-paint便会分派第二个条目，并且其element属性将引用&amp;lt;img /&amp;gt;重要的是要注意，一个元素一旦呈现并对用户可见，就只能被认为是最大的内容元素。尚未加载的图像不被视为“已渲染”。在字体块期间，文本节点也不使用Web字体。在这种情况下，较小的元素可能会报告为最大的内容元素，但是较大的元素一旦完成渲染，就会通过另一个PerformanceEntry对象进行报告 。
+除了延迟加载图像和字体外，页面可能会在新内容可用时向DOM添加新元素。如果这些新元素中的任何一个大于先前最大的有争议元素，那么PerformanceEntry 还将报告一个新元素。
+如果页面从DOM中删除了一个元素，则不再考虑该元素。同样，如果元素的关联图像资源发生更改（例如，img.src通过JavaScript进行更改），则该元素将停止考虑，直到加载新图像为止。
+将来，从DOM中删除的元素仍可以视为LCP候选对象。目前正在进行研究 以评估此更改的影响。您可以遵循CHANGELOG指标 以保持最新。 一旦用户与页面进行交互（通过轻击，滚动或按键），浏览器将停止报告新条目，因为用户交互通常会改变用户可见的内容（滚动时尤为如此）。
+出于分析目的，您应仅报告最近分 PerformanceEntry发给您的分析服务的信息。
+注意： 由于用户可以在背景标签中打开页面，因此，只有当用户将标签聚焦后，才会有最大的绘画效果，这可能比他们第一次加载时要晚得多。 加载时间与渲染时间＃ # 出于安全原因，对于缺少Timing-Allow-Origin 标头的跨源图像，不公开图像的渲染时间戳 。而是只公开其加载时间（因为已经通过许多其他Web API公开了加载时间）。</description></item><item><title>累积版式移位（CLS）</title><link>/fed-regain/performance/log/%E7%B4%AF%E7%A7%AF%E7%89%88%E5%BC%8F%E7%A7%BB%E4%BD%8Dcls/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/performance/log/%E7%B4%AF%E7%A7%AF%E7%89%88%E5%BC%8F%E7%A7%BB%E4%BD%8Dcls/</guid><description>累积版式移位（CLS）是衡量用户&amp;lt;a href=&amp;quot;https://web.dev/user-centric-performance-metrics/#types-of-metrics&amp;quot;&amp;gt;视觉稳定性的&amp;lt;/a&amp;gt;一项重要的以用户为中心的度量标准，因为它有助于量化用户经历意外的版式移位的频率-较低的CLS有助于确保页面 &amp;lt;a href=&amp;quot;https://web.dev/user-centric-performance-metrics/#questions&amp;quot;&amp;gt;令人愉悦&amp;lt;/a&amp;gt;。 您是否曾经在页面上突然发生变化时在线阅读文章？在没有警告的情况下，文字移动了，并且您失去了位置。甚至更糟：您将要点击一个链接或一个按钮，但是在手指落下的瞬间（BOOM），链接移动了，您最终单击了其他东西！
+在大多数情况下，这种经历很烦人，但在某些情况下，它们会造成真正的损失。
+https://haomou.oss-cn-beijing.aliyuncs.com/upload/2020/10/layout-instability2.webm 页面内容的意外移动通常是由于异步加载资源或DOM元素动态添加到现有内容上方的页面而发生的。罪魁祸首可能是尺寸未知的图像或视频，呈现比其后备更大或更小的字体，或者是动态调整自身大小的第三方广告或小部件。
+使这个问题变得更加棘手的是，网站在开发中的功能通常与用户的体验有很大不同。个性化或第三方内容在开发中的行为通常与在生产中的行为不同，测试图像通常已经在开发人员的浏览器缓存中，并且本地运行的API调用通常是如此之快，以至于延迟不明显。
+累积版式移位（CLS）度量标准可以通过测量实际用户发生的频率来帮助您解决此问题。
+什么是CLS？＃ # CLS会测量在页面的整个生命周期中发生的每个 _意外的版式移位_的所有单独_版式移位分数_的总和。
+甲_布局移_发生的任何时间的可见元素改变其从一个所再现的帧到下一个位置。（有关如何计算各个版式移位得分的详细信息，请参见下文。）
+良好的CLS分数是多少？＃ # 为了提供良好的用户体验，网站应努力使CLS分数小于0.1。为了确保您达到大多数用户的这一目标，衡量移动设备和台式机设备的页面加载量的第75个百分位是一个很好的衡量标准。
+要了解有关此建议背后的研究和方法的更多信息，请参阅：定义核心Web Vitals指标阈值 什么是位移？ # 布局移动由Layout Instability API定义，该APIlayout-shift 在视口中可见的元素在两帧之间更改其开始位置（例如，默认书写模式下的顶部和左侧位置）时，都会报告条目。这些元素被认为是_不稳定元素_。
+请注意，仅当现有元素更改其起始位置时，才会发生布局转换。如果将新元素添加到DOM或现有元素更改了大小，则只要更改不会导致其他可见元素更改其起始位置，该元素就不会算作布局偏移。
+如何计算CLS分数 # 要计算_布局平移分数_，浏览器将查看视口大小以及两个渲染帧之间视口中_不稳定元素_的移动。布局偏移分数是该运动的两个度量的乘积：影响比例（impact fraction） 和 位移比例（均在下面定义）。
+layout shift score = impact fraction * distance fraction 影响比例 # 前一帧 和_当前帧的所有_不稳定元素_的可见区域的_并集（占视口总面积的_一部分）是当前帧的_影响分数。
+在上图中，有一个元素在一帧中占据了视口的一半。然后，在下一帧中，元素下移视口高度的25％。红色的虚线矩形表示两个帧中元素的可见区域的并集，在这种情况下，其为总视口的75％，因此其 _影响分数_为0.75。
+位移比例 # 布局移位分数方程的另一部分测量不稳定元素相对于视口移动的距离。的_距离分数_ 是最大的距离的任何_不稳定的元件_在帧已经移动（水平或垂直任一）通过视域的最大尺寸（宽度或高度，取较大值）分开。
+上面的示例中，最大视口尺寸是高度，不稳定元素已移动了视口高度的25％，这使得 _距离分数_为0.25。
+因此，在此示例中，_碰撞分数_为0.75，距离分数 为0.25，因此_版式位移分数_为0.75 * 0.25 = 0.1875。
+下一个示例说明将内容添加到现有元素如何影响布局平移分数：
+在此示例中，灰色框会更改大小，但其开始位置不会更改，因此它不是_不稳定的元素_。
+“click me” 按钮以前不在DOM中，因此它的开始位置也不会更改。
+但是，绿色框的开始位置确实会发生变化，但是由于已将其部分移出视口，因此在计算_碰撞率_时不会考虑不可见区域。两个框架中绿色框的可见区域的并集（用红色虚线矩形表示）与第一帧中绿色框的区域相同-视口的50％。该_影响分数_是0.5。
+的_距离分数_被示为具有紫色箭头。绿色框已向下移动了约14％的视口，因此_距离分数_为0.14。
+布局移位分数是0.5 x 0.</description></item></channel></rss>

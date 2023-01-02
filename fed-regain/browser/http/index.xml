@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>HTTP协议 on</title><link>/fed-regain/browser/http/</link><description>Recent content in HTTP协议 on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 06 Oct 2020 08:49:15 +0000</lastBuildDate><atom:link href="/fed-regain/browser/http/index.xml" rel="self" type="application/rss+xml"/><item><title>HTTP/2 与 WEB 性能优化</title><link>/fed-regain/browser/http/http-2-%E4%B8%8E-web-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/http/http-2-%E4%B8%8E-web-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/</guid><description>Google 宣布在 16 年初放弃对 SPDY 的支持，随后 Google 自家支持 SPDY 协议的服务都切到了 HTTP/2。2015年 5 月 14 日，HTTP/2 以 RFC 7540 正式发布。目前，浏览器方面，Chrome 40+ 和 Firefox 36+ 都正式支持了 HTTP/2；服务器方面，著名的 Nginx 表示会在今年底正式支持 HTTP/2。
+不得不说这几年 WEB 技术一直在突飞猛进，爆炸式发展。昨天还觉得 HTTP/2 很遥远，今天已经遍地都是了。对于新鲜事物，有些人不愿意接受，觉得好端端为什么又要折腾；有些人会盲目崇拜，认为它是能拯救一切的救世主。HTTP/2 究竟会给前端带来什么，什么都不是？还是像某些人说的「让前端那些优化小伎俩直接退休」？我打算通过写一系列文章来尝试回答这个问题，今天是第一篇。
+提出问题 # 我们知道，一个页面通常由一个 HTML 文档和多个资源组成。有一些很重要的资源，例如头部的 CSS、关键的 JS，如果迟迟没有加载完，会阻塞页面渲染或导致用户无法交互，体验很差。如何让重要的资源更快加载完是我本文要讨论的问题。
+HTTP/1 # 分析 # 我们先来考虑资源外链的情况。通常，外链资源都会部署在 CDN 上，这样用户就可以从离自己最近的节点上获取数据。一般文本文件都会采用 gzip 压缩，实际传输大小是文件大小的几分之一。服务端托管静态资源的效率通常非常高，服务端处理时间几乎可以忽略。在忽略网络因素、传输大小以及服务端处理时间之后，用户何时能加载完外链资源，很大程度上取决于请求何时能发出去，这主要受下面三个因素影响：
+浏览器阻塞（Stalled）：浏览器会因为一些原因阻塞请求。例如在 rfc2616 中规定浏览器对于一个域名，同时只能有 2 个连接（HTTP/1.1 的修订版中去掉了这个限制，详见 rfc7230，因为后来浏览器实际上都放宽了限制），超过浏览器最大连接数限制，后续请求就会被阻塞。再例如现代浏览器在加载同一域名多个 HTTPS 资源时，会有意等第一个 TLS 连接建立完成再请求其他资源； DNS 查询（DNS Lookup）：浏览器需要知道目标服务器的 IP 才能建立连接。将域名解析为 IP 的这个系统就是 DNS。DNS 查询结果通常会被缓存一段时间，但第一次访问或者缓存失效时，还是可能耗费几十到几百毫秒； 建立连接（Initial Connection）：HTTP 是基于 TCP 协议的，浏览器最快也要在第三次握手时才能捎带 HTTP 请求报文。这个过程通常也要耗费几百毫秒； 当然我们一般都会给静态资源设置一个很长时间的缓存头。只要用户不清除浏览器缓存也不刷新，第二次访问我们网页时，静态资源会直接从本地缓存获取，并不产生网络请求；如果用户只是普通刷新而不是强刷，浏览器会在请求头带上协商字段 If-Modified-Since 或 If-None-Match，服务端对没有变化的资源会响应 304 状态码，告知浏览器从本地缓存获取资源。304 请求没有正文，非常小。</description></item><item><title>HTTPS访问localhost的http资源</title><link>/fed-regain/browser/http/https%E8%AE%BF%E9%97%AElocalhost%E7%9A%84http%E8%B5%84%E6%BA%90/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/http/https%E8%AE%BF%E9%97%AElocalhost%E7%9A%84http%E8%B5%84%E6%BA%90/</guid><description>HTTPS加载http # https加载http的资源，浏览器会有mixed content错误，默认是阻止的。
+什么是混合内容？ {#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B7%B7%E5%90%88%E5%86%85%E5%AE%B9%EF%BC%9F.devsite-page-title} # 混合内容在以下情况下出现：初始 HTML 内容通过安全的 HTTPS 连接加载，但其他资源（例如，图像、视频、样式表、脚本）则通过不安全的 HTTP 连接加载。之所以称为混合内容，是因为同时加载了 HTTP 和 HTTPS 内容以显示同一个页面，且通过 HTTPS 加载的初始请求是安全的。现代[浏览器](https://www.w3cdoc.com)会针对此类型的内容显示警告，以向用户表明此页面包含不安全的资源。 TL;DR HTTPS 对于保护您的网站和用户免受攻击非常重要。 混合内容会降低您的 HTTPS 网站的安全性和用户体验。 资源请求和网络[浏览器](https://www.w3cdoc.com) 当浏览器访问网站的页面时，它将请求 HTML 资源。然后，网络服务器返回 HTML 内容，浏览器进行解析并显示给用户。通常，一个 HTML 文件不足以显示一个完整页面，因此，HTML 文件包含浏览器需要请求的其他资源的引用。这些子资源可以是图像、视频、额外 HTML、CSS 或 JavaScript 之类的资源；每个资源均使用单独的请求获取。
+HTTPS 的优势 当浏览器通过 HTTPS（HTTP Secure 的缩写形式）请求资源时，它使用一个已加密连接与网络服务器进行通信。
+使用 HTTPS 有三个主要优势：
+身份验证 数据完整性 保密性 身份验证 我正在访问的网站是正确的吗？ HTTPS 让浏览器检查并确保其已打开正确的网站，并且没有被重定向到恶意的网站。 当导航到您的银行网站时，您的浏览器对该网站进行身份验证，从而防止攻击者冒充您的银行窃取您的登录凭据。
+数据完整性 是否有人篡改我正在发送或接收的内容？ HTTPS 让浏览器检测是否有攻击者更改了浏览器接收的任何数据。 使用您的银行网站转账时，这样做可防止当您的请求在传输中时攻击者更改目标帐号。
+保密性 是否有人能看到我正在发送或接收的内容？ HTTPS 可防止攻击者窃取浏览器的请求，跟踪访问的网站或窃取已发送或接收的信息。
+HTTPS、传输层安全协议 (TLS) 和 SSL HTTPS 是 HTTP Secure 的缩写，即超文本传输安全协议。此处的 secure 部分来自于添加到[浏览器](https://www.</description></item><item><title>HTTP协商缓存VS强缓存原理</title><link>/fed-regain/browser/http/http%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98vs%E5%BC%BA%E7%BC%93%E5%AD%98%E5%8E%9F%E7%90%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/http/http%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98vs%E5%BC%BA%E7%BC%93%E5%AD%98%E5%8E%9F%E7%90%86/</guid><description>之前一直对[浏览器](https://www.w3cdoc.com)缓存只能描述一个大概，深层次的原理不能描述上来；终于在[前端](https://www.w3cdoc.com)的两次面试过程中被问倒下，为了泄恨，查阅一些资料最终对其有了一个更深入的理解，废话不多说，赶紧来看看[浏览器](https://www.w3cdoc.com)缓存的那些事吧，有不对的地方，请各位不吝赐教啊。 本文主要讲解[浏览器](https://www.w3cdoc.com)端的缓存，缓存的作用是不言而喻的，能够极大的改善网页性能，提高用户体验。 ## 1、[浏览器](https://www.w3cdoc.com)缓存 缓存这东西，第一次必须获取到资源后，然后根据返回的信息来告诉如何缓存资源，可能采用的是强缓存，也可能告诉客户端[浏览器](https://www.w3cdoc.com)是协商缓存，这都需要根据响应的header内容来决定的。下面用两幅图来描述[浏览器](https://www.w3cdoc.com)的缓存是怎么玩的，让[大家](https://www.w3cdoc.com)有个大概的认知。 [浏览器](https://www.w3cdoc.com)第一次请求时： &amp;lt;img src=&amp;quot;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/408483-20160525182843100-1556227104.png&amp;quot; data-src=&amp;quot;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/408483-20160525182843100-1556227104.png?x-oss-process=image/format,webp&amp;quot; alt=&amp;quot;&amp;quot; /&amp;gt; [浏览器](https://www.w3cdoc.com)后续在进行请求时： &amp;lt;img src=&amp;quot;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/408483-20160525182943272-204994049.png&amp;quot; data-src=&amp;quot;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/408483-20160525182943272-204994049.png?x-oss-process=image/format,webp&amp;quot; alt=&amp;quot;&amp;quot; /&amp;gt; 从上图可以知道，[浏览器](https://www.w3cdoc.com)缓存包含两种类型，即强缓存（也叫本地缓存）和协商缓存，[浏览器](https://www.w3cdoc.com)在第一次请求发生后，再次请求时： &amp;lt;ul&amp;gt; [浏览器](https://www.w3cdoc.com)在请求某一资源时，会先获取该资源缓存的header信息，判断是否命中强缓存（cache-control和expires信息），若命中直接从缓存中获取资源信息，包括缓存header信息；本次请求根本就不会与服务器进行通信；在firebug下可以查看某个具有强缓存资源返回的信息，例如本地firebug查看的一个强缓存js文件&amp;lt;img loading=&amp;quot;lazy&amp;quot; src=&amp;quot;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/408483-20160525185916397-1208157783.jpg&amp;quot; data-src=&amp;quot;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/03/408483-20160525185916397-1208157783.jpg?x-oss-process=image/format,webp&amp;quot; alt=&amp;quot;&amp;quot; width=&amp;quot;517&amp;quot; height=&amp;quot;297&amp;quot; /&amp;gt; 如果没有命中强缓存，[浏览器](https://www.w3cdoc.com)会发送请求到服务器，请求会携带第一次请求返回的有关缓存的header字段信息（Last-Modified/If-Modified-Since和Etag/If-None-Match），由服务器根据请求中的相关header信息来比对结果是否协商缓存命中；若命中，则服务器返回新的响应header信息更新缓存中的对应header信息，但是并不返回资源内容，它会告知[浏览器](https://www.w3cdoc.com)可以直接从缓存获取；否则返回最新的资源内容 强缓存与协商缓存的区别，可以用下表来进行描述： &amp;lt;table id=&amp;quot;t&amp;quot; border=&amp;quot;0&amp;quot;&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 获取资源形式 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 状态码 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 发送请求到服务器 &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt; 强缓存 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 从缓存取 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 200（from cache） &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 否，直接从缓存取 &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt; 协商缓存 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 从缓存取 &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 304（not modified） &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 是，正如其名，通过服务器来告知缓存是否可用 &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/table&amp;gt; ## 2、强缓存相关的header字段 强缓存上面已经介绍了，直接从缓存中获取资源而不经过服务器；与强缓存相关的header字段有两个： &amp;lt;ol&amp;gt; expires，这是http1.</description></item><item><title>HTTP协议以及HTTP2.0/1.1/1.0区别</title><link>/fed-regain/browser/http/http%E5%8D%8F%E8%AE%AE%E4%BB%A5%E5%8F%8Ahttp2-0-1-1-1-0%E5%8C%BA%E5%88%AB/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/http/http%E5%8D%8F%E8%AE%AE%E4%BB%A5%E5%8F%8Ahttp2-0-1-1-1-0%E5%8C%BA%E5%88%AB/</guid><description>一.简介 # 摘自百度百科:
+超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。所有的WWW文件都必须遵守这个标准。设计HTTP最初的目的是为了提供一种发布和接收HTML页面的方法。
+HTTP属于OSI网络七层协议模型中的”最上层”:应用层。由请求和响应构成，是一个标准的客户端服务器模型。HTTP是一个无状态的协议。 HTTP默认端口号为80。它也可以承载在TLS和SSL之上，通过加密、认证的方式实现数据传输的安全，称为HTTPS，HTTPS默认端口号为443。 早期HTTP用于传输网页HTML文件，发展到现在，应用变得广泛，客户端软件（PC，Android,iOS等）大部分通过HTTP传输数据。 二.通信过程 # 角色:客户端和服务端
+首先，客户端发起一个与服务器的TCP连接，建立连接之后，A中的浏览器进程就可以通过Socket访问该TCP连接。
+客户端A进程通过该TCP连接向服务端B发送一个HTTP请求报文(ASCII码)，报文中包含（百度首页为例）
+请求行(request line) : 3个字段:方法字段、URL字段和HTTP版本字段
+GET / HTTP/1.1
+请求头(header line) : 位于请求行之后
+Host www.baidu.com
+Connection keep-alive
+Cache-Control max-age=0
+Upgrade-Insecure-Requests 1
+User-Agent Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36
+Accept text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,/;q=0.8
+Referer https://www.baidu.com/s?wd=Https&amp;amp;rsv_spt=1&amp;amp;rsv_iqid=0xc28e80ff00002ae1&amp;amp;issp=1&amp;amp;f=8&amp;amp;rsv_bp=1&amp;amp;rsv_idx=2&amp;amp;ie=utf-8&amp;amp;rqlang=cn&amp;amp;tn=baiduhome_pg&amp;amp;rsv_enter=0&amp;amp;oq=Http%25E5%258D%258F%25E8%25AE%25AE&amp;amp;rsv_pq=de652d0900004bfb&amp;amp;inputT=691&amp;amp;rsv_sug3=47&amp;amp;rsv_sug1=48&amp;amp;rsv_sug7=100&amp;amp;rsv_sug4=756
+Accept-Encoding gzip, deflate, br
+Accept-Language zh-CN,zh;q=0.9,en;q=0.8
+空行 :
+位于请求头和请求体之间，必须要有
+请求体(entity body) : 在使用GET方法时，请求体为空。POST时可以类似如下格式:
+username=test&amp;amp;password=123123
+HTTP服务器进程通过Socket接收到该请求报文，从存储器(内存或磁盘)中得到URL字段中指定的对象(如:/index.html)，然后封装到响应报文中，通过Socket发送到客户端。 响应报文:
+状态行(status line) :</description></item><item><title>websocket建立连接</title><link>/fed-regain/browser/http/websocket%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/http/websocket%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5/</guid><description>WebSocket是HTML5新增的协议，它的目的是在浏览器和服务器之间建立一个不受限的双向通信的通道，比如说，服务器可以在任意时刻发送消息给浏览器。
+为什么传统的HTTP协议不能做到WebSocket实现的功能？这是因为HTTP协议是一个请求－响应协议，请求必须先由浏览器发给服务器，服务器才能响应这个请求，再把数据发送给浏览器。换句话说，浏览器不主动请求，服务器是没法主动发数据给浏览器的。
+这样一来，要在浏览器中搞一个实时聊天，在线炒股（不鼓励），或者在线多人游戏的话就没法实现了，只能借助Flash这些插件。
+也有人说，HTTP协议其实也能实现啊，比如用轮询或者Comet。轮询是指浏览器通过JavaScript启动一个定时器，然后以固定的间隔给服务器发请求，询问服务器有没有新消息。这个机制的缺点一是实时性不够，二是频繁的请求会给服务器带来极大的压力。
+Comet本质上也是轮询，但是在没有消息的情况下，服务器先拖一段时间，等到有消息了再回复。这个机制暂时地解决了实时性问题，但是它带来了新的问题：以多线程模式运行的服务器会让大部分线程大部分时间都处于挂起状态，极大地浪费服务器资源。另外，一个HTTP连接在长时间没有数据传输的情况下，链路上的任何一个网关都可能关闭这个连接，而网关是我们不可控的，这就要求Comet连接必须定期发一些ping数据表示连接“正常工作”。
+以上两种机制都治标不治本，所以，HTML5推出了WebSocket标准，让浏览器和服务器之间可以建立无限制的全双工通信，任何一方都可以主动发消息给对方。
+WebSocket协议 # WebSocket并不是全新的协议，而是利用了HTTP协议来建立连接。我们来看看WebSocket连接是如何创建的。
+首先，WebSocket连接必须由浏览器发起，因为请求协议是一个标准的HTTP请求，格式如下：
+GET ws://localhost:3000/ws/chat HTTP/1.1 Host: localhost Upgrade: websocket Connection: Upgrade Origin: http://localhost:3000 Sec-WebSocket-Key: client-random-string Sec-WebSocket-Version: 13 该请求和普通的HTTP请求有几点不同：
+GET请求的地址不是类似/path/，而是以ws://开头的地址； 请求头Upgrade: websocket和Connection: Upgrade表示这个连接将要被转换为WebSocket连接； Sec-WebSocket-Key是用于标识这个连接，并非用于加密数据； Sec-WebSocket-Version指定了WebSocket的协议版本。 随后，服务器如果接受该请求，就会返回如下响应：
+HTTP/1.1 101 Switching Protocols Upgrade: websocket Connection: Upgrade Sec-WebSocket-Accept: server-random-string 该响应代码101表示本次连接的HTTP协议即将被更改，更改后的协议就是Upgrade: websocket指定的WebSocket协议。
+版本号和子协议规定了双方能理解的数据格式，以及是否支持压缩等等。如果仅使用WebSocket的API，就不需要关心这些。
+现在，一个WebSocket连接就建立成功，浏览器和服务器就可以随时主动发送消息给对方。消息有两种，一种是文本，一种是二进制数据。通常，我们可以发送JSON格式的文本，这样，在浏览器处理起来就十分容易。
+建立连接之后可以在chrome开发者工具网络栏目下的ws中查看websocket消息。可以看到有很多帧的消息，这些消息都是复用一个http连接。
+为什么WebSocket连接可以实现全双工通信而HTTP连接不行呢？实际上HTTP协议是建立在TCP协议之上的，TCP协议本身就实现了全双工通信，但是HTTP协议的请求－应答机制限制了全双工通信。WebSocket连接建立以后，其实只是简单规定了一下：接下来，咱们通信就不使用HTTP协议了，直接互相发数据吧。
+安全的WebSocket连接机制和HTTPS类似。首先，浏览器用wss://xxx创建WebSocket连接时，会先通过HTTPS创建安全的连接，然后，该HTTPS连接升级为WebSocket连接，底层通信走的仍然是安全的SSL/TLS协议。
+浏览器 # 很显然，要支持WebSocket通信，浏览器得支持这个协议，这样才能发出ws://xxx的请求。目前，支持WebSocket的主流浏览器如下：
+Chrome Firefox IE &amp;gt;= 10 Sarafi &amp;gt;= 6 Android &amp;gt;= 4.4 iOS &amp;gt;= 8 服务器 # 由于WebSocket是一个协议，服务器具体怎么实现，取决于所用编程语言和框架本身。Node.</description></item><item><title>什么时候会发送options请求</title><link>/fed-regain/browser/http/%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E5%8F%91%E9%80%81options%E8%AF%B7%E6%B1%82/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/http/%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E5%8F%91%E9%80%81options%E8%AF%B7%E6%B1%82/</guid><description>一、简介 # 出于安全考虑，并不是所有域名访问后端服务都可以。其实在正式跨域之前，浏览器会根据需要发起一次预检（也就是option请求），用来让服务端返回允许的方法（如get、post），被跨域访问的Origin（来源或者域），还有是否需要Credentials(认证信息)等。那么浏览器在什么情况下能预检呢？
+二、两种请求方式 # 浏览器将CORS请求分为两类：简单请求（simple request）和非简单请求（not-simple-request）,简单请求浏览器不会预检，而非简单请求会预检。这两种方式怎么区分？
+同时满足下列三大条件，就属于简单请求，否则属于非简单请求
+1.请求方式只能是：GET、POST、HEAD
+2.HTTP请求头限制这几种字段：Accept、Accept-Language、Content-Language、Content-Type、Last-Event-ID
+3.Content-type只能取：application/x-www-form-urlencoded、multipart/form-data、text/plain
+对于简单请求，浏览器直接请求，会在请求头信息中，增加一个origin字段，来说明本次请求来自哪个源（协议+域名+端口）。服务器根据这个值，来决定是否同意该请求，服务器返回的响应会多几个头信息字段，如图所示：上面的头信息中，三个与CORS请求相关，都是以Access-Control-开头。
+1.Access-Control-Allow-Origin：该字段是必须的，* 表示接受任意域名的请求，还可以指定域名
+2.Access-Control-Allow-Credentials：该字段可选，是个布尔值，表示是否可以携带cookie，（注意：如果Access-Control-Allow-Origin字段设置*，此字段设为true无效）
+3.Access-Control-Allow-Headers：该字段可选，里面可以获取Cache-Control、Content-Type、Expires等，如果想要拿到其他字段，就可以在这个字段中指定。比如图中指定的GUAZISSO
+非简单请求是对那种对服务器有特殊要求的请求，比如请求方式是PUT或者DELETE，或者Content-Type字段类型是application/json。都会在正式通信之前，增加一次HTTP请求，称之为预检。浏览器会先询问服务器，当前网页所在域名是否在服务器的许可名单之中，服务器允许之后，浏览器会发出正式的XMLHttpRequest请求，否则会报错。（备注：之前碰到预检请求后端没有通过，就不会发正式请求，然后找了好久原因，原来后端给忘了设置…）Java后端实现拦截器，排除Options
+JAVA代码片段 就Content-Type为application/json为例：对比两张图片，一次预检请求，一 次正式请求：
+预检请求 正式请求 很明显，请求头中预检请求不会携带cookie，正式请求会携带cookie和参数。跟普通请求一样，响应头也会增加同样字段。
+一旦服务器通过了“预检”请求，以后每次浏览器正常的CORS请求，就都跟简单请求一样。什么时候会发送options请求
+最近写的项目，应用里所有的ajax请求都发送了2遍。由于新项目，基础模块是新搭的，所以出现一些奇葩问题也是意料之中，啊终于第一次在chrome的devTools遇见了活的options请求。 1.1 第1次请求 这里首先发送了一次额外的options请求，在[浏览器](https://www.w3cdoc.com)里看到请求request header 和 response header的信息如下： （1）预检请求头request header的关键字段： Request Header &amp;lt;th&amp;gt; 作用 &amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt; Access-Control-Request-Method &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 告诉服务器实际请求所使用的 HTTP 方法 &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt; Access-Control-Request-Headers &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 告诉服务器实际请求所携带的自定义首部字段，本次实际请求首部字段中content-type为自定义 &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; 服务器基于从预检请求头部获得的信息来判断，是否接受接下来的实际请求。 （2）预检响应头response header的关键字段： response header &amp;lt;th&amp;gt; 作用 &amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt; Access-Control-Allow-Methods &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 返回了服务端允许的请求，包含GET/HEAD/PUT/PATCH/POST/DELETE &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt; Access-Control-Allow-Credentials &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 允许跨域携带cookie（跨域请求要携带cookie必须设置为true） &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt; Access-Control-Allow-Origin &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 允许跨域请求的域名，这个可以在服务端配置一些信任的域名白名单 &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt; Access-Control-Request-Headers &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; 客户端请求所携带的自定义首部字段content-type &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; 此次OPTIONS请求返回了响应头的内容，但没有返回响应实体response body内容。 1.</description></item><item><title>关于chrome请求stalled的时间</title><link>/fed-regain/browser/http/%E5%85%B3%E4%BA%8Echrome%E8%AF%B7%E6%B1%82stalled%E7%9A%84%E6%97%B6%E9%97%B4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/http/%E5%85%B3%E4%BA%8Echrome%E8%AF%B7%E6%B1%82stalled%E7%9A%84%E6%97%B6%E9%97%B4/</guid><description>最近同学反馈说页面请求偶尔很慢，打开浏览器查看加载静态资源时候stalled占用了很长时间，但是只有他的电脑是这样，我这边有stalled时间，但是没有这么长：
+stalled是什么 # 什么是stalled呢？下面是一段比较容易懂的解释：
+Time the request spent waiting before it could be sent. This time is inclusive of any time spent in proxy negotiation.Additionally, this time will include when the browser is waiting for an already established connection to become available for re-use, obeying Chrome’s maximum six TCP connection per origin rule.
+也即是从TCP连接建立完成，到真正可以传输数据之间的时间差。先让我们要分析TCP连接为什么要等待这么久才能用？我用Wireshark抓包发现(如下图)，TCP连接过程中有多次重传，直到达到最大重传次数后连接被客户端重置。
+为什么会发生重传呢？
+The sender waits for an ACK for the byte-range sent to the client and when not received, resends the packets, after a particular interval.</description></item><item><title>基于正向代理解决方案实现的万能代理接口代理转发服务</title><link>/fed-regain/browser/http/http-proxy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/http/http-proxy/</guid><description>今天把项目中的反向代理脚本程序抽成了一个插件，通过配置文件配置代理的http请求，这样使用起来比较方便，每位开发成员都可以用自己配置的代理调试代码。也可以用来直接做http代理，你甚至都不用Charles或者fiddler，直接开启proxy-ajax，然后手机上设置代理就可以了。
+使用方法：
+npm install fedp -g
+fedp init // 会提示你在那种场景使用，自动生成配置文件
+fedp -c config.js // 会提示你在那种场景使用，自定义配置文件
+github： https://github.com/chalecao/fedp 请帮我点亮小星星，感谢star
+使用很简单，修改配置文件就好了。访问地址是：127.0.0.1:8889/访问路径
+根据配置会自动代理静态资源，包括css，图片，可以代理到本地或者远程 自定义接口，根据匹配关键字，返回指定的数据结构 /**
+* fedp配置文件
+*/
+const targetMockServer = 'https://127.0.0.1/';
+module.exports = {
+port: 8889, // proxy server port
+domain: false, // true to apply new domain, false to use ip, or you self domain string like &amp;quot;test.tmall.com&amp;quot;
+debug: false, // enable debug
+mock: true, // enable mock
+env: '', // pre预发，prod线上，daily日常，对应于不同请求
+debugPort: 9001, // debug server port
+cmds: [ // cmds you want run
+// &amp;quot;tap server&amp;quot;
+],
+scripts: [ // scripts you want to inject to the html
+],
+// urlsuffix: &amp;quot;src/indexWeb.</description></item><item><title>移动[前端](https://www.w3cdoc.com)系列——websocket实时互动小游戏</title><link>/fed-regain/browser/http/%E7%A7%BB%E5%8A%A8%E5%89%8D%E7%AB%AF%E7%B3%BB%E5%88%97-websocket%E5%AE%9E%E6%97%B6%E4%BA%92%E5%8A%A8%E5%B0%8F%E6%B8%B8%E6%88%8F/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/http/%E7%A7%BB%E5%8A%A8%E5%89%8D%E7%AB%AF%E7%B3%BB%E5%88%97-websocket%E5%AE%9E%E6%97%B6%E4%BA%92%E5%8A%A8%E5%B0%8F%E6%B8%B8%E6%88%8F/</guid><description>原本是想在写这文章之前，给大家来个二维码，让大家来感受一下我那个狂拽酷炫叼炸天的实时互动小游戏，无奈一直没有找到一台足以hold住其气场的服务器。所以，此处可能需要大家跟随我的描述，脑补一下那高端大气上档次的画面及低调奢华有内涵交互设计：
+登录界面（此处省略4.33W字） 房间列表页（此处省略3.75W字） 游戏界面（此处省略5.83W字） 真不是我故意这样的，实在是人类的语言已无法将其形容，过份的修饰描述只怕是有损其光辉闪耀的形象。此时的我，更是怀着对其满满的敬意，忐忑第敲打着键盘，为大家介绍其狂拽酷炫叼炸天是怎样形成的。
+从文章的标题上，我们不难看出，这个游戏是基于websocket。那么我就先从websocket的作用以及其优点这两个方面，给大家简单介绍一下websocket：
+Websocket的作用 # 其实websocket的作用，个人感觉可以简单地用一句话来概括：构建实时的Web应用
+比如：
+聊天室/在线客服 在线游戏 股票走势 多屏互动 … 在日常的使用web的过程中，这种功能非常常见，比如：新浪微博的WebIM、WebQQ、大智慧网页版等等，我们在处理日常的一些专题中，适当地加入一些多屏互动，也能很好地增加用户的参与度，增强一些现场的互动，如：斗战诛天营救悟空、神秘站等
+在websocket出来之前，如果我们想实现上述类型的功能，我们通常采用的是以下几种方式：
+轮询 长轮询 长连接 Flash 我就先通过比较以上几种方式的优缺点，让大家更为清楚地了解websocket牛B之处
+轮询 # 定时向服务器发送请求，服务器响应请求并返回数据
+优点：后端服务器不需要特殊设置
+缺点：易产生大量无效请求，浪费服务器资源，且消息有延迟
+这种轮询的方式，在日常的网页应用中其实应用也比较多，但是只适合一些实时性要求并不是很高的那种应用，比如说微博的新消息提醒，每隔一段向服务器请求，看看是否有新的微博/粉丝/@等
+长轮询 # 客户端向服务器发送Ajax请求，服务器保持该请求不中断，一直等有新的数据（或超时）需要处理才返回响应信息并关闭连接，客户端处理完成后，重新发起ajax请求
+PS:两张图找不同的游戏已开始，请注意看右侧服务器端部分的差异
+优点：相比轮询，减少了无效请求次数，消息的实时性得到提升
+缺点：保持连接同样造成服务器资源浪费
+就目前而言，大多数兼容低版本浏览器的聊天室（聊天室貌似基本玩完了）、在线客服，采用的都还是这种方式
+长连接 # 请求一直不中断，服务器端可不断地向客户端输出数据
+优点：消息实时，不会产生无效请求
+缺点：对服务器开销较大，单向接收数据还成，客户端如果想要提交数据，一样需要断开连接后重新发送请求
+Flash # 基于socket，服务器可客户端可随时进行双向通信
+优点：socket协议
+缺点：需要安装flash player，对移动端（特别是IOS，貌似高级的安卓也在放弃flash）不友好
+通过对上面四种传统方式的分析，我们不难发现，其实前面的三种方式都是传统意义上的HTTP请求（PS:那些个乱七八糟的握手什么，就不在这里探讨了），然后你就会发现，每次的请求都会有一堆类似下面的这些个步骤
+当然了，牛B的你可能会说DNS有缓存，并不会需要那么多DNS Lookup，嗯，那么其他的呢？看看那些头信息（cookie已打码）
+这些信息可是会伴随每次请求，来回地穿梭在服务器和客户端之间。浪费你大量的服务器资源，当然了，弊端包括但不限于此。那么，是时候看看Websocket的优势
+Websocket的优点 # 说到这个优点，我只想让大家看一个websocket官网上的一个图表
+通过这么一个图表，我们会发现，请求量越大的情况下，Websocket的表现就越是勇猛。与此同时，这么一个勇猛的外表下，脏着的确是一颗少女般的心。别误会，值的是学习起她来很简单。
+下面就从websocket服务器及其api两个方面来简单介绍一下：
+Webscoket服务器的搭建 # 本次所讲述的websocket是基于nodejs服务器来完成整套部署的。所以，我们需要先在服务器上搭建一个nodejs环境
+Nodejs安装 # 直接从http://nodejs.org 这个网站上下载后直接安装就成，应该是没什么难度的
+安装完成之后，我们可以在命令行工具中运行 node -v来检测安装是否成功
+如果正常地显示出了版本号，那么说明nodejs安装成功，接下来我们就需要安装websocket模块了
+Websocket模块安装 # Nodejs安装完成之后，其默认就给安装好了nodejs包管理工具npm，通过使用npm命令，我们就可以来安装/卸载/更新nodejs的包。
+一切正常的话，我们就可以通过使用命令</description></item><item><title>说说http状态码和妙用</title><link>/fed-regain/browser/http/%E8%AF%B4%E8%AF%B4http%E7%8A%B6%E6%80%81%E7%A0%81%E5%92%8C%E5%A6%99%E7%94%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/http/%E8%AF%B4%E8%AF%B4http%E7%8A%B6%E6%80%81%E7%A0%81%E5%92%8C%E5%A6%99%E7%94%A8/</guid><description>一些常见的状态码 # 1开头 # 1xx(临时响应)表示临时响应并需要请求者继续执行操作的状态代码。代码 说明
+100 (继续) 请求者应当继续提出请求。 服务器返回此代码表示已收到请求的第一部分，正在等待其余部分。
+101 (切换协议) 请求者已要求服务器切换协议，服务器已确认并准备切换。
+2开头 # 2xx (成功)表示成功处理了请求的状态代码。代码 说明
+200 (成功) 服务器已成功处理了请求。 通常，这表示服务器提供了请求的网页。
+201 (已创建) 请求成功并且服务器创建了新的资源。
+202 (已接受) 服务器已接受请求，但尚未处理。
+203 (非授权信息) 服务器已成功处理了请求，但返回的信息可能来自另一来源。
+204 (无内容) 服务器成功处理了请求，但没有返回任何内容。
+205 (重置内容) 服务器成功处理了请求，但没有返回任何内容。
+206 (部分内容) 服务器成功处理了部分 GET 请求。
+3开头 # 3xx (重定向) 表示要完成请求，需要进一步操作。 通常，这些状态代码用来重定向。代码 说明
+300 (多种选择) 针对请求，服务器可执行多种操作。 服务器可根据请求者 (user agent) 选择一项操作，或提供操作列表供请求者选择。
+301 (永久移动) 请求的网页已永久移动到新位置。 服务器返回此响应(对 GET 或 HEAD 请求的响应)时，会自动将请求者转到新位置。
+302 (临时移动) 服务器目前从不同位置的网页响应请求，但请求者应继续使用原有位置来进行以后的请求。
+303 (查看其他位置) 请求者应当对不同的位置使用单独的 GET 请求来检索响应时，服务器返回此代码。</description></item></channel></rss>

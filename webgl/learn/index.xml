@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>webgl入门 on</title><link>/webgl/learn/</link><description>Recent content in webgl入门 on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 06 Oct 2020 08:48:23 +0000</lastBuildDate><atom:link href="/webgl/learn/index.xml" rel="self" type="application/rss+xml"/><item><title>初始WebGL和ThreeJS</title><link>/webgl/learn/%E5%88%9D%E5%A7%8Bwebgl%E5%92%8Cthreejs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/webgl/learn/%E5%88%9D%E5%A7%8Bwebgl%E5%92%8Cthreejs/</guid><description>什么是WebGL # 简而言之，WebGL是一种3D绘图标准，这种绘图技术标准允许把JavaScript和OpenGL ES 2.0结合在一起，通过增加OpenGL ES 2.0的一个JavaScript绑定，WebGL可以为HTML5 Canvas提供硬件3D加速渲染，这样Web开发人员就可以借助系统显卡来在浏览器里更流畅地展示3D场景和模型了，还能创建复杂的导航和数据视觉化。显然，WebGL技术标准免去了开发网页专用渲染插件的麻烦，可被用于创建具有复杂3D结构的网站页面，甚至可以用来设计3D网页游戏等等。
+而ThreeJS是一个Javascript类库，用于方便再浏览器中使用js完成WebGL中3d场景的绘制，模型的渲染。
+如何使用 # 官网上下载ThreeJs类库，地址：https://threejs.org 新建文件夹，建立threejs1目录，作为我们的测试1工作目录。建立js目录，将three.min.js拷贝到该目录。 在threejs1工作目录，新建index.html，键入如下代码： &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;My first Three.js app&amp;lt;/title&amp;gt; &amp;lt;style&amp;gt; body { margin: 0; } canvas { width: 100%; height: 100% } &amp;lt;/style&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;script src=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt; // Our Javascript will go here. &amp;lt;/script&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 我们接着在上面空出的script标签中完成threejs的初始化等工作。
+创建场景 # 上面的步骤我们已经把代码结构搭建好了，接下来就是逻辑实现部分了。有一些基础知识必须先介绍，要使用threejs来完成webgl的工作，我们总是需要3个基本部分：场景，摄像机，渲染器。创建一个场景，然后在场景中排放物体模型，然后设置摄像机的位置和角度，最后基于摄像机的配置，使用渲染器来渲染出整个画面效果。
+给出相应的js代码如下：
+var scene = new THREE.Scene(); var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 ); var renderer = new THREE.</description></item><item><title>点线面基本作图</title><link>/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/</guid><description>WebGL中的点线面 # 在计算机世界里，3D世界是由点组成，两个点能够组成一条直线，三个不在一条直线上的点就能够组成一个三角形面，无数三角形面就能够组成各种形状的物体，如下图：
+我们通常把这种网格模型叫做Mesh模型。给物体贴上皮肤，或者专业点就叫做纹理，那么这个物体就活灵活现了。最后无数的物体就组成了我们的3D世界。
+那么3D世界的组成，是否真的这样简单？是的，从编程的角度，目前为此，你只需要知道这些。下一节，我们从点说起。
+点的知识 # 在Threejs中定义一个点 # 在三维空间中的某一个点可以用一个坐标点来表示。一个坐标点由x,y,z三个分量构成。在three.js中，点可以在右手坐标系中表示：
+空间几何中，点可以用一个向量来表示，在Three.js中也是用一个向量来表示的，代码如下所示：
+THREE.Vector3 = function ( x, y, z ) { this.x = x || 0; this.y = y || 0; this.z = z || 0; }; 我们来分析这段代码：前面我们已经知道了THREE是Three.js引擎的一个全局变量。只要你想用它，就可以在任何地方用它。
+那么THREE.Vector3呢，就是表示Vector3是定义在THREE下面的一个类。以后要用Vector3，就必须要加THREE前缀。当然Three.js的设计者，也可以不加THREE这个前缀，但是他们预见到，Three.js引擎中会有很多类型，最好给这些类型加一个前缀，以免与开发者的代码产生冲突。
+THREE.Vector3被赋值为一个函数。这个函数有3个参数，分别代表x坐标，y坐标和z坐标的分量。函数体内的代码将他们分别赋值给成员变量x，y，z。看看上面的代码，中间使用了一个“||”（或）运算符，就是当x=null或者undefine时，this.x的值应该取0。
+点的操作 # 在3D世界中点可以用THREE.Vector3D来表示。对应源码为/src/math/Vector3.js（注意：源码所在的位置，可能不同版本不一样，请自己搜索Vector3关键词来确定）。在您继续学习之前，你可以打开该文件浏览一下，推荐使用WebStorm，如果没有，你也可以用NotePad++。
+现在来看看怎么定义个点，假设有一个点x=4，y=8，z=9。你可以这样定义它：
+var point1 = new THREE.Vecotr3(4,8,9); 另外你也可以使用set方法，代码如下：
+var point1 = new THREE.Vector3(); point1.set(4,8,9); 我们这里使用了set方法，为了以后深入学习的方便，这里将Vector3的常用方法列出如下，为了不影响文章的连贯性，我们专门列出了一个网页来介绍它。
+线的知识 # 初中数学中有一个定理：两个不重合的点能够决定一条直线。在three.js中，也可以通过定义两个点，来画一条直线。正好回顾一下上节最后给出的代码中的例子：
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt; &amp;lt;title&amp;gt;Three框架&amp;lt;/title&amp;gt; &amp;lt;script src=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt; div#canvas-frame { border: none; cursor: pointer; width: 100%; height: 600px; background-color: #EEEEEE; } &amp;lt;/style&amp;gt; &amp;lt;script&amp;gt; var renderer; function initThree() { width = document.</description></item><item><title>运动的场景</title><link>/webgl/learn/%E8%BF%90%E5%8A%A8%E7%9A%84%E5%9C%BA%E6%99%AF/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/webgl/learn/%E8%BF%90%E5%8A%A8%E7%9A%84%E5%9C%BA%E6%99%AF/</guid><description>动起手来 # 官方文档中其实给了很多的实例效果，可惜时间过得飞快，都没来得及仔细分析，学习。这一次让我们静下心，仔细的研究Three.js的每一个细节，终将成为这个领域的高手。不仅是成为three.js的高手，更重要的是理解图形学的概念，轻易掌握其他3D图形库。不是吹牛，大家阅读完这套课程，能够轻易的实现艳丽的粒子系统、模拟多种物理现象（如衣服在风中飘动），让浏览器中2D和3D混合等令人大饱眼福的效果。
+场景运动原理 # 场景中的物体怎么才能运动起来。我们这里从《古兰经》讲起，这样，你永远不会忘记。
+《古兰经》上有这样一个故事：一天穆罕穆德告诉人们说大山会向我们走来。于是人们就远望大山，看它怎么走过来，可是等了好长时间大山还是纹丝不动的在那里，人们就问穆罕穆德，大山也没向我们走来啊。默罕默德告诉人们：既然大山没向我们走来，那我们就向大山走去吧。于是人们来到了大山的山顶，人们征服了那座大山。
+这个故事揭示了场景动起来的方法，第一种方法是让物体在坐标系里面移动，摄像机不动。第二种方法是让摄像机在坐标系里面移动，物体不动。这样场景就能够动起来了。
+摄像机可以理解我们自己的眼睛。
+渲染循环 # 物体运动还有一个关键点，就是要渲染物体运动的每一个过程，让它显示给观众。渲染的时候，我们调用的是渲染器的render() 函数。代码如下：
+renderer.render( scene, camera ); 如果我们改变了物体的位置或者颜色之类的属性，就必须重新调用render()函数，才能够将新的场景绘制到浏览器中去。不然浏览器是不会自动刷新场景的。
+如果不断的改变物体的颜色，那么就需要不断的绘制新的场景，所以我们最好的方式，是让画面执行一个循环，不断的调用render来重绘，这个循环就是渲染循环，在游戏中，也叫游戏循环。
+为了实现循环，我们需要javascript的一个特殊函数，这个函数是requestAnimationFrame。
+调用requestAnimationFrame函数，传递一个callback参数，则在下一个动画帧时，会调用callback这个函数。
+于是，我们的游戏循环会这样写。
+function animate() { render(); requestAnimationFrame( animate ); } 这样就会不断的执行animate这个函数。也就是不断的执行render()函数。在render()函数中不断的改变物体或者摄像机的位置，并渲染它们，就能够实现动画了。
+改变相机的位置，让物体移动 # 有了这些简单的基础知识，我们来实现一个动画效果。
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt; &amp;lt;title&amp;gt;运动的场景－threejs&amp;lt;/title&amp;gt; &amp;lt;script src=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt; div#canvas-frame { border: none; cursor: pointer; width: 100%; height: 600px; background-color: #EEEEEE; } &amp;lt;/style&amp;gt; &amp;lt;script&amp;gt; var renderer; function initThree() { width = document.getElementById(&amp;quot;canvas-frame&amp;quot;).clientWidth; height = document.</description></item><item><title>WebGL中的相机</title><link>/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/</guid><description>动起手来 # 在第一课里，我们提到后续课程会详细讲解相机，那么今天就是我履行诺言的时刻了。嘿，这一刻，有点激动，想到相机，大学时，一直想买一个单反，但是要1万多。工作后，当一个月的工资就能买一个单反时，内心充满了骄傲和自豪。所以，各位大大们，技术还是有用的，至少技术可以用来挣钱。
+家有万贯，不如一技在手，加油。
+对WebGL感兴趣，还不知道如何入门的大大们，看看本教程吧，我有信心看完本教程，特别是看完本教程的中级和高级篇，你应该对3D世界有一个自己的理解了。使用你做的绚丽的demo去找一份不做的工作，就应该没有问题。
+认识相机 # 在Threejs中相机的表示是THREE.Camera，它是相机的抽象基类，其子类有两种相机，分别是正投影相机THREE.OrthographicCamera和透视投影相机THREE.PerspectiveCamera。类图如下所示：
+正投影相机有时候也叫正交投影摄像机，下图显示了正交摄像机投影和透视投影之间的差别。
+正投影和透视投影的区别是：透视投影有一个基本点，就是远处的物体比近处的物体小。在工程建筑领域，正投影的例子很多，例如下面就是一个正投影的例子,其特点是，远近高低比例都相同。
+正投影相机 # 下面我们来介绍正投影相机，正投影的构造函数如下所示：
+OrthographicCamera( left, right, top, bottom, near, far ) 结合下面一个图，我们来看看，各个参数的意思。
+介绍参数之前，先假定一个相机中心点，相机中心点可以想成是镜头的中心点。为了让大家能更容易的明白，我还是上一幅图吧，虽然这样会多花我一点时间。
+图中红点就是我们假设的相机中心点。下面介绍一下构造函数的参数：
+1、 left参数
+left：左平面距离相机中心点的垂直距离。从图中可以看出，左平面是屏幕里面的那个平面。
+2、 right参数
+right：右平面距离相机中心点的垂直距离。从图中可以看出，右平面是屏幕稍微外面一点的那个平面。
+3、 top参数
+top：顶平面距离相机中心点的垂直距离。上图中的顶平面，是长方体头朝天的平面。
+4、 bottom参数
+bottom：底平面距离相机中心点的垂直距离。底平面是头朝地的平面。
+5、near参数
+near：近平面距离相机中心点的垂直距离。近平面是左边竖着的那个平面。
+6、far参数
+far：远平面距离相机中心点的垂直距离。远平面是右边竖着的那个平面。
+有了这些参数和相机中心点，我们这里将相机的中心点又定义为相机的位置。通过这些参数，我们就能够在三维空间中唯一的确定上图的一个长方体。这个长方体也叫做视景体。
+投影变换的目的就是定义一个视景体，使得视景体外多余的部分裁剪掉，最终图像只是视景体内的有关部分。
+好了，看一个简单的例子：
+var camera = new THREE.OrthographicCamera( width / - 2, width / 2, height / 2, height / - 2, 1, 1000 ); scene.add( camera ); 这个例子将浏览器窗口的宽度和高度作为了视景体的高度和宽度，相机正好在窗口的中心点上。这也是我们一般的设置方法，基本上为了方便，我们不会设置其他的值。
+透视投影相机 # 透视投影是更符合我们视觉的投影，当你凝视一个女人时，就是因为远近高低各不同，女人才显得美丽，叫你看一个正投影的女人，估计连胸部、屁股都分不清，那么也没什么看头。</description></item><item><title>WebGL中的各种光</title><link>/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/</guid><description>世界有了光，就不在黑暗 # 宇宙间的物体有的是发光的，有的是不发光的，我们把发光的物体叫做光源。太阳、电灯、燃烧着的蜡烛等都是光源。
+在Threejs的世界里，有了光，就不会在黑暗。看美剧里面就有火神 呵呵
+Threejs中的各种光源 # 作为3D技术的发展趋势，浏览器端3D技术越来越被一些技术公司重视。由此，Threejs非常注重3D渲染效果的真实性，对渲染真实性来说，使用光源是比不可少的技巧。Threejs，在光源方面提供了多种光源供选择。
+光源基类 # 在Threejs中，光源用Light表示，它是所有光源的基类。它的构造函数是：
+THREE.Light ( hex ) 它有一个参数hex，接受一个16进制的颜色值。例如要定义一种红色的光源，我们可以这样来定义：
+Var redLight = new THREE.Light(0xFF0000); 由基类派生出来的其他种类光源 # THREE.Light只是其他所有光源的基类，要让光源除了具有颜色的特性之外，我们需要其他光源。看看，下面的类图，是目前光源的继承结构。
+可以看出，所有的具体光源都继承与THREE.Light类。下面我们来具体看一下，其他光源。
+环境光 # 环境光是经过多次反射而来的光称为环境光，无法确定其最初的方向。环境光是一种无处不在的光。环境光源放出的光线被认为来自任何方向。因此，当你仅为场景指定环境光时，所有的物体无论法向量如何，都将表现为同样的明暗程度。 （这是因为，反射光可以从各个方向进入您的眼睛）
+环境光用THREE.AmbientLight来表示，它的构造函数如下所示：
+THREE.AmbientLight( hex ) 它仍然接受一个16进制的颜色值，作为光源的颜色。环境光将照射场景中的所有物体，让物体显示出某种颜色。环境光的使用例子如下所示：
+var light = new THREE.AmbientLight( 0xff0000 ); 只需要将光源加入场景，场景就能够通过光源渲染出好的效果来了。
+点光源 # 点光源：由这种光源放出的光线来自同一点，且方向辐射自四面八方。例如蜡烛放出的光，萤火虫放出的光。
+点光源用PointLight来表示，它的构造函数如下所示：
+PointLight( color, intensity, distance ) 这个类的参数稍微复杂一些，我们花点时间来解释一下：
+Color：光的颜色
+Intensity：光的强度，默认是1.0,就是说是100%强度的灯光，
+distance：光的距离，从光源所在的位置，经过distance这段距离之后，光的强度将从Intensity衰减为0。 默认情况下，这个值为0.0，表示光源强度不衰减。
+聚光灯 # 聚光灯：这种光源的光线从一个锥体中射出，在被照射的物体上产生聚光的效果。使用这种光源需要指定光的射出方向以及锥体的顶角α。聚光灯示例如图所示：
+聚光灯的构造函数是：
+THREE.SpotLight( hex, intensity, distance, angle, exponent ) 函数的参数如下所示：
+Hex：聚光灯发出的颜色，如0xFFFFFF
+Intensity：光源的强度，默认是1.0，如果为0.5，则强度是一半，意思是颜色会淡一些。和上面点光源一样。</description></item><item><title>WebGL中的图片纹理合成</title><link>/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/</guid><description>纹理合成 # 纹理对于我们来说是多么的重要，以至于大家已经忘记了它的重要性。闭上眼睛想一想，如果你心爱的女人，没有穿衣服，该是多么的令你心动啊。哦，说错了，是她不仅没有穿衣服，而且没有皮肤，就像画皮中的没有皮的周迅一样，你就不会喜欢它了，因为她奇丑无比。
+纹理之于3D世界，就像皮肤之于动物世界一样。如果没有皮肤，那么人就会非常的丑陋，没有纹理，那么3D世界也就不会那么吸引人了。
+图片纹理 # 我们来想一想，3D世界的纹理，由什么组成呢？3D世界的纹理由图片组成。
+是的，就这么简单，如果下次谁问你什么是纹理，那么你告诉它是图片，或者贴图就完了。将纹理以一定的规则映射到几何体上，一般是三角形上，那么这个几何体就有纹理皮肤了。
+那么在threejs中，或者任何3D引擎中，纹理应该怎么来实现呢？首先应该有一个纹理类，其次是有一个加载图片的方法，将这张图片和这个纹理类捆绑起来。
+在threejs中，纹理类由THREE.Texture表示，其构造函数如下所示：
+THREE.Texture( image, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy ) 各个参数的意义是：
+Image：这是一个图片类型，基本上它有ImageUtils来加载，如下代码
+var image = THREE.ImageUtils.loadTexture(url); // url 是一个https://xxxx/aaa.jpg 的类似地址，javascript没有从本地加载数据的能力，所以没有办法从您电脑的C盘加载数据。 Mapping：是一个THREE.UVMapping()类型，它表示的是纹理坐标。下一节，我们将说说纹理坐标。
+wrapS：表示x轴的纹理的回环方式，就是当纹理的宽度小于需要贴图的平面的宽度的时候，平面剩下的部分应该p以何种方式贴图的问题。
+wrapT：表示y轴的纹理回环方式。 magFilter和minFilter表示过滤的方式，这是OpenGL的基本概念，我将在下面讲一下，目前你不用担心它的使用。当您不设置的时候，它会取默认值，所以，我们这里暂时不理睬他。
+format：表示加载的图片的格式，这个参数可以取值THREE.RGBAFormat，RGBFormat等。THREE.RGBAFormat表示每个像素点要使用四个分量表示，分别是红、绿、蓝、透明来表示。RGBFormat则不使用透明，也就是说纹理不会有透明的效果。
+type：表示存储纹理的内存的每一个字节的格式，是有符号，还是没有符号，是整形，还是浮点型。不过这里默认是无符号型（THREE.UnsignedByteType）。暂时就解释到这里，有需要时，我们在仔细分析，或者给作者留言询问。
+anisotropy：各向异性过滤。使用各向异性过滤能够使纹理的效果更好，但是会消耗更多的内存、CPU、GPU时间，暂时就了解到这里吧。
+ok，各个参数介绍完了。我们接下来看纹理坐标。
+纹理坐标 # 在正常的情况下，你在0.0到1.0的范围内指定纹理坐标。我们来简单看一下纹理坐标如下图：
+当我们用一幅图来做纹理的时候，那么这幅图就隐示的被赋予了如图一样的纹理坐标，这个纹理坐标将被对应到一个形状上。
+ok，我们来看一下例子，这个例子很简单，就是在平面上贴上一张美女的图片。
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt; &amp;lt;meta charset=&amp;quot;utf-8&amp;quot; /&amp;gt; &amp;lt;script src=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;style&amp;gt; body { margin: 0px; background-color: #000000; overflow: hidden; } &amp;lt;/style&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;script&amp;gt; var camera, scene, renderer; var mesh; init(); animate(); function init() { renderer = new THREE.</description></item><item><title>WebGL中的Canvas纹理合成</title><link>/webgl/learn/webgl%E4%B8%AD%E7%9A%84canvas%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/webgl/learn/webgl%E4%B8%AD%E7%9A%84canvas%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/</guid><description>纹理合成 # 从本质上来说，纹理只是图片而已，它是由像素点组成。无论在内存还是显存中，它都是由4个分量组成，这四个分量是R、G、B和A。唯一的不同的，在显存中，会比内存中更快的渲染到显示器上。这是毋庸置疑的，因为显存中的帧缓冲本来就是和显示器上 的像素一一对应的。
+从上面的概念中，我们就能够引申出一些重要的理解了，就是只要是图像数据，准确的说是内存或者显存中的图像数据，都可以作为纹理，显示在屏幕中。
+上面的课程，我们讲了通过loadtexture函数在服务器上加载一张图片作为纹理，这一节课，我们来讲通过html中的canvas来作为纹理。它非常重要，以后的课程中我们会经常使用这个技巧。
+它们两者之间有很多差别，这个差别就是图片和canvas的差别，图片是通过图像处理软件，如photoshop来处理的。而canvas是通过浏览器的绘图API来绘制的。显示canvas能够给程序员更多的想象空间，从而做出更有意思的效果出来。
+本节的效果，是一个可以旋转的三维时钟。如下图所示，
+发现了它与普通时钟的区别了吗？首页它在正方体的6个面都有时钟的效果，而且时钟是每秒钟都更新一次的，能够准确的反应当前的时间。下面我们来介绍一下，这一关于canvas作为纹理的知识。
+时钟纹理生成过程 # 实现这个效果的步骤可以用下面的框图来表示：
+1、在canvas上画时钟
+由于时钟的秒针会每秒滴答一次，那么canvas中的内容，其本身就会被更新一次。
+2、将canvas传递给THREE.Texture纹理
+Canvas可以作为纹理传递给THREE.Texture函数，纹理的构造函数是：
+THREE.Texture = function ( image, mapping, wrapS, wrapT, magFilter, minFilter, format, type, anisotropy ) 这个函数的第一个参数image，接收一个image类型的图像，或者canvas，后面的参数可以暂时不理会，它会以默认值去填充texture后面的参数。
+这里我们只需要将canvas传递给Texture就ok了，代码如下：
+texture = new THREE.Texture( canvas); 那么纹理怎么知道其每一个像素怎么映射到形状状的表面呢，默认情况下，纹理被均匀分配到四边形的各个顶点上。
+3、将纹理传递给THREE.MeshBasicMaterial材质
+将texture传递给材质就更简单了，材质本身可以接受一个属性名为map的参数，代码如下：
+var material = new THREE.MeshBasicMaterial({map:texture}); 这样就将纹理赋给了材质。
+4、构造THREE.Mesh
+在我们的中级教程中，详细的讲解过Mesh，从它的概念，组成，怎么将几何体和材质融合一体，又怎么知道几何体和材质是否发生变化，怎么更新Mesh动画，几乎都讲了一遍，可以说是目前最为完整的3DMesh教程。不过这里篇幅有限，而Mesh又确实需要太多的笔墨去讲解，所以，这里就一笔带过了。
+Mesh就是一个网格表面，它代表着我们渲染到3D世界中的各种模型。其构造函数如下：
+THREE.Mesh = function ( geometry, material ) 它接受2个参数，一个是几何体，一个是材质。
+Mesh就是一个网格表面，它代表着我们渲染到3D世界中的各种模型。其构造函数如下：
+THREE.Mesh = function ( geometry, material ) 它接受2个参数，一个是几何体，一个是材质。
+这里我们这样来构造它：
+mesh = new THREE.</description></item><item><title>3D模型的加载与使用</title><link>/webgl/learn/3d%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8A%A0%E8%BD%BD%E4%B8%8E%E4%BD%BF%E7%94%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/webgl/learn/3d%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8A%A0%E8%BD%BD%E4%B8%8E%E4%BD%BF%E7%94%A8/</guid><description>模型的基础知识 # 既然在讲3D世界，那么我们这里提到的模型就是3D模型。我不想将一些书上的定义摘抄给大家，那些概念对大家的理解帮助并不大，而接下来，我会将我最直接通俗的理解告诉大家。
+我们知道，在3DMAX，MAYA、blender等软件（这是一些三维编辑软件）中，可以制作出3D模型。这些模型可用于室内设计，三维影视，三维游戏等领域。那么3D模型是怎么定义的呢？看看下面我的定义：
+3D模型由顶点(vertex)组成，顶点之间连成三角形或四边形（在一个平面上）,多个三角形或者四边形就能够组成复杂的立体模型.
+如下图所示：
+上图就是一辆汽车的3D模型（立体模型），因为是由一个个网格组成，所以，我们也叫其为网格模型。
+网格模型很像我们小时候学习的素描，想想我们画素描是不是先描点，然后画线，由线组成面，最后由面组成现实生活中的物体呢？
+在这里，概念总是那么难以理解，我们不做深抠概念的学究，我们需要感性的去认识3D模型。
+首先，我们来欣赏一些3D模型，这里收集了的一些3D模型，当然其中一些因为加上了纹理，非常诱人。
+除此之外，你可以在google的3D模型库找到更多的模型，网址是：https://3dwarehouse.sketchup.com/index.html（这个网站可能被墙，无法访问，使用代理吧），这是一个很有用的网站，请大家惠存。
+模型查看器 # 有了3D模型，我们怎么去看它。我们在编写程序之前，总是希望先看到一些实际的场景，这样，当我们写起程序来，才会有一些感觉，依葫芦画瓢的感觉。所以，这里我们先教大家怎么观察3D模型。
+你可以下载一个3D-Max，或者Maya之类的软件，然后安装上它。但是他们太重量级，动辄就是几个G，不太实用，我们也没有耐心去安装这样一个巨大的程序，而且这些程序过于专业，您并不一定能很快使用它。
+所以，在工程领域，我们一般使用一些轻量级的查看器，如Blender、ParaView。这些都是一个几十M的软件，且功能足够可用。大家可以到网上下载一个ParaView，各大网站均有下载。
+ParaView是一个模型查看器，打开软件，会看到如下的界面，当然这只兔子是我们打开一个模型文件后的结果。
+例如，我们要打开一个vtk模型文件。你可以在three.js的源码包中找到一个bunny.vtk的文件(在源代码中搜索一下这个文件)，然后使用ParaView的File菜单打开，就会在Pipeline Browser中看到一个bunny.vtk的文件，选中它，然后点Apply，这样就可以再右边看到一个兔子模型了。
+ParaView的使用不是本章重点，这里就不累述了。你可以在这里看到ParaView的使用，地址如下：http://wenku.baidu.com/view/f360cc7102768e9951e7386a.html
+简单的使用一下，你就知道怎么观察模型了，并且你也应该学会像保存图片一样，将一种3D模型的格式转换为另一种3D模型的格式，如obj、stl等。
+模型在three.js中的表示 # 我们的最终目的是要讲解怎么将模型导入three.js中，让three.js能够显示我们的模型。
+模型是由面组成，面分为三角形和四边形面。三角形和四边形面组成了网格模型。在Three.js中用THREE.Mesh来表示网格模型。THREE.Mesh可以和THREE.Line相提并论，区别是THREE.Line表示的是线条。THREE.Mesh表示面的集合。
+Ok，让我们来认识一下THREE.Mesh，它的构造函数是：
+THREE.Mesh = function ( geometry, material ) 其中第一个参数geometry：是一个THREE.Geometry类型的对象,他是一个包含顶点和顶点之间连接关系的对象。
+第二个参数Material：就是定义的材质。有了材质就能够让模型更好看，材质会影响光照、纹理对Mesh的作用效果。
+模型的加载 # 在three.js中，模型是怎么加载到浏览器中的呢？
+为了让大家更明白原理，我们首先来看看three.js加载一个简单模型的过程。这个过程是这样的：
+上图的顺序是：
+1、服务器上的模型文件以文本的方式存储，除了以three.js自定义的文本方式存储之外，当然也可以以二进制的方式存储，不过这里暂时不讲。
+2、浏览器下载文件到本地
+3、Javascript解析模型文件，生成Mesh网格模型
+4、显示在场景中。
+对照上面这幅图，我们对需要注意的几点重点说明一下：
+1、服务器上的模型文件大多是存储的模型的顶点信息，这些信息可以以文本的方式存储的（并不一定需要用文本的方式存储）。Three.js支持很多种3D模型格式，例如ply，stl，obj，vtk等等。随着three.js的升级，会支持越来越多的文件格式，到目前为止，three.js已经能够支持市面上大多数3D模型格式了。
+同时需要重点说明的是，如果认真理解完three.js对模型的加载、解析方法，那么写一种自己的3D文件解析器是非常便利的。
+2、第二步是浏览器下载文本文件，这是一件很普通的事情，只需要使用javascript的异步请求就可以实现了。
+3、Javascript解析文本文件并生成一个geometry，最终生成Mesh，也是一件简单的事情。我们会在后面介绍这个过程。
+4、当产生Mesh后，将其加入到场景中，那就非常简单了。
+Ok，整个模型的加载思路就是这样。
+一个简单的实例 # &amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;title&amp;gt;&amp;lt;/title&amp;gt; &amp;lt;meta charset=&amp;quot;utf-8&amp;quot; /&amp;gt; &amp;lt;meta name=&amp;quot;viewport&amp;quot; content=&amp;quot;width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0&amp;quot;/&amp;gt; &amp;lt;style&amp;gt; body { font-family: Monospace; background-color: #000; color: #fff; margin: 0px; overflow: hidden; } #info { color: #fff; position: absolute; top: 10px; width: 100%; text-align: center; z-index: 100; display:block; } #info a, .</description></item><item><title>网格模型旋转的常用技巧和方法</title><link>/webgl/learn/%E7%BD%91%E6%A0%BC%E6%A8%A1%E5%9E%8B%E6%97%8B%E8%BD%AC%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E6%96%B9%E6%B3%95/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/webgl/learn/%E7%BD%91%E6%A0%BC%E6%A8%A1%E5%9E%8B%E6%97%8B%E8%BD%AC%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E6%96%B9%E6%B3%95/</guid><description>3D世界的运动规律 # 无论你信不信，3D世界只有三种运动方式：移动、旋转、放大缩小。为了让大家记忆深刻，我们绞尽脑汁，终于用男女之间的那些事将3D世界的运动规律进行了归纳。请看下面的讲解：
+放大缩小：仅仅发生在，男人在从事某项耗费精力的事情之前和之后，必须要do的事情。
+移动：要么是男的移动，要么是女的移动，男女同事移动也可以。
+旋转：如果你愿意，你可以旋转一下，不过，这并不是一件经常需要发生的事情。注意，旋转最重要的一个参数是旋转轴。
+本课，我们不讲解放大缩小，移动，因为我个人对这两种运动比较厌倦了。我们这里重点讲一下各种旋转方法。
+课前的调情，准备好必要的实验代码 # 绘制立方体 # 要想试验旋转，那一定需要一些必要的环境了。男女那些事，你也许需要准确一张床，几个好一些的TT。在我们这一节课中，你需要准备一个正方体，用来旋转所用。这个正方体，可以使用下面的代码生成：
+var geometry = new THREE.BoxGeometry( 100, 100, 100 ); 本节的效果如下图所示：
+WEBGL立方体
+你可能还想知道BoxGeometry的原型是什么，如下：
+THREE.BoxGeometry = function ( width, height, depth, widthSegments, heightSegments, depthSegments ) 下面对BoxGeometry的6个参数进行简要介绍：
+width：表示立方体的宽度。
+height：表示立方体的高度。
+depth：表示立方体的长度或者说深度吧。
+widthSegments：宽度分段份数
+heightSegments：高度分段份数
+depthSegments：长度分段份数
+为立方体的每个面赋予不同的颜色 # 为了让大家清楚的看到旋转的方向，我们将立方体的每个面赋上不同的颜色。我们看一下1.html中的代码，如下：
+function initObject() { var geometry = new THREE.BoxGeometry( 100, 100, 100 ); for ( var i = 0; i &amp;lt; geometry.faces.length; i += 2 ) { var hex = Math.</description></item><item><title>多摄像机多视图多角度摄影</title><link>/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/</guid><description>常被学员问的一个问题 # 有一个问题，是我们经常会遇到的，就是在一个窗口中，有几个子窗口，在子窗口中显示场景不同角度的动画。例如小地图，就是一个极好的例子。我们看看下面一幅图：
+这幅图中红色划圈的部分，就是通过不同视图的渲染来做到的，它综合使用了透视相机和正投影相机。
+上图被红线圈住的地方，就是正投影相机绘制出来的。因为它的大小永远不会变化。看一下左上角的血条吧，试想一下，如果它不断的变化大小和角度，那么这将是一个多么低端的游戏啊。
+前面的基础课程，我们已经讲解了怎么来设置视图，但是还不深入，这一节课，我们将深入这一部分。深入的目的，是为了以后大家遇到同类的问题，能够有思路，有想法，而不至于不会做。
+如果和前面的课程相比，有一些跳跃，或者觉得基础知识讲得还不够多，那是我们我们 想尽快得让大家深入了解WebGL的相关体系，如果讲得太快，敬请大家原谅。如果跟不上老师的节奏，建议购买100多集视频课程，那里有更深入的讲解。
+本课最终效果 # 我们首先来看一下我们这节课要完成的效果，如下图所示：
+上图中，我们有3个画布，分别放在页面的上方，中部偏右和下部偏左。3个画布里面分别显示了一个场景的不同区域。在图形学中，我们通常将这种最终的显示画布叫做视口（viewport）。关于视口的详细信息，这里先不累述了，在需要深入的时候，我们会告诉你它的相应知识。
+为了第一时间看到效果，点击这里，看看效果吧。 1、有阴影出现 注意，demo中的多面体的各个面的颜色是不一样的，有一点渐变。多面体底部是有一些阴影的，这里没有显示出来。移动一下鼠标，你能够看到阴影。
+2、怎么推断时候有光源 从多面体表面呈现的光照情况，可以断定有一个灯光。多面体上没有聚光的效果，所以应该是没有聚光灯的。也不是每个地方都有一样的光照，所以环境光的可能性不大。最后，推断应该是方向光。哈哈，我也希望，你能这样去思考问题哦。
+Ok，分析差不多就这些了。
+为了第一时间看到效果，你还可以先将【】拖到chrome浏览器中，看看效果。
+同时，你也可以右键源代码，看到本例的源代码。后面的讲解，你最好打开一份源代码，边看后面的解释边对照一下源代码。源码面前了无秘密，这是我们的哲学思维。
+构造界面 # 首先，我们要根据上面的描述，使用div+css来构造出界面，div结构如下所示，你可以在源码中找到：
+&amp;lt;div id=&amp;quot;container&amp;quot;&amp;gt; &amp;lt;canvas id=&amp;quot;canvas1&amp;quot;&amp;gt;&amp;lt;/canvas&amp;gt; &amp;lt;canvas id=&amp;quot;canvas2&amp;quot;&amp;gt;&amp;lt;/canvas&amp;gt; &amp;lt;canvas id=&amp;quot;canvas3&amp;quot;&amp;gt;&amp;lt;/canvas&amp;gt; &amp;lt;/div&amp;gt; 这是一个很简单的div结构，container里面嵌套了3个容器。这3个容器分别代表下面的三个画布。如下图所示：
+这几个id对应的Css样式如下所示：
+#canvas1, #canvas2, #canvas3 { position: relative; display: block; border: 1px solid red ; // 边框红色 } #canvas1 { width: 300px; height: 200px; } #canvas2 { width: 400px; height: 100px; left: 150px; } #canvas3 { width: 200px; height: 300px; left: 75px; } 可以看出以下几点：</description></item></channel></rss>

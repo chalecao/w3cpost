@@ -1,0 +1,475 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-regular.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-500.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-700.woff2 type=font/woff2 crossorigin><script>(()=>{var t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,e=localStorage.getItem("theme");t&&e===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),t&&e==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),e==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script><link rel=stylesheet href=/main.f9552544b4ca62af741c0d24d283b4ddcfa2a026a871cff4112743eeb6c4950a530c923242d9d4d42e93635dd91ebd78601a145b8b205bb363d7065c1fa59ffe.css integrity="sha512-+VUlRLTKYq90HA0k0oO03c+ioCaocc/0ESdD7rbElQpTDJIyQtnU1C6TY13ZHr14YBoUW4sgW7Nj1wZcH6Wf/g==" crossorigin=anonymous><noscript><style>img.lazyload{display:none}</style></noscript><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><meta name=bingbot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><title>WebGL中的各种光 - 万维刀客「w3cdoc」</title><meta name=description content="世界有了光，就不在黑暗 # 宇宙间的物体有的是发光的，有的是不发光的，我们把发光的物体叫做光源。太阳、电灯、燃烧着的蜡烛等都是光源。
+在Threejs的世界里，有了光，就不会在黑暗。看美剧里面就有火神 呵呵
+Threejs中的各种光源 # 作为3D技术的发展趋势，浏览器端3D技术越来越被一些技术公司重视。由此，Threejs非常注重3D渲染效果的真实性，对渲染真实性来说，使用光源是比不可少的技巧。Threejs，在光源方面提供了多种光源供选择。
+光源基类 # 在Threejs中，光源用Light表示，它是所有光源的基类。它的构造函数是：
+THREE.Light ( hex ) 它有一个参数hex，接受一个16进制的颜色值。例如要定义一种红色的光源，我们可以这样来定义：
+Var redLight = new THREE.Light(0xFF0000); 由基类派生出来的其他种类光源 # THREE.Light只是其他所有光源的基类，要让光源除了具有颜色的特性之外，我们需要其他光源。看看，下面的类图，是目前光源的继承结构。
+可以看出，所有的具体光源都继承与THREE.Light类。下面我们来具体看一下，其他光源。
+环境光 # 环境光是经过多次反射而来的光称为环境光，无法确定其最初的方向。环境光是一种无处不在的光。环境光源放出的光线被认为来自任何方向。因此，当你仅为场景指定环境光时，所有的物体无论法向量如何，都将表现为同样的明暗程度。 （这是因为，反射光可以从各个方向进入您的眼睛）
+环境光用THREE.AmbientLight来表示，它的构造函数如下所示：
+THREE.AmbientLight( hex ) 它仍然接受一个16进制的颜色值，作为光源的颜色。环境光将照射场景中的所有物体，让物体显示出某种颜色。环境光的使用例子如下所示：
+var light = new THREE.AmbientLight( 0xff0000 ); 只需要将光源加入场景，场景就能够通过光源渲染出好的效果来了。
+点光源 # 点光源：由这种光源放出的光线来自同一点，且方向辐射自四面八方。例如蜡烛放出的光，萤火虫放出的光。
+点光源用PointLight来表示，它的构造函数如下所示：
+PointLight( color, intensity, distance ) 这个类的参数稍微复杂一些，我们花点时间来解释一下：
+Color：光的颜色
+Intensity：光的强度，默认是1.0,就是说是100%强度的灯光，
+distance：光的距离，从光源所在的位置，经过distance这段距离之后，光的强度将从Intensity衰减为0。 默认情况下，这个值为0.0，表示光源强度不衰减。
+聚光灯 # 聚光灯：这种光源的光线从一个锥体中射出，在被照射的物体上产生聚光的效果。使用这种光源需要指定光的射出方向以及锥体的顶角α。聚光灯示例如图所示：
+聚光灯的构造函数是：
+THREE.SpotLight( hex, intensity, distance, angle, exponent ) 函数的参数如下所示：
+Hex：聚光灯发出的颜色，如0xFFFFFF
+Intensity：光源的强度，默认是1.0，如果为0.5，则强度是一半，意思是颜色会淡一些。和上面点光源一样。"><link rel=canonical href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="og:title" content="WebGL中的各种光"><meta property="og:description" content="世界有了光，就不在黑暗 # 宇宙间的物体有的是发光的，有的是不发光的，我们把发光的物体叫做光源。太阳、电灯、燃烧着的蜡烛等都是光源。
+在Threejs的世界里，有了光，就不会在黑暗。看美剧里面就有火神 呵呵
+Threejs中的各种光源 # 作为3D技术的发展趋势，浏览器端3D技术越来越被一些技术公司重视。由此，Threejs非常注重3D渲染效果的真实性，对渲染真实性来说，使用光源是比不可少的技巧。Threejs，在光源方面提供了多种光源供选择。
+光源基类 # 在Threejs中，光源用Light表示，它是所有光源的基类。它的构造函数是：
+THREE.Light ( hex ) 它有一个参数hex，接受一个16进制的颜色值。例如要定义一种红色的光源，我们可以这样来定义：
+Var redLight = new THREE.Light(0xFF0000); 由基类派生出来的其他种类光源 # THREE.Light只是其他所有光源的基类，要让光源除了具有颜色的特性之外，我们需要其他光源。看看，下面的类图，是目前光源的继承结构。
+可以看出，所有的具体光源都继承与THREE.Light类。下面我们来具体看一下，其他光源。
+环境光 # 环境光是经过多次反射而来的光称为环境光，无法确定其最初的方向。环境光是一种无处不在的光。环境光源放出的光线被认为来自任何方向。因此，当你仅为场景指定环境光时，所有的物体无论法向量如何，都将表现为同样的明暗程度。 （这是因为，反射光可以从各个方向进入您的眼睛）
+环境光用THREE.AmbientLight来表示，它的构造函数如下所示：
+THREE.AmbientLight( hex ) 它仍然接受一个16进制的颜色值，作为光源的颜色。环境光将照射场景中的所有物体，让物体显示出某种颜色。环境光的使用例子如下所示：
+var light = new THREE.AmbientLight( 0xff0000 ); 只需要将光源加入场景，场景就能够通过光源渲染出好的效果来了。
+点光源 # 点光源：由这种光源放出的光线来自同一点，且方向辐射自四面八方。例如蜡烛放出的光，萤火虫放出的光。
+点光源用PointLight来表示，它的构造函数如下所示：
+PointLight( color, intensity, distance ) 这个类的参数稍微复杂一些，我们花点时间来解释一下：
+Color：光的颜色
+Intensity：光的强度，默认是1.0,就是说是100%强度的灯光，
+distance：光的距离，从光源所在的位置，经过distance这段距离之后，光的强度将从Intensity衰减为0。 默认情况下，这个值为0.0，表示光源强度不衰减。
+聚光灯 # 聚光灯：这种光源的光线从一个锥体中射出，在被照射的物体上产生聚光的效果。使用这种光源需要指定光的射出方向以及锥体的顶角α。聚光灯示例如图所示：
+聚光灯的构造函数是：
+THREE.SpotLight( hex, intensity, distance, angle, exponent ) 函数的参数如下所示：
+Hex：聚光灯发出的颜色，如0xFFFFFF
+Intensity：光源的强度，默认是1.0，如果为0.5，则强度是一半，意思是颜色会淡一些。和上面点光源一样。"><meta property="og:url" content="/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/"><meta property="og:site_name" content="万维刀客「w3cdoc」"><meta property="og:image" content="/doks.png"><meta property="og:image:alt" content="万维刀客「w3cdoc」"><meta name=twitter:card content="summary_large_image"><meta name=twitter:site content="@w3cdoc"><meta name=twitter:creator content="@chalecao"><meta name=twitter:title content="WebGL中的各种光"><meta name=twitter:description content><meta name=twitter:image content="/doks.png"><meta name=twitter:image:alt content="WebGL中的各种光"><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"/#/schema/organization/1","name":"w3cdoc","url":"/","sameAs":["https://twitter.com/w3cdoc"],"logo":{"@type":"ImageObject","@id":"/#/schema/image/1","url":"/w3cdoc.png","width":512,"height":512,"caption":"w3cdoc"},"image":{"@id":"/#/schema/image/1"}},{"@type":"WebSite","@id":"/#/schema/website/1","url":"/","name":"万维刀客「w3cdoc」","description":"互联网同学互相帮助、学习成长的家园","publisher":{"@id":"/#/schema/organization/1"}},{"@type":"WebPage","@id":"/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/","url":"/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/","name":"WebGL中的各种光","description":"","isPartOf":{"@id":"/#/schema/website/1"},"about":{"@id":"/#/schema/organization/1"},"datePublished":"0001-01-01T00:00:00CET","dateModified":"0001-01-01T00:00:00CET","breadcrumb":{"@id":"/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/#/schema/breadcrumb/1"},"primaryImageOfPage":{"@id":"/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/#/schema/image/2"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/"]}]},{"@type":"BreadcrumbList","@id":"/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/#/schema/breadcrumb/1","name":"Breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"/","url":"/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@id":"/webgllearnwebgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/"}}]},{"@context":"https://schema.org","@graph":[{"@type":"ImageObject","@id":"/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/#/schema/image/2","url":"/doks.png","contentUrl":"/doks.png","caption":"WebGL中的各种光"}]}]}</script><meta name=theme-color content="#fff"><link rel=icon href=/favicon.ico sizes=any><link rel=icon type=image/svg+xml href=/favicon.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest crossorigin=use-credentials href=/site.webmanifest><script>"serviceWorker"in navigator&&navigator.serviceWorker.register("/sw.js",{scope:"/"}).then(function(e){console.log("Registration succeeded. Scope is "+e.scope)}).catch(function(e){console.log("Registration failed with "+e)})</script><script src=/js/vendor/autolog.js async></script></head><body class="webgl single"><div class=sticky-top><div class=header-bar></div><header class="navbar navbar-expand-lg navbar-light doks-navbar"><nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation"><a class="navbar-brand order-0" href=/ aria-label=万维刀客「w3cdoc」>万维刀客「w3cdoc」</a>
+<button class="btn btn-menu order-2 d-block d-lg-none" type=button data-bs-toggle=offcanvas data-bs-target=#offcanvasDoks aria-controls=offcanvasDoks aria-label="Open main menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex=-1 id=offcanvasDoks data-bs-backdrop=true aria-labelledby=offcanvasDoksLabel><div class="header-bar d-lg-none"></div><div class="offcanvas-header d-lg-none"><h2 class="h5 offcanvas-title ps-2" id=offcanvasDoksLabel><a class=text-dark href=/>万维刀客「w3cdoc」</a></h2><button type=button class="btn-close text-reset me-2" data-bs-dismiss=offcanvas aria-label="Close main menu"></button></div><div class="offcanvas-body p-4 p-lg-0"><ul class="nav flex-column flex-lg-row align-items-lg-center mt-2 mt-lg-0 ms-lg-2 me-lg-auto"><li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-0 py-1" href=# id=navbarDropdownMenuLink role=button data-bs-toggle=dropdown aria-expanded=false>初级入门
+<span class=dropdown-caret><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></span></a><ul class="dropdown-menu dropdown-menu-main shadow rounded border-0" aria-labelledby=navbarDropdownMenuLink><li><a class=dropdown-item href=/js/basic/javascript%E4%BB%8B%E7%BB%8D/>JS入门</a></li><li><a class=dropdown-item href=/git/basic/introduction/>Git入门</a></li></ul></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-0 py-1" href=# id=navbarDropdownMenuLink role=button data-bs-toggle=dropdown aria-expanded=false>进阶学习
+<span class=dropdown-caret><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></span></a><ul class="dropdown-menu dropdown-menu-main shadow rounded border-0" aria-labelledby=navbarDropdownMenuLink><li><a class=dropdown-item href=/fed-regain/html/html%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2/>前端增长</a></li><li><a class=dropdown-item href=/webgl/base/%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/>3D图形</a></li><li><a class=dropdown-item href=/bigdata/compute/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/>数据分析</a></li></ul></li><li class=nav-item><a class="nav-link ps-0 py-1" href=/blog/>博客</a></li><li class=nav-item><a class="nav-link ps-0 py-1" href=/course/>网课教程</a></li></ul><hr class="text-black-50 my-4 d-lg-none"><form class="doks-search position-relative flex-grow-1 ms-lg-auto me-lg-2"><input id=search class="form-control is-search" type=search placeholder="Search docs..." aria-label="Search docs..." autocomplete=off><div id=suggestions class="shadow bg-white rounded d-none"></div></form><hr class="text-black-50 my-4 d-lg-none"><ul class="nav flex-column flex-lg-row"></ul><hr class="text-black-50 my-4 d-lg-none"><button id=mode class="btn btn-link" type=button aria-label="Toggle user interface mode">
+<span class=toggle-dark><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span><span class=toggle-light><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span></button></div></div></nav></header></div><div class=container-xxl><aside class=doks-sidebar><nav id=doks-docs-nav class="collapse d-lg-none" aria-label="Tertiary navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-c7f3a86c4d209391b63439cc2af9bf20 aria-expanded=false>
+理论基础</button><div class=collapse id=section-c7f3a86c4d209391b63439cc2af9bf20><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/webgl/base/%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/>基础教程</a></li><li><a class="docs-link rounded" href=/webgl/base/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%9A%84%E6%95%B0%E5%AD%A6%E7%90%86%E8%AE%BA/>图像处理的数学理论</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-a6e9adb94ced3e994cf1b1d4abc688dd aria-expanded=true>
+webgl入门</button><div class="collapse show" id=section-a6e9adb94ced3e994cf1b1d4abc688dd><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/webgl/learn/%E5%88%9D%E5%A7%8Bwebgl%E5%92%8Cthreejs/>初始WebGL和ThreeJS</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/>点线面基本作图</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E8%BF%90%E5%8A%A8%E7%9A%84%E5%9C%BA%E6%99%AF/>运动的场景</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/>WebGL中的相机</a></li><li><a class="docs-link rounded active" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/>WebGL中的各种光</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/>WebGL中的图片纹理合成</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84canvas%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/>WebGL中的Canvas纹理合成</a></li><li><a class="docs-link rounded" href=/webgl/learn/3d%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8A%A0%E8%BD%BD%E4%B8%8E%E4%BD%BF%E7%94%A8/>3D模型的加载与使用</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E7%BD%91%E6%A0%BC%E6%A8%A1%E5%9E%8B%E6%97%8B%E8%BD%AC%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E6%96%B9%E6%B3%95/>网格模型旋转的常用技巧和方法</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/>多摄像机多视图多角度摄影</a></li></ul></div></li></ul></nav></aside></div><div class="wrap container-xxl" role=document><div class=content><div class="row flex-xl-nowrap"><div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block"><nav class=docs-links aria-label="Main navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-c7f3a86c4d209391b63439cc2af9bf20 aria-expanded=false>
+理论基础</button><div class=collapse id=section-c7f3a86c4d209391b63439cc2af9bf20><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/webgl/base/%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/>基础教程</a></li><li><a class="docs-link rounded" href=/webgl/base/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%9A%84%E6%95%B0%E5%AD%A6%E7%90%86%E8%AE%BA/>图像处理的数学理论</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-a6e9adb94ced3e994cf1b1d4abc688dd aria-expanded=true>
+webgl入门</button><div class="collapse show" id=section-a6e9adb94ced3e994cf1b1d4abc688dd><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/webgl/learn/%E5%88%9D%E5%A7%8Bwebgl%E5%92%8Cthreejs/>初始WebGL和ThreeJS</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/>点线面基本作图</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E8%BF%90%E5%8A%A8%E7%9A%84%E5%9C%BA%E6%99%AF/>运动的场景</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/>WebGL中的相机</a></li><li><a class="docs-link rounded active" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/>WebGL中的各种光</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/>WebGL中的图片纹理合成</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84canvas%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/>WebGL中的Canvas纹理合成</a></li><li><a class="docs-link rounded" href=/webgl/learn/3d%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8A%A0%E8%BD%BD%E4%B8%8E%E4%BD%BF%E7%94%A8/>3D模型的加载与使用</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E7%BD%91%E6%A0%BC%E6%A8%A1%E5%9E%8B%E6%97%8B%E8%BD%AC%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E6%96%B9%E6%B3%95/>网格模型旋转的常用技巧和方法</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/>多摄像机多视图多角度摄影</a></li></ul></div></li></ul></nav></div><nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation"><div class=d-xl-none><button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#onThisPage aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>On this page</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button>
+<button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#doks-docs-nav aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>Book Menu</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button><div class=collapse id=onThisPage><div class="card card-body mt-3 py-1"><div class=page-links><nav id=TableOfContents><ul><li><ul><li><a href=#世界有了光就不在黑暗>世界有了光，就不在黑暗</a></li><li><a href=#threejs中的各种光源>Threejs中的各种光源</a></li><li><a href=#环境光>环境光</a></li><li><a href=#点光源>点光源</a></li><li><a href=#聚光灯>聚光灯</a></li><li><a href=#材质与光源的关系>材质与光源的关系</a></li><li><a href=#环境光对物体的影响>环境光对物体的影响</a></li><li><a href=#方向光平行光>方向光（平行光）</a></li><li><a href=#环境光和方向光>环境光和方向光</a></li><li><a href=#点光源-1>点光源</a></li><li><a href=#混合光源>混合光源</a></li></ul></li></ul></nav></div></div></div></div><div class="page-links d-none d-xl-block"><h3>On this page</h3><nav id=TableOfContents><ul><li><ul><li><a href=#世界有了光就不在黑暗>世界有了光，就不在黑暗</a></li><li><a href=#threejs中的各种光源>Threejs中的各种光源</a></li><li><a href=#环境光>环境光</a></li><li><a href=#点光源>点光源</a></li><li><a href=#聚光灯>聚光灯</a></li><li><a href=#材质与光源的关系>材质与光源的关系</a></li><li><a href=#环境光对物体的影响>环境光对物体的影响</a></li><li><a href=#方向光平行光>方向光（平行光）</a></li><li><a href=#环境光和方向光>环境光和方向光</a></li><li><a href=#点光源-1>点光源</a></li><li><a href=#混合光源>混合光源</a></li></ul></li></ul></nav></div></nav><main class="docs-content col-lg-11 col-xl-9 mx-xl-auto"><h1>WebGL中的各种光</h1><p class=lead></p><nav class=d-xl-none aria-label="Quaternary navigation"><div class=d-xl-none><button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#onThisPage aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>On this page</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button>
+<button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#doks-docs-nav aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>Book Menu</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button><div class=collapse id=onThisPage><div class="card card-body mt-3 py-1"><div class=page-links><nav id=TableOfContents><ul><li><ul><li><a href=#世界有了光就不在黑暗>世界有了光，就不在黑暗</a></li><li><a href=#threejs中的各种光源>Threejs中的各种光源</a></li><li><a href=#环境光>环境光</a></li><li><a href=#点光源>点光源</a></li><li><a href=#聚光灯>聚光灯</a></li><li><a href=#材质与光源的关系>材质与光源的关系</a></li><li><a href=#环境光对物体的影响>环境光对物体的影响</a></li><li><a href=#方向光平行光>方向光（平行光）</a></li><li><a href=#环境光和方向光>环境光和方向光</a></li><li><a href=#点光源-1>点光源</a></li><li><a href=#混合光源>混合光源</a></li></ul></li></ul></nav></div></div></div></div><div class="page-links d-none d-xl-block"><h3>On this page</h3><nav id=TableOfContents><ul><li><ul><li><a href=#世界有了光就不在黑暗>世界有了光，就不在黑暗</a></li><li><a href=#threejs中的各种光源>Threejs中的各种光源</a></li><li><a href=#环境光>环境光</a></li><li><a href=#点光源>点光源</a></li><li><a href=#聚光灯>聚光灯</a></li><li><a href=#材质与光源的关系>材质与光源的关系</a></li><li><a href=#环境光对物体的影响>环境光对物体的影响</a></li><li><a href=#方向光平行光>方向光（平行光）</a></li><li><a href=#环境光和方向光>环境光和方向光</a></li><li><a href=#点光源-1>点光源</a></li><li><a href=#混合光源>混合光源</a></li></ul></li></ul></nav></div></nav><h3 id=世界有了光就不在黑暗>世界有了光，就不在黑暗 <a href=#%e4%b8%96%e7%95%8c%e6%9c%89%e4%ba%86%e5%85%89%e5%b0%b1%e4%b8%8d%e5%9c%a8%e9%bb%91%e6%9a%97 class=anchor aria-hidden=true>#</a></h3><p>宇宙间的物体有的是发光的，有的是不发光的，<a href=https://www.w3cdoc.com>我们</a>把发光的物体叫做光源。太阳、电灯、燃烧着的蜡烛等都是光源。<br>在Threejs的世界里，有了光，就不会在黑暗。看美剧里面就有火神 呵呵</p><h3 id=threejs中的各种光源>Threejs中的各种光源 <a href=#threejs%e4%b8%ad%e7%9a%84%e5%90%84%e7%a7%8d%e5%85%89%e6%ba%90 class=anchor aria-hidden=true>#</a></h3><p>作为3D技术的发展趋势，<a href=https://www.w3cdoc.com>浏览器</a>端3D技术越来越被一些技术公司重视。由此，Threejs非常注重3D渲染效果的真实性，对渲染真实性来说，使用光源是比不可少的技巧。Threejs，在光源方面提供了多种光源供选择。</p><h4 id=光源基类>光源基类 <a href=#%e5%85%89%e6%ba%90%e5%9f%ba%e7%b1%bb class=anchor aria-hidden=true>#</a></h4><p>在Threejs中，光源用Light表示，它是所有光源的基类。它的构造函数是：</p><pre><code>THREE.Light ( hex )
+</code></pre><p>它有一个参数hex，接受一个16进制的颜色值。例如要定义一种红色的光源，<a href=https://www.w3cdoc.com>我们</a>可以这样来定义：</p><pre><code>Var redLight = new THREE.Light(0xFF0000);
+</code></pre><h4 id=由基类派生出来的其他种类光源>由基类派生出来的其他种类光源 <a href=#%e7%94%b1%e5%9f%ba%e7%b1%bb%e6%b4%be%e7%94%9f%e5%87%ba%e6%9d%a5%e7%9a%84%e5%85%b6%e4%bb%96%e7%a7%8d%e7%b1%bb%e5%85%89%e6%ba%90 class=anchor aria-hidden=true>#</a></h4><p>THREE.Light只是其他所有光源的基类，要让光源除了具有颜色的特性之外，<a href=https://www.w3cdoc.com>我们</a>需要其他光源。看看，下面的类图，是目前光源的继承结构。</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-21-51-24.png></p><p>可以看出，所有的具体光源都继承与THREE.Light类。下面<a href=https://www.w3cdoc.com>我们</a>来具体看一下，其他光源。</p><h3 id=环境光>环境光 <a href=#%e7%8e%af%e5%a2%83%e5%85%89 class=anchor aria-hidden=true>#</a></h3><p>环境光是经过多次反射而来的光称为环境光，无法确定其最初的方向。环境光是一种无处不在的光。环境光源放出的光线被认为来自任何方向。因此，当你仅为场景指定环境光时，所有的物体无论法向量如何，都将表现为同样的明暗程度。 （这是因为，反射光可以从各个方向进入您的眼睛）</p><p>环境光用THREE.AmbientLight来表示，它的构造函数如下所示：</p><pre><code>THREE.AmbientLight( hex )
+</code></pre><p>它仍然接受一个16进制的颜色值，作为光源的颜色。环境光将照射场景中的所有物体，让物体显示出某种颜色。环境光的使用例子如下所示：</p><pre><code>var light = new THREE.AmbientLight( 0xff0000 );
+</code></pre><p>只需要将光源加入场景，场景就能够通过光源渲染出好的效果来了。</p><h3 id=点光源>点光源 <a href=#%e7%82%b9%e5%85%89%e6%ba%90 class=anchor aria-hidden=true>#</a></h3><p>点光源：由这种光源放出的光线来自同一点，且方向辐射自四面八方。例如蜡烛放出的光，萤火虫放出的光。</p><p>点光源用PointLight来表示，它的构造函数如下所示：</p><pre><code>PointLight( color, intensity, distance )
+</code></pre><p>这个类的参数稍微复杂一些，<a href=https://www.w3cdoc.com>我们</a>花点时间来解释一下：</p><p>Color：光的颜色</p><p>Intensity：光的强度，默认是1.0,就是说是100%强度的灯光，</p><p>distance：光的距离，从光源所在的位置，经过distance这段距离之后，光的强度将从Intensity衰减为0。 默认情况下，这个值为0.0，表示光源强度不衰减。</p><h3 id=聚光灯>聚光灯 <a href=#%e8%81%9a%e5%85%89%e7%81%af class=anchor aria-hidden=true>#</a></h3><p>聚光灯：这种光源的光线从一个锥体中射出，在被照射的物体上产生聚光的效果。使用这种光源需要指定光的射出方向以及锥体的顶角α。聚光灯示例如图所示：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-21-53-25.png></p><p>聚光灯的构造函数是：</p><pre><code>THREE.SpotLight( hex, intensity, distance, angle, exponent )
+</code></pre><p>函数的参数如下所示：</p><p>Hex：聚光灯发出的颜色，如0xFFFFFF</p><p>Intensity：光源的强度，默认是1.0，如果为0.5，则强度是一半，意思是颜色会淡一些。和上面点光源一样。</p><p>Distance：光线的强度，从最大值衰减到0，需要的距离。 默认为0，表示光不衰减，如果非0，则表示从光源的位置到Distance的距离，光都在线性衰减。到离光源距离Distance时，光源强度为0.</p><p>Angle：聚光灯着色的角度，用弧度作为单位，这个角度是和光源的方向形成的角度。</p><p>exponent：光源模型中，衰减的一个参数，越大衰减约快。</p><h3 id=材质与光源的关系>材质与光源的关系 <a href=#%e6%9d%90%e8%b4%a8%e4%b8%8e%e5%85%89%e6%ba%90%e7%9a%84%e5%85%b3%e7%b3%bb class=anchor aria-hidden=true>#</a></h3><p>材质与光源有什么关系，这是一个容易傻傻分不清的问题。在没有深入讲解前，<a href=https://www.w3cdoc.com>我们</a>只能说它们是相互联系，相互依托的关系。</p><p><a href=https://www.w3cdoc.com>我们</a>会在后面的章节专门来解释什么是材质，不过这里也需要简单的给你介绍一下。</p><p>1、 材质的真相<br>材质是啥子（四川话），材质就是物体的质地。<a href=https://www.w3cdoc.com>我们</a>可以用撤分文字的方法来理解。材质就是材料和质感的完美结合。</p><p>如果你还不理解，那么看看下面我引用的这段话：</p><p>在渲染程序中，它是表面各可视属性的结合，这些可视属性是指表面的色彩、纹理、光滑度、透明度、反射率、折射率、发光度等。正是有了这些属性，才能让<a href=https://www.w3cdoc.com>我们</a>识别三维中的模型是什么做成的，也正是有了这些属性，<a href=https://www.w3cdoc.com>我们</a>计算机三维的虚拟世界才会和真实世界一样缤纷多彩。</p><p>这就是材质的真相吗？答案是否定的。不要奇怪，<a href=https://www.w3cdoc.com>我们</a>必须仔细分析产生不同材质的原因，才能让<a href=https://www.w3cdoc.com>我们</a>更好的把握质感。那么，材质的真相到底是什么呢？仍然是光，离开光材质是无法体现的。举例来说，借助夜晚微弱的天空光，<a href=https://www.w3cdoc.com>我们</a>往往很难分辨物体的材质，因为他们很多都表现出黑色，<a href=https://www.w3cdoc.com>我们</a>难以区分是铝合金，还是塑料的。而在正常的照明条件下，则很容易分辨。另外，在彩色光源的照射下，<a href=https://www.w3cdoc.com>我们</a>也很难分辨物体表面的颜色，在白色光源的照射下则很容易。这种情况表明了物体的材质与光的微妙关系。下面，<a href=https://www.w3cdoc.com>我们</a>将具体分析两者间的相互作用。</p><p>首先，<a href=https://www.w3cdoc.com>我们</a>来看一些例子。这些例子是一系类的，掌握一个，<a href=https://www.w3cdoc.com>我们</a>就印下了一个脚印。</p><h4 id=不带任何光源的物体>不带任何光源的物体 <a href=#%e4%b8%8d%e5%b8%a6%e4%bb%bb%e4%bd%95%e5%85%89%e6%ba%90%e7%9a%84%e7%89%a9%e4%bd%93 class=anchor aria-hidden=true>#</a></h4><p><a href=https://www.w3cdoc.com>我们</a>首先在屏幕上画一个物体，不带任何的光源，定义物体的颜色为黑色，其值为0x000000，定义材质如下：</p><pre><code>var material = new THREE.MeshLambertMaterial( { color:0x000000} ); // 这是兰伯特材质，材质中的一种
+</code></pre><p>先看看最终的运行截图，如下所示：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-21-54-00.png></p><p>由这幅图得出结论，当没有任何光源的时候，最终的颜色将是材质的颜色。但是这个结论目前来说，并没有依据。<br>代码如下。</p><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Three框架&lt;/title&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js&quot;&gt;&lt;/script&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+        div#canvas-frame {
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            height: 600px;
+            background-color: #EEEEEE;
+        }
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        var renderer;
+        function initThree() {
+            width = document.getElementById('canvas-frame').clientWidth;
+            height = document.getElementById('canvas-frame').clientHeight;
+            renderer = new THREE.WebGLRenderer({
+                antialias : true
+            });
+            renderer.setSize(width, height);
+            document.getElementById('canvas-frame').appendChild(renderer.domElement);
+            renderer.setClearColor(0xFFFFFF, 1.0);
+        }
+
+        var camera;
+        function initCamera() {
+            camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+            camera.position.x = 600;
+            camera.position.y = 0;
+            camera.position.z = 600;
+            camera.up.x = 0;
+            camera.up.y = 1;
+            camera.up.z = 0;
+            camera.lookAt({
+                x : 0,
+                y : 0,
+                z : 0
+            });
+        }
+
+        var scene;
+        function initScene() {
+            scene = new THREE.Scene();
+        }
+
+        var light;
+        function initLight() {
+        }
+
+        var cube;
+        function initObject() {
+            var geometry = new THREE.CubeGeometry( 200, 100, 50,4,4);
+            var material = new THREE.MeshLambertMaterial( { color:0xFFFFFF} );
+            var mesh = new THREE.Mesh( geometry,material);
+            mesh.position = new THREE.Vector3(0,0,0);
+            scene.add(mesh);
+        }
+
+        function threeStart() {
+            initThree();
+            initCamera();
+            initScene();
+            initLight();
+            initObject();
+            renderer.clear();
+            renderer.render(scene, camera);
+        }
+
+    &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body onload=&quot;threeStart();&quot;&gt;
+    &lt;div id=&quot;canvas-frame&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>现在<a href=https://www.w3cdoc.com>我们</a>来解析一下：</p><p>1、 在A处，关于灯光的代码，什么也没有做。也就是Threejs中没有添加任何灯光。</p><p>2、 在B处，<a href=https://www.w3cdoc.com>我们</a>使用了兰伯特材质，并将这种材质赋予了黑色，所以，你才会发现最后的效果是黑色。如果，<a href=https://www.w3cdoc.com>我们</a>把材质颜色设置为红色，那么物体是不是就会显示红色呢？</p><p>答案是否定的，这是因为，在场景中没有任何光源的情况下，物体不能反射光源到人的眼里，所以物体应该是黑色的。这与物体的材质颜色几乎没有关系。打个比方，在月高风黑夜，伸手不见五指的夜晚，一群穿着彩衣的美女在你面前跳舞，你能分辨出他们是穿的彩色衣服吗？不能。</p><p>结论：当没有任何光源的时候，最终的颜色将是黑色，无论材质是什么颜色。</p><h4 id=兰伯特材质与光源>兰伯特材质与光源 <a href=#%e5%85%b0%e4%bc%af%e7%89%b9%e6%9d%90%e8%b4%a8%e4%b8%8e%e5%85%89%e6%ba%90 class=anchor aria-hidden=true>#</a></h4><p>最常见的材质之一就是Lambert材质，这是在灰暗的或不光滑的表面产生均匀散射而形成的材质类型。比如一张纸就是Lambert表面。 首先它粗糙不均匀，不会产生镜面效果。<a href=https://www.w3cdoc.com>我们</a>在阅读书籍的时候，没有发现书上一处亮，一处不亮吧，它非常均匀，这就是兰伯特材质。</p><p>有的朋友觉得纸不粗糙啊，你怎么说它粗糙吗？人的肉眼是不好分辨出来，它粗不粗糙的。</p><p>Lambert材质表面会在所有方向上均匀地散射灯光，这就会使颜色看上去比较均匀。想想一张纸，无论什么颜色，是不是纸的各个部分颜色都比较均匀呢。</p><p>Lambert材质的图例如下所示：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-21-56-25.png></p><p>Lambert材质会受环境光的影响，呈现环境光的颜色，与材质本身颜色关系不大。</p><p><a href=https://www.w3cdoc.com>我们</a>现在来做一个例子</p><p>例子：红色环境光照射下的长方体，它用的是淡红色(0x880000)的兰伯特材质。效果如下图：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-21-56-43.png></p><p><a href=https://www.w3cdoc.com>我们</a>来看看代码，你可以在5-2.html中找到它，这里不存在环保问题，所以，我把所有代码都列出来了。</p><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Three框架&lt;/title&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js&quot;&gt;&lt;/script&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+        div#canvas-frame {
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            height: 600px;
+            background-color: #EEEEEE;
+        }
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        var renderer;
+        function initThree() {
+            width = document.getElementById('canvas-frame').clientWidth;
+            height = document.getElementById('canvas-frame').clientHeight;
+            renderer = new THREE.WebGLRenderer({
+                antialias : true
+            });
+            renderer.setSize(width, height);
+            document.getElementById('canvas-frame').appendChild(renderer.domElement);
+            renderer.setClearColor(0xFFFFFF, 1.0);
+        }
+
+        var camera;
+        function initCamera() {
+            camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+            camera.position.x = 600;
+            camera.position.y = 0;
+            camera.position.z = 600;
+            camera.up.x = 0;
+            camera.up.y = 1;
+            camera.up.z = 0;
+            camera.lookAt({
+                x : 0,
+                y : 0,
+                z : 0
+            });
+        }
+
+        var scene;
+        function initScene() {
+            scene = new THREE.Scene();
+        }
+
+        var light;
+        function initLight() {
+        // A start
+            light = new THREE.AmbientLight(0xFF0000);
+            light.position.set(100, 100, 200);
+            scene.add(light);
+        // A end
+
+        }
+
+        var cube;
+        function initObject() {
+            var geometry = new THREE.CubeGeometry( 200, 100, 50,4,4);
+            // B start
+            var material = new THREE.MeshLambertMaterial( { color:0x880000} );
+            // B end
+            var mesh = new THREE.Mesh( geometry,material);
+            mesh.position = new THREE.Vector3(0,0,0);
+            scene.add(mesh);
+        }
+
+        function threeStart() {
+            initThree();
+            initCamera();
+            initScene();
+            initLight();
+            initObject();
+            renderer.clear();
+            renderer.render(scene, camera);
+        }
+
+    &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body onload=&quot;threeStart();&quot;&gt;
+    &lt;div id=&quot;canvas-frame&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>好了，<a href=https://www.w3cdoc.com>我们</a>来分析一下这段代码。</p><p>1、 在A处，<a href=https://www.w3cdoc.com>我们</a>设置了一个红色的环境光，并把它放在了一个位置上。</p><p>2、 在B处，<a href=https://www.w3cdoc.com>我们</a>使用了淡红色的兰伯特材质。</p><p>最后整个效果中，长方体呈现的是红色。<a href=https://www.w3cdoc.com>我们</a>要说的是，长方体显示红色，是因为长方体反射了红色的光，长方体本身的颜色是0x880000，光源的颜色是0xFF0000，红色的光照在物体上，物体反射了红色的光，所以呈现红色。</p><p><a href=https://www.w3cdoc.com>我们</a>现在一直在使用环境光，从环境光的构造函数来看，它只有颜色，其位置对场景中的物体并没有影响，因为他是均匀的反射到物体的表面的。</p><h3 id=环境光对物体的影响>环境光对物体的影响 <a href=#%e7%8e%af%e5%a2%83%e5%85%89%e5%af%b9%e7%89%a9%e4%bd%93%e7%9a%84%e5%bd%b1%e5%93%8d class=anchor aria-hidden=true>#</a></h3><p>环境光就是在场景中无处不在的光，它对物体的影响是均匀的，也就是无论你从物体的那个角度观察，物体的颜色都是一样的，这就是伟大的环境光。</p><p>你可以把环境光放在任何一个位置，它的光线是不会衰减的，是永恒的某个强度的一种光源。</p><h3 id=方向光平行光>方向光（平行光） <a href=#%e6%96%b9%e5%90%91%e5%85%89%e5%b9%b3%e8%a1%8c%e5%85%89 class=anchor aria-hidden=true>#</a></h3><p>平行光又称为方向光（Directional Light），是一组没有衰减的平行的光线，类似太阳光的效果。<br>方向光的模型如图：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-21-59-50.png></p><p>方向光的构造函数如下所示：</p><pre><code>THREE.DirectionalLight = function ( hex, intensity )
+</code></pre><p>其参数如下：</p><p>Hex：关系的颜色，用16进制表示</p><p>Intensity：光线的强度，默认为1。因为RGB的三个值均在0~255之间，不能反映出光照的强度变化，光照越强，物体表面就更明亮。它的取值范围是0到1。如果为0，表示光线基本没什么作用，那么物体就会显示为黑色。呆会你可以尝试来更改这个参数，看看实际的效果</p><p><a href=https://www.w3cdoc.com>我们</a>来看一个方向光的例子：</p><p>一个红色的方向光，把它放在（0，0,1）的位置，密度为1，照射在一个长方体中。效果如下图所示：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-22-01-50.png></p><p>完整代码：</p><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Three框架&lt;/title&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js&quot;&gt;&lt;/script&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+        div#canvas-frame {
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            height: 600px;
+            background-color: #EEEEEE;
+        }
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        var renderer;
+        function initThree() {
+            width = document.getElementById('canvas-frame').clientWidth;
+            height = document.getElementById('canvas-frame').clientHeight;
+            renderer = new THREE.WebGLRenderer({
+                antialias : true
+            });
+            renderer.setSize(width, height);
+            document.getElementById('canvas-frame').appendChild(renderer.domElement);
+            renderer.setClearColor(0xFFFFFF, 1.0);
+        }
+
+        var camera;
+        function initCamera() {
+            camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+            camera.position.x = 600;
+            camera.position.y = 0;
+            camera.position.z = 600;
+            camera.up.x = 0;
+            camera.up.y = 1;
+            camera.up.z = 0;
+            camera.lookAt({
+                x : 0,
+                y : 0,
+                z : 0
+            });
+        }
+
+        var scene;
+        function initScene() {
+            scene = new THREE.Scene();
+        }
+
+        var light;
+        function initLight() {
+            // A start
+            // 第二个参数是光源强度，你可以改变它试一下
+            light = new THREE.DirectionalLight(0xFF0000,1);
+            // 位置不同，方向光作用于物体的面也不同，看到的物体各个面的颜色也不一样
+            light.position.set(0,0,1);
+            scene.add(light);
+            // A end
+        }
+
+        var cube;
+        function initObject() {
+            var geometry = new THREE.CubeGeometry( 200, 100, 50,4,4);
+            var material = new THREE.MeshLambertMaterial( { color:0xFFFFFF} );
+            var mesh = new THREE.Mesh( geometry,material);
+            mesh.position.set(0,0,0);
+            scene.add(mesh);
+        }
+
+        function threeStart() {
+            initThree();
+            initCamera();
+            initScene();
+            initLight();
+            initObject();
+            renderer.clear();
+            renderer.render(scene, camera);
+        }
+
+    &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body onload=&quot;threeStart();&quot;&gt;
+    &lt;div id=&quot;canvas-frame&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p><a href=https://www.w3cdoc.com>我们</a>来分析一下上面的代码：</p><p>1、在A处，<a href=https://www.w3cdoc.com>我们</a>定义了一个红色的强度为1的方向光，它的位置为与（0,0,1）。现在你可以将强度值进行更改一下，例如把它分别改为0.2,0.4,0.6,0.8和1.0，请看看渲染的场景的变换。我敢保证，因为光线强度越来越大，所以红色从黑色、暗红、一直到鲜艳的红色了。</p><p>2、平行光有一个方向，它的方向是如何决定的呢？</p><p>方向由位置和原点（0,0,0）来决定，方向光只与方向有关，与离物体的远近无关。分别将平行光放到（0,0,100），（0,0,50），（0,0,25），（0,0,1），渲染的结果还是红色和黑色，见下图，颜色的深浅不与离物体的距离相关。</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-22-03-14.png></p><p>但是它与方向有关，如果，<a href=https://www.w3cdoc.com>我们</a>灯光的位置改为（1,0,0,5），那么效果如图所示：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-22-03-23.png></p><p>请仔细领会这幅图的意思。<br>增加几个物体，从宏观上看一下光源对物体的影响,现在，<a href=https://www.w3cdoc.com>我们</a>在场景中增加几个物体，来看看，光源对物体的影响。如图是添加了几个物体的截图。仍然是使用方向光。</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-22-03-39.png></p><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Three框架&lt;/title&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js&quot;&gt;&lt;/script&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+        div#canvas-frame {
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            height: 600px;
+            background-color: #EEEEEE;
+        }
+
+    &lt;/style&gt;
+    &lt;script&gt;
+        var renderer;
+        function initThree() {
+            width = document.getElementById('canvas-frame').clientWidth;
+            height = document.getElementById('canvas-frame').clientHeight;
+            renderer = new THREE.WebGLRenderer({
+                antialias : true
+            });
+            renderer.setSize(width, height);
+            document.getElementById('canvas-frame').appendChild(renderer.domElement);
+            renderer.setClearColor(0xFFFFFF, 1.0);
+        }
+
+        var camera;
+        function initCamera() {
+            camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+            camera.position.x = 600;
+            camera.position.y = 0;
+            camera.position.z = 600;
+            camera.up.x = 0;
+            camera.up.y = 1;
+            camera.up.z = 0;
+            camera.lookAt({
+                x : 0,
+                y : 0,
+                z : 0
+            });
+        }
+
+        var scene;
+        function initScene() {
+            scene = new THREE.Scene();
+        }
+
+        var light;
+        function initLight() {
+//                light = new THREE.AmbientLight(0xFF0000);
+//                light.position.set(100, 100, 200);
+//                scene.add(light);
+            // 聚光灯
+            light = new THREE.DirectionalLight(0xFF0000);
+            light.position.set(0, 0,1);
+            scene.add(light);
+        }
+
+        // A start 
+        var cube;
+        function initObject() {
+            var geometry = new THREE.CubeGeometry( 200, 100, 50,4,4);
+            var material = new THREE.MeshLambertMaterial( { color:0xFFFFFF} );
+            var mesh = new THREE.Mesh( geometry,material);
+            mesh.position.set(0,0,0);
+            scene.add(mesh);
+
+            var geometry2 = new THREE.CubeGeometry( 200, 100, 50,4,4);
+            var material2 = new THREE.MeshLambertMaterial( { color:0xFFFFFF} );
+            var mesh2 = new THREE.Mesh( geometry2,material2);
+            mesh2.position.set(-300,0,0);
+            scene.add(mesh2);
+
+            var geometry3 = new THREE.CubeGeometry( 200, 100, 50,4,4);
+            var material3 = new THREE.MeshLambertMaterial( { color:0xFFFFFF} );
+            var mesh3 = new THREE.Mesh( geometry3,material3);
+            mesh3.position.set(0,-150,0);
+            scene.add(mesh3);
+
+            var mesh4 = new THREE.Mesh( geometry3,material3);
+            mesh4.position.set(0,150,0);
+            scene.add(mesh4);
+
+            var mesh5 = new THREE.Mesh( geometry3,material3);
+            mesh5.position.set(300,0,0);
+            scene.add(mesh5);
+
+            var mesh6 = new THREE.Mesh( geometry3,material3);
+            mesh6.position.set(0,0,-100);
+            scene.add(mesh6);
+
+        }
+        // A end
+
+        function threeStart() {
+            initThree();
+            initCamera();
+            initScene();
+            initLight();
+            initObject();
+            renderer.clear();
+            renderer.render(scene, camera);
+        }
+
+    &lt;/script&gt;
+&lt;/head&gt;
+
+&lt;body onload=&quot;threeStart();&quot;&gt;
+    &lt;div id=&quot;canvas-frame&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>在A处，<a href=https://www.w3cdoc.com>我们</a>一共new了6个Mesh，并将每一个mesh放到了不同的位置，这样就生了上图的模样。这里并没有太多的技术含量，童鞋们只需要如法炮制就ok了。</p><p>6、扩展阅读 Babylon中的方向光
+最近问微软的Babylon.js的同学比较多，Babylon.js的方向光也可以学习一下，入门很容易。 有兴趣的同学，可以看一下<a href=https://www.hellodemos.com/hello-babylonjs/babylonjs-light2.html>Babylon.js的方向光</a>.</p><h3 id=环境光和方向光>环境光和方向光 <a href=#%e7%8e%af%e5%a2%83%e5%85%89%e5%92%8c%e6%96%b9%e5%90%91%e5%85%89 class=anchor aria-hidden=true>#</a></h3><p>接下来，<a href=https://www.w3cdoc.com>我们</a>来看看多种光源同时存在于场景之中，对物体颜色的影响。</p><p>当环境光和方向光同时存在的时候，会出现怎么样的情况呢？可以把这种情况想成两种光源同时作用于物体，它产生的情况，和每种光源分别作用于物体，然后将两者的结果相加，是一样的效果。首先看看下面的代码：</p><pre><code>function initLight() {
+
+    light = new THREE.AmbientLight(0x00FF00);
+    light.position.set(100, 100, 200);
+    scene.add(light);
+
+    // 方向光
+    light = new THREE.DirectionalLight(0xFF0000);
+    light.position.set(0, 0,1);
+    scene.add(light);
+}
+</code></pre><p>从代码上可以看出，环境光是绿色0x00FF00，方向光是红色0xFF0000，</p><p><a href=https://www.w3cdoc.com>我们</a>来看看只有环境光，把方向光去掉的时候，渲染的结果是怎么样的：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-22-10-47.png></p><p>反过来，只有方向光的情况，没有环境光的时候，渲染的结果又会是怎么样呢？看看下图：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-22-10-54.png></p><p>是的，总结一下，当方向光照射过来的时候，被照射的表面呈现光的颜色，而由于是方向光，没有照射到的表面，就呈现暗色，一般是黑色，表示没有任何光源照到该表面。</p><p>ok，好了，现在<a href=https://www.w3cdoc.com>我们</a>将环境光和方向光都加上，看看会出现什么效果，也会你已经猜到了效果，不过我还是不厌其烦的给你演示一次。</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-22-11-06.png></p><p>好了，<a href=https://www.w3cdoc.com>我们</a>马上来总结一下：</p><p>1.首先方向光，是如图箭头的方向着色到物体的。而环境光由于与位置没有关系，方向又是任何方向都可以照射的，所以<a href=https://www.w3cdoc.com>我们</a>不管光的方向。</p><p>2、图中绿色的部分，是由环境光造成的。由于方向光根本照射不到绿色的部分，所以，这部分只有环境光对其影响。</p><p>3、图中黄色的部分是由环境光和方向光共同作用而成的，其实是两种光源颜色的简单相加，</p><p>0x00FF00 + 0xFF0000 = 0xFFFF00，oxFFFF00 就是黄色。</p><h3 id=点光源-1>点光源 <a href=#%e7%82%b9%e5%85%89%e6%ba%90-1 class=anchor aria-hidden=true>#</a></h3><p>点光源的特点是发光部分为一个小圆面，近似一个点</p><p>下面的例子介绍了怎么使用点光源：</p><pre><code>light = new THREE.PointLight(0xFF0000);
+light.position.set(0, 0,50);
+scene.add(light);
+</code></pre><p>效果如下图：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-22-11-34.png></p><p>点光源就是在一个点向周围发出的光，所以，你会看到照在物体上的光，有点像球的形状。改变点光源的位置，那么得到的效果图又会有一些区别。</p><p>将光源的位置改在(0, 0,25)，则刚好在一个长方体的边上，效果图如下所示：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-22-11-45.png></p><p>比较上面两幅图，你会发现，第二幅图和第一幅被照射的位置是不一样的。第二幅图，由于刚好在中间的一个长方形的边上，所以被边挡住，只有长方体内部受到光源，而外部面没有受到光源的，所以呈现黑色。</p><p>从这里也反应出了，一个面分前后两个面的，只有被光源照射的那个面才能够被看到。</p><h3 id=混合光源>混合光源 <a href=#%e6%b7%b7%e5%90%88%e5%85%89%e6%ba%90 class=anchor aria-hidden=true>#</a></h3><p>将方向光和点光源混合使用。</p><p>效果如图所示：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-10-22-11-58.png></p><p>这一节课的还会有更新，不太完美，敬请原谅。</p><div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between"></div><div class="docs-navigation d-flex justify-content-between"><a href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/><div class="card my-1"><div class="card-body py-2">&larr; WebGL中的相机</div></div></a><a class=ms-auto href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/><div class="card my-1"><div class="card-body py-2">WebGL中的图片纹理合成 &rarr;</div></div></a></div></main></div></div></div><footer class="footer text-muted"><div class=container-xxl><div class=row><div class="col-lg-8 order-last order-lg-first"><ul class=list-inline><li class=list-inline-item>Copyright © 2022-Present 浙ICP备18052292号-3</li></ul></div><div class="col-lg-8 order-first order-lg-last text-lg-end"><ul class=list-inline></ul></div></div></div></footer><script src=/js/bootstrap.min.1117772738b0b01188ff56b000f75758d3ca75fab55d0d7cf813282148e4840455e1fc0a8f1c2951391282de6e64bed66b885160643382a58f67db6d110e9feb.js integrity="sha512-ERd3JziwsBGI/1awAPdXWNPKdfq1XQ18+BMoIUjkhARV4fwKjxwpUTkSgt5uZL7Wa4hRYGQzgqWPZ9ttEQ6f6w==" crossorigin=anonymous defer></script>
+<script src=/js/highlight.min.35e8488ad0bca08539c53f48a94a3c02f90c10ddc1ecba4a7fd7ec827cef556dec98a33813e3681b33a5750eefd53e65ab606d30febc27e411c293f2290f96a5.js integrity="sha512-NehIitC8oIU5xT9IqUo8AvkMEN3B7LpKf9fsgnzvVW3smKM4E+NoGzOldQ7v1T5lq2BtMP68J+QRwpPyKQ+WpQ==" crossorigin=anonymous defer></script>
+<script src=/main.min.5874482df6978e314928bf4ce1c634b6464aa5445dd098e344aa61159e2b10139d82662edd47e835a3ea422c24214134f15eded85f28e55774a70f9c4919b2b3.js integrity="sha512-WHRILfaXjjFJKL9M4cY0tkZKpURd0JjjRKphFZ4rEBOdgmYu3UfoNaPqQiwkIUE08V7e2F8o5Vd0pw+cSRmysw==" crossorigin=anonymous defer></script>
+<script src=/index.min.4ae26272486ea46c5bb0bed7a0b434a91b05e8182cfb839a405dd4e647b05ce5d76d401a5103d822d3b1589fc56335cd372b712d97085b8d89aebf244b1b5501.js integrity="sha512-SuJickhupGxbsL7XoLQ0qRsF6Bgs+4OaQF3U5kewXOXXbUAaUQPYItOxWJ/FYzXNNytxLZcIW42Jrr8kSxtVAQ==" crossorigin=anonymous defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML" async></script>
+<script type="text/x-mathjax-config;executed=true">
+  window.MathJax.Hub.Config({
+      showProcessingMessages: false, //关闭js加载过程信息
+      messageStyle: "none", //不显示信息
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+          inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]], //段内公式选择符
+          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+      },
+      "HTML-CSS": {
+          availableFonts: ["STIX", "TeX"], //可选字体
+          showMathMenu: false //关闭右击菜单显示
+      }
+  });
+  //下面第三个参数可以不写，默认对整个html内的latex进行翻译
+  window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementsByClassName("ck-content")]);
+</script></body></html>

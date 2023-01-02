@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>js高级 on</title><link>/fed-regain/js/advance/</link><description>Recent content in js高级 on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 06 Oct 2020 08:49:15 +0000</lastBuildDate><atom:link href="/fed-regain/js/advance/index.xml" rel="self" type="application/rss+xml"/><item><title>执行上下文和提升与事件循环</title><link>/fed-regain/js/advance/%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E6%8F%90%E5%8D%87%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/advance/%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E6%8F%90%E5%8D%87%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/</guid><description>也许你会感到惊讶，但我认为理解JavaScript语言最重要也是最基础的概念就是“执行上下文”。充分理解这个概念，能够帮助你进一步探讨一些(JS语言)更深入的话题，比如提升，作用域链和闭包。那么，究竟什么是执行上下文呢？为了更好的理解这个概念，我们得从软件开发的策略说起。
+软件开发的一个有效策略是将我们将代码拆分成许多独立的“片段”。这些“片段”有许多不同的名字(functions,modules,packages等等)，但它们的存在都是为了一个目的，即，将我们的应用按一定逻辑拆分，以降低其复杂度。
+现在，我们从程序员视角切换成JavaScript引擎的视角。JS引擎的工作是处理JS脚本，那么它是否也是用同样的方式，将代码拆分成独立的“片段”，来降低自身“翻译工作”的复杂度呢？
+答案是肯定的，而这些独立的代码块就是我们所说的执行上下文。我们已经了解执行上下文存在的目的（降低JS引擎翻译代码的复杂度），下一个要解决的问题是，执行上下文是如何创建的，以及它的构成是什么？
+全局上下文 # JS引擎编译代码时，**第一个创建的执行上下文叫做全局执行上下文(Global Execution Context)。**这个执行上下文由两部分组成，一个全局对象以及this变量。我们称this关键字为变量的原因是this实质上是一个指向全局对象的指针。而这个全局对象，在浏览器环境下是window，在Node环境下是global.
+如上图所示，即使没有任何代码，全局执行上下文依然由window和this构成。这就是全局执行上下文最基本的形态。
+当然完全没有代码的情况是不太可能的，接下来让我们定义一些变量和函数，看看全局执行上下文的变化。
+看到上面两张截图的不同了吗？这里重要的知识点是全局执行上下文有两个不同的阶段，创建(Creation)阶段和执行(Execution)阶段，且每个阶段都有其各自的职责。
+创建阶段
+创建一个全局对象(window) 创建指向全局对象的this变量 为我们声明的变量和函数分配好内存空间 与此同时，为我们声明的变量和函数赋默认值“undefined” 而执行阶段，顾名思义，在这一阶段，JS引擎开始一行一行的执行我们的代码。
+下面的GIF图形象地描述了全局执行上下文从创建到执行阶段的整个流程
+就本例而言，在创建阶段，JS引擎创建了window和this，将我们所声明的变量(name和handle)赋值为undefined，最后为所有的函数(getUser)分配内存。然后在执行阶段，JS引擎逐行执行我们的代码，且将真实的值赋给变量。
+那么什么是**“提升”**(hoisting)呢？这个词令人费解，因为其实没有任何东西被提升或者移动了，执行上下文在创建阶段为我们声明的所有变量分配内存并赋一个初始值（undefined）的过程，称之为提升。
+现在我们已经非常清楚全局执行上下文有两个阶段，创建和执行。还有另一个执行上下文是我们需要学习的，叫做函数执行上下文(Function Execution Context)。JS引擎在执行函数调用的时候会创建函数执行上下文。
+函数执行上下文与全局执行上下文非常相似，我们来看看它们的异同。JS引擎会在全局执行上下文初始化的时候创建一个全局对象(window)，而在创建函数执行上下文时则不会。因为全局对象是唯一的，而且它并不是函数执行上下文需要关心的。函数执行上下文需要关心的是参数(Arguments)。有了这个知识点，我们便了解了，在函数执行上下文的创建阶段，JS引擎会:
+创建一个arguments对象 (这个对象将保存我们在调用函数时传入的参数列表，如果我们没有传任何参数，arguments对象最基础的形态是 {length: 0}); 创建一个this对象; 为我们声明的变量和函数分配好内存空间; 与此同时，为我们声明的变量和函数赋默认值“undefined” 为了更形象的描述这一过程，我们使用了上一个例子用到的代码，但这次有所不同的是，我们在最后增加了对getUser函数的调用。
+正如我们所讨论过的，JS引擎在getUser函数被调用时，创建了一个新的执行上下文(getUser函数的执行上下文)。在该执行上文的创建阶段，JS引擎创建了this对象和arguments对象，但因为getUser函数内没有声明任何变量，JS引擎不需要分配任何内存空间，也就是我面前面所描述的“提升”这一步被略去了。
+我们还看到，当getUser函数执行完的时候，它的执行上下文就被移除了。事实上，JS引擎创建了一个执行栈(execution context，也可以称之为调用栈 call stack)。当一个函数被调用的时候，JS引擎创建一个新的函数执行上下文，并将它添加到执行栈里。当一个函数执行完毕(此处可以理解为其执行上下文已经完成了创建和执行)，那么这个执行上下文就会从执行栈中被弹出(pop操作)。因为JS是单线程的，所以我们很容易将上述过程图像化。在下图中，我们以嵌套的方式来表述这一个过程，即，在执行栈内，每一个执行上下文是与上一个执行上下文相嵌套的。
+我们已经看到函数是如何调用其执行上下文的，但是我们还没有讨论过当函数内声明了局部变量(Local variable)的情况。让我们看看下面的例子。
+这里有一些细节是我们需要注意的。首先，我们在调用函数时的传参，会被作为一个变量添加到执行上下文中。在上例中，handle作为一个变量既存在于全局执行上下文中(因为它是一个全局变量)，同时也存在于getUser的函数执行上下文中，因为它是getUser函数被调用时的传参。另外一个重点是，在函数内声明的变量则仅存在于该函数的执行上下文中。比如本例中的twitterURL变量，由于它是在getUser函数中被声明的，所以它仅存在于该函数的执行上下文中，而不在全局执行上下文中。这个道理浅显易懂，但我依然要画一个重点，因为它是我们下一个重要概念的基础，作用域(Scopes)。
+作用域 (Scopes) 和闭包 (Closures) # 过去我们也许听过作用域的概念，诸如变量可用性的代码范围之类。无论这样的描述是否易于理解，现在我们明白了执行上下文和执行栈，我们对作用域概念的理解将前所未有的清晰。事实上，MDN对作用域的定义是“当前的执行环境 (The current context of execution)”，是不是听上去有些熟悉呢？让我们将作用域与执行上下文结合起来思考。
+看看下面的代码，我的问题是，变量 bar 在控制台的输出值是什么？
+function foo () { var bar = 'Declared in foo' } foo() console.log(bar) 带着你的答案，我们来看看下面JS引擎的执行过程。
+当foo函数被调用时，JS引擎创建了一个函数执行上下文，并将其存入(push操作)执行栈中。在foo函数执行上下文的创建阶段，JS引擎创建了this，arguments，并为bar分配了内存空间，将其值设为“undefined”。然后进入执行阶段，本例中我们将一个字符串“Declared in foo”赋值给变量bar。之后，执行结束，该函数执行上下文从执行栈中被弹出并关闭(pop操作)。当foo从执行栈中被移除后，我们尝试在控制台打印bar，然而这个时候，bar在当前的执行上下文中从未存在过，所以我们最后得到的是undefined(或一个系统错误 bar is not defined)。通过这个例子，我们知道在函数内声明的变量，其作用域是局部的。这意味着，当一个函数执行上下文从执行栈中移除，那么其局部变量则不可用了(这句陈述在绝大多数情况下是准确的，但有一个例外我们在接下来会讨论)。</description></item><item><title>Object.defineProperty与Proxy</title><link>/fed-regain/js/advance/object-defineproperty%E4%B8%8Eproxy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/advance/object-defineproperty%E4%B8%8Eproxy/</guid><description>Object.observe()方法用于异步地监视一个对象的修改。当对象属性被修改时，方法的回调函数会提供一个有序的修改流。然而，这个接口已经被废弃并从各浏览器中移除。你可以使用更通用的 Proxy 对象替代。
+写了两个版本，分别是使用 js 里的 Proxy （代理）和 Object.defineProperty 实现
+两个版本都有各自的缺陷，大家可以按需自己选择自己需要的
+Proxy 不能监听源对象，只能监控代理对象。代理对象属性值是个对象时，也可以进听到变化。 Object.defineProperty 有新增属性的时候，无法做到自动监听。属性值是个对象时，监听不到变化。每个属性都要处理一遍，费事。 基于Proxy # /**
+* 使用 Proxy 来说实现被废弃的 Object.observe()
+*
+* @param {any} target
+* @param {any} fnBind
+* @returns
+*/
+var bind = function ( target, fnBind ) {
+return new Proxy( target, {
+set: function ( target, prop, value ) {
+target[prop] = value
+fnBind.call( target )
+}
+} )
+}
+var person = {
+name: '12'
+,age: '23'
+}
+var child = bind( person, function () {
+console.</description></item><item><title>详解Object.create(null)和new区别</title><link>/fed-regain/js/advance/%E8%AF%A6%E8%A7%A3object-createnull%E5%92%8Cnew%E5%8C%BA%E5%88%AB/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/advance/%E8%AF%A6%E8%A7%A3object-createnull%E5%92%8Cnew%E5%8C%BA%E5%88%AB/</guid><description>在Vue和Vuex的源码中，作者都使用了Object.create(null)来初始化一个新对象。为什么不用更简洁的{}呢？
+Object.create()使用 # 照搬一下MDN上的定义：
+Object.create(proto,[propertiesObject]) proto:新创建对象的原型对象 propertiesObject:可选。要添加到新对象的可枚举（新添加的属性是其自身的属性，而不是其原型链上的属性）的属性。 举个例子(恶改了一下MDN的官方例子，看懂的点赞)：
+const car = { isSportsCar: false, introduction: function () { console.log(`Hi girl, this is a ${this.name}. Do you like to have a drink with me ? ${this.isSportsCar}`); } }; const porsche = Object.create(car,{ //color成为porsche的数据属性 //颜色不喜欢，可以改色或贴膜，所以可修改 color:{ writable:true, configurable:true, value:'yellow' }, //type成为porsche的访问器属性 type:{ // writable、configurable等属性，不显式设置则默认为false // 想把普通车改成敞篷，成本有点大了，所以就设成不可配置吧 get:function(){return 'convertible'}, set:function(value){&amp;quot;change this car to&amp;quot;,value} } }); porsche.name = &amp;quot;Porsche 911&amp;quot;; // &amp;quot;name&amp;quot;是&amp;quot;porsche&amp;quot;的属性, 而不是&amp;quot;car&amp;quot;的 porsche.isSportsCar = true; // 继承的属性可以被覆写 porsche.</description></item><item><title>基于ES6标签模板实现事件绑定与数据监听</title><link>/fed-regain/js/advance/%E5%9F%BA%E4%BA%8Ees6%E6%A0%87%E7%AD%BE%E6%A8%A1%E6%9D%BF%E5%AE%9E%E7%8E%B0%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%9B%91%E5%90%AC/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/advance/%E5%9F%BA%E4%BA%8Ees6%E6%A0%87%E7%AD%BE%E6%A8%A1%E6%9D%BF%E5%AE%9E%E7%8E%B0%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%9B%91%E5%90%AC/</guid><description>ES6 字符与标签模板 # ES6 字符模板 hello ${name}
+标签模板: function hello ${name}
+字符模板是ES6模板功能的增强。字符模板前面的function类似标签声明。举个例子：
+function tpl(template){
+console.log(template)
+console.log(arguments)
+}
+let content = tpl`Hello ${1} tpl ${2}`;
+输出结果：
+&amp;gt;[&amp;quot;Hello &amp;quot;, &amp;quot; tpl &amp;quot;, &amp;quot;&amp;quot;]
+&amp;gt;{0: [&amp;quot;Hello &amp;quot;, &amp;quot; tpl &amp;quot;, &amp;quot;&amp;quot;], 1: 1, 2: 2}
+看出猫腻了吗？标签模板会把字符模板拆分开，把数据和模板片段传到标签函数里。那么我们可以基于这个特性，实现我们想要的功能：事件绑定与数据监听。
+事件绑定 # let handleClick = (a) =&amp;gt; (e) =&amp;gt; {
+console.log(a, e)
+}
+let content = nodeTpl`&amp;lt;div ${{ click: handleClick(123) }} class='ok'&amp;gt;click me&amp;lt;/div&amp;gt;`
+document.body.appendChild(content)
+编写上面这段代码，我们用这种格式来定义事件：
+${{ click: handleClick(123) }}
+click是事件名，handleClick是高阶函数响应这个点击事件。这里用高阶函数，主要是为了方便传参数。</description></item><item><title>函数式编程处理IF块</title><link>/fed-regain/js/advance/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%A4%84%E7%90%86if%E5%9D%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/advance/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%A4%84%E7%90%86if%E5%9D%97/</guid><description>曾几何时，经常有人问我，“如果让你用函数式编程来实现X，该怎么做?”我比较喜欢这类的问题。我尽最大能力思考这类有趣的问题。本篇文章，我用一种更加函数式的方式来实现优雅处理IF函数块的问题。下面的代码有一个if块，但是没有else。
+// A basic redux-thunk action that only dispatches when value exists const someAction = value =&amp;gt; dispatch =&amp;gt; { const item = getItem(value) if (item != null) { dispatch({ type: 'ACTION', item }) } } 这里我们需要判断item有值的时候走dispatch方法，否则什么都不做。有一种思路是使用短路逻辑或者三元函数。
+// short circuit const someAction = value =&amp;gt; dispatch =&amp;gt; { const item = getItem(value) item &amp;amp;&amp;amp; dispatch({ type: 'ACTION', item }) } // ternary const someAction = value =&amp;gt; dispatch =&amp;gt; { const item = getItem(value) item ?</description></item><item><title>JS对象属性的快速删除</title><link>/fed-regain/js/advance/js%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E5%BF%AB%E9%80%9F%E5%88%A0%E9%99%A4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/advance/js%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E5%BF%AB%E9%80%9F%E5%88%A0%E9%99%A4/</guid><description>先划重点：沿着属性添加的反方向删除属性时，对象不会退化为字典模式。
+在实际业务中，有时针对对象的 delete 操作难以避免，当然我们可以调用上一章提到的方法（MagicFunc）将其优化成为快速模式，但这里主要有 3 个弊端：
+V8 将对象由快速模式迁移到字典模式也需花费时间处理。 所有这些优化方式都是通过 side effects 来实现，本身可靠性的保障并不高。 将对象由字典模式再优化成为快速模式本身有性能损耗。 有没有办法既删除对象的属性又不让对象退化到字典模式（而不是退化之后再去优化）了？
+在要是放在以前是没有办法的！喵喵喵？
+不过在 V8 的新版本（≥ 6.0）中，提供了一个新途径，当删除的属性满足如下 6 点条件时对象不会退化为字典模式：
+对象是常规 JavaScript 对象。 传入的属性名是常量化字符串（不可是变量）或 Symbol。 删除的属性是最后添加到对象内的。 此属性是可以被删除的。 backpointer 引用的类型必须是 。 最后一次 Map Transition 只能由于对象新增属性而触发。 其中第 3 点是在这 6 点中最重要的一条。
+我们来举个例子：
+// flags: --allow-natives-syntax var obj = { &amp;quot;a&amp;quot; : 1, &amp;quot;b&amp;quot; : 2, &amp;quot;c&amp;quot; : 3 }; obj.d = 4; delete obj.d; %HasFastProperties(obj); // true: 删除的属性 &amp;quot;d&amp;quot; 是最后添加进对象内的 delete obj.</description></item><item><title>JS特性性能缺陷及JIT的解决方案</title><link>/fed-regain/js/advance/js%E7%89%B9%E6%80%A7%E6%80%A7%E8%83%BD%E7%BC%BA%E9%99%B7%E5%8F%8Ajit%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/advance/js%E7%89%B9%E6%80%A7%E6%80%A7%E8%83%BD%E7%BC%BA%E9%99%B7%E5%8F%8Ajit%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</guid><description>拜读了David的《Know Your Engines: How to Make Your JavaScript Fast》，David是Mozilla的JS引擎工程师，文章主要介绍了JIT与GC原理，以及如何根据某些基本原理，优化js代码的执行效率，虽然是老文了，但对我来说仍受益匪浅。这里，我根据上文整理了本文，同时，大家也可以从侧面了解下JIT。
+近5年来，在主流浏览器上，Javascript的运行速度有10-100倍的提升，这要归功于Javascript新引擎JIT。但在深入了解JIT前，我们先看看Javascript的一个最重要的特性：untyped（无类型）。
+一. 无类型：
+Javascript是个无类型的语言，这导致了 x = y +ｚ这种表达式，可以有很多含义。比如：
+（1）y，z是数字，则+表示加法。
+（2）y，z是字符串，则+表示字符串连接。
+……
+而JS引擎内部则使用“细粒度”的类型，比如：32-bit* integer, 64-bit* floating-point，如图：
+这就要求js类型-js引擎类型，需要做“boxed/unboxed（装箱/解箱）”，在处理一次x = y + z这种计算，需要经过的步骤如下：
+（1）从内存，读取 x = y + z的操作符。
+（2）从内存，读取 y，z。
+（3）检查y，z类型，确定操作的行为。
+（4）unbox y，z。
+（5）执行 操作符 的行为（唯一有效的步骤……）。
+（6）box x。
+（7）把x写入内存。
+只有（5）是真正有效的操作，其他都是为（5）做准备/收尾的，效率之低可见。javascript的untyped特性很好用，但也为此付出了很大的性能代价。
+二. 对象属性
+``` function f(obj) { return obj.a + 1; } ``` 在Js里，对象属性的访问是比较慢的。至于原因，要从Javascript对象存储说起，这里借用其他文章的一个图： 如上图，访问对象属性，需要先从本地变量表找到对象，然后遍历属性，如果在本对象的属性列表里没找到，再得从prototype里面一层层的找。不能直接索引，只能遍历，这就慢的原因。
+二. 2006版-Javascript引擎
+这版引擎在执行x = y + z时，就是执行了以上流程。它模块图如下：
+三. 2011新版-Javascript引擎</description></item><item><title>JS对象在 V8 内的表达</title><link>/fed-regain/js/advance/%E5%AF%B9%E8%B1%A1%E5%9C%A8-v8-%E5%86%85%E7%9A%84%E8%A1%A8%E8%BE%BE/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/advance/%E5%AF%B9%E8%B1%A1%E5%9C%A8-v8-%E5%86%85%E7%9A%84%E8%A1%A8%E8%BE%BE/</guid><description>先划重点：V8 中具有相同构建结构的 JSObject 对象，具有相同的内存（空间）布局。
+JavaScript 对象会在堆上（根据需求）分配恒定大小的空间：
+预分配（不超过）一定大小*的空间用作对象内属性存储（inobject_properties）。 预分配空间不足时（无空闲 slot），新增属性会存储在 properties 内。 数字式属性存储在 elements 内。 properties/elements 空间不足时会创建（拷贝）一个更大的 FixedArray。 V8 定义 JSObject 最大实例大小为 kMaxInstanceSize = 2040 byte，
+其中：
+kPointerSize = sizeof(void ) = 8 byte（64 位平台），
+kHeaderSize = kPointerSize 3，
+所以：max(inobject_properties) = 252 个 为了便于说明，我们来看个例子：
+1、新建一个对象
+``` var obj = {}; &amp;lt;/div&amp;gt;&amp;lt;figure&amp;gt; &amp;lt;img loading=&amp;quot;lazy&amp;quot; width=&amp;quot;295&amp;quot; height=&amp;quot;359&amp;quot; class=&amp;quot;alignnone size-full wp-image-6620 shadow&amp;quot; src=&amp;quot;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b82d0e10d.png&amp;quot; data-src=&amp;quot;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b82d0e10d.png?x-oss-process=image/format,webp&amp;quot; alt=&amp;quot;&amp;quot; srcset=&amp;quot;https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b82d0e10d.png?x-oss-process=image/format,webp 295w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2021/04/img_6075b82d0e10d.png?x-oss-process=image/quality,q_50/resize,m_fill,w_247,h_300/format,webp 247w&amp;quot; sizes=&amp;quot;(max-width: 295px) 100vw, 295px&amp;quot; /&amp;gt; &amp;lt;/figure&amp;gt; 通过对象字面量创建的无属性对象分配 4 个对象内属性存储（inobject_properties）空间。 2、添加 3 个属性 &amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt; obj.</description></item><item><title>大话JavaScript 引擎扫盲篇</title><link>/fed-regain/js/advance/%E5%A4%A7%E8%AF%9Djavascript-%E5%BC%95%E6%93%8E%E6%89%AB%E7%9B%B2%E7%AF%87/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/advance/%E5%A4%A7%E8%AF%9Djavascript-%E5%BC%95%E6%93%8E%E6%89%AB%E7%9B%B2%E7%AF%87/</guid><description>关于本文标题，我并不认为参与写或者读本文的人是白痴。但是有时某个话题会让你觉得自己就像个白痴一样，而 JavaScript 引擎就是这些话题之一，至少对于我来说是这样。
+有时编写 Web 应用的代码会感觉充满魔力，因为我们只是写了一系列字符，就能在浏览器里看到效果了。但是理解魔法背后的技术，可以帮助你更好地提高编程技巧。至少当你试图解释在 JavaScript 驱动的 web 或移动应用的幕后发生了什么的时候，会觉得自己不那么白痴了。
+很多年前，那是我还是个研究生讲师，向一个教授抱怨还没有掌握那些特别难懂的法语语法点，可以教给我的本科学生。我记得当时她说的话：“有时候，学习某个事物的唯一方式就是教授它。”
+尝试向工程师解释 NativeScript 是如何通过 JavaScript 引擎在幕后工作、在运行时连接调用原生的 APIs——面对这样一件复杂的工作很容易在一片杂草中迷失方向。事实上，任何 JavaScript 开发者都应该对我们每天使用的这门技术基础的引擎感到好奇。现在我们一起来仔细分析下 JavaScript 引擎到底做了什么，为什么不同的平台使用不同引擎，多年来它们是如何发展的，以及作为开发者我们为什么要关注这些。
+专业术语 # “JavaScript 引擎”通常被称作一种 虚拟机。“虚拟机”是指软件驱动的给定的计算机系统的模拟器。有很多类型的虚拟机，它们根据自己在多大程度上精确地模拟或代替真实的物理机器来分类。
+例如，“系统虚拟机”提供了一个可以运行操作系统的完整仿真平台。Mac 用户很熟悉的 Parallels 就是一个允许你在 Mac 上运行 Windows系统虚拟机。
+另一方面，“进程虚拟机”不具备全部的功能，能运行一个程序或者进程。Wine 是一个允许你在 Linux 机器上运行 Windows 应用的进程虚拟机，但是并不在 Linux 中提供完整的 Windows 操作系统。
+JavaScript 虚拟机是一种进程虚拟机，专门设计来解释和执行的 JavaScript 代码。
+注意：要区别在浏览器中排布页面布局的 布局引擎 和解释和执行代码的底层 JavaScript 引擎是非常重要的。在 这里 可以找到一个很好的阐释。
+什么是JavaScript引擎 # JavaScript 引擎的基本工作是把开发人员写的 JavaScript 代码转换成高效、优化的代码，这样就可以通过浏览器进行解释甚至嵌入到应用中。事实上，JavaScriptCore 自称为“优化虚拟机”。
+更准确地讲，每个 JavaScript 引擎都实现了一个版本的 ECMAScript，JavaScript 是它的一个分支。随着 ECMAScript 的不断发展，JavaScript 引擎也不断改进。之所以有这么多不同的引擎，是因为它们每个都被设计运行在不同的 web 浏览器、headless 浏览器、或者像 Node.</description></item><item><title>构建JavaScript 沙箱</title><link>/fed-regain/js/advance/%E6%9E%84%E5%BB%BAjavascript-%E6%B2%99%E7%AE%B1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/advance/%E6%9E%84%E5%BB%BAjavascript-%E6%B2%99%E7%AE%B1/</guid><description>在 Node.js 中有一个模块叫做 VM，它提供了几个 API，允许代码在 V8 虚拟机上下文中运行，如：
+const vm = require('vm'); const sandbox = { a: 1, b: 2 }; const script = new vm.Script('a + b'); const context = new vm.createContext(sandbox); script.runInContext(context); vm.Script 中的代码是预编译好的，通过 vm.createContext 将代码加载到一个上下文环境中，置入沙箱（sandbox），然后通过 script.runInContext 执行代码，整个操作都在封闭的 VM 中进行。这是 Node.js 提供给我们的便捷功能，那么，在浏览器环境中呢？是否也能做到将代码运行在沙箱中？
+代码编译工具 # 邪恶的eval # eval 函数可以将一个 Javascript 字符串视作代码片段执行，不过它存在诸多问题，如调试困难、性能问题等，并且它在运行时可以访问闭包环境和全局作用域，存在代码注入的安全风险，作为沙箱，这也是我们不期望看到的。eval 虽然好用，但是经常被滥用，在这里我们不多讨论它。
+new Function # Function 构造函数会创建一个新的函数对象，它可以作为 eval 的替代品:
+fn = new Function(...args, 'functionBody'); 返回的 fn 是一个定义好的函数，最后一个参数为函数体。它和 eval 不太一样：
+fn 是一段编译好的代码，可以直接执行，而 eval 需要编译一次 fn 没有对所在闭包的作用域访问权限，不过它依然能够访问全局作用域 如何阻止它访问全局作用域呢？</description></item></channel></rss>

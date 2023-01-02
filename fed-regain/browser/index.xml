@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>浏览器 on</title><link>/fed-regain/browser/</link><description>Recent content in 浏览器 on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 06 Oct 2020 08:49:15 +0000</lastBuildDate><atom:link href="/fed-regain/browser/index.xml" rel="self" type="application/rss+xml"/><item><title>Chrome 79+默认执行SameSite-by-default，跨域请求默认不携带cookie</title><link>/fed-regain/browser/chrome-79%E9%BB%98%E8%AE%A4%E6%89%A7%E8%A1%8Csamesite-by-default%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E9%BB%98%E8%AE%A4%E4%B8%8D%E6%90%BA%E5%B8%A6cookie/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/chrome-79%E9%BB%98%E8%AE%A4%E6%89%A7%E8%A1%8Csamesite-by-default%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E9%BB%98%E8%AE%A4%E4%B8%8D%E6%90%BA%E5%B8%A6cookie/</guid><description>之前没太注意，今天有同事反馈说跨域请求跳登录了，查了下没有携带cookie。于是乎，我查了下MDN关于set-cookie
+关于设置cookie # 一般是通过请求后端接口，后端接口返回set-cookie请求头，浏览器会自动设置对应cookie，浏览器默认是阻止js操作set-cookie的请求头的。
+示例：
+Set-Cookie: &amp;lt;cookie-name&amp;gt;=&amp;lt;cookie-value&amp;gt; Set-Cookie: &amp;lt;cookie-name&amp;gt;=&amp;lt;cookie-value&amp;gt;; Expires=&amp;lt;date&amp;gt; Set-Cookie: &amp;lt;cookie-name&amp;gt;=&amp;lt;cookie-value&amp;gt;; Max-Age=&amp;lt;non-zero-digit&amp;gt; Set-Cookie: &amp;lt;cookie-name&amp;gt;=&amp;lt;cookie-value&amp;gt;; Domain=&amp;lt;domain-value&amp;gt; Set-Cookie: &amp;lt;cookie-name&amp;gt;=&amp;lt;cookie-value&amp;gt;; Path=&amp;lt;path-value&amp;gt; Set-Cookie: &amp;lt;cookie-name&amp;gt;=&amp;lt;cookie-value&amp;gt;; Secure Set-Cookie: &amp;lt;cookie-name&amp;gt;=&amp;lt;cookie-value&amp;gt;; HttpOnly Set-Cookie: &amp;lt;cookie-name&amp;gt;=&amp;lt;cookie-value&amp;gt;; SameSite=Strict Set-Cookie: &amp;lt;cookie-name&amp;gt;=&amp;lt;cookie-value&amp;gt;; SameSite=Lax Set-Cookie: &amp;lt;cookie-name&amp;gt;=&amp;lt;cookie-value&amp;gt;; SameSite=None // Multiple attributes are also possible, for example: Set-Cookie: &amp;lt;cookie-name&amp;gt;=&amp;lt;cookie-value&amp;gt;; Domain=&amp;lt;domain-value&amp;gt;; Secure; HttpOnly 相关参数 # Secure Optional ，Cookie is only sent to the server when a request is made with the https: scheme (except on localhost), and therefore is more resistent to man-in-the-middle attacks.</description></item><item><title>Chrome开始集成图形识别 API（Shape Detection API）</title><link>/fed-regain/browser/chrome%E5%BC%80%E5%A7%8B%E9%9B%86%E6%88%90%E5%9B%BE%E5%BD%A2%E8%AF%86%E5%88%AB-apishape-detection-api/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/chrome%E5%BC%80%E5%A7%8B%E9%9B%86%E6%88%90%E5%9B%BE%E5%BD%A2%E8%AF%86%E5%88%AB-apishape-detection-api/</guid><description>最近，Chrome团队尝试在Chrome中集成了一套与图形识别相关的API，使得图形识别这种以前只在原生应用中存在，或者在浏览器上，要借助其他难用的外部库才能实现的功能，现在只要少量代码即可实现。这些API包括人脸识别，条形码/二维码识别和文本识别，基本上覆盖了当前互联网应用的大部分场景。
+现状
+图形识别这种对系统资源和设备的计算能力要求颇高的功能，通常只有底层的原生API能驾驭，流行的框架主要是开源的Open CV和各大移动平台的图形识别服务：
+&amp;lt;td valign=&amp;quot;top&amp;quot; width=&amp;quot;132&amp;quot;&amp;gt; &amp;lt;a title=&amp;quot;Android&amp;quot; href=&amp;quot;https://www.linuxidc.com/topicnews.aspx?tid=11&amp;quot; target=&amp;quot;_blank&amp;quot; rel=&amp;quot;noopener&amp;quot;&amp;gt;Android&amp;lt;/a&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td valign=&amp;quot;top&amp;quot; width=&amp;quot;132&amp;quot;&amp;gt; iOS &amp;lt;/td&amp;gt; &amp;lt;td valign=&amp;quot;top&amp;quot; width=&amp;quot;132&amp;quot;&amp;gt; Windows &amp;lt;/td&amp;gt; 条形码 &amp;lt;td valign=&amp;quot;top&amp;quot; width=&amp;quot;132&amp;quot;&amp;gt; &amp;lt;a href=&amp;quot;https://developers.google.com/android/reference/com/google/android/gms/vision/barcode/package-summary&amp;quot;&amp;gt;vision.barcode&amp;lt;/a&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td valign=&amp;quot;top&amp;quot; width=&amp;quot;132&amp;quot;&amp;gt; &amp;lt;a href=&amp;quot;https://developer.apple.com/reference/coreimage/cifacefeature?language=objc&amp;quot;&amp;gt;CIFaceFeature&amp;lt;/a&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td valign=&amp;quot;top&amp;quot; width=&amp;quot;132&amp;quot;&amp;gt; &amp;lt;a href=&amp;quot;https://docs.microsoft.com/en-us/uwp/api/windows.devices.pointofservice.barcodescanner&amp;quot;&amp;gt;BarcodeScanner&amp;lt;/a&amp;gt; &amp;lt;/td&amp;gt; 人脸 &amp;lt;td valign=&amp;quot;top&amp;quot; width=&amp;quot;132&amp;quot;&amp;gt; &amp;lt;a href=&amp;quot;https://developers.google.com/android/reference/com/google/android/gms/vision/face/package-summary&amp;quot;&amp;gt;vision.face&amp;lt;/a&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td valign=&amp;quot;top&amp;quot; width=&amp;quot;132&amp;quot;&amp;gt; &amp;lt;a href=&amp;quot;https://developer.apple.com/reference/coreimage/ciqrcodefeature?language=objc&amp;quot;&amp;gt;CIQRCodeFeature&amp;lt;/a&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td valign=&amp;quot;top&amp;quot; width=&amp;quot;132&amp;quot;&amp;gt; &amp;lt;a href=&amp;quot;https://docs.microsoft.com/en-us/uwp/api/windows.media.faceanalysis&amp;quot;&amp;gt;FaceAnalysis&amp;lt;/a&amp;gt; &amp;lt;/td&amp;gt; 文本 &amp;lt;td valign=&amp;quot;top&amp;quot; width=&amp;quot;132&amp;quot;&amp;gt; &amp;lt;a href=&amp;quot;https://developers.google.com/android/reference/com/google/android/gms/vision/text/package-summary&amp;quot;&amp;gt;vision.text&amp;lt;/a&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td valign=&amp;quot;top&amp;quot; width=&amp;quot;132&amp;quot;&amp;gt; &amp;lt;a href=&amp;quot;https://developer.</description></item><item><title>chrome插件开发</title><link>/fed-regain/browser/chrome%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/chrome%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/</guid><description>一些资源 # chrome extensions 中的通信交互：https://www.cnblogs.com/experiments-of-ORLAN/p/3736511.html
+Chrome浏览器扩展开发系列之十三：消息传递Message：https://www.cnblogs.com/champagne/p/4848520.html
+Where to read console messages from background.js in a Chrome extension?：
+https://stackoverflow.com/questions/10257301/where-to-read-console-messages-from-background-js-in-a-chrome-extension
+Chrome扩展开发常见问题汇总：https://www.cnblogs.com/slmk/archive/2012/11/16/2772985.html
+Chrome插件开发进阶：https://blog.csdn.net/my_business/article/details/7711525
+Chrome浏览器扩展开发系列之十二：Content Scripts：https://www.cnblogs.com/champagne/p/4844682.html
+chrome开发-extension：https://www.jianshu.com/p/38725b874472
+一些经验 # 比如需要在background中动态注入content js时候，需要注意manifest配置，需要有browser_action配置项，但是里面不能有”default_popup” background.js---------- chrome.browserAction.onClicked.addListener(function (tab) { // console.log(tab) chrome.tabs.executeScript({ file: &amp;quot;js/invalid-click.js&amp;quot; });//通过JS文件 }); manifest.json----------- &amp;quot;browser_action&amp;quot;: { &amp;quot;default_icon&amp;quot;: &amp;quot;icon.png&amp;quot;, &amp;quot;default_title&amp;quot;: &amp;quot;default title&amp;quot; }, &amp;quot;background&amp;quot;: { &amp;quot;scripts&amp;quot;: [ &amp;quot;js/background.js&amp;quot; ], &amp;quot;persistent&amp;quot;: false }, 是的chrome安装ID不变的技巧，但是如果发布到chrome 插件商店就不行了，有限制 众所周知，在chrome插件开发中，插件的ID是chrome自动生成的全球唯一标记串。有了这个ID，我们在chrome store发布插件时，google就会为我们的插件创建一个唯一的url，用户可通过这个url下载或安装插件。
+同时，这个ID也是chrome区别相同或不同插件的唯一指标。也就是说，即使是同样的插件名、一行不差的代码，如果拥有不同的ID，chrome也会认为他们是不一样的。
+但是，聪明如你会发现，在通过chrome导入插件的源码文件夹进行开发时，此处的ID和你最终打包成crx再安装的ID竟然不！一！样！因此可能造成一个困扰：如果我在开发时，因为各种各样的原因，要写死插件ID在代码或者配置中，此时如果写的是开发状态下的ID，到了打包发布后，两边ID对应不上，相关的功能也就不能实现了。（譬如在做Autoupdate时）
+所以，本文就是教你如何保持插件在开发和打包crx后都能保持相同ID的秘籍！
+Ok，依据下面几步，你将能够快速地完成这一目的。
+在chrome插件管理中，点击“打包扩展程序”，将你的源码文件夹选中，然后生成一个pem密钥文件，这个文件一旦生成之后就要保存好，chrome是依据这个文件来生成ID的。 如果不甚文件丢失，你只能更换应用ID了。
+通过第一步的打包，你会得到一个crx文件，将此文件拖到chrome插件管理界面进行安装。
+安装完成之后，你需要进入Chrome的”UserData”目录下，将该目录下manifest.json中的一个key值取出来。
+这个文件的位置：
+Default/Extensions/&amp;lt;extensionId&amp;gt;/&amp;lt;versionString&amp;gt;/manifest.json 注意，不同的操作系统，userdata的目录不一样，不同系统的目录位置不同</description></item><item><title>Chrome浏览器引擎Blink&amp;V8</title><link>/fed-regain/browser/chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%95%E6%93%8Eblinkv8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%95%E6%93%8Eblinkv8/</guid><description>欢迎学习前端知识体系课程，本系列属于：[前端增长教程]1
+背景 # 这篇文章是我的前端技术系列文章中浏览器工作原理栏目中的第二篇。浏览器引擎（也被称作布局引擎或渲染引擎）是浏览器的重要组成部分。浏览器引擎最重要的工作就是将HTML文本和其他页面中的资源转换成可以与用户产生交互的页面。
+除了浏览器引擎外，布局引擎和渲染引擎是另外两个相关的概念，理论上，两个引擎可以独立实现，但在实际情况中，往往很少将二者分开实现。
+除了包含布局和渲染引擎外，浏览器引擎还遵循- 文档安全策略（Content Security Policy）以保证站点间相互独立。
+在运行JavaScript代码的功能上，基本上主流的浏览器都使用独立的引擎，起初JavaScript语言只被用于在浏览器中使用，但现在JavaScript几乎可以在任何地方使用，这需要JavaScript引擎可以独立于浏览器单独使用。
+而像- Electron framework这样的技术就是整合Chromium的渲染引擎和Nodejs而实现的。
+我想通过这篇文章把V8中的技术尽可能的详述，涵盖的内容会比较多，可反复阅读 :)。
+常见的浏览器引擎 # 浏览器引擎是Web平台技术中一系列标准（HTML、CSS、ECMAScript、WebGL、Web Storage等等）的具体实现，不同的浏览器引擎在遵循同样的标准下，还实现了额外的功能。
+Gecko是Mozilla的浏览器引擎，在Firefox中使用，SpiderMonkey是Firefox的JavaScript引擎。
+Apple为Safari浏览器创造了Webkit引擎，Webkit引擎内置了JavaScriptCore引擎。虽然Apple允许在IOS设备上可以使用其他的浏览器代替Safari，但所用通过App Store分发的浏览器必须使用Webkit引擎。例如，Opera Mini浏览器在IOS设备上使用Webkit引擎，而在其他设备上使用Blink引擎。
+Google起初使用Webkit作为Chrome浏览器的引擎，后来以Webkit引擎为基础创造了Blink引擎，所有基于Chromium开源浏览器衍生的产品都使用blink引擎。而大名鼎鼎的V8引擎就是Chromium-based浏览器的JavaScript引擎。
+Microsoft维护着自己的EdgeHTML引擎，作为老的Trident引擎的替代方案。新的Edge的浏览器已经开始使用Chromium的Blink引擎了，而EdgeHTML引擎只在window 10上的- Universal Windows Platform中被使用。
+天下合久必分，分久必合，随着Edge也加入了Blink的阵营，基本上Webkit内核及Webkit内核的衍生Blink已经统治了浏览器市场。到目前，单单Chrome的市场占有率已有六成。接下来，就让我们来聊聊Blink和V8引擎。
+Chromium &amp;amp; Blink # 宽泛的说，Blink实现了在浏览器页签中所有的渲染工作，其中包括：
+实现了Web平台中的标准，例如HTML标准，包括DOM、CSS等。 内置了V8引擎用于运行JavaScript。 从网络堆栈中获取资源 构建DOM树 计算样式和布局 内置了- Chrome Compositor和绘制图形的能力 借助- Content public APIs，Blink可以被内置在很多诸如Chromium，Android WebView和Opera这样的应用中。
+进程/线程架构 # 进程 # Chromium拥有一套多进程架构。Chromium有一个浏览器进程和多个带有沙盒能力的渲染进程。Blink则运行在渲染进程中。浏览器多核架构可以参考这里：http://dev.chromium.org/developers/design-documents/multi-process-architecture
+从安全的角度考虑，让不同的站点保持相互隔离是非常重要的，这被称作站点隔离（Site Isolation）。理论上讲，一个渲染进程应该最多只能负责一个站点的渲染工作。但实际上，当用户打开很多页签时，渲染进程与站点1对1的关系会占用大量的内存。所以一个渲染进程可能会被多个iframe或页签所共享，也就是说一个页面中的多个iframe可能被多个渲染进程渲染，而在不同页面中的多个iframe也可能被同一个渲染进程渲染。
+所以，在iframe，页签和渲染进程间并不存在一对一的关系。
+由于Blink运行在渲染进程中的沙盒中，当Blink需要访问文件或播放视频或者访问用户信息（cookie、password等）时必须与浏览器进程通信。这种不同进程间的通信方式被- Mojo实现。随着Chromium不断向服务化架构演进，Blink可以通过Mojo来降低消息传递过程中对发送方和接收方对于具体实现的依赖（服务可能在多个进程中，也可能在同一个进程中，消息传递方式不同）
+Mojo # Mojo是一系列库的集合，用于提供一种进程内或跨进程的通信方案，其中包含了与平台无关的通用的IPC方案、消息IDL格式化和可以与不同语言集成的绑定库。
+Message pipe # 一个**消息通道（Message pipe）建立其两个端点（endpoint）**之间的通道。每一个端点都有一个用于收消息的队列，同时还可以向另一个端点发送消息，而消息通道是双向的。
+Mojom # Mojom文件描述了消息的类型。
+有了消息通道和消息类型，通道中的一个端点可以被指定成**Remote，它可以发送Mojom文件中定义好类型的消息。另一个端点则可以被指定成Receiver**，用于接收消息。</description></item><item><title>Provisional headers are shown？怎么调试</title><link>/fed-regain/browser/provisional-headers-are-shown%E6%80%8E%E4%B9%88%E8%B0%83%E8%AF%95/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/provisional-headers-are-shown%E6%80%8E%E4%B9%88%E8%B0%83%E8%AF%95/</guid><description>老外给了一个方法：
+The way I found about the extension that was blocking my resource was through the net-internals tool in Chrome:
+For Latest Versions of chrome
+Type chrome://net-export/ in the address bar and hit enter. Start Recording. And save Recording file to local. Open the page that is showing problems. Go back to net-internals You can view Recorded Log file Here &amp;lt;a href=&amp;quot;https://netlog-viewer.appspot.com/#import&amp;quot; rel=&amp;quot;nofollow noreferrer&amp;quot;&amp;gt;https://netlog-viewer.appspot.com/#import&amp;lt;/a&amp;gt; click on events (###) and use the textfield to find the event related to your resource (use parts of the URL).</description></item><item><title>WebRTC相关的canvas与video</title><link>/fed-regain/browser/webrtc%E7%9B%B8%E5%85%B3%E7%9A%84canvas%E4%B8%8Evideo/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/webrtc%E7%9B%B8%E5%85%B3%E7%9A%84canvas%E4%B8%8Evideo/</guid><description>简介 # 这两天公司有个项目，我打算用HTML5做个演示版本，只要是音视频方面的，所以打算采用HTML5协议规范中的WebRTC来研究，考虑到目前国产浏览器大部分‘高速模式’都是用的webkit核心的浏览器引擎，所以除了Chrome和Firefox浏览器之外，国产的浏览器像是sougou支持的都还不错。这里主要是通过WebRTC获取音频和视频流，然后通过video元素转换，经过canvas绘制成图片或者视频录制。这里主要介绍一下关于拍摄照片和美化处理的一些相关知识。其他部分，关于音频和视频的录制，后期在追加。
+转载请注明出处：//fed123.oss-ap-southeast-2.aliyuncs.com/2014/08/04/2014_Html5_canvas_video/
+WebRTC简介 # WebRTC是Google公司推出的一项通过浏览器实时语音和视频通信的技术，Web Real Time Communication。他是的开发者通过javascrip接口调用音频与视频流，实现语音和图片等多媒体应用。
+WebRTC1.0 的架构如下：
+谷歌做了些什么？
+a) Google面向web浏览器开发者，将GIPS封装到一些Java Script APIs中，创建了WebRTC，这意味着VoIP技术将可以为百万开发者所使用。
+b) Google开源了WebRTC，将其置于宽松的BSD证书下——这使得该技术可以被重用、修改并衍化开发；使得该技术脱离了实时媒体工程师的控制。
+c) Google将该技术提交给W3C和IETF标准机构进行标准化，确保该技术成为浏览器中的通用部件，并在此过程中，去除该技术中任何与Google相关部分。
+d) 它忽略了拨号层，让开发商可以在任何实时通信环境下使用WebRTC，而不必考虑是使用何种协议建立信号通信。
+WebRTC访问API # 长久以来，音频/视频捕获都是网络开发中的“圣杯”。多年来，我们总是依赖于浏览器插件（Flash 或 Silverlight）实现这一点。
+现在轮到 HTML5 大显身手了。也许看起来不是很显眼，但是 HTML5 的崛起引发了对设备硬件访问的激增。地理位置 (GPS)、Orientation API（加速计）、WebGL(GPU) 和 Web Audio API（视频硬件）都是很好的例子。这些功能非常强大，展示了基于系统底层硬件功能之上的高级 JavaScript API。
+WebRTC提供了了一种新 API：navigator.getUserMedia()，可让网络应用访问用户的相机和麦克风。
+发展历史，参考：https://blog.csdn.net/renfufei/article/details/21168239
+说说这个navigator.getUserMedia()的使用，考虑到不同浏览器的兼容性，代码如下：
+上面代码中的{video: true,audio:false}，表示的是获取多媒体的音频和视频的开关。
+API使用详解 # 目前一般获取视频的都是调用前置摄像头，可能是由于前置摄像头像素低的原因，默认获取的是480p的图像。至少我的130万像素的摄像头获取的是480p。
+在博客上看到有仁兄查看源代码，有这样一段：
+media_stream_video_source.cc
+懂点c++语言的同学就能看懂，上面其实配置了一些参数，可以看到默认的获取摄像头的品质是480p。在这段代码里还有几个特别的属性minAspectRatio（最小宽比）、maxAspectRatio（最大宽高比）、maxFrameRate（最大每秒帧数）、minFrameRate（最小每秒帧数），似乎我们所能想到的都已经定义了。
+于是我们可以如下定义：
+需要说明的是FrameRate是不生效的，AspectRatio是生效的，但设定的最大最小值一定要能取1.333333(4:3)及1.777777777(16:9)这两个值其中一个。因为video元素输出时，会认得这两个宽高比，如果计算得不出这两个比值，那你会看到一片漆黑！
+特别说明：
+上面的配置方式，经过测试，截止本文发表日期，目前最新的手机浏览器Chrome或Opera都是不支持的，使用上面的配置，可以打开摄像头，但是获取不到数据。而使用以前的配置可以：
+关于摄像头的选取 # MediaStreamTrack.getSources 是HTML5提供的MediaStreamTrack对象，用以跟踪多媒体的输出源。
+MediaStreamTrack.getSources方法需要一个回调函数,并向该回调函数传入本机器所有的（音，视频）多媒体源。
+使用代码如下：
+在打印的sourceInfos数组里面的确可以看到设备流，但是上面的sourceId配置并不生效，在浏览器询问是否允许摄像头设备后，依然使用的是前置或后置摄像头，这个在Chrome浏览器上有的选项可以选择，手机上Opera提供前置或后置的选择。
+Video标签的使用 # 上面通过getUserMedia接口获取视频流之后，将该视频流传给video标签，然后在网页上就可以显示实时视频。
+代码如下：
+有时候，我们不想直接把video标签放在页面上，因为video标签不好控制和处理，而喜欢放置Canvas标签，html5中Canvas标签的灵活度是很高的。可以添加效果，做运算处理等。
+Canvas标签的使用 # 我们可以采用canvas标签实时绘制捕捉到的video的每一帧图片，这样在合适的绘制帧率下，看到的效果和video的展示效果所差无几。</description></item><item><title>浏览器JS引擎工作原理</title><link>/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8web%E5%BC%95%E6%93%8E%E5%8E%9F%E7%90%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8web%E5%BC%95%E6%93%8E%E5%8E%9F%E7%90%86/</guid><description>本文主要介绍浏览器引擎基本知识，介绍javascript虚拟机如何解析执行JS脚本，以及期间可以做的优化工作。
+webkit # 前面[浏览器渲染原理][1]中我们介绍了浏览器的渲染进程，是webkit核心blink负责处理的。关于html的渲染解析这里不介绍，webkit中源于两部分：KHTML（主要指渲染部分）和KJS（V8引擎）
+精心打造全新课程，欢迎吐槽！反馈宝贵意见！
+在线视频课程：网易云课堂课程 思否课堂
+V8引擎的执行 # 整体虚拟机的运行流程如上所示，当然随着不断地迭代，会有些变化，整体流程差不多。v8虚拟机会在JIT解释执行阶段做很多优化工作。解释执行前的工作流程如下：
+scanner scanner 是一个扫描器，用于对纯文本的 JavaScript 代码进行词法分析。它会将代码分析为 tokens。token 在这里是一个非常重要的概念，它是词义单位，是指语法上不能再分割的最小单位，可能是单个字符，也可能是一个字符串。
+例如，一段简单的代码如下：
+``` const a = 20 ``` 上面的代码的 token 集合如下
+``` [ { "type": "Keyword", "value": "const" }, { "type": "Identifier", "value": "a" }, { "type": "Punctuator", "value": "=" }, { "type": "Numeric", "value": "20" } ] ``` parser # 顾名思义，parser 模块我们可以理解为是一个解析器。解析过程是一个语法分析的过程，它会将词法分析结果 tokens 转换为抽象语法树「Abstract Syntax Tree」，同时会验证语法，如果有错误就抛出语法错误。我们可以通过在线网站 esprima 来观察 JavasSript 代码通过词法分析变成 AST 之后的样子。这部分在[程序语言进阶之DSL与AST实战解析][2]课程中有介绍。
+同样一段代码如下：</description></item><item><title>浏览器与node环境的事件循环机制</title><link>/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8Enode%E7%8E%AF%E5%A2%83%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8Enode%E7%8E%AF%E5%A2%83%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/</guid><description>我们都知道，javascript从诞生之日起就是一门单线程的非阻塞的脚本语言。这是由其最初的用途来决定的：与浏览器交互。
+单线程意味着，javascript代码在执行的任何时候，都只有一个主线程来处理所有的任务。
+而非阻塞则是当代码需要进行一项异步任务（无法立刻返回结果，需要花一定时间才能返回的任务，如I/O事件）的时候，主线程会挂起（pending）这个任务，然后在异步任务返回结果的时候再根据一定规则去执行相应的回调。
+单线程是必要的，也是javascript这门语言的基石，原因之一在其最初也是最主要的执行环境——浏览器中，我们需要进行各种各样的dom操作。试想一下 如果javascript是多线程的，那么当两个线程同时对dom进行一项操作，例如一个向其添加事件，而另一个删除了这个dom，此时该如何处理呢？因此，为了保证不会 发生类似于这个例子中的情景，javascript选择只用一个主线程来执行代码，这样就保证了程序执行的一致性。
+当然，现如今人们也意识到，单线程在保证了执行顺序的同时也限制了javascript的效率，因此开发出了web worker技术。这项技术号称让javascript成为一门多线程语言。
+然而，使用web worker技术开的多线程有着诸多限制，例如：所有新线程都受主线程的完全控制，不能独立执行。这意味着这些“线程” 实际上应属于主线程的子线程。另外，这些子线程并没有执行I/O操作的权限，只能为主线程分担一些诸如计算等任务。所以严格来讲这些线程并没有完整的功能，也因此这项技术并非改变了javascript语言的单线程本质。
+可以预见，未来的javascript也会一直是一门单线程的语言。
+话说回来，前面提到javascript的另一个特点是“非阻塞”，那么javascript引擎到底是如何实现的这一点呢？答案就是今天这篇文章的主角——event loop（事件循环）。
+注：虽然nodejs中的也存在与传统浏览器环境下的相似的事件循环。然而两者间却有着诸多不同，故把两者分开，单独解释。
+浏览器环境下js引擎的事件循环机制 # 1.执行栈与事件队列 # 当javascript代码执行的时候会将不同的变量存于内存中的不同位置：堆（heap）和栈（stack）中来加以区分。其中，堆里存放着一些对象。而栈中则存放着一些基础类型变量以及对象的指针。 但是我们这里说的执行栈和上面这个栈的意义却有些不同。
+我们知道，当我们调用一个方法的时候，js会生成一个与这个方法对应的执行环境（context），又叫执行上下文。这个执行环境中存在着这个方法的私有作用域，上层作用域的指向，方法的参数，这个作用域中定义的变量以及这个作用域的this对象。 而当一系列方法被依次调用的时候，因为js是单线程的，同一时间只能执行一个方法，于是这些方法被排队在一个单独的地方。这个地方被称为执行栈。
+当一个脚本第一次执行的时候，js引擎会解析这段代码，并将其中的同步代码按照执行顺序加入执行栈中，然后从头开始执行。如果当前执行的是一个方法，那么js会向执行栈中添加这个方法的执行环境，然后进入这个执行环境继续执行其中的代码。当这个执行环境中的代码 执行完毕并返回结果后，js会退出这个执行环境并把这个执行环境销毁，回到上一个方法的执行环境。。这个过程反复进行，直到执行栈中的代码全部执行完毕。
+下面这个图片非常直观的展示了这个过程，其中的global就是初次运行脚本时向执行栈中加入的代码：
+从图片可知，一个方法执行会向执行栈中加入这个方法的执行环境，在这个执行环境中还可以调用其他方法，甚至是自己，其结果不过是在执行栈中再添加一个执行环境。这个过程可以是无限进行下去的，除非发生了栈溢出，即超过了所能使用内存的最大值。
+以上的过程说的都是同步代码的执行。那么当一个异步代码（如发送ajax请求数据）执行后会如何呢？前文提过，js的另一大特点是非阻塞，实现这一点的关键在于下面要说的这项机制——事件队列（Task Queue）。
+js引擎遇到一个异步事件后并不会一直等待其返回结果，而是会将这个事件挂起，继续执行执行栈中的其他任务。当一个异步事件返回结果后，js会将这个事件加入与当前执行栈不同的另一个队列，我们称之为事件队列。被放入事件队列不会立刻执行其回调，而是等待当前执行栈中的所有任务都执行完毕， 主线程处于闲置状态时，主线程会去查找事件队列是否有任务。如果有，那么主线程会从中取出排在第一位的事件，并把这个事件对应的回调放入执行栈中，然后执行其中的同步代码…，如此反复，这样就形成了一个无限的循环。这就是这个过程被称为“事件循环（Event Loop）”的原因。
+这里还有一张图来展示这个过程：
+图中的stack表示我们所说的执行栈，web apis则是代表一些异步事件，而callback queue即事件队列。
+2.macro task与micro task # 以上的事件循环过程是一个宏观的表述，实际上因为异步任务之间并不相同，因此他们的执行优先级也有区别。不同的异步任务被分为两类：微任务（micro task）和宏任务（macro task）。
+以下事件属于宏任务：
+setInterval() setTimeout() 以下事件属于微任务
+new Promise() new MutaionObserver() 前面我们介绍过，在一个事件循环中，异步事件返回结果后会被放到一个任务队列中。然而，根据这个异步事件的类型，这个事件实际上会被对应的宏任务队列或者微任务队列中去。并且在当前执行栈为空的时候，主线程会 查看微任务队列是否有事件存在。如果不存在，那么再去宏任务队列中取出一个事件并把对应的回到加入当前执行栈；如果存在，则会依次执行队列中事件对应的回调，直到微任务队列为空，然后去宏任务队列中取出最前面的一个事件，把对应的回调加入当前执行栈…如此反复，进入循环。
+我们只需记住当当前执行栈执行完毕时会立刻先处理所有微任务队列中的事件，然后再去宏任务队列中取出一个事件。同一次事件循环中，微任务永远在宏任务之前执行。
+这样就能解释下面这段代码的结果：
+``` setTimeout(function () { console.log(1); }); new Promise(function(resolve,reject){ console.log(2) resolve(3) }).then(function(val){ console.log(val); })
+&amp;lt;/div&amp;gt; 结果为： &amp;lt;div class=&amp;quot;highlight&amp;quot;&amp;gt; 2 3 1</description></item><item><title>浏览器前进后退的缓存机制</title><link>/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%89%8D%E8%BF%9B%E5%90%8E%E9%80%80%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%89%8D%E8%BF%9B%E5%90%8E%E9%80%80%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/</guid><description>浏览器的前进后退功能大家经常使用，但是这里面涉及到的浏览器缓存机制，你可能并不了解，一起看下吧。
+前进后退缓存（或bfcache）是一种浏览器优化，可实现即时后退和前向导航。它显著改善了用户的浏览体验，特别是那些网络或设备较慢的用户。
+作为网页开发人员，了解如何在所有浏览器上优化页面以获得bfcache至关重要，这样您的用户就可以收获好处。
+浏览器兼容性 # 多年来，Firefox和Safari都支持bfcache，跨越桌面和移动版。
+从86版开始，Chrome为一小部分用户启用了在Android上跨站点导航的bfcache。在Chrome 87中，bfcache支持将扩展到所有Android用户，用于跨站点导航，意图在不久的将来也支持同站点导航。
+bfcache 基础知 # bfcache是一个内存缓存，在用户导航时存储页面的完整快照（包括JavaScript堆）。整个页面都在内存中，如果用户决定返回，浏览器可以快速轻松地恢复它。
+你访问过多少次一个网站，点击链接进入另一个页面，却发现它不是你想要的，然后点击后退按钮？在那一刻，bfcache可以大大改变前一页加载的速度：
+未启用bfcache 启动新请求以加载前一页，根据该页面的多次访问优化程度，[浏览器](https://www.w3cdoc.com)可能必须重新下载、重新解析和重新执行它刚刚下载的部分（或全部）资源。 启用bfcache 加载上一页基本上是即时的，因为整个页面可以从内存中恢复，根本不需要进入网络 bfcache不仅加快了导航速度，还减少了数据使用，因为资源不必再次下载。
+Chrome使用数据显示，桌面上每10个导航中就有1个，移动中每5个导航中就有1个是后退或向前。启用bfcache后，浏览器可以消除每天数十亿网页的数据传输和加载时间！
+“缓存”是如何工作的 # bfcache使用的“缓存”与HTTP缓存不同（HTTP缓存在加快重复导航方面也很有用）。bfcache是内存中整个页面（包括JavaScript堆）的快照，而HTTP缓存仅包含对先前请求的响应。由于加载页面所需的所有请求都可以从HTTP缓存中完成，因此使用bfcache还原的重复访问也总是比优化得最好的非bfcache导航更快。
+然而，在内存中创建页面快照涉及如何最好地保存进行中的代码。例如，当您页面处于bfcache中时，如何处理setTimeout()调用，其中超时已达到该调用？
+答案是，浏览器暂停运行任何挂起计时器或未解析的承诺——基本上是JavaScript任务队列中的所有挂起任务——并在页面从bfcache恢复时（或如果）恢复处理任务。
+在某些情况下，这是相当低的风险（例如，超时或承诺），但在其他情况下，它可能导致非常混乱或意外的行为。例如，如果浏览器暂停作为IndexedDB事务的一部分所需的任务，它可能会影响同一来源的其他打开选项卡（因为相同的IndexedDB数据库可以同时被多个选项卡访问）。因此，浏览器通常不会试图在索引数据库事务中间缓存页面或使用可能影响其他页面的API。
+有关各种 API 使用如何影响页面 bfcache 资格的更多详细信息，请参阅下面的“优化页面”以获取 bfcache。
+观察bfcache的API # 虽然bfcache是浏览器自动进行的优化，但开发人员知道它何时发生仍然很重要，这样他们就可以为它优化页面，并相应地调整任何指标或性能测量。
+用于观察bfcache的主要事件是页面的生命周期事件—pageshow 和 pagehide—在如今所有支持bfcache的浏览器中都支持这两个事件。
+还有俩个新的生命周期事件是—freeze 和 resume— 这两个事件只有在Chromium基础的浏览器中存在。
+观察何时从bfcache恢复页面 # The pageshow event fires right after the load event when the page is initially loading and any time the page is restored from bfcache. The pageshow event has a persisted property which will be true if the page was restored from bfcache (and false if not).</description></item><item><title>浏览器工作原理</title><link>/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/</guid><description>在 IE 占据 90% 市场份额的年代，我们除了把浏览器当成一个“黑箱”，什么也做不了。但是现在，开放源代码的浏览器拥有了过半的市场份额，因此，是时候来揭开神秘的面纱，一探网络浏览器的内幕了。呃，里面只有数以百万行计的 C++ 代码…
+这是一篇全面介绍 WebKit 和 Gecko 内部操作的入门文章，是以色列开发人员塔利·加希尔大量研究的成果。在过去的几年中，她查阅了所有公开发布的关于浏览器内部机制的数据（请参见资源），并花了很多时间来研读网络浏览器的源代码。（原文：https://www.html5rocks.com/zh/tutorials/internals/howbrowserswork /）
+![浏览器工作原理][1]
+简介 # 网络浏览器很可能是使用最广的软件。在这篇入门文章中，我将会介绍它们的幕后工作原理。我们会了解到，从您在地址栏输入 google.com 直到您在浏览器屏幕上看到 Google 首页的整个过程中都发生了些什么。
+我们要讨论的浏览器 # 目前使用的主流浏览器有五个：Internet Explorer、Firefox、Safari、Chrome 浏览器和 Opera。本文中以开放源代码浏览器为例，即 Firefox、Chrome 浏览器和 Safari（部分开源）。根据 StatCounter 浏览器统计数据，目前（2011 年 8 月）Firefox、Safari 和 Chrome 浏览器的总市场占有率将近 60%。由此可见，如今开放源代码浏览器在浏览器市场中占据了非常坚实的部分。
+浏览器的主要功能 # 浏览器的主要功能就是向服务器发出请求，在浏览器窗口中展示您选择的网络资源。这里所说的资源一般是指 HTML 文档，也可以是 PDF、图片或其他的类型。资源的位置由用户使用 URI（统一资源标示符）指定。
+浏览器解释并显示 HTML 文件的方式是在 HTML 和 CSS 规范中指定的。这些规范由网络标准化组织 W3C（万维网联盟）进行维护。
+多年以来，各浏览器都没有完全遵从这些规范，同时还在开发自己独有的扩展程序，这给网络开发人员带来了严重的兼容性问题。如今，大多数的浏览器都是或多或少地遵从规范。
+浏览器的用户界面有很多彼此相同的元素，其中包括：
+1.用来输入 URI 的地址栏
+2.前进和后退按钮
+3.书签设置选项
+4.用于刷新和停止加载当前文档的刷新和停止按钮
+5.用于返回主页的主页按钮
+奇怪的是，浏览器的用户界面并没有任何正式的规范，这是多年来的最佳实践自然发展以及彼此之间相互模仿的结果。HTML5 也没有定义浏览器必须具有的用户界面元素，但列出了一些通用的元素，例如地址栏、状态栏和工具栏等。当然，各浏览器也可以有自己独特的功能，比如 Firefox 的下载管理器。
+浏览器的高层结构 # 浏览器的主要组件为 (1.</description></item></channel></rss>

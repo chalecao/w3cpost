@@ -1,0 +1,380 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-regular.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-500.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-700.woff2 type=font/woff2 crossorigin><script>(()=>{var t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,e=localStorage.getItem("theme");t&&e===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),t&&e==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),e==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script><link rel=stylesheet href=/main.f9552544b4ca62af741c0d24d283b4ddcfa2a026a871cff4112743eeb6c4950a530c923242d9d4d42e93635dd91ebd78601a145b8b205bb363d7065c1fa59ffe.css integrity="sha512-+VUlRLTKYq90HA0k0oO03c+ioCaocc/0ESdD7rbElQpTDJIyQtnU1C6TY13ZHr14YBoUW4sgW7Nj1wZcH6Wf/g==" crossorigin=anonymous><noscript><style>img.lazyload{display:none}</style></noscript><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><meta name=bingbot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><title>点线面基本作图 - 万维刀客「w3cdoc」</title><meta name=description content="WebGL中的点线面 # 在计算机世界里，3D世界是由点组成，两个点能够组成一条直线，三个不在一条直线上的点就能够组成一个三角形面，无数三角形面就能够组成各种形状的物体，如下图：
+我们通常把这种网格模型叫做Mesh模型。给物体贴上皮肤，或者专业点就叫做纹理，那么这个物体就活灵活现了。最后无数的物体就组成了我们的3D世界。
+那么3D世界的组成，是否真的这样简单？是的，从编程的角度，目前为此，你只需要知道这些。下一节，我们从点说起。
+点的知识 # 在Threejs中定义一个点 # 在三维空间中的某一个点可以用一个坐标点来表示。一个坐标点由x,y,z三个分量构成。在three.js中，点可以在右手坐标系中表示：
+空间几何中，点可以用一个向量来表示，在Three.js中也是用一个向量来表示的，代码如下所示：
+THREE.Vector3 = function ( x, y, z ) { this.x = x || 0; this.y = y || 0; this.z = z || 0; }; 我们来分析这段代码：前面我们已经知道了THREE是Three.js引擎的一个全局变量。只要你想用它，就可以在任何地方用它。
+那么THREE.Vector3呢，就是表示Vector3是定义在THREE下面的一个类。以后要用Vector3，就必须要加THREE前缀。当然Three.js的设计者，也可以不加THREE这个前缀，但是他们预见到，Three.js引擎中会有很多类型，最好给这些类型加一个前缀，以免与开发者的代码产生冲突。
+THREE.Vector3被赋值为一个函数。这个函数有3个参数，分别代表x坐标，y坐标和z坐标的分量。函数体内的代码将他们分别赋值给成员变量x，y，z。看看上面的代码，中间使用了一个“||”（或）运算符，就是当x=null或者undefine时，this.x的值应该取0。
+点的操作 # 在3D世界中点可以用THREE.Vector3D来表示。对应源码为/src/math/Vector3.js（注意：源码所在的位置，可能不同版本不一样，请自己搜索Vector3关键词来确定）。在您继续学习之前，你可以打开该文件浏览一下，推荐使用WebStorm，如果没有，你也可以用NotePad++。
+现在来看看怎么定义个点，假设有一个点x=4，y=8，z=9。你可以这样定义它：
+var point1 = new THREE.Vecotr3(4,8,9); 另外你也可以使用set方法，代码如下：
+var point1 = new THREE.Vector3(); point1.set(4,8,9); 我们这里使用了set方法，为了以后深入学习的方便，这里将Vector3的常用方法列出如下，为了不影响文章的连贯性，我们专门列出了一个网页来介绍它。
+线的知识 # 初中数学中有一个定理：两个不重合的点能够决定一条直线。在three.js中，也可以通过定义两个点，来画一条直线。正好回顾一下上节最后给出的代码中的例子：
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;UTF-8&amp;quot;&amp;gt; &amp;lt;title&amp;gt;Three框架&amp;lt;/title&amp;gt; &amp;lt;script src=&amp;quot;https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;style type=&amp;quot;text/css&amp;quot;&amp;gt; div#canvas-frame { border: none; cursor: pointer; width: 100%; height: 600px; background-color: #EEEEEE; } &amp;lt;/style&amp;gt; &amp;lt;script&amp;gt; var renderer; function initThree() { width = document."><link rel=canonical href=/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="og:title" content="点线面基本作图"><meta property="og:description" content="WebGL中的点线面 # 在计算机世界里，3D世界是由点组成，两个点能够组成一条直线，三个不在一条直线上的点就能够组成一个三角形面，无数三角形面就能够组成各种形状的物体，如下图：
+我们通常把这种网格模型叫做Mesh模型。给物体贴上皮肤，或者专业点就叫做纹理，那么这个物体就活灵活现了。最后无数的物体就组成了我们的3D世界。
+那么3D世界的组成，是否真的这样简单？是的，从编程的角度，目前为此，你只需要知道这些。下一节，我们从点说起。
+点的知识 # 在Threejs中定义一个点 # 在三维空间中的某一个点可以用一个坐标点来表示。一个坐标点由x,y,z三个分量构成。在three.js中，点可以在右手坐标系中表示：
+空间几何中，点可以用一个向量来表示，在Three.js中也是用一个向量来表示的，代码如下所示：
+THREE.Vector3 = function ( x, y, z ) { this.x = x || 0; this.y = y || 0; this.z = z || 0; }; 我们来分析这段代码：前面我们已经知道了THREE是Three.js引擎的一个全局变量。只要你想用它，就可以在任何地方用它。
+那么THREE.Vector3呢，就是表示Vector3是定义在THREE下面的一个类。以后要用Vector3，就必须要加THREE前缀。当然Three.js的设计者，也可以不加THREE这个前缀，但是他们预见到，Three.js引擎中会有很多类型，最好给这些类型加一个前缀，以免与开发者的代码产生冲突。
+THREE.Vector3被赋值为一个函数。这个函数有3个参数，分别代表x坐标，y坐标和z坐标的分量。函数体内的代码将他们分别赋值给成员变量x，y，z。看看上面的代码，中间使用了一个“||”（或）运算符，就是当x=null或者undefine时，this.x的值应该取0。
+点的操作 # 在3D世界中点可以用THREE.Vector3D来表示。对应源码为/src/math/Vector3.js（注意：源码所在的位置，可能不同版本不一样，请自己搜索Vector3关键词来确定）。在您继续学习之前，你可以打开该文件浏览一下，推荐使用WebStorm，如果没有，你也可以用NotePad++。
+现在来看看怎么定义个点，假设有一个点x=4，y=8，z=9。你可以这样定义它：
+var point1 = new THREE.Vecotr3(4,8,9); 另外你也可以使用set方法，代码如下：
+var point1 = new THREE.Vector3(); point1.set(4,8,9); 我们这里使用了set方法，为了以后深入学习的方便，这里将Vector3的常用方法列出如下，为了不影响文章的连贯性，我们专门列出了一个网页来介绍它。
+线的知识 # 初中数学中有一个定理：两个不重合的点能够决定一条直线。在three.js中，也可以通过定义两个点，来画一条直线。正好回顾一下上节最后给出的代码中的例子：
+<!DOCTYPE html> <html> <head> <meta charset=&#34;UTF-8&#34;> <title>Three框架</title> <script src=&#34;https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js&#34;></script> <style type=&#34;text/css&#34;> div#canvas-frame { border: none; cursor: pointer; width: 100%; height: 600px; background-color: #EEEEEE; } </style> <script> var renderer; function initThree() { width = document."><meta property="og:url" content="/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/"><meta property="og:site_name" content="万维刀客「w3cdoc」"><meta property="og:image" content="/doks.png"><meta property="og:image:alt" content="万维刀客「w3cdoc」"><meta name=twitter:card content="summary_large_image"><meta name=twitter:site content="@w3cdoc"><meta name=twitter:creator content="@chalecao"><meta name=twitter:title content="点线面基本作图"><meta name=twitter:description content><meta name=twitter:image content="/doks.png"><meta name=twitter:image:alt content="点线面基本作图"><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"/#/schema/organization/1","name":"w3cdoc","url":"/","sameAs":["https://twitter.com/w3cdoc"],"logo":{"@type":"ImageObject","@id":"/#/schema/image/1","url":"/w3cdoc.png","width":512,"height":512,"caption":"w3cdoc"},"image":{"@id":"/#/schema/image/1"}},{"@type":"WebSite","@id":"/#/schema/website/1","url":"/","name":"万维刀客「w3cdoc」","description":"互联网同学互相帮助、学习成长的家园","publisher":{"@id":"/#/schema/organization/1"}},{"@type":"WebPage","@id":"/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/","url":"/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/","name":"点线面基本作图","description":"","isPartOf":{"@id":"/#/schema/website/1"},"about":{"@id":"/#/schema/organization/1"},"datePublished":"0001-01-01T00:00:00CET","dateModified":"0001-01-01T00:00:00CET","breadcrumb":{"@id":"/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/#/schema/breadcrumb/1"},"primaryImageOfPage":{"@id":"/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/#/schema/image/2"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/"]}]},{"@type":"BreadcrumbList","@id":"/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/#/schema/breadcrumb/1","name":"Breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"/","url":"/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@id":"/webgllearn%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/"}}]},{"@context":"https://schema.org","@graph":[{"@type":"ImageObject","@id":"/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/#/schema/image/2","url":"/doks.png","contentUrl":"/doks.png","caption":"点线面基本作图"}]}]}</script><meta name=theme-color content="#fff"><link rel=icon href=/favicon.ico sizes=any><link rel=icon type=image/svg+xml href=/favicon.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest crossorigin=use-credentials href=/site.webmanifest><script>"serviceWorker"in navigator&&navigator.serviceWorker.register("/sw.js",{scope:"/"}).then(function(e){console.log("Registration succeeded. Scope is "+e.scope)}).catch(function(e){console.log("Registration failed with "+e)})</script><script src=/js/vendor/autolog.js async></script></head><body class="webgl single"><div class=sticky-top><div class=header-bar></div><header class="navbar navbar-expand-lg navbar-light doks-navbar"><nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation"><a class="navbar-brand order-0" href=/ aria-label=万维刀客「w3cdoc」>万维刀客「w3cdoc」</a>
+<button class="btn btn-menu order-2 d-block d-lg-none" type=button data-bs-toggle=offcanvas data-bs-target=#offcanvasDoks aria-controls=offcanvasDoks aria-label="Open main menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex=-1 id=offcanvasDoks data-bs-backdrop=true aria-labelledby=offcanvasDoksLabel><div class="header-bar d-lg-none"></div><div class="offcanvas-header d-lg-none"><h2 class="h5 offcanvas-title ps-2" id=offcanvasDoksLabel><a class=text-dark href=/>万维刀客「w3cdoc」</a></h2><button type=button class="btn-close text-reset me-2" data-bs-dismiss=offcanvas aria-label="Close main menu"></button></div><div class="offcanvas-body p-4 p-lg-0"><ul class="nav flex-column flex-lg-row align-items-lg-center mt-2 mt-lg-0 ms-lg-2 me-lg-auto"><li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-0 py-1" href=# id=navbarDropdownMenuLink role=button data-bs-toggle=dropdown aria-expanded=false>初级入门
+<span class=dropdown-caret><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></span></a><ul class="dropdown-menu dropdown-menu-main shadow rounded border-0" aria-labelledby=navbarDropdownMenuLink><li><a class=dropdown-item href=/js/basic/javascript%E4%BB%8B%E7%BB%8D/>JS入门</a></li><li><a class=dropdown-item href=/git/basic/introduction/>Git入门</a></li></ul></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-0 py-1" href=# id=navbarDropdownMenuLink role=button data-bs-toggle=dropdown aria-expanded=false>进阶学习
+<span class=dropdown-caret><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></span></a><ul class="dropdown-menu dropdown-menu-main shadow rounded border-0" aria-labelledby=navbarDropdownMenuLink><li><a class=dropdown-item href=/fed-regain/html/html%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2/>前端增长</a></li><li><a class=dropdown-item href=/webgl/base/%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/>3D图形</a></li><li><a class=dropdown-item href=/bigdata/compute/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/>数据分析</a></li></ul></li><li class=nav-item><a class="nav-link ps-0 py-1" href=/blog/>博客</a></li><li class=nav-item><a class="nav-link ps-0 py-1" href=/course/>网课教程</a></li></ul><hr class="text-black-50 my-4 d-lg-none"><form class="doks-search position-relative flex-grow-1 ms-lg-auto me-lg-2"><input id=search class="form-control is-search" type=search placeholder="Search docs..." aria-label="Search docs..." autocomplete=off><div id=suggestions class="shadow bg-white rounded d-none"></div></form><hr class="text-black-50 my-4 d-lg-none"><ul class="nav flex-column flex-lg-row"></ul><hr class="text-black-50 my-4 d-lg-none"><button id=mode class="btn btn-link" type=button aria-label="Toggle user interface mode">
+<span class=toggle-dark><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span><span class=toggle-light><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span></button></div></div></nav></header></div><div class=container-xxl><aside class=doks-sidebar><nav id=doks-docs-nav class="collapse d-lg-none" aria-label="Tertiary navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-c7f3a86c4d209391b63439cc2af9bf20 aria-expanded=false>
+理论基础</button><div class=collapse id=section-c7f3a86c4d209391b63439cc2af9bf20><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/webgl/base/%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/>基础教程</a></li><li><a class="docs-link rounded" href=/webgl/base/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%9A%84%E6%95%B0%E5%AD%A6%E7%90%86%E8%AE%BA/>图像处理的数学理论</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-a6e9adb94ced3e994cf1b1d4abc688dd aria-expanded=true>
+webgl入门</button><div class="collapse show" id=section-a6e9adb94ced3e994cf1b1d4abc688dd><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/webgl/learn/%E5%88%9D%E5%A7%8Bwebgl%E5%92%8Cthreejs/>初始WebGL和ThreeJS</a></li><li><a class="docs-link rounded active" href=/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/>点线面基本作图</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E8%BF%90%E5%8A%A8%E7%9A%84%E5%9C%BA%E6%99%AF/>运动的场景</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/>WebGL中的相机</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/>WebGL中的各种光</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/>WebGL中的图片纹理合成</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84canvas%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/>WebGL中的Canvas纹理合成</a></li><li><a class="docs-link rounded" href=/webgl/learn/3d%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8A%A0%E8%BD%BD%E4%B8%8E%E4%BD%BF%E7%94%A8/>3D模型的加载与使用</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E7%BD%91%E6%A0%BC%E6%A8%A1%E5%9E%8B%E6%97%8B%E8%BD%AC%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E6%96%B9%E6%B3%95/>网格模型旋转的常用技巧和方法</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/>多摄像机多视图多角度摄影</a></li></ul></div></li></ul></nav></aside></div><div class="wrap container-xxl" role=document><div class=content><div class="row flex-xl-nowrap"><div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block"><nav class=docs-links aria-label="Main navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-c7f3a86c4d209391b63439cc2af9bf20 aria-expanded=false>
+理论基础</button><div class=collapse id=section-c7f3a86c4d209391b63439cc2af9bf20><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/webgl/base/%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/>基础教程</a></li><li><a class="docs-link rounded" href=/webgl/base/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%9A%84%E6%95%B0%E5%AD%A6%E7%90%86%E8%AE%BA/>图像处理的数学理论</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-a6e9adb94ced3e994cf1b1d4abc688dd aria-expanded=true>
+webgl入门</button><div class="collapse show" id=section-a6e9adb94ced3e994cf1b1d4abc688dd><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/webgl/learn/%E5%88%9D%E5%A7%8Bwebgl%E5%92%8Cthreejs/>初始WebGL和ThreeJS</a></li><li><a class="docs-link rounded active" href=/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/>点线面基本作图</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E8%BF%90%E5%8A%A8%E7%9A%84%E5%9C%BA%E6%99%AF/>运动的场景</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/>WebGL中的相机</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/>WebGL中的各种光</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/>WebGL中的图片纹理合成</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84canvas%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/>WebGL中的Canvas纹理合成</a></li><li><a class="docs-link rounded" href=/webgl/learn/3d%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8A%A0%E8%BD%BD%E4%B8%8E%E4%BD%BF%E7%94%A8/>3D模型的加载与使用</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E7%BD%91%E6%A0%BC%E6%A8%A1%E5%9E%8B%E6%97%8B%E8%BD%AC%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E6%96%B9%E6%B3%95/>网格模型旋转的常用技巧和方法</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/>多摄像机多视图多角度摄影</a></li></ul></div></li></ul></nav></div><nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation"><div class=d-xl-none><button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#onThisPage aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>On this page</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button>
+<button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#doks-docs-nav aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>Book Menu</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button><div class=collapse id=onThisPage><div class="card card-body mt-3 py-1"><div class=page-links><nav id=TableOfContents><ul><li><ul><li><a href=#webgl中的点线面>WebGL中的点线面</a></li><li><a href=#点的知识>点的知识</a></li><li><a href=#线的知识>线的知识</a></li><li><a href=#坐标系>坐标系</a></li></ul></li><li><a href=#在线实验>在线实验</a></li></ul></nav></div></div></div></div><div class="page-links d-none d-xl-block"><h3>On this page</h3><nav id=TableOfContents><ul><li><ul><li><a href=#webgl中的点线面>WebGL中的点线面</a></li><li><a href=#点的知识>点的知识</a></li><li><a href=#线的知识>线的知识</a></li><li><a href=#坐标系>坐标系</a></li></ul></li><li><a href=#在线实验>在线实验</a></li></ul></nav></div></nav><main class="docs-content col-lg-11 col-xl-9 mx-xl-auto"><h1>点线面基本作图</h1><p class=lead></p><nav class=d-xl-none aria-label="Quaternary navigation"><div class=d-xl-none><button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#onThisPage aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>On this page</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button>
+<button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#doks-docs-nav aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>Book Menu</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button><div class=collapse id=onThisPage><div class="card card-body mt-3 py-1"><div class=page-links><nav id=TableOfContents><ul><li><ul><li><a href=#webgl中的点线面>WebGL中的点线面</a></li><li><a href=#点的知识>点的知识</a></li><li><a href=#线的知识>线的知识</a></li><li><a href=#坐标系>坐标系</a></li></ul></li><li><a href=#在线实验>在线实验</a></li></ul></nav></div></div></div></div><div class="page-links d-none d-xl-block"><h3>On this page</h3><nav id=TableOfContents><ul><li><ul><li><a href=#webgl中的点线面>WebGL中的点线面</a></li><li><a href=#点的知识>点的知识</a></li><li><a href=#线的知识>线的知识</a></li><li><a href=#坐标系>坐标系</a></li></ul></li><li><a href=#在线实验>在线实验</a></li></ul></nav></div></nav><h3 id=webgl中的点线面>WebGL中的点线面 <a href=#webgl%e4%b8%ad%e7%9a%84%e7%82%b9%e7%ba%bf%e9%9d%a2 class=anchor aria-hidden=true>#</a></h3><p>在计算机世界里，3D世界是由点组成，两个点能够组成一条直线，三个不在一条直线上的点就能够组成一个三角形面，无数三角形面就能够组成各种形状的物体，如下图：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-04-19-42-09.png></p><p><a href=https://www.w3cdoc.com>我们</a>通常把这种网格模型叫做Mesh模型。给物体贴上皮肤，或者专业点就叫做纹理，那么这个物体就活灵活现了。最后无数的物体就组成了<a href=https://www.w3cdoc.com>我们</a>的3D世界。</p><p>那么3D世界的组成，是否真的这样简单？是的，从编程的角度，目前为此，你只需要知道这些。下一节，<a href=https://www.w3cdoc.com>我们</a>从点说起。</p><h3 id=点的知识>点的知识 <a href=#%e7%82%b9%e7%9a%84%e7%9f%a5%e8%af%86 class=anchor aria-hidden=true>#</a></h3><h4 id=在threejs中定义一个点>在Threejs中定义一个点 <a href=#%e5%9c%a8threejs%e4%b8%ad%e5%ae%9a%e4%b9%89%e4%b8%80%e4%b8%aa%e7%82%b9 class=anchor aria-hidden=true>#</a></h4><p>在三维空间中的某一个点可以用一个坐标点来表示。一个坐标点由x,y,z三个分量构成。在three.js中，点可以在右手坐标系中表示：</p><p>空间几何中，点可以用一个向量来表示，在Three.js中也是用一个向量来表示的，代码如下所示：</p><pre><code>THREE.Vector3 = function ( x, y, z ) {
+this.x = x || 0;
+this.y = y || 0;
+this.z = z || 0;
+};
+</code></pre><p><a href=https://www.w3cdoc.com>我们</a>来分析这段代码：前面<a href=https://www.w3cdoc.com>我们</a>已经知道了THREE是Three.js引擎的一个全局变量。只要你想用它，就可以在任何地方用它。</p><p>那么THREE.Vector3呢，就是表示Vector3是定义在THREE下面的一个类。以后要用Vector3，就必须要加THREE前缀。当然Three.js的设计者，也可以不加THREE这个前缀，但是他们预见到，Three.js引擎中会有很多类型，最好给这些类型加一个前缀，以免与开发者的代码产生冲突。</p><p>THREE.Vector3被赋值为一个函数。这个函数有3个参数，分别代表x坐标，y坐标和z坐标的分量。函数体内的代码将他们分别赋值给成员变量x，y，z。看看上面的代码，中间使用了一个“||”（或）运算符，就是当x=null或者undefine时，this.x的值应该取0。</p><h4 id=点的操作>点的操作 <a href=#%e7%82%b9%e7%9a%84%e6%93%8d%e4%bd%9c class=anchor aria-hidden=true>#</a></h4><p>在3D世界中点可以用THREE.Vector3D来表示。对应源码为/src/math/Vector3.js（注意：源码所在的位置，可能不同版本不一样，请自己搜索Vector3关键词来确定）。在您继续学习之前，你可以打开该文件浏览一下，推荐使用WebStorm，如果没有，你也可以用NotePad++。</p><p>现在来看看怎么定义个点，假设有一个点x=4，y=8，z=9。你可以这样定义它：</p><pre><code>var point1 = new THREE.Vecotr3(4,8,9);
+</code></pre><p>另外你也可以使用set方法，代码如下：</p><pre><code>var point1 = new THREE.Vector3();
+point1.set(4,8,9);
+</code></pre><p><a href=https://www.w3cdoc.com>我们</a>这里使用了set方法，为了以后深入学习的方便，这里将Vector3的常用方法列出如下，为了不影响文章的连贯性，<a href=https://www.w3cdoc.com>我们</a>专门列出了一个网页来介绍它。</p><h3 id=线的知识>线的知识 <a href=#%e7%ba%bf%e7%9a%84%e7%9f%a5%e8%af%86 class=anchor aria-hidden=true>#</a></h3><p>初中数学中有一个定理：两个不重合的点能够决定一条直线。在three.js中，也可以通过定义两个点，来画一条直线。正好回顾一下上节最后给出的代码中的例子：</p><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;title&gt;Three框架&lt;/title&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js&quot;&gt;&lt;/script&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+div#canvas-frame {
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    height: 600px;
+    background-color: #EEEEEE;
+}
+&lt;/style&gt;
+&lt;script&gt;
+var renderer;
+function initThree() {
+    width = document.getElementById(&quot;canvas-frame&quot;).clientWidth;
+    height = document.getElementById(&quot;canvas-frame&quot;).clientHeight;
+    renderer = new THREE.WebGLRenderer({
+        antialias : true
+    }); 
+    renderer.setSize(width, height);
+    document.getElementById(&quot;canvas-frame&quot;).appendChild(renderer.domElement);
+    renderer.setClearColor(0xFFFFFF, 1.0);
+}
+
+var camera;
+function initCamera() {
+    camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+    camera.position.x = 0;
+    camera.position.y = 1000;
+    camera.position.z = 0;
+    camera.up.x = 0;
+    camera.up.y = 0;
+    camera.up.z = 1;
+    camera.lookAt({
+        x : 0,
+        y : 0,
+        z : 0
+    });
+}
+
+var scene;
+function initScene() {
+    scene = new THREE.Scene();
+}
+
+var light;
+function initLight() {
+    light = new THREE.DirectionalLight(0xFF0000, 1.0, 0);
+    light.position.set(100, 100, 200);
+    scene.add(light);
+}
+
+var cube;
+function initObject() {
+    var geometry = new THREE.Geometry();
+    var material = new THREE.LineBasicMaterial( { vertexColors: THREE.VertexColors} );
+    var color1 = new THREE.Color( 0x444444 ), color2 = new THREE.Color( 0xFF0000 );
+    // 线的材质可以由2点的颜色决定
+    var p1 = new THREE.Vector3( -100, 0, 100 );
+    var p2 = new THREE.Vector3( 100, 0, -100 );
+    geometry.vertices.push(p1);
+    geometry.vertices.push(p2);
+    geometry.colors.push( color1, color2 );
+
+    var line = new THREE.Line( geometry, material, THREE.LinePieces );
+    scene.add(line);
+}
+
+function render(){
+    renderer.clear();
+    renderer.render(scene, camera);
+    requestAnimationFrame(render);
+}
+
+function threeStart() {
+initThree();
+initCamera();
+initScene();
+initLight();
+initObject();
+render();
+}
+&lt;/script&gt;
+&lt;/head&gt;
+    &lt;body onload=&quot;threeStart();&quot;&gt;
+    &lt;div id=&quot;canvas-frame&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>1、首先，<a href=https://www.w3cdoc.com>我们</a>声明了一个几何体geometry，如下：</p><pre><code>var geometry = new THREE.Geometry();
+</code></pre><p>几何体里面有一个vertices变量，可以用来存放点。</p><p>2、定义一种线条的材质，使用THREE.LineBasicMaterial类型来定义，它接受一个集合作为参数，其原型如下：</p><pre><code>LineBasicMaterial( parameters )
+</code></pre><p>Parameters是一个定义材质外观的对象，它包含多个属性来定义材质，这些属性是：</p><p>Color：线条的颜色，用16进制来表示，默认的颜色是白色。</p><p>Linewidth：线条的宽度，默认时候1个单位宽度。</p><p>Linecap：线条两端的外观，默认是圆角端点，当线条较粗的时候才看得出效果，如果线条很细，那么你几乎看不出效果了。</p><p>Linejoin：两个线条的连接点处的外观，默认是“round”，表示圆角。</p><p>VertexColors：定义线条材质是否使用顶点颜色，这是一个boolean值。意思是，线条各部分的颜色会根据顶点的颜色来进行插值。（如果关于插值不是很明白，可以QQ问我，QQ在前言中你一定能够找到，嘿嘿，虽然没有明确写出）。</p><p>Fog：定义材质的颜色是否受全局雾效的影响。</p><p>好了，介绍完这些参数，你可以试一试了。<a href=https://www.w3cdoc.com>我们</a>这里使用了顶点颜色vertexColors: THREE.VertexColors，就是线条的颜色会根据顶点来计算。</p><pre><code>var material = new THREE.LineBasicMaterial( { vertexColors: THREE.VertexColors } );
+</code></pre><p>3、接下来，定义两种颜色，分别表示线条两个端点的颜色，如下所示：</p><pre><code>var color1 = new THREE.Color( 0x444444 ),
+color2 = new THREE.Color( 0xFF0000 );
+</code></pre><p>4、定义2个顶点的位置，并放到geometry中，代码如下：</p><pre><code>var p1 = new THREE.Vector3( -100, 0, 100 );
+var p2 = new THREE.Vector3( 100, 0, -100 );
+geometry.vertices.push(p1);
+geometry.vertices.push(p2);
+</code></pre><p>5、为4中定义的2个顶点，设置不同的颜色，代码如下所示：</p><pre><code>geometry.colors.push( color1, color2 );
+</code></pre><p>geometry中colors表示顶点的颜色，必须材质中vertexColors等于THREE.VertexColors 时，颜色才有效，如果vertexColors等于THREE.NoColors时，颜色就没有效果了。那么就会去取材质中color的值，这个很重要，<a href=https://www.w3cdoc.com>大家</a>一定记住。</p><p>6、定义一条线</p><p>定义线条，使用THREE.Line类，代码如下所示：</p><pre><code>var line = new THREE.Line( geometry, material, THREE.LinePieces );
+</code></pre><p>第一个参数是几何体geometry，里面包含了2个顶点和顶点的颜色。第二个参数是线条的材质，或者是线条的属性，表示线条以哪种方式取色。第三个参数是一组点的连接方式，<a href=https://www.w3cdoc.com>我们</a>会在后面详细讲解。</p><p>然后，将这条线加入到场景中，代码如下：</p><pre><code>scene.add(line);
+</code></pre><p>这样，场景中就会出现刚才的那条线段了。</p><h4 id=线条的进一步说明>线条的进一步说明 <a href=#%e7%ba%bf%e6%9d%a1%e7%9a%84%e8%bf%9b%e4%b8%80%e6%ad%a5%e8%af%b4%e6%98%8e class=anchor aria-hidden=true>#</a></h4><p>在Threejs中，一条线由点，材质和颜色组成。</p><p>点由THREE.Vector3表示，Threejs中没有提供单独画点的函数，它必须被放到一个THREE.Geometry形状中，这个结构中包含一个数组vertices，这个vertices就是存放无数的点（THREE.Vector3）的数组。
+为了绘制一条直线，首先<a href=https://www.w3cdoc.com>我们</a>需要定义两个点，如下代码所示：</p><pre><code>var p1 = new THREE.Vector3( -100, 0, 100 );
+var p2 = new THREE.Vector3( 100, 0, -100 );
+</code></pre><p>请<a href=https://www.w3cdoc.com>大家</a>思考一下，这两个点在坐标系的什么位置，然后<a href=https://www.w3cdoc.com>我们</a>声明一个THREE.Geometry，并把点加进入，代码如下所示：</p><pre><code>var geometry = new THREE.Geometry();
+geometry.vertices.push(p1);
+geometry.vertices.push(p2);
+</code></pre><p>geometry.vertices的能够使用push方法，是因为geometry.vertices是一个数组。这样geometry 中就有了2个点了。</p><p>然后<a href=https://www.w3cdoc.com>我们</a>需要给线加一种材质，可以使用专为线准备的材质，THREE.LineBasicMaterial。</p><p>最终<a href=https://www.w3cdoc.com>我们</a>通过THREE.Line绘制了一条线，如下代码所示:</p><pre><code>var line = new THREE.Line( geometry, material, THREE.LinePieces );
+</code></pre><p>ok，line就是<a href=https://www.w3cdoc.com>我们</a>要的线条了。</p><h3 id=坐标系>坐标系 <a href=#%e5%9d%90%e6%a0%87%e7%b3%bb class=anchor aria-hidden=true>#</a></h3><h4 id=右手坐标系>右手坐标系 <a href=#%e5%8f%b3%e6%89%8b%e5%9d%90%e6%a0%87%e7%b3%bb class=anchor aria-hidden=true>#</a></h4><p>Threejs使用的是右手坐标系，这源于opengl默认情况下，也是右手坐标系。下面是右手坐标系的图例，如果对这个概念不理解，可以百度一下，我保证你伸出手比划的那一瞬间你就明白了，如果不明白请给作者留言，我会尽快补上关于坐标系的知识。</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-04-19-54-14.png></p><p>图中右边那个手对应的坐标系，就是右手坐标系。在Threejs中，坐标和右边的坐标完全一样。x轴正方向向右，y轴正方向向上，z轴由屏幕从里向外。</p><h4 id=坐标平面>坐标平面 <a href=#%e5%9d%90%e6%a0%87%e5%b9%b3%e9%9d%a2 class=anchor aria-hidden=true>#</a></h4><p>下面<a href=https://www.w3cdoc.com>我们</a>要绘制一个坐标平面网格，先给出代码吧，看充满智慧的你是否可以看懂。</p><pre><code>&lt;!DOCTYPE html&gt;
+
+&lt;html&gt;
+
+&lt;head&gt;
+
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+
+&lt;title&gt;Three框架&lt;/title&gt;
+
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;style type=&quot;text/css&quot;&gt;
+
+div#canvas-frame {
+
+border: none;
+
+cursor: pointer;
+
+width: 100%;
+
+height: 600px;
+
+background-color: #EEEEEE;
+
+}
+
+
+
+&lt;/style&gt;
+
+&lt;script&gt;
+
+var renderer;
+
+function initThree() {
+
+width = document.getElementById(&quot;canvas-frame&quot;).clientWidth;
+
+height = document.getElementById(&quot;canvas-frame&quot;).clientHeight;
+
+renderer = new THREE.WebGLRenderer({
+
+antialias : true
+
+});
+
+renderer.setSize(width, height);
+
+document.getElementById(&quot;canvas-frame&quot;).appendChild(renderer.domElement);
+
+renderer.setClearColor(0xFFFFFF, 1.0);
+
+}
+
+
+
+var camera;
+
+function initCamera() {
+
+camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+
+camera.position.x = 0;
+
+camera.position.y = 1000;
+
+camera.position.z = 0;
+
+camera.up.x = 0;
+
+camera.up.y = 0;
+
+camera.up.z = 1;
+
+camera.lookAt({
+
+x : 0,
+
+y : 0,
+
+z : 0
+
+});
+
+}
+
+
+
+var scene;
+
+function initScene() {
+
+scene = new THREE.Scene();
+
+}
+
+
+
+var light;
+
+function initLight() {
+
+light = new THREE.DirectionalLight(0xFF0000, 1.0, 0);
+
+light.position.set(100, 100, 200);
+
+scene.add(light);
+
+}
+
+// A begin
+
+var cube;
+
+function initObject() {
+
+var geometry = new THREE.Geometry();
+
+geometry.vertices.push( new THREE.Vector3( - 500, 0, 0 ) );
+
+geometry.vertices.push( new THREE.Vector3( 500, 0, 0 ) );
+
+for ( var i = 0; i &lt; 20; i ++ ) {
+    var line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0x000000, opacity: 0.2 } ) );
+
+    line.position.z = ( i * 50 ) - 500;
+
+    scene.add( line );
+    var line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0x000000, opacity: 0.2 } ) );
+
+    line.position.x = ( i * 50 ) - 500;
+
+    line.rotation.y = 90 * Math.PI / 180;
+
+    scene.add( line );
+
+    }
+}
+
+// A end
+
+function threeStart() {
+
+initThree();
+
+initCamera();
+
+initScene();
+
+initLight();
+
+initObject();
+
+renderer.clear();
+
+renderer.render(scene, camera);
+
+}
+
+
+
+&lt;/script&gt;
+
+&lt;/head&gt;
+
+
+
+&lt;body onload=&quot;threeStart();&quot;&gt;
+
+&lt;div id=&quot;canvas-frame&quot;&gt;&lt;/div&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre><p>1、定义2个点</p><p>在x轴上定义两个点p1(-500,0,0)，p2(500,0,0)。</p><pre><code>geometry.vertices.push( new THREE.Vector3( - 500, 0, 0 ) );
+geometry.vertices.push( new THREE.Vector3( 500, 0, 0 ) );
+</code></pre><p>2、算法</p><p>这两个点决定了x轴上的一条线段，将这条线段复制20次，分别平行移动到z轴的不同位置，就能够形成一组平行的线段。</p><p>同理，将p1p2这条线先围绕y轴旋转90度，然后再复制20份，平行于z轴移动到不同的位置，也能形成一组平行线。</p><p>经过上面的步骤，就能够得到坐标网格了。代码如下：</p><pre><code>for ( var i = 0; i &lt;-= 20; i ++ ) {
+
+    var line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0x000000, opacity: 0.2 } ) );
+
+    line.position.z = ( i * 50 ) - 500;
+
+    scene.add( line );
+
+    var line = new THREE.Line( geometry, new THREE.LineBasicMaterial( { color: 0x000000, opacity: 0.2 } ) );
+
+    line.position.x = ( i * 50 ) - 500;
+
+    line.rotation.y = 90 * Math.PI / 180; // 旋转90度
+
+    scene.add( line );
+}
+</code></pre><h2 id=在线实验>在线实验 <a href=#%e5%9c%a8%e7%ba%bf%e5%ae%9e%e9%aa%8c class=anchor aria-hidden=true>#</a></h2><p>在线编码地址：<a href=/playground.html>playground</a></p><div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between"></div><div class="docs-navigation d-flex justify-content-between"><a href=/webgl/base/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%9A%84%E6%95%B0%E5%AD%A6%E7%90%86%E8%AE%BA/><div class="card my-1"><div class="card-body py-2">&larr; 图像处理的数学理论</div></div></a><a class=ms-auto href=/webgl/learn/%E8%BF%90%E5%8A%A8%E7%9A%84%E5%9C%BA%E6%99%AF/><div class="card my-1"><div class="card-body py-2">运动的场景 &rarr;</div></div></a></div></main></div></div></div><footer class="footer text-muted"><div class=container-xxl><div class=row><div class="col-lg-8 order-last order-lg-first"><ul class=list-inline><li class=list-inline-item>Copyright © 2022-Present 浙ICP备18052292号-3</li></ul></div><div class="col-lg-8 order-first order-lg-last text-lg-end"><ul class=list-inline></ul></div></div></div></footer><script src=/js/bootstrap.min.1117772738b0b01188ff56b000f75758d3ca75fab55d0d7cf813282148e4840455e1fc0a8f1c2951391282de6e64bed66b885160643382a58f67db6d110e9feb.js integrity="sha512-ERd3JziwsBGI/1awAPdXWNPKdfq1XQ18+BMoIUjkhARV4fwKjxwpUTkSgt5uZL7Wa4hRYGQzgqWPZ9ttEQ6f6w==" crossorigin=anonymous defer></script>
+<script src=/js/highlight.min.35e8488ad0bca08539c53f48a94a3c02f90c10ddc1ecba4a7fd7ec827cef556dec98a33813e3681b33a5750eefd53e65ab606d30febc27e411c293f2290f96a5.js integrity="sha512-NehIitC8oIU5xT9IqUo8AvkMEN3B7LpKf9fsgnzvVW3smKM4E+NoGzOldQ7v1T5lq2BtMP68J+QRwpPyKQ+WpQ==" crossorigin=anonymous defer></script>
+<script src=/main.min.5874482df6978e314928bf4ce1c634b6464aa5445dd098e344aa61159e2b10139d82662edd47e835a3ea422c24214134f15eded85f28e55774a70f9c4919b2b3.js integrity="sha512-WHRILfaXjjFJKL9M4cY0tkZKpURd0JjjRKphFZ4rEBOdgmYu3UfoNaPqQiwkIUE08V7e2F8o5Vd0pw+cSRmysw==" crossorigin=anonymous defer></script>
+<script src=/index.min.4ae26272486ea46c5bb0bed7a0b434a91b05e8182cfb839a405dd4e647b05ce5d76d401a5103d822d3b1589fc56335cd372b712d97085b8d89aebf244b1b5501.js integrity="sha512-SuJickhupGxbsL7XoLQ0qRsF6Bgs+4OaQF3U5kewXOXXbUAaUQPYItOxWJ/FYzXNNytxLZcIW42Jrr8kSxtVAQ==" crossorigin=anonymous defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML" async></script>
+<script type="text/x-mathjax-config;executed=true">
+  window.MathJax.Hub.Config({
+      showProcessingMessages: false, //关闭js加载过程信息
+      messageStyle: "none", //不显示信息
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+          inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]], //段内公式选择符
+          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+      },
+      "HTML-CSS": {
+          availableFonts: ["STIX", "TeX"], //可选字体
+          showMathMenu: false //关闭右击菜单显示
+      }
+  });
+  //下面第三个参数可以不写，默认对整个html内的latex进行翻译
+  window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementsByClassName("ck-content")]);
+</script></body></html>

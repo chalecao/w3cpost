@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>机器学习 on</title><link>/bigdata/ml/</link><description>Recent content in 机器学习 on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 06 Oct 2020 08:49:15 +0000</lastBuildDate><atom:link href="/bigdata/ml/index.xml" rel="self" type="application/rss+xml"/><item><title>LSTM介绍</title><link>/bigdata/ml/lstm%E4%BB%8B%E7%BB%8D/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/bigdata/ml/lstm%E4%BB%8B%E7%BB%8D/</guid><description>之前一直在做CNN的一些研究，最近刚刚回到实验室，定下来了自己的小组，然后开始了一些LSTM的学习。
+将近学习了两天半吧，结构弄得差不多了，Theano上LSTM tutorial 的例程也跑了跑，正在读代码ing。
+这篇博客主要是我之后要做的一个小报告的梗概，梳理了一下LSTM的特点和适用性问题。
+发在这里权当做开博客压压惊。
+希望之后能跟各位朋友多多交流，共同进步。
+1. 概念： # Long short-termmemory (LSTM)is a recurrent neuralnetwork (RNN)architecture (an artificialneural network)published[1] in 1997 by Sepp Hochreiter and Jürgen Schmidhuber. Like most RNNs, an LSTM network is universalin the sense that given enough network units it can compute anything aconventional computer can compute, provided it has the proper weight matrix, which may be viewed as its program. Unliketraditional RNNs, an LSTM network is well-suited to learn from experience to classify, process and predict time series when there are very long time lags of unknownsize between important events.</description></item><item><title>LSM树有什么用</title><link>/bigdata/ml/lsm%E6%A0%91%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/bigdata/ml/lsm%E6%A0%91%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8/</guid><description>十多年前，谷歌发布了大名鼎鼎的”三驾马车”的论文，分别是GFS(2003年)，MapReduce（2004年），BigTable（2006年），为开源界在大数据领域带来了无数的灵感，其中在 “BigTable” 的论文中很多很酷的方面之一就是它所使用的文件组织方式，这个方法更一般的名字叫 Log Structured-Merge Tree。在面对亿级别之上的海量数据的存储和检索的场景下，我们选择的数据库通常都是各种强力的NoSQL，比如Hbase，Cassandra，Leveldb，RocksDB等等，这其中前两者是Apache下面的顶级开源项目数据库，后两者分别是Google和Facebook开源的数据库存储引擎。而这些强大的NoSQL数据库都有一个共性，就是其底层使用的数据结构，都是仿照“BigTable”中的文件组织方式来实现的，也就是我们今天要介绍的LSM-Tree。
+什么是LSM-Tree # LSM-Tree全称是Log Structured Merge Tree，是一种分层，有序，面向磁盘的数据结构，其核心思想是充分了利用了，磁盘批量的顺序写要远比随机写性能高出很多，如下图示：
+围绕这一原理进行设计和优化，以此让写性能达到最优，正如我们普通的Log的写入方式，这种结构的写入，全部都是以Append的模式追加，不存在删除和修改。当然有得就有舍，这种结构虽然大大提升了数据的写入能力，却是以牺牲部分读取性能为代价，故此这种结构通常适合于写多读少的场景。故LSM被设计来提供比传统的B+树或者ISAM更好的写操作吞吐量，通过消去随机的本地更新操作来达到这个目标。这里面最典型的例子就属于Kakfa了，把磁盘顺序写发挥到了极致，故而在大数据领域成为了互联网公司标配的分布式消息中间件组件。
+虽然这种结构的写非常简单高效，但其缺点是对读取特别是随机读很不友好，这也是为什么日志通常用在下面的两种简单的场景：
+（1） 数据是被整体访问的，大多数数据库的WAL（write ahead log）也称预写log，包括mysql的Binlog等
+（2） 数据是通过文件的偏移量offset访问的，比如Kafka。
+想要支持更复杂和高效的读取，比如按key查询和按range查询，就得需要做一步的设计，这也是LSM-Tree结构，除了利用磁盘顺序写之外，还划分了内存+磁盘多层的合并结构的原因，正是基于这种结构再加上不同的优化实现，才造就了在这之上的各种独具特点的NoSQL数据库，如Hbase，Cassandra，Leveldb，RocksDB，MongoDB，TiDB等。
+SSTable 和 LSM-Tree # 提到LSM-Tree这种结构，就得提一下LevelDB这个存储引擎，我们知道Bigtable是谷歌开源的一篇论文，很难接触到它的源代码实现。如果说Bigtable是分布式闭源的一个高性能的KV系统，那么LevelDB就是这个KV系统开源的单机版实现，最为重要的是LevelDB是由Bigtable的原作者 Jeff Dean 和 Sanjay Ghemawat 共同完成，可以说高度复刻了Bigtable 论文中对于其实现的描述。
+在LSM-Tree里面，核心的数据结构就是SSTable，全称是Sorted String Table，SSTable的概念其实也是来自于 Google 的 Bigtable 论文，论文中对 SSTable 的描述如下：
+An SSTable provides a persistent, ordered immutable map from keys to values, where both keys and values are arbitrary byte strings. Operations are provided to look up the value associated with a specified key, and to iterate over all key/value pairs in a specified key range.</description></item><item><title>KimBall维度建模</title><link>/bigdata/ml/kimball%E7%BB%B4%E5%BA%A6%E5%BB%BA%E6%A8%A1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/bigdata/ml/kimball%E7%BB%B4%E5%BA%A6%E5%BB%BA%E6%A8%A1/</guid><description>从20世纪80年代中期以来，kimball一直是数据仓库和商业智能行业维度建模方法的思想开拓者。维度建模之初假设数据仓库仅限于单服务器数据库，随着大数据时代的到来，分布式计算和分式存储成为了新的趋势，所以Ralph Kimball所普及的维度数据建模方法和技术需要一些修订，这样才能更好地满足大数据建模的需求。需要注意的是，在数据仓库领域， Inmon和Kimball是两大主要阵营，但是Kimball的维度建模理论对于现代数仓建设的影响可谓是非常深远的，所以本文主要讨论维度建模的相关问题。
+不要使用代理键 # 在KimBall的维度建模中，必须使用代理键作为每个维表的主键，用于处理缓慢变化维。
+这个问题对于初学数仓维度建模的人而言，很容易陷入Kimball提出的代理键的漩涡之中，以至于把时间都浪费了。其实代理键在大数据仓库环境下显得很不合时宜，并且很难维护。在实际的建模中使用自然键是一个很好的选择，如果维度有一个复合主键，只需将它们与合理的分隔符连接在一起，即可根据多个自然键生成单个键。
+总结下来不使用代理键主要有一下两个原因：
+分布式计算系统，淡化了事务的概念，生成代理键的代价会很高
+代理键会大大增加ETL的复杂性，对于ETL任务的开发和维护成本很高
+避免使用 Type-2 SCD # 缓慢变化维是维度建模理论的一个非常重要的概念，大多数情况下，Type-0 或 Type-1 SCD 可以解决问题。除非有特别关键的原因，否则我会避免使用 Type-2 SCD。尤其是在大数据环境下的数据建模，几乎很少使用Type-2 SCD。
+关于SCD的解释如下：
+SCD1：通过更新维度记录直接覆盖已存在的值，它不维护记录的历史。SCD1一般用于修改错误的数据。
+SCD2：在源数据发生变化时，给维度记录建立一个新的“版本”记录，从而维护维度历史。SCD2不删除、修改已存在的数据。
+SCD3：通常用作保持维度记录的几个版本。它通过给某个数据单元增加多个列来维护历史。例如，为了记录客户地址的变化，customer_dim维度表有一个 customer_address列和一个previous_customer_address列，分别记录当前和上一个版本的地址。SCD3可以有效维护有限的历史，而不像SCD2那样保存全部历史。SCD3 很少使用。它只适用于数据的存储空间不足并且用户接受有限维度历史的情况。
+如果非得需要实现 Type-2 SCD(不建议使用)，也不要使用代理键。相反，将自然键与表示 SCD 中的有效日期和到期日期字段结合使用。这只是查询稍微复杂一点，但更灵活，更容易实现，并且避免了对代理键的需要。
+维表快照 # 在关系型数据仓库时代，快照维度显得没有意义，但在大数据环境中却非常有意义。简单将就是使用分区表，每个分区内存储的是截止当前时间的全量维度信息。
+通过快照的方式处理缓慢变化维，是在大数据环境的数据仓库实践中常用的方式。以离线数仓为例，计算周期一般是每天一次，基于此周期，处理缓慢变化维的方式就是每天保留一份全量的快照数据。以商品维度为例，就是每天保留一份全量的商品快照数据。在下游的使用过程中，可以获取每天的维度信息，使用起来非常方便。
+优点
+简单，开发和维护成本低
+方便，很容易理解，下游使用数据时只需要限定所需要的日期即可
+缺点
+存储浪费
+综合看来，由于存储成本远低于CPU、内存的成本，此方法是牺牲存储获取ETL效率优化和逻辑上的简单，显然是利大于弊的。
+数据建模的非规范化 # 所谓的非规范化，即是将某些维度属性冗余至事实表。过去之所以不赞成这样做，部分原因是因为 RDBMS 将数据存储在表中的方式。随着 Parquet 和 ORC 等列式数据存储格式的出现；这不再是一个大问题。
+在传统的维度建模的星型模型中，对于维度的处理是将其单独存放在专门的维表中，然后通过事实表的外键获取维度。这样做的目的是为了减少事实表的冗余，从而减少存储消耗。
+但是在大数据背景下，考虑到提高下游任务的使用效率，降低获取数据的复杂性，减少关联表的数量，通常的做法是将常用的维度冗余至事实表中。
+善于使用复杂的数据类型 # 通常，作为数据工程师，我们的工作是将非结构化数据集重新组织为结构化（或半结构化）数据集，但是在一些场景下，非结构化是一个很好的选择。
+复杂的数据类型违反了最重要的范式（原子列）规则，其实你会发现，维度数据建模的许多传统理论都违反了其中的一些规则。由于复杂数据类型使用起来非常灵活，其在现代数据仓库中功能是非常强大的。
+当某个实体的详细信息在不久的将来发生变化时，使用一个 JSON来保存这些字段是很有必要的，直到schema的细节可以固化。
+对于一对多的情况，使用数组或许是一个很好的方案，例如，如果在商品维度中存储一些标签字段，我们就可以将这些字段存在在一个数组字段中，而不是将标签存储在 一张标签表中。
+值得注意的是，对于一些特殊的场景，要善于使用复杂类型，而不是滥用复杂数据类型。结构化依然是建模过程中需要考虑的重点。
+总结 # Ralph Kimball的维度建模理论对于当今数据仓库建模的影响可谓是非常深远的，我们现在主流的数仓建模都是基于维度建模的。随着大数据技术的不断发展，维度建模的一些方法需求随之做出一些调整，但是其核心思想是不变的。另外，作为数仓开发者，我们要遵循一个准则：数据仓库的设计是为了业务服务的，是为了发挥数据运营的优势而存在的，所以彰显数据价值，赋能业务增长才是我们需要考虑的最根本问题。</description></item><item><title>Huffman树和Huffman编码</title><link>/bigdata/ml/huffman%E6%A0%91%E5%92%8Chuffman%E7%BC%96%E7%A0%81/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/bigdata/ml/huffman%E6%A0%91%E5%92%8Chuffman%E7%BC%96%E7%A0%81/</guid><description>Huffman树是一种特殊结构的二叉树，由Huffman树设计的二进制前缀编码，也称为Huffman编码在通信领域有着广泛的应用。在word2vec模型中，在构建层次Softmax的过程中，也使用到了Huffman树的知识。
+在通信中，需要将传输的文字转换成二进制的字符串，假设传输的报文为：“AFTERDATAEARAREARTAREA”，现在需要对该报文进行编码。
+一、Huffman树的基本概念 # 在二叉树中有一些基本的概念，对于如下所示的二叉树：
+路径
+路径是指在一棵树中，从一个节点到另一个节点之间的分支构成的通路，如从节点8到节点1的路径如下图所示：
+路径长度
+路径长度指的是路径上分支的数目，在上图中，路径长度为2。
+节点的权
+节点的权指的是为树中的每一个节点赋予的一个非负的值，如上图中每一个节点中的值。
+节点的带权路径长度
+节点的带权路径长度指的是从根节点到该节点之间的路径长度与该节点权的乘积：如对于1节点的带权路径长度为：2。
+树的带权路径长度
+树的带权路径长度指的是所有叶子节点的带权路径长度之和。
+有了如上的概念，对于Huffman树，其定义为：
+给定nn权值作为nn个叶子节点，构造一棵二叉树，若这棵二叉树的带权路径长度达到最小，则称这样的二叉树为最优二叉树，也称为Huffman树。
+由以上的定义可以知道，Huffman树是带权路径长度最小的二叉树 ( 考点 ，应用点)，对于上面的二叉树，其构造完成的Huffman树为：
+二、Huffman树的构建 # 由上述的Huffman树可知：节点的权越小，其离树的根节点越远。那么应该如何构建Huffman树呢？以上述报文为例，首先需要统计出每个字符出现的次数作为节点的权:
+接下来构建Huffman树：
+重复以下的步骤：
+按照权值对每一个节点排序：D-F-T-E-R-A 选择权值最小的两个节点，此处为D和F生成新的节点，节点的权重为这两个节点的权重之和，为2 直到只剩最后的根节点
+按照上述的步骤，该报文的Huffman树的生成过程为：
+对于树中节点的结构为：
+#define LEN 512 struct huffman_node{ char c; int weight; char huffman_code[LEN]; huffman_node * left; huffman_node * right; }; 对于Huffman树的构建过程为：
+int huffman_tree_create(huffman_node *&amp;amp;root, map&amp;lt;char, int&amp;gt; &amp;amp;word){ char line[MAX_LINE]; vector&amp;lt;huffman_node *&amp;gt; huffman_tree_node; map&amp;lt;char, int&amp;gt;::iterator it_t; for (it_t = word.begin(); it_t != word.</description></item><item><title>先验概率与后验概率、贝叶斯区别与联系</title><link>/bigdata/ml/%E5%85%88%E9%AA%8C%E6%A6%82%E7%8E%87%E4%B8%8E%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/bigdata/ml/%E5%85%88%E9%AA%8C%E6%A6%82%E7%8E%87%E4%B8%8E%E5%90%8E%E9%AA%8C%E6%A6%82%E7%8E%87%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%8C%BA%E5%88%AB%E4%B8%8E%E8%81%94%E7%B3%BB/</guid><description>先验概率和后验概率 # 教科书上的解释总是太绕了。其实举个例子大家就明白这两个东西了。
+假设我们出门堵车的可能因素有两个（就是假设而已，别当真）：车辆太多和交通事故。
+堵车的概率就是先验概率 。
+那么如果我们出门之前我们听到新闻说今天路上出了个交通事故，那么我们想算一下堵车的概率，这个就叫做条件概率 。也就是P(堵车|交通事故)。这是有因求果。
+如果我们已经出了门，然后遇到了堵车，那么我们想算一下堵车时由交通事故引起的概率有多大，
+那这个就叫做后验概率 （也是条件概率，但是通常习惯这么说） 。也就是P(交通事故|堵车)。这是有果求因。
+下面的定义摘自百度百科：
+先验概率是指根据以往经验和分析得到的概率,如全概率公式,它往往作为”由因求果”问题中的”因”出现.
+后验概率是指依据得到”结果”信息所计算出的最有可能是那种事件发生,如贝叶斯公式中的,是”执果寻因”问题中的”因”.
+那么这两个概念有什么用呢？
+最大似然估计 # 我们来看一个例子。
+有一天，有个病人到医院看病。他告诉医生说自己头痛，然后医生根据自己的经验判断出他是感冒了，然后给他开了些药回去吃。
+有人肯定要问了，这个例子看起来跟我们要讲的最大似然估计有啥关系啊。
+关系可大了，事实上医生在不知不觉中就用到了最大似然估计（虽然有点牵强，但大家就勉为其难地接受吧^_^）。
+怎么说呢？
+大家知道，头痛的原因有很多种啊，比如感冒，中风，脑溢血…（脑残&amp;gt;_&amp;lt;这个我可不知道会不会头痛，还有那些看到难题就头痛的病人也不在讨论范围啊！）。
+那么医生凭什么说那个病人就是感冒呢？哦，医生说这是我从医多年的经验啊。
+咱们从概率的角度来研究一下这个问题。
+其实医生的大脑是这么工作的，
+他计算了一下
+P(感冒|头痛)（头痛由感冒引起的概率，下面类似）
+P(中风|头痛)
+P(脑溢血|头痛)
+…
+然后这个计算机大脑发现，P(感冒|头痛)是最大的，因此就认为呢，病人是感冒了。看到了吗？这个就叫最大似然估计（Maximum likelihood estimation，MLE） 。
+咱们再思考一下，P(感冒|头痛)，P(中风|头痛)，P(脑溢血|头痛)是先验概率还是后验概率呢？
+没错，就是后验概率。看到了吧，后验概率可以用来看病（只要你算得出来，呵呵）。
+事实上，后验概率起了这样一个用途，根据一些发生的事实（通常是坏的结果），分析结果产生的最可能的原因，然后才能有针对性地去解决问题。
+那么先验概率有啥用呢？
+我们来思考一下，P(脑残|头痛)是怎么算的。
+P(脑残|头痛)=头痛的人中脑残的人数/头痛的人数
+头痛的样本倒好找，但是头痛的人中脑残的人数就不好调查了吧。如果你去问一个头痛的人你是不是脑残了，我估计那人会把你拍飞吧。
+接下来先验概率就派上用场了。
+根据贝叶斯公式 ，
+P(B|A)=P(A|B)P(B)/P(A)
+我们可以知道
+P(脑残|头痛)=P(头痛|脑残)P(脑残)/P(头痛)
+注意，(头痛|脑残)是先验概率，那么利用贝叶斯公式我们就可以利用先验概率把后验概率算出来了。
+P(头痛|脑残)=脑残的人中头痛的人数/脑残的人数
+这样只需要我们去问脑残的人你头痛吗，明显很安全了。
+（你说脑残的人数怎么来的啊，那我们就假设我们手上有一份传说中的脑残名单吧。那份同学不要吵，我没说你在名单上啊。
+再说调查脑残人数的话咱就没必要抓着一个头痛的人问了。起码问一个心情好的人是否脑残比问一个头痛的人安全得多）
+我承认上面的例子很牵强，不过主要是为了表达一个意思。后验概率在实际中一般是很难直接计算出来的，相反先验概率就容易多了。因此一般会利用先验概率来计算后验概率。</description></item><item><title>从Seq2seq到Attention模型到Self Attention（1）</title><link>/bigdata/ml/%E4%BB%8Eseq2seq%E5%88%B0attention%E6%A8%A1%E5%9E%8B%E5%88%B0self-attention1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/bigdata/ml/%E4%BB%8Eseq2seq%E5%88%B0attention%E6%A8%A1%E5%9E%8B%E5%88%B0self-attention1/</guid><description>近一两年，注意力模型（Attention Model）是深度学习领域最受瞩目的新星，用来处理与序列相关的数据，特别是2017年Google提出后，模型成效、复杂度又取得了更大的进展。以金融业为例，客户的行为代表一连串的序列，但要从串行化的客户历程数据去萃取信息是非常困难的，如果能够将self-attention的概念应用在客户历程并拆解分析，就能探索客户潜在行为背后无限的商机。然而，笔者从Attention model读到self attention时，遇到不少障碍，其中很大部分是后者在论文提出的概念，鲜少有文章解释如何和前者做关联，笔者希望藉由这系列文，解释在机器翻译的领域中，是如何从Seq2seq演进至Attention model再至self attention，使读者在理解Attention机制不再这么困难。
+为此，系列文分为两篇，第一篇着重在解释Seq2seq、Attention模型，第二篇重点摆在self attention，希望大家看完后能有所收获。
+前言
+你可能很常听到Seq2seq这词，却不明白是什么意思。Seq2seq全名是Sequence-to-sequence，也就是从序列到序列的过程，是近年当红的模型之一。Seq2seq被广泛应用在机器翻译、聊天机器人甚至是图像生成文字等情境。如下图：
+其中，Seq2seq常见情境为机器翻译，因此接下来的内容都会以情境进行说明。
+图（3）是个典型的Seq2seq模型，包含了编码器（Encoder）和解码器（Decoder）.只要输入句子至Encoder，即可从Decoder获得目标句。
+举例来说，如果我们将“Are you very big”作为输入句（source sentence），即可得到目标句（target sentence）“你很大？”。机器翻译就是这么简单，然而，如果想了解它如何组成，会发现其中充斥着各种难以咀嚼的RNN/LSTM等概念。
+接下来，让我们快速回味一下RNN/LSTM，方便后续模型理解。
+RNN/LSTM
+RNN是DNN模型的变种，不同之处在于它可以储存过去的行为记忆，进行更准确的预测，然而，就像人脑一样，一旦所需记忆量太大，就会比较健忘。我们可以把隐藏状态（hidden state）h_{t}认为是记忆单元，h_{t}可通过前一步的hidden state和当前时刻的输入（input）得到，因为是记忆单元，h_{t}可以捕捉到之前所有时刻产生的信息，而输出（output）o_{t}仅依赖于t时刻的记忆，也就是h_{t}。
+RNN在反向训练误差时，都会乘上参数，参数乘上误差的结果，大则出现梯度爆炸；小则梯度消失，导致模型成效不佳，如图4。
+为了解决健忘、训练误差的问题，LSTM有了像是遗忘/输入/输出门（forget/input/output gate），隐藏状态（hidden state），记忆单元（cell memory）等概念，带来了更好的结果。在2014年，论文Learning Phrase Representations除了提出Seq2seq的概念，更提出了LSTM的简化版GRU，此后，LSTM和GRU便取代RNN成为深度学习当中的主流。
+下图是LSTM的各种应用，在此不深入描述。
+Seq2seq
+回到正题，所以Seq2seq是怎么组成的？我们可以看到Seq2seq包含两部分：Encoder和Decoder。一旦将句子输入至Encoder，即可从Decoder获得目标句。本篇文章着墨在Decoder生成过程，Encoder就是个单纯的RNN/ LSTM，读者若有兴趣可再自行研究，此外RNN/LSTM可以互相代替，以下仅以RNN作为解释。
+现在我们具备RNN/LSTM的知识，可以发现Seq2seq中，Decoder的公式和RNN根本就是同一个模子出来的，差别在于Decoder多了一个C — 图（6），这个C是指context vector/thought vector。context vector可以想成是一个含有所有输入句信息的向量，也就是Encoder当中，最后一个hidden state。简单来说，Encoder将输入句压缩成固定长度的context vector，context vector即可完整表达输入句，再透过Decoder将context vector内的信息产生输出句，如图7。
+但是，在Seq2seq模型中，Encoder将输入句压缩成固定长度的context vector真的好吗？如果句子今天很长，固定长度的context vector效果就会不好。怎么办呢？
+在2015年，有个救星诞生了，叫作注意力模型（attention model）。
+Attention model
+为什么要用attention model？
+The attention model用来帮助解决机器翻译在句子过长时效果不佳的问题。
+这种新的构架替输入句的每个文字都创造一个context vector，而非仅仅替输入句创造一个从最终的hidden state得来的context vector，举例来说，如果一个输入句有N个文字，就会产生N个context vector，好处是，每个context vector能够被更有效的译码。
+在Attention model中，Encoder和Seq2seq概念一样，一样是从输入句&amp;lt;X1，X2，X3…Xm&amp;gt;产生&amp;lt;h1，h2，h….hm&amp;gt;的hidden state，再计算目标句&amp;lt;y1…yn&amp;gt;。换言之，就是将输入句作为input而目标句作为output，所以差别就在于context vector c_{i}是怎么计算？
+Context vector c_{i}是透过attention scoreα乘上input的序列加权求和.</description></item><item><title>从Seq2seq到Attention模型到Self Attention（2）</title><link>/bigdata/ml/%E4%BB%8Eseq2seq%E5%88%B0attention%E6%A8%A1%E5%9E%8B%E5%88%B0self-attention2/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/bigdata/ml/%E4%BB%8Eseq2seq%E5%88%B0attention%E6%A8%A1%E5%9E%8B%E5%88%B0self-attention2/</guid><description>系列一介绍了Seq2seq和 Attention model。这篇文章将重点摆在Google於2017年发表论文“Attention is all you need”中提出的 “”The transformer模型。”The transformer”模型中主要的概念有2项：1. Self attention 2. Multi-head，此外，模型更解决了传统attention model中无法平行化的缺点，并带来优异的成效。
+前言 # 系列一中，我们学到attention model是如何运作的，缺点就是不能平行化，且忽略了输入句中文字间和目标句中文字间的关係。
+为了解决此问题，2017年，Self attention诞生了。
+Self Attention # Self attention是Google在 “Attention is all you need”论文中提出的”The transformer”模型中主要的概念之一，我们可以把”The transformer”想成是个黑盒子，将输入句输入这个黑盒子，就会產生目标句。
+最特别的地方是，”The transformer”完全捨弃了RNN、CNN的架构。
+The transformer # “The transformer”和Seq2seq模型皆包含两部分：Encoder和Decoder。比较特别的是，”The transformer”中的Encoder是由6个Encoder堆积而成(paper当中N=6)，Deocder亦然，这和过去的attention model只使用一个encoder/decoder是不同的。
+Query, Key, Value # 进入”The transformer”前，我们重新复习attention model，attention model是从输入句&amp;lt;X1,X2,X3…Xm&amp;gt;產生h1,h2,h….hm的hidden state，透过attention score α 乘上input 的序列加权求和得到Context vector c_{i}，有了context vector和hidden state vector，便可计算目标句&amp;lt;y1…yn&amp;gt;。换言之，就是将输入句作为input而目标句作为output。
+如果用另一种说法重新詮释：
+输入句中的每个文字是由一系列成对的 &amp;lt;地址Key, 元素Value&amp;gt;所构成，而目标中的每个文字是Query，那麼就可以用Key, Value, Query去重新解释如何计算context vector，透过计算Query和各个Key的相似性，得到每个Key对应Value的权重係数，权重係数代表讯息的重要性，亦即attention score；Value则是对应的讯息，再对Value进行加权求和，得到最终的Attention/context vector。
+笔者认为这概念非常创新，特别是从attention model到”The transformer”间，鲜少有论文解释这种想法是如何连结的，间接导致”attention is all you need”这篇论文难以入门，有兴趣可以参考key、value的起源论文 Key-Value Memory Networks for Directly Reading Documents。</description></item></channel></rss>

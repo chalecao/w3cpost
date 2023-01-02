@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>算法 on</title><link>/fed-regain/algorithm/</link><description>Recent content in 算法 on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 06 Oct 2020 08:49:15 +0000</lastBuildDate><atom:link href="/fed-regain/algorithm/index.xml" rel="self" type="application/rss+xml"/><item><title>JavaScript数组去重简单的方法</title><link>/fed-regain/algorithm/javascript%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%B9%E6%B3%95/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/algorithm/javascript%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%B9%E6%B3%95/</guid><description>方法一：
+双层循环，外层循环元素，内层循环时比较值
+如果有相同的值则跳过，不相同则push进数组
+```
+Array.prototype.distinct = function(){
+var arr = this,
+result = [],
+i,
+j,
+len = arr.length;
+for(i = 0; i &lt; len; i++){
+for(j = i + 1; j &lt; len; j++){
+if(arr[i] === arr[j]){
+j = ++i;
+}
+}
+result.push(arr[i]);
+}
+return result;
+}
+var arra = [1,2,3,4,4,1,1,2,1,1,1];
+arra.distinct(); //返回[3,4,2,1]
+```
+方法二：利用splice直接在原数组进行操作
+双层循环，外层循环元素，内层循环时比较值
+值相同时，则删去这个值
+注意点:删除元素之后，需要将数组的长度也减1.
+Array.prototype.distinct = function (){
+var arr = this,
+i,
+j,
+len = arr.</description></item><item><title>n皇后问题</title><link>/fed-regain/algorithm/n%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/algorithm/n%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/</guid><description>问题：
+在n*n的棋盘上放置n个皇后，要求同一行，同一列上只能有一个皇后，并且每个皇后的斜率为正负1的直线上也不能有皇后
+思路：
+经典的回溯法。参考这里：https://juejin.im/post/5accdb236fb9a028bb195562
+代码：
+// n queens problem
+function nQueens(n) {
+var result = [];
+var k = 0;
+result[k] = 0;
+while (k &amp;gt;= 0) { //when k&amp;lt;0; there is no solution for this 'n'
+result[k]++;
+while (result[k] &amp;lt;= n &amp;amp;&amp;amp; !place(result, k))
+result[k]++; //find proper position for the current queen
+if (result[k] &amp;lt;= n) {
+if (k == n - 1) break; //the last queen is put at a proper position, end
+else {
+k++;
+result[k] = 0; //turn to next queen and init her position
+}
+} else {
+result[k] = 0; //before feedback, we should reset the position or it will influence next time we find proper position for her
+k--;
+}
+}
+return result;
+}
+//judge the current position is proper or not
+//k is the serial number of the queen
+//res is the array of a partial solution
+function place(res, k) {
+var abs = Math.</description></item><item><title>人民币换算</title><link>/fed-regain/algorithm/%E4%BA%BA%E6%B0%91%E5%B8%81%E6%8D%A2%E7%AE%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/algorithm/%E4%BA%BA%E6%B0%91%E5%B8%81%E6%8D%A2%E7%AE%97/</guid><description>人民币换算 # 我们知道人民币有1、2、5、10、20、50、100这几种面值。现在给你n(1≤n≤250)元，让你计算换成用上面这些面额表示且总数不超过100张，共有几种。比如4元，能用4张1元、2张1元和1张2元、2张2元，三种表示方法。
+分析 # 其实这道题目和计算美女主播直播间密码这个题目类似，都是涉及类似一种度量单位的转换。
+最简单的想法是我们首先有个函数可以判断能都用给定面值表示出来，然后问题转化为有多少种面值表示组合，这个是不是又想起来计算输入表达式+-*的所有可能计算结果这个题目，就是算出所有可能组合。我们依然可以采用递归的思路。
+Just Try # 请你自动动手试一下：在线编程环境
+想想有没有其他思路？
+想想时间和空间复杂度，能否优化一下
+真的做不到么？
+let you think， think makes you happy!
+参考答案 # const base = [1,2,5,10,20,50,100] // console.show(available([5,1], 6)) function getChange(n, index){ if(n == 0||n ==1||index == 0){ return 1; } if(n &amp;lt; 0|| index &amp;lt; 0){ return 0; } return getChange(n-base[index],index)+ getChange(n,index-1); } function algorithm(n){ if(n &amp;lt;= 0){ return -1; } let index = 0; for(let i = base.</description></item><item><title>反转一个整数</title><link>/fed-regain/algorithm/%E5%8F%8D%E8%BD%AC%E4%B8%80%E4%B8%AA-3-%E4%BD%8D%E6%95%B4%E6%95%B0/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/algorithm/%E5%8F%8D%E8%BD%AC%E4%B8%80%E4%B8%AA-3-%E4%BD%8D%E6%95%B4%E6%95%B0/</guid><description>题目 # 给定一个 n 位数的整数，翻转顺序，返回翻转后的整数
+示例 # 比如 456 翻转后 654， 100 翻转后 1
+分析 # 问题是，001和01 要变成 1，最后转换下就好了
+Just Try # 请你自动动手试一下：在线编程环境
+想想有没有其他思路？
+想想时间和空间复杂度，能否优化一下
+真的做不到么？
+let you think， think makes you happy!
+参考答案 # 思路1 # 字符串翻转，最后转成数字就好了
+function reverse(num){ return +((&amp;quot;&amp;quot;+num).split(&amp;quot;&amp;quot;).reverse().join(&amp;quot;&amp;quot;)) } TIPS：代码复制到我们的 在线编程 环境，看下结果哈。
+延伸题目 # 延伸可以考虑翻转小数</description></item><item><title>处理回文数</title><link>/fed-regain/algorithm/%E5%A4%84%E7%90%86%E5%9B%9E%E6%96%87%E6%95%B0/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/algorithm/%E5%A4%84%E7%90%86%E5%9B%9E%E6%96%87%E6%95%B0/</guid><description>题目-处理回文数 # 给定非空字符串 s，您最多可以删除一个字符。判断是否可以成为回文。入参是一个字符串s，
+该字符串仅包含小写字符 a-z,字符串的最大长度为 50000，返回删除的可能字符数组。
+示例 # Given s = “aba” return []
+Given s = “abca” return [‘b’, ‘c’] // delete c or b
+分析 # 首先要回判断回文数，就是字符串反过来跟原字符串相同。
+然后怎么办呢？
+Just Try # 请你自动动手试一下：在线编程环境
+想想有没有其他思路？
+想想时间和空间复杂度，能否优化一下
+真的做不到么？
+let you think， think makes you happy!
+参考答案 # 循环s字符串，尝试删除每个字母，然后判断余下的字符串是不是回文数：
+function isUndulate(str){ return str.split(&amp;quot;&amp;quot;).reverse().join(&amp;quot;&amp;quot;) == str } function algorithm(str){ let carr = str.split(&amp;quot;&amp;quot;), res=[]; carr.forEach((k, i) =&amp;gt; { carr[i]=&amp;quot;&amp;quot; if(isUndulate(carr.join(&amp;quot;&amp;quot;))){ res.push(k) } carr[i]=k }) return res } function main(param) { console.</description></item><item><title>实现一个加减乘除的计算器</title><link>/fed-regain/algorithm/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4%E7%9A%84%E8%AE%A1%E7%AE%97%E5%99%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/algorithm/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4%E7%9A%84%E8%AE%A1%E7%AE%97%E5%99%A8/</guid><description>实现加减乘除计算器 # 实现一个加减乘除的计算器，输入是一串表达式（都是非负整数），要求输出四舍五入后的整数。
+PS：不能使用“eval”函数来处理
+示例 # &amp;quot;3+2*2&amp;quot; = 7 &amp;quot; 3/2 &amp;quot; = 1 &amp;quot; 3+5 / 2 &amp;quot; = 5 Just Try # 请你自动动手试一下：在线编程环境
+想想有没有其他思路？
+想想时间和空间复杂度，能否优化一下
+真的做不到么？
+let you think， think makes you happy!
+参考答案 # 循环2次 # 想想哈，第一种方法是循环两边，第一层循环先计算一下乘除，第二遍循环计算一下加减
+记得之前写过一个计算后缀表达式（逆波兰表达式），这个同样是结合堆栈来处理运算。
+function computeTM(stack, arr){ for(let k=0; k&amp;lt;arr.length; k++){ if(arr[k]==&amp;quot;*&amp;quot;){ let m = stack.pop() stack.push(m*arr[k+1]) k++; } else if(arr[k]==&amp;quot;/&amp;quot;){ let m = stack.pop() stack.push(m/arr[k+1]) k++; } else{ stack.push(arr[k]) } } return stack; } function computeAM(stack, arr){ for(let k=0; k&amp;lt;arr.</description></item><item><title>常见算法思想</title><link>/fed-regain/algorithm/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/algorithm/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3/</guid><description>贪心算法 # 分治算法 # 动态规划 # 回溯算法 # 分支限定算法 #</description></item><item><title>序列化和反序列化二叉树</title><link>/fed-regain/algorithm/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/algorithm/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91/</guid><description>题目-序列化和反序列化二叉树 # 序列化是指将一个特定的数据结构或者对象转换成一个字符序列可以存储在文件或者内存，或者通过网络传输，然后再另一个需要使用的环境中可以通过反序列化将这个字符序列转换成之前的数据结构或者对象。
+要求 # 给定一个二叉树，需要你把他序列化成一个字符串，然后在反序列化成二叉树。要求：
+序列化和反序列化的算法要求是无状态的纯函数，不能使用外部引用来存储数据。
+序列化成字符串，不能用 “转成json再序列化” 的方法
+示例： 上图中的二叉树序列化成[12356]
+Just Try
+请你自动动手试一下：在线编程环境
+想想有没有其他思路？
+想想时间和空间复杂度，能否优化一下
+真的做不到么？
+let you think， think makes you happy!
+看下这个文章：二叉树的常用算法
+参考答案
+下面给出了完整的代码和详细的注释，请仔细阅读哈
+/**节点类，代表一个节点
+** 包含自身数据，左节点应用和又节点引用
+**/
+class Node {
+// 构造函数简单处理
+constructor(data) {
+this.data = data;
+this.left = null;
+this.right = null;
+}
+}
+/** 二叉树类，代表一棵二叉树
+**包含一个根节点，然后是叶子节点
+// 15
+// / \
+// 10 13
+// / / \
+// 7 22 25
+// / \ / \
+// 5 9 17 27
+**/
+class BinarySearchTree {
+// 构造函数默认初始化根节点
+constructor() {
+this.</description></item><item><title>找出数组中出现奇数次的元素</title><link>/fed-regain/algorithm/%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E5%A5%87%E6%95%B0%E6%AC%A1%E7%9A%84%E5%85%83%E7%B4%A0/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/algorithm/%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E5%A5%87%E6%95%B0%E6%AC%A1%E7%9A%84%E5%85%83%E7%B4%A0/</guid><description>题目 # 找出给定数组中出现奇数次的元素
+示例 # 比如array=[1,2,3,4,3,2,1,5,5,6,6,6,6], 这里面4出现了一次。
+分析 # idea 1 # 可能会想到遍历循环，统计每个字母出现的次数
+idea 2 # 能不能一层循环就判断出现偶数次还是奇数次？
+Just Try # 请你自动动手试一下：在线编程环境
+想想有没有其他思路？
+想想时间和空间复杂度，能否优化一下
+真的做不到么？
+let you think， think makes you happy!
+参考答案 # 思路是这样，想一下 与或非 这些位运算符，是不是有个 异或 的操作。异或：位不同取1，位相同取0，参考 ~(按位非), &amp;amp;（与）, |（或）以及^（异或）的二进制使用
+那么，我们把所有数值取个异或，相同的数字就被消除了，偶数次数字就被消除了，剩下就是基数次出现的数字了。
+function main(param) { let k = 0 param.forEach( item =&amp;gt; { k = k ^ item }) console.show(k) } 复制到我们的 在线编程 环境，看下结果哈。</description></item><item><title>找出数组和为零的子数组</title><link>/fed-regain/algorithm/%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E5%92%8C%E4%B8%BA%E9%9B%B6%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/algorithm/%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E5%92%8C%E4%B8%BA%E9%9B%B6%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/</guid><description>题目-子数组和为零 # 给定一个整数数组，找到和为零的子数组。你的代码应该返回满足要求的子数组的起始位置和结束位置。
+示例 # 给出[-3, 1, 2, -3, 4]，返回[0, 2] 或者 [1, 3].
+分析 # 看清楚题目，这里的子数组是一串连续的子数组。只要找到起始位置和结束为止就可以了。
+依次求数组的前缀和，同时执行如下操作：
+假定当前位置是i，查找i之前位置的前缀和，是否存在j位置，使得，j位置的前缀和 等于 i位置的前缀和。
+若有，则j 到 i 之间的区间数的和为0.
+直到遍历完整个数组。
+时间复杂度O(n)，空间复杂度O(n).
+Just Try # 请你自动动手试一下：在线编程环境
+想想有没有其他思路？
+想想时间和空间复杂度，能否优化一下
+真的做不到么？
+let you think， think makes you happy!
+参考答案 # function algorithm(arr){ let sum = 0, map = {}, res=[]; arr.forEach((k,i)=&amp;gt;{ sum += k; if(map[sum]){ map[sum].push(i) } else{ map[sum] = [i+1]; } if(sum !=0 &amp;amp;&amp;amp; map[sum].length&amp;gt;1){ // 个数大于1，是一个子串 res.</description></item></channel></rss>

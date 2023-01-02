@@ -1,0 +1,866 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-regular.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-500.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-700.woff2 type=font/woff2 crossorigin><script>(()=>{var t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,e=localStorage.getItem("theme");t&&e===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),t&&e==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),e==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script><link rel=stylesheet href=/main.f9552544b4ca62af741c0d24d283b4ddcfa2a026a871cff4112743eeb6c4950a530c923242d9d4d42e93635dd91ebd78601a145b8b205bb363d7065c1fa59ffe.css integrity="sha512-+VUlRLTKYq90HA0k0oO03c+ioCaocc/0ESdD7rbElQpTDJIyQtnU1C6TY13ZHr14YBoUW4sgW7Nj1wZcH6Wf/g==" crossorigin=anonymous><noscript><style>img.lazyload{display:none}</style></noscript><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><meta name=bingbot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><title>将React当做[前端](https://www.w3cdoc.com)UI运行时环境来看待 - 万维刀客「w3cdoc」</title><meta name=description content="大多数教程把 React 称作是一个 UI 库。这是有道理的，因为 React 就是一个 UI 库。正如官网上的标语所说的那样。
+我曾经写过关于构建[用户界面][1]会遇到的难题一文。但是本篇文章将以一种不同的方式来讲述 React — 因为它更像是一种编程运行时。
+本篇文章不会教你任何有关如何创建用户界面的技巧。 但是它可能会帮助你更深入地理解 React 编程模型。
+注意：如果你还在学习 React ，请移步到官方文档进行学习
+⚠️
+本篇文章将会非常深入 — 所以并不适合初学者阅读。 在本篇文章中，我会从最佳原则的角度尽可能地阐述 React 编程模型。我不会解释如何使用它 — 而是讲解它的原理。
+文章面向有经验的程序员和那些使用过其他 UI 库但在项目中权衡利弊后最终选择了 React 的人，我希望它会对你有所帮助！
+许多人成功使用了 React 多年却从未考虑过下面我将要讲述的主题。 这肯定是从程序员的角度来看待 React ，而不是以设计者的角度。但我并不认为站在两个不同的角度来重新认识 React 会有什么坏处。
+话不多说，让我们开始深入理解 React 吧！
+宿主树 # 一些程序输出数字。另一些程序输出诗词。不同的语言和它们的运行时通常会对特定的一组用例进行优化，而 React 也不例外。
+React 程序通常会输出一棵会随时间变化的树。 它有可能是一棵 DOM 树 ，iOS 视图层 ，PDF 原语 ，又或是 JSON 对象 。然而，通常我们希望用它来展示 UI 。我们称它为“宿主树”，因为它往往是 React 之外宿主环境中的一部分 — 就像 DOM 或 iOS 。宿主树通常有它自己的命令式 API 。而 React 就是它上面的那一层。"><link rel=canonical href=/fed-regain/js/framework/%E5%B0%86react%E5%BD%93%E5%81%9A%E5%89%8D%E7%AB%AFui%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83%E6%9D%A5%E7%9C%8B%E5%BE%85/><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="og:title" content="将React当做[前端](https://www.w3cdoc.com)UI运行时环境来看待"><meta property="og:description" content="大多数教程把 React 称作是一个 UI 库。这是有道理的，因为 React 就是一个 UI 库。正如官网上的标语所说的那样。
+我曾经写过关于构建[用户界面][1]会遇到的难题一文。但是本篇文章将以一种不同的方式来讲述 React — 因为它更像是一种编程运行时。
+本篇文章不会教你任何有关如何创建用户界面的技巧。 但是它可能会帮助你更深入地理解 React 编程模型。
+注意：如果你还在学习 React ，请移步到官方文档进行学习
+⚠️
+本篇文章将会非常深入 — 所以并不适合初学者阅读。 在本篇文章中，我会从最佳原则的角度尽可能地阐述 React 编程模型。我不会解释如何使用它 — 而是讲解它的原理。
+文章面向有经验的程序员和那些使用过其他 UI 库但在项目中权衡利弊后最终选择了 React 的人，我希望它会对你有所帮助！
+许多人成功使用了 React 多年却从未考虑过下面我将要讲述的主题。 这肯定是从程序员的角度来看待 React ，而不是以设计者的角度。但我并不认为站在两个不同的角度来重新认识 React 会有什么坏处。
+话不多说，让我们开始深入理解 React 吧！
+宿主树 # 一些程序输出数字。另一些程序输出诗词。不同的语言和它们的运行时通常会对特定的一组用例进行优化，而 React 也不例外。
+React 程序通常会输出一棵会随时间变化的树。 它有可能是一棵 DOM 树 ，iOS 视图层 ，PDF 原语 ，又或是 JSON 对象 。然而，通常我们希望用它来展示 UI 。我们称它为“宿主树”，因为它往往是 React 之外宿主环境中的一部分 — 就像 DOM 或 iOS 。宿主树通常有它自己的命令式 API 。而 React 就是它上面的那一层。"><meta property="og:url" content="/fed-regain/js/framework/%E5%B0%86react%E5%BD%93%E5%81%9A%E5%89%8D%E7%AB%AFui%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83%E6%9D%A5%E7%9C%8B%E5%BE%85/"><meta property="og:site_name" content="万维刀客「w3cdoc」"><meta property="og:image" content="/doks.png"><meta property="og:image:alt" content="万维刀客「w3cdoc」"><meta name=twitter:card content="summary_large_image"><meta name=twitter:site content="@w3cdoc"><meta name=twitter:creator content="@chalecao"><meta name=twitter:title content="将React当做[前端](https://www.w3cdoc.com)UI运行时环境来看待"><meta name=twitter:description content><meta name=twitter:image content="/doks.png"><meta name=twitter:image:alt content="将React当做[前端](https://www.w3cdoc.com)UI运行时环境来看待"><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"/#/schema/organization/1","name":"w3cdoc","url":"/","sameAs":["https://twitter.com/w3cdoc"],"logo":{"@type":"ImageObject","@id":"/#/schema/image/1","url":"/w3cdoc.png","width":512,"height":512,"caption":"w3cdoc"},"image":{"@id":"/#/schema/image/1"}},{"@type":"WebSite","@id":"/#/schema/website/1","url":"/","name":"万维刀客「w3cdoc」","description":"互联网同学互相帮助、学习成长的家园","publisher":{"@id":"/#/schema/organization/1"}},{"@type":"WebPage","@id":"/fed-regain/js/framework/%E5%B0%86react%E5%BD%93%E5%81%9A%E5%89%8D%E7%AB%AFui%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83%E6%9D%A5%E7%9C%8B%E5%BE%85/","url":"/fed-regain/js/framework/%E5%B0%86react%E5%BD%93%E5%81%9A%E5%89%8D%E7%AB%AFui%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83%E6%9D%A5%E7%9C%8B%E5%BE%85/","name":"将React当做[前端](https:\/\/www.w3cdoc.com)UI运行时环境来看待","description":"","isPartOf":{"@id":"/#/schema/website/1"},"about":{"@id":"/#/schema/organization/1"},"datePublished":"0001-01-01T00:00:00CET","dateModified":"0001-01-01T00:00:00CET","breadcrumb":{"@id":"/fed-regain/js/framework/%E5%B0%86react%E5%BD%93%E5%81%9A%E5%89%8D%E7%AB%AFui%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83%E6%9D%A5%E7%9C%8B%E5%BE%85/#/schema/breadcrumb/1"},"primaryImageOfPage":{"@id":"/fed-regain/js/framework/%E5%B0%86react%E5%BD%93%E5%81%9A%E5%89%8D%E7%AB%AFui%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83%E6%9D%A5%E7%9C%8B%E5%BE%85/#/schema/image/2"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["/fed-regain/js/framework/%E5%B0%86react%E5%BD%93%E5%81%9A%E5%89%8D%E7%AB%AFui%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83%E6%9D%A5%E7%9C%8B%E5%BE%85/"]}]},{"@type":"BreadcrumbList","@id":"/fed-regain/js/framework/%E5%B0%86react%E5%BD%93%E5%81%9A%E5%89%8D%E7%AB%AFui%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83%E6%9D%A5%E7%9C%8B%E5%BE%85/#/schema/breadcrumb/1","name":"Breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"/","url":"/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@id":"/fed-regainjsframework%E5%B0%86react%E5%BD%93%E5%81%9A%E5%89%8D%E7%AB%AFui%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83%E6%9D%A5%E7%9C%8B%E5%BE%85/"}}]},{"@context":"https://schema.org","@graph":[{"@type":"ImageObject","@id":"/fed-regain/js/framework/%E5%B0%86react%E5%BD%93%E5%81%9A%E5%89%8D%E7%AB%AFui%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83%E6%9D%A5%E7%9C%8B%E5%BE%85/#/schema/image/2","url":"/doks.png","contentUrl":"/doks.png","caption":"将React当做[前端](https:\/\/www.w3cdoc.com)UI运行时环境来看待"}]}]}</script><meta name=theme-color content="#fff"><link rel=icon href=/favicon.ico sizes=any><link rel=icon type=image/svg+xml href=/favicon.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest crossorigin=use-credentials href=/site.webmanifest><script>"serviceWorker"in navigator&&navigator.serviceWorker.register("/sw.js",{scope:"/"}).then(function(e){console.log("Registration succeeded. Scope is "+e.scope)}).catch(function(e){console.log("Registration failed with "+e)})</script><script src=/js/vendor/autolog.js async></script></head><body class="fed-regain single"><div class=sticky-top><div class=header-bar></div><header class="navbar navbar-expand-lg navbar-light doks-navbar"><nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation"><a class="navbar-brand order-0" href=/ aria-label=万维刀客「w3cdoc」>万维刀客「w3cdoc」</a>
+<button class="btn btn-menu order-2 d-block d-lg-none" type=button data-bs-toggle=offcanvas data-bs-target=#offcanvasDoks aria-controls=offcanvasDoks aria-label="Open main menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex=-1 id=offcanvasDoks data-bs-backdrop=true aria-labelledby=offcanvasDoksLabel><div class="header-bar d-lg-none"></div><div class="offcanvas-header d-lg-none"><h2 class="h5 offcanvas-title ps-2" id=offcanvasDoksLabel><a class=text-dark href=/>万维刀客「w3cdoc」</a></h2><button type=button class="btn-close text-reset me-2" data-bs-dismiss=offcanvas aria-label="Close main menu"></button></div><div class="offcanvas-body p-4 p-lg-0"><ul class="nav flex-column flex-lg-row align-items-lg-center mt-2 mt-lg-0 ms-lg-2 me-lg-auto"><li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-0 py-1" href=# id=navbarDropdownMenuLink role=button data-bs-toggle=dropdown aria-expanded=false>初级入门
+<span class=dropdown-caret><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></span></a><ul class="dropdown-menu dropdown-menu-main shadow rounded border-0" aria-labelledby=navbarDropdownMenuLink><li><a class=dropdown-item href=/js/basic/javascript%E4%BB%8B%E7%BB%8D/>JS入门</a></li><li><a class=dropdown-item href=/git/basic/introduction/>Git入门</a></li></ul></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-0 py-1" href=# id=navbarDropdownMenuLink role=button data-bs-toggle=dropdown aria-expanded=false>进阶学习
+<span class=dropdown-caret><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></span></a><ul class="dropdown-menu dropdown-menu-main shadow rounded border-0" aria-labelledby=navbarDropdownMenuLink><li><a class=dropdown-item href=/fed-regain/html/html%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2/>前端增长</a></li><li><a class=dropdown-item href=/webgl/base/%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/>3D图形</a></li><li><a class=dropdown-item href=/bigdata/compute/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/>数据分析</a></li></ul></li><li class=nav-item><a class="nav-link ps-0 py-1" href=/blog/>博客</a></li><li class=nav-item><a class="nav-link ps-0 py-1" href=/course/>网课教程</a></li></ul><hr class="text-black-50 my-4 d-lg-none"><form class="doks-search position-relative flex-grow-1 ms-lg-auto me-lg-2"><input id=search class="form-control is-search" type=search placeholder="Search docs..." aria-label="Search docs..." autocomplete=off><div id=suggestions class="shadow bg-white rounded d-none"></div></form><hr class="text-black-50 my-4 d-lg-none"><ul class="nav flex-column flex-lg-row"></ul><hr class="text-black-50 my-4 d-lg-none"><button id=mode class="btn btn-link" type=button aria-label="Toggle user interface mode">
+<span class=toggle-dark><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span><span class=toggle-light><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span></button></div></div></nav></header></div><div class=container-xxl><aside class=doks-sidebar><nav id=doks-docs-nav class="collapse d-lg-none" aria-label="Tertiary navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-fc35fdc70d5fc69d269883a822c7a53e aria-expanded=false>
+html</button><div class=collapse id=section-fc35fdc70d5fc69d269883a822c7a53e><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/html/html%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2/>HTML发展历史</a></li><li><a class="docs-link rounded" href=/fed-regain/html/html%E5%85%83%E7%B4%A0%E5%B5%8C%E5%A5%97%E7%BA%A6%E6%9D%9F/>HTML元素嵌套约束</a></li><li><a class="docs-link rounded" href=/fed-regain/html/html%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B/>HTML解析过程</a></li><li><a class="docs-link rounded" href=/fed-regain/html/html%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B/>HTML渲染过程</a></li><li><a class="docs-link rounded" href=/fed-regain/html/%E9%A1%B5%E9%9D%A2%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/>页面生命周期</a></li><li><a class="docs-link rounded" href=/fed-regain/html/content-security-policy/>Content-Security-Policy</a></li><li><a class="docs-link rounded" href=/fed-regain/html/noopener%E5%92%8Cnoreferrer/>noopener和noreferrer</a></li><li><a class="docs-link rounded" href=/fed-regain/html/preload%E5%92%8Cprefetch%E4%BC%98%E5%8C%96/>preload和prefetch优化</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-c7a628cba22e28eb17b5f5c6ae2a266a aria-expanded=false>
+css</button><div class=collapse id=section-c7a628cba22e28eb17b5f5c6ae2a266a><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/css/css%E7%9A%84%E5%8F%91%E5%B1%95/>CSS的发展</a></li><li><a class="docs-link rounded" href=/fed-regain/css/css%E4%BA%A4%E4%BA%92/>CSS交互</a></li><li><a class="docs-link rounded" href=/fed-regain/css/css%E5%8F%98%E9%87%8F/>CSS变量</a></li><li><a class="docs-link rounded" href=/fed-regain/css/css%E5%9F%BA%E7%BA%BF%E4%B8%8E%E8%A1%8C%E9%AB%98%E5%85%B3%E7%B3%BB/>css基线与行高关系</a></li><li><a class="docs-link rounded" href=/fed-regain/css/css%E9%80%89%E6%8B%A9%E5%99%A8%E6%80%A7%E8%83%BD%E6%8D%9F%E8%80%97/>CSS选择器性能损耗</a></li><li><a class="docs-link rounded" href=/fed-regain/css/font-face%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E4%B8%80%E5%88%87/>font-face需要知道的一切</a></li><li><a class="docs-link rounded" href=/fed-regain/css/media-type-%E4%B8%8Emedia-query/>media type 与media query</a></li><li><a class="docs-link rounded" href=/fed-regain/css/minmax%E5%92%8Cclamp%E4%B8%89%E4%B8%AA%E9%80%BB%E8%BE%91/>minmax和clamp三个逻辑</a></li><li><a class="docs-link rounded" href=/fed-regain/css/containingblock/>什么是containing block？</a></li><li><a class="docs-link rounded" href=/fed-regain/css/content-visibility/>content-visibility</a></li><li><a class="docs-link rounded" href=/fed-regain/css/%E6%96%87%E6%9C%AC%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83%E4%B8%A4%E7%AB%AF%E5%AF%B9%E9%BD%90%E7%AD%89/>文本均匀分布两端对齐等</a></li><li><a class="docs-link rounded" href=/fed-regain/css/%E4%BC%AA%E7%B1%BB%E4%B8%8E%E4%BC%AA%E5%85%83%E7%B4%A0%E7%9A%84%E7%94%A8%E6%B3%95/>伪类与伪元素的用法</a></li><li><a class="docs-link rounded" href=/fed-regain/css/%E5%9B%BE%E7%89%87%E9%93%BA%E6%BB%A1%E5%B1%95%E7%A4%BA%E4%B8%8D%E5%8F%98%E5%BD%A2/>图片铺满展示不变形</a></li><li><a class="docs-link rounded" href=/fed-regain/css/%E4%BD%BF%E5%85%83%E7%B4%A0%E4%B8%8D%E5%8F%AF%E8%A7%81%E7%9A%84%E6%97%81%E9%97%A8%E5%B7%A6%E9%81%93/>使元素不可见的旁门左道</a></li><li><a class="docs-link rounded" href=/fed-regain/css/%E7%90%86%E8%A7%A3css%E5%8A%A8%E7%94%BB%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B0%83%E8%AF%95/>理解CSS动画性能问题与动画调试</a></li><li><a class="docs-link rounded" href=/fed-regain/css/%E9%AB%98%E6%80%A7%E8%83%BDcss%E5%8A%A8%E7%94%BB%E6%80%BB%E7%BB%93/>高性能CSS动画总结</a></li><li><a class="docs-link rounded" href=/fed-regain/css/%E5%8F%98%E6%80%81android%E6%96%87%E5%AD%97%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/>变态android文字垂直居中</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-32981a13284db7a021131df49e6cd203 aria-expanded=true>
+js</button><div class="collapse show" id=section-32981a13284db7a021131df49e6cd203><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-055823d5251a151ba2621eab0cb94843 aria-expanded=false>
+js基础</button><div class=collapse id=section-055823d5251a151ba2621eab0cb94843><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/js/base/varletconst%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8%E5%9F%9F/>var、let、const及其作用域</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%A4%9A%E8%A1%8C%E8%B6%85%E5%87%BA%E5%B0%BE%E9%83%A8%E5%B1%95%E7%A4%BA%E7%9C%81%E7%95%A5%E5%8F%B7%E6%94%B9%E8%BF%9B/>多行超出尾部展示省略号</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BD%BF%E7%94%A8/>二进制运算符使用</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/typescript%E5%88%9D%E5%AD%A6%E4%BA%86%E8%A7%A3/>TypeScript初学了解</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%B7%A5%E7%A8%8B%E5%B8%88%E4%BD%BF%E7%94%A8fetch%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9B%9B%E7%A7%8D%E9%94%99%E8%AF%AF/>工程师使用fetch常见的四种错误</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E6%9E%84%E5%BB%BAdom%E5%92%8Ccssom/>构建DOM和CSSOM</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/javascript%E4%BA%8B%E4%BB%B6%E6%B5%81/>JavaScript事件流</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%85%B3%E4%BA%8Eajax%E8%AF%B7%E6%B1%82%E5%A4%B4%E8%AE%BE%E7%BD%AE/>关于ajax请求头设置</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%9A%84%E8%A7%92%E5%BA%A6%E7%90%86%E8%A7%A3call/>函数调用的角度理解call</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%9F%BA%E4%BA%8Etypescript%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AAnpm%E5%8C%85/>基于typescript开发一个npm包</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E7%AE%80%E5%8D%95%E7%9A%84%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0/>简单的事件监听处理函数</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E8%B7%A8%E5%9F%9F%E5%92%8C%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/>跨域和常用方法</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E4%BA%86%E8%A7%A3%E4%B8%8Bpromise-a%E8%A7%84%E8%8C%83%E5%AE%9E%E7%8E%B0promise/>了解下Promise A+规范，实现Promise</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%88%A4%E6%96%AD%E5%86%85%E5%AE%B9%E5%8C%BA%E5%9F%9F%E6%98%AF%E5%90%A6%E6%BB%9A%E5%8A%A8%E5%88%B0%E5%BA%95%E9%83%A8/>判断内容区域是否滚动到底部</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E5%93%8D%E5%BA%94%E7%94%A8%E6%88%B7%E8%A7%A6%E6%91%B8%E5%8A%A8%E4%BD%9C/>如何高效响应用户触摸动作</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3function/>如何理解function</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E4%BD%BF%E7%94%A8-service-workers%E6%8F%90%E5%8D%87%E4%BD%93%E9%AA%8C/>使用 Service Workers提升体验</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E4%BD%BF%E7%94%A8%E6%B3%A8%E9%87%8A%E5%92%8Cjsdoc%E8%AE%A9%E4%BB%A3%E7%A0%81%E6%9B%B4%E8%A7%84%E8%8C%83/>使用注释和JSDOC让代码更规范</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E4%BD%BF%E7%94%A8settimeout%E5%BE%AA%E7%8E%AF%E8%B0%83%E7%94%A8%E5%92%8Csetinterval%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/>使用setTimeout循环调用和setInterval有什么区别</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83%E4%B9%8Bpromise%E5%AF%B9%E8%B1%A1/>异步回调之Promise对象</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%8E%9F%E7%94%9Flazyloadcsp%E5%92%8Cdeno/>原生lazyload、csp和deno</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/typescript%E5%A4%A7%E6%B3%95/>typescript大法</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%8E%9F%E5%9E%8B%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%BB%A7%E6%89%BF%E4%B8%8E%E7%BB%84%E8%A3%85/>原型，原型链，继承与组装</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/es6%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E5%9B%9E%E9%A1%BE/>ES6常用语法回顾</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/es2016%E8%A3%85%E9%A5%B0%E5%99%A8/>ES2016装饰器</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/globalwindowdocument-%E7%AE%80%E5%8D%95%E8%AF%B4%E6%98%8E/>Global\window\document 简单说明</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/iframe%E7%9A%84%E6%96%B9%E6%96%B9%E9%9D%A2%E9%9D%A2/>iframe的方方面面</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/immutable%E8%AF%A6%E8%A7%A3/>IMMUTABLE 详解</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/javascript%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E7%9A%84%E6%96%B9%E6%96%B9%E9%9D%A2%E9%9D%A2/>JavaScript跨域请求的方方面面</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/javascript%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%B5%85%E6%9E%90/>Javascript垃圾回收浅析</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/javascript%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/>Javascript内存管理</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/javascript%E5%AE%9E%E7%8E%B0jsonp%E5%92%8Cajax/>JavaScript实现JSONP和ajax</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/jquery%E7%AC%94%E8%AE%B0deferred/>jquery笔记deferred</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/webstorge%E4%BD%BF%E7%94%A8/>WebStorge使用</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/js%E5%8E%9F%E7%94%9F%E7%BC%96%E8%A7%A3%E7%A0%81%E5%87%BD%E6%95%B0/>JS原生编解码函数</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/js%E4%B8%AD%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/>JS中浮点数精度问题</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/jsonp%E8%80%8C%E4%B8%8D%E6%98%AFajax/>jsonp而不是AJAX？</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/script%E6%A0%87%E7%AD%BE%E7%9A%84defer%E4%B8%8Easync/>script标签的defer与async</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/script%E6%A0%87%E7%AD%BE%E6%B7%BB%E5%8A%A0crossorigin/>script标签添加crossorigin</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/too-many-pausable-objects/>Too many Pausable Objects</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/touch%E7%82%B9%E5%87%BB%E7%A9%BF%E9%80%8F%E4%B8%8Eclick/>touch点击穿透与click与300ms延迟</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/es6-%E6%8B%86%E7%AE%B1%E4%B8%8E%E8%A3%85%E7%AE%B1%E5%AE%9E%E7%8E%B0%E6%B7%B1%E5%85%8B%E9%9A%86/>ES6 … 拆箱与装箱实现深克隆</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E6%B5%85%E5%85%8B%E9%9A%86%E4%B8%8E%E6%B7%B1%E5%85%8B%E9%9A%86/>浅克隆与深克隆</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-b30ced48d20f44561d96d291478acbd8 aria-expanded=false>
+js高级</button><div class=collapse id=section-b30ced48d20f44561d96d291478acbd8><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E6%8F%90%E5%8D%87%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/>执行上下文和提升与事件循环</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/object-defineproperty%E4%B8%8Eproxy/>Object.defineProperty与Proxy</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E8%AF%A6%E8%A7%A3object-createnull%E5%92%8Cnew%E5%8C%BA%E5%88%AB/>详解Object.create(null)和new区别</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E5%9F%BA%E4%BA%8Ees6%E6%A0%87%E7%AD%BE%E6%A8%A1%E6%9D%BF%E5%AE%9E%E7%8E%B0%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%9B%91%E5%90%AC/>基于ES6标签模板实现事件绑定与数据监听</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%A4%84%E7%90%86if%E5%9D%97/>函数式编程处理IF块</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/js%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E5%BF%AB%E9%80%9F%E5%88%A0%E9%99%A4/>JS对象属性的快速删除</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/js%E7%89%B9%E6%80%A7%E6%80%A7%E8%83%BD%E7%BC%BA%E9%99%B7%E5%8F%8Ajit%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/>JS特性性能缺陷及JIT的解决方案</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E5%AF%B9%E8%B1%A1%E5%9C%A8-v8-%E5%86%85%E7%9A%84%E8%A1%A8%E8%BE%BE/>JS对象在 V8 内的表达</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E5%A4%A7%E8%AF%9Djavascript-%E5%BC%95%E6%93%8E%E6%89%AB%E7%9B%B2%E7%AF%87/>大话JavaScript 引擎扫盲篇</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E6%9E%84%E5%BB%BAjavascript-%E6%B2%99%E7%AE%B1/>构建JavaScript 沙箱</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E5%85%B3%E4%BA%8E%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AE%BF%E9%97%AE%E4%BC%98%E5%8C%96/>关于对象的访问优化</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E5%85%B3%E4%BA%8Ehit-test/>关于hit test</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC%E5%92%8C%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/>控制反转和依赖注入</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/react-shadow/>react shadow</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/shadow-dom%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3/>Shadow DOM简单了解</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/json-ld/>json-ld的用处</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/js%E5%92%8Ccss%E4%BD%BF%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7%E5%92%8C%E9%97%AE%E9%A2%98/>JS和CSS使用的一些小技巧和问题</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-43e6bf76b53ba4d9ffc765bf79022281 aria-expanded=true>
+js框架</button><div class="collapse show" id=section-43e6bf76b53ba4d9ffc765bf79022281><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/js/framework/amd%E4%B8%8Ecmd%E8%A7%84%E8%8C%83-javascript%E6%A8%A1%E5%9D%97%E5%8C%96/>AMD与CMD规范-javascript模块化</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/bsrssgssr%E4%B9%8Bnext-js/>BSR、SSG、SSR之next.js</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/hooks%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/>hooks使用指南</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/javascript%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/>JavaScript函数式编程</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/reactfiber%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B/>react fiber怎么回事</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/react-hooks%E5%AE%8C%E5%85%A8%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8C%97/>React Hooks完全上手指北</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/react-hooks%E6%A8%A1%E6%8B%9F%E5%90%84%E4%B8%AA%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0/>react hooks模拟各个生命周期函数</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/react-hooks%E7%9A%84%E5%BA%94%E7%94%A8/>react hooks的应用</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/react-hook%E7%9A%84%E5%88%9D%E6%AD%A5%E7%A0%94%E7%A9%B6%E5%89%8D%E8%A8%80renderwithhooks%E7%9A%84%E6%95%B4%E4%B8%AA%E8%BF%87%E7%A8%8B/>react hook的初步研究前言renderWithHooks的整个过程</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/react-shadow/>react shadow</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/react%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F/>react事件系统</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/react%E9%98%BB%E6%AD%A2%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E5%A4%B1%E8%B4%A5%E5%8E%9F%E5%9B%A0/>react阻止事件冒泡失败原因</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/svelte%E6%A1%86%E6%9E%B6%E7%9A%84%E7%89%B9%E6%80%A7%E5%8E%9F%E7%90%86/>Svelte框架的特性原理</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/vue3%E4%B8%AD%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/>vue3中的响应式原理</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/vue3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86%E6%95%B4%E7%90%86/>Vue3响应式原理整理</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/vue%E4%B8%8Eangular%E4%B8%8Ereact/>vue与angular与react</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/vue%E4%B8%AD8%E7%A7%8D%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/>vue中8种组件通信方式</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/webcomponents%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E8%B7%B5/>web components入门与实践</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/%E5%9F%BA%E4%BA%8E%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F%E5%86%99%E4%B8%80%E4%B8%AAeventemitter/>基于发布订阅模式写一个eventEmitter</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99vscode-extension%E6%8F%92%E4%BB%B6/>如何编写vscode extension插件</a></li><li><a class="docs-link rounded active" href=/fed-regain/js/framework/%E5%B0%86react%E5%BD%93%E5%81%9A%E5%89%8D%E7%AB%AFui%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83%E6%9D%A5%E7%9C%8B%E5%BE%85/>将React当做[前端](https://www.w3cdoc.com)UI运行时环境来看待</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E%E6%AF%94%E8%BE%83%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/>工作流引擎比较规则引擎</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/%E6%95%B0%E6%8D%AE%E7%9B%91%E5%90%AC%E4%B9%8Bvm%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E7%8E%B0/>数据监听之VM原理分析与实现</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/%E7%94%A8javascript%E8%87%AA%E5%B7%B1%E5%86%99virtual-dom/>用JavaScript自己写Virtual DOM</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/%E8%87%AA%E5%B7%B1%E5%86%99%E4%B8%AA%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1/>自己写个前端路由</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/%E8%B7%AF%E7%94%B1%E5%8E%9F%E7%90%86%E5%92%8C%E5%AE%9E%E7%8E%B0/>路由原理和实现</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/%E8%BD%ACreact-redux%E5%8E%9F%E7%90%86%E4%BB%8B%E7%BB%8D%E6%9C%80%E6%98%93%E6%87%82%E7%9A%84%E8%AF%B4%E6%98%8E/>转:react-redux原理介绍，最易懂的说明</a></li></ul></div></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-82d4d1dc1b6fc48a08a1c8c2a4b805ec aria-expanded=false>
+svg和canvas</button><div class=collapse id=section-82d4d1dc1b6fc48a08a1c8c2a4b805ec><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/canvas%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E4%B8%8E%E5%8A%A8%E7%94%BB/>canvas图片处理与动画</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/canvas%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%92%8C%E6%BB%A4%E9%95%9C%E7%89%B9%E6%95%88/>Canvas图像处理和滤镜特效</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/%E6%9B%BE%E7%BB%8F%E5%9F%BA%E4%BA%8Ecanvas%E5%AE%9E%E7%8E%B0%E7%9A%84%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98/>曾经基于canvas实现的飞机大战</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/fabric-js%E4%B9%8B%E5%BC%B7%E5%A4%A7%E7%9A%84svg%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%BA%93/>fabric.js之強大的SVG处理工具类库</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/offscreencanvas-%E6%A6%82%E5%BF%B5%E8%AF%B4%E6%98%8E%E5%8F%8A%E4%BD%BF%E7%94%A8%E8%A7%A3%E6%9E%90/>OffscreenCanvas – 概念说明及使用解析</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/svg%E5%8E%8B%E7%BC%A9%E4%B8%8E%E5%AD%97%E4%BD%93%E5%9B%BE%E6%A0%87%E6%96%B0%E6%80%9D%E8%B7%AF/>SVG压缩与字体图标新思路</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/svg%E5%B5%8C%E5%A5%97%E8%A7%86%E7%AA%97%E7%BB%BC%E5%90%88%E5%AE%9E%E4%BE%8B/>SVG嵌套视窗综合实例</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/svg%E7%9A%84%E7%89%9Bb%E4%B9%8B%E5%A4%84%E4%BD%A0%E9%80%A0%E5%90%97/>SVG的牛B之处，你造吗</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/svg%E7%9A%84%E8%A7%86%E7%AA%97%E4%B8%8E%E5%AE%BD%E9%AB%98%E6%AF%94%E6%8E%A7%E5%88%B6/>SVG的视窗与宽高比控制</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/svg%E7%BC%A9%E6%94%BE%E7%A7%BB%E5%8A%A8%E5%80%BE%E6%96%9C%E5%92%8C%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2/>SVG缩放，移动，倾斜和旋转变换</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/%E5%AE%9E%E7%8E%B0%E8%B7%AF%E5%BE%84%E5%8A%A8%E7%94%BB%E7%9A%84%E6%96%B9%E6%A1%88/>实现路径动画SMIL或offset-path和canvas</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8-svg-%E4%BD%9C%E4%B8%BA%E4%B8%80%E4%B8%AA%E5%9B%BE%E5%83%8F%E5%8D%A0%E4%BD%8D%E7%AC%A6/>怎么使用 SVG 作为一个图像占位符</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-57f62e085cfdf20b39e12de8b1993112 aria-expanded=false>
+dsl</button><div class=collapse id=section-57f62e085cfdf20b39e12de8b1993112><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/dsl/js%E6%A8%A1%E6%8B%9F%E7%BA%A2%E7%99%BD%E6%9C%BAjsnes%E4%BB%BB%E5%A4%A9%E5%A0%82%E6%B8%B8%E6%88%8F%E6%9C%BA/>js模拟红白机jsnes任天堂游戏机</a></li><li><a class="docs-link rounded" href=/fed-regain/dsl/sketch%E6%80%8E%E4%B9%88%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6/>Sketch怎么开发插件</a></li><li><a class="docs-link rounded" href=/fed-regain/dsl/%E5%9F%BA%E4%BA%8Econfig-form%E8%BD%AC%E5%90%91%E9%9D%A2%E5%90%91%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BC%96%E7%A8%8B/>基于config-form转向面向数据的编程</a></li><li><a class="docs-link rounded" href=/fed-regain/dsl/%E6%9E%84%E5%BB%BAc%E8%AF%AD%E8%A8%80%E8%A7%A3%E9%87%8A%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E8%B0%83%E7%A0%94/>构建C语言解释执行环境调研</a></li><li><a class="docs-link rounded" href=/fed-regain/dsl/%E6%B5%81%E7%A8%8B%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1%E7%A0%94%E5%8F%91%E5%AE%9E%E6%88%98/>流程驱动设计研发实战</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-db06c78d1e24cf708a14ce81c9b617ec aria-expanded=false>
+测试</button><div class=collapse id=section-db06c78d1e24cf708a14ce81c9b617ec><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/test/%E5%8F%AF%E7%94%A8%E6%80%A7%E6%B5%8B%E8%AF%95/>可用性测试</a></li><li><a class="docs-link rounded" href=/fed-regain/test/%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7mocha-in-browser/>开发测试工具mocha-in-browser</a></li><li><a class="docs-link rounded" href=/fed-regain/test/%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95+%E5%B7%A5%E5%85%B7/>测试方法+工具</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-b7c0bfff1b6f1cc255716a1cb8b68011 aria-expanded=false>
+调试</button><div class=collapse id=section-b7c0bfff1b6f1cc255716a1cb8b68011><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/debug/%E6%89%8B%E6%9C%BA%E7%BD%91%E9%A1%B5%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7weinre-2/>手机网页调试工具weinre</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-912302cb020149c37f9642fbc9e42891 aria-expanded=false>
+浏览器</button><div class=collapse id=section-912302cb020149c37f9642fbc9e42891><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-9aa9f3eb840e2278563d9b10a2642144 aria-expanded=false>
+HTTP协议</button><div class=collapse id=section-9aa9f3eb840e2278563d9b10a2642144><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/browser/http/http-2-%E4%B8%8E-web-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/>HTTP/2 与 WEB 性能优化</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/https%E8%AE%BF%E9%97%AElocalhost%E7%9A%84http%E8%B5%84%E6%BA%90/>HTTPS访问localhost的http资源</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/http%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98vs%E5%BC%BA%E7%BC%93%E5%AD%98%E5%8E%9F%E7%90%86/>HTTP协商缓存VS强缓存原理</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/http%E5%8D%8F%E8%AE%AE%E4%BB%A5%E5%8F%8Ahttp2-0-1-1-1-0%E5%8C%BA%E5%88%AB/>HTTP协议以及HTTP2.0/1.1/1.0区别</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/websocket%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5/>websocket建立连接</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E5%8F%91%E9%80%81options%E8%AF%B7%E6%B1%82/>什么时候会发送options请求</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/%E5%85%B3%E4%BA%8Echrome%E8%AF%B7%E6%B1%82stalled%E7%9A%84%E6%97%B6%E9%97%B4/>关于chrome请求stalled的时间</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/http-proxy/>基于正向代理解决方案实现的万能代理接口代理转发服务</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/%E7%A7%BB%E5%8A%A8%E5%89%8D%E7%AB%AF%E7%B3%BB%E5%88%97-websocket%E5%AE%9E%E6%97%B6%E4%BA%92%E5%8A%A8%E5%B0%8F%E6%B8%B8%E6%88%8F/>移动[前端](https://www.w3cdoc.com)系列——websocket实时互动小游戏</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/%E8%AF%B4%E8%AF%B4http%E7%8A%B6%E6%80%81%E7%A0%81%E5%92%8C%E5%A6%99%E7%94%A8/>说说http状态码和妙用</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-e747eaca8d3884c2069788c67e22910e aria-expanded=false>
+多端兼容性</button><div class=collapse id=section-e747eaca8d3884c2069788c67e22910e><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/browser/compatible/h5%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/>H5兼容性问题总结</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/compatible/ios%E4%BD%8E%E7%89%88%E6%9C%AC%E4%B8%ADjavascript%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/>ios低版本中JavaScript的兼容性问题</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/compatible/iphone6%E5%92%8C6s%E4%B8%ADwebview%E7%9A%84bug/>iphone6和6s中webview的bug</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/compatible/%E5%9F%BA%E4%BA%8Erem%E6%96%B9%E6%A1%88%E5%AE%9E%E7%8E%B0%E8%87%AA%E9%80%82%E5%BA%94%E5%B8%83%E5%B1%80/>基于rem方案实现自适应布局</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/compatible/%E6%89%8B%E6%9C%BA%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/>手机网页开发问题集锦</a></li></ul></div></li><li><a class="docs-link rounded" href=/fed-regain/browser/chrome-79%E9%BB%98%E8%AE%A4%E6%89%A7%E8%A1%8Csamesite-by-default%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E9%BB%98%E8%AE%A4%E4%B8%8D%E6%90%BA%E5%B8%A6cookie/>Chrome 79+默认执行SameSite-by-default，跨域请求默认不携带cookie</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/chrome%E5%BC%80%E5%A7%8B%E9%9B%86%E6%88%90%E5%9B%BE%E5%BD%A2%E8%AF%86%E5%88%AB-apishape-detection-api/>Chrome开始集成图形识别 API（Shape Detection API）</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/chrome%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/>chrome插件开发</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%95%E6%93%8Eblinkv8/>Chrome浏览器引擎Blink&V8</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/provisional-headers-are-shown%E6%80%8E%E4%B9%88%E8%B0%83%E8%AF%95/>Provisional headers are shown？怎么调试</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/webrtc%E7%9B%B8%E5%85%B3%E7%9A%84canvas%E4%B8%8Evideo/>WebRTC相关的canvas与video</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8web%E5%BC%95%E6%93%8E%E5%8E%9F%E7%90%86/>浏览器JS引擎工作原理</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8Enode%E7%8E%AF%E5%A2%83%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/>浏览器与node环境的事件循环机制</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%89%8D%E8%BF%9B%E5%90%8E%E9%80%80%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/>浏览器前进后退的缓存机制</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/>浏览器工作原理</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E4%B8%8E%E9%98%BB%E5%A1%9E%E5%8E%9F%E7%90%86/>浏览器渲染与阻塞原理</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%A7%A3%E6%9E%90%E4%B8%8E%E7%BD%91%E9%A1%B5%E5%8A%A8%E7%94%BB%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/>浏览器渲染流水线解析与网页动画性能优化</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BA%BF%E7%A8%8B%E7%90%86%E8%A7%A3%E4%B8%8Emicrotask%E4%B8%8Emacrotask/>浏览器线程理解与microtask与macrotask</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E9%BB%98%E8%AE%A4%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4%E6%B5%8B%E8%AF%95/>浏览器默认超时时间测试</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E7%AE%80%E8%BF%B0chromium-cef-webkit-javascriptcore-v8-blink/>简述Chromium, CEF, Webkit, JavaScriptCore, V8, Blink</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E7%AE%A1%E7%90%86history%E4%B9%8Bpushstatereplacestate/>管理history之pushState、replaceState</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E5%A0%86%E5%92%8C%E6%A0%88%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A0%86%E6%A0%88/>虚拟机的堆和栈与数据结构堆栈</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-9214d980933ae261b589eaefbd7d256d aria-expanded=false>
+微前端</button><div class=collapse id=section-9214d980933ae261b589eaefbd7d256d><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/microfe/%E5%9F%BA%E4%BA%8Econfig-component%E8%BD%AC%E5%90%91%E9%9D%A2%E5%90%91%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BC%96%E7%A8%8B/>基于config-component转向面向数据的编程</a></li><li><a class="docs-link rounded" href=/fed-regain/microfe/%E5%9F%BA%E4%BA%8Ewebcomponents%E7%9A%84%E5%AE%9E%E7%8E%B0/>基于webcomponents的实现</a></li><li><a class="docs-link rounded" href=/fed-regain/microfe/%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E7%9A%84%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/>微前端架构的一些想法</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-b0f31b26d51a7233ea004c63cb714f7f aria-expanded=false>
+性能体验</button><div class=collapse id=section-b0f31b26d51a7233ea004c63cb714f7f><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-f36dd17540804d4b2c456780caab0a2d aria-expanded=false>
+性能体验埋点</button><div class=collapse id=section-f36dd17540804d4b2c456780caab0a2d><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/performance/log/%E6%80%BB%E9%98%BB%E5%A1%9E%E6%97%B6%E9%97%B4tbt/>“总阻塞时间”（TBT）</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/log/elasticsearch%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0/>Elasticsearch入门学习</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/log/lcptbt%E4%B8%8Ecls%E6%8C%87%E6%A0%87/>LCP、TBT与CLS指标</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/log/%E4%BA%86%E8%A7%A3filebeat%E5%92%8C%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE/>了解Filebeat和使用配置</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/log/%E6%9C%80%E5%A4%A7%E5%86%85%E5%AE%B9%E7%BB%98%E7%94%BBlcp/>最大内容绘画（LCP）</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/log/%E7%B4%AF%E7%A7%AF%E7%89%88%E5%BC%8F%E7%A7%BB%E4%BD%8Dcls/>累积版式移位（CLS）</a></li></ul></div></li><li><a class="docs-link rounded" href=/fed-regain/performance/web%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E6%A0%87%E5%87%86/>web性能指标标准</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/%E4%BA%A7%E5%93%81%E4%B8%AD%E7%9A%84%E4%BD%93%E9%AA%8C%E8%A1%A1%E9%87%8F%E6%8C%87%E6%A0%87/>产品中的体验衡量指标</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/%E6%9E%81%E8%87%B4%E6%80%A7%E8%83%BD%E4%BD%93%E9%AA%8C%E7%BC%96%E7%A0%81%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96/>极致性能体验编码框架优化</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/%E7%9B%91%E6%8E%A7%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E4%BA%8B%E6%83%85/>监控要考虑的事情</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E6%B8%B2%E6%9F%93%E9%93%BE%E8%B7%AF%E4%BC%98%E5%8C%96/>网页加载渲染链路优化</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/%E8%B7%B3%E5%87%BA%E7%8E%87%E9%99%8D%E4%BD%8E%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5/>跳出率降低优化实践</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86/>页面性能指标数据计算方法</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E6%9E%B6%E6%9E%84/>页面性能指标数据采集架构</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/%E9%AB%98%E6%80%A7%E8%83%BD%E6%9E%81%E8%87%B4%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/>高性能极致用户体验开发实战</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-3c9c48e6a2da8db0cbd57c56e287665b aria-expanded=false>
+打包构建</button><div class=collapse id=section-3c9c48e6a2da8db0cbd57c56e287665b><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/build/asm-js-%E5%92%8C-emscripten-%E4%BB%8B%E7%BB%8D/>asm.js 和 Emscripten 介绍</a></li><li><a class="docs-link rounded" href=/fed-regain/build/babel%E6%B6%89%E5%8F%8A%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AF%86%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/>babel涉及到的知识简单介绍</a></li><li><a class="docs-link rounded" href=/fed-regain/build/dllplugin%E6%8F%90%E5%8D%87webpack%E7%BC%96%E8%AF%91/>DllPlugin提升webpack编译</a></li><li><a class="docs-link rounded" href=/fed-regain/build/es6%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7-rollup%E9%80%9F%E8%A7%88/>ES6模块打包工具—Rollup速览</a></li><li><a class="docs-link rounded" href=/fed-regain/build/gruntgulp%E5%B7%A5%E5%85%B7/>Grunt，Gulp工具</a></li><li><a class="docs-link rounded" href=/fed-regain/build/gulp%E4%B8%AD%E7%9A%84sprite%E5%9B%BE%E5%92%8Cmixin/>Gulp中的sprite图和mixin</a></li><li><a class="docs-link rounded" href=/fed-regain/build/npm-shrinkwrap%E5%91%BD%E4%BB%A4%E5%88%86%E6%9E%90%E7%89%88%E6%9C%AC/>npm shrinkwrap命令分析版本</a></li><li><a class="docs-link rounded" href=/fed-regain/build/react%E5%9F%BA%E4%BA%8Ewebpack%E5%81%9Acode-splitting%E6%96%B9%E6%B3%95/>React基于webpack做code splitting方法</a></li><li><a class="docs-link rounded" href=/fed-regain/build/tree-shaking%E4%BB%8B%E7%BB%8D/>tree shaking介绍</a></li><li><a class="docs-link rounded" href=/fed-regain/build/webpack%E6%A8%A1%E5%9D%97%E5%8A%A0%E8%BD%BD%E7%A5%9E%E5%99%A8/>Webpack模块加载神器</a></li><li><a class="docs-link rounded" href=/fed-regain/build/webpack%E7%BC%96%E8%AF%91%E4%BB%A3%E7%A0%81%E5%8E%9F%E7%90%86%E4%BB%8B%E7%BB%8D/>webpack编译代码原理介绍</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84llvm%E7%BC%96%E8%AF%91%E5%99%A8/>你不知道的LLVM编译器</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E4%BD%BF%E7%94%A8-webpack-chain-%E9%93%BE%E5%BC%8F%E7%94%9F%E6%88%90-webpack-%E9%85%8D%E7%BD%AE/>使用 Webpack-chain 链式生成 webpack 配置</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AF%87-webpack%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/>性能优化篇—Webpack构建速度优化</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E6%89%93%E5%8C%85%E4%B8%AD%E7%9A%84scope-hoisting%E5%8A%9F%E8%83%BD/>打包中的Scope Hoisting功能</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E6%89%93%E5%8C%85%E6%8A%80%E6%9C%AF%E8%A1%8C%E6%83%85/>打包技术行情</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E6%8F%90%E5%8D%87javascript%E4%BB%A3%E7%A0%81%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6%E7%9A%84%E5%87%A0%E7%82%B9%E5%BB%BA%E8%AE%AE/>提升javascript代码编译速度的几点建议</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E6%A8%A1%E5%9D%97%E5%8C%96%E6%89%93%E5%8C%85%E6%96%B0%E8%A1%8C%E6%83%852/>模块化打包新行情2</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E7%94%A8webpack4%E5%92%8C%E4%B8%80%E4%BA%9B%E6%8F%92%E4%BB%B6%E6%8F%90%E5%8D%87%E4%BB%A3%E7%A0%81%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/>用webpack4和一些插件提升代码编译速度</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E8%A7%A3%E5%86%B3%E4%BE%9D%E8%B5%96%E7%BB%84%E4%BB%B6%E7%89%88%E6%9C%AC%E5%86%B2%E7%AA%81/>解决依赖组件版本冲突</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-a21c218df41f6d7fd032535fe20394e2 aria-expanded=false>
+devops</button><div class=collapse id=section-a21c218df41f6d7fd032535fe20394e2><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/devops/chromedev%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95android%E5%92%8Cios/>chrome dev远程调试android 和ios</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/cp-rf%E8%BF%98%E6%98%AF%E6%8F%90%E9%97%AE-f%E5%A4%B1%E6%95%88/>cp -rf还是提问，-f失效</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/ddos%E4%B9%8B%E8%BF%91%E6%BA%90%E6%B8%85%E6%B4%97/>DDOS之近源清洗</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/linux%E4%BD%BF%E7%94%A8tree%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/>linux使用tree命令查看目录结构</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/linux%E9%85%8D%E7%BD%AEnginx%E8%87%AA%E5%B7%B1%E7%94%9F%E6%88%90https%E7%9A%84crt%E5%92%8Ckey%E8%AF%81%E4%B9%A6/>linux配置nginx自己生成https的crt和key证书</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/mysql%E7%9A%84join%E7%94%A8%E6%B3%95%E5%92%8C%E5%8D%95%E8%A1%A8%E8%87%AA%E8%BA%ABjoin/>mysql的join用法和单表自身join</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/ginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/>nginx反向代理配置</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/pm2%E5%90%AF%E5%8A%A8eggjs/>PM2启动eggjs</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/request-entity-too-large-nginx/>Request Entity Too Large Nginx</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/rsync%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95%E5%92%8C%E7%A4%BA%E4%BE%8B/>rsync基本用法和示例</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/serverless%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/>Serverless发展历程</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/sql_modeonly_full_group_by/>sql_mode=only_full_group_by</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/ubuntu%E4%B8%ADsu%E4%B8%8Esudo%E7%9A%84%E5%8C%BA%E5%88%AB/>ubuntu中su与sudo的区别</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/ubuntu%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC/>ubuntu自定义开机启动脚本</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/vscode%E6%8F%92%E4%BB%B6%E5%8F%91%E5%B8%83%E6%AD%A5%E9%AA%A4/>Vscode插件发布步骤</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/web%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8%E4%B9%8Bxss%E6%94%BB%E5%87%BB/>Web前端安全之XSS攻击</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/xcrun%E5%91%BD%E4%BB%A4%E8%BF%90%E8%A1%8C%E6%A8%A1%E6%8B%9F%E5%99%A8/>xcrun命令运行模拟器</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/yarn%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E4%BD%BF%E7%94%A8/>yarn快速上手使用</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/%E4%BD%BF%E7%94%A8-curl-%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/>使用 CURL 上传文件</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/%E5%88%86%E5%B8%83%E5%BC%8F%E8%B0%83%E7%94%A8%E9%93%BE%E8%B7%9F%E8%B8%AA%E7%B3%BB%E7%BB%9F/>分布式调用链跟踪系统</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/%E5%9F%BA%E4%BA%8Echromedevtools%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/>基于Chrome devTools远程调试技术方案</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/git%E5%85%B6%E4%BB%96%E6%8A%80%E5%B7%A7/>彻底搞懂 Git-Rebase</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98/>需要知道的前端安全问题</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-36c4536996ca5615dcf9911f068786dc aria-expanded=false>
+node</button><div class=collapse id=section-36c4536996ca5615dcf9911f068786dc><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/node/egg%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E7%90%86%E8%A7%A3%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%BD%9C%E7%94%A8/>Egg入门学习—理解中间件作用</a></li><li><a class="docs-link rounded" href=/fed-regain/node/egg%E7%90%86%E8%A7%A3service%E4%BD%BF%E7%94%A8/>egg理解service使用</a></li><li><a class="docs-link rounded" href=/fed-regain/node/node.js-%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83%E7%BA%A6%E5%AE%9A/>Node.js 代码规范约定</a></li><li><a class="docs-link rounded" href=/fed-regain/node/nodejs-express%E8%BF%90%E8%A1%8C%E5%AE%9E%E4%BE%8B/>NodeJS Express运行实例</a></li><li><a class="docs-link rounded" href=/fed-regain/node/nodejs-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/>NodeJS 网络爬虫</a></li><li><a class="docs-link rounded" href=/fed-regain/node/nodejsmongodb%E9%83%A8%E7%BD%B2%E5%88%B0linux/>NodeJS+mongoDB部署到Linux</a></li><li><a class="docs-link rounded" href=/fed-regain/node/nodejs%E5%85%A5%E9%97%A8%E9%98%85%E8%AF%BB/>nodejs入门阅读</a></li><li><a class="docs-link rounded" href=/fed-regain/node/nodejs%E5%AD%90%E8%BF%9B%E7%A8%8B%E4%B9%8Bchild_process/>nodejs子进程之child_process</a></li><li><a class="docs-link rounded" href=/fed-regain/node/nodejs%E7%9A%84buffer%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/>NodeJS的buffer使用总结</a></li><li><a class="docs-link rounded" href=/fed-regain/node/node%E5%8F%91%E9%80%81http%E8%AF%B7%E6%B1%82%E4%BB%A5%E5%8F%8A%E5%8F%82%E6%95%B0%E5%A4%84%E7%90%86/>node发送http请求以及参数处理</a></li><li><a class="docs-link rounded" href=/fed-regain/node/npm%E7%89%88%E6%9C%AC%E5%8F%B7/>npm版本号</a></li><li><a class="docs-link rounded" href=/fed-regain/node/%E5%85%B3%E4%BA%8Enode%E5%A6%82%E4%BD%95%E5%81%9A%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81/>关于node如何做接口限流</a></li><li><a class="docs-link rounded" href=/fed-regain/node/%E5%85%B3%E4%BA%8Enode%E7%BC%96%E7%A8%8B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/>关于node编程异常处理</a></li><li><a class="docs-link rounded" href=/fed-regain/node/%E5%85%B3%E4%BA%8Enpm%E7%9A%84%E6%96%B9%E6%96%B9%E9%9D%A2%E9%9D%A2/>关于NPM的方方面面</a></li><li><a class="docs-link rounded" href=/fed-regain/node/%E5%9F%BA%E4%BA%8Enodejs%E5%88%9B%E5%BB%BAhttps%E6%9C%8D%E5%8A%A1/>基于Nodejs创建https服务</a></li><li><a class="docs-link rounded" href=/fed-regain/node/%E6%B5%85%E6%9E%90-node-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/>浅析 Node 进程与线程</a></li><li><a class="docs-link rounded" href=/fed-regain/node/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%AE%9E%E7%8E%B0%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%9F%E7%90%86/>深入理解单线程实现高并发原理</a></li><li><a class="docs-link rounded" href=/fed-regain/node/%E7%BD%91%E7%BB%9C%E5%BA%93libevent/>网络库libevent、libev、libuv对比</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-046a899ee7a6ec88d370211a518c9e80 aria-expanded=false>
+算法</button><div class=collapse id=section-046a899ee7a6ec88d370211a518c9e80><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/algorithm/javascript%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%B9%E6%B3%95/>JavaScript数组去重简单的方法</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/n%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/>n皇后问题</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E4%BA%BA%E6%B0%91%E5%B8%81%E6%8D%A2%E7%AE%97/>人民币换算</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E5%8F%8D%E8%BD%AC%E4%B8%80%E4%B8%AA-3-%E4%BD%8D%E6%95%B4%E6%95%B0/>反转一个整数</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E5%A4%84%E7%90%86%E5%9B%9E%E6%96%87%E6%95%B0/>处理回文数</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4%E7%9A%84%E8%AE%A1%E7%AE%97%E5%99%A8/>实现一个加减乘除的计算器</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3/>常见算法思想</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91/>序列化和反序列化二叉树</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E5%A5%87%E6%95%B0%E6%AC%A1%E7%9A%84%E5%85%83%E7%B4%A0/>找出数组中出现奇数次的元素</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E5%92%8C%E4%B8%BA%E9%9B%B6%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/>找出数组和为零的子数组</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%89%BE%E5%87%BA%E6%9C%AA%E6%8E%92%E5%BA%8F%E6%95%B4%E6%95%B0%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/>找出未排序整数数组的中位数</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%89%BE%E5%88%B0%E5%92%8C%E4%B8%BA%E6%8C%87%E5%AE%9A%E6%95%B0%E5%80%BC%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0/>找到和为指定数值的两个数</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%89%BE%E6%8C%87%E5%AE%9A%E8%8C%83%E5%9B%B4%E7%9B%B8%E4%BA%B2%E6%95%B0%E5%AF%B9/>找指定范围相亲数对</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/>排序算法</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%9F%A5%E6%89%BE%E6%96%90%E6%B3%A2%E7%BA%B3%E5%A5%91%E6%95%B0%E5%88%97%E4%B8%AD%E7%AC%AC-n-%E4%B8%AA%E6%95%B0/>查找斐波纳契数列中第 N 个数</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%9F%A5%E6%89%BE%E6%B0%B4%E4%BB%99%E8%8A%B1%E6%95%B0/>查找水仙花数</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%9F%A5%E6%89%BE%E7%AC%AC-k-%E5%A4%A7%E5%85%83%E7%B4%A0/>查找第 k 大元素</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%A3%80%E9%AA%8C%E6%98%AF%E5%90%A6%E4%B8%BA%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%AA%E7%8E%AF%E7%A7%BB%E5%8A%A8%E5%90%8E%E7%9A%84%E5%AD%90%E4%B8%B2/>检验是否为另一个字符串循环移动后的子串</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E7%A0%B4%E8%A7%A3%E7%BE%8E%E7%9C%89%E5%BE%AE%E4%BF%A1%E5%8F%B7/>破解美眉微信号707829217</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E7%BB%99%E5%AE%9A%E8%8C%83%E5%9B%B4%E6%95%B0%E5%AD%97%E6%8C%89%E4%BD%8D%E4%B8%8E%E7%9A%84%E7%BB%93%E6%9E%9C/>给定范围数字按位与的结果</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/>背包问题</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E8%AE%A1%E7%AE%97%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F/>计算后缀表达式（逆波兰表达式）</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E8%AE%A1%E7%AE%97%E6%9C%89%E5%A4%9A%E5%B0%91%E7%A7%8D%E6%96%B9%E6%B3%95%E7%88%AC%E6%A5%BC%E6%A2%AF/>计算有多少种方法爬楼梯</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E8%AE%A1%E7%AE%97%E7%BE%8E%E5%A5%B3%E4%B8%BB%E6%92%AD%E7%9B%B4%E6%92%AD%E9%97%B4%E5%AF%86%E7%A0%81/>计算美女主播直播间密码</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E8%AE%A1%E7%AE%97-%E7%9A%84%E6%89%80%E6%9C%89%E5%8F%AF%E8%83%BD%E8%AE%A1%E7%AE%97%E7%BB%93%E6%9E%9C/>计算输入表达式+-*的所有可能计算结果</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-411887f8fe499f73c97eb21a4890b4b5 aria-expanded=false>
+通向能力</button><div class=collapse id=section-411887f8fe499f73c97eb21a4890b4b5><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/think/%E4%B8%AD%E5%8F%B0%E7%9A%84%E7%90%86%E8%A7%A3/>中台的理解</a></li><li><a class="docs-link rounded" href=/fed-regain/think/%E5%89%8D%E7%AB%AF%E6%8A%80%E8%83%BD%E6%80%BB%E7%BB%93/>前端技能总结</a></li><li><a class="docs-link rounded" href=/fed-regain/think/%E5%9B%9E%E9%A1%BE%E5%89%8D%E7%AB%AF2019/>回顾前端2019</a></li><li><a class="docs-link rounded" href=/fed-regain/think/%E8%87%AA%E5%AD%A6%E9%9D%A2%E8%AF%95%E6%89%BE%E5%B7%A5%E4%BD%9C%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/>工程师自学面试找工作必备知识</a></li><li><a class="docs-link rounded" href=/fed-regain/think/%E6%AF%94%E8%BE%83%E9%9A%BE%E7%9A%84%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/>校招社招必备核心面试问题与详细解答</a></li></ul></div></li></ul></nav></aside></div><div class="wrap container-xxl" role=document><div class=content><div class="row flex-xl-nowrap"><div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block"><nav class=docs-links aria-label="Main navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-fc35fdc70d5fc69d269883a822c7a53e aria-expanded=false>
+html</button><div class=collapse id=section-fc35fdc70d5fc69d269883a822c7a53e><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/html/html%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2/>HTML发展历史</a></li><li><a class="docs-link rounded" href=/fed-regain/html/html%E5%85%83%E7%B4%A0%E5%B5%8C%E5%A5%97%E7%BA%A6%E6%9D%9F/>HTML元素嵌套约束</a></li><li><a class="docs-link rounded" href=/fed-regain/html/html%E8%A7%A3%E6%9E%90%E8%BF%87%E7%A8%8B/>HTML解析过程</a></li><li><a class="docs-link rounded" href=/fed-regain/html/html%E6%B8%B2%E6%9F%93%E8%BF%87%E7%A8%8B/>HTML渲染过程</a></li><li><a class="docs-link rounded" href=/fed-regain/html/%E9%A1%B5%E9%9D%A2%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/>页面生命周期</a></li><li><a class="docs-link rounded" href=/fed-regain/html/content-security-policy/>Content-Security-Policy</a></li><li><a class="docs-link rounded" href=/fed-regain/html/noopener%E5%92%8Cnoreferrer/>noopener和noreferrer</a></li><li><a class="docs-link rounded" href=/fed-regain/html/preload%E5%92%8Cprefetch%E4%BC%98%E5%8C%96/>preload和prefetch优化</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-c7a628cba22e28eb17b5f5c6ae2a266a aria-expanded=false>
+css</button><div class=collapse id=section-c7a628cba22e28eb17b5f5c6ae2a266a><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/css/css%E7%9A%84%E5%8F%91%E5%B1%95/>CSS的发展</a></li><li><a class="docs-link rounded" href=/fed-regain/css/css%E4%BA%A4%E4%BA%92/>CSS交互</a></li><li><a class="docs-link rounded" href=/fed-regain/css/css%E5%8F%98%E9%87%8F/>CSS变量</a></li><li><a class="docs-link rounded" href=/fed-regain/css/css%E5%9F%BA%E7%BA%BF%E4%B8%8E%E8%A1%8C%E9%AB%98%E5%85%B3%E7%B3%BB/>css基线与行高关系</a></li><li><a class="docs-link rounded" href=/fed-regain/css/css%E9%80%89%E6%8B%A9%E5%99%A8%E6%80%A7%E8%83%BD%E6%8D%9F%E8%80%97/>CSS选择器性能损耗</a></li><li><a class="docs-link rounded" href=/fed-regain/css/font-face%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E4%B8%80%E5%88%87/>font-face需要知道的一切</a></li><li><a class="docs-link rounded" href=/fed-regain/css/media-type-%E4%B8%8Emedia-query/>media type 与media query</a></li><li><a class="docs-link rounded" href=/fed-regain/css/minmax%E5%92%8Cclamp%E4%B8%89%E4%B8%AA%E9%80%BB%E8%BE%91/>minmax和clamp三个逻辑</a></li><li><a class="docs-link rounded" href=/fed-regain/css/containingblock/>什么是containing block？</a></li><li><a class="docs-link rounded" href=/fed-regain/css/content-visibility/>content-visibility</a></li><li><a class="docs-link rounded" href=/fed-regain/css/%E6%96%87%E6%9C%AC%E5%9D%87%E5%8C%80%E5%88%86%E5%B8%83%E4%B8%A4%E7%AB%AF%E5%AF%B9%E9%BD%90%E7%AD%89/>文本均匀分布两端对齐等</a></li><li><a class="docs-link rounded" href=/fed-regain/css/%E4%BC%AA%E7%B1%BB%E4%B8%8E%E4%BC%AA%E5%85%83%E7%B4%A0%E7%9A%84%E7%94%A8%E6%B3%95/>伪类与伪元素的用法</a></li><li><a class="docs-link rounded" href=/fed-regain/css/%E5%9B%BE%E7%89%87%E9%93%BA%E6%BB%A1%E5%B1%95%E7%A4%BA%E4%B8%8D%E5%8F%98%E5%BD%A2/>图片铺满展示不变形</a></li><li><a class="docs-link rounded" href=/fed-regain/css/%E4%BD%BF%E5%85%83%E7%B4%A0%E4%B8%8D%E5%8F%AF%E8%A7%81%E7%9A%84%E6%97%81%E9%97%A8%E5%B7%A6%E9%81%93/>使元素不可见的旁门左道</a></li><li><a class="docs-link rounded" href=/fed-regain/css/%E7%90%86%E8%A7%A3css%E5%8A%A8%E7%94%BB%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E4%B8%8E%E5%8A%A8%E7%94%BB%E8%B0%83%E8%AF%95/>理解CSS动画性能问题与动画调试</a></li><li><a class="docs-link rounded" href=/fed-regain/css/%E9%AB%98%E6%80%A7%E8%83%BDcss%E5%8A%A8%E7%94%BB%E6%80%BB%E7%BB%93/>高性能CSS动画总结</a></li><li><a class="docs-link rounded" href=/fed-regain/css/%E5%8F%98%E6%80%81android%E6%96%87%E5%AD%97%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/>变态android文字垂直居中</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-32981a13284db7a021131df49e6cd203 aria-expanded=true>
+js</button><div class="collapse show" id=section-32981a13284db7a021131df49e6cd203><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-055823d5251a151ba2621eab0cb94843 aria-expanded=false>
+js基础</button><div class=collapse id=section-055823d5251a151ba2621eab0cb94843><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/js/base/varletconst%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8%E5%9F%9F/>var、let、const及其作用域</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%A4%9A%E8%A1%8C%E8%B6%85%E5%87%BA%E5%B0%BE%E9%83%A8%E5%B1%95%E7%A4%BA%E7%9C%81%E7%95%A5%E5%8F%B7%E6%94%B9%E8%BF%9B/>多行超出尾部展示省略号</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E4%BA%8C%E8%BF%9B%E5%88%B6%E8%BF%90%E7%AE%97%E7%AC%A6%E4%BD%BF%E7%94%A8/>二进制运算符使用</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/typescript%E5%88%9D%E5%AD%A6%E4%BA%86%E8%A7%A3/>TypeScript初学了解</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%B7%A5%E7%A8%8B%E5%B8%88%E4%BD%BF%E7%94%A8fetch%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9B%9B%E7%A7%8D%E9%94%99%E8%AF%AF/>工程师使用fetch常见的四种错误</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E6%9E%84%E5%BB%BAdom%E5%92%8Ccssom/>构建DOM和CSSOM</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/javascript%E4%BA%8B%E4%BB%B6%E6%B5%81/>JavaScript事件流</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%85%B3%E4%BA%8Eajax%E8%AF%B7%E6%B1%82%E5%A4%B4%E8%AE%BE%E7%BD%AE/>关于ajax请求头设置</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%9A%84%E8%A7%92%E5%BA%A6%E7%90%86%E8%A7%A3call/>函数调用的角度理解call</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%9F%BA%E4%BA%8Etypescript%E5%BC%80%E5%8F%91%E4%B8%80%E4%B8%AAnpm%E5%8C%85/>基于typescript开发一个npm包</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E7%AE%80%E5%8D%95%E7%9A%84%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0/>简单的事件监听处理函数</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E8%B7%A8%E5%9F%9F%E5%92%8C%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95/>跨域和常用方法</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E4%BA%86%E8%A7%A3%E4%B8%8Bpromise-a%E8%A7%84%E8%8C%83%E5%AE%9E%E7%8E%B0promise/>了解下Promise A+规范，实现Promise</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%88%A4%E6%96%AD%E5%86%85%E5%AE%B9%E5%8C%BA%E5%9F%9F%E6%98%AF%E5%90%A6%E6%BB%9A%E5%8A%A8%E5%88%B0%E5%BA%95%E9%83%A8/>判断内容区域是否滚动到底部</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%A6%82%E4%BD%95%E9%AB%98%E6%95%88%E5%93%8D%E5%BA%94%E7%94%A8%E6%88%B7%E8%A7%A6%E6%91%B8%E5%8A%A8%E4%BD%9C/>如何高效响应用户触摸动作</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3function/>如何理解function</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E4%BD%BF%E7%94%A8-service-workers%E6%8F%90%E5%8D%87%E4%BD%93%E9%AA%8C/>使用 Service Workers提升体验</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E4%BD%BF%E7%94%A8%E6%B3%A8%E9%87%8A%E5%92%8Cjsdoc%E8%AE%A9%E4%BB%A3%E7%A0%81%E6%9B%B4%E8%A7%84%E8%8C%83/>使用注释和JSDOC让代码更规范</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E4%BD%BF%E7%94%A8settimeout%E5%BE%AA%E7%8E%AF%E8%B0%83%E7%94%A8%E5%92%8Csetinterval%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB/>使用setTimeout循环调用和setInterval有什么区别</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83%E4%B9%8Bpromise%E5%AF%B9%E8%B1%A1/>异步回调之Promise对象</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%8E%9F%E7%94%9Flazyloadcsp%E5%92%8Cdeno/>原生lazyload、csp和deno</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/typescript%E5%A4%A7%E6%B3%95/>typescript大法</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E5%8E%9F%E5%9E%8B%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%BB%A7%E6%89%BF%E4%B8%8E%E7%BB%84%E8%A3%85/>原型，原型链，继承与组装</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/es6%E5%B8%B8%E7%94%A8%E8%AF%AD%E6%B3%95%E5%9B%9E%E9%A1%BE/>ES6常用语法回顾</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/es2016%E8%A3%85%E9%A5%B0%E5%99%A8/>ES2016装饰器</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/globalwindowdocument-%E7%AE%80%E5%8D%95%E8%AF%B4%E6%98%8E/>Global\window\document 简单说明</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/iframe%E7%9A%84%E6%96%B9%E6%96%B9%E9%9D%A2%E9%9D%A2/>iframe的方方面面</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/immutable%E8%AF%A6%E8%A7%A3/>IMMUTABLE 详解</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/javascript%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E7%9A%84%E6%96%B9%E6%96%B9%E9%9D%A2%E9%9D%A2/>JavaScript跨域请求的方方面面</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/javascript%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%B5%85%E6%9E%90/>Javascript垃圾回收浅析</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/javascript%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/>Javascript内存管理</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/javascript%E5%AE%9E%E7%8E%B0jsonp%E5%92%8Cajax/>JavaScript实现JSONP和ajax</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/jquery%E7%AC%94%E8%AE%B0deferred/>jquery笔记deferred</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/webstorge%E4%BD%BF%E7%94%A8/>WebStorge使用</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/js%E5%8E%9F%E7%94%9F%E7%BC%96%E8%A7%A3%E7%A0%81%E5%87%BD%E6%95%B0/>JS原生编解码函数</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/js%E4%B8%AD%E6%B5%AE%E7%82%B9%E6%95%B0%E7%B2%BE%E5%BA%A6%E9%97%AE%E9%A2%98/>JS中浮点数精度问题</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/jsonp%E8%80%8C%E4%B8%8D%E6%98%AFajax/>jsonp而不是AJAX？</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/script%E6%A0%87%E7%AD%BE%E7%9A%84defer%E4%B8%8Easync/>script标签的defer与async</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/script%E6%A0%87%E7%AD%BE%E6%B7%BB%E5%8A%A0crossorigin/>script标签添加crossorigin</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/too-many-pausable-objects/>Too many Pausable Objects</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/touch%E7%82%B9%E5%87%BB%E7%A9%BF%E9%80%8F%E4%B8%8Eclick/>touch点击穿透与click与300ms延迟</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/es6-%E6%8B%86%E7%AE%B1%E4%B8%8E%E8%A3%85%E7%AE%B1%E5%AE%9E%E7%8E%B0%E6%B7%B1%E5%85%8B%E9%9A%86/>ES6 … 拆箱与装箱实现深克隆</a></li><li><a class="docs-link rounded" href=/fed-regain/js/base/%E6%B5%85%E5%85%8B%E9%9A%86%E4%B8%8E%E6%B7%B1%E5%85%8B%E9%9A%86/>浅克隆与深克隆</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-b30ced48d20f44561d96d291478acbd8 aria-expanded=false>
+js高级</button><div class=collapse id=section-b30ced48d20f44561d96d291478acbd8><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%92%8C%E6%8F%90%E5%8D%87%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/>执行上下文和提升与事件循环</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/object-defineproperty%E4%B8%8Eproxy/>Object.defineProperty与Proxy</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E8%AF%A6%E8%A7%A3object-createnull%E5%92%8Cnew%E5%8C%BA%E5%88%AB/>详解Object.create(null)和new区别</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E5%9F%BA%E4%BA%8Ees6%E6%A0%87%E7%AD%BE%E6%A8%A1%E6%9D%BF%E5%AE%9E%E7%8E%B0%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%9B%91%E5%90%AC/>基于ES6标签模板实现事件绑定与数据监听</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B%E5%A4%84%E7%90%86if%E5%9D%97/>函数式编程处理IF块</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/js%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E5%BF%AB%E9%80%9F%E5%88%A0%E9%99%A4/>JS对象属性的快速删除</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/js%E7%89%B9%E6%80%A7%E6%80%A7%E8%83%BD%E7%BC%BA%E9%99%B7%E5%8F%8Ajit%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/>JS特性性能缺陷及JIT的解决方案</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E5%AF%B9%E8%B1%A1%E5%9C%A8-v8-%E5%86%85%E7%9A%84%E8%A1%A8%E8%BE%BE/>JS对象在 V8 内的表达</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E5%A4%A7%E8%AF%9Djavascript-%E5%BC%95%E6%93%8E%E6%89%AB%E7%9B%B2%E7%AF%87/>大话JavaScript 引擎扫盲篇</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E6%9E%84%E5%BB%BAjavascript-%E6%B2%99%E7%AE%B1/>构建JavaScript 沙箱</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E5%85%B3%E4%BA%8E%E5%AF%B9%E8%B1%A1%E7%9A%84%E8%AE%BF%E9%97%AE%E4%BC%98%E5%8C%96/>关于对象的访问优化</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E5%85%B3%E4%BA%8Ehit-test/>关于hit test</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC%E5%92%8C%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/>控制反转和依赖注入</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/react-shadow/>react shadow</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/shadow-dom%E7%AE%80%E5%8D%95%E4%BA%86%E8%A7%A3/>Shadow DOM简单了解</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/json-ld/>json-ld的用处</a></li><li><a class="docs-link rounded" href=/fed-regain/js/advance/js%E5%92%8Ccss%E4%BD%BF%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7%E5%92%8C%E9%97%AE%E9%A2%98/>JS和CSS使用的一些小技巧和问题</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-43e6bf76b53ba4d9ffc765bf79022281 aria-expanded=true>
+js框架</button><div class="collapse show" id=section-43e6bf76b53ba4d9ffc765bf79022281><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/js/framework/amd%E4%B8%8Ecmd%E8%A7%84%E8%8C%83-javascript%E6%A8%A1%E5%9D%97%E5%8C%96/>AMD与CMD规范-javascript模块化</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/bsrssgssr%E4%B9%8Bnext-js/>BSR、SSG、SSR之next.js</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/hooks%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/>hooks使用指南</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/javascript%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/>JavaScript函数式编程</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/reactfiber%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B/>react fiber怎么回事</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/react-hooks%E5%AE%8C%E5%85%A8%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8C%97/>React Hooks完全上手指北</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/react-hooks%E6%A8%A1%E6%8B%9F%E5%90%84%E4%B8%AA%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0/>react hooks模拟各个生命周期函数</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/react-hooks%E7%9A%84%E5%BA%94%E7%94%A8/>react hooks的应用</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/react-hook%E7%9A%84%E5%88%9D%E6%AD%A5%E7%A0%94%E7%A9%B6%E5%89%8D%E8%A8%80renderwithhooks%E7%9A%84%E6%95%B4%E4%B8%AA%E8%BF%87%E7%A8%8B/>react hook的初步研究前言renderWithHooks的整个过程</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/react-shadow/>react shadow</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/react%E4%BA%8B%E4%BB%B6%E7%B3%BB%E7%BB%9F/>react事件系统</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/react%E9%98%BB%E6%AD%A2%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E5%A4%B1%E8%B4%A5%E5%8E%9F%E5%9B%A0/>react阻止事件冒泡失败原因</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/svelte%E6%A1%86%E6%9E%B6%E7%9A%84%E7%89%B9%E6%80%A7%E5%8E%9F%E7%90%86/>Svelte框架的特性原理</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/vue3%E4%B8%AD%E7%9A%84%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/>vue3中的响应式原理</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/vue3%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86%E6%95%B4%E7%90%86/>Vue3响应式原理整理</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/vue%E4%B8%8Eangular%E4%B8%8Ereact/>vue与angular与react</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/vue%E4%B8%AD8%E7%A7%8D%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/>vue中8种组件通信方式</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/webcomponents%E5%85%A5%E9%97%A8%E4%B8%8E%E5%AE%9E%E8%B7%B5/>web components入门与实践</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/%E5%9F%BA%E4%BA%8E%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F%E5%86%99%E4%B8%80%E4%B8%AAeventemitter/>基于发布订阅模式写一个eventEmitter</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99vscode-extension%E6%8F%92%E4%BB%B6/>如何编写vscode extension插件</a></li><li><a class="docs-link rounded active" href=/fed-regain/js/framework/%E5%B0%86react%E5%BD%93%E5%81%9A%E5%89%8D%E7%AB%AFui%E8%BF%90%E8%A1%8C%E6%97%B6%E7%8E%AF%E5%A2%83%E6%9D%A5%E7%9C%8B%E5%BE%85/>将React当做[前端](https://www.w3cdoc.com)UI运行时环境来看待</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E%E6%AF%94%E8%BE%83%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/>工作流引擎比较规则引擎</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/%E6%95%B0%E6%8D%AE%E7%9B%91%E5%90%AC%E4%B9%8Bvm%E5%8E%9F%E7%90%86%E5%88%86%E6%9E%90%E4%B8%8E%E5%AE%9E%E7%8E%B0/>数据监听之VM原理分析与实现</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/%E7%94%A8javascript%E8%87%AA%E5%B7%B1%E5%86%99virtual-dom/>用JavaScript自己写Virtual DOM</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/%E8%87%AA%E5%B7%B1%E5%86%99%E4%B8%AA%E5%89%8D%E7%AB%AF%E8%B7%AF%E7%94%B1/>自己写个前端路由</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/%E8%B7%AF%E7%94%B1%E5%8E%9F%E7%90%86%E5%92%8C%E5%AE%9E%E7%8E%B0/>路由原理和实现</a></li><li><a class="docs-link rounded" href=/fed-regain/js/framework/%E8%BD%ACreact-redux%E5%8E%9F%E7%90%86%E4%BB%8B%E7%BB%8D%E6%9C%80%E6%98%93%E6%87%82%E7%9A%84%E8%AF%B4%E6%98%8E/>转:react-redux原理介绍，最易懂的说明</a></li></ul></div></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-82d4d1dc1b6fc48a08a1c8c2a4b805ec aria-expanded=false>
+svg和canvas</button><div class=collapse id=section-82d4d1dc1b6fc48a08a1c8c2a4b805ec><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/canvas%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86%E4%B8%8E%E5%8A%A8%E7%94%BB/>canvas图片处理与动画</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/canvas%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%92%8C%E6%BB%A4%E9%95%9C%E7%89%B9%E6%95%88/>Canvas图像处理和滤镜特效</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/%E6%9B%BE%E7%BB%8F%E5%9F%BA%E4%BA%8Ecanvas%E5%AE%9E%E7%8E%B0%E7%9A%84%E9%A3%9E%E6%9C%BA%E5%A4%A7%E6%88%98/>曾经基于canvas实现的飞机大战</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/fabric-js%E4%B9%8B%E5%BC%B7%E5%A4%A7%E7%9A%84svg%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7%E7%B1%BB%E5%BA%93/>fabric.js之強大的SVG处理工具类库</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/offscreencanvas-%E6%A6%82%E5%BF%B5%E8%AF%B4%E6%98%8E%E5%8F%8A%E4%BD%BF%E7%94%A8%E8%A7%A3%E6%9E%90/>OffscreenCanvas – 概念说明及使用解析</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/svg%E5%8E%8B%E7%BC%A9%E4%B8%8E%E5%AD%97%E4%BD%93%E5%9B%BE%E6%A0%87%E6%96%B0%E6%80%9D%E8%B7%AF/>SVG压缩与字体图标新思路</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/svg%E5%B5%8C%E5%A5%97%E8%A7%86%E7%AA%97%E7%BB%BC%E5%90%88%E5%AE%9E%E4%BE%8B/>SVG嵌套视窗综合实例</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/svg%E7%9A%84%E7%89%9Bb%E4%B9%8B%E5%A4%84%E4%BD%A0%E9%80%A0%E5%90%97/>SVG的牛B之处，你造吗</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/svg%E7%9A%84%E8%A7%86%E7%AA%97%E4%B8%8E%E5%AE%BD%E9%AB%98%E6%AF%94%E6%8E%A7%E5%88%B6/>SVG的视窗与宽高比控制</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/svg%E7%BC%A9%E6%94%BE%E7%A7%BB%E5%8A%A8%E5%80%BE%E6%96%9C%E5%92%8C%E6%97%8B%E8%BD%AC%E5%8F%98%E6%8D%A2/>SVG缩放，移动，倾斜和旋转变换</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/%E5%AE%9E%E7%8E%B0%E8%B7%AF%E5%BE%84%E5%8A%A8%E7%94%BB%E7%9A%84%E6%96%B9%E6%A1%88/>实现路径动画SMIL或offset-path和canvas</a></li><li><a class="docs-link rounded" href=/fed-regain/svgcanvas/%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8-svg-%E4%BD%9C%E4%B8%BA%E4%B8%80%E4%B8%AA%E5%9B%BE%E5%83%8F%E5%8D%A0%E4%BD%8D%E7%AC%A6/>怎么使用 SVG 作为一个图像占位符</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-57f62e085cfdf20b39e12de8b1993112 aria-expanded=false>
+dsl</button><div class=collapse id=section-57f62e085cfdf20b39e12de8b1993112><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/dsl/js%E6%A8%A1%E6%8B%9F%E7%BA%A2%E7%99%BD%E6%9C%BAjsnes%E4%BB%BB%E5%A4%A9%E5%A0%82%E6%B8%B8%E6%88%8F%E6%9C%BA/>js模拟红白机jsnes任天堂游戏机</a></li><li><a class="docs-link rounded" href=/fed-regain/dsl/sketch%E6%80%8E%E4%B9%88%E5%BC%80%E5%8F%91%E6%8F%92%E4%BB%B6/>Sketch怎么开发插件</a></li><li><a class="docs-link rounded" href=/fed-regain/dsl/%E5%9F%BA%E4%BA%8Econfig-form%E8%BD%AC%E5%90%91%E9%9D%A2%E5%90%91%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BC%96%E7%A8%8B/>基于config-form转向面向数据的编程</a></li><li><a class="docs-link rounded" href=/fed-regain/dsl/%E6%9E%84%E5%BB%BAc%E8%AF%AD%E8%A8%80%E8%A7%A3%E9%87%8A%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83%E8%B0%83%E7%A0%94/>构建C语言解释执行环境调研</a></li><li><a class="docs-link rounded" href=/fed-regain/dsl/%E6%B5%81%E7%A8%8B%E9%A9%B1%E5%8A%A8%E8%AE%BE%E8%AE%A1%E7%A0%94%E5%8F%91%E5%AE%9E%E6%88%98/>流程驱动设计研发实战</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-db06c78d1e24cf708a14ce81c9b617ec aria-expanded=false>
+测试</button><div class=collapse id=section-db06c78d1e24cf708a14ce81c9b617ec><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/test/%E5%8F%AF%E7%94%A8%E6%80%A7%E6%B5%8B%E8%AF%95/>可用性测试</a></li><li><a class="docs-link rounded" href=/fed-regain/test/%E5%BC%80%E5%8F%91%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7mocha-in-browser/>开发测试工具mocha-in-browser</a></li><li><a class="docs-link rounded" href=/fed-regain/test/%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95+%E5%B7%A5%E5%85%B7/>测试方法+工具</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-b7c0bfff1b6f1cc255716a1cb8b68011 aria-expanded=false>
+调试</button><div class=collapse id=section-b7c0bfff1b6f1cc255716a1cb8b68011><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/debug/%E6%89%8B%E6%9C%BA%E7%BD%91%E9%A1%B5%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7weinre-2/>手机网页调试工具weinre</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-912302cb020149c37f9642fbc9e42891 aria-expanded=false>
+浏览器</button><div class=collapse id=section-912302cb020149c37f9642fbc9e42891><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-9aa9f3eb840e2278563d9b10a2642144 aria-expanded=false>
+HTTP协议</button><div class=collapse id=section-9aa9f3eb840e2278563d9b10a2642144><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/browser/http/http-2-%E4%B8%8E-web-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/>HTTP/2 与 WEB 性能优化</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/https%E8%AE%BF%E9%97%AElocalhost%E7%9A%84http%E8%B5%84%E6%BA%90/>HTTPS访问localhost的http资源</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/http%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98vs%E5%BC%BA%E7%BC%93%E5%AD%98%E5%8E%9F%E7%90%86/>HTTP协商缓存VS强缓存原理</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/http%E5%8D%8F%E8%AE%AE%E4%BB%A5%E5%8F%8Ahttp2-0-1-1-1-0%E5%8C%BA%E5%88%AB/>HTTP协议以及HTTP2.0/1.1/1.0区别</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/websocket%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5/>websocket建立连接</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E5%8F%91%E9%80%81options%E8%AF%B7%E6%B1%82/>什么时候会发送options请求</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/%E5%85%B3%E4%BA%8Echrome%E8%AF%B7%E6%B1%82stalled%E7%9A%84%E6%97%B6%E9%97%B4/>关于chrome请求stalled的时间</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/http-proxy/>基于正向代理解决方案实现的万能代理接口代理转发服务</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/%E7%A7%BB%E5%8A%A8%E5%89%8D%E7%AB%AF%E7%B3%BB%E5%88%97-websocket%E5%AE%9E%E6%97%B6%E4%BA%92%E5%8A%A8%E5%B0%8F%E6%B8%B8%E6%88%8F/>移动[前端](https://www.w3cdoc.com)系列——websocket实时互动小游戏</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/http/%E8%AF%B4%E8%AF%B4http%E7%8A%B6%E6%80%81%E7%A0%81%E5%92%8C%E5%A6%99%E7%94%A8/>说说http状态码和妙用</a></li></ul></div></li><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-e747eaca8d3884c2069788c67e22910e aria-expanded=false>
+多端兼容性</button><div class=collapse id=section-e747eaca8d3884c2069788c67e22910e><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/browser/compatible/h5%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/>H5兼容性问题总结</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/compatible/ios%E4%BD%8E%E7%89%88%E6%9C%AC%E4%B8%ADjavascript%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7%E9%97%AE%E9%A2%98/>ios低版本中JavaScript的兼容性问题</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/compatible/iphone6%E5%92%8C6s%E4%B8%ADwebview%E7%9A%84bug/>iphone6和6s中webview的bug</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/compatible/%E5%9F%BA%E4%BA%8Erem%E6%96%B9%E6%A1%88%E5%AE%9E%E7%8E%B0%E8%87%AA%E9%80%82%E5%BA%94%E5%B8%83%E5%B1%80/>基于rem方案实现自适应布局</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/compatible/%E6%89%8B%E6%9C%BA%E7%BD%91%E9%A1%B5%E5%BC%80%E5%8F%91%E9%97%AE%E9%A2%98%E9%9B%86%E9%94%A6/>手机网页开发问题集锦</a></li></ul></div></li><li><a class="docs-link rounded" href=/fed-regain/browser/chrome-79%E9%BB%98%E8%AE%A4%E6%89%A7%E8%A1%8Csamesite-by-default%E8%B7%A8%E5%9F%9F%E8%AF%B7%E6%B1%82%E9%BB%98%E8%AE%A4%E4%B8%8D%E6%90%BA%E5%B8%A6cookie/>Chrome 79+默认执行SameSite-by-default，跨域请求默认不携带cookie</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/chrome%E5%BC%80%E5%A7%8B%E9%9B%86%E6%88%90%E5%9B%BE%E5%BD%A2%E8%AF%86%E5%88%AB-apishape-detection-api/>Chrome开始集成图形识别 API（Shape Detection API）</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/chrome%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/>chrome插件开发</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/chrome%E6%B5%8F%E8%A7%88%E5%99%A8%E5%BC%95%E6%93%8Eblinkv8/>Chrome浏览器引擎Blink&V8</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/provisional-headers-are-shown%E6%80%8E%E4%B9%88%E8%B0%83%E8%AF%95/>Provisional headers are shown？怎么调试</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/webrtc%E7%9B%B8%E5%85%B3%E7%9A%84canvas%E4%B8%8Evideo/>WebRTC相关的canvas与video</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8web%E5%BC%95%E6%93%8E%E5%8E%9F%E7%90%86/>浏览器JS引擎工作原理</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%8Enode%E7%8E%AF%E5%A2%83%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF%E6%9C%BA%E5%88%B6/>浏览器与node环境的事件循环机制</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%89%8D%E8%BF%9B%E5%90%8E%E9%80%80%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/>浏览器前进后退的缓存机制</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/>浏览器工作原理</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E4%B8%8E%E9%98%BB%E5%A1%9E%E5%8E%9F%E7%90%86/>浏览器渲染与阻塞原理</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%A7%A3%E6%9E%90%E4%B8%8E%E7%BD%91%E9%A1%B5%E5%8A%A8%E7%94%BB%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/>浏览器渲染流水线解析与网页动画性能优化</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BA%BF%E7%A8%8B%E7%90%86%E8%A7%A3%E4%B8%8Emicrotask%E4%B8%8Emacrotask/>浏览器线程理解与microtask与macrotask</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E6%B5%8F%E8%A7%88%E5%99%A8%E9%BB%98%E8%AE%A4%E8%B6%85%E6%97%B6%E6%97%B6%E9%97%B4%E6%B5%8B%E8%AF%95/>浏览器默认超时时间测试</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E7%AE%80%E8%BF%B0chromium-cef-webkit-javascriptcore-v8-blink/>简述Chromium, CEF, Webkit, JavaScriptCore, V8, Blink</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E7%AE%A1%E7%90%86history%E4%B9%8Bpushstatereplacestate/>管理history之pushState、replaceState</a></li><li><a class="docs-link rounded" href=/fed-regain/browser/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%9A%84%E5%A0%86%E5%92%8C%E6%A0%88%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%A0%86%E6%A0%88/>虚拟机的堆和栈与数据结构堆栈</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-9214d980933ae261b589eaefbd7d256d aria-expanded=false>
+微前端</button><div class=collapse id=section-9214d980933ae261b589eaefbd7d256d><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/microfe/%E5%9F%BA%E4%BA%8Econfig-component%E8%BD%AC%E5%90%91%E9%9D%A2%E5%90%91%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BC%96%E7%A8%8B/>基于config-component转向面向数据的编程</a></li><li><a class="docs-link rounded" href=/fed-regain/microfe/%E5%9F%BA%E4%BA%8Ewebcomponents%E7%9A%84%E5%AE%9E%E7%8E%B0/>基于webcomponents的实现</a></li><li><a class="docs-link rounded" href=/fed-regain/microfe/%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E7%9A%84%E4%B8%80%E4%BA%9B%E6%83%B3%E6%B3%95/>微前端架构的一些想法</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-b0f31b26d51a7233ea004c63cb714f7f aria-expanded=false>
+性能体验</button><div class=collapse id=section-b0f31b26d51a7233ea004c63cb714f7f><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li class="my-1 ms-3"><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-f36dd17540804d4b2c456780caab0a2d aria-expanded=false>
+性能体验埋点</button><div class=collapse id=section-f36dd17540804d4b2c456780caab0a2d><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/performance/log/%E6%80%BB%E9%98%BB%E5%A1%9E%E6%97%B6%E9%97%B4tbt/>“总阻塞时间”（TBT）</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/log/elasticsearch%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0/>Elasticsearch入门学习</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/log/lcptbt%E4%B8%8Ecls%E6%8C%87%E6%A0%87/>LCP、TBT与CLS指标</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/log/%E4%BA%86%E8%A7%A3filebeat%E5%92%8C%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE/>了解Filebeat和使用配置</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/log/%E6%9C%80%E5%A4%A7%E5%86%85%E5%AE%B9%E7%BB%98%E7%94%BBlcp/>最大内容绘画（LCP）</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/log/%E7%B4%AF%E7%A7%AF%E7%89%88%E5%BC%8F%E7%A7%BB%E4%BD%8Dcls/>累积版式移位（CLS）</a></li></ul></div></li><li><a class="docs-link rounded" href=/fed-regain/performance/web%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E6%A0%87%E5%87%86/>web性能指标标准</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/%E4%BA%A7%E5%93%81%E4%B8%AD%E7%9A%84%E4%BD%93%E9%AA%8C%E8%A1%A1%E9%87%8F%E6%8C%87%E6%A0%87/>产品中的体验衡量指标</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/%E6%9E%81%E8%87%B4%E6%80%A7%E8%83%BD%E4%BD%93%E9%AA%8C%E7%BC%96%E7%A0%81%E6%A1%86%E6%9E%B6%E4%BC%98%E5%8C%96/>极致性能体验编码框架优化</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/%E7%9B%91%E6%8E%A7%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E4%BA%8B%E6%83%85/>监控要考虑的事情</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/%E7%BD%91%E9%A1%B5%E5%8A%A0%E8%BD%BD%E6%B8%B2%E6%9F%93%E9%93%BE%E8%B7%AF%E4%BC%98%E5%8C%96/>网页加载渲染链路优化</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/%E8%B7%B3%E5%87%BA%E7%8E%87%E9%99%8D%E4%BD%8E%E4%BC%98%E5%8C%96%E5%AE%9E%E8%B7%B5/>跳出率降低优化实践</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86/>页面性能指标数据计算方法</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/%E9%A1%B5%E9%9D%A2%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86%E6%9E%B6%E6%9E%84/>页面性能指标数据采集架构</a></li><li><a class="docs-link rounded" href=/fed-regain/performance/%E9%AB%98%E6%80%A7%E8%83%BD%E6%9E%81%E8%87%B4%E7%94%A8%E6%88%B7%E4%BD%93%E9%AA%8C%E5%BC%80%E5%8F%91%E5%AE%9E%E6%88%98/>高性能极致用户体验开发实战</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-3c9c48e6a2da8db0cbd57c56e287665b aria-expanded=false>
+打包构建</button><div class=collapse id=section-3c9c48e6a2da8db0cbd57c56e287665b><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/build/asm-js-%E5%92%8C-emscripten-%E4%BB%8B%E7%BB%8D/>asm.js 和 Emscripten 介绍</a></li><li><a class="docs-link rounded" href=/fed-regain/build/babel%E6%B6%89%E5%8F%8A%E5%88%B0%E7%9A%84%E7%9F%A5%E8%AF%86%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/>babel涉及到的知识简单介绍</a></li><li><a class="docs-link rounded" href=/fed-regain/build/dllplugin%E6%8F%90%E5%8D%87webpack%E7%BC%96%E8%AF%91/>DllPlugin提升webpack编译</a></li><li><a class="docs-link rounded" href=/fed-regain/build/es6%E6%A8%A1%E5%9D%97%E6%89%93%E5%8C%85%E5%B7%A5%E5%85%B7-rollup%E9%80%9F%E8%A7%88/>ES6模块打包工具—Rollup速览</a></li><li><a class="docs-link rounded" href=/fed-regain/build/gruntgulp%E5%B7%A5%E5%85%B7/>Grunt，Gulp工具</a></li><li><a class="docs-link rounded" href=/fed-regain/build/gulp%E4%B8%AD%E7%9A%84sprite%E5%9B%BE%E5%92%8Cmixin/>Gulp中的sprite图和mixin</a></li><li><a class="docs-link rounded" href=/fed-regain/build/npm-shrinkwrap%E5%91%BD%E4%BB%A4%E5%88%86%E6%9E%90%E7%89%88%E6%9C%AC/>npm shrinkwrap命令分析版本</a></li><li><a class="docs-link rounded" href=/fed-regain/build/react%E5%9F%BA%E4%BA%8Ewebpack%E5%81%9Acode-splitting%E6%96%B9%E6%B3%95/>React基于webpack做code splitting方法</a></li><li><a class="docs-link rounded" href=/fed-regain/build/tree-shaking%E4%BB%8B%E7%BB%8D/>tree shaking介绍</a></li><li><a class="docs-link rounded" href=/fed-regain/build/webpack%E6%A8%A1%E5%9D%97%E5%8A%A0%E8%BD%BD%E7%A5%9E%E5%99%A8/>Webpack模块加载神器</a></li><li><a class="docs-link rounded" href=/fed-regain/build/webpack%E7%BC%96%E8%AF%91%E4%BB%A3%E7%A0%81%E5%8E%9F%E7%90%86%E4%BB%8B%E7%BB%8D/>webpack编译代码原理介绍</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E4%BD%A0%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9A%84llvm%E7%BC%96%E8%AF%91%E5%99%A8/>你不知道的LLVM编译器</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E4%BD%BF%E7%94%A8-webpack-chain-%E9%93%BE%E5%BC%8F%E7%94%9F%E6%88%90-webpack-%E9%85%8D%E7%BD%AE/>使用 Webpack-chain 链式生成 webpack 配置</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%AF%87-webpack%E6%9E%84%E5%BB%BA%E9%80%9F%E5%BA%A6%E4%BC%98%E5%8C%96/>性能优化篇—Webpack构建速度优化</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E6%89%93%E5%8C%85%E4%B8%AD%E7%9A%84scope-hoisting%E5%8A%9F%E8%83%BD/>打包中的Scope Hoisting功能</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E6%89%93%E5%8C%85%E6%8A%80%E6%9C%AF%E8%A1%8C%E6%83%85/>打包技术行情</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E6%8F%90%E5%8D%87javascript%E4%BB%A3%E7%A0%81%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6%E7%9A%84%E5%87%A0%E7%82%B9%E5%BB%BA%E8%AE%AE/>提升javascript代码编译速度的几点建议</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E6%A8%A1%E5%9D%97%E5%8C%96%E6%89%93%E5%8C%85%E6%96%B0%E8%A1%8C%E6%83%852/>模块化打包新行情2</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E7%94%A8webpack4%E5%92%8C%E4%B8%80%E4%BA%9B%E6%8F%92%E4%BB%B6%E6%8F%90%E5%8D%87%E4%BB%A3%E7%A0%81%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/>用webpack4和一些插件提升代码编译速度</a></li><li><a class="docs-link rounded" href=/fed-regain/build/%E8%A7%A3%E5%86%B3%E4%BE%9D%E8%B5%96%E7%BB%84%E4%BB%B6%E7%89%88%E6%9C%AC%E5%86%B2%E7%AA%81/>解决依赖组件版本冲突</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-a21c218df41f6d7fd032535fe20394e2 aria-expanded=false>
+devops</button><div class=collapse id=section-a21c218df41f6d7fd032535fe20394e2><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/devops/chromedev%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95android%E5%92%8Cios/>chrome dev远程调试android 和ios</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/cp-rf%E8%BF%98%E6%98%AF%E6%8F%90%E9%97%AE-f%E5%A4%B1%E6%95%88/>cp -rf还是提问，-f失效</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/ddos%E4%B9%8B%E8%BF%91%E6%BA%90%E6%B8%85%E6%B4%97/>DDOS之近源清洗</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/linux%E4%BD%BF%E7%94%A8tree%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/>linux使用tree命令查看目录结构</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/linux%E9%85%8D%E7%BD%AEnginx%E8%87%AA%E5%B7%B1%E7%94%9F%E6%88%90https%E7%9A%84crt%E5%92%8Ckey%E8%AF%81%E4%B9%A6/>linux配置nginx自己生成https的crt和key证书</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/mysql%E7%9A%84join%E7%94%A8%E6%B3%95%E5%92%8C%E5%8D%95%E8%A1%A8%E8%87%AA%E8%BA%ABjoin/>mysql的join用法和单表自身join</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/ginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/>nginx反向代理配置</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/pm2%E5%90%AF%E5%8A%A8eggjs/>PM2启动eggjs</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/request-entity-too-large-nginx/>Request Entity Too Large Nginx</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/rsync%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95%E5%92%8C%E7%A4%BA%E4%BE%8B/>rsync基本用法和示例</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/serverless%E5%8F%91%E5%B1%95%E5%8E%86%E7%A8%8B/>Serverless发展历程</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/sql_modeonly_full_group_by/>sql_mode=only_full_group_by</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/ubuntu%E4%B8%ADsu%E4%B8%8Esudo%E7%9A%84%E5%8C%BA%E5%88%AB/>ubuntu中su与sudo的区别</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/ubuntu%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC/>ubuntu自定义开机启动脚本</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/vscode%E6%8F%92%E4%BB%B6%E5%8F%91%E5%B8%83%E6%AD%A5%E9%AA%A4/>Vscode插件发布步骤</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/web%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8%E4%B9%8Bxss%E6%94%BB%E5%87%BB/>Web前端安全之XSS攻击</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/xcrun%E5%91%BD%E4%BB%A4%E8%BF%90%E8%A1%8C%E6%A8%A1%E6%8B%9F%E5%99%A8/>xcrun命令运行模拟器</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/yarn%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B%E4%BD%BF%E7%94%A8/>yarn快速上手使用</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/%E4%BD%BF%E7%94%A8-curl-%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6/>使用 CURL 上传文件</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/%E5%88%86%E5%B8%83%E5%BC%8F%E8%B0%83%E7%94%A8%E9%93%BE%E8%B7%9F%E8%B8%AA%E7%B3%BB%E7%BB%9F/>分布式调用链跟踪系统</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/%E5%9F%BA%E4%BA%8Echromedevtools%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88/>基于Chrome devTools远程调试技术方案</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/git%E5%85%B6%E4%BB%96%E6%8A%80%E5%B7%A7/>彻底搞懂 Git-Rebase</a></li><li><a class="docs-link rounded" href=/fed-regain/devops/%E9%9C%80%E8%A6%81%E7%9F%A5%E9%81%93%E7%9A%84%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98/>需要知道的前端安全问题</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-36c4536996ca5615dcf9911f068786dc aria-expanded=false>
+node</button><div class=collapse id=section-36c4536996ca5615dcf9911f068786dc><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/node/egg%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0-%E7%90%86%E8%A7%A3%E4%B8%AD%E9%97%B4%E4%BB%B6%E4%BD%9C%E7%94%A8/>Egg入门学习—理解中间件作用</a></li><li><a class="docs-link rounded" href=/fed-regain/node/egg%E7%90%86%E8%A7%A3service%E4%BD%BF%E7%94%A8/>egg理解service使用</a></li><li><a class="docs-link rounded" href=/fed-regain/node/node.js-%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83%E7%BA%A6%E5%AE%9A/>Node.js 代码规范约定</a></li><li><a class="docs-link rounded" href=/fed-regain/node/nodejs-express%E8%BF%90%E8%A1%8C%E5%AE%9E%E4%BE%8B/>NodeJS Express运行实例</a></li><li><a class="docs-link rounded" href=/fed-regain/node/nodejs-%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/>NodeJS 网络爬虫</a></li><li><a class="docs-link rounded" href=/fed-regain/node/nodejsmongodb%E9%83%A8%E7%BD%B2%E5%88%B0linux/>NodeJS+mongoDB部署到Linux</a></li><li><a class="docs-link rounded" href=/fed-regain/node/nodejs%E5%85%A5%E9%97%A8%E9%98%85%E8%AF%BB/>nodejs入门阅读</a></li><li><a class="docs-link rounded" href=/fed-regain/node/nodejs%E5%AD%90%E8%BF%9B%E7%A8%8B%E4%B9%8Bchild_process/>nodejs子进程之child_process</a></li><li><a class="docs-link rounded" href=/fed-regain/node/nodejs%E7%9A%84buffer%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/>NodeJS的buffer使用总结</a></li><li><a class="docs-link rounded" href=/fed-regain/node/node%E5%8F%91%E9%80%81http%E8%AF%B7%E6%B1%82%E4%BB%A5%E5%8F%8A%E5%8F%82%E6%95%B0%E5%A4%84%E7%90%86/>node发送http请求以及参数处理</a></li><li><a class="docs-link rounded" href=/fed-regain/node/npm%E7%89%88%E6%9C%AC%E5%8F%B7/>npm版本号</a></li><li><a class="docs-link rounded" href=/fed-regain/node/%E5%85%B3%E4%BA%8Enode%E5%A6%82%E4%BD%95%E5%81%9A%E6%8E%A5%E5%8F%A3%E9%99%90%E6%B5%81/>关于node如何做接口限流</a></li><li><a class="docs-link rounded" href=/fed-regain/node/%E5%85%B3%E4%BA%8Enode%E7%BC%96%E7%A8%8B%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/>关于node编程异常处理</a></li><li><a class="docs-link rounded" href=/fed-regain/node/%E5%85%B3%E4%BA%8Enpm%E7%9A%84%E6%96%B9%E6%96%B9%E9%9D%A2%E9%9D%A2/>关于NPM的方方面面</a></li><li><a class="docs-link rounded" href=/fed-regain/node/%E5%9F%BA%E4%BA%8Enodejs%E5%88%9B%E5%BB%BAhttps%E6%9C%8D%E5%8A%A1/>基于Nodejs创建https服务</a></li><li><a class="docs-link rounded" href=/fed-regain/node/%E6%B5%85%E6%9E%90-node-%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/>浅析 Node 进程与线程</a></li><li><a class="docs-link rounded" href=/fed-regain/node/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E5%8D%95%E7%BA%BF%E7%A8%8B%E5%AE%9E%E7%8E%B0%E9%AB%98%E5%B9%B6%E5%8F%91%E5%8E%9F%E7%90%86/>深入理解单线程实现高并发原理</a></li><li><a class="docs-link rounded" href=/fed-regain/node/%E7%BD%91%E7%BB%9C%E5%BA%93libevent/>网络库libevent、libev、libuv对比</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-046a899ee7a6ec88d370211a518c9e80 aria-expanded=false>
+算法</button><div class=collapse id=section-046a899ee7a6ec88d370211a518c9e80><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/algorithm/javascript%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%B9%E6%B3%95/>JavaScript数组去重简单的方法</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/n%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/>n皇后问题</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E4%BA%BA%E6%B0%91%E5%B8%81%E6%8D%A2%E7%AE%97/>人民币换算</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E5%8F%8D%E8%BD%AC%E4%B8%80%E4%B8%AA-3-%E4%BD%8D%E6%95%B4%E6%95%B0/>反转一个整数</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E5%A4%84%E7%90%86%E5%9B%9E%E6%96%87%E6%95%B0/>处理回文数</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%8A%A0%E5%87%8F%E4%B9%98%E9%99%A4%E7%9A%84%E8%AE%A1%E7%AE%97%E5%99%A8/>实现一个加减乘除的计算器</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E5%B8%B8%E8%A7%81%E7%AE%97%E6%B3%95%E6%80%9D%E6%83%B3/>常见算法思想</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E5%BA%8F%E5%88%97%E5%8C%96%E5%92%8C%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91/>序列化和反序列化二叉树</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E4%B8%AD%E5%87%BA%E7%8E%B0%E5%A5%87%E6%95%B0%E6%AC%A1%E7%9A%84%E5%85%83%E7%B4%A0/>找出数组中出现奇数次的元素</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%89%BE%E5%87%BA%E6%95%B0%E7%BB%84%E5%92%8C%E4%B8%BA%E9%9B%B6%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84/>找出数组和为零的子数组</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%89%BE%E5%87%BA%E6%9C%AA%E6%8E%92%E5%BA%8F%E6%95%B4%E6%95%B0%E6%95%B0%E7%BB%84%E7%9A%84%E4%B8%AD%E4%BD%8D%E6%95%B0/>找出未排序整数数组的中位数</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%89%BE%E5%88%B0%E5%92%8C%E4%B8%BA%E6%8C%87%E5%AE%9A%E6%95%B0%E5%80%BC%E7%9A%84%E4%B8%A4%E4%B8%AA%E6%95%B0/>找到和为指定数值的两个数</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%89%BE%E6%8C%87%E5%AE%9A%E8%8C%83%E5%9B%B4%E7%9B%B8%E4%BA%B2%E6%95%B0%E5%AF%B9/>找指定范围相亲数对</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/>排序算法</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%9F%A5%E6%89%BE%E6%96%90%E6%B3%A2%E7%BA%B3%E5%A5%91%E6%95%B0%E5%88%97%E4%B8%AD%E7%AC%AC-n-%E4%B8%AA%E6%95%B0/>查找斐波纳契数列中第 N 个数</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%9F%A5%E6%89%BE%E6%B0%B4%E4%BB%99%E8%8A%B1%E6%95%B0/>查找水仙花数</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%9F%A5%E6%89%BE%E7%AC%AC-k-%E5%A4%A7%E5%85%83%E7%B4%A0/>查找第 k 大元素</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E6%A3%80%E9%AA%8C%E6%98%AF%E5%90%A6%E4%B8%BA%E5%8F%A6%E4%B8%80%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%AA%E7%8E%AF%E7%A7%BB%E5%8A%A8%E5%90%8E%E7%9A%84%E5%AD%90%E4%B8%B2/>检验是否为另一个字符串循环移动后的子串</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E7%A0%B4%E8%A7%A3%E7%BE%8E%E7%9C%89%E5%BE%AE%E4%BF%A1%E5%8F%B7/>破解美眉微信号707829217</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E7%BB%99%E5%AE%9A%E8%8C%83%E5%9B%B4%E6%95%B0%E5%AD%97%E6%8C%89%E4%BD%8D%E4%B8%8E%E7%9A%84%E7%BB%93%E6%9E%9C/>给定范围数字按位与的结果</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/>背包问题</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E8%AE%A1%E7%AE%97%E5%90%8E%E7%BC%80%E8%A1%A8%E8%BE%BE%E5%BC%8F/>计算后缀表达式（逆波兰表达式）</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E8%AE%A1%E7%AE%97%E6%9C%89%E5%A4%9A%E5%B0%91%E7%A7%8D%E6%96%B9%E6%B3%95%E7%88%AC%E6%A5%BC%E6%A2%AF/>计算有多少种方法爬楼梯</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E8%AE%A1%E7%AE%97%E7%BE%8E%E5%A5%B3%E4%B8%BB%E6%92%AD%E7%9B%B4%E6%92%AD%E9%97%B4%E5%AF%86%E7%A0%81/>计算美女主播直播间密码</a></li><li><a class="docs-link rounded" href=/fed-regain/algorithm/%E8%AE%A1%E7%AE%97-%E7%9A%84%E6%89%80%E6%9C%89%E5%8F%AF%E8%83%BD%E8%AE%A1%E7%AE%97%E7%BB%93%E6%9E%9C/>计算输入表达式+-*的所有可能计算结果</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-411887f8fe499f73c97eb21a4890b4b5 aria-expanded=false>
+通向能力</button><div class=collapse id=section-411887f8fe499f73c97eb21a4890b4b5><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/fed-regain/think/%E4%B8%AD%E5%8F%B0%E7%9A%84%E7%90%86%E8%A7%A3/>中台的理解</a></li><li><a class="docs-link rounded" href=/fed-regain/think/%E5%89%8D%E7%AB%AF%E6%8A%80%E8%83%BD%E6%80%BB%E7%BB%93/>前端技能总结</a></li><li><a class="docs-link rounded" href=/fed-regain/think/%E5%9B%9E%E9%A1%BE%E5%89%8D%E7%AB%AF2019/>回顾前端2019</a></li><li><a class="docs-link rounded" href=/fed-regain/think/%E8%87%AA%E5%AD%A6%E9%9D%A2%E8%AF%95%E6%89%BE%E5%B7%A5%E4%BD%9C%E5%BF%85%E5%A4%87%E7%9F%A5%E8%AF%86/>工程师自学面试找工作必备知识</a></li><li><a class="docs-link rounded" href=/fed-regain/think/%E6%AF%94%E8%BE%83%E9%9A%BE%E7%9A%84%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98/>校招社招必备核心面试问题与详细解答</a></li></ul></div></li></ul></nav></div><nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation"><div class=d-xl-none><button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#onThisPage aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>On this page</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button>
+<button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#doks-docs-nav aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>Book Menu</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button><div class=collapse id=onThisPage><div class="card card-body mt-3 py-1"><div class=page-links><nav id=TableOfContents><ul><li><a href=#宿主树>宿主树</a></li><li><a href=#宿主实例>宿主实例</a></li><li><a href=#渲染器>渲染器</a></li><li><a href=#react-元素>React 元素</a></li><li><a href=#入口>入口</a></li><li><a href=#协调>协调</a></li><li><a href=#条件>条件</a></li><li><a href=#控制反转>控制反转</a></li></ul></nav></div></div></div></div><div class="page-links d-none d-xl-block"><h3>On this page</h3><nav id=TableOfContents><ul><li><a href=#宿主树>宿主树</a></li><li><a href=#宿主实例>宿主实例</a></li><li><a href=#渲染器>渲染器</a></li><li><a href=#react-元素>React 元素</a></li><li><a href=#入口>入口</a></li><li><a href=#协调>协调</a></li><li><a href=#条件>条件</a></li><li><a href=#控制反转>控制反转</a></li></ul></nav></div></nav><main class="docs-content col-lg-11 col-xl-9 mx-xl-auto"><h1>将React当做[前端](https://www.w3cdoc.com)UI运行时环境来看待</h1><p class=lead></p><nav class=d-xl-none aria-label="Quaternary navigation"><div class=d-xl-none><button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#onThisPage aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>On this page</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button>
+<button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#doks-docs-nav aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>Book Menu</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button><div class=collapse id=onThisPage><div class="card card-body mt-3 py-1"><div class=page-links><nav id=TableOfContents><ul><li><a href=#宿主树>宿主树</a></li><li><a href=#宿主实例>宿主实例</a></li><li><a href=#渲染器>渲染器</a></li><li><a href=#react-元素>React 元素</a></li><li><a href=#入口>入口</a></li><li><a href=#协调>协调</a></li><li><a href=#条件>条件</a></li><li><a href=#控制反转>控制反转</a></li></ul></nav></div></div></div></div><div class="page-links d-none d-xl-block"><h3>On this page</h3><nav id=TableOfContents><ul><li><a href=#宿主树>宿主树</a></li><li><a href=#宿主实例>宿主实例</a></li><li><a href=#渲染器>渲染器</a></li><li><a href=#react-元素>React 元素</a></li><li><a href=#入口>入口</a></li><li><a href=#协调>协调</a></li><li><a href=#条件>条件</a></li><li><a href=#控制反转>控制反转</a></li></ul></nav></div></nav><p>大多数教程把 React 称作是一个 UI 库。这是有道理的，因为 React 就是一个 UI 库。正如官网上的标语所说的那样。</p><img loading=lazy width=500 height=146 class="alignnone size-full wp-image-5039 shadow" src=https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5daffcce2aa51.png data-src="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5daffcce2aa51.png?x-oss-process=image/format,webp" alt srcset="https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5daffcce2aa51.png?x-oss-process=image/format,webp 500w, https://haomou.oss-cn-beijing.aliyuncs.com/upload/2019/10/img_5daffcce2aa51.png?x-oss-process=image/quality,q_50/resize,m_fill,w_300,h_88/format,webp 300w" sizes="(max-width: 500px) 100vw, 500px"><p>我曾经写过关于构建[用户界面][1]会遇到的难题一文。但是本篇文章将以一种不同的方式来讲述 React — 因为它更像是一种<a href=https://en.wikipedia.org/wiki/Runtime_system target=_blank rel="nofollow noopener noreferrer">编程运行时</a>。</p><p><strong>本篇文章不会教你任何有关如何创建用户界面的技巧。</strong> 但是它可能会帮助你更深入地理解 React 编程模型。</p><hr><p><strong>注意：如果你还在学习 React ，请移步到<a href=https://reactjs.org/docs/getting-started.html#learn-react target=_blank rel="nofollow noopener noreferrer">官方文档</a>进行学习</strong></p><p><span>⚠️</span></p><p><strong>本篇文章将会非常深入 — 所以并不适合初学者阅读。</strong> 在本篇文章中，我会从最佳原则的角度尽可能地阐述 React 编程模型。我不会解释如何使用它 — 而是讲解它的原理。</p><p>文章面向有经验的程序员和那些使用过其他 UI 库但在项目中权衡利弊后最终选择了 React 的人，我希望它会对你有所帮助！</p><p><strong>许多人成功使用了 React 多年却从未考虑过下面我将要讲述的主题。</strong> 这肯定是从程序员的角度来看待 React ，而不是以<a href=http://mrmrs.cc/writing/2016/04/21/developing-ui/ target=_blank rel="nofollow noopener noreferrer">设计者</a>的角度。但我并不认为站在两个不同的角度来重新认识 React 会有什么坏处。</p><p>话不多说，让<a href=https://www.w3cdoc.com>我们</a>开始深入理解 React 吧！</p><hr><h2 id=宿主树>宿主树 <a href=#%e5%ae%bf%e4%b8%bb%e6%a0%91 class=anchor aria-hidden=true>#</a></h2><p>一些程序输出数字。另一些程序输出诗词。不同的语言和它们的运行时通常会对特定的一组用例进行优化，而 React 也不例外。</p><p>React 程序通常会输出<strong>一棵会随时间变化的树。</strong> 它有可能是一棵 <a href=https://www.npmjs.com/package/react-dom target=_blank rel="nofollow noopener noreferrer">DOM 树</a> ，<a href=https://developer.apple.com/library/archive/documentation/General/Conceptual/Devpedia-CocoaApp/View%20Hierarchy.html target=_blank rel="nofollow noopener noreferrer">iOS 视图层</a> ，<a href=https://react-pdf.org/ target=_blank rel="nofollow noopener noreferrer">PDF 原语</a> ，又或是 <a href=https://reactjs.org/docs/test-renderer.html target=_blank rel="nofollow noopener noreferrer">JSON 对象</a> 。然而，通常<a href=https://www.w3cdoc.com>我们</a>希望用它来展示 UI 。<a href=https://www.w3cdoc.com>我们</a>称它为“宿主树”，因为它往往是 React 之外宿主环境中的一部分 — 就像 DOM 或 iOS 。宿主树通常有<a href=https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild target=_blank rel="nofollow noopener noreferrer">它</a><a href=https://developer.apple.com/documentation/uikit/uiview/1622616-addsubview target=_blank rel="nofollow noopener noreferrer">自己</a>的命令式 API 。而 React 就是它上面的那一层。</p><p>所以到底 React 有什么用呢？非常抽象地，它可以帮助你编写可预测的，并且能够操控复杂的宿主树进而响应像用户交互、网络响应、定时器等外部事件的应用程序。</p><p>当专业的工具可以施加特定的约束且能从中获益时，它比一般的工具要好。React 就是这样的典范，并且它坚持两个原则：</p><ul><li><strong>稳定性。</strong> 宿主树是相对稳定的，大多数情况的更新并不会从根本上改变其整体结构。如果应用程序每秒都会将其所有可交互的元素重新排列为完全不同的组合，那将会变得难以使用。那个按钮去哪了？为什么我的屏幕在跳舞？</li><li><strong>通用性。</strong> 宿主树可以被拆分为外观和行为一致的 UI 模式（例如按钮、列表和头像）而不是随机的形状。</li></ul><p><strong>这些原则恰好适用于大多数 UI 。</strong> 然而，当输出没有稳定的“模式”时 React 并不适用。例如，React 也许可以帮助你编写一个 Twitter 客户端，但对于一个 <a href="https://www.youtube.com/watch?v=Uzx9ArZ7MUU" target=_blank rel="nofollow noopener noreferrer">3D 管道屏幕保护程序</a> 并不会起太大作用。</p><h2 id=宿主实例>宿主实例 <a href=#%e5%ae%bf%e4%b8%bb%e5%ae%9e%e4%be%8b class=anchor aria-hidden=true>#</a></h2><p>宿主树由节点组成，<a href=https://www.w3cdoc.com>我们</a>称之为“宿主实例”。</p><p>在 DOM 环境中，宿主实例就是<a href=https://www.w3cdoc.com>我们</a>通常所说的 DOM 节点 — 就像当你调用 document.createElement(&lsquo;div&rsquo;) 时获得的对象。在 iOS 中，宿主实例可以是从 JavaScript 到原生视图唯一标识的值。</p><p>宿主实例有它们自己的属性（例如 domNode.className 或者 view.tintColor ）。它们也有可能将其他的宿主实例作为子项。</p><p>（这和 React 没有任何联系 — 因为我在讲述宿主环境。）</p><p>通常会有原生的 API 用于操控这些宿主实例。例如，在 DOM 环境中会提供像 appendChild、removeChild、setAttribute 等一系列的 API 。在 React 应用中，通常你不会调用这些 API ，因为那是 React 的工作。</p><h2 id=渲染器>渲染器 <a href=#%e6%b8%b2%e6%9f%93%e5%99%a8 class=anchor aria-hidden=true>#</a></h2><p>渲染器教会 React 如何与特定的宿主环境通信以及如何管理它的宿主实例。React DOM、React Native 甚至 <a href=https://mobile.twitter.com/vadimdemedes/status/1089344289102942211 target=_blank rel="nofollow noopener noreferrer">Ink</a> 都可以称作 React 渲染器。你也可以<a href=https://github.com/facebook/react/tree/master/packages/react-reconciler target=_blank rel="nofollow noopener noreferrer">创建自己的 React 渲染器</a> 。</p><p>React 渲染器能以下面两种模式之一进行工作。</p><p>绝大多数渲染器都被用作“突变”模式。这种模式正是 DOM 的工作方式：<a href=https://www.w3cdoc.com>我们</a>可以创建一个节点，设置它的属性，在之后往里面增加或者删除子节点。宿主实例是完全可变的。</p><p>但 React 也能以”不变“模式工作。这种模式适用于那些并不提供像 appendChild 的 API 而是克隆双亲树并始终替换掉顶级子树的宿主环境。在宿主树级别上的不可变性使得多线程变得更加容易。<a href=https://facebook.github.io/react-native/blog/2018/06/14/state-of-react-native-2018 target=_blank rel="nofollow noopener noreferrer">React Fabric</a> 就利用了这一模式。</p><p>作为 React 的使用者，你永远不需要考虑这些模式。我只想强调 React 不仅仅只是从一种模式转换到另一种模式的适配器。它的用处在于以一种更好的方式操控宿主实例而不用在意那些低级视图 API 范例。</p><h2 id=react-元素>React 元素 <a href=#react-%e5%85%83%e7%b4%a0 class=anchor aria-hidden=true>#</a></h2><p>在宿主环境中，一个宿主实例（例如 DOM 节点）是最小的构建单元。而在 React 中，最小的构建单元是 React 元素。</p><p>React 元素是一个普通的 JavaScript 对象。它用来描述一个宿主实例。</p><div class=gatsby-highlight data-language=jsx>```
+// JSX 是用来描述这些对象的语法糖。
+// <button classname=blue>
+{
+type: 'button',
+props: { className: 'blue' }
+}
+```</div><p>React 元素是轻量级的因为没有宿主实例与它绑定在一起。同样的，它只是对你想要在屏幕上看到的内容的描述。</p><p>就像宿主实例一样，React 元素也能形成一棵树：</p><div class=gatsby-highlight data-language=jsx>```
+// JSX 是用来描述这些对象的语法糖。
+// <dialog>// <button classname=blue>
+// <button classname=red>
+//</dialog>
+{
+type: 'dialog',
+props: {
+children: [{
+type: 'button',
+props: { className: 'blue' }
+}, {
+type: 'button',
+props: { className: 'red' }
+}]
+}
+}
+```</div><p><em>(注意：我省略了一些对此解释不重要的[属性][2])</em></p><p>但是，请记住 <strong>React 元素并不是永远存在的</strong> 。它们总是在重建和删除之间不断循环着。</p><p>React 元素具有不可变性。例如，你不能改变 React 元素中的子元素或者属性。如果你想要在稍后渲染一些不同的东西，你需要从头创建新的 React 元素树来描述它。</p><p>我喜欢将 React 元素比作电影中放映的每一帧。它们捕捉 UI 在特定的时间点应该是什么样子。它们永远不会再改变。</p><h2 id=入口>入口 <a href=#%e5%85%a5%e5%8f%a3 class=anchor aria-hidden=true>#</a></h2><p>每一个 React 渲染器都有一个“入口”。正是那个特定的 API 让<a href=https://www.w3cdoc.com>我们</a>告诉 React ，将特定的 React 元素树渲染到真正的宿主实例中去。</p><p>例如，React DOM 的入口就是 ReactDOM.render ：</p><div class=gatsby-highlight data-language=jsx>```
+ReactDOM.render(
+// { type: 'button', props: { className: 'blue' } }
+<button classname=blue>,
+document.getElementById('container')
+);
+```</div><p>当<a href=https://www.w3cdoc.com>我们</a>调用 ReactDOM.render(reactElement, domContainer) 时，<a href=https://www.w3cdoc.com>我们</a>的意思是：<strong>“亲爱的 React ，将我的 reactElement 映射到 domContaienr 的宿主树上去吧。“</strong></p><p>React 会查看 reactElement.type （在<a href=https://www.w3cdoc.com>我们</a>的例子中是 button ）然后告诉 React DOM 渲染器创建对应的宿主实例并设置正确的属性：</p><div class=gatsby-highlight data-language=jsx>```
+// 在 ReactDOM 渲染器内部（简化版）
+function createHostInstance(reactElement) {
+let domNode = document.createElement(reactElement.type); domNode.className = reactElement.props.className; return domNode;
+}
+```</div><p>在<a href=https://www.w3cdoc.com>我们</a>的例子中，React 会这样做：</p><div class=gatsby-highlight data-language=jsx>```
+let domNode = document.createElement('button');domNode.className = 'blue';
+domContainer.appendChild(domNode);
+```</div><p>如果 React 元素在 reactElement.props.children 中含有子元素，React 会在第一次渲染中递归地为它们创建宿主实例。</p><h2 id=协调>协调 <a href=#%e5%8d%8f%e8%b0%83 class=anchor aria-hidden=true>#</a></h2><p>如果<a href=https://www.w3cdoc.com>我们</a>用同一个 container 调用 ReactDOM.render() 两次会发生什么呢？</p><div class=gatsby-highlight data-language=jsx>```
+ReactDOM.render(
+<button classname=blue>, document.getElementById('container')
+);<p>// &mldr; 之后 &mldr;</p><p>// 应该替换掉 button 宿主实例吗？
+// 还是在已有的 button 上更新属性？
+ReactDOM.render(
+<button classname=red>, document.getElementById(&lsquo;container&rsquo;)
+);</p><pre><code>&lt;/div&gt;
+
+同样的，React 的工作是将 React 元素树映射到宿主树上去。确定该对宿主实例做什么来响应新的信息有时候叫做&lt;a href=&quot;https://reactjs.org/docs/reconciliation.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;协调&lt;/a&gt; 。
+
+有两种方法可以解决它。简化版的 React 会丢弃已经存在的树然后从头开始创建它：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>let domContainer = document.getElementById(&lsquo;container&rsquo;);
+// 清除掉原来的树
+domContainer.innerHTML = &lsquo;&rsquo;;
+// 创建新的宿主实例树
+let domNode = document.createElement(&lsquo;button&rsquo;);
+domNode.className = &lsquo;red&rsquo;;
+domContainer.appendChild(domNode);</p><pre><code>&lt;/div&gt;
+
+但是在 DOM 环境下，这样的做法效率低下而且会丢失像 focus、selection、scroll 等许多状态。相反，[我们](https://www.w3cdoc.com)希望 React 这样做：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>let domNode = domContainer.firstChild;
+// 更新已有的宿主实例
+domNode.className = &lsquo;red&rsquo;;</p><pre><code>&lt;/div&gt;
+
+换句话说，React 需要决定何时更新一个已有的宿主实例来匹配新的 React 元素，何时该重新创建新的宿主实例。
+
+这就引出了一个识别问题。React 元素可能每次都不相同，到底什么时候才该从概念上引用同一个宿主实例呢？
+
+在[我们](https://www.w3cdoc.com)的例子中，它很简单。[我们](https://www.w3cdoc.com)之前渲染了 &lt;button&gt; 作为第一个（也是唯一）的子元素，接下来[我们](https://www.w3cdoc.com)想要在同一个地方再次渲染 &lt;button&gt; 。在宿主实例中[我们](https://www.w3cdoc.com)已经有了一个 &lt;button&gt; 为什么还要重新创建呢？让[我们](https://www.w3cdoc.com)重用它。
+
+这与 React 如何思考并解决这类问题已经很接近了。
+
+**如果相同的元素类型在同一个地方先后出现两次，React 会重用已有的宿主实例。**
+
+这里有一个例子，其中的注释大致解释了 React 是如何工作的：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>// let domNode = document.createElement(&lsquo;button&rsquo;);
+// domNode.className = &lsquo;blue&rsquo;;
+// domContainer.appendChild(domNode);
+ReactDOM.render(
+<button classname=blue>,
+document.getElementById(&lsquo;container&rsquo;)
+);</p><p>// 能重用宿主实例吗？能！(button → button)// domNode.className = &lsquo;red&rsquo;;ReactDOM.render(
+<button classname=red>,
+document.getElementById(&lsquo;container&rsquo;)
+);</p><p>// 能重用宿主实例吗？不能！(button → p)// domContainer.removeChild(domNode);
+// domNode = document.createElement(&lsquo;p&rsquo;);
+// domNode.textContent = &lsquo;Hello&rsquo;;
+// domContainer.appendChild(domNode);
+ReactDOM.render(</p><p>Hello</p>,
+document.getElementById('container')
+);<p>// 能重用宿主实例吗？能！(p → p)// domNode.textContent = &lsquo;Goodbye&rsquo;;ReactDOM.render(</p><p>Goodbye</p>,
+document.getElementById('container')
+);
+```</div><p>同样的启发式方法也适用于子树。例如，当<a href=https://www.w3cdoc.com>我们</a>在 <dialog> 中新增两个 <button> ，React 会先决定是否要重用 <dialog> ，然后为每一个子元素重复这个决定步骤。</p><h2 id=条件>条件 <a href=#%e6%9d%a1%e4%bb%b6 class=anchor aria-hidden=true>#</a></h2><p>如果 React 在渲染更新前后只重用那些元素类型匹配的宿主实例，那当遇到包含条件语句的内容时又该如何渲染呢？</p><p>假设<a href=https://www.w3cdoc.com>我们</a>只想首先展示一个输入框，但之后要在它之前渲染一条信息：</p><div class=gatsby-highlight data-language=jsx>```
+// 第一次渲染
+ReactDOM.render(
+<dialog><input>
+</dialog>,
+domContainer
+);<p>// 下一次渲染
+ReactDOM.render(</p><dialog><p>I was just added here!</p><input>
+</dialog>,
+domContainer
+);
+```</div><p>在这个例子中，<input> 宿主实例会被重新创建。React 会遍历整个元素树，并将其与先前的版本进行比较：</p><ul><li>dialog → dialog ：能重用宿主实例吗？<strong>能 — 因为类型是匹配的。</strong><ul><li>input → p ：能重用宿主实例吗？<strong>不能，类型改变了！</strong> 需要删除已有的 input 然后重新创建一个 p 宿主实例。</li><li>(nothing) → input ：需要重新创建一个 input 宿主实例。</li></ul></li></ul><p>因此，React 会像这样执行更新：</p><div class=gatsby-highlight data-language=jsx>```
+let oldInputNode = dialogNode.firstChild;dialogNode.removeChild(oldInputNode);
+let pNode = document.createElement('p');
+pNode.textContent = 'I was just added here!';
+dialogNode.appendChild(pNode);<p>let newInputNode = document.createElement(&lsquo;input&rsquo;);dialogNode.appendChild(newInputNode);</p><pre><code>&lt;/div&gt;
+
+这样的做法并不科学因为事实上 &lt;input&gt; 并没有被 &lt;p&gt; 所替代 — 它只是移动了位置而已。[我们](https://www.w3cdoc.com)不希望因为重建 DOM 而丢失了 selection、focus 等状态以及其中的内容。
+
+虽然这个问题很容易解决（在下面我会马上讲到），但这个问题在 React 应用中并不常见。而当[我们](https://www.w3cdoc.com)探讨为什么会这样时却很有意思。
+
+事实上，你很少会直接调用 ReactDOM.render 。相反，在 React 应用中程序往往会被拆分成这样的函数：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>function Form({ showMessage }) {
+let message = null;
+if (showMessage) {
+message =<p>I was just added here!</p>;
+}
+return (
+<dialog>{message}
+<input></dialog>
+);
+}</p><pre><code>&lt;/div&gt;
+
+这个例子并不会遇到刚刚[我们](https://www.w3cdoc.com)所描述的问题。让[我们](https://www.w3cdoc.com)用对象注释而不是 JSX 也许可以更好地理解其中的原因。来看一下 dialog 中的子元素树：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>function Form({ showMessage }) {
+let message = null;
+if (showMessage) {
+message = {
+type: &lsquo;p&rsquo;,
+props: { children: &lsquo;I was just added here!&rsquo; }
+};
+}
+return {
+type: &lsquo;dialog&rsquo;,
+props: {
+children: [ message, { type: &lsquo;input&rsquo;, props: {} } ] }
+};
+}</p><pre><code>&lt;/div&gt;
+
+**不管 showMessage 是 true 还是 false ，在渲染的过程中 &lt;input&gt; 总是在第二个孩子的位置且不会改变。**
+
+如果 showMessage 从 false 改变为 true ，React 会遍历整个元素树，并与之前的版本进行比较：
+
+* dialog → dialog ：能够重用宿主实例吗？**能 — 因为类型匹配。**
+  * (null) → p ：需要插入一个新的 p 宿主实例。
+  * input → input ：能够重用宿主实例吗？**能 — 因为类型匹配。**
+
+之后 React 大致会像这样执行代码：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>let inputNode = dialogNode.firstChild;
+let pNode = document.createElement(&lsquo;p&rsquo;);
+pNode.textContent = &lsquo;I was just added here!&rsquo;;
+dialogNode.insertBefore(pNode, inputNode);</p><pre><code>&lt;/div&gt;
+
+这样一来输入框中的状态就不会丢失了。
+
+## 列表 {#列表}
+
+比较树中同一位置的元素类型对于是否该重用还是重建相应的宿主实例往往已经足够。
+
+但这只适用于当子元素是静止的并且不会重排序的情况。在上面的例子中，即使 message 不存在，[我们](https://www.w3cdoc.com)仍然知道输入框在消息之后，并且再没有其他的子元素。
+
+而当遇到动态列表时，[我们](https://www.w3cdoc.com)不能确定其中的顺序总是一成不变的。
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>function ShoppingList({ list }) {
+return (<form>{list.map(item => (<p>You bought {item.name}<br>Enter how many do you want: <input></p>))}</form>)
+}</p><pre><code>&lt;/div&gt;
+
+如果[我们](https://www.w3cdoc.com)的商品列表被重新排序了，React 只会看到所有的 p 以及里面的 input 拥有相同的类型，并不知道该如何移动它们。（在 React 看来，虽然这些商品本身改变了，但是它们的顺序并没有改变。）
+
+所以 React 会对这十个商品进行类似如下的重排序：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>for (let i = 0; i &lt; 10; i++) {
+let pNode = formNode.childNodes[i];
+let textNode = pNode.firstChild;
+textNode.textContent = &lsquo;You bought &rsquo; + items[i].name;
+}</p><pre><code>&lt;/div&gt;
+
+React 只会对其中的每个元素进行更新而不是将其重新排序。这样做会造成性能上的问题和潜在的 bug 。例如，当商品列表的顺序改变时，原本在第一个输入框的内容仍然会存在于现在的第一个输入框中 — 尽管事实上在商品列表里它应该代表着其他的商品！
+
+**这就是为什么每次当输出中包含元素数组时，React 都会让你指定一个叫做 key 的属性：**
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>function ShoppingList({ list }) {
+return (<form>{list.map(item => (<p key={item.productId}>You bought {item.name}<br>Enter how many do you want: <input></p>))}</form>)
+}</p><pre><code>&lt;/div&gt;
+
+key 给予 React 判断子元素是否真正相同的能力，即使在渲染前后它在父元素中的位置不是相同的。
+
+当 React 在 &lt;form&gt; 中发现 &lt;p key=&quot;42&quot;&gt; ，它就会检查之前版本中的 &lt;form&gt; 是否同样含有 &lt;p key=&quot;42&quot;&gt; 。即使 &lt;form&gt; 中的子元素们改变位置后，这个方法同样有效。在渲染前后当 key 仍然相同时，React 会重用先前的宿主实例，然后重新排序其兄弟元素。
+
+需要注意的是 key 只与特定的父亲 React 元素相关联，比如 &lt;form&gt; 。React 并不会去匹配父元素不同但 key 相同的子元素。（React 并没有惯用的支持对在不重新创建元素的情况下让宿主实例在不同的父元素之间移动。）
+
+给 key 赋予什么值最好呢？最好的答案就是：**什么时候你会说一个元素不会改变即使它在父元素中的顺序被改变？** 例如，在[我们](https://www.w3cdoc.com)的商品列表中，商品本身的 ID 是区别于其他商品的唯一标识，那么它就最适合作为 key 。
+
+## 组件 {#组件}
+
+[我们](https://www.w3cdoc.com)已经知道函数会返回 React 元素：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>function Form({ showMessage }) {
+let message = null;
+if (showMessage) {
+message =<p>I was just added here!</p>;
+}
+return (
+<dialog>{message}
+<input></dialog>
+);
+}</p><pre><code>&lt;/div&gt;
+
+这些函数被叫做组件。它们让[我们](https://www.w3cdoc.com)可以打造自己的“工具箱”，例如按钮、头像、评论框等等。组件就像 React 的面包和黄油。
+
+组件接受一个参数 — 对象哈希。它包含“props”（“属性”的简称）。在这里 showMessage 就是一个 prop 。它们就像是具名参数一样。
+
+## 纯净 {#纯净}
+
+React 组件中对于 props 应该是纯净的。
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>function Button(props) {
+// 🔴 没有作用
+props.isActive = true;
+}</p><pre><code>&lt;/div&gt;
+
+通常来说，突变在 React 中不是惯用的。（[我们](https://www.w3cdoc.com)会在之后讲解如何用更惯用的方式来更新 UI 以响应事件。）
+
+不过，局部的突变是绝对允许的：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>function FriendList({ friends }) {
+let items = []; for (let i = 0; i &lt; friends.length; i++) {
+let friend = friends[i];
+items.push( <friend key={friend.id} friend={friend}>);
+}
+return<section>{items}</section>;
+}</p><pre><code>&lt;/div&gt;
+
+当[我们](https://www.w3cdoc.com)在函数组件内部创建 items 时不管怎样改变它都行，只要这些突变发生在将其作为最后的渲染结果之前。所以并不需要重写你的代码来避免局部突变。
+
+同样地，惰性初始化是被允许的即使它不是完全“纯净”的：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>function ExpenseForm() {
+// 只要不影响其他组件这是被允许的：
+SuperCalculator.initializeIfNotReady();</p><p>// 继续渲染&mldr;&mldr;
+}</p><pre><code>&lt;/div&gt;
+
+只要调用组件多次是安全的，并且不会影响其他组件的渲染，React 并不关心你的代码是否像严格的函数式编程一样百分百纯净。在 React 中，&lt;a href=&quot;https://stackoverflow.com/questions/1077412/what-is-an-idempotent-operation&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;幂等性&lt;/a&gt;比纯净性更加重要。
+
+也就是说，在 React 组件中不允许有用户可以直接看到的副作用。换句话说，仅调用函数式组件时不应该在屏幕上产生任何变化。
+
+## 递归 {#递归}
+
+[我们](https://www.w3cdoc.com)该如何在组件中使用组件？组件属于函数因此[我们](https://www.w3cdoc.com)可以直接进行调用：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>let reactElement = Form({ showMessage: true });
+ReactDOM.render(reactElement, domContainer);</p><pre><code>&lt;/div&gt;
+
+然而，在 React 运行时中这并不是惯用的使用组件的方式。
+
+相反，使用组件惯用的方式与[我们](https://www.w3cdoc.com)已经了解的机制相同 — 即 React 元素。**这意味着不需要你直接调用组件函数，React 会在之后为你做这件事情：**
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>// { type: Form, props: { showMessage: true } }
+let reactElement =<form showmessage={true}>;
+ReactDOM.render(reactElement, domContainer);</p><pre><code>&lt;/div&gt;
+
+然后在 React 内部，你的组件会这样被调用：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>// React 内部的某个地方
+let type = reactElement.type; // Form
+let props = reactElement.props; // { showMessage: true }
+let result = type(props); // 无论 Form 会返回什么</p><pre><code>&lt;/div&gt;
+
+组件函数名称按照规定需要大写。当 JSX 转换时看见 &lt;Form&gt; 而不是 &lt;form&gt; ，它让对象 type 本身成为标识符而不是字符串：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>console.log(<form>.type); // &lsquo;form&rsquo; 字符串
+console.log(<form>.type); // Form 函数</p><pre><code>&lt;/div&gt;
+
+[我们](https://www.w3cdoc.com)并没有全局的注册机制 — 字面上当[我们](https://www.w3cdoc.com)输入 &lt;Form&gt; 时代表着 Form 。如果 Form 在局部作用域中并不存在，你会发现一个 JavaScript 错误，就像平常你使用错误的变量名称一样。
+
+**因此，当元素类型是一个函数的时候 React 会做什么呢？它会调用你的组件，然后询问组件想要渲染什么元素。**
+
+这个步骤会递归式地执行下去，更详细的描述在&lt;a href=&quot;https://reactjs.org/blog/2015/12/18/react-components-elements-and-instances.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;这里&lt;/a&gt; 。总的来说，它会像这样执行：
+
+* **你：** ReactDOM.render(&lt;App /&gt;, domContainer)
+* **React：** App ，你想要渲染什么？
+  * App ：我要渲染包含 &lt;Content&gt; 的 &lt;Layout&gt; 。
+* **React：** &lt;Layout&gt; ，你要渲染什么？
+  * Layout ：我要在 &lt;div&gt; 中渲染我的子元素。我的子元素是 &lt;Content&gt; 所以我猜它应该渲染到 &lt;div&gt; 中去。
+* **React：** &lt;Content&gt; ，你要渲染什么？
+  * &lt;Content&gt; ：我要在 &lt;article&gt; 中渲染一些文本和 &lt;Footer&gt; 。
+* **React：** &lt;Footer&gt; ，你要渲染什么？
+  * &lt;Footer&gt; ：我要渲染含有文本的 &lt;footer&gt; 。
+* **React：** 好的，让[我们](https://www.w3cdoc.com)开始吧：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>// 最终的 DOM 结构</p><div><article>Some text<footer>some more text</footer></article></div>```</div><p>这就是为什么<a href=https://www.w3cdoc.com>我们</a>说协调是递归式的。当 React 遍历整个元素树时，可能会遇到元素的 type 是一个组件。React 会调用它然后继续沿着返回的 React 元素下行。最终<a href=https://www.w3cdoc.com>我们</a>会调用完所有的组件，然后 React 就会知道该如何改变宿主树。</p><p>在之前已经讨论过的相同的协调准则，在这一样适用。如果在同一位置的 type 改变了（由索引和可选的 key 决定），React 会删除其中的宿主实例并将其重建。</p><h2 id=控制反转>控制反转 <a href=#%e6%8e%a7%e5%88%b6%e5%8f%8d%e8%bd%ac class=anchor aria-hidden=true>#</a></h2><p>你也许会好奇：为什么<a href=https://www.w3cdoc.com>我们</a>不直接调用组件？为什么要编写 <form> 而不是 Form() ？</p><p><strong>React 能够做的更好如果它“知晓”你的组件而不是在你递归调用它们之后生成的 React 元素树。</strong></p><div class=gatsby-highlight data-language=jsx>```
+// &#x1f534; React 并不知道 Layout 和 Article 的存在。
+// 因为你在调用它们。
+ReactDOM.render(
+Layout({ children: Article() }),
+domContainer
+)<p>// ✅ React知道 Layout 和 Article 的存在。
+// React 来调用它们。
+ReactDOM.render(
+<layout><article></layout>,
+domContainer
+)</p><pre><code>&lt;/div&gt;
+
+这是一个关于&lt;a href=&quot;https://en.wikipedia.org/wiki/Inversion_of_control&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;控制反转&lt;/a&gt;的经典案例。通过让 React 调用[我们](https://www.w3cdoc.com)的组件，[我们](https://www.w3cdoc.com)会获得一些有趣的属性：
+
+* **组件不仅仅只是函数。** React 能够用在树中与组件本身紧密相连的局部状态等特性来增强组件功能。优秀的运行时提供了与当前问题相匹配的基本抽象。就像[我们](https://www.w3cdoc.com)已经提到过的，React 专门针对于那些渲染 UI 树并且能够响应交互的应用。如果你直接调用了组件，你就只能自己来构建这些特性了。
+* **组件类型参与协调。** 通过 React 来调用你的组件，能让它了解更多关于元素树的结构。例如，当你从渲染 &lt;Feed&gt; 页面转到 Profile 页面，React 不会尝试重用其中的宿主实例 — 就像你用 &lt;p&gt; 替换掉 &lt;button&gt; 一样。所有的状态都会丢失 — 对于渲染完全不同的视图时，通常来说这是一件好事。你不会想要在 &lt;PasswordForm&gt; 和 &lt;MessengerChat&gt; 之间保留输入框的状态尽管 &lt;input&gt; 的位置意外地“排列”在它们之间。
+* **React 能够推迟协调。** 如果让 React 控制调用你的组件，它能做很多有趣的事情。例如，它可以让[浏览器](https://www.w3cdoc.com)在组件调用之间做一些工作，这样重渲染大体量的组件树时就&lt;a href=&quot;https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;不会阻塞主线程&lt;/a&gt;。想要手动编排这个过程而不依赖 React 的话将会十分困难。
+* **更好的可调试性。** 如果组件是库中所重视的一等公民，[我们](https://www.w3cdoc.com)就可以构建&lt;a href=&quot;https://github.com/facebook/react-devtools&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;丰富的开发者工具&lt;/a&gt;，用于开发中的自省。
+
+让 React 调用你的组件函数还有最后一个好处就是惰性求值。让[我们](https://www.w3cdoc.com)看看它是什么意思。
+
+## 惰性求值 {#惰性求值}
+
+当[我们](https://www.w3cdoc.com)在 JavaScript 中调用函数时，参数往往在函数调用之前被执行。
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>// (2) 它会作为第二个计算
+eat(
+// (1) 它会首先计算
+prepareMeal()
+);</p><pre><code>&lt;/div&gt;
+
+这通常是 JavaScript 开发者所期望的因为 JavaScript 函数可能有隐含的副作用。如果[我们](https://www.w3cdoc.com)调用了一个函数，但直到它的结果不知怎地被“使用”后该函数仍没有执行，这会让[我们](https://www.w3cdoc.com)感到十分诧异。
+
+但是，React 组件是[相对][3]纯净的。如果[我们](https://www.w3cdoc.com)知道它的结果不会在屏幕上出现，则完全没有必要执行它。
+
+考虑下面这个含有 &lt;Comments&gt; 的 &lt;Page&gt; 组件：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>function Story({ currentUser }) {
+// return {
+// type: Page,
+// props: {
+// user: currentUser,
+// children: { type: Comments, props: {} }
+// }
+// }
+return (
+<page user={currentUser}><comments></page>);
+}</p><pre><code>&lt;/div&gt;
+
+&lt;Page&gt; 组件能够在 &lt;Layout&gt; 中渲染传递给它的子项：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>function Page({ currentUser, children }) {
+return (
+<layout>{children}</layout>
+);
+}</p><pre><code>&lt;/div&gt;
+
+_(在 JSX 中 &lt;A&gt;&lt;B /&gt;&lt;/A&gt; 和 &lt;A children={&lt;B /&gt;} /&gt;相同。)_
+
+但是要是存在提前返回的情况呢？
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>function Page({ currentUser, children }) {
+if (!currentUser.isLoggedIn) { return<h1>Please login</h1>; } return (
+<layout>{children}</layout>
+);
+}</p><pre><code>&lt;/div&gt;
+
+如果[我们](https://www.w3cdoc.com)像函数一样调用 Comments() ，不管 Page 是否想渲染它们都会被立即执行：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>// {
+// type: Page,
+// props: {
+// children: Comments() // 总是调用！// }
+// }
+<page>{Comments()}</page></p><pre><code>&lt;/div&gt;
+
+但是如果[我们](https://www.w3cdoc.com)传递的是一个 React 元素，[我们](https://www.w3cdoc.com)不需要自己执行 Comments ：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>// {
+// type: Page,
+// props: {
+// children: { type: Comments }// }
+// }
+<page><comments></page></p><pre><code>&lt;/div&gt;
+
+让 React 来决定何时以及是否调用组件。如果[我们](https://www.w3cdoc.com)的的 Page 组件忽略自身的 children prop 且相反地渲染了 &lt;h1&gt;Please login&lt;/h1&gt; ，React 不会尝试去调用 Comments 函数。重点是什么？
+
+这很好，因为它既可以让[我们](https://www.w3cdoc.com)避免不必要的渲染也能使[我们](https://www.w3cdoc.com)的代码变得不那么脆弱。（当用户退出登录时，[我们](https://www.w3cdoc.com)并不在乎 Comments 是否被丢弃 — 因为它从没有被调用过。）
+
+## 状态 {#状态}
+
+[我们](https://www.w3cdoc.com)先前提到过关于[协调][4]和在树中元素概念上的“位置”是如何让 React 知晓是该重用宿主实例还是该重建它。宿主实例能够拥有所有相关的局部状态：focus、selection、input 等等。[我们](https://www.w3cdoc.com)想要在渲染更新概念上相同的 UI 时保留这些状态。[我们](https://www.w3cdoc.com)也想可预测性地摧毁它们，当[我们](https://www.w3cdoc.com)在概念上渲染的是完全不同的东西时（例如从 &lt;SignupForm&gt; 转换到 &lt;MessengerChat&gt;）。
+
+**局部状态是如此有用，以至于 React 让你的组件也能拥有它。** 组件仍然是函数但是 React 用对构建 UI 有好处的许多特性增强了它。在树中每个组件所绑定的局部状态就是这些特性之一。
+
+[我们](https://www.w3cdoc.com)把这些特性叫做 Hooks 。例如，useState 就是一个 Hook 。
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>function Example() {
+const [count, setCount] = useState(0);
+return (<div><p>You clicked {count} times</p>&lt;button onClick={() => setCount(count + 1)}> Click me</button></div>);
+}</p><pre><code>&lt;/div&gt;
+
+它返回一对值：当前的状态和更新该状态的函数。
+
+数组的&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;解构语法&lt;/a&gt;让[我们](https://www.w3cdoc.com)可以给状态变量自定义名称。例如，我在这里称它们为 count 和 setCount ，但是它们也可以被称作 banana 和 setBanana 。在这些文字之下，[我们](https://www.w3cdoc.com)会用 setState 来替代第二个值无论它在具体的例子中被称作什么。
+
+_(你能在 &lt;a href=&quot;https://reactjs.org/docs/hooks-intro.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;React 文档&lt;/a&gt; 中学习到更多关于 useState 和 其他 Hooks 的知识。)_
+
+## 一致性 {#一致性}
+
+即使[我们](https://www.w3cdoc.com)想将协调过程本身分割成&lt;a href=&quot;https://www.youtube.com/watch?v=mDdgfyRB5kg&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;非阻塞&lt;/a&gt;的工作块，[我们](https://www.w3cdoc.com)仍然需要在同步的循环中对真实的宿主实例进行操作。这样[我们](https://www.w3cdoc.com)才能保证用户不会看见半更新状态的 UI ，[浏览器](https://www.w3cdoc.com)也不会对用户不应看到的中间状态进行不必要的布局和样式的重新计算。
+
+这也是为什么 React 将所有的工作分成了”渲染阶段“和”提交阶段“的原因。_渲染阶段_ 是当 React 调用你的组件然后进行协调的时段。在此阶段进行干涉是安全的且在&lt;a href=&quot;https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;未来&lt;/a&gt;这个阶段将会变成异步的。_提交阶段_ 就是 React 操作宿主树的时候。而这个阶段永远是同步的。
+
+## 缓存 {#缓存}
+
+当父组件通过 setState 准备更新时，React 默认会协调整个子树。因为 React 并不知道在父组件中的更新是否会影响到其子代，所以 React 默认保持一致性。这听起来会有很大的性能消耗但事实上对于小型和中型的子树来说，这并不是问题。
+
+当树的深度和广度达到一定程度时，你可以让 React 去&lt;a href=&quot;https://en.wikipedia.org/wiki/Memoization&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;缓存&lt;/a&gt;子树并且重用先前的渲染结果当 prop 在浅比较之后是相同时：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>function Row({ item }) {
+// &mldr;
+}</p><p>export default React.memo(Row);</p><pre><code>&lt;/div&gt;
+
+现在，在父组件 &lt;Table&gt; 中调用 setState 时如果 &lt;Row&gt; 中的 item 与先前渲染的结果是相同的，React 就会直接跳过协调的过程。
+
+你可以通过 &lt;a href=&quot;https://reactjs.org/docs/hooks-reference.html#usememo&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;useMemo() Hook&lt;/a&gt; 获得单个表达式级别的细粒度缓存。该缓存于其相关的组件紧密联系在一起，并且将与局部状态一起被销毁。它只会保留最后一次计算的结果。
+
+默认情况下，React 不会故意缓存组件。许多组件在更新的过程中总是会接收到不同的 props ，所以对它们进行缓存只会造成净亏损。
+
+## 原始模型 {#原始模型}
+
+令人讽刺地是，React 并没有使用“反应式”的系统来支持细粒度的更新。换句话说，任何在顶层的更新只会触发协调而不是局部更新那些受影响的组件。
+
+这样的设计是有意而为之的。对于 web 应用来说&lt;a href=&quot;https://calibreapp.com/blog/time-to-interactive/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;交互时间&lt;/a&gt;是一个关键指标，而通过遍历整个模型去设置细粒度的监听器只会浪费宝贵的时间。此外，在很多应用中交互往往会导致或小（按钮悬停）或大（页面转换）的更新，因此细粒度的订阅只会浪费内存资源。
+
+React 的设计原则之一就是它可以处理原始数据。如果你拥有从网络请求中获得的一组 JavaScript 对象，你可以将其直接交给组件而无需进行预处理。没有关于可以访问哪些属性的问题，或者当结构有所变化时造成的意外的性能缺损。React 渲染是 O(_视图大小_) 而不是 O(_模型大小_) ，并且你可以通过 &lt;a href=&quot;https://react-window.now.sh/#/examples/list/fixed-size&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;windowing&lt;/a&gt; 显著地减少视图大小。
+
+有那么一些应用细粒度订阅对它们来说是有用的 — 例如股票代码。这是一个极少见的例子，因为“所有的东西都需要在同一时间内持续更新”。虽然命令式的方法能够优化此类代码，但 React 并不适用于这种情况。同样的，如果你想要解决该问题，你就得在 React 之上自己实现细粒度的订阅。
+
+**注意，即使细粒度订阅和“反应式”系统也无法解决一些常见的性能问题。** 例如，渲染一棵很深的树（在每次页面转换的时候发生）而不阻塞[浏览器](https://www.w3cdoc.com)。改变跟踪并不会让它变得更快 — 这样只会让其变得更慢因为[我们](https://www.w3cdoc.com)执行了额外的订阅工作。另一个问题是[我们](https://www.w3cdoc.com)需要等待返回的数据在渲染视图之前。在 React 中，[我们](https://www.w3cdoc.com)用&lt;a href=&quot;https://reactjs.org/blog/2018/03/01/sneak-peek-beyond-react-16.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;并发渲染&lt;/a&gt;来解决这些问题。
+
+## 批量更新 {#批量更新}
+
+一些组件也许想要更新状态来响应同一事件。下面这个例子是假设的，但是却说明了一个常见的模式：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>function Parent() {
+let [count, setCount] = useState(0);
+return (
+&lt;div onClick={() => setCount(count + 1)}> Parent clicked {count} times
+<child></div>);
+}</p><p>function Child() {
+let [count, setCount] = useState(0);
+return (
+&lt;button onClick={() => setCount(count + 1)}> Child clicked {count} times</button>
+);
+}</p><pre><code>&lt;/div&gt;
+
+当事件被触发时，子组件的 onClick 首先被触发（同时触发了它的 setState ）。然后父组件在它自己的 onClick 中调用 setState 。
+
+如果 React 立即重渲染组件以响应 setState 调用，最终[我们](https://www.w3cdoc.com)会重渲染子组件两次：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>*** 进入 React <a href=https://www.w3cdoc.com>浏览器</a> click 事件处理过程 ***
+Child (onClick)</p><ul><li>setState</li><li>re-render Child // 😞 不必要的重渲染Parent (onClick)</li><li>setState</li><li>re-render Parent</li><li>re-render Child*** 结束 React <a href=https://www.w3cdoc.com>浏览器</a> click 事件处理过程 ***</li></ul><pre><code>&lt;/div&gt;
+
+第一次 Child 组件渲染是浪费的。并且[我们](https://www.w3cdoc.com)也不会让 React 跳过 Child 的第二次渲染因为 Parent 可能会传递不同的数据由于其自身的状态更新。
+
+**这就是为什么 React 会在组件内所有事件触发完成后再进行批量更新的原因：**
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>*** 进入 React <a href=https://www.w3cdoc.com>浏览器</a> click 事件处理过程 ***
+Child (onClick)</p><ul><li>setState
+Parent (onClick)</li><li>setState
+*** Processing state updates ***</li><li>re-render Parent</li><li>re-render Child
+*** 结束 React <a href=https://www.w3cdoc.com>浏览器</a> click 事件处理过程 ***</li></ul><pre><code>&lt;/div&gt;
+
+组件内调用 setState 并不会立即执行重渲染。相反，React 会先触发所有的事件处理器，然后再触发一次重渲染以进行所谓的批量更新。
+
+批量更新虽然有用但可能会让你感到惊讶如果你的代码这样写：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>const [count, setCounter] = useState(0);</p><p>function increment() {
+setCounter(count + 1);
+}</p><p>function handleClick() {
+increment();
+increment();
+increment();
+}</p><pre><code>&lt;/div&gt;
+
+如果[我们](https://www.w3cdoc.com)将 count 初始值设为  ，上面的代码只会代表三次 setCount(1) 调用。为了解决这个问题，[我们](https://www.w3cdoc.com)给 setState 提供了一个 “updater” 函数作为参数：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>const [count, setCounter] = useState(0);</p><p>function increment() {
+setCounter(c => c + 1);
+}</p><p>function handleClick() {
+increment();
+increment();
+increment();
+}</p><pre><code>&lt;/div&gt;
+
+React 会将 updater 函数放入队列中，并在之后按顺序执行它们，最终 count 会被设置成 3 并作为一次重渲染的结果。
+
+当状态逻辑变得更加复杂而不仅仅只是少数的 setState 调用时，我建议你使用 &lt;a href=&quot;https://reactjs.org/docs/hooks-reference.html#usereducer&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;useReducer Hook&lt;/a&gt; 来描述你的局部状态。它就像 “updater” 的升级模式在这里你可以给每一次更新命名：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>const [counter, dispatch] = useReducer((state, action) => {
+if (action === &lsquo;increment&rsquo;) {
+return state + 1;
+} else {
+return state;
+}
+}, 0);</p><p>function handleClick() {
+dispatch(&lsquo;increment&rsquo;);
+dispatch(&lsquo;increment&rsquo;);
+dispatch(&lsquo;increment&rsquo;);
+}</p><pre><code>&lt;/div&gt;
+
+action 字段可以是任意值，尽管对象是常用的选择。
+
+## 调用树 {#调用树}
+
+编程语言的运行时往往有&lt;a href=&quot;https://medium.freecodecamp.org/understanding-the-javascript-call-stack-861e41ae61d4&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;调用栈&lt;/a&gt; 。当函数 a() 调用 b() ，b() 又调用 c() 时，在 JavaScript 引擎中会有像 [a, b, c] 这样的数据结构来“跟踪”当前的位置以及接下来要执行的代码。一旦 c 函数执行完毕，它的调用栈帧就消失了！因为它不再被需要了。[我们](https://www.w3cdoc.com)返回到函数 b 中。当[我们](https://www.w3cdoc.com)结束函数 a 的执行时，调用栈就被清空。
+
+当然，React 以 JavaScript 运行当然也遵循 JavaScript 的规则。但是[我们](https://www.w3cdoc.com)可以想象在 React 内部有自己的调用栈用来记忆[我们](https://www.w3cdoc.com)当前正在渲染的组件，例如 [App, Page, Layout, Article /* 此刻的位置 */] 。
+
+React 与通常意义上的编程语言进行时不同因为它针对于渲染 UI 树，这些树需要保持“活性”，这样才能使[我们](https://www.w3cdoc.com)与其进行交互。在第一次 ReactDOM.render() 出现之前，DOM 操作并不会执行。
+
+这也许是对隐喻的延伸，但我喜欢把 React 组件当作 “调用树” 而不是 “调用栈” 。当[我们](https://www.w3cdoc.com)调用完 Article 组件，它的 React “调用树” 帧并没有被摧毁。[我们](https://www.w3cdoc.com)需要将局部状态保存以便映射到宿主实例的&lt;a href=&quot;https://medium.com/react-in-depth/the-how-and-why-on-reacts-usage-of-linked-list-in-fiber-67f1014d0eb7&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;某个地方&lt;/a&gt;。
+
+这些“调用树”帧会随它们的局部状态和宿主实例一起被摧毁，但是只会在[协调][4]规则认为这是必要的时候执行。如果你曾经读过 React 源码，你就会知道这些帧其实就是 &lt;a href=&quot;https://en.wikipedia.org/wiki/Fiber_(computer_science)&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Fibers&lt;/a&gt; 。
+
+Fibers 是局部状态真正存在的地方。当状态被更新后，React 将其下面的 Fibers 标记为需要进行协调，之后便会调用这些组件。
+
+## 上下文 {#上下文}
+
+在 React 中，[我们](https://www.w3cdoc.com)将数据作为 props 传递给其他组件。有些时候，大多数组件需要相同的东西 — 例如，当前选中的可视主题。将它一层层地传递会变得十分麻烦。
+
+在 React 中，[我们](https://www.w3cdoc.com)通过 &lt;a href=&quot;https://reactjs.org/docs/context.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;Context&lt;/a&gt; 解决这个问题。它就像组件的&lt;a href=&quot;http://wiki.c2.com/?DynamicScoping&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;动态范围&lt;/a&gt; ，能让你从顶层传递数据，并让每个子组件在底部能够读取该值，当值变化时还能够进行重新渲染：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>const ThemeContext = React.createContext(
+&rsquo;light&rsquo; // 默认值作为后备
+);</p><p>function DarkApp() {
+return (
+&lt;ThemeContext.Provider value=&ldquo;dark&rdquo;>
+<mycomponents>&lt;/ThemeContext.Provider>
+);
+}</p><p>function SomeDeeplyNestedChild() {
+// 取决于其子组件在哪里被渲染
+const theme = useContext(ThemeContext);
+// &mldr;
+}</p><pre><code>&lt;/div&gt;
+
+当 SomeDeeplyNestedChild 渲染时， useContext(ThemeContext) 会寻找树中最近的 &lt;ThemeContext.Provider&gt; ，并且使用它的 value 。
+
+(事实上，React 维护了一个上下文栈当其渲染时。)
+
+如果没有 ThemeContext.Provider 存在，useContext(ThemeContext) 调用的结果就会被调用 createContext() 时传递的默认值所取代。在上面的例子中，这个值为 'light' 。
+
+## 副作用 {#副作用}
+
+[我们](https://www.w3cdoc.com)在之前提到过 React 组件在渲染过程中不应该有可观察到的副作用。但是有些时候副作用确实必要的。[我们](https://www.w3cdoc.com)也许需要进行管理 focus 状态、用 canvas 画图、订阅数据源等操作。
+
+在 React 中，这些都可以通过声明 effect 来完成：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>function Example() {
+const [count, setCount] = useState(0);</p><p>useEffect(() => { document.title = <code>You clicked ${count} times</code>; });
+return (<div><p>You clicked {count} times</p>&lt;button onClick={() => setCount(count + 1)}>
+Click me</button></div>);
+}</p><pre><code>&lt;/div&gt;
+
+如果可能，React 会推迟执行 effect 直到[浏览器](https://www.w3cdoc.com)重新绘制屏幕。这是有好处的因为像订阅数据源这样的代码并不会影响&lt;a href=&quot;https://calibreapp.com/blog/time-to-interactive/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;交互时间&lt;/a&gt;和&lt;a href=&quot;https://developers.google.com/web/tools/lighthouse/audits/first-meaningful-paint&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;首次绘制时间&lt;/a&gt; 。
+
+（有一个&lt;a href=&quot;https://reactjs.org/docs/hooks-reference.html#uselayouteffect&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;极少使用&lt;/a&gt;的 Hook 能够让你选择退出这种行为并进行一些同步的工作。请尽量避免使用它。）
+
+effect 不只执行一次。当组件第一次展示给用户以及之后的每次更新时它都会被执行。在 effect 中能触及当前的 props 和 state，例如上文例子中的 count 。
+
+effect 可能需要被清理，例如订阅数据源的例子。在订阅之后将其清理，effect 能够返回一个函数：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>useEffect(() => {
+DataSource.addSubscription(handleChange);
+return () => DataSource.removeSubscription(handleChange);
+});</p><pre><code>&lt;/div&gt;
+
+React 会在下次调用该 effect 之前执行这个返回的函数，当然是在组件被摧毁之前。
+
+有些时候，在每次渲染中都重新调用 effect 是不符合实际需要的。 你可以告诉 React 如果相应的变量不会改变则跳过此次调用：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>useEffect(() => {
+document.title = <code>You clicked ${count} times</code>;
+}, [count]);</p><pre><code>&lt;/div&gt;
+
+但是，这往往会成为过早地优化并会造成一些问题如果你不熟悉 JavaScript 中的闭包是如何工作的话。
+
+例如，下面的这段代码是有 bug 的：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>useEffect(() => {
+DataSource.addSubscription(handleChange);
+return () => DataSource.removeSubscription(handleChange);
+}, []);</p><pre><code>&lt;/div&gt;
+
+它含有 bug 因为 [] 代表着“不再重新执行这个 effect 。”但是这个 effect 中的 handleChange 是被定义在外面的。handleChange 也许会引用任何的 props 或 state ：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>function handleChange() {
+console.log(count);
+}</p><pre><code>&lt;/div&gt;
+
+如果[我们](https://www.w3cdoc.com)不再让这个 effect 重新调用，handleChange 始终会是第一次渲染时的版本，而其中的 count 也永远只会是  。
+
+为了解决这个问题，请保证你声明了特定的依赖数组，它包含**所有**可以改变的东西，即使是函数也不例外：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>useEffect(() => {
+DataSource.addSubscription(handleChange);
+return () => DataSource.removeSubscription(handleChange);
+}, [handleChange]);</p><pre><code>&lt;/div&gt;
+
+取决于你的代码，在每次渲染后 handleChange 都会不同因此你可能仍然会看到不必要的重订阅。 &lt;a href=&quot;https://reactjs.org/docs/hooks-reference.html#usecallback&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;useCallback&lt;/a&gt; 能够帮你解决这个问题。或者，你可以直接让它重订阅。例如[浏览器](https://www.w3cdoc.com)中的 addEventListener API 非常快，但为了在组件中避免使用它可能会带来更多的问题而不是其真正的价值。
+
+_(你能在 &lt;a href=&quot;https://reactjs.org/docs/hooks-effect.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;React 文档&lt;/a&gt; 中学到更多关于 useEffect 和其他 Hooks 的知识。)_
+
+## 自定义钩子 {#自定义钩子}
+
+由于 useState 和 useEffect 是函数调用，因此[我们](https://www.w3cdoc.com)可以将其组合成自己的 Hooks ：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>function MyResponsiveComponent() {
+const width = useWindowWidth(); // <a href=https://www.w3cdoc.com>我们</a>自己的 Hook return (<p>Window width is {width}</p>);
+}</p><p>function useWindowWidth() { const [width, setWidth] = useState(window.innerWidth);
+useEffect(() => {
+const handleResize = () => setWidth(window.innerWidth);
+window.addEventListener(&lsquo;resize&rsquo;, handleResize);
+return () => {
+window.removeEventListener(&lsquo;resize&rsquo;, handleResize);
+};
+});
+return width;
+}</p><pre><code>&lt;/div&gt;
+
+自定义 Hooks 让不同的组件共享可重用的状态逻辑。注意状态本身是不共享的。每次调用 Hook 都只声明了其自身的独立状态。
+
+_(你能在 &lt;a href=&quot;https://reactjs.org/docs/hooks-custom.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;React 文档&lt;/a&gt; 中学习更多关于构建自己的 Hooks 的内容。)_
+
+## 静态使用顺序 {#静态使用顺序}
+
+你可以把 useState 想象成一个可以定义“React 状态变量”的语法。它并不是真正的语法，当然，[我们](https://www.w3cdoc.com)仍在用 JavaScript 编写应用。但是[我们](https://www.w3cdoc.com)将 React 作为一个运行时环境来看待，因为 React 用 JavaScript 来描绘整个 UI 树，它的特性往往更接近于语言层面。
+
+假设 use 是语法，将其使用在组件函数顶层也就说得通了：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>// 😉 注意：并不是真的语法
+component Example(props) {
+const [count, setCount] = use State(0);
+return (<div><p>You clicked {count} times</p>&lt;button onClick={() => setCount(count + 1)}>
+Click me</button></div>);
+}</p><pre><code>&lt;/div&gt;
+
+当它被放在条件语句中或者组件外时又代表什么呢？
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>// 😉 注意：并不是真的语法</p><p>// 它是谁的&mldr;局部状态？
+const [count, setCount] = use State(0);</p><p>component Example() {
+if (condition) {
+// 要是 condition 是 false 时会发生什么呢？
+const [count, setCount] = use State(0);
+}</p><p>function handleClick() {
+// 要是离开了组件函数会发生什么？
+// 这和一般的变量又有什么区别呢？
+const [count, setCount] = use State(0);
+}</p><pre><code>&lt;/div&gt;
+
+React 状态和在树中与其相关的组件紧密联系在一起。如果 use 是真正的语法当它在组件函数的顶层调用时也能说的通：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>// 😉 注意：并不是真的语法
+component Example(props) {
+// 只在这里有效
+const [count, setCount] = use State(0);</p><p>if (condition) {
+// 这会是一个语法错误
+const [count, setCount] = use State(0);
+}</p><pre><code>&lt;/div&gt;
+
+这和 import 声明只在模块顶层有用是一样的道理。
+
+**当然，use 并不是真正的语法。** （它不会带来很多好处，并且会带来很多摩擦。）
+
+然而，React 的确期望所有的 Hooks 调用只发生在组件的顶部并且不在条件语句中。这些 Hooks 的&lt;a href=&quot;https://reactjs.org/docs/hooks-rules.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;规则&lt;/a&gt;能够被 &lt;a href=&quot;https://www.npmjs.com/package/eslint-plugin-react-hooks&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;linter plugin&lt;/a&gt; 所规范。有很多关于这种设计选择的激烈争论，但在实践中我并没有看到它让人困惑。我还写了关于为什么通常提出的替代方案&lt;a href=&quot;https://overreacted.io/why-do-hooks-rely-on-call-order/&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;不起作用&lt;/a&gt;的文章。
+
+Hooks 的内部实现其实是&lt;a href=&quot;https://dev.to/aspittel/thank-u-next-an-introduction-to-linked-lists-4pph&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;链表&lt;/a&gt; 。当你调用 useState 的时候，[我们](https://www.w3cdoc.com)将指针移到下一项。当[我们](https://www.w3cdoc.com)退出组件的[“调用树”帧][5]时，会缓存该结果的列表直到下次渲染开始。
+
+&lt;a href=&quot;https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;这篇文章&lt;/a&gt;简要介绍了 Hooks 内部是如何工作的。数组也许是比链表更好解释其原理的模型：
+
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;jsx&quot;&gt;
+</code></pre><p>// 伪代码
+let hooks, i;
+function useState() {
+i++;
+if (hooks[i]) {
+// 再次渲染时
+return hooks[i];
+}
+// 第一次渲染
+hooks.push(&mldr;);
+}</p><p>// 准备渲染
+i = -1;
+hooks = fiber.hooks || [];
+// 调用组件
+YourComponent();
+// 缓存 Hooks 的状态
+fiber.hooks = hooks;</p><pre><code>&lt;/div&gt;
+
+_(如果你对它感兴趣，真正的代码在&lt;a href=&quot;https://github.com/facebook/react/blob/master/packages/react-reconciler/src/ReactFiberHooks.js&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;这里&lt;/a&gt; 。)_
+
+这大致就是每个 useState() 如何获得正确状态的方式。就像[我们](https://www.w3cdoc.com)[之前][4]所知道的，“匹配”对 React 来说并不是什么新的知识 — 这与协调依赖于在渲染前后元素是否匹配是同样的道理。
+
+## 未提及的知识 {#未提及的知识}
+
+[我们](https://www.w3cdoc.com)已经触及到 React 运行时环境中几乎所有重要的方面。如果你读完了本篇文章，你可能已经比 90% 的开发者更了解 React ！这一点也没有错！
+
+当然有一些地方我并没有提及到 — 主要是因为[我们](https://www.w3cdoc.com)对它们也不太清楚。React 目前对多道渲染并没有太好的支持，即当父组件的渲染需要子组件提供信息时。&lt;a href=&quot;https://reactjs.org/docs/error-boundaries.html&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;错误处理 API&lt;/a&gt; 目前也还没有 Hooks 的版本。这两个问题可能会被一起解决。并发模式在目前看来并不稳定，也有很多关于 Suspense 该如何适应当前版本的有趣问题。也许我会在它们要完成的时候再来讨论，并且 Suspense 已经准备好比 &lt;a href=&quot;https://reactjs.org/blog/2018/10/23/react-v-16-6.html#reactlazy-code-splitting-with-suspense&quot; target=&quot;_blank&quot; rel=&quot;nofollow noopener noreferrer&quot;&gt;lazy loading&lt;/a&gt; 能够做的更多。
+
+**我认为 React API 的成功之处在于，即使在没有考虑过上面这些大多数主题的情况下，你也能轻松使用它并且可以走的很远。** 在大多数情况下，像协调这样好的默认特性启发式地为[我们](https://www.w3cdoc.com)做了正确的事情。在你忘记添加 key 这样的属性时，React 能够好心提醒你。
+
+如果你是痴迷于 UI 库的书呆子，我希望这篇文章对你来说会很有趣并且是深入阐明了 React 是如何工作的。又或许你会觉得 React 太过于复杂为此你不会再去深入理解它。
+
+
+
+原文：[react-as-a-ui-runtime][6]
+
+ [1]: https://overreacted.io/zh-hans/the-elements-of-ui-engineering/
+ [2]: https://overreacted.io/zh-hans/why-do-react-elements-have-typeof-property/
+ [3]: https://overreacted.io/zh-hans/react-as-a-ui-runtime/#%E7%BA%AF%E5%87%80
+ [4]: https://overreacted.io/zh-hans/react-as-a-ui-runtime/#%E5%8D%8F%E8%B0%83
+ [5]: https://overreacted.io/zh-hans/react-as-a-ui-runtime/#%E8%B0%83%E7%94%A8%E6%A0%91
+ [6]: https://overreacted.io/zh-hans/react-as-a-ui-runtime/
+</code></pre><div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between"></div><div class="docs-navigation d-flex justify-content-between"><a href=/fed-regain/svgcanvas/%E5%AE%9E%E7%8E%B0%E8%B7%AF%E5%BE%84%E5%8A%A8%E7%94%BB%E7%9A%84%E6%96%B9%E6%A1%88/><div class="card my-1"><div class="card-body py-2">&larr; 实现路径动画SMIL或offset-path和canvas</div></div></a><a class=ms-auto href=/fed-regain/js/framework/%E5%B7%A5%E4%BD%9C%E6%B5%81%E5%BC%95%E6%93%8E%E6%AF%94%E8%BE%83%E8%A7%84%E5%88%99%E5%BC%95%E6%93%8E/><div class="card my-1"><div class="card-body py-2">工作流引擎比较规则引擎 &rarr;</div></div></a></div></main></div></div></div><footer class="footer text-muted"><div class=container-xxl><div class=row><div class="col-lg-8 order-last order-lg-first"><ul class=list-inline><li class=list-inline-item>Copyright © 2022-Present 浙ICP备18052292号-3</li></ul></div><div class="col-lg-8 order-first order-lg-last text-lg-end"><ul class=list-inline></ul></div></div></div></footer><script src=/js/bootstrap.min.1117772738b0b01188ff56b000f75758d3ca75fab55d0d7cf813282148e4840455e1fc0a8f1c2951391282de6e64bed66b885160643382a58f67db6d110e9feb.js integrity="sha512-ERd3JziwsBGI/1awAPdXWNPKdfq1XQ18+BMoIUjkhARV4fwKjxwpUTkSgt5uZL7Wa4hRYGQzgqWPZ9ttEQ6f6w==" crossorigin=anonymous defer></script>
+<script src=/js/highlight.min.35e8488ad0bca08539c53f48a94a3c02f90c10ddc1ecba4a7fd7ec827cef556dec98a33813e3681b33a5750eefd53e65ab606d30febc27e411c293f2290f96a5.js integrity="sha512-NehIitC8oIU5xT9IqUo8AvkMEN3B7LpKf9fsgnzvVW3smKM4E+NoGzOldQ7v1T5lq2BtMP68J+QRwpPyKQ+WpQ==" crossorigin=anonymous defer></script>
+<script src=/main.min.5874482df6978e314928bf4ce1c634b6464aa5445dd098e344aa61159e2b10139d82662edd47e835a3ea422c24214134f15eded85f28e55774a70f9c4919b2b3.js integrity="sha512-WHRILfaXjjFJKL9M4cY0tkZKpURd0JjjRKphFZ4rEBOdgmYu3UfoNaPqQiwkIUE08V7e2F8o5Vd0pw+cSRmysw==" crossorigin=anonymous defer></script>
+<script src=/index.min.4ae26272486ea46c5bb0bed7a0b434a91b05e8182cfb839a405dd4e647b05ce5d76d401a5103d822d3b1589fc56335cd372b712d97085b8d89aebf244b1b5501.js integrity="sha512-SuJickhupGxbsL7XoLQ0qRsF6Bgs+4OaQF3U5kewXOXXbUAaUQPYItOxWJ/FYzXNNytxLZcIW42Jrr8kSxtVAQ==" crossorigin=anonymous defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML" async></script>
+<script type="text/x-mathjax-config;executed=true">
+  window.MathJax.Hub.Config({
+      showProcessingMessages: false, //关闭js加载过程信息
+      messageStyle: "none", //不显示信息
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+          inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]], //段内公式选择符
+          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+      },
+      "HTML-CSS": {
+          availableFonts: ["STIX", "TeX"], //可选字体
+          showMathMenu: false //关闭右击菜单显示
+      }
+  });
+  //下面第三个参数可以不写，默认对整个html内的latex进行翻译
+  window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementsByClassName("ck-content")]);
+</script></body></html>

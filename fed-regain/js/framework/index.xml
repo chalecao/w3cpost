@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>js框架 on</title><link>/fed-regain/js/framework/</link><description>Recent content in js框架 on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 06 Oct 2020 08:49:15 +0000</lastBuildDate><atom:link href="/fed-regain/js/framework/index.xml" rel="self" type="application/rss+xml"/><item><title>AMD与CMD规范-javascript模块化</title><link>/fed-regain/js/framework/amd%E4%B8%8Ecmd%E8%A7%84%E8%8C%83-javascript%E6%A8%A1%E5%9D%97%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/framework/amd%E4%B8%8Ecmd%E8%A7%84%E8%8C%83-javascript%E6%A8%A1%E5%9D%97%E5%8C%96/</guid><description>我们知道，在NodeJS之前，由于没有过于复杂的开发场景，前端是不存在模块化的，后端才有模块化。NodeJS诞生之后，它使用CommonJS的模块化规范。从此，js模块化开始快速发展。
+模块化的开发方式可以提供代码复用率，方便进行代码的管理。通常来说，一个文件就是一个模块，有自己的作用域，只向外暴露特定的变量和函数。目前流行的js模块化规范有CommonJS、AMD、CMD、UMD以及ES6的模块系统。
+CommonJS # NodeJS是CommonJS规范的主要实践者，它有四个重要的环境变量为模块化的实现提供支持：module、exports、require、global。实际使用时，用module.exports定义当前模块对外输出的接口（不推荐直接用exports），用require加载模块。
+// 定义模块math.js var total = 10; function add(a, b) { return a + b; } // 需要向外暴露的函数、变量 module.exports = { add: add, total: total } /** 必须加./路径，不加的话只会去node_modules文件找 **/ // 引用自定义的模块时，参数包含路径，可省略.js var math = require('./math'); math.add(2, 5); // 引用核心模块时，不需要带路径 var http = require('http'); http.createService(...).listen(3000); CommonJS用同步的方式加载模块。在服务端，模块文件都存放在本地磁盘，读取非常快，所以这样做不会有问题。但是在浏览器端，限于网络原因，更合理的方案是使用异步加载。
+exports和module.export区别： # exports：对于本身来讲是一个变量（对象），它不是module的引用，它是{}的引用，它指向module.exports的{}模块。只能使用.语法 向外暴露变量。
+module.exports：module是一个变量，指向一块内存，exports是module中的一个属性，存储在内存中，然后exports属性指向{}模块。既可以使用.语法，也可以使用=直接赋值。
+AMD和require.js # AMD规范采用异步方式加载模块，模块的加载不影响它后面语句的运行。所有依赖这个模块的语句，都定义在一个回调函数中，等到加载完成之后，这个回调函数才会运行。这里介绍用require.js实现AMD规范的模块化：用require.config()指定引用路径等，用definde()定义模块，用require()加载模块。
+首先我们需要引入require.js文件和一个入口文件main.js。main.js中配置require.config()并规定项目中用到的基础模块。
+/** 网页中引入require.js及main.js **/ &amp;lt;script src=&amp;quot;js/require.js&amp;quot; data-main=&amp;quot;js/main&amp;quot;&amp;gt;&amp;lt;/script&amp;gt; /** main.js 入口文件/主模块 **/ // 首先用config()指定各模块路径和引用名 require.</description></item><item><title>BSR、SSG、SSR之next.js</title><link>/fed-regain/js/framework/bsrssgssr%E4%B9%8Bnext-js/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/framework/bsrssgssr%E4%B9%8Bnext-js/</guid><description>Next.js 是一个轻量级的 React 服务端渲染框架
+它支持三种渲染方式包括
+客户端渲染 BSR (Broswer Side Render)
+静态页面生成 SSG (Static Site Generation)
+服务端渲染 SSR (Server Side Render)
+旧瓶装新酒 # 上面说的几种渲染方式，其实并非什么新东西，其实可以和这些技术对应起来
+BSR - 用 JS、Vue、React 创建 HTML
+SSG - 页面静态化，把 PHP 提前渲染成 HTML
+SSR - PHP、Python、Ruby、Java 后台的基本功能
+不同点 # Next.js 的预渲染可以与前端 React 无缝对接
+下面，以一个文章列表页面作为例子，分别解析一下三种渲染方式吧
+客户端渲染 # 客户端渲染，顾名思义就是只在浏览器上执行的渲染，通过Vue 和 React 构建的单页面应用SPA 都是采用这种方式渲染
+缺点 # 1 .白屏，在 AJAX 得到渲染之前，页面中并没有内容，只能通过 Loading 来过度
+SEO 不友好，因为搜索引擎访问页面， 默认不会执行 JS，只能看到 HTML，而不会等待 AJAX 异步请求数据，所以搜索不到页面内容 代码
+import {NextPage} from 'next'; import axios from 'axios'; import {useEffect, useState} from &amp;quot;react&amp;quot;; import * as React from &amp;quot;react&amp;quot;; type Post = { id: string, id: string, title: string } const PostsIndex: NextPage = () =&amp;gt; { // [] 表示只在第一次渲染的时候请求 const [posts, setPosts] = useState&amp;lt;Post[]&amp;gt;([]); const [isLoading, setIsLoading] = useState(false); useEffect(() =&amp;gt; { setIsLoading(true); // 使用 AJAX 异步请求数据 axios.</description></item><item><title>hooks使用指南</title><link>/fed-regain/js/framework/hooks%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/framework/hooks%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/</guid><description>原文：A Complete Guide to useEffect
+理解hooks工作机制 # 可以这样说，在使用了useState或是useEffect这样的hooks之后，每次组件在render的时候都生成了一份本次render的state、function、effects，这些与之前或是之后的render里面的内容都是没有关系的。而对于class component来说，state是一种引用的形式。这就造成了二者在一些表现上的不同。
+来看下面这样一段代码：
+function Counter() {
+const [count, setCount] = useState(0);
+function handleAlertClick() {
+setTimeout(() =&amp;gt; {
+alert('You clicked on: ' + count);
+}, 3000);
+}
+// 多次点击click me按钮，然后点击一下show alert按钮，然后又快速点击多次click me按钮，alert出来的count是点击该按钮时的count还是最新的count？？
+// 实验表明，显示的是点击时的按钮，这就意味着handleAlertClick这个函数capture了被点击时的那个count，这也就是说每一轮的count都是不一样的
+return (
+&amp;lt;div&amp;gt;
+&amp;lt;p&amp;gt;You clicked {count} times&amp;lt;/p&amp;gt;
+&amp;lt;button onClick={() =&amp;gt; setCount(count + 1)}&amp;gt;
+Click me
+&amp;lt;/button&amp;gt;
+&amp;lt;button onClick={handleAlertClick}&amp;gt;
+Show alert
+&amp;lt;/button&amp;gt;
+&amp;lt;/div&amp;gt;
+);
+}
+再看这样一段代码：
+function Counter() {
+const [count, setCount] = useState(0);
+useEffect(() =&amp;gt; {
+setTimeout(() =&amp;gt; {
+console.</description></item><item><title>JavaScript函数式编程</title><link>/fed-regain/js/framework/javascript%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/framework/javascript%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BC%96%E7%A8%8B/</guid><description>转载，原文：https://zhuanlan.zhihu.com/p/21714695
+一、引言 # 说到函数式编程，大家可能第一印象都是学院派的那些晦涩难懂的代码，充满了一大堆抽象的不知所云的符号，似乎只有大学里的计算机教授才会使用这些东西。在曾经的某个时代可能确实如此，但是近年来随着技术的发展，函数式编程已经在实际生产中发挥巨大的作用了，越来越多的语言开始加入闭包，匿名函数等非常典型的函数式编程的特性，从某种程度上来讲，函数式编程正在逐步“同化”命令式编程。
+JavaScript 作为一种典型的多范式编程语言，这两年随着React的火热，函数式编程的概念也开始流行起来，RxJS、cycleJS、lodashJS、underscoreJS等多种开源库都使用了函数式的特性。所以下面介绍一些函数式编程的知识和概念。
+二、纯函数 # 如果你还记得一些初中的数学知识的话，函数 f 的概念就是，对于输入 x 产生一个输出 y = f(x)。这便是一种最简单的纯函数。纯函数的定义是，对于相同的输入，永远会得到相同的输出，而且没有任何可观察的副作用，也不依赖外部环境的状态。
+下面来举个栗子，比如在Javascript中对于数组的操作，有些是纯的，有些就不是纯的：
+var arr = [1,2,3,4,5]; // Array.slice是纯函数，因为它没有副作用，对于固定的输入，输出总是固定的 // 可以，这很函数式 xs.slice(0,3); //=&amp;gt; [1,2,3] xs.slice(0,3); //=&amp;gt; [1,2,3] // Array.splice是不纯的，它有副作用，对于固定的输入，输出不是固定的 // 这不函数式 xs.splice(0,3); //=&amp;gt; [1,2,3] xs.splice(0,3); //=&amp;gt; [4,5] xs.splice(0,3); //=&amp;gt; [] 在函数式编程中，我们想要的是 slice这样的纯函数，而不是 splice这种每次调用后都会把数据弄得一团乱的函数。
+为什么函数式编程会排斥不纯的函数呢？下面再看一个例子：
+//不纯的 var min = 18; var checkage = age =&amp;gt; age &amp;gt; min; //纯的，这很函数式 var checkage = age =&amp;gt; age &amp;gt; 18; 在不纯的版本中，checkage这个函数的行为不仅取决于输入的参数 age，还取决于一个外部的变量 min，换句话说，这个函数的行为需要由外部的系统环境决定。对于大型系统来说，这种对于外部状态的依赖是造成系统复杂性大大提高的主要原因。</description></item><item><title>react fiber怎么回事</title><link>/fed-regain/js/framework/reactfiber%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/framework/reactfiber%E6%80%8E%E4%B9%88%E5%9B%9E%E4%BA%8B/</guid><description>一、前言 # 在 React Fiber 架构面世一年多后，最近 React 又发布了最新版 16.8.0，又一激动人心的特性：React Hooks 正式上线，让我升级 React 的意愿越来越强烈了。在升级之前，不妨回到原点，了解下人才济济的 React 团队为什么要大费周章，重写 React 架构，而 Fiber 又是个什么概念。
+二、React 15 的问题 # 在页面元素很多，且需要频繁刷新的场景下，React 15 会出现掉帧的现象。请看以下例子：
+https://claudiopro.github.io/…
+其根本原因，是大量的同步计算任务阻塞了浏览器的 UI 渲染。默认情况下，JS 运算、页面布局和页面绘制都是运行在浏览器的主线程当中，他们之间是互斥的关系。如果 JS 运算持续占用主线程，页面就没法得到及时的更新。当我们调用setState更新页面的时候，React 会遍历应用的所有节点，计算出差异，然后再更新 UI。整个过程是一气呵成，不能被打断的。如果页面元素很多，整个过程占用的时机就可能超过 16 毫秒，就容易出现掉帧的现象。
+针对这一问题，React 团队从框架层面对 web 页面的运行机制做了优化，得到很好的效果。
+三、解题思路 # 解决主线程长时间被 JS 运算占用这一问题的基本思路，是将运算切割为多个步骤，分批完成。也就是说在完成一部分任务之后，将控制权交回给浏览器，让浏览器有时间进行页面的渲染。等浏览器忙完之后，再继续之前未完成的任务。
+旧版 React 通过递归的方式进行渲染，使用的是 JS 引擎自身的函数调用栈，它会一直执行到栈空为止。而Fiber实现了自己的组件调用栈，它以链表的形式遍历组件树，可以灵活的暂停、继续和丢弃执行的任务。实现方式是使用了浏览器的requestIdleCallback这一 API。官方的解释是这样的：
+window.requestIdleCallback()会在浏览器空闲时期依次调用函数，这就可以让开发者在主事件循环中执行后台或低优先级的任务，而且不会对像动画和用户交互这些延迟触发但关键的事件产生影响。函数一般会按先进先调用的顺序执行，除非函数在浏览器调用它之前就到了它的超时时间。
+有了解题思路后，我们再来看看 React 具体是怎么做的。
+四、React 的答卷 # React 框架内部的运作可以分为 3 层：
+Virtual DOM 层，描述页面长什么样。 Reconciler 层，负责调用组件生命周期方法，进行 Diff 运算等。 Renderer 层，根据不同的平台，渲染出相应的页面，比较常见的是 ReactDOM 和 ReactNative。 这次改动最大的当属 Reconciler 层了，React 团队也给它起了个新的名字，叫Fiber Reconciler。这就引入另一个关键词：Fiber。</description></item><item><title>React Hooks完全上手指北</title><link>/fed-regain/js/framework/react-hooks%E5%AE%8C%E5%85%A8%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8C%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/framework/react-hooks%E5%AE%8C%E5%85%A8%E4%B8%8A%E6%89%8B%E6%8C%87%E5%8C%97/</guid><description>Why Hooks? # Class Component设计理论 # React以一种全新的编程范式定义了前端开发约束，它为视图开发带来了一种全新的心智模型：
+React认为，UI视图是数据的一种视觉映射，即UI = F(DATA)，这里的F需要负责对输入数据进行加工、并对数据的变更做出响应 公式里的F在React里抽象成组件，React是以组件为粒度编排应用的，组件是代码复用的最小单元 在设计上，React采用props属性来接收外部的数据，使用state属性来管理组件自身产生的数据（状态），而为了实现（运行时）对数据变更做出响应需要，React采用基于类（Class）的组件设计！ 除此之外，React认为组件是有生命周期的，因此开创性地将生命周期的概念引入到了组件设计，从组件的create到destory提供了一系列的API供开发者使用 这就是React组件设计的理论基础，我们最熟悉的React组件一般长这样：
+// React基于Class设计组件
+class MyConponent extends React.Component {
+// 组件自身产生的数据
+state = {
+counts: }
+// 响应数据变更
+clickHandle = () =&amp;gt; {
+this.setState({ counts: this.state.counts++ });
+if (this.props.onClick) this.props.onClick();
+}
+// lifecycle API
+componentWillUnmount() {
+console.log('Will mouned!');
+}
+// lifecycle API
+componentDidMount() {
+console.log('Did mouned!');
+}
+// 接收外来数据（或加工处理），并编排数据在视觉上的呈现
+render(props) {
+return (
+&amp;lt;&amp;gt;
+&amp;lt;div&amp;gt;Input content: {props.content}, btn click counts: {this.</description></item><item><title>react hooks模拟各个生命周期函数</title><link>/fed-regain/js/framework/react-hooks%E6%A8%A1%E6%8B%9F%E5%90%84%E4%B8%AA%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/framework/react-hooks%E6%A8%A1%E6%8B%9F%E5%90%84%E4%B8%AA%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0/</guid><description>前言 # react hook是继16.6的Suspense、lazy、memo后的又一巨大的令人兴奋的特性。然后有各种文章说了hook的优缺点，其中缺点包括：没有直接替代getSnapshotBeforeUpdate、componentDidUpdate生命周期的hook、不能像class组件那样写this、函数太大。这只是表面的现象，只要稍微思考一下，hook其实是无所不能的，我甚至相信未来挑不出hook的毛病来。今天手把手带大家过一遍如何实现class组件特性。
+基本用法可见官网，阅读本文需要先了解useState、useEffect、useRef、useLayoutEffect的使用方法。本文核心hook——useRef，本文也算是一篇useRef的应用文章。当你知道核心是基于useRef的时候，或许已经想到实现办法了，很好，我们心有灵犀 「握个手」
+useRef # useRef传入一个参数initValue，并创建一个对象{ current: initValue }给函数组件使用，在整个生命周期中该对象保持不变。所以，听到它名字叫做useRef的时候，很自然就想到它就是用来做元素的ref的：
+const divRef = useRef();
+return &amp;lt;div ref={divRef}&amp;gt;;
+最基本的使用方法，接着想进行dom操作，那就这样玩：
+if (divRef.current) {
+divRef.current.addEventListener(...);
+}
+函数组件的执行，整个函数体所有的必然躲不掉重新执行，那么如果希望有一个不重新走一遍的变量，我们通常会把它放函数组件外面去：
+let isMount = false;
+function C(){
+useEffect(() =&amp;gt; { isMount= true; return () =&amp;gt; { isMount= false; } }, []);
+return &amp;lt;div /&amp;gt;
+}
+这就是一个判断组件有没有挂载到页面的实现方法，如果我们用useRef，显然优雅很多了，而且是不是有点this的感觉
+function C(){
+const mount = useRef({}).current;
+useEffect(() =&amp;gt; { mount.isMount= true; return () =&amp;gt; { mount.isMount= false; } }, []);
+return &amp;lt;div /&amp;gt;
+}
+ok，现在假的this要原形毕露了:</description></item><item><title>react hooks的应用</title><link>/fed-regain/js/framework/react-hooks%E7%9A%84%E5%BA%94%E7%94%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/framework/react-hooks%E7%9A%84%E5%BA%94%E7%94%A8/</guid><description>最近react 官方在 2018 ReactConf 大会上宣布 React v16.7.0-alpha(内测) 将引入 Hooks。所以我们有必要了解 Hooks，以及由此引发的疑问。
+当然，学习的最好、最直接的方法就是看文档：官方文档。所以我也非常建议大家去看文档学习，而且还是官方的文档而不是中文版的文档。本文也是楼主在学习过后的一些总结与思考，楼主会把最近学习到的由浅入深，循序渐进，尽可能简洁的分享给大家，希望对大家有帮助。不足之处可在评论区补充，本文讲从以下几个大方面来展开：
+为什么引入Hooks Hooks使用和注意事项 Hooks的如何解决了已存在的问题 引入Hooks引发的疑问 为什么引入Hooks? # react官方给出的动机是用来解决长时间使用和维护react过程中遇到的一些难以避免的问题。比如：
+难以重用和共享组件中的与状态相关的逻辑 逻辑复杂的组件难以开发与维护，当我们的组件需要处理多个互不相关的 local state 时，每个生命周期函数中可能会包含着各种互不相关的逻辑在里面。 类组件中的this增加学习成本，类组件在基于现有工具的优化上存在些许问题。 由于业务变动，函数组件不得不改为类组件等等。 在进一步了解之前，我们需要先快速的了解一些基本的 Hooks 的用法。
+快速了解 Hooks 的使用 # Hooks让我们的函数组件拥有了类似类组件的特性，比如local state、lifecycle，而且还解决了上面提到的一系列问题，它是如何解决这些问题的，下面会在一一指出。首先来快速的看看Hoos的使用，这里讲最主要的两个 Hooks ：useState 和 useEffect。先看一个你可能看过很多遍的例子
+import { useState, useEffect } from 'react'; function Example() { const [count, setCount] = useState(0); useEffect(() =&amp;gt; { document.title = `You clicked ${count} times`; }); return ( &amp;lt;p&amp;gt; {count} &amp;lt;/p&amp;gt; &amp;lt;button onClick={() =&amp;gt; setCount(count + 1)}&amp;gt; Click me &amp;lt;/button&amp;gt; ); } useState # useState 这个方法可以为我们的函数组件带来 local state，它接收一个用于初始 state 的值，返回一对变量</description></item><item><title>react hook的初步研究前言renderWithHooks的整个过程</title><link>/fed-regain/js/framework/react-hook%E7%9A%84%E5%88%9D%E6%AD%A5%E7%A0%94%E7%A9%B6%E5%89%8D%E8%A8%80renderwithhooks%E7%9A%84%E6%95%B4%E4%B8%AA%E8%BF%87%E7%A8%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/framework/react-hook%E7%9A%84%E5%88%9D%E6%AD%A5%E7%A0%94%E7%A9%B6%E5%89%8D%E8%A8%80renderwithhooks%E7%9A%84%E6%95%B4%E4%B8%AA%E8%BF%87%E7%A8%8B/</guid><description>一开始react团队对外宣布hook 的时候，一眼看上去，觉得肯定proxy或者getter实现的，然后在函数组件外面包一层class extend React.Component。读setState钩子的第一个return结果就返回state，第二个结果就是封装了setState。后来发布了，看了一下代码，原来是维护一个队列（可以说很像数组，也可以说维护一个链表）。
+renderWithHooks的整个过程 # 在源码里面，renderWithHooks函数是渲染一个组件会调用的，跟hook相关的操作都在这里之后。 比如这段代码：
+export default () =&amp;gt; { const [n, setn] = useState(1); const [age, setAge] = useState(10); const [man, setSex] = useState(true); return ( &amp;lt;div&amp;gt; 这是n:{n}&amp;lt;button onClick={() =&amp;gt; setn(n + 1)}&amp;gt;n++&amp;lt;/button&amp;gt; 年龄：{age}&amp;lt;button onClick={() =&amp;gt; setAge(age + 2)}&amp;gt;age+2&amp;lt;/button&amp;gt; 变性：{man ? &amp;lt;span class=&amp;quot;token string&amp;quot;&amp;gt;'man' : &amp;lt;span class=&amp;quot;token string&amp;quot;&amp;gt;'gay'}&amp;lt;button onClick={() =&amp;gt; setSex(!man)}&amp;gt;change&amp;lt;/button&amp;gt; &amp;lt;/div&amp;gt; ) } 第一次挂载组件的时候，会给对应的state留下一个dispatch接口，这个接口是操作对应的state的，也就是setn、setAge、setSex，以return [initState, dispatch]这种形式返回。后面的更新，每次点击都会让整个组件函数重新执行，3次useState，源码内部的实现是维护一个队列，setter和对应的state是一一对应的：
+编号 &amp;lt;/div&amp;gt; &amp;lt;/th&amp;gt; &amp;lt;th&amp;gt; &amp;lt;div class=&amp;quot;table-header&amp;quot;&amp;gt; state &amp;lt;/div&amp;gt; &amp;lt;/th&amp;gt; &amp;lt;th&amp;gt; &amp;lt;div class=&amp;quot;table-header&amp;quot;&amp;gt; dispatch函数 &amp;lt;/div&amp;gt; &amp;lt;/th&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt; &amp;lt;div class=&amp;quot;table-cell&amp;quot;&amp;gt; 1 &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; &amp;lt;div class=&amp;quot;table-cell&amp;quot;&amp;gt; _n &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; &amp;lt;div class=&amp;quot;table-cell&amp;quot;&amp;gt; setn_function &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt; &amp;lt;div class=&amp;quot;table-cell&amp;quot;&amp;gt; 2 &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; &amp;lt;div class=&amp;quot;table-cell&amp;quot;&amp;gt; _age &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; &amp;lt;div class=&amp;quot;table-cell&amp;quot;&amp;gt; setAge_function &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;tr&amp;gt; &amp;lt;td&amp;gt; &amp;lt;div class=&amp;quot;table-cell&amp;quot;&amp;gt; 3 &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; &amp;lt;div class=&amp;quot;table-cell&amp;quot;&amp;gt; _sex &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;td&amp;gt; &amp;lt;div class=&amp;quot;table-cell&amp;quot;&amp;gt; setSex_function &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; 下划线开头表示react hook内部维持的状态， _function表示react hook内部暴露出来的改变该状态的函数，这两个只要第一次mount之后就会固定。以后每次更新，也是根据hook从头到尾执行，并根据第几个hook来拿到表里面的第几个state和它的dispatch函数</description></item><item><title>react shadow</title><link>/fed-regain/js/framework/react-shadow/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/js/framework/react-shadow/</guid><description>Shadow DOM 是什么 Shadow DOM 是什么？我们先来打开 Chrome 的 DevTool，并在 ‘Settings -&amp;gt; Preferences -&amp;gt; Elements’ 中把 ‘ Show user agent shadow DOM’ 打上勾。然后，打开一个支持 HTML5 播放的视频网站。
+可以看到 video 内部有一个 #shadow-root ，在 ShadowRoot 之下还能看到 div 这样的普通 HTML 标签。我们能知道 video 会有「播放/暂停按钮、进度条、视频时间显示、音量控制」等控件，那其实，就是由 ShadowRoot 中的这些子元素构成的。而我们最常用的 input 其实也附加了 Shadow DOM，比如，我们在 Chrome 中尝试给一个 Input 加上 placeholder ，通过 DevTools 便能看到，其实文字是在 ShadowRoot 下的一个 Id 为 palcehoder 的 div 中。
+Shadow DOM 允许在文档（Document）渲染时插入一棵「子 DOM 树」，并且这棵子树不在主 DOM 树中，同时为子树中的 DOM 元素和 CSS 提供了封装的能力。Shadow DOM 使得子树 DOM 与主文档的 DOM 保持分离，子 DOM 树中的 CSS 不会影响到主 DOM 树的内容，如下图所示：</description></item></channel></rss>

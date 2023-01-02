@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>devops on</title><link>/fed-regain/devops/</link><description>Recent content in devops on</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Tue, 06 Oct 2020 08:49:15 +0000</lastBuildDate><atom:link href="/fed-regain/devops/index.xml" rel="self" type="application/rss+xml"/><item><title>chrome dev远程调试android 和ios</title><link>/fed-regain/devops/chromedev%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95android%E5%92%8Cios/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/devops/chromedev%E8%BF%9C%E7%A8%8B%E8%B0%83%E8%AF%95android%E5%92%8Cios/</guid><description>调试是开发过程很重要的过程，而随着移动端的普及，移动开发也越来越多，并且由于移动端的诸多限制，使得调试相对PC复杂很多。因此远程调试就显得非常重要了。 近几年，[浏览器](https://www.w3cdoc.com)厂商也纷纷推出自己的远程调试工具，比如Opera Mobile 推出的Opera Dragonfly，iOS Safari 可以开启Web检查器在 Mac OS X系统中实现远程调试。Android 4.0+系统的 Chrome for Android可以配合 ADB（Android Debug Bridge）实现桌面远程调试，桌面版Chrome 32+已经支持免安装ADB即可实现远程调试移动设备页面/WebView 。国内的UC[浏览器](https://www.w3cdoc.com)开发者版也推出了自己的远程调试工具RemoteInspector。除了[浏览器](https://www.w3cdoc.com)厂商之外，也涌现出许多第三方开发的远程调试工具，诸如支持全平台调试的Weinre等。 TL,NR，先介绍一下anydebugger方案吧，原理复杂使用简单，参考：支持任意端的基于Chrome devTools远程调试技术方案
+## 远程调试 那么远程调试就是调试运行在远程的APP。比如手机上访问google，我需要在PC上调试手机上运行的google APP。 这个就叫做远程调试。
+远程调试大概有三种类型：
+调试远程PC（本质上是一个debug server 和 一个debug target，其实下面两种也是这种模型，ios中间会多一个协议转化而已） 这种类型下的debug target就是pc, debug server 也是pc。 调试android webpage/webview（很多方式，但安卓4.4以后本质都是Chrome DevTools Protocol的扩展） 这种类型下的debug target就是android webview，debug server 是pc。 调试ios webpag/webview（可以使用iOS WebKit Debug Proxy代理，然后问题便退化成上述两种场景） 这种类型下的debug target就是ios webview， debug server 是pc。 上图展示了基于adb的chrome webview 的 debug的架构。
+Android webview 调试 # unix domain socket是linux下面的用于进程间通讯IPC的一种socket，（参考：https://blog.csdn.net/guxch/article/details/7041052）
+android4.4 版本之后，可以配置开启 WebViews 调试，支持直接使用chrome dev tool调试Android webview。（参考： https://developers.</description></item><item><title>cp -rf还是提问，-f失效</title><link>/fed-regain/devops/cp-rf%E8%BF%98%E6%98%AF%E6%8F%90%E9%97%AE-f%E5%A4%B1%E6%95%88/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/devops/cp-rf%E8%BF%98%E6%98%AF%E6%8F%90%E9%97%AE-f%E5%A4%B1%E6%95%88/</guid><description>先执行：alias命令看下
+# alias alias cp='cp -i' alias dbh='/root/flyway-5.1.4/myflyway.sh -h' alias egrep='egrep --color=auto' alias fgrep='fgrep --color=auto' alias grep='grep --color=auto' alias hdemo='/root/flyway-5.1.4/demoflyway.sh -h' alias i='/root/flyway-5.1.4/myflyway.sh info' alias idemo='/root/flyway-5.1.4/demoflyway.sh info' alias l.='ls -d .* --color=auto' alias ll='ls -l --color=auto' alias ls='ls --color=auto' alias m='/root/flyway-5.1.4/myflyway.sh migrate' alias mdemo='/root/flyway-5.1.4/demoflyway.sh migrate' alias mv='mv -i' alias r='/root/flyway-5.1.4/myflyway.sh repair' alias rm='rm -i' alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde' cp被alias了, 那么就容易办了
+1.在命令前加反斜杠 \cp ,跳过alias运行命令：
+\cp -rf /home/file /data/file</description></item><item><title>DDOS之近源清洗</title><link>/fed-regain/devops/ddos%E4%B9%8B%E8%BF%91%E6%BA%90%E6%B8%85%E6%B4%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/devops/ddos%E4%B9%8B%E8%BF%91%E6%BA%90%E6%B8%85%E6%B4%97/</guid><description>DDOS攻击为分布式拒绝服务攻击。
+DDOS攻击分类 # 网络层攻击 # SYN-flood：利用TCP建立连接时3次握手的“漏洞”，发送源地址虚假的提交，永远无法完成三次握手。占满系统的协议栈队列资源得不到释放，进而拒绝服务。
+防御方式：调整内核参数方法，减少等待及重试时间，加速资源释放
+syn proxy syn cookies 首包丢弃 Ack-flood：虚假Ack包，远不如syn-flood。
+UDP-flood：使用虚假源地址UDP包，以DNS协议为主。防御方法：将UDP查询强制转为TCP，要求溯源，如果是假地址就不再回应。
+ICMP-flood：Ping洪水攻击。
+应用层攻击 # CC：通过控制傀儡主机或者寻找匿名代理服务器向目标发起大量真实的HTTP请求，最终消耗掉大量的并发资源，拖慢整个网站甚至彻底拒绝服务。 DNS-flood：发送海量的DNS查询报文导致网络带宽耗尽而无法传送正常DNS查询请求。 慢速连接攻击：针对HTTP协议，先建立起HTTP连接，设置一个较大的Conetnt-Length，每次只发送很少的字节，让服务器一直以为HTTP头部没有传输完成，这样连接一多就很快会出现连接耗尽。 DDOS攻击方式分类 # 混合型：大量的攻击中，通常并不是以上述一种数据类型来攻击，往往是TCP和UDP，网络层和应用层攻击同时进行。 反射型：“质询—应答”模式。将源地址伪造成攻击目的地址，则应答的“回包”被发送到目标，如果回包体积比较大或协议支持递归效果，攻击的效果会被放大，性价比高。说明：将源地址设为假的无法回应，即为SYN-flood攻击，制造流量和攻击目标收到的流量为1:1，回报率低。 流量放大：SSDP协议，递归效果产生的放大倍数非常大。 脉冲型：即“打打停停”，攻击持续时间非常短。（目的：避免触发自动化防御机制） 链路冷洪：不直接攻击目标而是以阻塞目标网络的上一级链路为目的。（原因：避免防御系统对攻击流量分摊） DDOS防御结构 # 近源清洗 # ISP近源清洗 # 电信运营商提供的近源清洗和流量压制，此做法为弃卒保帅，避免全站服务对所有用户彻底无法访问。
+意义：对超过自身带宽储备和自身DDOS防御能力之外超大流量时补充性缓解措施。
+云清洗/CDN硬抗：场景-如抢购访问量非常大时，平台上在CDN层面用验证码过滤了绝大多数请求，最后到达数据库的请求量相比非常小。
+云清洗厂商策略 # 设置好网站的CNAME，将域名指向云清洗厂商的DNS服务器
+——&amp;gt;云清洗厂商的DNS将穿透CDN的回源的请求指向源站
+——&amp;gt;(检测到受攻击)检测方法：客户网站部署反向代理，托管所有的并发连接。
+——&amp;gt;域名指向自己的清洗集群，然后再将清洗后的流量回源。
+总结：更改CNAME指向，等待DNS递归剩下.
+DC级近目的清洗 # DC级近目的清洗：主要用到华为的ADS设备。若探针检测到受到DDOS攻击则将Internet请求都指向DDOS清洗中心——&amp;gt;清洗完正常流量回到IDC业务机。
+OS/APP层 # OS/APP层：DDOS最后一道防线。主要对应用层协议做补充防护。如禁用monlist，不提供UDP服务。
+Web服务对相同IP/IP+cookie/HTTP头部/request URL进行检测计数-&amp;gt;触发-&amp;gt;阻断
+防御应用 # 对Web业务：以上四层全部适用
+对游戏：CDN在此场景无效，DNS引流+ADS来清洗。还有在客户端和服务端通信协议做处理（如封包加标签，依赖信息对称）
+服务策略：分级策略：避免某些服务导致全站不可用
+Failover机制：冗余技术
+有损服务：避免单点瓶颈，关键时刻能进行割肉。
+不过总的来说DDOS攻击比较恐怖，一般防御很难抵抗主要取决于哪一方拥有的带宽资源大了。</description></item><item><title>linux使用tree命令查看目录结构</title><link>/fed-regain/devops/linux%E4%BD%BF%E7%94%A8tree%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/devops/linux%E4%BD%BF%E7%94%A8tree%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/</guid><description>1.先下载安装包
+使用命令
+wget http://mama.indstate.edu/users/ice/tree/src/tree-1.7.0.tgz
+2.解压安装
+Linux环境（ubuntu 16.10）下安装
+解压tree-1.7.0.tgz文件，命令：tar -zxvf tree-1.7.0.tgz
+进入解压目录中，命令：cd tree-1.7.0
+安装文件，命令：make install
+刚开始没有用root，sudo root后再执行make install 安装成功~
+3.测试使用，命令：tree
+4.tree命令行参数：
+参数 作用
+-a 显示所有文件和目录。
+-A 使用ASNI绘图字符显示树状图而非以ASCII字符组合。
+-C 在文件和目录清单加上色彩，便于区分各种类型。
+-d 显示目录名称而非内容。
+-D 列出文件或目录的更改时间。
+-f 在每个文件或目录之前，显示完整的相对路径名称。
+-F 在执行文件，目录，Socket，符号连接，管道名称名称，各自加上”*”,”/”,”=”,”@”,”|”号。
+-g 列出文件或目录的所属群组名称，没有对应的名称时，则显示群组识别码。
+-i 不以阶梯状列出文件或目录名称。
+-I 不显示符合范本样式的文件或目录名称。
+-l 如遇到性质为符号连接的目录，直接列出该连接所指向的原始目录。
+-n 不在文件和目录清单加上色彩。
+-N 直接列出文件和目录名称，包括控制字符。
+-p 列出权限标示。
+-P 只显示符合范本样式的文件或目录名称。
+-q 用”?”号取代控制字符，列出文件和目录名称。
+-s 列出文件或目录大小。
+-t 用文件和目录的更改时间排序。
+-u 列出文件或目录的拥有者名称，没有对应的名称时，则显示用户识别码。
+-x 将范围局限在现行的文件系统中，若指定目录下的某些子目录，其存放于另一个文件系统上，则将该子目录予以排除在寻找范围外。</description></item><item><title>linux配置nginx自己生成https的crt和key证书</title><link>/fed-regain/devops/linux%E9%85%8D%E7%BD%AEnginx%E8%87%AA%E5%B7%B1%E7%94%9F%E6%88%90https%E7%9A%84crt%E5%92%8Ckey%E8%AF%81%E4%B9%A6/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/devops/linux%E9%85%8D%E7%BD%AEnginx%E8%87%AA%E5%B7%B1%E7%94%9F%E6%88%90https%E7%9A%84crt%E5%92%8Ckey%E8%AF%81%E4%B9%A6/</guid><description>概念 # 首先，几个概念：
+（1）非对称加密：一个公钥、一个私钥，公钥加密的文件可以用私钥解密，反之也可以；RSA就是一种常见的非对称加密算法；
+另外，私钥一般自己保存，只有自己知道；公钥则是公开的
+（2）openssl：一个开源的组织、一个开源的软件代码库和密码库工具，囊括了主要的密码算法；
+公钥是公开分发的，那当你拿到一个公司（个人）的公钥之后，怎么确定这个公钥就是那个公司（个人）的？？？而不是一个别人篡改之后的公钥？？而且公钥上没有任何的附加信息，标记当前公钥的所属的实体，相关信息等
+（3）证书：公钥信息 + 额外的其他信息（比如所属的实体，采用的加密解密算法等）= 证书。证书文件的扩展名一般为crt。
+（4）CA：证书认证中心；拿到一个证书之后，得先去找CA验证下，拿到的证书是否是一个“真”的证书，而不是一个篡改后的证书。如果确认证书没有问题，那么从证书中拿到公钥之后，就可以与对方进行安全的通信了，基于非对称加密机制。
+CA自身的分发及安全保证，一般是通过一些权威的渠道进行的，比如操作系统会内置一些官方的CA、浏览器也会内置一些CA；
+参考这里：证书相关：rsa、crt文件、key文件、csr文件
+实践 # 总结了一下linux下openssl生成 签名的步骤：
+x509证书一般会用到三类文，key，csr，crt
+Key 是私用密钥openssl格，通常是rsa算法。
+Csr 是证书请求文件，用于申请证书。在制作csr文件的时，必须使用自己的私钥来签署申，还可以设定一个密钥。
+crt是CA认证后的证书文，（windows下面的，其实是crt），签署人用自己的key给你签署的凭证。
+1.key的生成
+1 &amp;lt;td&amp;gt; &amp;lt;div&amp;gt; &amp;lt;div&amp;gt; openssl genrsa -des3 -out server.key 2048 &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/table&amp;gt; 这样是生成rsa私钥，des3算法，openssl格式，2048位强度。server.key是密钥文件名。为了生成这样的密钥，需要一个至少四位的密码。可以通过以下方法生成没有密码的key:
+1 &amp;lt;td&amp;gt; &amp;lt;div&amp;gt; &amp;lt;div&amp;gt; openssl rsa -in server.key -out server.key &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/td&amp;gt; &amp;lt;/tr&amp;gt; &amp;lt;/table&amp;gt; server.key就是没有密码的版本了。
+2. 生成CA的crt
+1 &amp;lt;td&amp;gt; &amp;lt;div&amp;gt; &amp;lt;div&amp;gt; openssl req -new -x509 -key server.key -out ca.</description></item><item><title>mysql的join用法和单表自身join</title><link>/fed-regain/devops/mysql%E7%9A%84join%E7%94%A8%E6%B3%95%E5%92%8C%E5%8D%95%E8%A1%A8%E8%87%AA%E8%BA%ABjoin/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/devops/mysql%E7%9A%84join%E7%94%A8%E6%B3%95%E5%92%8C%E5%8D%95%E8%A1%A8%E8%87%AA%E8%BA%ABjoin/</guid><description>维恩图(Venn)，也叫温氏图、维恩图、范氏图，用于显示元素集合重叠区域的图表。维恩图是关系型图表，通过图形与图形之间的层叠关系，来表示集合与集合之间的相交关系。一个完整的韦恩图包含三个构成元素：若干个圆表示集合，若干个圆层叠部分表示公有集合以及集合内部显示的文本标签。
+JOIN的含义就如英文单词“join”一样，连接两张表，大致分为内连接，外连接，右连接，左连接，自然连接。这里描述先甩出一张用烂了的图，然后插入测试数据。
+常用的7中JOIN的维恩图如下：
+示例 # CREATE TABLE t_blog(
+id INT PRIMARY KEY AUTO_INCREMENT,
+title VARCHAR(50),
+typeId INT
+);
+SELECT * FROM t_blog;
++----+-------+--------+
+| id | title | typeId |
++----+-------+--------+
+| 1 | aaa | 1 |
+| 2 | bbb | 2 |
+| 3 | ccc | 3 |
+| 4 | ddd | 4 |
+| 5 | eee | 4 |
+| 6 | fff | 3 |
+| 7 | ggg | 2 |
+| 8 | hhh | NULL |
+| 9 | iii | NULL |
+| 10 | jjj | NULL |
++----+-------+--------+
+-- 博客的类别
+CREATE TABLE t_type(
+id INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(20)
+);
+SELECT * FROM t_type;
++----+------------+
+| id | name |
++----+------------+
+| 1 | C++ |
+| 2 | C |
+| 3 | Java |
+| 4 | C# |
+| 5 | Javascript |
++----+------------+
+CROSS JOIN：笛卡尔积
+要理解各种JOIN首先要理解笛卡尔积。笛卡尔积就是将A表的每一条记录与B表的每一条记录强行拼在一起。所以，如果A表有n条记录，B表有m条记录，笛卡尔积产生的结果就会产生n*m条记录。下面的例子，t_blog有10条记录，t_type有5条记录，所有他们俩的笛卡尔积有50条记录。有五种产生笛卡尔积的方式如下。</description></item><item><title>nginx反向代理配置</title><link>/fed-regain/devops/ginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/devops/ginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE/</guid><description>location # location = / { # 精确匹配 / ，主机名后面不能带任何字符串 [ configuration A ] } location / { # 因为所有的地址都以 / 开头，所以这条规则将匹配到所有请求 # 但是正则和最长字符串会优先匹配 [ configuration B ] } location /documents/ { # 匹配任何以 /documents/ 开头的地址，匹配符合以后，还要继续往下搜索 # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条 [ configuration C ] } location ~ /documents/Abc { # 匹配任何以 /documents/Abc 开头的地址，匹配符合以后，还要继续往下搜索 # 只有后面的正则表达式没有匹配到时，这一条才会采用这一条 [ configuration CC ] } location ^~ /images/ { # 匹配任何以 /images/ 开头的地址，匹配符合以后，停止往下搜索正则，采用这一条。 [ configuration D ] } location ~* \.</description></item><item><title>PM2启动eggjs</title><link>/fed-regain/devops/pm2%E5%90%AF%E5%8A%A8eggjs/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/devops/pm2%E5%90%AF%E5%8A%A8eggjs/</guid><description>egg 在egg项目的根目录定义启动文件：
+// server.js const egg = require('egg'); const workers = Number(process.argv[2] || require('os').cpus().length); egg.startCluster({ workers, baseDir: __dirname, }); 这样，我们就可以通过 PM2 进行启动了(本次启动在egg项目的根目录)：
+pm2 start server.js --name test PM2简易使用手册 PM2 使用手册 很简单也很水，就是我今天因为公司项目正好在研究这个东西，权当自己记录了，不喜勿喷～～～万分感谢
+背景 对于线上项目，如果直接通过 node app 来启动，如果报错了可能直接停止导致整个服务崩溃，一般监控 node 有几种方案。
+supervisor: 一般用作开发环境的使用。 forever: 管理多个站点，一般每个站点的访问量不大的情况，不需要监控。 PM2: 网站的访问量比较大，需要完整的监控页面。 公司原来的项目采用的是 forever 的形式，不过如果 node 出现问题的时候，没有办法获取到有效的监控数据进行错误排查，因此新开发的系统准备采用 pm2 的形式进行前端以及 node 层的监控。
+PM2 的主要特性 内建负载均衡（使用 Node cluster 集群模块） 后台运行 0 秒停机重载，我理解大概意思是维护升级的时候不需要停机. 具有 Ubuntu 和 CentOS 的启动脚本 停止不稳定的进程（避免无限循环） 控制台检测 提供 HTTP API 远程控制和实时的接口 API ( Nodejs 模块,允许和 PM2 进程管理器交互 ) 安装 // 全局安装pm2，依赖node和npm npm install -g pm2 &amp;amp;lt;span class=&amp;quot;copy-code-btn&amp;quot;&amp;gt;复制代码&amp;amp;lt;/span&amp;gt; 用法 基本启动命令 pm2 start</description></item><item><title>Request Entity Too Large Nginx</title><link>/fed-regain/devops/request-entity-too-large-nginx/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/devops/request-entity-too-large-nginx/</guid><description>最近自己搭建了一个电商项目服务器，使用Nginx + vsftpd + … ，
+使用Nginx作为HTTP反向代理服务器、帮助实现前端动静分离
+问题：但在做附件上传时出现 413 Request Entity Too Large Nginx 错误提示！！
+查询资料后获知：原来nginx默认上传文件的大小是 1M ，nginx的设置中修改。
+如下图：
+更改完成后，重启Nginx服务
+新增配置：
+1、进入Nginx目录conf下的nginx.conf
+cd /usr/local/nginx/conf/
+2、编辑文件
+vim nginx.conf
+3、找到http{…},在大括号中新增配置（注意最后要有分号;）
+client_max_body_size 20m;
+重启Nginx服务：
+1、首先进入安装Nginx目录
+cd /usr/local/nginx/sbin/
+2、重启Nginx服务
+./nginx -s reload</description></item><item><title>rsync基本用法和示例</title><link>/fed-regain/devops/rsync%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95%E5%92%8C%E7%A4%BA%E4%BE%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>/fed-regain/devops/rsync%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95%E5%92%8C%E7%A4%BA%E4%BE%8B/</guid><description>rsync官方网站: https://www.samba.org/ftp/rsync/rsync.html
+rsync是可以实现增量备份的工具。配合任务计划，rsync能实现定时或间隔同步，配合inotify或sersync，可以实现触发式的实时同步。
+rsync可以实现scp的远程拷贝(rsync不支持远程到远程的拷贝，但scp支持)、cp的本地拷贝、rm删除和”ls -l”显示文件列表等功能。但需要注意的是，rsync的最终目的或者说其原始目的是实现两端主机的文件同步，因此实现的scp/cp/rm等功能仅仅只是同步的辅助手段，且rsync实现这些功能的方式和这些命令是不一样的。事实上，rsync有一套自己的算法，其算法原理以及rsync对算法实现的机制可能比想象中要复杂一些。平时使用rsync实现简单的备份、同步等功能足以，没有多大必要去深究这些原理性的内容。但是想要看懂rsync命令的man文档、使用”-vvvv”分析rsync执行过程，以及实现rsync更强大更完整的功能，没有这些理论知识的支持是绝对不可能实现的。本篇文章将简单介绍rsync的使用方法和它常用的功能。**在本篇文章之后的下几篇文章中，将介绍inotify+rsync和sersync，再之后将详细解释rsync相关的原理，其中包括官方技术报告的翻译(即算法原理)、rsync同步的整个过程(也是官方推荐文章的翻译)，然后专门使用一篇文章通过示例来详细解释rsync算法原理，最后给出rsync的man文档翻译。**希望各位朋友能藉此深入rsync。
+回归正题，以下是rsync相关基础内容。
+2.2 rsync同步基本说明 # rsync的目的是实现本地主机和远程主机上的文件同步(包括本地推到远程，远程拉到本地两种同步方式)，也可以实现本地不同路径下文件的同步，但不能实现远程路径1到远程路径2之间的同步(scp可以实现)。
+不考虑rsync的实现细节，就文件同步而言，涉及了源文件和目标文件的概念，还涉及了以哪边文件为同步基准。例如，想让目标主机上的文件和本地文件保持同步，则是以本地文件为同步基准，将本地文件作为源文件推送到目标主机上。反之，如果想让本地主机上的文件和目标主机上的文件保持同步，则目标主机上的文件为同步基准，实现方式是将目标主机上的文件作为源文件拉取到本地。当然，要保持本地的两个文件相互同步，rsync也一样能实现，这就像Linux中cp命令一样，以本地某文件作为源，另一文件作为目标文件，但请注意，虽然rsync和cp能达到相同的目的，但它们的实现方式是不一样的。
+既然是文件同步，在同步过程中必然会涉及到源和目标两文件之间版本控制的问题，例如是否要删除源主机上没有但目标上多出来的文件，目标文件比源文件更新(newer than source)时是否仍要保持同步，遇到软链接时是拷贝软链接本身还是拷贝软链接所指向的文件，目标文件已存在时是否要先对其做个备份等等。
+rsync同步过程中由两部分模式组成：决定哪些文件需要同步的检查模式以及文件同步时的同步模式。
+(1).检查模式是指按照指定规则来检查哪些文件需要被同步，例如哪些文件是明确被排除不传输的。**默认情况下，rsync使用”quick check”算法快速检查源文件和目标文件的大小、mtime(修改时间)是否一致，如果不一致则需要传输。**当然，也可以通过在rsync命令行中指定某些选项来改变quick check的检查模式，比如”-size-only”选项表示”quick check”将仅检查文件大小不同的文件作为待传输文件。rsync支持非常多的选项，其中检查模式的自定义性是非常有弹性的。
+(2).同步模式是指在文件确定要被同步后，在同步过程发生之前要做哪些额外工作。例如上文所说的是否要先删除源主机上没有但目标主机上有的文件，是否要先备份已存在的目标文件，是否要追踪链接文件等额外操作。rsync也提供非常多的选项使得同步模式变得更具弹性。
+相对来说，为rsync手动指定同步模式的选项更常见一些，只有在有特殊需求时才指定检查模式，因为大多数检查模式选项都可能会影响rsync的性能。
+2.3 rsync三种工作方式 # 以下是rsync的语法：
+Local: rsync [OPTION...] SRC... [DEST] Access via remote shell: Pull: rsync [OPTION...] [USER@]HOST:SRC... [DEST] Push: rsync [OPTION...] SRC... [USER@]HOST:DEST Access via rsync daemon: Pull: rsync [OPTION...] [USER@]HOST::SRC... [DEST] rsync [OPTION...] rsync://[USER@]HOST[:PORT]/SRC... [DEST] Push: rsync [OPTION...] SRC... [USER@]HOST::DEST rsync [OPTION...] SRC... rsync://[USER@]HOST[:PORT]/DEST 由此语法可知，rsync有三种工作方式：
+(1).本地文件系统上实现同步。命令行语法格式为上述”Local”段的格式。
+(2).本地主机使用远程shell和远程主机通信。命令行语法格式为上述”Access via remote shell”段的格式。</description></item></channel></rss>

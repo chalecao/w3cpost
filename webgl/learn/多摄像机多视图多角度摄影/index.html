@@ -1,0 +1,286 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-regular.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-500.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=/fonts/vendor/jost/jost-v4-latin-700.woff2 type=font/woff2 crossorigin><script>(()=>{var t=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,e=localStorage.getItem("theme");t&&e===null&&(localStorage.setItem("theme","dark"),document.documentElement.setAttribute("data-dark-mode","")),t&&e==="dark"&&document.documentElement.setAttribute("data-dark-mode",""),e==="dark"&&document.documentElement.setAttribute("data-dark-mode","")})()</script><link rel=stylesheet href=/main.f9552544b4ca62af741c0d24d283b4ddcfa2a026a871cff4112743eeb6c4950a530c923242d9d4d42e93635dd91ebd78601a145b8b205bb363d7065c1fa59ffe.css integrity="sha512-+VUlRLTKYq90HA0k0oO03c+ioCaocc/0ESdD7rbElQpTDJIyQtnU1C6TY13ZHr14YBoUW4sgW7Nj1wZcH6Wf/g==" crossorigin=anonymous><noscript><style>img.lazyload{display:none}</style></noscript><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><meta name=bingbot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><title>多摄像机多视图多角度摄影 - 万维刀客「w3cdoc」</title><meta name=description content="常被学员问的一个问题 # 有一个问题，是我们经常会遇到的，就是在一个窗口中，有几个子窗口，在子窗口中显示场景不同角度的动画。例如小地图，就是一个极好的例子。我们看看下面一幅图：
+这幅图中红色划圈的部分，就是通过不同视图的渲染来做到的，它综合使用了透视相机和正投影相机。
+上图被红线圈住的地方，就是正投影相机绘制出来的。因为它的大小永远不会变化。看一下左上角的血条吧，试想一下，如果它不断的变化大小和角度，那么这将是一个多么低端的游戏啊。
+前面的基础课程，我们已经讲解了怎么来设置视图，但是还不深入，这一节课，我们将深入这一部分。深入的目的，是为了以后大家遇到同类的问题，能够有思路，有想法，而不至于不会做。
+如果和前面的课程相比，有一些跳跃，或者觉得基础知识讲得还不够多，那是我们我们 想尽快得让大家深入了解WebGL的相关体系，如果讲得太快，敬请大家原谅。如果跟不上老师的节奏，建议购买100多集视频课程，那里有更深入的讲解。
+本课最终效果 # 我们首先来看一下我们这节课要完成的效果，如下图所示：
+上图中，我们有3个画布，分别放在页面的上方，中部偏右和下部偏左。3个画布里面分别显示了一个场景的不同区域。在图形学中，我们通常将这种最终的显示画布叫做视口（viewport）。关于视口的详细信息，这里先不累述了，在需要深入的时候，我们会告诉你它的相应知识。
+为了第一时间看到效果，点击这里，看看效果吧。 1、有阴影出现 注意，demo中的多面体的各个面的颜色是不一样的，有一点渐变。多面体底部是有一些阴影的，这里没有显示出来。移动一下鼠标，你能够看到阴影。
+2、怎么推断时候有光源 从多面体表面呈现的光照情况，可以断定有一个灯光。多面体上没有聚光的效果，所以应该是没有聚光灯的。也不是每个地方都有一样的光照，所以环境光的可能性不大。最后，推断应该是方向光。哈哈，我也希望，你能这样去思考问题哦。
+Ok，分析差不多就这些了。
+为了第一时间看到效果，你还可以先将【】拖到chrome浏览器中，看看效果。
+同时，你也可以右键源代码，看到本例的源代码。后面的讲解，你最好打开一份源代码，边看后面的解释边对照一下源代码。源码面前了无秘密，这是我们的哲学思维。
+构造界面 # 首先，我们要根据上面的描述，使用div+css来构造出界面，div结构如下所示，你可以在源码中找到：
+&amp;lt;div id=&amp;quot;container&amp;quot;&amp;gt; &amp;lt;canvas id=&amp;quot;canvas1&amp;quot;&amp;gt;&amp;lt;/canvas&amp;gt; &amp;lt;canvas id=&amp;quot;canvas2&amp;quot;&amp;gt;&amp;lt;/canvas&amp;gt; &amp;lt;canvas id=&amp;quot;canvas3&amp;quot;&amp;gt;&amp;lt;/canvas&amp;gt; &amp;lt;/div&amp;gt; 这是一个很简单的div结构，container里面嵌套了3个容器。这3个容器分别代表下面的三个画布。如下图所示：
+这几个id对应的Css样式如下所示：
+#canvas1, #canvas2, #canvas3 { position: relative; display: block; border: 1px solid red ; // 边框红色 } #canvas1 { width: 300px; height: 200px; } #canvas2 { width: 400px; height: 100px; left: 150px; } #canvas3 { width: 200px; height: 300px; left: 75px; } 可以看出以下几点："><link rel=canonical href=/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/><meta property="og:locale" content="en_US"><meta property="og:type" content="article"><meta property="og:title" content="多摄像机多视图多角度摄影"><meta property="og:description" content="常被学员问的一个问题 # 有一个问题，是我们经常会遇到的，就是在一个窗口中，有几个子窗口，在子窗口中显示场景不同角度的动画。例如小地图，就是一个极好的例子。我们看看下面一幅图：
+这幅图中红色划圈的部分，就是通过不同视图的渲染来做到的，它综合使用了透视相机和正投影相机。
+上图被红线圈住的地方，就是正投影相机绘制出来的。因为它的大小永远不会变化。看一下左上角的血条吧，试想一下，如果它不断的变化大小和角度，那么这将是一个多么低端的游戏啊。
+前面的基础课程，我们已经讲解了怎么来设置视图，但是还不深入，这一节课，我们将深入这一部分。深入的目的，是为了以后大家遇到同类的问题，能够有思路，有想法，而不至于不会做。
+如果和前面的课程相比，有一些跳跃，或者觉得基础知识讲得还不够多，那是我们我们 想尽快得让大家深入了解WebGL的相关体系，如果讲得太快，敬请大家原谅。如果跟不上老师的节奏，建议购买100多集视频课程，那里有更深入的讲解。
+本课最终效果 # 我们首先来看一下我们这节课要完成的效果，如下图所示：
+上图中，我们有3个画布，分别放在页面的上方，中部偏右和下部偏左。3个画布里面分别显示了一个场景的不同区域。在图形学中，我们通常将这种最终的显示画布叫做视口（viewport）。关于视口的详细信息，这里先不累述了，在需要深入的时候，我们会告诉你它的相应知识。
+为了第一时间看到效果，点击这里，看看效果吧。 1、有阴影出现 注意，demo中的多面体的各个面的颜色是不一样的，有一点渐变。多面体底部是有一些阴影的，这里没有显示出来。移动一下鼠标，你能够看到阴影。
+2、怎么推断时候有光源 从多面体表面呈现的光照情况，可以断定有一个灯光。多面体上没有聚光的效果，所以应该是没有聚光灯的。也不是每个地方都有一样的光照，所以环境光的可能性不大。最后，推断应该是方向光。哈哈，我也希望，你能这样去思考问题哦。
+Ok，分析差不多就这些了。
+为了第一时间看到效果，你还可以先将【】拖到chrome浏览器中，看看效果。
+同时，你也可以右键源代码，看到本例的源代码。后面的讲解，你最好打开一份源代码，边看后面的解释边对照一下源代码。源码面前了无秘密，这是我们的哲学思维。
+构造界面 # 首先，我们要根据上面的描述，使用div+css来构造出界面，div结构如下所示，你可以在源码中找到：
+<div id=&#34;container&#34;> <canvas id=&#34;canvas1&#34;></canvas> <canvas id=&#34;canvas2&#34;></canvas> <canvas id=&#34;canvas3&#34;></canvas> </div> 这是一个很简单的div结构，container里面嵌套了3个容器。这3个容器分别代表下面的三个画布。如下图所示：
+这几个id对应的Css样式如下所示：
+#canvas1, #canvas2, #canvas3 { position: relative; display: block; border: 1px solid red ; // 边框红色 } #canvas1 { width: 300px; height: 200px; } #canvas2 { width: 400px; height: 100px; left: 150px; } #canvas3 { width: 200px; height: 300px; left: 75px; } 可以看出以下几点："><meta property="og:url" content="/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/"><meta property="og:site_name" content="万维刀客「w3cdoc」"><meta property="og:image" content="/doks.png"><meta property="og:image:alt" content="万维刀客「w3cdoc」"><meta name=twitter:card content="summary_large_image"><meta name=twitter:site content="@w3cdoc"><meta name=twitter:creator content="@chalecao"><meta name=twitter:title content="多摄像机多视图多角度摄影"><meta name=twitter:description content><meta name=twitter:image content="/doks.png"><meta name=twitter:image:alt content="多摄像机多视图多角度摄影"><script type=application/ld+json>{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"/#/schema/organization/1","name":"w3cdoc","url":"/","sameAs":["https://twitter.com/w3cdoc"],"logo":{"@type":"ImageObject","@id":"/#/schema/image/1","url":"/w3cdoc.png","width":512,"height":512,"caption":"w3cdoc"},"image":{"@id":"/#/schema/image/1"}},{"@type":"WebSite","@id":"/#/schema/website/1","url":"/","name":"万维刀客「w3cdoc」","description":"互联网同学互相帮助、学习成长的家园","publisher":{"@id":"/#/schema/organization/1"}},{"@type":"WebPage","@id":"/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/","url":"/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/","name":"多摄像机多视图多角度摄影","description":"","isPartOf":{"@id":"/#/schema/website/1"},"about":{"@id":"/#/schema/organization/1"},"datePublished":"0001-01-01T00:00:00CET","dateModified":"0001-01-01T00:00:00CET","breadcrumb":{"@id":"/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/#/schema/breadcrumb/1"},"primaryImageOfPage":{"@id":"/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/#/schema/image/2"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/"]}]},{"@type":"BreadcrumbList","@id":"/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/#/schema/breadcrumb/1","name":"Breadcrumbs","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"WebPage","@id":"/","url":"/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@id":"/webgllearn%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/"}}]},{"@context":"https://schema.org","@graph":[{"@type":"ImageObject","@id":"/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/#/schema/image/2","url":"/doks.png","contentUrl":"/doks.png","caption":"多摄像机多视图多角度摄影"}]}]}</script><meta name=theme-color content="#fff"><link rel=icon href=/favicon.ico sizes=any><link rel=icon type=image/svg+xml href=/favicon.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest crossorigin=use-credentials href=/site.webmanifest><script>"serviceWorker"in navigator&&navigator.serviceWorker.register("/sw.js",{scope:"/"}).then(function(e){console.log("Registration succeeded. Scope is "+e.scope)}).catch(function(e){console.log("Registration failed with "+e)})</script><script src=/js/vendor/autolog.js async></script></head><body class="webgl single"><div class=sticky-top><div class=header-bar></div><header class="navbar navbar-expand-lg navbar-light doks-navbar"><nav class="container-xxl flex-wrap flex-lg-nowrap" aria-label="Main navigation"><a class="navbar-brand order-0" href=/ aria-label=万维刀客「w3cdoc」>万维刀客「w3cdoc」</a>
+<button class="btn btn-menu order-2 d-block d-lg-none" type=button data-bs-toggle=offcanvas data-bs-target=#offcanvasDoks aria-controls=offcanvasDoks aria-label="Open main menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="offcanvas offcanvas-end border-0 py-lg-1" tabindex=-1 id=offcanvasDoks data-bs-backdrop=true aria-labelledby=offcanvasDoksLabel><div class="header-bar d-lg-none"></div><div class="offcanvas-header d-lg-none"><h2 class="h5 offcanvas-title ps-2" id=offcanvasDoksLabel><a class=text-dark href=/>万维刀客「w3cdoc」</a></h2><button type=button class="btn-close text-reset me-2" data-bs-dismiss=offcanvas aria-label="Close main menu"></button></div><div class="offcanvas-body p-4 p-lg-0"><ul class="nav flex-column flex-lg-row align-items-lg-center mt-2 mt-lg-0 ms-lg-2 me-lg-auto"><li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-0 py-1" href=# id=navbarDropdownMenuLink role=button data-bs-toggle=dropdown aria-expanded=false>初级入门
+<span class=dropdown-caret><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></span></a><ul class="dropdown-menu dropdown-menu-main shadow rounded border-0" aria-labelledby=navbarDropdownMenuLink><li><a class=dropdown-item href=/js/basic/javascript%E4%BB%8B%E7%BB%8D/>JS入门</a></li><li><a class=dropdown-item href=/git/basic/introduction/>Git入门</a></li></ul></li><li class="nav-item dropdown"><a class="nav-link dropdown-toggle ps-0 py-1" href=# id=navbarDropdownMenuLink role=button data-bs-toggle=dropdown aria-expanded=false>进阶学习
+<span class=dropdown-caret><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></span></a><ul class="dropdown-menu dropdown-menu-main shadow rounded border-0" aria-labelledby=navbarDropdownMenuLink><li><a class=dropdown-item href=/fed-regain/html/html%E5%8F%91%E5%B1%95%E5%8E%86%E5%8F%B2/>前端增长</a></li><li><a class=dropdown-item href=/webgl/base/%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/>3D图形</a></li><li><a class=dropdown-item href=/bigdata/compute/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%9F%BA%E7%A1%80%E4%BA%86%E8%A7%A3/>数据分析</a></li></ul></li><li class=nav-item><a class="nav-link ps-0 py-1" href=/blog/>博客</a></li><li class=nav-item><a class="nav-link ps-0 py-1" href=/course/>网课教程</a></li></ul><hr class="text-black-50 my-4 d-lg-none"><form class="doks-search position-relative flex-grow-1 ms-lg-auto me-lg-2"><input id=search class="form-control is-search" type=search placeholder="Search docs..." aria-label="Search docs..." autocomplete=off><div id=suggestions class="shadow bg-white rounded d-none"></div></form><hr class="text-black-50 my-4 d-lg-none"><ul class="nav flex-column flex-lg-row"></ul><hr class="text-black-50 my-4 d-lg-none"><button id=mode class="btn btn-link" type=button aria-label="Toggle user interface mode">
+<span class=toggle-dark><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span><span class=toggle-light><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span></button></div></div></nav></header></div><div class=container-xxl><aside class=doks-sidebar><nav id=doks-docs-nav class="collapse d-lg-none" aria-label="Tertiary navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-c7f3a86c4d209391b63439cc2af9bf20 aria-expanded=false>
+理论基础</button><div class=collapse id=section-c7f3a86c4d209391b63439cc2af9bf20><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/webgl/base/%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/>基础教程</a></li><li><a class="docs-link rounded" href=/webgl/base/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%9A%84%E6%95%B0%E5%AD%A6%E7%90%86%E8%AE%BA/>图像处理的数学理论</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-a6e9adb94ced3e994cf1b1d4abc688dd aria-expanded=true>
+webgl入门</button><div class="collapse show" id=section-a6e9adb94ced3e994cf1b1d4abc688dd><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/webgl/learn/%E5%88%9D%E5%A7%8Bwebgl%E5%92%8Cthreejs/>初始WebGL和ThreeJS</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/>点线面基本作图</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E8%BF%90%E5%8A%A8%E7%9A%84%E5%9C%BA%E6%99%AF/>运动的场景</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/>WebGL中的相机</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/>WebGL中的各种光</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/>WebGL中的图片纹理合成</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84canvas%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/>WebGL中的Canvas纹理合成</a></li><li><a class="docs-link rounded" href=/webgl/learn/3d%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8A%A0%E8%BD%BD%E4%B8%8E%E4%BD%BF%E7%94%A8/>3D模型的加载与使用</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E7%BD%91%E6%A0%BC%E6%A8%A1%E5%9E%8B%E6%97%8B%E8%BD%AC%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E6%96%B9%E6%B3%95/>网格模型旋转的常用技巧和方法</a></li><li><a class="docs-link rounded active" href=/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/>多摄像机多视图多角度摄影</a></li></ul></div></li></ul></nav></aside></div><div class="wrap container-xxl" role=document><div class=content><div class="row flex-xl-nowrap"><div class="col-lg-5 col-xl-4 docs-sidebar d-none d-lg-block"><nav class=docs-links aria-label="Main navigation"><ul class="list-unstyled collapsible-sidebar"><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-c7f3a86c4d209391b63439cc2af9bf20 aria-expanded=false>
+理论基础</button><div class=collapse id=section-c7f3a86c4d209391b63439cc2af9bf20><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/webgl/base/%E5%9F%BA%E7%A1%80%E6%95%99%E7%A8%8B/>基础教程</a></li><li><a class="docs-link rounded" href=/webgl/base/%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E7%9A%84%E6%95%B0%E5%AD%A6%E7%90%86%E8%AE%BA/>图像处理的数学理论</a></li></ul></div></li><li class=mb-1><button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle=collapse data-bs-target=#section-a6e9adb94ced3e994cf1b1d4abc688dd aria-expanded=true>
+webgl入门</button><div class="collapse show" id=section-a6e9adb94ced3e994cf1b1d4abc688dd><ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small"><li><a class="docs-link rounded" href=/webgl/learn/%E5%88%9D%E5%A7%8Bwebgl%E5%92%8Cthreejs/>初始WebGL和ThreeJS</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E7%82%B9%E7%BA%BF%E9%9D%A2%E5%9F%BA%E6%9C%AC%E4%BD%9C%E5%9B%BE/>点线面基本作图</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E8%BF%90%E5%8A%A8%E7%9A%84%E5%9C%BA%E6%99%AF/>运动的场景</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E7%9B%B8%E6%9C%BA/>WebGL中的相机</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E5%85%89/>WebGL中的各种光</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/>WebGL中的图片纹理合成</a></li><li><a class="docs-link rounded" href=/webgl/learn/webgl%E4%B8%AD%E7%9A%84canvas%E7%BA%B9%E7%90%86%E5%90%88%E6%88%90/>WebGL中的Canvas纹理合成</a></li><li><a class="docs-link rounded" href=/webgl/learn/3d%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%8A%A0%E8%BD%BD%E4%B8%8E%E4%BD%BF%E7%94%A8/>3D模型的加载与使用</a></li><li><a class="docs-link rounded" href=/webgl/learn/%E7%BD%91%E6%A0%BC%E6%A8%A1%E5%9E%8B%E6%97%8B%E8%BD%AC%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E6%96%B9%E6%B3%95/>网格模型旋转的常用技巧和方法</a></li><li><a class="docs-link rounded active" href=/webgl/learn/%E5%A4%9A%E6%91%84%E5%83%8F%E6%9C%BA%E5%A4%9A%E8%A7%86%E5%9B%BE%E5%A4%9A%E8%A7%92%E5%BA%A6%E6%91%84%E5%BD%B1/>多摄像机多视图多角度摄影</a></li></ul></div></li></ul></nav></div><nav class="docs-toc d-none d-xl-block col-xl-3" aria-label="Secondary navigation"><div class=d-xl-none><button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#onThisPage aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>On this page</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button>
+<button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#doks-docs-nav aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>Book Menu</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button><div class=collapse id=onThisPage><div class="card card-body mt-3 py-1"><div class=page-links><nav id=TableOfContents><ul><li><a href=#常被学员问的一个问题>常被学员问的一个问题</a><ul><li><a href=#本课最终效果>本课最终效果</a></li></ul></li><li><a href=#构造界面>构造界面</a></li><li><a href=#代码解析初始化函数>代码解析：初始化函数</a></li><li><a href=#view视图类>View（视图）类</a></li><li><a href=#view类源码分析>View类源码分析</a><ul><li><a href=#初始化相机>初始化相机</a></li><li><a href=#详解setviewoffset>详解setViewOffset</a></li><li><a href=#view类的render渲染函数>View类的Render渲染函数</a></li><li><a href=#场景和光照>场景和光照</a></li><li><a href=#定义阴影面>定义阴影面</a></li></ul></li><li><a href=#生成20面体并给每个顶点赋予不同的颜色>生成20面体，并给每个顶点赋予不同的颜色</a></li><li><a href=#hsl颜色空间>HSL颜色空间</a></li><li><a href=#创建让平面和线框同时显示的物体>创建让平面和线框同时显示的物体</a></li><li><a href=#声明渲染器>声明渲染器</a></li><li><a href=#总渲染函数>总渲染函数</a></li><li><a href=#让场景响应鼠标的移动>让场景响应鼠标的移动</a></li><li><a href=#结语>结语</a></li></ul></nav></div></div></div></div><div class="page-links d-none d-xl-block"><h3>On this page</h3><nav id=TableOfContents><ul><li><a href=#常被学员问的一个问题>常被学员问的一个问题</a><ul><li><a href=#本课最终效果>本课最终效果</a></li></ul></li><li><a href=#构造界面>构造界面</a></li><li><a href=#代码解析初始化函数>代码解析：初始化函数</a></li><li><a href=#view视图类>View（视图）类</a></li><li><a href=#view类源码分析>View类源码分析</a><ul><li><a href=#初始化相机>初始化相机</a></li><li><a href=#详解setviewoffset>详解setViewOffset</a></li><li><a href=#view类的render渲染函数>View类的Render渲染函数</a></li><li><a href=#场景和光照>场景和光照</a></li><li><a href=#定义阴影面>定义阴影面</a></li></ul></li><li><a href=#生成20面体并给每个顶点赋予不同的颜色>生成20面体，并给每个顶点赋予不同的颜色</a></li><li><a href=#hsl颜色空间>HSL颜色空间</a></li><li><a href=#创建让平面和线框同时显示的物体>创建让平面和线框同时显示的物体</a></li><li><a href=#声明渲染器>声明渲染器</a></li><li><a href=#总渲染函数>总渲染函数</a></li><li><a href=#让场景响应鼠标的移动>让场景响应鼠标的移动</a></li><li><a href=#结语>结语</a></li></ul></nav></div></nav><main class="docs-content col-lg-11 col-xl-9 mx-xl-auto"><h1>多摄像机多视图多角度摄影</h1><p class=lead></p><nav class=d-xl-none aria-label="Quaternary navigation"><div class=d-xl-none><button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#onThisPage aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>On this page</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button>
+<button class="btn btn-outline-primary btn-sm doks-toc-toggle collapsed" type=button data-bs-toggle=collapse data-bs-target=#doks-docs-nav aria-controls=doks-docs-nav aria-expanded=false aria-label="Toggle On this page navigation">
+<span>Book Menu</span>
+<span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-expand" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Expand</title><polyline points="7 13 12 18 17 13"/><polyline points="7 6 12 11 17 6"/></svg><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="doks doks-collapse" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><title>Collapse</title><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></span></button><div class=collapse id=onThisPage><div class="card card-body mt-3 py-1"><div class=page-links><nav id=TableOfContents><ul><li><a href=#常被学员问的一个问题>常被学员问的一个问题</a><ul><li><a href=#本课最终效果>本课最终效果</a></li></ul></li><li><a href=#构造界面>构造界面</a></li><li><a href=#代码解析初始化函数>代码解析：初始化函数</a></li><li><a href=#view视图类>View（视图）类</a></li><li><a href=#view类源码分析>View类源码分析</a><ul><li><a href=#初始化相机>初始化相机</a></li><li><a href=#详解setviewoffset>详解setViewOffset</a></li><li><a href=#view类的render渲染函数>View类的Render渲染函数</a></li><li><a href=#场景和光照>场景和光照</a></li><li><a href=#定义阴影面>定义阴影面</a></li></ul></li><li><a href=#生成20面体并给每个顶点赋予不同的颜色>生成20面体，并给每个顶点赋予不同的颜色</a></li><li><a href=#hsl颜色空间>HSL颜色空间</a></li><li><a href=#创建让平面和线框同时显示的物体>创建让平面和线框同时显示的物体</a></li><li><a href=#声明渲染器>声明渲染器</a></li><li><a href=#总渲染函数>总渲染函数</a></li><li><a href=#让场景响应鼠标的移动>让场景响应鼠标的移动</a></li><li><a href=#结语>结语</a></li></ul></nav></div></div></div></div><div class="page-links d-none d-xl-block"><h3>On this page</h3><nav id=TableOfContents><ul><li><a href=#常被学员问的一个问题>常被学员问的一个问题</a><ul><li><a href=#本课最终效果>本课最终效果</a></li></ul></li><li><a href=#构造界面>构造界面</a></li><li><a href=#代码解析初始化函数>代码解析：初始化函数</a></li><li><a href=#view视图类>View（视图）类</a></li><li><a href=#view类源码分析>View类源码分析</a><ul><li><a href=#初始化相机>初始化相机</a></li><li><a href=#详解setviewoffset>详解setViewOffset</a></li><li><a href=#view类的render渲染函数>View类的Render渲染函数</a></li><li><a href=#场景和光照>场景和光照</a></li><li><a href=#定义阴影面>定义阴影面</a></li></ul></li><li><a href=#生成20面体并给每个顶点赋予不同的颜色>生成20面体，并给每个顶点赋予不同的颜色</a></li><li><a href=#hsl颜色空间>HSL颜色空间</a></li><li><a href=#创建让平面和线框同时显示的物体>创建让平面和线框同时显示的物体</a></li><li><a href=#声明渲染器>声明渲染器</a></li><li><a href=#总渲染函数>总渲染函数</a></li><li><a href=#让场景响应鼠标的移动>让场景响应鼠标的移动</a></li><li><a href=#结语>结语</a></li></ul></nav></div></nav><h2 id=常被学员问的一个问题>常被学员问的一个问题 <a href=#%e5%b8%b8%e8%a2%ab%e5%ad%a6%e5%91%98%e9%97%ae%e7%9a%84%e4%b8%80%e4%b8%aa%e9%97%ae%e9%a2%98 class=anchor aria-hidden=true>#</a></h2><p>有一个问题，是我们经常会遇到的，就是在一个窗口中，有几个子窗口，在子窗口中显示场景不同角度的动画。例如小地图，就是一个极好的例子。我们看看下面一幅图：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-04-20-16-17.png></p><p>这幅图中红色划圈的部分，就是通过不同视图的渲染来做到的，它综合使用了透视相机和正投影相机。</p><p>上图被红线圈住的地方，就是正投影相机绘制出来的。因为它的大小永远不会变化。看一下左上角的血条吧，试想一下，如果它不断的变化大小和角度，那么这将是一个多么低端的游戏啊。</p><p>前面的基础课程，我们已经讲解了怎么来设置视图，但是还不深入，这一节课，我们将深入这一部分。深入的目的，是为了以后大家遇到同类的问题，能够有思路，有想法，而不至于不会做。</p><p>如果和前面的课程相比，有一些跳跃，或者觉得基础知识讲得还不够多，那是我们我们 想尽快得让大家深入了解WebGL的相关体系，如果讲得太快，敬请大家原谅。如果跟不上老师的节奏，建议购买100多集视频课程，那里有更深入的讲解。</p><h3 id=本课最终效果>本课最终效果 <a href=#%e6%9c%ac%e8%af%be%e6%9c%80%e7%bb%88%e6%95%88%e6%9e%9c class=anchor aria-hidden=true>#</a></h3><p>我们首先来看一下我们这节课要完成的效果，如下图所示：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-04-20-16-39.png></p><p>上图中，我们有3个画布，分别放在页面的上方，中部偏右和下部偏左。3个画布里面分别显示了一个场景的不同区域。在图形学中，我们通常将这种最终的显示画布叫做视口（viewport）。关于视口的详细信息，这里先不累述了，在需要深入的时候，我们会告诉你它的相应知识。</p><p>为了第一时间看到效果，点击这里，看看效果吧。
+1、有阴影出现
+注意，demo中的多面体的各个面的颜色是不一样的，有一点渐变。多面体底部是有一些阴影的，这里没有显示出来。移动一下鼠标，你能够看到阴影。</p><p>2、怎么推断时候有光源
+从多面体表面呈现的光照情况，可以断定有一个灯光。多面体上没有聚光的效果，所以应该是没有聚光灯的。也不是每个地方都有一样的光照，所以环境光的可能性不大。最后，推断应该是方向光。哈哈，我也希望，你能这样去思考问题哦。</p><p>Ok，分析差不多就这些了。</p><p>为了第一时间看到效果，你还可以先将【】拖到chrome浏览器中，看看效果。</p><p>同时，你也可以右键源代码，看到本例的源代码。后面的讲解，你最好打开一份源代码，边看后面的解释边对照一下源代码。源码面前了无秘密，这是我们的哲学思维。</p><h2 id=构造界面>构造界面 <a href=#%e6%9e%84%e9%80%a0%e7%95%8c%e9%9d%a2 class=anchor aria-hidden=true>#</a></h2><p>首先，我们要根据上面的描述，使用div+css来构造出界面，div结构如下所示，你可以在源码中找到：</p><pre><code>&lt;div id=&quot;container&quot;&gt;
+    &lt;canvas id=&quot;canvas1&quot;&gt;&lt;/canvas&gt;
+    &lt;canvas id=&quot;canvas2&quot;&gt;&lt;/canvas&gt;
+    &lt;canvas id=&quot;canvas3&quot;&gt;&lt;/canvas&gt;
+&lt;/div&gt;
+</code></pre><p>这是一个很简单的div结构，container里面嵌套了3个容器。这3个容器分别代表下面的三个画布。如下图所示：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-04-20-17-36.png></p><p>这几个id对应的Css样式如下所示：</p><pre><code>#canvas1, #canvas2, #canvas3 {
+    position: relative;
+    display: block;
+    border: 1px solid red  ;  // 边框红色
+}
+
+#canvas1 {
+    width: 300px;
+    height: 200px;
+}
+
+#canvas2 {
+    width: 400px;
+    height: 100px;
+    left: 150px;
+}
+
+#canvas3 {
+    width: 200px;
+    height: 300px;
+    left: 75px;
+}     
+</code></pre><p>可以看出以下几点：</p><p>1、canvas1、canvas2、canvas2的边框显示是红色，并且它们都是使用的绝对定位。</p><p>2、canvas1的宽度是300px，高度是200px。</p><p>他的都很简单，这里就不累述了。由于这里的每个div并没有清除浮动，所以每个div是占一行的。Ok，界面大功告成，我们接着往下面看。</p><h2 id=代码解析初始化函数>代码解析：初始化函数 <a href=#%e4%bb%a3%e7%a0%81%e8%a7%a3%e6%9e%90%e5%88%9d%e5%a7%8b%e5%8c%96%e5%87%bd%e6%95%b0 class=anchor aria-hidden=true>#</a></h2><p>我们将代码分段来解释，这样更容易理解，首先映入你眼前的是初始化函数，主要完成程序的初始化工作。代码如下：</p><pre><code>// 判断浏览器是否支持WebGL,如果不支持会在div中打印一串不支持信息出来
+if ( WEBGL.isWebGLAvailable() === false ) {
+// 不支持，这直接打印getWebGLErrorMessage返回的不支持的文字信息
+    document.body.appendChild( WEBGL.getWebGLErrorMessage() );
+
+}
+var views = [];
+init();
+animate();
+</code></pre><p>我们接下来深入到init函数中看一下她美丽的身材：</p><pre><code>function init() {
+
+    var canvas1 = document.getElementById( 'canvas1' );
+    var canvas2 = document.getElementById( 'canvas2' );
+    var canvas3 = document.getElementById( 'canvas3' );
+
+    var fullWidth = 550;
+    var fullHeight = 600;
+
+    views.push( new View( canvas1, fullWidth, fullHeight,   0,   0, canvas1.clientWidth, canvas1.clientHeight ) );
+    views.push( new View( canvas2, fullWidth, fullHeight, 150, 200, canvas2.clientWidth, canvas2.clientHeight ) );
+    views.push( new View( canvas3, fullWidth, fullHeight,  75, 300, canvas3.clientWidth, canvas3.clientHeight ) );
+
+    // 此处省略了部分代码，完整代码请下载查看。
+    ......
+}
+</code></pre><p>init函数顾名思义是初始化函数，在这个函数里，我们做了如下几件事情：</p><p>1、使用document.getElementById函数得到了3个div容器，他们将作为画布使用。</p><p>2、定义了一个宽度和高度的变量，如下：</p><pre><code>var fullWidth = 550;
+
+var fullHeight = 600;
+</code></pre><p>这里的宽度和高度不是任意定义的，它刚好是包含了3个div的大小，如下图所示：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-04-20-19-03.png></p><p>我们用550,600稍后用来设置摄像机的宽度和高度，这样相机的纵横比就出来了。</p><p>3、然后，构造了一些View对象，并放入到了views数组中。View对象有什么用，我们来仔细分析一下。</p><h2 id=view视图类>View（视图）类 <a href=#view%e8%a7%86%e5%9b%be%e7%b1%bb class=anchor aria-hidden=true>#</a></h2><p>View类将相机，视图、灯光、等场景封装到了一个类里面，这是为了重用的需要。它并不对应WebGL中的任何术语，只是为了代码整洁，而定义的一个类而已，这里大家，一定不要被View这个概念误导了。</p><p>因为本例的3个不同场景大同小异，只是摄像机的位置不太相同，所以很多细节可以重用。</p><p>我们先来熟悉一下View这个类，View的构造函数如下所示：</p><pre><code>function View( canvas, fullWidth, fullHeight, viewX, viewY, viewWidth, viewHeight )
+</code></pre><p>它的参数的含义如下所述：</p><p>canvas：表示要在上面显示内容的div的id名字。如canvas1、canvas2。</p><p>fullWidth：视口的宽度</p><p>fullHeight：视口的高度</p><p>viewX：我们可以选择只显示视口的某一部分，viewX表示从视口x坐标的哪里开始显示。</p><p>viewY：如上，viewY表示从视口Y坐标的哪里开始显示。</p><p>viewWidth：只显示视口中某一部分的宽度</p><p>viewHeight：只显示视口中某一部分的高度。</p><p>这几个参数，我们用一个图来解释一下：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-04-20-19-41.png></p><p>对照上面的图，在重新看一下解释，你会更明白。记住，学习的过程中，我们不求快，只求明白。其中绿色部分表示最终要显示到浏览器上的部分.</p><h2 id=view类源码分析>View类源码分析 <a href=#view%e7%b1%bb%e6%ba%90%e7%a0%81%e5%88%86%e6%9e%90 class=anchor aria-hidden=true>#</a></h2><p>View类中主要在设置相机，灯光，添加多面体等工作。我们对View类中的函数一个一个来讲解，请你打开一份代码，对照学习。不然一定会有听天书的感觉。</p><p>请大家预览一下这个类的代码，在它里面定义了1个render函数和一些初始化代码，下面，我们分别来解释一下这些代码。</p><h3 id=初始化相机>初始化相机 <a href=#%e5%88%9d%e5%a7%8b%e5%8c%96%e7%9b%b8%e6%9c%ba class=anchor aria-hidden=true>#</a></h3><p>首先是相机的初始化，我们这里使用透视投影相机，代码及注释如下</p><pre><code>// View类的几个参数已经在上面讲解了，如果不会，请回到上面看一下。
+function View( canvas, fullWidth, fullHeight, viewX, viewY, viewWidth, viewHeight ) {
+    // 这里主要是对于一些retina屏幕设置的，大多数屏幕devicePixelRatio=1。
+    // 这里你可以不用关心，如果需要深入学习，可以看一下这篇文章：https://www.zhangxinxu.com/wordpress/2012/08/window-devicepixelratio/
+    canvas.width = viewWidth * window.devicePixelRatio;
+    canvas.height = viewHeight * window.devicePixelRatio;
+
+    // getContext() 方法返回一个用于在画布上绘图的环境。
+    var context = canvas.getContext( '2d' );
+    // 初始化一个透视相机，
+    // 第一个参数设置相机的透视角为20度；
+    // 第二个参数设置宽高比，宽高比为canvas的宽度除以高度，这是和视口同样的宽高比，能够使投影到视口中的景象不变形。
+    // 第三、第四个参数
+    能够看到从相机前1个单位到10000个单位的距离。单位你可以自己在整个系统中取，你可以以米为单位，也可以以厘米为单位，只要你愿意。
+    var camera = new THREE.PerspectiveCamera( 20, viewWidth / viewHeight, 1, 10000 );
+
+    // 这是设置相机的有效显示部分，表示只显示相机里面的一个部分。对照上一节的图，就是显示上图的浅绿色部分
+    camera.setViewOffset( fullWidth, fullHeight, viewX, viewY, viewWidth, viewHeight );
+
+    // 将相机的位置放到（0,0,1800）的位置，x，y坐标不变，代表默认为0
+    camera.position.z = 1800;
+
+    ......
+}
+</code></pre><h3 id=详解setviewoffset>详解setViewOffset <a href=#%e8%af%a6%e8%a7%a3setviewoffset class=anchor aria-hidden=true>#</a></h3><p>ok，上面的代码除了camera.setViewOffset()这个函数之外，都没有什么难点，我们来看看这个函数。这个函数是让视图的某一部分显示在屏幕上。</p><p>setViewOffset( fullWidth, fullHeight, x, y, width, height )</p><p>各个参数的解释如下：</p><p>fullWidth：整个视图（口）的宽度，也可以理解为相机的宽度。</p><p>fullHeight：整个视图（口）的高度，也可以理解为相机的高度。</p><p>x：视图的x轴偏移位置，及要显示的部分相对于左上角的偏移。</p><p>y：视图的y轴偏移位置</p><p>width：子视图的宽度，只有这个宽度才被显示</p><p>height：子视图的高度，只有这个高度才被显示</p><p>这些参数，也可以用这幅图来表示</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-04-20-20-43.png></p><p>setViewOffset表示在渲染的时候，我们只显示浅绿色部分。只有这一部分才会被映射到最终的屏幕上（canvas这个div）中去。</p><h3 id=view类的render渲染函数>View类的Render渲染函数 <a href=#view%e7%b1%bb%e7%9a%84render%e6%b8%b2%e6%9f%93%e5%87%bd%e6%95%b0 class=anchor aria-hidden=true>#</a></h3><p>View类中有一个渲染函数，它的目的是将结果渲染到canvas（div）中。代码如下所示：</p><pre><code>this.render = function () {
+    // 根据鼠标来为相机设置不同的位置，从而得到不同视角观看场景的机会
+    camera.position.x += ( mouseX - camera.position.x ) * 0.05;
+    camera.position.y += ( - mouseY - camera.position.y ) * 0.05;
+    // 相机永远指向场景的原点位置，场景的位置默认在世界坐标的原点，而且一般我们不会移动scene的位置
+    camera.lookAt( scene.position );
+
+    // 设置渲染器的宽度和高度
+    renderer.setViewport( 0, 0, viewWidth, viewHeight );
+    // 根据场景和相机渲染整个画面
+    renderer.render( scene, camera );
+    // 将渲染器的渲染结果domElement绘制到context中，也就是canvas画布中。
+    context.drawImage( renderer.domElement, 0, 0 );
+
+};
+</code></pre><p>其中每一次渲染都会根据鼠标移动相机的位置，这样就能够通过移动鼠标看到场景的各个方面。</p><h3 id=场景和光照>场景和光照 <a href=#%e5%9c%ba%e6%99%af%e5%92%8c%e5%85%89%e7%85%a7 class=anchor aria-hidden=true>#</a></h3><p>View类介绍完后，我们来看一下其他代码。在代码中定义了场景和光照，我们定义了一个白色的方向光，从（0,0,1）点射向（0,0,0）点。代码如下所示：</p><pre><code>scene = new THREE.Scene();
+light = new THREE.DirectionalLight( 0xffffff );
+light.position.set( 0, 0, 1 ).normalize();
+scene.add( light );
+</code></pre><h3 id=定义阴影面>定义阴影面 <a href=#%e5%ae%9a%e4%b9%89%e9%98%b4%e5%bd%b1%e9%9d%a2 class=anchor aria-hidden=true>#</a></h3><p>仔细观察本例的运行效果，你可以在球的底部看到一块阴影，如下图红色圆圈的地方</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-04-20-21-40.png></p><p>那么这里的阴影是怎么实现的呢？</p><p>为了让大家更容易学习，我们这里的阴影不是通过光照生成的，而是简单的使用了一个像阴影的贴图，贴到一个平面上生成的。同时，也可以让大家学习一种新方法。</p><p>这里要实现阴影的效果，我们需要一个像阴影的纹理，一种带有这种纹理的材质和一个带有这种材质的平面。好了，这就是我们需要的全部，它们是紧密相连的，但最终只有一个目的，生成像阴影一样的平面，然后放到多面体（球）的下方。</p><p>我们这里选择在canvas画布上绘制来生成阴影，在html5中有一个画布canvas，在上面我们可以画出想要的图形，当然由于都在浏览器中，这个图形肯定是适合于three.js的。画阴影的代码如下所示：</p><pre><code>// 创建画布
+var canvas = document.createElement( 'canvas' );
+// 设置画布大小宽128，高128
+canvas.width = 128;
+canvas.height = 128;
+// 得到画布的可画类context
+var context = canvas.getContext( '2d' );
+// 创建一个放射性渐变，渐变从画布的中心开始，到以canvas.width/2为半径的圆结束。如果不明白可以参考：http://www.w3school.com.cn/htmldom/met_canvasrenderingcontext2d_createradialgradient.asp
+var gradient = context.createRadialGradient( canvas.width / 2, canvas.height / 2, 0, canvas.width / 2, canvas.height / 2, canvas.width / 2 );
+// 在离画布中心canvas.width*0.1的位置添加一种颜色，
+gradient.addColorStop( 0.1, 'rgba(210,210,210,1)' );
+// 在画布渐变的最后位置添加一种颜色，
+gradient.addColorStop( 1, 'rgba(255,255,255,1)' );
+// 填充方式就是刚才创建的渐变填充
+context.fillStyle = gradient;
+// 实际的在画布上绘制渐变。
+context.fillRect( 0, 0, canvas.width, canvas.height );
+</code></pre><p>上面绘制画布的代码的效果如下：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-04-20-22-12.png></p><p>画布做好了，然后我们将画布转化为纹理，代码如下：</p><p>var shadowTexture = new THREE.CanvasTexture( canvas );</p><p>注意CanvasTexture可以从canvas画布中创建一个纹理。然后由纹理定义材质，代码如下：</p><p>var shadowMaterial = new THREE.MeshBasicMaterial( { map: shadowTexture } );</p><p>这样我们就定义了平面使用的基本材质。Ok，材质定义好后，就把它赋给阴影平面吧，我们有三个球，所以有三个阴影，代码如下：</p><pre><code>// 定义一个宽和高都是300的平面，平面内部没有出现多个网格。
+var shadowGeo = new THREE.PlaneGeometry( 300, 300, 1, 1 );
+// 构建一个Mesh网格，位置在（0，-250，0），即y轴下面250的距离。
+mesh = new THREE.Mesh( shadowGeo, shadowMaterial );
+mesh.position.y = - 250;
+// 围绕x轴旋转-90度，这样竖着的平面就横着了。阴影是需要横着的。
+mesh.rotation.x = - Math.PI / 2;
+scene.add( mesh );
+// 第二个平面阴影
+mesh = new THREE.Mesh( shadowGeo, shadowMaterial );
+mesh.position.x = - 400;
+mesh.position.y = - 250;
+mesh.rotation.x = - Math.PI / 2;
+scene.add( mesh );
+// 第三个平面阴影
+mesh = new THREE.Mesh( shadowGeo, shadowMaterial );
+mesh.position.x = 400;
+mesh.position.y = - 250;
+mesh.rotation.x = - Math.PI / 2;
+scene.add( mesh );
+</code></pre><p>这样就生成了3个平面阴影，并将其放置在了场景中。有了阴影，还差像球体一样的二十面体，下面，我们就来添加二十面体。</p><h2 id=生成20面体并给每个顶点赋予不同的颜色>生成20面体，并给每个顶点赋予不同的颜色 <a href=#%e7%94%9f%e6%88%9020%e9%9d%a2%e4%bd%93%e5%b9%b6%e7%bb%99%e6%af%8f%e4%b8%aa%e9%a1%b6%e7%82%b9%e8%b5%8b%e4%ba%88%e4%b8%8d%e5%90%8c%e7%9a%84%e9%a2%9c%e8%89%b2 class=anchor aria-hidden=true>#</a></h2><p>看下面一幅图，可以发现20面体的每个面都不是纯色。显示在面上的颜色都是渐变色。这种渐变色是将三角形面的每一个顶点赋予不同的颜色值形成的。为什么只设置三角形三个顶点的颜色，三角形面上其他像素点的颜色就可以生成呢？这是因为三角形里上其他点的颜色可以通过3个顶点的颜色自动找到相似色，然后显示出来。
+<img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-04-20-16-39.png></p><p>完成这个任务的代码如下所示，注释中解释得很清楚了，请认真分析</p><pre><code>// 20面体的半径是200单位
+var radius = 200;
+
+// 生成3个20面体
+var geometry1 = new THREE.IcosahedronBufferGeometry( radius, 1 );
+
+// 从20面体中的顶点数组（geometry1.attributes.position）中获得顶点的个数，目的是为每个顶点设置一个颜色属性
+var count = geometry1.attributes.position.count;
+// 为几何体设置一个颜色属性，颜色属性的属性名必须是‘color’，这样Three.js才认识。
+geometry1.addAttribute( 'color', new THREE.BufferAttribute( new Float32Array( count * 3 ), 3 ) );
+
+// 由于场景中有3个20面体，所以这里通过clone函数复制3个。clone函数将生产一模一样的一个几何体。
+var geometry2 = geometry1.clone();
+var geometry3 = geometry1.clone();
+
+// 这里声明一个临时的颜色值，待会用来作为中间结果。
+var color = new THREE.Color();
+
+// 获得3个几何体的位置属性数组
+var positions1 = geometry1.attributes.position;
+var positions2 = geometry2.attributes.position;
+var positions3 = geometry3.attributes.position;
+
+// 获得3个几何体的颜色属性数组
+var colors1 = geometry1.attributes.color;
+var colors2 = geometry2.attributes.color;
+var colors3 = geometry3.attributes.color;
+
+// 使用HSL颜色空间来设置颜色。下文将简单介绍这种颜色空间。
+// 为每个顶点设置一种颜色
+for ( var i = 0; i &lt; count; i ++ ) {
+
+    color.setHSL( ( positions1.getY( i ) / radius + 1 ) / 2, 1.0, 0.5 );
+    colors1.setXYZ( i, color.r, color.g, color.b );
+
+    color.setHSL( 0, ( positions2.getY( i ) / radius + 1 ) / 2, 0.5 );
+    colors2.setXYZ( i, color.r, color.g, color.b );
+
+    color.setRGB( 1, 0.8 - ( positions3.getY( i ) / radius + 1 ) / 2, 0 );
+    colors3.setXYZ( i, color.r, color.g, color.b );
+
+}
+</code></pre><p>这样，20面体的不同面都能够显示不同的颜色了。</p><h2 id=hsl颜色空间>HSL颜色空间 <a href=#hsl%e9%a2%9c%e8%89%b2%e7%a9%ba%e9%97%b4 class=anchor aria-hidden=true>#</a></h2><p>上面的代码中出现了setHSL函数，这个函数是THREE.Color()对象用来设置颜色值的。我们打开源码看一下这个函数，这个函数被定义在Three.js的color.js中，代码如下：</p><p>function setHSL( h, s, l )</p><p>函数接受3个参数，分别HSL颜色模型中的3个分量。这3个分量到底是什么？我们从HSL模型谈起。</p><p>HSL模型是一种人性化的颜色模型，为什么这么说呢？我们来详细解释一下。</p><p>HSL使用了3个分量来描述色彩，与RGB使用的三色光（红绿蓝）不同，HSL色彩的表述方式是：H(hue)色相，S(saturation)饱和度，以及L(lightness)亮度。听起来一样复杂？稍后你就会发现，与“反人类”的RGB模型相比，HSL是多么的友好。</p><p>HSL的H(hue)分量，代表的是人眼所能感知的颜色范围，这些颜色分布在一个平面的色相环上，取值范围是0°到360°的圆心角，每个角度可以代表一种颜色。如下图，不同不同角度代表不同颜色</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-04-20-23-49.png></p><p>这个值叫做色相值，它的意义在于，我们可以在不改变光感的情况下，通过旋转色相环来改变颜色。在实际应用中，我们需要记住色相环上的六大主色，用作基本参照：360°/0°红、60°黄、120°绿、180°青、240°蓝、300°洋红，它们在色相环上按照60°圆心角的间隔排列，如上图。</p><p>HSL的S(saturation)分量，指的是色彩的饱和度，它用0%至100%的值描述了相同色相、明度下色彩纯度的变化。数值越大，颜色中的灰色越少，颜色越鲜艳，呈现一种从理性(灰度)到感性(纯色)的变化，如下图：</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-04-20-24-13.png></p><p>S的值越大，颜色越纯净。</p><p>HSL的L(lightness)分量，指的是色彩的明度，作用是控制色彩的明暗变化。它同样使用了0%至100%的取值范围。数值越小，色彩越暗，越接近于黑色；数值越大，色彩越亮，越接近于白色。</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-04-20-24-20.png></p><p>对了HSL颜色模型有一定了解以后，我们不仅会想，这种颜色模型有什么好处呢？ 其实答案已经很接近了：就是，我们可以容易的从这几个分量中，看出它是哪种颜色。如我们要调一种红色，只需要将H设置为330-360度，0到30度之间即可，如下图。</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-04-20-24-33.png></p><h2 id=创建让平面和线框同时显示的物体>创建让平面和线框同时显示的物体 <a href=#%e5%88%9b%e5%bb%ba%e8%ae%a9%e5%b9%b3%e9%9d%a2%e5%92%8c%e7%ba%bf%e6%a1%86%e5%90%8c%e6%97%b6%e6%98%be%e7%a4%ba%e7%9a%84%e7%89%a9%e4%bd%93 class=anchor aria-hidden=true>#</a></h2><p>在本例中，20面体比较特殊，不但显示了表面，而且显示了表面周围的线框。这在three.js引擎中是不支持这种同时显示平面和线框的。</p><p>为了实现这个效果，我们可以创建2个不同材质的相同物体，来近似的模拟这种效果。</p><p>实现这个功能的代码如下：</p><pre><code>var material = new THREE.MeshPhongMaterial( {
+    color: 0xffffff,
+    flatShading: true,
+    vertexColors: THREE.VertexColors,
+    shininess: 0
+} );
+
+var wireframeMaterial = new THREE.MeshBasicMaterial( { color: 0x000000, wireframe: true, transparent: true } );
+var mesh = new THREE.Mesh( geometry1, material );
+var wireframe = new THREE.Mesh( geometry1, wireframeMaterial );
+mesh.add( wireframe );
+mesh.position.x = - 400;
+mesh.rotation.x = - 1.87;
+scene.add( mesh );
+</code></pre><p>这段代码用不同的材质，绘制了2个网格模型，这2个网格模型使用了同样的几何体对象（geometry）。带有线框的效果如下</p><p><img class="img-fluid lazyload blur-up" src=/images/posts/2022-12-04-20-25-11.png></p><h2 id=声明渲染器>声明渲染器 <a href=#%e5%a3%b0%e6%98%8e%e6%b8%b2%e6%9f%93%e5%99%a8 class=anchor aria-hidden=true>#</a></h2><p>接下来的代码是声明渲染器，代码如下：</p><pre><code>renderer = new THREE.WebGLRenderer( { antialias: true } );
+renderer.setPixelRatio( window.devicePixelRatio );
+renderer.setSize( fullWidth, fullHeight );
+</code></pre><p>这里将渲染器设置为反锯齿，这样渲染的图像更清晰，质量越高，当然消耗了更多CPU资源。然后通过setSize函数设置了渲染器的高度和宽度正好等于container的高度和宽度。</p><p>最后将渲染器的结果加到container中，这样渲染的结果才能显示出来</p><h2 id=总渲染函数>总渲染函数 <a href=#%e6%80%bb%e6%b8%b2%e6%9f%93%e5%87%bd%e6%95%b0 class=anchor aria-hidden=true>#</a></h2><p>代码的最后又一个总渲染函数，将3个View的结果渲染出来。代码如下所示：</p><pre><code>function animate() {
+
+    for ( var i = 0; i &lt; views.length; ++i ) {
+
+        views[ i ].render();
+
+    }
+
+    requestAnimationFrame( animate );
+
+}
+</code></pre><p>这一段代码一看就懂，就不解释了。dddDDDdff</p><h2 id=让场景响应鼠标的移动>让场景响应鼠标的移动 <a href=#%e8%ae%a9%e5%9c%ba%e6%99%af%e5%93%8d%e5%ba%94%e9%bc%a0%e6%a0%87%e7%9a%84%e7%a7%bb%e5%8a%a8 class=anchor aria-hidden=true>#</a></h2><p>在上一节的渲染函数中，我们使用了mouseX，mouseY这一对全局变量，来控制相机的位置，这里我们来实时的得到鼠标的位置（mouseX，mouseY），为了得到鼠标的位置，我们必须监听鼠标移动的事件，请对照整个实例的源代码来分析，局部的代码如下：</p><pre><code>document.addEventListener('mousemove', onDocumentMouseMove, false );
+</code></pre><p>这句话的意思是在网页的document中监听mousemove事件，当鼠标移动的时候，触发onDocumentMouseMove函数，这个函数的代码如下所示：</p><pre><code>function onDocumentMouseMove( event ) {
+    mouseX = ( event.clientX - windowHalfX );
+    mouseY = ( event.clientY - windowHalfY );
+}
+</code></pre><p>这里对event.ClientX和event.ClientY进行了一些处理，event.ClientX和event.ClientY的原点是窗口左上角，通过减去窗口一半的距离。让mouseX和mouseY，当鼠标在窗口中心点的时候，其值为0，这样原点就好像移动到了窗口的中心位置。</p><p>Ok，一切都讲完了，运行一下代码，看看您的杰作吧。</p><h2 id=结语>结语 <a href=#%e7%bb%93%e8%af%ad class=anchor aria-hidden=true>#</a></h2><p>人生有时候就是一个过了河的小卒子，想过去重新来一次，但是却回不去。想前进，但是又缺乏勇气。</p><p>但有些时候，唯有技术和代码让我们感觉到存在。</p><p>各位同学，要有创业心，要有自己的想法。好好练习技术吧。</p><p>感谢你阅读本课，非常感谢，晚安。</p><div class="page-footer-meta d-flex flex-column flex-md-row justify-content-between"></div><div class="docs-navigation d-flex justify-content-between"><a href=/webgl/learn/%E7%BD%91%E6%A0%BC%E6%A8%A1%E5%9E%8B%E6%97%8B%E8%BD%AC%E7%9A%84%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7%E5%92%8C%E6%96%B9%E6%B3%95/><div class="card my-1"><div class="card-body py-2">&larr; 网格模型旋转的常用技巧和方法</div></div></a></div></main></div></div></div><footer class="footer text-muted"><div class=container-xxl><div class=row><div class="col-lg-8 order-last order-lg-first"><ul class=list-inline><li class=list-inline-item>Copyright © 2022-Present 浙ICP备18052292号-3</li></ul></div><div class="col-lg-8 order-first order-lg-last text-lg-end"><ul class=list-inline></ul></div></div></div></footer><script src=/js/bootstrap.min.1117772738b0b01188ff56b000f75758d3ca75fab55d0d7cf813282148e4840455e1fc0a8f1c2951391282de6e64bed66b885160643382a58f67db6d110e9feb.js integrity="sha512-ERd3JziwsBGI/1awAPdXWNPKdfq1XQ18+BMoIUjkhARV4fwKjxwpUTkSgt5uZL7Wa4hRYGQzgqWPZ9ttEQ6f6w==" crossorigin=anonymous defer></script>
+<script src=/js/highlight.min.35e8488ad0bca08539c53f48a94a3c02f90c10ddc1ecba4a7fd7ec827cef556dec98a33813e3681b33a5750eefd53e65ab606d30febc27e411c293f2290f96a5.js integrity="sha512-NehIitC8oIU5xT9IqUo8AvkMEN3B7LpKf9fsgnzvVW3smKM4E+NoGzOldQ7v1T5lq2BtMP68J+QRwpPyKQ+WpQ==" crossorigin=anonymous defer></script>
+<script src=/main.min.5874482df6978e314928bf4ce1c634b6464aa5445dd098e344aa61159e2b10139d82662edd47e835a3ea422c24214134f15eded85f28e55774a70f9c4919b2b3.js integrity="sha512-WHRILfaXjjFJKL9M4cY0tkZKpURd0JjjRKphFZ4rEBOdgmYu3UfoNaPqQiwkIUE08V7e2F8o5Vd0pw+cSRmysw==" crossorigin=anonymous defer></script>
+<script src=/index.min.4ae26272486ea46c5bb0bed7a0b434a91b05e8182cfb839a405dd4e647b05ce5d76d401a5103d822d3b1589fc56335cd372b712d97085b8d89aebf244b1b5501.js integrity="sha512-SuJickhupGxbsL7XoLQ0qRsF6Bgs+4OaQF3U5kewXOXXbUAaUQPYItOxWJ/FYzXNNytxLZcIW42Jrr8kSxtVAQ==" crossorigin=anonymous defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML" async></script>
+<script type="text/x-mathjax-config;executed=true">
+  window.MathJax.Hub.Config({
+      showProcessingMessages: false, //关闭js加载过程信息
+      messageStyle: "none", //不显示信息
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+          inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]], //段内公式选择符
+          skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
+      },
+      "HTML-CSS": {
+          availableFonts: ["STIX", "TeX"], //可选字体
+          showMathMenu: false //关闭右击菜单显示
+      }
+  });
+  //下面第三个参数可以不写，默认对整个html内的latex进行翻译
+  window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementsByClassName("ck-content")]);
+</script></body></html>
