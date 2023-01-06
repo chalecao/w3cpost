@@ -72,6 +72,6 @@ js已经发布了很多的版本。EMCAScript3是2000-2010年期间支持最广�
 
 Since then JavaScript had new, small updates every year. The fact that JavaScript is evolving means that browsers have to continually keep up. You should know that an older browser may not support every feature offered by JavaScript.
 
-由于js每年
+由于js每年都会有新的、小的更新，JavaScript一直在不断进化，浏览器也需要跟着一起进化。
 
 The designers of JavaScript are careful to not make any major changes that could break existing programs. This is done to allow new browsers run old programs. JavaScript is not only used on platforms like Web browsers. Databases like MongoDB and CouchDB, use JavaScript as their scripting and query language. Several platforms for desktop and server programming provide an environment for programming JavaScript outside of the browser (for example Node JS).
