@@ -30,17 +30,27 @@ JavaScript具有的独特魅力：
 
 Now you understand why it’s the most widespread and powerful tool for creating browser interfaces. JavaScript helps to create servers, mobile applications, games, etc.
 
+现在你理解为什么javascript是创建浏览器交互界面使用最广泛最有力的工具了吧，它还可以用来创建服务端、手机应用、游戏等等。
+
 ## Why is it called JavaScript?
 
 JavaScript programming language was developed by Brendan Eich in 1995. When JavaScript was created it was known as LiveScript. Netscape changed its name to JavaScript.
 
+JavaScript语言是Brendan Eich1995年发明的。当他创建这个语言时，命名为LiveScript，Netscape网景公司后来把它改成了JavaScript。
+
 Important to know that JavaScript has almost nothing to do with the programming language called Java. The JavaScript name was inspired by marketing considerations. The Java programming language was being heavily marketed and popular when JavaScript was being introduced. After it was adopted outside of Netscape, a standard document was written to describe how the JavaScript language should work. JavaScript has a long way since it becomes a robust, powerful and efficient general-purpose language.
+
+最重要的是你要知道JavaScript和另外一种语言Java几乎没有任何关系。之所以改名称为JavaScript是为了激发市场，当时Java是市场上非常流行受欢迎的编程语言。当NetScape收购之后，公司撰写了javascript语言如何运作的标准规范文档。经过了很长的迭代，js经过长时间的发展，已经变成了一个稳定、强壮、高效的通用性语言。
 
 ## Why to use JavaScript?
 
 Today, JavaScript is one of the most powerful, popular, and flexible programming languages. It provides dynamic behavior on most websites. JavaScript is used by the overwhelming majority of modern websites. JavaScript interpreters are included in all modern web browsers—on desktops, game consoles, tablets, and smartphones. This makes JavaScript the most ubiquitous programming language in history. JavaScript is a programming language that all Web developers should learn. HTML is needed to specify the content of web pages, CSS to specify the presentation of web pages, and JavaScript to specify the behavior of web pages.
 
+现在js是其中一种最强大、流行、容易使用的编程语言，他为绝大多数的网站提供动态的交互行为。js被绝大多数现代互联网网站使用，所有现代桌面的，游戏控制台、平板电脑、手机的浏览器都内置了js解释器。这使得js成为历史上最普遍的编程语言。js是一种所有开发者都应该学习的编程语言。HTML是用来制定web页面的展示内容，css用来制定web页面的表现形式，js用来制定web页面的交互行为。
+
 This book will help you master the language.
+
+本教程将会帮助你掌握这门语言。
 
 JavaScript has a lot of advantages like:
 - Less server interaction
@@ -48,10 +58,20 @@ JavaScript has a lot of advantages like:
 - Increased interactivity
 - Richer interfaces
 
+JS有很多的优势：
+- 较少的服务端交互
+- 给用户提供及时的反馈
+- 增加互动性
+- 更丰富的交互界面
+
 ## What improvement JavaScript has?
 
 There have been several versions of JavaScript programming language. ECMAScript version 3 was the most supported version between 2000 and 2010. Version 4 planned a number of radical improvements and extensions to the language, but it wasn’t done. Then version 5 came out, which made only some uncontroversial improvements, coming out in 2009. Version 6 came out in 2015 and had major updates that included some of the ideas planned for version 4.
 
+js已经发布了很多的版本。EMCAScript3是2000-2010年期间支持最广泛的版本。版本4计划支持一些比较激进的语言改进和扩展，但是没有完成。后面提出了版本5，做出了一些无争议的改进，是2009年提出来的版本5草案。2015年提出了版本6，更新了一些之前版本4计划的优化方案。
+
 Since then JavaScript had new, small updates every year. The fact that JavaScript is evolving means that browsers have to continually keep up. You should know that an older browser may not support every feature offered by JavaScript.
+
+由于js每年
 
 The designers of JavaScript are careful to not make any major changes that could break existing programs. This is done to allow new browsers run old programs. JavaScript is not only used on platforms like Web browsers. Databases like MongoDB and CouchDB, use JavaScript as their scripting and query language. Several platforms for desktop and server programming provide an environment for programming JavaScript outside of the browser (for example Node JS).
