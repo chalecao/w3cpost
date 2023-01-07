@@ -7,11 +7,17 @@ weight: 3
 
 HTML can’t do the math, it can’t figure out if someone has correctly filled out a form. HTML just let people read the text, watch videos, look at pictures, and click links. You need JavaScript to add intelligence to your web pages so they can respond to your site’s visitors. So JavaScript lets you make your websites more attractive, effective, and useful.
 
+HTML做不了数学题，它无法识别某人是否正确填写了一个form表单。HTML只是可以让用户阅读文本、看视频、看图片和点击链接。你需要使用JavaScript来给你的web页面增加智能化来响应你的用户的操作。所以JavaScript可以使你的网站更有吸引力、好用、有用。
+
 JavaScript is more complex than HTML or CSS, the main goal of this book is to help you think more like a programmer. JavaScript program has this kind of symbols ({ } [ ] ; , () !=) and many unfamiliar words (var, null, else if). We can say, that learning a programming language is a lot like learning another language. You need to learn new words and understand how to put them together.
+
+JavaScript比HTML和css更加复杂，本教程的主要目的是帮助你能像一个程序员那样思考。JavaScript编程由这些符号({ } [ ] ; , () !=)和一些不常用的单词(var, null, else if)。我可以负责任的说，学一门编程语言就像是学习另一种语言，你需要学习新的单词，理解怎样把他们拼接在一起。
 
 ## About Computer Program?
 
 Adding JavaScript to a web page means that you're writing a computer program. Many JavaScript programs are much simpler than the programs you use to read email, build web pages. But even though JavaScript programs, which also scripts are simpler and shorter and share many of the same properties of more complicated programs.
+
+给web页面添加JavaScript就像你在编写一个电脑程序。大部分JavaScript程序都比你用的邮件、构建web应用这些软件要简单。但是即使是JavaScript，这种更简单、更简短的编程语言和那些复杂的编程语言都有一些相同的特性。
 
 If you want to display a welcome message using the web-page visitor’s name: “Welcome, John Doe!”, you need to do several things:
 
@@ -19,7 +25,14 @@ If you want to display a welcome message using the web-page visitor’s name: �
 - Get the visitor’s reply;
 - Print the message on the web page.
 
+如果你想使用web页面访问者的名称展示一个欢迎信息，比如“你好，小明”，你需要做这些事情：
+- 询问访问者的名称
+- 获取访问者的答复
+- 在页面上展示这些信息
+
 When you want to create a JavaScript program, you must determine the steps needed to achieve your goal. After knowing the steps, you’ll translate your ideas into programming code - the words and characters that make the web browser behave the way you want it to.
+
+当你想编写一个JavaScript程序，你需要先确定实现你的目标的步骤。想清楚这些步骤之后，你可以开始把你的想法转换成编程代码-就是一次单词和字母的组合能够让浏览器按照你想要的方式交互。
 
 ## How to Add JavaScript to a Page
 
